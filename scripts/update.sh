@@ -47,6 +47,9 @@ fetch() {
 			git add "docs/$1"
 			;;
 		vault | consul | nomad | terraform | packer | vagrant | boundary | protobuf)
+			mv "docs/$1"{,.tmp}
+			grep -E '^[0-9]' "docs/$1.tmp" >"docs/$1"
+			rm "docs/$1.tmp"
 			sort -V "docs/$1" -o "docs/$1"
 			git add "docs/$1"
 			;;
