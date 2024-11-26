@@ -72,8 +72,8 @@ git add docs/aqua-registry
 
 if [ "$DRY_RUN" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 	git diff --compact-summary --cached
-	git config --local user.email "123107610+rtx-vm@users.noreply.github.com"
-	git config --local user.name "rtx"
+	git config --local user.email "189793748+mise-en-versions@users.noreply.github.com"
+	git config --local user.name "mise-en-versions"
 	git commit -m "Update release metadata"
 	git push
 fi
