@@ -60,6 +60,7 @@ fetch() {
 	fi
 }
 
+docker run jdxcode/mise -v
 docker run -e MISE_EXPERIMENTAL=1 jdxcode/mise registry | awk '{print $1}' | env_parallel -j4 --env fetch fetch {} || true
 
 git clone https://github.com/aquaproj/aqua-registry --depth 1
