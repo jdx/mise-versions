@@ -241,6 +241,7 @@ aws/amazon-ec2-spot-interrupter
 aws/amazon-ecs-cli
 aws/aws-cli
 aws/copilot-cli
+aws/eks-hybrid
 aws/session-manager-plugin
 awslabs/amazon-ecr-credential-helper
 awslabs/dynein
@@ -1265,6 +1266,7 @@ pvolok/mprocs
 qdrant/qdrant
 quantumsheep/sshs
 quarkslab/kdigger
+quarylabs/sqruff
 rajatjindal/krew-release-bot
 rajatjindal/kubectl-whoami
 rancher/cli
