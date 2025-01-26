@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: stefanprodan
+    repo_name: timoni
+    description: Timoni is a package manager for Kubernetes, powered by CUE and inspired by Helm
+    asset: timoni_{{trimV .Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: timoni_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

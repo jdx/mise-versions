@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: runatlantis
+    repo_name: atlantis
+    description: Terraform Pull Request Automation
+    asset: atlantis_{{.OS}}_{{.Arch}}.zip
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256
+    version_constraint: semver(">= 0.17.4")
+    # support windows/amd64 and darwin/arm64
+    # provide a checksum file
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    version_overrides:
+      - version_constraint: semver(">= 0.16.0")
+        checksum:
+          enabled: false
+        rosetta2: true
+        # support linux/arm64
+        supported_envs:
+          - darwin
+          - linux
+      - version_constraint: "true"
+        checksum:
+          enabled: false
+        rosetta2: true
+        supported_envs:
+          - darwin
+          - linux/amd64

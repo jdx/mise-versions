@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: suzuki-shunsuke
+    repo_name: tfaction-go
+    asset: tfaction_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    checksum:
+      type: github_release
+      asset: tfaction_{{trimV .Version}}_checksums.txt
+      algorithm: sha256
+    files:
+      - name: tfaction

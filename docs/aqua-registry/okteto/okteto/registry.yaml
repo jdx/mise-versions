@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: okteto
+    repo_name: okteto
+    description: Develop your applications directly in your Kubernetes Cluster
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    format: raw
+    replacements:
+      amd64: x86_64
+      darwin: Darwin
+      linux: Linux
+    asset: okteto-{{.OS}}-{{.Arch}}
+    overrides:
+      - goos: windows
+        asset: okteto.exe
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256

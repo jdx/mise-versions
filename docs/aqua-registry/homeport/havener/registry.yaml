@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: homeport
+    repo_name: havener
+    asset: havener_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: Think of it as a swiss army knife for Kubernetes tasks
+    supported_envs:
+      - darwin
+      - linux
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: containerd
+    repo_name: fuse-overlayfs-snapshotter
+    description: fuse-overlayfs plugin for rootless containerd
+    asset: containerd-fuse-overlayfs-{{trimV .Version}}-{{.OS}}-{{.Arch}}.{{.Format}}
+    format: tar.gz
+    replacements:
+      arm: arm-v7
+    supported_envs:
+      - linux
+    checksum:
+      type: github_release
+      asset: SHA256SUMS
+      algorithm: sha256
+    files:
+      - name: containerd-fuse-overlayfs-grpc

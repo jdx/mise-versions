@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: hexdigest
+    repo_name: gowrap
+    description: GoWrap is a command line tool for generating decorators for Go interfaces
+    asset: gowrap_{{trimV .Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    rosetta2: true
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256
+    version_constraint: semver(">= 1.2.2")
+    version_overrides:
+      - version_constraint: semver(">= 1.1.11")
+        rosetta2: false
+      - version_constraint: semver("< 1.1.11")
+        replacements:
+          amd64: x86_64
+          darwin: Darwin
+          linux: Linux
+          windows: Windows
+        supported_envs:
+          - darwin
+          - amd64

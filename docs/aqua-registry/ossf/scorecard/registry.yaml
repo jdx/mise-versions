@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: ossf
+    repo_name: scorecard
+    description: Security Scorecards - Security health metrics for Open Source
+    asset: scorecard_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    files:
+      - name: scorecard
+        src: scorecard-{{.OS}}-{{.Arch}}
+    version_constraint: semver(">= 4.6.0")
+    checksum:
+      type: github_release
+      asset: scorecard_checksums.txt
+      algorithm: sha256
+    version_overrides:
+      - version_constraint: semver("= 4.5.0")
+        checksum:
+          type: github_release
+          asset: scorecard_checksums.txt
+          algorithm: sha512
+        supported_envs:
+          - darwin
+          - windows
+          - linux/arm64
+      - version_constraint: semver("= 4.4.0")
+        overrides:
+          - goos: linux
+            goarch: amd64
+            checksum:
+              enabled: false
+        checksum:
+          type: github_release
+          asset: scorecard_checksums.txt
+          algorithm: sha512
+      - version_constraint: "true"
+        checksum:
+          type: github_release
+          asset: scorecard_checksums.txt
+          algorithm: sha512

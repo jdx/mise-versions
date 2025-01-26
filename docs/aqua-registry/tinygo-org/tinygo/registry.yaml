@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: tinygo-org
+    repo_name: tinygo
+    rosetta2: true
+    supported_envs:
+      - darwin
+      - amd64
+    asset: tinygo{{trimV .Version}}.{{.OS}}-{{.Arch}}.{{.Format}}
+    description: Go compiler for small places. Microcontrollers, WebAssembly, and command-line tools. Based on LLVM
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    files:
+      - name: tinygo
+        src: tinygo/bin/tinygo

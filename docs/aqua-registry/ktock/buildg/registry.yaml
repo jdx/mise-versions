@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: ktock
+    repo_name: buildg
+    asset: buildg-{{.Version}}-{{.OS}}-{{.Arch}}.tar.gz
+    description: Interactive debugger for Dockerfile, with support for IDEs (VS Code, Emacs, Neovim, etc.)
+    supported_envs:
+      - linux
+    version_constraint: semver(">= 0.4.0")
+    checksum:
+      type: github_release
+      asset: SHA256SUMS
+      algorithm: sha256
+    version_overrides:
+      - version_constraint: "true"
+        checksum:
+          type: github_release
+          asset: "{{.Asset}}.sha256sum"
+          algorithm: sha256

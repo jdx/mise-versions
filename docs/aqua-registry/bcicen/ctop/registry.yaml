@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: bcicen
+    repo_name: ctop
+    description: Top-like interface for container metrics
+    complete_windows_ext: false
+    rosetta2: true
+    format: raw
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    asset: ctop-{{trimV .Version}}-{{.OS}}-{{.Arch}}
+    checksum:
+      type: github_release
+      asset: sha256sums.txt
+      algorithm: sha256

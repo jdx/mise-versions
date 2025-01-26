@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: tomnomnom
+    repo_name: gron
+    asset: gron-{{.OS}}-{{.Arch}}-{{trimV .Version}}.{{.Format}}
+    format: tgz
+    description: Make JSON greppable
+    overrides:
+      - goos: windows
+        format: zip

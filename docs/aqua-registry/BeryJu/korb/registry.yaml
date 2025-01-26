@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: BeryJu
+    repo_name: korb
+    description: Move Kubernetes PVCs between Storage Classes and Namespaces
+    asset: korb_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    checksum:
+      type: github_release
+      asset: korb_{{trimV .Version}}_SHA256SUMS
+      algorithm: sha256

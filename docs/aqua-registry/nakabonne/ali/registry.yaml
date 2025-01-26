@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: nakabonne
+    repo_name: ali
+    description: Generate HTTP load and plot the results in real-time
+    asset: ali_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

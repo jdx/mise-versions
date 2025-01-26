@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: open-policy-agent
+    repo_name: conftest
+    asset: conftest_{{trimV .Version}}_{{title .OS}}_{{.Arch}}.{{.Format}}
+    description: Write tests against structured configuration data using the Open Policy Agent Rego query language
+    replacements:
+      amd64: x86_64
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    version_constraint: semver(">= 0.28.0")
+    version_overrides:
+      - version_constraint: "true"
+        rosetta2: true
+        supported_envs:
+          - darwin
+          - linux
+          - amd64
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

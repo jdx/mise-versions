@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: bitnami-labs
+    repo_name: sealed-secrets
+    asset: kubeseal-{{trimV .Version}}-{{.OS}}-{{.Arch}}.tar.gz
+    description: A Kubernetes controller and tool for one-way encrypted Secrets
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    files:
+      - name: kubeseal
+    version_filter: |
+      not (Version startsWith "helm-")
+    checksum:
+      type: github_release
+      asset: sealed-secrets_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: sclevine
+    repo_name: yj
+    description: Convert between YAML, TOML, JSON, and HCL
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    replacements:
+      darwin: macos
+    version_constraint: semver(">= 5.1.0")
+    asset: yj-{{.OS}}-{{.Arch}}
+    overrides:
+      - goos: windows
+        asset: yj.exe
+    version_overrides:
+      - version_constraint: "true"
+        asset: yj-{{.OS}}
+        overrides:
+          - goos: windows
+            asset: yj.exe
+          - goos: linux
+            goarch: arm64
+            asset: yj-linux-arm64

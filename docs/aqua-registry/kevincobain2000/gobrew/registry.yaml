@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: kevincobain2000
+    repo_name: gobrew
+    asset: gobrew-{{.OS}}-{{.Arch}}
+    format: raw
+    description: Go version manager. Super simple tool to install and manage Go versions. Install go without root. Gobrew doesn't require shell rehash
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: gobrew_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

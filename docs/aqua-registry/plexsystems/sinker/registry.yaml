@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: plexsystems
+    repo_name: sinker
+    description: A tool to sync images from one container registry to another
+    rosetta2: true
+    complete_windows_ext: false
+    format: raw
+    supported_envs:
+      - darwin
+      - amd64
+    asset: sinker-{{.OS}}-{{.Arch}}

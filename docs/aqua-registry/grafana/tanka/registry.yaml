@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: grafana
+    repo_name: tanka
+    description: Flexible, reusable and concise configuration for Kubernetes
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    asset: tk-{{.OS}}-{{.Arch}}
+    format: raw
+    files:
+      - name: tk
+    version_constraint: semver(">= 0.21.0")
+    version_overrides:
+      - version_constraint: "true"
+        rosetta2: true

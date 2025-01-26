@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: FairwindsOps
+    repo_name: nova
+    asset: nova_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: Find outdated or deprecated Helm charts running in your cluster
+    supported_envs:
+      - darwin
+      - linux
+      - windows/amd64
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

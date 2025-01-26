@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: o2sh
+    repo_name: onefetch
+    asset: onefetch-{{.OS}}.tar.gz
+    description: Git repository summary on your terminal
+    replacements:
+      darwin: mac
+      windows: win
+    supported_envs:
+      - darwin
+      - amd64
+    rosetta2: true

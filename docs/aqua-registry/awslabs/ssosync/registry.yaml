@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: awslabs
+    repo_name: ssosync
+    asset: ssosync_{{.OS}}_{{.Arch}}.{{.Format}}
+    description: Populate AWS SSO directly with your G Suite users and groups using either a CLI or AWS Lambda
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    checksum:
+      type: github_release
+      asset: ssosync_checksums.txt
+      algorithm: sha256

@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: helmfile
+    repo_name: vals
+    aliases:
+      - name: variantdev/vals
+    rosetta2: true
+    asset: vals_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: Helm-like configuration values loader with support for various sources
+    checksum:
+      type: github_release
+      asset: vals_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

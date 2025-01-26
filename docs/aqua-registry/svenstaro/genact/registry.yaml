@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: svenstaro
+    repo_name: genact
+    format: raw
+    description: A nonsense activity generator
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    rosetta2: true
+    version_constraint: semver(">= 1.0.0")
+    asset: genact-{{trimV .Version}}-{{.Arch}}-{{.OS}}
+    replacements:
+      amd64: x86_64
+      arm64: aarch64
+      darwin: apple-darwin
+      linux: unknown-linux-musl
+      windows: pc-windows-msvc
+    version_overrides:
+      - version_constraint: "true"
+        asset: genact-{{.Version}}-{{.OS}}-{{.Arch}}
+        replacements:
+          amd64: x86_64
+          arm64: aarch64
+          darwin: macos

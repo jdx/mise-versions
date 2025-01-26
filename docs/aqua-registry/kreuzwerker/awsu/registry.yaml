@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: kreuzwerker
+    repo_name: awsu
+    description: Enhanced account switching for AWS, supports Yubikey as MFA source
+    supported_envs:
+      - darwin
+      - linux
+    asset: awsu_{{.OS}}_{{.Arch}}.tar.gz
+    replacements:
+      linux: Linux
+      darwin: Darwin
+      amd64: x86_64
+      arm64: arm
+    version_constraint: semver(">= 2.3.11")
+    version_overrides:
+      - version_constraint: semver("= 2.3.10")
+        asset: awsu_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+        supported_envs:
+          - darwin/arm64
+          - linux/arm64
+      - version_constraint: semver("= 2.3.9")
+        asset: awsu_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+      - version_constraint: "true"
+        asset: awsu_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+        rosetta2: true
+        supported_envs:
+          - darwin
+          - linux/amd64
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

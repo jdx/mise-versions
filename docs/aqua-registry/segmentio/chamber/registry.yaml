@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: segmentio
+    repo_name: chamber
+    format: raw
+    rosetta2: true
+    asset: chamber-{{.Version}}-{{.OS}}-{{.Arch}}
+    supported_envs:
+      - darwin
+      - amd64
+    description: CLI for managing secrets
+    checksum:
+      type: github_release
+      asset: chamber-{{.Version}}.sha256sums
+      algorithm: sha256

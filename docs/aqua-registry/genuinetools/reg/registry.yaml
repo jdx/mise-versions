@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: genuinetools
+    repo_name: reg
+    rosetta2: true
+    asset: reg-{{.OS}}-{{.Arch}}
+    description: Docker registry v2 command line client and repo listing generator with security checks
+    complete_windows_ext: false
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256

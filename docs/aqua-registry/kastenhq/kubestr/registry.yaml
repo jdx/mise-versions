@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: kastenhq
+    repo_name: kubestr
+    asset: kubestr_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: Kubestr is a collection of tools to discover, validate and evaluate your kubernetes storage options
+    replacements:
+      darwin: MacOS
+      linux: Linux
+      windows: Windows
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: anchore
+    repo_name: grype
+    description: A vulnerability scanner for container images and filesystems
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    asset: grype_{{trimV .Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: tar.gz
+    version_constraint: semver(">= 0.33.0")
+    overrides:
+      - goos: windows
+        format: zip
+    version_overrides:
+      - version_constraint: "true"
+        overrides:
+          - goos: darwin
+            format: zip
+          - goos: windows
+            format: zip
+    checksum:
+      type: github_release
+      asset: grype_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

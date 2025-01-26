@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: awslabs
+    repo_name: yesiscan
+    asset: yesiscan_{{trimV .Version}}_{{.OS}}_{{.Arch}}
+    format: raw
+    description: Automatic license scanning and reports
+    supported_envs:
+      - linux
+      - darwin
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

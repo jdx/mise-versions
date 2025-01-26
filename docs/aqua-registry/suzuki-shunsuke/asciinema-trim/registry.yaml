@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: suzuki-shunsuke
+    repo_name: asciinema-trim
+    asset: asciinema-trim_{{.OS}}_{{.Arch}}.tar.gz
+    description: Trim asciinema's record file
+    version_constraint: semver(">= 0.1.2")
+    version_overrides:
+      - version_constraint: "true"
+        supported_envs:
+          - darwin
+          - linux
+    checksum:
+      type: github_release
+      asset: asciinema-trim_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

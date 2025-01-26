@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: k1LoW
+    repo_name: awsdo
+    asset: awsdo_{{.Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: zip
+    description: awsdo is a tool to do anything using AWS temporary credentials
+    overrides:
+      - goos: linux
+        format: tar.gz
+    supported_envs:
+      - linux/amd64
+      - darwin
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

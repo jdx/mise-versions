@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: sigstore
+    repo_name: cosign
+    format: raw
+    asset: cosign-{{.OS}}-{{.Arch}}
+    description: Container Signing
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: cosign_checksums.txt
+      algorithm: sha256

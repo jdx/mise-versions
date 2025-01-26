@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: cubicdaiya
+    repo_name: nginx-build
+    asset: nginx-build-{{.OS}}-{{.Arch}}-{{trimV .Version}}.tar.gz
+    description: Seamless nginx builder
+    supported_envs:
+      - linux
+      - darwin
+    checksum:
+      type: github_release
+      asset: nginx-build_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

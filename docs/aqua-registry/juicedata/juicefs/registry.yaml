@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: juicedata
+    repo_name: juicefs
+    asset: juicefs-{{trimV .Version}}-{{.OS}}-{{.Arch}}.tar.gz
+    description: JuiceFS is a distributed POSIX file system built on top of Redis and S3
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

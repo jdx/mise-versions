@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: google
+    repo_name: go-containerregistry
+    asset: go-containerregistry_{{.OS}}_{{.Arch}}.tar.gz
+    description: CLIs for working with container registries
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    files:
+      - name: crane
+      - name: gcrane
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

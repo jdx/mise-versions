@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: ahmetb
+    repo_name: kubectl-tree
+    asset: kubectl-tree_{{.Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: kubectl plugin to browse Kubernetes object hierarchies as a tree
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    checksum:
+      type: github_release
+      asset: kubectl-tree_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

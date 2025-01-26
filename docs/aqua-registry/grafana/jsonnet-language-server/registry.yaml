@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: grafana
+    repo_name: jsonnet-language-server
+    asset: jsonnet-language-server_{{trimV .Version}}_{{.OS}}_{{.Arch}}
+    format: raw
+    description: A Language Server Protocol (LSP) server for Jsonnet (https://jsonnet.org)
+    checksum:
+      type: github_release
+      asset: jsonnet-language-server_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: go-jira
+    repo_name: jira
+    description: simple jira command line client in Go
+    rosetta2: true
+    supported_envs:
+      - darwin
+      - amd64
+    asset: jira-{{.OS}}-{{.Arch}}

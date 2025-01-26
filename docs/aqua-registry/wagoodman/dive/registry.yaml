@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: wagoodman
+    repo_name: dive
+    asset: dive_{{trimV .Version}}_{{.OS}}_amd64.{{.Format}}
+    description: A tool for exploring each layer in a docker image
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    checksum:
+      type: github_release
+      asset: dive_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

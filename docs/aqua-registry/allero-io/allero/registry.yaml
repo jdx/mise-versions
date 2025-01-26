@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: allero-io
+    repo_name: allero
+    asset: allero_{{.Version}}_{{.OS}}_{{.Arch}}.zip
+    description: Prevent CI/CD Bad Practices
+    replacements:
+      amd64: x86_64
+      darwin: Darwin
+      linux: Linux
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

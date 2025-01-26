@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: denisidoro
+    repo_name: navi
+    rosetta2: true
+    description: An interactive cheatsheet tool for the command-line
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    asset: navi-{{.Version}}-{{.Arch}}-{{.OS}}.{{.Format}}
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+      - goos: linux
+        goarch: arm64
+        replacements:
+          linux: unknown-linux-gnu
+    replacements:
+      amd64: x86_64
+      arm64: aarch64
+      linux: unknown-linux-musl
+      darwin: apple-darwin
+      windows: pc-windows-gnu

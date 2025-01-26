@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: pivotal-cf
+    repo_name: pivnet-cli
+    description: CLI to interact with Tanzu Network API V2 interface
+    rosetta2: true
+    complete_windows_ext: false
+    format: raw
+    asset: pivnet-{{.OS}}-{{.Arch}}-{{trimV .Version}}
+    supported_envs:
+      - darwin
+      - amd64
+    files:
+      - name: pivnet

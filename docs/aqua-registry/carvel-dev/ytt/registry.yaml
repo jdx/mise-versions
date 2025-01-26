@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: carvel-dev
+    repo_name: ytt
+    aliases:
+      - name: vmware-tanzu/carvel-ytt
+    asset: ytt-{{.OS}}-{{.Arch}}
+    description: YAML templating tool that works on YAML structure instead of text
+    files:
+      - name: ytt
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

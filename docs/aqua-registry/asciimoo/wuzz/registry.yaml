@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: asciimoo
+    repo_name: wuzz
+    asset: wuzz_{{.OS}}_{{.Arch}}
+    format: raw
+    description: Interactive cli tool for HTTP inspection
+    supported_envs:
+      - darwin
+      - amd64
+    rosetta2: true

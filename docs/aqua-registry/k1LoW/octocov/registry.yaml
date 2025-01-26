@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: k1LoW
+    repo_name: octocov
+    asset: octocov_{{.Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    format: zip
+    description: octocov is a toolkit for collecting code metrics (code coverage, code to test ratio and test execution time)
+    overrides:
+      - goos: linux
+        format: tar.gz
+    supported_envs:
+      - linux/amd64
+      - darwin
+    checksum:
+      type: github_release
+      asset: checksums-{{.OS}}.txt
+      algorithm: sha256
+    version_constraint: semver(">= 0.41.0")
+    version_overrides:
+      - version_constraint: "true"
+        checksum:
+          type: github_release
+          asset: checksums.txt
+          algorithm: sha256

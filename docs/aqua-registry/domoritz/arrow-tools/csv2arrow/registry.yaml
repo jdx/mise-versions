@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - name: domoritz/arrow-tools/csv2arrow
+    type: github_release
+    repo_owner: domoritz
+    repo_name: arrow-tools
+    description: A collection of handy CLI tools to convert CSV and JSON to Apache Arrow and Parquet
+    asset: csv2arrow-{{.Arch}}-{{.OS}}.{{.Format}}
+    format: tar.xz
+    files:
+      - name: csv2arrow
+        src: csv2arrow-{{.Arch}}-{{.OS}}/csv2arrow
+    overrides:
+      - goos: darwin
+        replacements:
+          arm64: aarch64
+      - goos: windows
+        format: zip
+        files:
+          - name: csv2arrow
+    replacements:
+      amd64: x86_64
+      darwin: apple-darwin
+      linux: unknown-linux-gnu
+      windows: pc-windows-msvc
+    supported_envs:
+      - darwin
+      - amd64
+    version_constraint: semver(">= 0.12.1")
+    version_overrides:
+      - version_constraint: semver(">= 0.10.0")
+        asset: csv2arrow-{{.Version}}-{{.Arch}}-{{.OS}}.{{.Format}}
+        files:
+          - name: csv2arrow
+            src: csv2arrow-{{.Version}}-{{.Arch}}-{{.OS}}/csv2arrow
+      - version_constraint: semver("< 0.10.0")
+        asset: csv2arrow-{{.Version}}-{{.Arch}}-{{.OS}}.{{.Format}}
+        files:
+          - name: csv2arrow
+            src: csv2arrow-{{.Version}}-{{.Arch}}-{{.OS}}/csv2arrow
+        overrides:
+          - goos: windows
+            format: zip
+            files:
+              - name: csv2arrow
+        rosetta2: true

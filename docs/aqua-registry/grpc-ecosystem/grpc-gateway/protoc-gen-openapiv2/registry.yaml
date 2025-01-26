@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - name: grpc-ecosystem/grpc-gateway/protoc-gen-openapiv2
+    type: github_release
+    repo_owner: grpc-ecosystem
+    repo_name: grpc-gateway
+    description: Generate Swagger / OpenAPIv2 JSON file from Protocol Buffer definition
+    asset: protoc-gen-openapiv2-{{.Version}}-{{.OS}}-{{.Arch}}
+    rosetta2: true
+    format: raw
+    replacements:
+      amd64: x86_64
+    files:
+      - name: protoc-gen-openapiv2
+    version_constraint: semver(">= 2.10.2")
+    version_overrides:
+      - version_constraint: semver(">= 2.0.0")
+        supported_envs:
+          - darwin
+          - amd64
+      - version_constraint: "true"
+        supported_envs:
+          - darwin
+          - amd64
+        # https://github.com/grpc-ecosystem/grpc-gateway/releases/tag/v2.0.0
+        # > Rename protoc-gen-swagger to protoc-gen-openapiv2
+        asset: protoc-gen-swagger-{{.Version}}-{{.OS}}-{{.Arch}}
+        files:
+          - name: protoc-gen-swagger
+    checksum:
+      type: github_release
+      asset: grpc-gateway_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

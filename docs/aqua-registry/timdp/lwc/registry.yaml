@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: timdp
+    repo_name: lwc
+    description: A live-updating version of the UNIX wc command
+    rosetta2: true
+    asset: lwc-{{trimV .Version}}-{{.OS}}-{{.Arch}}.tar.gz
+    version_constraint: semver(">= 0.4.5")
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    version_overrides:
+      - version_constraint: "true"
+        supported_envs:
+          - darwin
+          - amd64
+    checksum:
+      type: github_release
+      asset: lwc-checksums.txt
+      algorithm: sha256

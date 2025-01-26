@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: aereal
+    repo_name: jsondiff
+    asset: jsondiff_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: functions to calculate JSON objects differences with gojq filter
+    checksum:
+      type: github_release
+      asset: jsondiff_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

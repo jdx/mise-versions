@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: aquasecurity
+    repo_name: kube-bench
+    asset: kube-bench_{{trimV .Version}}_linux_{{.Arch}}.tar.gz
+    description: Checks whether Kubernetes is deployed according to security best practices as defined in the CIS Kubernetes Benchmark
+    supported_envs:
+      - linux
+    checksum:
+      type: github_release
+      asset: kube-bench_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

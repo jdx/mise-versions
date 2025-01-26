@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: liamg
+    repo_name: dismember
+    asset: dismember-{{.OS}}-{{.Arch}}
+    format: raw
+    description: Scan memory for secrets and more. Maybe eventually a full /proc toolkit
+    supported_envs:
+      - linux
+    checksum:
+      type: github_release
+      asset: dismember_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

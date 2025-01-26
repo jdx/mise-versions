@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: starship
+    repo_name: starship
+    asset: starship-{{.Arch}}-{{.OS}}.{{.Format}}
+    description: The minimal, blazing-fast, and infinitely customizable prompt for any shell
+    replacements:
+      windows: pc-windows-msvc
+      darwin: apple-darwin
+      linux: unknown-linux-musl
+      arm64: aarch64
+      amd64: x86_64
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    checksum:
+      type: github_release
+      asset: "{{.Asset}}.sha256"
+      algorithm: sha256

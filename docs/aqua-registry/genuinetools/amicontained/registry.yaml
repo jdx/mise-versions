@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: genuinetools
+    repo_name: amicontained
+    asset: amicontained-{{.OS}}-{{.Arch}}
+    format: raw
+    description: Container introspection tool. Find out what container runtime is being used as well as features available
+    supported_envs:
+      - linux/amd64
+    checksum:
+      type: github_release
+      asset: amicontained-linux-amd64.sha256
+      algorithm: sha256

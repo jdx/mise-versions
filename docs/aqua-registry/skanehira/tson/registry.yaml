@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: skanehira
+    repo_name: tson
+    asset: tson_{{.Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: TUI json editor and viewer written in Go
+    replacements:
+      amd64: x86_64
+      darwin: Darwin
+      linux: Linux
+    supported_envs:
+      - linux/amd64
+      - darwin
+    rosetta2: true
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

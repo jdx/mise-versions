@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: suzuki-shunsuke
+    repo_name: git-rm-branch
+    rosetta2: true
+    asset: git-rm-branch_{{.Version}}_{{.OS}}_amd64.tar.gz
+    supported_envs:
+      - windows
+      - darwin
+      - linux/amd64
+    description: cli tool to remove merged branches
+    checksum:
+      type: github_release
+      asset: git-rm-branch_{{.Version}}_checksums.txt
+      algorithm: sha256

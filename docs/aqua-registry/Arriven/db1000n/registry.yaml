@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: Arriven
+    repo_name: db1000n
+    description: simple distributed load generation client written in go
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    version_constraint: semver(">= 0.8.20")
+    asset: db1000n_{{.OS}}_{{.Arch}}.{{.Format}}
+    version_overrides:
+      - version_constraint: "true"
+        # https://github.com/Arriven/db1000n/commit/5860df0
+        # remove version number from goreleaser archives
+        asset: db1000n_{{trimV .Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    checksum:
+      type: github_release
+      asset: db1000n_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

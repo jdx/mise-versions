@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: ClementTsang
+    repo_name: bottom
+    description: Yet another cross-platform graphical process/system monitor
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    asset: bottom_{{.Arch}}-{{.OS}}.{{.Format}}
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+      - goos: linux
+        goarch: arm64
+        replacements:
+          linux: unknown-linux-gnu
+    replacements:
+      amd64: x86_64
+      arm64: aarch64
+      darwin: apple-darwin
+      linux: unknown-linux-musl
+      windows: pc-windows-msvc
+      386: i686
+    rosetta2: true
+    files:
+      - name: btm

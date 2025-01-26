@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: ffuf
+    repo_name: ffuf
+    description: Fast web fuzzer written in Go
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    rosetta2: true
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+    replacements:
+      darwin: macOS
+    asset: ffuf_{{trimV .Version}}_{{.OS}}_{{.Arch}}.{{.Format}}
+    checksum:
+      type: github_release
+      asset: ffuf_{{trimV .Version}}_checksums.txt
+      algorithm: sha256

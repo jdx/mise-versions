@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: gsamokovarov
+    repo_name: jump
+    description: Jump helps you navigate faster by learning your habits
+    supported_envs:
+      - darwin
+      - linux/amd64
+    format: raw
+    replacements:
+      darwin: osx
+    asset: jump_{{.OS}}
+    overrides:
+      - goos: linux
+        asset: jump_{{.OS}}_{{.Arch}}_binary

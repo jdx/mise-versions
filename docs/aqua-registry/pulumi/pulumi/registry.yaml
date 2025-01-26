@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: pulumi
+    repo_name: pulumi
+    description: Pulumi - Modern Infrastructure as Code. Any cloud, any language
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
+    asset: pulumi-{{.Version}}-{{.OS}}-{{.Arch}}.{{.Format}}
+    replacements:
+      amd64: x64
+    files:
+      - name: pulumi
+        src: pulumi/pulumi
+    format: tar.gz
+    overrides:
+      - goos: windows
+        format: zip
+        files:
+          - name: pulumi
+            src: pulumi/bin/pulumi.exe
+    version_constraint: semver(">= 3.40.0")
+    checksum:
+      type: github_release
+      asset: SHA512SUMS
+      algorithm: sha512
+    version_overrides:
+      - version_constraint: semver(">= 3.39.4")
+        checksum:
+          enabled: false
+      - version_constraint: semver(">= 3.37.1")
+        checksum: &pulumi_checksum_1
+          type: github_release
+          asset: pulumi-{{trimV .Version}}-checksums.txt
+          algorithm: sha256
+      - version_constraint: semver("= 3.37.0")
+        overrides:
+          - goos: windows
+            format: zip
+        checksum: *pulumi_checksum_1
+      - version_constraint: "true"
+        checksum: *pulumi_checksum_1

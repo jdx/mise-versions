@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: webdevops
+    repo_name: go-crond
+    description: Cron daemon written in golang (for eg. usage in docker images)
+    supported_envs:
+      - darwin
+      - linux
+    format: raw
+    version_constraint: semver(">= 22.9.0")
+    asset: go-crond.{{.OS}}.{{.Arch}}
+    version_overrides:
+      - version_constraint: "true"
+        asset: go-crond-{{.Arch}}-{{.OS}}
+        rosetta2: true
+        replacements:
+          amd64: "64"
+          darwin: osx

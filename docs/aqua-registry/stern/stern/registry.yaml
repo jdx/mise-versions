@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: stern
+    repo_name: stern
+    asset: stern_{{trimV .Version}}_{{.OS}}_{{.Arch}}.tar.gz
+    description: Multi pod and container log tailing for Kubernetes -- Friendly fork of https://github.com/wercker/stern
+    version_constraint: semver(">= 1.21.0")
+    version_overrides:
+      - version_constraint: "true"
+        rosetta2: true
+        supported_envs:
+          - darwin
+          - linux
+          - amd64
+        files:
+          - name: stern
+            src: stern_{{trimV .Version}}_{{.OS}}_{{.Arch}}/stern
+    checksum:
+      type: github_release
+      asset: checksums.txt
+      algorithm: sha256

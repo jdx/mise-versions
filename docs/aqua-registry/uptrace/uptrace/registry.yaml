@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: uptrace
+    repo_name: uptrace
+    format: raw
+    asset: uptrace_{{.OS}}_{{.Arch}}
+    description: Distributed tracing using OpenTelemetry and ClickHouse
+    supported_envs:
+      - darwin
+      - linux
+      - amd64
