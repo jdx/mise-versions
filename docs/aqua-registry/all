@@ -320,6 +320,8 @@ batchcorp/plumber
 bats-core/bats-core
 bazelbuild/bazel-watcher
 bazelbuild/bazelisk
+bazelbuild/buildtools/buildifier
+bazelbuild/buildtools/buildozer
 bcicen/ctop
 bcicen/slackcat
 becheran/mlc
@@ -959,6 +961,7 @@ jiro4989/relma
 jiro4989/textimg
 jirutka/tty-copy
 jj-vcs/jj
+jkfran/killport
 jmattheis/goverter
 jmespath/jp
 joehillen/sysz
@@ -1758,6 +1761,7 @@ turbot/flowpipe
 turbot/powerpipe
 turbot/steampipe
 turbot/tailpipe
+tweag/nickel
 twistedpair/google-cloud-sdk
 twpayne/chezmoi
 txn2/kubefwd
