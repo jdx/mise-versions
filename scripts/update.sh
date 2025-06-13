@@ -22,7 +22,7 @@ fetch() {
 		echo "Skipping $1"
 		return
 		;;
-	jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | checkov | snyk | chromedriver | sui | rebar)
+	jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar)
 		echo "Skipping $1"
 		return
 		;;
