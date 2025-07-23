@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mise-versions",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-18",
+  "observability": {
+    "enabled": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mise-versions",
+      "database_id": "c484af77-97c7-4d1d-b9d0-0d7743c6f4e5"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production"
+  },
+  // Environment variables that need to be set via wrangler secret:
+  // GITHUB_APP_ID - Your GitHub App ID
+  // GITHUB_PRIVATE_KEY - Your GitHub App private key (PEM format)
+  // GITHUB_CLIENT_ID - Your GitHub App client ID  
+  // GITHUB_CLIENT_SECRET - Your GitHub App client secret
+  // GITHUB_WEBHOOK_SECRET - Your GitHub App webhook secret
+  // API_SECRET - Secret for GitHub Actions authentication
+}
