@@ -374,74 +374,74 @@ setup_token_management() {
 }
 
 # Setup token management before starting
-if ! setup_token_management; then
+if setup_token_management; then
+	CUR_MISE_VERSION=$(docker run jdxcode/mise -v)
+	export CUR_MISE_VERSION
+
+	tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise registry | awk '{print $1}')"
+	set_stat "total_tools_available" "$(echo "$tools" | wc -w)"
+
+	# Check if tokens are available before starting processing
+	echo "🔍 Checking token availability before starting..."
+	if ! get_github_token >/dev/null; then
+		echo "🛑 No tokens available - stopping all processing"
+		generate_summary
+		exit 0
+	fi
+
+	# Resume from the last processed tool
+	last_tool_processed=$(git log -1 --pretty=%B | grep -oP 'end: \K[^\s]+' || echo "")
+	tools_limited=$(echo -e "$tools\n$tools" | grep -m 1 -A 100 -F -x "$last_tool_processed" | tail -n +2 || echo "$tools" | head -n 100)
+	first_processed_tool=$(echo "$tools_limited" | head -n 1)
+	set_stat "first_processed_tool" "$first_processed_tool"
+
+	# Enhanced parallel processing with better token distribution
+	echo "🚀 Starting parallel fetch operations..."
+	export -f fetch get_github_token mark_token_rate_limited increment_stat get_stat add_to_list set_stat
+	export STATS_DIR
+	last_processed_tool=""
+	for tool in $tools_limited; do
+		if ! timeout 60s bash -c "fetch $tool"; then
+			echo "❌ Failed to fetch $tool, stopping processing"
+			break
+		fi
+		last_processed_tool="$tool"
+	done
+	set_stat "last_processed_tool" "$last_processed_tool"
+
+	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
+		git diff --compact-summary --cached
+		
+		# Get the list of updated tools for the commit message
+		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
+		tools_updated_count=$(get_stat "total_tools_updated")
+		
+		commit_subject=""
+		if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
+			# Create a more descriptive commit message with updated tools
+			if [ "$tools_updated_count" -le 10 ]; then
+				# If 10 or fewer tools, list them all
+				commit_subject="versions: update $tools_updated_count tools ($updated_tools_list)"
+			else
+				# If more than 10 tools, just show the count
+				commit_subject="versions: update $tools_updated_count tools"
+			fi
+		else
+			# Fallback to original message
+			commit_subject="versions: update"
+		fi
+
+		commit_body="start: $first_processed_tool
+	end: $last_processed_tool"
+
+		git commit -m "$commit_subject" -m "$commit_body"
+		git pull --autostash --rebase origin main
+		git push
+	fi
+else
 	echo "❌ Token management setup failed"
 	generate_summary
 	exit 0
-fi
-
-CUR_MISE_VERSION=$(docker run jdxcode/mise -v)
-export CUR_MISE_VERSION
-
-tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise registry | awk '{print $1}')"
-set_stat "total_tools_available" "$(echo "$tools" | wc -w)"
-
-# Check if tokens are available before starting processing
-echo "🔍 Checking token availability before starting..."
-if ! get_github_token >/dev/null; then
-	echo "🛑 No tokens available - stopping all processing"
-	generate_summary
-	exit 0
-fi
-
-# Resume from the last processed tool
-last_tool_processed=$(git log -1 --pretty=%B | grep -oP 'end: \K[^\s]+' || echo "")
-tools_limited=$(echo -e "$tools\n$tools" | grep -m 1 -A 100 -F -x "$last_tool_processed" | tail -n +2 || echo "$tools" | head -n 100)
-first_processed_tool=$(echo "$tools_limited" | head -n 1)
-set_stat "first_processed_tool" "$first_processed_tool"
-
-# Enhanced parallel processing with better token distribution
-echo "🚀 Starting parallel fetch operations..."
-export -f fetch get_github_token mark_token_rate_limited increment_stat get_stat add_to_list set_stat
-export STATS_DIR
-last_processed_tool=""
-for tool in $tools_limited; do
-	if ! timeout 60s bash -c "fetch $tool"; then
-		echo "❌ Failed to fetch $tool, stopping processing"
-		break
-	fi
-	last_processed_tool="$tool"
-done
-set_stat "last_processed_tool" "$last_processed_tool"
-
-if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
-	git diff --compact-summary --cached
-	
-	# Get the list of updated tools for the commit message
-	updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
-	tools_updated_count=$(get_stat "total_tools_updated")
-	
-	commit_subject=""
-	if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
-		# Create a more descriptive commit message with updated tools
-		if [ "$tools_updated_count" -le 10 ]; then
-			# If 10 or fewer tools, list them all
-			commit_subject="versions: update $tools_updated_count tools ($updated_tools_list)"
-		else
-			# If more than 10 tools, just show the count
-			commit_subject="versions: update $tools_updated_count tools"
-		fi
-	else
-		# Fallback to original message
-		commit_subject="versions: update"
-	fi
-
-	commit_body="start: $first_processed_tool
-end: $last_processed_tool"
-
-	git commit -m "$commit_subject" -m "$commit_body"
-	git pull --autostash --rebase origin main
-	git push
 fi
 
 # Always generate and display summary
