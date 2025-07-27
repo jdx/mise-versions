@@ -97,7 +97,7 @@ async function recordUsage(baseUrl, secret, tokenId, endpoint, rateLimitInfo) {
 async function markRateLimited(baseUrl, secret, tokenId, retryAfter, remainingRequests, resetTime) {
   const rateLimitUrl = `${baseUrl}/api/token/rate-limit`;
 
-  let reset_at = new Date(Date.now() + 3600000).toISOString(); // Default to 1 hour from now
+  let reset_at = new Date(Date.now() + 10 * 60 * 1000).toISOString(); // Default to 10 minutes from now
   if (remainingRequests === 0 && resetTime) {
     // resetTime is in epoch seconds
     reset_at = new Date(resetTime * 1000).toISOString();
