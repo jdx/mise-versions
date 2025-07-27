@@ -94,13 +94,21 @@ async function recordUsage(baseUrl, secret, tokenId, endpoint, rateLimitInfo) {
   });
 }
 
-async function markRateLimited(baseUrl, secret, tokenId, resetTime) {
+async function markRateLimited(baseUrl, secret, tokenId, retryAfter, remainingRequests, resetTime) {
   const rateLimitUrl = `${baseUrl}/api/token/rate-limit`;
-  
+
+  let reset_at = new Date(Date.now() + 10 * 60 * 1000).toISOString(); // Default to 10 minutes from now
+  if (remainingRequests === 0 && resetTime) {
+    // resetTime is in epoch seconds
+    reset_at = new Date(resetTime * 1000).toISOString();
+  } else if (retryAfter) {
+    // retryAfter is in minutes
+    reset_at = new Date(Date.now() + retryAfter * 60 * 1000).toISOString();
+  }
+
   const payload = JSON.stringify({
     token_id: tokenId,
-    remaining_requests: 0,
-    reset_at: resetTime ? new Date(resetTime * 1000).toISOString() : new Date(Date.now() + 3600000).toISOString(), // Default to 1 hour from now
+    reset_at: reset_at,
   });
   
   return makeRequest(rateLimitUrl, {
@@ -156,17 +164,19 @@ async function main() {
       
     } else if (action === 'mark-rate-limited') {
       const tokenId = process.argv[3];
-      const resetTime = process.argv[4]; // Optional reset time (unix timestamp)
-      
+      const retryAfter = process.argv[4]; // Optional retry after time (minutes)
+      const remainingRequests = process.argv[5]; // Optional remaining requests
+      const resetTime = process.argv[6]; // Optional reset time (unix timestamp)
+
       if (!tokenId) {
         console.error('❌ Usage: node github-token.js mark-rate-limited <token_id> [reset_time]');
         process.exit(1);
       }
       
       console.error(`🚫 Marking token ${tokenId} as rate-limited...`);
-      
-      const response = await markRateLimited(baseUrl, secret, parseInt(tokenId), resetTime ? parseInt(resetTime) : undefined);
-      
+
+      const response = await markRateLimited(baseUrl, secret, parseInt(tokenId), parseInt(retryAfter), parseInt(remainingRequests), parseInt(resetTime));
+
       if (response.status !== 200) {
         console.error(`❌ Failed to mark token as rate-limited: ${response.status} ${response.data}`);
         process.exit(1);

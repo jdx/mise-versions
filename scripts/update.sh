@@ -171,22 +171,20 @@ SUMMARY_EOF
 # Function to mark a token as rate-limited
 mark_token_rate_limited() {
 	local token_id="$1"
-	local reset_time="${2:-}"
-	
+	local retry_after="${2:-}"
+	local remaining_requests="${3:-}"
+	local reset_time="${4:-}"
+
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
 		return
 	fi
-	
-	echo "🚫 Marking token $token_id as rate-limited" >&2
+
+	echo "🚫 Marking token $token_id as rate-limited (retry after: $retry_after, remaining: $remaining_requests, reset: $reset_time)" >&2
 	increment_stat "total_rate_limits_hit"
-	
+
 	# Mark token as rate-limited asynchronously
 	{
-		if [ -n "$reset_time" ]; then
-			node scripts/github-token.js mark-rate-limited "$token_id" "$reset_time" || true
-		else
-			node scripts/github-token.js mark-rate-limited "$token_id" || true
-		fi
+		node scripts/github-token.js mark-rate-limited "$token_id" "$retry_after" "$remaining_requests" "$reset_time" || true
 	} &
 }
 
@@ -275,14 +273,18 @@ fetch() {
 		
 		# Check if this was a rate limit issue (403 Forbidden)
 		if grep -q "403 Forbidden" "$stderr_file"; then
-			echo "⚠️  Rate limit hit for token $token_id on $1, marking token as rate-limited" >&2
+			echo "⚠️ Rate limit hit for token $token_id on $1, marking token as rate-limited" >&2
 			
 			# Extract rate limit reset time from response headers if available
+			local retry_after
+			retry_after=$(grep -i "retry-after" "$stderr_file" | cut -d: -f2 | tr -d ' ' || echo "")
+			local remaining_requests
+			remaining_requests=$(grep -i "x-ratelimit-remaining" "$stderr_file" | cut -d: -f2 | tr -d ' ' || echo "")
 			local reset_time
 			reset_time=$(grep -i "x-ratelimit-reset" "$stderr_file" | cut -d: -f2 | tr -d ' ' || echo "")
 			
 			# Mark this specific token as rate-limited
-			mark_token_rate_limited "$token_id" "$reset_time"
+			mark_token_rate_limited "$token_id" "$retry_after" "$remaining_requests" "$reset_time"
 			
 			echo "🔄 Will try with a different token next time" >&2
 		else
