@@ -285,8 +285,9 @@ fetch() {
 			
 			# Mark this specific token as rate-limited
 			mark_token_rate_limited "$token_id" "$retry_after" "$remaining_requests" "$reset_time"
-			
-			echo "🔄 Will try with a different token next time" >&2
+
+			echo "🔄 Retrying with a different token" >&2
+			fetch "$1"
 		else
 			# Show the actual error for non-rate-limit failures
 			cat "$stderr_file" >&2
@@ -396,22 +397,25 @@ if setup_token_management; then
 	if [ -f "last_processed_tool.txt" ]; then
 		last_tool_processed=$(cat "last_processed_tool.txt")
 	fi
-	tools_limited=$(echo -e "$tools\n$tools" | grep -m 1 -A 100 -F -x "$last_tool_processed" | tail -n +2 || echo "$tools" | head -n 100)
-	first_processed_tool=$(echo "$tools_limited" | head -n 1)
-	set_stat "first_processed_tool" "$first_processed_tool"
+	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools\n$tools" | tail -n +2 || echo "$tools" | head -n 100)
 
 	# Enhanced parallel processing with better token distribution
 	echo "🚀 Starting parallel fetch operations..."
 	export -f fetch get_github_token mark_token_rate_limited increment_stat get_stat add_to_list set_stat
 	export STATS_DIR
+	first_processed_tool=""
 	last_processed_tool=""
 	for tool in $tools_limited; do
 		if ! timeout 60s bash -c "fetch $tool"; then
 			echo "❌ Failed to fetch $tool, stopping processing"
 			break
 		fi
+		if [ -z "$first_processed_tool" ]; then
+			first_processed_tool="$tool"
+		fi
 		last_processed_tool="$tool"
 	done
+	set_stat "first_processed_tool" "$first_processed_tool"
 	echo "$last_processed_tool" >"last_processed_tool.txt"
 	set_stat "last_processed_tool" "$last_processed_tool"
 
