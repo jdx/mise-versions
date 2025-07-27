@@ -219,11 +219,10 @@ export default {
 
         const rateLimitData = await request.json() as {
           token_id: number;
-          remaining_requests?: number;
-          reset_at?: string;
+          reset_at: string;
         };
 
-        // Mark token as rate-limited for 1 hour (or until reset_at)
+        // Mark token as rate-limited until reset_at
         await database.markTokenRateLimited(
           rateLimitData.token_id,
           rateLimitData.reset_at
