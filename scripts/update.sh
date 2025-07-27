@@ -25,6 +25,8 @@ echo "0" > "$STATS_DIR/total_tokens_used"
 echo "0" > "$STATS_DIR/total_rate_limits_hit"
 echo "0" > "$STATS_DIR/total_tools_available"
 echo "" > "$STATS_DIR/updated_tools_list"
+echo "" > "$STATS_DIR/first_processed_tool"
+echo "" > "$STATS_DIR/last_processed_tool"
 echo "false" > "$STATS_DIR/summary_generated"
 START_TIME=$(date +%s)
 echo "$START_TIME" > "$STATS_DIR/start_time"
@@ -129,6 +131,8 @@ generate_summary() {
 - **Tools Failed**: $(get_stat "total_tools_failed")
 - **Tools with No Versions**: $(get_stat "total_tools_no_versions")
 - **Total Duration**: ${duration_minutes}m ${duration_seconds}s
+- **First Tool Processed**: $(get_stat "first_processed_tool")
+- **Last Tool Processed**: $(get_stat "last_processed_tool")
 
 ## 📊 Performance Metrics
 - **Processing Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(( $(get_stat "total_tools_checked") / (duration / 60) ))" || echo "0") tools/minute
@@ -385,18 +389,29 @@ if setup_token_management; then
 		exit 0
 	fi
 
+	# Resume from the last processed tool
+	last_tool_processed=""
+	if [ -f "last_processed_tool.txt" ]; then
+		last_tool_processed=$(cat "last_processed_tool.txt")
+	fi
+	tools_limited=$(echo -e "$tools\n$tools" | grep -m 1 -A 100 -F -x "$last_tool_processed" | tail -n +2 || echo "$tools" | head -n 100)
+	first_processed_tool=$(echo "$tools_limited" | head -n 1)
+	set_stat "first_processed_tool" "$first_processed_tool"
+
 	# Enhanced parallel processing with better token distribution
 	echo "🚀 Starting parallel fetch operations..."
-	# Prevent broken pipe error by collecting tools first
-	tools_limited=$(echo "$tools" | shuf -n 100)
 	export -f fetch get_github_token mark_token_rate_limited increment_stat get_stat add_to_list set_stat
 	export STATS_DIR
+	last_processed_tool=""
 	for tool in $tools_limited; do
 		if ! timeout 60s bash -c "fetch $tool"; then
 			echo "❌ Failed to fetch $tool, stopping processing"
 			break
 		fi
+		last_processed_tool="$tool"
 	done
+	echo "$last_processed_tool" >"last_processed_tool.txt"
+	set_stat "last_processed_tool" "$last_processed_tool"
 
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 		git diff --compact-summary --cached
@@ -405,6 +420,7 @@ if setup_token_management; then
 		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
 		tools_updated_count=$(get_stat "total_tools_updated")
 		
+		commit_msg=""
 		if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
 			# Create a more descriptive commit message with updated tools
 			if [ "$tools_updated_count" -le 10 ]; then
@@ -416,9 +432,9 @@ if setup_token_management; then
 			fi
 		else
 			# Fallback to original message
-			commit_msg="versions"
+			commit_msg="versions: update"
 		fi
-		
+
 		git commit -m "$commit_msg"
 		git pull --autostash --rebase origin main
 		git push
