@@ -172,19 +172,18 @@ SUMMARY_EOF
 mark_token_rate_limited() {
 	local token_id="$1"
 	local retry_after="${2:-}"
-	local remaining_requests="${3:-}"
-	local reset_time="${4:-}"
+	local reset_time="${3:-}"
 
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
 		return
 	fi
 
-	echo "🚫 Marking token $token_id as rate-limited (retry after: $retry_after, remaining: $remaining_requests, reset: $reset_time)" >&2
+	echo "🚫 Marking token $token_id as rate-limited (retry after: $retry_after, reset time: $reset_time)" >&2
 	increment_stat "total_rate_limits_hit"
 
 	# Mark token as rate-limited asynchronously
 	{
-		node scripts/github-token.js mark-rate-limited "$token_id" "$retry_after" "$remaining_requests" "$reset_time" || true
+		node scripts/github-token.js mark-rate-limited "$token_id" "$retry_after" "$reset_time" || true
 	} &
 }
 
@@ -274,17 +273,15 @@ fetch() {
 		# Check if this was a rate limit issue (403 Forbidden)
 		if grep -q "403 Forbidden" "$stderr_file"; then
 			echo "⚠️ Rate limit hit for token $token_id on $1, marking token as rate-limited" >&2
-			
-			# Extract rate limit reset time from response headers if available
+
+			# Extract rate limit from warning message
 			local retry_after
-			retry_after=$(grep -i "retry-after" "$stderr_file" | cut -d: -f2 | tr -d ' ' || echo "")
-			local remaining_requests
-			remaining_requests=$(grep -i "x-ratelimit-remaining" "$stderr_file" | cut -d: -f2 | tr -d ' ' || echo "")
+			retry_after=$(grep -oP 'GitHub rate limit exceeded. Retry after \K\d+' "$stderr_file" || echo "")
 			local reset_time
-			reset_time=$(grep -i "x-ratelimit-reset" "$stderr_file" | cut -d: -f2 | tr -d ' ' || echo "")
-			
+			reset_time=$(grep -oPi 'GitHub rate limit exceeded. Resets at \K.*' "$stderr_file" || echo "")
+
 			# Mark this specific token as rate-limited
-			mark_token_rate_limited "$token_id" "$retry_after" "$remaining_requests" "$reset_time"
+			mark_token_rate_limited "$token_id" "$retry_after" "$reset_time"
 
 			echo "🔄 Retrying with a different token" >&2
 			fetch "$1"
