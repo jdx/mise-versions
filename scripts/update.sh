@@ -390,7 +390,10 @@ if setup_token_management; then
 	fi
 
 	# Resume from the last processed tool
-	last_tool_processed=$(git log -1 --pretty=%B | grep -oP 'end: \K[^\s]+' || echo "")
+	last_tool_processed=""
+	if [ -f "last_processed_tool.txt" ]; then
+		last_tool_processed=$(cat "last_processed_tool.txt")
+	fi
 	tools_limited=$(echo -e "$tools\n$tools" | grep -m 1 -A 100 -F -x "$last_tool_processed" | tail -n +2 || echo "$tools" | head -n 100)
 	first_processed_tool=$(echo "$tools_limited" | head -n 1)
 	set_stat "first_processed_tool" "$first_processed_tool"
@@ -407,6 +410,7 @@ if setup_token_management; then
 		fi
 		last_processed_tool="$tool"
 	done
+	echo "$last_processed_tool" >"last_processed_tool.txt"
 	set_stat "last_processed_tool" "$last_processed_tool"
 
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
@@ -416,25 +420,22 @@ if setup_token_management; then
 		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
 		tools_updated_count=$(get_stat "total_tools_updated")
 		
-		commit_subject=""
+		commit_msg=""
 		if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
 			# Create a more descriptive commit message with updated tools
 			if [ "$tools_updated_count" -le 10 ]; then
 				# If 10 or fewer tools, list them all
-				commit_subject="versions: update $tools_updated_count tools ($updated_tools_list)"
+				commit_msg="versions: update $tools_updated_count tools ($updated_tools_list)"
 			else
 				# If more than 10 tools, just show the count
-				commit_subject="versions: update $tools_updated_count tools"
+				commit_msg="versions: update $tools_updated_count tools"
 			fi
 		else
 			# Fallback to original message
-			commit_subject="versions: update"
+			commit_msg="versions: update"
 		fi
 
-		commit_body="start: $first_processed_tool
-	end: $last_processed_tool"
-
-		git commit -m "$commit_subject" -m "$commit_body"
+		git commit -m "$commit_msg"
 		git pull --autostash --rebase origin main
 		git push
 	fi
