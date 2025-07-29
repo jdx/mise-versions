@@ -1286,6 +1286,7 @@ kona-8.0.19.b1
 kona-8.0.20.b1
 kona-8.0.21.b1
 kona-8.0.22.b1
+kona-8.0.23.b1
 kona-11.0.8.b3
 kona-11.0.10.b1
 kona-11.0.11.b1
@@ -1306,6 +1307,7 @@ kona-11.0.24.b1
 kona-11.0.25.b1
 kona-11.0.26.b1
 kona-11.0.27.b1
+kona-11.0.28.b1
 kona-17.0.0.b1
 kona-17.0.2.b1
 kona-17.0.3.b1
@@ -1322,6 +1324,7 @@ kona-17.0.12.b1
 kona-17.0.13.b1
 kona-17.0.14.b1
 kona-17.0.15.b1
+kona-17.0.16.b1
 kona-21.0.0.b1
 kona-21.0.1.b1
 kona-21.0.2.b1
@@ -1330,6 +1333,7 @@ kona-21.0.4.b1
 kona-21.0.5.b1
 kona-21.0.6.b1
 kona-21.0.7.b1
+kona-21.0.8.b1
 liberica-1.8.0
 liberica-8u202
 liberica-8u212
@@ -3704,6 +3708,7 @@ zulu-crac-17.52.19.0
 zulu-crac-17.54.21.0
 zulu-crac-17.56.15.0
 zulu-crac-17.58.25.0
+zulu-crac-17.60.17.0
 zulu-crac-21.28.89.0
 zulu-crac-21.30.23.0
 zulu-crac-21.32.17.0
@@ -3712,6 +3717,7 @@ zulu-crac-21.36.19.0
 zulu-crac-21.38.21.0
 zulu-crac-21.40.17.0
 zulu-crac-21.42.21.0
+zulu-crac-21.44.17.0
 zulu-crac-22.28.93.0
 zulu-crac-22.30.13.0
 zulu-crac-22.32.17.0
@@ -3721,6 +3727,7 @@ zulu-crac-23.30.13.0
 zulu-crac-23.32.11.0
 zulu-crac-24.28.87.0
 zulu-crac-24.30.15.0
+zulu-crac-24.32.13.0
 zulu-crac-musl-17.46.29.0
 zulu-crac-musl-17.48.15.0
 zulu-crac-musl-17.50.19.0
@@ -3728,6 +3735,7 @@ zulu-crac-musl-17.52.19.0
 zulu-crac-musl-17.54.21.0
 zulu-crac-musl-17.56.15.0
 zulu-crac-musl-17.58.25.0
+zulu-crac-musl-17.60.17.0
 zulu-crac-musl-21.30.23.0
 zulu-crac-musl-21.32.17.0
 zulu-crac-musl-21.34.19.0
@@ -3735,6 +3743,7 @@ zulu-crac-musl-21.36.19.0
 zulu-crac-musl-21.38.21.0
 zulu-crac-musl-21.40.17.0
 zulu-crac-musl-21.42.21.0
+zulu-crac-musl-21.44.17.0
 zulu-crac-musl-22.28.93.0
 zulu-crac-musl-22.30.13.0
 zulu-crac-musl-22.32.17.0
@@ -3744,6 +3753,7 @@ zulu-crac-musl-23.30.13.0
 zulu-crac-musl-23.32.11.0
 zulu-crac-musl-24.28.87.0
 zulu-crac-musl-24.30.15.0
+zulu-crac-musl-24.32.13.0
 zulu-javafx-8.33.0.1
 zulu-javafx-8.36.0.1
 zulu-javafx-8.38.0.13
@@ -3774,6 +3784,7 @@ zulu-javafx-8.80.0.17
 zulu-javafx-8.82.0.21
 zulu-javafx-8.84.0.15
 zulu-javafx-8.86.0.25
+zulu-javafx-8.88.0.19
 zulu-javafx-11.2.5.0
 zulu-javafx-11.29.3.0
 zulu-javafx-11.31.11.0
@@ -3806,6 +3817,7 @@ zulu-javafx-11.74.15.0
 zulu-javafx-11.76.21.0
 zulu-javafx-11.78.15.0
 zulu-javafx-11.80.21.0
+zulu-javafx-11.82.19.0
 zulu-javafx-13.29.11.0
 zulu-javafx-13.31.11.0
 zulu-javafx-13.33.25.0
@@ -3854,6 +3866,7 @@ zulu-javafx-17.52.17.0
 zulu-javafx-17.54.21.0
 zulu-javafx-17.56.15.0
 zulu-javafx-17.58.21.0
+zulu-javafx-17.60.17.0
 zulu-javafx-18.28.13.0
 zulu-javafx-18.30.11.0
 zulu-javafx-18.32.11.0
@@ -3872,6 +3885,7 @@ zulu-javafx-21.36.17.0
 zulu-javafx-21.38.21.0
 zulu-javafx-21.40.17.0
 zulu-javafx-21.42.19.0
+zulu-javafx-21.44.17.0
 zulu-javafx-22.28.91.0
 zulu-javafx-22.30.13.0
 zulu-javafx-22.32.15.0
@@ -3880,6 +3894,7 @@ zulu-javafx-23.30.13.0
 zulu-javafx-23.32.11.0
 zulu-javafx-24.28.85.0
 zulu-javafx-24.30.13.0
+zulu-javafx-24.32.13.0
 zulu-jre-8.38.0.13
 zulu-jre-8.40.0.25
 zulu-jre-8.42.0.21
@@ -4028,11 +4043,13 @@ zulu-jre-crac-17.52.19.0
 zulu-jre-crac-17.54.21.0
 zulu-jre-crac-17.56.15.0
 zulu-jre-crac-17.58.25.0
+zulu-jre-crac-17.60.17.0
 zulu-jre-crac-21.34.21.0
 zulu-jre-crac-21.36.19.0
 zulu-jre-crac-21.38.21.0
 zulu-jre-crac-21.40.17.0
 zulu-jre-crac-21.42.21.0
+zulu-jre-crac-21.44.17.0
 zulu-jre-crac-22.30.15.0
 zulu-jre-crac-22.32.17.0
 zulu-jre-crac-22.32.21.0
@@ -4041,16 +4058,19 @@ zulu-jre-crac-23.30.13.0
 zulu-jre-crac-23.32.11.0
 zulu-jre-crac-24.28.87.0
 zulu-jre-crac-24.30.15.0
+zulu-jre-crac-24.32.13.0
 zulu-jre-crac-musl-17.50.21.0
 zulu-jre-crac-musl-17.52.19.0
 zulu-jre-crac-musl-17.54.21.0
 zulu-jre-crac-musl-17.56.15.0
 zulu-jre-crac-musl-17.58.25.0
+zulu-jre-crac-musl-17.60.17.0
 zulu-jre-crac-musl-21.34.21.0
 zulu-jre-crac-musl-21.36.19.0
 zulu-jre-crac-musl-21.38.21.0
 zulu-jre-crac-musl-21.40.17.0
 zulu-jre-crac-musl-21.42.21.0
+zulu-jre-crac-musl-21.44.17.0
 zulu-jre-crac-musl-22.30.15.0
 zulu-jre-crac-musl-22.32.17.0
 zulu-jre-crac-musl-22.32.21.0
@@ -4059,6 +4079,7 @@ zulu-jre-crac-musl-23.30.13.0
 zulu-jre-crac-musl-23.32.11.0
 zulu-jre-crac-musl-24.28.87.0
 zulu-jre-crac-musl-24.30.15.0
+zulu-jre-crac-musl-24.32.13.0
 zulu-jre-javafx-8.38.0.13
 zulu-jre-javafx-8.40.0.25
 zulu-jre-javafx-8.42.0.23
@@ -4087,6 +4108,7 @@ zulu-jre-javafx-8.80.0.17
 zulu-jre-javafx-8.82.0.21
 zulu-jre-javafx-8.84.0.15
 zulu-jre-javafx-8.86.0.25
+zulu-jre-javafx-8.88.0.19
 zulu-jre-javafx-11.29.3.0
 zulu-jre-javafx-11.31.11.0
 zulu-jre-javafx-11.33.15.0
@@ -4118,6 +4140,7 @@ zulu-jre-javafx-11.74.15.0
 zulu-jre-javafx-11.76.21.0
 zulu-jre-javafx-11.78.15.0
 zulu-jre-javafx-11.80.21.0
+zulu-jre-javafx-11.82.19.0
 zulu-jre-javafx-13.29.11.0
 zulu-jre-javafx-13.31.11.0
 zulu-jre-javafx-13.33.25.0
@@ -4163,6 +4186,7 @@ zulu-jre-javafx-17.52.17.0
 zulu-jre-javafx-17.54.21.0
 zulu-jre-javafx-17.56.15.0
 zulu-jre-javafx-17.58.21.0
+zulu-jre-javafx-17.60.17.0
 zulu-jre-javafx-18.28.13.0
 zulu-jre-javafx-18.30.11.0
 zulu-jre-javafx-18.32.11.0
@@ -4181,6 +4205,7 @@ zulu-jre-javafx-21.36.17.0
 zulu-jre-javafx-21.38.21.0
 zulu-jre-javafx-21.40.17.0
 zulu-jre-javafx-21.42.19.0
+zulu-jre-javafx-21.44.17.0
 zulu-jre-javafx-22.28.91.0
 zulu-jre-javafx-22.30.13.0
 zulu-jre-javafx-22.32.15.0
@@ -4189,6 +4214,7 @@ zulu-jre-javafx-23.30.13.0
 zulu-jre-javafx-23.32.11.0
 zulu-jre-javafx-24.28.85.0
 zulu-jre-javafx-24.30.13.0
+zulu-jre-javafx-24.32.13.0
 zulu-jre-musl-8.38.0.13
 zulu-jre-musl-8.40.0.25
 zulu-jre-musl-8.42.0.21
