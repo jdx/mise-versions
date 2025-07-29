@@ -280,7 +280,7 @@ fetch() {
 			local reset_time
 			remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+')
 			reset_time=""
-			if [ "$remaining" -eq 0 ]; then
+			if [ "$remaining" == "0" ]; then
 				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+')
 			fi
 
