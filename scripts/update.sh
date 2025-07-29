@@ -171,19 +171,18 @@ SUMMARY_EOF
 # Function to mark a token as rate-limited
 mark_token_rate_limited() {
 	local token_id="$1"
-	local retry_after="${2:-}"
-	local reset_time="${3:-}"
+	local reset_time="${2:-}"
 
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
 		return
 	fi
 
-	echo "🚫 Marking token $token_id as rate-limited (retry after: $retry_after, reset time: $reset_time)" >&2
+	echo "🚫 Marking token $token_id as rate-limited" >&2
 	increment_stat "total_rate_limits_hit"
 
 	# Mark token as rate-limited asynchronously
 	{
-		node scripts/github-token.js mark-rate-limited "$token_id" "$retry_after" "$reset_time" || true
+		node scripts/github-token.js mark-rate-limited "$token_id" "$reset_time" || true
 	} &
 }
 
@@ -257,39 +256,41 @@ fetch() {
 		increment_stat "total_tools_failed"
 		return 1
 	fi
-	
-	GITHUB_TOKEN="$token" mise x -- wait-for-gh-rate-limit || true
+
+	local rate_limit_info
+	rate_limit_info=$(GITHUB_TOKEN="$token" mise x -- wait-for-gh-rate-limit 2>&1 || echo "")
 	echo "Fetching $1 (using token ID: $token_id)"
-	
+
 	# Create a temporary file to capture stderr and check for rate limiting
 	local stderr_file
 	stderr_file=$(mktemp)
-	
+
 	if ! docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
 		jdxcode/mise -y ls-remote "$1" >"docs/$1" 2>"$stderr_file"; then
 		echo "Failed to fetch versions for $1"
 		increment_stat "total_tools_failed"
-		
+
+		cat "$stderr_file" >&2
+
 		# Check if this was a rate limit issue (403 Forbidden)
 		if grep -q "403 Forbidden" "$stderr_file"; then
 			echo "⚠️ Rate limit hit for token $token_id on $1, marking token as rate-limited" >&2
 
-			# Extract rate limit from warning message
-			local retry_after
-			retry_after=$(grep -oP 'GitHub rate limit exceeded. Retry after \K\d+' "$stderr_file" || echo "")
+			local remaining
 			local reset_time
-			reset_time=$(grep -oPi 'GitHub rate limit exceeded. Resets at \K.*' "$stderr_file" || echo "")
+			remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+')
+			reset_time=""
+			if [ "$remaining" == "0" ]; then
+				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+')
+			fi
 
 			# Mark this specific token as rate-limited
-			mark_token_rate_limited "$token_id" "$retry_after" "$reset_time"
+			mark_token_rate_limited "$token_id" "$reset_time"
 
 			echo "🔄 Retrying with a different token" >&2
 			fetch "$1"
-		else
-			# Show the actual error for non-rate-limit failures
-			cat "$stderr_file" >&2
 		fi
-		
+
 		rm -f "$stderr_file" "docs/$1"
 		return
 	fi
