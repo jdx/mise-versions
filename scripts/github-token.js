@@ -94,17 +94,12 @@ async function recordUsage(baseUrl, secret, tokenId, endpoint, rateLimitInfo) {
   });
 }
 
-async function markRateLimited(baseUrl, secret, tokenId, retryAfter, resetTime) {
+async function markRateLimited(baseUrl, secret, tokenId, resetTime) {
   const rateLimitUrl = `${baseUrl}/api/token/rate-limit`;
 
-  let reset_at = new Date(Date.now() + 10 * 60 * 1000).toISOString(); // Default to 10 minutes from now
-  if (retryAfter) {
-    // retryAfter is in seconds
-    reset_at = new Date(Date.now() + retryAfter * 1000).toISOString();
-  } else if (resetTime) {
-    // resetTime is in YYYY-MM-DD HH:MM:SS +timezone format
-    reset_at = new Date(resetTime).toISOString();
-  }
+  const reset_at = resetTime
+    ? new Date(resetTime).toISOString() // resetTime is in YYYY-MM-DD HH:MM:SS +timezone format
+    : new Date(Date.now() + 10 * 60 * 1000).toISOString(); // Default to 10 minutes from now
 
   const payload = JSON.stringify({
     token_id: tokenId,
@@ -164,8 +159,7 @@ async function main() {
       
     } else if (action === 'mark-rate-limited') {
       const tokenId = process.argv[3];
-      const retryAfter = process.argv[4]; // Optional retry after time (seconds)
-      const resetTime = process.argv[5]; // Optional reset time (e.g. 2025-07-28 04:18:45 +10:00)
+      const resetTime = process.argv[4]; // Optional reset time (e.g. 2025-07-28 04:18:45 +10:00)
 
       if (!tokenId) {
         console.error('❌ Usage: node github-token.js mark-rate-limited <token_id> [reset_time]');
@@ -174,7 +168,7 @@ async function main() {
       
       console.error(`🚫 Marking token ${tokenId} as rate-limited...`);
 
-      const response = await markRateLimited(baseUrl, secret, parseInt(tokenId), parseInt(retryAfter), resetTime);
+      const response = await markRateLimited(baseUrl, secret, parseInt(tokenId), resetTime);
 
       if (response.status !== 200) {
         console.error(`❌ Failed to mark token as rate-limited: ${response.status} ${response.data}`);
