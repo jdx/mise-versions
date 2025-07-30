@@ -259,6 +259,7 @@ fetch() {
 
 	local rate_limit_info
 	rate_limit_info=$(GITHUB_TOKEN="$token" mise x -- wait-for-gh-rate-limit 2>&1 || echo "")
+	echo "$rate_limit_info"
 	echo "Fetching $1 (using token ID: $token_id)"
 
 	# Create a temporary file to capture stderr and check for rate limiting
