@@ -259,6 +259,10 @@ cpython-3.9.23+20250723-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.9.23+20250723-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.9.23+20250723-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
 cpython-3.9.23+20250723-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
+cpython-3.9.23+20250807-aarch64-unknown-linux-gnu-debug-full.tar.zst
+cpython-3.9.23+20250807-aarch64-unknown-linux-gnu-install_only.tar.gz
+cpython-3.9.23+20250807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
+cpython-3.9.23+20250807-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
 cpython-3.10.2+20220227-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.10.3+20220318-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.10.4+20220502-aarch64-unknown-linux-gnu-install_only.tar.gz
@@ -450,6 +454,10 @@ cpython-3.10.18+20250723-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.10.18+20250723-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.10.18+20250723-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
 cpython-3.10.18+20250723-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
+cpython-3.10.18+20250807-aarch64-unknown-linux-gnu-debug-full.tar.zst
+cpython-3.10.18+20250807-aarch64-unknown-linux-gnu-install_only.tar.gz
+cpython-3.10.18+20250807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
+cpython-3.10.18+20250807-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
 cpython-3.11.1+20230116-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.11.1+20230116-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.11.1+20230116-aarch64-unknown-linux-gnu-lto-full.tar.zst
@@ -626,6 +634,10 @@ cpython-3.11.13+20250723-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.11.13+20250723-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.11.13+20250723-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
 cpython-3.11.13+20250723-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
+cpython-3.11.13+20250807-aarch64-unknown-linux-gnu-debug-full.tar.zst
+cpython-3.11.13+20250807-aarch64-unknown-linux-gnu-install_only.tar.gz
+cpython-3.11.13+20250807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
+cpython-3.11.13+20250807-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
 cpython-3.12.0+20231002-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.12.0+20231002-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.12.0+20231002-aarch64-unknown-linux-gnu-lto-full.tar.zst
@@ -786,6 +798,10 @@ cpython-3.12.11+20250723-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.12.11+20250723-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.12.11+20250723-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
 cpython-3.12.11+20250723-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
+cpython-3.12.11+20250807-aarch64-unknown-linux-gnu-debug-full.tar.zst
+cpython-3.12.11+20250807-aarch64-unknown-linux-gnu-install_only.tar.gz
+cpython-3.12.11+20250807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
+cpython-3.12.11+20250807-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
 cpython-3.13.0rc2+20240909-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.13.0rc2+20240909-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.13.0rc2+20240909-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
@@ -980,6 +996,12 @@ cpython-3.13.5+20250723-aarch64-unknown-linux-gnu-freethreaded+pgo+lto-full.tar.
 cpython-3.13.5+20250723-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.13.5+20250723-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
 cpython-3.13.5+20250723-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
+cpython-3.13.6+20250807-aarch64-unknown-linux-gnu-debug-full.tar.zst
+cpython-3.13.6+20250807-aarch64-unknown-linux-gnu-freethreaded+debug-full.tar.zst
+cpython-3.13.6+20250807-aarch64-unknown-linux-gnu-freethreaded+pgo+lto-full.tar.zst
+cpython-3.13.6+20250807-aarch64-unknown-linux-gnu-install_only.tar.gz
+cpython-3.13.6+20250807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
+cpython-3.13.6+20250807-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
 cpython-3.14.0a3+20250106-aarch64-unknown-linux-gnu-debug-full.tar.zst
 cpython-3.14.0a3+20250106-aarch64-unknown-linux-gnu-freethreaded+debug-full.tar.zst
 cpython-3.14.0a3+20250106-aarch64-unknown-linux-gnu-freethreaded+lto-full.tar.zst
@@ -1124,3 +1146,9 @@ cpython-3.14.0rc1+20250723-aarch64-unknown-linux-gnu-freethreaded+pgo+lto-full.t
 cpython-3.14.0rc1+20250723-aarch64-unknown-linux-gnu-install_only.tar.gz
 cpython-3.14.0rc1+20250723-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
 cpython-3.14.0rc1+20250723-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
+cpython-3.14.0rc1+20250807-aarch64-unknown-linux-gnu-debug-full.tar.zst
+cpython-3.14.0rc1+20250807-aarch64-unknown-linux-gnu-freethreaded+debug-full.tar.zst
+cpython-3.14.0rc1+20250807-aarch64-unknown-linux-gnu-freethreaded+pgo+lto-full.tar.zst
+cpython-3.14.0rc1+20250807-aarch64-unknown-linux-gnu-install_only.tar.gz
+cpython-3.14.0rc1+20250807-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz
+cpython-3.14.0rc1+20250807-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst
