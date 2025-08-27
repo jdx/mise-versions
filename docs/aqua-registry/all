@@ -249,6 +249,7 @@ antonmedv/fx
 antonmedv/llama
 antonmedv/walk
 apache/camel-k
+apache/jena
 apache/maven
 apache/maven-mvnd
 apache/pulsar
@@ -323,6 +324,7 @@ awslabs/soci-snapshotter
 awslabs/ssosync
 awslabs/yesiscan
 axllent/mailpit
+axodotdev/cargo-dist
 ayoisaiah/f2
 b3nj5m1n/xdg-ninja
 b4b4r07/afx
@@ -527,6 +529,7 @@ containers/crun
 containers/fuse-overlayfs
 containers/gvisor-tap-vsock/gvproxy
 containers/gvisor-tap-vsock/qemu-wrapper
+containers/kubernetes-mcp-server
 containrrr/shoutrrr
 context-labs/mactop
 controlplaneio/kubectl-kubesec
@@ -1461,6 +1464,7 @@ one2nc/cloudlens
 open-policy-agent/conftest
 open-policy-agent/gatekeeper
 open-policy-agent/opa
+open-policy-agent/regal
 openclarity/kubeclarity
 openclarity/vmclarity
 opencontainers/runc
@@ -1600,6 +1604,7 @@ reemus-dev/gitnr
 regclient/regclient/regbot
 regclient/regclient/regctl
 regclient/regclient/regsync
+release-plz/release-plz
 replicatedhq/kots
 replicatedhq/outdated
 reproducible-containers/diffoci
