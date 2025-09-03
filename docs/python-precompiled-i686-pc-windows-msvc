@@ -281,6 +281,9 @@ cpython-3.9.23+20250818-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.9.23+20250828-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.9.23+20250828-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.9.23+20250828-i686-pc-windows-msvc-pgo-full.tar.zst
+cpython-3.9.23+20250902-i686-pc-windows-msvc-install_only.tar.gz
+cpython-3.9.23+20250902-i686-pc-windows-msvc-install_only_stripped.tar.gz
+cpython-3.9.23+20250902-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.10.2+20220227-i686-pc-windows-msvc-shared-install_only.tar.gz
 cpython-3.10.2+20220227-i686-pc-windows-msvc-static-install_only.tar.gz
 cpython-3.10.3+20220318-i686-pc-windows-msvc-shared-install_only.tar.gz
@@ -478,6 +481,9 @@ cpython-3.10.18+20250818-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.10.18+20250828-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.10.18+20250828-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.10.18+20250828-i686-pc-windows-msvc-pgo-full.tar.zst
+cpython-3.10.18+20250902-i686-pc-windows-msvc-install_only.tar.gz
+cpython-3.10.18+20250902-i686-pc-windows-msvc-install_only_stripped.tar.gz
+cpython-3.10.18+20250902-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.11.1+20230116-i686-pc-windows-msvc-shared-install_only.tar.gz
 cpython-3.11.1+20230116-i686-pc-windows-msvc-shared-pgo-full.tar.zst
 cpython-3.11.1+20230116-i686-pc-windows-msvc-static-install_only.tar.gz
@@ -653,6 +659,9 @@ cpython-3.11.13+20250818-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.11.13+20250828-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.11.13+20250828-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.11.13+20250828-i686-pc-windows-msvc-pgo-full.tar.zst
+cpython-3.11.13+20250902-i686-pc-windows-msvc-install_only.tar.gz
+cpython-3.11.13+20250902-i686-pc-windows-msvc-install_only_stripped.tar.gz
+cpython-3.11.13+20250902-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.12.0+20231002-i686-pc-windows-msvc-shared-install_only.tar.gz
 cpython-3.12.0+20231002-i686-pc-windows-msvc-shared-pgo-full.tar.zst
 cpython-3.12.0+20231002-i686-pc-windows-msvc-static-install_only.tar.gz
@@ -812,6 +821,9 @@ cpython-3.12.11+20250818-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.12.11+20250828-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.12.11+20250828-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.12.11+20250828-i686-pc-windows-msvc-pgo-full.tar.zst
+cpython-3.12.11+20250902-i686-pc-windows-msvc-install_only.tar.gz
+cpython-3.12.11+20250902-i686-pc-windows-msvc-install_only_stripped.tar.gz
+cpython-3.12.11+20250902-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.13.0rc2+20240909-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.13.0rc2+20240909-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.13.0rc2+20240909-i686-pc-windows-msvc-pgo-full.tar.zst
@@ -972,6 +984,10 @@ cpython-3.13.7+20250828-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst
 cpython-3.13.7+20250828-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.13.7+20250828-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.13.7+20250828-i686-pc-windows-msvc-pgo-full.tar.zst
+cpython-3.13.7+20250902-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst
+cpython-3.13.7+20250902-i686-pc-windows-msvc-install_only.tar.gz
+cpython-3.13.7+20250902-i686-pc-windows-msvc-install_only_stripped.tar.gz
+cpython-3.13.7+20250902-i686-pc-windows-msvc-pgo-full.tar.zst
 cpython-3.14.0a4+20250115-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst
 cpython-3.14.0a4+20250115-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.14.0a4+20250115-i686-pc-windows-msvc-install_only_stripped.tar.gz
@@ -1072,3 +1088,7 @@ cpython-3.14.0rc2+20250828-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst
 cpython-3.14.0rc2+20250828-i686-pc-windows-msvc-install_only.tar.gz
 cpython-3.14.0rc2+20250828-i686-pc-windows-msvc-install_only_stripped.tar.gz
 cpython-3.14.0rc2+20250828-i686-pc-windows-msvc-pgo-full.tar.zst
+cpython-3.14.0rc2+20250902-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst
+cpython-3.14.0rc2+20250902-i686-pc-windows-msvc-install_only.tar.gz
+cpython-3.14.0rc2+20250902-i686-pc-windows-msvc-install_only_stripped.tar.gz
+cpython-3.14.0rc2+20250902-i686-pc-windows-msvc-pgo-full.tar.zst
