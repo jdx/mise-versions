@@ -1,4 +1,3 @@
-v${{PACKAGE_VERSION}}
 0.5.8
 0.5.9
 0.6.0
@@ -83,6 +82,7 @@ v${{PACKAGE_VERSION}}
 0.8.79
 0.8.80
 0.8.81
+${{PACKAGE_VERSION}}
 0.8.82
 0.8.83
 0.8.88
