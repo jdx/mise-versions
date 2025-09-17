@@ -165,6 +165,7 @@ corretto-24.0.0.36.2
 corretto-24.0.0.36.3
 corretto-24.0.1.9.1
 corretto-24.0.2.12.1
+corretto-25.0.0.36.2
 corretto-musl-8.262.10.2
 corretto-musl-8.265.01.2
 corretto-musl-8.272.10.2
@@ -274,6 +275,7 @@ corretto-musl-23.0.2.7.1
 corretto-musl-24.0.0.36.2
 corretto-musl-24.0.1.9.1
 corretto-musl-24.0.2.12.1
+corretto-musl-25.0.0.36.2
 dragonwell-8.0.0
 dragonwell-8.1.1
 dragonwell-8.2.2
@@ -333,6 +335,7 @@ dragonwell-11.0.26.23.4
 dragonwell-11.0.27.23.6
 dragonwell-11.0.27.24.6
 dragonwell-11.0.28.24.6
+dragonwell-11.0.28.25.6
 dragonwell-17.0.1.0.1+12
 dragonwell-17.0.2.0.2+8
 dragonwell-17.0.3.0.3+7
@@ -385,6 +388,7 @@ dragonwell-musl-11.0.26.23.4
 dragonwell-musl-11.0.27.23.6
 dragonwell-musl-11.0.27.24.6
 dragonwell-musl-11.0.28.24.6
+dragonwell-musl-11.0.28.25.6
 dragonwell-musl-17.0.1.0.1+12
 dragonwell-musl-17.0.2.0.2+8
 dragonwell-musl-17.0.3.0.3+7
@@ -498,6 +502,7 @@ graalvm-community-23.0.2
 graalvm-community-24.0.0
 graalvm-community-24.0.1
 graalvm-community-24.0.2
+graalvm-community-25.0.0
 jetbrains-11.0.11-b1504.8
 jetbrains-11.0.11-b1504.12
 jetbrains-11.0.11-b1504.13
@@ -2636,6 +2641,7 @@ oracle-23.0.0
 oracle-23.0.1
 oracle-23.0.2
 oracle-24.0.2
+oracle-25.0.0
 oracle-graalvm-17.0.7
 oracle-graalvm-17.0.8
 oracle-graalvm-17.0.9
@@ -2774,6 +2780,7 @@ sapmachine-23.0.2
 sapmachine-24.0.0
 sapmachine-24.0.1
 sapmachine-24.0.2
+sapmachine-25.0.0
 sapmachine-jre-10.0.1.10
 sapmachine-jre-10.0.2.13
 sapmachine-jre-10.46
@@ -2876,6 +2883,7 @@ sapmachine-jre-23.0.2
 sapmachine-jre-24.0.0
 sapmachine-jre-24.0.1
 sapmachine-jre-24.0.2
+sapmachine-jre-25.0.0
 sapmachine-jre-musl-10.0.0-ea.46
 sapmachine-jre-musl-10.0.1.10
 sapmachine-jre-musl-17.0.4-beta
@@ -2920,6 +2928,7 @@ sapmachine-jre-musl-23.0.2
 sapmachine-jre-musl-24.0.0
 sapmachine-jre-musl-24.0.1
 sapmachine-jre-musl-24.0.2
+sapmachine-jre-musl-25.0.0
 sapmachine-musl-10.0.0-ea.46
 sapmachine-musl-10.0.1.10
 sapmachine-musl-17.0.4-beta
@@ -2964,6 +2973,7 @@ sapmachine-musl-23.0.2
 sapmachine-musl-24.0.0
 sapmachine-musl-24.0.1
 sapmachine-musl-24.0.2
+sapmachine-musl-25.0.0
 semeru-jre-openj9-8u302-b08_openj9-0.27.0
 semeru-jre-openj9-8u312-b07_openj9-0.29.0
 semeru-jre-openj9-8u322-b06_openj9-0.30.0
@@ -3719,6 +3729,7 @@ zulu-23.32.11.0
 zulu-24.28.83.0
 zulu-24.30.11.0
 zulu-24.32.13.0
+zulu-25.28.85.0
 zulu-crac-17.42.19.0
 zulu-crac-17.42.21.0
 zulu-crac-17.44.17.0
@@ -3750,6 +3761,7 @@ zulu-crac-23.32.11.0
 zulu-crac-24.28.87.0
 zulu-crac-24.30.15.0
 zulu-crac-24.32.13.0
+zulu-crac-25.28.85.0
 zulu-crac-musl-17.46.29.0
 zulu-crac-musl-17.48.15.0
 zulu-crac-musl-17.50.19.0
@@ -3776,6 +3788,7 @@ zulu-crac-musl-23.32.11.0
 zulu-crac-musl-24.28.87.0
 zulu-crac-musl-24.30.15.0
 zulu-crac-musl-24.32.13.0
+zulu-crac-musl-25.28.85.0
 zulu-javafx-8.33.0.1
 zulu-javafx-8.36.0.1
 zulu-javafx-8.38.0.13
@@ -3917,6 +3930,7 @@ zulu-javafx-23.32.11.0
 zulu-javafx-24.28.85.0
 zulu-javafx-24.30.13.0
 zulu-javafx-24.32.13.0
+zulu-javafx-25.28.85.0
 zulu-jre-8.38.0.13
 zulu-jre-8.40.0.25
 zulu-jre-8.42.0.21
@@ -4060,6 +4074,7 @@ zulu-jre-23.32.11.0
 zulu-jre-24.28.83.0
 zulu-jre-24.30.11.0
 zulu-jre-24.32.13.0
+zulu-jre-25.28.85.0
 zulu-jre-crac-17.50.21.0
 zulu-jre-crac-17.52.19.0
 zulu-jre-crac-17.54.21.0
@@ -4081,6 +4096,7 @@ zulu-jre-crac-23.32.11.0
 zulu-jre-crac-24.28.87.0
 zulu-jre-crac-24.30.15.0
 zulu-jre-crac-24.32.13.0
+zulu-jre-crac-25.28.85.0
 zulu-jre-crac-musl-17.50.21.0
 zulu-jre-crac-musl-17.52.19.0
 zulu-jre-crac-musl-17.54.21.0
@@ -4102,6 +4118,7 @@ zulu-jre-crac-musl-23.32.11.0
 zulu-jre-crac-musl-24.28.87.0
 zulu-jre-crac-musl-24.30.15.0
 zulu-jre-crac-musl-24.32.13.0
+zulu-jre-crac-musl-25.28.85.0
 zulu-jre-javafx-8.38.0.13
 zulu-jre-javafx-8.40.0.25
 zulu-jre-javafx-8.42.0.23
@@ -4237,6 +4254,7 @@ zulu-jre-javafx-23.32.11.0
 zulu-jre-javafx-24.28.85.0
 zulu-jre-javafx-24.30.13.0
 zulu-jre-javafx-24.32.13.0
+zulu-jre-javafx-25.28.85.0
 zulu-jre-musl-8.38.0.13
 zulu-jre-musl-8.40.0.25
 zulu-jre-musl-8.42.0.21
@@ -4380,6 +4398,7 @@ zulu-jre-musl-23.32.11.0
 zulu-jre-musl-24.28.83.0
 zulu-jre-musl-24.30.11.0
 zulu-jre-musl-24.32.13.0
+zulu-jre-musl-25.28.85.0
 zulu-musl-8.33.0.1
 zulu-musl-8.34.0.1
 zulu-musl-8.36.0.1
@@ -4536,3 +4555,4 @@ zulu-musl-23.32.11.0
 zulu-musl-24.28.83.0
 zulu-musl-24.30.11.0
 zulu-musl-24.32.13.0
+zulu-musl-25.28.85.0
