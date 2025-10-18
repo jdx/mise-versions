@@ -305,34 +305,10 @@ fetch() {
 		increment_stat "total_tools_no_versions"
 		rm -f "docs/$1"
 	else
+		if [[ "$1" == "java" ]]; then
+			sort -V "docs/$1" -o "docs/$1"
+		fi
 		git add "docs/$1"
-		case "$1" in
-		cargo-binstall)
-			mv docs/cargo-binstall{,.tmp}
-			grep -E '^[0-9]' docs/cargo-binstall.tmp >docs/cargo-binstall
-			rm docs/cargo-binstall.tmp
-			git add "docs/$1"
-			;;
-		rust)
-			if [ "$new_lines" -gt 10 ]; then
-				git add "docs/$1"
-			fi
-			;;
-		java)
-			sort -V "docs/$1" -o "docs/$1"
-			git add "docs/$1"
-			;;
-		vault | consul | nomad | terraform | packer | vagrant | boundary | protobuf)
-			mv "docs/$1"{,.tmp}
-			grep -E '^[0-9]' "docs/$1.tmp" >"docs/$1"
-			rm "docs/$1.tmp"
-			sort -V "docs/$1" -o "docs/$1"
-			git add "docs/$1"
-			;;
-		*)
-			git add "docs/$1"
-			;;
-		esac
 
 		# Only count as updated if the file actually changed (is staged)
 		if git diff --cached --quiet -- "docs/$1"; then
