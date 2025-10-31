@@ -1591,6 +1591,7 @@ liberica-crac-17.0.14+11
 liberica-crac-17.0.15+12
 liberica-crac-17.0.15+13
 liberica-crac-17.0.16+13
+liberica-crac-17.0.17+12
 liberica-crac-21.0.1+15
 liberica-crac-21.0.2+15
 liberica-crac-21.0.3+11
@@ -1601,6 +1602,7 @@ liberica-crac-21.0.6+11
 liberica-crac-21.0.7+11
 liberica-crac-21.0.7+12
 liberica-crac-21.0.8+13
+liberica-crac-21.0.9+12
 liberica-crac-musl-17.0.10+14
 liberica-crac-musl-17.0.11+11
 liberica-crac-musl-17.0.11+13
@@ -1610,6 +1612,7 @@ liberica-crac-musl-17.0.14+11
 liberica-crac-musl-17.0.15+12
 liberica-crac-musl-17.0.15+13
 liberica-crac-musl-17.0.16+13
+liberica-crac-musl-17.0.17+12
 liberica-crac-musl-21.0.2+15
 liberica-crac-musl-21.0.3+11
 liberica-crac-musl-21.0.3+13
@@ -1619,6 +1622,7 @@ liberica-crac-musl-21.0.6+11
 liberica-crac-musl-21.0.7+11
 liberica-crac-musl-21.0.7+12
 liberica-crac-musl-21.0.8+13
+liberica-crac-musl-21.0.9+12
 liberica-javafx-8u242+7
 liberica-javafx-8u252+9
 liberica-javafx-8u262+10
@@ -3346,6 +3350,7 @@ semeru-jre-openj9-23.0.1+11_openj9-0.49.0-m2
 semeru-jre-openj9-23.0.2+7_openj9-0.49.0
 semeru-jre-openj9-24.0.2+12_openj9-0.54.0
 semeru-jre-openj9-25.0.0+36_openj9-0.55.0
+semeru-jre-openj9-25.0.1+8_openj9-0.56.0
 semeru-openj9-8u302-b08_openj9-0.27.0
 semeru-openj9-8u312-b07_openj9-0.29.0
 semeru-openj9-8u322-b06_openj9-0.30.0
@@ -3439,6 +3444,7 @@ semeru-openj9-23.0.1+11_openj9-0.49.0-m2
 semeru-openj9-23.0.2+7_openj9-0.49.0
 semeru-openj9-24.0.2+12_openj9-0.54.0
 semeru-openj9-25.0.0+36_openj9-0.55.0
+semeru-openj9-25.0.1+8_openj9-0.56.0
 temurin-8.0.302+8
 temurin-8.0.312+7
 temurin-8.0.322+6
@@ -4140,6 +4146,7 @@ zulu-javafx-8.82.0.21
 zulu-javafx-8.84.0.15
 zulu-javafx-8.86.0.25
 zulu-javafx-8.88.0.19
+zulu-javafx-8.90.0.19
 zulu-javafx-11.2.5.0
 zulu-javafx-11.29.3.0
 zulu-javafx-11.31.11.0
@@ -4173,6 +4180,7 @@ zulu-javafx-11.76.21.0
 zulu-javafx-11.78.15.0
 zulu-javafx-11.80.21.0
 zulu-javafx-11.82.19.0
+zulu-javafx-11.84.17.0
 zulu-javafx-13.29.11.0
 zulu-javafx-13.31.11.0
 zulu-javafx-13.33.25.0
@@ -4222,6 +4230,7 @@ zulu-javafx-17.54.21.0
 zulu-javafx-17.56.15.0
 zulu-javafx-17.58.21.0
 zulu-javafx-17.60.17.0
+zulu-javafx-17.62.17.0
 zulu-javafx-18.28.13.0
 zulu-javafx-18.30.11.0
 zulu-javafx-18.32.11.0
@@ -4241,6 +4250,7 @@ zulu-javafx-21.38.21.0
 zulu-javafx-21.40.17.0
 zulu-javafx-21.42.19.0
 zulu-javafx-21.44.17.0
+zulu-javafx-21.46.19.0
 zulu-javafx-22.28.91.0
 zulu-javafx-22.30.13.0
 zulu-javafx-22.32.15.0
@@ -4474,6 +4484,7 @@ zulu-jre-javafx-8.82.0.21
 zulu-jre-javafx-8.84.0.15
 zulu-jre-javafx-8.86.0.25
 zulu-jre-javafx-8.88.0.19
+zulu-jre-javafx-8.90.0.19
 zulu-jre-javafx-11.29.3.0
 zulu-jre-javafx-11.31.11.0
 zulu-jre-javafx-11.33.15.0
@@ -4506,6 +4517,7 @@ zulu-jre-javafx-11.76.21.0
 zulu-jre-javafx-11.78.15.0
 zulu-jre-javafx-11.80.21.0
 zulu-jre-javafx-11.82.19.0
+zulu-jre-javafx-11.84.17.0
 zulu-jre-javafx-13.29.11.0
 zulu-jre-javafx-13.31.11.0
 zulu-jre-javafx-13.33.25.0
@@ -4552,6 +4564,7 @@ zulu-jre-javafx-17.54.21.0
 zulu-jre-javafx-17.56.15.0
 zulu-jre-javafx-17.58.21.0
 zulu-jre-javafx-17.60.17.0
+zulu-jre-javafx-17.62.17.0
 zulu-jre-javafx-18.28.13.0
 zulu-jre-javafx-18.30.11.0
 zulu-jre-javafx-18.32.11.0
@@ -4571,6 +4584,7 @@ zulu-jre-javafx-21.38.21.0
 zulu-jre-javafx-21.40.17.0
 zulu-jre-javafx-21.42.19.0
 zulu-jre-javafx-21.44.17.0
+zulu-jre-javafx-21.46.19.0
 zulu-jre-javafx-22.28.91.0
 zulu-jre-javafx-22.30.13.0
 zulu-jre-javafx-22.32.15.0
