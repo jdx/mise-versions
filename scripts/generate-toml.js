@@ -3,9 +3,9 @@
  * Generate TOML version file with created_at timestamps.
  * Preserves version order from mise ls-remote.
  *
- * Usage: node generate-toml.js <tool> <json_data> [existing_toml_path]
+ * Usage: cat versions.ndjson | node generate-toml.js <tool> [existing_toml_path]
  *
- * Input JSON format (NDJSON from `mise ls-remote --json`):
+ * Input JSON format (NDJSON from stdin):
  *   {"version":"1.1.0"}
  *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z"}
  *
@@ -18,12 +18,17 @@
 import { readFileSync, existsSync } from "fs";
 import { parse, stringify } from "smol-toml";
 
-const [, , tool, jsonData, existingTomlPath] = process.argv;
+const [, , tool, existingTomlPath] = process.argv;
 
-if (!tool || !jsonData) {
-  console.error("Usage: node generate-toml.js <tool> <json_data> [existing_toml_path]");
+if (!tool) {
+  console.error(
+    "Usage: cat versions.ndjson | node generate-toml.js <tool> [existing_toml_path]"
+  );
   process.exit(1);
 }
+
+// Read NDJSON from stdin
+const stdinData = readFileSync(0, "utf-8");
 
 // Parse NDJSON input (one JSON object per line)
 function parseNdjson(ndjsonData) {
@@ -74,7 +79,7 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
 }
 
 // Parse new version data (preserves order from mise ls-remote)
-const newVersions = parseNdjson(jsonData);
+const newVersions = parseNdjson(stdinData);
 
 // Build versions object preserving input order from mise ls-remote
 const versions = {};

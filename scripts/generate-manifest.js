@@ -15,10 +15,18 @@ import { parse } from "smol-toml";
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
 
+// Parse version part - returns number if numeric, string otherwise
+function parseVersionPart(p) {
+  if (p === "" || p === undefined || p === null) return 0;
+  const num = parseInt(p, 10);
+  // Check if the entire string is a valid integer (not just starts with digits)
+  return !isNaN(num) && String(num) === p ? num : p;
+}
+
 // Compare semantic versions (newest first)
 function compareVersions(a, b) {
-  const partsA = a.split(/[.-]/).map((p) => (isNaN(p) ? p : parseInt(p, 10)));
-  const partsB = b.split(/[.-]/).map((p) => (isNaN(p) ? p : parseInt(p, 10)));
+  const partsA = a.split(/[.-]/).map(parseVersionPart);
+  const partsB = b.split(/[.-]/).map(parseVersionPart);
 
   for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
     const partA = partsA[i] ?? 0;

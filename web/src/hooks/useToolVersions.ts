@@ -6,6 +6,14 @@ export interface VersionInfo {
   created_at: string | null;
 }
 
+// Convert Date object or string to ISO string
+function toISOString(value: unknown): string | null {
+  if (!value) return null;
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === "string") return value;
+  return null;
+}
+
 export function useToolVersions(tool: string) {
   const [versions, setVersions] = useState<VersionInfo[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +30,7 @@ export function useToolVersions(tool: string) {
       })
       .then((text) => {
         const parsed = parse(text) as {
-          versions?: Record<string, { created_at?: string }>;
+          versions?: Record<string, { created_at?: unknown }>;
         };
         if (!parsed.versions) {
           setVersions([]);
@@ -31,7 +39,7 @@ export function useToolVersions(tool: string) {
         const versionList: VersionInfo[] = Object.entries(parsed.versions)
           .map(([version, data]) => ({
             version,
-            created_at: data.created_at || null,
+            created_at: toISOString(data.created_at),
           }))
           .reverse();
         setVersions(versionList);

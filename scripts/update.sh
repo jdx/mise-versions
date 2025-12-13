@@ -207,21 +207,16 @@ generate_toml_file() {
 	# fi
 
 	# For now, use plain version list - generate-toml.js will use "first seen" timestamps
-	local json_output
-	json_output=$(while read -r version; do
-		# Use jq to properly escape version strings containing ", \, or control characters
+	# Pipe JSON via stdin to avoid shell argument length limits for tools with many versions
+	if while read -r version; do
 		[ -n "$version" ] && jq -n --arg v "$version" '{"version": $v}'
-	done < "$versions_file")
-
-	if [ -n "$json_output" ]; then
-		if node scripts/generate-toml.js "$tool" "$json_output" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
-			mv "$toml_file.tmp" "$toml_file"
-			git add "$toml_file"
-			echo "Generated TOML for $tool"
-		else
-			echo "Warning: Failed to generate TOML for $tool" >&2
-			rm -f "$toml_file.tmp"
-		fi
+	done < "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
+		mv "$toml_file.tmp" "$toml_file"
+		git add "$toml_file"
+		echo "Generated TOML for $tool"
+	else
+		echo "Warning: Failed to generate TOML for $tool" >&2
+		rm -f "$toml_file.tmp"
 	fi
 }
 
