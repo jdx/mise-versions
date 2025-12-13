@@ -8,9 +8,9 @@
  * with metadata about each tool for the front-end UI.
  */
 
-import { readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, readdirSync, writeFileSync } from "fs";
 import { join, basename } from "path";
-import TOML from "@iarna/toml";
+import { parse } from "smol-toml";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
@@ -35,10 +35,18 @@ function compareVersions(a, b) {
   return 0;
 }
 
+// Convert Date object or string to ISO string
+function toISOString(value) {
+  if (!value) return null;
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === "string") return value;
+  return null;
+}
+
 function processTomlFile(filePath) {
   try {
     const content = readFileSync(filePath, "utf-8");
-    const parsed = TOML.parse(content);
+    const parsed = parse(content);
 
     if (!parsed.versions || Object.keys(parsed.versions).length === 0) {
       return null;
@@ -53,9 +61,10 @@ function processTomlFile(filePath) {
     // Find most recent created_at across all versions
     let lastUpdated = null;
     for (const [, data] of versions) {
-      if (data.created_at) {
-        if (!lastUpdated || data.created_at > lastUpdated) {
-          lastUpdated = data.created_at;
+      const createdAt = toISOString(data.created_at);
+      if (createdAt) {
+        if (!lastUpdated || createdAt > lastUpdated) {
+          lastUpdated = createdAt;
         }
       }
     }
@@ -63,7 +72,7 @@ function processTomlFile(filePath) {
     return {
       latest_version: latestVersion,
       version_count: versions.length,
-      last_updated: lastUpdated || latestData?.created_at || null,
+      last_updated: lastUpdated || toISOString(latestData?.created_at) || null,
     };
   } catch (e) {
     console.error(`Warning: Failed to process ${filePath}: ${e.message}`);

@@ -16,7 +16,7 @@
  */
 
 import { readFileSync, existsSync } from "fs";
-import TOML from "@iarna/toml";
+import { parse, stringify } from "smol-toml";
 
 const [, , tool, jsonData, existingTomlPath] = process.argv;
 
@@ -49,15 +49,23 @@ function parseNdjson(ndjsonData) {
 // Main logic
 const now = new Date().toISOString();
 
+// Convert Date object or string to ISO string
+function toISOString(value) {
+  if (!value) return null;
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === "string") return value;
+  return null;
+}
+
 // Load existing TOML if provided
 let existingVersions = {};
 if (existingTomlPath && existsSync(existingTomlPath)) {
   try {
     const existingContent = readFileSync(existingTomlPath, "utf-8");
-    const parsed = TOML.parse(existingContent);
+    const parsed = parse(existingContent);
     if (parsed.versions) {
       for (const [version, data] of Object.entries(parsed.versions)) {
-        existingVersions[version] = data.created_at;
+        existingVersions[version] = toISOString(data.created_at);
       }
     }
   } catch (e) {
@@ -68,17 +76,13 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
 // Parse new version data (preserves order from mise ls-remote)
 const newVersions = parseNdjson(jsonData);
 
-// Escape strings for TOML output
-function escapeTomlString(s) {
-  return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
-}
-
-// Generate TOML, preserving input order from mise ls-remote
-const tomlLines = ["[versions]"];
+// Build versions object preserving input order from mise ls-remote
+const versions = {};
 for (const v of newVersions) {
   // Use API timestamp, fall back to existing timestamp, then use current time
   const timestamp = v.created_at || existingVersions[v.version] || now;
-  // Use TOML native datetime (no quotes) - must be valid ISO 8601
-  tomlLines.push(`"${escapeTomlString(v.version)}" = { created_at = ${timestamp} }`);
+  versions[v.version] = { created_at: new Date(timestamp) };
 }
-console.log(tomlLines.join("\n"));
+
+// Use smol-toml stringify for proper TOML output
+console.log(stringify({ versions }));
