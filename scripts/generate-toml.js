@@ -6,7 +6,7 @@
  *
  * Input JSON format (NDJSON from `mise ls-remote --json`):
  *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z"}
- *   {"version":"1.1.0","created_at":"2024-02-20T14:45:00Z"}
+ *   {"version":"1.1.0"}
  *
  * Output TOML format:
  *   [versions]
@@ -15,27 +15,13 @@
  */
 
 import { readFileSync, existsSync } from "fs";
+import TOML from "@iarna/toml";
 
 const [, , tool, jsonData, existingTomlPath] = process.argv;
 
 if (!tool || !jsonData) {
   console.error("Usage: node generate-toml.js <tool> <json_data> [existing_toml_path]");
   process.exit(1);
-}
-
-// Parse existing TOML to preserve timestamps for known versions
-function parseExistingToml(tomlContent) {
-  const versions = {};
-  if (!tomlContent) return versions;
-
-  // Simple TOML parser for our specific format:
-  // "version" = { created_at = "timestamp" }
-  const regex = /"([^"]+)"\s*=\s*\{\s*created_at\s*=\s*"([^"]+)"\s*\}/g;
-  let match;
-  while ((match = regex.exec(tomlContent)) !== null) {
-    versions[match[1]] = match[2];
-  }
-  return versions;
 }
 
 // Parse NDJSON input (one JSON object per line)
@@ -87,7 +73,12 @@ let existingVersions = {};
 if (existingTomlPath && existsSync(existingTomlPath)) {
   try {
     const existingContent = readFileSync(existingTomlPath, "utf-8");
-    existingVersions = parseExistingToml(existingContent);
+    const parsed = TOML.parse(existingContent);
+    if (parsed.versions) {
+      for (const [version, data] of Object.entries(parsed.versions)) {
+        existingVersions[version] = data.created_at;
+      }
+    }
   } catch (e) {
     console.error(`Warning: Failed to read existing TOML: ${e.message}`);
   }
@@ -103,13 +94,16 @@ for (const v of newVersions) {
   mergedVersions[v.version] = timestamp;
 }
 
-// Sort versions (newest first)
+// Sort versions (newest first) and build output object
 const sortedVersions = Object.entries(mergedVersions).sort((a, b) =>
   compareVersions(a[0], b[0])
 );
 
+const output = {
+  versions: Object.fromEntries(
+    sortedVersions.map(([version, created_at]) => [version, { created_at }])
+  ),
+};
+
 // Output TOML
-console.log("[versions]");
-for (const [version, created_at] of sortedVersions) {
-  console.log(`"${version}" = { created_at = "${created_at}" }`);
-}
+console.log(TOML.stringify(output).trim());
