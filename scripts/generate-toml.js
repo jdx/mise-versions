@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 /**
  * Generate TOML version file with created_at timestamps.
+ * Preserves version order from mise ls-remote.
  *
  * Usage: node generate-toml.js <tool> <json_data> [existing_toml_path]
  *
  * Input JSON format (NDJSON from `mise ls-remote --json`):
- *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z"}
  *   {"version":"1.1.0"}
+ *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z"}
  *
- * Output TOML format:
+ * Output TOML format (same order as input):
  *   [versions]
  *   "1.1.0" = { created_at = "2024-02-20T14:45:00Z" }
  *   "1.0.0" = { created_at = "2024-01-15T10:30:00Z" }
@@ -45,26 +46,6 @@ function parseNdjson(ndjsonData) {
   return versions;
 }
 
-// Compare semantic versions (basic implementation)
-function compareVersions(a, b) {
-  const partsA = a.split(/[.-]/).map((p) => (isNaN(p) ? p : parseInt(p, 10)));
-  const partsB = b.split(/[.-]/).map((p) => (isNaN(p) ? p : parseInt(p, 10)));
-
-  for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-    const partA = partsA[i] ?? 0;
-    const partB = partsB[i] ?? 0;
-
-    if (typeof partA === "number" && typeof partB === "number") {
-      if (partA !== partB) return partB - partA; // Descending order
-    } else {
-      const strA = String(partA);
-      const strB = String(partB);
-      if (strA !== strB) return strB.localeCompare(strA);
-    }
-  }
-  return 0;
-}
-
 // Main logic
 const now = new Date().toISOString();
 
@@ -84,26 +65,20 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
   }
 }
 
-// Parse new version data
+// Parse new version data (preserves order from mise ls-remote)
 const newVersions = parseNdjson(jsonData);
 
-// Merge: use API timestamp, fall back to existing timestamp, then use current time
-const mergedVersions = {};
-for (const v of newVersions) {
-  const timestamp = v.created_at || existingVersions[v.version] || now;
-  mergedVersions[v.version] = timestamp;
+// Escape strings for TOML output
+function escapeTomlString(s) {
+  return s.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
-// Sort versions (newest first) and build output object
-const sortedVersions = Object.entries(mergedVersions).sort((a, b) =>
-  compareVersions(a[0], b[0])
-);
-
-const output = {
-  versions: Object.fromEntries(
-    sortedVersions.map(([version, created_at]) => [version, { created_at }])
-  ),
-};
-
-// Output TOML
-console.log(TOML.stringify(output).trim());
+// Generate TOML, preserving input order from mise ls-remote
+const tomlLines = ["[versions]"];
+for (const v of newVersions) {
+  // Use API timestamp, fall back to existing timestamp, then use current time
+  const timestamp = v.created_at || existingVersions[v.version] || now;
+  // Use TOML native datetime (no quotes) - must be valid ISO 8601
+  tomlLines.push(`"${escapeTomlString(v.version)}" = { created_at = ${timestamp} }`);
+}
+console.log(tomlLines.join("\n"));

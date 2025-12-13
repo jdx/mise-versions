@@ -209,7 +209,8 @@ generate_toml_file() {
 	# For now, use plain version list - generate-toml.js will use "first seen" timestamps
 	local json_output
 	json_output=$(while read -r version; do
-		[ -n "$version" ] && echo "{\"version\":\"$version\"}"
+		# Use jq to properly escape version strings containing ", \, or control characters
+		[ -n "$version" ] && jq -n --arg v "$version" '{"version": $v}'
 	done < "$versions_file")
 
 	if [ -n "$json_output" ]; then
@@ -459,9 +460,15 @@ if setup_token_management; then
 	echo "$last_processed_tool" >"last_processed_tool.txt"
 	set_stat "last_processed_tool" "$last_processed_tool"
 
+	# Generate tools.json manifest for the web UI
+	echo "📋 Generating tools manifest..."
+	if node scripts/generate-manifest.js; then
+		git add docs/tools.json
+	fi
+
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 		git diff --compact-summary --cached
-		
+
 		# Get the list of updated tools for the commit message
 		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
 		tools_updated_count=$(get_stat "total_tools_updated")
