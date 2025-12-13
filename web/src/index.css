@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply bg-dark-900 text-gray-100;
+  background-color: #0a0a0f;
+  color: #f3f4f6;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, sans-serif;
 }
@@ -14,6 +15,5 @@ body {
 }
 
 .neon-border {
-  box-shadow: 0 0 5px theme("colors.neon.purple"),
-    0 0 10px theme("colors.neon.purple");
+  box-shadow: 0 0 5px #B026FF, 0 0 10px #B026FF;
 }
