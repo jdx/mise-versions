@@ -15,34 +15,6 @@ import { parse } from "smol-toml";
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
 
-// Parse version part - returns number if numeric, string otherwise
-function parseVersionPart(p) {
-  if (p === "" || p === undefined || p === null) return 0;
-  const num = parseInt(p, 10);
-  // Check if the entire string is a valid integer (not just starts with digits)
-  return !isNaN(num) && String(num) === p ? num : p;
-}
-
-// Compare semantic versions (newest first)
-function compareVersions(a, b) {
-  const partsA = a.split(/[.-]/).map(parseVersionPart);
-  const partsB = b.split(/[.-]/).map(parseVersionPart);
-
-  for (let i = 0; i < Math.max(partsA.length, partsB.length); i++) {
-    const partA = partsA[i] ?? 0;
-    const partB = partsB[i] ?? 0;
-
-    if (typeof partA === "number" && typeof partB === "number") {
-      if (partA !== partB) return partB - partA;
-    } else {
-      const strA = String(partA);
-      const strB = String(partB);
-      if (strA !== strB) return strB.localeCompare(strA);
-    }
-  }
-  return 0;
-}
-
 // Convert Date object or string to ISO string
 function toISOString(value) {
   if (!value) return null;
@@ -60,11 +32,10 @@ function processTomlFile(filePath) {
       return null;
     }
 
+    // Use order from mise ls-remote (preserved in TOML)
+    // mise ls-remote returns oldest first, so last entry is latest
     const versions = Object.entries(parsed.versions);
-    const sortedVersions = versions.sort((a, b) => compareVersions(a[0], b[0]));
-
-    // Get latest version (first after sorting)
-    const [latestVersion, latestData] = sortedVersions[0];
+    const [latestVersion, latestData] = versions[versions.length - 1];
 
     // Find most recent created_at across all versions
     let lastUpdated = null;
