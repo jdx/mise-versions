@@ -14,11 +14,15 @@ export function HomePage() {
   }, [data?.tools, search]);
 
   if (loading) {
-    return <div class="text-center py-12 text-gray-500">Loading tools...</div>;
+    return (
+      <div class="text-center py-12 text-gray-400">Loading tools...</div>
+    );
   }
 
   if (error) {
-    return <div class="text-center py-12 text-red-500">Error: {error}</div>;
+    return (
+      <div class="text-center py-12 text-red-400">Error: {error}</div>
+    );
   }
 
   return (
@@ -29,7 +33,7 @@ export function HomePage() {
           placeholder="Search tools..."
           value={search}
           onInput={(e) => setSearch((e.target as HTMLInputElement).value)}
-          class="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          class="w-full max-w-md px-4 py-2 bg-dark-800 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple"
         />
       </div>
 
@@ -37,39 +41,39 @@ export function HomePage() {
         {filteredTools.length} of {data?.tool_count} tools
       </div>
 
-      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
         <table class="w-full">
-          <thead class="bg-gray-50 border-b border-gray-200">
+          <thead class="bg-dark-700 border-b border-dark-600">
             <tr>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Tool
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Latest
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700 hidden sm:table-cell">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
                 Versions
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700 hidden md:table-cell">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden md:table-cell">
                 Updated
               </th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-200">
+          <tbody class="divide-y divide-dark-600">
             {filteredTools.map((tool) => (
-              <tr key={tool.name} class="hover:bg-gray-50">
+              <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3">
                   <a
                     href={`/${tool.name}`}
-                    class="text-blue-600 hover:text-blue-800 font-medium"
+                    class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
                   >
                     {tool.name}
                   </a>
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-600 font-mono">
+                <td class="px-4 py-3 text-sm text-gray-300 font-mono">
                   {tool.latest_version}
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-600 hidden sm:table-cell">
+                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell">
                   {tool.version_count}
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">

@@ -20,53 +20,55 @@ export function RecentPage() {
   }, [data?.tools]);
 
   if (loading) {
-    return <div class="text-center py-12 text-gray-500">Loading tools...</div>;
+    return (
+      <div class="text-center py-12 text-gray-400">Loading tools...</div>
+    );
   }
 
   if (error) {
-    return <div class="text-center py-12 text-red-500">Error: {error}</div>;
+    return <div class="text-center py-12 text-red-400">Error: {error}</div>;
   }
 
   return (
     <div>
       <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-900 mb-2">Recently Updated</h1>
-        <p class="text-gray-600">Tools with the most recent version releases</p>
+        <h1 class="text-2xl font-bold text-gray-100 mb-2">Recently Updated</h1>
+        <p class="text-gray-400">Tools with the most recent version releases</p>
       </div>
 
-      <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+      <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
         <table class="w-full">
-          <thead class="bg-gray-50 border-b border-gray-200">
+          <thead class="bg-dark-700 border-b border-dark-600">
             <tr>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Tool
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Latest
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Updated
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-700 hidden sm:table-cell">
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
                 Date
               </th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-200">
+          <tbody class="divide-y divide-dark-600">
             {recentTools.map((tool) => (
-              <tr key={tool.name} class="hover:bg-gray-50">
+              <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3">
                   <a
                     href={`/${tool.name}`}
-                    class="text-blue-600 hover:text-blue-800 font-medium"
+                    class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
                   >
                     {tool.name}
                   </a>
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-600 font-mono">
+                <td class="px-4 py-3 text-sm text-gray-300 font-mono">
                   {tool.latest_version}
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-600">
+                <td class="px-4 py-3 text-sm text-gray-400">
                   {tool.last_updated
                     ? formatRelativeTime(tool.last_updated)
                     : "-"}
