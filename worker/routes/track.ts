@@ -121,3 +121,21 @@ export async function handleGet30DayDownloads(
     return errorResponse("Failed to get download stats", 500);
   }
 }
+
+// GET /api/stats/mau - Get monthly active users (public)
+export async function handleGetMAU(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const mau = await analytics.getMAU();
+
+    return jsonResponse({ mau });
+  } catch (error) {
+    console.error("Get MAU error:", error);
+    return errorResponse("Failed to get MAU", 500);
+  }
+}

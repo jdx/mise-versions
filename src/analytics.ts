@@ -161,6 +161,19 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       }
       return counts;
     },
+
+    // Get monthly active users (unique IP hashes in last 30 days)
+    async getMAU() {
+      const result = await db
+        .select({
+          count: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(downloads)
+        .where(sql`created_at >= datetime('now', '-30 days')`)
+        .get();
+
+      return result?.count ?? 0;
+    },
   };
 }
 

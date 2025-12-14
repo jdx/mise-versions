@@ -19,6 +19,7 @@ import {
   handleGetToolDownloads,
   handleGetAllDownloads,
   handleGet30DayDownloads,
+  handleGetMAU,
 } from "./routes/track";
 import { setupDatabase } from "../src/database";
 import { runMigrations, getMigrationStatus } from "../src/migrations";
@@ -98,6 +99,10 @@ export default {
       // 30-day download counts for all tools (must be before :tool pattern)
       if (path === "/api/downloads/30d" && method === "GET") {
         return handleGet30DayDownloads(request, env);
+      }
+      // Monthly active users
+      if (path === "/api/stats/mau" && method === "GET") {
+        return handleGetMAU(request, env);
       }
       // Match /api/downloads/:tool pattern
       const downloadMatch = path.match(/^\/api\/downloads\/([^/]+)$/);
