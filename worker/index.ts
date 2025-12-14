@@ -104,8 +104,14 @@ export default {
       const assetResponse = await env.ASSETS.fetch(request);
       if (assetResponse.status === 404) {
         // SPA fallback: serve index.html for client-side routing
-        const indexRequest = new Request(new URL("/index.html", url).toString(), request);
-        return env.ASSETS.fetch(indexRequest);
+        // Fetch "/" since assets binding redirects /index.html to /
+        const indexUrl = new URL("/", url);
+        const indexResponse = await env.ASSETS.fetch(indexUrl.toString());
+        // Return with original URL so client-side router works
+        return new Response(indexResponse.body, {
+          status: 200,
+          headers: indexResponse.headers,
+        });
       }
       return assetResponse;
     } catch (error) {
