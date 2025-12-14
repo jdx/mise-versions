@@ -1,6 +1,6 @@
 // Track routes: /api/track/* - Public endpoints for download tracking
 import { drizzle } from "drizzle-orm/d1";
-import { Env, jsonResponse, errorResponse, CORS_HEADERS } from "../shared";
+import { Env, jsonResponse, errorResponse, cachedJsonResponse, CACHE_CONTROL, CORS_HEADERS } from "../shared";
 import { setupAnalytics } from "../../src/analytics";
 
 // Hash IP address with SHA256 for privacy, truncated to 12 chars for storage efficiency
@@ -79,7 +79,7 @@ export async function handleGetToolDownloads(
 
     const stats = await analytics.getDownloadStats(tool);
 
-    return jsonResponse(stats);
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
   } catch (error) {
     console.error("Get tool downloads error:", error);
     return errorResponse("Failed to get download stats", 500);
@@ -97,7 +97,7 @@ export async function handleGetAllDownloads(
 
     const stats = await analytics.getTopTools(20);
 
-    return jsonResponse(stats);
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
   } catch (error) {
     console.error("Get all downloads error:", error);
     return errorResponse("Failed to get download stats", 500);
@@ -115,7 +115,7 @@ export async function handleGet30DayDownloads(
 
     const counts = await analytics.getAll30DayDownloads();
 
-    return jsonResponse(counts);
+    return cachedJsonResponse(counts, CACHE_CONTROL.API);
   } catch (error) {
     console.error("Get 30-day downloads error:", error);
     return errorResponse("Failed to get download stats", 500);
@@ -133,7 +133,7 @@ export async function handleGetMAU(
 
     const mau = await analytics.getMAU();
 
-    return jsonResponse({ mau });
+    return cachedJsonResponse({ mau }, CACHE_CONTROL.API);
   } catch (error) {
     console.error("Get MAU error:", error);
     return errorResponse("Failed to get MAU", 500);

@@ -1,6 +1,6 @@
 // Cloudflare Worker entry point
 import { drizzle } from "drizzle-orm/d1";
-import { Env, CORS_HEADERS, jsonResponse, getDb } from "./shared";
+import { Env, CORS_HEADERS, jsonResponse, getDb, CACHE_CONTROL } from "./shared";
 import {
   handleLogin,
   handleCallback,
@@ -134,12 +134,13 @@ export default {
         const dataPath = path.slice(6); // Remove "/data/"
         const dataUrl = `https://mise-versions.jdx.dev/${dataPath}`;
         const response = await fetch(dataUrl);
-        // Return with CORS headers
+        // Return with CORS and cache headers
         return new Response(response.body, {
           status: response.status,
           headers: {
             ...Object.fromEntries(response.headers),
             ...CORS_HEADERS,
+            "Cache-Control": CACHE_CONTROL.STATIC,
           },
         });
       }
