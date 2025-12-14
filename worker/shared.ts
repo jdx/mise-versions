@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/d1";
 
 export interface Env {
   DB: D1Database;
+  ANALYTICS_DB: D1Database;
   ASSETS: Fetcher;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;

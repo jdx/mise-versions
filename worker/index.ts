@@ -1,4 +1,5 @@
 // Cloudflare Worker entry point
+import { drizzle } from "drizzle-orm/d1";
 import { Env, CORS_HEADERS, jsonResponse, getDb } from "./shared";
 import {
   handleLogin,
@@ -13,8 +14,14 @@ import {
   handleMigrations,
   handleRateLimits,
 } from "./routes/api";
+import {
+  handleTrack,
+  handleGetToolDownloads,
+  handleGetAllDownloads,
+} from "./routes/track";
 import { setupDatabase } from "../src/database";
 import { runMigrations, getMigrationStatus } from "../src/migrations";
+import { runAnalyticsMigrations } from "../src/analytics";
 
 let migrationsCompleted = false;
 
@@ -35,6 +42,11 @@ export default {
         console.log("Running database migrations...");
         const db = getDb(env);
         await runMigrations(db);
+
+        // Run analytics database migrations
+        const analyticsDb = drizzle(env.ANALYTICS_DB);
+        await runAnalyticsMigrations(analyticsDb);
+
         migrationsCompleted = true;
         console.log("Migrations completed");
       } catch (error) {
@@ -73,6 +85,19 @@ export default {
       }
       if (path === "/api/rate-limits" && method === "GET") {
         return handleRateLimits(request, env);
+      }
+
+      // Track routes (public, no auth required)
+      if (path === "/api/track" && method === "POST") {
+        return handleTrack(request, env);
+      }
+      if (path === "/api/downloads" && method === "GET") {
+        return handleGetAllDownloads(request, env);
+      }
+      // Match /api/downloads/:tool pattern
+      const downloadMatch = path.match(/^\/api\/downloads\/([^/]+)$/);
+      if (downloadMatch && method === "GET") {
+        return handleGetToolDownloads(request, env, downloadMatch[1]);
       }
 
       // Health check
