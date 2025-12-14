@@ -21,6 +21,89 @@ const DOCS_DIR = join(process.cwd(), "docs");
 const TOOLS_FILE = join(DOCS_DIR, "tools.json");
 const CACHE_FILE = join(DOCS_DIR, "metadata-cache.json");
 
+// Token manager state
+let currentToken = null;
+let currentTokenId = null;
+
+// Get a token from the token manager
+async function getTokenFromManager() {
+  const baseUrl = process.env.TOKEN_MANAGER_URL;
+  const secret = process.env.TOKEN_MANAGER_SECRET;
+
+  if (!baseUrl || !secret) {
+    return null;
+  }
+
+  try {
+    const response = await fetch(`${baseUrl}/api/token`, {
+      headers: {
+        Authorization: `Bearer ${secret}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.error(`Failed to get token from manager: ${response.status}`);
+      return null;
+    }
+
+    const data = await response.json();
+    currentToken = data.token;
+    currentTokenId = data.token_id || data.installation_id;
+    console.log(`Got token from manager (ID: ${currentTokenId})`);
+    return currentToken;
+  } catch (e) {
+    console.error(`Error getting token from manager: ${e.message}`);
+    return null;
+  }
+}
+
+// Mark current token as rate-limited and get a new one
+async function rotateToken() {
+  const baseUrl = process.env.TOKEN_MANAGER_URL;
+  const secret = process.env.TOKEN_MANAGER_SECRET;
+
+  if (!baseUrl || !secret || !currentTokenId) {
+    return null;
+  }
+
+  try {
+    // Mark current token as rate-limited
+    const resetAt = new Date(Date.now() + 60 * 60 * 1000).toISOString(); // 1 hour from now
+    await fetch(`${baseUrl}/api/token/rate-limit`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${secret}`,
+      },
+      body: JSON.stringify({
+        token_id: currentTokenId,
+        reset_at: resetAt,
+      }),
+    });
+    console.log(`Marked token ${currentTokenId} as rate-limited`);
+
+    // Get a new token
+    return await getTokenFromManager();
+  } catch (e) {
+    console.error(`Error rotating token: ${e.message}`);
+    return null;
+  }
+}
+
+// Get the current GitHub token (from manager or env)
+async function getGitHubToken() {
+  // Try token manager first
+  if (!currentToken) {
+    const managerToken = await getTokenFromManager();
+    if (managerToken) return managerToken;
+  } else {
+    return currentToken;
+  }
+
+  // Fall back to env var
+  return process.env.GITHUB_TOKEN || null;
+}
+
 // Rate limiters for each API
 class RateLimiter {
   constructor(requestsPerSecond) {
@@ -207,9 +290,12 @@ async function fetchRubyGemsMetadata(gemName) {
   }
 }
 
-// Fetch GitHub metadata
-async function fetchGitHubMetadata(owner, repo, token) {
+// Fetch GitHub metadata with token rotation support
+async function fetchGitHubMetadata(owner, repo) {
   await rateLimiters.github.wait();
+
+  const token = await getGitHubToken();
+
   try {
     const headers = {
       Accept: "application/vnd.github.v3+json",
@@ -219,11 +305,38 @@ async function fetchGitHubMetadata(owner, repo, token) {
       headers.Authorization = `token ${token}`;
     }
 
-    const data = await fetchWithRetry(
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+
+    const response = await fetch(
       `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`,
-      { headers }
+      { headers, signal: controller.signal }
     );
-    if (!data) return null;
+    clearTimeout(timeout);
+
+    // Handle rate limiting
+    if (response.status === 403 || response.status === 429) {
+      const remaining = response.headers.get("x-ratelimit-remaining");
+      if (remaining === "0") {
+        console.log(`GitHub rate limited, rotating token...`);
+        const newToken = await rotateToken();
+        if (newToken) {
+          // Retry with new token
+          return fetchGitHubMetadata(owner, repo);
+        }
+      }
+      return null;
+    }
+
+    if (response.status === 404) {
+      return null;
+    }
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
 
     return {
       license: data.license?.spdx_id || null,
@@ -319,12 +432,14 @@ async function main() {
     console.log(`Loaded ${Object.keys(cache).length} entries from cache`);
   }
 
-  // GitHub token from environment
-  const githubToken = process.env.GITHUB_TOKEN;
-  if (githubToken) {
-    console.log("Using GitHub token from environment");
+  // Initialize GitHub token
+  const tokenManagerUrl = process.env.TOKEN_MANAGER_URL;
+  if (tokenManagerUrl) {
+    console.log("Using token manager for GitHub API");
+  } else if (process.env.GITHUB_TOKEN) {
+    console.log("Using GITHUB_TOKEN from environment");
   } else {
-    console.log("No GITHUB_TOKEN set, GitHub API may be rate limited");
+    console.log("No GitHub token configured, API may be rate limited");
   }
 
   // Filter tools if specific tool requested
@@ -337,17 +452,7 @@ async function main() {
     }
   }
 
-  // Filter to only tools that need updating
-  const CACHE_MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days
-  if (!args.force) {
-    const now = Date.now();
-    toolsToProcess = toolsToProcess.filter((tool) => {
-      const cached = cache[tool.name];
-      if (!cached?.fetched_at) return true;
-      const age = now - new Date(cached.fetched_at).getTime();
-      return age > CACHE_MAX_AGE;
-    });
-  }
+  // No filtering - we re-fetch everything each run (weekly is fine)
 
   console.log(`Processing ${toolsToProcess.length} tools...`);
 
@@ -366,7 +471,7 @@ async function main() {
     if (tool.github) {
       const [owner, repo] = tool.github.split("/");
       if (owner && repo) {
-        const ghMeta = await fetchGitHubMetadata(owner, repo, githubToken);
+        const ghMeta = await fetchGitHubMetadata(owner, repo);
         if (ghMeta) sources.push(ghMeta);
       }
     }
@@ -409,10 +514,7 @@ async function main() {
 
     // Only update cache if we got useful data
     if (metadata.license || metadata.homepage || metadata.authors || metadata.description) {
-      cache[tool.name] = {
-        ...metadata,
-        fetched_at: new Date().toISOString(),
-      };
+      cache[tool.name] = metadata;
       updated++;
     }
   }

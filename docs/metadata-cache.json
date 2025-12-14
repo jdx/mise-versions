@@ -3,8 +3,7 @@
     "license": "Unlicense",
     "homepage": "https://github.com/BurntSushi/ripgrep",
     "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
-    "authors": null,
-    "fetched_at": "2025-12-14T19:10:01.072Z"
+    "authors": null
   },
   "ansible": {
     "license": "GPL-3.0-or-later",
@@ -12,8 +11,7 @@
     "description": "Radically simple IT automation",
     "authors": [
       "Ansible, Inc."
-    ],
-    "fetched_at": "2025-12-14T19:10:10.576Z"
+    ]
   },
   "biome": {
     "license": "Apache-2.0",
@@ -25,7 +23,6 @@
       "dominionl",
       "conaclos",
       "ematipico"
-    ],
-    "fetched_at": "2025-12-14T19:10:24.397Z"
+    ]
   }
 }
