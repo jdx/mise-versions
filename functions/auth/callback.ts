@@ -1,6 +1,12 @@
 // GET /auth/callback - Handle GitHub OAuth callback
 import type { Env, PagesContext } from "../_shared";
-import { redirectResponse, errorResponse, setAuthCookie, getDb } from "../_shared";
+import {
+  redirectResponse,
+  setAuthCookie,
+  getDb,
+  getOAuthStateCookie,
+  clearOAuthStateCookie,
+} from "../_shared";
 import { createOAuthUserAuth } from "@octokit/auth-oauth-user";
 import { Octokit } from "@octokit/rest";
 import { setupDatabase } from "../../src/database";
@@ -9,9 +15,20 @@ export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) =>
   const { env, request } = context;
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
+  const state = url.searchParams.get("state");
+
+  // Validate CSRF state
+  const storedState = getOAuthStateCookie(request);
+  if (!state || !storedState || state !== storedState) {
+    return redirectResponse("/?login=error&reason=invalid_state", {
+      "Set-Cookie": clearOAuthStateCookie(),
+    });
+  }
 
   if (!code) {
-    return redirectResponse("/?login=error&reason=missing_code");
+    return redirectResponse("/?login=error&reason=missing_code", {
+      "Set-Cookie": clearOAuthStateCookie(),
+    });
   }
 
   try {
@@ -49,13 +66,15 @@ export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) =>
 
     console.log(`Token stored for user: ${user.login}`);
 
-    // Set auth cookie and redirect to home
-    const cookie = setAuthCookie(user.login);
-    return redirectResponse("/?login=success", {
-      "Set-Cookie": cookie,
-    });
+    // Set auth cookie, clear state cookie, and redirect to home
+    return redirectResponse("/?login=success", [
+      ["Set-Cookie", setAuthCookie(user.login)],
+      ["Set-Cookie", clearOAuthStateCookie()],
+    ]);
   } catch (error) {
     console.error("OAuth callback error:", error);
-    return redirectResponse("/?login=error&reason=auth_failed");
+    return redirectResponse("/?login=error&reason=auth_failed", {
+      "Set-Cookie": clearOAuthStateCookie(),
+    });
   }
 };

@@ -1,6 +1,6 @@
 // GET /auth/login - Redirect to GitHub OAuth
 import type { Env, PagesContext } from "../_shared";
-import { redirectResponse } from "../_shared";
+import { redirectResponse, setOAuthStateCookie } from "../_shared";
 
 export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) => {
   const { env, request } = context;
@@ -16,5 +16,8 @@ export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) =>
   githubAuthUrl.searchParams.set("scope", scope);
   githubAuthUrl.searchParams.set("state", state);
 
-  return redirectResponse(githubAuthUrl.toString());
+  // Store state in cookie for CSRF validation in callback
+  return redirectResponse(githubAuthUrl.toString(), {
+    "Set-Cookie": setOAuthStateCookie(state),
+  });
 };

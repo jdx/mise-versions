@@ -20,6 +20,7 @@ export const CORS_HEADERS = {
 };
 
 export const AUTH_COOKIE_NAME = "mise_auth";
+export const OAUTH_STATE_COOKIE_NAME = "mise_oauth_state";
 
 export function getDb(env: Env) {
   return drizzle(env.DB);
@@ -43,13 +44,27 @@ export function errorResponse(message: string, status = 400) {
   });
 }
 
-export function redirectResponse(url: string, headers: Record<string, string> = {}) {
+export function redirectResponse(
+  url: string,
+  headers: Record<string, string> | string[][] = {}
+) {
+  const responseHeaders = new Headers();
+  responseHeaders.set("Location", url);
+
+  if (Array.isArray(headers)) {
+    // Support multiple headers with same name (e.g., multiple Set-Cookie)
+    for (const [key, value] of headers) {
+      responseHeaders.append(key, value);
+    }
+  } else {
+    for (const [key, value] of Object.entries(headers)) {
+      responseHeaders.set(key, value);
+    }
+  }
+
   return new Response(null, {
     status: 302,
-    headers: {
-      Location: url,
-      ...headers,
-    },
+    headers: responseHeaders,
   });
 }
 
@@ -73,6 +88,21 @@ export function setAuthCookie(username: string): string {
 
 export function clearAuthCookie(): string {
   return `${AUTH_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`;
+}
+
+export function setOAuthStateCookie(state: string): string {
+  // Short-lived cookie (10 minutes) for CSRF protection during OAuth flow
+  return `${OAUTH_STATE_COOKIE_NAME}=${state}; Path=/; Max-Age=600; HttpOnly; SameSite=Lax; Secure`;
+}
+
+export function getOAuthStateCookie(request: Request): string | null {
+  const cookies = request.headers.get("Cookie") || "";
+  const match = cookies.match(new RegExp(`${OAUTH_STATE_COOKIE_NAME}=([^;]+)`));
+  return match ? match[1] : null;
+}
+
+export function clearOAuthStateCookie(): string {
+  return `${OAUTH_STATE_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`;
 }
 
 export function requireApiAuth(request: Request, env: Env): Response | null {
