@@ -103,7 +103,10 @@ function matchPattern(pattern: string, path: string): Record<string, string> | n
     const pathPart = pathParts[i];
 
     if (patternPart.startsWith(":")) {
-      // Named parameter
+      // Named parameter - must have at least one character
+      if (!pathPart) {
+        return null;
+      }
       params[patternPart.slice(1)] = pathPart;
     } else if (patternPart !== pathPart) {
       return null;
