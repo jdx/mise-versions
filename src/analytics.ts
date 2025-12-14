@@ -93,10 +93,28 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .groupBy(downloads.os)
         .all();
 
+      // Daily downloads (last 30 days)
+      const daily = await db
+        .select({
+          date: sql<string>`date(created_at)`,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .where(
+          and(
+            eq(downloads.tool, tool),
+            sql`created_at >= datetime('now', '-30 days')`
+          )
+        )
+        .groupBy(sql`date(created_at)`)
+        .orderBy(sql`date(created_at)`)
+        .all();
+
       return {
         total: total?.count ?? 0,
         byVersion,
         byOs,
+        daily,
       };
     },
 
