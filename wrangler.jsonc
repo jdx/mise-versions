@@ -1,8 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mise-versions",
-  "main": "src/index.ts",
+  "pages_build_output_dir": "web/dist",
   "compatibility_date": "2025-04-18",
+  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   },
