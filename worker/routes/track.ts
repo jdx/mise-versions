@@ -3,22 +3,6 @@ import { drizzle } from "drizzle-orm/d1";
 import { Env, jsonResponse, errorResponse, CORS_HEADERS } from "../shared";
 import { setupAnalytics } from "../../src/analytics";
 
-// Parse OS/arch from mise User-Agent: "mise/2024.12.0 linux-x64"
-function parseUserAgent(userAgent: string | null): {
-  os: string | null;
-  arch: string | null;
-} {
-  if (!userAgent) return { os: null, arch: null };
-
-  // mise format: "mise/VERSION OS-ARCH" or "mise/VERSION-suffix OS-ARCH"
-  const match = userAgent.match(/mise\/[\d.]+(?:-\w+)?\s+(\w+)-(\w+)/);
-  if (match) {
-    return { os: match[1], arch: match[2] };
-  }
-
-  return { os: null, arch: null };
-}
-
 // Hash IP address with SHA256 for privacy
 async function hashIP(ip: string): Promise<string> {
   const encoder = new TextEncoder();
@@ -34,7 +18,12 @@ export async function handleTrack(
   env: Env
 ): Promise<Response> {
   try {
-    const body = (await request.json()) as { tool: string; version: string };
+    const body = (await request.json()) as {
+      tool: string;
+      version: string;
+      os?: string;
+      arch?: string;
+    };
 
     // Validate required fields
     if (!body.tool || !body.version) {
@@ -50,9 +39,9 @@ export async function handleTrack(
     // Hash the IP for privacy
     const ipHash = await hashIP(clientIP);
 
-    // Parse OS/arch from User-Agent
-    const userAgent = request.headers.get("User-Agent");
-    const { os, arch } = parseUserAgent(userAgent);
+    // Get OS/arch from body (optional)
+    const os = body.os || null;
+    const arch = body.arch || null;
 
     const db = drizzle(env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
