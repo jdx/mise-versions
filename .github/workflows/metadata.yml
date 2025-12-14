@@ -49,5 +49,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: update tool metadata cache"
+            # Pull with rebase to handle concurrent updates from update.sh
+            git pull --rebase origin main
             git push
           fi
