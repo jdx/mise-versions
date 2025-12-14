@@ -63,73 +63,12 @@ function DownloadChart({
   );
 }
 
-// Metadata section showing license, homepage, authors, repo link (public for all users)
-function MetadataSection({ tool }: { tool: Tool }) {
+// Combined metadata and links section with two-column layout
+function ToolInfo({ tool }: { tool: Tool }) {
   const hasMetadata = tool.license || tool.homepage || tool.authors?.length || tool.repo_url;
-  if (!hasMetadata) return null;
-
-  return (
-    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-      <h2 class="text-lg font-semibold text-gray-200 mb-3">About</h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-        {tool.license && (
-          <div>
-            <span class="text-gray-500">License:</span>
-            <span class="text-gray-300 ml-2">{tool.license}</span>
-          </div>
-        )}
-
-        {tool.homepage && (() => {
-          try {
-            const url = new URL(tool.homepage);
-            return (
-              <div>
-                <span class="text-gray-500">Homepage:</span>
-                <a
-                  href={tool.homepage}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-neon-blue hover:text-neon-purple transition-colors ml-2"
-                >
-                  {url.hostname}
-                </a>
-              </div>
-            );
-          } catch {
-            return null;
-          }
-        })()}
-
-        {tool.repo_url && (
-          <div>
-            <span class="text-gray-500">Repository:</span>
-            <a
-              href={tool.repo_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-neon-blue hover:text-neon-purple transition-colors ml-2"
-            >
-              {tool.github}
-            </a>
-          </div>
-        )}
-
-        {tool.authors && tool.authors.length > 0 && (
-          <div class="sm:col-span-2">
-            <span class="text-gray-500">Authors:</span>
-            <span class="text-gray-300 ml-2">{tool.authors.join(", ")}</span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// Backend links section showing backends and package manager links (public for all users)
-function BackendLinks({ tool }: { tool: Tool }) {
   const hasLinks = tool.backends?.length || tool.aqua_link || tool.package_urls;
-  if (!hasLinks) return null;
+
+  if (!hasMetadata && !hasLinks) return null;
 
   const packageUrlLabels: Record<string, string> = {
     npm: "npm",
@@ -140,50 +79,114 @@ function BackendLinks({ tool }: { tool: Tool }) {
   };
 
   return (
-    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-      <h2 class="text-lg font-semibold text-gray-200 mb-3">Installation Sources</h2>
-
-      {tool.backends && tool.backends.length > 0 && (
-        <div class="mb-3">
-          <div class="text-sm text-gray-500 mb-2">Backends</div>
-          <div class="flex flex-wrap gap-1">
-            {tool.backends.map((backend) => (
-              <span
-                key={backend}
-                class="px-2 py-1 bg-dark-700 rounded text-xs font-mono text-gray-400"
-              >
-                {backend}
-              </span>
-            ))}
-          </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+      {/* Left column: Metadata */}
+      {hasMetadata && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">About</h2>
+          <dl class="space-y-2 text-sm">
+            {tool.license && (
+              <div class="flex">
+                <dt class="text-gray-500 w-24 flex-shrink-0">License</dt>
+                <dd class="text-gray-300">{tool.license}</dd>
+              </div>
+            )}
+            {tool.homepage && (() => {
+              try {
+                const url = new URL(tool.homepage);
+                return (
+                  <div class="flex">
+                    <dt class="text-gray-500 w-24 flex-shrink-0">Homepage</dt>
+                    <dd>
+                      <a
+                        href={tool.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-neon-blue hover:text-neon-purple transition-colors"
+                      >
+                        {url.hostname}
+                      </a>
+                    </dd>
+                  </div>
+                );
+              } catch {
+                return null;
+              }
+            })()}
+            {tool.repo_url && (
+              <div class="flex">
+                <dt class="text-gray-500 w-24 flex-shrink-0">Repository</dt>
+                <dd>
+                  <a
+                    href={tool.repo_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-neon-blue hover:text-neon-purple transition-colors"
+                  >
+                    {tool.github}
+                  </a>
+                </dd>
+              </div>
+            )}
+            {tool.authors && tool.authors.length > 0 && (
+              <div class="flex">
+                <dt class="text-gray-500 w-24 flex-shrink-0">Authors</dt>
+                <dd class="text-gray-300">{tool.authors.slice(0, 3).join(", ")}{tool.authors.length > 3 && ` +${tool.authors.length - 3} more`}</dd>
+              </div>
+            )}
+          </dl>
         </div>
       )}
 
-      <div class="flex flex-wrap gap-2">
-        {tool.package_urls &&
-          Object.entries(tool.package_urls).map(([key, url]) => (
-            <a
-              key={key}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
-            >
-              {packageUrlLabels[key] || key}
-            </a>
-          ))}
+      {/* Right column: Links */}
+      {hasLinks && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">Links</h2>
 
-        {tool.aqua_link && (
-          <a
-            href={tool.aqua_link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
-          >
-            aqua registry
-          </a>
-        )}
-      </div>
+          {/* Package manager links */}
+          <div class="flex flex-wrap gap-2 mb-3">
+            {tool.package_urls &&
+              Object.entries(tool.package_urls).map(([key, url]) => (
+                <a
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
+                >
+                  {packageUrlLabels[key] || key}
+                </a>
+              ))}
+            {tool.aqua_link && (
+              <a
+                href={tool.aqua_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
+              >
+                aqua registry
+              </a>
+            )}
+          </div>
+
+          {/* Backends */}
+          {tool.backends && tool.backends.length > 0 && (
+            <div>
+              <div class="text-xs text-gray-500 mb-1">Backends</div>
+              <div class="flex flex-wrap gap-1">
+                {tool.backends.map((backend) => (
+                  <span
+                    key={backend}
+                    class="px-2 py-0.5 bg-dark-700 rounded text-xs font-mono text-gray-400"
+                  >
+                    {backend}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -374,9 +377,7 @@ export function ToolPage({ params }: Props) {
         </div>
       </div>
 
-      {toolMeta && <MetadataSection tool={toolMeta} />}
-
-      {toolMeta && <BackendLinks tool={toolMeta} />}
+      {toolMeta && <ToolInfo tool={toolMeta} />}
 
       <GithubInfo github={toolMeta?.github} />
 
