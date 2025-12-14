@@ -3,12 +3,19 @@ import { drizzle } from "drizzle-orm/d1";
 import { Env, jsonResponse, errorResponse, cachedJsonResponse, CACHE_CONTROL, CORS_HEADERS } from "../shared";
 import { setupAnalytics } from "../../src/analytics";
 
-// Hash IP address with SHA256 for privacy, truncated to 12 chars for storage efficiency
-async function hashIP(ip: string): Promise<string> {
+// Hash IP address with HMAC-SHA256 for privacy, truncated to 12 chars for storage efficiency
+// Using HMAC with a secret key prevents rainbow table attacks on the limited IPv4 address space
+async function hashIP(ip: string, secret: string): Promise<string> {
   const encoder = new TextEncoder();
-  const data = encoder.encode(ip);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"]
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(ip));
+  const hashArray = Array.from(new Uint8Array(signature));
   return hashArray
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("")
@@ -39,8 +46,8 @@ export async function handleTrack(
       request.headers.get("X-Forwarded-For")?.split(",")[0] ||
       "unknown";
 
-    // Hash the IP for privacy
-    const ipHash = await hashIP(clientIP);
+    // Hash the IP for privacy (HMAC with secret prevents rainbow table attacks)
+    const ipHash = await hashIP(clientIP, env.API_SECRET);
 
     // Get OS/arch from body (optional)
     const os = body.os || null;
