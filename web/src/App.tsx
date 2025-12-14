@@ -1,44 +1,8 @@
 import { Router, Route, Switch } from "wouter-preact";
-import { useEffect, useState } from "preact/hooks";
 import { HomePage } from "./pages/HomePage";
 import { ToolPage } from "./pages/ToolPage";
 import { useAuth } from "./hooks/useAuth";
 
-function LoginStatus() {
-  const [message, setMessage] = useState<{
-    type: "success" | "error";
-    text: string;
-  } | null>(null);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const login = params.get("login");
-
-    if (login === "success") {
-      setMessage({ type: "success", text: "Thanks for contributing your token!" });
-      window.history.replaceState({}, "", window.location.pathname);
-      setTimeout(() => setMessage(null), 5000);
-    } else if (login === "error") {
-      setMessage({ type: "error", text: "Login failed. Please try again." });
-      window.history.replaceState({}, "", window.location.pathname);
-      setTimeout(() => setMessage(null), 5000);
-    }
-  }, []);
-
-  if (!message) return null;
-
-  return (
-    <div
-      class={`fixed top-20 right-4 px-4 py-3 rounded-lg shadow-lg z-50 ${
-        message.type === "success"
-          ? "bg-green-900/90 border border-green-500 text-green-200"
-          : "bg-red-900/90 border border-red-500 text-red-200"
-      }`}
-    >
-      {message.text}
-    </div>
-  );
-}
 
 function GitHubIcon() {
   return (
@@ -90,7 +54,6 @@ function AuthButton() {
 export function App() {
   return (
     <div class="min-h-screen">
-      <LoginStatus />
       <header class="bg-dark-800 border-b border-dark-600">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <a
