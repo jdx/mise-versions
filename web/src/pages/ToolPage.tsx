@@ -340,28 +340,13 @@ export function ToolPage({ params }: Props) {
   if (error) {
     return (
       <div class="text-center py-12">
-        <div class="text-red-400 mb-4">Error: {error}</div>
-        <a
-          href="/"
-          class="text-neon-purple hover:text-neon-pink transition-colors"
-        >
-          Back to tools
-        </a>
+        <div class="text-red-400">Error: {error}</div>
       </div>
     );
   }
 
   return (
     <div>
-      <div class="mb-6">
-        <a
-          href="/"
-          class="text-neon-purple hover:text-neon-pink text-sm transition-colors"
-        >
-          &larr; Back to tools
-        </a>
-      </div>
-
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool}</h1>
         {toolMeta?.description && (
