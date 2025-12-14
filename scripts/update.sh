@@ -198,26 +198,24 @@ generate_toml_file() {
 		return
 	fi
 
-	# Try to fetch versions with timestamps using --json flag
-	# This provides created_at timestamps from the upstream source (e.g., GitHub releases)
-	if docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST=0 -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
-		jdxcode/mise -y ls-remote --json "$tool" 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
+	# Generate TOML from plain version list - generate-toml.js will use existing timestamps or "first seen"
+	# Use node to generate proper JSON to handle special characters in version strings
+	local error_output
+	error_output=$(mktemp)
+	if node -e '
+		const fs = require("fs");
+		const versions = fs.readFileSync(process.argv[1], "utf-8").trim().split("\n").filter(v => v);
+		versions.forEach(v => console.log(JSON.stringify({version: v})));
+	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>"$error_output"; then
 		mv "$toml_file.tmp" "$toml_file"
 		git add "$toml_file"
-		echo "Generated TOML for $tool (with timestamps)"
+		rm -f "$error_output"
 	else
-		# Fallback: use plain version list - generate-toml.js will use "first seen" timestamps
-		# Pipe JSON via stdin to avoid shell argument length limits for tools with many versions
-		if while read -r version; do
-			[ -n "$version" ] && jq -c -n --arg v "$version" '{"version": $v}' 2>/dev/null
-		done < "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
-			mv "$toml_file.tmp" "$toml_file"
-			git add "$toml_file"
-			echo "Generated TOML for $tool (first-seen timestamps)"
-		else
-			echo "Warning: Failed to generate TOML for $tool" >&2
-			rm -f "$toml_file.tmp"
+		echo "Warning: Failed to generate TOML for $tool" >&2
+		if [ -s "$error_output" ]; then
+			cat "$error_output" >&2
 		fi
+		rm -f "$toml_file.tmp" "$error_output"
 	fi
 }
 
