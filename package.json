@@ -2,6 +2,11 @@
   "name": "mise-versions",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "test": "npm run test:js && npm run test:shell",
+    "test:js": "node --test scripts/*.test.js",
+    "test:shell": "bash scripts/update.test.sh"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250723.0",
     "@types/node": "^24.1.0",
