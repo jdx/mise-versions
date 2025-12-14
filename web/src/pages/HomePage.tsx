@@ -84,7 +84,9 @@ export function HomePage() {
       </div>
 
       <div class="text-sm text-gray-500 mb-4">
-        {filteredTools.length} of {data?.tool_count} tools
+        {search.trim()
+          ? `${filteredTools.length} of ${data?.tool_count} tools`
+          : `${data?.tool_count} tools`}
       </div>
 
       <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
