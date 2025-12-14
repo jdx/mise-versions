@@ -59,6 +59,26 @@ export function HomePage() {
     </button>
   );
 
+  const HighlightedName = ({ name }: { name: string }) => {
+    const query = search.trim().toLowerCase();
+    if (!query) return <>{name}</>;
+
+    const index = name.toLowerCase().indexOf(query);
+    if (index === -1) return <>{name}</>;
+
+    const before = name.slice(0, index);
+    const match = name.slice(index, index + query.length);
+    const after = name.slice(index + query.length);
+
+    return (
+      <>
+        {before}
+        <span class="bg-neon-purple/30 rounded px-0.5">{match}</span>
+        {after}
+      </>
+    );
+  };
+
   if (loading) {
     return (
       <div class="text-center py-12 text-gray-400">Loading tools...</div>
@@ -114,7 +134,7 @@ export function HomePage() {
                     href={`/${tool.name}`}
                     class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
                   >
-                    {tool.name}
+                    <HighlightedName name={tool.name} />
                   </a>
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-300 font-mono">
