@@ -11,6 +11,7 @@
 import { readFileSync, readdirSync, writeFileSync } from "fs";
 import { join, basename } from "path";
 import { parse } from "smol-toml";
+import { execSync } from "child_process";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
@@ -26,6 +27,7 @@ function toISOString(value) {
 // Extract GitHub slug from backend string
 // Supports: aqua:owner/repo, github:owner/repo, ubi:owner/repo
 function extractGithubSlug(backend) {
+  if (!backend) return null;
   // Match aqua:, github:, or ubi: prefixes
   const match = backend.match(/^(aqua|github|ubi):([^/]+\/[^/\[\s]+)/);
   if (match) {
@@ -35,58 +37,30 @@ function extractGithubSlug(backend) {
   return null;
 }
 
-// Fetch and parse mise registry.toml to get tool metadata
-async function fetchMiseRegistry() {
-  const registry = new Map();
-
+// Get tool info using mise tool --json command
+// TODO: Use `mise registry --json` when available in a future mise release
+// to get descriptions for all tools in a single call
+function getToolInfo(toolName) {
   try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/jdx/mise/refs/heads/main/registry.toml"
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    const content = await response.text();
-    const parsed = parse(content);
+    const output = execSync(`mise tool "${toolName}" --json`, {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    const data = JSON.parse(output);
 
-    if (parsed.tools) {
-      for (const [name, toolData] of Object.entries(parsed.tools)) {
-        const entry = {
-          github: null,
-          description: toolData.description || null,
-        };
-
-        // Extract GitHub slug from backends
-        const backends = toolData.backends || [];
-        for (const backend of backends) {
-          // Ensure backend is a string
-          if (typeof backend !== "string") continue;
-          const slug = extractGithubSlug(backend);
-          if (slug) {
-            entry.github = slug;
-            break;
-          }
-        }
-
-        // For tools like "cli/cli" that are already GitHub slugs
-        if (!entry.github && name.includes("/")) {
-          entry.github = name;
-        }
-
-        registry.set(name, entry);
-      }
+    let github = extractGithubSlug(data.backend);
+    // For tools like "cli/cli" that are already GitHub slugs
+    if (!github && toolName.includes("/")) {
+      github = toolName;
     }
 
-    const withGithub = [...registry.values()].filter((e) => e.github).length;
-    const withDesc = [...registry.values()].filter((e) => e.description).length;
-    console.log(
-      `Loaded ${registry.size} tools from mise registry (${withGithub} with GitHub, ${withDesc} with description)`
-    );
-  } catch (e) {
-    console.warn(`Warning: Could not fetch mise registry: ${e.message}`);
+    return {
+      github,
+      description: data.description || null,
+    };
+  } catch {
+    return { github: null, description: null };
   }
-
-  return registry;
 }
 
 function processTomlFile(filePath) {
@@ -125,11 +99,8 @@ function processTomlFile(filePath) {
   }
 }
 
-async function main() {
+function main() {
   console.log("Generating tools manifest...");
-
-  // Load mise registry for GitHub URLs and descriptions
-  const miseRegistry = await fetchMiseRegistry();
 
   // Find all .toml files in docs/, excluding internal tools
   const EXCLUDED_PREFIXES = ["python-precompiled"];
@@ -155,22 +126,26 @@ async function main() {
         ...metadata,
       };
 
-      // Add GitHub slug and description if available
-      const registryEntry = miseRegistry.get(toolName);
-      if (registryEntry) {
-        if (registryEntry.github) {
-          tool.github = registryEntry.github;
-          withGithub++;
-        }
-        if (registryEntry.description) {
-          tool.description = registryEntry.description;
-          withDesc++;
-        }
+      // Get GitHub slug and description from mise
+      const info = getToolInfo(toolName);
+      if (info.github) {
+        tool.github = info.github;
+        withGithub++;
+      }
+      if (info.description) {
+        tool.description = info.description;
+        withDesc++;
       }
 
       tools.push(tool);
     }
+
+    // Progress indicator
+    if (tools.length % 100 === 0) {
+      process.stdout.write(`\rProcessed ${tools.length} tools...`);
+    }
   }
+  console.log(`\rProcessed ${tools.length} tools`);
 
   // Sort tools alphabetically
   tools.sort((a, b) => a.name.localeCompare(b.name));
