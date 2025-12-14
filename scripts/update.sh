@@ -198,10 +198,25 @@ generate_toml_file() {
 		return
 	fi
 
-	# Generate TOML from plain version list - generate-toml.js will use existing timestamps or "first seen"
-	# Use node to generate proper JSON to handle special characters in version strings
 	local error_output
 	error_output=$(mktemp)
+
+	# Try to get JSON with timestamps from mise ls-remote --json
+	local json_output
+	if json_output=$(mise ls-remote --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
+		# Convert JSON array to NDJSON and pipe to generate-toml.js
+		if echo "$json_output" | node -e '
+			const data = JSON.parse(require("fs").readFileSync(0, "utf-8"));
+			data.forEach(v => console.log(JSON.stringify(v)));
+		' | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>"$error_output"; then
+			mv "$toml_file.tmp" "$toml_file"
+			git add "$toml_file"
+			rm -f "$error_output"
+			return
+		fi
+	fi
+
+	# Fall back to plain text conversion (preserves existing timestamps)
 	if node -e '
 		const fs = require("fs");
 		const versions = fs.readFileSync(process.argv[1], "utf-8").trim().split("\n").filter(v => v);

@@ -30,15 +30,17 @@ if (!tool) {
 // Read NDJSON from stdin
 const stdinData = readFileSync(0, "utf-8");
 
-// Parse NDJSON input (one JSON object per line)
+// Parse NDJSON input (one JSON object per line), deduplicating versions
 function parseNdjson(ndjsonData) {
   const versions = [];
+  const seen = new Set();
   const lines = ndjsonData.trim().split("\n");
   for (const line of lines) {
     if (!line.trim()) continue;
     try {
       const obj = JSON.parse(line);
-      if (obj.version) {
+      if (obj.version && !seen.has(obj.version)) {
+        seen.add(obj.version);
         versions.push({
           version: obj.version,
           created_at: obj.created_at || null,
