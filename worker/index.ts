@@ -134,14 +134,17 @@ export default {
         const dataPath = path.slice(6); // Remove "/data/"
         const dataUrl = `https://mise-versions.jdx.dev/${dataPath}`;
         const response = await fetch(dataUrl);
-        // Return with CORS and cache headers
+        // Return with CORS headers, only cache successful responses
+        const headers: Record<string, string> = {
+          ...Object.fromEntries(response.headers),
+          ...CORS_HEADERS,
+        };
+        if (response.ok) {
+          headers["Cache-Control"] = CACHE_CONTROL.STATIC;
+        }
         return new Response(response.body, {
           status: response.status,
-          headers: {
-            ...Object.fromEntries(response.headers),
-            ...CORS_HEADERS,
-            "Cache-Control": CACHE_CONTROL.STATIC,
-          },
+          headers,
         });
       }
 
