@@ -73,7 +73,7 @@ export function HomePage() {
 
   return (
     <div>
-      <div class="mb-6">
+      <div class="mb-6 flex items-center justify-between gap-4">
         <input
           type="text"
           placeholder="Search tools..."
@@ -81,12 +81,11 @@ export function HomePage() {
           onInput={(e) => setSearch((e.target as HTMLInputElement).value)}
           class="w-full max-w-md px-4 py-2 bg-dark-800 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple"
         />
-      </div>
-
-      <div class="text-sm text-gray-500 mb-4">
-        {search.trim()
-          ? `${filteredTools.length} of ${data?.tool_count} tools`
-          : `${data?.tool_count} tools`}
+        <div class="text-sm text-gray-500 whitespace-nowrap">
+          {search.trim()
+            ? `${filteredTools.length} of ${data?.tool_count} tools`
+            : `${data?.tool_count} tools`}
+        </div>
       </div>
 
       <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
