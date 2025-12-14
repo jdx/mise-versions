@@ -406,37 +406,109 @@ export async function runAnalyticsMigrations(
 ): Promise<void> {
   console.log("Running analytics database migrations...");
 
-  // Create tools lookup table
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS tools (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL UNIQUE
-    )
-  `);
+  // Check if we need to migrate from old schema
+  const tableInfo = await db.all(sql`PRAGMA table_info(downloads)`);
+  const hasOldSchema = tableInfo.some(
+    (col: any) => col.name === "tool" && col.type === "TEXT"
+  );
 
-  // Create platforms lookup table
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS platforms (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      os TEXT,
-      arch TEXT,
-      UNIQUE(os, arch)
-    )
-  `);
+  if (hasOldSchema) {
+    console.log("Migrating from old schema to normalized schema...");
 
-  // Create downloads table (normalized)
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS downloads (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      tool_id INTEGER NOT NULL,
-      version TEXT NOT NULL,
-      platform_id INTEGER,
-      ip_hash TEXT NOT NULL,
-      created_at INTEGER NOT NULL,
-      FOREIGN KEY (tool_id) REFERENCES tools(id),
-      FOREIGN KEY (platform_id) REFERENCES platforms(id)
-    )
-  `);
+    // Create new lookup tables
+    await db.run(sql`
+      CREATE TABLE IF NOT EXISTS tools (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL UNIQUE
+      )
+    `);
+
+    await db.run(sql`
+      CREATE TABLE IF NOT EXISTS platforms (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        os TEXT,
+        arch TEXT,
+        UNIQUE(os, arch)
+      )
+    `);
+
+    // Populate tools from existing data
+    await db.run(sql`
+      INSERT OR IGNORE INTO tools (name)
+      SELECT DISTINCT tool FROM downloads WHERE tool IS NOT NULL
+    `);
+
+    // Populate platforms from existing data
+    await db.run(sql`
+      INSERT OR IGNORE INTO platforms (os, arch)
+      SELECT DISTINCT os, arch FROM downloads
+    `);
+
+    // Create new downloads table
+    await db.run(sql`
+      CREATE TABLE downloads_new (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        tool_id INTEGER NOT NULL,
+        version TEXT NOT NULL,
+        platform_id INTEGER,
+        ip_hash TEXT NOT NULL,
+        created_at INTEGER NOT NULL,
+        FOREIGN KEY (tool_id) REFERENCES tools(id),
+        FOREIGN KEY (platform_id) REFERENCES platforms(id)
+      )
+    `);
+
+    // Migrate data to new table
+    await db.run(sql`
+      INSERT INTO downloads_new (tool_id, version, platform_id, ip_hash, created_at)
+      SELECT
+        t.id,
+        d.version,
+        p.id,
+        d.ip_hash,
+        CAST(strftime('%s', d.created_at) AS INTEGER)
+      FROM downloads d
+      JOIN tools t ON t.name = d.tool
+      LEFT JOIN platforms p ON (p.os = d.os OR (p.os IS NULL AND d.os IS NULL))
+                            AND (p.arch = d.arch OR (p.arch IS NULL AND d.arch IS NULL))
+    `);
+
+    // Drop old table and rename new one
+    await db.run(sql`DROP TABLE downloads`);
+    await db.run(sql`ALTER TABLE downloads_new RENAME TO downloads`);
+
+    console.log("Migration from old schema completed");
+  } else {
+    // Fresh install - create tables normally
+    await db.run(sql`
+      CREATE TABLE IF NOT EXISTS tools (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL UNIQUE
+      )
+    `);
+
+    await db.run(sql`
+      CREATE TABLE IF NOT EXISTS platforms (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        os TEXT,
+        arch TEXT,
+        UNIQUE(os, arch)
+      )
+    `);
+
+    await db.run(sql`
+      CREATE TABLE IF NOT EXISTS downloads (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        tool_id INTEGER NOT NULL,
+        version TEXT NOT NULL,
+        platform_id INTEGER,
+        ip_hash TEXT NOT NULL,
+        created_at INTEGER NOT NULL,
+        FOREIGN KEY (tool_id) REFERENCES tools(id),
+        FOREIGN KEY (platform_id) REFERENCES platforms(id)
+      )
+    `);
+  }
 
   // Create daily aggregated table
   await db.run(sql`
