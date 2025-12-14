@@ -41,6 +41,29 @@ export function jsonResponse(
   });
 }
 
+// Cache control presets
+export const CACHE_CONTROL = {
+  // For static data that changes infrequently (tools.json, .toml files)
+  STATIC: "public, max-age=3600, stale-while-revalidate=86400", // 1 hour + 1 day stale
+  // For API responses (download stats, MAU, etc.)
+  API: "public, max-age=3600, stale-while-revalidate=86400", // 1 hour + 1 day stale
+} as const;
+
+export function cachedJsonResponse(
+  data: unknown,
+  cacheControl: string,
+  status = 200
+) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      ...CORS_HEADERS,
+      "Content-Type": "application/json",
+      "Cache-Control": cacheControl,
+    },
+  });
+}
+
 export function errorResponse(message: string, status = 400) {
   return new Response(message, {
     status,
