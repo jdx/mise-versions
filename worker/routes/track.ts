@@ -3,13 +3,16 @@ import { drizzle } from "drizzle-orm/d1";
 import { Env, jsonResponse, errorResponse, CORS_HEADERS } from "../shared";
 import { setupAnalytics } from "../../src/analytics";
 
-// Hash IP address with SHA256 for privacy
+// Hash IP address with SHA256 for privacy, truncated to 12 chars for storage efficiency
 async function hashIP(ip: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(ip);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  return hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("")
+    .slice(0, 12);
 }
 
 // POST /api/track - Track a tool installation (public, no auth)
