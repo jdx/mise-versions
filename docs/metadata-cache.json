@@ -1,0 +1,28 @@
+{
+  "ripgrep": {
+    "license": "Unlicense",
+    "homepage": "https://github.com/BurntSushi/ripgrep",
+    "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
+    "authors": null
+  },
+  "ansible": {
+    "license": "GPL-3.0-or-later",
+    "homepage": "https://ansible.com/",
+    "description": "Radically simple IT automation",
+    "authors": [
+      "Ansible, Inc."
+    ]
+  },
+  "biome": {
+    "license": "Apache-2.0",
+    "homepage": "https://biomejs.dev",
+    "description": "A toolchain for web projects, aimed to provide functionalities to maintain them. Biome offers formatter and linter, usable via CLI and LSP.",
+    "authors": [
+      "Emanuele Stoppa",
+      "nhedger",
+      "dominionl",
+      "conaclos",
+      "ematipico"
+    ]
+  }
+}

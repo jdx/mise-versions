@@ -7,6 +7,21 @@ export interface Tool {
   last_updated: string | null;
   github?: string;
   description?: string;
+
+  // New metadata fields
+  license?: string;
+  homepage?: string;
+  repo_url?: string;
+  authors?: string[];
+  backends?: string[];
+  aqua_link?: string;
+  package_urls?: {
+    npm?: string;
+    cargo?: string;
+    pypi?: string;
+    rubygems?: string;
+    go?: string;
+  };
 }
 
 export interface ToolsManifest {
