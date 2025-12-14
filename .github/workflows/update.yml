@@ -1,11 +1,8 @@
 name: update
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/15 * * * *"
 
 concurrency:
   group: update
