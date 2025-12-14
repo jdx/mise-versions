@@ -4,6 +4,9 @@
   "main": "worker/index.ts",
   "compatibility_date": "2025-04-18",
   "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "mise-tools.jdx.dev", "custom_domain": true }
+  ],
   "assets": {
     "directory": "web/dist",
     "binding": "ASSETS"
