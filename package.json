@@ -21,7 +21,7 @@
   "dependencies": {
     "@octokit/auth-oauth-user": "^6.0.0",
     "@octokit/rest": "^22.0.0",
-    "drizzle-orm": "^0.44.3",
+    "drizzle-orm": "^0.45.0",
     "smol-toml": "^1.5.2"
   }
 }
