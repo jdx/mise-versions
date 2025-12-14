@@ -100,8 +100,14 @@ export default {
         });
       }
 
-      // Serve static assets for all other routes
-      return env.ASSETS.fetch(request);
+      // Serve static assets, with SPA fallback to index.html
+      const assetResponse = await env.ASSETS.fetch(request);
+      if (assetResponse.status === 404) {
+        // SPA fallback: serve index.html for client-side routing
+        const indexRequest = new Request(new URL("/index.html", url).toString(), request);
+        return env.ASSETS.fetch(indexRequest);
+      }
+      return assetResponse;
     } catch (error) {
       console.error("Request error:", error);
       return new Response("Internal Server Error", { status: 500 });
