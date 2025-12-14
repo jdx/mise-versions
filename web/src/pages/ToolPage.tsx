@@ -63,126 +63,180 @@ function DownloadChart({
   );
 }
 
-// Combined metadata and links section with two-column layout
-function ToolInfo({ tool }: { tool: Tool }) {
-  const hasMetadata = tool.license || tool.homepage || tool.authors?.length || tool.repo_url;
-  const hasLinks = tool.backends?.length || tool.aqua_link || tool.package_urls;
+const packageUrlLabels: Record<string, string> = {
+  npm: "npm",
+  cargo: "crates.io",
+  pypi: "PyPI",
+  rubygems: "RubyGems",
+  go: "pkg.go.dev",
+};
 
-  if (!hasMetadata && !hasLinks) return null;
+// Info pane: install command, metadata, links, GitHub stats
+function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined }) {
+  const { authenticated } = useAuth();
+  const parsed = toolMeta?.github ? parseGithubSlug(toolMeta.github) : null;
+  const { data: ghData } = useGithubRepo(
+    parsed?.owner ?? null,
+    parsed?.repo ?? null
+  );
 
-  const packageUrlLabels: Record<string, string> = {
-    npm: "npm",
-    cargo: "crates.io",
-    pypi: "PyPI",
-    rubygems: "RubyGems",
-    go: "pkg.go.dev",
-  };
+  const hasMetadata = toolMeta && (toolMeta.license || toolMeta.homepage || toolMeta.repo_url || toolMeta.authors?.length);
+  const hasLinks = toolMeta && (toolMeta.package_urls || toolMeta.aqua_link || toolMeta.backends?.length);
+  const hasGithub = authenticated && ghData && (ghData.stars > 0 || (ghData.topics && ghData.topics.length > 0));
 
   return (
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
-      {/* Left column: Metadata */}
-      {hasMetadata && (
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-          <h2 class="text-lg font-semibold text-gray-200 mb-3">About</h2>
-          <dl class="space-y-2 text-sm">
-            {tool.license && (
-              <div class="flex">
-                <dt class="text-gray-500 w-24 flex-shrink-0">License</dt>
-                <dd class="text-gray-300">{tool.license}</dd>
-              </div>
-            )}
-            {tool.homepage && (() => {
-              try {
-                const url = new URL(tool.homepage);
-                return (
-                  <div class="flex">
-                    <dt class="text-gray-500 w-24 flex-shrink-0">Homepage</dt>
-                    <dd>
+    <div class="space-y-4">
+      {/* Install command */}
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <div class="text-sm text-gray-400 mb-1">Install with mise:</div>
+        <code class="text-sm font-mono text-neon-blue">
+          mise use {tool}@latest
+        </code>
+      </div>
+
+      {/* Combined info pane */}
+      {(hasMetadata || hasLinks || hasGithub) && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 space-y-4">
+          {/* Metadata */}
+          {hasMetadata && (
+            <dl class="space-y-2 text-sm">
+              {toolMeta.license && (
+                <div class="flex">
+                  <dt class="text-gray-500 w-24 flex-shrink-0">License</dt>
+                  <dd class="text-gray-300">{toolMeta.license}</dd>
+                </div>
+              )}
+              {toolMeta.homepage && (() => {
+                try {
+                  const url = new URL(toolMeta.homepage);
+                  return (
+                    <div class="flex">
+                      <dt class="text-gray-500 w-24 flex-shrink-0">Homepage</dt>
+                      <dd>
+                        <a
+                          href={toolMeta.homepage}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-neon-blue hover:text-neon-purple transition-colors"
+                        >
+                          {url.hostname}
+                        </a>
+                      </dd>
+                    </div>
+                  );
+                } catch {
+                  return null;
+                }
+              })()}
+              {toolMeta.repo_url && (
+                <div class="flex">
+                  <dt class="text-gray-500 w-24 flex-shrink-0">Repository</dt>
+                  <dd>
+                    <a
+                      href={toolMeta.repo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-neon-blue hover:text-neon-purple transition-colors"
+                    >
+                      {toolMeta.github}
+                    </a>
+                  </dd>
+                </div>
+              )}
+              {toolMeta.authors && toolMeta.authors.length > 0 && (
+                <div class="flex">
+                  <dt class="text-gray-500 w-24 flex-shrink-0">Authors</dt>
+                  <dd class="text-gray-300">
+                    {toolMeta.authors.slice(0, 3).join(", ")}
+                    {toolMeta.authors.length > 3 && ` +${toolMeta.authors.length - 3} more`}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          )}
+
+          {/* Divider if we have both metadata and links */}
+          {hasMetadata && (hasLinks || hasGithub) && (
+            <div class="border-t border-dark-600" />
+          )}
+
+          {/* Links */}
+          {hasLinks && (
+            <div class="space-y-3">
+              {/* Package manager links */}
+              {(toolMeta.package_urls || toolMeta.aqua_link) && (
+                <div class="flex flex-wrap gap-2">
+                  {toolMeta.package_urls &&
+                    Object.entries(toolMeta.package_urls).map(([key, url]) => (
                       <a
-                        href={tool.homepage}
+                        key={key}
+                        href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-neon-blue hover:text-neon-purple transition-colors"
+                        class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
                       >
-                        {url.hostname}
+                        {packageUrlLabels[key] || key}
                       </a>
-                    </dd>
+                    ))}
+                  {toolMeta.aqua_link && (
+                    <a
+                      href={toolMeta.aqua_link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
+                    >
+                      aqua registry
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {/* Backends */}
+              {toolMeta.backends && toolMeta.backends.length > 0 && (
+                <div>
+                  <div class="text-xs text-gray-500 mb-1">Backends</div>
+                  <div class="flex flex-wrap gap-1">
+                    {toolMeta.backends.map((backend) => (
+                      <span
+                        key={backend}
+                        class="px-2 py-0.5 bg-dark-700 rounded text-xs font-mono text-gray-400"
+                      >
+                        {backend}
+                      </span>
+                    ))}
                   </div>
-                );
-              } catch {
-                return null;
-              }
-            })()}
-            {tool.repo_url && (
-              <div class="flex">
-                <dt class="text-gray-500 w-24 flex-shrink-0">Repository</dt>
-                <dd>
-                  <a
-                    href={tool.repo_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-neon-blue hover:text-neon-purple transition-colors"
-                  >
-                    {tool.github}
-                  </a>
-                </dd>
-              </div>
-            )}
-            {tool.authors && tool.authors.length > 0 && (
-              <div class="flex">
-                <dt class="text-gray-500 w-24 flex-shrink-0">Authors</dt>
-                <dd class="text-gray-300">{tool.authors.slice(0, 3).join(", ")}{tool.authors.length > 3 && ` +${tool.authors.length - 3} more`}</dd>
-              </div>
-            )}
-          </dl>
-        </div>
-      )}
+                </div>
+              )}
+            </div>
+          )}
 
-      {/* Right column: Links */}
-      {hasLinks && (
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-          <h2 class="text-lg font-semibold text-gray-200 mb-3">Links</h2>
+          {/* Divider before GitHub stats */}
+          {(hasMetadata || hasLinks) && hasGithub && (
+            <div class="border-t border-dark-600" />
+          )}
 
-          {/* Package manager links */}
-          <div class="flex flex-wrap gap-2 mb-3">
-            {tool.package_urls &&
-              Object.entries(tool.package_urls).map(([key, url]) => (
-                <a
-                  key={key}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
-                >
-                  {packageUrlLabels[key] || key}
-                </a>
-              ))}
-            {tool.aqua_link && (
-              <a
-                href={tool.aqua_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
-              >
-                aqua registry
-              </a>
-            )}
-          </div>
-
-          {/* Backends */}
-          {tool.backends && tool.backends.length > 0 && (
-            <div>
-              <div class="text-xs text-gray-500 mb-1">Backends</div>
-              <div class="flex flex-wrap gap-1">
-                {tool.backends.map((backend) => (
-                  <span
-                    key={backend}
-                    class="px-2 py-0.5 bg-dark-700 rounded text-xs font-mono text-gray-400"
-                  >
-                    {backend}
+          {/* GitHub stats (auth-gated) */}
+          {hasGithub && (
+            <div class="space-y-2">
+              <div class="flex flex-wrap gap-3 text-sm">
+                {ghData.stars > 0 && (
+                  <span class="text-gray-400">
+                    <span class="text-yellow-400">★</span> {ghData.stars.toLocaleString()} stars
                   </span>
-                ))}
+                )}
               </div>
+              {ghData.topics && ghData.topics.length > 0 && (
+                <div class="flex flex-wrap gap-1">
+                  {ghData.topics.slice(0, 8).map((topic) => (
+                    <span
+                      key={topic}
+                      class="px-2 py-0.5 bg-dark-700 rounded text-xs text-gray-400"
+                    >
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -191,86 +245,29 @@ function ToolInfo({ tool }: { tool: Tool }) {
   );
 }
 
-// GitHub dynamic info (stars, topics) - only for authenticated users
-function GithubInfo({ github }: { github: string | undefined }) {
-  const { authenticated } = useAuth();
-  const parsed = github ? parseGithubSlug(github) : null;
-  const { data, loading, error } = useGithubRepo(
-    parsed?.owner ?? null,
-    parsed?.repo ?? null
-  );
-
-  // Don't show if no GitHub slug
-  if (!parsed) return null;
-
-  // Don't show if not authenticated
-  if (!authenticated) return null;
-
+// Downloads pane: chart, top versions, by platform
+function DownloadsPane({
+  data,
+  loading,
+}: {
+  data: { daily: Array<{ date: string; count: number }>; byVersion: Array<{ version: string; count: number }>; byOs: Array<{ os: string | null; count: number }> } | null;
+  loading: boolean;
+}) {
   if (loading) {
     return (
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-        <div class="text-gray-500 animate-pulse">Loading GitHub stats...</div>
-      </div>
-    );
-  }
-
-  if (error || !data) return null;
-
-  // Only show if we have stars or topics (the dynamic data)
-  const hasData = data.stars > 0 || (data.topics && data.topics.length > 0);
-  if (!hasData) return null;
-
-  return (
-    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-      <h2 class="text-lg font-semibold text-gray-200 mb-3">GitHub Stats</h2>
-
-      <div class="flex flex-wrap gap-3 text-sm">
-        {data.stars > 0 && (
-          <span class="text-gray-400">
-            <span class="text-yellow-400">&#9733;</span> {data.stars.toLocaleString()} stars
-          </span>
-        )}
-      </div>
-
-      {data.topics && data.topics.length > 0 && (
-        <div class="mt-3 flex flex-wrap gap-1">
-          {data.topics.slice(0, 8).map((topic) => (
-            <span
-              key={topic}
-              class="px-2 py-0.5 bg-dark-700 rounded text-xs text-gray-400"
-            >
-              {topic}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-function DownloadStats({ tool }: { tool: string }) {
-  const { data, loading, error } = useDownloads(tool);
-
-  if (loading) {
-    return (
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
         <div class="text-gray-500 animate-pulse">Loading download stats...</div>
       </div>
     );
   }
 
-  if (error || !data) {
-    return null; // Silently hide if no stats available
+  if (!data) {
+    return null;
   }
 
   return (
-    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-semibold text-gray-200">Downloads</h2>
-        <div class="text-2xl font-bold text-neon-purple">
-          {data.total.toLocaleString()}
-        </div>
-      </div>
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+      <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads</h2>
 
       <div class="mb-4">
         <div class="text-sm text-gray-400 mb-2">Last 30 days</div>
@@ -347,27 +344,28 @@ export function ToolPage({ params }: Props) {
 
   return (
     <div>
-      <div class="mb-8">
+      {/* Header */}
+      <div class="mb-6">
         <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool}</h1>
         {toolMeta?.description && (
-          <p class="text-gray-400 mb-3">{toolMeta.description}</p>
+          <p class="text-gray-400 mb-2">{toolMeta.description}</p>
         )}
-        <div class="text-gray-500 mb-4">{versions.length} versions</div>
-
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-          <div class="text-sm text-gray-400 mb-1">Install with mise:</div>
-          <code class="text-sm font-mono text-neon-blue">
-            mise use {tool}@latest
-          </code>
+        <div class="text-sm text-gray-500">
+          {versions.length} versions
+          {downloadData && ` · ${downloadData.total.toLocaleString()} downloads`}
         </div>
       </div>
 
-      {toolMeta && <ToolInfo tool={toolMeta} />}
+      {/* Two-column layout */}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        {/* Left column: Info */}
+        <InfoPane tool={tool} toolMeta={toolMeta} />
 
-      <GithubInfo github={toolMeta?.github} />
+        {/* Right column: Downloads */}
+        <DownloadsPane data={downloadData} loading={downloadsLoading} />
+      </div>
 
-      <DownloadStats tool={tool} />
-
+      {/* Version table */}
       <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
         <table class="w-full">
           <thead class="bg-dark-700 border-b border-dark-600">
