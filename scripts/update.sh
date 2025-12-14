@@ -198,25 +198,26 @@ generate_toml_file() {
 		return
 	fi
 
-	# TODO: uncomment when mise with --json support is released
 	# Try to fetch versions with timestamps using --json flag
-	# local json_output
-	# if json_output=$(docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST=0 -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
-	# 	jdxcode/mise -y ls-remote --json "$tool" 2>/dev/null); then
-	# 	...
-	# fi
-
-	# For now, use plain version list - generate-toml.js will use "first seen" timestamps
-	# Pipe JSON via stdin to avoid shell argument length limits for tools with many versions
-	if while read -r version; do
-		[ -n "$version" ] && jq -n --arg v "$version" '{"version": $v}'
-	done < "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
+	# This provides created_at timestamps from the upstream source (e.g., GitHub releases)
+	if docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST=0 -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
+		jdxcode/mise -y ls-remote --json "$tool" 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
 		mv "$toml_file.tmp" "$toml_file"
 		git add "$toml_file"
-		echo "Generated TOML for $tool"
+		echo "Generated TOML for $tool (with timestamps)"
 	else
-		echo "Warning: Failed to generate TOML for $tool" >&2
-		rm -f "$toml_file.tmp"
+		# Fallback: use plain version list - generate-toml.js will use "first seen" timestamps
+		# Pipe JSON via stdin to avoid shell argument length limits for tools with many versions
+		if while read -r version; do
+			[ -n "$version" ] && jq -n --arg v "$version" '{"version": $v}'
+		done < "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
+			mv "$toml_file.tmp" "$toml_file"
+			git add "$toml_file"
+			echo "Generated TOML for $tool (first-seen timestamps)"
+		else
+			echo "Warning: Failed to generate TOML for $tool" >&2
+			rm -f "$toml_file.tmp"
+		fi
 	fi
 }
 
