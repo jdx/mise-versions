@@ -63,11 +63,14 @@ export function App() {
             href="/"
             class="text-xl font-bold text-neon-purple hover:text-neon-pink transition-colors"
           >
-            {mau !== null && mau > 0
-              ? `mise ❤️ by ${mau.toLocaleString()} devs this month`
-              : "mise tools"}
+            mise tools
           </a>
           <nav class="flex items-center gap-6">
+            {mau !== null && mau > 0 && (
+              <span class="text-sm text-gray-400">
+                mise ❤️ by {mau.toLocaleString()} devs this month
+              </span>
+            )}
             <AuthButton />
           </nav>
         </div>
