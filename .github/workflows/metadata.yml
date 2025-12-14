@@ -44,13 +44,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Stage the files we want to commit first
           git add docs/metadata-cache.json docs/tools.json
-          # Discard any other unstaged changes
-          git checkout -- . || true
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
+            # Stash any other changes before committing
+            git stash --keep-index || true
             git commit -m "chore: update tool metadata cache"
             # Pull with rebase to handle concurrent updates from update.sh
             git pull --rebase origin main
