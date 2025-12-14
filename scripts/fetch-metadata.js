@@ -502,7 +502,7 @@ async function main() {
 
         const gem = extractPackageName(backend, "gem");
         if (gem) {
-          const gemMeta = await fetchRubyGemsMetadata(gem);
+          const gemMeta = await fetchRubyGemsMetadata(gemName);
           if (gemMeta) sources.push(gemMeta);
           break;
         }
