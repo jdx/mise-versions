@@ -62,8 +62,13 @@ function processTomlFile(filePath) {
 function main() {
   console.log("Generating tools manifest...");
 
-  // Find all .toml files in docs/
-  const files = readdirSync(DOCS_DIR).filter((f) => f.endsWith(".toml"));
+  // Find all .toml files in docs/, excluding internal tools
+  const EXCLUDED_PREFIXES = ["python-precompiled"];
+  const files = readdirSync(DOCS_DIR).filter((f) => {
+    if (!f.endsWith(".toml")) return false;
+    const toolName = basename(f, ".toml");
+    return !EXCLUDED_PREFIXES.some((prefix) => toolName.startsWith(prefix));
+  });
   console.log(`Found ${files.length} TOML files`);
 
   const tools = [];
