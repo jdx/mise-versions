@@ -81,13 +81,14 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
 // Parse new version data (preserves order from mise ls-remote)
 const newVersions = parseNdjson(stdinData);
 
-// Build versions object preserving input order from mise ls-remote
-const versions = {};
+// Build output with inline tables for compactness
+const lines = ["[versions]"];
 for (const v of newVersions) {
   // Use API timestamp, fall back to existing timestamp, then use current time
   const timestamp = v.created_at || existingVersions[v.version] || now;
-  versions[v.version] = { created_at: new Date(timestamp) };
+  const isoDate = new Date(timestamp).toISOString();
+  // Output as inline table: "version" = { created_at = 2024-01-15T10:30:00.000Z }
+  lines.push(`"${v.version}" = { created_at = ${isoDate} }`);
 }
 
-// Use smol-toml stringify for proper TOML output
-console.log(stringify({ versions }));
+console.log(lines.join("\n"));
