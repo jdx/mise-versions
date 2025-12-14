@@ -98,7 +98,7 @@ export function App() {
             href="/"
             class="text-xl font-bold text-neon-purple hover:text-neon-pink transition-colors"
           >
-            mise versions
+            mise tools
           </a>
           <nav class="flex items-center gap-6">
             <a
