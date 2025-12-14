@@ -90,7 +90,7 @@ export default {
 
       // Proxy /data/* to mise-versions.jdx.dev (GitHub Pages)
       if (path.startsWith("/data/")) {
-        return handleDataProxy(path);
+        return handleDataProxy(request, path);
       }
 
       // Serve static assets with SPA fallback
@@ -106,8 +106,18 @@ export default {
   },
 };
 
-// Proxy /data/* to GitHub Pages with caching
-async function handleDataProxy(path: string): Promise<Response> {
+// Proxy /data/* to GitHub Pages with caching via Cache API
+async function handleDataProxy(request: Request, path: string): Promise<Response> {
+  const cache = caches.default;
+  const cacheKey = new Request(new URL(path, request.url).toString());
+
+  // Check cache first
+  const cached = await cache.match(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  // Fetch from origin
   const dataPath = path.slice(6); // Remove "/data/"
   const response = await fetch(`https://mise-versions.jdx.dev/${dataPath}`);
 
@@ -115,8 +125,16 @@ async function handleDataProxy(path: string): Promise<Response> {
     ...Object.fromEntries(response.headers),
     ...CORS_HEADERS,
   };
+
+  // Only cache successful responses
   if (response.ok) {
     headers["Cache-Control"] = CACHE_CONTROL.STATIC;
+    const cacheResponse = new Response(response.clone().body, {
+      status: response.status,
+      headers,
+    });
+    // Store in Cache API (non-blocking)
+    await cache.put(cacheKey, cacheResponse);
   }
 
   return new Response(response.body, {
