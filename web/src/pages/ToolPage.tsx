@@ -1,6 +1,6 @@
 import { useToolVersions } from "../hooks/useToolVersions";
 import { useDownloads } from "../hooks/useDownloads";
-import { useTools } from "../hooks/useTools";
+import { useTools, Tool } from "../hooks/useTools";
 import { useGithubRepo, parseGithubSlug } from "../hooks/useGithubRepo";
 import { useAuth } from "../hooks/useAuth";
 import { formatRelativeTime, formatDate } from "../utils/time";
@@ -63,6 +63,132 @@ function DownloadChart({
   );
 }
 
+// Metadata section showing license, homepage, authors, repo link (public for all users)
+function MetadataSection({ tool }: { tool: Tool }) {
+  const hasMetadata = tool.license || tool.homepage || tool.authors?.length || tool.repo_url;
+  if (!hasMetadata) return null;
+
+  return (
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
+      <h2 class="text-lg font-semibold text-gray-200 mb-3">About</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+        {tool.license && (
+          <div>
+            <span class="text-gray-500">License:</span>
+            <span class="text-gray-300 ml-2">{tool.license}</span>
+          </div>
+        )}
+
+        {tool.homepage && (() => {
+          try {
+            const url = new URL(tool.homepage);
+            return (
+              <div>
+                <span class="text-gray-500">Homepage:</span>
+                <a
+                  href={tool.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-neon-blue hover:text-neon-purple transition-colors ml-2"
+                >
+                  {url.hostname}
+                </a>
+              </div>
+            );
+          } catch {
+            return null;
+          }
+        })()}
+
+        {tool.repo_url && (
+          <div>
+            <span class="text-gray-500">Repository:</span>
+            <a
+              href={tool.repo_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-neon-blue hover:text-neon-purple transition-colors ml-2"
+            >
+              {tool.github}
+            </a>
+          </div>
+        )}
+
+        {tool.authors && tool.authors.length > 0 && (
+          <div class="sm:col-span-2">
+            <span class="text-gray-500">Authors:</span>
+            <span class="text-gray-300 ml-2">{tool.authors.join(", ")}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Backend links section showing backends and package manager links (public for all users)
+function BackendLinks({ tool }: { tool: Tool }) {
+  const hasLinks = tool.backends?.length || tool.aqua_link || tool.package_urls;
+  if (!hasLinks) return null;
+
+  const packageUrlLabels: Record<string, string> = {
+    npm: "npm",
+    cargo: "crates.io",
+    pypi: "PyPI",
+    rubygems: "RubyGems",
+    go: "pkg.go.dev",
+  };
+
+  return (
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
+      <h2 class="text-lg font-semibold text-gray-200 mb-3">Installation Sources</h2>
+
+      {tool.backends && tool.backends.length > 0 && (
+        <div class="mb-3">
+          <div class="text-sm text-gray-500 mb-2">Backends</div>
+          <div class="flex flex-wrap gap-1">
+            {tool.backends.map((backend) => (
+              <span
+                key={backend}
+                class="px-2 py-1 bg-dark-700 rounded text-xs font-mono text-gray-400"
+              >
+                {backend}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="flex flex-wrap gap-2">
+        {tool.package_urls &&
+          Object.entries(tool.package_urls).map(([key, url]) => (
+            <a
+              key={key}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
+            >
+              {packageUrlLabels[key] || key}
+            </a>
+          ))}
+
+        {tool.aqua_link && (
+          <a
+            href={tool.aqua_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 rounded text-sm text-neon-blue hover:text-neon-purple transition-colors"
+          >
+            aqua registry
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// GitHub dynamic info (stars, topics) - only for authenticated users
 function GithubInfo({ github }: { github: string | undefined }) {
   const { authenticated } = useAuth();
   const parsed = github ? parseGithubSlug(github) : null;
@@ -80,59 +206,27 @@ function GithubInfo({ github }: { github: string | undefined }) {
   if (loading) {
     return (
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-        <div class="text-gray-500 animate-pulse">Loading GitHub info...</div>
+        <div class="text-gray-500 animate-pulse">Loading GitHub stats...</div>
       </div>
     );
   }
 
   if (error || !data) return null;
 
+  // Only show if we have stars or topics (the dynamic data)
+  const hasData = data.stars > 0 || (data.topics && data.topics.length > 0);
+  if (!hasData) return null;
+
   return (
     <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-lg font-semibold text-gray-200">GitHub</h2>
-        <a
-          href={`https://github.com/${parsed.owner}/${parsed.repo}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-neon-purple hover:text-neon-pink transition-colors text-sm"
-        >
-          {parsed.owner}/{parsed.repo} &rarr;
-        </a>
-      </div>
-
-      {data.description && (
-        <p class="text-gray-400 text-sm mb-3">{data.description}</p>
-      )}
+      <h2 class="text-lg font-semibold text-gray-200 mb-3">GitHub Stats</h2>
 
       <div class="flex flex-wrap gap-3 text-sm">
         {data.stars > 0 && (
           <span class="text-gray-400">
-            <span class="text-yellow-400">&#9733;</span> {data.stars.toLocaleString()}
+            <span class="text-yellow-400">&#9733;</span> {data.stars.toLocaleString()} stars
           </span>
         )}
-        {data.license && (
-          <span class="text-gray-400">
-            License: <span class="text-gray-300">{data.license}</span>
-          </span>
-        )}
-        {data.homepage && (() => {
-          try {
-            const url = new URL(data.homepage);
-            return (
-              <a
-                href={data.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-neon-blue hover:text-neon-purple transition-colors"
-              >
-                {url.hostname}
-              </a>
-            );
-          } catch {
-            return null;
-          }
-        })()}
       </div>
 
       {data.topics && data.topics.length > 0 && (
@@ -279,6 +373,10 @@ export function ToolPage({ params }: Props) {
           </code>
         </div>
       </div>
+
+      {toolMeta && <MetadataSection tool={toolMeta} />}
+
+      {toolMeta && <BackendLinks tool={toolMeta} />}
 
       <GithubInfo github={toolMeta?.github} />
 

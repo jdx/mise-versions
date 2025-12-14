@@ -8,13 +8,14 @@
  * with metadata about each tool for the front-end UI.
  */
 
-import { readFileSync, readdirSync, writeFileSync } from "fs";
+import { readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
 import { join, basename } from "path";
 import { parse } from "smol-toml";
 import { execSync } from "child_process";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
+const METADATA_CACHE_FILE = join(DOCS_DIR, "metadata-cache.json");
 
 // Convert Date object or string to ISO string
 function toISOString(value) {
@@ -35,6 +36,106 @@ function extractGithubSlug(backend) {
     return match[2].replace(/\[.*$/, "");
   }
   return null;
+}
+
+// Get all backends from mise registry
+// Returns a Map of tool name -> array of backends
+function getAllBackends() {
+  try {
+    const output = execSync("mise registry", {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "pipe"],
+      maxBuffer: 10 * 1024 * 1024, // 10MB buffer
+    });
+
+    const backendMap = new Map();
+    for (const line of output.split("\n")) {
+      if (!line.trim()) continue;
+      // Format: "tool-name  backend1 backend2 backend3"
+      const parts = line.trim().split(/\s+/);
+      const toolName = parts[0];
+      const backends = parts.slice(1);
+      if (toolName && backends.length > 0) {
+        backendMap.set(toolName, backends);
+      }
+    }
+    return backendMap;
+  } catch (e) {
+    console.error(`Warning: Failed to get mise registry: ${e.message}`);
+    return new Map();
+  }
+}
+
+// Build package URLs from backends array
+function buildPackageUrls(backends) {
+  if (!backends || backends.length === 0) return null;
+
+  const urls = {};
+  for (const backend of backends) {
+    // npm:package or npm:@scope/package
+    if (backend.startsWith("npm:")) {
+      const pkg = backend.slice(4).replace(/\[.*$/, "");
+      urls.npm = `https://www.npmjs.com/package/${pkg}`;
+    }
+    // cargo:crate-name
+    else if (backend.startsWith("cargo:")) {
+      const crate = backend.slice(6).replace(/\[.*$/, "");
+      urls.cargo = `https://crates.io/crates/${crate}`;
+    }
+    // pipx:package or pipx:package[extras]
+    else if (backend.startsWith("pipx:")) {
+      const pkg = backend.slice(5).replace(/\[.*$/, "");
+      urls.pypi = `https://pypi.org/project/${pkg}`;
+    }
+    // gem:gem-name
+    else if (backend.startsWith("gem:")) {
+      const gem = backend.slice(4).replace(/\[.*$/, "");
+      urls.rubygems = `https://rubygems.org/gems/${gem}`;
+    }
+    // go:module/path
+    else if (backend.startsWith("go:")) {
+      const mod = backend.slice(3).replace(/\[.*$/, "");
+      urls.go = `https://pkg.go.dev/${mod}`;
+    }
+  }
+
+  return Object.keys(urls).length > 0 ? urls : null;
+}
+
+// Build aqua registry link from backend
+function buildAquaLink(backends) {
+  if (!backends) return null;
+
+  for (const backend of backends) {
+    if (backend.startsWith("aqua:")) {
+      // aqua:owner/repo or aqua:owner/repo[exe=...]
+      const match = backend.match(/^aqua:([^/]+)\/([^/\[\s]+)/);
+      if (match) {
+        const [, owner, repo] = match;
+        return `https://github.com/aquaproj/aqua-registry/blob/main/pkgs/${owner}/${repo}/registry.yaml`;
+      }
+    }
+  }
+  return null;
+}
+
+// Build repo URL from github slug
+function buildRepoUrl(github) {
+  if (!github) return null;
+  return `https://github.com/${github}`;
+}
+
+// Load metadata cache if it exists
+function loadMetadataCache() {
+  try {
+    if (existsSync(METADATA_CACHE_FILE)) {
+      const content = readFileSync(METADATA_CACHE_FILE, "utf-8");
+      return JSON.parse(content);
+    }
+  } catch (e) {
+    console.error(`Warning: Failed to load metadata cache: ${e.message}`);
+  }
+  return {};
 }
 
 // Get tool info using mise tool --json command
@@ -102,6 +203,18 @@ function processTomlFile(filePath) {
 function main() {
   console.log("Generating tools manifest...");
 
+  // Load all backends from mise registry upfront
+  console.log("Loading backends from mise registry...");
+  const backendMap = getAllBackends();
+  console.log(`Loaded backends for ${backendMap.size} tools`);
+
+  // Load metadata cache
+  const metadataCache = loadMetadataCache();
+  const cacheSize = Object.keys(metadataCache).length;
+  if (cacheSize > 0) {
+    console.log(`Loaded metadata cache with ${cacheSize} entries`);
+  }
+
   // Find all .toml files in docs/, excluding internal tools
   const EXCLUDED_PREFIXES = ["python-precompiled"];
   const files = readdirSync(DOCS_DIR).filter((f) => {
@@ -114,6 +227,9 @@ function main() {
   const tools = [];
   let withGithub = 0;
   let withDesc = 0;
+  let withBackends = 0;
+  let withPackageUrls = 0;
+  let withLicense = 0;
 
   for (const file of files) {
     const toolName = basename(file, ".toml");
@@ -130,11 +246,65 @@ function main() {
       const info = getToolInfo(toolName);
       if (info.github) {
         tool.github = info.github;
+        tool.repo_url = buildRepoUrl(info.github);
         withGithub++;
       }
       if (info.description) {
         tool.description = info.description;
         withDesc++;
+      }
+
+      // Get backends from registry
+      const backends = backendMap.get(toolName);
+      if (backends && backends.length > 0) {
+        tool.backends = backends;
+        withBackends++;
+
+        // Build package URLs from backends
+        const packageUrls = buildPackageUrls(backends);
+        if (packageUrls) {
+          tool.package_urls = packageUrls;
+          withPackageUrls++;
+        }
+
+        // Build aqua link if applicable
+        const aquaLink = buildAquaLink(backends);
+        if (aquaLink) {
+          tool.aqua_link = aquaLink;
+        }
+
+        // Extract github from backends if not already set
+        if (!tool.github) {
+          for (const backend of backends) {
+            const slug = extractGithubSlug(backend);
+            if (slug) {
+              tool.github = slug;
+              tool.repo_url = buildRepoUrl(slug);
+              withGithub++;
+              break;
+            }
+          }
+        }
+      }
+
+      // Merge cached metadata (license, homepage, authors)
+      const cached = metadataCache[toolName];
+      if (cached) {
+        if (cached.license) {
+          tool.license = cached.license;
+          withLicense++;
+        }
+        if (cached.homepage) {
+          tool.homepage = cached.homepage;
+        }
+        if (cached.authors && cached.authors.length > 0) {
+          tool.authors = cached.authors;
+        }
+        // Use cached description only if not already set
+        if (!tool.description && cached.description) {
+          tool.description = cached.description;
+          withDesc++;
+        }
       }
 
       tools.push(tool);
@@ -157,8 +327,13 @@ function main() {
 
   writeFileSync(OUTPUT_FILE, JSON.stringify(manifest, null, 2));
   console.log(
-    `Generated ${OUTPUT_FILE} with ${tools.length} tools (${withGithub} with GitHub, ${withDesc} with description)`
+    `Generated ${OUTPUT_FILE} with ${tools.length} tools:`
   );
+  console.log(`  - ${withGithub} with GitHub`);
+  console.log(`  - ${withDesc} with description`);
+  console.log(`  - ${withBackends} with backends`);
+  console.log(`  - ${withPackageUrls} with package URLs`);
+  console.log(`  - ${withLicense} with license`);
 }
 
 main();
