@@ -1,28 +1,20 @@
 import { useMemo } from "preact/hooks";
 import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
-import { formatRelativeTime } from "../utils/time";
 
-export function RecentPage() {
-  const { data, loading: toolsLoading, error } = useTools();
+export function TopPage() {
+  const { data: toolsData, loading: toolsLoading, error: toolsError } = useTools();
   const { data: downloads, loading: downloadsLoading } = useAllDownloads();
 
-  const loading = toolsLoading || downloadsLoading;
-
-  const recentTools = useMemo(() => {
-    if (!data?.tools) return [];
-    return [...data.tools]
-      .filter((t) => t.last_updated)
-      .map((t) => ({ ...t, downloads_30d: downloads?.[t.name] || 0 }))
-      .sort((a, b) => {
-        if (!a.last_updated || !b.last_updated) return 0;
-        return (
-          new Date(b.last_updated).getTime() -
-          new Date(a.last_updated).getTime()
-        );
-      })
+  const topTools = useMemo(() => {
+    if (!toolsData?.tools || !downloads) return [];
+    return [...toolsData.tools]
+      .map((t) => ({ ...t, downloads_30d: downloads[t.name] || 0 }))
+      .sort((a, b) => b.downloads_30d - a.downloads_30d)
       .slice(0, 100);
-  }, [data?.tools, downloads]);
+  }, [toolsData?.tools, downloads]);
+
+  const loading = toolsLoading || downloadsLoading;
 
   if (loading) {
     return (
@@ -30,15 +22,15 @@ export function RecentPage() {
     );
   }
 
-  if (error) {
-    return <div class="text-center py-12 text-red-400">Error: {error}</div>;
+  if (toolsError) {
+    return <div class="text-center py-12 text-red-400">Error: {toolsError}</div>;
   }
 
   return (
     <div>
       <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-100 mb-2">Recently Updated</h1>
-        <p class="text-gray-400">Tools with the most recent version releases</p>
+        <h1 class="text-2xl font-bold text-gray-100 mb-2">Top Downloads</h1>
+        <p class="text-gray-400">Most downloaded tools in the last 30 days</p>
       </div>
 
       <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
@@ -51,16 +43,13 @@ export function RecentPage() {
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Latest
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
-                Updated
-              </th>
-              <th class="text-right px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
+              <th class="text-right px-4 py-3 text-sm font-medium text-gray-400">
                 Downloads (30d)
               </th>
             </tr>
           </thead>
           <tbody class="divide-y divide-dark-600">
-            {recentTools.map((tool) => (
+            {topTools.map((tool) => (
               <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3">
                   <a
@@ -73,12 +62,7 @@ export function RecentPage() {
                 <td class="px-4 py-3 text-sm text-gray-300 font-mono">
                   {tool.latest_version}
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-400">
-                  {tool.last_updated
-                    ? formatRelativeTime(tool.last_updated)
-                    : "-"}
-                </td>
-                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
+                <td class="px-4 py-3 text-sm text-gray-400 text-right">
                   {tool.downloads_30d.toLocaleString()}
                 </td>
               </tr>

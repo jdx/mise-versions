@@ -126,7 +126,18 @@ function DownloadStats({ tool }: { tool: string }) {
 
 export function ToolPage({ params }: Props) {
   const { tool } = params;
-  const { versions, loading, error } = useToolVersions(tool);
+  const { versions, loading: versionsLoading, error } = useToolVersions(tool);
+  const { data: downloadData, loading: downloadsLoading } = useDownloads(tool);
+
+  const loading = versionsLoading;
+
+  // Create a map of version -> download count
+  const versionDownloads = new Map<string, number>();
+  if (downloadData?.byVersion) {
+    for (const v of downloadData.byVersion) {
+      versionDownloads.set(v.version, v.count);
+    }
+  }
 
   if (loading) {
     return (
@@ -183,8 +194,8 @@ export function ToolPage({ params }: Props) {
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Released
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
-                Date
+              <th class="text-right px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
+                Downloads
               </th>
             </tr>
           </thead>
@@ -195,10 +206,21 @@ export function ToolPage({ params }: Props) {
                   {v.version}
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-400">
-                  {v.created_at ? formatRelativeTime(v.created_at) : "-"}
+                  {v.created_at ? (
+                    <>
+                      {formatRelativeTime(v.created_at)}{" "}
+                      <span class="text-gray-500">({formatDate(v.created_at)})</span>
+                    </>
+                  ) : (
+                    "-"
+                  )}
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-500 hidden sm:table-cell">
-                  {v.created_at ? formatDate(v.created_at) : "-"}
+                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
+                  {downloadsLoading ? (
+                    <span class="text-gray-600">...</span>
+                  ) : (
+                    (versionDownloads.get(v.version) || 0).toLocaleString()
+                  )}
                 </td>
               </tr>
             ))}

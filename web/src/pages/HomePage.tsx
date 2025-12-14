@@ -1,17 +1,25 @@
 import { useState, useMemo } from "preact/hooks";
 import { useTools } from "../hooks/useTools";
+import { useAllDownloads } from "../hooks/useAllDownloads";
 import { formatRelativeTime } from "../utils/time";
 
 export function HomePage() {
-  const { data, loading, error } = useTools();
+  const { data, loading: toolsLoading, error } = useTools();
+  const { data: downloads, loading: downloadsLoading } = useAllDownloads();
   const [search, setSearch] = useState("");
+
+  const loading = toolsLoading || downloadsLoading;
 
   const filteredTools = useMemo(() => {
     if (!data?.tools) return [];
-    if (!search.trim()) return data.tools;
+    const toolsWithDownloads = data.tools.map((t) => ({
+      ...t,
+      downloads_30d: downloads?.[t.name] || 0,
+    }));
+    if (!search.trim()) return toolsWithDownloads;
     const query = search.toLowerCase();
-    return data.tools.filter((t) => t.name.toLowerCase().includes(query));
-  }, [data?.tools, search]);
+    return toolsWithDownloads.filter((t) => t.name.toLowerCase().includes(query));
+  }, [data?.tools, downloads, search]);
 
   if (loading) {
     return (
@@ -51,8 +59,8 @@ export function HomePage() {
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Latest
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
-                Versions
+              <th class="text-right px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
+                Downloads (30d)
               </th>
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden md:table-cell">
                 Updated
@@ -73,8 +81,8 @@ export function HomePage() {
                 <td class="px-4 py-3 text-sm text-gray-300 font-mono">
                   {tool.latest_version}
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell">
-                  {tool.version_count}
+                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
+                  {tool.downloads_30d.toLocaleString()}
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">
                   {tool.last_updated

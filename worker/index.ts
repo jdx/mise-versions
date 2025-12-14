@@ -18,6 +18,7 @@ import {
   handleTrack,
   handleGetToolDownloads,
   handleGetAllDownloads,
+  handleGet30DayDownloads,
 } from "./routes/track";
 import { setupDatabase } from "../src/database";
 import { runMigrations, getMigrationStatus } from "../src/migrations";
@@ -93,6 +94,10 @@ export default {
       }
       if (path === "/api/downloads" && method === "GET") {
         return handleGetAllDownloads(request, env);
+      }
+      // 30-day download counts for all tools (must be before :tool pattern)
+      if (path === "/api/downloads/30d" && method === "GET") {
+        return handleGet30DayDownloads(request, env);
       }
       // Match /api/downloads/:tool pattern
       const downloadMatch = path.match(/^\/api\/downloads\/([^/]+)$/);

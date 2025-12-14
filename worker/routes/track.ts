@@ -103,3 +103,21 @@ export async function handleGetAllDownloads(
     return errorResponse("Failed to get download stats", 500);
   }
 }
+
+// GET /api/downloads/30d - Get 30-day download counts for all tools (public)
+export async function handleGet30DayDownloads(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const counts = await analytics.getAll30DayDownloads();
+
+    return jsonResponse(counts);
+  } catch (error) {
+    console.error("Get 30-day downloads error:", error);
+    return errorResponse("Failed to get download stats", 500);
+  }
+}

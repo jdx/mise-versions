@@ -2,6 +2,7 @@ import { Router, Route, Switch } from "wouter-preact";
 import { useEffect, useState } from "preact/hooks";
 import { HomePage } from "./pages/HomePage";
 import { RecentPage } from "./pages/RecentPage";
+import { TopPage } from "./pages/TopPage";
 import { ToolPage } from "./pages/ToolPage";
 import { useAuth } from "./hooks/useAuth";
 
@@ -113,6 +114,12 @@ export function App() {
             >
               Recently Updated
             </a>
+            <a
+              href="/top"
+              class="text-gray-400 hover:text-neon-purple transition-colors"
+            >
+              Top Downloads
+            </a>
             <AuthButton />
           </nav>
         </div>
@@ -122,6 +129,7 @@ export function App() {
           <Switch>
             <Route path="/" component={HomePage} />
             <Route path="/recent" component={RecentPage} />
+            <Route path="/top" component={TopPage} />
             <Route path="/:tool" component={ToolPage} />
           </Switch>
         </Router>

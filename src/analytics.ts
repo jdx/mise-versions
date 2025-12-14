@@ -118,7 +118,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       };
     },
 
-    // Get top downloaded tools
+    // Get top downloaded tools (all time)
     async getTopTools(limit: number = 20) {
       const topTools = await db
         .select({
@@ -140,6 +140,26 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         total: total?.count ?? 0,
         tools: topTools,
       };
+    },
+
+    // Get 30-day download counts for all tools
+    async getAll30DayDownloads() {
+      const results = await db
+        .select({
+          tool: downloads.tool,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .where(sql`created_at >= datetime('now', '-30 days')`)
+        .groupBy(downloads.tool)
+        .all();
+
+      // Convert to a map for easy lookup
+      const counts: Record<string, number> = {};
+      for (const r of results) {
+        counts[r.tool] = r.count;
+      }
+      return counts;
     },
   };
 }
