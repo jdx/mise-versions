@@ -28,6 +28,9 @@
   ],
   "vars": {
     "ENVIRONMENT": "production"
+  },
+  "triggers": {
+    "crons": ["0 0 * * *"]  // Run daily at midnight UTC
   }
   // Environment variables that need to be set via wrangler secret:
   // GITHUB_APP_ID - Your GitHub App ID

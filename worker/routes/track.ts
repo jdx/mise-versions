@@ -139,3 +139,32 @@ export async function handleGetMAU(
     return errorResponse("Failed to get MAU", 500);
   }
 }
+
+// POST /api/admin/aggregate - Aggregate old download data (requires auth)
+export async function handleAggregate(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    // Verify admin secret
+    const authHeader = request.headers.get("Authorization");
+    const expectedAuth = `Bearer ${env.TOKEN_MANAGER_SECRET}`;
+    if (authHeader !== expectedAuth) {
+      return errorResponse("Unauthorized", 401);
+    }
+
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const result = await analytics.aggregateOldData();
+
+    return jsonResponse({
+      success: true,
+      aggregated: result.aggregated,
+      deleted: result.deleted,
+    });
+  } catch (error) {
+    console.error("Aggregate error:", error);
+    return errorResponse("Failed to aggregate data", 500);
+  }
+}

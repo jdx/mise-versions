@@ -20,10 +20,11 @@ import {
   handleGetAllDownloads,
   handleGet30DayDownloads,
   handleGetMAU,
+  handleAggregate,
 } from "./routes/track";
 import { setupDatabase } from "../src/database";
 import { runMigrations, getMigrationStatus } from "../src/migrations";
-import { runAnalyticsMigrations } from "../src/analytics";
+import { runAnalyticsMigrations, setupAnalytics } from "../src/analytics";
 
 let migrationsCompleted = false;
 
@@ -104,6 +105,10 @@ export default {
       if (path === "/api/stats/mau" && method === "GET") {
         return handleGetMAU(request, env);
       }
+      // Admin: aggregate old data
+      if (path === "/api/admin/aggregate" && method === "POST") {
+        return handleAggregate(request, env);
+      }
       // Match /api/downloads/:tool pattern
       const downloadMatch = path.match(/^\/api\/downloads\/([^/]+)$/);
       if (downloadMatch && method === "GET") {
@@ -154,6 +159,11 @@ export default {
       return new Response("Internal Server Error", { status: 500 });
     }
   },
+
+  // Cron trigger for daily aggregation
+  async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
+    ctx.waitUntil(handleScheduled(env));
+  },
 };
 
 // GET /health - Health check with token statistics
@@ -189,4 +199,17 @@ async function handleGitHubWebhook(request: Request): Promise<Response> {
     status: 200,
     headers: CORS_HEADERS,
   });
+}
+
+// Scheduled handler for daily aggregation (runs at midnight UTC)
+async function handleScheduled(env: Env): Promise<void> {
+  console.log("Running scheduled aggregation...");
+
+  const analyticsDb = drizzle(env.ANALYTICS_DB);
+  const analytics = setupAnalytics(analyticsDb);
+
+  const result = await analytics.aggregateOldData();
+  console.log(
+    `Aggregation complete: ${result.aggregated} groups aggregated, ${result.deleted} rows deleted`
+  );
 }
