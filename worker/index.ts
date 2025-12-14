@@ -85,6 +85,21 @@ export default {
         return handleGitHubWebhook(request);
       }
 
+      // Proxy /data/* to mise-versions.jdx.dev (GitHub Pages)
+      if (path.startsWith("/data/")) {
+        const dataPath = path.slice(6); // Remove "/data/"
+        const dataUrl = `https://mise-versions.jdx.dev/${dataPath}`;
+        const response = await fetch(dataUrl);
+        // Return with CORS headers
+        return new Response(response.body, {
+          status: response.status,
+          headers: {
+            ...Object.fromEntries(response.headers),
+            ...CORS_HEADERS,
+          },
+        });
+      }
+
       // Serve static assets for all other routes
       return env.ASSETS.fetch(request);
     } catch (error) {
