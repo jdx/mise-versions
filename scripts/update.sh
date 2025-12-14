@@ -186,6 +186,41 @@ mark_token_rate_limited() {
 	} &
 }
 
+# Function to generate TOML file with timestamps
+generate_toml_file() {
+	local tool="$1"
+	local token="$2"
+	local toml_file="docs/$tool.toml"
+	local versions_file="docs/$tool"
+
+	# Check if versions file exists
+	if [ ! -f "$versions_file" ]; then
+		return
+	fi
+
+	# Try to fetch versions with timestamps using --json flag
+	# This provides created_at timestamps from the upstream source (e.g., GitHub releases)
+	if docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST=0 -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
+		jdxcode/mise -y ls-remote --json "$tool" 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
+		mv "$toml_file.tmp" "$toml_file"
+		git add "$toml_file"
+		echo "Generated TOML for $tool (with timestamps)"
+	else
+		# Fallback: use plain version list - generate-toml.js will use "first seen" timestamps
+		# Pipe JSON via stdin to avoid shell argument length limits for tools with many versions
+		if while read -r version; do
+			[ -n "$version" ] && jq -n --arg v "$version" '{"version": $v}'
+		done < "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>/dev/null; then
+			mv "$toml_file.tmp" "$toml_file"
+			git add "$toml_file"
+			echo "Generated TOML for $tool (first-seen timestamps)"
+		else
+			echo "Warning: Failed to generate TOML for $tool" >&2
+			rm -f "$toml_file.tmp"
+		fi
+	fi
+}
+
 # Function to get a fresh GitHub token from the token manager
 get_github_token() {
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
@@ -334,8 +369,11 @@ fetch() {
 			;;
 		esac
 
+		# Generate TOML file with timestamps
+		generate_toml_file "$1" "$token"
+
 		# Only count as updated if the file actually changed (is staged)
-		if git diff --cached --quiet -- "docs/$1"; then
+		if git diff --cached --quiet -- "docs/$1" "docs/$1.toml" 2>/dev/null; then
 			:
 		else
 			increment_stat "total_tools_updated"
@@ -400,7 +438,7 @@ if setup_token_management; then
 
 	# Enhanced parallel processing with better token distribution
 	echo "🚀 Starting parallel fetch operations..."
-	export -f fetch get_github_token mark_token_rate_limited increment_stat get_stat add_to_list set_stat
+	export -f fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
 	export STATS_DIR
 	first_processed_tool=""
 	last_processed_tool=""
@@ -418,9 +456,15 @@ if setup_token_management; then
 	echo "$last_processed_tool" >"last_processed_tool.txt"
 	set_stat "last_processed_tool" "$last_processed_tool"
 
+	# Generate tools.json manifest for the web UI
+	echo "📋 Generating tools manifest..."
+	if node scripts/generate-manifest.js; then
+		git add docs/tools.json
+	fi
+
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 		git diff --compact-summary --cached
-		
+
 		# Get the list of updated tools for the commit message
 		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
 		tools_updated_count=$(get_stat "total_tools_updated")
