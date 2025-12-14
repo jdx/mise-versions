@@ -9,7 +9,7 @@ export function HomePage() {
   const { data, loading: toolsLoading, error } = useTools();
   const { data: downloads, loading: downloadsLoading } = useAllDownloads();
   const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState<SortKey>("name");
+  const [sortBy, setSortBy] = useState<SortKey>("downloads");
 
   const loading = toolsLoading || downloadsLoading;
 
