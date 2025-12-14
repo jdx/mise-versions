@@ -11,6 +11,7 @@
 import { readFileSync, readdirSync, writeFileSync } from "fs";
 import { join, basename } from "path";
 import { parse } from "smol-toml";
+import { execSync } from "child_process";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
@@ -21,6 +22,45 @@ function toISOString(value) {
   if (value instanceof Date) return value.toISOString();
   if (typeof value === "string") return value;
   return null;
+}
+
+// Extract GitHub slug from backend string
+// Supports: aqua:owner/repo, github:owner/repo, ubi:owner/repo
+function extractGithubSlug(backend) {
+  if (!backend) return null;
+  // Match aqua:, github:, or ubi: prefixes
+  const match = backend.match(/^(aqua|github|ubi):([^/]+\/[^/\[\s]+)/);
+  if (match) {
+    // Remove any trailing [exe=...] or similar modifiers
+    return match[2].replace(/\[.*$/, "");
+  }
+  return null;
+}
+
+// Get tool info using mise tool --json command
+// TODO: Use `mise registry --json` when available in a future mise release
+// to get descriptions for all tools in a single call
+function getToolInfo(toolName) {
+  try {
+    const output = execSync(`mise tool "${toolName}" --json`, {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    const data = JSON.parse(output);
+
+    let github = extractGithubSlug(data.backend);
+    // For tools like "cli/cli" that are already GitHub slugs
+    if (!github && toolName.includes("/")) {
+      github = toolName;
+    }
+
+    return {
+      github,
+      description: data.description || null,
+    };
+  } catch {
+    return { github: null, description: null };
+  }
 }
 
 function processTomlFile(filePath) {
@@ -72,6 +112,8 @@ function main() {
   console.log(`Found ${files.length} TOML files`);
 
   const tools = [];
+  let withGithub = 0;
+  let withDesc = 0;
 
   for (const file of files) {
     const toolName = basename(file, ".toml");
@@ -79,12 +121,31 @@ function main() {
     const metadata = processTomlFile(filePath);
 
     if (metadata) {
-      tools.push({
+      const tool = {
         name: toolName,
         ...metadata,
-      });
+      };
+
+      // Get GitHub slug and description from mise
+      const info = getToolInfo(toolName);
+      if (info.github) {
+        tool.github = info.github;
+        withGithub++;
+      }
+      if (info.description) {
+        tool.description = info.description;
+        withDesc++;
+      }
+
+      tools.push(tool);
+    }
+
+    // Progress indicator
+    if (tools.length % 100 === 0) {
+      process.stdout.write(`\rProcessed ${tools.length} tools...`);
     }
   }
+  console.log(`\rProcessed ${tools.length} tools`);
 
   // Sort tools alphabetically
   tools.sort((a, b) => a.name.localeCompare(b.name));
@@ -95,7 +156,9 @@ function main() {
   };
 
   writeFileSync(OUTPUT_FILE, JSON.stringify(manifest, null, 2));
-  console.log(`Generated ${OUTPUT_FILE} with ${tools.length} tools`);
+  console.log(
+    `Generated ${OUTPUT_FILE} with ${tools.length} tools (${withGithub} with GitHub, ${withDesc} with description)`
+  );
 }
 
 main();

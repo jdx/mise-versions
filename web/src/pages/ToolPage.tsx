@@ -1,5 +1,8 @@
 import { useToolVersions } from "../hooks/useToolVersions";
 import { useDownloads } from "../hooks/useDownloads";
+import { useTools } from "../hooks/useTools";
+import { useGithubRepo, parseGithubSlug } from "../hooks/useGithubRepo";
+import { useAuth } from "../hooks/useAuth";
 import { formatRelativeTime, formatDate } from "../utils/time";
 
 interface Props {
@@ -56,6 +59,94 @@ function DownloadChart({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function GithubInfo({ github }: { github: string | undefined }) {
+  const { authenticated } = useAuth();
+  const parsed = github ? parseGithubSlug(github) : null;
+  const { data, loading, error } = useGithubRepo(
+    parsed?.owner ?? null,
+    parsed?.repo ?? null
+  );
+
+  // Don't show if no GitHub slug
+  if (!parsed) return null;
+
+  // Don't show if not authenticated
+  if (!authenticated) return null;
+
+  if (loading) {
+    return (
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
+        <div class="text-gray-500 animate-pulse">Loading GitHub info...</div>
+      </div>
+    );
+  }
+
+  if (error || !data) return null;
+
+  return (
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-8">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-gray-200">GitHub</h2>
+        <a
+          href={`https://github.com/${parsed.owner}/${parsed.repo}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-neon-purple hover:text-neon-pink transition-colors text-sm"
+        >
+          {parsed.owner}/{parsed.repo} &rarr;
+        </a>
+      </div>
+
+      {data.description && (
+        <p class="text-gray-400 text-sm mb-3">{data.description}</p>
+      )}
+
+      <div class="flex flex-wrap gap-3 text-sm">
+        {data.stars > 0 && (
+          <span class="text-gray-400">
+            <span class="text-yellow-400">&#9733;</span> {data.stars.toLocaleString()}
+          </span>
+        )}
+        {data.license && (
+          <span class="text-gray-400">
+            License: <span class="text-gray-300">{data.license}</span>
+          </span>
+        )}
+        {data.homepage && (() => {
+          try {
+            const url = new URL(data.homepage);
+            return (
+              <a
+                href={data.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-neon-blue hover:text-neon-purple transition-colors"
+              >
+                {url.hostname}
+              </a>
+            );
+          } catch {
+            return null;
+          }
+        })()}
+      </div>
+
+      {data.topics && data.topics.length > 0 && (
+        <div class="mt-3 flex flex-wrap gap-1">
+          {data.topics.slice(0, 8).map((topic) => (
+            <span
+              key={topic}
+              class="px-2 py-0.5 bg-dark-700 rounded text-xs text-gray-400"
+            >
+              {topic}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -128,6 +219,10 @@ export function ToolPage({ params }: Props) {
   const { tool } = params;
   const { versions, loading: versionsLoading, error } = useToolVersions(tool);
   const { data: downloadData, loading: downloadsLoading } = useDownloads(tool);
+  const { data: toolsData } = useTools();
+
+  // Find tool metadata from tools.json
+  const toolMeta = toolsData?.tools.find((t) => t.name === tool);
 
   const loading = versionsLoading;
 
@@ -172,7 +267,10 @@ export function ToolPage({ params }: Props) {
 
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool}</h1>
-        <div class="text-gray-400 mb-4">{versions.length} versions</div>
+        {toolMeta?.description && (
+          <p class="text-gray-400 mb-3">{toolMeta.description}</p>
+        )}
+        <div class="text-gray-500 mb-4">{versions.length} versions</div>
 
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
           <div class="text-sm text-gray-400 mb-1">Install with mise:</div>
@@ -181,6 +279,8 @@ export function ToolPage({ params }: Props) {
           </code>
         </div>
       </div>
+
+      <GithubInfo github={toolMeta?.github} />
 
       <DownloadStats tool={tool} />
 

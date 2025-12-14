@@ -13,6 +13,7 @@ import {
   handleStats,
   handleMigrations,
   handleRateLimits,
+  handleGithubRepo,
 } from "./routes/api";
 import {
   handleTrack,
@@ -88,6 +89,9 @@ export default {
       }
       if (path === "/api/rate-limits" && method === "GET") {
         return handleRateLimits(request, env);
+      }
+      if (path === "/api/github/repo" && method === "GET") {
+        return handleGithubRepo(request, env);
       }
 
       // Track routes (public, no auth required)

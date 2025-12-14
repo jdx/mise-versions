@@ -168,6 +168,19 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .all();
     },
 
+    // Get token by user ID
+    async getTokenByUserId(userId: string) {
+      return await db.select()
+        .from(tokens)
+        .where(and(
+          eq(tokens.user_id, userId),
+          eq(tokens.is_active, 1),
+          or(isNull(tokens.expires_at), gt(tokens.expires_at, new Date().toISOString()))
+        ))
+        .limit(1)
+        .get();
+    },
+
     // Get token statistics
     async getTokenStats() {
       const active = await db.select({ count: sql<number>`count(*)` })
