@@ -71,6 +71,44 @@ const packageUrlLabels: Record<string, string> = {
   go: "pkg.go.dev",
 };
 
+// Convert a backend string like "npm:foo" or "aqua:owner/repo" to a URL
+function backendToUrl(backend: string): string | null {
+  const match = backend.match(/^(?<prefix>.+?):(?<slug>.+?)(?:\[.+\])?$/);
+  if (!match?.groups) return null;
+
+  const { prefix, slug } = match.groups;
+
+  switch (prefix) {
+    case "npm":
+      return `https://www.npmjs.com/package/${slug}`;
+    case "cargo":
+      return `https://crates.io/crates/${slug}`;
+    case "pipx":
+      return `https://pypi.org/project/${slug}`;
+    case "gem":
+      return `https://rubygems.org/gems/${slug}`;
+    case "go":
+      return `https://pkg.go.dev/${slug}`;
+    case "aqua":
+    case "github":
+    case "ubi":
+    case "asdf":
+    case "vfox": {
+      // Extract owner/repo from slug
+      const parts = slug.split("/").slice(0, 2).join("/");
+      return `https://github.com/${parts}`;
+    }
+    case "core":
+      return `https://mise.jdx.dev/lang/${slug}.html`;
+    case "dotnet":
+      return `https://www.nuget.org/packages/${slug}`;
+    case "gitlab":
+      return `https://gitlab.com/${slug}`;
+    default:
+      return null;
+  }
+}
+
 // Info pane: install command, metadata, links, GitHub stats
 function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined }) {
   const { authenticated } = useAuth();
@@ -350,9 +388,36 @@ export function ToolPage({ params }: Props) {
         {toolMeta?.description && (
           <p class="text-gray-400 mb-2">{toolMeta.description}</p>
         )}
-        <div class="text-sm text-gray-500">
-          {versions.length} versions
-          {downloadData && ` · ${downloadData.total.toLocaleString()} downloads`}
+        <div class="text-sm text-gray-500 flex flex-wrap items-center gap-x-1">
+          {toolMeta?.backends?.[0] && (() => {
+            const backend = toolMeta.backends[0];
+            const url = backendToUrl(backend);
+            return url ? (
+              <>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono text-neon-blue hover:text-neon-purple transition-colors"
+                >
+                  {backend.replace(/\[.*\]$/, "")}
+                </a>
+                <span>·</span>
+              </>
+            ) : (
+              <>
+                <span class="font-mono">{backend.replace(/\[.*\]$/, "")}</span>
+                <span>·</span>
+              </>
+            );
+          })()}
+          <span>{versions.length} versions</span>
+          {downloadData && (
+            <>
+              <span>·</span>
+              <span>{downloadData.total.toLocaleString()} downloads</span>
+            </>
+          )}
         </div>
       </div>
 
