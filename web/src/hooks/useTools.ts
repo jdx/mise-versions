@@ -5,6 +5,8 @@ export interface Tool {
   latest_version: string;
   version_count: number;
   last_updated: string | null;
+  github?: string;
+  description?: string;
 }
 
 export interface ToolsManifest {

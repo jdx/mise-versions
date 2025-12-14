@@ -4,6 +4,7 @@ import {
   jsonResponse,
   errorResponse,
   requireApiAuth,
+  getAuthCookie,
   getDb,
   CORS_HEADERS,
 } from "../shared";
@@ -160,5 +161,48 @@ export async function handleRateLimits(
   } catch (error) {
     console.error("Rate limit check error:", error);
     return errorResponse("Failed to check rate limits", 500);
+  }
+}
+
+// GET /api/github/repo - Get GitHub repo info (requires user auth)
+export async function handleGithubRepo(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  const auth = await getAuthCookie(request, env.API_SECRET);
+  if (!auth) {
+    return errorResponse("Not authenticated", 401);
+  }
+
+  const url = new URL(request.url);
+  const owner = url.searchParams.get("owner");
+  const repo = url.searchParams.get("repo");
+
+  if (!owner || !repo) {
+    return errorResponse("Missing owner or repo parameter", 400);
+  }
+
+  const db = getDb(env);
+  const database = setupDatabase(db);
+
+  const tokenRecord = await database.getTokenByUserId(auth.username);
+  if (!tokenRecord) {
+    return errorResponse("No token found for user", 401);
+  }
+
+  try {
+    const octokit = new Octokit({ auth: tokenRecord.token });
+    const { data } = await octokit.rest.repos.get({ owner, repo });
+
+    return jsonResponse({
+      description: data.description,
+      homepage: data.homepage,
+      license: data.license?.spdx_id,
+      stars: data.stargazers_count,
+      topics: data.topics,
+    });
+  } catch (error) {
+    console.error("GitHub repo fetch error:", error);
+    return errorResponse("Failed to fetch repo info", 500);
   }
 }
