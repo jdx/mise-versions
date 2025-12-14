@@ -3,23 +3,61 @@ import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
 import { formatRelativeTime } from "../utils/time";
 
+type SortKey = "name" | "downloads" | "updated";
+
 export function HomePage() {
   const { data, loading: toolsLoading, error } = useTools();
   const { data: downloads, loading: downloadsLoading } = useAllDownloads();
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState<SortKey>("name");
 
   const loading = toolsLoading || downloadsLoading;
 
   const filteredTools = useMemo(() => {
     if (!data?.tools) return [];
-    const toolsWithDownloads = data.tools.map((t) => ({
+    let toolsWithDownloads = data.tools.map((t) => ({
       ...t,
       downloads_30d: downloads?.[t.name] || 0,
     }));
-    if (!search.trim()) return toolsWithDownloads;
-    const query = search.toLowerCase();
-    return toolsWithDownloads.filter((t) => t.name.toLowerCase().includes(query));
-  }, [data?.tools, downloads, search]);
+
+    // Filter by search
+    if (search.trim()) {
+      const query = search.toLowerCase();
+      toolsWithDownloads = toolsWithDownloads.filter((t) =>
+        t.name.toLowerCase().includes(query)
+      );
+    }
+
+    // Sort
+    return [...toolsWithDownloads].sort((a, b) => {
+      switch (sortBy) {
+        case "downloads":
+          return b.downloads_30d - a.downloads_30d;
+        case "updated":
+          if (!a.last_updated && !b.last_updated) return 0;
+          if (!a.last_updated) return 1;
+          if (!b.last_updated) return -1;
+          return new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime();
+        case "name":
+        default:
+          return a.name.localeCompare(b.name);
+      }
+    });
+  }, [data?.tools, downloads, search, sortBy]);
+
+  const SortButton = ({ label, sortKey }: { label: string; sortKey: SortKey }) => (
+    <button
+      onClick={() => setSortBy(sortKey)}
+      class={`text-sm font-medium transition-colors ${
+        sortBy === sortKey
+          ? "text-neon-purple"
+          : "text-gray-400 hover:text-gray-200"
+      }`}
+    >
+      {label}
+      {sortBy === sortKey && " ↓"}
+    </button>
+  );
 
   if (loading) {
     return (
@@ -53,17 +91,17 @@ export function HomePage() {
         <table class="w-full">
           <thead class="bg-dark-700 border-b border-dark-600">
             <tr>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
-                Tool
+              <th class="text-left px-4 py-3">
+                <SortButton label="Tool" sortKey="name" />
               </th>
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Latest
               </th>
-              <th class="text-right px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
-                Downloads (30d)
+              <th class="text-right px-4 py-3 hidden sm:table-cell">
+                <SortButton label="Downloads (30d)" sortKey="downloads" />
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden md:table-cell">
-                Updated
+              <th class="text-left px-4 py-3 hidden md:table-cell">
+                <SortButton label="Updated" sortKey="updated" />
               </th>
             </tr>
           </thead>
