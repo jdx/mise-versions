@@ -116,16 +116,23 @@ function GithubInfo({ github }: { github: string | undefined }) {
             License: <span class="text-gray-300">{data.license}</span>
           </span>
         )}
-        {data.homepage && (
-          <a
-            href={data.homepage}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-neon-blue hover:text-neon-purple transition-colors"
-          >
-            {new URL(data.homepage).hostname}
-          </a>
-        )}
+        {data.homepage && (() => {
+          try {
+            const url = new URL(data.homepage);
+            return (
+              <a
+                href={data.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-neon-blue hover:text-neon-purple transition-colors"
+              >
+                {url.hostname}
+              </a>
+            );
+          } catch {
+            return null;
+          }
+        })()}
       </div>
 
       {data.topics && data.topics.length > 0 && (
