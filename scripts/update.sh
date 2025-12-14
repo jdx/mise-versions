@@ -434,7 +434,7 @@ if setup_token_management; then
 	if [ -f "last_processed_tool.txt" ]; then
 		last_tool_processed=$(cat "last_processed_tool.txt")
 	fi
-	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools\n$tools" | tail -n +2 || echo "$tools" | head -n 100)
+	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
 
 	# Enhanced parallel processing with better token distribution
 	echo "🚀 Starting parallel fetch operations..."
