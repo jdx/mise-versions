@@ -67,8 +67,9 @@ export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) =>
     console.log(`Token stored for user: ${user.login}`);
 
     // Set auth cookie, clear state cookie, and redirect to home
+    const authCookie = await setAuthCookie(user.login, env.API_SECRET);
     return redirectResponse("/?login=success", [
-      ["Set-Cookie", setAuthCookie(user.login)],
+      ["Set-Cookie", authCookie],
       ["Set-Cookie", clearOAuthStateCookie()],
     ]);
   } catch (error) {
