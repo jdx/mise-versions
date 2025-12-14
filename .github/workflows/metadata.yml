@@ -44,6 +44,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Discard any unstaged changes we don't want to commit
+          git checkout -- . || true
           git add docs/metadata-cache.json docs/tools.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
