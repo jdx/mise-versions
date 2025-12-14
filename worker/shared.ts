@@ -1,8 +1,9 @@
-// Shared types and utilities for Cloudflare Pages Functions
+// Shared types and utilities for Cloudflare Worker
 import { drizzle } from "drizzle-orm/d1";
 
 export interface Env {
   DB: D1Database;
+  ASSETS: Fetcher;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;
   GITHUB_CLIENT_ID: string;
@@ -10,8 +11,6 @@ export interface Env {
   GITHUB_WEBHOOK_SECRET: string;
   API_SECRET: string;
 }
-
-export type PagesContext = EventContext<Env, string, unknown>;
 
 export const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -26,7 +25,11 @@ export function getDb(env: Env) {
   return drizzle(env.DB);
 }
 
-export function jsonResponse(data: unknown, status = 200, headers: Record<string, string> = {}) {
+export function jsonResponse(
+  data: unknown,
+  status = 200,
+  headers: Record<string, string> = {}
+) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
@@ -78,7 +81,11 @@ async function signData(data: string, secret: string): Promise<string> {
     false,
     ["sign"]
   );
-  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(data));
+  const signature = await crypto.subtle.sign(
+    "HMAC",
+    key,
+    encoder.encode(data)
+  );
   return btoa(String.fromCharCode(...new Uint8Array(signature)));
 }
 

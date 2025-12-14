@@ -1,18 +1,48 @@
-// GET /auth/callback - Handle GitHub OAuth callback
-import type { Env, PagesContext } from "../_shared";
+// Auth routes: /auth/*
 import {
+  Env,
+  jsonResponse,
   redirectResponse,
+  getAuthCookie,
   setAuthCookie,
-  getDb,
+  clearAuthCookie,
+  setOAuthStateCookie,
   getOAuthStateCookie,
   clearOAuthStateCookie,
-} from "../_shared";
+  getDb,
+} from "../shared";
 import { createOAuthUserAuth } from "@octokit/auth-oauth-user";
 import { Octokit } from "@octokit/rest";
 import { setupDatabase } from "../../src/database";
 
-export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) => {
-  const { env, request } = context;
+// GET /auth/login - Redirect to GitHub OAuth
+export async function handleLogin(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  const url = new URL(request.url);
+
+  const redirectUri = `${url.origin}/auth/callback`;
+  const scope = "public_repo";
+  const state = crypto.randomUUID();
+
+  const githubAuthUrl = new URL("https://github.com/login/oauth/authorize");
+  githubAuthUrl.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
+  githubAuthUrl.searchParams.set("redirect_uri", redirectUri);
+  githubAuthUrl.searchParams.set("scope", scope);
+  githubAuthUrl.searchParams.set("state", state);
+
+  // Store state in cookie for CSRF validation in callback
+  return redirectResponse(githubAuthUrl.toString(), {
+    "Set-Cookie": setOAuthStateCookie(state),
+  });
+}
+
+// GET /auth/callback - Handle GitHub OAuth callback
+export async function handleCallback(
+  request: Request,
+  env: Env
+): Promise<Response> {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
@@ -51,17 +81,22 @@ export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) =>
     const db = getDb(env);
     const database = setupDatabase(db);
 
-    const expiresAt = "expiresAt" in authResult ? (authResult.expiresAt as string) : null;
+    const expiresAt =
+      "expiresAt" in authResult ? (authResult.expiresAt as string) : null;
 
     await database.storeToken(user.login, authResult.token, expiresAt, {
       userName: user.name,
       userEmail: user.email,
-      refreshToken: "refreshToken" in authResult ? (authResult.refreshToken as string) : undefined,
+      refreshToken:
+        "refreshToken" in authResult
+          ? (authResult.refreshToken as string)
+          : undefined,
       refreshTokenExpiresAt:
         "refreshTokenExpiresAt" in authResult
           ? (authResult.refreshTokenExpiresAt as string)
           : undefined,
-      scopes: "scopes" in authResult ? (authResult.scopes as string[]) : undefined,
+      scopes:
+        "scopes" in authResult ? (authResult.scopes as string[]) : undefined,
     });
 
     console.log(`Token stored for user: ${user.login}`);
@@ -78,4 +113,28 @@ export const onRequestGet: PagesFunction<Env> = async (context: PagesContext) =>
       "Set-Cookie": clearOAuthStateCookie(),
     });
   }
-};
+}
+
+// GET /auth/me - Check current login state
+export async function handleMe(request: Request, env: Env): Promise<Response> {
+  const auth = await getAuthCookie(request, env.API_SECRET);
+
+  if (auth) {
+    return jsonResponse({
+      authenticated: true,
+      username: auth.username,
+    });
+  }
+
+  return jsonResponse({
+    authenticated: false,
+  });
+}
+
+// GET/POST /auth/logout - Clear auth cookie and log out
+export async function handleLogout(): Promise<Response> {
+  const cookie = clearAuthCookie();
+  return redirectResponse("/", {
+    "Set-Cookie": cookie,
+  });
+}

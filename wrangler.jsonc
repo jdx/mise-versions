@@ -1,9 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mise-versions",
-  "pages_build_output_dir": "web/dist",
+  "main": "worker/index.ts",
   "compatibility_date": "2025-04-18",
   "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "web/dist",
+    "binding": "ASSETS"
+  },
   "observability": {
     "enabled": true
   },
@@ -16,11 +20,11 @@
   ],
   "vars": {
     "ENVIRONMENT": "production"
-  },
+  }
   // Environment variables that need to be set via wrangler secret:
   // GITHUB_APP_ID - Your GitHub App ID
   // GITHUB_PRIVATE_KEY - Your GitHub App private key (PEM format)
-  // GITHUB_CLIENT_ID - Your GitHub App client ID  
+  // GITHUB_CLIENT_ID - Your GitHub App client ID
   // GITHUB_CLIENT_SECRET - Your GitHub App client secret
   // GITHUB_WEBHOOK_SECRET - Your GitHub App webhook secret
   // API_SECRET - Secret for GitHub Actions authentication
