@@ -231,7 +231,7 @@ test_pipe_to_generate_toml() {
         fi
     done < "$versions_file" | node scripts/generate-toml.js test-tool 2>/dev/null)
 
-    assert_contains "$toml_output" "[versions." "Piped output produces valid TOML structure"
+    assert_contains "$toml_output" "[versions]" "Piped output produces valid TOML structure"
     assert_contains "$toml_output" '"1.0.0"' "Piped output contains version 1.0.0"
     assert_contains "$toml_output" '"2.0.0"' "Piped output contains version 2.0.0"
 }
