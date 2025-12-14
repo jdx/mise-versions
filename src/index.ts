@@ -64,6 +64,21 @@ export default {
     }
 
     try {
+      // GitHub OAuth login - redirect to GitHub authorization
+      if (path === '/auth/login') {
+        const redirectUri = `${url.origin}/auth/callback`;
+        const scope = 'public_repo'; // Minimal scope for API access
+        const state = crypto.randomUUID(); // CSRF protection
+
+        const githubAuthUrl = new URL('https://github.com/login/oauth/authorize');
+        githubAuthUrl.searchParams.set('client_id', env.GITHUB_CLIENT_ID);
+        githubAuthUrl.searchParams.set('redirect_uri', redirectUri);
+        githubAuthUrl.searchParams.set('scope', scope);
+        githubAuthUrl.searchParams.set('state', state);
+
+        return Response.redirect(githubAuthUrl.toString(), 302);
+      }
+
       // GitHub App user authorization callback
       if (path === '/auth/callback') {
         const code = url.searchParams.get('code');
@@ -104,16 +119,18 @@ export default {
           );
           
           console.log('User token stored successfully');
-          
-          return new Response(`Authorization successful! Token stored for user ${authResult.user.login}.`, { 
-            headers: corsHeaders 
-          });
+
+          // Redirect back to web UI with success
+          const webUrl = new URL('https://mise-versions.jdx.dev/');
+          webUrl.searchParams.set('login', 'success');
+          webUrl.searchParams.set('user', authResult.user.login);
+          return Response.redirect(webUrl.toString(), 302);
         } catch (error) {
           console.error('Authorization callback error:', error);
-          return new Response('Authorization failed', { 
-            status: 500, 
-            headers: corsHeaders 
-          });
+          // Redirect back to web UI with error
+          const webUrl = new URL('https://mise-versions.jdx.dev/');
+          webUrl.searchParams.set('login', 'error');
+          return Response.redirect(webUrl.toString(), 302);
         }
       }
 
@@ -379,9 +396,10 @@ export default {
 Powered by @octokit/auth-oauth-user and @octokit/rest
 
 Endpoints:
-- GET  /health              - Health check with token statistics
-- POST /auth/callback       - User authorization callback  
-- POST /webhooks/github     - GitHub webhooks (optional)
+- GET  /auth/login         - Start GitHub OAuth flow (redirects to GitHub)
+- GET  /auth/callback      - OAuth callback (redirects to web UI)
+- GET  /health             - Health check with token statistics
+- POST /webhooks/github    - GitHub webhooks (optional)
 - GET  /api/token          - Get next available token (round-robin)
 - POST /api/token/rate-limit - Mark a token as rate-limited
 - GET  /api/stats          - Token statistics
@@ -389,15 +407,17 @@ Endpoints:
 - GET  /api/rate-limits    - Rate limit status across tokens
 
 Features:
+- GitHub OAuth integration with web UI
 - Automatic token validation
-- Round-robin distribution  
+- Round-robin distribution
 - Enhanced user information storage
 - Rate limit monitoring
 - Granular token rate limiting
 - Database migrations
 - Database auto-initialization
 
-Authentication: All API endpoints require Bearer token with API_SECRET.`, {
+Authentication: All API endpoints require Bearer token with API_SECRET.
+OAuth: Visit /auth/login to contribute your GitHub token.`, {
         headers: { 
           ...corsHeaders,
           'Content-Type': 'text/plain',
