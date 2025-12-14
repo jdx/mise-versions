@@ -1,5 +1,5 @@
 {
-  "tool_count": 976,
+  "tool_count": 1005,
   "tools": [
     {
       "name": "1password",
@@ -548,6 +548,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "blender",
+      "latest_version": "5.0.0",
+      "version_count": 251,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "bob",
       "latest_version": "4.1.6",
       "version_count": 42,
@@ -677,6 +683,12 @@
       "name": "calicoctl",
       "latest_version": "3.30.5",
       "version_count": 223,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "camunda-modeler",
+      "latest_version": "nightly",
+      "version_count": 235,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -950,6 +962,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "cocoapods",
+      "latest_version": "0.34.0",
+      "version_count": 230,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "cocogitto",
       "latest_version": "6.5.0",
       "version_count": 31,
@@ -959,6 +977,12 @@
       "name": "code",
       "latest_version": "0.6.5",
       "version_count": 239,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "codefresh",
+      "latest_version": "0.89.6",
+      "version_count": 469,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -1202,6 +1226,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "danger-js",
+      "latest_version": "9.4.0",
+      "version_count": 244,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "danger-swift",
       "latest_version": "3.22.1",
       "version_count": 30,
@@ -1424,6 +1454,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "dotnet-core",
+      "latest_version": "10.0.101",
+      "version_count": 12,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "dotslash",
       "latest_version": "0.5.8",
       "version_count": 18,
@@ -1616,6 +1652,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "erlang",
+      "latest_version": "28.3",
+      "version_count": 503,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "esc",
       "latest_version": "0.20.0",
       "version_count": 43,
@@ -1709,6 +1751,12 @@
       "name": "flatc",
       "latest_version": "25.9.23",
       "version_count": 43,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "flutter",
+      "latest_version": "3.38.5-stable",
+      "version_count": 676,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -1847,6 +1895,12 @@
       "name": "ghcup",
       "latest_version": "0.1.50.2",
       "version_count": 18,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "ghidra",
+      "latest_version": "9.64",
+      "version_count": 22,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -2126,6 +2180,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "grails",
+      "latest_version": "6.2.3",
+      "version_count": 177,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "grain",
       "latest_version": "0.7.1",
       "version_count": 34,
@@ -2255,6 +2315,12 @@
       "name": "haxe",
       "latest_version": "4.3.7",
       "version_count": 52,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "hcl2json",
+      "latest_version": "0.6.8",
+      "version_count": 22,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -2459,6 +2525,12 @@
       "name": "ibmcloud",
       "latest_version": "2.40.0",
       "version_count": 115,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "idris",
+      "latest_version": "1.3.4",
+      "version_count": 72,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -2670,6 +2742,12 @@
       "latest_version": "1.3.0",
       "version_count": 11,
       "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "jx",
+      "latest_version": "3.16.35",
+      "version_count": 2790,
+      "last_updated": "2025-12-14T17:04:05.206Z"
     },
     {
       "name": "k0sctl",
@@ -3018,6 +3096,12 @@
       "latest_version": "0.9.5",
       "version_count": 6,
       "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "kubent",
+      "latest_version": "0.7.3",
+      "version_count": 14,
+      "last_updated": "2025-12-14T17:06:25.946Z"
     },
     {
       "name": "kubeone",
@@ -3404,6 +3488,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "memcached",
+      "latest_version": "1.6.39",
+      "version_count": 105,
+      "last_updated": "2025-12-14T17:13:21.238Z"
+    },
+    {
       "name": "mercury",
       "latest_version": "22.01.8",
       "version_count": 16,
@@ -3464,6 +3554,18 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "mirrord",
+      "latest_version": "3.176.0",
+      "version_count": 324,
+      "last_updated": "2025-12-14T17:14:00.019Z"
+    },
+    {
+      "name": "mitmproxy",
+      "latest_version": "9.0.1",
+      "version_count": 103,
+      "last_updated": "2025-12-14T17:14:01.580Z"
+    },
+    {
       "name": "mkcert",
       "latest_version": "1.4.4",
       "version_count": 14,
@@ -3518,6 +3620,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "mssqldef",
+      "latest_version": "3.8.9",
+      "version_count": 368,
+      "last_updated": "2025-12-14T17:14:32.671Z"
+    },
+    {
       "name": "mutanus",
       "latest_version": "0.1.3",
       "version_count": 4,
@@ -3534,6 +3642,12 @@
       "latest_version": "8.0.33",
       "version_count": 28,
       "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "mysqldef",
+      "latest_version": "3.8.9",
+      "version_count": 368,
+      "last_updated": "2025-12-14T17:14:49.653Z"
     },
     {
       "name": "nancy",
@@ -3642,6 +3756,12 @@
       "latest_version": "1.3.2",
       "version_count": 18,
       "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "nova",
+      "latest_version": "3.11.10",
+      "version_count": 49,
+      "last_updated": "2025-12-14T17:15:56.007Z"
     },
     {
       "name": "nsc",
@@ -3770,6 +3890,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "opencode",
+      "latest_version": "1.0.152",
+      "version_count": 588,
+      "last_updated": "2025-12-14T17:17:03.375Z"
+    },
+    {
       "name": "openfaas-cli",
       "latest_version": "0.18.0",
       "version_count": 177,
@@ -3792,6 +3918,12 @@
       "latest_version": "1.12.1",
       "version_count": 40,
       "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "openresty",
+      "latest_version": "1.9.7.5",
+      "version_count": 181,
+      "last_updated": "2025-12-14T17:17:12.760Z"
     },
     {
       "name": "opensearch",
@@ -4160,6 +4292,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "psqldef",
+      "latest_version": "3.8.9",
+      "version_count": 368,
+      "last_updated": "2025-12-14T17:41:16.498Z"
+    },
+    {
       "name": "pulumi",
       "latest_version": "3.212.0",
       "version_count": 307,
@@ -4175,6 +4313,12 @@
       "name": "purescript",
       "latest_version": "0.15.15",
       "version_count": 103,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "purty",
+      "latest_version": "<html>",
+      "version_count": 8,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -4415,6 +4559,12 @@
       "name": "ruff",
       "latest_version": "0.14.9",
       "version_count": 166,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "rust",
+      "latest_version": "stable",
+      "version_count": 146,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -4676,6 +4826,12 @@
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
+      "name": "smlnj",
+      "latest_version": "2022.1",
+      "version_count": 75,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
       "name": "soft-serve",
       "latest_version": "0.11.1",
       "version_count": 44,
@@ -4781,6 +4937,12 @@
       "name": "sqlite",
       "latest_version": "3.51.1",
       "version_count": 253,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "sqlite3def",
+      "latest_version": "3.8.7",
+      "version_count": 366,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -5135,6 +5297,12 @@
       "name": "tf-summarize",
       "latest_version": "0.3.14",
       "version_count": 26,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "tfc-agent",
+      "latest_version": "1.26.0",
+      "version_count": 109,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
@@ -5747,6 +5915,12 @@
       "name": "yamlscript",
       "latest_version": "0.2.7",
       "version_count": 80,
+      "last_updated": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "yarn",
+      "latest_version": "4.12.0",
+      "version_count": 270,
       "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
