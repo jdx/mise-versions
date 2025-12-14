@@ -17,19 +17,21 @@ export function useAuth(): AuthState {
     async function checkAuth() {
       try {
         const response = await fetch("/auth/me");
+        // Check if response is JSON (Pages Functions return JSON, dev server returns HTML)
+        const contentType = response.headers.get("content-type");
+        if (!contentType?.includes("application/json")) {
+          // Not running with Pages Functions (local dev), assume not authenticated
+          setState({ authenticated: false, username: null, loading: false });
+          return;
+        }
         const data = await response.json();
         setState({
           authenticated: data.authenticated,
           username: data.username || null,
           loading: false,
         });
-      } catch (error) {
-        console.error("Failed to check auth:", error);
-        setState({
-          authenticated: false,
-          username: null,
-          loading: false,
-        });
+      } catch {
+        setState({ authenticated: false, username: null, loading: false });
       }
     }
 

@@ -1,0 +1,6000 @@
+{
+  "generated_at": "2025-12-14T15:20:16.128Z",
+  "tool_count": 999,
+  "tools": [
+    {
+      "name": "1password",
+      "latest_version": "2.32.0",
+      "version_count": 150,
+      "last_updated": "2025-12-14T14:50:49.560Z"
+    },
+    {
+      "name": "1password-cli",
+      "latest_version": "2.32.0",
+      "version_count": 150,
+      "last_updated": "2025-12-14T14:50:49.598Z"
+    },
+    {
+      "name": "aapt2",
+      "latest_version": "9.0.0-beta05-14304508",
+      "version_count": 549,
+      "last_updated": "2025-12-14T14:50:49.637Z"
+    },
+    {
+      "name": "act",
+      "latest_version": "0.2.83",
+      "version_count": 88,
+      "last_updated": "2025-12-14T14:50:49.680Z"
+    },
+    {
+      "name": "action-validator",
+      "latest_version": "0.8.0",
+      "version_count": 17,
+      "last_updated": "2025-12-14T14:50:49.718Z"
+    },
+    {
+      "name": "actionlint",
+      "latest_version": "1.7.9",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:50:49.756Z"
+    },
+    {
+      "name": "adr-tools",
+      "latest_version": "3.0.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:50:49.795Z"
+    },
+    {
+      "name": "ag",
+      "latest_version": "2.2.0",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:50:49.836Z"
+    },
+    {
+      "name": "age",
+      "latest_version": "1.2.1",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:50:49.875Z"
+    },
+    {
+      "name": "age-plugin-yubikey",
+      "latest_version": "0.5.0",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:50:49.914Z"
+    },
+    {
+      "name": "agebox",
+      "latest_version": "0.8.0",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:50:49.952Z"
+    },
+    {
+      "name": "aichat",
+      "latest_version": "0.30.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:50:49.992Z"
+    },
+    {
+      "name": "air",
+      "latest_version": "1.63.4",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:50:50.034Z"
+    },
+    {
+      "name": "aks-engine",
+      "latest_version": "0.79.0",
+      "version_count": 139,
+      "last_updated": "2025-12-14T14:50:50.075Z"
+    },
+    {
+      "name": "alias",
+      "latest_version": "0.0.0",
+      "version_count": 1,
+      "last_updated": "2025-12-14T14:50:50.114Z"
+    },
+    {
+      "name": "allure",
+      "latest_version": "2.36.0",
+      "version_count": 74,
+      "last_updated": "2025-12-14T14:50:50.154Z"
+    },
+    {
+      "name": "allurectl",
+      "latest_version": "2.17.1",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:50:50.193Z"
+    },
+    {
+      "name": "alp",
+      "latest_version": "1.0.21",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:50:50.236Z"
+    },
+    {
+      "name": "amass",
+      "latest_version": "5.0.1",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:50:50.276Z"
+    },
+    {
+      "name": "amazon-ecr-credential-helper",
+      "latest_version": "0.11.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:50:50.317Z"
+    },
+    {
+      "name": "amazon-ecs-cli",
+      "latest_version": "1.21.0",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:50:50.357Z"
+    },
+    {
+      "name": "ambient",
+      "latest_version": "kuba-test-v0.3.0-nightly-2023-09-06",
+      "version_count": 202,
+      "last_updated": "2025-12-14T14:50:50.398Z"
+    },
+    {
+      "name": "amplify",
+      "latest_version": "14.2.3",
+      "version_count": 194,
+      "last_updated": "2025-12-14T14:50:50.437Z"
+    },
+    {
+      "name": "android-sdk",
+      "latest_version": "1.0",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:50:50.475Z"
+    },
+    {
+      "name": "ansible",
+      "latest_version": "13.1.0",
+      "version_count": 415,
+      "last_updated": "2025-12-14T14:50:50.513Z"
+    },
+    {
+      "name": "ansible-base",
+      "latest_version": "2.20.1rc1",
+      "version_count": 280,
+      "last_updated": "2025-12-14T14:50:50.551Z"
+    },
+    {
+      "name": "ansible-core",
+      "latest_version": "2.20.1rc1",
+      "version_count": 280,
+      "last_updated": "2025-12-14T14:50:50.589Z"
+    },
+    {
+      "name": "ant",
+      "latest_version": "1.10.15",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:50:50.627Z"
+    },
+    {
+      "name": "apko",
+      "latest_version": "0.30.30",
+      "version_count": 93,
+      "last_updated": "2025-12-14T14:50:50.664Z"
+    },
+    {
+      "name": "apollo-ios",
+      "latest_version": "2.0.4",
+      "version_count": 136,
+      "last_updated": "2025-12-14T14:50:50.703Z"
+    },
+    {
+      "name": "apollo-ios-cli",
+      "latest_version": "2.0.4",
+      "version_count": 136,
+      "last_updated": "2025-12-14T14:50:50.746Z"
+    },
+    {
+      "name": "apollo-router",
+      "latest_version": "2.10.0",
+      "version_count": 159,
+      "last_updated": "2025-12-14T14:50:50.786Z"
+    },
+    {
+      "name": "apollo-rover",
+      "latest_version": "0.37.0",
+      "version_count": 98,
+      "last_updated": "2025-12-14T14:50:50.824Z"
+    },
+    {
+      "name": "aqua",
+      "latest_version": "2.55.3",
+      "version_count": 261,
+      "last_updated": "2025-12-14T14:50:50.863Z"
+    },
+    {
+      "name": "arc",
+      "latest_version": "4.0.0-alpha.9",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:50:50.902Z"
+    },
+    {
+      "name": "arduino",
+      "latest_version": "1.4.0",
+      "version_count": 71,
+      "last_updated": "2025-12-14T14:50:50.941Z"
+    },
+    {
+      "name": "arduino-cli",
+      "latest_version": "1.4.0",
+      "version_count": 71,
+      "last_updated": "2025-12-14T14:50:50.978Z"
+    },
+    {
+      "name": "argc",
+      "latest_version": "1.23.0",
+      "version_count": 51,
+      "last_updated": "2025-12-14T14:50:51.016Z"
+    },
+    {
+      "name": "argo",
+      "latest_version": "3.7.6",
+      "version_count": 166,
+      "last_updated": "2025-12-14T14:50:51.054Z"
+    },
+    {
+      "name": "argo-rollouts",
+      "latest_version": "1.8.3",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:50:51.091Z"
+    },
+    {
+      "name": "argocd",
+      "latest_version": "3.2.1",
+      "version_count": 402,
+      "last_updated": "2025-12-14T14:50:51.129Z"
+    },
+    {
+      "name": "aria2",
+      "latest_version": "1.37.0",
+      "version_count": 24,
+      "last_updated": "2025-12-14T14:50:51.168Z"
+    },
+    {
+      "name": "asciidoctorj",
+      "latest_version": "3.0.1",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:50:51.208Z"
+    },
+    {
+      "name": "asdf-plugin-manager",
+      "latest_version": "1.4.0",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:50:51.247Z"
+    },
+    {
+      "name": "assh",
+      "latest_version": "2.16.0",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:50:51.286Z"
+    },
+    {
+      "name": "ast-grep",
+      "latest_version": "0.40.1",
+      "version_count": 166,
+      "last_updated": "2025-12-14T14:50:51.326Z"
+    },
+    {
+      "name": "astro",
+      "latest_version": "1.38.1",
+      "version_count": 192,
+      "last_updated": "2025-12-14T14:50:51.365Z"
+    },
+    {
+      "name": "atlas",
+      "latest_version": "0.38.0",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:50:51.406Z"
+    },
+    {
+      "name": "atmos",
+      "latest_version": "1.201.0",
+      "version_count": 344,
+      "last_updated": "2025-12-14T14:50:51.445Z"
+    },
+    {
+      "name": "atuin",
+      "latest_version": "18.10.0",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:50:51.485Z"
+    },
+    {
+      "name": "auto-doc",
+      "latest_version": "3.6.0",
+      "version_count": 84,
+      "last_updated": "2025-12-14T14:50:51.524Z"
+    },
+    {
+      "name": "aws-amplify",
+      "latest_version": "14.2.3",
+      "version_count": 194,
+      "last_updated": "2025-12-14T14:50:51.563Z"
+    },
+    {
+      "name": "aws-amplify-cli",
+      "latest_version": "9.2.1",
+      "version_count": 181,
+      "last_updated": "2025-12-14T14:50:51.603Z"
+    },
+    {
+      "name": "aws-copilot",
+      "latest_version": "1.34.1",
+      "version_count": 58,
+      "last_updated": "2025-12-14T14:50:51.641Z"
+    },
+    {
+      "name": "aws-iam-authenticator",
+      "latest_version": "0.7.9",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:50:51.680Z"
+    },
+    {
+      "name": "aws-nuke",
+      "latest_version": "3.62.2",
+      "version_count": 187,
+      "last_updated": "2025-12-14T14:50:51.717Z"
+    },
+    {
+      "name": "aws-sam",
+      "latest_version": "1.150.1",
+      "version_count": 236,
+      "last_updated": "2025-12-14T14:50:51.755Z"
+    },
+    {
+      "name": "aws-sam-cli",
+      "latest_version": "1.150.1",
+      "version_count": 236,
+      "last_updated": "2025-12-14T14:50:51.798Z"
+    },
+    {
+      "name": "aws-sso",
+      "latest_version": "2.1.0",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:50:51.834Z"
+    },
+    {
+      "name": "aws-sso-cli",
+      "latest_version": "2.0.0-beta4",
+      "version_count": 51,
+      "last_updated": "2025-12-14T14:50:51.872Z"
+    },
+    {
+      "name": "aws-vault",
+      "latest_version": "7.2.0",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:50:51.909Z"
+    },
+    {
+      "name": "awsebcli",
+      "latest_version": "3.25.3",
+      "version_count": 128,
+      "last_updated": "2025-12-14T14:50:51.949Z"
+    },
+    {
+      "name": "awsls",
+      "latest_version": "0.11.0",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:50:51.989Z"
+    },
+    {
+      "name": "awsrm",
+      "latest_version": "0.4.0",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:50:52.029Z"
+    },
+    {
+      "name": "awsweeper",
+      "latest_version": "0.12.0",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:50:52.068Z"
+    },
+    {
+      "name": "azure",
+      "latest_version": "2.81.0",
+      "version_count": 106,
+      "last_updated": "2025-12-14T14:50:52.109Z"
+    },
+    {
+      "name": "azure-cli",
+      "latest_version": "2.81.0",
+      "version_count": 106,
+      "last_updated": "2025-12-14T14:50:52.150Z"
+    },
+    {
+      "name": "azure-functions-core-tools",
+      "latest_version": "4.5.0",
+      "version_count": 172,
+      "last_updated": "2025-12-14T14:50:52.190Z"
+    },
+    {
+      "name": "azure-kubelogin",
+      "latest_version": "0.2.13",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:50:52.231Z"
+    },
+    {
+      "name": "babashka",
+      "latest_version": "1.12.213",
+      "version_count": 113,
+      "last_updated": "2025-12-14T14:50:52.271Z"
+    },
+    {
+      "name": "balena",
+      "latest_version": "23.2.10",
+      "version_count": 1031,
+      "last_updated": "2025-12-14T14:50:52.310Z"
+    },
+    {
+      "name": "balena-cli",
+      "latest_version": "23.2.10",
+      "version_count": 1031,
+      "last_updated": "2025-12-14T14:50:52.350Z"
+    },
+    {
+      "name": "bashbot",
+      "latest_version": "2.0.6",
+      "version_count": 114,
+      "last_updated": "2025-12-14T14:50:52.390Z"
+    },
+    {
+      "name": "bashly",
+      "latest_version": "latest",
+      "version_count": 102,
+      "last_updated": "2025-12-14T14:50:52.430Z"
+    },
+    {
+      "name": "bat",
+      "latest_version": "0.26.1",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:50:52.470Z"
+    },
+    {
+      "name": "bat-extras",
+      "latest_version": "2024.08.24",
+      "version_count": 17,
+      "last_updated": "2025-12-14T14:50:52.507Z"
+    },
+    {
+      "name": "batect",
+      "latest_version": "0.85.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:52.548Z"
+    },
+    {
+      "name": "bats",
+      "latest_version": "1.13.0",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:50:52.589Z"
+    },
+    {
+      "name": "bazel",
+      "latest_version": "8.5.0",
+      "version_count": 141,
+      "last_updated": "2025-12-14T14:50:52.627Z"
+    },
+    {
+      "name": "bazel-watcher",
+      "latest_version": "0.28.0",
+      "version_count": 64,
+      "last_updated": "2025-12-14T14:50:52.665Z"
+    },
+    {
+      "name": "bazelisk",
+      "latest_version": "1.27.0",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:50:52.703Z"
+    },
+    {
+      "name": "bbr",
+      "latest_version": "1.9.75",
+      "version_count": 153,
+      "last_updated": "2025-12-14T14:50:52.745Z"
+    },
+    {
+      "name": "bbr-s3-config-validator",
+      "latest_version": "1.9.75",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:52.785Z"
+    },
+    {
+      "name": "benthos",
+      "latest_version": "4.73.0",
+      "version_count": 404,
+      "last_updated": "2025-12-14T14:50:52.825Z"
+    },
+    {
+      "name": "bfs",
+      "latest_version": "4.1",
+      "version_count": 68,
+      "last_updated": "2025-12-14T14:50:52.865Z"
+    },
+    {
+      "name": "bin",
+      "latest_version": "0.17.4",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:50:52.904Z"
+    },
+    {
+      "name": "binnacle",
+      "latest_version": "0.8.1",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:50:52.941Z"
+    },
+    {
+      "name": "biome",
+      "latest_version": "2.3.8",
+      "version_count": 62,
+      "last_updated": "2025-12-14T14:50:52.978Z"
+    },
+    {
+      "name": "bitwarden",
+      "latest_version": "2025.12.0",
+      "version_count": 53,
+      "last_updated": "2025-12-14T14:50:53.018Z"
+    },
+    {
+      "name": "bitwarden-secrets-manager",
+      "latest_version": "1.0.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:50:53.059Z"
+    },
+    {
+      "name": "black",
+      "latest_version": "25.12.0",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:50:53.097Z"
+    },
+    {
+      "name": "bob",
+      "latest_version": "4.1.6",
+      "version_count": 42,
+      "last_updated": "2025-12-14T14:50:53.177Z"
+    },
+    {
+      "name": "boilerplate",
+      "latest_version": "0.10.1",
+      "version_count": 84,
+      "last_updated": "2025-12-14T14:50:53.217Z"
+    },
+    {
+      "name": "bombardier",
+      "latest_version": "2.0.2",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:50:53.258Z"
+    },
+    {
+      "name": "borg",
+      "latest_version": "1.4.3",
+      "version_count": 57,
+      "last_updated": "2025-12-14T14:50:53.297Z"
+    },
+    {
+      "name": "bosh",
+      "latest_version": "7.9.15",
+      "version_count": 152,
+      "last_updated": "2025-12-14T14:50:53.337Z"
+    },
+    {
+      "name": "bosh-backup-and-restore",
+      "latest_version": "1.9.75",
+      "version_count": 153,
+      "last_updated": "2025-12-14T14:50:53.376Z"
+    },
+    {
+      "name": "bottom",
+      "latest_version": "0.11.4",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:50:53.415Z"
+    },
+    {
+      "name": "boundary",
+      "latest_version": "0.21.0",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:50:53.456Z"
+    },
+    {
+      "name": "bpkg",
+      "latest_version": "1.1.4",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:53.497Z"
+    },
+    {
+      "name": "brig",
+      "latest_version": "2.6.0",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:50:53.538Z"
+    },
+    {
+      "name": "btop",
+      "latest_version": "1.4.5",
+      "version_count": 53,
+      "last_updated": "2025-12-14T14:50:53.577Z"
+    },
+    {
+      "name": "btrace",
+      "latest_version": "2.2.6",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:50:53.615Z"
+    },
+    {
+      "name": "buf",
+      "latest_version": "1.61.0",
+      "version_count": 85,
+      "last_updated": "2025-12-14T14:50:53.655Z"
+    },
+    {
+      "name": "buildifier",
+      "latest_version": "8.2.1",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:50:53.693Z"
+    },
+    {
+      "name": "buildpack",
+      "latest_version": "0.39.1",
+      "version_count": 71,
+      "last_updated": "2025-12-14T14:50:53.733Z"
+    },
+    {
+      "name": "buildpacks",
+      "latest_version": "0.39.1",
+      "version_count": 71,
+      "last_updated": "2025-12-14T14:50:53.774Z"
+    },
+    {
+      "name": "bun",
+      "latest_version": "1.3.4",
+      "version_count": 201,
+      "last_updated": "2025-12-14T14:50:53.814Z"
+    },
+    {
+      "name": "bundler",
+      "latest_version": "2.5.23",
+      "version_count": 394,
+      "last_updated": "2025-12-14T14:50:53.855Z"
+    },
+    {
+      "name": "cabal",
+      "latest_version": "3.16.0.0",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:50:53.895Z"
+    },
+    {
+      "name": "caddy",
+      "latest_version": "2.10.2",
+      "version_count": 83,
+      "last_updated": "2025-12-14T14:50:53.935Z"
+    },
+    {
+      "name": "calendarsync",
+      "latest_version": "0.10.1",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:50:53.974Z"
+    },
+    {
+      "name": "calicoctl",
+      "latest_version": "3.30.5",
+      "version_count": 223,
+      "last_updated": "2025-12-14T14:50:54.014Z"
+    },
+    {
+      "name": "carapace",
+      "latest_version": "1.5.7",
+      "version_count": 169,
+      "last_updated": "2025-12-14T14:50:54.095Z"
+    },
+    {
+      "name": "cargo-binstall",
+      "latest_version": "1.16.4",
+      "version_count": 127,
+      "last_updated": "2025-12-14T14:50:54.134Z"
+    },
+    {
+      "name": "cargo-insta",
+      "latest_version": "1.44.3",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:50:54.175Z"
+    },
+    {
+      "name": "cargo-make",
+      "latest_version": "0.37.24",
+      "version_count": 127,
+      "last_updated": "2025-12-14T14:50:54.215Z"
+    },
+    {
+      "name": "carp",
+      "latest_version": "0.5.5",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:50:54.255Z"
+    },
+    {
+      "name": "carthage",
+      "latest_version": "0.40.0",
+      "version_count": 79,
+      "last_updated": "2025-12-14T14:50:54.294Z"
+    },
+    {
+      "name": "ccache",
+      "latest_version": "4.12.2",
+      "version_count": 93,
+      "last_updated": "2025-12-14T14:50:54.333Z"
+    },
+    {
+      "name": "certstrap",
+      "latest_version": "1.3.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:50:54.373Z"
+    },
+    {
+      "name": "cf",
+      "latest_version": "8.17.0",
+      "version_count": 148,
+      "last_updated": "2025-12-14T14:50:54.413Z"
+    },
+    {
+      "name": "cfn-lint",
+      "latest_version": "1.42.1",
+      "version_count": 419,
+      "last_updated": "2025-12-14T14:50:54.453Z"
+    },
+    {
+      "name": "cfssl",
+      "latest_version": "1.6.5",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:50:54.493Z"
+    },
+    {
+      "name": "cfssljson",
+      "latest_version": "1.6.5",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:50:54.533Z"
+    },
+    {
+      "name": "chamber",
+      "latest_version": "3.1.4",
+      "version_count": 72,
+      "last_updated": "2025-12-14T14:50:54.573Z"
+    },
+    {
+      "name": "changie",
+      "latest_version": "1.24.0",
+      "version_count": 46,
+      "last_updated": "2025-12-14T14:50:54.612Z"
+    },
+    {
+      "name": "cheat",
+      "latest_version": "4.4.2",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:50:54.652Z"
+    },
+    {
+      "name": "checkmake",
+      "latest_version": "0.2.2",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:50:54.691Z"
+    },
+    {
+      "name": "chezmoi",
+      "latest_version": "2.68.1",
+      "version_count": 242,
+      "last_updated": "2025-12-14T14:50:54.731Z"
+    },
+    {
+      "name": "chezscheme",
+      "latest_version": "10.3.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:50:54.771Z"
+    },
+    {
+      "name": "chicken",
+      "latest_version": "5.4.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:50:54.810Z"
+    },
+    {
+      "name": "chisel",
+      "latest_version": "1.11.3",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:50:54.851Z"
+    },
+    {
+      "name": "choose",
+      "latest_version": "1.3.7",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:50:54.891Z"
+    },
+    {
+      "name": "cidr-merger",
+      "latest_version": "1.1.3",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:50:54.932Z"
+    },
+    {
+      "name": "cidrchk",
+      "latest_version": "0.5",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:50:54.974Z"
+    },
+    {
+      "name": "cilium-cli",
+      "latest_version": "0.18.9",
+      "version_count": 124,
+      "last_updated": "2025-12-14T14:50:55.013Z"
+    },
+    {
+      "name": "cilium-hubble",
+      "latest_version": "1.18.3",
+      "version_count": 42,
+      "last_updated": "2025-12-14T14:50:55.053Z"
+    },
+    {
+      "name": "circleci",
+      "latest_version": "0.1.34038",
+      "version_count": 464,
+      "last_updated": "2025-12-14T14:50:55.094Z"
+    },
+    {
+      "name": "circleci-cli",
+      "latest_version": "0.1.34038",
+      "version_count": 464,
+      "last_updated": "2025-12-14T14:50:55.142Z"
+    },
+    {
+      "name": "clang",
+      "latest_version": "9.0.1",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:50:55.185Z"
+    },
+    {
+      "name": "clang-format",
+      "latest_version": "9.0.1",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:50:55.225Z"
+    },
+    {
+      "name": "clangd",
+      "latest_version": "9.0.1",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:50:55.266Z"
+    },
+    {
+      "name": "clarinet",
+      "latest_version": "3.11.0",
+      "version_count": 107,
+      "last_updated": "2025-12-14T14:50:55.306Z"
+    },
+    {
+      "name": "claude-squad",
+      "latest_version": "1.0.13",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:50:55.345Z"
+    },
+    {
+      "name": "cli53",
+      "latest_version": "0.8.25",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:50:55.384Z"
+    },
+    {
+      "name": "clickhouse",
+      "latest_version": "25.11.2.24-stable",
+      "version_count": 100,
+      "last_updated": "2025-12-14T14:50:55.424Z"
+    },
+    {
+      "name": "clj-kondo",
+      "latest_version": "2025.10.23",
+      "version_count": 94,
+      "last_updated": "2025-12-14T14:50:55.469Z"
+    },
+    {
+      "name": "cljstyle",
+      "latest_version": "0.17.642",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:50:55.510Z"
+    },
+    {
+      "name": "clojure",
+      "latest_version": "1.12.4.1582",
+      "version_count": 231,
+      "last_updated": "2025-12-14T14:50:55.550Z"
+    },
+    {
+      "name": "cloud-sql-proxy",
+      "latest_version": "2.20.0",
+      "version_count": 123,
+      "last_updated": "2025-12-14T14:50:55.592Z"
+    },
+    {
+      "name": "cloudflared",
+      "latest_version": "2025.11.1",
+      "version_count": 174,
+      "last_updated": "2025-12-14T14:50:55.632Z"
+    },
+    {
+      "name": "clusterawsadm",
+      "latest_version": "2.10.0",
+      "version_count": 67,
+      "last_updated": "2025-12-14T14:50:55.671Z"
+    },
+    {
+      "name": "clusterctl",
+      "latest_version": "1.12.0",
+      "version_count": 156,
+      "last_updated": "2025-12-14T14:50:55.709Z"
+    },
+    {
+      "name": "cmake",
+      "latest_version": "4.2.1",
+      "version_count": 256,
+      "last_updated": "2025-12-14T14:50:55.749Z"
+    },
+    {
+      "name": "cmctl",
+      "latest_version": "2.4.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:50:55.789Z"
+    },
+    {
+      "name": "cmdx",
+      "latest_version": "2.0.2",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:50:55.828Z"
+    },
+    {
+      "name": "cockroach",
+      "latest_version": "26.1.0-alpha.2",
+      "version_count": 878,
+      "last_updated": "2025-12-14T14:50:55.870Z"
+    },
+    {
+      "name": "cocogitto",
+      "latest_version": "6.5.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:50:55.954Z"
+    },
+    {
+      "name": "code",
+      "latest_version": "0.6.5",
+      "version_count": 239,
+      "last_updated": "2025-12-14T14:50:55.991Z"
+    },
+    {
+      "name": "codeql",
+      "latest_version": "2.23.8",
+      "version_count": 152,
+      "last_updated": "2025-12-14T14:50:56.071Z"
+    },
+    {
+      "name": "coder",
+      "latest_version": "2.29.1",
+      "version_count": 261,
+      "last_updated": "2025-12-14T14:50:56.111Z"
+    },
+    {
+      "name": "codex",
+      "latest_version": "0.72.0",
+      "version_count": 63,
+      "last_updated": "2025-12-14T14:50:56.152Z"
+    },
+    {
+      "name": "colima",
+      "latest_version": "0.9.1",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:50:56.193Z"
+    },
+    {
+      "name": "committed",
+      "latest_version": "1.1.8",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:50:56.232Z"
+    },
+    {
+      "name": "conan",
+      "latest_version": "2.23.0",
+      "version_count": 349,
+      "last_updated": "2025-12-14T14:50:56.271Z"
+    },
+    {
+      "name": "concourse",
+      "latest_version": "7.14.3",
+      "version_count": 207,
+      "last_updated": "2025-12-14T14:50:56.310Z"
+    },
+    {
+      "name": "conduit",
+      "latest_version": "0.14.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:56.350Z"
+    },
+    {
+      "name": "conform",
+      "latest_version": "0.1.0-alpha.30",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:50:56.389Z"
+    },
+    {
+      "name": "conftest",
+      "latest_version": "0.65.0",
+      "version_count": 83,
+      "last_updated": "2025-12-14T14:50:56.428Z"
+    },
+    {
+      "name": "consul",
+      "latest_version": "1.22.1",
+      "version_count": 154,
+      "last_updated": "2025-12-14T14:50:56.466Z"
+    },
+    {
+      "name": "container",
+      "latest_version": "0.7.1",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:50:56.506Z"
+    },
+    {
+      "name": "container-diff",
+      "latest_version": "0.19.0",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:50:56.546Z"
+    },
+    {
+      "name": "container-structure-test",
+      "latest_version": "1.22.0",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:50:56.587Z"
+    },
+    {
+      "name": "container-use",
+      "latest_version": "0.4.2",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:50:56.625Z"
+    },
+    {
+      "name": "cookiecutter",
+      "latest_version": "2.6.0",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:50:56.665Z"
+    },
+    {
+      "name": "copier",
+      "latest_version": "9.11.0",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:50:56.705Z"
+    },
+    {
+      "name": "copper",
+      "latest_version": "2.0.1",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:50:56.742Z"
+    },
+    {
+      "name": "coq",
+      "latest_version": "8.13.1",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:50:56.781Z"
+    },
+    {
+      "name": "coredns",
+      "latest_version": "1.13.2",
+      "version_count": 77,
+      "last_updated": "2025-12-14T14:50:56.820Z"
+    },
+    {
+      "name": "coreutils",
+      "latest_version": "0.5.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:50:56.860Z"
+    },
+    {
+      "name": "cosign",
+      "latest_version": "3.0.3",
+      "version_count": 50,
+      "last_updated": "2025-12-14T14:50:56.900Z"
+    },
+    {
+      "name": "coursier",
+      "latest_version": "2.1.24",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:50:56.939Z"
+    },
+    {
+      "name": "cpz",
+      "latest_version": "3.1.1",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:50:56.980Z"
+    },
+    {
+      "name": "crane",
+      "latest_version": "0.20.7",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:50:57.020Z"
+    },
+    {
+      "name": "crc",
+      "latest_version": "latest",
+      "version_count": 100,
+      "last_updated": "2025-12-14T14:50:57.059Z"
+    },
+    {
+      "name": "credhub",
+      "latest_version": "2.9.52",
+      "version_count": 89,
+      "last_updated": "2025-12-14T14:50:57.100Z"
+    },
+    {
+      "name": "crictl",
+      "latest_version": "1.35.0",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:50:57.139Z"
+    },
+    {
+      "name": "croc",
+      "latest_version": "10.3.1",
+      "version_count": 178,
+      "last_updated": "2025-12-14T14:50:57.180Z"
+    },
+    {
+      "name": "crossplane",
+      "latest_version": "2.1.3",
+      "version_count": 118,
+      "last_updated": "2025-12-14T14:50:57.221Z"
+    },
+    {
+      "name": "crossplane-cli",
+      "latest_version": "2.1.3",
+      "version_count": 118,
+      "last_updated": "2025-12-14T14:50:57.262Z"
+    },
+    {
+      "name": "crush",
+      "latest_version": "0.24.0",
+      "version_count": 81,
+      "last_updated": "2025-12-14T14:50:57.302Z"
+    },
+    {
+      "name": "crystal",
+      "latest_version": "1.18.2",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:57.342Z"
+    },
+    {
+      "name": "ctlptl",
+      "latest_version": "0.8.43",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:50:57.381Z"
+    },
+    {
+      "name": "ctop",
+      "latest_version": "0.7.7",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:50:57.423Z"
+    },
+    {
+      "name": "cue",
+      "latest_version": "0.15.1",
+      "version_count": 68,
+      "last_updated": "2025-12-14T14:50:57.461Z"
+    },
+    {
+      "name": "curlie",
+      "latest_version": "1.8.2",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:50:57.500Z"
+    },
+    {
+      "name": "cyclonedx",
+      "latest_version": "0.29.2",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:50:57.540Z"
+    },
+    {
+      "name": "dagger",
+      "latest_version": "0.19.8",
+      "version_count": 775,
+      "last_updated": "2025-12-14T14:50:57.580Z"
+    },
+    {
+      "name": "dagu",
+      "latest_version": "1.26.4",
+      "version_count": 198,
+      "last_updated": "2025-12-14T14:50:57.623Z"
+    },
+    {
+      "name": "danger-swift",
+      "latest_version": "3.22.1",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:57.704Z"
+    },
+    {
+      "name": "dapr",
+      "latest_version": "1.16.5",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:57.744Z"
+    },
+    {
+      "name": "dart",
+      "latest_version": "3.10.4",
+      "version_count": 159,
+      "last_updated": "2025-12-14T14:50:57.784Z"
+    },
+    {
+      "name": "dasel",
+      "latest_version": "2.8.1",
+      "version_count": 84,
+      "last_updated": "2025-12-14T14:50:57.840Z"
+    },
+    {
+      "name": "databricks-cli",
+      "latest_version": "0.280.0",
+      "version_count": 154,
+      "last_updated": "2025-12-14T14:50:57.881Z"
+    },
+    {
+      "name": "datree",
+      "latest_version": "1.9.19",
+      "version_count": 184,
+      "last_updated": "2025-12-14T14:50:57.920Z"
+    },
+    {
+      "name": "daytona",
+      "latest_version": "0.124.1",
+      "version_count": 134,
+      "last_updated": "2025-12-14T14:50:57.959Z"
+    },
+    {
+      "name": "dbmate",
+      "latest_version": "2.28.0",
+      "version_count": 57,
+      "last_updated": "2025-12-14T14:50:57.999Z"
+    },
+    {
+      "name": "deck",
+      "latest_version": "1.54.0",
+      "version_count": 126,
+      "last_updated": "2025-12-14T14:50:58.039Z"
+    },
+    {
+      "name": "delta",
+      "latest_version": "0.18.2",
+      "version_count": 59,
+      "last_updated": "2025-12-14T14:50:58.079Z"
+    },
+    {
+      "name": "deno",
+      "latest_version": "2.6.0",
+      "version_count": 286,
+      "last_updated": "2025-12-14T14:50:58.120Z"
+    },
+    {
+      "name": "dep",
+      "latest_version": "0.5.4",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:50:58.160Z"
+    },
+    {
+      "name": "depot",
+      "latest_version": "2.100.12",
+      "version_count": 260,
+      "last_updated": "2025-12-14T14:50:58.200Z"
+    },
+    {
+      "name": "desk",
+      "latest_version": "0.6.0",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:50:58.240Z"
+    },
+    {
+      "name": "devspace",
+      "latest_version": "6.3.18",
+      "version_count": 168,
+      "last_updated": "2025-12-14T14:50:58.279Z"
+    },
+    {
+      "name": "dhall",
+      "latest_version": "1.42.2",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:50:58.319Z"
+    },
+    {
+      "name": "diffoci",
+      "latest_version": "0.1.7",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:50:58.358Z"
+    },
+    {
+      "name": "difftastic",
+      "latest_version": "0.67.0",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:50:58.398Z"
+    },
+    {
+      "name": "digdag",
+      "latest_version": "0.10.5.1",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:58.436Z"
+    },
+    {
+      "name": "direnv",
+      "latest_version": "2.37.1",
+      "version_count": 58,
+      "last_updated": "2025-12-14T14:50:58.476Z"
+    },
+    {
+      "name": "dive",
+      "latest_version": "0.13.1",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:50:58.515Z"
+    },
+    {
+      "name": "djinni",
+      "latest_version": "1.4.1",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:50:58.556Z"
+    },
+    {
+      "name": "dmd",
+      "latest_version": "2.111.0",
+      "version_count": 44,
+      "last_updated": "2025-12-14T14:50:58.596Z"
+    },
+    {
+      "name": "docker-cli",
+      "latest_version": "29.1.3",
+      "version_count": 159,
+      "last_updated": "2025-12-14T14:50:58.636Z"
+    },
+    {
+      "name": "docker-compose",
+      "latest_version": "5.0.0",
+      "version_count": 195,
+      "last_updated": "2025-12-14T14:50:58.674Z"
+    },
+    {
+      "name": "docker-compose-v1",
+      "latest_version": "docs-v1.8.0-2016-08-03",
+      "version_count": 259,
+      "last_updated": "2025-12-14T14:50:58.714Z"
+    },
+    {
+      "name": "docker-slim",
+      "latest_version": "1.41.8",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:50:58.754Z"
+    },
+    {
+      "name": "dockle",
+      "latest_version": "0.4.15",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:50:58.793Z"
+    },
+    {
+      "name": "doctl",
+      "latest_version": "1.148.0",
+      "version_count": 192,
+      "last_updated": "2025-12-14T14:50:58.832Z"
+    },
+    {
+      "name": "doctoolchain",
+      "latest_version": "3.4.2",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:50:58.872Z"
+    },
+    {
+      "name": "docuum",
+      "latest_version": "0.26.0",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:50:58.912Z"
+    },
+    {
+      "name": "doggo",
+      "latest_version": "1.1.2",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:50:58.954Z"
+    },
+    {
+      "name": "dome",
+      "latest_version": "1.8.3",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:50:58.995Z"
+    },
+    {
+      "name": "doppler",
+      "latest_version": "3.75.1",
+      "version_count": 212,
+      "last_updated": "2025-12-14T14:50:59.034Z"
+    },
+    {
+      "name": "dotenv-linter",
+      "latest_version": "4.0.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:50:59.072Z"
+    },
+    {
+      "name": "dotenvx",
+      "latest_version": "1.51.2",
+      "version_count": 275,
+      "last_updated": "2025-12-14T14:50:59.111Z"
+    },
+    {
+      "name": "dotnet",
+      "latest_version": "10.0.101",
+      "version_count": 517,
+      "last_updated": "2025-12-14T14:50:59.150Z"
+    },
+    {
+      "name": "dotslash",
+      "latest_version": "0.5.8",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:50:59.229Z"
+    },
+    {
+      "name": "dotty",
+      "latest_version": "3.4.1-RC1",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:50:59.268Z"
+    },
+    {
+      "name": "dprint",
+      "latest_version": "0.50.2",
+      "version_count": 130,
+      "last_updated": "2025-12-14T14:50:59.308Z"
+    },
+    {
+      "name": "draft",
+      "latest_version": "0.17.13",
+      "version_count": 55,
+      "last_updated": "2025-12-14T14:50:59.349Z"
+    },
+    {
+      "name": "driftctl",
+      "latest_version": "0.40.0",
+      "version_count": 64,
+      "last_updated": "2025-12-14T14:50:59.387Z"
+    },
+    {
+      "name": "drone",
+      "latest_version": "1.9.0",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:50:59.424Z"
+    },
+    {
+      "name": "dt",
+      "latest_version": "1.3.1",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:50:59.462Z"
+    },
+    {
+      "name": "dtm",
+      "latest_version": "0.13.3",
+      "version_count": 25,
+      "last_updated": "2025-12-14T14:50:59.499Z"
+    },
+    {
+      "name": "dua",
+      "latest_version": "2.32.2",
+      "version_count": 85,
+      "last_updated": "2025-12-14T14:50:59.539Z"
+    },
+    {
+      "name": "duckdb",
+      "latest_version": "1.4.3",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:50:59.577Z"
+    },
+    {
+      "name": "duf",
+      "latest_version": "0.9.1",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:50:59.616Z"
+    },
+    {
+      "name": "dust",
+      "latest_version": "1.2.3",
+      "version_count": 42,
+      "last_updated": "2025-12-14T14:50:59.655Z"
+    },
+    {
+      "name": "dvc",
+      "latest_version": "3.64.2",
+      "version_count": 550,
+      "last_updated": "2025-12-14T14:50:59.695Z"
+    },
+    {
+      "name": "dyff",
+      "latest_version": "1.10.2",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:50:59.734Z"
+    },
+    {
+      "name": "dynatrace-monaco",
+      "latest_version": "2.27.0",
+      "version_count": 81,
+      "last_updated": "2025-12-14T14:50:59.772Z"
+    },
+    {
+      "name": "e1s",
+      "latest_version": "1.0.52",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:50:59.810Z"
+    },
+    {
+      "name": "earthly",
+      "latest_version": "0.8.16",
+      "version_count": 137,
+      "last_updated": "2025-12-14T14:50:59.850Z"
+    },
+    {
+      "name": "ecs-cli",
+      "latest_version": "1.21.0",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:50:59.889Z"
+    },
+    {
+      "name": "ecspresso",
+      "latest_version": "2.7.0",
+      "version_count": 118,
+      "last_updated": "2025-12-14T14:50:59.929Z"
+    },
+    {
+      "name": "edit",
+      "latest_version": "1.2.1",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:50:59.968Z"
+    },
+    {
+      "name": "editorconfig-checker",
+      "latest_version": "3.6.0",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:00.008Z"
+    },
+    {
+      "name": "ejson",
+      "latest_version": "1.5.4",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:00.048Z"
+    },
+    {
+      "name": "eksctl",
+      "latest_version": "0.220.0",
+      "version_count": 299,
+      "last_updated": "2025-12-14T14:51:00.089Z"
+    },
+    {
+      "name": "elasticsearch",
+      "latest_version": "9.2.2",
+      "version_count": 472,
+      "last_updated": "2025-12-14T14:51:00.129Z"
+    },
+    {
+      "name": "elixir",
+      "latest_version": "1.19.4-otp-28",
+      "version_count": 529,
+      "last_updated": "2025-12-14T14:51:00.170Z"
+    },
+    {
+      "name": "elixir-ls",
+      "latest_version": "0.30.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:00.209Z"
+    },
+    {
+      "name": "elm",
+      "latest_version": "0.19.1",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:00.254Z"
+    },
+    {
+      "name": "embulk",
+      "latest_version": "0.11.5",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:00.293Z"
+    },
+    {
+      "name": "emsdk",
+      "latest_version": "4.0.21",
+      "version_count": 158,
+      "last_updated": "2025-12-14T14:51:00.335Z"
+    },
+    {
+      "name": "envcli",
+      "latest_version": "0.7.1",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:51:00.375Z"
+    },
+    {
+      "name": "envsubst",
+      "latest_version": "1.4.3",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:00.413Z"
+    },
+    {
+      "name": "ephemeral-postgres",
+      "latest_version": "3.2",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:00.452Z"
+    },
+    {
+      "name": "esc",
+      "latest_version": "0.20.0",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:00.532Z"
+    },
+    {
+      "name": "esy",
+      "latest_version": "0.9.2",
+      "version_count": 186,
+      "last_updated": "2025-12-14T14:51:00.574Z"
+    },
+    {
+      "name": "etcd",
+      "latest_version": "3.6.6",
+      "version_count": 214,
+      "last_updated": "2025-12-14T14:51:00.614Z"
+    },
+    {
+      "name": "evans",
+      "latest_version": "0.10.11",
+      "version_count": 64,
+      "last_updated": "2025-12-14T14:51:00.655Z"
+    },
+    {
+      "name": "exa",
+      "latest_version": "0.10.1",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:00.697Z"
+    },
+    {
+      "name": "eza",
+      "latest_version": "0.23.4",
+      "version_count": 95,
+      "last_updated": "2025-12-14T14:51:00.736Z"
+    },
+    {
+      "name": "fastfetch",
+      "latest_version": "2.56.0",
+      "version_count": 151,
+      "last_updated": "2025-12-14T14:51:00.775Z"
+    },
+    {
+      "name": "fd",
+      "latest_version": "10.3.0",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:00.816Z"
+    },
+    {
+      "name": "ffmpeg",
+      "latest_version": "8.0.1",
+      "version_count": 383,
+      "last_updated": "2025-12-14T14:51:00.855Z"
+    },
+    {
+      "name": "figma-export",
+      "latest_version": "0.38.2",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:51:00.896Z"
+    },
+    {
+      "name": "fillin",
+      "latest_version": "0.3.3",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:00.937Z"
+    },
+    {
+      "name": "firebase",
+      "latest_version": "15.0.0",
+      "version_count": 336,
+      "last_updated": "2025-12-14T14:51:00.977Z"
+    },
+    {
+      "name": "fission",
+      "latest_version": "1.21.0",
+      "version_count": 59,
+      "last_updated": "2025-12-14T14:51:01.018Z"
+    },
+    {
+      "name": "flamingo",
+      "latest_version": "0.10.2",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:01.057Z"
+    },
+    {
+      "name": "flarectl",
+      "latest_version": "6.4.0",
+      "version_count": 180,
+      "last_updated": "2025-12-14T14:51:01.096Z"
+    },
+    {
+      "name": "flatc",
+      "latest_version": "25.9.23",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:01.138Z"
+    },
+    {
+      "name": "fluttergen",
+      "latest_version": "5.12.0",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:01.217Z"
+    },
+    {
+      "name": "flux2",
+      "latest_version": "2.7.5",
+      "version_count": 200,
+      "last_updated": "2025-12-14T14:51:01.255Z"
+    },
+    {
+      "name": "fluxctl",
+      "latest_version": "1.25.4",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:01.293Z"
+    },
+    {
+      "name": "fly",
+      "latest_version": "7.14.3",
+      "version_count": 207,
+      "last_updated": "2025-12-14T14:51:01.332Z"
+    },
+    {
+      "name": "fnox",
+      "latest_version": "1.7.0",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:01.372Z"
+    },
+    {
+      "name": "foundry",
+      "latest_version": "1.5.0-rc1",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:01.410Z"
+    },
+    {
+      "name": "func-e",
+      "latest_version": "1.3.0",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:01.450Z"
+    },
+    {
+      "name": "furyctl",
+      "latest_version": "0.33.1",
+      "version_count": 85,
+      "last_updated": "2025-12-14T14:51:01.492Z"
+    },
+    {
+      "name": "fx",
+      "latest_version": "39.2.0",
+      "version_count": 77,
+      "last_updated": "2025-12-14T14:51:01.531Z"
+    },
+    {
+      "name": "fzf",
+      "latest_version": "0.67.0",
+      "version_count": 74,
+      "last_updated": "2025-12-14T14:51:01.569Z"
+    },
+    {
+      "name": "gallery-dl",
+      "latest_version": "1.31.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:01.608Z"
+    },
+    {
+      "name": "gam",
+      "latest_version": "7.29.04",
+      "version_count": 334,
+      "last_updated": "2025-12-14T14:51:01.646Z"
+    },
+    {
+      "name": "gator",
+      "latest_version": "3.21.0",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:01.685Z"
+    },
+    {
+      "name": "gauche",
+      "latest_version": "0.9.15",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:01.723Z"
+    },
+    {
+      "name": "gcc-arm-none-eabi",
+      "latest_version": "14.2.Rel1",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:01.764Z"
+    },
+    {
+      "name": "gcloud",
+      "latest_version": "549.0.1",
+      "version_count": 507,
+      "last_updated": "2025-12-14T14:51:01.804Z"
+    },
+    {
+      "name": "gdu",
+      "latest_version": "5.32.0",
+      "version_count": 87,
+      "last_updated": "2025-12-14T14:51:01.845Z"
+    },
+    {
+      "name": "getenvoy",
+      "latest_version": "0.4.1",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:01.884Z"
+    },
+    {
+      "name": "ggshield",
+      "latest_version": "1.45.0",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:01.922Z"
+    },
+    {
+      "name": "gh",
+      "latest_version": "2.83.2",
+      "version_count": 183,
+      "last_updated": "2025-12-14T14:51:01.960Z"
+    },
+    {
+      "name": "ghalint",
+      "latest_version": "1.5.4",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:01.999Z"
+    },
+    {
+      "name": "ghc",
+      "latest_version": "9.12.2",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:02.040Z"
+    },
+    {
+      "name": "ghcup",
+      "latest_version": "0.1.50.2",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:02.080Z"
+    },
+    {
+      "name": "ghorg",
+      "latest_version": "1.11.7",
+      "version_count": 44,
+      "last_updated": "2025-12-14T14:51:02.160Z"
+    },
+    {
+      "name": "ghq",
+      "latest_version": "1.8.0",
+      "version_count": 69,
+      "last_updated": "2025-12-14T14:51:02.199Z"
+    },
+    {
+      "name": "ginkgo",
+      "latest_version": "2.22.2",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:02.242Z"
+    },
+    {
+      "name": "git",
+      "latest_version": "2.46.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:02.281Z"
+    },
+    {
+      "name": "git-chglog",
+      "latest_version": "0.15.4",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:02.319Z"
+    },
+    {
+      "name": "git-cliff",
+      "latest_version": "2.10.1",
+      "version_count": 68,
+      "last_updated": "2025-12-14T14:51:02.358Z"
+    },
+    {
+      "name": "git-lfs",
+      "latest_version": "3.7.1",
+      "version_count": 91,
+      "last_updated": "2025-12-14T14:51:02.397Z"
+    },
+    {
+      "name": "gitconfig",
+      "latest_version": "1.0.0",
+      "version_count": 1,
+      "last_updated": "2025-12-14T14:51:02.437Z"
+    },
+    {
+      "name": "github-cli",
+      "latest_version": "2.83.2",
+      "version_count": 183,
+      "last_updated": "2025-12-14T14:51:02.478Z"
+    },
+    {
+      "name": "github-markdown-toc",
+      "latest_version": "0.10.0",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:02.519Z"
+    },
+    {
+      "name": "gitleaks",
+      "latest_version": "8.30.0",
+      "version_count": 181,
+      "last_updated": "2025-12-14T14:51:02.558Z"
+    },
+    {
+      "name": "gitsign",
+      "latest_version": "0.13.0",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:02.598Z"
+    },
+    {
+      "name": "gitu",
+      "latest_version": "0.39.0",
+      "version_count": 50,
+      "last_updated": "2025-12-14T14:51:02.636Z"
+    },
+    {
+      "name": "gitui",
+      "latest_version": "0.27.0",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:51:02.674Z"
+    },
+    {
+      "name": "gitversion",
+      "latest_version": "6.5.1",
+      "version_count": 96,
+      "last_updated": "2025-12-14T14:51:02.712Z"
+    },
+    {
+      "name": "glab",
+      "latest_version": "1.79.0",
+      "version_count": 111,
+      "last_updated": "2025-12-14T14:51:02.751Z"
+    },
+    {
+      "name": "gleam",
+      "latest_version": "1.13.0",
+      "version_count": 99,
+      "last_updated": "2025-12-14T14:51:02.790Z"
+    },
+    {
+      "name": "glen",
+      "latest_version": "1.9.8",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:02.829Z"
+    },
+    {
+      "name": "glooctl",
+      "latest_version": "1.21.0-beta6",
+      "version_count": 402,
+      "last_updated": "2025-12-14T14:51:02.869Z"
+    },
+    {
+      "name": "glow",
+      "latest_version": "2.1.1",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:02.908Z"
+    },
+    {
+      "name": "go",
+      "latest_version": "1.25.5",
+      "version_count": 340,
+      "last_updated": "2025-12-14T14:51:02.947Z"
+    },
+    {
+      "name": "go-containerregistry",
+      "latest_version": "0.20.7",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:02.989Z"
+    },
+    {
+      "name": "go-getter",
+      "latest_version": "1.8.3",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:51:03.029Z"
+    },
+    {
+      "name": "go-jira",
+      "latest_version": "1.0.27",
+      "version_count": 63,
+      "last_updated": "2025-12-14T14:51:03.069Z"
+    },
+    {
+      "name": "go-jsonnet",
+      "latest_version": "0.21.0",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:03.109Z"
+    },
+    {
+      "name": "go-junit-report",
+      "latest_version": "2.1.0",
+      "version_count": 3,
+      "last_updated": "2025-12-14T14:51:03.149Z"
+    },
+    {
+      "name": "go-swagger",
+      "latest_version": "0.33.1",
+      "version_count": 57,
+      "last_updated": "2025-12-14T14:51:03.189Z"
+    },
+    {
+      "name": "goconvey",
+      "latest_version": "1.8.1",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:03.230Z"
+    },
+    {
+      "name": "gocryptfs",
+      "latest_version": "2.6.1",
+      "version_count": 27,
+      "last_updated": "2025-12-14T14:51:03.272Z"
+    },
+    {
+      "name": "gofumpt",
+      "latest_version": "0.9.2",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:03.313Z"
+    },
+    {
+      "name": "gohugo",
+      "latest_version": "0.140.1",
+      "version_count": 298,
+      "last_updated": "2025-12-14T14:51:03.353Z"
+    },
+    {
+      "name": "gojq",
+      "latest_version": "0.12.18",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:03.396Z"
+    },
+    {
+      "name": "gokey",
+      "latest_version": "0.2.0",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:03.436Z"
+    },
+    {
+      "name": "golangci-lint",
+      "latest_version": "2.7.2",
+      "version_count": 177,
+      "last_updated": "2025-12-14T14:51:03.475Z"
+    },
+    {
+      "name": "golangci-lint-langserver",
+      "latest_version": "0.0.11",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:03.516Z"
+    },
+    {
+      "name": "golines",
+      "latest_version": "0.13.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:03.554Z"
+    },
+    {
+      "name": "gomigrate",
+      "latest_version": "4.19.1",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:03.595Z"
+    },
+    {
+      "name": "gomplate",
+      "latest_version": "4.3.3",
+      "version_count": 69,
+      "last_updated": "2025-12-14T14:51:03.635Z"
+    },
+    {
+      "name": "gopass",
+      "latest_version": "1.16.1",
+      "version_count": 87,
+      "last_updated": "2025-12-14T14:51:03.673Z"
+    },
+    {
+      "name": "goreleaser",
+      "latest_version": "2.13.1",
+      "version_count": 579,
+      "last_updated": "2025-12-14T14:51:03.712Z"
+    },
+    {
+      "name": "goss",
+      "latest_version": "0.4.9",
+      "version_count": 66,
+      "last_updated": "2025-12-14T14:51:03.752Z"
+    },
+    {
+      "name": "gotestsum",
+      "latest_version": "1.13.0",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:51:03.792Z"
+    },
+    {
+      "name": "gping",
+      "latest_version": "1.20.1",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:51:03.832Z"
+    },
+    {
+      "name": "graalvm",
+      "latest_version": "25.0.1",
+      "version_count": 42,
+      "last_updated": "2025-12-14T14:51:03.870Z"
+    },
+    {
+      "name": "gradle",
+      "latest_version": "9.2.1",
+      "version_count": 158,
+      "last_updated": "2025-12-14T14:51:03.908Z"
+    },
+    {
+      "name": "gradle-profiler",
+      "latest_version": "0.23.0",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:03.947Z"
+    },
+    {
+      "name": "grain",
+      "latest_version": "0.7.1",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:04.026Z"
+    },
+    {
+      "name": "granted",
+      "latest_version": "0.38.0",
+      "version_count": 104,
+      "last_updated": "2025-12-14T14:51:04.066Z"
+    },
+    {
+      "name": "graphite",
+      "latest_version": "1.7.10",
+      "version_count": 97,
+      "last_updated": "2025-12-14T14:51:04.106Z"
+    },
+    {
+      "name": "grex",
+      "latest_version": "1.4.6",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:04.146Z"
+    },
+    {
+      "name": "gron",
+      "latest_version": "0.7.1",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:04.188Z"
+    },
+    {
+      "name": "groovy",
+      "latest_version": "5.0.3",
+      "version_count": 145,
+      "last_updated": "2025-12-14T14:51:04.227Z"
+    },
+    {
+      "name": "grpc-health-probe",
+      "latest_version": "0.4.42",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:51:04.266Z"
+    },
+    {
+      "name": "grpcurl",
+      "latest_version": "1.9.3",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:04.306Z"
+    },
+    {
+      "name": "grype",
+      "latest_version": "0.104.2",
+      "version_count": 178,
+      "last_updated": "2025-12-14T14:51:04.346Z"
+    },
+    {
+      "name": "guile",
+      "latest_version": "3.0.11",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:04.385Z"
+    },
+    {
+      "name": "gum",
+      "latest_version": "0.17.0",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:04.425Z"
+    },
+    {
+      "name": "gup",
+      "latest_version": "0.28.1",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:51:04.463Z"
+    },
+    {
+      "name": "gwvault",
+      "latest_version": "2.1.5",
+      "version_count": 24,
+      "last_updated": "2025-12-14T14:51:04.502Z"
+    },
+    {
+      "name": "hadolint",
+      "latest_version": "2.14.0",
+      "version_count": 78,
+      "last_updated": "2025-12-14T14:51:04.540Z"
+    },
+    {
+      "name": "hamler",
+      "latest_version": "0.5",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:04.580Z"
+    },
+    {
+      "name": "harper-cli",
+      "latest_version": "1.2.0",
+      "version_count": 68,
+      "last_updated": "2025-12-14T14:51:04.620Z"
+    },
+    {
+      "name": "harper-ls",
+      "latest_version": "1.2.0",
+      "version_count": 88,
+      "last_updated": "2025-12-14T14:51:04.659Z"
+    },
+    {
+      "name": "has",
+      "latest_version": "1.5.2",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:04.700Z"
+    },
+    {
+      "name": "haskell",
+      "latest_version": "9.14.1-rc1",
+      "version_count": 267,
+      "last_updated": "2025-12-14T14:51:04.739Z"
+    },
+    {
+      "name": "hasura-cli",
+      "latest_version": "2.48.6",
+      "version_count": 152,
+      "last_updated": "2025-12-14T14:51:04.778Z"
+    },
+    {
+      "name": "hatch",
+      "latest_version": "1.16.2",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:04.816Z"
+    },
+    {
+      "name": "haxe",
+      "latest_version": "4.3.7",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:51:04.856Z"
+    },
+    {
+      "name": "hcloud",
+      "latest_version": "1.57.0",
+      "version_count": 89,
+      "last_updated": "2025-12-14T14:51:04.936Z"
+    },
+    {
+      "name": "helix",
+      "latest_version": "25.07.1",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:04.976Z"
+    },
+    {
+      "name": "helm",
+      "latest_version": "4.0.4",
+      "version_count": 160,
+      "last_updated": "2025-12-14T14:51:05.017Z"
+    },
+    {
+      "name": "helm-cr",
+      "latest_version": "1.8.1",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:05.057Z"
+    },
+    {
+      "name": "helm-ct",
+      "latest_version": "3.14.0",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:05.096Z"
+    },
+    {
+      "name": "helm-diff",
+      "latest_version": "3.14.1",
+      "version_count": 63,
+      "last_updated": "2025-12-14T14:51:05.137Z"
+    },
+    {
+      "name": "helm-docs",
+      "latest_version": "1.14.2",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:51:05.176Z"
+    },
+    {
+      "name": "helm-ls",
+      "latest_version": "0.5.4",
+      "version_count": 35,
+      "last_updated": "2025-12-14T14:51:05.215Z"
+    },
+    {
+      "name": "helmfile",
+      "latest_version": "1.2.2",
+      "version_count": 63,
+      "last_updated": "2025-12-14T14:51:05.257Z"
+    },
+    {
+      "name": "helmsman",
+      "latest_version": "4.0.1",
+      "version_count": 102,
+      "last_updated": "2025-12-14T14:51:05.298Z"
+    },
+    {
+      "name": "helmwave",
+      "latest_version": "0.42.2",
+      "version_count": 141,
+      "last_updated": "2025-12-14T14:51:05.339Z"
+    },
+    {
+      "name": "heroku",
+      "latest_version": "test-01",
+      "version_count": 1102,
+      "last_updated": "2025-12-14T14:51:05.381Z"
+    },
+    {
+      "name": "heroku-cli",
+      "latest_version": "test-01",
+      "version_count": 1102,
+      "last_updated": "2025-12-14T14:51:05.424Z"
+    },
+    {
+      "name": "hexyl",
+      "latest_version": "0.16.0",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:05.466Z"
+    },
+    {
+      "name": "hey",
+      "latest_version": "0.1.4",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:05.504Z"
+    },
+    {
+      "name": "hishtory",
+      "latest_version": "0.335",
+      "version_count": 437,
+      "last_updated": "2025-12-14T14:51:05.545Z"
+    },
+    {
+      "name": "hivemind",
+      "latest_version": "1.1.0",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:05.586Z"
+    },
+    {
+      "name": "hk",
+      "latest_version": "1.27.0",
+      "version_count": 104,
+      "last_updated": "2025-12-14T14:51:05.627Z"
+    },
+    {
+      "name": "hledger",
+      "latest_version": "1.51.1",
+      "version_count": 51,
+      "last_updated": "2025-12-14T14:51:05.669Z"
+    },
+    {
+      "name": "hledger-flow",
+      "latest_version": "0.16.0",
+      "version_count": 24,
+      "last_updated": "2025-12-14T14:51:05.709Z"
+    },
+    {
+      "name": "hls",
+      "latest_version": "2.12.0.0",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:05.750Z"
+    },
+    {
+      "name": "hostctl",
+      "latest_version": "1.1.4",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:05.788Z"
+    },
+    {
+      "name": "htmlq",
+      "latest_version": "0.4.0",
+      "version_count": 3,
+      "last_updated": "2025-12-14T14:51:05.828Z"
+    },
+    {
+      "name": "httpie-go",
+      "latest_version": "0.7.0",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:05.868Z"
+    },
+    {
+      "name": "hub",
+      "latest_version": "2.14.2",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:51:05.908Z"
+    },
+    {
+      "name": "hugo",
+      "latest_version": "0.152.2",
+      "version_count": 338,
+      "last_updated": "2025-12-14T14:51:05.947Z"
+    },
+    {
+      "name": "hugo-extended",
+      "latest_version": "0.152.2",
+      "version_count": 338,
+      "last_updated": "2025-12-14T14:51:05.989Z"
+    },
+    {
+      "name": "hurl",
+      "latest_version": "7.1.0",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:06.040Z"
+    },
+    {
+      "name": "hwatch",
+      "latest_version": "0.3.19",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:06.081Z"
+    },
+    {
+      "name": "hygen",
+      "latest_version": "6.2.11",
+      "version_count": 62,
+      "last_updated": "2025-12-14T14:51:06.121Z"
+    },
+    {
+      "name": "hyperfine",
+      "latest_version": "1.20.0",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:06.162Z"
+    },
+    {
+      "name": "iam-policy-json-to-terraform",
+      "latest_version": "1.9.2",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:06.202Z"
+    },
+    {
+      "name": "iamlive",
+      "latest_version": "1.1.27",
+      "version_count": 79,
+      "last_updated": "2025-12-14T14:51:06.241Z"
+    },
+    {
+      "name": "ibmcloud",
+      "latest_version": "2.40.0",
+      "version_count": 115,
+      "last_updated": "2025-12-14T14:51:06.280Z"
+    },
+    {
+      "name": "idris2",
+      "latest_version": "0.8.0",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:06.362Z"
+    },
+    {
+      "name": "imagemagick",
+      "latest_version": "7.1.2-10",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:06.401Z"
+    },
+    {
+      "name": "imgpkg",
+      "latest_version": "0.47.0",
+      "version_count": 98,
+      "last_updated": "2025-12-14T14:51:06.440Z"
+    },
+    {
+      "name": "infisical",
+      "latest_version": "0.43.45",
+      "version_count": 59,
+      "last_updated": "2025-12-14T14:51:06.482Z"
+    },
+    {
+      "name": "infracost",
+      "latest_version": "0.10.43",
+      "version_count": 114,
+      "last_updated": "2025-12-14T14:51:06.522Z"
+    },
+    {
+      "name": "inlets",
+      "latest_version": "0.8.37",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:51:06.561Z"
+    },
+    {
+      "name": "io",
+      "latest_version": "2019.05.22-alpha",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:06.602Z"
+    },
+    {
+      "name": "istioctl",
+      "latest_version": "1.28.1",
+      "version_count": 272,
+      "last_updated": "2025-12-14T14:51:06.643Z"
+    },
+    {
+      "name": "janet",
+      "latest_version": "1.40.1",
+      "version_count": 83,
+      "last_updated": "2025-12-14T14:51:06.683Z"
+    },
+    {
+      "name": "jaq",
+      "latest_version": "2.3.0",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:06.722Z"
+    },
+    {
+      "name": "java",
+      "latest_version": "zulu-musl-25.30.17.0",
+      "version_count": 5029,
+      "last_updated": "2025-12-14T14:51:06.785Z"
+    },
+    {
+      "name": "jb",
+      "latest_version": "0.6.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:06.833Z"
+    },
+    {
+      "name": "jbang",
+      "latest_version": "0.135.1",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:06.870Z"
+    },
+    {
+      "name": "jc",
+      "latest_version": "1.25.6",
+      "version_count": 53,
+      "last_updated": "2025-12-14T14:51:06.908Z"
+    },
+    {
+      "name": "jd",
+      "latest_version": "2.3.0",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:06.946Z"
+    },
+    {
+      "name": "jib",
+      "latest_version": "0.13.0",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:51:06.985Z"
+    },
+    {
+      "name": "jiq",
+      "latest_version": "0.7.2",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:51:07.024Z"
+    },
+    {
+      "name": "jj",
+      "latest_version": "0.36.0",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:07.062Z"
+    },
+    {
+      "name": "jjui",
+      "latest_version": "0.9.8",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:07.100Z"
+    },
+    {
+      "name": "jless",
+      "latest_version": "0.9.0",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:51:07.137Z"
+    },
+    {
+      "name": "jmespath",
+      "latest_version": "0.2.1",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:07.175Z"
+    },
+    {
+      "name": "jmeter",
+      "latest_version": "5.6.3",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:07.213Z"
+    },
+    {
+      "name": "jnv",
+      "latest_version": "0.6.1",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:07.250Z"
+    },
+    {
+      "name": "jq",
+      "latest_version": "1.8.1",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:07.289Z"
+    },
+    {
+      "name": "jqp",
+      "latest_version": "0.8.0",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:07.325Z"
+    },
+    {
+      "name": "jreleaser",
+      "latest_version": "1.21.0",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:07.364Z"
+    },
+    {
+      "name": "jsonnet",
+      "latest_version": "master",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:07.401Z"
+    },
+    {
+      "name": "jsonnet-bundler",
+      "latest_version": "0.6.0",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:07.440Z"
+    },
+    {
+      "name": "jsonschema",
+      "latest_version": "12.10.1",
+      "version_count": 134,
+      "last_updated": "2025-12-14T14:51:07.479Z"
+    },
+    {
+      "name": "jujutsu",
+      "latest_version": "0.36.0",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:07.518Z"
+    },
+    {
+      "name": "jujutsu-ui",
+      "latest_version": "0.9.8",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:07.555Z"
+    },
+    {
+      "name": "julia",
+      "latest_version": "nightly",
+      "version_count": 189,
+      "last_updated": "2025-12-14T14:51:07.594Z"
+    },
+    {
+      "name": "just",
+      "latest_version": "1.45.0",
+      "version_count": 130,
+      "last_updated": "2025-12-14T14:51:07.633Z"
+    },
+    {
+      "name": "jwt",
+      "latest_version": "6.2.0",
+      "version_count": 27,
+      "last_updated": "2025-12-14T14:51:07.671Z"
+    },
+    {
+      "name": "jwtui",
+      "latest_version": "1.3.0",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:07.713Z"
+    },
+    {
+      "name": "k0sctl",
+      "latest_version": "0.27.1",
+      "version_count": 65,
+      "last_updated": "2025-12-14T14:51:07.794Z"
+    },
+    {
+      "name": "k2tf",
+      "latest_version": "0.8.0",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:07.832Z"
+    },
+    {
+      "name": "k3d",
+      "latest_version": "5.8.3",
+      "version_count": 84,
+      "last_updated": "2025-12-14T14:51:07.872Z"
+    },
+    {
+      "name": "k3kcli",
+      "latest_version": "0.3.4",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:07.911Z"
+    },
+    {
+      "name": "k3s",
+      "latest_version": "1.34.2+k3s1",
+      "version_count": 304,
+      "last_updated": "2025-12-14T14:51:07.949Z"
+    },
+    {
+      "name": "k3sup",
+      "latest_version": "0.13.11",
+      "version_count": 114,
+      "last_updated": "2025-12-14T14:51:07.986Z"
+    },
+    {
+      "name": "k6",
+      "latest_version": "1.4.2",
+      "version_count": 81,
+      "last_updated": "2025-12-14T14:51:08.025Z"
+    },
+    {
+      "name": "k9s",
+      "latest_version": "0.50.16",
+      "version_count": 173,
+      "last_updated": "2025-12-14T14:51:08.064Z"
+    },
+    {
+      "name": "kafka",
+      "latest_version": "apache-4.1.1",
+      "version_count": 593,
+      "last_updated": "2025-12-14T14:51:08.103Z"
+    },
+    {
+      "name": "kafkactl",
+      "latest_version": "5.16.0",
+      "version_count": 79,
+      "last_updated": "2025-12-14T14:51:08.143Z"
+    },
+    {
+      "name": "kapp",
+      "latest_version": "0.65.0",
+      "version_count": 107,
+      "last_updated": "2025-12-14T14:51:08.180Z"
+    },
+    {
+      "name": "kbld",
+      "latest_version": "0.47.0",
+      "version_count": 89,
+      "last_updated": "2025-12-14T14:51:08.217Z"
+    },
+    {
+      "name": "kcat",
+      "latest_version": "debian/1.7.1-3",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:08.254Z"
+    },
+    {
+      "name": "kcctl",
+      "latest_version": "1.0.0.CR4",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:08.292Z"
+    },
+    {
+      "name": "kcl",
+      "latest_version": "0.12.3",
+      "version_count": 65,
+      "last_updated": "2025-12-14T14:51:08.329Z"
+    },
+    {
+      "name": "kconf",
+      "latest_version": "2.0.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:08.367Z"
+    },
+    {
+      "name": "ki",
+      "latest_version": "0.5.2",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:08.406Z"
+    },
+    {
+      "name": "killport",
+      "latest_version": "1.1.0",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:08.451Z"
+    },
+    {
+      "name": "kind",
+      "latest_version": "0.30.0",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:08.493Z"
+    },
+    {
+      "name": "kiota",
+      "latest_version": "1.29.0",
+      "version_count": 82,
+      "last_updated": "2025-12-14T14:51:08.534Z"
+    },
+    {
+      "name": "kn",
+      "latest_version": "knative-v1.20.0",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:51:08.572Z"
+    },
+    {
+      "name": "ko",
+      "latest_version": "0.18.1",
+      "version_count": 35,
+      "last_updated": "2025-12-14T14:51:08.610Z"
+    },
+    {
+      "name": "koka",
+      "latest_version": "3.2.2",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:08.649Z"
+    },
+    {
+      "name": "kompose",
+      "latest_version": "1.37.0",
+      "version_count": 50,
+      "last_updated": "2025-12-14T14:51:08.688Z"
+    },
+    {
+      "name": "kops",
+      "latest_version": "1.34.1",
+      "version_count": 111,
+      "last_updated": "2025-12-14T14:51:08.729Z"
+    },
+    {
+      "name": "kotlin",
+      "latest_version": "2.3.0-RC3",
+      "version_count": 260,
+      "last_updated": "2025-12-14T14:51:08.770Z"
+    },
+    {
+      "name": "kp",
+      "latest_version": "0.13.1",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:08.810Z"
+    },
+    {
+      "name": "kpack",
+      "latest_version": "0.13.1",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:08.853Z"
+    },
+    {
+      "name": "kpt",
+      "latest_version": "1.0.0-beta.58",
+      "version_count": 70,
+      "last_updated": "2025-12-14T14:51:08.897Z"
+    },
+    {
+      "name": "krab",
+      "latest_version": "0.9.0",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:08.941Z"
+    },
+    {
+      "name": "krew",
+      "latest_version": "0.4.5",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:08.981Z"
+    },
+    {
+      "name": "kscript",
+      "latest_version": "4.2.3",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:51:09.021Z"
+    },
+    {
+      "name": "ksonnet",
+      "latest_version": "master",
+      "version_count": 17,
+      "last_updated": "2025-12-14T14:51:09.061Z"
+    },
+    {
+      "name": "ksops",
+      "latest_version": "4.4.0",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:51:09.101Z"
+    },
+    {
+      "name": "ktlint",
+      "latest_version": "1.8.0",
+      "version_count": 101,
+      "last_updated": "2025-12-14T14:51:09.142Z"
+    },
+    {
+      "name": "kube-capacity",
+      "latest_version": "0.8.0",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:09.182Z"
+    },
+    {
+      "name": "kube-code-generator",
+      "latest_version": "0.36.0-alpha.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:09.222Z"
+    },
+    {
+      "name": "kube-controller-tools",
+      "latest_version": "envtest-v1.35.0-alpha.3",
+      "version_count": 80,
+      "last_updated": "2025-12-14T14:51:09.262Z"
+    },
+    {
+      "name": "kube-credential-cache",
+      "latest_version": "0.5.1",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:09.303Z"
+    },
+    {
+      "name": "kube-linter",
+      "latest_version": "0.7.6",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:09.342Z"
+    },
+    {
+      "name": "kube-score",
+      "latest_version": "1.20.0",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:09.381Z"
+    },
+    {
+      "name": "kubebuilder",
+      "latest_version": "4.10.1",
+      "version_count": 66,
+      "last_updated": "2025-12-14T14:51:09.419Z"
+    },
+    {
+      "name": "kubecm",
+      "latest_version": "0.33.3",
+      "version_count": 86,
+      "last_updated": "2025-12-14T14:51:09.460Z"
+    },
+    {
+      "name": "kubecolor",
+      "latest_version": "0.5.3",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:09.501Z"
+    },
+    {
+      "name": "kubeconform",
+      "latest_version": "0.7.0",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:09.542Z"
+    },
+    {
+      "name": "kubectl",
+      "latest_version": "1.34.3",
+      "version_count": 505,
+      "last_updated": "2025-12-14T14:51:09.582Z"
+    },
+    {
+      "name": "kubectl-bindrole",
+      "latest_version": "1.5.6",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:09.622Z"
+    },
+    {
+      "name": "kubectl-buildkit",
+      "latest_version": "0.1.6",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:51:09.662Z"
+    },
+    {
+      "name": "kubectl-convert",
+      "latest_version": "1.34.3",
+      "version_count": 204,
+      "last_updated": "2025-12-14T14:51:09.703Z"
+    },
+    {
+      "name": "kubectl-kots",
+      "latest_version": "1.129.1",
+      "version_count": 365,
+      "last_updated": "2025-12-14T14:51:09.745Z"
+    },
+    {
+      "name": "kubectl-kuttl",
+      "latest_version": "0.24.0",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:09.786Z"
+    },
+    {
+      "name": "kubectl-rolesum",
+      "latest_version": "1.5.6",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:09.827Z"
+    },
+    {
+      "name": "kubectx",
+      "latest_version": "0.9.5",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:09.867Z"
+    },
+    {
+      "name": "kubefedctl",
+      "latest_version": "0.10.0",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:09.908Z"
+    },
+    {
+      "name": "kubefirst",
+      "latest_version": "2.10.3",
+      "version_count": 136,
+      "last_updated": "2025-12-14T14:51:09.947Z"
+    },
+    {
+      "name": "kubelogin",
+      "latest_version": "1.35.0",
+      "version_count": 71,
+      "last_updated": "2025-12-14T14:51:09.988Z"
+    },
+    {
+      "name": "kubemqctl",
+      "latest_version": "3.7.2",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:10.026Z"
+    },
+    {
+      "name": "kubens",
+      "latest_version": "0.9.5",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:10.067Z"
+    },
+    {
+      "name": "kubeone",
+      "latest_version": "1.12.2",
+      "version_count": 109,
+      "last_updated": "2025-12-14T14:51:10.144Z"
+    },
+    {
+      "name": "kubergrunt",
+      "latest_version": "0.18.5",
+      "version_count": 86,
+      "last_updated": "2025-12-14T14:51:10.185Z"
+    },
+    {
+      "name": "kubeseal",
+      "latest_version": "0.33.1",
+      "version_count": 86,
+      "last_updated": "2025-12-14T14:51:10.224Z"
+    },
+    {
+      "name": "kubesec",
+      "latest_version": "2.14.2",
+      "version_count": 24,
+      "last_updated": "2025-12-14T14:51:10.263Z"
+    },
+    {
+      "name": "kubeshark",
+      "latest_version": "52.10.3",
+      "version_count": 135,
+      "last_updated": "2025-12-14T14:51:10.301Z"
+    },
+    {
+      "name": "kubespy",
+      "latest_version": "0.6.3",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:10.340Z"
+    },
+    {
+      "name": "kubeswitch",
+      "latest_version": "0.9.3",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:10.378Z"
+    },
+    {
+      "name": "kubeval",
+      "latest_version": "0.16.1",
+      "version_count": 25,
+      "last_updated": "2025-12-14T14:51:10.417Z"
+    },
+    {
+      "name": "kubevela",
+      "latest_version": "1.10.6",
+      "version_count": 146,
+      "last_updated": "2025-12-14T14:51:10.459Z"
+    },
+    {
+      "name": "kubie",
+      "latest_version": "0.26.0",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:51:10.499Z"
+    },
+    {
+      "name": "kustomize",
+      "latest_version": "5.8.0",
+      "version_count": 93,
+      "last_updated": "2025-12-14T14:51:10.538Z"
+    },
+    {
+      "name": "kuttl",
+      "latest_version": "0.24.0",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:10.577Z"
+    },
+    {
+      "name": "kwokctl",
+      "latest_version": "0.7.0",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:10.616Z"
+    },
+    {
+      "name": "kwt",
+      "latest_version": "0.0.8",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:10.656Z"
+    },
+    {
+      "name": "kyverno",
+      "latest_version": "1.16.1",
+      "version_count": 90,
+      "last_updated": "2025-12-14T14:51:10.693Z"
+    },
+    {
+      "name": "lab",
+      "latest_version": "0.25.1",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:10.731Z"
+    },
+    {
+      "name": "lane",
+      "latest_version": "1.0.22",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:51:10.768Z"
+    },
+    {
+      "name": "lazydocker",
+      "latest_version": "0.24.2",
+      "version_count": 42,
+      "last_updated": "2025-12-14T14:51:10.808Z"
+    },
+    {
+      "name": "lazygit",
+      "latest_version": "0.57.0",
+      "version_count": 166,
+      "last_updated": "2025-12-14T14:51:10.847Z"
+    },
+    {
+      "name": "lazyjournal",
+      "latest_version": "0.8.2",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:10.887Z"
+    },
+    {
+      "name": "lazyssh",
+      "latest_version": "0.3.0",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:10.926Z"
+    },
+    {
+      "name": "lean",
+      "latest_version": "3.4.2",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:51:10.967Z"
+    },
+    {
+      "name": "lefthook",
+      "latest_version": "2.0.11",
+      "version_count": 200,
+      "last_updated": "2025-12-14T14:51:11.006Z"
+    },
+    {
+      "name": "leiningen",
+      "latest_version": "2.12.0",
+      "version_count": 83,
+      "last_updated": "2025-12-14T14:51:11.047Z"
+    },
+    {
+      "name": "levant",
+      "latest_version": "0.4.0",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:11.088Z"
+    },
+    {
+      "name": "lfe",
+      "latest_version": "2.2.0",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:51:11.127Z"
+    },
+    {
+      "name": "libsql-server",
+      "latest_version": "0.24.32",
+      "version_count": 51,
+      "last_updated": "2025-12-14T14:51:11.169Z"
+    },
+    {
+      "name": "license-plist",
+      "latest_version": "3.27.2",
+      "version_count": 84,
+      "last_updated": "2025-12-14T14:51:11.209Z"
+    },
+    {
+      "name": "lima",
+      "latest_version": "2.0.2",
+      "version_count": 66,
+      "last_updated": "2025-12-14T14:51:11.250Z"
+    },
+    {
+      "name": "link",
+      "latest_version": "link",
+      "version_count": 1,
+      "last_updated": "2025-12-14T14:51:11.290Z"
+    },
+    {
+      "name": "linkerd",
+      "latest_version": "edge-25.12.2",
+      "version_count": 398,
+      "last_updated": "2025-12-14T14:51:11.330Z"
+    },
+    {
+      "name": "liqoctl",
+      "latest_version": "liqo-0.1",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:51:11.370Z"
+    },
+    {
+      "name": "liquibase",
+      "latest_version": "liquibase-bigquery-4.27.0",
+      "version_count": 164,
+      "last_updated": "2025-12-14T14:51:11.411Z"
+    },
+    {
+      "name": "litestream",
+      "latest_version": "0.5.3",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:11.451Z"
+    },
+    {
+      "name": "llvm-objcopy",
+      "latest_version": "9.0.1",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:51:11.489Z"
+    },
+    {
+      "name": "llvm-objdump",
+      "latest_version": "9.0.1",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:51:11.529Z"
+    },
+    {
+      "name": "lnav",
+      "latest_version": "0.13.2",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:11.569Z"
+    },
+    {
+      "name": "localstack",
+      "latest_version": "4.12.0",
+      "version_count": 44,
+      "last_updated": "2025-12-14T14:51:11.609Z"
+    },
+    {
+      "name": "logtalk",
+      "latest_version": "3.00.0",
+      "version_count": 125,
+      "last_updated": "2025-12-14T14:51:11.647Z"
+    },
+    {
+      "name": "loki-logcli",
+      "latest_version": "3.6.3",
+      "version_count": 106,
+      "last_updated": "2025-12-14T14:51:11.685Z"
+    },
+    {
+      "name": "ls-lint",
+      "latest_version": "2.3.1",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:11.722Z"
+    },
+    {
+      "name": "lsd",
+      "latest_version": "1.2.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:11.761Z"
+    },
+    {
+      "name": "lua",
+      "latest_version": "5.4.8",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:11.799Z"
+    },
+    {
+      "name": "lua-language-server",
+      "latest_version": "3.16.1",
+      "version_count": 92,
+      "last_updated": "2025-12-14T14:51:11.841Z"
+    },
+    {
+      "name": "luajit",
+      "latest_version": "2.1.ROLLING",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:11.882Z"
+    },
+    {
+      "name": "luau",
+      "latest_version": "0.703",
+      "version_count": 198,
+      "last_updated": "2025-12-14T14:51:11.921Z"
+    },
+    {
+      "name": "lucy",
+      "latest_version": "0.5.8",
+      "version_count": 55,
+      "last_updated": "2025-12-14T14:51:11.960Z"
+    },
+    {
+      "name": "lychee",
+      "latest_version": "0.22.0",
+      "version_count": 35,
+      "last_updated": "2025-12-14T14:51:12.000Z"
+    },
+    {
+      "name": "maestro",
+      "latest_version": "cli-2.0.10",
+      "version_count": 121,
+      "last_updated": "2025-12-14T14:51:12.040Z"
+    },
+    {
+      "name": "mage",
+      "latest_version": "1.15.0",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:12.079Z"
+    },
+    {
+      "name": "magika",
+      "latest_version": "1.0.1",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:12.120Z"
+    },
+    {
+      "name": "make",
+      "latest_version": "4.4.1",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:12.160Z"
+    },
+    {
+      "name": "mani",
+      "latest_version": "0.31.2",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:12.199Z"
+    },
+    {
+      "name": "mark",
+      "latest_version": "15.2.0",
+      "version_count": 99,
+      "last_updated": "2025-12-14T14:51:12.238Z"
+    },
+    {
+      "name": "markdownlint-cli2",
+      "latest_version": "0.14.0",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:12.276Z"
+    },
+    {
+      "name": "marksman",
+      "latest_version": "2025-12-13",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:12.314Z"
+    },
+    {
+      "name": "marp-cli",
+      "latest_version": "4.2.3",
+      "version_count": 110,
+      "last_updated": "2025-12-14T14:51:12.351Z"
+    },
+    {
+      "name": "mask",
+      "latest_version": "0.11.6",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:12.388Z"
+    },
+    {
+      "name": "maven",
+      "latest_version": "3.9.11",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:12.428Z"
+    },
+    {
+      "name": "mc",
+      "latest_version": "2025-08-13T08-35-41Z",
+      "version_count": 310,
+      "last_updated": "2025-12-14T14:51:12.468Z"
+    },
+    {
+      "name": "mdbook",
+      "latest_version": "0.5.2",
+      "version_count": 95,
+      "last_updated": "2025-12-14T14:51:12.506Z"
+    },
+    {
+      "name": "mdbook-linkcheck",
+      "latest_version": "0.7.7",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:12.545Z"
+    },
+    {
+      "name": "melange",
+      "latest_version": "0.36.0",
+      "version_count": 166,
+      "last_updated": "2025-12-14T14:51:12.585Z"
+    },
+    {
+      "name": "melt",
+      "latest_version": "0.6.2",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:12.624Z"
+    },
+    {
+      "name": "mercury",
+      "latest_version": "22.01.8",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:12.702Z"
+    },
+    {
+      "name": "meson",
+      "latest_version": "1.10.0rc2",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:12.740Z"
+    },
+    {
+      "name": "micronaut",
+      "latest_version": "5.0.0-M3",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:12.779Z"
+    },
+    {
+      "name": "mill",
+      "latest_version": "1.1.0-RC2",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:12.819Z"
+    },
+    {
+      "name": "mimirtool",
+      "latest_version": "2.17.3",
+      "version_count": 46,
+      "last_updated": "2025-12-14T14:51:12.857Z"
+    },
+    {
+      "name": "minify",
+      "latest_version": "2.24.8",
+      "version_count": 152,
+      "last_updated": "2025-12-14T14:51:12.896Z"
+    },
+    {
+      "name": "minikube",
+      "latest_version": "1.37.0",
+      "version_count": 118,
+      "last_updated": "2025-12-14T14:51:12.937Z"
+    },
+    {
+      "name": "minishift",
+      "latest_version": "1.34.3",
+      "version_count": 70,
+      "last_updated": "2025-12-14T14:51:12.976Z"
+    },
+    {
+      "name": "minisign",
+      "latest_version": "0.12",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:13.015Z"
+    },
+    {
+      "name": "mint",
+      "latest_version": "0.28.1",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:13.054Z"
+    },
+    {
+      "name": "mkcert",
+      "latest_version": "1.4.4",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:13.172Z"
+    },
+    {
+      "name": "mlton",
+      "latest_version": "20241230",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:13.212Z"
+    },
+    {
+      "name": "mockery",
+      "latest_version": "3.6.1",
+      "version_count": 198,
+      "last_updated": "2025-12-14T14:51:13.251Z"
+    },
+    {
+      "name": "mockolo",
+      "latest_version": "2.5.0",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:51:13.290Z"
+    },
+    {
+      "name": "mold",
+      "latest_version": "2.40.4",
+      "version_count": 49,
+      "last_updated": "2025-12-14T14:51:13.332Z"
+    },
+    {
+      "name": "monarch",
+      "latest_version": "2.2.2",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:13.370Z"
+    },
+    {
+      "name": "mongo-tools",
+      "latest_version": "4.3.2",
+      "version_count": 195,
+      "last_updated": "2025-12-14T14:51:13.409Z"
+    },
+    {
+      "name": "mongosh",
+      "latest_version": "2.5.10",
+      "version_count": 139,
+      "last_updated": "2025-12-14T14:51:13.447Z"
+    },
+    {
+      "name": "mprocs",
+      "latest_version": "0.7.3",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:13.486Z"
+    },
+    {
+      "name": "mutanus",
+      "latest_version": "0.1.3",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:13.573Z"
+    },
+    {
+      "name": "mvnd",
+      "latest_version": "1.0.3",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:13.616Z"
+    },
+    {
+      "name": "mysql",
+      "latest_version": "8.0.33",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:13.654Z"
+    },
+    {
+      "name": "nancy",
+      "latest_version": "1.0.52",
+      "version_count": 120,
+      "last_updated": "2025-12-14T14:51:13.740Z"
+    },
+    {
+      "name": "nano",
+      "latest_version": "8.7",
+      "version_count": 186,
+      "last_updated": "2025-12-14T14:51:13.779Z"
+    },
+    {
+      "name": "nasm",
+      "latest_version": "0.99.05",
+      "version_count": 284,
+      "last_updated": "2025-12-14T14:51:13.819Z"
+    },
+    {
+      "name": "navi",
+      "latest_version": "2.24.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:13.860Z"
+    },
+    {
+      "name": "neko",
+      "latest_version": "2-4-1",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:13.899Z"
+    },
+    {
+      "name": "nelm",
+      "latest_version": "1.19.0",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:13.939Z"
+    },
+    {
+      "name": "neonctl",
+      "latest_version": "2.19.0",
+      "version_count": 77,
+      "last_updated": "2025-12-14T14:51:13.979Z"
+    },
+    {
+      "name": "neovim",
+      "latest_version": "0.11.5",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:14.019Z"
+    },
+    {
+      "name": "nerdctl",
+      "latest_version": "2.2.0",
+      "version_count": 69,
+      "last_updated": "2025-12-14T14:51:14.057Z"
+    },
+    {
+      "name": "newrelic",
+      "latest_version": "0.106.7",
+      "version_count": 560,
+      "last_updated": "2025-12-14T14:51:14.096Z"
+    },
+    {
+      "name": "newrelic-cli",
+      "latest_version": "0.106.7",
+      "version_count": 560,
+      "last_updated": "2025-12-14T14:51:14.137Z"
+    },
+    {
+      "name": "nfpm",
+      "latest_version": "2.44.0",
+      "version_count": 151,
+      "last_updated": "2025-12-14T14:51:14.176Z"
+    },
+    {
+      "name": "nim",
+      "latest_version": "2.2.6",
+      "version_count": 69,
+      "last_updated": "2025-12-14T14:51:14.215Z"
+    },
+    {
+      "name": "ninja",
+      "latest_version": "1.13.2",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:14.254Z"
+    },
+    {
+      "name": "node",
+      "latest_version": "25.2.1",
+      "version_count": 820,
+      "last_updated": "2025-12-14T14:51:14.295Z"
+    },
+    {
+      "name": "nomad",
+      "latest_version": "1.11.1",
+      "version_count": 164,
+      "last_updated": "2025-12-14T14:51:14.335Z"
+    },
+    {
+      "name": "nomad-pack",
+      "latest_version": "0.4.1",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:14.373Z"
+    },
+    {
+      "name": "notation",
+      "latest_version": "1.3.2",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:14.412Z"
+    },
+    {
+      "name": "nsc",
+      "latest_version": "2.12.0",
+      "version_count": 63,
+      "last_updated": "2025-12-14T14:51:14.491Z"
+    },
+    {
+      "name": "numbat",
+      "latest_version": "1.16.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:14.531Z"
+    },
+    {
+      "name": "oapi-codegen",
+      "latest_version": "2.4.1",
+      "version_count": 82,
+      "last_updated": "2025-12-14T14:51:14.570Z"
+    },
+    {
+      "name": "oauth2c",
+      "latest_version": "1.18.0",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:14.612Z"
+    },
+    {
+      "name": "oc",
+      "latest_version": "stable-4.20",
+      "version_count": 2268,
+      "last_updated": "2025-12-14T14:51:14.652Z"
+    },
+    {
+      "name": "ocaml",
+      "latest_version": "5.4.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:14.700Z"
+    },
+    {
+      "name": "oci",
+      "latest_version": "3.71.1",
+      "version_count": 363,
+      "last_updated": "2025-12-14T14:51:14.741Z"
+    },
+    {
+      "name": "octosql",
+      "latest_version": "0.13.0",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:14.782Z"
+    },
+    {
+      "name": "odin",
+      "latest_version": "dev-2025-12a",
+      "version_count": 92,
+      "last_updated": "2025-12-14T14:51:14.821Z"
+    },
+    {
+      "name": "odo",
+      "latest_version": "3.16.1",
+      "version_count": 92,
+      "last_updated": "2025-12-14T14:51:14.862Z"
+    },
+    {
+      "name": "okta-aws",
+      "latest_version": "2.5.1",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:14.901Z"
+    },
+    {
+      "name": "okta-aws-cli",
+      "latest_version": "2.5.1",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:14.943Z"
+    },
+    {
+      "name": "okteto",
+      "latest_version": "3.14.0",
+      "version_count": 278,
+      "last_updated": "2025-12-14T14:51:14.982Z"
+    },
+    {
+      "name": "ollama",
+      "latest_version": "0.13.3",
+      "version_count": 164,
+      "last_updated": "2025-12-14T14:51:15.022Z"
+    },
+    {
+      "name": "om",
+      "latest_version": "7.18.4",
+      "version_count": 129,
+      "last_updated": "2025-12-14T14:51:15.060Z"
+    },
+    {
+      "name": "omnictl",
+      "latest_version": "1.3.4",
+      "version_count": 76,
+      "last_updated": "2025-12-14T14:51:15.096Z"
+    },
+    {
+      "name": "onyx",
+      "latest_version": "0.1.13-beta",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:15.135Z"
+    },
+    {
+      "name": "op",
+      "latest_version": "2.32.0",
+      "version_count": 150,
+      "last_updated": "2025-12-14T14:51:15.172Z"
+    },
+    {
+      "name": "opa",
+      "latest_version": "1.11.0",
+      "version_count": 183,
+      "last_updated": "2025-12-14T14:51:15.215Z"
+    },
+    {
+      "name": "opam",
+      "latest_version": "2.5.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:15.253Z"
+    },
+    {
+      "name": "openbao",
+      "latest_version": "2.4.4",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:15.291Z"
+    },
+    {
+      "name": "openfaas-cli",
+      "latest_version": "0.18.0",
+      "version_count": 177,
+      "last_updated": "2025-12-14T14:51:15.368Z"
+    },
+    {
+      "name": "openfaas-faas",
+      "latest_version": "0.16.38",
+      "version_count": 220,
+      "last_updated": "2025-12-14T14:51:15.407Z"
+    },
+    {
+      "name": "openfaas-faas-cli",
+      "latest_version": "0.16.37",
+      "version_count": 219,
+      "last_updated": "2025-12-14T14:51:15.445Z"
+    },
+    {
+      "name": "opengrep",
+      "latest_version": "1.12.1",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:51:15.483Z"
+    },
+    {
+      "name": "opensearch",
+      "latest_version": "3.3.2",
+      "version_count": 70,
+      "last_updated": "2025-12-14T14:51:15.563Z"
+    },
+    {
+      "name": "opensearch-cli",
+      "latest_version": "1.2.0",
+      "version_count": 3,
+      "last_updated": "2025-12-14T14:51:15.602Z"
+    },
+    {
+      "name": "opentofu",
+      "latest_version": "1.11.1",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:15.643Z"
+    },
+    {
+      "name": "operator-sdk",
+      "latest_version": "1.42.0",
+      "version_count": 102,
+      "last_updated": "2025-12-14T14:51:15.681Z"
+    },
+    {
+      "name": "opsgenie-lamp",
+      "latest_version": "3.1.4",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:51:15.720Z"
+    },
+    {
+      "name": "oras",
+      "latest_version": "1.3.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:15.757Z"
+    },
+    {
+      "name": "osm",
+      "latest_version": "1.2.4",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:15.794Z"
+    },
+    {
+      "name": "osqueryi",
+      "latest_version": "5.20.0",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:15.832Z"
+    },
+    {
+      "name": "osv-scanner",
+      "latest_version": "2.3.1",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:15.873Z"
+    },
+    {
+      "name": "overmind",
+      "latest_version": "2.5.1",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:15.910Z"
+    },
+    {
+      "name": "oxipng",
+      "latest_version": "10.0.0",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:15.948Z"
+    },
+    {
+      "name": "oxker",
+      "latest_version": "0.12.0",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:51:15.987Z"
+    },
+    {
+      "name": "oxlint",
+      "latest_version": "1.16.0",
+      "version_count": 133,
+      "last_updated": "2025-12-14T14:51:16.028Z"
+    },
+    {
+      "name": "pachctl",
+      "latest_version": "2.12.2",
+      "version_count": 281,
+      "last_updated": "2025-12-14T14:51:16.070Z"
+    },
+    {
+      "name": "pack",
+      "latest_version": "0.39.1",
+      "version_count": 71,
+      "last_updated": "2025-12-14T14:51:16.111Z"
+    },
+    {
+      "name": "packer",
+      "latest_version": "1.14.3",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:16.150Z"
+    },
+    {
+      "name": "pandoc",
+      "latest_version": "3.8.3",
+      "version_count": 152,
+      "last_updated": "2025-12-14T14:51:16.192Z"
+    },
+    {
+      "name": "patat",
+      "latest_version": "0.15.2.0",
+      "version_count": 42,
+      "last_updated": "2025-12-14T14:51:16.232Z"
+    },
+    {
+      "name": "pdm",
+      "latest_version": "2.26.2",
+      "version_count": 240,
+      "last_updated": "2025-12-14T14:51:16.271Z"
+    },
+    {
+      "name": "peco",
+      "latest_version": "0.5.11",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:51:16.312Z"
+    },
+    {
+      "name": "periphery",
+      "latest_version": "3.3.0",
+      "version_count": 67,
+      "last_updated": "2025-12-14T14:51:16.351Z"
+    },
+    {
+      "name": "perl",
+      "latest_version": "5.42.0.0",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:16.392Z"
+    },
+    {
+      "name": "php",
+      "latest_version": "8.5.1RC2",
+      "version_count": 1300,
+      "last_updated": "2025-12-14T14:51:16.432Z"
+    },
+    {
+      "name": "pinact",
+      "latest_version": "3.5.0",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:51:16.479Z"
+    },
+    {
+      "name": "pint",
+      "latest_version": "0.78.0",
+      "version_count": 190,
+      "last_updated": "2025-12-14T14:51:16.520Z"
+    },
+    {
+      "name": "pipectl",
+      "latest_version": "0.55.0",
+      "version_count": 125,
+      "last_updated": "2025-12-14T14:51:16.559Z"
+    },
+    {
+      "name": "pipelight",
+      "latest_version": "0.10.0",
+      "version_count": 85,
+      "last_updated": "2025-12-14T14:51:16.601Z"
+    },
+    {
+      "name": "pipenv",
+      "latest_version": "2024.0.1",
+      "version_count": 388,
+      "last_updated": "2025-12-14T14:51:16.641Z"
+    },
+    {
+      "name": "pipx",
+      "latest_version": "1.8.0",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:16.682Z"
+    },
+    {
+      "name": "pitchfork",
+      "latest_version": "0.2.1",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:16.722Z"
+    },
+    {
+      "name": "pivnet",
+      "latest_version": "4.1.1",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:16.762Z"
+    },
+    {
+      "name": "pixi",
+      "latest_version": "0.61.0",
+      "version_count": 108,
+      "last_updated": "2025-12-14T14:51:16.802Z"
+    },
+    {
+      "name": "pkl",
+      "latest_version": "0.30.1",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:16.843Z"
+    },
+    {
+      "name": "please",
+      "latest_version": "17.27.0",
+      "version_count": 270,
+      "last_updated": "2025-12-14T14:51:16.881Z"
+    },
+    {
+      "name": "pluto",
+      "latest_version": "5.22.7",
+      "version_count": 126,
+      "last_updated": "2025-12-14T14:51:16.922Z"
+    },
+    {
+      "name": "pnpm",
+      "latest_version": "10.25.0",
+      "version_count": 318,
+      "last_updated": "2025-12-14T14:51:16.960Z"
+    },
+    {
+      "name": "podman",
+      "latest_version": "5.7.1",
+      "version_count": 158,
+      "last_updated": "2025-12-14T14:51:17.000Z"
+    },
+    {
+      "name": "poetry",
+      "latest_version": "2.2.1",
+      "version_count": 144,
+      "last_updated": "2025-12-14T14:51:17.039Z"
+    },
+    {
+      "name": "polaris",
+      "latest_version": "10.1.3",
+      "version_count": 100,
+      "last_updated": "2025-12-14T14:51:17.080Z"
+    },
+    {
+      "name": "popeye",
+      "latest_version": "0.22.1",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:17.122Z"
+    },
+    {
+      "name": "postgis",
+      "latest_version": "3.6.1",
+      "version_count": 187,
+      "last_updated": "2025-12-14T14:51:17.163Z"
+    },
+    {
+      "name": "postgres",
+      "latest_version": "18.1",
+      "version_count": 526,
+      "last_updated": "2025-12-14T14:51:17.202Z"
+    },
+    {
+      "name": "powerline-go",
+      "latest_version": "1.25",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:17.239Z"
+    },
+    {
+      "name": "powerpipe",
+      "latest_version": "1.4.2",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:17.277Z"
+    },
+    {
+      "name": "powershell",
+      "latest_version": "7.5.4",
+      "version_count": 129,
+      "last_updated": "2025-12-14T14:51:17.317Z"
+    },
+    {
+      "name": "powershell-core",
+      "latest_version": "7.5.4",
+      "version_count": 129,
+      "last_updated": "2025-12-14T14:51:17.355Z"
+    },
+    {
+      "name": "pre-commit",
+      "latest_version": "4.5.0",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:17.394Z"
+    },
+    {
+      "name": "prek",
+      "latest_version": "0.2.22",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:17.431Z"
+    },
+    {
+      "name": "process-compose",
+      "latest_version": "1.85.0",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:17.468Z"
+    },
+    {
+      "name": "promtool",
+      "latest_version": "3.8.0",
+      "version_count": 213,
+      "last_updated": "2025-12-14T14:51:17.507Z"
+    },
+    {
+      "name": "protobuf",
+      "latest_version": "33.2",
+      "version_count": 132,
+      "last_updated": "2025-12-14T14:51:17.547Z"
+    },
+    {
+      "name": "protoc",
+      "latest_version": "33.2",
+      "version_count": 132,
+      "last_updated": "2025-12-14T14:51:17.586Z"
+    },
+    {
+      "name": "protoc-gen-connect-go",
+      "latest_version": "1.18.0",
+      "version_count": 35,
+      "last_updated": "2025-12-14T14:51:17.624Z"
+    },
+    {
+      "name": "protoc-gen-go",
+      "latest_version": "1.36.11",
+      "version_count": 35,
+      "last_updated": "2025-12-14T14:51:17.663Z"
+    },
+    {
+      "name": "protoc-gen-go-grpc",
+      "latest_version": "1.6.0",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:17.703Z"
+    },
+    {
+      "name": "protoc-gen-grpc-web",
+      "latest_version": "test.protobuf.27.1",
+      "version_count": 25,
+      "last_updated": "2025-12-14T14:51:17.741Z"
+    },
+    {
+      "name": "protoc-gen-js",
+      "latest_version": "4.0.1",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:51:17.778Z"
+    },
+    {
+      "name": "protoc-gen-validate",
+      "latest_version": "1.3.0",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:17.816Z"
+    },
+    {
+      "name": "protolint",
+      "latest_version": "0.56.4",
+      "version_count": 119,
+      "last_updated": "2025-12-14T14:51:17.854Z"
+    },
+    {
+      "name": "protonge",
+      "latest_version": "GE-Proton10-26",
+      "version_count": 217,
+      "last_updated": "2025-12-14T14:51:17.892Z"
+    },
+    {
+      "name": "psc-package",
+      "latest_version": "0.6.2",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:17.935Z"
+    },
+    {
+      "name": "pulumi",
+      "latest_version": "3.212.0",
+      "version_count": 307,
+      "last_updated": "2025-12-14T14:51:18.013Z"
+    },
+    {
+      "name": "purerl",
+      "latest_version": "0.0.24",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:18.053Z"
+    },
+    {
+      "name": "purescript",
+      "latest_version": "0.15.15",
+      "version_count": 103,
+      "last_updated": "2025-12-14T14:51:18.094Z"
+    },
+    {
+      "name": "python",
+      "latest_version": "3.15-dev",
+      "version_count": 994,
+      "last_updated": "2025-12-14T14:51:18.174Z"
+    },
+    {
+      "name": "python-precompiled",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v4-unknown-linux-musl-noopt-full.tar.zst",
+      "version_count": 29836,
+      "last_updated": "2025-12-14T14:51:18.504Z"
+    },
+    {
+      "name": "python-precompiled-aarch64-apple-darwin",
+      "latest_version": "cpython-3.15.0a2+20251209-aarch64-apple-darwin-pgo+lto-full.tar.zst",
+      "version_count": 1495,
+      "last_updated": "2025-12-14T14:51:18.593Z"
+    },
+    {
+      "name": "python-precompiled-aarch64-pc-windows-msvc",
+      "latest_version": "cpython-3.15.0a2+20251209-aarch64-pc-windows-msvc-pgo-full.tar.zst",
+      "version_count": 308,
+      "last_updated": "2025-12-14T14:51:18.637Z"
+    },
+    {
+      "name": "python-precompiled-aarch64-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-aarch64-unknown-linux-gnu-pgo+lto-full.tar.zst",
+      "version_count": 1572,
+      "last_updated": "2025-12-14T14:51:18.683Z"
+    },
+    {
+      "name": "python-precompiled-aarch64-unknown-linux-musl",
+      "latest_version": "cpython-3.15.0a2+20251209-aarch64-unknown-linux-musl-noopt-full.tar.zst",
+      "version_count": 468,
+      "last_updated": "2025-12-14T14:51:18.726Z"
+    },
+    {
+      "name": "python-precompiled-armv7-unknown-linux-gnueabi",
+      "latest_version": "cpython-3.15.0a2+20251209-armv7-unknown-linux-gnueabi-noopt-full.tar.zst",
+      "version_count": 1538,
+      "last_updated": "2025-12-14T14:51:18.775Z"
+    },
+    {
+      "name": "python-precompiled-armv7-unknown-linux-gnueabihf",
+      "latest_version": "cpython-3.15.0a2+20251209-armv7-unknown-linux-gnueabihf-noopt-full.tar.zst",
+      "version_count": 1538,
+      "last_updated": "2025-12-14T14:51:18.827Z"
+    },
+    {
+      "name": "python-precompiled-i686-pc-windows-msvc",
+      "latest_version": "cpython-3.15.0a2+20251209-i686-pc-windows-msvc-pgo-full.tar.zst",
+      "version_count": 1310,
+      "last_updated": "2025-12-14T14:51:18.876Z"
+    },
+    {
+      "name": "python-precompiled-i686-pc-windows-msvc-shared",
+      "latest_version": "cpython-3.14.0a5+20250212-i686-pc-windows-msvc-shared-pgo-full.tar.zst",
+      "version_count": 347,
+      "last_updated": "2025-12-14T14:51:18.920Z"
+    },
+    {
+      "name": "python-precompiled-ppc64le-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-ppc64le-unknown-linux-gnu-noopt-full.tar.zst",
+      "version_count": 1622,
+      "last_updated": "2025-12-14T14:51:18.968Z"
+    },
+    {
+      "name": "python-precompiled-riscv64-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-riscv64-unknown-linux-gnu-noopt-full.tar.zst",
+      "version_count": 1224,
+      "last_updated": "2025-12-14T14:51:19.015Z"
+    },
+    {
+      "name": "python-precompiled-s390x-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-s390x-unknown-linux-gnu-noopt-full.tar.zst",
+      "version_count": 1610,
+      "last_updated": "2025-12-14T14:51:19.066Z"
+    },
+    {
+      "name": "python-precompiled-x86_64_v2-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v2-unknown-linux-gnu-pgo+lto-full.tar.zst",
+      "version_count": 1404,
+      "last_updated": "2025-12-14T14:51:19.117Z"
+    },
+    {
+      "name": "python-precompiled-x86_64_v2-unknown-linux-musl",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v2-unknown-linux-musl-noopt-full.tar.zst",
+      "version_count": 2112,
+      "last_updated": "2025-12-14T14:51:19.174Z"
+    },
+    {
+      "name": "python-precompiled-x86_64_v3-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v3-unknown-linux-gnu-pgo+lto-full.tar.zst",
+      "version_count": 1404,
+      "last_updated": "2025-12-14T14:51:19.224Z"
+    },
+    {
+      "name": "python-precompiled-x86_64_v3-unknown-linux-musl",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v3-unknown-linux-musl-noopt-full.tar.zst",
+      "version_count": 2112,
+      "last_updated": "2025-12-14T14:51:19.280Z"
+    },
+    {
+      "name": "python-precompiled-x86_64_v4-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v4-unknown-linux-gnu-pgo+lto-full.tar.zst",
+      "version_count": 1382,
+      "last_updated": "2025-12-14T14:51:19.329Z"
+    },
+    {
+      "name": "python-precompiled-x86_64_v4-unknown-linux-musl",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64_v4-unknown-linux-musl-noopt-full.tar.zst",
+      "version_count": 2112,
+      "last_updated": "2025-12-14T14:51:19.387Z"
+    },
+    {
+      "name": "python-precompiled-x86_64-apple-darwin",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64-apple-darwin-pgo+lto-full.tar.zst",
+      "version_count": 1495,
+      "last_updated": "2025-12-14T14:51:19.438Z"
+    },
+    {
+      "name": "python-precompiled-x86_64-pc-windows-msvc",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64-pc-windows-msvc-pgo-full.tar.zst",
+      "version_count": 1317,
+      "last_updated": "2025-12-14T14:51:19.486Z"
+    },
+    {
+      "name": "python-precompiled-x86_64-pc-windows-msvc-shared",
+      "latest_version": "cpython-3.14.0a5+20250212-x86_64-pc-windows-msvc-shared-pgo-full.tar.zst",
+      "version_count": 354,
+      "last_updated": "2025-12-14T14:51:19.529Z"
+    },
+    {
+      "name": "python-precompiled-x86_64-unknown-linux-gnu",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64-unknown-linux-gnu-pgo+lto-full.tar.zst",
+      "version_count": 1495,
+      "last_updated": "2025-12-14T14:51:19.578Z"
+    },
+    {
+      "name": "python-precompiled-x86_64-unknown-linux-musl",
+      "latest_version": "cpython-3.15.0a2+20251209-x86_64-unknown-linux-musl-noopt-full.tar.zst",
+      "version_count": 2187,
+      "last_updated": "2025-12-14T14:51:19.634Z"
+    },
+    {
+      "name": "qdns",
+      "latest_version": "0.19.11",
+      "version_count": 57,
+      "last_updated": "2025-12-14T14:51:19.677Z"
+    },
+    {
+      "name": "qsv",
+      "latest_version": "11.0.2",
+      "version_count": 217,
+      "last_updated": "2025-12-14T14:51:19.716Z"
+    },
+    {
+      "name": "quarkus",
+      "latest_version": "3.30.3",
+      "version_count": 24,
+      "last_updated": "2025-12-14T14:51:19.755Z"
+    },
+    {
+      "name": "r",
+      "latest_version": "4.5.2",
+      "version_count": 96,
+      "last_updated": "2025-12-14T14:51:19.794Z"
+    },
+    {
+      "name": "rabbitmq",
+      "latest_version": "4.2.1",
+      "version_count": 454,
+      "last_updated": "2025-12-14T14:51:19.839Z"
+    },
+    {
+      "name": "racket",
+      "latest_version": "9.0",
+      "version_count": 66,
+      "last_updated": "2025-12-14T14:51:19.880Z"
+    },
+    {
+      "name": "railway",
+      "latest_version": "4.15.0",
+      "version_count": 237,
+      "last_updated": "2025-12-14T14:51:19.919Z"
+    },
+    {
+      "name": "raku",
+      "latest_version": "2025.11",
+      "version_count": 57,
+      "last_updated": "2025-12-14T14:51:19.959Z"
+    },
+    {
+      "name": "rancher",
+      "latest_version": "2.13.0",
+      "version_count": 122,
+      "last_updated": "2025-12-14T14:51:19.999Z"
+    },
+    {
+      "name": "rbac-lookup",
+      "latest_version": "0.10.3",
+      "version_count": 28,
+      "last_updated": "2025-12-14T14:51:20.040Z"
+    },
+    {
+      "name": "rclone",
+      "latest_version": "1.72.1",
+      "version_count": 119,
+      "last_updated": "2025-12-14T14:51:20.079Z"
+    },
+    {
+      "name": "reckoner",
+      "latest_version": "6.2.0",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:51:20.117Z"
+    },
+    {
+      "name": "redis",
+      "latest_version": "8.4.0",
+      "version_count": 244,
+      "last_updated": "2025-12-14T14:51:20.159Z"
+    },
+    {
+      "name": "redis-cli",
+      "latest_version": "beta-9",
+      "version_count": 311,
+      "last_updated": "2025-12-14T14:51:20.197Z"
+    },
+    {
+      "name": "redo",
+      "latest_version": "0.8.4",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:20.238Z"
+    },
+    {
+      "name": "redpanda-connect",
+      "latest_version": "4.73.0",
+      "version_count": 404,
+      "last_updated": "2025-12-14T14:51:20.280Z"
+    },
+    {
+      "name": "reg",
+      "latest_version": "0.16.1",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:20.319Z"
+    },
+    {
+      "name": "regal",
+      "latest_version": "0.37.0",
+      "version_count": 58,
+      "last_updated": "2025-12-14T14:51:20.360Z"
+    },
+    {
+      "name": "regctl",
+      "latest_version": "0.11.1",
+      "version_count": 50,
+      "last_updated": "2025-12-14T14:51:20.401Z"
+    },
+    {
+      "name": "regsync",
+      "latest_version": "0.11.1",
+      "version_count": 50,
+      "last_updated": "2025-12-14T14:51:20.441Z"
+    },
+    {
+      "name": "restic",
+      "latest_version": "0.18.1",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:51:20.480Z"
+    },
+    {
+      "name": "restish",
+      "latest_version": "0.21.2",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:20.519Z"
+    },
+    {
+      "name": "resvg",
+      "latest_version": "0.45.1",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:20.559Z"
+    },
+    {
+      "name": "revive",
+      "latest_version": "1.13.0",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:51:20.599Z"
+    },
+    {
+      "name": "rg",
+      "latest_version": "15.1.0",
+      "version_count": 74,
+      "last_updated": "2025-12-14T14:51:20.639Z"
+    },
+    {
+      "name": "richgo",
+      "latest_version": "0.3.12",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:20.680Z"
+    },
+    {
+      "name": "riff",
+      "latest_version": "0.4.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:20.721Z"
+    },
+    {
+      "name": "ripgrep",
+      "latest_version": "15.1.0",
+      "version_count": 74,
+      "last_updated": "2025-12-14T14:51:20.762Z"
+    },
+    {
+      "name": "ripgrep-all",
+      "latest_version": "0.10.10",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:20.808Z"
+    },
+    {
+      "name": "ripsecret",
+      "latest_version": "0.1.9",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:20.849Z"
+    },
+    {
+      "name": "ripsecrets",
+      "latest_version": "0.1.11",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:20.889Z"
+    },
+    {
+      "name": "rke",
+      "latest_version": "1.8.8",
+      "version_count": 217,
+      "last_updated": "2025-12-14T14:51:20.929Z"
+    },
+    {
+      "name": "rlwrap",
+      "latest_version": "0.48",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:20.970Z"
+    },
+    {
+      "name": "rmz",
+      "latest_version": "3.1.1",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:21.008Z"
+    },
+    {
+      "name": "rocq",
+      "latest_version": "8.13.1",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:51:21.048Z"
+    },
+    {
+      "name": "rome",
+      "latest_version": "12.1.3-nightly.50eb45f",
+      "version_count": 46,
+      "last_updated": "2025-12-14T14:51:21.088Z"
+    },
+    {
+      "name": "rstash",
+      "latest_version": "0.2.1",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:51:21.129Z"
+    },
+    {
+      "name": "ruby",
+      "latest_version": "4.0-dev",
+      "version_count": 659,
+      "last_updated": "2025-12-14T14:51:21.169Z"
+    },
+    {
+      "name": "ruff",
+      "latest_version": "0.14.9",
+      "version_count": 166,
+      "last_updated": "2025-12-14T14:51:21.214Z"
+    },
+    {
+      "name": "rust-analyzer",
+      "latest_version": "2025-12-08",
+      "version_count": 314,
+      "last_updated": "2025-12-14T14:51:21.311Z"
+    },
+    {
+      "name": "rustic",
+      "latest_version": "0.10.2",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:21.350Z"
+    },
+    {
+      "name": "rye",
+      "latest_version": "0.44.0",
+      "version_count": 48,
+      "last_updated": "2025-12-14T14:51:21.389Z"
+    },
+    {
+      "name": "saml2aws",
+      "latest_version": "2.36.19",
+      "version_count": 91,
+      "last_updated": "2025-12-14T14:51:21.431Z"
+    },
+    {
+      "name": "sampler",
+      "latest_version": "1.1.0",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:51:21.473Z"
+    },
+    {
+      "name": "sbcl",
+      "latest_version": "2.5.11",
+      "version_count": 166,
+      "last_updated": "2025-12-14T14:51:21.514Z"
+    },
+    {
+      "name": "sbt",
+      "latest_version": "1.11.7",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:21.557Z"
+    },
+    {
+      "name": "scala",
+      "latest_version": "3.7.4",
+      "version_count": 135,
+      "last_updated": "2025-12-14T14:51:21.596Z"
+    },
+    {
+      "name": "scala-cli",
+      "latest_version": "1.11.0",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:51:21.639Z"
+    },
+    {
+      "name": "scaleway",
+      "latest_version": "2.48.0",
+      "version_count": 88,
+      "last_updated": "2025-12-14T14:51:21.679Z"
+    },
+    {
+      "name": "scaleway-cli",
+      "latest_version": "2.48.0",
+      "version_count": 88,
+      "last_updated": "2025-12-14T14:51:21.727Z"
+    },
+    {
+      "name": "scalingo-cli",
+      "latest_version": "1.41.0",
+      "version_count": 78,
+      "last_updated": "2025-12-14T14:51:21.768Z"
+    },
+    {
+      "name": "scarb",
+      "latest_version": "2.14.0",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:21.809Z"
+    },
+    {
+      "name": "sccache",
+      "latest_version": "0.12.0",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:21.850Z"
+    },
+    {
+      "name": "scenery",
+      "latest_version": "0.1.5",
+      "version_count": 6,
+      "last_updated": "2025-12-14T14:51:21.894Z"
+    },
+    {
+      "name": "schemacrawler",
+      "latest_version": "early-access-release",
+      "version_count": 224,
+      "last_updated": "2025-12-14T14:51:21.936Z"
+    },
+    {
+      "name": "scie-pants",
+      "latest_version": "0.12.5",
+      "version_count": 41,
+      "last_updated": "2025-12-14T14:51:21.976Z"
+    },
+    {
+      "name": "scooter",
+      "latest_version": "0.8.4",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:22.015Z"
+    },
+    {
+      "name": "scorecard",
+      "latest_version": "5.4.0",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:22.056Z"
+    },
+    {
+      "name": "sd",
+      "latest_version": "1.0.0",
+      "version_count": 8,
+      "last_updated": "2025-12-14T14:51:22.096Z"
+    },
+    {
+      "name": "seed7",
+      "latest_version": "05_20250930",
+      "version_count": 340,
+      "last_updated": "2025-12-14T14:51:22.136Z"
+    },
+    {
+      "name": "semgrep",
+      "latest_version": "1.145.2",
+      "version_count": 322,
+      "last_updated": "2025-12-14T14:51:22.177Z"
+    },
+    {
+      "name": "semtag",
+      "latest_version": "0.2.0",
+      "version_count": 17,
+      "last_updated": "2025-12-14T14:51:22.218Z"
+    },
+    {
+      "name": "semver",
+      "latest_version": "3.4.0",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:22.260Z"
+    },
+    {
+      "name": "sentinel",
+      "latest_version": "0.40.0",
+      "version_count": 89,
+      "last_updated": "2025-12-14T14:51:22.301Z"
+    },
+    {
+      "name": "sentry",
+      "latest_version": "2.58.4",
+      "version_count": 347,
+      "last_updated": "2025-12-14T14:51:22.341Z"
+    },
+    {
+      "name": "sentry-cli",
+      "latest_version": "2.58.4",
+      "version_count": 347,
+      "last_updated": "2025-12-14T14:51:22.381Z"
+    },
+    {
+      "name": "serf",
+      "latest_version": "0.8.2",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:22.420Z"
+    },
+    {
+      "name": "serverless",
+      "latest_version": "beta1.1",
+      "version_count": 490,
+      "last_updated": "2025-12-14T14:51:22.460Z"
+    },
+    {
+      "name": "setup-envtest",
+      "latest_version": "0.22.4",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:22.500Z"
+    },
+    {
+      "name": "shell2http",
+      "latest_version": "1.17.0",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:22.539Z"
+    },
+    {
+      "name": "shellcheck",
+      "latest_version": "0.11.0",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:22.578Z"
+    },
+    {
+      "name": "shellspec",
+      "latest_version": "0.28.1",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:22.618Z"
+    },
+    {
+      "name": "shfmt",
+      "latest_version": "3.12.0",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:22.657Z"
+    },
+    {
+      "name": "shorebird",
+      "latest_version": "1.6.71",
+      "version_count": 238,
+      "last_updated": "2025-12-14T14:51:22.695Z"
+    },
+    {
+      "name": "signadot",
+      "latest_version": "1.3.0",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:51:22.734Z"
+    },
+    {
+      "name": "sinker",
+      "latest_version": "0.18.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:22.774Z"
+    },
+    {
+      "name": "skaffold",
+      "latest_version": "2.17.0",
+      "version_count": 181,
+      "last_updated": "2025-12-14T14:51:22.812Z"
+    },
+    {
+      "name": "skate",
+      "latest_version": "1.0.1",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:22.850Z"
+    },
+    {
+      "name": "skeema",
+      "latest_version": "1.13.2",
+      "version_count": 51,
+      "last_updated": "2025-12-14T14:51:22.889Z"
+    },
+    {
+      "name": "sloth",
+      "latest_version": "0.12.0",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:22.930Z"
+    },
+    {
+      "name": "slsa-verifier",
+      "latest_version": "2.7.1-rc.2",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:22.970Z"
+    },
+    {
+      "name": "smithy",
+      "latest_version": "1.65.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:23.012Z"
+    },
+    {
+      "name": "soft-serve",
+      "latest_version": "0.11.1",
+      "version_count": 44,
+      "last_updated": "2025-12-14T14:51:23.093Z"
+    },
+    {
+      "name": "solidity",
+      "latest_version": "0.8.31",
+      "version_count": 113,
+      "last_updated": "2025-12-14T14:51:23.135Z"
+    },
+    {
+      "name": "sonar-scanner-cli",
+      "latest_version": "8.0.1.6346",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:23.174Z"
+    },
+    {
+      "name": "sonobuoy",
+      "latest_version": "0.57.3",
+      "version_count": 70,
+      "last_updated": "2025-12-14T14:51:23.214Z"
+    },
+    {
+      "name": "sops",
+      "latest_version": "3.11.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:23.254Z"
+    },
+    {
+      "name": "sopstool",
+      "latest_version": "1.2.1",
+      "version_count": 16,
+      "last_updated": "2025-12-14T14:51:23.294Z"
+    },
+    {
+      "name": "soracom",
+      "latest_version": "1.7.0",
+      "version_count": 86,
+      "last_updated": "2025-12-14T14:51:23.334Z"
+    },
+    {
+      "name": "sourcery",
+      "latest_version": "2.3.0",
+      "version_count": 103,
+      "last_updated": "2025-12-14T14:51:23.374Z"
+    },
+    {
+      "name": "spacectl",
+      "latest_version": "1.17.0",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:51:23.413Z"
+    },
+    {
+      "name": "spago",
+      "latest_version": "0.21.0",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:51:23.453Z"
+    },
+    {
+      "name": "spark",
+      "latest_version": "4.1.0-rc3",
+      "version_count": 269,
+      "last_updated": "2025-12-14T14:51:23.500Z"
+    },
+    {
+      "name": "specstory",
+      "latest_version": "0.16.0",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:23.542Z"
+    },
+    {
+      "name": "spectral",
+      "latest_version": "6.15.0",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:23.582Z"
+    },
+    {
+      "name": "spin",
+      "latest_version": "1.30.0",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:23.621Z"
+    },
+    {
+      "name": "spring-boot",
+      "latest_version": "4.0.0",
+      "version_count": 268,
+      "last_updated": "2025-12-14T14:51:23.660Z"
+    },
+    {
+      "name": "spruce",
+      "latest_version": "1.31.1",
+      "version_count": 82,
+      "last_updated": "2025-12-14T14:51:23.698Z"
+    },
+    {
+      "name": "sqldef",
+      "latest_version": "0.17.26",
+      "version_count": 268,
+      "last_updated": "2025-12-14T14:51:23.736Z"
+    },
+    {
+      "name": "sqlite",
+      "latest_version": "3.51.1",
+      "version_count": 253,
+      "last_updated": "2025-12-14T14:51:23.774Z"
+    },
+    {
+      "name": "sshi",
+      "latest_version": "0.11.0",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:23.854Z"
+    },
+    {
+      "name": "sshuttle",
+      "latest_version": "sshuttle-0.72",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:23.892Z"
+    },
+    {
+      "name": "sst",
+      "latest_version": "3.17.25",
+      "version_count": 1124,
+      "last_updated": "2025-12-14T14:51:23.932Z"
+    },
+    {
+      "name": "stack",
+      "latest_version": "3.7.1",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:51:23.973Z"
+    },
+    {
+      "name": "starboard",
+      "latest_version": "0.15.28",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:24.012Z"
+    },
+    {
+      "name": "starknet-foundry",
+      "latest_version": "0.54.0",
+      "version_count": 72,
+      "last_updated": "2025-12-14T14:51:24.052Z"
+    },
+    {
+      "name": "starknet-foundry-sncast",
+      "latest_version": "0.54.0",
+      "version_count": 72,
+      "last_updated": "2025-12-14T14:51:24.092Z"
+    },
+    {
+      "name": "starport",
+      "latest_version": "nightly",
+      "version_count": 83,
+      "last_updated": "2025-12-14T14:51:24.133Z"
+    },
+    {
+      "name": "starship",
+      "latest_version": "1.24.1",
+      "version_count": 127,
+      "last_updated": "2025-12-14T14:51:24.173Z"
+    },
+    {
+      "name": "staticcheck",
+      "latest_version": "2025.1.1",
+      "version_count": 38,
+      "last_updated": "2025-12-14T14:51:24.212Z"
+    },
+    {
+      "name": "steampipe",
+      "latest_version": "2.3.2",
+      "version_count": 140,
+      "last_updated": "2025-12-14T14:51:24.251Z"
+    },
+    {
+      "name": "step",
+      "latest_version": "0.29.0",
+      "version_count": 83,
+      "last_updated": "2025-12-14T14:51:24.291Z"
+    },
+    {
+      "name": "stern",
+      "latest_version": "1.33.1",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:24.332Z"
+    },
+    {
+      "name": "stripe",
+      "latest_version": "1.33.0",
+      "version_count": 215,
+      "last_updated": "2025-12-14T14:51:24.372Z"
+    },
+    {
+      "name": "stripe-cli",
+      "latest_version": "1.33.0",
+      "version_count": 215,
+      "last_updated": "2025-12-14T14:51:24.417Z"
+    },
+    {
+      "name": "stylua",
+      "latest_version": "2.3.1",
+      "version_count": 55,
+      "last_updated": "2025-12-14T14:51:24.458Z"
+    },
+    {
+      "name": "supabase",
+      "latest_version": "2.65.5",
+      "version_count": 587,
+      "last_updated": "2025-12-14T14:51:24.500Z"
+    },
+    {
+      "name": "superfile",
+      "latest_version": "1.4.0",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:24.542Z"
+    },
+    {
+      "name": "superhtml",
+      "latest_version": "0.6.2",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:24.582Z"
+    },
+    {
+      "name": "sver",
+      "latest_version": "0.1.20",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:24.623Z"
+    },
+    {
+      "name": "svu",
+      "latest_version": "3.3.0",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:24.663Z"
+    },
+    {
+      "name": "swag",
+      "latest_version": "1.16.6",
+      "version_count": 46,
+      "last_updated": "2025-12-14T14:51:24.703Z"
+    },
+    {
+      "name": "swift",
+      "latest_version": "6.2.3",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:24.743Z"
+    },
+    {
+      "name": "swift-package-list",
+      "latest_version": "4.9.0",
+      "version_count": 44,
+      "last_updated": "2025-12-14T14:51:24.783Z"
+    },
+    {
+      "name": "swiftformat",
+      "latest_version": "0.58.7",
+      "version_count": 311,
+      "last_updated": "2025-12-14T14:51:24.823Z"
+    },
+    {
+      "name": "swiftgen",
+      "latest_version": "6.6.3",
+      "version_count": 58,
+      "last_updated": "2025-12-14T14:51:24.864Z"
+    },
+    {
+      "name": "swiftlint",
+      "latest_version": "0.62.2",
+      "version_count": 124,
+      "last_updated": "2025-12-14T14:51:24.906Z"
+    },
+    {
+      "name": "swiprolog",
+      "latest_version": "9.2.9",
+      "version_count": 84,
+      "last_updated": "2025-12-14T14:51:24.946Z"
+    },
+    {
+      "name": "syft",
+      "latest_version": "1.38.2",
+      "version_count": 215,
+      "last_updated": "2025-12-14T14:51:24.986Z"
+    },
+    {
+      "name": "syncher",
+      "latest_version": "0.0.45",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:25.030Z"
+    },
+    {
+      "name": "tailpipe",
+      "latest_version": "0.7.1",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:25.081Z"
+    },
+    {
+      "name": "talhelper",
+      "latest_version": "3.0.41",
+      "version_count": 134,
+      "last_updated": "2025-12-14T14:51:25.125Z"
+    },
+    {
+      "name": "talos",
+      "latest_version": "1.10.8",
+      "version_count": 139,
+      "last_updated": "2025-12-14T14:51:25.167Z"
+    },
+    {
+      "name": "talosctl",
+      "latest_version": "1.10.8",
+      "version_count": 139,
+      "last_updated": "2025-12-14T14:51:25.207Z"
+    },
+    {
+      "name": "tanka",
+      "latest_version": "0.36.2",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:25.248Z"
+    },
+    {
+      "name": "tanzu",
+      "latest_version": "1.5.3",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:25.289Z"
+    },
+    {
+      "name": "taplo",
+      "latest_version": "0.10.0",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:25.329Z"
+    },
+    {
+      "name": "task",
+      "latest_version": "3.45.5",
+      "version_count": 102,
+      "last_updated": "2025-12-14T14:51:25.368Z"
+    },
+    {
+      "name": "tbls",
+      "latest_version": "1.92.0",
+      "version_count": 224,
+      "last_updated": "2025-12-14T14:51:25.406Z"
+    },
+    {
+      "name": "tctl",
+      "latest_version": "1.18.4",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:25.443Z"
+    },
+    {
+      "name": "tekton",
+      "latest_version": "0.43.0",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:51:25.481Z"
+    },
+    {
+      "name": "tekton-cli",
+      "latest_version": "0.43.0",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:51:25.519Z"
+    },
+    {
+      "name": "teleport-community",
+      "latest_version": "18.5.1",
+      "version_count": 745,
+      "last_updated": "2025-12-14T14:51:25.558Z"
+    },
+    {
+      "name": "telepresence",
+      "latest_version": "2.25.1",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:25.596Z"
+    },
+    {
+      "name": "television",
+      "latest_version": "0.13.12",
+      "version_count": 69,
+      "last_updated": "2025-12-14T14:51:25.635Z"
+    },
+    {
+      "name": "teller",
+      "latest_version": "2.0.7",
+      "version_count": 19,
+      "last_updated": "2025-12-14T14:51:25.674Z"
+    },
+    {
+      "name": "temporal",
+      "latest_version": "1.29.1",
+      "version_count": 143,
+      "last_updated": "2025-12-14T14:51:25.711Z"
+    },
+    {
+      "name": "temporalite",
+      "latest_version": "0.3.0",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:25.749Z"
+    },
+    {
+      "name": "terradozer",
+      "latest_version": "0.1.2",
+      "version_count": 3,
+      "last_updated": "2025-12-14T14:51:25.786Z"
+    },
+    {
+      "name": "terraform",
+      "latest_version": "1.14.2",
+      "version_count": 244,
+      "last_updated": "2025-12-14T14:51:25.824Z"
+    },
+    {
+      "name": "terraform-docs",
+      "latest_version": "0.21.0",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:25.861Z"
+    },
+    {
+      "name": "terraform-ls",
+      "latest_version": "0.38.3",
+      "version_count": 93,
+      "last_updated": "2025-12-14T14:51:25.900Z"
+    },
+    {
+      "name": "terraform-lsp",
+      "latest_version": "0.0.12",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:25.938Z"
+    },
+    {
+      "name": "terraform-validator",
+      "latest_version": "3.1.3",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:25.977Z"
+    },
+    {
+      "name": "terraformer",
+      "latest_version": "0.8.30",
+      "version_count": 21,
+      "last_updated": "2025-12-14T14:51:26.017Z"
+    },
+    {
+      "name": "terragrunt",
+      "latest_version": "0.95.1",
+      "version_count": 827,
+      "last_updated": "2025-12-14T14:51:26.056Z"
+    },
+    {
+      "name": "terramate",
+      "latest_version": "0.15.1",
+      "version_count": 136,
+      "last_updated": "2025-12-14T14:51:26.095Z"
+    },
+    {
+      "name": "terrascan",
+      "latest_version": "1.19.9",
+      "version_count": 50,
+      "last_updated": "2025-12-14T14:51:26.134Z"
+    },
+    {
+      "name": "tf-summarize",
+      "latest_version": "0.3.14",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:26.173Z"
+    },
+    {
+      "name": "tfctl",
+      "latest_version": "0.16.0-rc.7",
+      "version_count": 65,
+      "last_updated": "2025-12-14T14:51:26.255Z"
+    },
+    {
+      "name": "tfenv",
+      "latest_version": "3.0.0",
+      "version_count": 22,
+      "last_updated": "2025-12-14T14:51:26.294Z"
+    },
+    {
+      "name": "tflint",
+      "latest_version": "0.60.0",
+      "version_count": 129,
+      "last_updated": "2025-12-14T14:51:26.333Z"
+    },
+    {
+      "name": "tfmigrate",
+      "latest_version": "0.4.3",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:51:26.373Z"
+    },
+    {
+      "name": "tfnotify",
+      "latest_version": "1.1.5",
+      "version_count": 34,
+      "last_updated": "2025-12-14T14:51:26.411Z"
+    },
+    {
+      "name": "tfsec",
+      "latest_version": "1.28.14",
+      "version_count": 307,
+      "last_updated": "2025-12-14T14:51:26.451Z"
+    },
+    {
+      "name": "tfstate-lookup",
+      "latest_version": "1.8.1",
+      "version_count": 52,
+      "last_updated": "2025-12-14T14:51:26.490Z"
+    },
+    {
+      "name": "tfswitch",
+      "latest_version": "1.11.0",
+      "version_count": 78,
+      "last_updated": "2025-12-14T14:51:26.529Z"
+    },
+    {
+      "name": "tfupdate",
+      "latest_version": "0.9.3",
+      "version_count": 40,
+      "last_updated": "2025-12-14T14:51:26.567Z"
+    },
+    {
+      "name": "thrift",
+      "latest_version": "0.22.0",
+      "version_count": 14,
+      "last_updated": "2025-12-14T14:51:26.606Z"
+    },
+    {
+      "name": "tilt",
+      "latest_version": "0.36.0",
+      "version_count": 254,
+      "last_updated": "2025-12-14T14:51:26.646Z"
+    },
+    {
+      "name": "timoni",
+      "latest_version": "0.25.2",
+      "version_count": 45,
+      "last_updated": "2025-12-14T14:51:26.685Z"
+    },
+    {
+      "name": "tinymist",
+      "latest_version": "0.14.4",
+      "version_count": 58,
+      "last_updated": "2025-12-14T14:51:26.723Z"
+    },
+    {
+      "name": "tinytex",
+      "latest_version": "untagged-06565b820c16842beb6f",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:51:26.761Z"
+    },
+    {
+      "name": "titan",
+      "latest_version": "0.6.0",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:26.800Z"
+    },
+    {
+      "name": "tlrc",
+      "latest_version": "1.12.0",
+      "version_count": 21,
+      "last_updated": "2025-12-14T14:51:26.838Z"
+    },
+    {
+      "name": "tlsg-cli",
+      "latest_version": "1.0.1",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:51:26.878Z"
+    },
+    {
+      "name": "tmux",
+      "latest_version": "3.6a",
+      "version_count": 39,
+      "last_updated": "2025-12-14T14:51:26.917Z"
+    },
+    {
+      "name": "tokei",
+      "latest_version": "13.0.0",
+      "version_count": 75,
+      "last_updated": "2025-12-14T14:51:26.957Z"
+    },
+    {
+      "name": "tombi",
+      "latest_version": "0.7.7",
+      "version_count": 189,
+      "last_updated": "2025-12-14T14:51:26.997Z"
+    },
+    {
+      "name": "tomcat",
+      "latest_version": "10.1.50",
+      "version_count": 391,
+      "last_updated": "2025-12-14T14:51:27.038Z"
+    },
+    {
+      "name": "tonnage",
+      "latest_version": "0.2.0",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:27.078Z"
+    },
+    {
+      "name": "tool-versions-to-env",
+      "latest_version": "1.0.8",
+      "version_count": 4,
+      "last_updated": "2025-12-14T14:51:27.120Z"
+    },
+    {
+      "name": "traefik",
+      "latest_version": "3.6.4",
+      "version_count": 247,
+      "last_updated": "2025-12-14T14:51:27.163Z"
+    },
+    {
+      "name": "transifex",
+      "latest_version": "1.6.17",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:27.205Z"
+    },
+    {
+      "name": "trdsql",
+      "latest_version": "1.1.0",
+      "version_count": 32,
+      "last_updated": "2025-12-14T14:51:27.245Z"
+    },
+    {
+      "name": "tree-sitter",
+      "latest_version": "0.26.3",
+      "version_count": 91,
+      "last_updated": "2025-12-14T14:51:27.286Z"
+    },
+    {
+      "name": "tridentctl",
+      "latest_version": "25.06.3",
+      "version_count": 61,
+      "last_updated": "2025-12-14T14:51:27.326Z"
+    },
+    {
+      "name": "trivy",
+      "latest_version": "0.68.1",
+      "version_count": 176,
+      "last_updated": "2025-12-14T14:51:27.367Z"
+    },
+    {
+      "name": "trufflehog",
+      "latest_version": "3.92.3",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:51:27.406Z"
+    },
+    {
+      "name": "trzsz-ssh",
+      "latest_version": "0.1.23",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:27.447Z"
+    },
+    {
+      "name": "tssh",
+      "latest_version": "0.1.23",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:27.488Z"
+    },
+    {
+      "name": "tsuru",
+      "latest_version": "1.26.1",
+      "version_count": 115,
+      "last_updated": "2025-12-14T14:51:27.528Z"
+    },
+    {
+      "name": "ttyd",
+      "latest_version": "1.7.7",
+      "version_count": 29,
+      "last_updated": "2025-12-14T14:51:27.569Z"
+    },
+    {
+      "name": "tuist",
+      "latest_version": "4.115.1",
+      "version_count": 440,
+      "last_updated": "2025-12-14T14:51:27.607Z"
+    },
+    {
+      "name": "tusd",
+      "latest_version": "2.8.0",
+      "version_count": 62,
+      "last_updated": "2025-12-14T14:51:27.647Z"
+    },
+    {
+      "name": "tx",
+      "latest_version": "1.6.17",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:27.688Z"
+    },
+    {
+      "name": "typos",
+      "latest_version": "1.40.0",
+      "version_count": 251,
+      "last_updated": "2025-12-14T14:51:27.727Z"
+    },
+    {
+      "name": "typst",
+      "latest_version": "0.14.2",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:27.773Z"
+    },
+    {
+      "name": "typstyle",
+      "latest_version": "0.14.0",
+      "version_count": 69,
+      "last_updated": "2025-12-14T14:51:27.814Z"
+    },
+    {
+      "name": "uaa",
+      "latest_version": "0.16.0",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:27.854Z"
+    },
+    {
+      "name": "uaa-cli",
+      "latest_version": "0.16.0",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:27.896Z"
+    },
+    {
+      "name": "ubi",
+      "latest_version": "0.8.4",
+      "version_count": 55,
+      "last_updated": "2025-12-14T14:51:27.935Z"
+    },
+    {
+      "name": "unison",
+      "latest_version": "release/1.0.0",
+      "version_count": 68,
+      "last_updated": "2025-12-14T14:51:27.974Z"
+    },
+    {
+      "name": "upctl",
+      "latest_version": "3.26.0",
+      "version_count": 62,
+      "last_updated": "2025-12-14T14:51:28.015Z"
+    },
+    {
+      "name": "updatecli",
+      "latest_version": "0.112.0",
+      "version_count": 216,
+      "last_updated": "2025-12-14T14:51:28.056Z"
+    },
+    {
+      "name": "upt",
+      "latest_version": "0.9.0",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:28.096Z"
+    },
+    {
+      "name": "upx",
+      "latest_version": "5.0.2",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:28.135Z"
+    },
+    {
+      "name": "usage",
+      "latest_version": "2.9.0",
+      "version_count": 74,
+      "last_updated": "2025-12-14T14:51:28.176Z"
+    },
+    {
+      "name": "usql",
+      "latest_version": "0.19.26",
+      "version_count": 80,
+      "last_updated": "2025-12-14T14:51:28.214Z"
+    },
+    {
+      "name": "uv",
+      "latest_version": "0.9.17",
+      "version_count": 238,
+      "last_updated": "2025-12-14T14:51:28.253Z"
+    },
+    {
+      "name": "v",
+      "latest_version": "weekly.2025.50",
+      "version_count": 306,
+      "last_updated": "2025-12-14T14:51:28.293Z"
+    },
+    {
+      "name": "vacuum",
+      "latest_version": "0.20.5",
+      "version_count": 203,
+      "last_updated": "2025-12-14T14:51:28.334Z"
+    },
+    {
+      "name": "vale",
+      "latest_version": "3.13.0",
+      "version_count": 168,
+      "last_updated": "2025-12-14T14:51:28.372Z"
+    },
+    {
+      "name": "vals",
+      "latest_version": "0.42.6",
+      "version_count": 66,
+      "last_updated": "2025-12-14T14:51:28.412Z"
+    },
+    {
+      "name": "vault",
+      "latest_version": "1.21.1",
+      "version_count": 147,
+      "last_updated": "2025-12-14T14:51:28.452Z"
+    },
+    {
+      "name": "vcluster",
+      "latest_version": "0.30.3",
+      "version_count": 112,
+      "last_updated": "2025-12-14T14:51:28.494Z"
+    },
+    {
+      "name": "vela",
+      "latest_version": "ela-v0.0.2-alpha",
+      "version_count": 195,
+      "last_updated": "2025-12-14T14:51:28.532Z"
+    },
+    {
+      "name": "velad",
+      "latest_version": "1.9.5",
+      "version_count": 44,
+      "last_updated": "2025-12-14T14:51:28.570Z"
+    },
+    {
+      "name": "velero",
+      "latest_version": "1.17.1",
+      "version_count": 80,
+      "last_updated": "2025-12-14T14:51:28.611Z"
+    },
+    {
+      "name": "vendir",
+      "latest_version": "0.45.0",
+      "version_count": 99,
+      "last_updated": "2025-12-14T14:51:28.653Z"
+    },
+    {
+      "name": "venom",
+      "latest_version": "1.3.0-beta.3",
+      "version_count": 47,
+      "last_updated": "2025-12-14T14:51:28.692Z"
+    },
+    {
+      "name": "vespa-cli",
+      "latest_version": "8.620.35",
+      "version_count": 253,
+      "last_updated": "2025-12-14T14:51:28.732Z"
+    },
+    {
+      "name": "vfox",
+      "latest_version": "0.9.2",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:28.772Z"
+    },
+    {
+      "name": "vhs",
+      "latest_version": "0.10.0",
+      "version_count": 13,
+      "last_updated": "2025-12-14T14:51:28.813Z"
+    },
+    {
+      "name": "victoria-metrics",
+      "latest_version": "1.131.0",
+      "version_count": 367,
+      "last_updated": "2025-12-14T14:51:28.851Z"
+    },
+    {
+      "name": "viddy",
+      "latest_version": "1.3.0",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:28.892Z"
+    },
+    {
+      "name": "virtualos",
+      "latest_version": "0.1.119",
+      "version_count": 120,
+      "last_updated": "2025-12-14T14:51:28.932Z"
+    },
+    {
+      "name": "vivid",
+      "latest_version": "0.10.1",
+      "version_count": 11,
+      "last_updated": "2025-12-14T14:51:28.972Z"
+    },
+    {
+      "name": "vlang",
+      "latest_version": "2024.24",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:29.010Z"
+    },
+    {
+      "name": "vlt",
+      "latest_version": "1.1.0-alpha",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:29.050Z"
+    },
+    {
+      "name": "vultr",
+      "latest_version": "3.8.0",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:51:29.088Z"
+    },
+    {
+      "name": "vultr-cli",
+      "latest_version": "3.8.0",
+      "version_count": 73,
+      "last_updated": "2025-12-14T14:51:29.127Z"
+    },
+    {
+      "name": "wait-for-gh-rate-limit",
+      "latest_version": "1.0.0",
+      "version_count": 5,
+      "last_updated": "2025-12-14T14:51:29.166Z"
+    },
+    {
+      "name": "wash",
+      "latest_version": "0.42.0",
+      "version_count": 3,
+      "last_updated": "2025-12-14T14:51:29.206Z"
+    },
+    {
+      "name": "wasi-sdk",
+      "latest_version": "20+threads",
+      "version_count": 31,
+      "last_updated": "2025-12-14T14:51:29.245Z"
+    },
+    {
+      "name": "wasm3",
+      "latest_version": "0.5.0",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:51:29.283Z"
+    },
+    {
+      "name": "wasm4",
+      "latest_version": "2.7.1",
+      "version_count": 20,
+      "last_updated": "2025-12-14T14:51:29.321Z"
+    },
+    {
+      "name": "wasmer",
+      "latest_version": "6.1.0",
+      "version_count": 97,
+      "last_updated": "2025-12-14T14:51:29.360Z"
+    },
+    {
+      "name": "wasmtime",
+      "latest_version": "39.0.1",
+      "version_count": 153,
+      "last_updated": "2025-12-14T14:51:29.398Z"
+    },
+    {
+      "name": "watchexec",
+      "latest_version": "2.3.2",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:29.437Z"
+    },
+    {
+      "name": "waypoint",
+      "latest_version": "0.11.4",
+      "version_count": 43,
+      "last_updated": "2025-12-14T14:51:29.476Z"
+    },
+    {
+      "name": "weave-gitops",
+      "latest_version": "0.38.0",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:29.516Z"
+    },
+    {
+      "name": "websocat",
+      "latest_version": "1.14.0",
+      "version_count": 18,
+      "last_updated": "2025-12-14T14:51:29.555Z"
+    },
+    {
+      "name": "werf",
+      "latest_version": "2.56.1",
+      "version_count": 1358,
+      "last_updated": "2025-12-14T14:51:29.593Z"
+    },
+    {
+      "name": "wren",
+      "latest_version": "0.4.0",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:51:29.634Z"
+    },
+    {
+      "name": "wren-cli",
+      "latest_version": "0.4.0",
+      "version_count": 2,
+      "last_updated": "2025-12-14T14:51:29.673Z"
+    },
+    {
+      "name": "wrk",
+      "latest_version": "4.2.0",
+      "version_count": 21,
+      "last_updated": "2025-12-14T14:51:29.712Z"
+    },
+    {
+      "name": "wtfutil",
+      "latest_version": "0.47.1",
+      "version_count": 63,
+      "last_updated": "2025-12-14T14:51:29.753Z"
+    },
+    {
+      "name": "xc",
+      "latest_version": "0.8.6",
+      "version_count": 60,
+      "last_updated": "2025-12-14T14:51:29.794Z"
+    },
+    {
+      "name": "xcbeautify",
+      "latest_version": "3.1.2",
+      "version_count": 100,
+      "last_updated": "2025-12-14T14:51:29.831Z"
+    },
+    {
+      "name": "xchtmlreport",
+      "latest_version": "2.5.1",
+      "version_count": 9,
+      "last_updated": "2025-12-14T14:51:29.869Z"
+    },
+    {
+      "name": "xcodegen",
+      "latest_version": "2.44.1",
+      "version_count": 82,
+      "last_updated": "2025-12-14T14:51:29.908Z"
+    },
+    {
+      "name": "xcodes",
+      "latest_version": "1.6.2",
+      "version_count": 33,
+      "last_updated": "2025-12-14T14:51:29.945Z"
+    },
+    {
+      "name": "xcresultparser",
+      "latest_version": "1.9.3",
+      "version_count": 46,
+      "last_updated": "2025-12-14T14:51:29.984Z"
+    },
+    {
+      "name": "xcsift",
+      "latest_version": "1.0.15",
+      "version_count": 15,
+      "last_updated": "2025-12-14T14:51:30.023Z"
+    },
+    {
+      "name": "xh",
+      "latest_version": "0.25.0",
+      "version_count": 37,
+      "last_updated": "2025-12-14T14:51:30.063Z"
+    },
+    {
+      "name": "xxh",
+      "latest_version": "0.8.14",
+      "version_count": 54,
+      "last_updated": "2025-12-14T14:51:30.100Z"
+    },
+    {
+      "name": "yadm",
+      "latest_version": "3.5.0",
+      "version_count": 30,
+      "last_updated": "2025-12-14T14:51:30.138Z"
+    },
+    {
+      "name": "yamlfmt",
+      "latest_version": "0.20.0",
+      "version_count": 25,
+      "last_updated": "2025-12-14T14:51:30.176Z"
+    },
+    {
+      "name": "yamllint",
+      "latest_version": "1.37.1",
+      "version_count": 74,
+      "last_updated": "2025-12-14T14:51:30.217Z"
+    },
+    {
+      "name": "yamlscript",
+      "latest_version": "0.2.7",
+      "version_count": 80,
+      "last_updated": "2025-12-14T14:51:30.257Z"
+    },
+    {
+      "name": "yay",
+      "latest_version": "12.5.6",
+      "version_count": 107,
+      "last_updated": "2025-12-14T14:51:30.334Z"
+    },
+    {
+      "name": "yazi",
+      "latest_version": "25.5.31",
+      "version_count": 26,
+      "last_updated": "2025-12-14T14:51:30.372Z"
+    },
+    {
+      "name": "yj",
+      "latest_version": "5.1.0",
+      "version_count": 7,
+      "last_updated": "2025-12-14T14:51:30.410Z"
+    },
+    {
+      "name": "yor",
+      "latest_version": "0.1.200",
+      "version_count": 251,
+      "last_updated": "2025-12-14T14:51:30.448Z"
+    },
+    {
+      "name": "youtube-dl",
+      "latest_version": "2025.11.26",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:30.485Z"
+    },
+    {
+      "name": "yq",
+      "latest_version": "4.50.1",
+      "version_count": 154,
+      "last_updated": "2025-12-14T14:51:30.523Z"
+    },
+    {
+      "name": "yt-dlp",
+      "latest_version": "2025.12.08",
+      "version_count": 124,
+      "last_updated": "2025-12-14T14:51:30.563Z"
+    },
+    {
+      "name": "ytt",
+      "latest_version": "0.52.1",
+      "version_count": 96,
+      "last_updated": "2025-12-14T14:51:30.603Z"
+    },
+    {
+      "name": "zbctl",
+      "latest_version": "8.8.0-alpha4.1",
+      "version_count": 514,
+      "last_updated": "2025-12-14T14:51:30.644Z"
+    },
+    {
+      "name": "zellij",
+      "latest_version": "0.43.1",
+      "version_count": 64,
+      "last_updated": "2025-12-14T14:51:30.685Z"
+    },
+    {
+      "name": "zephyr",
+      "latest_version": "0.5.2",
+      "version_count": 12,
+      "last_updated": "2025-12-14T14:51:30.726Z"
+    },
+    {
+      "name": "zig",
+      "latest_version": "0.15.2",
+      "version_count": 23,
+      "last_updated": "2025-12-14T14:51:30.764Z"
+    },
+    {
+      "name": "zigmod",
+      "latest_version": "r98",
+      "version_count": 97,
+      "last_updated": "2025-12-14T14:51:30.801Z"
+    },
+    {
+      "name": "zizmor",
+      "latest_version": "1.18.0",
+      "version_count": 56,
+      "last_updated": "2025-12-14T14:51:30.841Z"
+    },
+    {
+      "name": "zls",
+      "latest_version": "0.15.1",
+      "version_count": 10,
+      "last_updated": "2025-12-14T14:51:30.881Z"
+    },
+    {
+      "name": "zola",
+      "latest_version": "0.21.0",
+      "version_count": 51,
+      "last_updated": "2025-12-14T14:51:30.918Z"
+    },
+    {
+      "name": "zoxide",
+      "latest_version": "0.9.8",
+      "version_count": 36,
+      "last_updated": "2025-12-14T14:51:30.956Z"
+    },
+    {
+      "name": "zprint",
+      "latest_version": "1.3.0",
+      "version_count": 61,
+      "last_updated": "2025-12-14T14:51:30.995Z"
+    }
+  ]
+}
