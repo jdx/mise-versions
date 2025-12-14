@@ -8,7 +8,6 @@ export interface Tool {
 }
 
 export interface ToolsManifest {
-  generated_at: string;
   tool_count: number;
   tools: Tool[];
 }

@@ -82,23 +82,6 @@ describe("generate-manifest.js", () => {
       assert.strictEqual(manifest.tools[0].name, "node");
     });
 
-    it("should include generated_at timestamp", async () => {
-      writeFileSync(
-        join(docsDir, "node.toml"),
-        `[versions]
-"20.0.0" = { created_at = 2023-04-18T00:00:00Z }
-`
-      );
-
-      const { code } = await runGenerateManifest(tempDir);
-      assert.strictEqual(code, 0);
-
-      const manifest = JSON.parse(readFileSync(join(docsDir, "tools.json"), "utf-8"));
-      assert.ok(manifest.generated_at);
-      // Should be a valid ISO date
-      assert.ok(new Date(manifest.generated_at).getTime() > 0);
-    });
-
     it("should include tool_count", async () => {
       writeFileSync(
         join(docsDir, "node.toml"),

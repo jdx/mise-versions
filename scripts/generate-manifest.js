@@ -90,7 +90,6 @@ function main() {
   tools.sort((a, b) => a.name.localeCompare(b.name));
 
   const manifest = {
-    generated_at: new Date().toISOString(),
     tool_count: tools.length,
     tools,
   };
