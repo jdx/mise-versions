@@ -40,10 +40,10 @@ backfill_tool() {
     # Process the TOML file, updating timestamps
     local updated=0
     while IFS= read -r line; do
-        # Check if this is a version line with placeholder timestamp
-        if [[ "$line" =~ ^\"([^\"]+)\"[[:space:]]*=[[:space:]]*\{[[:space:]]*created_at[[:space:]]*=[[:space:]]*2025-01-01 ]]; then
+        # Check if this is a version line with created_at
+        if [[ "$line" =~ ^\"([^\"]+)\"[[:space:]]*=[[:space:]]*\{[[:space:]]*created_at ]]; then
             local version="${BASH_REMATCH[1]}"
-            # Look up the real timestamp from lookup file
+            # Look up the real timestamp from lookup file - if found, always use it
             local real_ts
             real_ts=$(grep "^${version}	" "$lookup_file" 2>/dev/null | cut -f2 || true)
             if [[ -n "$real_ts" ]]; then
