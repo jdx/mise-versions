@@ -4,6 +4,7 @@ import { parse } from "smol-toml";
 export interface VersionInfo {
   version: string;
   created_at: string | null;
+  release_url: string | null;
 }
 
 // Convert Date object or string to ISO string
@@ -30,7 +31,10 @@ export function useToolVersions(tool: string) {
       })
       .then((text) => {
         const parsed = parse(text) as {
-          versions?: Record<string, { created_at?: unknown }>;
+          versions?: Record<
+            string,
+            { created_at?: unknown; release_url?: string }
+          >;
         };
         if (!parsed.versions) {
           setVersions([]);
@@ -40,6 +44,7 @@ export function useToolVersions(tool: string) {
           .map(([version, data]) => ({
             version,
             created_at: toISOString(data.created_at),
+            release_url: data.release_url || null,
           }))
           .reverse();
         setVersions(versionList);

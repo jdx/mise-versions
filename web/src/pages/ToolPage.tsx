@@ -15,6 +15,7 @@ type VersionSortKey = "default" | "downloads" | "released";
 interface Version {
   version: string;
   created_at?: string | null;
+  release_url?: string | null;
 }
 
 function getInterestingPrefixes(versions: Version[]): string[] {
@@ -255,25 +256,48 @@ function VersionTimeline({ versions }: { versions: Version[] }) {
 
   if (datedVersions.length < 2) return null;
 
-  // Get major and minor versions for milestones
+  // Build milestones: recent majors + minors from latest major
   const milestones: Array<{ version: string; date: Date; isMajor: boolean }> = [];
-  const seenMinors = new Set<string>();
 
-  for (const v of datedVersions) {
+  // Work backward through versions (newest first)
+  const reversedVersions = [...datedVersions].reverse();
+  const seenMajors = new Set<string>();
+  const seenMinors = new Set<string>();
+  const latestMajor = reversedVersions[0]?.version.split(".")[0];
+
+  for (const v of reversedVersions) {
     const parts = v.version.split(".");
-    if (parts.length >= 2) {
-      const minor = `${parts[0]}.${parts[1]}`;
-      if (!seenMinors.has(minor)) {
-        seenMinors.add(minor);
-        const isMajor = parts[1] === "0" || parts[1] === ""; // x.0 is a major release
-        milestones.push({
-          version: v.version,
-          date: new Date(v.created_at!),
-          isMajor,
-        });
-      }
+    if (parts.length < 2) continue;
+
+    const major = parts[0];
+    const minor = `${parts[0]}.${parts[1]}`;
+    const isMinorZero = parts[1] === "0" || parts[1] === "";
+
+    // Always include x.0 releases (up to 5 majors)
+    if (isMinorZero && !seenMajors.has(major) && seenMajors.size < 5) {
+      seenMajors.add(major);
+      seenMinors.add(minor);
+      milestones.push({
+        version: v.version,
+        date: new Date(v.created_at!),
+        isMajor: true,
+      });
     }
+    // Include minors from the latest major version
+    else if (major === latestMajor && !seenMinors.has(minor) && milestones.length < 10) {
+      seenMinors.add(minor);
+      milestones.push({
+        version: v.version,
+        date: new Date(v.created_at!),
+        isMajor: false,
+      });
+    }
+
+    if (milestones.length >= 10) break;
   }
+
+  // Sort chronologically for display
+  milestones.sort((a, b) => a.date.getTime() - b.date.getTime());
 
   // Add latest version if not already a milestone
   const latest = datedVersions[datedVersions.length - 1];
@@ -285,7 +309,6 @@ function VersionTimeline({ versions }: { versions: Version[] }) {
     });
   }
 
-  // Limit to 10 milestones for readability
   const displayMilestones = milestones.slice(-10);
 
   if (displayMilestones.length < 2) return null;
@@ -1010,8 +1033,19 @@ export function ToolPage({ params }: Props) {
             ) : (
               filteredVersions.map((v) => (
                 <tr key={v.version} class="hover:bg-dark-700 transition-colors">
-                  <td class="px-4 py-3 font-mono text-sm text-gray-200">
-                    {v.version}
+                  <td class="px-4 py-3 font-mono text-sm">
+                    {v.release_url ? (
+                      <a
+                        href={v.release_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-neon-blue hover:text-neon-purple transition-colors"
+                      >
+                        {v.version}
+                      </a>
+                    ) : (
+                      <span class="text-gray-200">{v.version}</span>
+                    )}
                   </td>
                   <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
                     {downloadsLoading ? (

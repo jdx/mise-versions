@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 /**
- * Generate TOML version file with created_at timestamps.
+ * Generate TOML version file with created_at timestamps and release URLs.
  * Preserves version order from mise ls-remote.
  *
  * Usage: cat versions.ndjson | node generate-toml.js <tool> [existing_toml_path]
  *
  * Input JSON format (NDJSON from stdin):
  *   {"version":"1.1.0"}
- *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z"}
+ *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z","release_url":"https://github.com/..."}
  *
  * Output TOML format (same order as input):
  *   [versions]
  *   "1.1.0" = { created_at = "2024-02-20T14:45:00Z" }
- *   "1.0.0" = { created_at = "2024-01-15T10:30:00Z" }
+ *   "1.0.0" = { created_at = "2024-01-15T10:30:00Z", release_url = "https://github.com/..." }
  */
 
 import { readFileSync, existsSync } from "fs";
@@ -44,6 +44,7 @@ function parseNdjson(ndjsonData) {
         versions.push({
           version: obj.version,
           created_at: obj.created_at || null,
+          release_url: obj.release_url || null,
         });
       }
     } catch (e) {
@@ -72,7 +73,10 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
     const parsed = parse(existingContent);
     if (parsed.versions) {
       for (const [version, data] of Object.entries(parsed.versions)) {
-        existingVersions[version] = toISOString(data.created_at);
+        existingVersions[version] = {
+          created_at: toISOString(data.created_at),
+          release_url: data.release_url || null,
+        };
       }
     }
   } catch (e) {
@@ -86,11 +90,21 @@ const newVersions = parseNdjson(stdinData);
 // Build output with inline tables for compactness
 const lines = ["[versions]"];
 for (const v of newVersions) {
+  const existing = existingVersions[v.version] || {};
   // Use API timestamp, fall back to existing timestamp, then use current time
-  const timestamp = v.created_at || existingVersions[v.version] || now;
+  const timestamp = v.created_at || existing.created_at || now;
   const isoDate = new Date(timestamp).toISOString();
-  // Output as inline table: "version" = { created_at = 2024-01-15T10:30:00.000Z }
-  lines.push(`"${v.version}" = { created_at = ${isoDate} }`);
+  // Use API release_url, fall back to existing release_url
+  const releaseUrl = v.release_url || existing.release_url;
+
+  // Output as inline table
+  if (releaseUrl) {
+    lines.push(
+      `"${v.version}" = { created_at = ${isoDate}, release_url = "${releaseUrl}" }`
+    );
+  } else {
+    lines.push(`"${v.version}" = { created_at = ${isoDate} }`);
+  }
 }
 
 console.log(lines.join("\n"));
