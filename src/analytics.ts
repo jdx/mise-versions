@@ -616,13 +616,14 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         }
       }
 
-      // First, insert all unique backends from registry
+      // First, insert all unique backends from registry using raw SQL
       const uniqueBackends = new Set(toolToBackend.values());
       let backendsCreated = 0;
       for (const backend of uniqueBackends) {
         try {
+          const escapedBackend = backend.replace(/'/g, "''");
           await db.run(
-            sql`INSERT OR IGNORE INTO backends (full) VALUES (${backend})`
+            sql.raw(`INSERT OR IGNORE INTO backends (full) VALUES ('${escapedBackend}')`)
           );
           backendsCreated++;
         } catch (e) {
@@ -649,9 +650,10 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
           continue;
         }
 
-        // Get backend ID
+        // Get backend ID - use raw SQL with escaped string to avoid D1 parameterization issues
+        const escapedBackend = backendFull.replace(/'/g, "''");
         const backendRows = await db.all(
-          sql`SELECT id FROM backends WHERE full = ${backendFull}`
+          sql.raw(`SELECT id FROM backends WHERE full = '${escapedBackend}'`)
         ) as Array<{ id: number }>;
 
         if (backendRows.length === 0) {
@@ -663,20 +665,16 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         toolsMapped++;
 
         try {
-          // Update downloads for this tool
-          const result = await db.run(sql`
-            UPDATE downloads
-            SET backend_id = ${backendId}
-            WHERE tool_id = ${tool.id} AND backend_id IS NULL
-          `);
+          // Update downloads for this tool using raw SQL
+          const result = await db.run(
+            sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
+          );
           updated += (result as any).meta?.changes ?? 0;
 
           // Update downloads_daily for this tool
-          await db.run(sql`
-            UPDATE downloads_daily
-            SET backend_id = ${backendId}
-            WHERE tool_id = ${tool.id} AND backend_id IS NULL
-          `);
+          await db.run(
+            sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
+          );
         } catch (e) {
           errors.push(`${tool.name}: ${e}`);
           if (errors.length >= 5) {
