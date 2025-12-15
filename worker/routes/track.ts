@@ -196,3 +196,68 @@ export async function handleGetBackendStats(
     return errorResponse("Failed to get backend stats", 500);
   }
 }
+
+// POST /api/admin/backfill-backends - Backfill backend_id using registry data (requires auth)
+export async function handleBackfillBackends(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    // Verify admin secret
+    const authHeader = request.headers.get("Authorization");
+    const expectedAuth = `Bearer ${env.TOKEN_MANAGER_SECRET}`;
+    if (authHeader !== expectedAuth) {
+      return errorResponse("Unauthorized", 401);
+    }
+
+    const body = (await request.json()) as {
+      registry: Array<{ short: string; backends: string[] }>;
+    };
+
+    if (!body.registry || !Array.isArray(body.registry)) {
+      return errorResponse("Missing or invalid registry data", 400);
+    }
+
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const result = await analytics.backfillBackends(body.registry);
+
+    return jsonResponse({
+      success: true,
+      updated: result.updated,
+      tools_mapped: result.tools_mapped,
+    });
+  } catch (error) {
+    console.error("Backfill error:", error);
+    return errorResponse(`Failed to backfill backends: ${error}`, 500);
+  }
+}
+
+// POST /api/admin/finalize-backends - Make backend_id NOT NULL (requires auth)
+export async function handleFinalizeBackends(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    // Verify admin secret
+    const authHeader = request.headers.get("Authorization");
+    const expectedAuth = `Bearer ${env.TOKEN_MANAGER_SECRET}`;
+    if (authHeader !== expectedAuth) {
+      return errorResponse("Unauthorized", 401);
+    }
+
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    await analytics.makeBackendIdNotNull();
+
+    return jsonResponse({
+      success: true,
+      message: "backend_id is now NOT NULL",
+    });
+  } catch (error) {
+    console.error("Finalize backends error:", error);
+    return errorResponse(`Failed to finalize backends: ${error}`, 500);
+  }
+}

@@ -589,6 +589,147 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         top_tools_by_backend: topToolsByBackend,
       };
     },
+
+    // Backfill backend_id for existing records using default backends from registry
+    async backfillBackends(
+      registry: Array<{ short: string; backends: string[] }>
+    ): Promise<{ updated: number; tools_mapped: number }> {
+      // Build a map of tool name -> default backend (first in list)
+      const defaultBackends = new Map<string, string>();
+      for (const entry of registry) {
+        if (entry.backends && entry.backends.length > 0) {
+          defaultBackends.set(entry.short, entry.backends[0]);
+        }
+      }
+
+      // Get all tools that have downloads without backend_id
+      const toolsToUpdate = await db
+        .select({
+          id: tools.id,
+          name: tools.name,
+        })
+        .from(tools)
+        .all();
+
+      let updated = 0;
+      let toolsMapped = 0;
+
+      for (const tool of toolsToUpdate) {
+        const defaultBackend = defaultBackends.get(tool.name);
+        if (!defaultBackend) {
+          console.log(`No default backend found for tool: ${tool.name}`);
+          continue;
+        }
+
+        // Get or create the backend ID
+        const backendId = await getOrCreateBackendId(defaultBackend);
+        if (!backendId) continue;
+
+        toolsMapped++;
+
+        // Update all downloads for this tool that don't have a backend_id
+        const result = await db.run(sql`
+          UPDATE downloads
+          SET backend_id = ${backendId}
+          WHERE tool_id = ${tool.id} AND backend_id IS NULL
+        `);
+
+        // D1Result has meta.changes at runtime
+        updated += (result as any).meta?.changes ?? 0;
+
+        // Also update downloads_daily
+        await db.run(sql`
+          UPDATE downloads_daily
+          SET backend_id = ${backendId}
+          WHERE tool_id = ${tool.id} AND backend_id IS NULL
+        `);
+      }
+
+      return { updated, tools_mapped: toolsMapped };
+    },
+
+    // Make backend_id NOT NULL (run after backfill)
+    async makeBackendIdNotNull(): Promise<void> {
+      // SQLite doesn't support ALTER COLUMN, so we need to recreate the tables
+      // First, check if there are any NULL backend_ids remaining
+      const nullCount = await db
+        .select({ count: sql<number>`count(*)` })
+        .from(downloads)
+        .where(sql`backend_id IS NULL`)
+        .get();
+
+      if (nullCount && nullCount.count > 0) {
+        throw new Error(
+          `Cannot make backend_id NOT NULL: ${nullCount.count} records still have NULL backend_id`
+        );
+      }
+
+      console.log("All records have backend_id, proceeding with schema change...");
+
+      // Recreate downloads table with NOT NULL constraint
+      await db.run(sql`
+        CREATE TABLE downloads_new (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          tool_id INTEGER NOT NULL,
+          backend_id INTEGER NOT NULL,
+          version TEXT NOT NULL,
+          platform_id INTEGER,
+          ip_hash TEXT NOT NULL,
+          created_at INTEGER NOT NULL,
+          FOREIGN KEY (tool_id) REFERENCES tools(id),
+          FOREIGN KEY (backend_id) REFERENCES backends(id),
+          FOREIGN KEY (platform_id) REFERENCES platforms(id)
+        )
+      `);
+
+      await db.run(sql`
+        INSERT INTO downloads_new (id, tool_id, backend_id, version, platform_id, ip_hash, created_at)
+        SELECT id, tool_id, backend_id, version, platform_id, ip_hash, created_at
+        FROM downloads
+      `);
+
+      await db.run(sql`DROP TABLE downloads`);
+      await db.run(sql`ALTER TABLE downloads_new RENAME TO downloads`);
+
+      // Recreate indices
+      await db.run(sql`CREATE INDEX idx_downloads_tool_id ON downloads(tool_id)`);
+      await db.run(sql`CREATE INDEX idx_downloads_backend_id ON downloads(backend_id)`);
+      await db.run(sql`CREATE INDEX idx_downloads_created_at ON downloads(created_at)`);
+      await db.run(sql`CREATE INDEX idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`);
+
+      // Recreate downloads_daily table with NOT NULL constraint
+      await db.run(sql`
+        CREATE TABLE downloads_daily_new (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          tool_id INTEGER NOT NULL,
+          backend_id INTEGER NOT NULL,
+          version TEXT NOT NULL,
+          platform_id INTEGER,
+          date TEXT NOT NULL,
+          count INTEGER NOT NULL,
+          unique_ips INTEGER NOT NULL,
+          FOREIGN KEY (tool_id) REFERENCES tools(id),
+          FOREIGN KEY (backend_id) REFERENCES backends(id),
+          FOREIGN KEY (platform_id) REFERENCES platforms(id)
+        )
+      `);
+
+      await db.run(sql`
+        INSERT INTO downloads_daily_new (id, tool_id, backend_id, version, platform_id, date, count, unique_ips)
+        SELECT id, tool_id, backend_id, version, platform_id, date, count, unique_ips
+        FROM downloads_daily
+      `);
+
+      await db.run(sql`DROP TABLE downloads_daily`);
+      await db.run(sql`ALTER TABLE downloads_daily_new RENAME TO downloads_daily`);
+
+      // Recreate indices
+      await db.run(sql`CREATE INDEX idx_downloads_daily_tool ON downloads_daily(tool_id)`);
+      await db.run(sql`CREATE INDEX idx_downloads_daily_backend ON downloads_daily(backend_id)`);
+      await db.run(sql`CREATE INDEX idx_downloads_daily_date ON downloads_daily(date)`);
+
+      console.log("Schema updated: backend_id is now NOT NULL");
+    },
   };
 }
 

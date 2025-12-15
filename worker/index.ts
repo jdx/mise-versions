@@ -31,6 +31,8 @@ import {
   handleGetMAU,
   handleAggregate,
   handleGetBackendStats,
+  handleBackfillBackends,
+  handleFinalizeBackends,
 } from "./routes/track";
 
 // Misc routes
@@ -64,6 +66,8 @@ function createRouter(): Router {
   router.get("/api/stats/mau", (req, env) => handleGetMAU(req, env));
   router.get("/api/stats/backends", (req, env) => handleGetBackendStats(req, env));
   router.post("/api/admin/aggregate", (req, env) => handleAggregate(req, env));
+  router.post("/api/admin/backfill-backends", (req, env) => handleBackfillBackends(req, env));
+  router.post("/api/admin/finalize-backends", (req, env) => handleFinalizeBackends(req, env));
   router.get("/api/downloads/:tool", (req, env, params) =>
     handleGetToolDownloads(req, env, params.tool)
   );
