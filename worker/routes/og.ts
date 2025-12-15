@@ -129,53 +129,50 @@ function generateImage(tool: ToolMeta, downloads: number | null, backend: string
 
   // Build stat badges
   const backendBadge = backend
-    ? `<div style="display: flex; align-items: center; background: #1e1e2e; border: 1px solid #3b3b4f; border-radius: 8px; padding: 8px 16px;">
-        <span style="font-size: 18px; color: #00D4FF; font-weight: 600;">${escapeHtml(backend)}</span>
+    ? `<div style="display: flex; align-items: center; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 8px; padding: 12px 20px;">
+        <span style="font-size: 20px; color: #00D4FF; font-weight: 600;">${escapeHtml(backend)}</span>
        </div>`
     : "";
 
   const downloadsBadge = downloads
-    ? `<div style="display: flex; align-items: center; background: #1e1e2e; border: 1px solid #3b3b4f; border-radius: 8px; padding: 8px 16px;">
-        <span style="font-size: 18px; color: #22c55e;">↓</span>
-        <span style="font-size: 18px; color: #d1d5db; margin-left: 8px;">${formatDownloads(downloads)}</span>
+    ? `<div style="display: flex; align-items: center; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 20px;">
+        <span style="font-size: 20px; color: #22c55e; font-weight: 600;">${formatDownloads(downloads)}</span>
+        <span style="font-size: 18px; color: #9ca3af; margin-left: 8px;">downloads</span>
        </div>`
     : "";
 
   const versionsBadge = tool.version_count > 0
-    ? `<div style="display: flex; align-items: center; background: #1e1e2e; border: 1px solid #3b3b4f; border-radius: 8px; padding: 8px 16px;">
-        <span style="font-size: 18px; color: #d1d5db;">${tool.version_count} versions</span>
+    ? `<div style="display: flex; align-items: center; background: rgba(176, 38, 255, 0.1); border: 1px solid rgba(176, 38, 255, 0.3); border-radius: 8px; padding: 12px 20px;">
+        <span style="font-size: 20px; color: #B026FF; font-weight: 600;">${tool.version_count}</span>
+        <span style="font-size: 18px; color: #9ca3af; margin-left: 8px;">versions</span>
        </div>`
     : "";
 
   const html = `
-    <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background: #0d0d14; padding: 48px 56px;">
+    <div style="display: flex; flex-direction: column; width: 1200px; height: 630px; background: linear-gradient(135deg, #0d0d14 0%, #1a1a2e 50%, #0d0d14 100%); padding: 50px 60px;">
       <!-- Header: branding -->
-      <div style="display: flex; align-items: center; margin-bottom: 32px;">
-        <span style="font-size: 20px; font-weight: 700; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;">
+        <span style="font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
+        <span style="font-size: 18px; color: #4b5563;">mise-tools.jdx.dev</span>
       </div>
 
       <!-- Main content -->
-      <div style="display: flex; flex-direction: column; flex: 1;">
+      <div style="display: flex; flex-direction: column; flex: 1; justify-content: center;">
         <!-- Tool name and version -->
-        <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px;">
-          <span style="font-size: 64px; font-weight: 800; color: #B026FF;">${escapeHtml(tool.name)}</span>
-          ${versionText ? `<span style="font-size: 28px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ""}
+        <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 24px;">
+          <span style="font-size: 72px; font-weight: 800; color: #B026FF;">${escapeHtml(tool.name)}</span>
+          ${versionText ? `<span style="font-size: 32px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ""}
         </div>
 
         <!-- Description -->
-        ${description ? `<p style="font-size: 26px; color: #9ca3af; margin: 0 0 28px 0; line-height: 1.4; max-width: 900px;">${escapeHtml(description)}</p>` : ""}
+        ${description ? `<p style="font-size: 28px; color: #d1d5db; margin: 0 0 32px 0; line-height: 1.5;">${escapeHtml(description)}</p>` : ""}
 
         <!-- Stats badges -->
-        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
           ${backendBadge}
           ${downloadsBadge}
           ${versionsBadge}
         </div>
-      </div>
-
-      <!-- Footer -->
-      <div style="display: flex; align-items: center; margin-top: 24px;">
-        <span style="font-size: 18px; color: #6b7280;">mise-tools.jdx.dev/tools/${escapeHtml(tool.name)}</span>
       </div>
     </div>
   `;
