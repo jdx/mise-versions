@@ -1,0 +1,71 @@
+name: backfill
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "Script to run (e.g., backfill-created-at.js)"
+        required: true
+        type: choice
+        options:
+          - backfill-created-at.js
+      tool:
+        description: "Specific tool to process (leave empty for all)"
+        required: false
+        type: string
+      dry_run:
+        description: "Dry run (don't write changes)"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: backfill-${{ github.event.inputs.script }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
+  TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
+  TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: jdx/mise-action@v2
+
+      - run: npm install
+
+      - name: Run backfill script
+        run: |
+          args=""
+          if [ -n "${{ github.event.inputs.tool }}" ]; then
+            args="$args --tool=${{ github.event.inputs.tool }}"
+          fi
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            args="$args --dry-run"
+          fi
+          node scripts/${{ github.event.inputs.script }} $args
+
+      - name: Commit and push changes
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/*.toml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: backfill data via ${{ github.event.inputs.script }}"
+            git pull --rebase origin main
+            git push
+          fi
