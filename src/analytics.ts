@@ -592,7 +592,8 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
     // Backfill backend_id for existing records using default backends from registry
     async backfillBackends(
-      registry: Array<{ short: string; backends: string[] }>
+      registry: Array<{ short: string; backends: string[] }>,
+      d1?: D1Database // Optional D1 database for direct operations
     ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
       // Build mapping of tool name -> default backend
       const toolToBackend = new Map<string, string>();
@@ -647,23 +648,31 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         }
         toolsMapped++;
 
-        // Update downloads for this tool using completely raw SQL
-        // D1 seems to have issues with parameterized UPDATE queries
-        try {
+        // Update downloads using D1's native API if available
+        if (d1) {
+          try {
+            await d1.prepare(
+              "UPDATE downloads SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL"
+            ).bind(backendId, tool.id).run();
+          } catch (e: any) {
+            throw new Error(`D1 UPDATE downloads failed for ${tool.name} (tool_id=${tool.id}, backend_id=${backendId}): ${e?.message || e}`);
+          }
+
+          try {
+            await d1.prepare(
+              "UPDATE downloads_daily SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL"
+            ).bind(backendId, tool.id).run();
+          } catch (e: any) {
+            throw new Error(`D1 UPDATE downloads_daily failed for ${tool.name}: ${e?.message || e}`);
+          }
+        } else {
+          // Fallback to drizzle (probably won't work but keeping for completeness)
           await db.run(
             sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
           );
-        } catch (e: any) {
-          throw new Error(`UPDATE downloads failed for ${tool.name} (tool_id=${tool.id}, backend_id=${backendId}): ${e?.message || e}`);
-        }
-
-        // Update downloads_daily for this tool
-        try {
           await db.run(
             sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
           );
-        } catch (e: any) {
-          throw new Error(`UPDATE downloads_daily failed for ${tool.name}: ${e?.message || e}`);
         }
 
         updated++;

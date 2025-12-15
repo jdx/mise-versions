@@ -221,7 +221,8 @@ export async function handleBackfillBackends(
     const db = drizzle(env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
 
-    const result = await analytics.backfillBackends(body.registry);
+    // Pass D1 directly for raw operations
+    const result = await analytics.backfillBackends(body.registry, env.ANALYTICS_DB);
 
     return jsonResponse({
       success: true,
