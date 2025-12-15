@@ -594,20 +594,6 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>
     ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
-      // First check if backend_id column exists
-      const downloadsColumns = await db.all(sql`PRAGMA table_info(downloads)`) as Array<{ name: string }>;
-      const hasBackendId = downloadsColumns.some((c) => c.name === "backend_id");
-      if (!hasBackendId) {
-        throw new Error("backend_id column does not exist in downloads table. Run migrations first.");
-      }
-
-      // Check backends table schema
-      const backendsColumns = await db.all(sql`PRAGMA table_info(backends)`) as Array<{ name: string; type: string }>;
-      const columnNames = backendsColumns.map((c) => c.name);
-      if (!columnNames.includes("full")) {
-        throw new Error(`backends table missing 'full' column. Columns: ${columnNames.join(", ")}`);
-      }
-
       // Build mapping of tool name -> default backend
       const toolToBackend = new Map<string, string>();
       for (const entry of registry) {
@@ -616,19 +602,25 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         }
       }
 
-      // First, insert all unique backends from registry using raw SQL
-      const uniqueBackends = new Set(toolToBackend.values());
+      // First, insert all unique backends from registry using standard drizzle
+      const uniqueBackends = [...new Set(toolToBackend.values())];
       let backendsCreated = 0;
-      for (const backend of uniqueBackends) {
-        try {
-          const escapedBackend = backend.replace(/'/g, "''");
-          await db.run(
-            sql.raw(`INSERT OR IGNORE INTO backends (full) VALUES ('${escapedBackend}')`)
-          );
-          backendsCreated++;
-        } catch (e) {
-          console.log(`Failed to insert backend ${backend}: ${e}`);
-        }
+
+      // Insert backends using drizzle ORM (same as getOrCreateBackendId does)
+      for (const backendFull of uniqueBackends) {
+        await db.insert(backends).values({ full: backendFull }).onConflictDoNothing();
+        backendsCreated++;
+      }
+
+      // Now fetch all backends into memory for fast lookup
+      const allBackends = await db
+        .select({ id: backends.id, full: backends.full })
+        .from(backends)
+        .all();
+
+      const backendIdMap = new Map<string, number>();
+      for (const b of allBackends) {
+        backendIdMap.set(b.full, b.id);
       }
 
       // Get all tools with NULL backend_id downloads
@@ -643,52 +635,41 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       let toolsMapped = 0;
 
       // Process each tool
-      const errors: string[] = [];
       for (const tool of toolsWithNullBackend) {
         const backendFull = toolToBackend.get(tool.name);
         if (!backendFull) {
           continue;
         }
 
-        // Get backend ID - use raw SQL with escaped string to avoid D1 parameterization issues
-        const escapedBackend = backendFull.replace(/'/g, "''");
-        let backendRows: Array<{ id: number }>;
-        try {
-          backendRows = await db.all(
-            sql.raw(`SELECT id FROM backends WHERE full = '${escapedBackend}'`)
-          ) as Array<{ id: number }>;
-        } catch (selectError) {
-          // Try alternative: check if backend exists at all
-          const allBackends = await db.all(sql`SELECT COUNT(*) as count FROM backends`) as Array<{ count: number }>;
-          throw new Error(`SELECT failed for '${backendFull}'. backends table has ${allBackends[0]?.count ?? 0} rows. Error: ${selectError}`);
-        }
-
-        if (backendRows.length === 0) {
-          console.log(`Backend not found for: ${backendFull}`);
+        const backendId = backendIdMap.get(backendFull);
+        if (!backendId) {
           continue;
         }
-
-        const backendId = backendRows[0].id;
         toolsMapped++;
 
-        try {
-          // Update downloads for this tool using raw SQL
-          const result = await db.run(
-            sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
+        // Update downloads for this tool using drizzle ORM
+        await db
+          .update(downloads)
+          .set({ backend_id: backendId })
+          .where(
+            and(
+              eq(downloads.tool_id, tool.id),
+              sql`backend_id IS NULL`
+            )
           );
-          updated += (result as any).meta?.changes ?? 0;
 
-          // Update downloads_daily for this tool
-          await db.run(
-            sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
+        // Update downloads_daily for this tool
+        await db
+          .update(downloadsDaily)
+          .set({ backend_id: backendId })
+          .where(
+            and(
+              eq(downloadsDaily.tool_id, tool.id),
+              sql`backend_id IS NULL`
+            )
           );
-        } catch (e) {
-          errors.push(`${tool.name}: ${e}`);
-          if (errors.length >= 5) {
-            // Stop after 5 errors to avoid spam
-            throw new Error(`Too many errors. First 5: ${errors.join("; ")}`);
-          }
-        }
+
+        updated++;
       }
 
       return {
