@@ -647,27 +647,19 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         }
         toolsMapped++;
 
-        // Update downloads for this tool using drizzle ORM
-        await db
-          .update(downloads)
-          .set({ backend_id: backendId })
-          .where(
-            and(
-              eq(downloads.tool_id, tool.id),
-              sql`backend_id IS NULL`
-            )
-          );
+        // Update downloads for this tool using raw SQL (drizzle updates fail on D1)
+        await db.run(sql`
+          UPDATE downloads
+          SET backend_id = ${backendId}
+          WHERE tool_id = ${tool.id} AND backend_id IS NULL
+        `);
 
         // Update downloads_daily for this tool
-        await db
-          .update(downloadsDaily)
-          .set({ backend_id: backendId })
-          .where(
-            and(
-              eq(downloadsDaily.tool_id, tool.id),
-              sql`backend_id IS NULL`
-            )
-          );
+        await db.run(sql`
+          UPDATE downloads_daily
+          SET backend_id = ${backendId}
+          WHERE tool_id = ${tool.id} AND backend_id IS NULL
+        `);
 
         updated++;
       }
