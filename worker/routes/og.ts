@@ -139,8 +139,8 @@ function generateImage(tool: ToolMeta, downloads: number | null, backend: string
 
   const downloadsBadge = downloads
     ? `<div style="display: flex; align-items: center; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 20px;">
-        <span style="font-size: 20px; color: #22c55e; font-weight: 600;">${formatDownloads(downloads)}</span>
-        <span style="font-size: 18px; color: #9ca3af; margin-left: 8px;">downloads</span>
+        <span style="font-size: 28px; color: #ffffff; font-weight: 700;">${formatDownloads(downloads)}</span>
+        <span style="font-size: 18px; color: #9ca3af; margin-left: 10px;">downloads</span>
        </div>`
     : "";
 
