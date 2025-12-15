@@ -5,6 +5,7 @@ export interface DownloadStats {
   byVersion: Array<{ version: string; count: number }>;
   byOs: Array<{ os: string | null; count: number }>;
   daily: Array<{ date: string; count: number }>;
+  monthly: Array<{ month: string; count: number }>;
 }
 
 export function useDownloads(tool: string) {

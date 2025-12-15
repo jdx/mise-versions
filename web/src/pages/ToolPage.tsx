@@ -63,7 +63,9 @@ function getInterestingPrefixes(versions: Version[]): string[] {
   return sortedPrefixes.slice(0, 8);
 }
 
-function DownloadChart({
+type ChartView = "30d" | "12m";
+
+function DailyBarChart({
   daily,
 }: {
   daily: Array<{ date: string; count: number }>;
@@ -113,6 +115,102 @@ function DownloadChart({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function MonthlyLineChart({
+  monthly,
+}: {
+  monthly: Array<{ month: string; count: number }>;
+}) {
+  if (!monthly || monthly.length === 0) {
+    return (
+      <div class="text-gray-500 text-sm py-4">No download data yet</div>
+    );
+  }
+
+  // Fill in missing months for the last 12 months
+  const today = new Date();
+  const months: Array<{ month: string; count: number }> = [];
+  const monthlyMap = new Map(monthly.map((m) => [m.month, m.count]));
+
+  for (let i = 11; i >= 0; i--) {
+    const date = new Date(today.getFullYear(), today.getMonth() - i, 1);
+    const monthStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+    months.push({ month: monthStr, count: monthlyMap.get(monthStr) || 0 });
+  }
+
+  const maxCount = Math.max(...months.map((m) => m.count), 1);
+  const chartHeight = 128;
+
+  // Create SVG path for the line
+  const points = months.map((m, i) => {
+    const x = (i / (months.length - 1)) * 100;
+    const y = chartHeight - (m.count / maxCount) * (chartHeight - 20);
+    return { x, y, ...m };
+  });
+
+  const linePath = points
+    .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
+    .join(" ");
+
+  // Create area path (line + bottom edge)
+  const areaPath = `${linePath} L 100 ${chartHeight} L 0 ${chartHeight} Z`;
+
+  return (
+    <div class="h-32 relative">
+      <svg
+        viewBox={`0 0 100 ${chartHeight}`}
+        preserveAspectRatio="none"
+        class="w-full h-full"
+      >
+        {/* Gradient fill under the line */}
+        <defs>
+          <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#B026FF" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#B026FF" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        <path d={areaPath} fill="url(#areaGradient)" />
+        <path
+          d={linePath}
+          fill="none"
+          stroke="#B026FF"
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+        />
+        {/* Data points */}
+        {points.map((p) => (
+          <circle
+            key={p.month}
+            cx={p.x}
+            cy={p.y}
+            r="3"
+            fill="#B026FF"
+            class="hover:fill-[#FF2D95] cursor-pointer"
+            vectorEffect="non-scaling-stroke"
+          >
+            <title>
+              {new Date(p.month + "-01").toLocaleDateString("en-US", {
+                month: "short",
+                year: "numeric",
+              })}
+              : {p.count.toLocaleString()}
+            </title>
+          </circle>
+        ))}
+      </svg>
+      {/* X-axis labels */}
+      <div class="flex justify-between text-xs text-gray-500 mt-1">
+        {months.filter((_, i) => i % 3 === 0 || i === months.length - 1).map((m) => (
+          <span key={m.month}>
+            {new Date(m.month + "-01").toLocaleDateString("en-US", {
+              month: "short",
+            })}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -342,15 +440,20 @@ function DownloadsPane({
   data,
   loading,
 }: {
-  data: { daily: Array<{ date: string; count: number }>; byVersion: Array<{ version: string; count: number }>; byOs: Array<{ os: string | null; count: number }> } | null;
+  data: { daily: Array<{ date: string; count: number }>; monthly: Array<{ month: string; count: number }>; byVersion: Array<{ version: string; count: number }>; byOs: Array<{ os: string | null; count: number }> } | null;
   loading: boolean;
 }) {
+  const [chartView, setChartView] = useState<ChartView>("30d");
+
   if (loading) {
     return (
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
         <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads</h2>
         <div class="mb-4">
-          <div class="text-sm text-gray-400 mb-2">Last 30 days</div>
+          <div class="flex items-center justify-between mb-2">
+            <div class="h-5 w-20 bg-dark-600 rounded animate-pulse" />
+            <div class="h-6 w-24 bg-dark-600 rounded animate-pulse" />
+          </div>
           <div class="h-32 flex items-end gap-0.5">
             {[...Array(30)].map((_, i) => (
               <div key={i} class="flex-1 h-full flex items-end">
@@ -386,8 +489,38 @@ function DownloadsPane({
       <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads</h2>
 
       <div class="mb-4">
-        <div class="text-sm text-gray-400 mb-2">Last 30 days</div>
-        <DownloadChart daily={data.daily} />
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-sm text-gray-400">
+            {chartView === "30d" ? "Last 30 days" : "Last 12 months"}
+          </div>
+          <div class="flex rounded-lg overflow-hidden border border-dark-600">
+            <button
+              onClick={() => setChartView("30d")}
+              class={`px-2 py-1 text-xs font-medium transition-colors ${
+                chartView === "30d"
+                  ? "bg-neon-purple text-white"
+                  : "bg-dark-700 text-gray-400 hover:text-gray-200"
+              }`}
+            >
+              30d
+            </button>
+            <button
+              onClick={() => setChartView("12m")}
+              class={`px-2 py-1 text-xs font-medium transition-colors ${
+                chartView === "12m"
+                  ? "bg-neon-purple text-white"
+                  : "bg-dark-700 text-gray-400 hover:text-gray-200"
+              }`}
+            >
+              12m
+            </button>
+          </div>
+        </div>
+        {chartView === "30d" ? (
+          <DailyBarChart daily={data.daily} />
+        ) : (
+          <MonthlyLineChart monthly={data.monthly || []} />
+        )}
       </div>
 
       {data.byVersion.length > 0 && (

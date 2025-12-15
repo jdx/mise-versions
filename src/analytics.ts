@@ -241,11 +241,59 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
         .all();
 
+      // Monthly downloads (last 12 months from raw + aggregated data)
+      const twelveMonthsAgo = Math.floor(Date.now() / 1000) - 365 * 86400;
+
+      // Get from raw data
+      const monthlyRaw = await db
+        .select({
+          month: sql<string>`strftime('%Y-%m', ${downloads.created_at}, 'unixepoch')`,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .where(
+          and(
+            eq(downloads.tool_id, toolId),
+            sql`${downloads.created_at} >= ${twelveMonthsAgo}`
+          )
+        )
+        .groupBy(sql`strftime('%Y-%m', ${downloads.created_at}, 'unixepoch')`)
+        .all();
+
+      // Get from aggregated data
+      const monthlyAgg = await db
+        .select({
+          month: sql<string>`strftime('%Y-%m', ${downloadsDaily.date})`,
+          count: sql<number>`sum(${downloadsDaily.count})`,
+        })
+        .from(downloadsDaily)
+        .where(
+          and(
+            eq(downloadsDaily.tool_id, toolId),
+            sql`${downloadsDaily.date} >= date(${twelveMonthsAgo}, 'unixepoch')`
+          )
+        )
+        .groupBy(sql`strftime('%Y-%m', ${downloadsDaily.date})`)
+        .all();
+
+      // Merge monthly data
+      const monthlyMap = new Map<string, number>();
+      for (const r of monthlyRaw) {
+        monthlyMap.set(r.month, (monthlyMap.get(r.month) || 0) + r.count);
+      }
+      for (const r of monthlyAgg) {
+        monthlyMap.set(r.month, (monthlyMap.get(r.month) || 0) + r.count);
+      }
+      const monthly = Array.from(monthlyMap.entries())
+        .map(([month, count]) => ({ month, count }))
+        .sort((a, b) => a.month.localeCompare(b.month));
+
       return {
         total,
         byVersion,
         byOs,
         daily,
+        monthly,
       };
     },
 
