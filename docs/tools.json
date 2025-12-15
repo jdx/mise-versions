@@ -1,5 +1,5 @@
 {
-  "tool_count": 961,
+  "tool_count": 960,
   "tools": [
     {
       "name": "1password",
@@ -2296,22 +2296,6 @@
         "npm": "https://www.npmjs.com/package/@openai/codex"
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/openai/codex/registry.yaml"
-    },
-    {
-      "name": "colima",
-      "latest_version": "0.9.1",
-      "version_count": 47,
-      "last_updated": "2025-09-25T10:46:26.000Z",
-      "github": "abiosoft/colima",
-      "repo_url": "https://github.com/abiosoft/colima",
-      "backends": [
-        "aqua:abiosoft/colima",
-        "ubi:abiosoft/colima",
-        "asdf:CrouchingMuppet/asdf-colima"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/abiosoft/colima/registry.yaml",
-      "license": "MIT",
-      "description": "Container runtimes on macOS (and Linux) with minimal setup"
     },
     {
       "name": "committed",
