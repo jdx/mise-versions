@@ -103,6 +103,7 @@ async function fetchVersionsWithTimestamps(tool, retries = 2) {
   const env = {
     ...process.env,
     MISE_LIST_ALL_VERSIONS: "1",  // Get all versions, not just first page
+    MISE_USE_VERSIONS_HOST: "0",  // Bypass versions host to get real timestamps from GitHub
   };
   if (token) {
     env.GITHUB_TOKEN = token;
@@ -274,28 +275,10 @@ async function main() {
       continue;
     }
 
-    // Debug: Show what we're working with
-    const tomlVersions = Object.keys(existing.versions);
-    console.log(`  TOML: ${tomlVersions.length} versions, API: ${apiTimestamps.size} with timestamps`);
-    const sampleToml = tomlVersions.slice(0, 2);
-    const sampleApi = [...apiTimestamps.keys()].slice(0, 2);
-    console.log(`  Sample TOML: ${sampleToml.join(", ")}`);
-    console.log(`  Sample API: ${sampleApi.join(", ")}`);
-
-    // Check if any TOML versions exist in API
-    let matchCount = 0;
-    for (const v of tomlVersions) {
-      if (apiTimestamps.has(v)) matchCount++;
-    }
-    console.log(`  Matched versions: ${matchCount}`);
-
     // Update TOML with real timestamps
     let changedCount = 0;
     let notFoundCount = 0;
     const lines = ["[versions]"];
-
-    // Debug: show first comparison
-    let debugShown = false;
 
     for (const [version, data] of Object.entries(existing.versions)) {
       const apiTs = apiTimestamps.get(version);
@@ -308,16 +291,6 @@ async function main() {
 
       if (apiTs) {
         const apiDate = new Date(apiTs).toISOString();
-
-        // Debug first comparison
-        if (!debugShown) {
-          console.log(`  First comparison: version=${version}`);
-          console.log(`    TOML timestamp: "${timestamp}" (type: ${typeof data.created_at}, isDate: ${data.created_at instanceof Date})`);
-          console.log(`    API timestamp:  "${apiDate}" (from: "${apiTs}")`);
-          console.log(`    Are they equal? ${timestamp === apiDate}`);
-          debugShown = true;
-        }
-
         if (timestamp !== apiDate) {
           timestamp = apiDate;
           changedCount++;
