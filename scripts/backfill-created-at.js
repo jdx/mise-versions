@@ -19,7 +19,8 @@ import { execSync } from "child_process";
 import { parse } from "smol-toml";
 
 const DOCS_DIR = join(process.cwd(), "docs");
-const CONCURRENCY = 10; // Process 10 tools in parallel
+const CONCURRENCY = 30; // Process 30 tools in parallel
+const COMMIT_INTERVAL = 100; // Commit every 100 tools
 
 // Get a random token from the token manager for each request
 async function getRandomToken() {
@@ -204,10 +205,27 @@ async function processTool(tool, dryRun) {
   return { tool, status: "updated", changedCount, notFoundCount };
 }
 
+// Commit changes
+function commitChanges(message) {
+  try {
+    execSync('git add docs/*.toml', { stdio: 'pipe' });
+    const status = execSync('git diff --cached --quiet || echo "changes"', { encoding: 'utf-8' });
+    if (status.includes('changes')) {
+      execSync(`git commit -m "${message}"`, { stdio: 'pipe' });
+      console.log(`  Committed: ${message}`);
+      return true;
+    }
+  } catch (e) {
+    // Ignore commit errors
+  }
+  return false;
+}
+
 // Process tools in parallel with concurrency limit
 async function processInParallel(tools, dryRun) {
   const results = { updated: 0, skipped: 0, failed: 0 };
   let completed = 0;
+  let uncommittedUpdates = 0;
 
   // Process in batches
   for (let i = 0; i < tools.length; i += CONCURRENCY) {
@@ -220,6 +238,7 @@ async function processInParallel(tools, dryRun) {
       completed++;
       if (result.status === "updated") {
         results.updated++;
+        uncommittedUpdates++;
         console.log(`[${completed}/${tools.length}] ${result.tool}: updated ${result.changedCount} timestamps${result.notFoundCount > 0 ? ` (${result.notFoundCount} not in API)` : ""}`);
       } else if (result.status === "failed") {
         results.failed++;
@@ -229,10 +248,21 @@ async function processInParallel(tools, dryRun) {
       }
     }
 
-    // Progress for skipped tools
-    if (completed % 50 === 0) {
+    // Commit periodically
+    if (!dryRun && uncommittedUpdates >= COMMIT_INTERVAL) {
+      commitChanges(`chore: backfill created_at timestamps (batch ${Math.floor(completed / COMMIT_INTERVAL)})`);
+      uncommittedUpdates = 0;
+    }
+
+    // Progress update
+    if (completed % 100 === 0) {
       console.log(`Progress: ${completed}/${tools.length} (${results.updated} updated, ${results.skipped} skipped, ${results.failed} failed)`);
     }
+  }
+
+  // Final commit for remaining updates
+  if (!dryRun && uncommittedUpdates > 0) {
+    commitChanges(`chore: backfill created_at timestamps (final)`);
   }
 
   return { ...results, processed: completed };
