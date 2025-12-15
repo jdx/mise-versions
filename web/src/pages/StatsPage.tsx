@@ -4,6 +4,17 @@ import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
 import { useBackendStats } from "../hooks/useBackendStats";
 
+// Format large numbers compactly (e.g., 1234 -> "1.23k", 1234567 -> "1.23m")
+function formatCompact(n: number): string {
+  if (n >= 1_000_000) {
+    return (n / 1_000_000).toFixed(n >= 10_000_000 ? 1 : 2) + "m";
+  }
+  if (n >= 1_000) {
+    return (n / 1_000).toFixed(n >= 10_000 ? 1 : 2) + "k";
+  }
+  return n.toString();
+}
+
 // Extract backend type from backend string (e.g., "aqua:nektos/act" -> "aqua")
 function getBackendType(backend: string): string {
   const colonIndex = backend.indexOf(":");
@@ -292,7 +303,7 @@ export function StatsPage() {
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
           <div class="text-sm text-gray-400 mb-1">Downloads (30d)</div>
           <div class="text-3xl font-bold text-neon-purple">
-            {totalDownloads.toLocaleString()}
+            {formatCompact(totalDownloads)}
           </div>
         </div>
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
@@ -347,7 +358,7 @@ export function StatsPage() {
                         {index + 1}. {tool.name}
                       </span>
                       <span class="text-gray-500 text-xs">
-                        {(tool.downloads / 1000).toFixed(1)}k
+                        {formatCompact(tool.downloads)}
                       </span>
                     </Link>
                   ))}
