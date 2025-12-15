@@ -603,14 +603,27 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         }
       }
 
-      // First, insert all unique backends from registry using standard drizzle
+      // First, insert all unique backends from registry using D1 batch API
       const uniqueBackends = [...new Set(toolToBackend.values())];
       let backendsCreated = 0;
 
-      // Insert backends using drizzle ORM (same as getOrCreateBackendId does)
-      for (const backendFull of uniqueBackends) {
-        await db.insert(backends).values({ full: backendFull }).onConflictDoNothing();
-        backendsCreated++;
+      // Batch insert backends
+      if (d1) {
+        const BATCH_SIZE = 50;
+        for (let i = 0; i < uniqueBackends.length; i += BATCH_SIZE) {
+          const batch = uniqueBackends.slice(i, i + BATCH_SIZE);
+          const statements = batch.map(full =>
+            d1.prepare("INSERT OR IGNORE INTO backends (full) VALUES (?)").bind(full)
+          );
+          await d1.batch(statements);
+          backendsCreated += batch.length;
+        }
+      } else {
+        // Fallback to drizzle one-by-one
+        for (const backendFull of uniqueBackends) {
+          await db.insert(backends).values({ full: backendFull }).onConflictDoNothing();
+          backendsCreated++;
+        }
       }
 
       // Now fetch all backends into memory for fast lookup
