@@ -36,6 +36,7 @@ interface ToolMeta {
   description?: string;
   latest_version: string;
   version_count: number;
+  backends?: string[];
 }
 
 // Fetch tool metadata from tools.json
@@ -50,12 +51,52 @@ async function fetchToolMeta(toolName: string): Promise<ToolMeta | null> {
   }
 }
 
+// Fetch download count for a tool
+async function fetchDownloadCount(toolName: string): Promise<number | null> {
+  try {
+    const response = await fetch(`https://mise-tools.jdx.dev/api/downloads?tool=${encodeURIComponent(toolName)}`);
+    if (!response.ok) return null;
+    const data = await response.json() as { total: number };
+    return data.total || null;
+  } catch {
+    return null;
+  }
+}
+
+// Get primary backend type from backends array
+function getPrimaryBackend(backends?: string[]): string | null {
+  if (!backends || backends.length === 0) return null;
+  const backend = backends[0];
+  const colonIndex = backend.indexOf(":");
+  return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
+}
+
+// Format download count for display
+function formatDownloads(count: number): string {
+  if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
+  if (count >= 1000) return `${(count / 1000).toFixed(1)}k`;
+  return count.toString();
+}
+
 // Inject dynamic OG meta tags into HTML
-function injectOgTags(html: string, tool: ToolMeta, url: string): string {
+function injectOgTags(html: string, tool: ToolMeta, url: string, downloads: number | null): string {
   const title = `${tool.name} - mise tools`;
-  const description = tool.description
-    ? `${tool.description} | Latest: ${tool.latest_version} | ${tool.version_count} versions available`
-    : `${tool.name} ${tool.latest_version} - ${tool.version_count} versions available via mise`;
+  const backend = getPrimaryBackend(tool.backends);
+
+  // Build description parts
+  const parts: string[] = [];
+  if (tool.description) {
+    parts.push(tool.description);
+  }
+  if (backend) {
+    parts.push(`Backend: ${backend}`);
+  }
+  if (downloads) {
+    parts.push(`${formatDownloads(downloads)} downloads`);
+  }
+  parts.push(`${tool.version_count} versions`);
+
+  const description = parts.join(" · ");
 
   // Dynamic OG image URL
   const ogImageUrl = `https://mise-tools.jdx.dev/api/og/${encodeURIComponent(tool.name)}`;
@@ -130,11 +171,14 @@ export async function handleStaticAssets(
     // Check if this is a bot requesting a tool page
     const toolName = getToolFromPath(url.pathname);
     if (toolName && isBot(request)) {
-      // Fetch tool metadata and inject OG tags
-      const toolMeta = await fetchToolMeta(toolName);
+      // Fetch tool metadata and download count in parallel
+      const [toolMeta, downloads] = await Promise.all([
+        fetchToolMeta(toolName),
+        fetchDownloadCount(toolName),
+      ]);
       if (toolMeta) {
         const html = await indexResponse.text();
-        const modifiedHtml = injectOgTags(html, toolMeta, url.href);
+        const modifiedHtml = injectOgTags(html, toolMeta, url.href, downloads);
         return new Response(modifiedHtml, {
           status: 200,
           headers: {
