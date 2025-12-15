@@ -16,25 +16,29 @@ export interface GithubRepoInfo {
   language: string | null;
   archived: boolean;
   default_branch: string;
+  stale: boolean;
 }
 
 interface UseGithubRepoResult {
   data: GithubRepoInfo | null;
   loading: boolean;
   error: string | null;
+  stale: boolean;
 }
 
 export function useGithubRepo(
   owner: string | null,
   repo: string | null
 ): UseGithubRepoResult {
-  const { authenticated, loading: authLoading } = useAuth();
+  const { loading: authLoading } = useAuth();
   const [data, setData] = useState<GithubRepoInfo | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (authLoading || !authenticated || !owner || !repo) {
+    // Wait for auth check to complete, but fetch regardless of auth status
+    // (API will serve cached data to unauthenticated users)
+    if (authLoading || !owner || !repo) {
       setData(null);
       setLoading(false);
       return;
@@ -47,6 +51,7 @@ export function useGithubRepo(
       .then((res) => {
         if (!res.ok) {
           if (res.status === 401) {
+            // No cached data available and not authenticated
             throw new Error("Not authenticated");
           }
           throw new Error("Failed to fetch repo info");
@@ -56,9 +61,9 @@ export function useGithubRepo(
       .then(setData)
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
-  }, [authenticated, authLoading, owner, repo]);
+  }, [authLoading, owner, repo]);
 
-  return { data, loading, error };
+  return { data, loading, error, stale: data?.stale ?? false };
 }
 
 // Helper to parse GitHub URL or slug into owner/repo

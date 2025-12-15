@@ -5,6 +5,7 @@ export interface Env {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
   ASSETS: Fetcher;
+  GITHUB_CACHE: KVNamespace;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;
   GITHUB_CLIENT_ID: string;

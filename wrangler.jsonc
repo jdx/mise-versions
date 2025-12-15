@@ -14,6 +14,12 @@
   "observability": {
     "enabled": true
   },
+  "kv_namespaces": [
+    {
+      "binding": "GITHUB_CACHE",
+      "id": "4f4aae307f5e4dfda604e16f239a047b"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",

@@ -425,15 +425,15 @@ function backendToUrl(backend: string): string | null {
 function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined }) {
   const { authenticated } = useAuth();
   const parsed = toolMeta?.github ? parseGithubSlug(toolMeta.github) : null;
-  const { data: ghData } = useGithubRepo(
+  const { data: ghData, stale: ghStale } = useGithubRepo(
     parsed?.owner ?? null,
     parsed?.repo ?? null
   );
 
   const hasMetadata = toolMeta && (toolMeta.license || toolMeta.homepage || toolMeta.repo_url || toolMeta.authors?.length || toolMeta.security?.length);
   const hasLinks = toolMeta && (toolMeta.package_urls || toolMeta.aqua_link || toolMeta.backends?.length);
-  const hasGithub = authenticated && ghData && (ghData.stars > 0 || (ghData.topics && ghData.topics.length > 0));
-  const showGithubPlaceholder = !authenticated && parsed !== null; // Tool has GitHub but user not logged in
+  const hasGithub = ghData && (ghData.stars > 0 || (ghData.topics && ghData.topics.length > 0));
+  const showGithubPlaceholder = !ghData && !authenticated && parsed !== null; // No cached data and not logged in
 
   return (
     <div class="space-y-4">
@@ -640,6 +640,18 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
                 </svg>
                 GitHub
               </span>
+              {/* Stale data warning */}
+              {ghStale && !authenticated && (
+                <div class="text-xs text-amber-500 flex items-center gap-1.5">
+                  <span>Data may be outdated.</span>
+                  <a
+                    href="/auth/login"
+                    class="underline hover:text-amber-400 transition-colors"
+                  >
+                    Login to refresh
+                  </a>
+                </div>
+              )}
               {/* Primary stats row */}
               <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
                 {ghData.stars > 0 && (
