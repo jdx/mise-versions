@@ -404,11 +404,11 @@ export function ToolPage({ params }: Props) {
       <td class="px-4 py-3">
         <div class="h-5 w-20 bg-dark-600 rounded animate-pulse" />
       </td>
-      <td class="px-4 py-3">
-        <div class="h-5 w-32 bg-dark-600 rounded animate-pulse" />
-      </td>
       <td class="px-4 py-3 hidden sm:table-cell text-right">
         <div class="h-5 w-12 bg-dark-600 rounded animate-pulse ml-auto" />
+      </td>
+      <td class="px-4 py-3">
+        <div class="h-5 w-32 bg-dark-600 rounded animate-pulse" />
       </td>
     </tr>
   );
@@ -475,11 +475,11 @@ export function ToolPage({ params }: Props) {
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
                 Version
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
-                Released
-              </th>
               <th class="text-right px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
                 Downloads
+              </th>
+              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
+                Released
               </th>
             </tr>
           </thead>
@@ -494,6 +494,13 @@ export function ToolPage({ params }: Props) {
                   <td class="px-4 py-3 font-mono text-sm text-gray-200">
                     {v.version}
                   </td>
+                  <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
+                    {downloadsLoading ? (
+                      <div class="h-4 w-10 bg-dark-600 rounded animate-pulse ml-auto" />
+                    ) : (
+                      (versionDownloads.get(v.version) || 0).toLocaleString()
+                    )}
+                  </td>
                   <td class="px-4 py-3 text-sm text-gray-400">
                     {v.created_at ? (
                       <>
@@ -502,13 +509,6 @@ export function ToolPage({ params }: Props) {
                       </>
                     ) : (
                       "-"
-                    )}
-                  </td>
-                  <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
-                    {downloadsLoading ? (
-                      <div class="h-4 w-10 bg-dark-600 rounded animate-pulse ml-auto" />
-                    ) : (
-                      (versionDownloads.get(v.version) || 0).toLocaleString()
                     )}
                   </td>
                 </tr>
