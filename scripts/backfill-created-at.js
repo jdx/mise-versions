@@ -114,14 +114,20 @@ async function fetchVersionsWithTimestamps(tool, retries = 2) {
         timeout: 60000,
       });
 
+      if (!output || !output.trim()) {
+        console.log(`  Empty output from mise ls-remote for ${tool}`);
+        return null;
+      }
+
       const data = JSON.parse(output);
       // Returns array of { version, created_at? }
       return data;
     } catch (e) {
       const stderr = e.stderr?.toString() || "";
+      const stdout = e.stdout?.toString() || "";
       // Check for rate limiting
       if (stderr.includes("rate limit") || stderr.includes("403")) {
-        console.log(`Rate limited on ${tool}, rotating token...`);
+        console.log(`  Rate limited on ${tool}, rotating token...`);
         const newToken = await rotateToken();
         if (newToken) {
           env.GITHUB_TOKEN = newToken;
@@ -129,6 +135,13 @@ async function fetchVersionsWithTimestamps(tool, retries = 2) {
         }
       }
       if (attempt === retries) {
+        // Log the actual error for debugging
+        if (stderr) {
+          console.log(`  stderr: ${stderr.slice(0, 200)}`);
+        }
+        if (e.message && !stderr) {
+          console.log(`  error: ${e.message.slice(0, 200)}`);
+        }
         return null;
       }
     }
