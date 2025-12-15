@@ -172,9 +172,10 @@ function getToolInfo(toolName) {
     return {
       github,
       description: data.description || null,
+      security: data.security || [],
     };
   } catch {
-    return { github: null, description: null };
+    return { github: null, description: null, security: [] };
   }
 }
 
@@ -263,7 +264,7 @@ function main() {
         ...metadata,
       };
 
-      // Get GitHub slug and description from mise
+      // Get GitHub slug, description, and security from mise
       const info = getToolInfo(toolName);
       if (info.github) {
         tool.github = info.github;
@@ -273,6 +274,9 @@ function main() {
       if (info.description) {
         tool.description = info.description;
         withDesc++;
+      }
+      if (info.security && info.security.length > 0) {
+        tool.security = info.security;
       }
 
       // Get backends from registry

@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "preact/hooks";
 import { useToolVersions } from "../hooks/useToolVersions";
 import { useDownloads } from "../hooks/useDownloads";
-import { useTools, Tool } from "../hooks/useTools";
+import { useTools, Tool, SecurityFeature } from "../hooks/useTools";
 import { useGithubRepo, parseGithubSlug } from "../hooks/useGithubRepo";
 import { useAuth } from "../hooks/useAuth";
 import { formatRelativeTime, formatDate } from "../utils/time";
@@ -223,6 +223,29 @@ const packageUrlLabels: Record<string, string> = {
   go: "pkg.go.dev",
 };
 
+// Format security feature for display
+function formatSecurityFeature(feature: SecurityFeature): { label: string; color: string } {
+  switch (feature.type) {
+    case "checksum":
+      return {
+        label: feature.algorithm ? `checksum (${feature.algorithm})` : "checksum",
+        color: "text-green-400",
+      };
+    case "github_attestations":
+      return { label: "GitHub attestations", color: "text-green-400" };
+    case "slsa":
+      return { label: "SLSA", color: "text-green-400" };
+    case "cosign":
+      return { label: "cosign", color: "text-green-400" };
+    case "minisign":
+      return { label: "minisign", color: "text-green-400" };
+    case "gpg":
+      return { label: "GPG", color: "text-green-400" };
+    default:
+      return { label: feature.type, color: "text-gray-400" };
+  }
+}
+
 // Version Timeline Component
 function VersionTimeline({ versions }: { versions: Version[] }) {
   // Filter to only versions with dates and sort chronologically
@@ -381,7 +404,7 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
     parsed?.repo ?? null
   );
 
-  const hasMetadata = toolMeta && (toolMeta.license || toolMeta.homepage || toolMeta.repo_url || toolMeta.authors?.length);
+  const hasMetadata = toolMeta && (toolMeta.license || toolMeta.homepage || toolMeta.repo_url || toolMeta.authors?.length || toolMeta.security?.length);
   const hasLinks = toolMeta && (toolMeta.package_urls || toolMeta.aqua_link || toolMeta.backends?.length);
   const hasGithub = authenticated && ghData && (ghData.stars > 0 || (ghData.topics && ghData.topics.length > 0));
   const showGithubPlaceholder = !authenticated && parsed !== null; // Tool has GitHub but user not logged in
@@ -454,6 +477,27 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
                   <dd class="text-gray-300">
                     {toolMeta.authors.slice(0, 3).join(", ")}
                     {toolMeta.authors.length > 3 && ` +${toolMeta.authors.length - 3} more`}
+                  </dd>
+                </div>
+              )}
+              {toolMeta.security && toolMeta.security.length > 0 && (
+                <div class="flex">
+                  <dt class="text-gray-500 w-24 flex-shrink-0">Security</dt>
+                  <dd class="flex flex-wrap gap-1.5">
+                    {toolMeta.security.map((feature, i) => {
+                      const { label, color } = formatSecurityFeature(feature);
+                      return (
+                        <span
+                          key={i}
+                          class={`inline-flex items-center gap-1 px-2 py-0.5 bg-dark-700 rounded text-xs ${color}`}
+                        >
+                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                          </svg>
+                          {label}
+                        </span>
+                      );
+                    })}
                   </dd>
                 </div>
               )}

@@ -1,5 +1,12 @@
 import { useState, useEffect } from "preact/hooks";
 
+export interface SecurityFeature {
+  type: "checksum" | "github_attestations" | "slsa" | "cosign" | "minisign" | "gpg";
+  algorithm?: string;
+  signer_workflow?: string;
+  public_key?: string;
+}
+
 export interface Tool {
   name: string;
   latest_version: string;
@@ -22,6 +29,7 @@ export interface Tool {
     rubygems?: string;
     go?: string;
   };
+  security?: SecurityFeature[];
 }
 
 export interface ToolsManifest {
