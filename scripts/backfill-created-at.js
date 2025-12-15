@@ -100,7 +100,10 @@ async function getGitHubToken() {
 // Fetch versions with timestamps from mise
 async function fetchVersionsWithTimestamps(tool, retries = 2) {
   const token = await getGitHubToken();
-  const env = { ...process.env };
+  const env = {
+    ...process.env,
+    MISE_LIST_ALL_VERSIONS: "1",  // Get all versions, not just first page
+  };
   if (token) {
     env.GITHUB_TOKEN = token;
   }
