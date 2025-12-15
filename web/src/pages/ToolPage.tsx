@@ -100,11 +100,11 @@ function DownloadChart({
         return (
           <div
             key={d.date}
-            class="flex-1 group relative"
+            class="flex-1 h-full flex items-end group relative"
             title={`${label}: ${d.count} downloads`}
           >
             <div
-              class="bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
+              class="w-full bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
               style={{ height: `${Math.max(height, 2)}%` }}
             />
             <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
@@ -353,9 +353,9 @@ function DownloadsPane({
           <div class="text-sm text-gray-400 mb-2">Last 30 days</div>
           <div class="h-32 flex items-end gap-0.5">
             {[...Array(30)].map((_, i) => (
-              <div key={i} class="flex-1">
+              <div key={i} class="flex-1 h-full flex items-end">
                 <div
-                  class="bg-dark-600 rounded-t animate-pulse"
+                  class="w-full bg-dark-600 rounded-t animate-pulse"
                   style={{ height: `${20 + Math.random() * 60}%` }}
                 />
               </div>
