@@ -268,6 +268,7 @@ async function main() {
 
     // Update TOML with real timestamps
     let changedCount = 0;
+    let notFoundCount = 0;
     const lines = ["[versions]"];
 
     for (const [version, data] of Object.entries(existing.versions)) {
@@ -277,24 +278,33 @@ async function main() {
         ? data.created_at.toISOString()
         : String(data.created_at);
 
+      const isPlaceholder = timestamp === "2025-01-01T00:00:00.000Z";
+
       if (apiTs) {
         const apiDate = new Date(apiTs).toISOString();
         if (timestamp !== apiDate) {
           timestamp = apiDate;
           changedCount++;
         }
+      } else if (isPlaceholder) {
+        // Version not in API and has placeholder - count but keep placeholder
+        notFoundCount++;
       }
 
       lines.push(`"${version}" = { created_at = ${timestamp} }`);
     }
 
     if (changedCount === 0) {
-      console.log(`  No changes needed for ${tool}`);
+      if (notFoundCount > 0) {
+        console.log(`  No API data for ${notFoundCount} versions in ${tool}`);
+      } else {
+        console.log(`  No changes needed for ${tool}`);
+      }
       skipped++;
       continue;
     }
 
-    console.log(`  Updated ${changedCount} timestamps for ${tool}`);
+    console.log(`  Updated ${changedCount} timestamps for ${tool}${notFoundCount > 0 ? ` (${notFoundCount} not in API)` : ""}`);
 
     if (!args.dryRun) {
       writeFileSync(tomlPath, lines.join("\n") + "\n");
