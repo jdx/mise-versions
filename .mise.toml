@@ -1,0 +1,23 @@
+# cache-break: 2025-12-15
+tasks.build = "bunx tsc"
+tasks.dev = "bunx wrangler dev"
+tasks.lint = "bunx eslint . --ext .ts && bunx prettier --check ."
+tasks."lint:fix" = "bunx eslint . --ext .ts --fix && bunx prettier --write ."
+
+tasks.gen.run = [
+  "bunx supabase gen types typescript --project-id fjrwmlxwmhtzflckukna > ./src/database.types.ts",
+  "bunx prettier --write ./src/database.types.ts"
+]
+
+[tasks.deploy]
+depends = ["build"]
+run = "bunx wrangler deploy"
+
+[tools]
+"aqua:chmln/sd" = "latest"
+fd = "latest"
+uv = "latest"
+wait-for-gh-rate-limit = "latest"
+
+[env]
+_.path = ["./node_modules/.bin"]

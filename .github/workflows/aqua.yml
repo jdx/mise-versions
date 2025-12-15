@@ -1,0 +1,30 @@
+name: aqua
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 */12 * * *"
+
+concurrency:
+  group: aqua
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+env:
+  GITHUB_API_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
+  DRY_RUN: 0
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v3
+      - run: ./scripts/aqua.sh

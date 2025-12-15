@@ -1,0 +1,46 @@
+name: deploy
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "worker/**"
+      - "web/**"
+      - "src/**"
+      - "wrangler.jsonc"
+      - "package.json"
+      - ".github/workflows/deploy.yml"
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install web dependencies
+        run: npm ci
+        working-directory: web
+
+      - name: Build web frontend
+        run: npm run build
+        working-directory: web
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

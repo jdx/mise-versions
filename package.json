@@ -1,0 +1,27 @@
+{
+  "name": "mise-versions",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "npm run test:js && npm run test:shell",
+    "test:js": "node --test scripts/*.test.js",
+    "test:shell": "bash scripts/update.test.sh"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250723.0",
+    "@types/node": "^24.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.31.0",
+    "prettier": "^3.6.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.25.1"
+  },
+  "dependencies": {
+    "@octokit/auth-oauth-user": "^6.0.0",
+    "@octokit/rest": "^22.0.0",
+    "drizzle-orm": "^0.45.0",
+    "smol-toml": "^1.5.2"
+  }
+}
