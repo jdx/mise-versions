@@ -1,4 +1,4 @@
-import { Router, Route, Switch } from "wouter-preact";
+import { Router, Route, Switch, Link } from "wouter-preact";
 import { HomePage } from "./pages/HomePage";
 import { ToolPage } from "./pages/ToolPage";
 import { useAuth } from "./hooks/useAuth";
@@ -59,12 +59,12 @@ export function App() {
     <div class="min-h-screen">
       <header class="bg-dark-800 border-b border-dark-600">
         <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <a
+          <Link
             href="/"
             class="text-xl font-bold text-neon-purple hover:text-neon-pink transition-colors"
           >
             mise tools
-          </a>
+          </Link>
           <nav class="flex items-center gap-6">
             {mau !== null && mau > 0 && (
               <span class="text-sm text-gray-400">

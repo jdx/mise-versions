@@ -1,4 +1,5 @@
 import { useState, useMemo } from "preact/hooks";
+import { Link } from "wouter-preact";
 import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
 import { formatRelativeTime } from "../utils/time";
@@ -152,12 +153,12 @@ export function HomePage() {
               filteredTools.map((tool) => (
                 <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                   <td class="px-4 py-3">
-                    <a
+                    <Link
                       href={`/${tool.name}`}
                       class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
                     >
                       <HighlightedName name={tool.name} />
-                    </a>
+                    </Link>
                   </td>
                   <td class="px-4 py-3 text-sm text-gray-300 font-mono">
                     {tool.latest_version}
