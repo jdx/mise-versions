@@ -635,47 +635,57 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       let updated = 0;
       let toolsMapped = 0;
 
-      // Process each tool
+      // Build batch of updates
+      const updates: Array<{ toolId: number; backendId: number; toolName: string }> = [];
       for (const tool of toolsWithNullBackend) {
         const backendFull = toolToBackend.get(tool.name);
-        if (!backendFull) {
-          continue;
-        }
+        if (!backendFull) continue;
 
         const backendId = backendIdMap.get(backendFull);
-        if (!backendId) {
-          continue;
-        }
+        if (!backendId) continue;
+
+        updates.push({ toolId: tool.id, backendId, toolName: tool.name });
         toolsMapped++;
+      }
 
-        // Update downloads using D1's native API if available
-        if (d1) {
-          try {
-            await d1.prepare(
-              "UPDATE downloads SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL"
-            ).bind(backendId, tool.id).run();
-          } catch (e: any) {
-            throw new Error(`D1 UPDATE downloads failed for ${tool.name} (tool_id=${tool.id}, backend_id=${backendId}): ${e?.message || e}`);
+      // Process in batches using D1's batch API
+      if (d1 && updates.length > 0) {
+        const BATCH_SIZE = 50; // D1 allows up to ~100 statements per batch
+
+        for (let i = 0; i < updates.length; i += BATCH_SIZE) {
+          const batch = updates.slice(i, i + BATCH_SIZE);
+          const statements: D1PreparedStatement[] = [];
+
+          for (const { toolId, backendId } of batch) {
+            statements.push(
+              d1.prepare("UPDATE downloads SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL")
+                .bind(backendId, toolId)
+            );
+            statements.push(
+              d1.prepare("UPDATE downloads_daily SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL")
+                .bind(backendId, toolId)
+            );
           }
 
           try {
-            await d1.prepare(
-              "UPDATE downloads_daily SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL"
-            ).bind(backendId, tool.id).run();
+            await d1.batch(statements);
+            updated += batch.length;
           } catch (e: any) {
-            throw new Error(`D1 UPDATE downloads_daily failed for ${tool.name}: ${e?.message || e}`);
+            const batchTools = batch.map(b => b.toolName).join(", ");
+            throw new Error(`D1 batch update failed for tools [${batchTools}]: ${e?.message || e}`);
           }
-        } else {
-          // Fallback to drizzle (probably won't work but keeping for completeness)
-          await db.run(
-            sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
-          );
-          await db.run(
-            sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
-          );
         }
-
-        updated++;
+      } else if (!d1) {
+        // Fallback to drizzle one-by-one (slow but works for small datasets)
+        for (const { toolId, backendId } of updates) {
+          await db.run(
+            sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${toolId} AND backend_id IS NULL`)
+          );
+          await db.run(
+            sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${toolId} AND backend_id IS NULL`)
+          );
+          updated++;
+        }
       }
 
       return {
