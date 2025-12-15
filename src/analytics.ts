@@ -621,9 +621,30 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
           continue;
         }
 
-        // Get or create the backend ID
-        const backendId = await getOrCreateBackendId(defaultBackend);
-        if (!backendId) continue;
+        // Get or create backend using raw SQL to avoid drizzle issues
+        let backendId: number;
+
+        // Try to find existing backend
+        const existing = await db.all(
+          sql`SELECT id FROM backends WHERE full = ${defaultBackend}`
+        ) as Array<{ id: number }>;
+
+        if (existing.length > 0) {
+          backendId = existing[0].id;
+        } else {
+          // Insert new backend
+          await db.run(
+            sql`INSERT OR IGNORE INTO backends (full) VALUES (${defaultBackend})`
+          );
+          const inserted = await db.all(
+            sql`SELECT id FROM backends WHERE full = ${defaultBackend}`
+          ) as Array<{ id: number }>;
+          if (inserted.length === 0) {
+            console.log(`Failed to create backend for: ${defaultBackend}`);
+            continue;
+          }
+          backendId = inserted[0].id;
+        }
 
         toolsMapped++;
 
