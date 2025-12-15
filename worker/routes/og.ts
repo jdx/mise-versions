@@ -118,18 +118,8 @@ export async function handleOgImageHome(
   });
 }
 
-// Mise logo as inline SVG (simplified for Satori compatibility)
-const MISE_LOGO = `
-<svg width="36" height="36" viewBox="15 25 90 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="20" y="30" width="80" height="60" rx="8" fill="#1a1a1a" stroke="#00d9ff" stroke-width="3"/>
-  <rect x="21.5" y="31.5" width="77" height="16" rx="6" fill="#2a2a2a"/>
-  <circle cx="32" cy="39" r="3" fill="#ff5252"/>
-  <circle cx="44" cy="39" r="3" fill="#ffbd2e"/>
-  <circle cx="56" cy="39" r="3" fill="#52e892"/>
-  <rect x="52" y="56" width="35" height="2.5" fill="#00d9ff" opacity="0.7"/>
-  <rect x="28" y="74" width="25" height="2.5" fill="#52e892" opacity="0.6"/>
-  <rect x="56" y="74" width="18" height="2.5" fill="#ff9100" opacity="0.6"/>
-</svg>`;
+// Mise logo - use hosted PNG for better compatibility
+const MISE_LOGO_URL = "https://mise.jdx.dev/logo.svg";
 
 function generateImage(tool: ToolMeta, downloads: number | null, backend: string | null): Response {
   const description = tool.description
@@ -166,7 +156,7 @@ function generateImage(tool: ToolMeta, downloads: number | null, backend: string
       <!-- Header: branding -->
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;">
         <div style="display: flex; align-items: center; gap: 12px;">
-          ${MISE_LOGO}
+          <img src="${MISE_LOGO_URL}" width="36" height="36" />
           <span style="font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
         </div>
         <span style="font-size: 18px; color: #4b5563;">mise-tools.jdx.dev</span>
