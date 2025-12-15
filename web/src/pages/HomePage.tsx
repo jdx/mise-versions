@@ -274,7 +274,7 @@ export function HomePage() {
               >
                 <div class="flex items-start justify-between mb-1">
                   <span class="text-xs text-gray-500 font-mono">#{index + 1}</span>
-                  <span class="text-xs text-gray-500">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
+                  <span class="text-sm font-semibold text-white">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
                 </div>
                 <div class="text-sm font-medium text-gray-200 group-hover:text-neon-purple transition-colors truncate">
                   {tool.name}
