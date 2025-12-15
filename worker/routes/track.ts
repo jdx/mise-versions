@@ -227,6 +227,7 @@ export async function handleBackfillBackends(
       success: true,
       updated: result.updated,
       tools_mapped: result.tools_mapped,
+      backends_created: result.backends_created,
     });
   } catch (error) {
     console.error("Backfill error:", error);

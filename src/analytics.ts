@@ -593,80 +593,96 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     // Backfill backend_id for existing records using default backends from registry
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>
-    ): Promise<{ updated: number; tools_mapped: number }> {
-      // Build a map of tool name -> default backend (first in list)
-      const defaultBackends = new Map<string, string>();
+    ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
+      // First, insert all backends from registry
+      let backendsCreated = 0;
       for (const entry of registry) {
         if (entry.backends && entry.backends.length > 0) {
-          defaultBackends.set(entry.short, entry.backends[0]);
-        }
-      }
-
-      // Get all tools that have downloads without backend_id
-      const toolsToUpdate = await db
-        .select({
-          id: tools.id,
-          name: tools.name,
-        })
-        .from(tools)
-        .all();
-
-      let updated = 0;
-      let toolsMapped = 0;
-
-      for (const tool of toolsToUpdate) {
-        const defaultBackend = defaultBackends.get(tool.name);
-        if (!defaultBackend) {
-          console.log(`No default backend found for tool: ${tool.name}`);
-          continue;
-        }
-
-        // Get or create backend using raw SQL to avoid drizzle issues
-        let backendId: number;
-
-        // Try to find existing backend
-        const existing = await db.all(
-          sql`SELECT id FROM backends WHERE full = ${defaultBackend}`
-        ) as Array<{ id: number }>;
-
-        if (existing.length > 0) {
-          backendId = existing[0].id;
-        } else {
-          // Insert new backend
-          await db.run(
-            sql`INSERT OR IGNORE INTO backends (full) VALUES (${defaultBackend})`
-          );
-          const inserted = await db.all(
-            sql`SELECT id FROM backends WHERE full = ${defaultBackend}`
-          ) as Array<{ id: number }>;
-          if (inserted.length === 0) {
-            console.log(`Failed to create backend for: ${defaultBackend}`);
-            continue;
+          const defaultBackend = entry.backends[0];
+          try {
+            await db.run(
+              sql`INSERT OR IGNORE INTO backends (full) VALUES (${defaultBackend})`
+            );
+            backendsCreated++;
+          } catch (e) {
+            console.log(`Failed to insert backend ${defaultBackend}: ${e}`);
           }
-          backendId = inserted[0].id;
         }
-
-        toolsMapped++;
-
-        // Update all downloads for this tool that don't have a backend_id
-        const result = await db.run(sql`
-          UPDATE downloads
-          SET backend_id = ${backendId}
-          WHERE tool_id = ${tool.id} AND backend_id IS NULL
-        `);
-
-        // D1Result has meta.changes at runtime
-        updated += (result as any).meta?.changes ?? 0;
-
-        // Also update downloads_daily
-        await db.run(sql`
-          UPDATE downloads_daily
-          SET backend_id = ${backendId}
-          WHERE tool_id = ${tool.id} AND backend_id IS NULL
-        `);
       }
 
-      return { updated, tools_mapped: toolsMapped };
+      // Create a temporary mapping table
+      await db.run(sql`
+        CREATE TEMPORARY TABLE IF NOT EXISTS tool_backend_map (
+          tool_name TEXT PRIMARY KEY,
+          backend_full TEXT NOT NULL
+        )
+      `);
+
+      // Insert mappings
+      for (const entry of registry) {
+        if (entry.backends && entry.backends.length > 0) {
+          await db.run(sql`
+            INSERT OR REPLACE INTO tool_backend_map (tool_name, backend_full)
+            VALUES (${entry.short}, ${entry.backends[0]})
+          `);
+        }
+      }
+
+      // Update downloads in a single batch using the mapping
+      const updateResult = await db.run(sql`
+        UPDATE downloads
+        SET backend_id = (
+          SELECT b.id
+          FROM tools t
+          JOIN tool_backend_map m ON t.name = m.tool_name
+          JOIN backends b ON b.full = m.backend_full
+          WHERE t.id = downloads.tool_id
+        )
+        WHERE backend_id IS NULL
+        AND EXISTS (
+          SELECT 1
+          FROM tools t
+          JOIN tool_backend_map m ON t.name = m.tool_name
+          WHERE t.id = downloads.tool_id
+        )
+      `);
+
+      const updated = (updateResult as any).meta?.changes ?? 0;
+
+      // Update downloads_daily similarly
+      await db.run(sql`
+        UPDATE downloads_daily
+        SET backend_id = (
+          SELECT b.id
+          FROM tools t
+          JOIN tool_backend_map m ON t.name = m.tool_name
+          JOIN backends b ON b.full = m.backend_full
+          WHERE t.id = downloads_daily.tool_id
+        )
+        WHERE backend_id IS NULL
+        AND EXISTS (
+          SELECT 1
+          FROM tools t
+          JOIN tool_backend_map m ON t.name = m.tool_name
+          WHERE t.id = downloads_daily.tool_id
+        )
+      `);
+
+      // Get count of tools that were mapped
+      const toolsMapped = await db.all(sql`
+        SELECT COUNT(DISTINCT t.id) as count
+        FROM tools t
+        JOIN tool_backend_map m ON t.name = m.tool_name
+      `) as Array<{ count: number }>;
+
+      // Clean up temp table
+      await db.run(sql`DROP TABLE IF EXISTS tool_backend_map`);
+
+      return {
+        updated,
+        tools_mapped: toolsMapped[0]?.count ?? 0,
+        backends_created: backendsCreated,
+      };
     },
 
     // Make backend_id NOT NULL (run after backfill)
