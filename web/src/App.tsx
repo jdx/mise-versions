@@ -4,6 +4,16 @@ import { ToolPage } from "./pages/ToolPage";
 import { useAuth } from "./hooks/useAuth";
 import { useMAU } from "./hooks/useMAU";
 
+function formatCompact(n: number): string {
+  if (n >= 1_000_000) {
+    return (n / 1_000_000).toFixed(n >= 10_000_000 ? 1 : 2) + "m";
+  }
+  if (n >= 1_000) {
+    return (n / 1_000).toFixed(n >= 10_000 ? 1 : 2) + "k";
+  }
+  return n.toString();
+}
+
 
 function GitHubIcon() {
   return (
@@ -68,7 +78,7 @@ export function App() {
           <nav class="flex items-center gap-6">
             {mau !== null && mau > 0 && (
               <span class="text-sm text-gray-400">
-                mise ❤️ by {mau.toLocaleString()} devs this month
+                mise ❤️ by {formatCompact(mau)} devs this month
               </span>
             )}
             <AuthButton />
