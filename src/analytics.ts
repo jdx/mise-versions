@@ -595,10 +595,17 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       registry: Array<{ short: string; backends: string[] }>
     ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
       // First check if backend_id column exists
-      const columns = await db.all(sql`PRAGMA table_info(downloads)`) as Array<{ name: string }>;
-      const hasBackendId = columns.some((c) => c.name === "backend_id");
+      const downloadsColumns = await db.all(sql`PRAGMA table_info(downloads)`) as Array<{ name: string }>;
+      const hasBackendId = downloadsColumns.some((c) => c.name === "backend_id");
       if (!hasBackendId) {
         throw new Error("backend_id column does not exist in downloads table. Run migrations first.");
+      }
+
+      // Check backends table schema
+      const backendsColumns = await db.all(sql`PRAGMA table_info(backends)`) as Array<{ name: string; type: string }>;
+      const columnNames = backendsColumns.map((c) => c.name);
+      if (!columnNames.includes("full")) {
+        throw new Error(`backends table missing 'full' column. Columns: ${columnNames.join(", ")}`);
       }
 
       // Build mapping of tool name -> default backend
