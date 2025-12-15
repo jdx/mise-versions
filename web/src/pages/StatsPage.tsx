@@ -283,7 +283,7 @@ export function StatsPage() {
                   {tools.map((tool: { name: string; downloads: number }, index: number) => (
                     <Link
                       key={tool.name}
-                      href={`/${tool.name}`}
+                      href={`/tools/${tool.name}`}
                       class="flex items-center justify-between text-sm group"
                     >
                       <span class="text-gray-300 group-hover:text-neon-purple transition-colors truncate">

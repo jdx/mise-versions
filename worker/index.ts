@@ -35,6 +35,9 @@ import {
 // Misc routes
 import { handleHealth, handleGitHubWebhook } from "./routes/misc";
 
+// OG image routes
+import { handleOgImage, handleOgImageHome } from "./routes/og";
+
 // Build router with all routes
 function createRouter(): Router {
   const router = new Router();
@@ -68,6 +71,10 @@ function createRouter(): Router {
 
   // Webhooks
   router.post("/webhooks/github", (req) => handleGitHubWebhook(req));
+
+  // OG image routes
+  router.get("/api/og", (req, env) => handleOgImageHome(req, env));
+  router.get("/api/og/:tool", (req, env, params) => handleOgImage(req, env, params.tool));
 
   // Data proxy (must be after specific routes)
   router.get("/data/*", handleDataProxy);

@@ -174,7 +174,7 @@ export function HomePage() {
       case "Enter":
         e.preventDefault();
         if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
-          navigate(`/${suggestions[selectedIndex].name}`);
+          navigate(`/tools/${suggestions[selectedIndex].name}`);
           setShowSuggestions(false);
         }
         break;
@@ -185,7 +185,7 @@ export function HomePage() {
   };
 
   const selectSuggestion = (name: string) => {
-    navigate(`/${name}`);
+    navigate(`/tools/${name}`);
     setShowSuggestions(false);
   };
 
@@ -269,7 +269,7 @@ export function HomePage() {
             {hotTools.map((tool, index) => (
               <Link
                 key={tool.name}
-                href={`/${tool.name}`}
+                href={`/tools/${tool.name}`}
                 class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 hover:bg-dark-700 transition-all group"
               >
                 <div class="flex items-start justify-between mb-1">
@@ -402,7 +402,7 @@ export function HomePage() {
                 <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                   <td class="px-4 py-3">
                     <Link
-                      href={`/${tool.name}`}
+                      href={`/tools/${tool.name}`}
                       class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
                     >
                       <HighlightedName name={tool.name} />

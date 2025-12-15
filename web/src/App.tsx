@@ -97,7 +97,7 @@ export function App() {
           <Switch>
             <Route path="/" component={HomePage} />
             <Route path="/stats" component={StatsPage} />
-            <Route path="/:tool" component={ToolPage} />
+            <Route path="/tools/:tool" component={ToolPage} />
           </Switch>
         </Router>
       </main>
