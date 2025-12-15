@@ -79,17 +79,29 @@ export function HomePage() {
     );
   };
 
-  if (loading) {
-    return (
-      <div class="text-center py-12 text-gray-400">Loading tools...</div>
-    );
-  }
-
   if (error) {
     return (
       <div class="text-center py-12 text-red-400">Error: {error}</div>
     );
   }
+
+  // Skeleton row for loading state
+  const SkeletonRow = () => (
+    <tr>
+      <td class="px-4 py-3">
+        <div class="h-5 w-32 bg-dark-600 rounded animate-pulse" />
+      </td>
+      <td class="px-4 py-3">
+        <div class="h-5 w-16 bg-dark-600 rounded animate-pulse" />
+      </td>
+      <td class="px-4 py-3 hidden sm:table-cell text-right">
+        <div class="h-5 w-12 bg-dark-600 rounded animate-pulse ml-auto" />
+      </td>
+      <td class="px-4 py-3 hidden md:table-cell">
+        <div class="h-5 w-20 bg-dark-600 rounded animate-pulse" />
+      </td>
+    </tr>
+  );
 
   return (
     <div>
@@ -100,11 +112,16 @@ export function HomePage() {
           value={search}
           onInput={(e) => setSearch((e.target as HTMLInputElement).value)}
           class="w-full max-w-md px-4 py-2 bg-dark-800 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple"
+          disabled={loading}
         />
         <div class="text-sm text-gray-500 whitespace-nowrap">
-          {search.trim()
-            ? `${filteredTools.length} of ${data?.tool_count} tools`
-            : `${data?.tool_count} tools`}
+          {loading ? (
+            <div class="h-5 w-16 bg-dark-600 rounded animate-pulse" />
+          ) : search.trim() ? (
+            `${filteredTools.length} of ${data?.tool_count} tools`
+          ) : (
+            `${data?.tool_count} tools`
+          )}
         </div>
       </div>
 
@@ -127,29 +144,35 @@ export function HomePage() {
             </tr>
           </thead>
           <tbody class="divide-y divide-dark-600">
-            {filteredTools.map((tool) => (
-              <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
-                <td class="px-4 py-3">
-                  <a
-                    href={`/${tool.name}`}
-                    class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
-                  >
-                    <HighlightedName name={tool.name} />
-                  </a>
-                </td>
-                <td class="px-4 py-3 text-sm text-gray-300 font-mono">
-                  {tool.latest_version}
-                </td>
-                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
-                  {tool.downloads_30d.toLocaleString()}
-                </td>
-                <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">
-                  {tool.last_updated
-                    ? formatRelativeTime(tool.last_updated)
-                    : "-"}
-                </td>
-              </tr>
-            ))}
+            {loading ? (
+              <>
+                {[...Array(20)].map((_, i) => <SkeletonRow key={i} />)}
+              </>
+            ) : (
+              filteredTools.map((tool) => (
+                <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
+                  <td class="px-4 py-3">
+                    <a
+                      href={`/${tool.name}`}
+                      class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
+                    >
+                      <HighlightedName name={tool.name} />
+                    </a>
+                  </td>
+                  <td class="px-4 py-3 text-sm text-gray-300 font-mono">
+                    {tool.latest_version}
+                  </td>
+                  <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
+                    {tool.downloads_30d.toLocaleString()}
+                  </td>
+                  <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">
+                    {tool.last_updated
+                      ? formatRelativeTime(tool.last_updated)
+                      : "-"}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

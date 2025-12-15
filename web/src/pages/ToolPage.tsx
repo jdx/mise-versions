@@ -294,7 +294,31 @@ function DownloadsPane({
   if (loading) {
     return (
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-        <div class="text-gray-500 animate-pulse">Loading download stats...</div>
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads</h2>
+        <div class="mb-4">
+          <div class="text-sm text-gray-400 mb-2">Last 30 days</div>
+          <div class="h-32 flex items-end gap-0.5">
+            {[...Array(30)].map((_, i) => (
+              <div key={i} class="flex-1">
+                <div
+                  class="bg-dark-600 rounded-t animate-pulse"
+                  style={{ height: `${20 + Math.random() * 60}%` }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-dark-600">
+          <div class="text-sm text-gray-400 mb-2">Top versions</div>
+          <div class="space-y-1">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} class="flex justify-between">
+                <div class="h-4 w-16 bg-dark-600 rounded animate-pulse" />
+                <div class="h-4 w-10 bg-dark-600 rounded animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
@@ -366,12 +390,6 @@ export function ToolPage({ params }: Props) {
     }
   }
 
-  if (loading) {
-    return (
-      <div class="text-center py-12 text-gray-400">Loading versions...</div>
-    );
-  }
-
   if (error) {
     return (
       <div class="text-center py-12">
@@ -379,6 +397,21 @@ export function ToolPage({ params }: Props) {
       </div>
     );
   }
+
+  // Skeleton row for version table
+  const SkeletonVersionRow = () => (
+    <tr>
+      <td class="px-4 py-3">
+        <div class="h-5 w-20 bg-dark-600 rounded animate-pulse" />
+      </td>
+      <td class="px-4 py-3">
+        <div class="h-5 w-32 bg-dark-600 rounded animate-pulse" />
+      </td>
+      <td class="px-4 py-3 hidden sm:table-cell text-right">
+        <div class="h-5 w-12 bg-dark-600 rounded animate-pulse ml-auto" />
+      </td>
+    </tr>
+  );
 
   return (
     <div>
@@ -411,7 +444,11 @@ export function ToolPage({ params }: Props) {
               </>
             );
           })()}
-          <span>{versions.length} versions</span>
+          {loading ? (
+            <div class="h-4 w-20 bg-dark-600 rounded animate-pulse inline-block" />
+          ) : (
+            <span>{versions.length} versions</span>
+          )}
           {downloadData && (
             <>
               <span>·</span>
@@ -447,30 +484,36 @@ export function ToolPage({ params }: Props) {
             </tr>
           </thead>
           <tbody class="divide-y divide-dark-600">
-            {versions.map((v) => (
-              <tr key={v.version} class="hover:bg-dark-700 transition-colors">
-                <td class="px-4 py-3 font-mono text-sm text-gray-200">
-                  {v.version}
-                </td>
-                <td class="px-4 py-3 text-sm text-gray-400">
-                  {v.created_at ? (
-                    <>
-                      {formatRelativeTime(v.created_at)}{" "}
-                      <span class="text-gray-500">({formatDate(v.created_at)})</span>
-                    </>
-                  ) : (
-                    "-"
-                  )}
-                </td>
-                <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
-                  {downloadsLoading ? (
-                    <span class="text-gray-600">...</span>
-                  ) : (
-                    (versionDownloads.get(v.version) || 0).toLocaleString()
-                  )}
-                </td>
-              </tr>
-            ))}
+            {loading ? (
+              <>
+                {[...Array(15)].map((_, i) => <SkeletonVersionRow key={i} />)}
+              </>
+            ) : (
+              versions.map((v) => (
+                <tr key={v.version} class="hover:bg-dark-700 transition-colors">
+                  <td class="px-4 py-3 font-mono text-sm text-gray-200">
+                    {v.version}
+                  </td>
+                  <td class="px-4 py-3 text-sm text-gray-400">
+                    {v.created_at ? (
+                      <>
+                        {formatRelativeTime(v.created_at)}{" "}
+                        <span class="text-gray-500">({formatDate(v.created_at)})</span>
+                      </>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                  <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
+                    {downloadsLoading ? (
+                      <div class="h-4 w-10 bg-dark-600 rounded animate-pulse ml-auto" />
+                    ) : (
+                      (versionDownloads.get(v.version) || 0).toLocaleString()
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
