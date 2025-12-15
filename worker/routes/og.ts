@@ -1,6 +1,8 @@
 // OG Image generation endpoint
 import { ImageResponse } from "workers-og";
+import { drizzle } from "drizzle-orm/d1";
 import { Env, CORS_HEADERS } from "../shared";
+import { setupAnalytics } from "../../src/analytics";
 
 interface ToolMeta {
   name: string;
@@ -8,6 +10,7 @@ interface ToolMeta {
   latest_version: string;
   version_count: number;
   github?: string;
+  backends?: string[];
 }
 
 // Cache for tools.json to avoid repeated fetches
@@ -33,13 +36,43 @@ async function getToolMeta(toolName: string): Promise<ToolMeta | null> {
   }
 }
 
+// Fetch download count for a tool
+async function getDownloadCount(toolName: string, env: Env): Promise<number | null> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+    const stats = await analytics.getDownloadStats(toolName);
+    return stats.total || null;
+  } catch {
+    return null;
+  }
+}
+
+// Get primary backend type from backends array
+function getPrimaryBackend(backends?: string[]): string | null {
+  if (!backends || backends.length === 0) return null;
+  const backend = backends[0];
+  const colonIndex = backend.indexOf(":");
+  return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
+}
+
+// Format download count for display
+function formatDownloads(count: number): string {
+  if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
+  if (count >= 1000) return `${(count / 1000).toFixed(1)}k`;
+  return count.toString();
+}
+
 // Generate OG image for a tool
 export async function handleOgImage(
   _request: Request,
-  _env: Env,
+  env: Env,
   toolName: string
 ): Promise<Response> {
-  const tool = await getToolMeta(toolName);
+  const [tool, downloads] = await Promise.all([
+    getToolMeta(toolName),
+    getDownloadCount(toolName, env),
+  ]);
 
   if (!tool) {
     // Return a generic mise tools image for unknown tools
@@ -48,10 +81,11 @@ export async function handleOgImage(
       description: "Tool not found",
       latest_version: "",
       version_count: 0,
-    });
+    }, null, null);
   }
 
-  return generateImage(tool);
+  const backend = getPrimaryBackend(tool.backends);
+  return generateImage(tool, downloads, backend);
 }
 
 // Generate OG image for homepage
@@ -84,7 +118,7 @@ export async function handleOgImageHome(
   });
 }
 
-function generateImage(tool: ToolMeta): Response {
+function generateImage(tool: ToolMeta, downloads: number | null, backend: string | null): Response {
   const description = tool.description
     ? tool.description.length > 100
       ? tool.description.slice(0, 100) + "..."
@@ -95,9 +129,18 @@ function generateImage(tool: ToolMeta): Response {
     ? `v${tool.latest_version}`
     : "";
 
-  const countText = tool.version_count > 0
-    ? `${tool.version_count} versions`
-    : "";
+  // Build stats line: "aqua · 3.8k downloads · 238 versions"
+  const statsParts: string[] = [];
+  if (backend) {
+    statsParts.push(backend);
+  }
+  if (downloads) {
+    statsParts.push(`${formatDownloads(downloads)} downloads`);
+  }
+  if (tool.version_count > 0) {
+    statsParts.push(`${tool.version_count} versions`);
+  }
+  const statsText = statsParts.join(" · ");
 
   const html = `
     <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%); padding: 60px;">
@@ -107,7 +150,7 @@ function generateImage(tool: ToolMeta): Response {
           ${versionText ? `<span style="font-size: 36px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ""}
         </div>
         ${description ? `<p style="font-size: 28px; color: #d1d5db; margin: 0 0 24px 0; line-height: 1.4;">${escapeHtml(description)}</p>` : ""}
-        ${countText ? `<p style="font-size: 22px; color: #6b7280; margin: 0;">${escapeHtml(countText)} available via mise</p>` : ""}
+        ${statsText ? `<p style="font-size: 22px; color: #6b7280; margin: 0;">${escapeHtml(statsText)}</p>` : ""}
       </div>
       <div style="display: flex; align-items: center; justify-content: space-between;">
         <span style="font-size: 24px; font-weight: 600; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
