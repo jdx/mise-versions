@@ -16,6 +16,7 @@ import { execSync } from "child_process";
 const DOCS_DIR = join(process.cwd(), "docs");
 const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
 const METADATA_CACHE_FILE = join(DOCS_DIR, "metadata-cache.json");
+const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
 
 // Convert Date object or string to ISO string
 function toISOString(value) {
@@ -138,6 +139,19 @@ function loadMetadataCache() {
   return {};
 }
 
+// Load manual overrides for core tools and others that need custom metadata
+function loadManualOverrides() {
+  try {
+    if (existsSync(MANUAL_OVERRIDES_FILE)) {
+      const content = readFileSync(MANUAL_OVERRIDES_FILE, "utf-8");
+      return JSON.parse(content);
+    }
+  } catch (e) {
+    console.error(`Warning: Failed to load manual overrides: ${e.message}`);
+  }
+  return {};
+}
+
 // Get tool info using mise tool --json command
 // TODO: Use `mise registry --json` when available in a future mise release
 // to get descriptions for all tools in a single call
@@ -213,6 +227,13 @@ function main() {
   const cacheSize = Object.keys(metadataCache).length;
   if (cacheSize > 0) {
     console.log(`Loaded metadata cache with ${cacheSize} entries`);
+  }
+
+  // Load manual overrides (for core tools etc.)
+  const manualOverrides = loadManualOverrides();
+  const overridesSize = Object.keys(manualOverrides).length;
+  if (overridesSize > 0) {
+    console.log(`Loaded manual overrides for ${overridesSize} tools`);
   }
 
   // Find all .toml files in docs/, excluding internal tools
@@ -304,6 +325,27 @@ function main() {
         if (!tool.description && cached.description) {
           tool.description = cached.description;
           withDesc++;
+        }
+      }
+
+      // Apply manual overrides (highest priority - for core tools etc.)
+      const overrides = manualOverrides[toolName];
+      if (overrides) {
+        if (overrides.github) {
+          tool.github = overrides.github;
+          tool.repo_url = buildRepoUrl(overrides.github);
+          if (!tool.github) withGithub++; // Only increment if not already counted
+        }
+        if (overrides.description) {
+          if (!tool.description) withDesc++; // Only increment if not already counted
+          tool.description = overrides.description;
+        }
+        if (overrides.homepage) {
+          tool.homepage = overrides.homepage;
+        }
+        if (overrides.license) {
+          if (!tool.license) withLicense++;
+          tool.license = overrides.license;
         }
       }
 

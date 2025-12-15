@@ -80,6 +80,7 @@
       "last_updated": "2025-11-21T04:37:05.000Z",
       "github": "rhysd/actionlint",
       "repo_url": "https://github.com/rhysd/actionlint",
+      "description": ":octocat: Static checker for GitHub Actions workflow files",
       "backends": [
         "aqua:rhysd/actionlint",
         "ubi:rhysd/actionlint",
@@ -91,8 +92,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rhysd/actionlint/registry.yaml",
       "license": "MIT",
-      "homepage": "https://rhysd.github.io/actionlint/",
-      "description": ":octocat: Static checker for GitHub Actions workflow files"
+      "homepage": "https://rhysd.github.io/actionlint/"
     },
     {
       "name": "adr-tools",
@@ -125,14 +125,14 @@
       "last_updated": "2024-12-18T15:01:18.000Z",
       "github": "FiloSottile/age",
       "repo_url": "https://github.com/FiloSottile/age",
+      "description": "A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability",
       "backends": [
         "aqua:FiloSottile/age",
         "asdf:threkk/asdf-age"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/FiloSottile/age/registry.yaml",
       "license": "BSD-3-Clause",
-      "homepage": "https://age-encryption.org",
-      "description": "A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability."
+      "homepage": "https://age-encryption.org"
     },
     {
       "name": "age-plugin-yubikey",
@@ -1185,13 +1185,13 @@
       "last_updated": "2025-12-05T21:39:33.000Z",
       "github": "bitwarden/clients",
       "repo_url": "https://github.com/bitwarden/clients",
+      "description": "Bitwarden CLI",
       "backends": [
         "aqua:bitwarden/clients",
         "asdf:vixus0/asdf-bitwarden"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bitwarden/clients/registry.yaml",
-      "homepage": "https://bitwarden.com",
-      "description": "Bitwarden client apps (web, browser extension, desktop, and cli)."
+      "homepage": "https://bitwarden.com"
     },
     {
       "name": "bitwarden-secrets-manager",
@@ -1213,13 +1213,13 @@
       "last_updated": "2025-12-08T01:39:14.000Z",
       "github": "psf/black",
       "repo_url": "https://github.com/psf/black",
+      "description": "The uncompromising Python code formatter",
       "backends": [
         "aqua:psf/black"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/psf/black/registry.yaml",
       "license": "MIT",
-      "homepage": "https://black.readthedocs.io/en/stable/",
-      "description": "The uncompromising Python code formatter"
+      "homepage": "https://black.readthedocs.io/en/stable/"
     },
     {
       "name": "blender",
@@ -1418,6 +1418,7 @@
       "last_updated": "2025-11-25T23:15:08.000Z",
       "github": "bufbuild/buf",
       "repo_url": "https://github.com/bufbuild/buf",
+      "description": "The best way of working with Protocol Buffers",
       "backends": [
         "aqua:bufbuild/buf",
         "ubi:bufbuild/buf",
@@ -1425,8 +1426,7 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bufbuild/buf/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://buf.build",
-      "description": "The best way of working with Protocol Buffers."
+      "homepage": "https://buf.build"
     },
     {
       "name": "buildifier",
@@ -1481,7 +1481,11 @@
       "last_updated": "2025-12-07T00:37:09.000Z",
       "backends": [
         "core:bun"
-      ]
+      ],
+      "github": "oven-sh/bun",
+      "repo_url": "https://github.com/oven-sh/bun",
+      "description": "Incredibly fast JavaScript runtime, bundler, and package manager",
+      "homepage": "https://bun.sh"
     },
     {
       "name": "cabal",
@@ -1564,6 +1568,7 @@
       "last_updated": "2025-12-14T02:15:22.000Z",
       "github": "cargo-bins/cargo-binstall",
       "repo_url": "https://github.com/cargo-bins/cargo-binstall",
+      "description": "Binary installation for rust projects",
       "backends": [
         "aqua:cargo-bins/cargo-binstall",
         "ubi:cargo-bins/cargo-binstall[tag_regex=^\\\\d\\\\.]",
@@ -1573,8 +1578,7 @@
         "cargo": "https://crates.io/crates/cargo-binstall"
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cargo-bins/cargo-binstall/registry.yaml",
-      "license": "GPL-3.0",
-      "description": "Binary installation for rust projects"
+      "license": "GPL-3.0"
     },
     {
       "name": "cargo-insta",
@@ -2557,13 +2561,13 @@
       "last_updated": "2025-12-10T00:02:53.000Z",
       "github": "sigstore/cosign",
       "repo_url": "https://github.com/sigstore/cosign",
+      "description": "Code signing and transparency for containers and binaries",
       "backends": [
         "aqua:sigstore/cosign",
         "asdf:https://gitlab.com/wt0f/asdf-cosign"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sigstore/cosign/registry.yaml",
-      "license": "Apache-2.0",
-      "description": "Code signing and transparency for containers and binaries"
+      "license": "Apache-2.0"
     },
     {
       "name": "coursier",
@@ -2981,7 +2985,11 @@
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
         "core:deno"
-      ]
+      ],
+      "github": "denoland/deno",
+      "repo_url": "https://github.com/denoland/deno",
+      "description": "A modern runtime for JavaScript and TypeScript",
+      "homepage": "https://deno.land"
     },
     {
       "name": "depot",
@@ -3702,7 +3710,11 @@
       "last_updated": "2025-11-27T16:11:43.000Z",
       "backends": [
         "core:elixir"
-      ]
+      ],
+      "github": "elixir-lang/elixir",
+      "repo_url": "https://github.com/elixir-lang/elixir",
+      "description": "Dynamic, functional programming language",
+      "homepage": "https://elixir-lang.org"
     },
     {
       "name": "elixir-ls",
@@ -3840,18 +3852,13 @@
       "latest_version": "0.23.4",
       "version_count": 95,
       "last_updated": "2025-10-03T20:37:13.000Z",
-      "github": "eza-community/eza",
-      "repo_url": "https://github.com/eza-community/eza",
       "backends": [
-        "aqua:eza-community/eza",
-        "ubi:eza-community/eza",
         "asdf:mise-plugins/mise-eza",
         "cargo:eza"
       ],
       "package_urls": {
         "cargo": "https://crates.io/crates/eza"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/eza-community/eza/registry.yaml",
       "license": "EUPL-1.2",
       "homepage": "https://eza.rocks",
       "description": "A modern alternative to ls"
@@ -4272,6 +4279,7 @@
       "last_updated": "2025-12-10T14:58:48.000Z",
       "github": "cli/cli",
       "repo_url": "https://github.com/cli/cli",
+      "description": "GitHub’s official command line tool",
       "backends": [
         "aqua:cli/cli",
         "ubi:cli/cli[exe=gh]",
@@ -4279,8 +4287,7 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cli/cli/registry.yaml",
       "license": "MIT",
-      "homepage": "https://cli.github.com",
-      "description": "GitHub’s official command line tool"
+      "homepage": "https://cli.github.com"
     },
     {
       "name": "ghalint",
@@ -4397,14 +4404,14 @@
       "last_updated": "2025-12-14T15:39:04.000Z",
       "github": "orhun/git-cliff",
       "repo_url": "https://github.com/orhun/git-cliff",
+      "description": "A highly customizable Changelog Generator that follows Conventional Commit specifications",
       "backends": [
         "aqua:orhun/git-cliff",
         "asdf:jylenhof/asdf-git-cliff"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/orhun/git-cliff/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://git-cliff.org",
-      "description": "A highly customizable Changelog Generator that follows Conventional Commit specifications ⛰️ "
+      "homepage": "https://git-cliff.org"
     },
     {
       "name": "git-lfs",
@@ -4630,7 +4637,11 @@
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
         "core:go"
-      ]
+      ],
+      "github": "golang/go",
+      "repo_url": "https://github.com/golang/go",
+      "description": "Go programming language",
+      "homepage": "https://go.dev"
     },
     {
       "name": "go-containerregistry",
@@ -5222,14 +5233,14 @@
       "last_updated": "2025-09-22T09:40:27.000Z",
       "github": "hadolint/hadolint",
       "repo_url": "https://github.com/hadolint/hadolint",
+      "description": "Dockerfile linter, validate inline bash, written in Haskell",
       "backends": [
         "aqua:hadolint/hadolint",
         "ubi:hadolint/hadolint",
         "asdf:devlincashman/asdf-hadolint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/hadolint/hadolint/registry.yaml",
-      "license": "GPL-3.0",
-      "description": "Dockerfile linter, validate inline bash, written in Haskell"
+      "license": "GPL-3.0"
     },
     {
       "name": "hamler",
@@ -5593,14 +5604,14 @@
       "last_updated": "2025-12-12T16:33:24.000Z",
       "github": "jdx/hk",
       "repo_url": "https://github.com/jdx/hk",
+      "description": "git hook and pre-commit lint manager",
       "backends": [
         "aqua:jdx/hk",
         "ubi:jdx/hk"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jdx/hk/registry.yaml",
       "license": "MIT",
-      "homepage": "https://hk.jdx.dev",
-      "description": "git hooks and project lints"
+      "homepage": "https://hk.jdx.dev"
     },
     {
       "name": "hledger",
@@ -5994,7 +6005,9 @@
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
         "core:java"
-      ]
+      ],
+      "description": "Java Development Kit (Adoptium/Temurin)",
+      "homepage": "https://adoptium.net"
     },
     {
       "name": "jb",
@@ -6185,14 +6198,14 @@
       "last_updated": "2025-07-01T10:36:14.000Z",
       "github": "jqlang/jq",
       "repo_url": "https://github.com/jqlang/jq",
+      "description": "Command-line JSON processor",
       "backends": [
         "aqua:jqlang/jq",
         "ubi:jqlang/jq",
         "asdf:mise-plugins/asdf-jq"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jqlang/jq/registry.yaml",
-      "homepage": "https://jqlang.org",
-      "description": "Command-line JSON processor"
+      "homepage": "https://jqlang.org"
     },
     {
       "name": "jqp",
@@ -6876,14 +6889,14 @@
       "last_updated": "2025-12-14T16:39:05.000Z",
       "github": "pinterest/ktlint",
       "repo_url": "https://github.com/pinterest/ktlint",
+      "description": "An anti-bikeshedding Kotlin linter with built-in formatter",
       "backends": [
         "aqua:pinterest/ktlint",
         "asdf:mise-plugins/mise-ktlint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pinterest/ktlint/registry.yaml",
       "license": "MIT",
-      "homepage": "https://pinterest.github.io/ktlint/",
-      "description": "An anti-bikeshedding Kotlin linter with built-in formatter"
+      "homepage": "https://pinterest.github.io/ktlint/"
     },
     {
       "name": "kube-capacity",
@@ -8688,7 +8701,11 @@
       "last_updated": "2025-12-10T00:00:00.000Z",
       "backends": [
         "core:node"
-      ]
+      ],
+      "github": "nodejs/node",
+      "repo_url": "https://github.com/nodejs/node",
+      "description": "Node.js JavaScript runtime",
+      "homepage": "https://nodejs.org"
     },
     {
       "name": "nomad",
@@ -9127,6 +9144,7 @@
       "last_updated": "2025-12-10T17:00:04.000Z",
       "github": "opentofu/opentofu",
       "repo_url": "https://github.com/opentofu/opentofu",
+      "description": "OpenTofu lets you declaratively manage your cloud infrastructure",
       "backends": [
         "aqua:opentofu/opentofu",
         "ubi:opentofu/opentofu[exe=tofu]",
@@ -9134,8 +9152,7 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/opentofu/opentofu/registry.yaml",
       "license": "MPL-2.0",
-      "homepage": "https://opentofu.org",
-      "description": "OpenTofu lets you declaratively manage your cloud infrastructure."
+      "homepage": "https://opentofu.org"
     },
     {
       "name": "operator-sdk",
@@ -9495,6 +9512,7 @@
       "last_updated": "2025-09-29T14:56:13.000Z",
       "github": "pypa/pipx",
       "repo_url": "https://github.com/pypa/pipx",
+      "description": "Install and Run Python Applications in Isolated Environments",
       "backends": [
         "aqua:pypa/pipx",
         "asdf:mise-plugins/mise-pipx"
@@ -9553,6 +9571,7 @@
       "last_updated": "2025-12-03T23:14:50.000Z",
       "github": "apple/pkl",
       "repo_url": "https://github.com/apple/pkl",
+      "description": "A configuration as code language with rich validation and tooling",
       "backends": [
         "aqua:apple/pkl",
         "ubi:apple/pkl",
@@ -9560,8 +9579,7 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/apple/pkl/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://pkl-lang.org",
-      "description": "A configuration as code language with rich validation and tooling."
+      "homepage": "https://pkl-lang.org"
     },
     {
       "name": "please",
@@ -9603,6 +9621,7 @@
       "last_updated": "2025-12-08T14:33:49.000Z",
       "github": "pnpm/pnpm",
       "repo_url": "https://github.com/pnpm/pnpm",
+      "description": "Fast, disk space efficient package manager",
       "backends": [
         "aqua:pnpm/pnpm",
         "ubi:pnpm/pnpm",
@@ -9617,8 +9636,7 @@
       "authors": [
         "zkochan",
         "pnpmuser"
-      ],
-      "description": "Fast, disk space efficient package manager"
+      ]
     },
     {
       "name": "podman",
@@ -9764,6 +9782,7 @@
       "last_updated": "2025-11-22T21:02:16.000Z",
       "github": "pre-commit/pre-commit",
       "repo_url": "https://github.com/pre-commit/pre-commit",
+      "description": "A framework for managing and maintaining multi-language pre-commit hooks",
       "backends": [
         "aqua:pre-commit/pre-commit",
         "ubi:pre-commit/pre-commit",
@@ -9778,8 +9797,7 @@
       "homepage": "https://pre-commit.com",
       "authors": [
         "Anthony Sottile"
-      ],
-      "description": "A framework for managing and maintaining multi-language pre-commit hooks."
+      ]
     },
     {
       "name": "prek",
@@ -9845,13 +9863,13 @@
       "last_updated": "2025-12-05T19:14:49.000Z",
       "github": "protocolbuffers/protobuf",
       "repo_url": "https://github.com/protocolbuffers/protobuf",
+      "description": "Protocol Buffers - Google's data interchange format",
       "backends": [
         "aqua:protocolbuffers/protobuf/protoc",
         "asdf:paxosglobal/asdf-protoc"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/protocolbuffers/protobuf/registry.yaml",
-      "homepage": "http://protobuf.dev",
-      "description": "Protocol Buffers - Google's data interchange format"
+      "homepage": "http://protobuf.dev"
     },
     {
       "name": "protoc-gen-connect-go",
@@ -10050,7 +10068,11 @@
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
         "core:python"
-      ]
+      ],
+      "github": "python/cpython",
+      "repo_url": "https://github.com/python/cpython",
+      "description": "Python programming language",
+      "homepage": "https://python.org"
     },
     {
       "name": "qdns",
@@ -10427,6 +10449,7 @@
       "last_updated": "2025-10-22T12:30:04.000Z",
       "github": "BurntSushi/ripgrep",
       "repo_url": "https://github.com/BurntSushi/ripgrep",
+      "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore",
       "backends": [
         "aqua:BurntSushi/ripgrep",
         "ubi:BurntSushi/ripgrep[exe=rg]",
@@ -10438,8 +10461,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/BurntSushi/ripgrep/registry.yaml",
       "license": "Unlicense",
-      "homepage": "https://github.com/BurntSushi/ripgrep",
-      "description": "ripgrep recursively searches directories for a regex pattern while respecting your gitignore"
+      "homepage": "https://github.com/BurntSushi/ripgrep"
     },
     {
       "name": "ripgrep-all",
@@ -10528,7 +10550,11 @@
       "last_updated": "2025-10-23T10:00:15.000Z",
       "backends": [
         "core:ruby"
-      ]
+      ],
+      "github": "ruby/ruby",
+      "repo_url": "https://github.com/ruby/ruby",
+      "description": "Ruby programming language",
+      "homepage": "https://ruby-lang.org"
     },
     {
       "name": "ruff",
@@ -10537,6 +10563,7 @@
       "last_updated": "2025-12-11T21:17:52.000Z",
       "github": "astral-sh/ruff",
       "repo_url": "https://github.com/astral-sh/ruff",
+      "description": "An extremely fast Python linter and code formatter, written in Rust",
       "backends": [
         "aqua:astral-sh/ruff",
         "ubi:astral-sh/ruff",
@@ -10544,8 +10571,7 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/astral-sh/ruff/registry.yaml",
       "license": "MIT",
-      "homepage": "https://docs.astral.sh/ruff",
-      "description": "An extremely fast Python linter and code formatter, written in Rust."
+      "homepage": "https://docs.astral.sh/ruff"
     },
     {
       "name": "rust",
@@ -10555,7 +10581,11 @@
       "backends": [
         "core:rust",
         "asdf:code-lever/asdf-rust"
-      ]
+      ],
+      "github": "rust-lang/rust",
+      "repo_url": "https://github.com/rust-lang/rust",
+      "description": "Rust programming language",
+      "homepage": "https://rust-lang.org"
     },
     {
       "name": "rust-analyzer",
@@ -11016,6 +11046,7 @@
       "last_updated": "2025-07-06T21:11:24.000Z",
       "github": "mvdan/sh",
       "repo_url": "https://github.com/mvdan/sh",
+      "description": "A shell parser, formatter, and interpreter with bash support; includes shfmt",
       "backends": [
         "aqua:mvdan/sh",
         "ubi:mvdan/sh",
@@ -11027,8 +11058,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mvdan/sh/registry.yaml",
       "license": "BSD-3-Clause",
-      "homepage": "https://pkg.go.dev/mvdan.cc/sh/v3",
-      "description": "A shell parser, formatter, and interpreter with bash support; includes shfmt"
+      "homepage": "https://pkg.go.dev/mvdan.cc/sh/v3"
     },
     {
       "name": "shorebird",
@@ -11230,6 +11260,7 @@
       "last_updated": "2025-09-28T18:03:27.000Z",
       "github": "getsops/sops",
       "repo_url": "https://github.com/getsops/sops",
+      "description": "Simple and flexible tool for managing secrets",
       "backends": [
         "aqua:getsops/sops",
         "ubi:getsops/sops",
@@ -11237,8 +11268,7 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/getsops/sops/registry.yaml",
       "license": "MPL-2.0",
-      "homepage": "https://getsops.io/",
-      "description": "Simple and flexible tool for managing secrets"
+      "homepage": "https://getsops.io/"
     },
     {
       "name": "sopstool",
@@ -11736,7 +11766,11 @@
       "last_updated": "2025-12-09T23:45:54.000Z",
       "backends": [
         "core:swift"
-      ]
+      ],
+      "github": "swiftlang/swift",
+      "repo_url": "https://github.com/swiftlang/swift",
+      "description": "Swift programming language",
+      "homepage": "https://swift.org"
     },
     {
       "name": "swift-package-list",
@@ -11770,13 +11804,13 @@
       "latest_version": "0.62.2",
       "version_count": 124,
       "last_updated": "2025-10-28T17:10:24.000Z",
-      "github": "realm/SwiftLint",
-      "repo_url": "https://github.com/realm/SwiftLint",
       "backends": [
         "aqua:realm/SwiftLint",
         "asdf:mise-plugins/mise-swiftlint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/realm/SwiftLint/registry.yaml",
+      "github": "realm/SwiftLint",
+      "repo_url": "https://github.com/realm/SwiftLint",
       "license": "MIT",
       "homepage": "https://realm.github.io/SwiftLint",
       "description": "A tool to enforce Swift style and conventions."
@@ -11902,6 +11936,7 @@
       "last_updated": "2025-05-23T02:52:21.000Z",
       "github": "tamasfe/taplo",
       "repo_url": "https://github.com/tamasfe/taplo",
+      "description": "A TOML toolkit written in Rust",
       "backends": [
         "aqua:tamasfe/taplo",
         "ubi:tamasfe/taplo",
@@ -11912,8 +11947,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tamasfe/taplo/registry.yaml",
       "license": "MIT",
-      "homepage": "https://taplo.tamasfe.dev",
-      "description": "A TOML toolkit written in Rust"
+      "homepage": "https://taplo.tamasfe.dev"
     },
     {
       "name": "task",
@@ -12084,14 +12118,14 @@
       "last_updated": "2025-12-11T11:54:09.000Z",
       "github": "hashicorp/terraform",
       "repo_url": "https://github.com/hashicorp/terraform",
+      "description": "Terraform enables you to safely and predictably create, change, and improve infrastructure. It is an open source tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned",
       "backends": [
         "aqua:hashicorp/terraform",
         "asdf:mise-plugins/mise-hashicorp",
         "vfox:mise-plugins/vfox-terraform"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/hashicorp/terraform/registry.yaml",
-      "homepage": "http://developer.hashicorp.com/terraform",
-      "description": "Terraform enables you to safely and predictably create, change, and improve infrastructure. It is a source-available tool that codifies APIs into declarative configuration files that can be shared amongst team members, treated as code, edited, reviewed, and versioned."
+      "homepage": "http://developer.hashicorp.com/terraform"
     },
     {
       "name": "terraform-docs",
@@ -12279,14 +12313,14 @@
       "last_updated": "2025-11-16T08:29:47.000Z",
       "github": "terraform-linters/tflint",
       "repo_url": "https://github.com/terraform-linters/tflint",
+      "description": "A Pluggable Terraform Linter",
       "backends": [
         "aqua:terraform-linters/tflint",
         "ubi:terraform-linters/tflint",
         "asdf:skyzyx/asdf-tflint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/terraform-linters/tflint/registry.yaml",
-      "license": "MPL-2.0",
-      "description": "A Pluggable Terraform Linter"
+      "license": "MPL-2.0"
     },
     {
       "name": "tfmigrate",
@@ -12491,6 +12525,9 @@
       "latest_version": "13.0.0",
       "version_count": 75,
       "last_updated": "2025-11-25T13:54:56.510Z",
+      "github": "XAMPPRocky/tokei",
+      "repo_url": "https://github.com/XAMPPRocky/tokei",
+      "description": "Count your code, quickly",
       "backends": [
         "cargo:tokei",
         "aqua:XAMPPRocky/tokei",
@@ -12500,10 +12537,7 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/tokei"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/XAMPPRocky/tokei/registry.yaml",
-      "github": "XAMPPRocky/tokei",
-      "repo_url": "https://github.com/XAMPPRocky/tokei",
-      "description": "Count your code, quickly."
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/XAMPPRocky/tokei/registry.yaml"
     },
     {
       "name": "tombi",
@@ -12512,6 +12546,7 @@
       "last_updated": "2025-12-12T12:35:55.000Z",
       "github": "tombi-toml/tombi",
       "repo_url": "https://github.com/tombi-toml/tombi",
+      "description": "TOML Formatter / Linter / Language Server",
       "backends": [
         "aqua:tombi-toml/tombi",
         "ubi:tombi-toml/tombi"
@@ -12923,6 +12958,7 @@
       "last_updated": "2025-12-03T23:15:18.000Z",
       "github": "jdx/usage",
       "repo_url": "https://github.com/jdx/usage",
+      "description": "A specification for CLIs",
       "backends": [
         "aqua:jdx/usage",
         "ubi:jdx/usage",
@@ -12934,8 +12970,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jdx/usage/registry.yaml",
       "license": "MIT",
-      "homepage": "https://usage.jdx.dev",
-      "description": "A specification for CLIs"
+      "homepage": "https://usage.jdx.dev"
     },
     {
       "name": "usql",
@@ -13035,13 +13070,13 @@
       "last_updated": "2025-11-18T21:04:32.000Z",
       "github": "hashicorp/vault",
       "repo_url": "https://github.com/hashicorp/vault",
+      "description": "A tool for secrets management, encryption as a service, and privileged access management",
       "backends": [
         "aqua:hashicorp/vault",
         "asdf:mise-plugins/mise-hashicorp"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/hashicorp/vault/registry.yaml",
-      "homepage": "https://developer.hashicorp.com/vault",
-      "description": "A tool for secrets management, encryption as a service, and privileged access management"
+      "homepage": "https://developer.hashicorp.com/vault"
     },
     {
       "name": "vcluster",
@@ -13154,13 +13189,13 @@
       "last_updated": "2025-06-17T19:01:07.000Z",
       "github": "charmbracelet/vhs",
       "repo_url": "https://github.com/charmbracelet/vhs",
+      "description": "Your CLI home video recorder",
       "backends": [
         "aqua:charmbracelet/vhs",
         "asdf:chessmango/asdf-vhs"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/charmbracelet/vhs/registry.yaml",
-      "license": "MIT",
-      "description": "Your CLI home video recorder 📼"
+      "license": "MIT"
     },
     {
       "name": "victoria-metrics",
@@ -13358,6 +13393,7 @@
       "last_updated": "2025-05-18T11:22:13.000Z",
       "github": "watchexec/watchexec",
       "repo_url": "https://github.com/watchexec/watchexec",
+      "description": "Executes commands in response to file modifications",
       "backends": [
         "aqua:watchexec/watchexec",
         "ubi:watchexec/watchexec",
@@ -13368,8 +13404,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/watchexec/watchexec/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://watchexec.github.io",
-      "description": "Executes commands in response to file modifications"
+      "homepage": "https://watchexec.github.io"
     },
     {
       "name": "waypoint",
@@ -13480,14 +13515,14 @@
       "last_updated": "2025-11-14T02:17:42.000Z",
       "github": "wtfutil/wtf",
       "repo_url": "https://github.com/wtfutil/wtf",
+      "description": "The personal information dashboard for your terminal",
       "backends": [
         "aqua:wtfutil/wtf",
         "asdf:NeoHsu/asdf-wtfutil"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/wtfutil/wtf/registry.yaml",
       "license": "MPL-2.0",
-      "homepage": "http://wtfutil.com",
-      "description": "The personal information dashboard for your terminal"
+      "homepage": "http://wtfutil.com"
     },
     {
       "name": "xc",
@@ -13622,6 +13657,7 @@
       "last_updated": "2025-10-22T14:41:52.000Z",
       "github": "google/yamlfmt",
       "repo_url": "https://github.com/google/yamlfmt",
+      "description": "An extensible command line tool or library to format yaml files",
       "backends": [
         "aqua:google/yamlfmt",
         "ubi:google/yamlfmt",
@@ -13632,8 +13668,7 @@
         "go": "https://pkg.go.dev/github.com/google/yamlfmt/cmd/yamlfmt"
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/google/yamlfmt/registry.yaml",
-      "license": "Apache-2.0",
-      "description": "An extensible command line tool or library to format yaml files."
+      "license": "Apache-2.0"
     },
     {
       "name": "yamllint",
@@ -13771,6 +13806,7 @@
       "last_updated": "2025-12-14T06:07:57.000Z",
       "github": "mikefarah/yq",
       "repo_url": "https://github.com/mikefarah/yq",
+      "description": "yq is a portable command-line YAML processor",
       "backends": [
         "aqua:mikefarah/yq",
         "ubi:mikefarah/yq",
@@ -13782,8 +13818,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mikefarah/yq/registry.yaml",
       "license": "MIT",
-      "homepage": "https://mikefarah.gitbook.io/yq/",
-      "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML  and properties processor"
+      "homepage": "https://mikefarah.gitbook.io/yq/"
     },
     {
       "name": "yt-dlp",
@@ -13807,14 +13842,14 @@
       "last_updated": "2025-09-08T12:10:42.000Z",
       "github": "carvel-dev/ytt",
       "repo_url": "https://github.com/carvel-dev/ytt",
+      "description": "YAML templating tool that works on YAML structure instead of text",
       "backends": [
         "aqua:carvel-dev/ytt",
         "asdf:vmware-tanzu/asdf-carvel"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/carvel-dev/ytt/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://carvel.dev/ytt",
-      "description": "YAML templating tool that works on YAML structure instead of text"
+      "homepage": "https://carvel.dev/ytt"
     },
     {
       "name": "zbctl",
@@ -13872,7 +13907,11 @@
       "last_updated": "2025-11-26T00:00:00.000Z",
       "backends": [
         "core:zig"
-      ]
+      ],
+      "github": "ziglang/zig",
+      "repo_url": "https://github.com/ziglang/zig",
+      "description": "General-purpose programming language and toolchain",
+      "homepage": "https://ziglang.org"
     },
     {
       "name": "zigmod",

@@ -1,0 +1,56 @@
+{
+  "node": {
+    "github": "nodejs/node",
+    "description": "Node.js JavaScript runtime",
+    "homepage": "https://nodejs.org"
+  },
+  "python": {
+    "github": "python/cpython",
+    "description": "Python programming language",
+    "homepage": "https://python.org"
+  },
+  "ruby": {
+    "github": "ruby/ruby",
+    "description": "Ruby programming language",
+    "homepage": "https://ruby-lang.org"
+  },
+  "go": {
+    "github": "golang/go",
+    "description": "Go programming language",
+    "homepage": "https://go.dev"
+  },
+  "rust": {
+    "github": "rust-lang/rust",
+    "description": "Rust programming language",
+    "homepage": "https://rust-lang.org"
+  },
+  "bun": {
+    "github": "oven-sh/bun",
+    "description": "Incredibly fast JavaScript runtime, bundler, and package manager",
+    "homepage": "https://bun.sh"
+  },
+  "deno": {
+    "github": "denoland/deno",
+    "description": "A modern runtime for JavaScript and TypeScript",
+    "homepage": "https://deno.land"
+  },
+  "java": {
+    "description": "Java Development Kit (Adoptium/Temurin)",
+    "homepage": "https://adoptium.net"
+  },
+  "zig": {
+    "github": "ziglang/zig",
+    "description": "General-purpose programming language and toolchain",
+    "homepage": "https://ziglang.org"
+  },
+  "swift": {
+    "github": "swiftlang/swift",
+    "description": "Swift programming language",
+    "homepage": "https://swift.org"
+  },
+  "elixir": {
+    "github": "elixir-lang/elixir",
+    "description": "Dynamic, functional programming language",
+    "homepage": "https://elixir-lang.org"
+  }
+}
