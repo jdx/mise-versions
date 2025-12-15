@@ -255,20 +255,23 @@ function VersionTimeline({ versions }: { versions: Version[] }) {
 
   if (datedVersions.length < 2) return null;
 
-  // Get major versions for milestones
+  // Get major and minor versions for milestones
   const milestones: Array<{ version: string; date: Date; isMajor: boolean }> = [];
-  const seenMajors = new Set<string>();
+  const seenMinors = new Set<string>();
 
   for (const v of datedVersions) {
     const parts = v.version.split(".");
-    const major = parts[0];
-    if (!seenMajors.has(major)) {
-      seenMajors.add(major);
-      milestones.push({
-        version: v.version,
-        date: new Date(v.created_at!),
-        isMajor: true,
-      });
+    if (parts.length >= 2) {
+      const minor = `${parts[0]}.${parts[1]}`;
+      if (!seenMinors.has(minor)) {
+        seenMinors.add(minor);
+        const isMajor = parts[1] === "0" || parts[1] === ""; // x.0 is a major release
+        milestones.push({
+          version: v.version,
+          date: new Date(v.created_at!),
+          isMajor,
+        });
+      }
     }
   }
 
