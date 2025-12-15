@@ -1,5 +1,7 @@
 // Proxy and static asset handling
+import { drizzle } from "drizzle-orm/d1";
 import { Env, CORS_HEADERS, CACHE_CONTROL } from "./shared";
+import { setupAnalytics } from "../src/analytics";
 
 // Bot user agents that need OG meta tags
 const BOT_USER_AGENTS = [
@@ -51,13 +53,13 @@ async function fetchToolMeta(toolName: string): Promise<ToolMeta | null> {
   }
 }
 
-// Fetch download count for a tool
-async function fetchDownloadCount(toolName: string): Promise<number | null> {
+// Fetch download count for a tool (direct database query)
+async function fetchDownloadCount(toolName: string, env: Env): Promise<number | null> {
   try {
-    const response = await fetch(`https://mise-tools.jdx.dev/api/downloads/${encodeURIComponent(toolName)}`);
-    if (!response.ok) return null;
-    const data = await response.json() as { total: number };
-    return data.total || null;
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+    const stats = await analytics.getDownloadStats(toolName);
+    return stats.total || null;
   } catch {
     return null;
   }
@@ -174,7 +176,7 @@ export async function handleStaticAssets(
       // Fetch tool metadata and download count in parallel
       const [toolMeta, downloads] = await Promise.all([
         fetchToolMeta(toolName),
-        fetchDownloadCount(toolName),
+        fetchDownloadCount(toolName, env),
       ]);
       if (toolMeta) {
         const html = await indexResponse.text();
