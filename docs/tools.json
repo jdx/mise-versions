@@ -1,31 +1,31 @@
 {
-  "tool_count": 1005,
+  "tool_count": 962,
   "tools": [
     {
       "name": "1password",
       "latest_version": "2.32.0",
       "version_count": 150,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "1password/cli",
-      "repo_url": "https://github.com/1password/cli",
       "backends": [
-        "aqua:1password/cli",
-        "asdf:mise-plugins/mise-1password-cli"
+        "vfox:mise-plugins/vfox-1password",
+        "aqua:1password/cli"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/1password/cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/1password/cli/registry.yaml",
+      "github": "1password/cli",
+      "repo_url": "https://github.com/1password/cli"
     },
     {
       "name": "1password-cli",
       "latest_version": "2.32.0",
       "version_count": 150,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "1password/cli",
-      "repo_url": "https://github.com/1password/cli",
       "backends": [
-        "aqua:1password/cli",
-        "asdf:mise-plugins/mise-1password-cli"
+        "vfox:mise-plugins/vfox-1password",
+        "aqua:1password/cli"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/1password/cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/1password/cli/registry.yaml",
+      "github": "1password/cli",
+      "repo_url": "https://github.com/1password/cli"
     },
     {
       "name": "aapt2",
@@ -33,7 +33,7 @@
       "version_count": 549,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
-        "asdf:mise-plugins/mise-aapt2"
+        "vfox:mise-plugins/vfox-aapt2"
       ]
     },
     {
@@ -63,8 +63,12 @@
       "backends": [
         "aqua:mpalmer/action-validator",
         "ubi:mpalmer/action-validator",
-        "asdf:mpalmer/action-validator"
+        "asdf:mpalmer/action-validator",
+        "cargo:action-validator"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/action-validator"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mpalmer/action-validator/registry.yaml",
       "license": "GPL-3.0",
       "description": "Tool to validate GitHub Action and Workflow YAML files"
@@ -110,6 +114,7 @@
       "version_count": 49,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-ag",
         "asdf:mise-plugins/mise-ag"
       ]
     },
@@ -137,9 +142,13 @@
       "github": "str4d/age-plugin-yubikey",
       "repo_url": "https://github.com/str4d/age-plugin-yubikey",
       "backends": [
-        "ubi:str4d/age-plugin-yubikey",
-        "asdf:joke/asdf-age-plugin-yubikey"
+        "github:str4d/age-plugin-yubikey",
+        "asdf:joke/asdf-age-plugin-yubikey",
+        "cargo:age-plugin-yubikey"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/age-plugin-yubikey"
+      },
       "license": "Apache-2.0",
       "description": "YubiKey plugin for age"
     },
@@ -151,9 +160,11 @@
       "github": "slok/agebox",
       "repo_url": "https://github.com/slok/agebox",
       "backends": [
+        "aqua:slok/agebox",
         "ubi:slok/agebox",
         "asdf:slok/asdf-agebox"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/slok/agebox/registry.yaml",
       "license": "Apache-2.0",
       "description": "Age based repository file encryption gitops tool"
     },
@@ -203,17 +214,14 @@
       "description": "AKS Engine: legacy tool for Kubernetes on Azure (see status)"
     },
     {
-      "name": "alias",
-      "latest_version": "0.0.0",
-      "version_count": 1,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "allure",
       "latest_version": "2.36.0",
       "version_count": 74,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "allure-framework/allure2",
+      "repo_url": "https://github.com/allure-framework/allure2",
       "backends": [
+        "github:allure-framework/allure2",
         "asdf:mise-plugins/mise-allure"
       ]
     },
@@ -225,7 +233,7 @@
       "github": "allure-framework/allurectl",
       "repo_url": "https://github.com/allure-framework/allurectl",
       "backends": [
-        "ubi:allure-framework/allurectl"
+        "github:allure-framework/allurectl"
       ],
       "homepage": "https://qameta.io",
       "description": "Allure TestOps Command line tool"
@@ -253,7 +261,7 @@
       "github": "owasp-amass/amass",
       "repo_url": "https://github.com/owasp-amass/amass",
       "backends": [
-        "ubi:owasp-amass/amass",
+        "github:owasp-amass/amass",
         "asdf:dhoeric/asdf-amass"
       ],
       "homepage": "https://owasp.org/www-project-amass/",
@@ -278,13 +286,13 @@
       "name": "amazon-ecs-cli",
       "latest_version": "1.21.0",
       "version_count": 52,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "name": "ambient",
-      "latest_version": "kuba-test-v0.3.0-nightly-2023-09-06",
-      "version_count": 202,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "aws/amazon-ecs-cli",
+      "repo_url": "https://github.com/aws/amazon-ecs-cli",
+      "backends": [
+        "aqua:aws/amazon-ecs-cli"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aws/amazon-ecs-cli/registry.yaml"
     },
     {
       "name": "amplify",
@@ -294,7 +302,7 @@
       "github": "aws-amplify/amplify-cli",
       "repo_url": "https://github.com/aws-amplify/amplify-cli",
       "backends": [
-        "ubi:aws-amplify/amplify-cli[exe=amplify]",
+        "ubi:aws-amplify/amplify-cli[exe=amplify-pkg,rename_exe=amplify]",
         "asdf:LozanoMatheus/asdf-aws-amplify-cli"
       ],
       "license": "Apache-2.0",
@@ -306,7 +314,7 @@
       "version_count": 20,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
-        "asdf:mise-plugins/mise-android-sdk"
+        "vfox:mise-plugins/vfox-android-sdk"
       ]
     },
     {
@@ -367,7 +375,7 @@
       "version_count": 45,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
-        "asdf:mise-plugins/mise-ant"
+        "vfox:mise-plugins/vfox-ant"
       ]
     },
     {
@@ -392,8 +400,10 @@
       "latest_version": "2.0.4",
       "version_count": 136,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "apollographql/apollo-ios",
+      "repo_url": "https://github.com/apollographql/apollo-ios",
       "backends": [
-        "asdf:mise-plugins/mise-apollo-ios-cli"
+        "github:apollographql/apollo-ios"
       ]
     },
     {
@@ -401,8 +411,10 @@
       "latest_version": "2.0.4",
       "version_count": 136,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "apollographql/apollo-ios",
+      "repo_url": "https://github.com/apollographql/apollo-ios",
       "backends": [
-        "asdf:mise-plugins/mise-apollo-ios-cli"
+        "github:apollographql/apollo-ios"
       ]
     },
     {
@@ -413,7 +425,7 @@
       "github": "apollographql/router",
       "repo_url": "https://github.com/apollographql/router",
       "backends": [
-        "ubi:apollographql/router",
+        "github:apollographql/router",
         "asdf:safx/asdf-apollo-router"
       ],
       "homepage": "https://www.apollographql.com/docs/router/",
@@ -427,7 +439,7 @@
       "github": "apollographql/rover",
       "repo_url": "https://github.com/apollographql/rover",
       "backends": [
-        "ubi:apollographql/rover"
+        "github:apollographql/rover"
       ],
       "homepage": "https://rover.apollo.dev",
       "description": "The CLI for Apollo GraphOS"
@@ -440,16 +452,10 @@
       "github": "aquaproj/aqua",
       "repo_url": "https://github.com/aquaproj/aqua",
       "backends": [
-        "ubi:aquaproj/aqua"
+        "github:aquaproj/aqua"
       ],
       "homepage": "https://aquaproj.github.io",
       "description": "Declarative CLI Version manager written in Go. Support Lazy Install, Registry, and continuous update with Renovate. CLI version is switched seamlessly"
-    },
-    {
-      "name": "arc",
-      "latest_version": "4.0.0-alpha.9",
-      "version_count": 29,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "arduino",
@@ -491,7 +497,7 @@
       "github": "sigoden/argc",
       "repo_url": "https://github.com/sigoden/argc",
       "backends": [
-        "ubi:sigoden/argc"
+        "github:sigoden/argc"
       ],
       "license": "Apache-2.0",
       "description": "A Bash CLI framework, also a Bash command runner."
@@ -546,25 +552,14 @@
       "description": "Declarative Continuous Deployment for Kubernetes"
     },
     {
-      "name": "aria2",
-      "latest_version": "1.37.0",
-      "version_count": 24,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "asciidoctorj",
       "latest_version": "3.0.1",
       "version_count": 41,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-asciidoctorj",
         "asdf:mise-plugins/mise-asciidoctorj"
       ]
-    },
-    {
-      "name": "asdf-plugin-manager",
-      "latest_version": "1.4.0",
-      "version_count": 7,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "assh",
@@ -574,7 +569,7 @@
       "github": "moul/assh",
       "repo_url": "https://github.com/moul/assh",
       "backends": [
-        "ubi:moul/assh",
+        "github:moul/assh",
         "asdf:mise-plugins/mise-assh"
       ],
       "license": "MIT",
@@ -612,7 +607,7 @@
       "github": "astronomer/astro-cli",
       "repo_url": "https://github.com/astronomer/astro-cli",
       "backends": [
-        "ubi:astronomer/astro-cli[exe=astro]"
+        "github:astronomer/astro-cli[exe=astro]"
       ],
       "homepage": "https://www.astronomer.io",
       "description": "CLI that makes it easy to create, test and deploy Airflow DAGs to Astronomer"
@@ -653,7 +648,18 @@
       "name": "atuin",
       "latest_version": "18.10.0",
       "version_count": 38,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "atuinsh/atuin",
+      "repo_url": "https://github.com/atuinsh/atuin",
+      "backends": [
+        "aqua:atuinsh/atuin",
+        "ubi:atuinsh/atuin",
+        "cargo:atuin"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/atuin"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/atuinsh/atuin/registry.yaml"
     },
     {
       "name": "auto-doc",
@@ -663,7 +669,7 @@
       "github": "tj-actions/auto-doc",
       "repo_url": "https://github.com/tj-actions/auto-doc",
       "backends": [
-        "ubi:tj-actions/auto-doc",
+        "github:tj-actions/auto-doc",
         "asdf:mise-plugins/mise-auto-doc"
       ],
       "license": "Apache-2.0",
@@ -677,17 +683,11 @@
       "github": "aws-amplify/amplify-cli",
       "repo_url": "https://github.com/aws-amplify/amplify-cli",
       "backends": [
-        "ubi:aws-amplify/amplify-cli[exe=amplify]",
+        "ubi:aws-amplify/amplify-cli[exe=amplify-pkg,rename_exe=amplify]",
         "asdf:LozanoMatheus/asdf-aws-amplify-cli"
       ],
       "license": "Apache-2.0",
       "description": "The AWS Amplify CLI is a toolchain for simplifying serverless web and mobile development."
-    },
-    {
-      "name": "aws-amplify-cli",
-      "latest_version": "9.2.1",
-      "version_count": 181,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "aws-copilot",
@@ -799,12 +799,6 @@
       "description": "A powerful tool for using AWS Identity Center for the CLI and web console."
     },
     {
-      "name": "aws-sso-cli",
-      "latest_version": "2.0.0-beta4",
-      "version_count": 51,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "aws-vault",
       "latest_version": "7.2.0",
       "version_count": 75,
@@ -846,7 +840,7 @@
       "github": "jckuester/awsls",
       "repo_url": "https://github.com/jckuester/awsls",
       "backends": [
-        "ubi:jckuester/awsls",
+        "github:jckuester/awsls",
         "asdf:chessmango/asdf-awsls"
       ],
       "license": "MIT",
@@ -856,11 +850,11 @@
       "name": "awsrm",
       "latest_version": "0.4.0",
       "version_count": 5,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2022-02-14T05:02:26.000Z",
       "github": "jckuester/awsrm",
       "repo_url": "https://github.com/jckuester/awsrm",
       "backends": [
-        "ubi:jckuester/awsrm",
+        "github:jckuester/awsrm",
         "asdf:chessmango/asdf-awsrm"
       ],
       "license": "MIT",
@@ -870,11 +864,11 @@
       "name": "awsweeper",
       "latest_version": "0.12.0",
       "version_count": 18,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2022-01-16T16:31:44.000Z",
       "github": "jckuester/awsweeper",
       "repo_url": "https://github.com/jckuester/awsweeper",
       "backends": [
-        "ubi:jckuester/awsweeper",
+        "github:jckuester/awsweeper",
         "asdf:chessmango/asdf-awsweeper"
       ],
       "license": "MPL-2.0",
@@ -904,6 +898,7 @@
       "version_count": 172,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-azure-functions-core-tools",
         "asdf:mise-plugins/mise-azure-functions-core-tools"
       ]
     },
@@ -911,7 +906,7 @@
       "name": "azure-kubelogin",
       "latest_version": "0.2.13",
       "version_count": 45,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-20T21:49:49.000Z",
       "github": "Azure/kubelogin",
       "repo_url": "https://github.com/Azure/kubelogin",
       "backends": [
@@ -927,11 +922,11 @@
       "name": "babashka",
       "latest_version": "1.12.213",
       "version_count": 113,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-06T10:01:17.000Z",
       "github": "babashka/babashka",
       "repo_url": "https://github.com/babashka/babashka",
       "backends": [
-        "ubi:babashka/babashka[exe=bb]",
+        "github:babashka/babashka[exe=bb]",
         "asdf:pitch-io/asdf-babashka"
       ],
       "license": "EPL-1.0",
@@ -942,12 +937,12 @@
       "name": "balena",
       "latest_version": "23.2.10",
       "version_count": 1031,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-12T20:58:47.000Z",
       "github": "balena-io/balena-cli",
       "repo_url": "https://github.com/balena-io/balena-cli",
       "backends": [
-        "ubi:balena-io/balena-cli[exe=balena]",
-        "asdf:boatkit-io/asdf-balena-cli"
+        "github:balena-io/balena-cli",
+        "asdf:jaredallard/asdf-balena-cli"
       ],
       "license": "Apache-2.0",
       "description": "The official balena CLI tool."
@@ -956,12 +951,12 @@
       "name": "balena-cli",
       "latest_version": "23.2.10",
       "version_count": 1031,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-12T20:58:47.000Z",
       "github": "balena-io/balena-cli",
       "repo_url": "https://github.com/balena-io/balena-cli",
       "backends": [
-        "ubi:balena-io/balena-cli[exe=balena]",
-        "asdf:boatkit-io/asdf-balena-cli"
+        "github:balena-io/balena-cli",
+        "asdf:jaredallard/asdf-balena-cli"
       ],
       "license": "Apache-2.0",
       "description": "The official balena CLI tool."
@@ -970,7 +965,7 @@
       "name": "bashbot",
       "latest_version": "2.0.6",
       "version_count": 114,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-08-17T12:46:30.000Z",
       "github": "mathew-fleisch/bashbot",
       "repo_url": "https://github.com/mathew-fleisch/bashbot",
       "backends": [
@@ -987,14 +982,18 @@
       "version_count": 102,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "gem:bashly",
         "asdf:mise-plugins/mise-bashly"
-      ]
+      ],
+      "package_urls": {
+        "rubygems": "https://rubygems.org/gems/bashly"
+      }
     },
     {
       "name": "bat",
       "latest_version": "0.26.1",
       "version_count": 43,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-02T20:44:14.000Z",
       "github": "sharkdp/bat",
       "repo_url": "https://github.com/sharkdp/bat",
       "backends": [
@@ -1015,22 +1014,20 @@
       "name": "bat-extras",
       "latest_version": "2024.08.24",
       "version_count": 17,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-08-24T21:25:19.000Z",
+      "github": "eth-p/bat-extras",
+      "repo_url": "https://github.com/eth-p/bat-extras",
       "backends": [
+        "aqua:eth-p/bat-extras",
         "asdf:mise-plugins/mise-bat-extras"
-      ]
-    },
-    {
-      "name": "batect",
-      "latest_version": "0.85.0",
-      "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/eth-p/bat-extras/registry.yaml"
     },
     {
       "name": "bats",
       "latest_version": "1.13.0",
       "version_count": 22,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-07T16:10:06.000Z",
       "github": "bats-core/bats-core",
       "repo_url": "https://github.com/bats-core/bats-core",
       "backends": [
@@ -1045,7 +1042,7 @@
       "name": "bazel",
       "latest_version": "8.5.0",
       "version_count": 141,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-11T17:43:39.000Z",
       "github": "bazelbuild/bazel",
       "repo_url": "https://github.com/bazelbuild/bazel",
       "backends": [
@@ -1062,7 +1059,7 @@
       "name": "bazel-watcher",
       "latest_version": "0.28.0",
       "version_count": 64,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-05T19:38:57.000Z",
       "github": "bazelbuild/bazel-watcher",
       "repo_url": "https://github.com/bazelbuild/bazel-watcher",
       "backends": [
@@ -1076,13 +1073,17 @@
       "name": "bazelisk",
       "latest_version": "1.27.0",
       "version_count": 49,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-07-15T15:07:29.000Z",
       "github": "bazelbuild/bazelisk",
       "repo_url": "https://github.com/bazelbuild/bazelisk",
       "backends": [
         "aqua:bazelbuild/bazelisk",
+        "npm:@bazel/bazelisk",
         "asdf:josephtate/asdf-bazelisk"
       ],
+      "package_urls": {
+        "npm": "https://www.npmjs.com/package/@bazel/bazelisk"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bazelbuild/bazelisk/registry.yaml",
       "license": "Apache-2.0",
       "description": "A user-friendly launcher for Bazel."
@@ -1114,14 +1115,14 @@
       "name": "benthos",
       "latest_version": "4.73.0",
       "version_count": 404,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "benthosdev/benthos",
-      "repo_url": "https://github.com/benthosdev/benthos",
+      "last_updated": "2025-12-12T01:15:23.000Z",
+      "github": "redpanda-data/connect",
+      "repo_url": "https://github.com/redpanda-data/connect",
       "backends": [
-        "aqua:benthosdev/benthos",
+        "aqua:redpanda-data/connect",
         "asdf:benthosdev/benthos-asdf"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/benthosdev/benthos/registry.yaml",
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/redpanda-data/connect/registry.yaml",
       "homepage": "https://docs.redpanda.com/redpanda-connect/about/",
       "description": "Fancy stream processing made operationally mundane"
     },
@@ -1131,20 +1132,15 @@
       "version_count": 68,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-bfs",
         "asdf:mise-plugins/mise-bfs"
       ]
-    },
-    {
-      "name": "bin",
-      "latest_version": "0.17.4",
-      "version_count": 43,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "binnacle",
       "latest_version": "0.8.1",
       "version_count": 18,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-06-09T01:54:14.000Z",
       "github": "Traackr/binnacle",
       "repo_url": "https://github.com/Traackr/binnacle",
       "backends": [
@@ -1159,7 +1155,7 @@
       "name": "biome",
       "latest_version": "2.3.8",
       "version_count": 62,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-27T11:07:23.000Z",
       "github": "biomejs/biome",
       "repo_url": "https://github.com/biomejs/biome",
       "backends": [
@@ -1186,7 +1182,7 @@
       "name": "bitwarden",
       "latest_version": "2025.12.0",
       "version_count": 53,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-05T21:39:33.000Z",
       "github": "bitwarden/clients",
       "repo_url": "https://github.com/bitwarden/clients",
       "backends": [
@@ -1201,11 +1197,11 @@
       "name": "bitwarden-secrets-manager",
       "latest_version": "1.0.0",
       "version_count": 6,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-09-26T16:05:17.000Z",
       "github": "bitwarden/sdk",
       "repo_url": "https://github.com/bitwarden/sdk",
       "backends": [
-        "ubi:bitwarden/sdk[tag_regex=^bws,exe=bws]",
+        "github:bitwarden/sdk[version_prefix=bws-v]",
         "asdf:asdf-community/asdf-bitwarden-secrets-manager"
       ],
       "description": "Bitwarden Secrets Manager SDK."
@@ -1214,7 +1210,7 @@
       "name": "black",
       "latest_version": "25.12.0",
       "version_count": 45,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-08T01:39:14.000Z",
       "github": "psf/black",
       "repo_url": "https://github.com/psf/black",
       "backends": [
@@ -1229,19 +1225,36 @@
       "name": "blender",
       "latest_version": "5.0.0",
       "version_count": 251,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "blender/blender",
+      "repo_url": "https://github.com/blender/blender",
+      "backends": [
+        "aqua:blender/blender"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/blender/blender/registry.yaml"
     },
     {
       "name": "bob",
       "latest_version": "4.1.6",
       "version_count": 42,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-12-06T15:45:03.000Z",
+      "github": "MordechaiHadad/bob",
+      "repo_url": "https://github.com/MordechaiHadad/bob",
+      "backends": [
+        "aqua:MordechaiHadad/bob",
+        "ubi:MordechaiHadad/bob[matching_regex=bob-(linux|macos|windows)-(arm|x86_64)\\.zip$]",
+        "cargo:bob-nvim"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/bob-nvim"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/MordechaiHadad/bob/registry.yaml"
     },
     {
       "name": "boilerplate",
       "latest_version": "0.10.1",
       "version_count": 84,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-10-02T21:08:15.000Z",
       "github": "gruntwork-io/boilerplate",
       "repo_url": "https://github.com/gruntwork-io/boilerplate",
       "backends": [
@@ -1255,7 +1268,7 @@
       "name": "bombardier",
       "latest_version": "2.0.2",
       "version_count": 20,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-03-04T17:40:20.000Z",
       "github": "codesenberg/bombardier",
       "repo_url": "https://github.com/codesenberg/bombardier",
       "backends": [
@@ -1270,7 +1283,7 @@
       "name": "borg",
       "latest_version": "1.4.3",
       "version_count": 57,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-02T00:06:32.000Z",
       "github": "borgbackup/borg",
       "repo_url": "https://github.com/borgbackup/borg",
       "backends": [
@@ -1285,7 +1298,7 @@
       "name": "bosh",
       "latest_version": "7.9.15",
       "version_count": 152,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-05T23:33:53.000Z",
       "github": "cloudfoundry/bosh-cli",
       "repo_url": "https://github.com/cloudfoundry/bosh-cli",
       "backends": [
@@ -1314,13 +1327,17 @@
       "name": "bottom",
       "latest_version": "0.11.4",
       "version_count": 49,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-16T21:36:20.000Z",
       "github": "ClementTsang/bottom",
       "repo_url": "https://github.com/ClementTsang/bottom",
       "backends": [
         "aqua:ClementTsang/bottom",
-        "asdf:carbonteq/asdf-btm"
+        "asdf:carbonteq/asdf-btm",
+        "cargo:bottom"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/bottom"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/ClementTsang/bottom/registry.yaml",
       "license": "MIT",
       "homepage": "https://bottom.pages.dev",
@@ -1330,7 +1347,7 @@
       "name": "boundary",
       "latest_version": "0.21.0",
       "version_count": 73,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-09T16:14:45.000Z",
       "github": "hashicorp/boundary",
       "repo_url": "https://github.com/hashicorp/boundary",
       "backends": [
@@ -1347,6 +1364,7 @@
       "version_count": 30,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-bpkg",
         "asdf:mise-plugins/mise-bpkg"
       ]
     },
@@ -1354,7 +1372,7 @@
       "name": "brig",
       "latest_version": "2.6.0",
       "version_count": 37,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2022-06-09T14:00:24.000Z",
       "github": "brigadecore/brigade",
       "repo_url": "https://github.com/brigadecore/brigade",
       "backends": [
@@ -1370,7 +1388,7 @@
       "name": "btop",
       "latest_version": "1.4.5",
       "version_count": 53,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-09-19T20:29:22.000Z",
       "github": "aristocratos/btop",
       "repo_url": "https://github.com/aristocratos/btop",
       "backends": [
@@ -1385,8 +1403,11 @@
       "name": "btrace",
       "latest_version": "2.2.6",
       "version_count": 33,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-11-09T17:14:17.000Z",
+      "github": "btraceio/btrace",
+      "repo_url": "https://github.com/btraceio/btrace",
       "backends": [
+        "github:btraceio/btrace",
         "asdf:mise-plugins/mise-btrace"
       ]
     },
@@ -1394,7 +1415,7 @@
       "name": "buf",
       "latest_version": "1.61.0",
       "version_count": 85,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-25T23:15:08.000Z",
       "github": "bufbuild/buf",
       "repo_url": "https://github.com/bufbuild/buf",
       "backends": [
@@ -1411,7 +1432,7 @@
       "name": "buildifier",
       "latest_version": "8.2.1",
       "version_count": 54,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-06-02T20:14:22.000Z",
       "github": "bazelbuild/buildtools",
       "repo_url": "https://github.com/bazelbuild/buildtools",
       "backends": [
@@ -1425,7 +1446,7 @@
       "name": "buildpack",
       "latest_version": "0.39.1",
       "version_count": 71,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-10T12:39:43.000Z",
       "github": "buildpacks/pack",
       "repo_url": "https://github.com/buildpacks/pack",
       "backends": [
@@ -1441,7 +1462,7 @@
       "name": "buildpacks",
       "latest_version": "0.39.1",
       "version_count": 71,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-10T12:39:43.000Z",
       "github": "buildpacks/pack",
       "repo_url": "https://github.com/buildpacks/pack",
       "backends": [
@@ -1457,22 +1478,16 @@
       "name": "bun",
       "latest_version": "1.3.4",
       "version_count": 201,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-07T00:37:09.000Z",
       "backends": [
         "core:bun"
       ]
     },
     {
-      "name": "bundler",
-      "latest_version": "2.5.23",
-      "version_count": 394,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "cabal",
       "latest_version": "3.16.0.0",
       "version_count": 9,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-07-10T15:10:59.000Z",
       "github": "haskell/cabal",
       "repo_url": "https://github.com/haskell/cabal",
       "backends": [
@@ -1486,7 +1501,7 @@
       "name": "caddy",
       "latest_version": "2.10.2",
       "version_count": 83,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-08-23T01:46:14.000Z",
       "github": "caddyserver/caddy",
       "repo_url": "https://github.com/caddyserver/caddy",
       "backends": [
@@ -1502,13 +1517,15 @@
       "name": "calendarsync",
       "latest_version": "0.10.1",
       "version_count": 11,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-08-15T07:49:54.000Z",
       "github": "inovex/CalendarSync",
       "repo_url": "https://github.com/inovex/CalendarSync",
       "backends": [
+        "aqua:inovex/CalendarSync",
         "ubi:inovex/CalendarSync",
         "asdf:FeryET/asdf-calendarsync"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/inovex/CalendarSync/registry.yaml",
       "license": "MIT",
       "description": "Stateless CLI tool to sync calendars across different calendaring systems."
     },
@@ -1516,7 +1533,7 @@
       "name": "calicoctl",
       "latest_version": "3.30.5",
       "version_count": 223,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-26T17:39:26.000Z",
       "github": "projectcalico/calico",
       "repo_url": "https://github.com/projectcalico/calico",
       "backends": [
@@ -1529,22 +1546,22 @@
       "description": "Cloud native networking and network security"
     },
     {
-      "name": "camunda-modeler",
-      "latest_version": "nightly",
-      "version_count": 235,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "carapace",
       "latest_version": "1.5.7",
       "version_count": 169,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-12-09T20:55:48.000Z",
+      "github": "carapace-sh/carapace-bin",
+      "repo_url": "https://github.com/carapace-sh/carapace-bin",
+      "backends": [
+        "aqua:carapace-sh/carapace-bin"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/carapace-sh/carapace-bin/registry.yaml"
     },
     {
       "name": "cargo-binstall",
       "latest_version": "1.16.4",
       "version_count": 127,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-14T02:15:22.000Z",
       "github": "cargo-bins/cargo-binstall",
       "repo_url": "https://github.com/cargo-bins/cargo-binstall",
       "backends": [
@@ -1563,13 +1580,17 @@
       "name": "cargo-insta",
       "latest_version": "1.44.3",
       "version_count": 14,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-27T21:36:21.000Z",
       "github": "mitsuhiko/insta",
       "repo_url": "https://github.com/mitsuhiko/insta",
       "backends": [
         "aqua:mitsuhiko/insta",
-        "ubi:mitsuhiko/insta"
+        "ubi:mitsuhiko/insta",
+        "cargo:insta"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/insta"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mitsuhiko/insta/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://insta.rs",
@@ -1579,14 +1600,18 @@
       "name": "cargo-make",
       "latest_version": "0.37.24",
       "version_count": 127,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-01-18T15:12:30.000Z",
       "github": "sagiegurari/cargo-make",
       "repo_url": "https://github.com/sagiegurari/cargo-make",
       "backends": [
         "aqua:sagiegurari/cargo-make",
         "ubi:sagiegurari/cargo-make",
-        "asdf:mise-plugins/asdf-cargo-make"
+        "asdf:mise-plugins/asdf-cargo-make",
+        "cargo:cargo-make"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/cargo-make"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sagiegurari/cargo-make/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://sagiegurari.github.io/cargo-make/",
@@ -1596,11 +1621,11 @@
       "name": "carp",
       "latest_version": "0.5.5",
       "version_count": 20,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2022-04-22T18:35:39.000Z",
       "github": "carp-lang/Carp",
       "repo_url": "https://github.com/carp-lang/Carp",
       "backends": [
-        "ubi:carp-lang/Carp[exe=carp]",
+        "github:carp-lang/Carp[exe=carp]",
         "asdf:susurri/asdf-carp"
       ],
       "license": "Apache-2.0",
@@ -1612,6 +1637,7 @@
       "version_count": 79,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-carthage",
         "asdf:mise-plugins/mise-carthage"
       ]
     },
@@ -1619,11 +1645,11 @@
       "name": "ccache",
       "latest_version": "4.12.2",
       "version_count": 93,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-26T17:37:13.000Z",
       "github": "ccache/ccache",
       "repo_url": "https://github.com/ccache/ccache",
       "backends": [
-        "ubi:ccache/ccache",
+        "github:ccache/ccache",
         "asdf:asdf-community/asdf-ccache"
       ],
       "homepage": "https://ccache.dev",
@@ -1633,11 +1659,11 @@
       "name": "certstrap",
       "latest_version": "1.3.0",
       "version_count": 6,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2022-07-01T16:55:04.000Z",
       "github": "square/certstrap",
       "repo_url": "https://github.com/square/certstrap",
       "backends": [
-        "ubi:square/certstrap",
+        "github:square/certstrap",
         "asdf:carnei-ro/asdf-certstrap"
       ],
       "license": "Apache-2.0",
@@ -1647,8 +1673,11 @@
       "name": "cf",
       "latest_version": "8.17.0",
       "version_count": 148,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-19T14:43:00.000Z",
+      "github": "cloudfoundry/cli",
+      "repo_url": "https://github.com/cloudfoundry/cli",
       "backends": [
+        "github:cloudfoundry/cli",
         "asdf:mise-plugins/mise-cf"
       ]
     },
@@ -1656,7 +1685,7 @@
       "name": "cfn-lint",
       "latest_version": "1.42.1",
       "version_count": 419,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-09T15:38:54.000Z",
       "backends": [
         "pipx:cfn-lint"
       ],
@@ -1673,7 +1702,7 @@
       "name": "cfssl",
       "latest_version": "1.6.5",
       "version_count": 11,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-03-05T16:56:19.000Z",
       "github": "cloudflare/cfssl",
       "repo_url": "https://github.com/cloudflare/cfssl",
       "backends": [
@@ -1689,13 +1718,19 @@
       "name": "cfssljson",
       "latest_version": "1.6.5",
       "version_count": 11,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2024-03-05T16:56:19.000Z",
+      "github": "cloudflare/cfssl",
+      "repo_url": "https://github.com/cloudflare/cfssl",
+      "backends": [
+        "aqua:cloudflare/cfssl/cfssljson"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudflare/cfssl/registry.yaml"
     },
     {
       "name": "chamber",
       "latest_version": "3.1.4",
       "version_count": 72,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-14T20:02:21.000Z",
       "github": "segmentio/chamber",
       "repo_url": "https://github.com/segmentio/chamber",
       "backends": [
@@ -1711,7 +1746,7 @@
       "name": "changie",
       "latest_version": "1.24.0",
       "version_count": 46,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-22T07:43:44.000Z",
       "github": "miniscruff/changie",
       "repo_url": "https://github.com/miniscruff/changie",
       "backends": [
@@ -1728,7 +1763,7 @@
       "name": "cheat",
       "latest_version": "4.4.2",
       "version_count": 48,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2023-12-15T17:49:50.000Z",
       "github": "cheat/cheat",
       "repo_url": "https://github.com/cheat/cheat",
       "backends": [
@@ -1743,7 +1778,7 @@
       "name": "checkmake",
       "latest_version": "0.2.2",
       "version_count": 2,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2023-04-11T12:51:08.000Z",
       "github": "mrtazz/checkmake",
       "repo_url": "https://github.com/mrtazz/checkmake",
       "backends": [
@@ -1757,7 +1792,7 @@
       "name": "chezmoi",
       "latest_version": "2.68.1",
       "version_count": 242,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-10T00:14:40.000Z",
       "github": "twpayne/chezmoi",
       "repo_url": "https://github.com/twpayne/chezmoi",
       "backends": [
@@ -1776,6 +1811,7 @@
       "version_count": 15,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-chezscheme",
         "asdf:mise-plugins/mise-chezscheme"
       ]
     },
@@ -1785,14 +1821,14 @@
       "version_count": 6,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
-        "asdf:mise-plugins/mise-chicken"
+        "vfox:mise-plugins/vfox-chicken"
       ]
     },
     {
       "name": "chisel",
       "latest_version": "1.11.3",
       "version_count": 33,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-09-14T00:02:05.000Z",
       "github": "jpillora/chisel",
       "repo_url": "https://github.com/jpillora/chisel",
       "backends": [
@@ -1812,7 +1848,7 @@
       "name": "choose",
       "latest_version": "1.3.7",
       "version_count": 7,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-08-26T02:09:54.000Z",
       "github": "theryangeary/choose",
       "repo_url": "https://github.com/theryangeary/choose",
       "backends": [
@@ -1833,11 +1869,11 @@
       "name": "cidr-merger",
       "latest_version": "1.1.3",
       "version_count": 5,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2022-03-03T08:52:55.000Z",
       "github": "zhanhb/cidr-merger",
       "repo_url": "https://github.com/zhanhb/cidr-merger",
       "backends": [
-        "ubi:zhanhb/cidr-merger",
+        "github:zhanhb/cidr-merger",
         "asdf:ORCID/asdf-cidr-merger"
       ],
       "license": "MIT",
@@ -1847,11 +1883,11 @@
       "name": "cidrchk",
       "latest_version": "0.5",
       "version_count": 4,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2020-03-12T08:31:27.000Z",
       "github": "mhausenblas/cidrchk",
       "repo_url": "https://github.com/mhausenblas/cidrchk",
       "backends": [
-        "ubi:mhausenblas/cidrchk",
+        "github:mhausenblas/cidrchk",
         "asdf:ORCID/asdf-cidrchk"
       ],
       "description": "CLI tool for CIDR range operations (check, generate)"
@@ -1860,7 +1896,7 @@
       "name": "cilium-cli",
       "latest_version": "0.18.9",
       "version_count": 124,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-02T23:48:54.000Z",
       "github": "cilium/cilium-cli",
       "repo_url": "https://github.com/cilium/cilium-cli",
       "backends": [
@@ -1877,11 +1913,11 @@
       "name": "cilium-hubble",
       "latest_version": "1.18.3",
       "version_count": 42,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-10-24T17:57:09.000Z",
       "github": "cilium/hubble",
       "repo_url": "https://github.com/cilium/hubble",
       "backends": [
-        "ubi:cilium/hubble",
+        "github:cilium/hubble",
         "asdf:NitriKx/asdf-cilium-hubble"
       ],
       "license": "Apache-2.0",
@@ -1891,7 +1927,7 @@
       "name": "circleci",
       "latest_version": "0.1.34038",
       "version_count": 464,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-11T15:20:39.000Z",
       "github": "CircleCI-Public/circleci-cli",
       "repo_url": "https://github.com/CircleCI-Public/circleci-cli",
       "backends": [
@@ -1908,7 +1944,7 @@
       "name": "circleci-cli",
       "latest_version": "0.1.34038",
       "version_count": 464,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-11T15:20:39.000Z",
       "github": "CircleCI-Public/circleci-cli",
       "repo_url": "https://github.com/CircleCI-Public/circleci-cli",
       "backends": [
@@ -1953,11 +1989,11 @@
       "name": "clarinet",
       "latest_version": "3.11.0",
       "version_count": 107,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-03T21:55:33.000Z",
       "github": "hirosystems/clarinet",
       "repo_url": "https://github.com/hirosystems/clarinet",
       "backends": [
-        "ubi:hirosystems/clarinet",
+        "github:hirosystems/clarinet",
         "asdf:alexgo-io/asdf-clarinet"
       ],
       "license": "GPL-3.0",
@@ -1968,13 +2004,20 @@
       "name": "claude-squad",
       "latest_version": "1.0.13",
       "version_count": 14,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-08-28T15:09:11.000Z",
+      "github": "smtg-ai/claude-squad",
+      "repo_url": "https://github.com/smtg-ai/claude-squad",
+      "backends": [
+        "aqua:smtg-ai/claude-squad",
+        "ubi:smtg-ai/claude-squad"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/smtg-ai/claude-squad/registry.yaml"
     },
     {
       "name": "cli53",
       "latest_version": "0.8.25",
       "version_count": 39,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-06-17T05:44:45.000Z",
       "github": "barnybug/cli53",
       "repo_url": "https://github.com/barnybug/cli53",
       "backends": [
@@ -1990,6 +2033,7 @@
       "version_count": 100,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
+        "vfox:mise-plugins/vfox-clickhouse",
         "asdf:mise-plugins/mise-clickhouse"
       ]
     },
@@ -1997,11 +2041,11 @@
       "name": "clj-kondo",
       "latest_version": "2025.10.23",
       "version_count": 94,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-10-23T13:43:15.000Z",
       "github": "clj-kondo/clj-kondo",
       "repo_url": "https://github.com/clj-kondo/clj-kondo",
       "backends": [
-        "ubi:clj-kondo/clj-kondo",
+        "github:clj-kondo/clj-kondo",
         "asdf:rynkowsg/asdf-clj-kondo"
       ],
       "license": "EPL-1.0",
@@ -2011,11 +2055,11 @@
       "name": "cljstyle",
       "latest_version": "0.17.642",
       "version_count": 16,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2024-12-09T07:58:55.000Z",
       "github": "greglook/cljstyle",
       "repo_url": "https://github.com/greglook/cljstyle",
       "backends": [
-        "ubi:greglook/cljstyle",
+        "github:greglook/cljstyle",
         "asdf:abogoyavlensky/asdf-cljstyle"
       ],
       "license": "EPL-1.0",
@@ -2034,7 +2078,7 @@
       "name": "cloud-sql-proxy",
       "latest_version": "2.20.0",
       "version_count": 123,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-09T18:31:43.000Z",
       "github": "GoogleCloudPlatform/cloud-sql-proxy",
       "repo_url": "https://github.com/GoogleCloudPlatform/cloud-sql-proxy",
       "backends": [
@@ -2049,7 +2093,7 @@
       "name": "cloudflared",
       "latest_version": "2025.11.1",
       "version_count": 174,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-07T16:30:58.000Z",
       "github": "cloudflare/cloudflared",
       "repo_url": "https://github.com/cloudflare/cloudflared",
       "backends": [
@@ -2080,7 +2124,7 @@
       "name": "clusterctl",
       "latest_version": "1.12.0",
       "version_count": 156,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-09T16:24:03.000Z",
       "github": "kubernetes-sigs/cluster-api",
       "repo_url": "https://github.com/kubernetes-sigs/cluster-api",
       "backends": [
@@ -2096,17 +2140,21 @@
       "name": "cmake",
       "latest_version": "4.2.1",
       "version_count": 256,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-08T19:04:53.000Z",
+      "github": "Kitware/CMake",
+      "repo_url": "https://github.com/Kitware/CMake",
       "backends": [
+        "aqua:Kitware/CMake",
         "asdf:mise-plugins/mise-cmake",
         "vfox:mise-plugins/vfox-cmake"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Kitware/CMake/registry.yaml"
     },
     {
       "name": "cmctl",
       "latest_version": "2.4.0",
       "version_count": 6,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-03T15:46:15.000Z",
       "github": "cert-manager/cmctl",
       "repo_url": "https://github.com/cert-manager/cmctl",
       "backends": [
@@ -2122,7 +2170,7 @@
       "name": "cmdx",
       "latest_version": "2.0.2",
       "version_count": 41,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-07-15T10:43:17.000Z",
       "github": "suzuki-shunsuke/cmdx",
       "repo_url": "https://github.com/suzuki-shunsuke/cmdx",
       "backends": [
@@ -2161,7 +2209,7 @@
       "name": "cocogitto",
       "latest_version": "6.5.0",
       "version_count": 31,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-11-02T11:38:58.000Z",
       "github": "cocogitto/cocogitto",
       "repo_url": "https://github.com/cocogitto/cocogitto",
       "backends": [
@@ -2176,7 +2224,18 @@
       "name": "code",
       "latest_version": "0.6.5",
       "version_count": 239,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "just-every/code",
+      "repo_url": "https://github.com/just-every/code",
+      "backends": [
+        "aqua:just-every/code",
+        "ubi:just-every/code",
+        "npm:@just-every/code"
+      ],
+      "package_urls": {
+        "npm": "https://www.npmjs.com/package/@just-every/code"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/just-every/code/registry.yaml"
     },
     {
       "name": "codefresh",
@@ -2186,7 +2245,7 @@
       "github": "codefresh-io/cli",
       "repo_url": "https://github.com/codefresh-io/cli",
       "backends": [
-        "ubi:codefresh-io/cli[exe=codefresh]",
+        "github:codefresh-io/cli[exe=codefresh]",
         "asdf:gurukulkarni/asdf-codefresh"
       ],
       "license": "MIT",
@@ -2222,7 +2281,17 @@
       "name": "codex",
       "latest_version": "0.72.0",
       "version_count": 63,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "openai/codex",
+      "repo_url": "https://github.com/openai/codex",
+      "backends": [
+        "aqua:openai/codex",
+        "npm:@openai/codex"
+      ],
+      "package_urls": {
+        "npm": "https://www.npmjs.com/package/@openai/codex"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/openai/codex/registry.yaml"
     },
     {
       "name": "colima",
@@ -2297,7 +2366,7 @@
       "github": "ConduitIO/conduit",
       "repo_url": "https://github.com/ConduitIO/conduit",
       "backends": [
-        "ubi:ConduitIO/conduit",
+        "github:ConduitIO/conduit",
         "asdf:gmcabrita/asdf-conduit"
       ],
       "license": "Apache-2.0",
@@ -2353,13 +2422,14 @@
       "name": "container",
       "latest_version": "0.7.1",
       "version_count": 8,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "name": "container-diff",
-      "latest_version": "0.19.0",
-      "version_count": 22,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "apple/container",
+      "repo_url": "https://github.com/apple/container",
+      "backends": [
+        "aqua:apple/container",
+        "ubi:apple/container"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/apple/container/registry.yaml"
     },
     {
       "name": "container-structure-test",
@@ -2380,7 +2450,14 @@
       "name": "container-use",
       "latest_version": "0.4.2",
       "version_count": 14,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "dagger/container-use",
+      "repo_url": "https://github.com/dagger/container-use",
+      "backends": [
+        "aqua:dagger/container-use",
+        "ubi:dagger/container-use"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dagger/container-use/registry.yaml"
     },
     {
       "name": "cookiecutter",
@@ -2424,9 +2501,11 @@
       "github": "cloud66-oss/copper",
       "repo_url": "https://github.com/cloud66-oss/copper",
       "backends": [
+        "aqua:cloud66-oss/copper",
         "ubi:cloud66-oss/copper",
         "asdf:vladlosev/asdf-copper"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloud66-oss/copper/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://help.cloud66.com/copper/",
       "description": "A configuration file validator for Kubernetes."
@@ -2448,7 +2527,7 @@
       "github": "coredns/coredns",
       "repo_url": "https://github.com/coredns/coredns",
       "backends": [
-        "ubi:coredns/coredns",
+        "github:coredns/coredns",
         "asdf:s3than/asdf-coredns"
       ],
       "license": "Apache-2.0",
@@ -2494,7 +2573,7 @@
       "github": "coursier/coursier",
       "repo_url": "https://github.com/coursier/coursier",
       "backends": [
-        "ubi:coursier/coursier[exe=cs]",
+        "github:coursier/coursier[exe=cs]",
         "asdf:jiahuili430/asdf-coursier"
       ],
       "license": "Apache-2.0",
@@ -2505,7 +2584,14 @@
       "name": "cpz",
       "latest_version": "3.1.1",
       "version_count": 20,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "SUPERCILEX/fuc",
+      "repo_url": "https://github.com/SUPERCILEX/fuc",
+      "backends": [
+        "aqua:SUPERCILEX/fuc/cpz",
+        "ubi:SUPERCILEX/fuc[matching=cpz,rename_exe=cpz]"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml"
     },
     {
       "name": "crane",
@@ -2566,7 +2652,14 @@
       "name": "croc",
       "latest_version": "10.3.1",
       "version_count": 178,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "schollz/croc",
+      "repo_url": "https://github.com/schollz/croc",
+      "backends": [
+        "aqua:schollz/croc",
+        "ubi:schollz/croc"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/schollz/croc/registry.yaml"
     },
     {
       "name": "crossplane",
@@ -2604,7 +2697,13 @@
       "name": "crush",
       "latest_version": "0.24.0",
       "version_count": 81,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "charmbracelet/crush",
+      "repo_url": "https://github.com/charmbracelet/crush",
+      "backends": [
+        "aqua:charmbracelet/crush"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/charmbracelet/crush/registry.yaml"
     },
     {
       "name": "crystal",
@@ -2794,7 +2893,7 @@
       "github": "databricks/cli",
       "repo_url": "https://github.com/databricks/cli",
       "backends": [
-        "ubi:databricks/cli[exe=databricks]"
+        "github:databricks/cli[exe=databricks]"
       ],
       "description": "Databricks CLI"
     },
@@ -2885,12 +2984,6 @@
       ]
     },
     {
-      "name": "dep",
-      "latest_version": "0.5.4",
-      "version_count": 11,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "depot",
       "latest_version": "2.100.12",
       "version_count": 260,
@@ -2898,7 +2991,7 @@
       "github": "depot/cli",
       "repo_url": "https://github.com/depot/cli",
       "backends": [
-        "ubi:depot/cli[exe=depot]",
+        "github:depot/cli[exe=depot]",
         "asdf:depot/asdf-depot"
       ],
       "license": "MIT",
@@ -2941,9 +3034,13 @@
       "latest_version": "1.42.2",
       "version_count": 38,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "dhall-lang/dhall-haskell",
+      "repo_url": "https://github.com/dhall-lang/dhall-haskell",
       "backends": [
+        "aqua:dhall-lang/dhall-haskell",
         "asdf:mise-plugins/mise-dhall"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dhall-lang/dhall-haskell/registry.yaml"
     },
     {
       "name": "diffoci",
@@ -2964,12 +3061,18 @@
       "latest_version": "0.67.0",
       "version_count": 48,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "wilfred/difftastic",
-      "repo_url": "https://github.com/wilfred/difftastic",
+      "github": "Wilfred/difftastic",
+      "repo_url": "https://github.com/Wilfred/difftastic",
       "backends": [
-        "ubi:wilfred/difftastic[exe=difft]",
-        "asdf:volf52/asdf-difftastic"
+        "aqua:Wilfred/difftastic",
+        "ubi:Wilfred/difftastic[exe=difft]",
+        "asdf:volf52/asdf-difftastic",
+        "cargo:difftastic"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/difftastic"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Wilfred/difftastic/registry.yaml",
       "license": "MIT",
       "homepage": "https://difftastic.wilfred.me.uk/",
       "description": "a structural diff that understands syntax 🟥🟩"
@@ -3023,7 +3126,7 @@
       "github": "cross-language-cpp/djinni-generator",
       "repo_url": "https://github.com/cross-language-cpp/djinni-generator",
       "backends": [
-        "ubi:cross-language-cpp/djinni-generator",
+        "ubi:cross-language-cpp/djinni-generator[exe=djinni]",
         "asdf:cross-language-cpp/asdf-djinni"
       ],
       "license": "Apache-2.0",
@@ -3067,12 +3170,6 @@
       "license": "Apache-2.0",
       "homepage": "https://docs.docker.com/compose/",
       "description": "Define and run multi-container applications with Docker"
-    },
-    {
-      "name": "docker-compose-v1",
-      "latest_version": "docs-v1.8.0-2016-08-03",
-      "version_count": 259,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "docker-slim",
@@ -3186,7 +3283,7 @@
       "github": "DopplerHQ/cli",
       "repo_url": "https://github.com/DopplerHQ/cli",
       "backends": [
-        "ubi:DopplerHQ/cli[exe=doppler]",
+        "github:DopplerHQ/cli[exe=doppler]",
         "asdf:takutakahashi/asdf-doppler"
       ],
       "license": "Apache-2.0",
@@ -3203,8 +3300,12 @@
       "backends": [
         "aqua:dotenv-linter/dotenv-linter",
         "ubi:dotenv-linter/dotenv-linter",
-        "asdf:wesleimp/asdf-dotenv-linter"
+        "asdf:wesleimp/asdf-dotenv-linter",
+        "cargo:dotenv-linter"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/dotenv-linter"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dotenv-linter/dotenv-linter/registry.yaml",
       "license": "MIT",
       "homepage": "https://dotenv-linter.github.io",
@@ -3214,7 +3315,14 @@
       "name": "dotenvx",
       "latest_version": "1.51.2",
       "version_count": 275,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "dotenvx/dotenvx",
+      "repo_url": "https://github.com/dotenvx/dotenvx",
+      "backends": [
+        "aqua:dotenvx/dotenvx",
+        "ubi:dotenvx/dotenvx"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dotenvx/dotenvx/registry.yaml"
     },
     {
       "name": "dotnet",
@@ -3243,7 +3351,7 @@
       "github": "facebook/dotslash",
       "repo_url": "https://github.com/facebook/dotslash",
       "backends": [
-        "ubi:facebook/dotslash"
+        "github:facebook/dotslash"
       ],
       "license": "Apache-2.0",
       "homepage": "https://dotslash-cli.com",
@@ -3345,7 +3453,7 @@
       "github": "devstream-io/devstream",
       "repo_url": "https://github.com/devstream-io/devstream",
       "backends": [
-        "ubi:devstream-io/devstream[exe=dtm]",
+        "github:devstream-io/devstream[exe=dtm]",
         "asdf:zhenyuanlau/asdf-dtm"
       ],
       "license": "Apache-2.0",
@@ -3361,8 +3469,12 @@
       "repo_url": "https://github.com/Byron/dua-cli",
       "backends": [
         "aqua:Byron/dua-cli",
-        "ubi:Byron/dua-cli[exe=dua]"
+        "ubi:Byron/dua-cli[exe=dua]",
+        "cargo:dua-cli"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/dua-cli"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Byron/dua-cli/registry.yaml",
       "license": "MIT",
       "homepage": "https://lib.rs/crates/dua-cli",
@@ -3408,8 +3520,12 @@
       "backends": [
         "aqua:bootandy/dust",
         "ubi:bootandy/dust",
-        "asdf:looztra/asdf-dust"
+        "asdf:looztra/asdf-dust",
+        "cargo:du-dust"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/du-dust"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bootandy/dust/registry.yaml",
       "license": "Apache-2.0",
       "description": "A more intuitive version of du in rust"
@@ -3446,7 +3562,7 @@
       "github": "Dynatrace/dynatrace-configuration-as-code",
       "repo_url": "https://github.com/Dynatrace/dynatrace-configuration-as-code",
       "backends": [
-        "ubi:Dynatrace/dynatrace-configuration-as-code[exe=monaco]",
+        "github:Dynatrace/dynatrace-configuration-as-code[exe=monaco]",
         "asdf:nsaputro/asdf-monaco"
       ],
       "license": "Apache-2.0",
@@ -3458,9 +3574,13 @@
       "latest_version": "1.0.52",
       "version_count": 49,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "keidarcy/e1s",
+      "repo_url": "https://github.com/keidarcy/e1s",
       "backends": [
+        "aqua:keidarcy/e1s",
         "asdf:tbobm/asdf-e1s"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/keidarcy/e1s/registry.yaml"
     },
     {
       "name": "earthly",
@@ -3482,7 +3602,13 @@
       "name": "ecs-cli",
       "latest_version": "1.21.0",
       "version_count": 52,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "aws/amazon-ecs-cli",
+      "repo_url": "https://github.com/aws/amazon-ecs-cli",
+      "backends": [
+        "aqua:aws/amazon-ecs-cli"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aws/amazon-ecs-cli/registry.yaml"
     },
     {
       "name": "ecspresso",
@@ -3595,18 +3721,12 @@
       "github": "elm/compiler",
       "repo_url": "https://github.com/elm/compiler",
       "backends": [
-        "ubi:elm/compiler[exe=elm]",
+        "github:elm/compiler[bin=elm]",
         "asdf:asdf-community/asdf-elm"
       ],
       "license": "BSD-3-Clause",
       "homepage": "https://elm-lang.org/",
       "description": "Compiler for Elm, a functional language for reliable webapps."
-    },
-    {
-      "name": "embulk",
-      "latest_version": "0.11.5",
-      "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "emsdk",
@@ -3625,9 +3745,11 @@
       "github": "EnvCLI/EnvCLI",
       "repo_url": "https://github.com/EnvCLI/EnvCLI",
       "backends": [
+        "aqua:EnvCLI/EnvCLI",
         "ubi:EnvCLI/EnvCLI[exe=envcli]",
         "asdf:zekker6/asdf-envcli"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/EnvCLI/EnvCLI/registry.yaml",
       "license": "MIT",
       "description": "Don't install Node, Go, ... locally - use containers you define within your project. If you have a new machine / other contributors you just have to install docker and envcli to get started."
     },
@@ -3672,9 +3794,11 @@
       "github": "pulumi/esc",
       "repo_url": "https://github.com/pulumi/esc",
       "backends": [
+        "aqua:pulumi/esc",
         "ubi:pulumi/esc",
         "asdf:fxsalazar/asdf-esc"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pulumi/esc/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://www.pulumi.com/product/esc/",
       "description": "Pulumi ESC is a centralized, secure service for environments, secrets, and configuration management, optimized for multi-cloud infrastructures and applications."
@@ -3721,12 +3845,6 @@
       "description": "Evans: more expressive universal gRPC client"
     },
     {
-      "name": "exa",
-      "latest_version": "0.10.1",
-      "version_count": 13,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "eza",
       "latest_version": "0.23.4",
       "version_count": 95,
@@ -3735,6 +3853,7 @@
       "repo_url": "https://github.com/eza-community/eza",
       "backends": [
         "aqua:eza-community/eza",
+        "ubi:eza-community/eza",
         "asdf:mise-plugins/mise-eza",
         "cargo:eza"
       ],
@@ -3798,7 +3917,7 @@
       "github": "RedMadRobot/figma-export",
       "repo_url": "https://github.com/RedMadRobot/figma-export",
       "backends": [
-        "ubi:RedMadRobot/figma-export",
+        "github:RedMadRobot/figma-export[bin_path=Release]",
         "asdf:younke/asdf-figma-export"
       ],
       "license": "MIT",
@@ -3858,7 +3977,7 @@
       "github": "flux-subsystem-argo/flamingo",
       "repo_url": "https://github.com/flux-subsystem-argo/flamingo",
       "backends": [
-        "ubi:flux-subsystem-argo/flamingo",
+        "github:flux-subsystem-argo/flamingo",
         "asdf:log2/asdf-flamingo"
       ],
       "license": "Apache-2.0",
@@ -3873,7 +3992,7 @@
       "github": "cloudflare/cloudflare-go",
       "repo_url": "https://github.com/cloudflare/cloudflare-go",
       "backends": [
-        "ubi:cloudflare/cloudflare-go[exe=flarectl]",
+        "github:cloudflare/cloudflare-go[exe=flarectl]",
         "asdf:mise-plugins/asdf-flarectl"
       ],
       "license": "Apache-2.0",
@@ -3888,7 +4007,7 @@
       "github": "google/flatbuffers",
       "repo_url": "https://github.com/google/flatbuffers",
       "backends": [
-        "ubi:google/flatbuffers[exe=flatc]",
+        "github:google/flatbuffers[exe=flatc]",
         "asdf:TheOpenDictionary/asdf-flatc"
       ],
       "license": "Apache-2.0",
@@ -3913,7 +4032,7 @@
       "github": "FlutterGen/flutter_gen",
       "repo_url": "https://github.com/FlutterGen/flutter_gen",
       "backends": [
-        "ubi:FlutterGen/flutter_gen[exe=fluttergen]",
+        "github:FlutterGen/flutter_gen[exe=fluttergen]",
         "asdf:FlutterGen/asdf-fluttergen"
       ],
       "license": "MIT",
@@ -3937,12 +4056,6 @@
       "description": "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
     },
     {
-      "name": "fluxctl",
-      "latest_version": "1.25.4",
-      "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "fly",
       "latest_version": "7.14.3",
       "version_count": 207,
@@ -3962,7 +4075,12 @@
       "name": "fnox",
       "latest_version": "1.7.0",
       "version_count": 13,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "jdx/fnox",
+      "repo_url": "https://github.com/jdx/fnox",
+      "backends": [
+        "github:jdx/fnox"
+      ]
     },
     {
       "name": "foundry",
@@ -3988,7 +4106,7 @@
       "github": "tetratelabs/func-e",
       "repo_url": "https://github.com/tetratelabs/func-e",
       "backends": [
-        "ubi:tetratelabs/func-e",
+        "github:tetratelabs/func-e",
         "asdf:mise-plugins/mise-func-e"
       ],
       "license": "Apache-2.0",
@@ -4003,7 +4121,7 @@
       "github": "sighupio/furyctl",
       "repo_url": "https://github.com/sighupio/furyctl",
       "backends": [
-        "ubi:sighupio/furyctl",
+        "github:sighupio/furyctl",
         "asdf:sighupio/asdf-furyctl"
       ],
       "license": "Apache-2.0",
@@ -4060,7 +4178,7 @@
       "github": "GAM-team/GAM",
       "repo_url": "https://github.com/GAM-team/GAM",
       "backends": [
-        "ubi:GAM-team/GAM[exe=gam]",
+        "github:GAM-team/GAM[exe=gam]",
         "asdf:offbyone/asdf-gam"
       ],
       "license": "Apache-2.0",
@@ -4133,7 +4251,7 @@
       "github": "tetratelabs-attic/getenvoy",
       "repo_url": "https://github.com/tetratelabs-attic/getenvoy",
       "backends": [
-        "ubi:tetratelabs-attic/getenvoy",
+        "github:tetratelabs-attic/getenvoy",
         "asdf:mise-plugins/mise-getenvoy"
       ],
       "license": "Apache-2.0",
@@ -4143,7 +4261,18 @@
       "name": "ggshield",
       "latest_version": "1.45.0",
       "version_count": 23,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "GitGuardian/ggshield",
+      "repo_url": "https://github.com/GitGuardian/ggshield",
+      "backends": [
+        "aqua:GitGuardian/ggshield",
+        "ubi:GitGuardian/ggshield",
+        "pipx:ggshield"
+      ],
+      "package_urls": {
+        "pypi": "https://pypi.org/project/ggshield"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/GitGuardian/ggshield/registry.yaml"
     },
     {
       "name": "gh",
@@ -4255,12 +4384,6 @@
       }
     },
     {
-      "name": "git",
-      "latest_version": "2.46.0",
-      "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "git-chglog",
       "latest_version": "0.15.4",
       "version_count": 29,
@@ -4296,7 +4419,14 @@
       "name": "git-lfs",
       "latest_version": "3.7.1",
       "version_count": 91,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "git-lfs/git-lfs",
+      "repo_url": "https://github.com/git-lfs/git-lfs",
+      "backends": [
+        "aqua:git-lfs/git-lfs",
+        "ubi:git-lfs/git-lfs"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/git-lfs/git-lfs/registry.yaml"
     },
     {
       "name": "gitconfig",
@@ -4306,7 +4436,7 @@
       "github": "0ghny/gitconfig",
       "repo_url": "https://github.com/0ghny/gitconfig",
       "backends": [
-        "ubi:0ghny/gitconfig",
+        "github:0ghny/gitconfig",
         "asdf:0ghny/asdf-gitconfig"
       ],
       "license": "MIT",
@@ -4383,12 +4513,14 @@
       "github": "altsem/gitu",
       "repo_url": "https://github.com/altsem/gitu",
       "backends": [
+        "aqua:altsem/gitu",
         "ubi:altsem/gitu",
         "cargo:gitu"
       ],
       "package_urls": {
         "cargo": "https://crates.io/crates/gitu"
       },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/altsem/gitu/registry.yaml",
       "license": "MIT",
       "description": "A TUI Git client inspired by Magit"
     },
@@ -4401,8 +4533,12 @@
       "repo_url": "https://github.com/extrawurst/gitui",
       "backends": [
         "aqua:extrawurst/gitui",
-        "asdf:looztra/asdf-gitui"
+        "asdf:looztra/asdf-gitui",
+        "cargo:gitui"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/gitui"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/extrawurst/gitui/registry.yaml",
       "license": "MIT",
       "description": "Blazing 💥 fast terminal-ui for git written in rust 🦀"
@@ -4459,7 +4595,7 @@
       "github": "lingrino/glen",
       "repo_url": "https://github.com/lingrino/glen",
       "backends": [
-        "ubi:lingrino/glen",
+        "github:lingrino/glen",
         "asdf:bradym/asdf-glen"
       ],
       "license": "MIT",
@@ -4474,7 +4610,7 @@
       "github": "solo-io/gloo",
       "repo_url": "https://github.com/solo-io/gloo",
       "backends": [
-        "ubi:solo-io/gloo",
+        "github:solo-io/gloo",
         "asdf:halilkaya/asdf-glooctl"
       ],
       "license": "Apache-2.0",
@@ -4573,9 +4709,11 @@
       "github": "jstemmer/go-junit-report",
       "repo_url": "https://github.com/jstemmer/go-junit-report",
       "backends": [
+        "aqua:jstemmer/go-junit-report",
         "ubi:jstemmer/go-junit-report",
         "asdf:jwillker/asdf-go-junit-report"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jstemmer/go-junit-report/registry.yaml",
       "license": "MIT",
       "description": "Convert Go test output to JUnit XML"
     },
@@ -4640,12 +4778,6 @@
       "license": "BSD-3-Clause",
       "homepage": "https://pkg.go.dev/mvdan.cc/gofumpt",
       "description": "A stricter gofmt"
-    },
-    {
-      "name": "gohugo",
-      "latest_version": "0.140.1",
-      "version_count": 298,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "gojq",
@@ -4835,7 +4967,18 @@
       "name": "gping",
       "latest_version": "1.20.1",
       "version_count": 45,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "orf/gping",
+      "repo_url": "https://github.com/orf/gping",
+      "backends": [
+        "aqua:orf/gping",
+        "github:orf/gping",
+        "cargo:gping"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/gping"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/orf/gping/registry.yaml"
     },
     {
       "name": "graalvm",
@@ -4888,7 +5031,7 @@
       "github": "grain-lang/grain",
       "repo_url": "https://github.com/grain-lang/grain",
       "backends": [
-        "ubi:grain-lang/grain[tag_regex=^grain-]",
+        "github:grain-lang/grain[version_prefix=grain-v]",
         "asdf:mise-plugins/mise-grain"
       ],
       "license": "LGPL-3.0",
@@ -4916,7 +5059,10 @@
       "latest_version": "1.7.10",
       "version_count": 97,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "withgraphite/homebrew-tap",
+      "repo_url": "https://github.com/withgraphite/homebrew-tap",
       "backends": [
+        "github:withgraphite/homebrew-tap[exe=gt]",
         "npm:@withgraphite/graphite-cli"
       ],
       "package_urls": {
@@ -4941,8 +5087,12 @@
       "repo_url": "https://github.com/pemistahl/grex",
       "backends": [
         "aqua:pemistahl/grex",
-        "asdf:ouest/asdf-grex"
+        "asdf:ouest/asdf-grex",
+        "cargo:grex"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/grex"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pemistahl/grex/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://pemistahl.github.io/grex-js/",
@@ -5145,15 +5295,6 @@
       "description": "✅ checks presence of various command line tools and their versions on the path "
     },
     {
-      "name": "haskell",
-      "latest_version": "9.14.1-rc1",
-      "version_count": 267,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "backends": [
-        "asdf:mise-plugins/mise-haskell"
-      ]
-    },
-    {
       "name": "hasura-cli",
       "latest_version": "2.48.6",
       "version_count": 152,
@@ -5173,7 +5314,13 @@
       "name": "hatch",
       "latest_version": "1.16.2",
       "version_count": 56,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "backends": [
+        "pipx:hatch"
+      ],
+      "package_urls": {
+        "pypi": "https://pypi.org/project/hatch"
+      }
     },
     {
       "name": "haxe",
@@ -5183,7 +5330,7 @@
       "github": "HaxeFoundation/haxe",
       "repo_url": "https://github.com/HaxeFoundation/haxe",
       "backends": [
-        "ubi:HaxeFoundation/haxe",
+        "github:HaxeFoundation/haxe",
         "asdf:mise-plugins/mise-haxe"
       ],
       "homepage": "https://haxe.org",
@@ -5314,7 +5461,14 @@
       "name": "helm-ls",
       "latest_version": "0.5.4",
       "version_count": 35,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "mrjosh/helm-ls",
+      "repo_url": "https://github.com/mrjosh/helm-ls",
+      "backends": [
+        "aqua:mrjosh/helm-ls",
+        "ubi:mrjosh/helm-ls[rename_exe=helm_ls]"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjosh/helm-ls/registry.yaml"
     },
     {
       "name": "helmfile",
@@ -5341,7 +5495,7 @@
       "github": "Praqma/helmsman",
       "repo_url": "https://github.com/Praqma/helmsman",
       "backends": [
-        "ubi:Praqma/helmsman",
+        "github:Praqma/helmsman",
         "asdf:luisdavim/asdf-helmsman"
       ],
       "license": "MIT",
@@ -5390,8 +5544,12 @@
       "repo_url": "https://github.com/sharkdp/hexyl",
       "backends": [
         "aqua:sharkdp/hexyl",
-        "ubi:sharkdp/hexyl"
+        "ubi:sharkdp/hexyl",
+        "cargo:hexyl"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/hexyl"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/hexyl/registry.yaml",
       "license": "Apache-2.0",
       "description": "A command-line hex viewer"
@@ -5413,7 +5571,7 @@
       "github": "ddworken/hishtory",
       "repo_url": "https://github.com/ddworken/hishtory",
       "backends": [
-        "ubi:ddworken/hishtory",
+        "github:ddworken/hishtory",
         "asdf:asdf-community/asdf-hishtory"
       ],
       "license": "MIT",
@@ -5428,7 +5586,7 @@
       "github": "DarthSim/hivemind",
       "repo_url": "https://github.com/DarthSim/hivemind",
       "backends": [
-        "ubi:DarthSim/hivemind",
+        "github:DarthSim/hivemind",
         "go:github.com/DarthSim/hivemind"
       ],
       "package_urls": {
@@ -5461,7 +5619,7 @@
       "github": "simonmichael/hledger",
       "repo_url": "https://github.com/simonmichael/hledger",
       "backends": [
-        "ubi:simonmichael/hledger",
+        "github:simonmichael/hledger",
         "asdf:airtonix/asdf-hledger"
       ],
       "license": "GPL-3.0",
@@ -5476,7 +5634,7 @@
       "github": "apauley/hledger-flow",
       "repo_url": "https://github.com/apauley/hledger-flow",
       "backends": [
-        "ubi:apauley/hledger-flow",
+        "github:apauley/hledger-flow",
         "asdf:airtonix/asdf-hledger-flow"
       ],
       "license": "GPL-3.0",
@@ -5516,8 +5674,12 @@
       "repo_url": "https://github.com/mgdm/htmlq",
       "backends": [
         "aqua:mgdm/htmlq",
-        "ubi:mgdm/htmlq"
+        "ubi:mgdm/htmlq",
+        "cargo:htmlq"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/htmlq"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mgdm/htmlq/registry.yaml",
       "license": "MIT",
       "description": "Like jq, but for HTML."
@@ -5595,8 +5757,12 @@
       "repo_url": "https://github.com/Orange-OpenSource/hurl",
       "backends": [
         "aqua:Orange-OpenSource/hurl",
-        "asdf:raimon49/asdf-hurl"
+        "asdf:raimon49/asdf-hurl",
+        "cargo:hurl"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/hurl"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Orange-OpenSource/hurl/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://hurl.dev",
@@ -5626,7 +5792,7 @@
       "github": "jondot/hygen",
       "repo_url": "https://github.com/jondot/hygen",
       "backends": [
-        "ubi:jondot/hygen",
+        "github:jondot/hygen",
         "asdf:brentjanderson/asdf-hygen"
       ],
       "license": "MIT",
@@ -5643,8 +5809,12 @@
       "backends": [
         "aqua:sharkdp/hyperfine",
         "ubi:sharkdp/hyperfine",
-        "asdf:volf52/asdf-hyperfine"
+        "asdf:volf52/asdf-hyperfine",
+        "cargo:hyperfine"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/hyperfine"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/hyperfine/registry.yaml",
       "license": "Apache-2.0",
       "description": "A command-line benchmarking tool"
@@ -5736,7 +5906,12 @@
       "name": "infisical",
       "latest_version": "0.43.45",
       "version_count": 59,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "Infisical/cli",
+      "repo_url": "https://github.com/Infisical/cli",
+      "backends": [
+        "github:Infisical/cli"
+      ]
     },
     {
       "name": "infracost",
@@ -5808,7 +5983,18 @@
       "name": "jaq",
       "latest_version": "2.3.0",
       "version_count": 16,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "01mf02/jaq",
+      "repo_url": "https://github.com/01mf02/jaq",
+      "backends": [
+        "aqua:01mf02/jaq",
+        "ubi:01mf02/jaq",
+        "cargo:jaq"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/jaq"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/01mf02/jaq/registry.yaml"
     },
     {
       "name": "java",
@@ -5918,8 +6104,12 @@
       "repo_url": "https://github.com/jj-vcs/jj",
       "backends": [
         "aqua:jj-vcs/jj",
-        "ubi:jj-vcs/jj"
+        "ubi:jj-vcs/jj",
+        "cargo:jj-cli"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/jj-cli"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jj-vcs/jj/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://jj-vcs.dev",
@@ -5929,7 +6119,14 @@
       "name": "jjui",
       "latest_version": "0.9.8",
       "version_count": 32,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "idursun/jjui",
+      "repo_url": "https://github.com/idursun/jjui",
+      "backends": [
+        "aqua:idursun/jjui",
+        "ubi:idursun/jjui"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml"
     },
     {
       "name": "jless",
@@ -5940,8 +6137,12 @@
       "repo_url": "https://github.com/PaulJuliusMartinez/jless",
       "backends": [
         "aqua:PaulJuliusMartinez/jless",
-        "asdf:jc00ke/asdf-jless"
+        "asdf:jc00ke/asdf-jless",
+        "cargo:jless"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/jless"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/PaulJuliusMartinez/jless/registry.yaml",
       "license": "MIT",
       "homepage": "https://jless.io",
@@ -6034,12 +6235,6 @@
       "description": ":rocket: Release projects quickly and easily with JReleaser"
     },
     {
-      "name": "jsonnet",
-      "latest_version": "master",
-      "version_count": 36,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "jsonnet-bundler",
       "latest_version": "0.6.0",
       "version_count": 6,
@@ -6078,8 +6273,12 @@
       "repo_url": "https://github.com/jj-vcs/jj",
       "backends": [
         "aqua:jj-vcs/jj",
-        "ubi:jj-vcs/jj"
+        "ubi:jj-vcs/jj",
+        "cargo:jj-cli"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/jj-cli"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jj-vcs/jj/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://jj-vcs.dev",
@@ -6089,7 +6288,14 @@
       "name": "jujutsu-ui",
       "latest_version": "0.9.8",
       "version_count": 32,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "idursun/jjui",
+      "repo_url": "https://github.com/idursun/jjui",
+      "backends": [
+        "aqua:idursun/jjui",
+        "ubi:idursun/jjui"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml"
     },
     {
       "name": "julia",
@@ -6110,8 +6316,12 @@
       "backends": [
         "aqua:casey/just",
         "ubi:casey/just",
-        "asdf:olofvndrhr/asdf-just"
+        "asdf:olofvndrhr/asdf-just",
+        "cargo:just"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/just"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/casey/just/registry.yaml",
       "license": "CC0-1.0",
       "homepage": "https://just.systems",
@@ -6144,7 +6354,7 @@
       "github": "jwt-rs/jwt-ui",
       "repo_url": "https://github.com/jwt-rs/jwt-ui",
       "backends": [
-        "ubi:jwt-rs/jwt-ui[exe=jwtui]",
+        "github:jwt-rs/jwt-ui[exe=jwtui]",
         "cargo:jwt-ui"
       ],
       "package_urls": {
@@ -6227,7 +6437,7 @@
       "github": "rancher/k3k",
       "repo_url": "https://github.com/rancher/k3k",
       "backends": [
-        "ubi:rancher/k3k[tag_regex=v\\d]",
+        "ubi:rancher/k3k[tag_regex=v\\\\d,matching=k3kcli]",
         "asdf:xanmanning/asdf-k3kcli"
       ],
       "license": "Apache-2.0",
@@ -6239,9 +6449,13 @@
       "latest_version": "1.34.2+k3s1",
       "version_count": 304,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "k3s-io/k3s",
+      "repo_url": "https://github.com/k3s-io/k3s",
       "backends": [
+        "aqua:k3s-io/k3s",
         "asdf:mise-plugins/mise-k3s"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k3s-io/k3s/registry.yaml"
     },
     {
       "name": "k3sup",
@@ -6366,7 +6580,7 @@
       "github": "kcctl/kcctl",
       "repo_url": "https://github.com/kcctl/kcctl",
       "backends": [
-        "ubi:kcctl/kcctl",
+        "github:kcctl/kcctl",
         "asdf:joschi/asdf-kcctl"
       ],
       "license": "Apache-2.0",
@@ -6411,9 +6625,11 @@
       "github": "Kotlin/kotlin-interactive-shell",
       "repo_url": "https://github.com/Kotlin/kotlin-interactive-shell",
       "backends": [
+        "aqua:Kotlin/kotlin-interactive-shell",
         "ubi:Kotlin/kotlin-interactive-shell[exe=ki]",
         "asdf:comdotlinux/asdf-ki"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Kotlin/kotlin-interactive-shell/registry.yaml",
       "license": "Apache-2.0",
       "description": "Kotlin Language Interactive Shell"
     },
@@ -6426,8 +6642,12 @@
       "repo_url": "https://github.com/jkfran/killport",
       "backends": [
         "aqua:jkfran/killport",
-        "ubi:jkfran/killport"
+        "ubi:jkfran/killport",
+        "cargo:killport"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/killport"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jkfran/killport/registry.yaml",
       "license": "MIT",
       "description": "A command-line tool to easily kill processes running on a specified port."
@@ -6504,7 +6724,7 @@
       "github": "koka-lang/koka",
       "repo_url": "https://github.com/koka-lang/koka",
       "backends": [
-        "ubi:koka-lang/koka",
+        "github:koka-lang/koka",
         "asdf:susurri/asdf-koka"
       ],
       "homepage": "http://koka-lang.org",
@@ -6561,7 +6781,7 @@
       "github": "vmware-tanzu/kpack-cli",
       "repo_url": "https://github.com/vmware-tanzu/kpack-cli",
       "backends": [
-        "ubi:vmware-tanzu/kpack-cli[exe=kp]",
+        "github:vmware-tanzu/kpack-cli[exe=kp]",
         "asdf:asdf-community/asdf-kpack-cli"
       ],
       "description": "A command line interface for interacting with kpack."
@@ -6574,7 +6794,7 @@
       "github": "vmware-tanzu/kpack-cli",
       "repo_url": "https://github.com/vmware-tanzu/kpack-cli",
       "backends": [
-        "ubi:vmware-tanzu/kpack-cli[exe=kp]",
+        "github:vmware-tanzu/kpack-cli[exe=kp]",
         "asdf:asdf-community/asdf-kpack-cli"
       ],
       "description": "A command line interface for interacting with kpack."
@@ -6603,9 +6823,11 @@
       "github": "ohkrab/krab",
       "repo_url": "https://github.com/ohkrab/krab",
       "backends": [
+        "aqua:ohkrab/krab",
         "ubi:ohkrab/krab",
         "asdf:ohkrab/asdf-krab"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/ohkrab/krab/registry.yaml",
       "license": "MIT",
       "homepage": "https://ohkrab.dev",
       "description": "Krab is a migration and automation tool for PostgreSQL based on HCL syntax"
@@ -6634,17 +6856,11 @@
       "github": "kscripting/kscript",
       "repo_url": "https://github.com/kscripting/kscript",
       "backends": [
-        "ubi:kscripting/kscript[bin_path=bin,extract_all=true]",
+        "github:kscripting/kscript[bin_path=bin]",
         "asdf:edgelevel/asdf-kscript"
       ],
       "license": "MIT",
       "description": "Scripting enhancements for Kotlin"
-    },
-    {
-      "name": "ksonnet",
-      "latest_version": "master",
-      "version_count": 17,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "ksops",
@@ -6710,7 +6926,7 @@
       "github": "kubernetes-sigs/controller-tools",
       "repo_url": "https://github.com/kubernetes-sigs/controller-tools",
       "backends": [
-        "ubi:kubernetes-sigs/controller-tools[exe=controller-gen]",
+        "github:kubernetes-sigs/controller-tools[exe=controller-gen]",
         "asdf:jimmidyson/asdf-kube-controller-tools"
       ],
       "license": "Apache-2.0",
@@ -6800,13 +7016,13 @@
       "latest_version": "0.5.3",
       "version_count": 14,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "hidetatz/kubecolor",
-      "repo_url": "https://github.com/hidetatz/kubecolor",
+      "github": "kubecolor/kubecolor",
+      "repo_url": "https://github.com/kubecolor/kubecolor",
       "backends": [
-        "aqua:hidetatz/kubecolor",
+        "aqua:kubecolor/kubecolor",
         "asdf:dex4er/asdf-kubecolor"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/hidetatz/kubecolor/registry.yaml",
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubecolor/kubecolor/registry.yaml",
       "license": "MIT",
       "description": "colorizes kubectl output"
     },
@@ -6830,13 +7046,13 @@
       "latest_version": "1.34.3",
       "version_count": 505,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "kubernetes/kubectl",
-      "repo_url": "https://github.com/kubernetes/kubectl",
+      "github": "kubernetes/kubernetes",
+      "repo_url": "https://github.com/kubernetes/kubernetes",
       "backends": [
-        "aqua:kubernetes/kubectl",
+        "aqua:kubernetes/kubernetes/kubectl",
         "asdf:asdf-community/asdf-kubectl"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubernetes/kubectl/registry.yaml",
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubernetes/kubernetes/registry.yaml",
       "license": "Apache-2.0",
       "description": "Issue tracker and mirror of kubectl code"
     },
@@ -6854,12 +7070,6 @@
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Ladicle/kubectl-rolesum/registry.yaml",
       "license": "MIT",
       "description": "Summarize Kubernetes RBAC roles for the specified subjects."
-    },
-    {
-      "name": "kubectl-buildkit",
-      "latest_version": "0.1.6",
-      "version_count": 7,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "kubectl-convert",
@@ -6962,7 +7172,7 @@
       "github": "konstructio/kubefirst",
       "repo_url": "https://github.com/konstructio/kubefirst",
       "backends": [
-        "ubi:konstructio/kubefirst",
+        "github:konstructio/kubefirst",
         "asdf:Claywd/asdf-kubefirst"
       ],
       "license": "MIT",
@@ -7127,7 +7337,14 @@
       "name": "kubeswitch",
       "latest_version": "0.9.3",
       "version_count": 28,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "danielfoehrKn/kubeswitch",
+      "repo_url": "https://github.com/danielfoehrKn/kubeswitch",
+      "backends": [
+        "aqua:danielfoehrKn/kubeswitch",
+        "github:danielfoehrKn/kubeswitch"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/danielfoehrKn/kubeswitch/registry.yaml"
     },
     {
       "name": "kubeval",
@@ -7276,7 +7493,7 @@
       "github": "CodeReaper/lane",
       "repo_url": "https://github.com/CodeReaper/lane",
       "backends": [
-        "ubi:CodeReaper/lane",
+        "github:CodeReaper/lane",
         "asdf:CodeReaper/asdf-lane"
       ],
       "license": "MIT",
@@ -7332,7 +7549,14 @@
       "name": "lazyssh",
       "latest_version": "0.3.0",
       "version_count": 4,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "Adembc/lazyssh",
+      "repo_url": "https://github.com/Adembc/lazyssh",
+      "backends": [
+        "aqua:Adembc/lazyssh",
+        "ubi:Adembc/lazyssh"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Adembc/lazyssh/registry.yaml"
     },
     {
       "name": "lean",
@@ -7410,7 +7634,7 @@
       "github": "tursodatabase/libsql",
       "repo_url": "https://github.com/tursodatabase/libsql",
       "backends": [
-        "ubi:tursodatabase/libsql[tag_regex=libsql-server,exe=sqld]",
+        "github:tursodatabase/libsql[version_prefix=libsql-server-v]",
         "asdf:jonasb/asdf-libsql-server"
       ],
       "license": "MIT",
@@ -7425,9 +7649,11 @@
       "github": "mono0926/LicensePlist",
       "repo_url": "https://github.com/mono0926/LicensePlist",
       "backends": [
+        "aqua:mono0926/LicensePlist",
         "ubi:mono0926/LicensePlist[exe=license-plist]",
         "asdf:MacPaw/asdf-license-plist"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mono0926/LicensePlist/registry.yaml",
       "license": "MIT",
       "homepage": "https://www.slideshare.net/mono0926/licenseplist-a-license-list-generator-of-all-your-dependencies-for-ios-applications",
       "description": "A license list generator of all your dependencies for iOS applications"
@@ -7447,12 +7673,6 @@
       "license": "Apache-2.0",
       "homepage": "https://lima-vm.io/",
       "description": "Linux virtual machines, with a focus on running containers"
-    },
-    {
-      "name": "link",
-      "latest_version": "link",
-      "version_count": 1,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "linkerd",
@@ -7533,7 +7753,14 @@
       "name": "lnav",
       "latest_version": "0.13.2",
       "version_count": 32,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "tstack/lnav",
+      "repo_url": "https://github.com/tstack/lnav",
+      "backends": [
+        "aqua:tstack/lnav",
+        "ubi:tstack/lnav"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tstack/lnav/registry.yaml"
     },
     {
       "name": "localstack",
@@ -7543,7 +7770,7 @@
       "github": "localstack/localstack-cli",
       "repo_url": "https://github.com/localstack/localstack-cli",
       "backends": [
-        "ubi:localstack/localstack-cli[exe=localstack]"
+        "github:localstack/localstack-cli[exe=localstack]"
       ],
       "description": "The LocalStack CLI packaged using pyinstaller"
     },
@@ -7606,8 +7833,12 @@
       "repo_url": "https://github.com/lsd-rs/lsd",
       "backends": [
         "aqua:lsd-rs/lsd",
-        "asdf:mise-plugins/asdf-lsd"
+        "asdf:mise-plugins/asdf-lsd",
+        "cargo:lsd"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/lsd"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/lsd-rs/lsd/registry.yaml",
       "license": "Apache-2.0",
       "description": "The next gen ls command"
@@ -7662,12 +7893,6 @@
       "description": "A fast, small, safe, gradually typed embeddable scripting language derived from Lua"
     },
     {
-      "name": "lucy",
-      "latest_version": "0.5.8",
-      "version_count": 55,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "lychee",
       "latest_version": "0.22.0",
       "version_count": 35,
@@ -7695,7 +7920,7 @@
       "github": "mobile-dev-inc/maestro",
       "repo_url": "https://github.com/mobile-dev-inc/maestro",
       "backends": [
-        "ubi:mobile-dev-inc/maestro",
+        "github:mobile-dev-inc/maestro",
         "asdf:dotanuki-labs/asdf-maestro"
       ],
       "license": "Apache-2.0",
@@ -7722,7 +7947,13 @@
       "name": "magika",
       "latest_version": "1.0.1",
       "version_count": 14,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "backends": [
+        "cargo:magika-cli"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/magika-cli"
+      }
     },
     {
       "name": "make",
@@ -7758,7 +7989,7 @@
       "github": "kovetskiy/mark",
       "repo_url": "https://github.com/kovetskiy/mark",
       "backends": [
-        "ubi:kovetskiy/mark",
+        "github:kovetskiy/mark",
         "asdf:jfreeland/asdf-mark"
       ],
       "license": "Apache-2.0",
@@ -7864,8 +8095,12 @@
       "repo_url": "https://github.com/rust-lang/mdBook",
       "backends": [
         "aqua:rust-lang/mdBook",
-        "asdf:cipherstash/asdf-mdbook"
+        "asdf:cipherstash/asdf-mdbook",
+        "cargo:mdbook"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/mdbook"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rust-lang/mdBook/registry.yaml",
       "license": "MPL-2.0",
       "homepage": "https://rust-lang.github.io/mdBook/",
@@ -7880,8 +8115,12 @@
       "repo_url": "https://github.com/Michael-F-Bryan/mdbook-linkcheck",
       "backends": [
         "ubi:Michael-F-Bryan/mdbook-linkcheck",
-        "asdf:mise-plugins/mise-mdbook-linkcheck"
+        "asdf:mise-plugins/mise-mdbook-linkcheck",
+        "cargo:mdbook-linkcheck"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/mdbook-linkcheck"
+      },
       "license": "MIT",
       "homepage": "https://michael-f-bryan.github.io/mdbook-linkcheck/",
       "description": "A backend for `mdbook` which will check your links for you."
@@ -7909,7 +8148,7 @@
       "github": "charmbracelet/melt",
       "repo_url": "https://github.com/charmbracelet/melt",
       "backends": [
-        "ubi:charmbracelet/melt",
+        "github:charmbracelet/melt",
         "asdf:chessmango/asdf-melt"
       ],
       "license": "MIT",
@@ -8046,7 +8285,7 @@
       "github": "mint-lang/mint",
       "repo_url": "https://github.com/mint-lang/mint",
       "backends": [
-        "ubi:mint-lang/mint",
+        "github:mint-lang/mint",
         "asdf:mint-lang/asdf-mint"
       ],
       "license": "BSD-3-Clause",
@@ -8061,9 +8300,11 @@
       "github": "metalbear-co/mirrord",
       "repo_url": "https://github.com/metalbear-co/mirrord",
       "backends": [
+        "aqua:metalbear-co/mirrord",
         "ubi:metalbear-co/mirrord",
         "asdf:metalbear-co/asdf-mirrord"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/metalbear-co/mirrord/registry.yaml",
       "license": "MIT",
       "homepage": "https://mirrord.dev",
       "description": "Connect your local process and your cloud environment, and run local code in cloud conditions."
@@ -8127,7 +8368,7 @@
       "github": "uber/mockolo",
       "repo_url": "https://github.com/uber/mockolo",
       "backends": [
-        "ubi:uber/mockolo",
+        "github:uber/mockolo",
         "asdf:mise-plugins/mise-mockolo"
       ],
       "license": "Apache-2.0",
@@ -8158,12 +8399,6 @@
       ]
     },
     {
-      "name": "mongo-tools",
-      "latest_version": "4.3.2",
-      "version_count": 195,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "mongosh",
       "latest_version": "2.5.10",
       "version_count": 139,
@@ -8171,7 +8406,7 @@
       "github": "mongodb-js/mongosh",
       "repo_url": "https://github.com/mongodb-js/mongosh",
       "backends": [
-        "ubi:mongodb-js/mongosh",
+        "github:mongodb-js/mongosh",
         "asdf:itspngu/asdf-mongosh"
       ],
       "license": "Apache-2.0",
@@ -8297,8 +8532,12 @@
       "repo_url": "https://github.com/denisidoro/navi",
       "backends": [
         "aqua:denisidoro/navi",
-        "ubi:denisidoro/navi"
+        "ubi:denisidoro/navi",
+        "cargo:navi"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/navi"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/denisidoro/navi/registry.yaml",
       "license": "Apache-2.0",
       "description": "An interactive cheatsheet tool for the command-line"
@@ -8311,7 +8550,7 @@
       "github": "HaxeFoundation/neko",
       "repo_url": "https://github.com/HaxeFoundation/neko",
       "backends": [
-        "ubi:HaxeFoundation/neko",
+        "github:HaxeFoundation/neko",
         "asdf:asdf-community/asdf-neko"
       ],
       "homepage": "https://nekovm.org",
@@ -8321,7 +8560,13 @@
       "name": "nelm",
       "latest_version": "1.19.0",
       "version_count": 41,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "werf/nelm",
+      "repo_url": "https://github.com/werf/nelm",
+      "backends": [
+        "aqua:werf/nelm"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/werf/nelm/registry.yaml"
     },
     {
       "name": "neonctl",
@@ -8518,7 +8763,7 @@
       "github": "nats-io/nsc",
       "repo_url": "https://github.com/nats-io/nsc",
       "backends": [
-        "ubi:nats-io/nsc",
+        "github:nats-io/nsc",
         "asdf:dex4er/asdf-nsc"
       ],
       "license": "Apache-2.0",
@@ -8533,8 +8778,12 @@
       "repo_url": "https://github.com/sharkdp/numbat",
       "backends": [
         "aqua:sharkdp/numbat",
-        "ubi:sharkdp/numbat"
+        "ubi:sharkdp/numbat",
+        "cargo:numbat-cli"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/numbat-cli"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/numbat/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://numbat.dev",
@@ -8604,7 +8853,7 @@
       "github": "cube2222/octosql",
       "repo_url": "https://github.com/cube2222/octosql",
       "backends": [
-        "ubi:cube2222/octosql"
+        "github:cube2222/octosql"
       ],
       "license": "MPL-2.0",
       "description": "OctoSQL is a query tool that allows you to join, analyse and transform data from multiple databases and file formats using SQL."
@@ -8617,7 +8866,7 @@
       "github": "odin-lang/Odin",
       "repo_url": "https://github.com/odin-lang/Odin",
       "backends": [
-        "ubi:odin-lang/Odin[exe=odin]",
+        "github:odin-lang/Odin[exe=odin]",
         "asdf:jtakakura/asdf-odin"
       ],
       "license": "Zlib",
@@ -8721,7 +8970,14 @@
       "name": "omnictl",
       "latest_version": "1.3.4",
       "version_count": 76,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "siderolabs/omni",
+      "repo_url": "https://github.com/siderolabs/omni",
+      "backends": [
+        "aqua:siderolabs/omni/omnictl",
+        "ubi:siderolabs/omni[exe=omnictl]"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/siderolabs/omni/registry.yaml"
     },
     {
       "name": "onyx",
@@ -8731,7 +8987,7 @@
       "github": "onyx-lang/onyx",
       "repo_url": "https://github.com/onyx-lang/onyx",
       "backends": [
-        "ubi:onyx-lang/onyx",
+        "github:onyx-lang/onyx",
         "asdf:jtakakura/asdf-onyx"
       ],
       "license": "BSD-2-Clause",
@@ -8743,13 +8999,13 @@
       "latest_version": "2.32.0",
       "version_count": 150,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "1password/cli",
-      "repo_url": "https://github.com/1password/cli",
       "backends": [
-        "aqua:1password/cli",
-        "asdf:mise-plugins/mise-1password-cli"
+        "vfox:mise-plugins/vfox-1password",
+        "aqua:1password/cli"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/1password/cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/1password/cli/registry.yaml",
+      "github": "1password/cli",
+      "repo_url": "https://github.com/1password/cli"
     },
     {
       "name": "opa",
@@ -8775,7 +9031,7 @@
       "github": "ocaml/opam",
       "repo_url": "https://github.com/ocaml/opam",
       "backends": [
-        "ubi:ocaml/opam",
+        "github:ocaml/opam[asset_pattern=opam-*-{gnu_arch}-{os}]",
         "asdf:asdf-community/asdf-opam"
       ],
       "homepage": "https://opam.ocaml.org",
@@ -8789,7 +9045,7 @@
       "github": "openbao/openbao",
       "repo_url": "https://github.com/openbao/openbao",
       "backends": [
-        "ubi:openbao/openbao[exe=bao]"
+        "github:openbao/openbao[exe=bao]"
       ],
       "license": "MPL-2.0",
       "homepage": "https://openbao.org/",
@@ -8828,22 +9084,17 @@
       "description": "Official CLI for OpenFaaS"
     },
     {
-      "name": "openfaas-faas",
-      "latest_version": "0.16.38",
-      "version_count": 220,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "name": "openfaas-faas-cli",
-      "latest_version": "0.16.37",
-      "version_count": 219,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "opengrep",
       "latest_version": "1.12.1",
       "version_count": 40,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "opengrep/opengrep",
+      "repo_url": "https://github.com/opengrep/opengrep",
+      "backends": [
+        "aqua:opengrep/opengrep",
+        "ubi:opengrep/opengrep"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/opengrep/opengrep/registry.yaml"
     },
     {
       "name": "openresty",
@@ -8871,7 +9122,7 @@
       "github": "opensearch-project/opensearch-cli",
       "repo_url": "https://github.com/opensearch-project/opensearch-cli",
       "backends": [
-        "ubi:opensearch-project/opensearch-cli",
+        "github:opensearch-project/opensearch-cli",
         "asdf:mise-plugins/mise-opensearch-cli"
       ],
       "license": "Apache-2.0",
@@ -8942,12 +9193,6 @@
       "description": "OCI registry client - managing content like artifacts, images, packages"
     },
     {
-      "name": "osm",
-      "latest_version": "1.2.4",
-      "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "osqueryi",
       "latest_version": "5.20.0",
       "version_count": 36,
@@ -8979,7 +9224,7 @@
       "github": "DarthSim/overmind",
       "repo_url": "https://github.com/DarthSim/overmind",
       "backends": [
-        "ubi:DarthSim/overmind",
+        "github:DarthSim/overmind",
         "go:github.com/DarthSim/overmind/v2"
       ],
       "package_urls": {
@@ -8993,12 +9238,17 @@
       "latest_version": "10.0.0",
       "version_count": 60,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "shssoichiro/oxipng",
-      "repo_url": "https://github.com/shssoichiro/oxipng",
+      "github": "oxipng/oxipng",
+      "repo_url": "https://github.com/oxipng/oxipng",
       "backends": [
-        "aqua:shssoichiro/oxipng"
+        "aqua:oxipng/oxipng",
+        "ubi:oxipng/oxipng",
+        "cargo:oxipng"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/shssoichiro/oxipng/registry.yaml",
+      "package_urls": {
+        "cargo": "https://crates.io/crates/oxipng"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/oxipng/oxipng/registry.yaml",
       "license": "MIT",
       "description": "Multithreaded PNG optimizer written in Rust"
     },
@@ -9006,13 +9256,35 @@
       "name": "oxker",
       "latest_version": "0.12.0",
       "version_count": 48,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "mrjackwills/oxker",
+      "repo_url": "https://github.com/mrjackwills/oxker",
+      "backends": [
+        "aqua:mrjackwills/oxker",
+        "ubi:mrjackwills/oxker",
+        "cargo:oxker"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/oxker"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjackwills/oxker/registry.yaml"
     },
     {
       "name": "oxlint",
       "latest_version": "1.16.0",
       "version_count": 133,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "oxc-project/oxc",
+      "repo_url": "https://github.com/oxc-project/oxc",
+      "backends": [
+        "aqua:oxc-project/oxc/oxlint",
+        "ubi:oxc-project/oxc",
+        "npm:oxlint"
+      ],
+      "package_urls": {
+        "npm": "https://www.npmjs.com/package/oxlint"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/oxc-project/oxc/registry.yaml"
     },
     {
       "name": "pachctl",
@@ -9069,7 +9341,7 @@
       "github": "jgm/pandoc",
       "repo_url": "https://github.com/jgm/pandoc",
       "backends": [
-        "ubi:jgm/pandoc",
+        "github:jgm/pandoc",
         "asdf:Fbrisset/asdf-pandoc"
       ],
       "license": "GPL-2.0",
@@ -9084,7 +9356,7 @@
       "github": "jaspervdj/patat",
       "repo_url": "https://github.com/jaspervdj/patat",
       "backends": [
-        "ubi:jaspervdj/patat",
+        "github:jaspervdj/patat",
         "asdf:airtonix/asdf-patat"
       ],
       "license": "GPL-2.0",
@@ -9230,9 +9502,13 @@
       "latest_version": "1.8.0",
       "version_count": 14,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "pypa/pipx",
+      "repo_url": "https://github.com/pypa/pipx",
       "backends": [
+        "aqua:pypa/pipx",
         "asdf:mise-plugins/mise-pipx"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pypa/pipx/registry.yaml"
     },
     {
       "name": "pitchfork",
@@ -9242,8 +9518,10 @@
       "github": "jdx/pitchfork",
       "repo_url": "https://github.com/jdx/pitchfork",
       "backends": [
+        "aqua:jdx/pitchfork",
         "ubi:jdx/pitchfork"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jdx/pitchfork/registry.yaml",
       "license": "MIT",
       "homepage": "https://pitchfork.jdx.dev",
       "description": "Daemons with DX"
@@ -9271,7 +9549,7 @@
       "github": "prefix-dev/pixi",
       "repo_url": "https://github.com/prefix-dev/pixi",
       "backends": [
-        "ubi:prefix-dev/pixi"
+        "github:prefix-dev/pixi"
       ],
       "license": "BSD-3-Clause",
       "homepage": "https://pixi.sh",
@@ -9337,8 +9615,7 @@
       "backends": [
         "aqua:pnpm/pnpm",
         "ubi:pnpm/pnpm",
-        "npm:pnpm",
-        "asdf:jonathanmorley/asdf-pnpm"
+        "npm:pnpm"
       ],
       "package_urls": {
         "npm": "https://www.npmjs.com/package/pnpm"
@@ -9360,7 +9637,7 @@
       "github": "containers/podman",
       "repo_url": "https://github.com/containers/podman",
       "backends": [
-        "ubi:containers/podman",
+        "github:containers/podman[matching=podman-remote]",
         "asdf:tvon/asdf-podman"
       ],
       "license": "Apache-2.0",
@@ -9517,7 +9794,13 @@
       "name": "prek",
       "latest_version": "0.2.22",
       "version_count": 54,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "j178/prek",
+      "repo_url": "https://github.com/j178/prek",
+      "backends": [
+        "aqua:j178/prek"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/j178/prek/registry.yaml"
     },
     {
       "name": "process-compose",
@@ -9527,7 +9810,7 @@
       "github": "F1bonacc1/process-compose",
       "repo_url": "https://github.com/F1bonacc1/process-compose",
       "backends": [
-        "ubi:F1bonacc1/process-compose"
+        "github:F1bonacc1/process-compose"
       ],
       "license": "Apache-2.0",
       "homepage": "https://f1bonacc1.github.io/process-compose/",
@@ -9641,7 +9924,7 @@
       "github": "protocolbuffers/protobuf-javascript",
       "repo_url": "https://github.com/protocolbuffers/protobuf-javascript",
       "backends": [
-        "ubi:protocolbuffers/protobuf-javascript[exe=protoc-gen-js]",
+        "github:protocolbuffers/protobuf-javascript[exe=protoc-gen-js]",
         "asdf:pbr0ck3r/asdf-protoc-gen-js"
       ],
       "license": "BSD-3-Clause"
@@ -9697,7 +9980,7 @@
       "github": "purescript/psc-package",
       "repo_url": "https://github.com/purescript/psc-package",
       "backends": [
-        "ubi:purescript/psc-package",
+        "github:purescript/psc-package",
         "asdf:nsaunders/asdf-psc-package"
       ],
       "homepage": "https://psc-package.readthedocs.io",
@@ -9741,7 +10024,7 @@
       "github": "purerl/purerl",
       "repo_url": "https://github.com/purerl/purerl",
       "backends": [
-        "ubi:purerl/purerl",
+        "github:purerl/purerl",
         "asdf:GoNZooo/asdf-purerl"
       ],
       "description": "Erlang backend for the PureScript compiler"
@@ -9754,7 +10037,7 @@
       "github": "purescript/purescript",
       "repo_url": "https://github.com/purescript/purescript",
       "backends": [
-        "ubi:purescript/purescript[exe=purs]",
+        "github:purescript/purescript[exe=purs]",
         "asdf:jrrom/asdf-purescript"
       ],
       "homepage": "https://www.purescript.org",
@@ -9786,7 +10069,7 @@
       "github": "natesales/q",
       "repo_url": "https://github.com/natesales/q",
       "backends": [
-        "ubi:natesales/q",
+        "github:natesales/q",
         "asdf:moritz-makandra/asdf-plugin-qdns"
       ],
       "license": "GPL-3.0",
@@ -9800,7 +10083,7 @@
       "github": "dathere/qsv",
       "repo_url": "https://github.com/dathere/qsv",
       "backends": [
-        "ubi:dathere/qsv",
+        "github:dathere/qsv",
         "asdf:vjda/asdf-qsv"
       ],
       "license": "Unlicense",
@@ -9851,8 +10134,12 @@
       "github": "railwayapp/cli",
       "repo_url": "https://github.com/railwayapp/cli",
       "backends": [
-        "ubi:railwayapp/cli[exe=railway]"
+        "github:railwayapp/cli[exe=railway]",
+        "cargo:railwayapp"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/railwayapp"
+      },
       "license": "MIT",
       "homepage": "https://railway.app",
       "description": "Railway CLI"
@@ -9922,7 +10209,7 @@
       "github": "FairwindsOps/reckoner",
       "repo_url": "https://github.com/FairwindsOps/reckoner",
       "backends": [
-        "ubi:FairwindsOps/reckoner",
+        "github:FairwindsOps/reckoner",
         "asdf:FairwindsOps/asdf-reckoner"
       ],
       "license": "Apache-2.0",
@@ -9955,9 +10242,11 @@
       "github": "barthr/redo",
       "repo_url": "https://github.com/barthr/redo",
       "backends": [
+        "aqua:barthr/redo",
         "ubi:barthr/redo",
         "asdf:chessmango/asdf-redo"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/barthr/redo/registry.yaml",
       "license": "MIT",
       "description": "Redo is the ultimate tool to create reusable functions from your history in an interactive way"
     },
@@ -9965,7 +10254,14 @@
       "name": "redpanda-connect",
       "latest_version": "4.73.0",
       "version_count": 404,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "redpanda-data/connect",
+      "repo_url": "https://github.com/redpanda-data/connect",
+      "backends": [
+        "aqua:redpanda-data/connect",
+        "asdf:benthosdev/benthos-asdf"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/redpanda-data/connect/registry.yaml"
     },
     {
       "name": "reg",
@@ -10051,15 +10347,17 @@
       "latest_version": "0.21.2",
       "version_count": 37,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "danielgtaylor/restish",
-      "repo_url": "https://github.com/danielgtaylor/restish",
+      "github": "rest-sh/restish",
+      "repo_url": "https://github.com/rest-sh/restish",
       "backends": [
-        "ubi:danielgtaylor/restish",
+        "aqua:rest-sh/restish",
+        "ubi:rest-sh/restish",
         "go:github.com/danielgtaylor/restish"
       ],
       "package_urls": {
         "go": "https://pkg.go.dev/github.com/danielgtaylor/restish"
       },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rest-sh/restish/registry.yaml",
       "license": "MIT",
       "homepage": "https://rest.sh/",
       "description": "Restish is a CLI for interacting with REST-ish HTTP APIs with some nice features built-in"
@@ -10068,7 +10366,17 @@
       "name": "resvg",
       "latest_version": "0.45.1",
       "version_count": 34,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "linebender/resvg",
+      "repo_url": "https://github.com/linebender/resvg",
+      "backends": [
+        "aqua:linebender/resvg",
+        "cargo:resvg"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/resvg"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/linebender/resvg/registry.yaml"
     },
     {
       "name": "revive",
@@ -10122,12 +10430,6 @@
       "description": "Enrich `go test` outputs with text decorations."
     },
     {
-      "name": "riff",
-      "latest_version": "0.4.0",
-      "version_count": 15,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "ripgrep",
       "latest_version": "15.1.0",
       "version_count": 74,
@@ -10166,12 +10468,6 @@
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/phiresky/ripgrep-all/registry.yaml",
       "homepage": "https://github.com/phiresky/ripgrep-all",
       "description": "rga: ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, etc."
-    },
-    {
-      "name": "ripsecret",
-      "latest_version": "0.1.9",
-      "version_count": 8,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "ripsecrets",
@@ -10216,25 +10512,23 @@
       "name": "rmz",
       "latest_version": "3.1.1",
       "version_count": 20,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "SUPERCILEX/fuc",
+      "repo_url": "https://github.com/SUPERCILEX/fuc",
+      "backends": [
+        "aqua:SUPERCILEX/fuc/rmz",
+        "ubi:SUPERCILEX/fuc[matching=rmz,rename_exe=rmz]"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml"
     },
     {
       "name": "rocq",
       "latest_version": "8.13.1",
       "version_count": 38,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "name": "rome",
-      "latest_version": "12.1.3-nightly.50eb45f",
-      "version_count": 46,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "name": "rstash",
-      "latest_version": "0.2.1",
-      "version_count": 5,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "backends": [
+        "asdf:mise-plugins/mise-coq"
+      ]
     },
     {
       "name": "ruby",
@@ -10297,8 +10591,12 @@
       "repo_url": "https://github.com/rustic-rs/rustic",
       "backends": [
         "aqua:rustic-rs/rustic",
-        "ubi:rustic-rs/rustic"
+        "ubi:rustic-rs/rustic",
+        "cargo:rustic-rs"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/rustic-rs"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rustic-rs/rustic/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://rustic.cli.rs",
@@ -10313,8 +10611,12 @@
       "repo_url": "https://github.com/astral-sh/rye",
       "backends": [
         "aqua:astral-sh/rye",
-        "asdf:Azuki-bar/asdf-rye"
+        "asdf:Azuki-bar/asdf-rye",
+        "cargo:rye"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/rye"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/astral-sh/rye/registry.yaml",
       "license": "MIT",
       "homepage": "https://rye.astral.sh",
@@ -10388,7 +10690,7 @@
       "github": "VirtusLab/scala-cli",
       "repo_url": "https://github.com/VirtusLab/scala-cli",
       "backends": [
-        "ubi:VirtusLab/scala-cli",
+        "github:VirtusLab/scala-cli",
         "asdf:mise-plugins/mise-scala-cli"
       ],
       "license": "Apache-2.0",
@@ -10450,7 +10752,7 @@
       "github": "software-mansion/scarb",
       "repo_url": "https://github.com/software-mansion/scarb",
       "backends": [
-        "ubi:software-mansion/scarb",
+        "github:software-mansion/scarb",
         "asdf:software-mansion/asdf-scarb"
       ],
       "license": "MIT",
@@ -10467,17 +10769,15 @@
       "backends": [
         "aqua:mozilla/sccache",
         "ubi:mozilla/sccache",
-        "asdf:emersonmx/asdf-sccache"
+        "asdf:emersonmx/asdf-sccache",
+        "cargo:sccache"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/sccache"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mozilla/sccache/registry.yaml",
       "license": "Apache-2.0",
       "description": "Sccache is a ccache-like tool. It is used as a compiler wrapper and avoids compilation when possible. Sccache has the capability to utilize caching in remote storage environments, including various cloud storage options, or alternatively, in local storage."
-    },
-    {
-      "name": "scenery",
-      "latest_version": "0.1.5",
-      "version_count": 6,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "schemacrawler",
@@ -10496,7 +10796,7 @@
       "github": "pantsbuild/scie-pants",
       "repo_url": "https://github.com/pantsbuild/scie-pants",
       "backends": [
-        "ubi:pantsbuild/scie-pants",
+        "github:pantsbuild/scie-pants",
         "asdf:robzr/asdf-scie-pants"
       ],
       "license": "Apache-2.0",
@@ -10507,7 +10807,18 @@
       "name": "scooter",
       "latest_version": "0.8.4",
       "version_count": 18,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "thomasschafer/scooter",
+      "repo_url": "https://github.com/thomasschafer/scooter",
+      "backends": [
+        "aqua:thomasschafer/scooter",
+        "ubi:thomasschafer/scooter",
+        "cargo:scooter"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/scooter"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/thomasschafer/scooter/registry.yaml"
     },
     {
       "name": "scorecard",
@@ -10586,13 +10897,10 @@
       "latest_version": "3.4.0",
       "version_count": 20,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "fsaintjacques/semver-tool",
-      "repo_url": "https://github.com/fsaintjacques/semver-tool",
       "backends": [
-        "aqua:fsaintjacques/semver-tool",
+        "vfox:mise-plugins/mise-semver",
         "asdf:mathew-fleisch/asdf-semver"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/fsaintjacques/semver-tool/registry.yaml",
       "license": "Apache-2.0",
       "description": "semver bash implementation"
     },
@@ -10748,7 +11056,7 @@
       "github": "signadot/cli",
       "repo_url": "https://github.com/signadot/cli",
       "backends": [
-        "ubi:signadot/cli[exe=signadot]"
+        "github:signadot/cli[exe=signadot]"
       ],
       "license": "Apache-2.0",
       "description": "Command-line interface for Signadot."
@@ -10838,8 +11146,14 @@
       "github": "slsa-framework/slsa-verifier",
       "repo_url": "https://github.com/slsa-framework/slsa-verifier",
       "backends": [
-        "ubi:slsa-framework/slsa-verifier"
+        "aqua:slsa-framework/slsa-verifier",
+        "github:slsa-framework/slsa-verifier",
+        "go:github.com/slsa-framework/slsa-verifier/v2/cli/slsa-verifier"
       ],
+      "package_urls": {
+        "go": "https://pkg.go.dev/github.com/slsa-framework/slsa-verifier/v2/cli/slsa-verifier"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/slsa-framework/slsa-verifier/registry.yaml",
       "license": "Apache-2.0",
       "description": "Verify provenance from SLSA compliant builders"
     },
@@ -10869,7 +11183,7 @@
       "github": "charmbracelet/soft-serve",
       "repo_url": "https://github.com/charmbracelet/soft-serve",
       "backends": [
-        "ubi:charmbracelet/soft-serve[exe=soft]",
+        "github:charmbracelet/soft-serve[exe=soft]",
         "asdf:chessmango/asdf-soft-serve"
       ],
       "license": "MIT",
@@ -10883,7 +11197,7 @@
       "github": "ethereum/solidity",
       "repo_url": "https://github.com/ethereum/solidity",
       "backends": [
-        "ubi:ethereum/solidity[exe=solc]",
+        "github:ethereum/solidity[exe=solc]",
         "asdf:diegodorado/asdf-solidity"
       ],
       "license": "GPL-3.0",
@@ -10894,7 +11208,14 @@
       "name": "sonar-scanner-cli",
       "latest_version": "8.0.1.6346",
       "version_count": 23,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "SonarSource/sonar-scanner-cli",
+      "repo_url": "https://github.com/SonarSource/sonar-scanner-cli",
+      "backends": [
+        "aqua:SonarSource/sonar-scanner-cli",
+        "asdf:virtualstaticvoid/asdf-sonarscanner"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SonarSource/sonar-scanner-cli/registry.yaml"
     },
     {
       "name": "sonobuoy",
@@ -10904,7 +11225,7 @@
       "github": "vmware-tanzu/sonobuoy",
       "repo_url": "https://github.com/vmware-tanzu/sonobuoy",
       "backends": [
-        "ubi:vmware-tanzu/sonobuoy",
+        "github:vmware-tanzu/sonobuoy",
         "asdf:Nick-Triller/asdf-sonobuoy"
       ],
       "license": "Apache-2.0",
@@ -10951,7 +11272,7 @@
       "github": "soracom/soracom-cli",
       "repo_url": "https://github.com/soracom/soracom-cli",
       "backends": [
-        "ubi:soracom/soracom-cli",
+        "github:soracom/soracom-cli",
         "asdf:gr1m0h/asdf-soracom"
       ],
       "license": "MIT",
@@ -10989,7 +11310,7 @@
       "github": "purescript/spago",
       "repo_url": "https://github.com/purescript/spago",
       "backends": [
-        "ubi:purescript/spago",
+        "github:purescript/spago",
         "asdf:jrrom/asdf-spago"
       ],
       "license": "BSD-3-Clause",
@@ -11015,7 +11336,14 @@
       "name": "specstory",
       "latest_version": "0.16.0",
       "version_count": 19,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "specstoryai/getspecstory",
+      "repo_url": "https://github.com/specstoryai/getspecstory",
+      "backends": [
+        "aqua:specstoryai/getspecstory",
+        "ubi:specstoryai/getspecstory"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/specstoryai/getspecstory/registry.yaml"
     },
     {
       "name": "spectral",
@@ -11073,12 +11401,6 @@
       "description": "A BOSH template merge tool"
     },
     {
-      "name": "sqldef",
-      "latest_version": "0.17.26",
-      "version_count": 268,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "sqlite",
       "latest_version": "3.51.1",
       "version_count": 253,
@@ -11128,7 +11450,12 @@
       "name": "sst",
       "latest_version": "3.17.25",
       "version_count": 1124,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "sst/sst",
+      "repo_url": "https://github.com/sst/sst",
+      "backends": [
+        "github:sst/sst"
+      ]
     },
     {
       "name": "stack",
@@ -11169,7 +11496,7 @@
       "github": "foundry-rs/starknet-foundry",
       "repo_url": "https://github.com/foundry-rs/starknet-foundry",
       "backends": [
-        "ubi:foundry-rs/starknet-foundry[exe=snforge]"
+        "github:foundry-rs/starknet-foundry[exe=snforge]"
       ],
       "license": "MIT",
       "homepage": "https://foundry-rs.github.io/starknet-foundry/",
@@ -11183,17 +11510,11 @@
       "github": "foundry-rs/starknet-foundry",
       "repo_url": "https://github.com/foundry-rs/starknet-foundry",
       "backends": [
-        "ubi:foundry-rs/starknet-foundry[exe=sncast]"
+        "github:foundry-rs/starknet-foundry[exe=sncast]"
       ],
       "license": "MIT",
       "homepage": "https://foundry-rs.github.io/starknet-foundry/",
       "description": "Blazing fast toolkit for developing Starknet contracts."
-    },
-    {
-      "name": "starport",
-      "latest_version": "nightly",
-      "version_count": 83,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "starship",
@@ -11205,8 +11526,12 @@
       "backends": [
         "aqua:starship/starship",
         "ubi:starship/starship",
-        "asdf:gr1m0h/asdf-starship"
+        "asdf:gr1m0h/asdf-starship",
+        "cargo:starship"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/starship"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/starship/starship/registry.yaml",
       "license": "ISC",
       "homepage": "https://starship.rs",
@@ -11221,8 +11546,12 @@
       "repo_url": "https://github.com/dominikh/go-tools",
       "backends": [
         "aqua:dominikh/go-tools/staticcheck",
-        "asdf:pbr0ck3r/asdf-staticcheck"
+        "asdf:pbr0ck3r/asdf-staticcheck",
+        "go:honnef.co/go/tools/cmd/staticcheck"
       ],
+      "package_urls": {
+        "go": "https://pkg.go.dev/honnef.co/go/tools/cmd/staticcheck"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dominikh/go-tools/registry.yaml",
       "license": "MIT",
       "homepage": "https://staticcheck.dev",
@@ -11316,8 +11645,12 @@
       "repo_url": "https://github.com/JohnnyMorganz/StyLua",
       "backends": [
         "aqua:JohnnyMorganz/StyLua",
-        "asdf:jc00ke/asdf-stylua"
+        "asdf:jc00ke/asdf-stylua",
+        "cargo:stylua"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/stylua"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/JohnnyMorganz/StyLua/registry.yaml",
       "license": "MPL-2.0",
       "description": "A Lua code formatter"
@@ -11326,7 +11659,13 @@
       "name": "supabase",
       "latest_version": "2.65.5",
       "version_count": 587,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "supabase/cli",
+      "repo_url": "https://github.com/supabase/cli",
+      "backends": [
+        "aqua:supabase/cli"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/supabase/cli/registry.yaml"
     },
     {
       "name": "superfile",
@@ -11347,7 +11686,12 @@
       "name": "superhtml",
       "latest_version": "0.6.2",
       "version_count": 12,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "kristoff-it/superhtml",
+      "repo_url": "https://github.com/kristoff-it/superhtml",
+      "backends": [
+        "github:kristoff-it/superhtml"
+      ]
     },
     {
       "name": "sver",
@@ -11471,12 +11815,6 @@
       "description": "CLI tool and library for generating a Software Bill of Materials from container images and filesystems"
     },
     {
-      "name": "syncher",
-      "latest_version": "0.0.45",
-      "version_count": 19,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "tailpipe",
       "latest_version": "0.7.1",
       "version_count": 18,
@@ -11560,8 +11898,10 @@
       "latest_version": "1.5.3",
       "version_count": 12,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "vmware-tanzu/tanzu-cli",
+      "repo_url": "https://github.com/vmware-tanzu/tanzu-cli",
       "backends": [
-        "asdf:mise-plugins/tanzu-plug-in-for-asdf"
+        "github:vmware-tanzu/tanzu-cli[rename_exe=tanzu]"
       ]
     },
     {
@@ -11605,7 +11945,14 @@
       "name": "tbls",
       "latest_version": "1.92.0",
       "version_count": 224,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "k1LoW/tbls",
+      "repo_url": "https://github.com/k1LoW/tbls",
+      "backends": [
+        "aqua:k1LoW/tbls",
+        "ubi:k1LoW/tbls"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k1LoW/tbls/registry.yaml"
     },
     {
       "name": "tctl",
@@ -11723,12 +12070,6 @@
       "license": "MIT",
       "homepage": "https://docs.temporal.io",
       "description": "Temporal service"
-    },
-    {
-      "name": "temporalite",
-      "latest_version": "0.3.0",
-      "version_count": 4,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "terradozer",
@@ -12024,7 +12365,7 @@
       "github": "warrensbox/terraform-switcher",
       "repo_url": "https://github.com/warrensbox/terraform-switcher",
       "backends": [
-        "ubi:warrensbox/terraform-switcher[exe=tfswitch]",
+        "github:warrensbox/terraform-switcher[exe=tfswitch]",
         "asdf:iul1an/asdf-tfswitch"
       ],
       "license": "MIT",
@@ -12091,7 +12432,18 @@
       "name": "tinymist",
       "latest_version": "0.14.4",
       "version_count": 58,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "Myriad-Dreamin/tinymist",
+      "repo_url": "https://github.com/Myriad-Dreamin/tinymist",
+      "backends": [
+        "aqua:Myriad-Dreamin/tinymist",
+        "ubi:Myriad-Dreamin/tinymist",
+        "cargo:tinymist"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/tinymist"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Myriad-Dreamin/tinymist/registry.yaml"
     },
     {
       "name": "tinytex",
@@ -12110,7 +12462,7 @@
       "github": "titan-data/titan",
       "repo_url": "https://github.com/titan-data/titan",
       "backends": [
-        "ubi:titan-data/titan",
+        "github:titan-data/titan",
         "asdf:gabitchov/asdf-titan"
       ],
       "license": "Apache-2.0",
@@ -12121,13 +12473,18 @@
       "name": "tlrc",
       "latest_version": "1.12.0",
       "version_count": 21,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
-      "name": "tlsg-cli",
-      "latest_version": "1.0.1",
-      "version_count": 2,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "tldr-pages/tlrc",
+      "repo_url": "https://github.com/tldr-pages/tlrc",
+      "backends": [
+        "aqua:tldr-pages/tlrc",
+        "ubi:tldr-pages/tlrc",
+        "cargo:tlrc"
+      ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/tlrc"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tldr-pages/tlrc/registry.yaml"
     },
     {
       "name": "tmux",
@@ -12143,21 +12500,32 @@
       "latest_version": "13.0.0",
       "version_count": 75,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "XAMPPRocky/tokei",
-      "repo_url": "https://github.com/XAMPPRocky/tokei",
       "backends": [
+        "cargo:tokei",
         "aqua:XAMPPRocky/tokei",
         "ubi:XAMPPRocky/tokei",
         "asdf:gasuketsu/asdf-tokei"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/tokei"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/XAMPPRocky/tokei/registry.yaml",
+      "github": "XAMPPRocky/tokei",
+      "repo_url": "https://github.com/XAMPPRocky/tokei",
       "description": "Count your code, quickly."
     },
     {
       "name": "tombi",
       "latest_version": "0.7.7",
       "version_count": 189,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "tombi-toml/tombi",
+      "repo_url": "https://github.com/tombi-toml/tombi",
+      "backends": [
+        "aqua:tombi-toml/tombi",
+        "ubi:tombi-toml/tombi"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tombi-toml/tombi/registry.yaml"
     },
     {
       "name": "tomcat",
@@ -12176,17 +12544,11 @@
       "github": "elementalvoid/tonnage",
       "repo_url": "https://github.com/elementalvoid/tonnage",
       "backends": [
-        "ubi:elementalvoid/tonnage",
+        "github:elementalvoid/tonnage",
         "asdf:elementalvoid/asdf-tonnage"
       ],
       "license": "Apache-2.0",
       "description": "Tonnage is a small utility to summarize the resource capacity and allocation of a Kubernetes cluster."
-    },
-    {
-      "name": "tool-versions-to-env",
-      "latest_version": "1.0.8",
-      "version_count": 4,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "traefik",
@@ -12196,7 +12558,7 @@
       "github": "traefik/traefik",
       "repo_url": "https://github.com/traefik/traefik",
       "backends": [
-        "ubi:traefik/traefik",
+        "github:traefik/traefik",
         "asdf:Dabolus/asdf-traefik"
       ],
       "license": "MIT",
@@ -12211,7 +12573,7 @@
       "github": "transifex/cli",
       "repo_url": "https://github.com/transifex/cli",
       "backends": [
-        "ubi:transifex/cli[exe=tx]",
+        "github:transifex/cli[exe=tx]",
         "asdf:ORCID/asdf-transifex"
       ],
       "license": "Apache-2.0",
@@ -12284,19 +12646,48 @@
       "name": "trufflehog",
       "latest_version": "3.92.3",
       "version_count": 306,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "trufflesecurity/trufflehog",
+      "repo_url": "https://github.com/trufflesecurity/trufflehog",
+      "backends": [
+        "aqua:trufflesecurity/trufflehog",
+        "github:trufflesecurity/trufflehog"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trufflesecurity/trufflehog/registry.yaml"
     },
     {
       "name": "trzsz-ssh",
       "latest_version": "0.1.23",
       "version_count": 23,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "trzsz/trzsz-ssh",
+      "repo_url": "https://github.com/trzsz/trzsz-ssh",
+      "backends": [
+        "aqua:trzsz/trzsz-ssh",
+        "ubi:trzsz/trzsz-ssh",
+        "go:github.com/trzsz/trzsz-ssh/cmd/tssh"
+      ],
+      "package_urls": {
+        "go": "https://pkg.go.dev/github.com/trzsz/trzsz-ssh/cmd/tssh"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trzsz/trzsz-ssh/registry.yaml"
     },
     {
       "name": "tssh",
       "latest_version": "0.1.23",
       "version_count": 23,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "trzsz/trzsz-ssh",
+      "repo_url": "https://github.com/trzsz/trzsz-ssh",
+      "backends": [
+        "aqua:trzsz/trzsz-ssh",
+        "ubi:trzsz/trzsz-ssh",
+        "go:github.com/trzsz/trzsz-ssh/cmd/tssh"
+      ],
+      "package_urls": {
+        "go": "https://pkg.go.dev/github.com/trzsz/trzsz-ssh/cmd/tssh"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trzsz/trzsz-ssh/registry.yaml"
     },
     {
       "name": "tsuru",
@@ -12306,7 +12697,7 @@
       "github": "tsuru/tsuru-client",
       "repo_url": "https://github.com/tsuru/tsuru-client",
       "backends": [
-        "ubi:tsuru/tsuru-client[exe=tsuru]",
+        "github:tsuru/tsuru-client[exe=tsuru]",
         "asdf:virtualstaticvoid/asdf-tsuru"
       ],
       "license": "BSD-3-Clause",
@@ -12346,17 +12737,11 @@
       "github": "tus/tusd",
       "repo_url": "https://github.com/tus/tusd",
       "backends": [
-        "ubi:tus/tusd"
+        "github:tus/tusd"
       ],
       "license": "MIT",
       "homepage": "https://tus.github.io/tusd",
       "description": "Reference server implementation in Go of tus: the open protocol for resumable file uploads"
-    },
-    {
-      "name": "tx",
-      "latest_version": "1.6.17",
-      "version_count": 36,
-      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "typos",
@@ -12427,9 +12812,11 @@
       "github": "cloudfoundry/uaa-cli",
       "repo_url": "https://github.com/cloudfoundry/uaa-cli",
       "backends": [
+        "aqua:cloudfoundry/uaa-cli",
         "ubi:cloudfoundry/uaa-cli[exe=uaa]",
         "asdf:mise-plugins/tanzu-plug-in-for-asdf"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudfoundry/uaa-cli/registry.yaml",
       "license": "Apache-2.0",
       "description": "CLI for UAA written in Go"
     },
@@ -12441,9 +12828,11 @@
       "github": "cloudfoundry/uaa-cli",
       "repo_url": "https://github.com/cloudfoundry/uaa-cli",
       "backends": [
+        "aqua:cloudfoundry/uaa-cli",
         "ubi:cloudfoundry/uaa-cli[exe=uaa]",
         "asdf:mise-plugins/tanzu-plug-in-for-asdf"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudfoundry/uaa-cli/registry.yaml",
       "license": "Apache-2.0",
       "description": "CLI for UAA written in Go"
     },
@@ -12470,7 +12859,7 @@
       "github": "unisonweb/unison",
       "repo_url": "https://github.com/unisonweb/unison",
       "backends": [
-        "ubi:unisonweb/unison",
+        "github:unisonweb/unison",
         "asdf:susurri/asdf-unison"
       ],
       "homepage": "https://unison-lang.org",
@@ -12515,7 +12904,7 @@
       "github": "sigoden/upt",
       "repo_url": "https://github.com/sigoden/upt",
       "backends": [
-        "ubi:sigoden/upt",
+        "github:sigoden/upt",
         "asdf:ORCID/asdf-upt"
       ],
       "license": "Apache-2.0",
@@ -12546,7 +12935,7 @@
       "backends": [
         "aqua:jdx/usage",
         "ubi:jdx/usage",
-        "asdf:jdx/mise-usage",
+        "asdf:mise-plugins/mise-usage",
         "cargo:usage-cli"
       ],
       "package_urls": {
@@ -12680,12 +13069,6 @@
       "description": "vCluster - Create fully functional virtual Kubernetes clusters - Each vcluster runs inside a namespace of the underlying k8s cluster. It's cheaper than creating separate full-blown clusters and it offers better multi-tenancy and isolation than regular namespaces."
     },
     {
-      "name": "vela",
-      "latest_version": "ela-v0.0.2-alpha",
-      "version_count": 195,
-      "last_updated": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "name": "velad",
       "latest_version": "1.9.5",
       "version_count": 44,
@@ -12693,7 +13076,7 @@
       "github": "kubevela/velad",
       "repo_url": "https://github.com/kubevela/velad",
       "backends": [
-        "ubi:kubevela/velad",
+        "github:kubevela/velad",
         "asdf:mise-plugins/mise-velad"
       ],
       "license": "Apache-2.0",
@@ -12750,7 +13133,12 @@
       "name": "vespa-cli",
       "latest_version": "8.620.35",
       "version_count": 253,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "vespa-engine/vespa",
+      "repo_url": "https://github.com/vespa-engine/vespa",
+      "backends": [
+        "github:vespa-engine/vespa"
+      ]
     },
     {
       "name": "vfox",
@@ -12814,15 +13202,6 @@
       "description": "👀 A modern watch command. Time machine and pager etc."
     },
     {
-      "name": "virtualos",
-      "latest_version": "0.1.119",
-      "version_count": 120,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "backends": [
-        "asdf:mise-plugins/mise-virtualos"
-      ]
-    },
-    {
       "name": "vivid",
       "latest_version": "0.10.1",
       "version_count": 11,
@@ -12831,8 +13210,12 @@
       "repo_url": "https://github.com/sharkdp/vivid",
       "backends": [
         "aqua:sharkdp/vivid",
-        "ubi:sharkdp/vivid"
+        "ubi:sharkdp/vivid",
+        "cargo:vivid"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/vivid"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/vivid/registry.yaml",
       "license": "Apache-2.0",
       "description": "A themeable LS_COLORS generator with a rich filetype datebase"
@@ -12863,7 +13246,7 @@
       "github": "vultr/vultr-cli",
       "repo_url": "https://github.com/vultr/vultr-cli",
       "backends": [
-        "ubi:vultr/vultr-cli",
+        "github:vultr/vultr-cli",
         "asdf:ikuradon/asdf-vultr-cli"
       ],
       "license": "Apache-2.0",
@@ -12877,7 +13260,7 @@
       "github": "vultr/vultr-cli",
       "repo_url": "https://github.com/vultr/vultr-cli",
       "backends": [
-        "ubi:vultr/vultr-cli",
+        "github:vultr/vultr-cli",
         "asdf:ikuradon/asdf-vultr-cli"
       ],
       "license": "Apache-2.0",
@@ -12891,7 +13274,7 @@
       "github": "jdx/wait-for-gh-rate-limit",
       "repo_url": "https://github.com/jdx/wait-for-gh-rate-limit",
       "backends": [
-        "ubi:jdx/wait-for-gh-rate-limit"
+        "github:jdx/wait-for-gh-rate-limit"
       ],
       "license": "MIT"
     },
@@ -12936,9 +13319,11 @@
       "github": "aduros/wasm4",
       "repo_url": "https://github.com/aduros/wasm4",
       "backends": [
+        "aqua:aduros/wasm4",
         "ubi:aduros/wasm4[exe=w4]",
         "asdf:jtakakura/asdf-wasm4"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aduros/wasm4/registry.yaml",
       "license": "ISC",
       "homepage": "https://wasm4.org",
       "description": "Build retro games using WebAssembly for a fantasy console."
@@ -12985,7 +13370,6 @@
       "backends": [
         "aqua:watchexec/watchexec",
         "ubi:watchexec/watchexec",
-        "asdf:nyrst/asdf-watchexec",
         "cargo:watchexec-cli"
       ],
       "package_urls": {
@@ -13019,7 +13403,7 @@
       "github": "weaveworks/weave-gitops",
       "repo_url": "https://github.com/weaveworks/weave-gitops",
       "backends": [
-        "ubi:weaveworks/weave-gitops[exe=gitops]",
+        "github:weaveworks/weave-gitops[exe=gitops]",
         "asdf:deas/asdf-weave-gitops"
       ],
       "license": "Apache-2.0",
@@ -13035,8 +13419,12 @@
       "repo_url": "https://github.com/vi/websocat",
       "backends": [
         "aqua:vi/websocat",
-        "asdf:bdellegrazie/asdf-websocat"
+        "asdf:bdellegrazie/asdf-websocat",
+        "cargo:websocat"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/websocat"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/vi/websocat/registry.yaml",
       "license": "MIT",
       "description": "Command-line client for WebSockets, like netcat (or curl) for ws:// with advanced socat-like functions"
@@ -13045,7 +13433,13 @@
       "name": "werf",
       "latest_version": "2.56.1",
       "version_count": 1358,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "werf/werf",
+      "repo_url": "https://github.com/werf/werf",
+      "backends": [
+        "aqua:werf/werf"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/werf/werf/registry.yaml"
     },
     {
       "name": "wren",
@@ -13055,9 +13449,11 @@
       "github": "wren-lang/wren-cli",
       "repo_url": "https://github.com/wren-lang/wren-cli",
       "backends": [
+        "aqua:wren-lang/wren-cli",
         "ubi:wren-lang/wren-cli[exe=wren_cli]",
         "asdf:jtakakura/asdf-wren-cli"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/wren-lang/wren-cli/registry.yaml",
       "license": "MIT",
       "description": "A command line tool for the Wren programming language"
     },
@@ -13069,9 +13465,11 @@
       "github": "wren-lang/wren-cli",
       "repo_url": "https://github.com/wren-lang/wren-cli",
       "backends": [
+        "aqua:wren-lang/wren-cli",
         "ubi:wren-lang/wren-cli[exe=wren_cli]",
         "asdf:jtakakura/asdf-wren-cli"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/wren-lang/wren-cli/registry.yaml",
       "license": "MIT",
       "description": "A command line tool for the Wren programming language"
     },
@@ -13177,7 +13575,12 @@
       "name": "xcsift",
       "latest_version": "1.0.15",
       "version_count": 15,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "ldomaradzki/xcsift",
+      "repo_url": "https://github.com/ldomaradzki/xcsift",
+      "backends": [
+        "github:ldomaradzki/xcsift"
+      ]
     },
     {
       "name": "xh",
@@ -13204,7 +13607,13 @@
       "name": "xxh",
       "latest_version": "0.8.14",
       "version_count": 54,
-      "last_updated": "2025-01-01T00:00:00.000Z"
+      "last_updated": "2025-01-01T00:00:00.000Z",
+      "backends": [
+        "pipx:xxh-xxh"
+      ],
+      "package_urls": {
+        "pypi": "https://pypi.org/project/xxh-xxh"
+      }
     },
     {
       "name": "yadm",
@@ -13275,8 +13684,17 @@
       "version_count": 270,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
-        "asdf:mise-plugins/mise-yarn"
-      ]
+        "vfox:mise-plugins/vfox-yarn",
+        "asdf:mise-plugins/mise-yarn",
+        "aqua:yarnpkg/berry",
+        "npm:@yarnpkg/cli-dist"
+      ],
+      "package_urls": {
+        "npm": "https://www.npmjs.com/package/@yarnpkg/cli-dist"
+      },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/yarnpkg/berry/registry.yaml",
+      "github": "yarnpkg/berry",
+      "repo_url": "https://github.com/yarnpkg/berry"
     },
     {
       "name": "yay",
@@ -13295,8 +13713,12 @@
       "github": "sxyazi/yazi",
       "repo_url": "https://github.com/sxyazi/yazi",
       "backends": [
-        "aqua:sxyazi/yazi"
+        "aqua:sxyazi/yazi",
+        "cargo:yazi-fm"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/yazi-fm"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sxyazi/yazi/registry.yaml",
       "license": "MIT",
       "homepage": "https://yazi-rs.github.io",
@@ -13380,7 +13802,7 @@
       "github": "yt-dlp/yt-dlp",
       "repo_url": "https://github.com/yt-dlp/yt-dlp",
       "backends": [
-        "ubi:yt-dlp/yt-dlp",
+        "github:yt-dlp/yt-dlp[rename_exe=yt-dlp]",
         "asdf:duhow/asdf-yt-dlp"
       ],
       "license": "Unlicense",
@@ -13409,8 +13831,11 @@
       "version_count": 514,
       "last_updated": "2025-01-01T00:00:00.000Z",
       "backends": [
-        "asdf:mise-plugins/mise-zbctl"
-      ]
+        "npm:zbctl"
+      ],
+      "package_urls": {
+        "npm": "https://www.npmjs.com/package/zbctl"
+      }
     },
     {
       "name": "zellij",
@@ -13422,8 +13847,12 @@
       "backends": [
         "aqua:zellij-org/zellij",
         "ubi:zellij-org/zellij",
-        "asdf:chessmango/asdf-zellij"
+        "asdf:chessmango/asdf-zellij",
+        "cargo:zellij"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/zellij"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/zellij-org/zellij/registry.yaml",
       "license": "MIT",
       "homepage": "https://zellij.dev",
@@ -13437,9 +13866,11 @@
       "github": "MaybeJustJames/zephyr",
       "repo_url": "https://github.com/MaybeJustJames/zephyr",
       "backends": [
+        "aqua:MaybeJustJames/zephyr",
         "ubi:MaybeJustJames/zephyr",
         "asdf:nsaunders/asdf-zephyr"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/MaybeJustJames/zephyr/registry.yaml",
       "license": "MPL-2.0",
       "description": "Tree shaking breeze for PureScript CoreFn AST"
     },
@@ -13460,7 +13891,7 @@
       "github": "nektro/zigmod",
       "repo_url": "https://github.com/nektro/zigmod",
       "backends": [
-        "ubi:nektro/zigmod",
+        "github:nektro/zigmod",
         "asdf:mise-plugins/asdf-zigmod"
       ],
       "license": "MIT",
@@ -13529,8 +13960,11 @@
       "backends": [
         "aqua:ajeetdsouza/zoxide",
         "ubi:ajeetdsouza/zoxide",
-        "asdf:nyrst/asdf-zoxide"
+        "cargo:zoxide"
       ],
+      "package_urls": {
+        "cargo": "https://crates.io/crates/zoxide"
+      },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/ajeetdsouza/zoxide/registry.yaml",
       "license": "MIT",
       "homepage": "https://crates.io/crates/zoxide",
