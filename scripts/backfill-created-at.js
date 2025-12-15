@@ -159,7 +159,10 @@ function parseArgs() {
 function hasPlaceholderTimestamps(versions) {
   const PLACEHOLDER = "2025-01-01T00:00:00.000Z";
   for (const data of Object.values(versions)) {
-    if (data.created_at === PLACEHOLDER) {
+    const ts = data.created_at;
+    // Handle both string and Date object from TOML parser
+    const tsStr = ts instanceof Date ? ts.toISOString() : String(ts);
+    if (tsStr === PLACEHOLDER) {
       return true;
     }
   }
@@ -256,7 +259,10 @@ async function main() {
 
     for (const [version, data] of Object.entries(existing.versions)) {
       const apiTs = apiTimestamps.get(version);
-      let timestamp = data.created_at;
+      // Handle Date object from TOML parser
+      let timestamp = data.created_at instanceof Date
+        ? data.created_at.toISOString()
+        : String(data.created_at);
 
       if (apiTs) {
         const apiDate = new Date(apiTs).toISOString();
