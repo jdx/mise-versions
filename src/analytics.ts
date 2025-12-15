@@ -652,9 +652,16 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
         // Get backend ID - use raw SQL with escaped string to avoid D1 parameterization issues
         const escapedBackend = backendFull.replace(/'/g, "''");
-        const backendRows = await db.all(
-          sql.raw(`SELECT id FROM backends WHERE full = '${escapedBackend}'`)
-        ) as Array<{ id: number }>;
+        let backendRows: Array<{ id: number }>;
+        try {
+          backendRows = await db.all(
+            sql.raw(`SELECT id FROM backends WHERE full = '${escapedBackend}'`)
+          ) as Array<{ id: number }>;
+        } catch (selectError) {
+          // Try alternative: check if backend exists at all
+          const allBackends = await db.all(sql`SELECT COUNT(*) as count FROM backends`) as Array<{ count: number }>;
+          throw new Error(`SELECT failed for '${backendFull}'. backends table has ${allBackends[0]?.count ?? 0} rows. Error: ${selectError}`);
+        }
 
         if (backendRows.length === 0) {
           console.log(`Backend not found for: ${backendFull}`);
