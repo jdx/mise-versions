@@ -205,18 +205,27 @@ async function processTool(tool, dryRun) {
   return { tool, status: "updated", changedCount, notFoundCount };
 }
 
-// Commit changes
-function commitChanges(message) {
+// Commit and push changes
+function commitAndPush(message) {
   try {
-    execSync('git add docs/*.toml', { stdio: 'pipe' });
+    // Stage all toml changes
+    execSync('git add -A docs/*.toml', { stdio: 'pipe' });
     const status = execSync('git diff --cached --quiet || echo "changes"', { encoding: 'utf-8' });
     if (status.includes('changes')) {
       execSync(`git commit -m "${message}"`, { stdio: 'pipe' });
       console.log(`  Committed: ${message}`);
+      // Pull and push
+      try {
+        execSync('git pull --rebase origin main', { stdio: 'pipe' });
+      } catch (e) {
+        // Ignore pull errors if no remote changes
+      }
+      execSync('git push', { stdio: 'pipe' });
+      console.log(`  Pushed to origin`);
       return true;
     }
   } catch (e) {
-    // Ignore commit errors
+    console.log(`  Commit/push error: ${e.message}`);
   }
   return false;
 }
@@ -248,9 +257,9 @@ async function processInParallel(tools, dryRun) {
       }
     }
 
-    // Commit periodically
+    // Commit and push periodically
     if (!dryRun && uncommittedUpdates >= COMMIT_INTERVAL) {
-      commitChanges(`chore: backfill created_at timestamps (batch ${Math.floor(completed / COMMIT_INTERVAL)})`);
+      commitAndPush(`chore: backfill created_at timestamps (batch ${Math.floor(completed / COMMIT_INTERVAL)})`);
       uncommittedUpdates = 0;
     }
 
@@ -260,9 +269,9 @@ async function processInParallel(tools, dryRun) {
     }
   }
 
-  // Final commit for remaining updates
+  // Final commit and push for remaining updates
   if (!dryRun && uncommittedUpdates > 0) {
-    commitChanges(`chore: backfill created_at timestamps (final)`);
+    commitAndPush(`chore: backfill created_at timestamps (final)`);
   }
 
   return { ...results, processed: completed };

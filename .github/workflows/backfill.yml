@@ -47,6 +47,11 @@ jobs:
 
       - run: mise --version
 
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Run backfill script
         run: |
           args=""
@@ -58,16 +63,13 @@ jobs:
           fi
           node scripts/${{ github.event.inputs.script }} $args
 
-      - name: Commit and push changes
+      - name: Push any remaining changes
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/*.toml
+          git add -A docs/*.toml
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No uncommitted changes"
           else
-            git commit -m "chore: backfill data via ${{ github.event.inputs.script }}"
-            git pull --rebase origin main
+            git commit -m "chore: backfill data via ${{ github.event.inputs.script }} (cleanup)"
             git push
           fi
