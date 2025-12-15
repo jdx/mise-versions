@@ -14,7 +14,7 @@ type VersionSortKey = "default" | "downloads" | "released";
 
 interface Version {
   version: string;
-  created_at?: string;
+  created_at?: string | null;
 }
 
 function getInterestingPrefixes(versions: Version[]): string[] {
