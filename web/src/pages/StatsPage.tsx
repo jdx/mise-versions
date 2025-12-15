@@ -46,13 +46,30 @@ function DonutChart({
   data: Array<{ label: string; value: number; color: string }>;
   size?: number;
 }) {
-  const total = data.reduce((sum, d) => sum + d.value, 0);
+  // Filter out zero values and ensure we have valid data
+  const validData = data.filter((d) => d.value > 0);
+  const total = validData.reduce((sum, d) => sum + d.value, 0);
+
+  // Handle empty or invalid data
+  if (validData.length === 0 || total === 0) {
+    return (
+      <div class="flex items-center gap-6">
+        <div
+          class="rounded-full bg-dark-700 flex items-center justify-center"
+          style={{ width: size, height: size }}
+        >
+          <span class="text-gray-500 text-sm">No data</span>
+        </div>
+      </div>
+    );
+  }
+
   const strokeWidth = 30;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
 
   let currentOffset = 0;
-  const segments = data.map((d) => {
+  const segments = validData.map((d) => {
     const percentage = d.value / total;
     const segmentLength = percentage * circumference;
     const offset = currentOffset;
@@ -122,6 +139,7 @@ export function StatsPage() {
   const loading = toolsLoading || downloadsLoading || backendStatsLoading;
 
   // Compute backend statistics (derived from tools.json for tool counts)
+  // Only uses the PRIMARY (first) backend for each tool
   const derivedBackendStats = useMemo(() => {
     if (!toolsData?.tools) return { counts: [], downloads: [] };
 
@@ -130,21 +148,16 @@ export function StatsPage() {
 
     for (const tool of toolsData.tools) {
       const toolDownloads = downloads?.[tool.name] || 0;
-      const seenTypes = new Set<string>();
 
-      if (tool.backends) {
-        for (const backend of tool.backends) {
-          const backendType = getBackendType(backend);
-          if (!seenTypes.has(backendType)) {
-            seenTypes.add(backendType);
-            counts.set(backendType, (counts.get(backendType) || 0) + 1);
-            // Attribute downloads proportionally (simplified: full downloads to each backend)
-            downloadsByBackend.set(
-              backendType,
-              (downloadsByBackend.get(backendType) || 0) + toolDownloads
-            );
-          }
-        }
+      // Only use the primary (first) backend
+      if (tool.backends && tool.backends.length > 0) {
+        const primaryBackend = tool.backends[0];
+        const backendType = getBackendType(primaryBackend);
+        counts.set(backendType, (counts.get(backendType) || 0) + 1);
+        downloadsByBackend.set(
+          backendType,
+          (downloadsByBackend.get(backendType) || 0) + toolDownloads
+        );
       }
     }
 
@@ -193,26 +206,23 @@ export function StatsPage() {
   }, [downloads]);
 
   // Get top tools per backend (derived from tools.json)
+  // Only uses the PRIMARY (first) backend for each tool
   const derivedTopToolsByBackend = useMemo(() => {
     if (!toolsData?.tools || !downloads) return new Map();
 
     const byBackend = new Map<string, Array<{ name: string; downloads: number }>>();
 
     for (const tool of toolsData.tools) {
-      if (!tool.backends) continue;
+      if (!tool.backends || tool.backends.length === 0) continue;
       const toolDownloads = downloads[tool.name] || 0;
 
-      for (const backend of tool.backends) {
-        const backendType = getBackendType(backend);
-        if (!byBackend.has(backendType)) {
-          byBackend.set(backendType, []);
-        }
-        // Only add if not already in list (avoid duplicates from multiple backends)
-        const list = byBackend.get(backendType)!;
-        if (!list.some((t) => t.name === tool.name)) {
-          list.push({ name: tool.name, downloads: toolDownloads });
-        }
+      // Only use the primary (first) backend
+      const primaryBackend = tool.backends[0];
+      const backendType = getBackendType(primaryBackend);
+      if (!byBackend.has(backendType)) {
+        byBackend.set(backendType, []);
       }
+      byBackend.get(backendType)!.push({ name: tool.name, downloads: toolDownloads });
     }
 
     // Sort each list and keep top 5
