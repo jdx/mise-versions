@@ -594,6 +594,13 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>
     ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
+      // First check if backend_id column exists
+      const columns = await db.all(sql`PRAGMA table_info(downloads)`) as Array<{ name: string }>;
+      const hasBackendId = columns.some((c) => c.name === "backend_id");
+      if (!hasBackendId) {
+        throw new Error("backend_id column does not exist in downloads table. Run migrations first.");
+      }
+
       // Build mapping of tool name -> default backend
       const toolToBackend = new Map<string, string>();
       for (const entry of registry) {
@@ -628,6 +635,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       let toolsMapped = 0;
 
       // Process each tool
+      const errors: string[] = [];
       for (const tool of toolsWithNullBackend) {
         const backendFull = toolToBackend.get(tool.name);
         if (!backendFull) {
@@ -647,20 +655,28 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         const backendId = backendRows[0].id;
         toolsMapped++;
 
-        // Update downloads for this tool
-        const result = await db.run(sql`
-          UPDATE downloads
-          SET backend_id = ${backendId}
-          WHERE tool_id = ${tool.id} AND backend_id IS NULL
-        `);
-        updated += (result as any).meta?.changes ?? 0;
+        try {
+          // Update downloads for this tool
+          const result = await db.run(sql`
+            UPDATE downloads
+            SET backend_id = ${backendId}
+            WHERE tool_id = ${tool.id} AND backend_id IS NULL
+          `);
+          updated += (result as any).meta?.changes ?? 0;
 
-        // Update downloads_daily for this tool
-        await db.run(sql`
-          UPDATE downloads_daily
-          SET backend_id = ${backendId}
-          WHERE tool_id = ${tool.id} AND backend_id IS NULL
-        `);
+          // Update downloads_daily for this tool
+          await db.run(sql`
+            UPDATE downloads_daily
+            SET backend_id = ${backendId}
+            WHERE tool_id = ${tool.id} AND backend_id IS NULL
+          `);
+        } catch (e) {
+          errors.push(`${tool.name}: ${e}`);
+          if (errors.length >= 5) {
+            // Stop after 5 errors to avoid spam
+            throw new Error(`Too many errors. First 5: ${errors.join("; ")}`);
+          }
+        }
       }
 
       return {
