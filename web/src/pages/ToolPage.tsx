@@ -1,4 +1,4 @@
-import { useState, useMemo } from "preact/hooks";
+import { useState, useMemo, useEffect } from "preact/hooks";
 import { useToolVersions } from "../hooks/useToolVersions";
 import { useDownloads } from "../hooks/useDownloads";
 import { useTools, Tool } from "../hooks/useTools";
@@ -568,6 +568,14 @@ export function ToolPage({ params }: Props) {
 
   // Find tool metadata from tools.json
   const toolMeta = toolsData?.tools.find((t) => t.name === tool);
+
+  // Update page title
+  useEffect(() => {
+    document.title = `${tool} - mise tools`;
+    return () => {
+      document.title = "mise tools";
+    };
+  }, [tool]);
 
   const loading = versionsLoading;
 
