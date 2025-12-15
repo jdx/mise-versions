@@ -223,6 +223,117 @@ const packageUrlLabels: Record<string, string> = {
   go: "pkg.go.dev",
 };
 
+// Version Timeline Component
+function VersionTimeline({ versions }: { versions: Version[] }) {
+  // Filter to only versions with dates and sort chronologically
+  const datedVersions = versions
+    .filter((v) => v.created_at)
+    .sort((a, b) => new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime());
+
+  if (datedVersions.length < 2) return null;
+
+  // Get major versions for milestones
+  const milestones: Array<{ version: string; date: Date; isMajor: boolean }> = [];
+  const seenMajors = new Set<string>();
+
+  for (const v of datedVersions) {
+    const parts = v.version.split(".");
+    const major = parts[0];
+    if (!seenMajors.has(major)) {
+      seenMajors.add(major);
+      milestones.push({
+        version: v.version,
+        date: new Date(v.created_at!),
+        isMajor: true,
+      });
+    }
+  }
+
+  // Add latest version if not already a milestone
+  const latest = datedVersions[datedVersions.length - 1];
+  if (!milestones.some((m) => m.version === latest.version)) {
+    milestones.push({
+      version: latest.version,
+      date: new Date(latest.created_at!),
+      isMajor: false,
+    });
+  }
+
+  // Limit to 10 milestones for readability
+  const displayMilestones = milestones.slice(-10);
+
+  if (displayMilestones.length < 2) return null;
+
+  const firstDate = displayMilestones[0].date.getTime();
+  const lastDate = displayMilestones[displayMilestones.length - 1].date.getTime();
+  const range = lastDate - firstDate || 1;
+
+  // Calculate release stats
+  const totalDays = (lastDate - firstDate) / (1000 * 60 * 60 * 24);
+  const avgDaysBetween = totalDays / (datedVersions.length - 1);
+
+  return (
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-4">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-sm font-medium text-gray-300">Release Timeline</h3>
+        <div class="text-xs text-gray-500">
+          {datedVersions.length} releases over{" "}
+          {Math.round(totalDays / 365) > 0
+            ? `${Math.round(totalDays / 365)}y`
+            : `${Math.round(totalDays)}d`}
+          {avgDaysBetween > 0 && (
+            <span class="ml-2">
+              (~{avgDaysBetween < 30 ? `${Math.round(avgDaysBetween)}d` : `${Math.round(avgDaysBetween / 30)}mo`} avg)
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Timeline */}
+      <div class="relative h-16">
+        {/* Line */}
+        <div class="absolute top-6 left-0 right-0 h-0.5 bg-dark-600" />
+
+        {/* Milestones */}
+        {displayMilestones.map((m) => {
+          const position = ((m.date.getTime() - firstDate) / range) * 100;
+          return (
+            <div
+              key={m.version}
+              class="absolute -translate-x-1/2 group"
+              style={{ left: `${Math.min(Math.max(position, 2), 98)}%` }}
+            >
+              {/* Dot */}
+              <div
+                class={`w-3 h-3 rounded-full mt-5 ${
+                  m.isMajor ? "bg-neon-purple" : "bg-neon-blue"
+                } hover:ring-2 hover:ring-neon-purple/50 transition-all cursor-pointer`}
+              />
+              {/* Label */}
+              <div class="absolute top-8 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap">
+                <span class={`font-mono ${m.isMajor ? "text-gray-300" : "text-gray-500"}`}>
+                  {m.version.split(".").slice(0, m.isMajor ? 1 : 2).join(".")}
+                </span>
+              </div>
+              {/* Tooltip */}
+              <div class="absolute bottom-8 left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 border border-dark-600">
+                <div class="font-mono text-neon-purple">{m.version}</div>
+                <div class="text-gray-500">
+                  {m.date.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // Convert a backend string like "npm:foo" or "aqua:owner/repo" to a URL
 function backendToUrl(backend: string): string | null {
   const match = backend.match(/^(?<prefix>.+?):(?<slug>.+?)(?:\[.+\])?$/);
@@ -273,6 +384,7 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
   const hasMetadata = toolMeta && (toolMeta.license || toolMeta.homepage || toolMeta.repo_url || toolMeta.authors?.length);
   const hasLinks = toolMeta && (toolMeta.package_urls || toolMeta.aqua_link || toolMeta.backends?.length);
   const hasGithub = authenticated && ghData && (ghData.stars > 0 || (ghData.topics && ghData.topics.length > 0));
+  const showGithubPlaceholder = !authenticated && parsed !== null; // Tool has GitHub but user not logged in
 
   return (
     <div class="space-y-4">
@@ -285,7 +397,7 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
       </div>
 
       {/* Combined info pane */}
-      {(hasMetadata || hasLinks || hasGithub) && (
+      {(hasMetadata || hasLinks || hasGithub || showGithubPlaceholder) && (
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 space-y-4">
           {/* Metadata */}
           {hasMetadata && (
@@ -401,20 +513,85 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
           )}
 
           {/* Divider before GitHub stats */}
-          {(hasMetadata || hasLinks) && hasGithub && (
+          {(hasMetadata || hasLinks) && (hasGithub || showGithubPlaceholder) && (
             <div class="border-t border-dark-600" />
+          )}
+
+          {/* GitHub stats placeholder (unauthenticated) */}
+          {showGithubPlaceholder && (
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-sm text-gray-500">GitHub Stats</span>
+                <a
+                  href="/auth/login"
+                  class="flex items-center gap-1.5 px-3 py-1 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded text-xs text-gray-300 hover:text-white transition-colors"
+                >
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  Login to view
+                </a>
+              </div>
+              {/* Greyed out placeholder stats */}
+              <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm opacity-40 select-none">
+                <span class="text-gray-500">
+                  <span class="text-gray-600">★</span> ---
+                </span>
+                <span class="text-gray-500">
+                  <span class="text-gray-600">⑂</span> --- forks
+                </span>
+                <span class="text-gray-500">
+                  <span class="text-gray-600">○</span> --- issues
+                </span>
+              </div>
+              {/* Placeholder topics */}
+              <div class="flex flex-wrap gap-1 opacity-40 select-none">
+                <span class="px-2 py-0.5 bg-dark-700 rounded text-xs text-gray-600">topic</span>
+                <span class="px-2 py-0.5 bg-dark-700 rounded text-xs text-gray-600">topic</span>
+                <span class="px-2 py-0.5 bg-dark-700 rounded text-xs text-gray-600">topic</span>
+              </div>
+            </div>
           )}
 
           {/* GitHub stats (auth-gated) */}
           {hasGithub && (
-            <div class="space-y-2">
-              <div class="flex flex-wrap gap-3 text-sm">
+            <div class="space-y-3">
+              {/* Primary stats row */}
+              <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
                 {ghData.stars > 0 && (
                   <span class="text-gray-400">
-                    <span class="text-yellow-400">★</span> {ghData.stars.toLocaleString()} stars
+                    <span class="text-yellow-400">★</span> {ghData.stars.toLocaleString()}
+                  </span>
+                )}
+                {ghData.forks > 0 && (
+                  <span class="text-gray-400">
+                    <span class="text-gray-500">⑂</span> {ghData.forks.toLocaleString()} forks
+                  </span>
+                )}
+                {ghData.open_issues > 0 && (
+                  <span class="text-gray-400">
+                    <span class="text-green-400">○</span> {ghData.open_issues.toLocaleString()} issues
+                  </span>
+                )}
+                {ghData.watchers > 0 && (
+                  <span class="text-gray-400">
+                    <span class="text-gray-500">👁</span> {ghData.watchers.toLocaleString()}
                   </span>
                 )}
               </div>
+              {/* Secondary info row */}
+              <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500">
+                {ghData.language && (
+                  <span>{ghData.language}</span>
+                )}
+                {ghData.pushed_at && (
+                  <span>Last push: {formatRelativeTime(ghData.pushed_at)}</span>
+                )}
+                {ghData.archived && (
+                  <span class="text-amber-500">Archived</span>
+                )}
+              </div>
+              {/* Topics */}
               {ghData.topics && ghData.topics.length > 0 && (
                 <div class="flex flex-wrap gap-1">
                   {ghData.topics.slice(0, 8).map((topic) => (
@@ -701,13 +878,18 @@ export function ToolPage({ params }: Props) {
       </div>
 
       {/* Two-column layout */}
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         {/* Left column: Info */}
         <InfoPane tool={tool} toolMeta={toolMeta} />
 
         {/* Right column: Downloads */}
         <DownloadsPane data={downloadData} loading={downloadsLoading} />
       </div>
+
+      {/* Version Timeline */}
+      {!loading && versions && versions.length > 0 && (
+        <VersionTimeline versions={versions} />
+      )}
 
       {/* Version filter pills */}
       {interestingPrefixes.length > 1 && (

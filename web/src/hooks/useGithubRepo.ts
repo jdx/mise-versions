@@ -7,6 +7,15 @@ export interface GithubRepoInfo {
   license: string | null;
   stars: number;
   topics: string[];
+  // Additional metadata
+  forks: number;
+  open_issues: number;
+  watchers: number;
+  pushed_at: string | null;
+  created_at: string | null;
+  language: string | null;
+  archived: boolean;
+  default_branch: string;
 }
 
 interface UseGithubRepoResult {

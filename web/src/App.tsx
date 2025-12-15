@@ -1,6 +1,7 @@
 import { Router, Route, Switch, Link } from "wouter-preact";
 import { HomePage } from "./pages/HomePage";
 import { ToolPage } from "./pages/ToolPage";
+import { StatsPage } from "./pages/StatsPage";
 import { useAuth } from "./hooks/useAuth";
 import { useMAU } from "./hooks/useMAU";
 
@@ -81,6 +82,12 @@ export function App() {
                 mise ❤️ by {formatCompact(mau)} devs this month
               </span>
             )}
+            <Link
+              href="/stats"
+              class="text-sm text-gray-400 hover:text-neon-purple transition-colors"
+            >
+              Stats
+            </Link>
             <AuthButton />
           </nav>
         </div>
@@ -89,6 +96,7 @@ export function App() {
         <Router>
           <Switch>
             <Route path="/" component={HomePage} />
+            <Route path="/stats" component={StatsPage} />
             <Route path="/:tool" component={ToolPage} />
           </Switch>
         </Router>

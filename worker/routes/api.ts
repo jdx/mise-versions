@@ -200,6 +200,15 @@ export async function handleGithubRepo(
       license: data.license?.spdx_id,
       stars: data.stargazers_count,
       topics: data.topics,
+      // Additional metadata
+      forks: data.forks_count,
+      open_issues: data.open_issues_count,
+      watchers: data.subscribers_count,
+      pushed_at: data.pushed_at,
+      created_at: data.created_at,
+      language: data.language,
+      archived: data.archived,
+      default_branch: data.default_branch,
     });
   } catch (error) {
     console.error("GitHub repo fetch error:", error);

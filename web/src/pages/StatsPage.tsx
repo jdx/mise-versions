@@ -1,0 +1,305 @@
+import { useMemo } from "preact/hooks";
+import { Link } from "wouter-preact";
+import { useTools } from "../hooks/useTools";
+import { useAllDownloads } from "../hooks/useAllDownloads";
+
+// Extract backend type from backend string (e.g., "aqua:nektos/act" -> "aqua")
+function getBackendType(backend: string): string {
+  const colonIndex = backend.indexOf(":");
+  return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
+}
+
+// Simple horizontal bar chart component
+function BarChart({
+  data,
+  maxValue,
+}: {
+  data: Array<{ label: string; value: number; color?: string }>;
+  maxValue: number;
+}) {
+  return (
+    <div class="space-y-2">
+      {data.map((item) => (
+        <div key={item.label} class="flex items-center gap-3">
+          <div class="w-24 text-sm text-gray-400 truncate">{item.label}</div>
+          <div class="flex-1 h-6 bg-dark-700 rounded overflow-hidden">
+            <div
+              class="h-full bg-neon-purple transition-all"
+              style={{ width: `${(item.value / maxValue) * 100}%` }}
+            />
+          </div>
+          <div class="w-16 text-sm text-gray-400 text-right">
+            {item.value.toLocaleString()}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Simple pie/donut chart component
+function DonutChart({
+  data,
+  size = 160,
+}: {
+  data: Array<{ label: string; value: number; color: string }>;
+  size?: number;
+}) {
+  const total = data.reduce((sum, d) => sum + d.value, 0);
+  const strokeWidth = 30;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+
+  let currentOffset = 0;
+  const segments = data.map((d) => {
+    const percentage = d.value / total;
+    const segmentLength = percentage * circumference;
+    const offset = currentOffset;
+    currentOffset += segmentLength;
+    return { ...d, offset, length: segmentLength, percentage };
+  });
+
+  return (
+    <div class="flex items-center gap-6">
+      <svg width={size} height={size} class="transform -rotate-90">
+        {segments.map((seg) => (
+          <circle
+            key={seg.label}
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            fill="none"
+            stroke={seg.color}
+            strokeWidth={strokeWidth}
+            strokeDasharray={`${seg.length} ${circumference - seg.length}`}
+            strokeDashoffset={-seg.offset}
+            class="transition-all duration-300"
+          />
+        ))}
+      </svg>
+      <div class="space-y-1">
+        {segments.slice(0, 6).map((seg) => (
+          <div key={seg.label} class="flex items-center gap-2 text-sm">
+            <div
+              class="w-3 h-3 rounded-sm"
+              style={{ backgroundColor: seg.color }}
+            />
+            <span class="text-gray-400">{seg.label}</span>
+            <span class="text-gray-500">({(seg.percentage * 100).toFixed(1)}%)</span>
+          </div>
+        ))}
+        {segments.length > 6 && (
+          <div class="text-xs text-gray-500">+{segments.length - 6} more</div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const BACKEND_COLORS: Record<string, string> = {
+  aqua: "#00D4FF",
+  ubi: "#B026FF",
+  asdf: "#FF2D95",
+  vfox: "#22C55E",
+  cargo: "#F97316",
+  npm: "#EF4444",
+  go: "#3B82F6",
+  pipx: "#8B5CF6",
+  core: "#FBBF24",
+  gem: "#EC4899",
+};
+
+function getBackendColor(backend: string): string {
+  return BACKEND_COLORS[backend] || "#6B7280";
+}
+
+export function StatsPage() {
+  const { data: toolsData, loading: toolsLoading } = useTools();
+  const { data: downloads, loading: downloadsLoading } = useAllDownloads();
+
+  const loading = toolsLoading || downloadsLoading;
+
+  // Compute backend statistics
+  const backendStats = useMemo(() => {
+    if (!toolsData?.tools) return { counts: [], downloads: [] };
+
+    const counts = new Map<string, number>();
+    const downloadsByBackend = new Map<string, number>();
+
+    for (const tool of toolsData.tools) {
+      const toolDownloads = downloads?.[tool.name] || 0;
+      const seenTypes = new Set<string>();
+
+      if (tool.backends) {
+        for (const backend of tool.backends) {
+          const backendType = getBackendType(backend);
+          if (!seenTypes.has(backendType)) {
+            seenTypes.add(backendType);
+            counts.set(backendType, (counts.get(backendType) || 0) + 1);
+            // Attribute downloads proportionally (simplified: full downloads to each backend)
+            downloadsByBackend.set(
+              backendType,
+              (downloadsByBackend.get(backendType) || 0) + toolDownloads
+            );
+          }
+        }
+      }
+    }
+
+    // Sort by count
+    const sortedCounts = [...counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([label, value]) => ({ label, value, color: getBackendColor(label) }));
+
+    const sortedDownloads = [...downloadsByBackend.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([label, value]) => ({ label, value, color: getBackendColor(label) }));
+
+    return { counts: sortedCounts, downloads: sortedDownloads };
+  }, [toolsData?.tools, downloads]);
+
+  // Compute total downloads
+  const totalDownloads = useMemo(() => {
+    if (!downloads) return 0;
+    return Object.values(downloads).reduce((sum, count) => sum + count, 0);
+  }, [downloads]);
+
+  // Get top tools per backend
+  const topToolsByBackend = useMemo(() => {
+    if (!toolsData?.tools || !downloads) return new Map();
+
+    const byBackend = new Map<string, Array<{ name: string; downloads: number }>>();
+
+    for (const tool of toolsData.tools) {
+      if (!tool.backends) continue;
+      const toolDownloads = downloads[tool.name] || 0;
+
+      for (const backend of tool.backends) {
+        const backendType = getBackendType(backend);
+        if (!byBackend.has(backendType)) {
+          byBackend.set(backendType, []);
+        }
+        // Only add if not already in list (avoid duplicates from multiple backends)
+        const list = byBackend.get(backendType)!;
+        if (!list.some((t) => t.name === tool.name)) {
+          list.push({ name: tool.name, downloads: toolDownloads });
+        }
+      }
+    }
+
+    // Sort each list and keep top 5
+    for (const [key, list] of byBackend.entries()) {
+      list.sort((a, b) => b.downloads - a.downloads);
+      byBackend.set(key, list.slice(0, 5));
+    }
+
+    return byBackend;
+  }, [toolsData?.tools, downloads]);
+
+  if (loading) {
+    return (
+      <div class="space-y-6">
+        <h1 class="text-2xl font-bold text-gray-100">Ecosystem Stats</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+              <div class="h-6 w-24 bg-dark-600 rounded animate-pulse mb-2" />
+              <div class="h-8 w-32 bg-dark-600 rounded animate-pulse" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Select top 5 backends for display
+  const topBackends = backendStats.counts.slice(0, 5).map((b) => b.label);
+
+  return (
+    <div class="space-y-8">
+      <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-gray-100">Ecosystem Stats</h1>
+        <Link href="/" class="text-sm text-gray-400 hover:text-neon-purple transition-colors">
+          ← Back to tools
+        </Link>
+      </div>
+
+      {/* Overview cards */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <div class="text-sm text-gray-400 mb-1">Total Tools</div>
+          <div class="text-3xl font-bold text-gray-100">
+            {toolsData?.tool_count.toLocaleString()}
+          </div>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <div class="text-sm text-gray-400 mb-1">Downloads (30d)</div>
+          <div class="text-3xl font-bold text-neon-purple">
+            {totalDownloads.toLocaleString()}
+          </div>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <div class="text-sm text-gray-400 mb-1">Backends</div>
+          <div class="text-3xl font-bold text-gray-100">
+            {backendStats.counts.length}
+          </div>
+        </div>
+      </div>
+
+      {/* Charts row */}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Tools by backend */}
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <h2 class="text-lg font-semibold text-gray-200 mb-4">Tools by Backend</h2>
+          <BarChart
+            data={backendStats.counts.slice(0, 10)}
+            maxValue={Math.max(...backendStats.counts.map((b) => b.value))}
+          />
+        </div>
+
+        {/* Downloads distribution */}
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <h2 class="text-lg font-semibold text-gray-200 mb-4">Downloads by Backend</h2>
+          <DonutChart data={backendStats.downloads.slice(0, 8)} />
+        </div>
+      </div>
+
+      {/* Top tools per backend */}
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+        <h2 class="text-lg font-semibold text-gray-200 mb-4">Top Tools by Backend</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {topBackends.map((backend) => {
+            const tools = topToolsByBackend.get(backend) || [];
+            return (
+              <div key={backend}>
+                <h3 class="text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+                  <span
+                    class="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: getBackendColor(backend) }}
+                  />
+                  {backend}
+                </h3>
+                <div class="space-y-1">
+                  {tools.map((tool: { name: string; downloads: number }, index: number) => (
+                    <Link
+                      key={tool.name}
+                      href={`/${tool.name}`}
+                      class="flex items-center justify-between text-sm group"
+                    >
+                      <span class="text-gray-300 group-hover:text-neon-purple transition-colors truncate">
+                        {index + 1}. {tool.name}
+                      </span>
+                      <span class="text-gray-500 text-xs">
+                        {(tool.downloads / 1000).toFixed(1)}k
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
