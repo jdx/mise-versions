@@ -294,6 +294,9 @@ async function main() {
     let notFoundCount = 0;
     const lines = ["[versions]"];
 
+    // Debug: show first comparison
+    let debugShown = false;
+
     for (const [version, data] of Object.entries(existing.versions)) {
       const apiTs = apiTimestamps.get(version);
       // Handle Date object from TOML parser
@@ -305,6 +308,16 @@ async function main() {
 
       if (apiTs) {
         const apiDate = new Date(apiTs).toISOString();
+
+        // Debug first comparison
+        if (!debugShown) {
+          console.log(`  First comparison: version=${version}`);
+          console.log(`    TOML timestamp: "${timestamp}" (type: ${typeof data.created_at}, isDate: ${data.created_at instanceof Date})`);
+          console.log(`    API timestamp:  "${apiDate}" (from: "${apiTs}")`);
+          console.log(`    Are they equal? ${timestamp === apiDate}`);
+          debugShown = true;
+        }
+
         if (timestamp !== apiDate) {
           timestamp = apiDate;
           changedCount++;
