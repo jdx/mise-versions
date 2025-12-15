@@ -42,8 +42,12 @@ jobs:
           node-version: "20"
 
       - uses: jdx/mise-action@v2
+        with:
+          cache: false
 
       - run: npm install
+
+      - run: mise --version
 
       - name: Run backfill script
         run: |
