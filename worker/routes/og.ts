@@ -120,41 +120,62 @@ export async function handleOgImageHome(
 
 function generateImage(tool: ToolMeta, downloads: number | null, backend: string | null): Response {
   const description = tool.description
-    ? tool.description.length > 100
-      ? tool.description.slice(0, 100) + "..."
+    ? tool.description.length > 120
+      ? tool.description.slice(0, 120) + "..."
       : tool.description
     : "";
 
-  const versionText = tool.latest_version
-    ? `v${tool.latest_version}`
+  const versionText = tool.latest_version ? `v${tool.latest_version}` : "";
+
+  // Build stat badges
+  const backendBadge = backend
+    ? `<div style="display: flex; align-items: center; background: #1e1e2e; border: 1px solid #3b3b4f; border-radius: 8px; padding: 8px 16px;">
+        <span style="font-size: 18px; color: #00D4FF; font-weight: 600;">${escapeHtml(backend)}</span>
+       </div>`
     : "";
 
-  // Build stats line: "aqua · 3.8k downloads · 238 versions"
-  const statsParts: string[] = [];
-  if (backend) {
-    statsParts.push(backend);
-  }
-  if (downloads) {
-    statsParts.push(`${formatDownloads(downloads)} downloads`);
-  }
-  if (tool.version_count > 0) {
-    statsParts.push(`${tool.version_count} versions`);
-  }
-  const statsText = statsParts.join(" · ");
+  const downloadsBadge = downloads
+    ? `<div style="display: flex; align-items: center; background: #1e1e2e; border: 1px solid #3b3b4f; border-radius: 8px; padding: 8px 16px;">
+        <span style="font-size: 18px; color: #22c55e;">↓</span>
+        <span style="font-size: 18px; color: #d1d5db; margin-left: 8px;">${formatDownloads(downloads)}</span>
+       </div>`
+    : "";
+
+  const versionsBadge = tool.version_count > 0
+    ? `<div style="display: flex; align-items: center; background: #1e1e2e; border: 1px solid #3b3b4f; border-radius: 8px; padding: 8px 16px;">
+        <span style="font-size: 18px; color: #d1d5db;">${tool.version_count} versions</span>
+       </div>`
+    : "";
 
   const html = `
-    <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%); padding: 60px;">
-      <div style="display: flex; flex-direction: column; flex: 1; justify-content: center;">
-        <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 16px;">
-          <span style="font-size: 72px; font-weight: 800; color: #B026FF;">${escapeHtml(tool.name)}</span>
-          ${versionText ? `<span style="font-size: 36px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ""}
-        </div>
-        ${description ? `<p style="font-size: 28px; color: #d1d5db; margin: 0 0 24px 0; line-height: 1.4;">${escapeHtml(description)}</p>` : ""}
-        ${statsText ? `<p style="font-size: 22px; color: #6b7280; margin: 0;">${escapeHtml(statsText)}</p>` : ""}
+    <div style="display: flex; flex-direction: column; width: 100%; height: 100%; background: #0d0d14; padding: 48px 56px;">
+      <!-- Header: branding -->
+      <div style="display: flex; align-items: center; margin-bottom: 32px;">
+        <span style="font-size: 20px; font-weight: 700; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
       </div>
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <span style="font-size: 24px; font-weight: 600; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
-        <span style="font-size: 20px; color: #6b7280;">mise-tools.jdx.dev/tools/${escapeHtml(tool.name)}</span>
+
+      <!-- Main content -->
+      <div style="display: flex; flex-direction: column; flex: 1;">
+        <!-- Tool name and version -->
+        <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px;">
+          <span style="font-size: 64px; font-weight: 800; color: #B026FF;">${escapeHtml(tool.name)}</span>
+          ${versionText ? `<span style="font-size: 28px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ""}
+        </div>
+
+        <!-- Description -->
+        ${description ? `<p style="font-size: 26px; color: #9ca3af; margin: 0 0 28px 0; line-height: 1.4; max-width: 900px;">${escapeHtml(description)}</p>` : ""}
+
+        <!-- Stats badges -->
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          ${backendBadge}
+          ${downloadsBadge}
+          ${versionsBadge}
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div style="display: flex; align-items: center; margin-top: 24px;">
+        <span style="font-size: 18px; color: #6b7280;">mise-tools.jdx.dev/tools/${escapeHtml(tool.name)}</span>
       </div>
     </div>
   `;
@@ -163,7 +184,7 @@ function generateImage(tool: ToolMeta, downloads: number | null, backend: string
     width: 1200,
     height: 630,
     headers: {
-      "Cache-Control": "public, max-age=86400", // Cache for 24 hours
+      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
       ...CORS_HEADERS,
     },
   });
