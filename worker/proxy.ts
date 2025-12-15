@@ -54,7 +54,7 @@ async function fetchToolMeta(toolName: string): Promise<ToolMeta | null> {
 // Fetch download count for a tool
 async function fetchDownloadCount(toolName: string): Promise<number | null> {
   try {
-    const response = await fetch(`https://mise-tools.jdx.dev/api/downloads?tool=${encodeURIComponent(toolName)}`);
+    const response = await fetch(`https://mise-tools.jdx.dev/api/downloads/${encodeURIComponent(toolName)}`);
     if (!response.ok) return null;
     const data = await response.json() as { total: number };
     return data.total || null;
