@@ -193,8 +193,13 @@ async function main() {
   // Initialize token
   await getGitHubToken();
 
-  // Find all TOML files
-  const files = readdirSync(DOCS_DIR).filter((f) => f.endsWith(".toml"));
+  // Find all TOML files, excluding internal tools
+  const EXCLUDED_PREFIXES = ["python-precompiled"];
+  const files = readdirSync(DOCS_DIR).filter((f) => {
+    if (!f.endsWith(".toml")) return false;
+    const toolName = basename(f, ".toml");
+    return !EXCLUDED_PREFIXES.some((prefix) => toolName.startsWith(prefix));
+  });
   console.log(`Found ${files.length} TOML files`);
 
   // Filter to specific tool if requested
