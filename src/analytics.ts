@@ -649,14 +649,22 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
         // Update downloads for this tool using completely raw SQL
         // D1 seems to have issues with parameterized UPDATE queries
-        await db.run(
-          sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
-        );
+        try {
+          await db.run(
+            sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
+          );
+        } catch (e: any) {
+          throw new Error(`UPDATE downloads failed for ${tool.name} (tool_id=${tool.id}, backend_id=${backendId}): ${e?.message || e}`);
+        }
 
         // Update downloads_daily for this tool
-        await db.run(
-          sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
-        );
+        try {
+          await db.run(
+            sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${tool.id} AND backend_id IS NULL`)
+          );
+        } catch (e: any) {
+          throw new Error(`UPDATE downloads_daily failed for ${tool.name}: ${e?.message || e}`);
+        }
 
         updated++;
       }
