@@ -177,7 +177,6 @@ mark_token_rate_limited() {
 		return
 	fi
 
-	echo "🚫 Marking token $token_id as rate-limited" >&2
 	increment_stat "total_rate_limits_hit"
 
 	# Mark token as rate-limited asynchronously
@@ -237,32 +236,19 @@ generate_toml_file() {
 # Function to get a fresh GitHub token from the token manager
 get_github_token() {
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
-		echo "❌ TOKEN_MANAGER_URL and TOKEN_MANAGER_SECRET not set, stopping processing" >&2
+		echo "❌ TOKEN_MANAGER_URL and TOKEN_MANAGER_SECRET not set" >&2
 		return 1
 	fi
 
-	echo "🔄 Getting fresh GitHub token from token manager..." >&2
 	increment_stat "total_tokens_used"
-	
-	# Use the github-token.js script to get a token
-	# Capture both stdout (token) and stderr (includes token_id)
+
 	local token_output
 	if ! token_output=$(node scripts/github-token.js get-token); then
-		echo "❌ Failed to get token from token manager - no more tokens available" >&2
-		echo "🛑 Stopping processing as no tokens are available" >&2
+		echo "❌ No tokens available" >&2
 		return 1
 	fi
-	
-	# Extract token (last line of output) and token_id (from stderr)
-	local token
-	local token_id
-	
-	token=$(echo "$token_output" | cut -d' ' -f1)
-	token_id=$(echo "$token_output" | cut -d' ' -f2)
-	
-	echo "✅ Token obtained from token manager (ID: $token_id)" >&2
-	echo "$token $token_id"
-	
+
+	echo "$token_output"
 	return 0
 }
 
@@ -271,13 +257,7 @@ fetch() {
 	increment_stat "total_tools_checked"
 	
 	case "$1" in
-	awscli-local) # TODO: remove this when it is working
-		echo "Skipping $1"
-		increment_stat "total_tools_skipped"
-		return
-		;;
-	jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar)
-		echo "Skipping $1"
+	awscli-local | jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar)
 		increment_stat "total_tools_skipped"
 		return
 		;;
@@ -307,8 +287,13 @@ fetch() {
 
 	local rate_limit_info
 	rate_limit_info=$(GITHUB_TOKEN="$token" mise x -- wait-for-gh-rate-limit 2>&1 || echo "")
-	echo "$rate_limit_info"
-	echo "Fetching $1 (using token ID: $token_id)"
+	# Only show rate limit if low
+	local remaining
+	remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+' || echo "5000")
+	if [ "$remaining" -lt 1000 ]; then
+		echo "$rate_limit_info" >&2
+	fi
+	echo "Fetching $1"
 
 	# Create a temporary file to capture stderr and check for rate limiting
 	local stderr_file
@@ -323,20 +308,12 @@ fetch() {
 
 		# Check if this was a rate limit issue (403 Forbidden)
 		if grep -q "403 Forbidden" "$stderr_file"; then
-			echo "⚠️ Rate limit hit for token $token_id on $1, marking token as rate-limited" >&2
-
-			local remaining
-			local reset_time
-			remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+')
-			reset_time=""
+			local reset_time=""
 			if [ "$remaining" == "0" ]; then
-				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+')
+				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
 			fi
-
-			# Mark this specific token as rate-limited
 			mark_token_rate_limited "$token_id" "$reset_time"
-
-			echo "🔄 Retrying with a different token" >&2
+			echo "Rate limited on $1, retrying..." >&2
 			fetch "$1"
 		fi
 
@@ -397,32 +374,25 @@ fetch() {
 
 # Enhanced token management setup
 setup_token_management() {
-	echo "🔧 Setting up token management..." >&2
-	
-	if [ -n "$TOKEN_MANAGER_URL" ] && [ -n "$TOKEN_MANAGER_SECRET" ]; then
-		echo "✅ Using GitHub Token Manager at $TOKEN_MANAGER_URL" >&2
-		
-		# Check token manager health
-		if curl -f -s "$TOKEN_MANAGER_URL/health" >/dev/null 2>&1; then
-			echo "✅ Token manager is healthy" >&2
-			
-			# Get token statistics
-			if STATS=$(curl -s -H "Authorization: Bearer $TOKEN_MANAGER_SECRET" "$TOKEN_MANAGER_URL/api/stats" 2>/dev/null); then
-				ACTIVE_TOKENS=$(echo "$STATS" | jq -r '.active // 0' 2>/dev/null || echo "0")
-				echo "📊 Available tokens: $ACTIVE_TOKENS" >&2
-				
-				if [ "$ACTIVE_TOKENS" -eq 0 ]; then
-					echo "❌ No active tokens available, stopping processing" >&2
-					return 1
-				fi
-			fi
-		else
-			echo "❌ Token manager health check failed, stopping processing" >&2
+	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
+		echo "❌ Token manager not configured" >&2
+		return 1
+	fi
+
+	# Check token manager health
+	if ! curl -f -s "$TOKEN_MANAGER_URL/health" >/dev/null 2>&1; then
+		echo "❌ Token manager health check failed" >&2
+		return 1
+	fi
+
+	# Get token statistics
+	if STATS=$(curl -s -H "Authorization: Bearer $TOKEN_MANAGER_SECRET" "$TOKEN_MANAGER_URL/api/stats" 2>/dev/null); then
+		ACTIVE_TOKENS=$(echo "$STATS" | jq -r '.active // 0' 2>/dev/null || echo "0")
+		echo "Available tokens: $ACTIVE_TOKENS"
+		if [ "$ACTIVE_TOKENS" -eq 0 ]; then
+			echo "❌ No active tokens available" >&2
 			return 1
 		fi
-	else
-		echo "❌ Token manager not configured, stopping processing" >&2
-		return 1
 	fi
 }
 
@@ -435,9 +405,8 @@ if setup_token_management; then
 	set_stat "total_tools_available" "$(echo "$tools" | wc -w)"
 
 	# Check if tokens are available before starting processing
-	echo "🔍 Checking token availability before starting..."
-	if ! get_github_token >/dev/null; then
-		echo "🛑 No tokens available - stopping all processing"
+	if ! get_github_token >/dev/null 2>&1; then
+		echo "No tokens available - stopping"
 		generate_summary
 		exit 0
 	fi
@@ -449,8 +418,7 @@ if setup_token_management; then
 	fi
 	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
 
-	# Enhanced parallel processing with better token distribution
-	echo "🚀 Starting parallel fetch operations..."
+	# Process tools
 	export -f fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
 	export STATS_DIR
 	first_processed_tool=""
@@ -470,7 +438,6 @@ if setup_token_management; then
 	set_stat "last_processed_tool" "$last_processed_tool"
 
 	# Generate tools.json manifest for the web UI
-	echo "📋 Generating tools manifest..."
 	if node scripts/generate-manifest.js; then
 		git add docs/tools.json
 	fi

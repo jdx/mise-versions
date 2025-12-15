@@ -128,32 +128,25 @@ async function main() {
 
   try {
     if (action === 'get-token') {
-      console.error('🔄 Fetching GitHub token...');
-      
       const response = await makeRequest(`${baseUrl}/api/token`, {
         headers: {
           'Authorization': `Bearer ${secret}`
         }
       });
-      
+
       if (response.status !== 200) {
         console.error(`❌ Failed to fetch token: ${response.status} ${response.data}`);
         process.exit(1);
       }
-      
+
       const { token, installation_id, expires_at, token_id } = response.data;
-      
-      console.error('✅ Token fetched successfully');
-      console.error(`📊 Token ID: ${token_id || installation_id}`);
-      console.error(`📊 Installation ID: ${installation_id}`);
-      console.error(`⏰ Expires at: ${expires_at}`);
-      
+
       // Set GitHub Actions outputs
       if (process.env.GITHUB_ACTIONS === 'true') {
         // Mask the token in logs
         console.error(`::add-mask::${token}`);
       }
-      
+
       // Return token and token_id
       console.log(`${token} ${token_id || installation_id}`);
       
@@ -166,16 +159,12 @@ async function main() {
         process.exit(1);
       }
       
-      console.error(`🚫 Marking token ${tokenId} as rate-limited...`);
-
       const response = await markRateLimited(baseUrl, secret, parseInt(tokenId), resetTime);
 
       if (response.status !== 200) {
-        console.error(`❌ Failed to mark token as rate-limited: ${response.status} ${response.data}`);
+        console.error(`❌ Failed to mark token ${tokenId} as rate-limited: ${response.status}`);
         process.exit(1);
       }
-      
-      console.error('✅ Token marked as rate-limited successfully');
       
     } else if (action === 'stats') {
       console.error('📊 Fetching token statistics...');
