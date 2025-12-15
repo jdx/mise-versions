@@ -594,93 +594,78 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>
     ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
-      // First, insert all backends from registry
+      // Build mapping of tool name -> default backend
+      const toolToBackend = new Map<string, string>();
+      for (const entry of registry) {
+        if (entry.backends && entry.backends.length > 0) {
+          toolToBackend.set(entry.short, entry.backends[0]);
+        }
+      }
+
+      // First, insert all unique backends from registry
+      const uniqueBackends = new Set(toolToBackend.values());
       let backendsCreated = 0;
-      for (const entry of registry) {
-        if (entry.backends && entry.backends.length > 0) {
-          const defaultBackend = entry.backends[0];
-          try {
-            await db.run(
-              sql`INSERT OR IGNORE INTO backends (full) VALUES (${defaultBackend})`
-            );
-            backendsCreated++;
-          } catch (e) {
-            console.log(`Failed to insert backend ${defaultBackend}: ${e}`);
-          }
+      for (const backend of uniqueBackends) {
+        try {
+          await db.run(
+            sql`INSERT OR IGNORE INTO backends (full) VALUES (${backend})`
+          );
+          backendsCreated++;
+        } catch (e) {
+          console.log(`Failed to insert backend ${backend}: ${e}`);
         }
       }
 
-      // Create a temporary mapping table
-      await db.run(sql`
-        CREATE TEMPORARY TABLE IF NOT EXISTS tool_backend_map (
-          tool_name TEXT PRIMARY KEY,
-          backend_full TEXT NOT NULL
-        )
-      `);
-
-      // Insert mappings
-      for (const entry of registry) {
-        if (entry.backends && entry.backends.length > 0) {
-          await db.run(sql`
-            INSERT OR REPLACE INTO tool_backend_map (tool_name, backend_full)
-            VALUES (${entry.short}, ${entry.backends[0]})
-          `);
-        }
-      }
-
-      // Update downloads in a single batch using the mapping
-      const updateResult = await db.run(sql`
-        UPDATE downloads
-        SET backend_id = (
-          SELECT b.id
-          FROM tools t
-          JOIN tool_backend_map m ON t.name = m.tool_name
-          JOIN backends b ON b.full = m.backend_full
-          WHERE t.id = downloads.tool_id
-        )
-        WHERE backend_id IS NULL
-        AND EXISTS (
-          SELECT 1
-          FROM tools t
-          JOIN tool_backend_map m ON t.name = m.tool_name
-          WHERE t.id = downloads.tool_id
-        )
-      `);
-
-      const updated = (updateResult as any).meta?.changes ?? 0;
-
-      // Update downloads_daily similarly
-      await db.run(sql`
-        UPDATE downloads_daily
-        SET backend_id = (
-          SELECT b.id
-          FROM tools t
-          JOIN tool_backend_map m ON t.name = m.tool_name
-          JOIN backends b ON b.full = m.backend_full
-          WHERE t.id = downloads_daily.tool_id
-        )
-        WHERE backend_id IS NULL
-        AND EXISTS (
-          SELECT 1
-          FROM tools t
-          JOIN tool_backend_map m ON t.name = m.tool_name
-          WHERE t.id = downloads_daily.tool_id
-        )
-      `);
-
-      // Get count of tools that were mapped
-      const toolsMapped = await db.all(sql`
-        SELECT COUNT(DISTINCT t.id) as count
+      // Get all tools with NULL backend_id downloads
+      const toolsWithNullBackend = await db.all(sql`
+        SELECT DISTINCT t.id, t.name
         FROM tools t
-        JOIN tool_backend_map m ON t.name = m.tool_name
-      `) as Array<{ count: number }>;
+        JOIN downloads d ON d.tool_id = t.id
+        WHERE d.backend_id IS NULL
+      `) as Array<{ id: number; name: string }>;
 
-      // Clean up temp table
-      await db.run(sql`DROP TABLE IF EXISTS tool_backend_map`);
+      let updated = 0;
+      let toolsMapped = 0;
+
+      // Process each tool
+      for (const tool of toolsWithNullBackend) {
+        const backendFull = toolToBackend.get(tool.name);
+        if (!backendFull) {
+          continue;
+        }
+
+        // Get backend ID
+        const backendRows = await db.all(
+          sql`SELECT id FROM backends WHERE full = ${backendFull}`
+        ) as Array<{ id: number }>;
+
+        if (backendRows.length === 0) {
+          console.log(`Backend not found for: ${backendFull}`);
+          continue;
+        }
+
+        const backendId = backendRows[0].id;
+        toolsMapped++;
+
+        // Update downloads for this tool
+        const result = await db.run(sql`
+          UPDATE downloads
+          SET backend_id = ${backendId}
+          WHERE tool_id = ${tool.id} AND backend_id IS NULL
+        `);
+        updated += (result as any).meta?.changes ?? 0;
+
+        // Update downloads_daily for this tool
+        await db.run(sql`
+          UPDATE downloads_daily
+          SET backend_id = ${backendId}
+          WHERE tool_id = ${tool.id} AND backend_id IS NULL
+        `);
+      }
 
       return {
         updated,
-        tools_mapped: toolsMapped[0]?.count ?? 0,
+        tools_mapped: toolsMapped,
         backends_created: backendsCreated,
       };
     },
