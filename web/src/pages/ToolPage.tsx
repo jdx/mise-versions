@@ -445,8 +445,8 @@ export function ToolPage({ params }: Props) {
       <td class="px-4 py-3 hidden sm:table-cell text-right">
         <div class="h-5 w-12 bg-dark-600 rounded animate-pulse ml-auto" />
       </td>
-      <td class="px-4 py-3">
-        <div class="h-5 w-32 bg-dark-600 rounded animate-pulse" />
+      <td class="px-4 py-3 text-right">
+        <div class="h-5 w-32 bg-dark-600 rounded animate-pulse ml-auto" />
       </td>
     </tr>
   );
@@ -516,7 +516,7 @@ export function ToolPage({ params }: Props) {
               <th class="text-right px-4 py-3 hidden sm:table-cell">
                 <SortButton label="Downloads" sortKey="downloads" />
               </th>
-              <th class="text-left px-4 py-3">
+              <th class="text-right px-4 py-3">
                 <SortButton label="Released" sortKey="released" />
               </th>
             </tr>
@@ -539,7 +539,7 @@ export function ToolPage({ params }: Props) {
                       (versionDownloads.get(v.version) || 0).toLocaleString()
                     )}
                   </td>
-                  <td class="px-4 py-3 text-sm text-gray-400">
+                  <td class="px-4 py-3 text-sm text-gray-400 text-right">
                     {v.created_at ? (
                       <>
                         {formatRelativeTime(v.created_at)}{" "}
