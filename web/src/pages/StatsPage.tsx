@@ -2,6 +2,7 @@ import { useMemo } from "preact/hooks";
 import { Link } from "wouter-preact";
 import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
+import { useBackendStats } from "../hooks/useBackendStats";
 
 // Extract backend type from backend string (e.g., "aqua:nektos/act" -> "aqua")
 function getBackendType(backend: string): string {
@@ -116,11 +117,12 @@ function getBackendColor(backend: string): string {
 export function StatsPage() {
   const { data: toolsData, loading: toolsLoading } = useTools();
   const { data: downloads, loading: downloadsLoading } = useAllDownloads();
+  const { data: backendStatsData, loading: backendStatsLoading } = useBackendStats();
 
-  const loading = toolsLoading || downloadsLoading;
+  const loading = toolsLoading || downloadsLoading || backendStatsLoading;
 
-  // Compute backend statistics
-  const backendStats = useMemo(() => {
+  // Compute backend statistics (derived from tools.json for tool counts)
+  const derivedBackendStats = useMemo(() => {
     if (!toolsData?.tools) return { counts: [], downloads: [] };
 
     const counts = new Map<string, number>();
@@ -158,14 +160,40 @@ export function StatsPage() {
     return { counts: sortedCounts, downloads: sortedDownloads };
   }, [toolsData?.tools, downloads]);
 
+  // Use real backend stats from tracking data when available, fall back to derived stats
+  const backendStats = useMemo(() => {
+    // Tool counts always come from tools.json (since that's about which tools support which backends)
+    const counts = derivedBackendStats.counts;
+
+    // Downloads: prefer real tracking data if we have it
+    const realDownloads = backendStatsData?.downloads_by_backend;
+    const hasRealData = realDownloads && realDownloads.length > 0 &&
+      realDownloads.some(d => d.backend !== "unknown");
+
+    if (hasRealData) {
+      // Use real tracking data
+      const downloads = realDownloads
+        .filter(d => d.backend !== "unknown") // Filter out unknown backends
+        .map(d => ({
+          label: d.backend,
+          value: d.count,
+          color: getBackendColor(d.backend),
+        }));
+      return { counts, downloads };
+    }
+
+    // Fall back to derived stats
+    return { counts, downloads: derivedBackendStats.downloads };
+  }, [derivedBackendStats, backendStatsData]);
+
   // Compute total downloads
   const totalDownloads = useMemo(() => {
     if (!downloads) return 0;
     return Object.values(downloads).reduce((sum, count) => sum + count, 0);
   }, [downloads]);
 
-  // Get top tools per backend
-  const topToolsByBackend = useMemo(() => {
+  // Get top tools per backend (derived from tools.json)
+  const derivedTopToolsByBackend = useMemo(() => {
     if (!toolsData?.tools || !downloads) return new Map();
 
     const byBackend = new Map<string, Array<{ name: string; downloads: number }>>();
@@ -195,6 +223,25 @@ export function StatsPage() {
 
     return byBackend;
   }, [toolsData?.tools, downloads]);
+
+  // Use real backend stats from tracking data when available, fall back to derived stats
+  const topToolsByBackend = useMemo(() => {
+    const realData = backendStatsData?.top_tools_by_backend;
+    const hasRealData = realData && Object.keys(realData).length > 0 &&
+      Object.keys(realData).some(k => k !== "unknown");
+
+    if (hasRealData) {
+      // Convert to Map format, filtering out unknown backend
+      const result = new Map<string, Array<{ name: string; downloads: number }>>();
+      for (const [backend, tools] of Object.entries(realData)) {
+        if (backend === "unknown") continue;
+        result.set(backend, tools.map(t => ({ name: t.tool, downloads: t.count })));
+      }
+      return result;
+    }
+
+    return derivedTopToolsByBackend;
+  }, [derivedTopToolsByBackend, backendStatsData]);
 
   if (loading) {
     return (

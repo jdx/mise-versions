@@ -33,6 +33,7 @@ export async function handleTrack(
       version: string;
       os?: string;
       arch?: string;
+      full?: string; // Full backend identifier (e.g., "aqua:nektos/act")
     };
 
     // Validate required fields
@@ -52,6 +53,7 @@ export async function handleTrack(
     // Get OS/arch from body (optional)
     const os = body.os || null;
     const arch = body.arch || null;
+    const full = body.full || null;
 
     const db = drizzle(env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
@@ -61,7 +63,8 @@ export async function handleTrack(
       body.version,
       ipHash,
       os,
-      arch
+      arch,
+      full
     );
 
     return jsonResponse({
@@ -173,5 +176,23 @@ export async function handleAggregate(
   } catch (error) {
     console.error("Aggregate error:", error);
     return errorResponse("Failed to aggregate data", 500);
+  }
+}
+
+// GET /api/stats/backends - Get download stats by backend (public)
+export async function handleGetBackendStats(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const stats = await analytics.getBackendStats();
+
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
+  } catch (error) {
+    console.error("Get backend stats error:", error);
+    return errorResponse("Failed to get backend stats", 500);
   }
 }

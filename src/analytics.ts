@@ -14,6 +14,12 @@ export const tools = sqliteTable("tools", {
   name: text("name").notNull().unique(),
 });
 
+// Backends lookup table (full backend identifiers like "aqua:nektos/act")
+export const backends = sqliteTable("backends", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  full: text("full").notNull().unique(), // e.g., "aqua:nektos/act", "core:node"
+});
+
 // Platforms lookup table (os + arch combinations)
 export const platforms = sqliteTable("platforms", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -25,6 +31,7 @@ export const platforms = sqliteTable("platforms", {
 export const downloads = sqliteTable("downloads", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   tool_id: integer("tool_id").notNull(),
+  backend_id: integer("backend_id"), // nullable for old records
   version: text("version").notNull(),
   platform_id: integer("platform_id"),
   ip_hash: text("ip_hash").notNull(),
@@ -35,6 +42,7 @@ export const downloads = sqliteTable("downloads", {
 export const downloadsDaily = sqliteTable("downloads_daily", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   tool_id: integer("tool_id").notNull(),
+  backend_id: integer("backend_id"), // nullable for old records
   version: text("version").notNull(),
   platform_id: integer("platform_id"),
   date: text("date").notNull(), // YYYY-MM-DD
@@ -43,8 +51,9 @@ export const downloadsDaily = sqliteTable("downloads_daily", {
 });
 
 export function setupAnalytics(db: ReturnType<typeof drizzle>) {
-  // Cache for tool and platform IDs to avoid repeated lookups
+  // Cache for tool, backend, and platform IDs to avoid repeated lookups
   const toolCache = new Map<string, number>();
+  const backendCache = new Map<string, number>();
   const platformCache = new Map<string, number>();
 
   async function getOrCreateToolId(name: string): Promise<number> {
@@ -75,6 +84,39 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
     const id = inserted!.id;
     toolCache.set(name, id);
+    return id;
+  }
+
+  async function getOrCreateBackendId(full: string | null): Promise<number | null> {
+    if (!full) return null;
+
+    // Check cache first
+    if (backendCache.has(full)) {
+      return backendCache.get(full)!;
+    }
+
+    // Try to find existing
+    const existing = await db
+      .select({ id: backends.id })
+      .from(backends)
+      .where(eq(backends.full, full))
+      .get();
+
+    if (existing) {
+      backendCache.set(full, existing.id);
+      return existing.id;
+    }
+
+    // Insert new
+    await db.insert(backends).values({ full }).onConflictDoNothing();
+    const inserted = await db
+      .select({ id: backends.id })
+      .from(backends)
+      .where(eq(backends.full, full))
+      .get();
+
+    const id = inserted!.id;
+    backendCache.set(full, id);
     return id;
   }
 
@@ -131,9 +173,11 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       version: string,
       ipHash: string,
       os: string | null,
-      arch: string | null
+      arch: string | null,
+      full: string | null = null // Full backend identifier (e.g., "aqua:nektos/act")
     ): Promise<{ deduplicated: boolean }> {
       const toolId = await getOrCreateToolId(tool);
+      const backendId = await getOrCreateBackendId(full);
       const platformId = await getOrCreatePlatformId(os, arch);
       const now = Math.floor(Date.now() / 1000);
       const todayStart = Math.floor(now / 86400) * 86400; // Start of today (UTC)
@@ -160,6 +204,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       // Insert new record
       await db.insert(downloads).values({
         tool_id: toolId,
+        backend_id: backendId,
         version,
         platform_id: platformId,
         ip_hash: ipHash,
@@ -364,10 +409,11 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     async aggregateOldData(): Promise<{ aggregated: number; deleted: number }> {
       const ninetyDaysAgo = Math.floor(Date.now() / 1000) - 90 * 86400;
 
-      // Get data to aggregate (grouped by tool, version, platform, date)
+      // Get data to aggregate (grouped by tool, backend, version, platform, date)
       const toAggregate = await db
         .select({
           tool_id: downloads.tool_id,
+          backend_id: downloads.backend_id,
           version: downloads.version,
           platform_id: downloads.platform_id,
           date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
@@ -378,6 +424,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .where(sql`${downloads.created_at} < ${ninetyDaysAgo}`)
         .groupBy(
           downloads.tool_id,
+          downloads.backend_id,
           downloads.version,
           downloads.platform_id,
           sql`date(${downloads.created_at}, 'unixepoch')`
@@ -399,6 +446,9 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
               eq(downloadsDaily.tool_id, row.tool_id),
               eq(downloadsDaily.version, row.version),
               eq(downloadsDaily.date, row.date),
+              row.backend_id
+                ? eq(downloadsDaily.backend_id, row.backend_id)
+                : sql`${downloadsDaily.backend_id} IS NULL`,
               row.platform_id
                 ? eq(downloadsDaily.platform_id, row.platform_id)
                 : sql`${downloadsDaily.platform_id} IS NULL`
@@ -419,6 +469,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
           // Insert new aggregation
           await db.insert(downloadsDaily).values({
             tool_id: row.tool_id,
+            backend_id: row.backend_id,
             version: row.version,
             platform_id: row.platform_id,
             date: row.date,
@@ -443,6 +494,99 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       return {
         aggregated: toAggregate.length,
         deleted: countToDelete?.count ?? 0,
+      };
+    },
+
+    // Get 30-day download stats grouped by backend type
+    async getDownloadsByBackend() {
+      const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
+
+      // Get downloads grouped by backend (extracts backend type from full identifier)
+      const results = await db
+        .select({
+          backend: backends.full,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .leftJoin(backends, eq(downloads.backend_id, backends.id))
+        .where(sql`${downloads.created_at} >= ${thirtyDaysAgo}`)
+        .groupBy(backends.full)
+        .all();
+
+      // Group by backend type (e.g., "aqua:nektos/act" -> "aqua")
+      const byType = new Map<string, number>();
+      for (const r of results) {
+        const backendType = r.backend
+          ? r.backend.split(":")[0]
+          : "unknown";
+        byType.set(backendType, (byType.get(backendType) || 0) + r.count);
+      }
+
+      // Sort by count descending
+      const sorted = [...byType.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .map(([backend, count]) => ({ backend, count }));
+
+      return sorted;
+    },
+
+    // Get top tools by backend type (30 days)
+    async getTopToolsByBackend(limit: number = 5) {
+      const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
+
+      // Get tool downloads with backend info
+      const results = await db
+        .select({
+          tool: tools.name,
+          backend: backends.full,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .innerJoin(tools, eq(downloads.tool_id, tools.id))
+        .leftJoin(backends, eq(downloads.backend_id, backends.id))
+        .where(sql`${downloads.created_at} >= ${thirtyDaysAgo}`)
+        .groupBy(tools.name, backends.full)
+        .all();
+
+      // Group by backend type, then get top tools per type
+      const byBackendType = new Map<string, Map<string, number>>();
+
+      for (const r of results) {
+        const backendType = r.backend
+          ? r.backend.split(":")[0]
+          : "unknown";
+
+        if (!byBackendType.has(backendType)) {
+          byBackendType.set(backendType, new Map());
+        }
+        const toolMap = byBackendType.get(backendType)!;
+        toolMap.set(r.tool, (toolMap.get(r.tool) || 0) + r.count);
+      }
+
+      // Convert to result format with top tools per backend
+      const result: Record<string, Array<{ tool: string; count: number }>> = {};
+
+      for (const [backendType, toolMap] of byBackendType.entries()) {
+        const topTools = [...toolMap.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, limit)
+          .map(([tool, count]) => ({ tool, count }));
+        result[backendType] = topTools;
+      }
+
+      return result;
+    },
+
+    // Get all backend stats (combined endpoint for efficiency)
+    async getBackendStats() {
+      const [downloadsByBackend, topToolsByBackend] = await Promise.all([
+        this.getDownloadsByBackend(),
+        this.getTopToolsByBackend(),
+      ]);
+
+      return {
+        downloads_by_backend: downloadsByBackend,
+        top_tools_by_backend: topToolsByBackend,
       };
     },
   };
@@ -536,6 +680,13 @@ export async function runAnalyticsMigrations(
     `);
 
     await db.run(sql`
+      CREATE TABLE IF NOT EXISTS backends (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        full TEXT NOT NULL UNIQUE
+      )
+    `);
+
+    await db.run(sql`
       CREATE TABLE IF NOT EXISTS platforms (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         os TEXT,
@@ -548,14 +699,34 @@ export async function runAnalyticsMigrations(
       CREATE TABLE IF NOT EXISTS downloads (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         tool_id INTEGER NOT NULL,
+        backend_id INTEGER,
         version TEXT NOT NULL,
         platform_id INTEGER,
         ip_hash TEXT NOT NULL,
         created_at INTEGER NOT NULL,
         FOREIGN KEY (tool_id) REFERENCES tools(id),
+        FOREIGN KEY (backend_id) REFERENCES backends(id),
         FOREIGN KEY (platform_id) REFERENCES platforms(id)
       )
     `);
+  }
+
+  // Create backends table if it doesn't exist (for existing installations)
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS backends (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      full TEXT NOT NULL UNIQUE
+    )
+  `);
+
+  // Add backend_id column to downloads if it doesn't exist
+  const downloadsColumns = await db.all(sql`PRAGMA table_info(downloads)`);
+  const hasBackendIdInDownloads = downloadsColumns.some(
+    (col: any) => col.name === "backend_id"
+  );
+  if (!hasBackendIdInDownloads) {
+    console.log("Adding backend_id column to downloads table...");
+    await db.run(sql`ALTER TABLE downloads ADD COLUMN backend_id INTEGER`);
   }
 
   // Create daily aggregated table
@@ -563,19 +734,34 @@ export async function runAnalyticsMigrations(
     CREATE TABLE IF NOT EXISTS downloads_daily (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       tool_id INTEGER NOT NULL,
+      backend_id INTEGER,
       version TEXT NOT NULL,
       platform_id INTEGER,
       date TEXT NOT NULL,
       count INTEGER NOT NULL,
       unique_ips INTEGER NOT NULL,
       FOREIGN KEY (tool_id) REFERENCES tools(id),
+      FOREIGN KEY (backend_id) REFERENCES backends(id),
       FOREIGN KEY (platform_id) REFERENCES platforms(id)
     )
   `);
 
+  // Add backend_id column to downloads_daily if it doesn't exist
+  const dailyColumns = await db.all(sql`PRAGMA table_info(downloads_daily)`);
+  const hasBackendIdInDaily = dailyColumns.some(
+    (col: any) => col.name === "backend_id"
+  );
+  if (!hasBackendIdInDaily) {
+    console.log("Adding backend_id column to downloads_daily table...");
+    await db.run(sql`ALTER TABLE downloads_daily ADD COLUMN backend_id INTEGER`);
+  }
+
   // Create indices for efficient queries
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_id ON downloads(tool_id)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_backend_id ON downloads(backend_id)`
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_at ON downloads(created_at)`
@@ -585,6 +771,9 @@ export async function runAnalyticsMigrations(
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_tool ON downloads_daily(tool_id)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_backend ON downloads_daily(backend_id)`
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_date ON downloads_daily(date)`

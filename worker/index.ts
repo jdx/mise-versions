@@ -30,6 +30,7 @@ import {
   handleGet30DayDownloads,
   handleGetMAU,
   handleAggregate,
+  handleGetBackendStats,
 } from "./routes/track";
 
 // Misc routes
@@ -61,6 +62,7 @@ function createRouter(): Router {
   router.get("/api/downloads", (req, env) => handleGetAllDownloads(req, env));
   router.get("/api/downloads/30d", (req, env) => handleGet30DayDownloads(req, env));
   router.get("/api/stats/mau", (req, env) => handleGetMAU(req, env));
+  router.get("/api/stats/backends", (req, env) => handleGetBackendStats(req, env));
   router.post("/api/admin/aggregate", (req, env) => handleAggregate(req, env));
   router.get("/api/downloads/:tool", (req, env, params) =>
     handleGetToolDownloads(req, env, params.tool)
