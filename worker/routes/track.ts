@@ -158,7 +158,7 @@ export async function handleAggregate(
   try {
     // Verify admin secret
     const authHeader = request.headers.get("Authorization");
-    const expectedAuth = `Bearer ${env.TOKEN_MANAGER_SECRET}`;
+    const expectedAuth = `Bearer ${env.API_SECRET}`;
     if (authHeader !== expectedAuth) {
       return errorResponse("Unauthorized", 401);
     }
@@ -205,7 +205,7 @@ export async function handleBackfillBackends(
   try {
     // Verify admin secret
     const authHeader = request.headers.get("Authorization");
-    const expectedAuth = `Bearer ${env.TOKEN_MANAGER_SECRET}`;
+    const expectedAuth = `Bearer ${env.API_SECRET}`;
     if (authHeader !== expectedAuth) {
       return errorResponse("Unauthorized", 401);
     }
@@ -242,7 +242,7 @@ export async function handleFinalizeBackends(
   try {
     // Verify admin secret
     const authHeader = request.headers.get("Authorization");
-    const expectedAuth = `Bearer ${env.TOKEN_MANAGER_SECRET}`;
+    const expectedAuth = `Bearer ${env.API_SECRET}`;
     if (authHeader !== expectedAuth) {
       return errorResponse("Unauthorized", 401);
     }
