@@ -1,5 +1,5 @@
 {
-  "tool_count": 960,
+  "tool_count": 961,
   "tools": [
     {
       "name": "1password",
@@ -2283,9 +2283,9 @@
     },
     {
       "name": "codex",
-      "latest_version": "0.72.0",
-      "version_count": 63,
-      "last_updated": "2025-12-13T00:54:04.000Z",
+      "latest_version": "0.73.0",
+      "version_count": 64,
+      "last_updated": "2025-12-15T22:08:17.000Z",
       "github": "openai/codex",
       "repo_url": "https://github.com/openai/codex",
       "backends": [
@@ -2296,6 +2296,22 @@
         "npm": "https://www.npmjs.com/package/@openai/codex"
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/openai/codex/registry.yaml"
+    },
+    {
+      "name": "colima",
+      "latest_version": "0.9.1",
+      "version_count": 47,
+      "last_updated": "2025-09-25T10:46:26.000Z",
+      "github": "abiosoft/colima",
+      "repo_url": "https://github.com/abiosoft/colima",
+      "backends": [
+        "aqua:abiosoft/colima",
+        "ubi:abiosoft/colima",
+        "asdf:CrouchingMuppet/asdf-colima"
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/abiosoft/colima/registry.yaml",
+      "license": "MIT",
+      "description": "Container runtimes on macOS (and Linux) with minimal setup"
     },
     {
       "name": "committed",
