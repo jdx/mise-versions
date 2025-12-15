@@ -12,6 +12,57 @@ interface Props {
 
 type VersionSortKey = "default" | "downloads" | "released";
 
+interface Version {
+  version: string;
+  created_at?: string;
+}
+
+function getInterestingPrefixes(versions: Version[]): string[] {
+  if (!versions || versions.length === 0) return [];
+
+  // Parse versions and group by major
+  const majorGroups = new Map<string, string[]>();
+  const minorGroups = new Map<string, string[]>();
+
+  for (const v of versions) {
+    const parts = v.version.split(".");
+    if (parts.length >= 1) {
+      const major = parts[0];
+      if (!majorGroups.has(major)) {
+        majorGroups.set(major, []);
+      }
+      majorGroups.get(major)!.push(v.version);
+
+      if (parts.length >= 2) {
+        const minor = `${parts[0]}.${parts[1]}`;
+        if (!minorGroups.has(minor)) {
+          minorGroups.set(minor, []);
+        }
+        minorGroups.get(minor)!.push(v.version);
+      }
+    }
+  }
+
+  // Decide granularity: use major if 4+, otherwise minor
+  const useMajor = majorGroups.size >= 4;
+  const groups = useMajor ? majorGroups : minorGroups;
+
+  // Sort by version number descending (newest first)
+  const sortedPrefixes = Array.from(groups.keys()).sort((a, b) => {
+    const aParts = a.split(".").map(Number);
+    const bParts = b.split(".").map(Number);
+    for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+      const aVal = aParts[i] || 0;
+      const bVal = bParts[i] || 0;
+      if (bVal !== aVal) return bVal - aVal;
+    }
+    return 0;
+  });
+
+  // Limit to 8 pills max
+  return sortedPrefixes.slice(0, 8);
+}
+
 function DownloadChart({
   daily,
 }: {
@@ -380,6 +431,7 @@ export function ToolPage({ params }: Props) {
   const { data: downloadData, loading: downloadsLoading } = useDownloads(tool);
   const { data: toolsData } = useTools();
   const [sortBy, setSortBy] = useState<VersionSortKey>("default");
+  const [versionPrefix, setVersionPrefix] = useState("");
 
   // Find tool metadata from tools.json
   const toolMeta = toolsData?.tools.find((t) => t.name === tool);
@@ -413,6 +465,17 @@ export function ToolPage({ params }: Props) {
       }
     });
   }, [versions, sortBy, versionDownloads]);
+
+  // Get interesting version prefixes for pill buttons
+  const interestingPrefixes = useMemo(() => {
+    return getInterestingPrefixes(versions || []);
+  }, [versions]);
+
+  // Filter versions by selected prefix
+  const filteredVersions = useMemo(() => {
+    if (!versionPrefix) return sortedVersions;
+    return sortedVersions.filter((v) => v.version.startsWith(versionPrefix + ".") || v.version === versionPrefix);
+  }, [sortedVersions, versionPrefix]);
 
   const SortButton = ({ label, sortKey }: { label: string; sortKey: VersionSortKey }) => (
     <button
@@ -505,6 +568,35 @@ export function ToolPage({ params }: Props) {
         <DownloadsPane data={downloadData} loading={downloadsLoading} />
       </div>
 
+      {/* Version filter pills */}
+      {interestingPrefixes.length > 1 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button
+            onClick={() => setVersionPrefix("")}
+            class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              versionPrefix === ""
+                ? "bg-neon-purple text-white"
+                : "bg-dark-700 text-gray-400 hover:bg-dark-600 hover:text-gray-200"
+            }`}
+          >
+            All
+          </button>
+          {interestingPrefixes.map((prefix) => (
+            <button
+              key={prefix}
+              onClick={() => setVersionPrefix(prefix)}
+              class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                versionPrefix === prefix
+                  ? "bg-neon-purple text-white"
+                  : "bg-dark-700 text-gray-400 hover:bg-dark-600 hover:text-gray-200"
+              }`}
+            >
+              {prefix}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Version table */}
       <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
         <table class="w-full">
@@ -512,6 +604,11 @@ export function ToolPage({ params }: Props) {
             <tr>
               <th class="text-left px-4 py-3">
                 <SortButton label="Version" sortKey="default" />
+                {versionPrefix && (
+                  <span class="ml-2 text-xs text-gray-500">
+                    ({filteredVersions.length} of {versions?.length})
+                  </span>
+                )}
               </th>
               <th class="text-right px-4 py-3 hidden sm:table-cell">
                 <SortButton label="Downloads" sortKey="downloads" />
@@ -527,7 +624,7 @@ export function ToolPage({ params }: Props) {
                 {[...Array(15)].map((_, i) => <SkeletonVersionRow key={i} />)}
               </>
             ) : (
-              sortedVersions.map((v) => (
+              filteredVersions.map((v) => (
                 <tr key={v.version} class="hover:bg-dark-700 transition-colors">
                   <td class="px-4 py-3 font-mono text-sm text-gray-200">
                     {v.version}
