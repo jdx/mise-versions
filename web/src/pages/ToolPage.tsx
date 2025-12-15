@@ -1,3 +1,4 @@
+import { useState, useMemo } from "preact/hooks";
 import { useToolVersions } from "../hooks/useToolVersions";
 import { useDownloads } from "../hooks/useDownloads";
 import { useTools, Tool } from "../hooks/useTools";
@@ -8,6 +9,8 @@ import { formatRelativeTime, formatDate } from "../utils/time";
 interface Props {
   params: { tool: string };
 }
+
+type VersionSortKey = "default" | "downloads" | "released";
 
 function DownloadChart({
   daily,
@@ -376,6 +379,7 @@ export function ToolPage({ params }: Props) {
   const { versions, loading: versionsLoading, error } = useToolVersions(tool);
   const { data: downloadData, loading: downloadsLoading } = useDownloads(tool);
   const { data: toolsData } = useTools();
+  const [sortBy, setSortBy] = useState<VersionSortKey>("default");
 
   // Find tool metadata from tools.json
   const toolMeta = toolsData?.tools.find((t) => t.name === tool);
@@ -389,6 +393,40 @@ export function ToolPage({ params }: Props) {
       versionDownloads.set(v.version, v.count);
     }
   }
+
+  // Sort versions based on selected sort key
+  const sortedVersions = useMemo(() => {
+    if (!versions) return [];
+    if (sortBy === "default") return versions;
+
+    return [...versions].sort((a, b) => {
+      switch (sortBy) {
+        case "downloads":
+          return (versionDownloads.get(b.version) || 0) - (versionDownloads.get(a.version) || 0);
+        case "released":
+          if (!a.created_at && !b.created_at) return 0;
+          if (!a.created_at) return 1;
+          if (!b.created_at) return -1;
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        default:
+          return 0;
+      }
+    });
+  }, [versions, sortBy, versionDownloads]);
+
+  const SortButton = ({ label, sortKey }: { label: string; sortKey: VersionSortKey }) => (
+    <button
+      onClick={() => setSortBy(sortKey)}
+      class={`text-sm font-medium transition-colors ${
+        sortBy === sortKey
+          ? "text-neon-purple"
+          : "text-gray-400 hover:text-gray-200"
+      }`}
+    >
+      {label}
+      {sortBy === sortKey && " ↓"}
+    </button>
+  );
 
   if (error) {
     return (
@@ -472,14 +510,14 @@ export function ToolPage({ params }: Props) {
         <table class="w-full">
           <thead class="bg-dark-700 border-b border-dark-600">
             <tr>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
-                Version
+              <th class="text-left px-4 py-3">
+                <SortButton label="Version" sortKey="default" />
               </th>
-              <th class="text-right px-4 py-3 text-sm font-medium text-gray-400 hidden sm:table-cell">
-                Downloads
+              <th class="text-right px-4 py-3 hidden sm:table-cell">
+                <SortButton label="Downloads" sortKey="downloads" />
               </th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">
-                Released
+              <th class="text-left px-4 py-3">
+                <SortButton label="Released" sortKey="released" />
               </th>
             </tr>
           </thead>
@@ -489,7 +527,7 @@ export function ToolPage({ params }: Props) {
                 {[...Array(15)].map((_, i) => <SkeletonVersionRow key={i} />)}
               </>
             ) : (
-              versions.map((v) => (
+              sortedVersions.map((v) => (
                 <tr key={v.version} class="hover:bg-dark-700 transition-colors">
                   <td class="px-4 py-3 font-mono text-sm text-gray-200">
                     {v.version}
