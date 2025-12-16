@@ -433,9 +433,9 @@
     },
     {
       "name": "apollo-rover",
-      "latest_version": "0.37.0",
-      "version_count": 98,
-      "last_updated": "2025-12-02T19:29:36.000Z",
+      "latest_version": "0.37.1",
+      "version_count": 99,
+      "last_updated": "2025-12-15T23:42:02.000Z",
       "github": "apollographql/rover",
       "repo_url": "https://github.com/apollographql/rover",
       "backends": [
@@ -894,9 +894,9 @@
     },
     {
       "name": "azure-functions-core-tools",
-      "latest_version": "4.5.0",
-      "version_count": 172,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "4.6.0",
+      "version_count": 173,
+      "last_updated": "2025-12-16T00:16:12.700Z",
       "backends": [
         "vfox:mise-plugins/vfox-azure-functions-core-tools",
         "asdf:mise-plugins/mise-azure-functions-core-tools"
