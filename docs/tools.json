@@ -1964,8 +1964,8 @@
     {
       "name": "clang",
       "latest_version": "9.0.1",
-      "version_count": 306,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "version_count": 307,
+      "last_updated": "2025-12-16T11:39:09.741Z",
       "backends": [
         "asdf:mise-plugins/mise-llvm",
         "vfox:mise-plugins/vfox-clang"
@@ -1974,8 +1974,8 @@
     {
       "name": "clang-format",
       "latest_version": "9.0.1",
-      "version_count": 306,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "version_count": 307,
+      "last_updated": "2025-12-16T11:39:12.108Z",
       "backends": [
         "asdf:mise-plugins/mise-llvm"
       ]
@@ -1983,8 +1983,8 @@
     {
       "name": "clangd",
       "latest_version": "9.0.1",
-      "version_count": 306,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "version_count": 307,
+      "last_updated": "2025-12-16T11:39:14.547Z",
       "backends": [
         "asdf:mise-plugins/mise-llvm"
       ]
