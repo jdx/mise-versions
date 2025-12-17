@@ -8,8 +8,7 @@
     { "pattern": "mise-tools.jdx.dev", "custom_domain": true }
   ],
   "assets": {
-    "directory": "web/dist",
-    "binding": "ASSETS"
+    "directory": "web/dist"
   },
   "observability": {
     "enabled": true
