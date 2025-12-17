@@ -372,7 +372,21 @@ export function ToolSearch({ tools, downloads }: Props) {
                     <HighlightedName name={tool.name} />
                   </a>
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-300 font-mono">{tool.latest_stable_version || tool.latest_version}</td>
+                <td class="px-4 py-3 text-sm font-mono">
+                  {tool.github ? (
+                    <a
+                      href={`https://github.com/${tool.github}/releases/tag/v${tool.latest_stable_version || tool.latest_version}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-neon-blue hover:text-neon-purple transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {tool.latest_stable_version || tool.latest_version}
+                    </a>
+                  ) : (
+                    <span class="text-gray-300">{tool.latest_stable_version || tool.latest_version}</span>
+                  )}
+                </td>
                 <td class="px-4 py-3 text-sm hidden lg:table-cell">
                   {tool.backends && tool.backends[0] && (
                     <span class="px-2 py-0.5 rounded-full text-xs bg-dark-600 text-gray-400">

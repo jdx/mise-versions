@@ -46,19 +46,20 @@ if (!toolMeta) {
 
 // Fetch versions from TOML file directly from GitHub Pages
 // Cache for 10 minutes at Cloudflare edge
-let versions: Array<{ version: string; created_at?: string | null }> = [];
+let versions: Array<{ version: string; created_at?: string | null; release_url?: string | null }> = [];
 try {
   const tomlRes = await fetch(`https://mise-versions.jdx.dev/${tool}.toml`, {
     cf: { cacheTtl: 600 },
   });
   if (tomlRes.ok) {
     const tomlText = await tomlRes.text();
-    // TOML format: [versions] with "version" = { created_at = ... } entries
-    const parsed = smolToml.parse(tomlText) as { versions?: Record<string, { created_at?: string }> };
+    // TOML format: [versions] with "version" = { created_at = ..., release_url = ... } entries
+    const parsed = smolToml.parse(tomlText) as { versions?: Record<string, { created_at?: string; release_url?: string }> };
     const versionsObj = parsed.versions || {};
     versions = Object.entries(versionsObj).map(([version, data]) => ({
       version,
       created_at: data?.created_at || null,
+      release_url: data?.release_url || null,
     }));
   }
 } catch (e) {
@@ -318,6 +319,7 @@ const timeline = buildTimelineMilestones(versions);
       client:load
       versions={versions}
       downloadsByVersion={downloadsByVersion}
+      github={toolMeta.github}
     />
   </div>
 </Layout>

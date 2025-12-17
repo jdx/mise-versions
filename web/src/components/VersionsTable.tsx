@@ -80,9 +80,16 @@ function getInterestingPrefixes(versions: Version[]): string[] {
 interface VersionsTableProps {
   versions: Version[];
   downloadsByVersion: Record<string, number>;
+  github?: string;
 }
 
-export function VersionsTable({ versions, downloadsByVersion }: VersionsTableProps) {
+// Construct release URL from github slug and version
+function buildReleaseUrl(github: string, version: string): string {
+  // Try common tag patterns: v1.0.0 is most common
+  return `https://github.com/${github}/releases/tag/v${version}`;
+}
+
+export function VersionsTable({ versions, downloadsByVersion, github }: VersionsTableProps) {
   const [sortBy, setSortBy] = useState<VersionSortKey>("default");
   const [versionPrefix, setVersionPrefix] = useState("");
   const [hidePrerelease, setHidePrerelease] = useState(false);
@@ -220,18 +227,21 @@ export function VersionsTable({ versions, downloadsByVersion }: VersionsTablePro
             {filteredVersions.map((v) => (
               <tr key={v.version} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3 font-mono text-sm">
-                  {v.release_url ? (
-                    <a
-                      href={v.release_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-neon-blue hover:text-neon-purple transition-colors"
-                    >
-                      {v.version}
-                    </a>
-                  ) : (
-                    <span class="text-gray-200">{v.version}</span>
-                  )}
+                  {(() => {
+                    const url = v.release_url || (github ? buildReleaseUrl(github, v.version) : null);
+                    return url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-neon-blue hover:text-neon-purple transition-colors"
+                      >
+                        {v.version}
+                      </a>
+                    ) : (
+                      <span class="text-gray-200">{v.version}</span>
+                    );
+                  })()}
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
                   {(versionDownloads.get(v.version) || 0).toLocaleString()}
