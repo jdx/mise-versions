@@ -31,6 +31,7 @@ import {
   handleGetMAU,
   handleAggregate,
   handleGetBackendStats,
+  handleGetDAUMAU,
   handleBackfillBackends,
   handleFinalizeBackends,
 } from "./routes/track";
@@ -65,6 +66,7 @@ function createRouter(): Router {
   router.get("/api/downloads/30d", (req, env) => handleGet30DayDownloads(req, env));
   router.get("/api/stats/mau", (req, env) => handleGetMAU(req, env));
   router.get("/api/stats/backends", (req, env) => handleGetBackendStats(req, env));
+  router.get("/api/stats/dau-mau", (req, env) => handleGetDAUMAU(req, env));
   router.post("/api/admin/aggregate", (req, env) => handleAggregate(req, env));
   router.post("/api/admin/backfill-backends", (req, env) => handleBackfillBackends(req, env));
   router.post("/api/admin/finalize-backends", (req, env) => handleFinalizeBackends(req, env));

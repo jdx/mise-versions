@@ -197,6 +197,24 @@ export async function handleGetBackendStats(
   }
 }
 
+// GET /api/stats/dau-mau - Get DAU and MAU history (public)
+export async function handleGetDAUMAU(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const stats = await analytics.getDAUMAUHistory(30);
+
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
+  } catch (error) {
+    console.error("Get DAU/MAU error:", error);
+    return errorResponse("Failed to get DAU/MAU stats", 500);
+  }
+}
+
 // POST /api/admin/backfill-backends - Backfill backend_id using registry data (requires auth)
 export async function handleBackfillBackends(
   request: Request,

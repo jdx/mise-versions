@@ -590,6 +590,54 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       };
     },
 
+    // Get DAU and rolling MAU history for the last N days
+    async getDAUMAUHistory(days: number = 30) {
+      const now = Math.floor(Date.now() / 1000);
+      const startTime = now - days * 86400;
+
+      // Get DAU for each day
+      const dauResults = await db
+        .select({
+          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
+          dau: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(downloads)
+        .where(sql`${downloads.created_at} >= ${startTime}`)
+        .groupBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .all();
+
+      // Get current MAU (unique users in last 30 days)
+      const thirtyDaysAgo = now - 30 * 86400;
+      const mauResult = await db
+        .select({
+          mau: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(downloads)
+        .where(sql`${downloads.created_at} >= ${thirtyDaysAgo}`)
+        .get();
+
+      const currentMAU = mauResult?.mau ?? 0;
+
+      // Fill in missing days with 0
+      const dailyData: Array<{ date: string; dau: number }> = [];
+      const dauMap = new Map(dauResults.map(r => [r.date, r.dau]));
+
+      for (let i = days - 1; i >= 0; i--) {
+        const dayTimestamp = now - i * 86400;
+        const date = new Date(dayTimestamp * 1000).toISOString().split('T')[0];
+        dailyData.push({
+          date,
+          dau: dauMap.get(date) ?? 0,
+        });
+      }
+
+      return {
+        daily: dailyData,
+        current_mau: currentMAU,
+      };
+    },
+
     // Backfill backend_id for existing records using default backends from registry
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>,

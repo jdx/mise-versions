@@ -3,6 +3,7 @@ import { Link } from "wouter-preact";
 import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
 import { useBackendStats } from "../hooks/useBackendStats";
+import { useDAUMAU } from "../hooks/useDAUMAU";
 
 // Format large numbers compactly (e.g., 1234 -> "1.23k", 1234567 -> "1.23m")
 function formatCompact(n: number): string {
@@ -144,6 +145,114 @@ function DonutChart({
   );
 }
 
+// DAU/MAU chart component with bars for DAU and line for MAU
+function DAUMAUChart({
+  data,
+  mau,
+}: {
+  data: Array<{ date: string; dau: number }>;
+  mau: number;
+}) {
+  if (!data || data.length === 0) {
+    return <div class="text-gray-500">No data available</div>;
+  }
+
+  const width = 700;
+  const height = 200;
+  const padding = { top: 20, right: 50, bottom: 30, left: 50 };
+  const chartWidth = width - padding.left - padding.right;
+  const chartHeight = height - padding.top - padding.bottom;
+
+  const maxDAU = Math.max(...data.map((d) => d.dau), mau);
+  const yScale = (v: number) => chartHeight - (v / maxDAU) * chartHeight;
+  const barWidth = chartWidth / data.length - 2;
+
+  // MAU line y position
+  const mauY = yScale(mau);
+
+  return (
+    <div class="overflow-x-auto">
+      <svg width={width} height={height} class="min-w-[700px]">
+        {/* Y-axis labels */}
+        <text
+          x={padding.left - 10}
+          y={padding.top}
+          text-anchor="end"
+          class="fill-gray-500 text-xs"
+        >
+          {formatCompact(maxDAU)}
+        </text>
+        <text
+          x={padding.left - 10}
+          y={padding.top + chartHeight}
+          text-anchor="end"
+          class="fill-gray-500 text-xs"
+        >
+          0
+        </text>
+
+        {/* Chart area */}
+        <g transform={`translate(${padding.left}, ${padding.top})`}>
+          {/* DAU bars */}
+          {data.map((d, i) => {
+            const x = (i / data.length) * chartWidth + 1;
+            const barHeight = (d.dau / maxDAU) * chartHeight;
+            return (
+              <rect
+                key={d.date}
+                x={x}
+                y={chartHeight - barHeight}
+                width={barWidth}
+                height={barHeight}
+                fill="#B026FF"
+                opacity={0.8}
+              >
+                <title>{`${d.date}: ${d.dau.toLocaleString()} DAU`}</title>
+              </rect>
+            );
+          })}
+
+          {/* MAU reference line */}
+          <line
+            x1={0}
+            y1={mauY}
+            x2={chartWidth}
+            y2={mauY}
+            stroke="#00D4FF"
+            stroke-width={2}
+            stroke-dasharray="6,4"
+          />
+          <text
+            x={chartWidth + 5}
+            y={mauY + 4}
+            class="fill-cyan-400 text-xs"
+          >
+            MAU
+          </text>
+
+          {/* X-axis date labels (show every 5th day) */}
+          {data.map((d, i) => {
+            if (i % 7 !== 0 && i !== data.length - 1) return null;
+            const x = (i / data.length) * chartWidth + barWidth / 2;
+            const dateLabel = d.date.slice(5); // MM-DD
+            return (
+              <text
+                key={d.date}
+                x={x}
+                y={chartHeight + 15}
+                text-anchor="middle"
+                class="fill-gray-500 text-xs"
+              >
+                {dateLabel}
+              </text>
+            );
+          })}
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 const BACKEND_COLORS: Record<string, string> = {
   aqua: "#00D4FF",
   ubi: "#B026FF",
@@ -165,8 +274,9 @@ export function StatsPage() {
   const { data: toolsData, loading: toolsLoading } = useTools();
   const { data: downloads, loading: downloadsLoading } = useAllDownloads();
   const { data: backendStatsData, loading: backendStatsLoading } = useBackendStats();
+  const { data: dauMauData, loading: dauMauLoading } = useDAUMAU();
 
-  const loading = toolsLoading || downloadsLoading || backendStatsLoading;
+  const loading = toolsLoading || downloadsLoading || backendStatsLoading || dauMauLoading;
 
   // Compute backend statistics (derived from tools.json for tool counts)
   // Only uses the PRIMARY (first) backend for each tool
@@ -351,6 +461,19 @@ export function StatsPage() {
           />
         </div>
       </div>
+
+      {/* DAU/MAU chart */}
+      {dauMauData && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">
+            Daily Active Users
+            <span class="text-sm font-normal text-gray-400 ml-2">
+              (MAU: {dauMauData.current_mau.toLocaleString()})
+            </span>
+          </h2>
+          <DAUMAUChart data={dauMauData.daily} mau={dauMauData.current_mau} />
+        </div>
+      )}
 
       {/* Top tools per backend */}
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
