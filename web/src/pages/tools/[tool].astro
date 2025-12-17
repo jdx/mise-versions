@@ -10,8 +10,8 @@ if (!tool) {
   return Astro.redirect('/');
 }
 
-// Fetch tools.json to get tool metadata
-const toolsRes = await fetch(new URL('/data/tools.json', Astro.url));
+// Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
+const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json');
 const toolsData = await toolsRes.json() as {
   tools: Array<{
     name: string;
@@ -33,10 +33,10 @@ if (!toolMeta) {
   return Astro.redirect('/');
 }
 
-// Fetch versions from TOML file
+// Fetch versions from TOML file directly from GitHub Pages
 let versions: Array<{ version: string; created_at?: string | null }> = [];
 try {
-  const tomlRes = await fetch(new URL(`/data/${tool}.toml`, Astro.url));
+  const tomlRes = await fetch(`https://mise-versions.jdx.dev/${tool}.toml`);
   if (tomlRes.ok) {
     const tomlText = await tomlRes.text();
     const parsed = smolToml.parse(tomlText) as { versions?: Array<{ version: string; created_at?: string }> };

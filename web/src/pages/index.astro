@@ -4,8 +4,8 @@ import { ToolSearch } from '../components/ToolSearch';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
 
-// Fetch tools.json
-const toolsRes = await fetch(new URL('/data/tools.json', Astro.url));
+// Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
+const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json');
 const toolsData = await toolsRes.json() as {
   tool_count: number;
   tools: Array<{
