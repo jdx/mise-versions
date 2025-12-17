@@ -21,35 +21,21 @@ function getBackendType(backend: string): string {
   return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
 }
 
-// Simple horizontal bar chart component
-function BarChart({
-  data,
-  maxValue,
-}: {
-  data: Array<{ label: string; value: number; color?: string }>;
-  maxValue: number;
-}) {
-  return (
-    <div class="space-y-2">
-      {data.map((item) => (
-        <div key={item.label} class="flex items-center gap-3">
-          <div class="w-24 text-sm text-gray-400 truncate">{item.label}</div>
-          <div class="flex-1 h-6 bg-dark-700 rounded overflow-hidden">
-            <div
-              class="h-full bg-neon-purple transition-all"
-              style={{ width: `${(item.value / maxValue) * 100}%` }}
-            />
-          </div>
-          <div class="w-16 text-sm text-gray-400 text-right">
-            {item.value.toLocaleString()}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+// Helper to create SVG arc path
+function describeArc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number): string {
+  const start = {
+    x: cx + radius * Math.cos(startAngle),
+    y: cy + radius * Math.sin(startAngle),
+  };
+  const end = {
+    x: cx + radius * Math.cos(endAngle),
+    y: cy + radius * Math.sin(endAngle),
+  };
+  const largeArcFlag = endAngle - startAngle > Math.PI ? 1 : 0;
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x} ${end.y}`;
 }
 
-// Simple pie/donut chart component
+// Simple pie/donut chart component using arc paths
 function DonutChart({
   data,
   size = 160,
@@ -77,31 +63,32 @@ function DonutChart({
 
   const strokeWidth = 30;
   const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
+  const cx = size / 2;
+  const cy = size / 2;
 
-  let currentOffset = 0;
+  // Start at top (-π/2)
+  let currentAngle = -Math.PI / 2;
   const segments = validData.map((d) => {
     const percentage = d.value / total;
-    const segmentLength = percentage * circumference;
-    const offset = currentOffset;
-    currentOffset += segmentLength;
-    return { ...d, offset, length: segmentLength, percentage };
+    const startAngle = currentAngle;
+    // Ensure we don't create a full circle (causes rendering issues)
+    const arcLength = percentage * Math.PI * 2 * 0.9999;
+    const endAngle = startAngle + arcLength;
+    currentAngle = startAngle + percentage * Math.PI * 2;
+    return { ...d, startAngle, endAngle, percentage };
   });
 
   return (
     <div class="flex items-center gap-6">
-      <svg width={size} height={size} class="transform -rotate-90">
+      <svg width={size} height={size}>
         {segments.map((seg) => (
-          <circle
+          <path
             key={seg.label}
-            cx={size / 2}
-            cy={size / 2}
-            r={radius}
+            d={describeArc(cx, cy, radius, seg.startAngle, seg.endAngle)}
             fill="none"
             stroke={seg.color}
             strokeWidth={strokeWidth}
-            strokeDasharray={`${seg.length} ${circumference - seg.length}`}
-            strokeDashoffset={-seg.offset}
+            strokeLinecap="butt"
             class="transition-all duration-300"
           />
         ))}
@@ -280,8 +267,8 @@ export function StatsPage() {
     );
   }
 
-  // Select top 5 backends for display
-  const topBackends = backendStats.counts.slice(0, 5).map((b) => b.label);
+  // Select top 5 backends for display (sorted by download count, not tool count)
+  const topBackends = backendStats.downloads.slice(0, 5).map((b) => b.label);
 
   return (
     <div class="space-y-8">
@@ -319,10 +306,7 @@ export function StatsPage() {
         {/* Tools by backend */}
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
           <h2 class="text-lg font-semibold text-gray-200 mb-4">Tools by Backend</h2>
-          <BarChart
-            data={backendStats.counts.slice(0, 10)}
-            maxValue={Math.max(...backendStats.counts.map((b) => b.value))}
-          />
+          <DonutChart data={backendStats.counts.slice(0, 8)} />
         </div>
 
         {/* Downloads distribution */}
