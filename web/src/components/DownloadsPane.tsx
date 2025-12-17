@@ -324,9 +324,17 @@ function getStoredChartView(): ChartView {
 }
 
 export function DownloadsPane({ tool, daily, monthly, byVersion, byOs }: DownloadsPaneProps) {
-  const [chartView, setChartViewState] = useState<ChartView>(getStoredChartView);
+  const [chartView, setChartViewState] = useState<ChartView>("30d");
   const [versionTrendsData, setVersionTrendsData] = useState<VersionTrendData | null>(null);
   const [versionTrendsLoading, setVersionTrendsLoading] = useState(false);
+
+  // Sync from localStorage on mount (after hydration)
+  useEffect(() => {
+    const stored = getStoredChartView();
+    if (stored !== chartView) {
+      setChartViewState(stored);
+    }
+  }, []);
 
   const setChartView = (view: ChartView) => {
     setChartViewState(view);
