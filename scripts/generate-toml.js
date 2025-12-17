@@ -57,11 +57,19 @@ function parseNdjson(ndjsonData) {
 // Main logic
 const now = new Date().toISOString();
 
-// Convert Date object or string to ISO string
+// Placeholder timestamp used when no real timestamp is available
+const PLACEHOLDER_TIMESTAMP = "2025-01-01T00:00:00.000Z";
+
+// Convert Date object or string to ISO string, treating placeholders as null
 function toISOString(value) {
   if (!value) return null;
-  if (value instanceof Date) return value.toISOString();
-  if (typeof value === "string") return value;
+  if (value instanceof Date) {
+    const iso = value.toISOString();
+    return iso === PLACEHOLDER_TIMESTAMP ? null : iso;
+  }
+  if (typeof value === "string") {
+    return value === PLACEHOLDER_TIMESTAMP ? null : value;
+  }
   return null;
 }
 
