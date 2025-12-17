@@ -36,10 +36,6 @@ try {
 <Layout title="mise tools" description="Browse tool versions and download stats for mise">
   <div class="mb-4">
     <h1 class="text-2xl font-bold text-gray-100 mb-2">mise tools</h1>
-    <p class="text-gray-400 text-sm">
-      Browse and search the mise tool registry.
-      <a href="/stats" class="text-neon-purple hover:text-neon-pink transition-colors">View stats →</a>
-    </p>
   </div>
 
   <ToolSearch client:load tools={toolsData.tools} downloads={downloads} />
