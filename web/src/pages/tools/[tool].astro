@@ -11,7 +11,10 @@ if (!tool) {
 }
 
 // Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
-const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json');
+// Cache for 10 minutes at Cloudflare edge
+const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json', {
+  cf: { cacheTtl: 600 },
+});
 const toolsData = await toolsRes.json() as {
   tools: Array<{
     name: string;
@@ -34,9 +37,12 @@ if (!toolMeta) {
 }
 
 // Fetch versions from TOML file directly from GitHub Pages
+// Cache for 10 minutes at Cloudflare edge
 let versions: Array<{ version: string; created_at?: string | null }> = [];
 try {
-  const tomlRes = await fetch(`https://mise-versions.jdx.dev/${tool}.toml`);
+  const tomlRes = await fetch(`https://mise-versions.jdx.dev/${tool}.toml`, {
+    cf: { cacheTtl: 600 },
+  });
   if (tomlRes.ok) {
     const tomlText = await tomlRes.text();
     const parsed = smolToml.parse(tomlText) as { versions?: Array<{ version: string; created_at?: string }> };

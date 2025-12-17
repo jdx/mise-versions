@@ -5,7 +5,10 @@ import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
 
 // Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
-const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json');
+// Cache for 10 minutes at Cloudflare edge
+const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json', {
+  cf: { cacheTtl: 600 },
+});
 const toolsData = await toolsRes.json() as {
   tool_count: number;
   tools: Array<{
