@@ -1170,33 +1170,44 @@ export async function runAnalyticsMigrations(
   );
 
   // Create rollup tables for fast queries
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS daily_stats (
-      date TEXT PRIMARY KEY,
-      total_downloads INTEGER NOT NULL,
-      unique_users INTEGER NOT NULL
-    )
-  `);
+  // Check if daily_tool_stats needs to be recreated (missing PRIMARY KEY)
+  const toolStatsInfo = await db.all(sql`PRAGMA table_info(daily_tool_stats)`);
+  const needsRecreate = toolStatsInfo.length === 0 || !toolStatsInfo.some((col: any) => col.pk > 0);
 
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS daily_tool_stats (
-      date TEXT NOT NULL,
-      tool_id INTEGER NOT NULL,
-      downloads INTEGER NOT NULL,
-      unique_users INTEGER NOT NULL,
-      PRIMARY KEY (date, tool_id)
-    )
-  `);
+  if (needsRecreate) {
+    console.log("Creating/recreating rollup tables with correct PRIMARY KEY constraints...");
 
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS daily_backend_stats (
-      date TEXT NOT NULL,
-      backend_type TEXT NOT NULL,
-      downloads INTEGER NOT NULL,
-      unique_users INTEGER NOT NULL,
-      PRIMARY KEY (date, backend_type)
-    )
-  `);
+    await db.run(sql`DROP TABLE IF EXISTS daily_stats`);
+    await db.run(sql`
+      CREATE TABLE daily_stats (
+        date TEXT PRIMARY KEY,
+        total_downloads INTEGER NOT NULL,
+        unique_users INTEGER NOT NULL
+      )
+    `);
+
+    await db.run(sql`DROP TABLE IF EXISTS daily_tool_stats`);
+    await db.run(sql`
+      CREATE TABLE daily_tool_stats (
+        date TEXT NOT NULL,
+        tool_id INTEGER NOT NULL,
+        downloads INTEGER NOT NULL,
+        unique_users INTEGER NOT NULL,
+        PRIMARY KEY (date, tool_id)
+      )
+    `);
+
+    await db.run(sql`DROP TABLE IF EXISTS daily_backend_stats`);
+    await db.run(sql`
+      CREATE TABLE daily_backend_stats (
+        date TEXT NOT NULL,
+        backend_type TEXT NOT NULL,
+        downloads INTEGER NOT NULL,
+        unique_users INTEGER NOT NULL,
+        PRIMARY KEY (date, backend_type)
+      )
+    `);
+  }
 
   // Create indices for rollup tables
   await db.run(
