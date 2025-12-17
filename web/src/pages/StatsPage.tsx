@@ -94,7 +94,7 @@ function DonutChart({
     );
   }
 
-  const strokeWidth = 160;
+  const strokeWidth = 60;
   const radius = (size - strokeWidth) / 2;
   const cx = size / 2;
   const cy = size / 2;
@@ -112,8 +112,8 @@ function DonutChart({
   });
 
   return (
-    <div class="flex items-center gap-6">
-      <svg width={size} height={size}>
+    <div class="flex items-center gap-4">
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
         {segments.map((seg) => (
           <path
             key={seg.label}
@@ -127,9 +127,9 @@ function DonutChart({
       </svg>
       <div class="space-y-1">
         {segments.slice(0, 6).map((seg) => (
-          <div key={seg.label} class="flex items-center gap-2 text-sm">
+          <div key={seg.label} class="flex items-center gap-2 text-sm whitespace-nowrap">
             <div
-              class="w-3 h-3 rounded-sm"
+              class="w-3 h-3 rounded-sm flex-shrink-0"
               style={{ backgroundColor: seg.color }}
             />
             <span class="text-gray-400">{seg.label}</span>
@@ -320,15 +320,15 @@ export function StatsPage() {
           </div>
         </div>
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-          <div class="text-sm text-gray-400 mb-1">Downloads (30d)</div>
-          <div class="text-3xl font-bold text-neon-purple">
-            {formatCompact(totalDownloads)}
-          </div>
-        </div>
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
           <div class="text-sm text-gray-400 mb-1">Backends</div>
           <div class="text-3xl font-bold text-gray-100">
             {backendStats.counts.length}
+          </div>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <div class="text-sm text-gray-400 mb-1">Downloads (30d)</div>
+          <div class="text-3xl font-bold text-neon-purple">
+            {formatCompact(totalDownloads)}
           </div>
         </div>
       </div>
