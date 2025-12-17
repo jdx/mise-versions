@@ -120,7 +120,7 @@ function DonutChart({
             d={describeArc(cx, cy, radius, seg.startAngle, seg.endAngle)}
             fill="none"
             stroke={seg.color}
-            style={{ strokeWidth: `${strokeWidth}px` }}
+            stroke-width={strokeWidth}
             stroke-linecap="butt"
           />
         ))}
