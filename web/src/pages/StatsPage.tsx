@@ -21,6 +21,39 @@ function getBackendType(backend: string): string {
   return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
 }
 
+// Simple horizontal bar chart component
+function BarChart({
+  data,
+  maxValue,
+  formatValue = (v: number) => v.toLocaleString(),
+}: {
+  data: Array<{ label: string; value: number; color?: string }>;
+  maxValue: number;
+  formatValue?: (v: number) => string;
+}) {
+  return (
+    <div class="space-y-2">
+      {data.map((item) => (
+        <div key={item.label} class="flex items-center gap-3">
+          <div class="w-20 text-sm text-gray-400 truncate">{item.label}</div>
+          <div class="flex-1 h-6 bg-dark-700 rounded overflow-hidden">
+            <div
+              class="h-full transition-all"
+              style={{
+                width: `${(item.value / maxValue) * 100}%`,
+                backgroundColor: item.color || "#B026FF",
+              }}
+            />
+          </div>
+          <div class="w-16 text-sm text-gray-400 text-right">
+            {formatValue(item.value)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // Helper to create SVG arc path
 function describeArc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number): string {
   const start = {
@@ -38,7 +71,7 @@ function describeArc(cx: number, cy: number, radius: number, startAngle: number,
 // Simple pie/donut chart component using arc paths
 function DonutChart({
   data,
-  size = 160,
+  size = 180,
 }: {
   data: Array<{ label: string; value: number; color: string }>;
   size?: number;
@@ -61,7 +94,7 @@ function DonutChart({
     );
   }
 
-  const strokeWidth = 30;
+  const strokeWidth = 50;
   const radius = (size - strokeWidth) / 2;
   const cx = size / 2;
   const cy = size / 2;
@@ -312,7 +345,11 @@ export function StatsPage() {
         {/* Downloads distribution */}
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
           <h2 class="text-lg font-semibold text-gray-200 mb-4">Downloads by Backend</h2>
-          <DonutChart data={backendStats.downloads.slice(0, 8)} />
+          <BarChart
+            data={backendStats.downloads.slice(0, 10)}
+            maxValue={Math.max(...backendStats.downloads.map((b) => b.value))}
+            formatValue={formatCompact}
+          />
         </div>
       </div>
 
