@@ -219,7 +219,7 @@ export function ToolSearch({ tools, downloads }: Props) {
     return (
       <>
         {name.slice(0, index)}
-        <span class="bg-neon-purple/30 rounded px-0.5">{name.slice(index, index + query.length)}</span>
+        <span class="text-neon-purple font-semibold">{name.slice(index, index + query.length)}</span>
         {name.slice(index + query.length)}
       </>
     );
