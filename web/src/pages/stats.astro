@@ -1,0 +1,463 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { drizzle } from 'drizzle-orm/d1';
+import { setupAnalytics } from '../../../src/analytics';
+
+// Get the D1 database from Cloudflare runtime
+const runtime = Astro.locals.runtime;
+const db = drizzle(runtime.env.ANALYTICS_DB);
+const analytics = setupAnalytics(db);
+
+// Fetch tools.json
+const toolsRes = await fetch(new URL('/data/tools.json', Astro.url));
+const toolsData = await toolsRes.json() as {
+  tool_count: number;
+  tools: Array<{
+    name: string;
+    latest_version: string;
+    version_count: number;
+    backends?: string[];
+  }>;
+};
+
+// Fetch analytics data with error handling for local dev
+let downloads: Record<string, number> = {};
+let backendStatsData: { downloads_by_backend: Array<{ backend: string; count: number }>; top_tools_by_backend: Record<string, Array<{ tool: string; count: number }>> } | null = null;
+let dauMauData: { daily: Array<{ date: string; dau: number }>; current_mau: number } | null = null;
+let growthData: { global: { wow: number | null; mom: number | null }; topGrowing: Array<{ tool: string; thisWeek: number; wow: number | null }>; topDeclining: Array<{ tool: string; thisWeek: number; wow: number | null }> } | null = null;
+
+try {
+  [downloads, backendStatsData, dauMauData, growthData] = await Promise.all([
+    analytics.getAll30DayDownloads(),
+    analytics.getBackendStats(),
+    analytics.getDAUMAUHistory(30),
+    analytics.getGrowthMetrics(),
+  ]);
+} catch (e) {
+  console.error('Failed to fetch analytics data:', e);
+  // Use empty/mock data for local dev
+}
+
+// Helper functions
+function formatCompact(n: number): string {
+  if (n >= 1_000_000) {
+    return (n / 1_000_000).toFixed(n >= 10_000_000 ? 1 : 2) + "m";
+  }
+  if (n >= 1_000) {
+    return (n / 1_000).toFixed(n >= 10_000 ? 1 : 2) + "k";
+  }
+  return n.toString();
+}
+
+function getBackendType(backend: string): string {
+  const colonIndex = backend.indexOf(":");
+  return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
+}
+
+const BACKEND_COLORS: Record<string, string> = {
+  aqua: "#00D4FF",
+  ubi: "#B026FF",
+  asdf: "#FF2D95",
+  vfox: "#22C55E",
+  cargo: "#F97316",
+  npm: "#EF4444",
+  go: "#3B82F6",
+  pipx: "#8B5CF6",
+  core: "#FBBF24",
+  gem: "#EC4899",
+};
+
+function getBackendColor(backend: string): string {
+  return BACKEND_COLORS[backend] || "#6B7280";
+}
+
+// Compute backend statistics (derived from tools.json for tool counts)
+const backendCounts = new Map<string, number>();
+const downloadsByBackendDerived = new Map<string, number>();
+
+for (const tool of toolsData.tools) {
+  const toolDownloads = downloads?.[tool.name] || 0;
+  if (tool.backends && tool.backends.length > 0) {
+    const primaryBackend = tool.backends[0];
+    const backendType = getBackendType(primaryBackend);
+    backendCounts.set(backendType, (backendCounts.get(backendType) || 0) + 1);
+    downloadsByBackendDerived.set(
+      backendType,
+      (downloadsByBackendDerived.get(backendType) || 0) + toolDownloads
+    );
+  }
+}
+
+const sortedCounts = [...backendCounts.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .map(([label, value]) => ({ label, value, color: getBackendColor(label) }));
+
+// Use real backend stats from tracking data when available
+const realDownloads = backendStatsData?.downloads_by_backend;
+const hasRealData = realDownloads && realDownloads.length > 0 &&
+  realDownloads.some((d: { backend: string }) => d.backend !== "unknown");
+
+const backendDownloads = hasRealData
+  ? realDownloads
+      .filter((d: { backend: string }) => d.backend !== "unknown")
+      .map((d: { backend: string; count: number }) => ({
+        label: d.backend,
+        value: d.count,
+        color: getBackendColor(d.backend),
+      }))
+  : [...downloadsByBackendDerived.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([label, value]) => ({ label, value, color: getBackendColor(label) }));
+
+// Compute total downloads
+const totalDownloads = downloads
+  ? Object.values(downloads).reduce((sum, count) => sum + count, 0)
+  : 0;
+
+// Top tools by backend
+const topToolsByBackend = backendStatsData?.top_tools_by_backend || {};
+const topBackends = backendDownloads.slice(0, 5).map((b: { label: string }) => b.label);
+
+// Donut chart SVG generation
+function describeArc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number): string {
+  const start = {
+    x: cx + radius * Math.cos(startAngle),
+    y: cy + radius * Math.sin(startAngle),
+  };
+  const end = {
+    x: cx + radius * Math.cos(endAngle),
+    y: cy + radius * Math.sin(endAngle),
+  };
+  const largeArcFlag = endAngle - startAngle > Math.PI ? 1 : 0;
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x} ${end.y}`;
+}
+
+function generateDonutSegments(data: Array<{ label: string; value: number; color: string }>, size: number = 300) {
+  const validData = data.filter(d => d.value > 0);
+  const total = validData.reduce((sum, d) => sum + d.value, 0);
+  if (validData.length === 0 || total === 0) return [];
+
+  const strokeWidth = 60;
+  const radius = (size - strokeWidth) / 2;
+  const cx = size / 2;
+  const cy = size / 2;
+
+  let currentAngle = -Math.PI / 2;
+  return validData.map(d => {
+    const percentage = d.value / total;
+    const startAngle = currentAngle;
+    const arcLength = percentage * Math.PI * 2 * 0.9999;
+    const endAngle = startAngle + arcLength;
+    currentAngle = startAngle + percentage * Math.PI * 2;
+    return {
+      ...d,
+      startAngle,
+      endAngle,
+      percentage,
+      path: describeArc(cx, cy, radius, startAngle, endAngle)
+    };
+  });
+}
+
+const donutSegments = generateDonutSegments(sortedCounts.slice(0, 8));
+const donutSize = 300;
+const strokeWidth = 60;
+---
+
+<Layout title="Stats" description="Download statistics and ecosystem metrics for mise tools">
+  <div class="space-y-8">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl font-bold text-gray-100">Ecosystem Stats</h1>
+      <a href="/" class="text-sm text-gray-400 hover:text-neon-purple transition-colors">
+        &larr; Back to tools
+      </a>
+    </div>
+
+    <!-- Overview cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+        <div class="text-sm text-gray-400 mb-1">Total Tools</div>
+        <div class="text-3xl font-bold text-gray-100">
+          {toolsData.tool_count.toLocaleString()}
+        </div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+        <div class="text-sm text-gray-400 mb-1">Backends</div>
+        <div class="text-3xl font-bold text-gray-100">
+          {sortedCounts.length}
+        </div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+        <div class="text-sm text-gray-400 mb-1">Downloads (30d)</div>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl font-bold text-neon-purple">
+            {formatCompact(totalDownloads)}
+          </span>
+          {growthData?.global.mom !== null && (
+            <span class={`text-xs ${growthData.global.mom >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {growthData.global.mom >= 0 ? '↑' : '↓'} {Math.abs(growthData.global.mom).toFixed(1)}%
+            </span>
+          )}
+        </div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+        <div class="text-sm text-gray-400 mb-1">Week-over-Week</div>
+        <div class="text-3xl font-bold">
+          {growthData?.global.wow !== null ? (
+            <span class={`inline-flex items-center gap-1 px-2 py-0.5 rounded ${growthData.global.wow >= 0 ? 'bg-green-400/10 text-green-400' : 'bg-red-400/10 text-red-400'} text-sm font-medium`}>
+              {growthData.global.wow >= 0 ? '↑' : '↓'} {Math.abs(growthData.global.wow).toFixed(1)}%
+            </span>
+          ) : (
+            <span class="text-gray-500">...</span>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <!-- Tools by backend (Donut Chart) -->
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">Tools by Backend</h2>
+        {donutSegments.length > 0 ? (
+          <div class="flex items-center gap-4">
+            <svg width={donutSize} height={donutSize} viewBox={`0 0 ${donutSize} ${donutSize}`}>
+              {donutSegments.map(seg => (
+                <path
+                  d={seg.path}
+                  fill="none"
+                  stroke={seg.color}
+                  stroke-width={strokeWidth}
+                  stroke-linecap="butt"
+                />
+              ))}
+            </svg>
+            <div class="space-y-1">
+              {donutSegments.slice(0, 6).map(seg => (
+                <div class="flex items-center gap-2 text-sm whitespace-nowrap">
+                  <div class="w-3 h-3 rounded-sm flex-shrink-0" style={`background-color: ${seg.color}`}></div>
+                  <span class="text-gray-400">{seg.label}</span>
+                  <span class="text-gray-500">{seg.value.toLocaleString()} ({(seg.percentage * 100).toFixed(1)}%)</span>
+                </div>
+              ))}
+              {donutSegments.length > 6 && (
+                <div class="text-xs text-gray-500">+{donutSegments.length - 6} more</div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div class="flex items-center gap-6">
+            <div class="rounded-full bg-dark-700 flex items-center justify-center" style={`width: ${donutSize}px; height: ${donutSize}px`}>
+              <span class="text-gray-500 text-sm">No data</span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <!-- Downloads distribution (Bar Chart) -->
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads by Backend</h2>
+        <div class="space-y-2">
+          {backendDownloads.slice(0, 10).map((item: { label: string; value: number; color: string }) => {
+            const maxValue = Math.max(...backendDownloads.map((b: { value: number }) => b.value));
+            return (
+              <div class="flex items-center gap-3">
+                <div class="w-20 text-sm text-gray-400 truncate">{item.label}</div>
+                <div class="flex-1 h-6 bg-dark-700 rounded overflow-hidden">
+                  <div
+                    class="h-full"
+                    style={`width: ${(item.value / maxValue) * 100}%; background-color: ${item.color}`}
+                  />
+                </div>
+                <div class="w-16 text-sm text-gray-400 text-right">
+                  {formatCompact(item.value)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+    <!-- DAU/MAU chart -->
+    {dauMauData && dauMauData.daily.length > 0 && (
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">
+          Daily Active Users
+          <span class="text-sm font-normal text-gray-400 ml-2">
+            (MAU: {dauMauData.current_mau.toLocaleString()})
+          </span>
+        </h2>
+        <div class="overflow-x-auto">
+          {(() => {
+            const width = 700;
+            const height = 200;
+            const padding = { top: 20, right: 50, bottom: 30, left: 50 };
+            const chartWidth = width - padding.left - padding.right;
+            const chartHeight = height - padding.top - padding.bottom;
+            const data = dauMauData.daily;
+            const mau = dauMauData.current_mau;
+            const maxDAU = Math.max(...data.map(d => d.dau), mau);
+            const yScale = (v: number) => chartHeight - (v / maxDAU) * chartHeight;
+            const barWidth = chartWidth / data.length - 2;
+            const mauY = yScale(mau);
+
+            return (
+              <svg width={width} height={height} class="min-w-[700px]">
+                <text x={padding.left - 10} y={padding.top} text-anchor="end" class="fill-gray-500 text-xs">
+                  {formatCompact(maxDAU)}
+                </text>
+                <text x={padding.left - 10} y={padding.top + chartHeight} text-anchor="end" class="fill-gray-500 text-xs">
+                  0
+                </text>
+                <g transform={`translate(${padding.left}, ${padding.top})`}>
+                  {data.map((d, i) => {
+                    const x = (i / data.length) * chartWidth + 1;
+                    const barHeight = (d.dau / maxDAU) * chartHeight;
+                    return (
+                      <rect
+                        x={x}
+                        y={chartHeight - barHeight}
+                        width={barWidth}
+                        height={barHeight}
+                        fill="#B026FF"
+                        opacity="0.8"
+                      >
+                        <title>{d.date}: {d.dau.toLocaleString()} DAU</title>
+                      </rect>
+                    );
+                  })}
+                  <line
+                    x1={0}
+                    y1={mauY}
+                    x2={chartWidth}
+                    y2={mauY}
+                    stroke="#00D4FF"
+                    stroke-width="2"
+                    stroke-dasharray="6,4"
+                  />
+                  <text x={chartWidth + 5} y={mauY + 4} class="fill-cyan-400 text-xs">
+                    MAU
+                  </text>
+                  {data.map((d, i) => {
+                    if (i % 7 !== 0 && i !== data.length - 1) return null;
+                    const x = (i / data.length) * chartWidth + barWidth / 2;
+                    const dateLabel = d.date.slice(5);
+                    return (
+                      <text x={x} y={chartHeight + 15} text-anchor="middle" class="fill-gray-500 text-xs">
+                        {dateLabel}
+                      </text>
+                    );
+                  })}
+                </g>
+              </svg>
+            );
+          })()}
+        </div>
+      </div>
+    )}
+
+    <!-- Trending Tools -->
+    {growthData && (growthData.topGrowing.length > 0 || growthData.topDeclining.length > 0) && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {growthData.topGrowing.length > 0 && (
+          <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+            <h2 class="text-lg font-semibold text-gray-200 mb-3 flex items-center gap-2">
+              <span class="text-green-400">↑</span> Trending Up
+              <span class="text-sm font-normal text-gray-500">(week-over-week)</span>
+            </h2>
+            <div class="space-y-2">
+              {growthData.topGrowing.slice(0, 8).map((tool, index) => (
+                <a
+                  href={`/tools/${tool.tool}`}
+                  class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
+                >
+                  <div class="flex items-center gap-3">
+                    <span class="text-gray-500 text-sm w-4">{index + 1}.</span>
+                    <span class="text-gray-300 group-hover:text-neon-purple transition-colors">
+                      {tool.tool}
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-gray-500 text-xs">
+                      {formatCompact(tool.thisWeek)} / wk
+                    </span>
+                    <span class="text-green-400 text-xs">
+                      ↑ {tool.wow !== null ? Math.abs(tool.wow).toFixed(1) : 0}%
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {growthData.topDeclining.length > 0 && (
+          <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+            <h2 class="text-lg font-semibold text-gray-200 mb-3 flex items-center gap-2">
+              <span class="text-red-400">↓</span> Trending Down
+              <span class="text-sm font-normal text-gray-500">(week-over-week)</span>
+            </h2>
+            <div class="space-y-2">
+              {growthData.topDeclining.slice(0, 8).map((tool, index) => (
+                <a
+                  href={`/tools/${tool.tool}`}
+                  class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
+                >
+                  <div class="flex items-center gap-3">
+                    <span class="text-gray-500 text-sm w-4">{index + 1}.</span>
+                    <span class="text-gray-300 group-hover:text-neon-purple transition-colors">
+                      {tool.tool}
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="text-gray-500 text-xs">
+                      {formatCompact(tool.thisWeek)} / wk
+                    </span>
+                    <span class="text-red-400 text-xs">
+                      ↓ {tool.wow !== null ? Math.abs(tool.wow).toFixed(1) : 0}%
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    <!-- Top tools per backend -->
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+      <h2 class="text-lg font-semibold text-gray-200 mb-3">Top Tools by Backend</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        {topBackends.map((backend: string) => {
+          const tools = topToolsByBackend[backend] || [];
+          return (
+            <div>
+              <h3 class="text-sm font-medium text-gray-400 mb-2 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full" style={`background-color: ${getBackendColor(backend)}`}></span>
+                {backend}
+              </h3>
+              <div class="space-y-1">
+                {tools.map((tool: { tool: string; count: number }, index: number) => (
+                  <a
+                    href={`/tools/${tool.tool}`}
+                    class="flex items-center justify-between text-sm group"
+                  >
+                    <span class="text-gray-300 group-hover:text-neon-purple transition-colors truncate">
+                      {index + 1}. {tool.tool}
+                    </span>
+                    <span class="text-gray-500 text-xs">
+                      {formatCompact(tool.count)}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</Layout>
+

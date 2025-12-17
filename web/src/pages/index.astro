@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { ToolSearch } from '../components/ToolSearch';
+import { drizzle } from 'drizzle-orm/d1';
+import { setupAnalytics } from '../../../src/analytics';
+
+// Fetch tools.json
+const toolsRes = await fetch(new URL('/data/tools.json', Astro.url));
+const toolsData = await toolsRes.json() as {
+  tool_count: number;
+  tools: Array<{
+    name: string;
+    latest_version: string;
+    version_count: number;
+    last_updated: string | null;
+    description?: string;
+    backends?: string[];
+  }>;
+};
+
+// Fetch downloads data
+let downloads: Record<string, number> = {};
+try {
+  const runtime = Astro.locals.runtime;
+  const db = drizzle(runtime.env.ANALYTICS_DB);
+  const analytics = setupAnalytics(db);
+  downloads = await analytics.getAll30DayDownloads();
+} catch (e) {
+  console.error('Failed to fetch downloads:', e);
+}
+---
+
+<Layout title="mise tools" description="Browse tool versions and download stats for mise">
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold text-gray-100 mb-2">mise tools</h1>
+    <p class="text-gray-400 text-sm">
+      Browse and search the mise tool registry.
+      <a href="/stats" class="text-neon-purple hover:text-neon-pink transition-colors">View stats →</a>
+    </p>
+  </div>
+
+  <ToolSearch client:load tools={toolsData.tools} downloads={downloads} />
+</Layout>
