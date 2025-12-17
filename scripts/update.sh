@@ -257,7 +257,7 @@ fetch() {
 	increment_stat "total_tools_checked"
 	
 	case "$1" in
-	awscli-local | jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar)
+	awscli-local | jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar | dasel | cockroach)
 		increment_stat "total_tools_skipped"
 		return
 		;;

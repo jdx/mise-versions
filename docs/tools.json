@@ -2242,21 +2242,6 @@
       "description": "Task runner. It provides useful help messages and supports interactive prompts and validation of arguments"
     },
     {
-      "name": "cockroach",
-      "latest_version": "26.1.0-alpha.2",
-      "version_count": 878,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "cockroachdb/cockroach",
-      "repo_url": "https://github.com/cockroachdb/cockroach",
-      "backends": [
-        "aqua:cockroachdb/cockroach",
-        "asdf:salasrod/asdf-cockroach"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cockroachdb/cockroach/registry.yaml",
-      "homepage": "https://www.cockroachlabs.com",
-      "description": "CockroachDB — the cloud native, distributed SQL database designed for high availability, effortless scale, and control over data placement."
-    },
-    {
       "name": "cocoapods",
       "latest_version": "0.34.0",
       "version_count": 230,
@@ -2953,22 +2938,6 @@
         "asdf:mise-plugins/mise-dart",
         "vfox:mise-plugins/vfox-dart"
       ]
-    },
-    {
-      "name": "dasel",
-      "latest_version": "3.1.1",
-      "version_count": 87,
-      "last_updated": "2025-12-16T21:44:40.000Z",
-      "github": "TomWright/dasel",
-      "repo_url": "https://github.com/TomWright/dasel",
-      "backends": [
-        "aqua:TomWright/dasel",
-        "asdf:asdf-community/asdf-dasel"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/TomWright/dasel/registry.yaml",
-      "license": "MIT",
-      "homepage": "https://daseldocs.tomwright.me",
-      "description": "Select, put and delete data from JSON, TOML, YAML, XML, INI, HCL and CSV files with a single tool. Also available as a go mod."
     },
     {
       "name": "databricks-cli",
