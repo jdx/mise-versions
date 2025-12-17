@@ -134,7 +134,7 @@ function DonutChart({
               style={{ backgroundColor: seg.color }}
             />
             <span class="text-gray-400">{seg.label}</span>
-            <span class="text-gray-500">({(seg.percentage * 100).toFixed(1)}%)</span>
+            <span class="text-gray-500">{seg.value.toLocaleString()} ({(seg.percentage * 100).toFixed(1)}%)</span>
           </div>
         ))}
         {segments.length > 6 && (
