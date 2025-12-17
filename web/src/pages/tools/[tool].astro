@@ -45,8 +45,13 @@ try {
   });
   if (tomlRes.ok) {
     const tomlText = await tomlRes.text();
-    const parsed = smolToml.parse(tomlText) as { versions?: Array<{ version: string; created_at?: string }> };
-    versions = parsed.versions || [];
+    // TOML format: [versions] with "version" = { created_at = ... } entries
+    const parsed = smolToml.parse(tomlText) as { versions?: Record<string, { created_at?: string }> };
+    const versionsObj = parsed.versions || {};
+    versions = Object.entries(versionsObj).map(([version, data]) => ({
+      version,
+      created_at: data?.created_at || null,
+    }));
   }
 } catch (e) {
   console.error('Failed to fetch versions TOML:', e);
