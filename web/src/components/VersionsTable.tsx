@@ -1,4 +1,5 @@
 import { useState, useMemo } from "preact/hooks";
+import { isPrerelease } from "../lib/versions";
 
 interface Version {
   version: string;
@@ -84,6 +85,7 @@ interface VersionsTableProps {
 export function VersionsTable({ versions, downloadsByVersion }: VersionsTableProps) {
   const [sortBy, setSortBy] = useState<VersionSortKey>("default");
   const [versionPrefix, setVersionPrefix] = useState("");
+  const [hidePrerelease, setHidePrerelease] = useState(false);
 
   // Create a map of version -> download count
   const versionDownloads = useMemo(() => {
@@ -115,11 +117,22 @@ export function VersionsTable({ versions, downloadsByVersion }: VersionsTablePro
     return getInterestingPrefixes(versions || []);
   }, [versions]);
 
-  // Filter versions by selected prefix
+  // Filter versions by selected prefix and prerelease status
   const filteredVersions = useMemo(() => {
-    if (!versionPrefix) return sortedVersions;
-    return sortedVersions.filter((v) => v.version.startsWith(versionPrefix + ".") || v.version === versionPrefix);
-  }, [sortedVersions, versionPrefix]);
+    let result = sortedVersions;
+    if (hidePrerelease) {
+      result = result.filter((v) => !isPrerelease(v.version));
+    }
+    if (versionPrefix) {
+      result = result.filter((v) => v.version.startsWith(versionPrefix + ".") || v.version === versionPrefix);
+    }
+    return result;
+  }, [sortedVersions, versionPrefix, hidePrerelease]);
+
+  // Count prereleases for display
+  const prereleaseCount = useMemo(() => {
+    return versions?.filter((v) => isPrerelease(v.version)).length || 0;
+  }, [versions]);
 
   const SortButton = ({ label, sortKey }: { label: string; sortKey: VersionSortKey }) => (
     <button
@@ -137,34 +150,50 @@ export function VersionsTable({ versions, downloadsByVersion }: VersionsTablePro
 
   return (
     <div>
-      {/* Version filter pills */}
-      {interestingPrefixes.length > 1 && (
-        <div class="flex flex-wrap gap-2 mb-4">
-          <button
-            onClick={() => setVersionPrefix("")}
-            class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-              versionPrefix === ""
-                ? "bg-neon-purple text-white"
-                : "bg-dark-700 text-gray-400 hover:bg-dark-600 hover:text-gray-200"
-            }`}
-          >
-            All
-          </button>
-          {interestingPrefixes.map((prefix) => (
+      {/* Filters row */}
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        {/* Version filter pills */}
+        {interestingPrefixes.length > 1 ? (
+          <div class="flex flex-wrap gap-2">
             <button
-              key={prefix}
-              onClick={() => setVersionPrefix(prefix)}
+              onClick={() => setVersionPrefix("")}
               class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                versionPrefix === prefix
+                versionPrefix === ""
                   ? "bg-neon-purple text-white"
                   : "bg-dark-700 text-gray-400 hover:bg-dark-600 hover:text-gray-200"
               }`}
             >
-              {prefix}
+              All
             </button>
-          ))}
-        </div>
-      )}
+            {interestingPrefixes.map((prefix) => (
+              <button
+                key={prefix}
+                onClick={() => setVersionPrefix(prefix)}
+                class={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  versionPrefix === prefix
+                    ? "bg-neon-purple text-white"
+                    : "bg-dark-700 text-gray-400 hover:bg-dark-600 hover:text-gray-200"
+                }`}
+              >
+                {prefix}
+              </button>
+            ))}
+          </div>
+        ) : <div />}
+
+        {/* Hide prereleases checkbox */}
+        {prereleaseCount > 0 && (
+          <label class="flex items-center gap-2 text-sm text-gray-400 cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={hidePrerelease}
+              onChange={(e) => setHidePrerelease((e.target as HTMLInputElement).checked)}
+              class="w-4 h-4 rounded border-dark-500 bg-dark-700 text-neon-purple focus:ring-neon-purple focus:ring-offset-dark-800"
+            />
+            Hide prereleases ({prereleaseCount})
+          </label>
+        )}
+      </div>
 
       {/* Version table */}
       <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">

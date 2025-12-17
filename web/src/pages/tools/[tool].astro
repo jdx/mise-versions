@@ -6,6 +6,7 @@ import * as smolToml from 'smol-toml';
 import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
+import { isPrerelease, getLatestStableVersion } from '../../lib/versions';
 
 const { tool } = Astro.params;
 
@@ -91,6 +92,12 @@ for (const v of downloadStats.byVersion) {
 // Get page title and description
 const pageTitle = tool;
 const pageDescription = toolMeta.description || `${tool} - version manager tool`;
+
+// Compute latest version info
+const latestVersion = versions[versions.length - 1]?.version || toolMeta.latest_version;
+const latestIsPrerelease = latestVersion ? isPrerelease(latestVersion) : false;
+const latestStable = getLatestStableVersion(versions);
+const latestStableVersion = latestStable?.version;
 
 // Backend URL helper
 function backendToUrl(backend: string): string | null {
@@ -223,6 +230,23 @@ const timeline = buildTimelineMilestones(versions);
             </>
           );
         })()}
+        {latestVersion && (
+          <>
+            <span class="font-mono text-gray-300">
+              {latestIsPrerelease ? (
+                <>
+                  <span class="text-yellow-500" title="Prerelease">{latestVersion}</span>
+                  {latestStableVersion && latestStableVersion !== latestVersion && (
+                    <span class="text-gray-500"> (stable: {latestStableVersion})</span>
+                  )}
+                </>
+              ) : (
+                latestVersion
+              )}
+            </span>
+            <span>·</span>
+          </>
+        )}
         <span>{versions.length} versions</span>
         {downloadStats.total > 0 && (
           <>
