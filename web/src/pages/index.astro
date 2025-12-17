@@ -14,6 +14,7 @@ const toolsData = await toolsRes.json() as {
   tools: Array<{
     name: string;
     latest_version: string;
+    latest_stable_version?: string;
     version_count: number;
     last_updated: string | null;
     description?: string;

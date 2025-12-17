@@ -9,6 +9,7 @@ const VALID_SORT_KEYS: SortKey[] = ["name", "downloads", "updated"];
 interface Tool {
   name: string;
   latest_version: string;
+  latest_stable_version?: string;
   version_count: number;
   last_updated: string | null;
   description?: string;
@@ -368,7 +369,7 @@ export function ToolSearch({ tools, downloads }: Props) {
                     <HighlightedName name={tool.name} />
                   </a>
                 </td>
-                <td class="px-4 py-3 text-sm text-gray-300 font-mono">{tool.latest_version}</td>
+                <td class="px-4 py-3 text-sm text-gray-300 font-mono">{tool.latest_stable_version || tool.latest_version}</td>
                 <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">{tool.downloads_30d.toLocaleString()}</td>
                 <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">
                   {tool.last_updated ? formatRelativeTime(tool.last_updated) : "-"}

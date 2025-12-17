@@ -18,6 +18,14 @@ const OUTPUT_FILE = join(DOCS_DIR, "tools.json");
 const METADATA_CACHE_FILE = join(DOCS_DIR, "metadata-cache.json");
 const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
 
+// Prerelease version regex - ported from mise
+// Matches: -src, -dev, -rc, .rc, -alpha, -beta, -pre, .pre, -next, -milestone, snapshot, master, a1/b2/c3
+const PRERELEASE_REGEX = /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
+
+function isPrerelease(version) {
+  return PRERELEASE_REGEX.test(version);
+}
+
 // Convert Date object or string to ISO string
 function toISOString(value) {
   if (!value) return null;
@@ -193,6 +201,16 @@ function processTomlFile(filePath) {
     const versions = Object.entries(parsed.versions);
     const [latestVersion, latestData] = versions[versions.length - 1];
 
+    // Find latest stable version (newest non-prerelease)
+    let latestStableVersion = null;
+    for (let i = versions.length - 1; i >= 0; i--) {
+      const [version] = versions[i];
+      if (!isPrerelease(version)) {
+        latestStableVersion = version;
+        break;
+      }
+    }
+
     // Find most recent created_at across all versions
     let lastUpdated = null;
     for (const [, data] of versions) {
@@ -206,6 +224,7 @@ function processTomlFile(filePath) {
 
     return {
       latest_version: latestVersion,
+      latest_stable_version: latestStableVersion || latestVersion,
       version_count: versions.length,
       last_updated: lastUpdated || toISOString(latestData?.created_at) || null,
     };
