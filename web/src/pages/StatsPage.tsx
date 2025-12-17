@@ -120,9 +120,8 @@ function DonutChart({
             d={describeArc(cx, cy, radius, seg.startAngle, seg.endAngle)}
             fill="none"
             stroke={seg.color}
-            strokeWidth={strokeWidth}
-            strokeLinecap="butt"
-            class="transition-all duration-300"
+            style={{ strokeWidth: `${strokeWidth}px` }}
+            stroke-linecap="butt"
           />
         ))}
       </svg>
