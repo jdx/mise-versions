@@ -788,6 +788,365 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       };
     },
 
+    // Get growth metrics (week-over-week and month-over-month)
+    async getGrowthMetrics() {
+      const now = Math.floor(Date.now() / 1000);
+
+      // Calculate timestamps for each period
+      const sevenDaysAgo = now - 7 * 86400;
+      const fourteenDaysAgo = now - 14 * 86400;
+      const thirtyDaysAgo = now - 30 * 86400;
+      const sixtyDaysAgo = now - 60 * 86400;
+
+      // Get downloads for each period from rollup tables
+      const thisWeekStart = new Date(sevenDaysAgo * 1000).toISOString().split("T")[0];
+      const lastWeekStart = new Date(fourteenDaysAgo * 1000).toISOString().split("T")[0];
+      const thisMonthStart = new Date(thirtyDaysAgo * 1000).toISOString().split("T")[0];
+      const lastMonthStart = new Date(sixtyDaysAgo * 1000).toISOString().split("T")[0];
+
+      // Global stats for this week
+      const thisWeekGlobal = await db
+        .select({
+          total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
+        })
+        .from(dailyStats)
+        .where(sql`${dailyStats.date} >= ${thisWeekStart}`)
+        .get();
+
+      // Global stats for last week
+      const lastWeekGlobal = await db
+        .select({
+          total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
+        })
+        .from(dailyStats)
+        .where(and(
+          sql`${dailyStats.date} >= ${lastWeekStart}`,
+          sql`${dailyStats.date} < ${thisWeekStart}`
+        ))
+        .get();
+
+      // Global stats for this month
+      const thisMonthGlobal = await db
+        .select({
+          total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
+        })
+        .from(dailyStats)
+        .where(sql`${dailyStats.date} >= ${thisMonthStart}`)
+        .get();
+
+      // Global stats for last month
+      const lastMonthGlobal = await db
+        .select({
+          total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
+        })
+        .from(dailyStats)
+        .where(and(
+          sql`${dailyStats.date} >= ${lastMonthStart}`,
+          sql`${dailyStats.date} < ${thisMonthStart}`
+        ))
+        .get();
+
+      // Calculate global growth rates
+      const thisWeekTotal = thisWeekGlobal?.total ?? 0;
+      const lastWeekTotal = lastWeekGlobal?.total ?? 0;
+      const thisMonthTotal = thisMonthGlobal?.total ?? 0;
+      const lastMonthTotal = lastMonthGlobal?.total ?? 0;
+
+      const wowGrowth = lastWeekTotal > 0
+        ? ((thisWeekTotal - lastWeekTotal) / lastWeekTotal) * 100
+        : null;
+      const momGrowth = lastMonthTotal > 0
+        ? ((thisMonthTotal - lastMonthTotal) / lastMonthTotal) * 100
+        : null;
+
+      // Get per-tool growth for this week vs last week
+      const thisWeekByTool = await db
+        .select({
+          tool_id: dailyToolStats.tool_id,
+          downloads: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)`,
+        })
+        .from(dailyToolStats)
+        .where(sql`${dailyToolStats.date} >= ${thisWeekStart}`)
+        .groupBy(dailyToolStats.tool_id)
+        .all();
+
+      const lastWeekByTool = await db
+        .select({
+          tool_id: dailyToolStats.tool_id,
+          downloads: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)`,
+        })
+        .from(dailyToolStats)
+        .where(and(
+          sql`${dailyToolStats.date} >= ${lastWeekStart}`,
+          sql`${dailyToolStats.date} < ${thisWeekStart}`
+        ))
+        .groupBy(dailyToolStats.tool_id)
+        .all();
+
+      // Build tool growth map
+      const thisWeekMap = new Map(thisWeekByTool.map(t => [t.tool_id, t.downloads]));
+      const lastWeekMap = new Map(lastWeekByTool.map(t => [t.tool_id, t.downloads]));
+
+      // Get tool names
+      const allToolIds = new Set([...thisWeekMap.keys(), ...lastWeekMap.keys()]);
+      const toolNames = await db
+        .select({ id: tools.id, name: tools.name })
+        .from(tools)
+        .where(sql`${tools.id} IN (${[...allToolIds].join(",")})`)
+        .all();
+      const toolIdToName = new Map(toolNames.map(t => [t.id, t.name]));
+
+      // Calculate per-tool growth
+      const toolGrowth: Array<{
+        tool: string;
+        thisWeek: number;
+        lastWeek: number;
+        wow: number | null;
+      }> = [];
+
+      for (const toolId of allToolIds) {
+        const thisWeek = thisWeekMap.get(toolId) ?? 0;
+        const lastWeek = lastWeekMap.get(toolId) ?? 0;
+        const toolName = toolIdToName.get(toolId);
+
+        if (!toolName) continue;
+
+        // Only include tools with significant activity
+        if (thisWeek < 10 && lastWeek < 10) continue;
+
+        const wow = lastWeek > 0
+          ? ((thisWeek - lastWeek) / lastWeek) * 100
+          : (thisWeek > 0 ? 100 : null);
+
+        toolGrowth.push({
+          tool: toolName,
+          thisWeek,
+          lastWeek,
+          wow,
+        });
+      }
+
+      // Sort by WoW growth, filter to top growing and declining
+      const growingTools = toolGrowth
+        .filter(t => t.wow !== null && t.wow > 0)
+        .sort((a, b) => (b.wow ?? 0) - (a.wow ?? 0))
+        .slice(0, 10);
+
+      const decliningTools = toolGrowth
+        .filter(t => t.wow !== null && t.wow < 0)
+        .sort((a, b) => (a.wow ?? 0) - (b.wow ?? 0))
+        .slice(0, 10);
+
+      return {
+        global: {
+          wow: wowGrowth,
+          mom: momGrowth,
+          thisWeek: thisWeekTotal,
+          lastWeek: lastWeekTotal,
+          thisMonth: thisMonthTotal,
+          lastMonth: lastMonthTotal,
+        },
+        topGrowing: growingTools,
+        topDeclining: decliningTools,
+      };
+    },
+
+    // Get version trends for a specific tool
+    async getVersionTrends(toolName: string, days: number = 30) {
+      const toolRecord = await db
+        .select({ id: tools.id })
+        .from(tools)
+        .where(eq(tools.name, toolName))
+        .get();
+
+      if (!toolRecord) {
+        return { versions: [], timeline: [] };
+      }
+
+      const now = Math.floor(Date.now() / 1000);
+      const startTimestamp = now - days * 86400;
+      const startDate = new Date(startTimestamp * 1000).toISOString().split("T")[0];
+
+      // Get downloads by version for the period
+      const versionData = await db
+        .select({
+          version: downloads.version,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .where(and(
+          eq(downloads.tool_id, toolRecord.id),
+          sql`${downloads.created_at} >= ${startTimestamp}`
+        ))
+        .groupBy(downloads.version)
+        .orderBy(sql`count(*) DESC`)
+        .all();
+
+      const totalDownloads = versionData.reduce((sum, v) => sum + v.count, 0);
+
+      // Calculate share and trend for each version
+      const versions = versionData.slice(0, 20).map(v => {
+        const share = totalDownloads > 0 ? (v.count / totalDownloads) * 100 : 0;
+        return {
+          version: v.version,
+          downloads: v.count,
+          share,
+          // We'll calculate trend from timeline data
+          trend: "stable" as "growing" | "declining" | "stable",
+        };
+      });
+
+      // Get daily downloads by version (for timeline)
+      const dailyData = await db
+        .select({
+          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
+          version: downloads.version,
+          count: sql<number>`count(*)`,
+        })
+        .from(downloads)
+        .where(and(
+          eq(downloads.tool_id, toolRecord.id),
+          sql`${downloads.created_at} >= ${startTimestamp}`
+        ))
+        .groupBy(sql`date(${downloads.created_at}, 'unixepoch')`, downloads.version)
+        .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .all();
+
+      // Build timeline (fill missing days with 0)
+      const topVersions = versions.slice(0, 10).map(v => v.version);
+      const timeline: Array<{ date: string; [version: string]: number | string }> = [];
+      const versionCounts = new Map<string, Map<string, number>>();
+
+      // Initialize maps
+      for (const d of dailyData) {
+        if (!versionCounts.has(d.date)) {
+          versionCounts.set(d.date, new Map());
+        }
+        versionCounts.get(d.date)!.set(d.version, d.count);
+      }
+
+      // Fill timeline
+      for (let i = days - 1; i >= 0; i--) {
+        const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
+        const dayCounts = versionCounts.get(date) || new Map();
+
+        const dayData: { date: string; [version: string]: number | string } = { date };
+        for (const version of topVersions) {
+          dayData[version] = dayCounts.get(version) || 0;
+        }
+        timeline.push(dayData);
+      }
+
+      // Calculate trends (compare first week to last week)
+      const firstWeekEnd = 7;
+      const lastWeekStart = Math.max(days - 7, firstWeekEnd);
+
+      for (const v of versions) {
+        let firstWeekTotal = 0;
+        let lastWeekTotal = 0;
+
+        for (let i = 0; i < timeline.length; i++) {
+          const count = timeline[i][v.version] as number || 0;
+          if (i < firstWeekEnd) {
+            firstWeekTotal += count;
+          }
+          if (i >= lastWeekStart) {
+            lastWeekTotal += count;
+          }
+        }
+
+        if (firstWeekTotal > 0 && lastWeekTotal > firstWeekTotal * 1.1) {
+          v.trend = "growing";
+        } else if (firstWeekTotal > 0 && lastWeekTotal < firstWeekTotal * 0.9) {
+          v.trend = "declining";
+        }
+      }
+
+      return { versions, timeline };
+    },
+
+    // Get growth for a specific tool
+    async getToolGrowth(toolName: string) {
+      const toolRecord = await db
+        .select({ id: tools.id })
+        .from(tools)
+        .where(eq(tools.name, toolName))
+        .get();
+
+      if (!toolRecord) {
+        return { wow: null, mom: null, sparkline: [] };
+      }
+
+      const now = Math.floor(Date.now() / 1000);
+      const sevenDaysAgo = now - 7 * 86400;
+      const fourteenDaysAgo = now - 14 * 86400;
+      const thirtyDaysAgo = now - 30 * 86400;
+      const sixtyDaysAgo = now - 60 * 86400;
+
+      const thisWeekStart = new Date(sevenDaysAgo * 1000).toISOString().split("T")[0];
+      const lastWeekStart = new Date(fourteenDaysAgo * 1000).toISOString().split("T")[0];
+      const thisMonthStart = new Date(thirtyDaysAgo * 1000).toISOString().split("T")[0];
+      const lastMonthStart = new Date(sixtyDaysAgo * 1000).toISOString().split("T")[0];
+
+      // Get period totals from rollup table
+      const periods = await Promise.all([
+        db.select({ total: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)` })
+          .from(dailyToolStats)
+          .where(and(eq(dailyToolStats.tool_id, toolRecord.id), sql`${dailyToolStats.date} >= ${thisWeekStart}`))
+          .get(),
+        db.select({ total: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)` })
+          .from(dailyToolStats)
+          .where(and(eq(dailyToolStats.tool_id, toolRecord.id), sql`${dailyToolStats.date} >= ${lastWeekStart}`, sql`${dailyToolStats.date} < ${thisWeekStart}`))
+          .get(),
+        db.select({ total: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)` })
+          .from(dailyToolStats)
+          .where(and(eq(dailyToolStats.tool_id, toolRecord.id), sql`${dailyToolStats.date} >= ${thisMonthStart}`))
+          .get(),
+        db.select({ total: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)` })
+          .from(dailyToolStats)
+          .where(and(eq(dailyToolStats.tool_id, toolRecord.id), sql`${dailyToolStats.date} >= ${lastMonthStart}`, sql`${dailyToolStats.date} < ${thisMonthStart}`))
+          .get(),
+      ]);
+
+      const [thisWeek, lastWeek, thisMonth, lastMonth] = periods.map(p => p?.total ?? 0);
+
+      const wow = lastWeek > 0 ? ((thisWeek - lastWeek) / lastWeek) * 100 : null;
+      const mom = lastMonth > 0 ? ((thisMonth - lastMonth) / lastMonth) * 100 : null;
+
+      // Get sparkline data (last 14 days)
+      const sparklineStart = new Date((now - 14 * 86400) * 1000).toISOString().split("T")[0];
+      const sparklineData = await db
+        .select({
+          date: dailyToolStats.date,
+          downloads: dailyToolStats.downloads,
+        })
+        .from(dailyToolStats)
+        .where(and(
+          eq(dailyToolStats.tool_id, toolRecord.id),
+          sql`${dailyToolStats.date} >= ${sparklineStart}`
+        ))
+        .orderBy(dailyToolStats.date)
+        .all();
+
+      // Fill missing days with 0
+      const sparkline: number[] = [];
+      const sparklineMap = new Map(sparklineData.map(d => [d.date, d.downloads]));
+      for (let i = 13; i >= 0; i--) {
+        const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
+        sparkline.push(sparklineMap.get(date) ?? 0);
+      }
+
+      return {
+        wow,
+        mom,
+        sparkline,
+        thisWeek,
+        lastWeek,
+        thisMonth,
+        lastMonth,
+      };
+    },
+
     // Backfill rollup tables for the last N days (one-time migration)
     async backfillRollupTables(days: number = 90, d1?: D1Database): Promise<{ daysProcessed: number }> {
       let daysProcessed = 0;

@@ -4,6 +4,7 @@ import { useTools } from "../hooks/useTools";
 import { useAllDownloads } from "../hooks/useAllDownloads";
 import { useBackendStats } from "../hooks/useBackendStats";
 import { useDAUMAU } from "../hooks/useDAUMAU";
+import { useGrowth } from "../hooks/useGrowth";
 
 // Format large numbers compactly (e.g., 1234 -> "1.23k", 1234567 -> "1.23m")
 function formatCompact(n: number): string {
@@ -253,6 +254,30 @@ function DAUMAUChart({
   );
 }
 
+// Growth indicator badge component
+function GrowthBadge({ value, size = "normal" }: { value: number | null; size?: "normal" | "small" }) {
+  if (value === null) return <span class="text-gray-500">N/A</span>;
+
+  const isPositive = value >= 0;
+  const colorClass = isPositive ? "text-green-400" : "text-red-400";
+  const bgClass = isPositive ? "bg-green-400/10" : "bg-red-400/10";
+  const arrow = isPositive ? "↑" : "↓";
+
+  if (size === "small") {
+    return (
+      <span class={`${colorClass} text-xs`}>
+        {arrow} {Math.abs(value).toFixed(1)}%
+      </span>
+    );
+  }
+
+  return (
+    <span class={`inline-flex items-center gap-1 px-2 py-0.5 rounded ${bgClass} ${colorClass} text-sm font-medium`}>
+      {arrow} {Math.abs(value).toFixed(1)}%
+    </span>
+  );
+}
+
 const BACKEND_COLORS: Record<string, string> = {
   aqua: "#00D4FF",
   ubi: "#B026FF",
@@ -275,8 +300,9 @@ export function StatsPage() {
   const { data: downloads, loading: downloadsLoading } = useAllDownloads();
   const { data: backendStatsData, loading: backendStatsLoading } = useBackendStats();
   const { data: dauMauData, loading: dauMauLoading } = useDAUMAU();
+  const { data: growthData, loading: growthLoading } = useGrowth();
 
-  const loading = toolsLoading || downloadsLoading || backendStatsLoading || dauMauLoading;
+  const loading = toolsLoading || downloadsLoading || backendStatsLoading || dauMauLoading || growthLoading;
 
   // Compute backend statistics (derived from tools.json for tool counts)
   // Only uses the PRIMARY (first) backend for each tool
@@ -422,7 +448,7 @@ export function StatsPage() {
       </div>
 
       {/* Overview cards */}
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
           <div class="text-sm text-gray-400 mb-1">Total Tools</div>
           <div class="text-3xl font-bold text-gray-100">
@@ -437,8 +463,17 @@ export function StatsPage() {
         </div>
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
           <div class="text-sm text-gray-400 mb-1">Downloads (30d)</div>
-          <div class="text-3xl font-bold text-neon-purple">
-            {formatCompact(totalDownloads)}
+          <div class="flex items-baseline gap-2">
+            <span class="text-3xl font-bold text-neon-purple">
+              {formatCompact(totalDownloads)}
+            </span>
+            {growthData && <GrowthBadge value={growthData.global.mom} size="small" />}
+          </div>
+        </div>
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+          <div class="text-sm text-gray-400 mb-1">Week-over-Week</div>
+          <div class="text-3xl font-bold">
+            {growthData ? <GrowthBadge value={growthData.global.wow} /> : <span class="text-gray-500">...</span>}
           </div>
         </div>
       </div>
@@ -472,6 +507,75 @@ export function StatsPage() {
             </span>
           </h2>
           <DAUMAUChart data={dauMauData.daily} mau={dauMauData.current_mau} />
+        </div>
+      )}
+
+      {/* Trending Tools */}
+      {growthData && (growthData.topGrowing.length > 0 || growthData.topDeclining.length > 0) && (
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* Top Growing */}
+          {growthData.topGrowing.length > 0 && (
+            <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+              <h2 class="text-lg font-semibold text-gray-200 mb-3 flex items-center gap-2">
+                <span class="text-green-400">↑</span> Trending Up
+                <span class="text-sm font-normal text-gray-500">(week-over-week)</span>
+              </h2>
+              <div class="space-y-2">
+                {growthData.topGrowing.slice(0, 8).map((tool, index) => (
+                  <Link
+                    key={tool.tool}
+                    href={`/tools/${tool.tool}`}
+                    class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span class="text-gray-500 text-sm w-4">{index + 1}.</span>
+                      <span class="text-gray-300 group-hover:text-neon-purple transition-colors">
+                        {tool.tool}
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <span class="text-gray-500 text-xs">
+                        {formatCompact(tool.thisWeek)} / wk
+                      </span>
+                      <GrowthBadge value={tool.wow} size="small" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Top Declining */}
+          {growthData.topDeclining.length > 0 && (
+            <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+              <h2 class="text-lg font-semibold text-gray-200 mb-3 flex items-center gap-2">
+                <span class="text-red-400">↓</span> Trending Down
+                <span class="text-sm font-normal text-gray-500">(week-over-week)</span>
+              </h2>
+              <div class="space-y-2">
+                {growthData.topDeclining.slice(0, 8).map((tool, index) => (
+                  <Link
+                    key={tool.tool}
+                    href={`/tools/${tool.tool}`}
+                    class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
+                  >
+                    <div class="flex items-center gap-3">
+                      <span class="text-gray-500 text-sm w-4">{index + 1}.</span>
+                      <span class="text-gray-300 group-hover:text-neon-purple transition-colors">
+                        {tool.tool}
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <span class="text-gray-500 text-xs">
+                        {formatCompact(tool.thisWeek)} / wk
+                      </span>
+                      <GrowthBadge value={tool.wow} size="small" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 

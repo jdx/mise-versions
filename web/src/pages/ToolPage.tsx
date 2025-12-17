@@ -1,9 +1,10 @@
-import { useState, useMemo, useEffect } from "preact/hooks";
+import { useState, useMemo, useEffect, useCallback } from "preact/hooks";
 import { useToolVersions } from "../hooks/useToolVersions";
 import { useDownloads } from "../hooks/useDownloads";
 import { useTools, Tool, SecurityFeature } from "../hooks/useTools";
 import { useGithubRepo, parseGithubSlug } from "../hooks/useGithubRepo";
 import { useAuth } from "../hooks/useAuth";
+import { useVersionTrends } from "../hooks/useVersionTrends";
 import { formatRelativeTime, formatDate } from "../utils/time";
 
 interface Props {
@@ -224,6 +225,256 @@ const packageUrlLabels: Record<string, string> = {
   go: "pkg.go.dev",
 };
 
+// Version colors for stacked chart
+const VERSION_COLORS = [
+  "#B026FF", // Purple
+  "#00D4FF", // Cyan
+  "#FF2D95", // Pink
+  "#22C55E", // Green
+  "#F97316", // Orange
+  "#3B82F6", // Blue
+  "#8B5CF6", // Violet
+  "#FBBF24", // Yellow
+  "#EF4444", // Red
+  "#6B7280", // Gray
+];
+
+// Version Trends Component
+function VersionTrendsSection({ tool }: { tool: string }) {
+  const { data, loading } = useVersionTrends(tool, 30);
+
+  if (loading) {
+    return (
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-4">
+        <h3 class="text-sm font-medium text-gray-300 mb-3">Version Trends (30d)</h3>
+        <div class="h-32 flex items-center justify-center">
+          <div class="text-gray-500 text-sm">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!data || data.versions.length === 0) {
+    return null;
+  }
+
+  // Get top versions for the chart (max 8)
+  const topVersions = data.versions.slice(0, 8);
+  const versionKeys = topVersions.map(v => v.version);
+
+  // Build stacked chart data
+  const chartHeight = 100;
+  const chartWidth = 600;
+  const days = data.timeline.length;
+
+  // Calculate stacked areas
+  const stackedData = data.timeline.map(day => {
+    const values: { version: string; y0: number; y1: number }[] = [];
+    let cumulative = 0;
+
+    for (const version of versionKeys) {
+      const count = (day[version] as number) || 0;
+      values.push({
+        version,
+        y0: cumulative,
+        y1: cumulative + count,
+      });
+      cumulative += count;
+    }
+
+    return { date: day.date as string, values, total: cumulative };
+  });
+
+  const maxTotal = Math.max(...stackedData.map(d => d.total), 1);
+
+  // Create stacked area paths
+  const xScale = (i: number) => (i / (days - 1)) * chartWidth;
+  const yScale = (v: number) => chartHeight - (v / maxTotal) * chartHeight;
+
+  return (
+    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-4">
+      <h3 class="text-sm font-medium text-gray-300 mb-3">Version Trends (30d)</h3>
+
+      {/* Stacked area chart */}
+      <div class="overflow-x-auto mb-4">
+        <svg
+          width={chartWidth}
+          height={chartHeight + 20}
+          class="min-w-[400px]"
+          viewBox={`0 0 ${chartWidth} ${chartHeight + 20}`}
+        >
+          {/* Stacked areas (render from top to bottom for proper layering) */}
+          {[...versionKeys].reverse().map((version, reverseIdx) => {
+            const idx = versionKeys.length - 1 - reverseIdx;
+            const color = VERSION_COLORS[idx % VERSION_COLORS.length];
+
+            // Build area path
+            let path = "";
+            for (let i = 0; i < stackedData.length; i++) {
+              const x = xScale(i);
+              const versionData = stackedData[i].values.find(v => v.version === version);
+              const y = versionData ? yScale(versionData.y1) : chartHeight;
+              path += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
+            }
+
+            // Complete the area by going back along y0
+            for (let i = stackedData.length - 1; i >= 0; i--) {
+              const x = xScale(i);
+              const versionData = stackedData[i].values.find(v => v.version === version);
+              const y = versionData ? yScale(versionData.y0) : chartHeight;
+              path += ` L ${x} ${y}`;
+            }
+            path += " Z";
+
+            return (
+              <path
+                key={version}
+                d={path}
+                fill={color}
+                opacity={0.8}
+              >
+                <title>{version}</title>
+              </path>
+            );
+          })}
+        </svg>
+      </div>
+
+      {/* Legend */}
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+        {topVersions.map((v, idx) => {
+          const color = VERSION_COLORS[idx % VERSION_COLORS.length];
+          const trendIcon = v.trend === "growing" ? "↑" : v.trend === "declining" ? "↓" : "";
+          const trendColor = v.trend === "growing" ? "text-green-400" : v.trend === "declining" ? "text-red-400" : "";
+
+          return (
+            <div key={v.version} class="flex items-center gap-1.5">
+              <span
+                class="w-2.5 h-2.5 rounded-sm flex-shrink-0"
+                style={{ backgroundColor: color }}
+              />
+              <span class="font-mono text-gray-400">{v.version}</span>
+              <span class="text-gray-500">({v.share.toFixed(0)}%)</span>
+              {trendIcon && <span class={trendColor}>{trendIcon}</span>}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Badge Modal Component
+function BadgeModal({ tool, onClose }: { tool: string; onClose: () => void }) {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const baseUrl = "https://mise-tools.jdx.dev";
+  const toolUrl = `${baseUrl}/tools/${tool}`;
+
+  const badges = [
+    {
+      id: "total",
+      label: "Total downloads",
+      url: `${baseUrl}/badge/${tool}.svg`,
+    },
+    {
+      id: "30d",
+      label: "Last 30 days",
+      url: `${baseUrl}/badge/${tool}/30d`,
+    },
+    {
+      id: "week",
+      label: "Last 7 days",
+      url: `${baseUrl}/badge/${tool}/week`,
+    },
+  ];
+
+  const copyToClipboard = useCallback(async (text: string, id: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  }, []);
+
+  return (
+    <div
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold text-gray-200">Get Badge</h2>
+          <button
+            onClick={onClose}
+            class="text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <p class="text-gray-400 text-sm mb-6">
+          Add a download badge to your README to show how many people are using {tool} with mise.
+        </p>
+
+        <div class="space-y-6">
+          {badges.map((badge) => {
+            const markdownSnippet = `[![mise](${badge.url})](${toolUrl})`;
+            const htmlSnippet = `<a href="${toolUrl}"><img src="${badge.url}" alt="mise downloads"></a>`;
+
+            return (
+              <div key={badge.id} class="border border-dark-600 rounded-lg p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-sm font-medium text-gray-300">{badge.label}</span>
+                  <img src={badge.url} alt={badge.label} class="h-5" />
+                </div>
+
+                <div class="space-y-3">
+                  <div>
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs text-gray-500">Markdown</span>
+                      <button
+                        onClick={() => copyToClipboard(markdownSnippet, `${badge.id}-md`)}
+                        class="text-xs text-neon-blue hover:text-neon-purple transition-colors"
+                      >
+                        {copiedId === `${badge.id}-md` ? "Copied!" : "Copy"}
+                      </button>
+                    </div>
+                    <code class="block bg-dark-700 rounded px-3 py-2 text-xs font-mono text-gray-300 overflow-x-auto">
+                      {markdownSnippet}
+                    </code>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center justify-between mb-1">
+                      <span class="text-xs text-gray-500">HTML</span>
+                      <button
+                        onClick={() => copyToClipboard(htmlSnippet, `${badge.id}-html`)}
+                        class="text-xs text-neon-blue hover:text-neon-purple transition-colors"
+                      >
+                        {copiedId === `${badge.id}-html` ? "Copied!" : "Copy"}
+                      </button>
+                    </div>
+                    <code class="block bg-dark-700 rounded px-3 py-2 text-xs font-mono text-gray-300 overflow-x-auto">
+                      {htmlSnippet}
+                    </code>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Format security feature for display
 function formatSecurityFeature(feature: SecurityFeature): { label: string; color: string } {
   switch (feature.type) {
@@ -422,7 +673,7 @@ function backendToUrl(backend: string): string | null {
 }
 
 // Info pane: install command, metadata, links, GitHub stats
-function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined }) {
+function InfoPane({ tool, toolMeta, onShowBadge }: { tool: string; toolMeta: Tool | undefined; onShowBadge: () => void }) {
   const { authenticated } = useAuth();
   const parsed = toolMeta?.github ? parseGithubSlug(toolMeta.github) : null;
   const { data: ghData, stale: ghStale } = useGithubRepo(
@@ -439,7 +690,18 @@ function InfoPane({ tool, toolMeta }: { tool: string; toolMeta: Tool | undefined
     <div class="space-y-4">
       {/* Install command */}
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-        <div class="text-sm text-gray-400 mb-1">Install with mise:</div>
+        <div class="flex items-center justify-between mb-1">
+          <div class="text-sm text-gray-400">Install with mise:</div>
+          <button
+            onClick={onShowBadge}
+            class="text-xs text-neon-blue hover:text-neon-purple transition-colors flex items-center gap-1"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            Get Badge
+          </button>
+        </div>
         <code class="text-sm font-mono text-neon-blue">
           mise use {tool}@latest
         </code>
@@ -838,6 +1100,7 @@ export function ToolPage({ params }: Props) {
   const { data: toolsData } = useTools();
   const [sortBy, setSortBy] = useState<VersionSortKey>("default");
   const [versionPrefix, setVersionPrefix] = useState("");
+  const [showBadgeModal, setShowBadgeModal] = useState(false);
 
   // Find tool metadata from tools.json
   const toolMeta = toolsData?.tools.find((t) => t.name === tool);
@@ -976,11 +1239,19 @@ export function ToolPage({ params }: Props) {
       {/* Two-column layout */}
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         {/* Left column: Info */}
-        <InfoPane tool={tool} toolMeta={toolMeta} />
+        <InfoPane tool={tool} toolMeta={toolMeta} onShowBadge={() => setShowBadgeModal(true)} />
 
         {/* Right column: Downloads */}
         <DownloadsPane data={downloadData} loading={downloadsLoading} />
       </div>
+
+      {/* Badge Modal */}
+      {showBadgeModal && (
+        <BadgeModal tool={tool} onClose={() => setShowBadgeModal(false)} />
+      )}
+
+      {/* Version Trends */}
+      <VersionTrendsSection tool={tool} />
 
       {/* Version Timeline */}
       {!loading && versions && versions.length > 0 && (

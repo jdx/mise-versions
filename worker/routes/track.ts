@@ -282,6 +282,65 @@ export async function handleFinalizeBackends(
   }
 }
 
+// GET /api/stats/growth - Get growth metrics (public)
+export async function handleGetGrowth(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const stats = await analytics.getGrowthMetrics();
+
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
+  } catch (error) {
+    console.error("Get growth error:", error);
+    return errorResponse("Failed to get growth metrics", 500);
+  }
+}
+
+// GET /api/downloads/:tool/versions - Get version trends for a specific tool (public)
+export async function handleGetVersionTrends(
+  request: Request,
+  env: Env,
+  tool: string
+): Promise<Response> {
+  try {
+    const url = new URL(request.url);
+    const days = parseInt(url.searchParams.get("days") || "30", 10);
+
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const stats = await analytics.getVersionTrends(tool, days);
+
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
+  } catch (error) {
+    console.error("Get version trends error:", error);
+    return errorResponse("Failed to get version trends", 500);
+  }
+}
+
+// GET /api/downloads/:tool/growth - Get growth for a specific tool (public)
+export async function handleGetToolGrowth(
+  request: Request,
+  env: Env,
+  tool: string
+): Promise<Response> {
+  try {
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const stats = await analytics.getToolGrowth(tool);
+
+    return cachedJsonResponse(stats, CACHE_CONTROL.API);
+  } catch (error) {
+    console.error("Get tool growth error:", error);
+    return errorResponse("Failed to get tool growth", 500);
+  }
+}
+
 // POST /api/admin/backfill-rollups - Backfill rollup tables for historical data (requires auth)
 export async function handleBackfillRollups(
   request: Request,
