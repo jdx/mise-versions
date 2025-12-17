@@ -2,6 +2,7 @@
   "name": "mise-versions",
   "module": "index.ts",
   "type": "module",
+  "workspaces": ["web"],
   "scripts": {
     "test": "npm run test:js && npm run test:shell",
     "test:js": "node --test scripts/*.test.js",
