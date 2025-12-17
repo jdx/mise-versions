@@ -52,6 +52,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Clear mise cache
+        run: mise cache clear
+
       - name: Run backfill script
         run: |
           args=""
