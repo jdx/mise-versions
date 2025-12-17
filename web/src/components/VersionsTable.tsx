@@ -93,7 +93,7 @@ export function VersionsTable({ versions, downloadsByVersion }: VersionsTablePro
   // Sort versions based on selected sort key
   const sortedVersions = useMemo(() => {
     if (!versions) return [];
-    if (sortBy === "default") return versions;
+    if (sortBy === "default") return [...versions].reverse(); // newest first
 
     return [...versions].sort((a, b) => {
       switch (sortBy) {
