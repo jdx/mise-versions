@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mise-versions",
-  "main": "worker/index.ts",
+  "main": "web/dist/_worker.js/index.js",
   "compatibility_date": "2025-04-18",
   "compatibility_flags": ["nodejs_compat"],
   "routes": [
@@ -33,9 +33,6 @@
   ],
   "vars": {
     "ENVIRONMENT": "production"
-  },
-  "triggers": {
-    "crons": ["0 0 * * *"]  // Run daily at midnight UTC
   }
   // Environment variables that need to be set via wrangler secret:
   // GITHUB_APP_ID - Your GitHub App ID
