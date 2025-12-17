@@ -4232,7 +4232,7 @@
       "name": "gallery-dl",
       "latest_version": "1.31.0",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:52:47.640Z",
       "backends": [
         "asdf:mise-plugins/mise-gallery-dl"
       ]
@@ -4273,7 +4273,7 @@
       "name": "gauche",
       "latest_version": "0.9.15",
       "version_count": 11,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:53:02.174Z",
       "backends": [
         "asdf:mise-plugins/mise-gauche"
       ]
@@ -4282,7 +4282,7 @@
       "name": "gcc-arm-none-eabi",
       "latest_version": "14.2.Rel1",
       "version_count": 12,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:53:04.125Z",
       "backends": [
         "asdf:mise-plugins/mise-gcc-arm-none-eabi"
       ]
@@ -4291,7 +4291,7 @@
       "name": "gcloud",
       "latest_version": "550.0.0",
       "version_count": 508,
-      "last_updated": "2025-12-16T15:38:47.865Z",
+      "last_updated": "2025-12-17T13:53:06.412Z",
       "backends": [
         "asdf:mise-plugins/mise-gcloud"
       ]
@@ -4380,7 +4380,7 @@
       "name": "ghc",
       "latest_version": "9.12.2",
       "version_count": 56,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:53:31.794Z",
       "backends": [
         "asdf:mise-plugins/mise-ghcup"
       ]
@@ -4405,7 +4405,7 @@
       "name": "ghidra",
       "latest_version": "9.64",
       "version_count": 22,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:53:35.610Z",
       "backends": [
         "asdf:mise-plugins/mise-ghidra"
       ]
@@ -4636,7 +4636,7 @@
       "name": "glab",
       "latest_version": "1.79.0",
       "version_count": 111,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:54:27.497Z",
       "github": "gitlab-org/cli",
       "repo_url": "https://github.com/gitlab-org/cli",
       "backends": [
@@ -5064,7 +5064,7 @@
       "name": "graalvm",
       "latest_version": "25.0.1",
       "version_count": 42,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:56:24.886Z",
       "backends": [
         "asdf:mise-plugins/mise-graalvm"
       ]
@@ -5089,7 +5089,7 @@
       "name": "gradle-profiler",
       "latest_version": "0.23.0",
       "version_count": 16,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:56:38.753Z",
       "backends": [
         "asdf:mise-plugins/mise-gradle-profiler"
       ]
@@ -5198,7 +5198,7 @@
       "name": "groovy",
       "latest_version": "5.0.3",
       "version_count": 145,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:56:55.846Z",
       "backends": [
         "asdf:mise-plugins/mise-groovy",
         "vfox:mise-plugins/vfox-groovy"
@@ -5255,7 +5255,7 @@
       "name": "guile",
       "latest_version": "3.0.11",
       "version_count": 31,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:57:08.499Z",
       "backends": [
         "asdf:mise-plugins/mise-guile"
       ]
@@ -5325,7 +5325,7 @@
       "name": "hamler",
       "latest_version": "0.5",
       "version_count": 13,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:57:18.993Z",
       "backends": [
         "asdf:mise-plugins/mise-hamler"
       ]
@@ -5515,7 +5515,7 @@
       "name": "helm-diff",
       "latest_version": "3.14.1",
       "version_count": 63,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:58:03.400Z",
       "github": "databus23/helm-diff",
       "repo_url": "https://github.com/databus23/helm-diff",
       "backends": [
@@ -5606,7 +5606,7 @@
       "name": "heroku",
       "latest_version": "test-01",
       "version_count": 1102,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:58:22.885Z",
       "backends": [
         "asdf:mise-plugins/mise-heroku-cli"
       ]
@@ -5615,7 +5615,7 @@
       "name": "heroku-cli",
       "latest_version": "test-01",
       "version_count": 1102,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:58:24.207Z",
       "backends": [
         "asdf:mise-plugins/mise-heroku-cli"
       ]
