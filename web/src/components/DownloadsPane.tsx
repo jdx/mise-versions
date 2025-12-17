@@ -313,10 +313,27 @@ interface DownloadsPaneProps {
   byOs?: Array<{ os: string | null; count: number }>;
 }
 
+const CHART_VIEW_KEY = "mise-downloads-chart-view";
+type ChartView = "30d" | "12m" | "versions";
+
+function getStoredChartView(): ChartView {
+  if (typeof window === "undefined") return "30d";
+  const stored = localStorage.getItem(CHART_VIEW_KEY);
+  if (stored === "30d" || stored === "12m" || stored === "versions") return stored;
+  return "30d";
+}
+
 export function DownloadsPane({ tool, daily, monthly, byVersion, byOs }: DownloadsPaneProps) {
-  const [chartView, setChartView] = useState<"30d" | "12m" | "versions">("30d");
+  const [chartView, setChartViewState] = useState<ChartView>(getStoredChartView);
   const [versionTrendsData, setVersionTrendsData] = useState<VersionTrendData | null>(null);
   const [versionTrendsLoading, setVersionTrendsLoading] = useState(false);
+
+  const setChartView = (view: ChartView) => {
+    setChartViewState(view);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(CHART_VIEW_KEY, view);
+    }
+  };
 
   // Fetch version trends when switching to that tab
   useEffect(() => {
