@@ -14,19 +14,11 @@ interface Tool {
   last_updated: string | null;
   description?: string;
   backends?: string[];
-  github?: string;
-}
-
-interface GrowthData {
-  global: { wow: number | null; mom: number | null; thisWeek: number; lastWeek: number };
-  topGrowing: Array<{ tool: string; thisWeek: number; wow: number | null }>;
-  topDeclining: Array<{ tool: string; thisWeek: number; wow: number | null }>;
 }
 
 interface Props {
   tools: Tool[];
   downloads: Record<string, number>;
-  growthData?: GrowthData | null;
 }
 
 // Format relative time
@@ -64,18 +56,7 @@ function getInitialState() {
   };
 }
 
-// Format compact numbers
-function formatCompact(n: number): string {
-  if (n >= 1_000_000) {
-    return (n / 1_000_000).toFixed(n >= 10_000_000 ? 1 : 2) + "m";
-  }
-  if (n >= 1_000) {
-    return (n / 1_000).toFixed(n >= 10_000 ? 1 : 2) + "k";
-  }
-  return n.toString();
-}
-
-export function ToolSearch({ tools, downloads, growthData }: Props) {
+export function ToolSearch({ tools, downloads }: Props) {
   const initial = getInitialState();
   const [search, setSearch] = useState(initial.search);
   const [sortBy, setSortBy] = useState<SortKey>(initial.sortBy);
@@ -253,133 +234,34 @@ export function ToolSearch({ tools, downloads, growthData }: Props) {
 
   return (
     <div>
-      {/* Hot Tools, Trending, and Recently Updated Sections */}
-      {!search.trim() && selectedBackends.size === 0 && (
-        <>
-          {/* Hot + Trending Row */}
-          <div class="mb-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {/* Hot Tools */}
-            {hotTools.length > 0 && (
-              <div>
-                <h2 class="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
-                  <span class="text-orange-400">🔥</span> Hot Tools
-                </h2>
-                <div class="space-y-1">
-                  {hotTools.map((tool, index) => (
-                    <a
-                      key={tool.name}
-                      href={`/tools/${tool.name}`}
-                      class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
-                    >
-                      <div class="flex items-center gap-2">
-                        <span class="text-xs text-gray-500 w-4">{index + 1}.</span>
-                        <span class="text-sm text-gray-300 group-hover:text-neon-purple transition-colors truncate">
-                          {tool.name}
-                        </span>
-                      </div>
-                      <span class="text-xs text-gray-500">{formatCompact(tool.downloads_30d)}</span>
-                    </a>
-                  ))}
+      {/* Hot Tools Section */}
+      {hotTools.length > 0 && !search.trim() && selectedBackends.size === 0 && (
+        <div class="mb-6">
+          <h2 class="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
+            <span class="text-orange-400">🔥</span> Hot Tools
+            <span class="text-xs text-gray-500">(30 day downloads)</span>
+          </h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {hotTools.map((tool, index) => (
+              <a
+                key={tool.name}
+                href={`/tools/${tool.name}`}
+                class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 hover:bg-dark-700 transition-all group"
+              >
+                <div class="flex items-start justify-between mb-1">
+                  <span class="text-xs text-gray-500 font-mono">#{index + 1}</span>
+                  <span class="text-sm font-semibold text-white">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
                 </div>
-              </div>
-            )}
-
-            {/* Trending Up */}
-            {growthData && growthData.topGrowing.length > 0 && (
-              <div>
-                <h2 class="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
-                  <span class="text-green-400">↑</span> Trending Up
-                </h2>
-                <div class="space-y-1">
-                  {growthData.topGrowing.slice(0, 6).map((item, index) => (
-                    <a
-                      key={item.tool}
-                      href={`/tools/${item.tool}`}
-                      class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
-                    >
-                      <div class="flex items-center gap-2">
-                        <span class="text-xs text-gray-500 w-4">{index + 1}.</span>
-                        <span class="text-sm text-gray-300 group-hover:text-neon-purple transition-colors truncate">
-                          {item.tool}
-                        </span>
-                      </div>
-                      <span class="text-xs text-green-400">
-                        +{item.wow !== null ? Math.abs(item.wow).toFixed(0) : 0}%
-                      </span>
-                    </a>
-                  ))}
+                <div class="text-sm font-medium text-gray-200 group-hover:text-neon-purple transition-colors truncate">
+                  {tool.name}
                 </div>
-              </div>
-            )}
-
-            {/* Trending Down */}
-            {growthData && growthData.topDeclining.length > 0 && (
-              <div>
-                <h2 class="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
-                  <span class="text-red-400">↓</span> Trending Down
-                </h2>
-                <div class="space-y-1">
-                  {growthData.topDeclining.slice(0, 6).map((item, index) => (
-                    <a
-                      key={item.tool}
-                      href={`/tools/${item.tool}`}
-                      class="flex items-center justify-between py-1.5 px-2 rounded hover:bg-dark-700 transition-colors group"
-                    >
-                      <div class="flex items-center gap-2">
-                        <span class="text-xs text-gray-500 w-4">{index + 1}.</span>
-                        <span class="text-sm text-gray-300 group-hover:text-neon-purple transition-colors truncate">
-                          {item.tool}
-                        </span>
-                      </div>
-                      <span class="text-xs text-red-400">
-                        {item.wow !== null ? Math.abs(item.wow).toFixed(0) : 0}%
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
+                {tool.description && (
+                  <div class="text-xs text-gray-500 truncate mt-1">{tool.description.slice(0, 40)}</div>
+                )}
+              </a>
+            ))}
           </div>
-
-          {/* Recently Updated Section */}
-          {(() => {
-            const sevenDaysAgo = new Date();
-            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-            const recentlyUpdated = tools
-              .filter(t => t.last_updated && new Date(t.last_updated) >= sevenDaysAgo)
-              .sort((a, b) => new Date(b.last_updated!).getTime() - new Date(a.last_updated!).getTime())
-              .slice(0, 8);
-
-            if (recentlyUpdated.length === 0) return null;
-
-            return (
-              <div class="mb-6">
-                <h2 class="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
-                  <span class="text-cyan-400">📦</span> Recently Updated
-                  <span class="text-xs text-gray-500">(last 7 days)</span>
-                </h2>
-                <div class="flex gap-2 overflow-x-auto pb-2">
-                  {recentlyUpdated.map(tool => (
-                    <a
-                      key={tool.name}
-                      href={`/tools/${tool.name}`}
-                      class="flex-shrink-0 bg-dark-800 border border-dark-600 rounded-lg px-3 py-2 hover:border-neon-purple/50 transition-colors group"
-                    >
-                      <div class="text-sm font-medium text-gray-200 group-hover:text-neon-purple transition-colors">
-                        {tool.name}
-                      </div>
-                      <div class="text-xs text-gray-500 flex items-center gap-2">
-                        <span class="font-mono">{tool.latest_stable_version || tool.latest_version}</span>
-                        <span>·</span>
-                        <span>{formatRelativeTime(tool.last_updated!)}</span>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            );
-          })()}
-        </>
+        </div>
       )}
 
       <div class="mb-4 flex items-center justify-between gap-4">
@@ -475,10 +357,8 @@ export function ToolSearch({ tools, downloads, growthData }: Props) {
             <tr>
               <th class="text-left px-4 py-3"><SortButton label="Tool" sortKey="name" /></th>
               <th class="text-left px-4 py-3 text-sm font-medium text-gray-400">Latest</th>
-              <th class="text-left px-4 py-3 text-sm font-medium text-gray-400 hidden lg:table-cell">Backend</th>
               <th class="text-right px-4 py-3 hidden sm:table-cell"><SortButton label="Downloads (30d)" sortKey="downloads" /></th>
               <th class="text-left px-4 py-3 hidden md:table-cell"><SortButton label="Updated" sortKey="updated" /></th>
-              <th class="w-10 px-2 py-3 hidden lg:table-cell"></th>
             </tr>
           </thead>
           <tbody class="divide-y divide-dark-600">
@@ -490,32 +370,9 @@ export function ToolSearch({ tools, downloads, growthData }: Props) {
                   </a>
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-300 font-mono">{tool.latest_stable_version || tool.latest_version}</td>
-                <td class="px-4 py-3 text-sm hidden lg:table-cell">
-                  {tool.backends && tool.backends[0] && (
-                    <span class="px-2 py-0.5 rounded-full text-xs bg-dark-600 text-gray-400">
-                      {getBackendType(tool.backends[0])}
-                    </span>
-                  )}
-                </td>
                 <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">{tool.downloads_30d.toLocaleString()}</td>
                 <td class="px-4 py-3 text-sm text-gray-500 hidden md:table-cell">
                   {tool.last_updated ? formatRelativeTime(tool.last_updated) : "-"}
-                </td>
-                <td class="px-2 py-3 hidden lg:table-cell">
-                  {tool.github && (
-                    <a
-                      href={`https://github.com/${tool.github}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-gray-500 hover:text-gray-300 transition-colors"
-                      title={`GitHub: ${tool.github}`}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                      </svg>
-                    </a>
-                  )}
                 </td>
               </tr>
             ))}

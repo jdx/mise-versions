@@ -19,100 +19,25 @@ const toolsData = await toolsRes.json() as {
     last_updated: string | null;
     description?: string;
     backends?: string[];
-    github?: string;
   }>;
 };
 
-// Fetch analytics data
+// Fetch downloads data
 let downloads: Record<string, number> = {};
-let growthData: {
-  global: { wow: number | null; mom: number | null; thisWeek: number; lastWeek: number };
-  topGrowing: Array<{ tool: string; thisWeek: number; wow: number | null }>;
-  topDeclining: Array<{ tool: string; thisWeek: number; wow: number | null }>;
-} | null = null;
-let dauMauData: { daily: Array<{ date: string; dau: number }>; current_mau: number } | null = null;
-
 try {
   const runtime = Astro.locals.runtime;
   const db = drizzle(runtime.env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
-  [downloads, growthData, dauMauData] = await Promise.all([
-    analytics.getAll30DayDownloads(),
-    analytics.getGrowthMetrics(),
-    analytics.getDAUMAUHistory(1), // Only need current MAU
-  ]);
+  downloads = await analytics.getAll30DayDownloads();
 } catch (e) {
-  console.error('Failed to fetch analytics:', e);
+  console.error('Failed to fetch downloads:', e);
 }
-
-// Helper function
-function formatCompact(n: number): string {
-  if (n >= 1_000_000) {
-    return (n / 1_000_000).toFixed(n >= 10_000_000 ? 1 : 2) + "m";
-  }
-  if (n >= 1_000) {
-    return (n / 1_000).toFixed(n >= 10_000 ? 1 : 2) + "k";
-  }
-  return n.toString();
-}
-
-// Compute total downloads
-const totalDownloads = downloads
-  ? Object.values(downloads).reduce((sum, count) => sum + count, 0)
-  : 0;
-
-const currentMAU = dauMauData?.current_mau ?? 0;
-const wowGrowth = growthData?.global.wow ?? null;
 ---
 
 <Layout title="mise tools" description="Browse tool versions and download stats for mise">
-  <div class="mb-4 flex items-center justify-between">
-    <h1 class="text-2xl font-bold text-gray-100">mise tools</h1>
-    <a href="/stats" class="text-sm text-gray-400 hover:text-neon-purple transition-colors">
-      View detailed stats →
-    </a>
+  <div class="mb-4">
+    <h1 class="text-2xl font-bold text-gray-100 mb-2">mise tools</h1>
   </div>
 
-  <!-- Stats bar -->
-  <a href="/stats" class="block mb-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 transition-colors">
-        <div class="text-xs text-gray-500 mb-0.5">Tools</div>
-        <div class="text-xl font-bold text-gray-100">
-          {toolsData.tool_count.toLocaleString()}
-        </div>
-      </div>
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 transition-colors">
-        <div class="text-xs text-gray-500 mb-0.5">Downloads (30d)</div>
-        <div class="text-xl font-bold text-neon-purple">
-          {formatCompact(totalDownloads)}
-        </div>
-      </div>
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 transition-colors">
-        <div class="text-xs text-gray-500 mb-0.5">WoW Growth</div>
-        <div class="text-xl font-bold">
-          {wowGrowth !== null ? (
-            <span class={wowGrowth >= 0 ? 'text-green-400' : 'text-red-400'}>
-              {wowGrowth >= 0 ? '↑' : '↓'}{Math.abs(wowGrowth).toFixed(1)}%
-            </span>
-          ) : (
-            <span class="text-gray-500">—</span>
-          )}
-        </div>
-      </div>
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 transition-colors">
-        <div class="text-xs text-gray-500 mb-0.5">MAU</div>
-        <div class="text-xl font-bold text-cyan-400">
-          {formatCompact(currentMAU)}
-        </div>
-      </div>
-    </div>
-  </a>
-
-  <ToolSearch
-    client:load
-    tools={toolsData.tools}
-    downloads={downloads}
-    growthData={growthData}
-  />
+  <ToolSearch client:load tools={toolsData.tools} downloads={downloads} />
 </Layout>
