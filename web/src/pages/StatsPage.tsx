@@ -71,7 +71,7 @@ function describeArc(cx: number, cy: number, radius: number, startAngle: number,
 // Simple pie/donut chart component using arc paths
 function DonutChart({
   data,
-  size = 180,
+  size = 360,
 }: {
   data: Array<{ label: string; value: number; color: string }>;
   size?: number;
@@ -94,7 +94,7 @@ function DonutChart({
     );
   }
 
-  const strokeWidth = 50;
+  const strokeWidth = 140;
   const radius = (size - strokeWidth) / 2;
   const cx = size / 2;
   const cy = size / 2;
