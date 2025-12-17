@@ -94,7 +94,7 @@ function DonutChart({
     );
   }
 
-  const strokeWidth = 140;
+  const strokeWidth = 160;
   const radius = (size - strokeWidth) / 2;
   const cx = size / 2;
   const cy = size / 2;
@@ -335,16 +335,16 @@ export function StatsPage() {
       </div>
 
       {/* Charts row */}
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Tools by backend */}
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-          <h2 class="text-lg font-semibold text-gray-200 mb-4">Tools by Backend</h2>
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">Tools by Backend</h2>
           <DonutChart data={backendStats.counts.slice(0, 8)} />
         </div>
 
         {/* Downloads distribution */}
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-          <h2 class="text-lg font-semibold text-gray-200 mb-4">Downloads by Backend</h2>
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads by Backend</h2>
           <BarChart
             data={backendStats.downloads.slice(0, 10)}
             maxValue={Math.max(...backendStats.downloads.map((b) => b.value))}
@@ -354,8 +354,8 @@ export function StatsPage() {
       </div>
 
       {/* Top tools per backend */}
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-        <h2 class="text-lg font-semibold text-gray-200 mb-4">Top Tools by Backend</h2>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">Top Tools by Backend</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {topBackends.map((backend) => {
             const tools = topToolsByBackend.get(backend) || [];
