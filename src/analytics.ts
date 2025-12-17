@@ -50,6 +50,31 @@ export const downloadsDaily = sqliteTable("downloads_daily", {
   unique_ips: integer("unique_ips").notNull(),
 });
 
+// Rollup tables for fast queries
+
+// Global daily stats (for MAU/DAU)
+export const dailyStats = sqliteTable("daily_stats", {
+  date: text("date").primaryKey(), // YYYY-MM-DD
+  total_downloads: integer("total_downloads").notNull(),
+  unique_users: integer("unique_users").notNull(), // DAU
+});
+
+// Per-tool daily stats (for 30-day download counts)
+export const dailyToolStats = sqliteTable("daily_tool_stats", {
+  date: text("date").notNull(),
+  tool_id: integer("tool_id").notNull(),
+  downloads: integer("downloads").notNull(),
+  unique_users: integer("unique_users").notNull(),
+});
+
+// Per-backend daily stats (for backend charts)
+export const dailyBackendStats = sqliteTable("daily_backend_stats", {
+  date: text("date").notNull(),
+  backend_type: text("backend_type").notNull(), // "aqua", "core", etc.
+  downloads: integer("downloads").notNull(),
+  unique_users: integer("unique_users").notNull(),
+});
+
 export function setupAnalytics(db: ReturnType<typeof drizzle>) {
   // Cache for tool, backend, and platform IDs to avoid repeated lookups
   const toolCache = new Map<string, number>();
@@ -368,17 +393,20 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Get 30-day download counts for all tools
+    // Uses daily_tool_stats rollup table for fast lookups
     async getAll30DayDownloads() {
-      const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
+      const now = Math.floor(Date.now() / 1000);
+      const startDate = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
 
+      // Sum downloads from rollup table (fast!)
       const results = await db
         .select({
           name: tools.name,
-          count: sql<number>`count(*)`,
+          count: sql<number>`sum(${dailyToolStats.downloads})`,
         })
-        .from(downloads)
-        .innerJoin(tools, eq(downloads.tool_id, tools.id))
-        .where(sql`${downloads.created_at} >= ${thirtyDaysAgo}`)
+        .from(dailyToolStats)
+        .innerJoin(tools, eq(dailyToolStats.tool_id, tools.id))
+        .where(sql`${dailyToolStats.date} >= ${startDate}`)
         .groupBy(tools.name)
         .all();
 
@@ -390,6 +418,8 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Get monthly active users (unique IP hashes in last 30 days)
+    // Note: MAU requires COUNT(DISTINCT) over full 30-day period, so we can't use rollups
+    // But we keep this query - it should be fast with the created_at index
     async getMAU() {
       const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
 
@@ -498,34 +528,26 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Get 30-day download stats grouped by backend type
+    // Uses daily_backend_stats rollup table for fast lookups
     async getDownloadsByBackend() {
-      const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
+      const now = Math.floor(Date.now() / 1000);
+      const startDate = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
 
-      // Get downloads grouped by backend (extracts backend type from full identifier)
+      // Sum downloads from rollup table (fast!)
       const results = await db
         .select({
-          backend: backends.full,
-          count: sql<number>`count(*)`,
+          backend: dailyBackendStats.backend_type,
+          count: sql<number>`sum(${dailyBackendStats.downloads})`,
         })
-        .from(downloads)
-        .leftJoin(backends, eq(downloads.backend_id, backends.id))
-        .where(sql`${downloads.created_at} >= ${thirtyDaysAgo}`)
-        .groupBy(backends.full)
+        .from(dailyBackendStats)
+        .where(sql`${dailyBackendStats.date} >= ${startDate}`)
+        .groupBy(dailyBackendStats.backend_type)
         .all();
 
-      // Group by backend type (e.g., "aqua:nektos/act" -> "aqua")
-      const byType = new Map<string, number>();
-      for (const r of results) {
-        const backendType = r.backend
-          ? r.backend.split(":")[0]
-          : "unknown";
-        byType.set(backendType, (byType.get(backendType) || 0) + r.count);
-      }
-
       // Sort by count descending
-      const sorted = [...byType.entries()]
-        .sort((a, b) => b[1] - a[1])
-        .map(([backend, count]) => ({ backend, count }));
+      const sorted = results
+        .sort((a, b) => b.count - a.count)
+        .map((r) => ({ backend: r.backend, count: r.count }));
 
       return sorted;
     },
@@ -591,23 +613,23 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Get DAU and rolling MAU history for the last N days
+    // Uses daily_stats rollup table for fast DAU lookups
     async getDAUMAUHistory(days: number = 30) {
       const now = Math.floor(Date.now() / 1000);
-      const startTime = now - days * 86400;
+      const startDate = new Date((now - days * 86400) * 1000).toISOString().split("T")[0];
 
-      // Get DAU for each day
+      // Get DAU from rollup table (fast!)
       const dauResults = await db
         .select({
-          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
-          dau: sql<number>`count(distinct ip_hash)`,
+          date: dailyStats.date,
+          dau: dailyStats.unique_users,
         })
-        .from(downloads)
-        .where(sql`${downloads.created_at} >= ${startTime}`)
-        .groupBy(sql`date(${downloads.created_at}, 'unixepoch')`)
-        .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .from(dailyStats)
+        .where(sql`${dailyStats.date} >= ${startDate}`)
+        .orderBy(dailyStats.date)
         .all();
 
-      // Get current MAU (unique users in last 30 days)
+      // Get current MAU (still needs raw query for DISTINCT over 30 days)
       const thirtyDaysAgo = now - 30 * 86400;
       const mauResult = await db
         .select({
@@ -625,7 +647,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
       for (let i = days - 1; i >= 0; i--) {
         const dayTimestamp = now - i * 86400;
-        const date = new Date(dayTimestamp * 1000).toISOString().split('T')[0];
+        const date = new Date(dayTimestamp * 1000).toISOString().split("T")[0];
         dailyData.push({
           date,
           dau: dauMap.get(date) ?? 0,
@@ -636,6 +658,125 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         daily: dailyData,
         current_mau: currentMAU,
       };
+    },
+
+    // Populate rollup tables for a specific date (call daily via cron)
+    async populateRollupTables(date: string): Promise<{
+      dailyStats: boolean;
+      toolStats: number;
+      backendStats: number;
+    }> {
+      // Calculate timestamp range for the date (UTC)
+      const dateStart = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000);
+      const dateEnd = dateStart + 86400;
+
+      // 1. Populate daily_stats
+      const globalStats = await db
+        .select({
+          total: sql<number>`count(*)`,
+          unique_users: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(downloads)
+        .where(
+          and(
+            sql`${downloads.created_at} >= ${dateStart}`,
+            sql`${downloads.created_at} < ${dateEnd}`
+          )
+        )
+        .get();
+
+      if (globalStats && globalStats.total > 0) {
+        await db.run(sql`
+          INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
+          VALUES (${date}, ${globalStats.total}, ${globalStats.unique_users})
+        `);
+      }
+
+      // 2. Populate daily_tool_stats
+      const toolStats = await db
+        .select({
+          tool_id: downloads.tool_id,
+          downloads: sql<number>`count(*)`,
+          unique_users: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(downloads)
+        .where(
+          and(
+            sql`${downloads.created_at} >= ${dateStart}`,
+            sql`${downloads.created_at} < ${dateEnd}`
+          )
+        )
+        .groupBy(downloads.tool_id)
+        .all();
+
+      for (const stat of toolStats) {
+        await db.run(sql`
+          INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users)
+          VALUES (${date}, ${stat.tool_id}, ${stat.downloads}, ${stat.unique_users})
+        `);
+      }
+
+      // 3. Populate daily_backend_stats
+      const backendResults = await db
+        .select({
+          backend_full: backends.full,
+          downloads: sql<number>`count(*)`,
+          unique_users: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(downloads)
+        .leftJoin(backends, eq(downloads.backend_id, backends.id))
+        .where(
+          and(
+            sql`${downloads.created_at} >= ${dateStart}`,
+            sql`${downloads.created_at} < ${dateEnd}`
+          )
+        )
+        .groupBy(backends.full)
+        .all();
+
+      // Group by backend type (prefix before colon)
+      const backendTypeStats = new Map<string, { downloads: number; unique_users: number }>();
+      for (const r of backendResults) {
+        const backendType = r.backend_full
+          ? r.backend_full.split(":")[0]
+          : "unknown";
+        const existing = backendTypeStats.get(backendType) || { downloads: 0, unique_users: 0 };
+        existing.downloads += r.downloads;
+        existing.unique_users += r.unique_users;
+        backendTypeStats.set(backendType, existing);
+      }
+
+      for (const [backendType, stat] of backendTypeStats) {
+        await db.run(sql`
+          INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users)
+          VALUES (${date}, ${backendType}, ${stat.downloads}, ${stat.unique_users})
+        `);
+      }
+
+      return {
+        dailyStats: (globalStats?.total ?? 0) > 0,
+        toolStats: toolStats.length,
+        backendStats: backendTypeStats.size,
+      };
+    },
+
+    // Backfill rollup tables for the last N days (one-time migration)
+    async backfillRollupTables(days: number = 90): Promise<{ daysProcessed: number }> {
+      let daysProcessed = 0;
+      const now = new Date();
+
+      for (let i = 0; i < days; i++) {
+        const date = new Date(now);
+        date.setUTCDate(date.getUTCDate() - i);
+        const dateStr = date.toISOString().split("T")[0];
+
+        const result = await this.populateRollupTables(dateStr);
+        if (result.dailyStats) {
+          daysProcessed++;
+        }
+      }
+
+      return { daysProcessed };
     },
 
     // Backfill backend_id for existing records using default backends from registry
@@ -1026,6 +1167,43 @@ export async function runAnalyticsMigrations(
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_date ON downloads_daily(date)`
+  );
+
+  // Create rollup tables for fast queries
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS daily_stats (
+      date TEXT PRIMARY KEY,
+      total_downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL
+    )
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS daily_tool_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id)
+    )
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS daily_backend_stats (
+      date TEXT NOT NULL,
+      backend_type TEXT NOT NULL,
+      downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL,
+      PRIMARY KEY (date, backend_type)
+    )
+  `);
+
+  // Create indices for rollup tables
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type)`
   );
 
   console.log("Analytics migrations completed");

@@ -34,6 +34,7 @@ import {
   handleGetDAUMAU,
   handleBackfillBackends,
   handleFinalizeBackends,
+  handleBackfillRollups,
 } from "./routes/track";
 
 // Misc routes
@@ -70,6 +71,7 @@ function createRouter(): Router {
   router.post("/api/admin/aggregate", (req, env) => handleAggregate(req, env));
   router.post("/api/admin/backfill-backends", (req, env) => handleBackfillBackends(req, env));
   router.post("/api/admin/finalize-backends", (req, env) => handleFinalizeBackends(req, env));
+  router.post("/api/admin/backfill-rollups", (req, env) => handleBackfillRollups(req, env));
   router.get("/api/downloads/:tool", (req, env, params) =>
     handleGetToolDownloads(req, env, params.tool)
   );

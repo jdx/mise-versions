@@ -281,3 +281,34 @@ export async function handleFinalizeBackends(
     return errorResponse(`Failed to finalize backends: ${error}`, 500);
   }
 }
+
+// POST /api/admin/backfill-rollups - Backfill rollup tables for historical data (requires auth)
+export async function handleBackfillRollups(
+  request: Request,
+  env: Env
+): Promise<Response> {
+  try {
+    // Verify admin secret
+    const authHeader = request.headers.get("Authorization");
+    const expectedAuth = `Bearer ${env.API_SECRET}`;
+    if (authHeader !== expectedAuth) {
+      return errorResponse("Unauthorized", 401);
+    }
+
+    const body = (await request.json()) as { days?: number };
+    const days = body.days || 90;
+
+    const db = drizzle(env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const result = await analytics.backfillRollupTables(days);
+
+    return jsonResponse({
+      success: true,
+      days_processed: result.daysProcessed,
+    });
+  } catch (error) {
+    console.error("Backfill rollups error:", error);
+    return errorResponse(`Failed to backfill rollups: ${error}`, 500);
+  }
+}
