@@ -33,7 +33,7 @@
   },
   "action-validator": {
     "license": "GPL-3.0",
-    "homepage": null,
+    "homepage": "https://github.com/mpalmer/action-validator",
     "description": "Tool to validate GitHub Action and Workflow YAML files",
     "authors": null
   },
@@ -361,9 +361,14 @@
   },
   "bazelisk": {
     "license": "Apache-2.0",
-    "homepage": null,
+    "homepage": "https://github.com/bazelbuild/bazelisk#readme",
     "description": "A user-friendly launcher for Bazel.",
-    "authors": null
+    "authors": [
+      "google-wombot",
+      "alexeagle",
+      "bazel-manager",
+      "gmags"
+    ]
   },
   "bbr": {
     "license": "Apache-2.0",
@@ -896,7 +901,7 @@
   "dasel": {
     "license": "MIT",
     "homepage": "https://daseldocs.tomwright.me",
-    "description": "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package.",
+    "description": "Select, put and delete data from JSON, TOML, YAML, XML, INI, HCL and CSV files with a single tool. Also available as a go mod.",
     "authors": null
   },
   "databricks-cli": {
@@ -1093,7 +1098,7 @@
   },
   "dust": {
     "license": "Apache-2.0",
-    "homepage": null,
+    "homepage": "https://github.com/bootandy/dust",
     "description": "A more intuitive version of du in rust",
     "authors": null
   },
@@ -1393,7 +1398,7 @@
   },
   "gitui": {
     "license": "MIT",
-    "homepage": null,
+    "homepage": "https://github.com/gitui-org/gitui",
     "description": "Blazing 💥 fast terminal-ui for git written in rust 🦀",
     "authors": null
   },
@@ -1561,8 +1566,8 @@
   },
   "graphite": {
     "license": "None",
-    "homepage": "https://github.com/withgraphite/graphite-cli",
-    "description": null,
+    "homepage": "https://graphite.com/docs/cli-overview",
+    "description": "A private homebrew tap to install the Graphite CLI tools.",
     "authors": [
       "gregorymfoster",
       "tomasreimers",
@@ -1723,7 +1728,7 @@
   },
   "hexyl": {
     "license": "Apache-2.0",
-    "homepage": null,
+    "homepage": "https://github.com/sharkdp/hexyl",
     "description": "A command-line hex viewer",
     "authors": null
   },
@@ -1813,7 +1818,7 @@
   },
   "hyperfine": {
     "license": "Apache-2.0",
-    "homepage": null,
+    "homepage": "https://github.com/sharkdp/hyperfine",
     "description": "A command-line benchmarking tool",
     "authors": null
   },
@@ -2049,7 +2054,7 @@
   },
   "killport": {
     "license": "MIT",
-    "homepage": null,
+    "homepage": "https://github.com/jkfran/killport",
     "description": "A command-line tool to easily kill processes running on a specified port.",
     "authors": null
   },
@@ -2187,8 +2192,8 @@
   },
   "kubecolor": {
     "license": "MIT",
-    "homepage": null,
-    "description": "colorizes kubectl output",
+    "homepage": "https://kubecolor.github.io/",
+    "description": "Colorize your kubectl output",
     "authors": null
   },
   "kubeconform": {
@@ -2199,8 +2204,8 @@
   },
   "kubectl": {
     "license": "Apache-2.0",
-    "homepage": null,
-    "description": "Issue tracker and mirror of kubectl code",
+    "homepage": "https://kubernetes.io",
+    "description": "Production-Grade Container Scheduling and Management",
     "authors": null
   },
   "kubectl-bindrole": {
@@ -2302,7 +2307,7 @@
   "kubeshark": {
     "license": "Apache-2.0",
     "homepage": "https://kubehq.com",
-    "description": "The API traffic analyzer for Kubernetes providing real-time K8s protocol-level visibility, capturing and monitoring all traffic and payloads going in, out and across containers, pods, nodes and clusters. Inspired by Wireshark, purposely built for Kubernetes",
+    "description": "API traffic analyzer for Kubernetes, providing deep packet inspection with complete API and Kubernetes contexts, retaining cluster-wide L4 traffic (PCAP), and using minimal production compute resources.",
     "authors": null
   },
   "kubespy": {
@@ -2669,7 +2674,7 @@
   },
   "navi": {
     "license": "Apache-2.0",
-    "homepage": null,
+    "homepage": "https://github.com/denisidoro/navi",
     "description": "An interactive cheatsheet tool for the command-line",
     "authors": null
   },
@@ -2885,7 +2890,7 @@
   },
   "oxipng": {
     "license": "MIT",
-    "homepage": null,
+    "homepage": "https://github.com/oxipng/oxipng",
     "description": "Multithreaded PNG optimizer written in Rust",
     "authors": null
   },
@@ -3858,7 +3863,7 @@
   },
   "tokei": {
     "license": null,
-    "homepage": null,
+    "homepage": "https://tokei.rs",
     "description": "Count your code, quickly.",
     "authors": null
   },
@@ -4086,7 +4091,7 @@
   },
   "vivid": {
     "license": "Apache-2.0",
-    "homepage": null,
+    "homepage": "https://github.com/sharkdp/vivid",
     "description": "A themeable LS_COLORS generator with a rich filetype datebase",
     "authors": null
   },
@@ -4245,7 +4250,7 @@
   "yq": {
     "license": "MIT",
     "homepage": "https://mikefarah.gitbook.io/yq/",
-    "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML  and properties processor",
+    "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML, HCL  and properties processor",
     "authors": null
   },
   "yt-dlp": {
@@ -4300,6 +4305,514 @@
     "license": "MIT",
     "homepage": "https://crates.io/crates/zoxide",
     "description": "A smarter cd command. Supports all major shells.",
+    "authors": null
+  },
+  "allure": {
+    "license": "Apache-2.0",
+    "homepage": "https://allurereport.org/",
+    "description": "Allure Report is a flexible, lightweight multi-language test reporting tool. It provides clear graphical reports and allows everyone involved in the development process to extract the maximum of information from the everyday testing process",
+    "authors": null
+  },
+  "amazon-ecs-cli": {
+    "license": null,
+    "homepage": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html",
+    "description": "The Amazon ECS CLI enables users to run their applications on ECS/Fargate using the Docker Compose file format, quickly provision resources, push/pull images in ECR, and monitor running applications on ECS/Fargate.",
+    "authors": null
+  },
+  "apollo-ios": {
+    "license": "MIT",
+    "homepage": "https://www.apollographql.com/docs/ios/",
+    "description": "📱  A strongly-typed, caching GraphQL client for iOS, written in Swift.",
+    "authors": null
+  },
+  "apollo-ios-cli": {
+    "license": "MIT",
+    "homepage": "https://www.apollographql.com/docs/ios/",
+    "description": "📱  A strongly-typed, caching GraphQL client for iOS, written in Swift.",
+    "authors": null
+  },
+  "atuin": {
+    "license": "MIT",
+    "homepage": "https://atuin.sh",
+    "description": "✨ Magical shell history",
+    "authors": null
+  },
+  "bashly": {
+    "license": "MIT",
+    "homepage": "https://bashly.dev/",
+    "description": "Generate bash command line tools using YAML configuration",
+    "authors": [
+      "Danny Ben Shitrit"
+    ]
+  },
+  "bat-extras": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "Bash scripts that integrate bat with various command line tools.",
+    "authors": null
+  },
+  "blender": {
+    "license": null,
+    "homepage": "https://developer.blender.org/docs/handbook/contributing/using_git/#github-mirror",
+    "description": "Official mirror of Blender",
+    "authors": null
+  },
+  "bob": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "A version manager for neovim",
+    "authors": null
+  },
+  "btrace": {
+    "license": null,
+    "homepage": null,
+    "description": "BTrace - a safe, dynamic tracing tool for the Java platform",
+    "authors": null
+  },
+  "bun": {
+    "license": null,
+    "homepage": "https://bun.com",
+    "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one",
+    "authors": null
+  },
+  "carapace": {
+    "license": "MIT",
+    "homepage": "https://carapace.sh",
+    "description": "A multi-shell completion binary.",
+    "authors": null
+  },
+  "cf": {
+    "license": "Apache-2.0",
+    "homepage": "https://docs.cloudfoundry.org/cf-cli",
+    "description": "The official command line client for Cloud Foundry",
+    "authors": null
+  },
+  "cfssljson": {
+    "license": "BSD-2-Clause",
+    "homepage": "https://cfssl.org/",
+    "description": "CFSSL: Cloudflare's PKI and TLS toolkit",
+    "authors": null
+  },
+  "claude-squad": {
+    "license": "AGPL-3.0",
+    "homepage": "https://smtg-ai.github.io/claude-squad/",
+    "description": "Manage multiple AI terminal agents like Claude Code, Aider, Codex, OpenCode, and Amp.",
+    "authors": null
+  },
+  "cmake": {
+    "license": "BSD-3-Clause",
+    "homepage": "https://gitlab.kitware.com/cmake/cmake",
+    "description": "Mirror of CMake upstream repository",
+    "authors": null
+  },
+  "code": {
+    "license": "Apache-2.0",
+    "homepage": "https://justevery.com",
+    "description": "Every Code - push frontier AI to it limits. A fork of the Codex CLI with validation, automation, browser integration, multi-agents, theming, and much more. Orchestrate agents from OpenAI, Claude, Gemini or any provider.",
+    "authors": [
+      "zemaj"
+    ]
+  },
+  "codex": {
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/openai/codex#readme",
+    "description": "Lightweight coding agent that runs in your terminal",
+    "authors": [
+      "tylersmith-openai",
+      "atty-openai",
+      "tibo-openai",
+      "dkundel-openai",
+      "mbolin-openai"
+    ]
+  },
+  "container": {
+    "license": "Apache-2.0",
+    "homepage": "https://apple.github.io/container/documentation/",
+    "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon. ",
+    "authors": null
+  },
+  "container-use": {
+    "license": "Apache-2.0",
+    "homepage": "https://container-use.com",
+    "description": "Development environments for coding agents. Enable multiple agents to work safely and independently with your preferred stack.",
+    "authors": null
+  },
+  "cpz": {
+    "license": "Apache-2.0",
+    "homepage": null,
+    "description": "Modern, performance focused unix commands",
+    "authors": null
+  },
+  "croc": {
+    "license": "MIT",
+    "homepage": "https://schollz.com/software/croc6",
+    "description": "Easily and securely send things from one computer to another :crocodile: :package:",
+    "authors": null
+  },
+  "crush": {
+    "license": null,
+    "homepage": null,
+    "description": "The glamourous AI coding agent for your favourite terminal 💘",
+    "authors": null
+  },
+  "deno": {
+    "license": "MIT",
+    "homepage": "https://deno.com",
+    "description": "A modern runtime for JavaScript and TypeScript.",
+    "authors": null
+  },
+  "dhall": {
+    "license": "BSD-3-Clause",
+    "homepage": "https://dhall-lang.org/",
+    "description": "Maintainable configuration files",
+    "authors": null
+  },
+  "dotenvx": {
+    "license": "BSD-3-Clause",
+    "homepage": "https://dotenvx.com/docs",
+    "description": "a secure dotenv–from the creator of `dotenv`",
+    "authors": null
+  },
+  "e1s": {
+    "license": "MIT",
+    "homepage": "https://e1s.xingyahao.com",
+    "description": "E1S - Easily Manage AWS ECS Resources in Terminal(~k9s for ECS) 🐱",
+    "authors": null
+  },
+  "ecs-cli": {
+    "license": null,
+    "homepage": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html",
+    "description": "The Amazon ECS CLI enables users to run their applications on ECS/Fargate using the Docker Compose file format, quickly provision resources, push/pull images in ECR, and monitor running applications on ECS/Fargate.",
+    "authors": null
+  },
+  "elixir": {
+    "license": "Apache-2.0",
+    "homepage": "https://elixir-lang.org/",
+    "description": "Elixir is a dynamic, functional language for building scalable and maintainable applications",
+    "authors": null
+  },
+  "fnox": {
+    "license": "MIT",
+    "homepage": "https://fnox.jdx.dev",
+    "description": "encrypted/remote secret manager",
+    "authors": null
+  },
+  "ggshield": {
+    "license": "MIT",
+    "homepage": "https://gitguardian.com",
+    "description": "Detect and validate 500+ types of hardcoded secrets with advanced checks. Use it as a pre-commit hook, GitHub Action, or CLI for proactive secret detection and security.",
+    "authors": null
+  },
+  "git-lfs": {
+    "license": null,
+    "homepage": "https://git-lfs.com",
+    "description": "Git extension for versioning large files",
+    "authors": null
+  },
+  "go": {
+    "license": "BSD-3-Clause",
+    "homepage": "https://go.dev",
+    "description": "The Go programming language",
+    "authors": null
+  },
+  "gping": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "Ping, but with a graph",
+    "authors": null
+  },
+  "hatch": {
+    "license": null,
+    "homepage": "https://hatch.pypa.io/latest/",
+    "description": "Modern, extensible Python project management",
+    "authors": null
+  },
+  "helm-ls": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "⎈ Language server for Helm ⎈",
+    "authors": null
+  },
+  "infisical": {
+    "license": null,
+    "homepage": null,
+    "description": "The official CLI of Infisical",
+    "authors": null
+  },
+  "jaq": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "A jq clone focussed on correctness, speed, and simplicity",
+    "authors": null
+  },
+  "jjui": {
+    "license": "MIT",
+    "homepage": "https://idursun.github.io/jjui/",
+    "description": "Jujutsu UI (jjui) is a Text User Interface (TUI) designed for interacting with the Jujutsu version control system.",
+    "authors": null
+  },
+  "jujutsu-ui": {
+    "license": "MIT",
+    "homepage": "https://idursun.github.io/jjui/",
+    "description": "Jujutsu UI (jjui) is a Text User Interface (TUI) designed for interacting with the Jujutsu version control system.",
+    "authors": null
+  },
+  "k3s": {
+    "license": "Apache-2.0",
+    "homepage": "https://k3s.io",
+    "description": "Lightweight Kubernetes",
+    "authors": null
+  },
+  "kubeswitch": {
+    "license": "Apache-2.0",
+    "homepage": "https://danielfoehrkn.medium.com/the-case-of-kubeswitch-aff4b6a04ae7",
+    "description": "The kubectx  for operators.",
+    "authors": null
+  },
+  "lazyssh": {
+    "license": "Apache-2.0",
+    "homepage": null,
+    "description": "A terminal-based SSH manager inspired by lazydocker and k9s - Written in go",
+    "authors": null
+  },
+  "lnav": {
+    "license": "BSD-2-Clause",
+    "homepage": "http://lnav.org",
+    "description": "Log file navigator",
+    "authors": null
+  },
+  "magika": {
+    "license": null,
+    "homepage": "https://securityresearch.google/magika",
+    "description": "Determines file content types using AI",
+    "authors": null
+  },
+  "nelm": {
+    "license": null,
+    "homepage": null,
+    "description": "Nelm is a Helm 4 alternative. It is a Kubernetes deployment tool that manages Helm Charts and deploys them to Kubernetes. The Nelm goal is to provide a modern alternative to Helm, with long-standing issues fixed and many new major features introduced.",
+    "authors": null
+  },
+  "node": {
+    "license": null,
+    "homepage": "https://nodejs.org",
+    "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+    "authors": null
+  },
+  "omnictl": {
+    "license": null,
+    "homepage": null,
+    "description": "SaaS-simple deployment of Kubernetes - on your own hardware.",
+    "authors": null
+  },
+  "opengrep": {
+    "license": "LGPL-2.1",
+    "homepage": null,
+    "description": "🔎 Static code analysis engine to find security issues in code.",
+    "authors": null
+  },
+  "oxker": {
+    "license": "MIT",
+    "homepage": "https://github.com/mrjackwills/oxker",
+    "description": "A simple tui to view & control docker containers ",
+    "authors": null
+  },
+  "oxlint": {
+    "license": "MIT",
+    "homepage": "https://oxc.rs",
+    "description": "⚓ A collection of high-performance JavaScript tools.",
+    "authors": [
+      "Boshen and oxc contributors",
+      "boshen"
+    ]
+  },
+  "pipx": {
+    "license": "MIT",
+    "homepage": "https://pipx.pypa.io",
+    "description": "Install and Run Python Applications in Isolated Environments",
+    "authors": null
+  },
+  "prek": {
+    "license": "MIT",
+    "homepage": "https://prek.j178.dev/",
+    "description": "⚡ Better `pre-commit`, re-engineered in Rust",
+    "authors": null
+  },
+  "python": {
+    "license": null,
+    "homepage": "https://www.python.org",
+    "description": "The Python programming language",
+    "authors": null
+  },
+  "redpanda-connect": {
+    "license": null,
+    "homepage": "https://docs.redpanda.com/redpanda-connect/about/",
+    "description": "Fancy stream processing made operationally mundane",
+    "authors": null
+  },
+  "resvg": {
+    "license": "Apache-2.0",
+    "homepage": null,
+    "description": "An SVG rendering library.",
+    "authors": null
+  },
+  "rmz": {
+    "license": "Apache-2.0",
+    "homepage": null,
+    "description": "Modern, performance focused unix commands",
+    "authors": null
+  },
+  "ruby": {
+    "license": null,
+    "homepage": "https://www.ruby-lang.org/",
+    "description": "The Ruby Programming Language",
+    "authors": null
+  },
+  "rust": {
+    "license": "Apache-2.0",
+    "homepage": "https://www.rust-lang.org",
+    "description": "Empowering everyone to build reliable and efficient software.",
+    "authors": null
+  },
+  "scooter": {
+    "license": "MIT",
+    "homepage": "https://github.com/thomasschafer/scooter",
+    "description": "Interactive find-and-replace in the terminal",
+    "authors": null
+  },
+  "sonar-scanner-cli": {
+    "license": "LGPL-3.0",
+    "homepage": "http://redirect.sonarsource.com/doc/install-configure-scanner.html",
+    "description": "Scanner CLI for SonarQube (Server, Cloud)",
+    "authors": null
+  },
+  "specstory": {
+    "license": null,
+    "homepage": "https://specstory.com/",
+    "description": "Install our local first extensions for your favorite AI IDE or Terminal Agent. Sync your conversations to the cloud. File issues and requests.",
+    "authors": null
+  },
+  "sst": {
+    "license": "MIT",
+    "homepage": "https://sst.dev",
+    "description": "Build full-stack apps on your own infrastructure.",
+    "authors": null
+  },
+  "supabase": {
+    "license": "MIT",
+    "homepage": "https://supabase.com/docs/reference/cli/about",
+    "description": "Supabase CLI. Manage postgres migrations, run Supabase locally, deploy edge functions. Postgres backups. Generating types from your database schema.",
+    "authors": null
+  },
+  "superhtml": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "HTML Validator, Formatter, LSP, and Templating Language Library",
+    "authors": null
+  },
+  "swift": {
+    "license": "Apache-2.0",
+    "homepage": "https://swift.org",
+    "description": "The Swift Programming Language",
+    "authors": null
+  },
+  "tanzu": {
+    "license": "Apache-2.0",
+    "homepage": null,
+    "description": "The Tanzu Core CLI project provides the core functionality of the Tanzu CLI. The CLI is based on a plugin architecture where CLI command functionality can be delivered through independently developed plugin binaries",
+    "authors": null
+  },
+  "tbls": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "tbls is a CI-Friendly tool to document a database, written in Go.",
+    "authors": null
+  },
+  "tinymist": {
+    "license": "Apache-2.0",
+    "homepage": "https://myriad-dreamin.github.io/tinymist",
+    "description": "Tinymist [ˈtaɪni mɪst] is an integrated language service for Typst [taɪpst].",
+    "authors": null
+  },
+  "tlrc": {
+    "license": "MIT",
+    "homepage": "http://tldr.sh/tlrc/",
+    "description": "A tldr client written in Rust",
+    "authors": null
+  },
+  "tombi": {
+    "license": "MIT",
+    "homepage": "http://tombi-toml.github.io/tombi/",
+    "description": "TOML Formatter / Linter / Language Server",
+    "authors": null
+  },
+  "trufflehog": {
+    "license": "AGPL-3.0",
+    "homepage": "https://trufflesecurity.com",
+    "description": "Find, verify, and analyze leaked credentials",
+    "authors": null
+  },
+  "trzsz-ssh": {
+    "license": "MIT",
+    "homepage": "https://trzsz.github.io/ssh",
+    "description": "trzsz-ssh ( tssh ) is an ssh client designed as a drop-in replacement for the openssh client. It aims to provide complete compatibility with openssh, mirroring all its features, while also offering additional useful features. Such as login prompt, batch login, remember password, automated interaction, trzsz, zmodem(rz/sz), udp mode like mosh, etc.",
+    "authors": null
+  },
+  "tssh": {
+    "license": "MIT",
+    "homepage": "https://trzsz.github.io/ssh",
+    "description": "trzsz-ssh ( tssh ) is an ssh client designed as a drop-in replacement for the openssh client. It aims to provide complete compatibility with openssh, mirroring all its features, while also offering additional useful features. Such as login prompt, batch login, remember password, automated interaction, trzsz, zmodem(rz/sz), udp mode like mosh, etc.",
+    "authors": null
+  },
+  "vespa-cli": {
+    "license": "Apache-2.0",
+    "homepage": "https://vespa.ai",
+    "description": "AI + Data, online. https://vespa.ai",
+    "authors": null
+  },
+  "werf": {
+    "license": "Apache-2.0",
+    "homepage": "https://werf.io",
+    "description": "A solution for implementing efficient and consistent software delivery to Kubernetes facilitating best practices.",
+    "authors": null
+  },
+  "xcsift": {
+    "license": "MIT",
+    "homepage": "https://ldomaradzki.github.io/xcsift/",
+    "description": "A Swift command-line tool that parses xcodebuild output into token-efficient JSON for coding agents.",
+    "authors": null
+  },
+  "xxh": {
+    "license": "BSD",
+    "homepage": null,
+    "description": "Bring your favorite shell wherever you go through the ssh",
+    "authors": null
+  },
+  "yarn": {
+    "license": "BSD-2-Clause",
+    "homepage": "https://yarnpkg.com",
+    "description": "📦🐈 Active development trunk for Yarn ⚒",
+    "authors": [
+      "daniel15",
+      "bestander",
+      "cpojer",
+      "arcanis",
+      "yarnbot"
+    ]
+  },
+  "zbctl": {
+    "license": "ISC",
+    "homepage": "https://github.com/camunda-community-hub/zbctl-via-npm#readme",
+    "description": "Zeebe CLI",
+    "authors": [
+      "Josh Wulf",
+      "sitapati"
+    ]
+  },
+  "zig": {
+    "license": "MIT",
+    "homepage": "https://ziglang.org/news/migrating-from-github-to-codeberg/",
+    "description": "Moved to Codeberg",
     "authors": null
   }
 }

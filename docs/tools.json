@@ -71,6 +71,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mpalmer/action-validator/registry.yaml",
       "license": "GPL-3.0",
+      "homepage": "https://github.com/mpalmer/action-validator",
       "description": "Tool to validate GitHub Action and Workflow YAML files"
     },
     {
@@ -223,7 +224,10 @@
       "backends": [
         "github:allure-framework/allure2",
         "asdf:mise-plugins/mise-allure"
-      ]
+      ],
+      "license": "Apache-2.0",
+      "homepage": "https://allurereport.org/",
+      "description": "Allure Report is a flexible, lightweight multi-language test reporting tool. It provides clear graphical reports and allows everyone involved in the development process to extract the maximum of information from the everyday testing process"
     },
     {
       "name": "allurectl",
@@ -292,7 +296,9 @@
       "backends": [
         "aqua:aws/amazon-ecs-cli"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aws/amazon-ecs-cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aws/amazon-ecs-cli/registry.yaml",
+      "homepage": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html",
+      "description": "The Amazon ECS CLI enables users to run their applications on ECS/Fargate using the Docker Compose file format, quickly provision resources, push/pull images in ECR, and monitor running applications on ECS/Fargate."
     },
     {
       "name": "amplify",
@@ -404,7 +410,10 @@
       "repo_url": "https://github.com/apollographql/apollo-ios",
       "backends": [
         "github:apollographql/apollo-ios"
-      ]
+      ],
+      "license": "MIT",
+      "homepage": "https://www.apollographql.com/docs/ios/",
+      "description": "📱  A strongly-typed, caching GraphQL client for iOS, written in Swift."
     },
     {
       "name": "apollo-ios-cli",
@@ -415,7 +424,10 @@
       "repo_url": "https://github.com/apollographql/apollo-ios",
       "backends": [
         "github:apollographql/apollo-ios"
-      ]
+      ],
+      "license": "MIT",
+      "homepage": "https://www.apollographql.com/docs/ios/",
+      "description": "📱  A strongly-typed, caching GraphQL client for iOS, written in Swift."
     },
     {
       "name": "apollo-router",
@@ -659,7 +671,10 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/atuin"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/atuinsh/atuin/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/atuinsh/atuin/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://atuin.sh",
+      "description": "✨ Magical shell history"
     },
     {
       "name": "auto-doc",
@@ -987,7 +1002,13 @@
       ],
       "package_urls": {
         "rubygems": "https://rubygems.org/gems/bashly"
-      }
+      },
+      "license": "MIT",
+      "homepage": "https://bashly.dev/",
+      "authors": [
+        "Danny Ben Shitrit"
+      ],
+      "description": "Generate bash command line tools using YAML configuration"
     },
     {
       "name": "bat",
@@ -1021,7 +1042,9 @@
         "aqua:eth-p/bat-extras",
         "asdf:mise-plugins/mise-bat-extras"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/eth-p/bat-extras/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/eth-p/bat-extras/registry.yaml",
+      "license": "MIT",
+      "description": "Bash scripts that integrate bat with various command line tools."
     },
     {
       "name": "bats",
@@ -1086,6 +1109,13 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bazelbuild/bazelisk/registry.yaml",
       "license": "Apache-2.0",
+      "homepage": "https://github.com/bazelbuild/bazelisk#readme",
+      "authors": [
+        "google-wombot",
+        "alexeagle",
+        "bazel-manager",
+        "gmags"
+      ],
       "description": "A user-friendly launcher for Bazel."
     },
     {
@@ -1231,7 +1261,9 @@
       "backends": [
         "aqua:blender/blender"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/blender/blender/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/blender/blender/registry.yaml",
+      "homepage": "https://developer.blender.org/docs/handbook/contributing/using_git/#github-mirror",
+      "description": "Official mirror of Blender"
     },
     {
       "name": "bob",
@@ -1248,7 +1280,9 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/bob-nvim"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/MordechaiHadad/bob/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/MordechaiHadad/bob/registry.yaml",
+      "license": "MIT",
+      "description": "A version manager for neovim"
     },
     {
       "name": "boilerplate",
@@ -1409,7 +1443,8 @@
       "backends": [
         "github:btraceio/btrace",
         "asdf:mise-plugins/mise-btrace"
-      ]
+      ],
+      "description": "BTrace - a safe, dynamic tracing tool for the Java platform"
     },
     {
       "name": "buf",
@@ -1479,13 +1514,19 @@
       "latest_version": "1.3.4",
       "version_count": 201,
       "last_updated": "2025-12-07T00:37:09.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:bun"
       ],
-      "github": "oven-sh/bun",
-      "repo_url": "https://github.com/oven-sh/bun",
+      "homepage": "https://bun.sh",
       "description": "Incredibly fast JavaScript runtime, bundler, and package manager",
-      "homepage": "https://bun.sh"
+      "github": "oven-sh/bun",
+      "repo_url": "https://github.com/oven-sh/bun"
     },
     {
       "name": "cabal",
@@ -1559,7 +1600,10 @@
       "backends": [
         "aqua:carapace-sh/carapace-bin"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/carapace-sh/carapace-bin/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/carapace-sh/carapace-bin/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://carapace.sh",
+      "description": "A multi-shell completion binary."
     },
     {
       "name": "cargo-binstall",
@@ -1683,7 +1727,10 @@
       "backends": [
         "github:cloudfoundry/cli",
         "asdf:mise-plugins/mise-cf"
-      ]
+      ],
+      "license": "Apache-2.0",
+      "homepage": "https://docs.cloudfoundry.org/cf-cli",
+      "description": "The official command line client for Cloud Foundry"
     },
     {
       "name": "cfn-lint",
@@ -1728,7 +1775,10 @@
       "backends": [
         "aqua:cloudflare/cfssl/cfssljson"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudflare/cfssl/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudflare/cfssl/registry.yaml",
+      "license": "BSD-2-Clause",
+      "homepage": "https://cfssl.org/",
+      "description": "CFSSL: Cloudflare's PKI and TLS toolkit"
     },
     {
       "name": "chamber",
@@ -2015,7 +2065,10 @@
         "aqua:smtg-ai/claude-squad",
         "ubi:smtg-ai/claude-squad"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/smtg-ai/claude-squad/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/smtg-ai/claude-squad/registry.yaml",
+      "license": "AGPL-3.0",
+      "homepage": "https://smtg-ai.github.io/claude-squad/",
+      "description": "Manage multiple AI terminal agents like Claude Code, Aider, Codex, OpenCode, and Amp."
     },
     {
       "name": "cli53",
@@ -2152,7 +2205,10 @@
         "asdf:mise-plugins/mise-cmake",
         "vfox:mise-plugins/vfox-cmake"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Kitware/CMake/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Kitware/CMake/registry.yaml",
+      "license": "BSD-3-Clause",
+      "homepage": "https://gitlab.kitware.com/cmake/cmake",
+      "description": "Mirror of CMake upstream repository"
     },
     {
       "name": "cmctl",
@@ -2239,7 +2295,13 @@
       "package_urls": {
         "npm": "https://www.npmjs.com/package/@just-every/code"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/just-every/code/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/just-every/code/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://justevery.com",
+      "authors": [
+        "zemaj"
+      ],
+      "description": "Every Code - push frontier AI to it limits. A fork of the Codex CLI with validation, automation, browser integration, multi-agents, theming, and much more. Orchestrate agents from OpenAI, Claude, Gemini or any provider."
     },
     {
       "name": "codefresh",
@@ -2295,7 +2357,17 @@
       "package_urls": {
         "npm": "https://www.npmjs.com/package/@openai/codex"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/openai/codex/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/openai/codex/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://github.com/openai/codex#readme",
+      "authors": [
+        "tylersmith-openai",
+        "atty-openai",
+        "tibo-openai",
+        "dkundel-openai",
+        "mbolin-openai"
+      ],
+      "description": "Lightweight coding agent that runs in your terminal"
     },
     {
       "name": "colima",
@@ -2433,7 +2505,10 @@
         "aqua:apple/container",
         "ubi:apple/container"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/apple/container/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/apple/container/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://apple.github.io/container/documentation/",
+      "description": "A tool for creating and running Linux containers using lightweight virtual machines on a Mac. It is written in Swift, and optimized for Apple silicon. "
     },
     {
       "name": "container-structure-test",
@@ -2461,7 +2536,10 @@
         "aqua:dagger/container-use",
         "ubi:dagger/container-use"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dagger/container-use/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dagger/container-use/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://container-use.com",
+      "description": "Development environments for coding agents. Enable multiple agents to work safely and independently with your preferred stack."
     },
     {
       "name": "cookiecutter",
@@ -2595,7 +2673,9 @@
         "aqua:SUPERCILEX/fuc/cpz",
         "ubi:SUPERCILEX/fuc[matching=cpz,rename_exe=cpz]"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml",
+      "license": "Apache-2.0",
+      "description": "Modern, performance focused unix commands"
     },
     {
       "name": "crane",
@@ -2663,7 +2743,10 @@
         "aqua:schollz/croc",
         "ubi:schollz/croc"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/schollz/croc/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/schollz/croc/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://schollz.com/software/croc6",
+      "description": "Easily and securely send things from one computer to another :crocodile: :package:"
     },
     {
       "name": "crossplane",
@@ -2707,7 +2790,8 @@
       "backends": [
         "aqua:charmbracelet/crush"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/charmbracelet/crush/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/charmbracelet/crush/registry.yaml",
+      "description": "The glamourous AI coding agent for your favourite terminal 💘"
     },
     {
       "name": "crystal",
@@ -2843,10 +2927,7 @@
       "name": "danger-swift",
       "latest_version": "3.22.1",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "backends": [
-        "spm:danger/swift"
-      ]
+      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "dapr",
@@ -2887,7 +2968,7 @@
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/TomWright/dasel/registry.yaml",
       "license": "MIT",
       "homepage": "https://daseldocs.tomwright.me",
-      "description": "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package."
+      "description": "Select, put and delete data from JSON, TOML, YAML, XML, INI, HCL and CSV files with a single tool. Also available as a go mod."
     },
     {
       "name": "databricks-cli",
@@ -2983,13 +3064,20 @@
       "latest_version": "2.6.0",
       "version_count": 286,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:deno"
       ],
-      "github": "denoland/deno",
-      "repo_url": "https://github.com/denoland/deno",
+      "license": "MIT",
+      "homepage": "https://deno.land",
       "description": "A modern runtime for JavaScript and TypeScript",
-      "homepage": "https://deno.land"
+      "github": "denoland/deno",
+      "repo_url": "https://github.com/denoland/deno"
     },
     {
       "name": "depot",
@@ -3048,7 +3136,10 @@
         "aqua:dhall-lang/dhall-haskell",
         "asdf:mise-plugins/mise-dhall"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dhall-lang/dhall-haskell/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dhall-lang/dhall-haskell/registry.yaml",
+      "license": "BSD-3-Clause",
+      "homepage": "https://dhall-lang.org/",
+      "description": "Maintainable configuration files"
     },
     {
       "name": "diffoci",
@@ -3330,7 +3421,10 @@
         "aqua:dotenvx/dotenvx",
         "ubi:dotenvx/dotenvx"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dotenvx/dotenvx/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dotenvx/dotenvx/registry.yaml",
+      "license": "BSD-3-Clause",
+      "homepage": "https://dotenvx.com/docs",
+      "description": "a secure dotenv–from the creator of `dotenv`"
     },
     {
       "name": "dotnet",
@@ -3536,6 +3630,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bootandy/dust/registry.yaml",
       "license": "Apache-2.0",
+      "homepage": "https://github.com/bootandy/dust",
       "description": "A more intuitive version of du in rust"
     },
     {
@@ -3588,7 +3683,10 @@
         "aqua:keidarcy/e1s",
         "asdf:tbobm/asdf-e1s"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/keidarcy/e1s/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/keidarcy/e1s/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://e1s.xingyahao.com",
+      "description": "E1S - Easily Manage AWS ECS Resources in Terminal(~k9s for ECS) 🐱"
     },
     {
       "name": "earthly",
@@ -3616,7 +3714,9 @@
       "backends": [
         "aqua:aws/amazon-ecs-cli"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aws/amazon-ecs-cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aws/amazon-ecs-cli/registry.yaml",
+      "homepage": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html",
+      "description": "The Amazon ECS CLI enables users to run their applications on ECS/Fargate using the Docker Compose file format, quickly provision resources, push/pull images in ECR, and monitor running applications on ECS/Fargate."
     },
     {
       "name": "ecspresso",
@@ -3711,10 +3811,11 @@
       "backends": [
         "core:elixir"
       ],
-      "github": "elixir-lang/elixir",
-      "repo_url": "https://github.com/elixir-lang/elixir",
+      "license": "Apache-2.0",
+      "homepage": "https://elixir-lang.org",
       "description": "Dynamic, functional programming language",
-      "homepage": "https://elixir-lang.org"
+      "github": "elixir-lang/elixir",
+      "repo_url": "https://github.com/elixir-lang/elixir"
     },
     {
       "name": "elixir-ls",
@@ -3889,7 +3990,6 @@
       "last_updated": "2025-08-26T07:32:04.000Z",
       "github": "sharkdp/fd",
       "repo_url": "https://github.com/sharkdp/fd",
-      "description": "A simple, fast and user-friendly alternative to 'find'",
       "backends": [
         "aqua:sharkdp/fd",
         "ubi:sharkdp/fd",
@@ -3901,7 +4001,8 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/fd/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://github.com/sharkdp/fd"
+      "homepage": "https://github.com/sharkdp/fd",
+      "description": "A simple, fast and user-friendly alternative to 'find'"
     },
     {
       "name": "ffmpeg",
@@ -4083,7 +4184,10 @@
       "repo_url": "https://github.com/jdx/fnox",
       "backends": [
         "github:jdx/fnox"
-      ]
+      ],
+      "license": "MIT",
+      "homepage": "https://fnox.jdx.dev",
+      "description": "encrypted/remote secret manager"
     },
     {
       "name": "foundry",
@@ -4275,7 +4379,10 @@
       "package_urls": {
         "pypi": "https://pypi.org/project/ggshield"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/GitGuardian/ggshield/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/GitGuardian/ggshield/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://gitguardian.com",
+      "description": "Detect and validate 500+ types of hardcoded secrets with advanced checks. Use it as a pre-commit hook, GitHub Action, or CLI for proactive secret detection and security."
     },
     {
       "name": "gh",
@@ -4429,7 +4536,9 @@
         "aqua:git-lfs/git-lfs",
         "ubi:git-lfs/git-lfs"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/git-lfs/git-lfs/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/git-lfs/git-lfs/registry.yaml",
+      "homepage": "https://git-lfs.com",
+      "description": "Git extension for versioning large files"
     },
     {
       "name": "gitconfig",
@@ -4544,6 +4653,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/extrawurst/gitui/registry.yaml",
       "license": "MIT",
+      "homepage": "https://github.com/gitui-org/gitui",
       "description": "Blazing 💥 fast terminal-ui for git written in rust 🦀"
     },
     {
@@ -4640,13 +4750,20 @@
       "latest_version": "1.26rc1",
       "version_count": 341,
       "last_updated": "2025-12-16T20:06:22.535Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:go"
       ],
-      "github": "golang/go",
-      "repo_url": "https://github.com/golang/go",
+      "license": "BSD-3-Clause",
+      "homepage": "https://go.dev",
       "description": "Go programming language",
-      "homepage": "https://go.dev"
+      "github": "golang/go",
+      "repo_url": "https://github.com/golang/go"
     },
     {
       "name": "go-containerregistry",
@@ -4985,7 +5102,9 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/gping"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/orf/gping/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/orf/gping/registry.yaml",
+      "license": "MIT",
+      "description": "Ping, but with a graph"
     },
     {
       "name": "graalvm",
@@ -5076,14 +5195,15 @@
         "npm": "https://www.npmjs.com/package/@withgraphite/graphite-cli"
       },
       "license": "None",
-      "homepage": "https://github.com/withgraphite/graphite-cli",
+      "homepage": "https://graphite.com/docs/cli-overview",
       "authors": [
         "gregorymfoster",
         "tomasreimers",
         "nicholasyan",
         "kushg",
         "jacobgold"
-      ]
+      ],
+      "description": "A private homebrew tap to install the Graphite CLI tools."
     },
     {
       "name": "grex",
@@ -5327,7 +5447,9 @@
       ],
       "package_urls": {
         "pypi": "https://pypi.org/project/hatch"
-      }
+      },
+      "homepage": "https://hatch.pypa.io/latest/",
+      "description": "Modern, extensible Python project management"
     },
     {
       "name": "haxe",
@@ -5475,7 +5597,9 @@
         "aqua:mrjosh/helm-ls",
         "ubi:mrjosh/helm-ls[rename_exe=helm_ls]"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjosh/helm-ls/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjosh/helm-ls/registry.yaml",
+      "license": "MIT",
+      "description": "⎈ Language server for Helm ⎈"
     },
     {
       "name": "helmfile",
@@ -5559,6 +5683,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/hexyl/registry.yaml",
       "license": "Apache-2.0",
+      "homepage": "https://github.com/sharkdp/hexyl",
       "description": "A command-line hex viewer"
     },
     {
@@ -5824,6 +5949,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/hyperfine/registry.yaml",
       "license": "Apache-2.0",
+      "homepage": "https://github.com/sharkdp/hyperfine",
       "description": "A command-line benchmarking tool"
     },
     {
@@ -5918,7 +6044,8 @@
       "repo_url": "https://github.com/Infisical/cli",
       "backends": [
         "github:Infisical/cli"
-      ]
+      ],
+      "description": "The official CLI of Infisical"
     },
     {
       "name": "infracost",
@@ -6001,7 +6128,9 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/jaq"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/01mf02/jaq/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/01mf02/jaq/registry.yaml",
+      "license": "MIT",
+      "description": "A jq clone focussed on correctness, speed, and simplicity"
     },
     {
       "name": "java",
@@ -6135,7 +6264,10 @@
         "aqua:idursun/jjui",
         "ubi:idursun/jjui"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://idursun.github.io/jjui/",
+      "description": "Jujutsu UI (jjui) is a Text User Interface (TUI) designed for interacting with the Jujutsu version control system."
     },
     {
       "name": "jless",
@@ -6304,7 +6436,10 @@
         "aqua:idursun/jjui",
         "ubi:idursun/jjui"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://idursun.github.io/jjui/",
+      "description": "Jujutsu UI (jjui) is a Text User Interface (TUI) designed for interacting with the Jujutsu version control system."
     },
     {
       "name": "julia",
@@ -6464,7 +6599,10 @@
         "aqua:k3s-io/k3s",
         "asdf:mise-plugins/mise-k3s"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k3s-io/k3s/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k3s-io/k3s/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://k3s.io",
+      "description": "Lightweight Kubernetes"
     },
     {
       "name": "k3sup",
@@ -6659,6 +6797,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jkfran/killport/registry.yaml",
       "license": "MIT",
+      "homepage": "https://github.com/jkfran/killport",
       "description": "A command-line tool to easily kill processes running on a specified port."
     },
     {
@@ -7033,7 +7172,8 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubecolor/kubecolor/registry.yaml",
       "license": "MIT",
-      "description": "colorizes kubectl output"
+      "homepage": "https://kubecolor.github.io/",
+      "description": "Colorize your kubectl output"
     },
     {
       "name": "kubeconform",
@@ -7063,7 +7203,8 @@
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubernetes/kubernetes/registry.yaml",
       "license": "Apache-2.0",
-      "description": "Issue tracker and mirror of kubectl code"
+      "homepage": "https://kubernetes.io",
+      "description": "Production-Grade Container Scheduling and Management"
     },
     {
       "name": "kubectl-bindrole",
@@ -7324,7 +7465,7 @@
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubeshark/kubeshark/registry.yaml",
       "license": "Apache-2.0",
       "homepage": "https://kubehq.com",
-      "description": "The API traffic analyzer for Kubernetes providing real-time K8s protocol-level visibility, capturing and monitoring all traffic and payloads going in, out and across containers, pods, nodes and clusters. Inspired by Wireshark, purposely built for Kubernetes"
+      "description": "API traffic analyzer for Kubernetes, providing deep packet inspection with complete API and Kubernetes contexts, retaining cluster-wide L4 traffic (PCAP), and using minimal production compute resources."
     },
     {
       "name": "kubespy",
@@ -7353,7 +7494,10 @@
         "aqua:danielfoehrKn/kubeswitch",
         "github:danielfoehrKn/kubeswitch"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/danielfoehrKn/kubeswitch/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/danielfoehrKn/kubeswitch/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://danielfoehrkn.medium.com/the-case-of-kubeswitch-aff4b6a04ae7",
+      "description": "The kubectx  for operators."
     },
     {
       "name": "kubeval",
@@ -7565,7 +7709,9 @@
         "aqua:Adembc/lazyssh",
         "ubi:Adembc/lazyssh"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Adembc/lazyssh/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Adembc/lazyssh/registry.yaml",
+      "license": "Apache-2.0",
+      "description": "A terminal-based SSH manager inspired by lazydocker and k9s - Written in go"
     },
     {
       "name": "lean",
@@ -7769,7 +7915,10 @@
         "aqua:tstack/lnav",
         "ubi:tstack/lnav"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tstack/lnav/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tstack/lnav/registry.yaml",
+      "license": "BSD-2-Clause",
+      "homepage": "http://lnav.org",
+      "description": "Log file navigator"
     },
     {
       "name": "localstack",
@@ -7962,7 +8111,9 @@
       ],
       "package_urls": {
         "cargo": "https://crates.io/crates/magika-cli"
-      }
+      },
+      "homepage": "https://securityresearch.google/magika",
+      "description": "Determines file content types using AI"
     },
     {
       "name": "make",
@@ -8549,6 +8700,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/denisidoro/navi/registry.yaml",
       "license": "Apache-2.0",
+      "homepage": "https://github.com/denisidoro/navi",
       "description": "An interactive cheatsheet tool for the command-line"
     },
     {
@@ -8575,7 +8727,8 @@
       "backends": [
         "aqua:werf/nelm"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/werf/nelm/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/werf/nelm/registry.yaml",
+      "description": "Nelm is a Helm 4 alternative. It is a Kubernetes deployment tool that manages Helm Charts and deploys them to Kubernetes. The Nelm goal is to provide a modern alternative to Helm, with long-standing issues fixed and many new major features introduced."
     },
     {
       "name": "neonctl",
@@ -8704,13 +8857,22 @@
       "latest_version": "25.2.1",
       "version_count": 820,
       "last_updated": "2025-12-10T00:00:00.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        },
+        {
+          "type": "gpg"
+        }
+      ],
       "backends": [
         "core:node"
       ],
-      "github": "nodejs/node",
-      "repo_url": "https://github.com/nodejs/node",
+      "homepage": "https://nodejs.org",
       "description": "Node.js JavaScript runtime",
-      "homepage": "https://nodejs.org"
+      "github": "nodejs/node",
+      "repo_url": "https://github.com/nodejs/node"
     },
     {
       "name": "nomad",
@@ -8990,7 +9152,8 @@
         "aqua:siderolabs/omni/omnictl",
         "ubi:siderolabs/omni[exe=omnictl]"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/siderolabs/omni/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/siderolabs/omni/registry.yaml",
+      "description": "SaaS-simple deployment of Kubernetes - on your own hardware."
     },
     {
       "name": "onyx",
@@ -9107,7 +9270,9 @@
         "aqua:opengrep/opengrep",
         "ubi:opengrep/opengrep"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/opengrep/opengrep/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/opengrep/opengrep/registry.yaml",
+      "license": "LGPL-2.1",
+      "description": "🔎 Static code analysis engine to find security issues in code."
     },
     {
       "name": "openresty",
@@ -9263,6 +9428,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/oxipng/oxipng/registry.yaml",
       "license": "MIT",
+      "homepage": "https://github.com/oxipng/oxipng",
       "description": "Multithreaded PNG optimizer written in Rust"
     },
     {
@@ -9280,7 +9446,10 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/oxker"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjackwills/oxker/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjackwills/oxker/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://github.com/mrjackwills/oxker",
+      "description": "A simple tui to view & control docker containers "
     },
     {
       "name": "oxlint",
@@ -9297,7 +9466,14 @@
       "package_urls": {
         "npm": "https://www.npmjs.com/package/oxlint"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/oxc-project/oxc/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/oxc-project/oxc/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://oxc.rs",
+      "authors": [
+        "Boshen and oxc contributors",
+        "boshen"
+      ],
+      "description": "⚓ A collection of high-performance JavaScript tools."
     },
     {
       "name": "pachctl",
@@ -9521,7 +9697,10 @@
         "aqua:pypa/pipx",
         "asdf:mise-plugins/mise-pipx"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pypa/pipx/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pypa/pipx/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://pipx.pypa.io",
+      "description": "Install and Run Python Applications in Isolated Environments"
     },
     {
       "name": "pitchfork",
@@ -9813,7 +9992,10 @@
       "backends": [
         "aqua:j178/prek"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/j178/prek/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/j178/prek/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://prek.j178.dev/",
+      "description": "⚡ Better `pre-commit`, re-engineered in Rust"
     },
     {
       "name": "process-compose",
@@ -10073,10 +10255,10 @@
       "backends": [
         "core:python"
       ],
-      "github": "python/cpython",
-      "repo_url": "https://github.com/python/cpython",
+      "homepage": "https://python.org",
       "description": "Python programming language",
-      "homepage": "https://python.org"
+      "github": "python/cpython",
+      "repo_url": "https://github.com/python/cpython"
     },
     {
       "name": "qdns",
@@ -10278,7 +10460,9 @@
         "aqua:redpanda-data/connect",
         "asdf:benthosdev/benthos-asdf"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/redpanda-data/connect/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/redpanda-data/connect/registry.yaml",
+      "homepage": "https://docs.redpanda.com/redpanda-connect/about/",
+      "description": "Fancy stream processing made operationally mundane"
     },
     {
       "name": "reg",
@@ -10393,7 +10577,9 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/resvg"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/linebender/resvg/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/linebender/resvg/registry.yaml",
+      "license": "Apache-2.0",
+      "description": "An SVG rendering library."
     },
     {
       "name": "revive",
@@ -10536,7 +10722,9 @@
         "aqua:SUPERCILEX/fuc/rmz",
         "ubi:SUPERCILEX/fuc[matching=rmz,rename_exe=rmz]"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml",
+      "license": "Apache-2.0",
+      "description": "Modern, performance focused unix commands"
     },
     {
       "name": "rocq",
@@ -10552,13 +10740,19 @@
       "latest_version": "4.0-dev",
       "version_count": 659,
       "last_updated": "2025-10-23T10:00:15.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:ruby"
       ],
-      "github": "ruby/ruby",
-      "repo_url": "https://github.com/ruby/ruby",
+      "homepage": "https://ruby-lang.org",
       "description": "Ruby programming language",
-      "homepage": "https://ruby-lang.org"
+      "github": "ruby/ruby",
+      "repo_url": "https://github.com/ruby/ruby"
     },
     {
       "name": "ruff",
@@ -10586,10 +10780,11 @@
         "core:rust",
         "asdf:code-lever/asdf-rust"
       ],
-      "github": "rust-lang/rust",
-      "repo_url": "https://github.com/rust-lang/rust",
+      "license": "Apache-2.0",
+      "homepage": "https://rust-lang.org",
       "description": "Rust programming language",
-      "homepage": "https://rust-lang.org"
+      "github": "rust-lang/rust",
+      "repo_url": "https://github.com/rust-lang/rust"
     },
     {
       "name": "rust-analyzer",
@@ -10843,7 +11038,10 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/scooter"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/thomasschafer/scooter/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/thomasschafer/scooter/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://github.com/thomasschafer/scooter",
+      "description": "Interactive find-and-replace in the terminal"
     },
     {
       "name": "scorecard",
@@ -11240,7 +11438,10 @@
         "aqua:SonarSource/sonar-scanner-cli",
         "asdf:virtualstaticvoid/asdf-sonarscanner"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SonarSource/sonar-scanner-cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SonarSource/sonar-scanner-cli/registry.yaml",
+      "license": "LGPL-3.0",
+      "homepage": "http://redirect.sonarsource.com/doc/install-configure-scanner.html",
+      "description": "Scanner CLI for SonarQube (Server, Cloud)"
     },
     {
       "name": "sonobuoy",
@@ -11308,7 +11509,10 @@
       "latest_version": "2.3.0",
       "version_count": 103,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "krzysztofzablocki/Sourcery",
+      "repo_url": "https://github.com/krzysztofzablocki/Sourcery",
       "backends": [
+        "github:krzysztofzablocki/Sourcery[exe=bin/sourcery]",
         "asdf:mise-plugins/mise-sourcery"
       ]
     },
@@ -11368,7 +11572,9 @@
         "aqua:specstoryai/getspecstory",
         "ubi:specstoryai/getspecstory"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/specstoryai/getspecstory/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/specstoryai/getspecstory/registry.yaml",
+      "homepage": "https://specstory.com/",
+      "description": "Install our local first extensions for your favorite AI IDE or Terminal Agent. Sync your conversations to the cloud. File issues and requests."
     },
     {
       "name": "spectral",
@@ -11480,7 +11686,10 @@
       "repo_url": "https://github.com/sst/sst",
       "backends": [
         "github:sst/sst"
-      ]
+      ],
+      "license": "MIT",
+      "homepage": "https://sst.dev",
+      "description": "Build full-stack apps on your own infrastructure."
     },
     {
       "name": "stack",
@@ -11690,7 +11899,10 @@
       "backends": [
         "aqua:supabase/cli"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/supabase/cli/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/supabase/cli/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://supabase.com/docs/reference/cli/about",
+      "description": "Supabase CLI. Manage postgres migrations, run Supabase locally, deploy edge functions. Postgres backups. Generating types from your database schema."
     },
     {
       "name": "superfile",
@@ -11716,7 +11928,9 @@
       "repo_url": "https://github.com/kristoff-it/superhtml",
       "backends": [
         "github:kristoff-it/superhtml"
-      ]
+      ],
+      "license": "MIT",
+      "description": "HTML Validator, Formatter, LSP, and Templating Language Library"
     },
     {
       "name": "sver",
@@ -11768,13 +11982,23 @@
       "latest_version": "6.2.3",
       "version_count": 56,
       "last_updated": "2025-12-09T23:45:54.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        },
+        {
+          "type": "gpg"
+        }
+      ],
       "backends": [
         "core:swift"
       ],
-      "github": "swiftlang/swift",
-      "repo_url": "https://github.com/swiftlang/swift",
+      "license": "Apache-2.0",
+      "homepage": "https://swift.org",
       "description": "Swift programming language",
-      "homepage": "https://swift.org"
+      "github": "swiftlang/swift",
+      "repo_url": "https://github.com/swiftlang/swift"
     },
     {
       "name": "swift-package-list",
@@ -11799,7 +12023,10 @@
       "latest_version": "6.6.3",
       "version_count": 58,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "SwiftGen/SwiftGen",
+      "repo_url": "https://github.com/SwiftGen/SwiftGen",
       "backends": [
+        "github:SwiftGen/SwiftGen[exe=swiftgen/bin/swiftgen]",
         "asdf:mise-plugins/mise-swiftgen"
       ]
     },
@@ -11931,7 +12158,9 @@
       "repo_url": "https://github.com/vmware-tanzu/tanzu-cli",
       "backends": [
         "github:vmware-tanzu/tanzu-cli[rename_exe=tanzu]"
-      ]
+      ],
+      "license": "Apache-2.0",
+      "description": "The Tanzu Core CLI project provides the core functionality of the Tanzu CLI. The CLI is based on a plugin architecture where CLI command functionality can be delivered through independently developed plugin binaries"
     },
     {
       "name": "taplo",
@@ -11981,7 +12210,9 @@
         "aqua:k1LoW/tbls",
         "ubi:k1LoW/tbls"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k1LoW/tbls/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k1LoW/tbls/registry.yaml",
+      "license": "MIT",
+      "description": "tbls is a CI-Friendly tool to document a database, written in Go."
     },
     {
       "name": "tctl",
@@ -12472,7 +12703,10 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/tinymist"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Myriad-Dreamin/tinymist/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Myriad-Dreamin/tinymist/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://myriad-dreamin.github.io/tinymist",
+      "description": "Tinymist [ˈtaɪni mɪst] is an integrated language service for Typst [taɪpst]."
     },
     {
       "name": "tinytex",
@@ -12513,7 +12747,10 @@
       "package_urls": {
         "cargo": "https://crates.io/crates/tlrc"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tldr-pages/tlrc/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tldr-pages/tlrc/registry.yaml",
+      "license": "MIT",
+      "homepage": "http://tldr.sh/tlrc/",
+      "description": "A tldr client written in Rust"
     },
     {
       "name": "tmux",
@@ -12541,6 +12778,7 @@
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/XAMPPRocky/tokei/registry.yaml",
       "github": "XAMPPRocky/tokei",
       "repo_url": "https://github.com/XAMPPRocky/tokei",
+      "homepage": "https://tokei.rs",
       "description": "Count your code, quickly."
     },
     {
@@ -12554,7 +12792,10 @@
         "aqua:tombi-toml/tombi",
         "ubi:tombi-toml/tombi"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tombi-toml/tombi/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tombi-toml/tombi/registry.yaml",
+      "license": "MIT",
+      "homepage": "http://tombi-toml.github.io/tombi/",
+      "description": "TOML Formatter / Linter / Language Server"
     },
     {
       "name": "tomcat",
@@ -12682,7 +12923,10 @@
         "aqua:trufflesecurity/trufflehog",
         "github:trufflesecurity/trufflehog"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trufflesecurity/trufflehog/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trufflesecurity/trufflehog/registry.yaml",
+      "license": "AGPL-3.0",
+      "homepage": "https://trufflesecurity.com",
+      "description": "Find, verify, and analyze leaked credentials"
     },
     {
       "name": "trzsz-ssh",
@@ -12699,7 +12943,10 @@
       "package_urls": {
         "go": "https://pkg.go.dev/github.com/trzsz/trzsz-ssh/cmd/tssh"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trzsz/trzsz-ssh/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trzsz/trzsz-ssh/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://trzsz.github.io/ssh",
+      "description": "trzsz-ssh ( tssh ) is an ssh client designed as a drop-in replacement for the openssh client. It aims to provide complete compatibility with openssh, mirroring all its features, while also offering additional useful features. Such as login prompt, batch login, remember password, automated interaction, trzsz, zmodem(rz/sz), udp mode like mosh, etc."
     },
     {
       "name": "tssh",
@@ -12716,7 +12963,10 @@
       "package_urls": {
         "go": "https://pkg.go.dev/github.com/trzsz/trzsz-ssh/cmd/tssh"
       },
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trzsz/trzsz-ssh/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/trzsz/trzsz-ssh/registry.yaml",
+      "license": "MIT",
+      "homepage": "https://trzsz.github.io/ssh",
+      "description": "trzsz-ssh ( tssh ) is an ssh client designed as a drop-in replacement for the openssh client. It aims to provide complete compatibility with openssh, mirroring all its features, while also offering additional useful features. Such as login prompt, batch login, remember password, automated interaction, trzsz, zmodem(rz/sz), udp mode like mosh, etc."
     },
     {
       "name": "tsuru",
@@ -12754,9 +13004,13 @@
       "latest_version": "4.115.1",
       "version_count": 440,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "tuist/tuist",
+      "repo_url": "https://github.com/tuist/tuist",
       "backends": [
+        "aqua:tuist/tuist",
         "asdf:mise-plugins/mise-tuist"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tuist/tuist/registry.yaml"
     },
     {
       "name": "tusd",
@@ -12997,7 +13251,6 @@
       "last_updated": "2025-12-09T22:36:00.000Z",
       "github": "astral-sh/uv",
       "repo_url": "https://github.com/astral-sh/uv",
-      "description": "An extremely fast Python package installer and resolver, written in Rust",
       "backends": [
         "aqua:astral-sh/uv",
         "ubi:astral-sh/uv",
@@ -13009,7 +13262,8 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/astral-sh/uv/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://docs.astral.sh/uv"
+      "homepage": "https://docs.astral.sh/uv",
+      "description": "An extremely fast Python package and project manager, written in Rust."
     },
     {
       "name": "v",
@@ -13167,7 +13421,10 @@
       "repo_url": "https://github.com/vespa-engine/vespa",
       "backends": [
         "github:vespa-engine/vespa"
-      ]
+      ],
+      "license": "Apache-2.0",
+      "homepage": "https://vespa.ai",
+      "description": "AI + Data, online. https://vespa.ai"
     },
     {
       "name": "vfox",
@@ -13247,6 +13504,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/vivid/registry.yaml",
       "license": "Apache-2.0",
+      "homepage": "https://github.com/sharkdp/vivid",
       "description": "A themeable LS_COLORS generator with a rich filetype datebase"
     },
     {
@@ -13468,7 +13726,10 @@
       "backends": [
         "aqua:werf/werf"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/werf/werf/registry.yaml"
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/werf/werf/registry.yaml",
+      "license": "Apache-2.0",
+      "homepage": "https://werf.io",
+      "description": "A solution for implementing efficient and consistent software delivery to Kubernetes facilitating best practices."
     },
     {
       "name": "wren",
@@ -13609,7 +13870,10 @@
       "repo_url": "https://github.com/ldomaradzki/xcsift",
       "backends": [
         "github:ldomaradzki/xcsift"
-      ]
+      ],
+      "license": "MIT",
+      "homepage": "https://ldomaradzki.github.io/xcsift/",
+      "description": "A Swift command-line tool that parses xcodebuild output into token-efficient JSON for coding agents."
     },
     {
       "name": "xh",
@@ -13642,7 +13906,9 @@
       ],
       "package_urls": {
         "pypi": "https://pypi.org/project/xxh-xxh"
-      }
+      },
+      "license": "BSD",
+      "description": "Bring your favorite shell wherever you go through the ssh"
     },
     {
       "name": "yadm",
@@ -13723,7 +13989,17 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/yarnpkg/berry/registry.yaml",
       "github": "yarnpkg/berry",
-      "repo_url": "https://github.com/yarnpkg/berry"
+      "repo_url": "https://github.com/yarnpkg/berry",
+      "license": "BSD-2-Clause",
+      "homepage": "https://yarnpkg.com",
+      "authors": [
+        "daniel15",
+        "bestander",
+        "cpojer",
+        "arcanis",
+        "yarnbot"
+      ],
+      "description": "📦🐈 Active development trunk for Yarn ⚒"
     },
     {
       "name": "yay",
@@ -13821,7 +14097,7 @@
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mikefarah/yq/registry.yaml",
       "license": "MIT",
       "homepage": "https://mikefarah.gitbook.io/yq/",
-      "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML  and properties processor"
+      "description": "yq is a portable command-line YAML, JSON, XML, CSV, TOML, HCL  and properties processor"
     },
     {
       "name": "yt-dlp",
@@ -13864,7 +14140,14 @@
       ],
       "package_urls": {
         "npm": "https://www.npmjs.com/package/zbctl"
-      }
+      },
+      "license": "ISC",
+      "homepage": "https://github.com/camunda-community-hub/zbctl-via-npm#readme",
+      "authors": [
+        "Josh Wulf",
+        "sitapati"
+      ],
+      "description": "Zeebe CLI"
     },
     {
       "name": "zellij",
@@ -13908,13 +14191,24 @@
       "latest_version": "0.15.2",
       "version_count": 23,
       "last_updated": "2025-11-26T00:00:00.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        },
+        {
+          "type": "minisign",
+          "public_key": "RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U"
+        }
+      ],
       "backends": [
         "core:zig"
       ],
-      "github": "ziglang/zig",
-      "repo_url": "https://github.com/ziglang/zig",
+      "license": "MIT",
+      "homepage": "https://ziglang.org",
       "description": "General-purpose programming language and toolchain",
-      "homepage": "https://ziglang.org"
+      "github": "ziglang/zig",
+      "repo_url": "https://github.com/ziglang/zig"
     },
     {
       "name": "zigmod",
@@ -13924,9 +14218,11 @@
       "github": "nektro/zigmod",
       "repo_url": "https://github.com/nektro/zigmod",
       "backends": [
+        "aqua:nektro/zigmod",
         "github:nektro/zigmod",
         "asdf:mise-plugins/asdf-zigmod"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/nektro/zigmod/registry.yaml",
       "license": "MIT",
       "description": "📦 A package manager for the Zig programming language."
     },
