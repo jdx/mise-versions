@@ -131,6 +131,10 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
   const hasGithub = ghData && (ghData.stars > 0 || (ghData.topics && ghData.topics.length > 0));
   const showGithubPlaceholder = !ghData && !ghLoading && !authenticated && parsed !== null;
 
+  // Get current page path for return_to
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const loginUrl = `/api/auth/login?return_to=${encodeURIComponent(currentPath)}`;
+
   return (
     <div class="space-y-4">
       {/* Install command */}
@@ -308,7 +312,7 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
                   GitHub
                 </span>
                 <a
-                  href="/api/auth/login"
+                  href={loginUrl}
                   class="flex items-center gap-1.5 px-3 py-1 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded text-xs text-gray-300 hover:text-white transition-colors"
                 >
                   <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
@@ -352,7 +356,7 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
                 <div class="text-xs text-amber-500 flex items-center gap-1.5">
                   <span>Data may be outdated.</span>
                   <a
-                    href="/api/auth/login"
+                    href={loginUrl}
                     class="underline hover:text-amber-400 transition-colors"
                   >
                     Login to refresh

@@ -83,3 +83,27 @@ export function getOAuthStateCookie(request: Request): string | null {
 export function clearOAuthStateCookie(): string {
   return `${OAUTH_STATE_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`;
 }
+
+// Return URL cookie for preserving page during auth flow
+export const RETURN_TO_COOKIE_NAME = 'mise_return_to';
+
+export function setReturnToCookie(returnTo: string): string {
+  // Short-lived cookie (10 minutes) to remember where to return after auth
+  const encoded = encodeURIComponent(returnTo);
+  return `${RETURN_TO_COOKIE_NAME}=${encoded}; Path=/; Max-Age=600; HttpOnly; SameSite=Lax; Secure`;
+}
+
+export function getReturnToCookie(request: Request): string | null {
+  const cookies = request.headers.get('Cookie') || '';
+  const match = cookies.match(new RegExp(`${RETURN_TO_COOKIE_NAME}=([^;]+)`));
+  if (!match) return null;
+  try {
+    return decodeURIComponent(match[1]);
+  } catch {
+    return null;
+  }
+}
+
+export function clearReturnToCookie(): string {
+  return `${RETURN_TO_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`;
+}

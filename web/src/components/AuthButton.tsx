@@ -52,6 +52,11 @@ export function AuthButton() {
     );
   }
 
+  // Get current page path for return_to
+  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const loginUrl = `/api/auth/login?return_to=${encodeURIComponent(currentPath)}`;
+  const logoutUrl = `/api/auth/logout?return_to=${encodeURIComponent(currentPath)}`;
+
   if (state.authenticated) {
     return (
       <div class="flex items-center gap-3">
@@ -60,7 +65,7 @@ export function AuthButton() {
         </span>
         <span class="text-gray-300">{state.username}</span>
         <a
-          href="/api/auth/logout"
+          href={logoutUrl}
           class="text-gray-500 hover:text-gray-300 text-sm transition-colors"
         >
           Logout
@@ -71,7 +76,7 @@ export function AuthButton() {
 
   return (
     <a
-      href="/api/auth/login"
+      href={loginUrl}
       class="flex items-center gap-2 px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-gray-300 hover:text-white transition-colors"
     >
       <GitHubIcon />

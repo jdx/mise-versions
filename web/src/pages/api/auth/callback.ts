@@ -7,6 +7,8 @@ import {
   getOAuthStateCookie,
   clearOAuthStateCookie,
   setAuthCookie,
+  getReturnToCookie,
+  clearReturnToCookie,
 } from '../../../lib/auth';
 
 // GET /api/auth/callback - Handle GitHub OAuth callback
@@ -16,14 +18,22 @@ export const GET: APIRoute = async ({ request, locals }) => {
   const code = url.searchParams.get('code');
   const state = url.searchParams.get('state');
 
+  // Get return_to from cookie
+  const returnTo = getReturnToCookie(request) || '/';
+
   // Helper to redirect with cookie clearing
   const redirectWithError = (reason: string) => {
+    const headers = new Headers();
+    // Redirect to return_to page with error param
+    const returnUrl = new URL(returnTo, url.origin);
+    returnUrl.searchParams.set('login', 'error');
+    returnUrl.searchParams.set('reason', reason);
+    headers.set('Location', returnUrl.toString());
+    headers.append('Set-Cookie', clearOAuthStateCookie());
+    headers.append('Set-Cookie', clearReturnToCookie());
     return new Response(null, {
       status: 302,
-      headers: {
-        'Location': `/?login=error&reason=${reason}`,
-        'Set-Cookie': clearOAuthStateCookie(),
-      },
+      headers,
     });
   };
 
@@ -77,12 +87,15 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
     console.log(`Token stored for user: ${user.login}`);
 
-    // Set auth cookie, clear state cookie, and redirect to home
+    // Set auth cookie, clear state/return_to cookies, and redirect to return_to
     const authCookie = await setAuthCookie(user.login, runtime.env.API_SECRET);
     const headers = new Headers();
-    headers.set('Location', '/?login=success');
+    const returnUrl = new URL(returnTo, url.origin);
+    returnUrl.searchParams.set('login', 'success');
+    headers.set('Location', returnUrl.toString());
     headers.append('Set-Cookie', authCookie);
     headers.append('Set-Cookie', clearOAuthStateCookie());
+    headers.append('Set-Cookie', clearReturnToCookie());
 
     return new Response(null, {
       status: 302,
