@@ -65,8 +65,6 @@ function getInterestingPrefixes(versions: Version[]): string[] {
   return sortedPrefixes.slice(0, 8);
 }
 
-type ChartView = "30d" | "12m";
-
 function DailyBarChart({
   daily,
 }: {
@@ -239,23 +237,28 @@ const VERSION_COLORS = [
   "#6B7280", // Gray
 ];
 
-// Version Trends Component
-function VersionTrendsSection({ tool }: { tool: string }) {
-  const { data, loading } = useVersionTrends(tool, 30);
-
+// Version Trends Chart Component (for use in DownloadsPane tabs)
+function VersionTrendsChart({
+  data,
+  loading
+}: {
+  data: { versions: Array<{ version: string; downloads: number; share: number; trend: "growing" | "declining" | "stable" }>; timeline: Array<{ date: string; [version: string]: number | string }> } | null;
+  loading: boolean;
+}) {
   if (loading) {
     return (
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-4">
-        <h3 class="text-sm font-medium text-gray-300 mb-3">Version Trends (30d)</h3>
-        <div class="h-32 flex items-center justify-center">
-          <div class="text-gray-500 text-sm">Loading...</div>
-        </div>
+      <div class="h-32 flex items-center justify-center">
+        <div class="text-gray-500 text-sm">Loading...</div>
       </div>
     );
   }
 
   if (!data || data.versions.length === 0) {
-    return null;
+    return (
+      <div class="h-32 flex items-center justify-center">
+        <div class="text-gray-500 text-sm">No version data available</div>
+      </div>
+    );
   }
 
   // Get top versions for the chart (max 8)
@@ -264,8 +267,16 @@ function VersionTrendsSection({ tool }: { tool: string }) {
 
   // Build stacked chart data
   const chartHeight = 100;
-  const chartWidth = 600;
+  const chartWidth = 400;
   const days = data.timeline.length;
+
+  if (days === 0) {
+    return (
+      <div class="h-32 flex items-center justify-center">
+        <div class="text-gray-500 text-sm">No timeline data</div>
+      </div>
+    );
+  }
 
   // Calculate stacked areas
   const stackedData = data.timeline.map(day => {
@@ -288,20 +299,19 @@ function VersionTrendsSection({ tool }: { tool: string }) {
   const maxTotal = Math.max(...stackedData.map(d => d.total), 1);
 
   // Create stacked area paths
-  const xScale = (i: number) => (i / (days - 1)) * chartWidth;
+  const xScale = (i: number) => (i / Math.max(days - 1, 1)) * chartWidth;
   const yScale = (v: number) => chartHeight - (v / maxTotal) * chartHeight;
 
   return (
-    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-4">
-      <h3 class="text-sm font-medium text-gray-300 mb-3">Version Trends (30d)</h3>
-
+    <div>
       {/* Stacked area chart */}
-      <div class="overflow-x-auto mb-4">
+      <div class="overflow-x-auto mb-3">
         <svg
           width={chartWidth}
-          height={chartHeight + 20}
-          class="min-w-[400px]"
-          viewBox={`0 0 ${chartWidth} ${chartHeight + 20}`}
+          height={chartHeight}
+          class="w-full"
+          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+          preserveAspectRatio="none"
         >
           {/* Stacked areas (render from top to bottom for proper layering) */}
           {[...versionKeys].reverse().map((version, reverseIdx) => {
@@ -341,16 +351,16 @@ function VersionTrendsSection({ tool }: { tool: string }) {
       </div>
 
       {/* Legend */}
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+      <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
         {topVersions.map((v, idx) => {
           const color = VERSION_COLORS[idx % VERSION_COLORS.length];
           const trendIcon = v.trend === "growing" ? "↑" : v.trend === "declining" ? "↓" : "";
           const trendColor = v.trend === "growing" ? "text-green-400" : v.trend === "declining" ? "text-red-400" : "";
 
           return (
-            <div key={v.version} class="flex items-center gap-1.5">
+            <div key={v.version} class="flex items-center gap-1">
               <span
-                class="w-2.5 h-2.5 rounded-sm flex-shrink-0"
+                class="w-2 h-2 rounded-sm flex-shrink-0"
                 style={{ backgroundColor: color }}
               />
               <span class="font-mono text-gray-400">{v.version}</span>
@@ -970,15 +980,18 @@ function InfoPane({ tool, toolMeta, onShowBadge }: { tool: string; toolMeta: Too
   );
 }
 
-// Downloads pane: chart, top versions, by platform
+// Downloads pane: chart, top versions, by platform, version trends
 function DownloadsPane({
   data,
   loading,
+  tool,
 }: {
   data: { daily: Array<{ date: string; count: number }>; monthly: Array<{ month: string; count: number }>; byVersion: Array<{ version: string; count: number }>; byOs: Array<{ os: string | null; count: number }> } | null;
   loading: boolean;
+  tool: string;
 }) {
-  const [chartView, setChartView] = useState<ChartView>("30d");
+  const [chartView, setChartView] = useState<"30d" | "12m" | "versions">("30d");
+  const { data: versionTrendsData, loading: versionTrendsLoading } = useVersionTrends(tool, 30);
 
   if (loading) {
     return (
@@ -1026,7 +1039,7 @@ function DownloadsPane({
       <div class="mb-4">
         <div class="flex items-center justify-between mb-2">
           <div class="text-sm text-gray-400">
-            {chartView === "30d" ? "Last 30 days" : "Last 12 months"}
+            {chartView === "30d" ? "Last 30 days" : chartView === "12m" ? "Last 12 months" : "Version trends (30d)"}
           </div>
           <div class="flex rounded-lg overflow-hidden border border-dark-600">
             <button
@@ -1049,12 +1062,24 @@ function DownloadsPane({
             >
               12m
             </button>
+            <button
+              onClick={() => setChartView("versions")}
+              class={`px-2 py-1 text-xs font-medium transition-colors ${
+                chartView === "versions"
+                  ? "bg-neon-purple text-white"
+                  : "bg-dark-700 text-gray-400 hover:text-gray-200"
+              }`}
+            >
+              versions
+            </button>
           </div>
         </div>
         {chartView === "30d" ? (
           <DailyBarChart daily={data.daily} />
-        ) : (
+        ) : chartView === "12m" ? (
           <MonthlyLineChart monthly={data.monthly || []} />
+        ) : (
+          <VersionTrendsChart data={versionTrendsData} loading={versionTrendsLoading} />
         )}
       </div>
 
@@ -1242,16 +1267,13 @@ export function ToolPage({ params }: Props) {
         <InfoPane tool={tool} toolMeta={toolMeta} onShowBadge={() => setShowBadgeModal(true)} />
 
         {/* Right column: Downloads */}
-        <DownloadsPane data={downloadData} loading={downloadsLoading} />
+        <DownloadsPane data={downloadData} loading={downloadsLoading} tool={tool} />
       </div>
 
       {/* Badge Modal */}
       {showBadgeModal && (
         <BadgeModal tool={tool} onClose={() => setShowBadgeModal(false)} />
       )}
-
-      {/* Version Trends */}
-      <VersionTrendsSection tool={tool} />
 
       {/* Version Timeline */}
       {!loading && versions && versions.length > 0 && (
