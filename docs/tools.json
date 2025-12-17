@@ -2879,9 +2879,9 @@
     },
     {
       "name": "dagu",
-      "latest_version": "1.26.5",
-      "version_count": 199,
-      "last_updated": "2025-12-15T11:11:20.000Z",
+      "latest_version": "1.26.6",
+      "version_count": 200,
+      "last_updated": "2025-12-17T15:21:58.000Z",
       "github": "dagu-org/dagu",
       "repo_url": "https://github.com/dagu-org/dagu",
       "backends": [
@@ -3194,8 +3194,8 @@
     },
     {
       "name": "dmd",
-      "latest_version": "2.111.0",
-      "version_count": 44,
+      "latest_version": "nightly",
+      "version_count": 1,
       "last_updated": "2025-12-17T13:33:24.063Z",
       "backends": [
         "asdf:mise-plugins/mise-dmd"
