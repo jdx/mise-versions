@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: false
+      debug:
+        description: "Enable debug mode (MISE_DEBUG=1)"
+        required: false
+        type: boolean
+        default: false
 
 concurrency:
   group: backfill-${{ github.event.inputs.script }}
@@ -63,6 +68,9 @@ jobs:
           fi
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
             args="$args --dry-run"
+          fi
+          if [ "${{ github.event.inputs.debug }}" = "true" ]; then
+            args="$args --debug"
           fi
           node scripts/${{ github.event.inputs.script }} $args
 

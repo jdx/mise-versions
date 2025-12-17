@@ -50,7 +50,7 @@ async function getRandomToken() {
 }
 
 // Fetch versions with timestamps from mise
-async function fetchVersionsWithTimestamps(tool, retries = 2) {
+async function fetchVersionsWithTimestamps(tool, retries = 2, debug = false) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     // Get a fresh random token for each attempt
     const token = await getRandomToken();
@@ -59,6 +59,9 @@ async function fetchVersionsWithTimestamps(tool, retries = 2) {
       MISE_LIST_ALL_VERSIONS: "1",  // Get all versions, not just first page
       MISE_USE_VERSIONS_HOST: "0",  // Bypass versions host to get real timestamps from GitHub
     };
+    if (debug) {
+      env.MISE_DEBUG = "1";
+    }
     if (token) {
       env.GITHUB_TOKEN = token;
     }
@@ -99,11 +102,14 @@ function parseArgs() {
   const args = {
     tool: null,
     dryRun: false,
+    debug: false,
   };
 
   for (const arg of process.argv.slice(2)) {
     if (arg === "--dry-run") {
       args.dryRun = true;
+    } else if (arg === "--debug") {
+      args.debug = true;
     } else if (arg.startsWith("--tool=")) {
       args.tool = arg.slice(7);
     }
@@ -128,7 +134,7 @@ function hasPlaceholderTimestamps(versions) {
 }
 
 // Process a single tool and return result
-async function processTool(tool, dryRun) {
+async function processTool(tool, dryRun, debug = false) {
   const tomlPath = join(DOCS_DIR, `${tool}.toml`);
 
   // Read existing TOML
@@ -150,7 +156,7 @@ async function processTool(tool, dryRun) {
   }
 
   // Fetch real timestamps from mise
-  const versionData = await fetchVersionsWithTimestamps(tool);
+  const versionData = await fetchVersionsWithTimestamps(tool, 2, debug);
   if (!versionData) {
     return { tool, status: "failed", error: "Failed to fetch versions" };
   }
@@ -231,7 +237,7 @@ function commitAndPush(message) {
 }
 
 // Process tools in parallel with concurrency limit
-async function processInParallel(tools, dryRun) {
+async function processInParallel(tools, dryRun, debug = false) {
   const results = { updated: 0, skipped: 0, failed: 0 };
   let completed = 0;
   let uncommittedUpdates = 0;
@@ -241,7 +247,7 @@ async function processInParallel(tools, dryRun) {
   for (let i = 0; i < tools.length; i += CONCURRENCY) {
     const batch = tools.slice(i, i + CONCURRENCY);
     const batchResults = await Promise.all(
-      batch.map(tool => processTool(tool, dryRun))
+      batch.map(tool => processTool(tool, dryRun, debug))
     );
 
     for (const result of batchResults) {
@@ -287,6 +293,9 @@ async function main() {
   if (args.dryRun) {
     console.log("DRY RUN - no files will be modified");
   }
+  if (args.debug) {
+    console.log("DEBUG MODE - MISE_DEBUG=1 will be set");
+  }
 
   // Find all TOML files, excluding internal tools
   const EXCLUDED_PREFIXES = ["python-precompiled"];
@@ -307,7 +316,7 @@ async function main() {
     toolsToProcess = [args.tool];
   }
 
-  const results = await processInParallel(toolsToProcess, args.dryRun);
+  const results = await processInParallel(toolsToProcess, args.dryRun, args.debug);
 
   console.log(`\nDone!`);
   console.log(`  Processed: ${results.processed}`);
