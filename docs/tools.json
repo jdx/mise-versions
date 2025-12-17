@@ -1614,12 +1614,6 @@
       "latest_stable_version": "1.3.5",
       "version_count": 202,
       "last_updated": "2025-12-17T08:52:16.000Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "core:bun"
       ],
@@ -2149,7 +2143,6 @@
       "version_count": 307,
       "last_updated": "2025-12-17T13:18:22.882Z",
       "backends": [
-        "conda:clang",
         "asdf:mise-plugins/mise-llvm",
         "vfox:mise-plugins/vfox-clang"
       ]
@@ -3239,12 +3232,6 @@
       "latest_stable_version": "2.6.0",
       "version_count": 286,
       "last_updated": "2025-12-17T13:32:44.615Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "core:deno"
       ],
@@ -4189,13 +4176,18 @@
       "latest_stable_version": "0.23.4",
       "version_count": 95,
       "last_updated": "2025-10-03T20:37:13.000Z",
+      "github": "eza-community/eza",
+      "repo_url": "https://github.com/eza-community/eza",
       "backends": [
+        "aqua:eza-community/eza",
+        "ubi:eza-community/eza",
         "asdf:mise-plugins/mise-eza",
         "cargo:eza"
       ],
       "package_urls": {
         "cargo": "https://crates.io/crates/eza"
       },
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/eza-community/eza/registry.yaml",
       "license": "EUPL-1.2",
       "homepage": "https://eza.rocks",
       "description": "A modern alternative to ls"
@@ -4223,6 +4215,7 @@
       "last_updated": "2025-08-26T07:32:04.000Z",
       "github": "sharkdp/fd",
       "repo_url": "https://github.com/sharkdp/fd",
+      "description": "A simple, fast and user-friendly alternative to 'find'",
       "backends": [
         "aqua:sharkdp/fd",
         "ubi:sharkdp/fd",
@@ -4234,8 +4227,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/fd/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://github.com/sharkdp/fd",
-      "description": "A simple, fast and user-friendly alternative to 'find'"
+      "homepage": "https://github.com/sharkdp/fd"
     },
     {
       "name": "ffmpeg",
@@ -5035,12 +5027,6 @@
       "latest_stable_version": "1.25.5",
       "version_count": 341,
       "last_updated": "2025-12-16T20:00:53.000Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "core:go"
       ],
@@ -9419,15 +9405,6 @@
       "latest_stable_version": "25.2.1",
       "version_count": 820,
       "last_updated": "2025-12-10T00:00:00.000Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        },
-        {
-          "type": "gpg"
-        }
-      ],
       "backends": [
         "core:node"
       ],
@@ -11431,12 +11408,6 @@
       "latest_stable_version": "3.4.7",
       "version_count": 659,
       "last_updated": "2025-10-23T10:00:15.000Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "core:ruby"
       ],
@@ -12253,10 +12224,7 @@
       "latest_stable_version": "2.3.0",
       "version_count": 103,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "krzysztofzablocki/Sourcery",
-      "repo_url": "https://github.com/krzysztofzablocki/Sourcery",
       "backends": [
-        "github:krzysztofzablocki/Sourcery[exe=bin/sourcery]",
         "asdf:mise-plugins/mise-sourcery"
       ]
     },
@@ -12758,12 +12726,6 @@
       "latest_stable_version": "6.2.3",
       "version_count": 56,
       "last_updated": "2025-12-09T23:45:54.000Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "core:swift"
       ],
@@ -12799,10 +12761,7 @@
       "latest_stable_version": "6.6.3",
       "version_count": 58,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "SwiftGen/SwiftGen",
-      "repo_url": "https://github.com/SwiftGen/SwiftGen",
       "backends": [
-        "github:SwiftGen/SwiftGen[exe=swiftgen/bin/swiftgen]",
         "asdf:mise-plugins/mise-swiftgen"
       ]
     },
@@ -13845,13 +13804,9 @@
       "latest_stable_version": "4.115.1",
       "version_count": 440,
       "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "tuist/tuist",
-      "repo_url": "https://github.com/tuist/tuist",
       "backends": [
-        "aqua:tuist/tuist",
         "asdf:mise-plugins/mise-tuist"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tuist/tuist/registry.yaml"
+      ]
     },
     {
       "name": "tusd",
@@ -14107,6 +14062,7 @@
       "last_updated": "2025-12-09T22:36:00.000Z",
       "github": "astral-sh/uv",
       "repo_url": "https://github.com/astral-sh/uv",
+      "description": "An extremely fast Python package installer and resolver, written in Rust",
       "backends": [
         "aqua:astral-sh/uv",
         "ubi:astral-sh/uv",
@@ -14118,8 +14074,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/astral-sh/uv/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://docs.astral.sh/uv",
-      "description": "An extremely fast Python package and project manager, written in Rust."
+      "homepage": "https://docs.astral.sh/uv"
     },
     {
       "name": "v",
@@ -15109,16 +15064,6 @@
       "latest_stable_version": "0.15.2",
       "version_count": 23,
       "last_updated": "2025-11-26T00:00:00.000Z",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        },
-        {
-          "type": "minisign",
-          "public_key": "RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U"
-        }
-      ],
       "backends": [
         "core:zig"
       ],
@@ -15137,11 +15082,9 @@
       "github": "nektro/zigmod",
       "repo_url": "https://github.com/nektro/zigmod",
       "backends": [
-        "aqua:nektro/zigmod",
         "github:nektro/zigmod",
         "asdf:mise-plugins/asdf-zigmod"
       ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/nektro/zigmod/registry.yaml",
       "license": "MIT",
       "description": "📦 A package manager for the Zig programming language."
     },
