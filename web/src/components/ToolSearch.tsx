@@ -74,7 +74,8 @@ export function ToolSearch({ tools, downloads }: Props) {
   }, [tools, search]);
 
   useEffect(() => {
-    setSelectedIndex(-1);
+    // Auto-select first suggestion when searching
+    setSelectedIndex(suggestions.length > 0 ? 0 : -1);
   }, [suggestions]);
 
   // Sync state to URL
@@ -161,11 +162,19 @@ export function ToolSearch({ tools, downloads }: Props) {
 
   const clearFilters = () => setSelectedBackends(new Set());
 
+  const clearSearch = () => {
+    setSearch("");
+    setShowSuggestions(false);
+    searchRef.current?.focus();
+  };
+
   const handleSearchKeyDown = (e: KeyboardEvent) => {
-    if (!showSuggestions || suggestions.length === 0) {
-      if (e.key === "Escape") setShowSuggestions(false);
+    if (e.key === "Escape") {
+      e.preventDefault();
+      clearSearch();
       return;
     }
+    if (!showSuggestions || suggestions.length === 0) return;
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
@@ -180,9 +189,6 @@ export function ToolSearch({ tools, downloads }: Props) {
         if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
           window.location.href = `/tools/${suggestions[selectedIndex].name}`;
         }
-        break;
-      case "Escape":
-        setShowSuggestions(false);
         break;
     }
   };
@@ -271,9 +277,21 @@ export function ToolSearch({ tools, downloads }: Props) {
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
             onKeyDown={handleSearchKeyDown}
-            class="w-full px-4 py-2 bg-dark-800 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple"
+            class="w-full px-4 py-2 pr-10 bg-dark-800 border border-dark-600 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple"
             autocomplete="off"
           />
+          {search && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 transition-colors"
+              title="Clear search (Esc)"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
           {showSuggestions && suggestions.length > 0 && (
             <div class="absolute z-50 w-full mt-1 bg-dark-800 border border-dark-600 rounded-lg shadow-lg overflow-hidden">
               {suggestions.map((tool, index) => (
