@@ -47,13 +47,13 @@ export async function handleScheduled(env: Env): Promise<void> {
   const todayStr = now.toISOString().split("T")[0];
 
   // Populate yesterday's full data
-  const yesterdayResult = await analytics.populateRollupTables(yesterdayStr);
+  const yesterdayResult = await analytics.populateRollupTables(yesterdayStr, env.ANALYTICS_DB);
   console.log(
     `Rollup tables populated for ${yesterdayStr}: ${yesterdayResult.toolStats} tools, ${yesterdayResult.backendStats} backends`
   );
 
   // Also update today's partial data
-  const todayResult = await analytics.populateRollupTables(todayStr);
+  const todayResult = await analytics.populateRollupTables(todayStr, env.ANALYTICS_DB);
   console.log(
     `Rollup tables updated for ${todayStr}: ${todayResult.toolStats} tools, ${todayResult.backendStats} backends`
   );

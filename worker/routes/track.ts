@@ -301,7 +301,7 @@ export async function handleBackfillRollups(
     const db = drizzle(env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
 
-    const result = await analytics.backfillRollupTables(days);
+    const result = await analytics.backfillRollupTables(days, env.ANALYTICS_DB);
 
     return jsonResponse({
       success: true,

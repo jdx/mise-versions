@@ -661,7 +661,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Populate rollup tables for a specific date (call daily via cron)
-    async populateRollupTables(date: string): Promise<{
+    async populateRollupTables(date: string, d1?: D1Database): Promise<{
       dailyStats: boolean;
       toolStats: number;
       backendStats: number;
@@ -686,10 +686,16 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .get();
 
       if (globalStats && globalStats.total > 0) {
-        await db.run(sql`
-          INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
-          VALUES (${date}, ${globalStats.total}, ${globalStats.unique_users})
-        `);
+        if (d1) {
+          await d1.prepare(
+            "INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES (?, ?, ?)"
+          ).bind(date, globalStats.total, globalStats.unique_users).run();
+        } else {
+          await db.run(sql`
+            INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
+            VALUES (${date}, ${globalStats.total}, ${globalStats.unique_users})
+          `);
+        }
       }
 
       // 2. Populate daily_tool_stats
@@ -709,11 +715,24 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .groupBy(downloads.tool_id)
         .all();
 
-      for (const stat of toolStats) {
-        await db.run(sql`
-          INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users)
-          VALUES (${date}, ${stat.tool_id}, ${stat.downloads}, ${stat.unique_users})
-        `);
+      if (d1 && toolStats.length > 0) {
+        const BATCH_SIZE = 50;
+        for (let i = 0; i < toolStats.length; i += BATCH_SIZE) {
+          const batch = toolStats.slice(i, i + BATCH_SIZE);
+          const statements = batch.map(stat =>
+            d1.prepare(
+              "INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users) VALUES (?, ?, ?, ?)"
+            ).bind(date, stat.tool_id, stat.downloads, stat.unique_users)
+          );
+          await d1.batch(statements);
+        }
+      } else {
+        for (const stat of toolStats) {
+          await db.run(sql`
+            INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users)
+            VALUES (${date}, ${stat.tool_id}, ${stat.downloads}, ${stat.unique_users})
+          `);
+        }
       }
 
       // 3. Populate daily_backend_stats
@@ -746,11 +765,20 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         backendTypeStats.set(backendType, existing);
       }
 
-      for (const [backendType, stat] of backendTypeStats) {
-        await db.run(sql`
-          INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users)
-          VALUES (${date}, ${backendType}, ${stat.downloads}, ${stat.unique_users})
-        `);
+      if (d1 && backendTypeStats.size > 0) {
+        const statements = [...backendTypeStats].map(([backendType, stat]) =>
+          d1.prepare(
+            "INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES (?, ?, ?, ?)"
+          ).bind(date, backendType, stat.downloads, stat.unique_users)
+        );
+        await d1.batch(statements);
+      } else {
+        for (const [backendType, stat] of backendTypeStats) {
+          await db.run(sql`
+            INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users)
+            VALUES (${date}, ${backendType}, ${stat.downloads}, ${stat.unique_users})
+          `);
+        }
       }
 
       return {
@@ -761,7 +789,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Backfill rollup tables for the last N days (one-time migration)
-    async backfillRollupTables(days: number = 90): Promise<{ daysProcessed: number }> {
+    async backfillRollupTables(days: number = 90, d1?: D1Database): Promise<{ daysProcessed: number }> {
       let daysProcessed = 0;
       const now = new Date();
 
@@ -770,7 +798,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         date.setUTCDate(date.getUTCDate() - i);
         const dateStr = date.toISOString().split("T")[0];
 
-        const result = await this.populateRollupTables(dateStr);
+        const result = await this.populateRollupTables(dateStr, d1);
         if (result.dailyStats) {
           daysProcessed++;
         }
