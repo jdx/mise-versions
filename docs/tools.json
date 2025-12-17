@@ -1677,7 +1677,7 @@
       "name": "carthage",
       "latest_version": "0.40.0",
       "version_count": 79,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:17:02.445Z",
       "backends": [
         "vfox:mise-plugins/vfox-carthage",
         "asdf:mise-plugins/mise-carthage"
@@ -1857,7 +1857,7 @@
       "name": "chezscheme",
       "latest_version": "10.3.0",
       "version_count": 15,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:17:42.859Z",
       "backends": [
         "vfox:mise-plugins/vfox-chezscheme",
         "asdf:mise-plugins/mise-chezscheme"
@@ -1867,7 +1867,7 @@
       "name": "chicken",
       "latest_version": "5.4.0",
       "version_count": 6,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:17:45.250Z",
       "backends": [
         "vfox:mise-plugins/vfox-chicken"
       ]
@@ -2009,7 +2009,7 @@
       "name": "clang",
       "latest_version": "9.0.1",
       "version_count": 307,
-      "last_updated": "2025-12-16T11:39:09.741Z",
+      "last_updated": "2025-12-17T13:18:22.882Z",
       "backends": [
         "asdf:mise-plugins/mise-llvm",
         "vfox:mise-plugins/vfox-clang"
@@ -2019,7 +2019,7 @@
       "name": "clang-format",
       "latest_version": "9.0.1",
       "version_count": 307,
-      "last_updated": "2025-12-16T11:39:12.108Z",
+      "last_updated": "2025-12-17T13:18:24.144Z",
       "backends": [
         "asdf:mise-plugins/mise-llvm"
       ]
@@ -2028,7 +2028,7 @@
       "name": "clangd",
       "latest_version": "9.0.1",
       "version_count": 307,
-      "last_updated": "2025-12-16T11:39:14.547Z",
+      "last_updated": "2025-12-17T13:18:25.407Z",
       "backends": [
         "asdf:mise-plugins/mise-llvm"
       ]
@@ -2082,7 +2082,7 @@
       "name": "clickhouse",
       "latest_version": "25.11.2.24-stable",
       "version_count": 100,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:18:43.144Z",
       "backends": [
         "vfox:mise-plugins/vfox-clickhouse",
         "asdf:mise-plugins/mise-clickhouse"
@@ -2120,7 +2120,7 @@
       "name": "clojure",
       "latest_version": "1.12.4.1582",
       "version_count": 231,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:18:51.039Z",
       "backends": [
         "asdf:mise-plugins/mise-clojure"
       ]
@@ -2160,7 +2160,7 @@
       "name": "clusterawsadm",
       "latest_version": "2.10.0",
       "version_count": 67,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:19:06.783Z",
       "github": "kubernetes-sigs/cluster-api-provider-aws",
       "repo_url": "https://github.com/kubernetes-sigs/cluster-api-provider-aws",
       "backends": [
@@ -2239,7 +2239,7 @@
       "name": "cocoapods",
       "latest_version": "0.34.0",
       "version_count": 230,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:19:34.010Z",
       "backends": [
         "asdf:mise-plugins/mise-cocoapods"
       ]
@@ -2301,7 +2301,7 @@
       "name": "codeql",
       "latest_version": "2.23.8",
       "version_count": 152,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:19:48.903Z",
       "backends": [
         "asdf:mise-plugins/mise-codeql"
       ]
@@ -2432,7 +2432,7 @@
       "name": "conform",
       "latest_version": "0.1.0-alpha.30",
       "version_count": 31,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:20:43.002Z",
       "github": "siderolabs/conform",
       "repo_url": "https://github.com/siderolabs/conform",
       "backends": [
@@ -2460,9 +2460,9 @@
     },
     {
       "name": "consul",
-      "latest_version": "1.22.1",
-      "version_count": 154,
-      "last_updated": "2025-11-26T05:53:08.000Z",
+      "latest_version": "1.22.2",
+      "version_count": 155,
+      "last_updated": "2025-12-17T05:40:06.000Z",
       "github": "hashicorp/consul",
       "repo_url": "https://github.com/hashicorp/consul",
       "backends": [
@@ -2524,7 +2524,7 @@
       "name": "cookiecutter",
       "latest_version": "2.6.0",
       "version_count": 40,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:20:58.486Z",
       "backends": [
         "pipx:cookiecutter",
         "asdf:shawon-crosen/asdf-cookiecutter"
@@ -2575,7 +2575,7 @@
       "name": "coq",
       "latest_version": "8.13.1",
       "version_count": 38,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:21:01.811Z",
       "backends": [
         "asdf:mise-plugins/mise-coq"
       ]
@@ -2676,7 +2676,7 @@
       "name": "crc",
       "latest_version": "latest",
       "version_count": 100,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:21:29.019Z",
       "backends": [
         "asdf:mise-plugins/mise-crc"
       ]
@@ -2776,7 +2776,7 @@
       "name": "crystal",
       "latest_version": "1.18.2",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T13:22:01.459Z",
       "backends": [
         "asdf:mise-plugins/mise-crystal",
         "vfox:mise-plugins/vfox-crystal"
@@ -4709,7 +4709,7 @@
       "name": "go",
       "latest_version": "1.26rc1",
       "version_count": 341,
-      "last_updated": "2025-12-16T20:06:22.535Z",
+      "last_updated": "2025-12-16T20:00:53.000Z",
       "backends": [
         "core:go"
       ],
