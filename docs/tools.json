@@ -7054,7 +7054,7 @@
       "latest_version": "apache-4.1.1",
       "latest_stable_version": "apache-4.1.1",
       "version_count": 593,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T23:29:36.736Z",
       "backends": [
         "asdf:mise-plugins/mise-kafka"
       ]
@@ -7115,7 +7115,7 @@
       "latest_version": "debian/1.7.1-3",
       "latest_stable_version": "debian/1.7.1-3",
       "version_count": 23,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T23:29:51.879Z",
       "backends": [
         "asdf:mise-plugins/mise-kcat"
       ]
@@ -7326,10 +7326,10 @@
     },
     {
       "name": "kotlin",
-      "latest_version": "2.3.0-RC3",
-      "latest_stable_version": "2.2.21",
-      "version_count": 260,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "2.3.0",
+      "latest_stable_version": "2.3.0",
+      "version_count": 261,
+      "last_updated": "2025-12-17T23:30:39.838Z",
       "backends": [
         "asdf:mise-plugins/mise-kotlin",
         "vfox:mise-plugins/vfox-kotlin"
@@ -7449,10 +7449,10 @@
     },
     {
       "name": "ktlint",
-      "latest_version": "1.7.2",
-      "latest_stable_version": "1.7.2",
-      "version_count": 102,
-      "last_updated": "2025-12-14T16:39:05.000Z",
+      "latest_version": "1.8.0",
+      "latest_stable_version": "1.8.0",
+      "version_count": 101,
+      "last_updated": "2025-11-14T17:58:04.000Z",
       "github": "pinterest/ktlint",
       "repo_url": "https://github.com/pinterest/ktlint",
       "backends": [
@@ -7485,7 +7485,7 @@
       "latest_version": "0.36.0-alpha.0",
       "latest_stable_version": "0.34.3",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-17T23:31:06.487Z",
       "backends": [
         "asdf:mise-plugins/mise-kube-code-generator"
       ]
@@ -7523,10 +7523,10 @@
     },
     {
       "name": "kube-linter",
-      "latest_version": "0.7.6",
-      "latest_stable_version": "0.7.6",
-      "version_count": 37,
-      "last_updated": "2025-09-12T12:13:20.000Z",
+      "latest_version": "0.8.0",
+      "latest_stable_version": "0.8.0",
+      "version_count": 38,
+      "last_updated": "2025-12-17T16:23:48.000Z",
       "github": "stackrox/kube-linter",
       "repo_url": "https://github.com/stackrox/kube-linter",
       "backends": [
