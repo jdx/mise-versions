@@ -28,16 +28,11 @@ jobs:
           node-version: "22"
           cache: "npm"
 
-      - name: Install root dependencies
+      - name: Install dependencies
         run: npm ci
-
-      - name: Install web dependencies
-        run: npm ci
-        working-directory: web
 
       - name: Build web frontend
-        run: npm run build
-        working-directory: web
+        run: npm run build -w web
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
