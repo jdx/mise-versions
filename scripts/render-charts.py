@@ -11,6 +11,7 @@ Analyzes git history for the docs/ directory, excluding aqua-registry and python
 """
 
 import os
+import json
 import git
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
@@ -138,8 +139,20 @@ def create_chart(daily_updates, days_back, output_dir="charts"):
     plt.tight_layout()
     plt.savefig(f'{output_dir}/tools_updated.png', dpi=300, bbox_inches='tight')
     plt.close()
-    
+
+    # Also save JSON data for web consumption
+    json_data = {
+        "daily": [{"date": str(d), "count": c} for d, c in zip(dates, counts)],
+        "total_updates": total_tools,
+        "unique_tools": unique_tools,
+        "avg_per_day": round(avg_per_day, 1),
+        "days": days_back,
+    }
+    with open(f'{output_dir}/tools_updated.json', 'w') as f:
+        json.dump(json_data, f)
+
     print(f"Chart saved to {output_dir}/tools_updated.png")
+    print(f"JSON saved to {output_dir}/tools_updated.json")
     print(f"📊 Daily tool updates over {days_back} days (unique tools: {unique_tools})")
     return output_dir
 

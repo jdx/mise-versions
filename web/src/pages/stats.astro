@@ -28,6 +28,7 @@ let downloads: Record<string, number> = {};
 let backendStatsData: { downloads_by_backend: Array<{ backend: string; count: number }>; top_tools_by_backend: Record<string, Array<{ tool: string; count: number }>> } | null = null;
 let dauMauData: { daily: Array<{ date: string; dau: number }>; current_mau: number } | null = null;
 let growthData: { global: { wow: number | null; mom: number | null }; topGrowing: Array<{ tool: string; thisWeek: number; wow: number | null }>; topDeclining: Array<{ tool: string; thisWeek: number; wow: number | null }> } | null = null;
+let versionUpdatesData: { daily: Array<{ date: string; count: number }>; total_updates: number; unique_tools: number; avg_per_day: number } | null = null;
 
 try {
   [downloads, backendStatsData, dauMauData, growthData] = await Promise.all([
@@ -39,6 +40,18 @@ try {
 } catch (e) {
   console.error('Failed to fetch analytics data:', e);
   // Use empty/mock data for local dev
+}
+
+// Fetch version updates data from GitHub Pages
+try {
+  const versionRes = await fetch('https://mise-versions.jdx.dev/tools_updated.json', {
+    cf: { cacheTtl: 600 },
+  });
+  if (versionRes.ok) {
+    versionUpdatesData = await versionRes.json();
+  }
+} catch (e) {
+  console.error('Failed to fetch version updates data:', e);
 }
 
 // Helper functions
@@ -279,83 +292,147 @@ const strokeWidth = 60;
       </div>
     </div>
 
-    <!-- DAU/MAU chart -->
-    {dauMauData && dauMauData.daily.length > 0 && (
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-gray-200 mb-3">
-          Daily Active Users
-          <span class="text-sm font-normal text-gray-400 ml-2">
-            (MAU: {dauMauData.current_mau.toLocaleString()})
-          </span>
-        </h2>
-        <div class="overflow-x-auto">
-          {(() => {
-            const width = 700;
-            const height = 200;
-            const padding = { top: 20, right: 50, bottom: 30, left: 50 };
-            const chartWidth = width - padding.left - padding.right;
-            const chartHeight = height - padding.top - padding.bottom;
-            const data = dauMauData.daily;
-            const mau = dauMauData.current_mau;
-            const maxDAU = Math.max(...data.map(d => d.dau), mau);
-            const yScale = (v: number) => chartHeight - (v / maxDAU) * chartHeight;
-            const barWidth = chartWidth / data.length - 2;
-            const mauY = yScale(mau);
+    <!-- DAU/MAU and Version Updates charts -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      {dauMauData && dauMauData.daily.length > 0 && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">
+            Daily Active Users
+            <span class="text-sm font-normal text-gray-400 ml-2">
+              (MAU: {dauMauData.current_mau.toLocaleString()})
+            </span>
+          </h2>
+          <div class="overflow-x-auto">
+            {(() => {
+              const width = 500;
+              const height = 200;
+              const padding = { top: 20, right: 50, bottom: 30, left: 50 };
+              const chartWidth = width - padding.left - padding.right;
+              const chartHeight = height - padding.top - padding.bottom;
+              const data = dauMauData.daily;
+              const mau = dauMauData.current_mau;
+              const maxDAU = Math.max(...data.map(d => d.dau), mau);
+              const yScale = (v: number) => chartHeight - (v / maxDAU) * chartHeight;
+              const barWidth = chartWidth / data.length - 2;
+              const mauY = yScale(mau);
 
-            return (
-              <svg width={width} height={height} class="min-w-[700px]">
-                <text x={padding.left - 10} y={padding.top} text-anchor="end" class="fill-gray-500 text-xs">
-                  {formatCompact(maxDAU)}
-                </text>
-                <text x={padding.left - 10} y={padding.top + chartHeight} text-anchor="end" class="fill-gray-500 text-xs">
-                  0
-                </text>
-                <g transform={`translate(${padding.left}, ${padding.top})`}>
-                  {data.map((d, i) => {
-                    const x = (i / data.length) * chartWidth + 1;
-                    const barHeight = (d.dau / maxDAU) * chartHeight;
-                    return (
-                      <rect
-                        x={x}
-                        y={chartHeight - barHeight}
-                        width={barWidth}
-                        height={barHeight}
-                        fill="#B026FF"
-                        opacity="0.8"
-                      >
-                        <title>{d.date}: {d.dau.toLocaleString()} DAU</title>
-                      </rect>
-                    );
-                  })}
-                  <line
-                    x1={0}
-                    y1={mauY}
-                    x2={chartWidth}
-                    y2={mauY}
-                    stroke="#00D4FF"
-                    stroke-width="2"
-                    stroke-dasharray="6,4"
-                  />
-                  <text x={chartWidth + 5} y={mauY + 4} class="fill-cyan-400 text-xs">
-                    MAU
+              return (
+                <svg width={width} height={height} class="min-w-[400px]">
+                  <text x={padding.left - 10} y={padding.top} text-anchor="end" class="fill-gray-500 text-xs">
+                    {formatCompact(maxDAU)}
                   </text>
-                  {data.map((d, i) => {
-                    if (i % 7 !== 0 && i !== data.length - 1) return null;
-                    const x = (i / data.length) * chartWidth + barWidth / 2;
-                    const dateLabel = d.date.slice(5);
-                    return (
-                      <text x={x} y={chartHeight + 15} text-anchor="middle" class="fill-gray-500 text-xs">
-                        {dateLabel}
-                      </text>
-                    );
-                  })}
-                </g>
-              </svg>
-            );
-          })()}
+                  <text x={padding.left - 10} y={padding.top + chartHeight} text-anchor="end" class="fill-gray-500 text-xs">
+                    0
+                  </text>
+                  <g transform={`translate(${padding.left}, ${padding.top})`}>
+                    {data.map((d, i) => {
+                      const x = (i / data.length) * chartWidth + 1;
+                      const barHeight = (d.dau / maxDAU) * chartHeight;
+                      return (
+                        <rect
+                          x={x}
+                          y={chartHeight - barHeight}
+                          width={barWidth}
+                          height={barHeight}
+                          fill="#B026FF"
+                          opacity="0.8"
+                        >
+                          <title>{d.date}: {d.dau.toLocaleString()} DAU</title>
+                        </rect>
+                      );
+                    })}
+                    <line
+                      x1={0}
+                      y1={mauY}
+                      x2={chartWidth}
+                      y2={mauY}
+                      stroke="#00D4FF"
+                      stroke-width="2"
+                      stroke-dasharray="6,4"
+                    />
+                    <text x={chartWidth + 5} y={mauY + 4} class="fill-cyan-400 text-xs">
+                      MAU
+                    </text>
+                    {data.map((d, i) => {
+                      if (i % 7 !== 0 && i !== data.length - 1) return null;
+                      const x = (i / data.length) * chartWidth + barWidth / 2;
+                      const dateLabel = d.date.slice(5);
+                      return (
+                        <text x={x} y={chartHeight + 15} text-anchor="middle" class="fill-gray-500 text-xs">
+                          {dateLabel}
+                        </text>
+                      );
+                    })}
+                  </g>
+                </svg>
+              );
+            })()}
+          </div>
         </div>
-      </div>
-    )}
+      )}
+
+      {versionUpdatesData && versionUpdatesData.daily.length > 0 && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+          <h2 class="text-lg font-semibold text-gray-200 mb-3">
+            Version Updates
+            <span class="text-sm font-normal text-gray-400 ml-2">
+              ({versionUpdatesData.unique_tools} tools, {versionUpdatesData.avg_per_day}/day avg)
+            </span>
+          </h2>
+          <div class="overflow-x-auto">
+            {(() => {
+              const width = 500;
+              const height = 200;
+              const padding = { top: 20, right: 20, bottom: 30, left: 50 };
+              const chartWidth = width - padding.left - padding.right;
+              const chartHeight = height - padding.top - padding.bottom;
+              const data = versionUpdatesData.daily;
+              const maxCount = Math.max(...data.map(d => d.count), 1);
+              const barWidth = chartWidth / data.length - 2;
+
+              return (
+                <svg width={width} height={height} class="min-w-[400px]">
+                  <text x={padding.left - 10} y={padding.top} text-anchor="end" class="fill-gray-500 text-xs">
+                    {maxCount}
+                  </text>
+                  <text x={padding.left - 10} y={padding.top + chartHeight} text-anchor="end" class="fill-gray-500 text-xs">
+                    0
+                  </text>
+                  <g transform={`translate(${padding.left}, ${padding.top})`}>
+                    {data.map((d, i) => {
+                      const x = (i / data.length) * chartWidth + 1;
+                      const barHeight = (d.count / maxCount) * chartHeight;
+                      return (
+                        <rect
+                          x={x}
+                          y={chartHeight - barHeight}
+                          width={barWidth}
+                          height={barHeight}
+                          fill="#00D4FF"
+                          opacity="0.8"
+                        >
+                          <title>{d.date}: {d.count} tools updated</title>
+                        </rect>
+                      );
+                    })}
+                    {data.map((d, i) => {
+                      if (i % 7 !== 0 && i !== data.length - 1) return null;
+                      const x = (i / data.length) * chartWidth + barWidth / 2;
+                      const dateLabel = d.date.slice(5);
+                      return (
+                        <text x={x} y={chartHeight + 15} text-anchor="middle" class="fill-gray-500 text-xs">
+                          {dateLabel}
+                        </text>
+                      );
+                    })}
+                  </g>
+                </svg>
+              );
+            })()}
+          </div>
+        </div>
+      )}
+    </div>
 
     <!-- Trending Tools -->
     {growthData && (growthData.topGrowing.length > 0 || growthData.topDeclining.length > 0) && (
