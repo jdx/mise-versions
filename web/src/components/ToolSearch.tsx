@@ -32,17 +32,46 @@ interface Props {
   trendingTools?: TrendingTool[];
 }
 
-// Security lock icon
+// Security level detection and lock icon
+type SecurityLevel = "attested" | "signed" | "basic";
+
+function getSecurityLevel(security: Array<{ type: string; algorithm?: string }>): SecurityLevel {
+  const types = security.map(s => s.type);
+  // Attested = highest (green)
+  if (types.some(t => t === "github_attestations" || t === "slsa")) {
+    return "attested";
+  }
+  // Signed = middle (yellow)
+  if (types.some(t => ["gpg", "minisign", "cosign"].includes(t))) {
+    return "signed";
+  }
+  // Basic = checksum only (gray)
+  return "basic";
+}
+
+const securityColors: Record<SecurityLevel, string> = {
+  attested: "text-green-400",
+  signed: "text-yellow-400",
+  basic: "text-gray-400",
+};
+
+const securityLabels: Record<SecurityLevel, string> = {
+  attested: "Attested",
+  signed: "Signed",
+  basic: "Checksum",
+};
+
 function LockIcon({ security }: { security: Array<{ type: string; algorithm?: string }> }) {
   const types = security.map(s => {
     if (s.type === "checksum") return s.algorithm ? `checksum (${s.algorithm})` : "checksum";
     if (s.type === "github_attestations") return "GitHub attestations";
     return s.type.toUpperCase();
   });
-  const tooltip = `Verified: ${types.join(", ")}`;
+  const level = getSecurityLevel(security);
+  const tooltip = `${securityLabels[level]}: ${types.join(", ")}`;
 
   return (
-    <span title={tooltip} class="text-green-400 opacity-70 group-hover:opacity-100 transition-opacity">
+    <span title={tooltip} class={`${securityColors[level]} opacity-70 group-hover:opacity-100 transition-opacity`}>
       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 1C8.676 1 6 3.676 6 7v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
       </svg>
