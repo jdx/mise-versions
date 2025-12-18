@@ -42,9 +42,15 @@ export const GET: APIRoute = async ({ params, locals }) => {
       });
     }
 
-    // Determine content type based on extension
+    // Determine content type and cache duration based on file type
     let contentType = 'text/plain; charset=utf-8';
-    if (tool.endsWith('.gz')) {
+    let cacheMaxAge = 600; // 10 minutes default
+
+    if (tool.startsWith('python-precompiled-') && tool.endsWith('.gz')) {
+      // python-precompiled files rarely change, cache for 1 hour
+      contentType = 'application/gzip';
+      cacheMaxAge = 3600;
+    } else if (tool.endsWith('.gz')) {
       contentType = 'application/gzip';
     } else if (tool.endsWith('.toml')) {
       contentType = 'text/plain; charset=utf-8';
@@ -54,7 +60,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
       status: 200,
       headers: {
         'Content-Type': contentType,
-        'Cache-Control': 'public, max-age=600',
+        'Cache-Control': `public, max-age=${cacheMaxAge}`,
       },
     });
   } catch (error) {
