@@ -25,8 +25,12 @@ export function MAUCounter() {
   }
 
   return (
-    <span class="text-sm text-gray-500">
-      mise loved by {formatCompact(mau)} devs this month
-    </span>
+    <div class="absolute right-4 top-full z-10">
+      <div class="bg-dark-700/90 backdrop-blur-sm border border-t-0 border-dark-600 rounded-b-lg px-3 py-1">
+        <span class="text-xs text-gray-500">
+          mise loved by {formatCompact(mau)} devs this month
+        </span>
+      </div>
+    </div>
   );
 }
