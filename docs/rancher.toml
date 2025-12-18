@@ -1,123 +1,123 @@
 [versions]
-"0.0.2" = { created_at = 2016-08-12T05:09:25.000Z }
-"0.1.0" = { created_at = 2016-08-19T04:57:06.000Z }
-"0.2.0" = { created_at = 2016-09-13T14:07:28.000Z }
-"0.3.1" = { created_at = 2016-11-17T23:36:23.000Z }
-"0.4.0" = { created_at = 2016-12-01T05:20:07.000Z }
-"0.4.1" = { created_at = 2016-12-16T06:12:58.000Z }
-"0.5.0" = { created_at = 2017-03-03T04:24:57.000Z }
-"0.5.1" = { created_at = 2017-03-20T20:50:54.000Z }
-"0.5.2" = { created_at = 2017-04-05T05:09:37.000Z }
-"0.6.0-rc3" = { created_at = 2017-04-14T21:35:17.000Z }
-"0.5.3" = { created_at = 2017-04-27T23:03:55.000Z }
-"0.6.0-rc4" = { created_at = 2017-04-28T00:22:30.000Z }
-"0.6.0-rc5" = { created_at = 2017-05-01T18:57:10.000Z }
-"0.6.0-rc6" = { created_at = 2017-05-03T05:59:34.000Z }
-"0.6.0" = { created_at = 2017-05-04T03:52:32.000Z }
-"0.6.0-rc7" = { created_at = 2017-05-04T03:52:32.000Z }
-"0.6.1-rc1" = { created_at = 2017-05-24T05:14:02.000Z }
-"0.6.1" = { created_at = 2017-05-30T04:33:04.000Z }
-"0.6.1-rc2" = { created_at = 2017-05-30T04:33:04.000Z }
-"0.6.2-rc1" = { created_at = 2017-06-21T21:03:05.000Z }
-"0.6.2" = { created_at = 2017-06-22T20:23:19.000Z }
-"0.6.2-rc2" = { created_at = 2017-06-22T20:23:19.000Z }
-"0.6.3-rc1" = { created_at = 2017-07-18T21:14:40.000Z }
-"0.6.3" = { created_at = 2017-07-20T06:28:22.000Z }
-"0.6.3-rc2" = { created_at = 2017-07-20T06:28:22.000Z }
-"0.6.4-rc1" = { created_at = 2017-08-16T19:10:03.000Z }
-"0.6.4-rc2" = { created_at = 2017-08-23T01:09:07.000Z }
-"0.6.4-rc3" = { created_at = 2017-08-24T16:12:18.000Z }
-"0.6.4-rc4" = { created_at = 2017-08-28T19:18:25.000Z }
-"0.6.4" = { created_at = 2017-08-29T18:11:13.000Z }
-"0.6.4-rc5" = { created_at = 2017-08-29T18:11:13.000Z }
-"0.6.5-rc3" = { created_at = 2017-10-17T18:46:23.000Z }
-"0.6.5-rc4" = { created_at = 2017-10-25T02:59:15.000Z }
-"0.6.5" = { created_at = 2017-10-31T21:55:15.000Z }
-"0.6.5-rc5" = { created_at = 2017-10-31T21:55:15.000Z }
-"0.6.6" = { created_at = 2017-12-01T05:58:40.000Z }
-"0.6.7" = { created_at = 2017-12-20T00:04:13.000Z }
-"0.6.7-rc1" = { created_at = 2017-12-20T00:04:13.000Z }
-"0.6.8" = { created_at = 2018-03-12T21:07:08.000Z }
-"0.6.9" = { created_at = 2018-03-21T17:56:06.000Z }
-"2.0.0-rc1" = { created_at = 2018-04-20T20:23:15.000Z }
-"2.0.0" = { created_at = 2018-04-27T17:54:46.000Z }
-"2.0.0-rc2" = { created_at = 2018-04-27T17:54:46.000Z }
-"2.0.1-rc3" = { created_at = 2018-05-17T17:18:55.000Z }
-"2.0.1-rc4" = { created_at = 2018-05-18T00:03:27.000Z }
-"2.0.1" = { created_at = 2018-05-21T16:49:38.000Z }
-"2.0.1-rc5" = { created_at = 2018-05-21T16:49:38.000Z }
-"2.0.2-rc1" = { created_at = 2018-05-24T22:06:10.000Z }
-"2.0.2" = { created_at = 2018-06-14T23:10:45.000Z }
-"2.0.2-rc2" = { created_at = 2018-06-14T23:10:45.000Z }
-"2.0.3" = { created_at = 2018-06-26T17:12:35.000Z }
-"0.6.11" = { created_at = 2018-07-05T19:48:03.000Z }
-"2.0.4" = { created_at = 2018-07-31T16:53:45.000Z }
-"0.6.12" = { created_at = 2018-09-18T17:17:54.000Z }
-"2.0.5" = { created_at = 2018-09-20T22:30:27.000Z }
-"2.0.6" = { created_at = 2018-11-27T19:12:27.000Z }
-"0.6.7.1" = { created_at = 2019-01-09T22:23:48.000Z }
-"0.6.13" = { created_at = 2019-01-22T18:43:26.000Z }
-"2.2.0" = { created_at = 2019-03-16T01:38:06.000Z }
-"2.3.0" = { created_at = 2019-09-03T23:58:33.000Z }
-"0.6.14" = { created_at = 2019-09-23T23:16:34.000Z }
-"2.3.1" = { created_at = 2019-10-24T23:58:28.000Z }
-"2.3.2" = { created_at = 2019-11-11T18:26:59.000Z }
-"2.4.0" = { created_at = 2020-02-27T22:05:22.000Z }
-"2.4.3" = { created_at = 2020-04-25T00:33:32.000Z }
-"2.4.5" = { created_at = 2020-06-04T00:24:08.000Z }
-"2.4.6" = { created_at = 2020-08-20T20:20:12.000Z }
-"2.4.7" = { created_at = 2020-10-29T16:48:15.000Z }
-"2.4.8" = { created_at = 2020-11-06T00:24:34.000Z }
-"2.4.9" = { created_at = 2020-11-10T16:09:04.000Z }
-"2.4.10" = { created_at = 2020-12-04T21:32:00.000Z }
-"2.4.11" = { created_at = 2021-03-15T15:36:54.000Z }
-"2.4.12" = { created_at = 2021-06-25T21:59:39.000Z }
-"2.4.13" = { created_at = 2021-09-16T20:13:43.000Z }
-"2.6.0" = { created_at = 2021-11-10T21:45:16.000Z }
-"2.4.14" = { created_at = 2022-01-04T16:30:27.000Z }
-"2.6.4" = { created_at = 2022-02-18T20:28:45.000Z }
-"2.6.5" = { created_at = 2022-04-19T00:24:46.000Z }
-"2.6.7" = { created_at = 2022-06-13T18:45:14.000Z }
-"2.6.9" = { created_at = 2022-08-31T17:14:29.000Z }
-"2.7.0" = { created_at = 2022-08-31T17:14:29.000Z }
-"2.6.11" = { created_at = 2022-10-24T13:34:20.000Z }
-"2.7.7" = { created_at = 2023-09-15T20:27:13.000Z }
-"2.8.0" = { created_at = 2023-09-28T16:32:48.000Z }
-"2.8.3" = { created_at = 2024-02-23T16:20:35.000Z }
-"2.8.4" = { created_at = 2024-04-05T17:59:44.000Z }
-"2.8.6" = { created_at = 2024-07-17T21:43:44.000Z }
-"2.9.0" = { created_at = 2024-07-17T21:41:08.000Z }
-"2.8.8" = { created_at = 2024-09-19T22:18:31.000Z }
-"2.9.2" = { created_at = 2024-09-19T22:15:55.000Z }
-"2.10.0" = { created_at = 2024-11-19T12:37:25.000Z }
-"2.9.5" = { created_at = 2024-12-19T17:35:02.000Z }
-"2.10.1" = { created_at = 2024-12-19T17:26:00.000Z }
-"2.8.14" = { created_at = 2025-03-31T20:26:39.000Z }
-"2.9.8" = { created_at = 2025-03-31T20:26:22.000Z }
-"2.10.4" = { created_at = 2025-03-31T20:26:03.000Z }
-"2.11.0" = { created_at = 2025-03-31T20:25:42.000Z }
-"2.8.15" = { created_at = 2025-04-24T15:36:13.000Z }
-"2.9.9" = { created_at = 2025-04-24T15:36:10.000Z }
-"2.10.5" = { created_at = 2025-04-24T15:36:07.000Z }
-"2.11.1" = { created_at = 2025-04-24T15:35:58.000Z }
-"2.9.10" = { created_at = 2025-05-22T18:11:06.000Z }
-"2.10.6" = { created_at = 2025-05-22T18:07:46.000Z }
-"2.11.2" = { created_at = 2025-05-22T18:07:36.000Z }
-"2.10.7" = { created_at = 2025-06-25T21:54:41.000Z }
-"2.11.3" = { created_at = 2025-06-25T23:13:33.000Z }
-"2.10.8" = { created_at = 2025-07-31T13:55:32.000Z }
-"2.11.4" = { created_at = 2025-07-31T02:57:32.000Z }
-"2.12.0" = { created_at = 2025-07-31T02:57:27.000Z }
-"2.9.11" = { created_at = 2025-08-27T23:14:02.000Z }
-"2.10.9" = { created_at = 2025-08-27T23:25:00.000Z }
-"2.11.5" = { created_at = 2025-08-28T14:32:07.000Z }
-"2.12.1" = { created_at = 2025-08-29T00:58:39.000Z }
-"2.9.12" = { created_at = 2025-09-25T13:11:20.000Z }
-"2.10.10" = { created_at = 2025-09-25T13:11:17.000Z }
-"2.11.6" = { created_at = 2025-09-25T13:11:13.000Z }
-"2.12.2" = { created_at = 2025-09-25T13:54:13.000Z }
-"2.11.7" = { created_at = 2025-10-23T21:44:13.000Z }
-"2.12.3" = { created_at = 2025-10-23T00:45:43.000Z }
-"2.11.8" = { created_at = 2025-11-24T22:38:42.000Z }
-"2.12.4" = { created_at = 2025-11-25T09:47:27.000Z }
-"2.13.0" = { created_at = 2025-11-25T09:47:10.000Z }
+"0.0.2" = { created_at = 2016-08-12T05:09:25.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.0.2" }
+"0.1.0" = { created_at = 2016-08-19T04:57:06.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2016-09-13T14:07:28.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.2.0" }
+"0.3.1" = { created_at = 2016-11-17T23:36:23.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.3.1" }
+"0.4.0" = { created_at = 2016-12-01T05:20:07.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2016-12-16T06:12:58.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.4.1" }
+"0.5.0" = { created_at = 2017-03-03T04:24:57.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2017-03-20T20:50:54.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2017-04-05T05:09:37.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.5.2" }
+"0.6.0-rc3" = { created_at = 2017-04-14T21:35:17.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.0-rc3" }
+"0.5.3" = { created_at = 2017-04-27T23:03:55.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.5.3" }
+"0.6.0-rc4" = { created_at = 2017-04-28T00:22:30.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.0-rc4" }
+"0.6.0-rc5" = { created_at = 2017-05-01T18:57:10.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.0-rc5" }
+"0.6.0-rc6" = { created_at = 2017-05-03T05:59:34.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.0-rc6" }
+"0.6.0" = { created_at = 2017-05-04T03:52:32.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.0" }
+"0.6.0-rc7" = { created_at = 2017-05-04T03:52:32.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.0-rc7" }
+"0.6.1-rc1" = { created_at = 2017-05-24T05:14:02.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.1-rc1" }
+"0.6.1" = { created_at = 2017-05-30T04:33:04.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.1" }
+"0.6.1-rc2" = { created_at = 2017-05-30T04:33:04.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.1-rc2" }
+"0.6.2-rc1" = { created_at = 2017-06-21T21:03:05.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.2-rc1" }
+"0.6.2" = { created_at = 2017-06-22T20:23:19.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.2" }
+"0.6.2-rc2" = { created_at = 2017-06-22T20:23:19.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.2-rc2" }
+"0.6.3-rc1" = { created_at = 2017-07-18T21:14:40.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.3-rc1" }
+"0.6.3" = { created_at = 2017-07-20T06:28:22.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.3" }
+"0.6.3-rc2" = { created_at = 2017-07-20T06:28:22.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.3-rc2" }
+"0.6.4-rc1" = { created_at = 2017-08-16T19:10:03.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.4-rc1" }
+"0.6.4-rc2" = { created_at = 2017-08-23T01:09:07.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.4-rc2" }
+"0.6.4-rc3" = { created_at = 2017-08-24T16:12:18.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.4-rc3" }
+"0.6.4-rc4" = { created_at = 2017-08-28T19:18:25.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.4-rc4" }
+"0.6.4" = { created_at = 2017-08-29T18:11:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.4" }
+"0.6.4-rc5" = { created_at = 2017-08-29T18:11:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.4-rc5" }
+"0.6.5-rc3" = { created_at = 2017-10-17T18:46:23.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.5-rc3" }
+"0.6.5-rc4" = { created_at = 2017-10-25T02:59:15.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.5-rc4" }
+"0.6.5" = { created_at = 2017-10-31T21:55:15.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.5" }
+"0.6.5-rc5" = { created_at = 2017-10-31T21:55:15.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.5-rc5" }
+"0.6.6" = { created_at = 2017-12-01T05:58:40.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.6" }
+"0.6.7" = { created_at = 2017-12-20T00:04:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.7" }
+"0.6.7-rc1" = { created_at = 2017-12-20T00:04:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.7-rc1" }
+"0.6.8" = { created_at = 2018-03-12T21:07:08.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.8" }
+"0.6.9" = { created_at = 2018-03-21T17:56:06.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.9" }
+"2.0.0-rc1" = { created_at = 2018-04-20T20:23:15.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.0-rc1" }
+"2.0.0" = { created_at = 2018-04-27T17:54:46.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.0" }
+"2.0.0-rc2" = { created_at = 2018-04-27T17:54:46.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.0-rc2" }
+"2.0.1-rc3" = { created_at = 2018-05-17T17:18:55.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.1-rc3" }
+"2.0.1-rc4" = { created_at = 2018-05-18T00:03:27.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.1-rc4" }
+"2.0.1" = { created_at = 2018-05-21T16:49:38.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.1" }
+"2.0.1-rc5" = { created_at = 2018-05-21T16:49:38.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.1-rc5" }
+"2.0.2-rc1" = { created_at = 2018-05-24T22:06:10.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.2-rc1" }
+"2.0.2" = { created_at = 2018-06-14T23:10:45.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.2" }
+"2.0.2-rc2" = { created_at = 2018-06-14T23:10:45.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.2-rc2" }
+"2.0.3" = { created_at = 2018-06-26T17:12:35.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.3" }
+"0.6.11" = { created_at = 2018-07-05T19:48:03.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.11" }
+"2.0.4" = { created_at = 2018-07-31T16:53:45.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.4" }
+"0.6.12" = { created_at = 2018-09-18T17:17:54.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.12" }
+"2.0.5" = { created_at = 2018-09-20T22:30:27.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.5" }
+"2.0.6" = { created_at = 2018-11-27T19:12:27.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.0.6" }
+"0.6.7.1" = { created_at = 2019-01-09T22:23:48.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.7.1" }
+"0.6.13" = { created_at = 2019-01-22T18:43:26.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.13" }
+"2.2.0" = { created_at = 2019-03-16T01:38:06.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.2.0" }
+"2.3.0" = { created_at = 2019-09-03T23:58:33.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.3.0" }
+"0.6.14" = { created_at = 2019-09-23T23:16:34.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v0.6.14" }
+"2.3.1" = { created_at = 2019-10-24T23:58:28.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.3.1" }
+"2.3.2" = { created_at = 2019-11-11T18:26:59.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.3.2" }
+"2.4.0" = { created_at = 2020-02-27T22:05:22.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.0" }
+"2.4.3" = { created_at = 2020-04-25T00:33:32.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.3" }
+"2.4.5" = { created_at = 2020-06-04T00:24:08.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.5" }
+"2.4.6" = { created_at = 2020-08-20T20:20:12.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.6" }
+"2.4.7" = { created_at = 2020-10-29T16:48:15.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.7" }
+"2.4.8" = { created_at = 2020-11-06T00:24:34.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.8" }
+"2.4.9" = { created_at = 2020-11-10T16:09:04.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.9" }
+"2.4.10" = { created_at = 2020-12-04T21:32:00.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.10" }
+"2.4.11" = { created_at = 2021-03-15T15:36:54.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.11" }
+"2.4.12" = { created_at = 2021-06-25T21:59:39.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.12" }
+"2.4.13" = { created_at = 2021-09-16T20:13:43.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.13" }
+"2.6.0" = { created_at = 2021-11-10T21:45:16.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.6.0" }
+"2.4.14" = { created_at = 2022-01-04T16:30:27.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.4.14" }
+"2.6.4" = { created_at = 2022-02-18T20:28:45.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.6.4" }
+"2.6.5" = { created_at = 2022-04-19T00:24:46.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.6.5" }
+"2.6.7" = { created_at = 2022-06-13T18:45:14.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.6.7" }
+"2.6.9" = { created_at = 2022-08-31T17:14:29.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.6.9" }
+"2.7.0" = { created_at = 2022-08-31T17:14:29.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.7.0" }
+"2.6.11" = { created_at = 2022-10-24T13:34:20.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.6.11" }
+"2.7.7" = { created_at = 2023-09-15T20:27:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.7.7" }
+"2.8.0" = { created_at = 2023-09-28T16:32:48.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.0" }
+"2.8.3" = { created_at = 2024-02-23T16:20:35.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.3" }
+"2.8.4" = { created_at = 2024-04-05T17:59:44.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.4" }
+"2.8.6" = { created_at = 2024-07-17T21:43:44.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.6" }
+"2.9.0" = { created_at = 2024-07-17T21:41:08.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.0" }
+"2.8.8" = { created_at = 2024-09-19T22:18:31.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.8" }
+"2.9.2" = { created_at = 2024-09-19T22:15:55.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.2" }
+"2.10.0" = { created_at = 2024-11-19T12:37:25.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.0" }
+"2.9.5" = { created_at = 2024-12-19T17:35:02.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.5" }
+"2.10.1" = { created_at = 2024-12-19T17:26:00.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.1" }
+"2.8.14" = { created_at = 2025-03-31T20:26:39.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.14" }
+"2.9.8" = { created_at = 2025-03-31T20:26:22.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.8" }
+"2.10.4" = { created_at = 2025-03-31T20:26:03.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.4" }
+"2.11.0" = { created_at = 2025-03-31T20:25:42.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.0" }
+"2.8.15" = { created_at = 2025-04-24T15:36:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.8.15" }
+"2.9.9" = { created_at = 2025-04-24T15:36:10.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.9" }
+"2.10.5" = { created_at = 2025-04-24T15:36:07.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.5" }
+"2.11.1" = { created_at = 2025-04-24T15:35:58.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.1" }
+"2.9.10" = { created_at = 2025-05-22T18:11:06.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.10" }
+"2.10.6" = { created_at = 2025-05-22T18:07:46.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.6" }
+"2.11.2" = { created_at = 2025-05-22T18:07:36.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.2" }
+"2.10.7" = { created_at = 2025-06-25T21:54:41.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.7" }
+"2.11.3" = { created_at = 2025-06-25T23:13:33.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.3" }
+"2.10.8" = { created_at = 2025-07-31T13:55:32.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.8" }
+"2.11.4" = { created_at = 2025-07-31T02:57:32.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.4" }
+"2.12.0" = { created_at = 2025-07-31T02:57:27.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.12.0" }
+"2.9.11" = { created_at = 2025-08-27T23:14:02.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.11" }
+"2.10.9" = { created_at = 2025-08-27T23:25:00.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.9" }
+"2.11.5" = { created_at = 2025-08-28T14:32:07.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.5" }
+"2.12.1" = { created_at = 2025-08-29T00:58:39.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.12.1" }
+"2.9.12" = { created_at = 2025-09-25T13:11:20.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.9.12" }
+"2.10.10" = { created_at = 2025-09-25T13:11:17.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.10.10" }
+"2.11.6" = { created_at = 2025-09-25T13:11:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.6" }
+"2.12.2" = { created_at = 2025-09-25T13:54:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.12.2" }
+"2.11.7" = { created_at = 2025-10-23T21:44:13.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.7" }
+"2.12.3" = { created_at = 2025-10-23T00:45:43.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.12.3" }
+"2.11.8" = { created_at = 2025-11-24T22:38:42.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.11.8" }
+"2.12.4" = { created_at = 2025-11-25T09:47:27.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.12.4" }
+"2.13.0" = { created_at = 2025-11-25T09:47:10.000Z, release_url = "https://github.com/rancher/cli/releases/tag/v2.13.0" }

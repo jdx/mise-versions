@@ -1,5 +1,5 @@
 {
-  "tool_count": 958,
+  "tool_count": 959,
   "tools": [
     {
       "name": "1password",
@@ -11414,8 +11414,8 @@
       "name": "ruby",
       "latest_version": "4.0-dev",
       "latest_stable_version": "3.4.8",
-      "version_count": 660,
-      "last_updated": "2025-12-18T00:38:07.093Z",
+      "version_count": 661,
+      "last_updated": "2025-12-18T11:29:12.445Z",
       "security": [
         {
           "type": "checksum",
@@ -11522,6 +11522,13 @@
       "license": "MIT",
       "homepage": "https://rye.astral.sh",
       "description": "a Hassle-Free Python Experience"
+    },
+    {
+      "name": "s5cmd",
+      "latest_version": "2.3.0",
+      "latest_stable_version": "2.3.0",
+      "version_count": 15,
+      "last_updated": "2025-12-18T11:29:37.983Z"
     },
     {
       "name": "saml2aws",

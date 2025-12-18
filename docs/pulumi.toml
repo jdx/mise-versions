@@ -1,309 +1,309 @@
 [versions]
-"2.11.0" = { created_at = 2020-09-30T18:00:47.000Z }
-"2.15.1" = { created_at = 2020-12-04T20:06:10.000Z }
-"2.15.5" = { created_at = 2020-12-11T11:49:50.000Z }
-"2.16.1" = { created_at = 2020-12-22T20:53:16.000Z }
-"2.21.0" = { created_at = 2021-02-17T20:42:48.000Z }
-"2.21.1" = { created_at = 2021-02-18T18:50:12.000Z }
-"2.21.2" = { created_at = 2021-02-22T10:41:13.000Z }
-"2.22.0" = { created_at = 2021-03-03T18:45:26.000Z }
-"2.23.0" = { created_at = 2021-03-17T18:08:56.000Z }
-"2.23.1" = { created_at = 2021-03-18T04:14:20.000Z }
-"2.23.2" = { created_at = 2021-03-25T17:39:55.000Z }
-"2.24.0" = { created_at = 2021-03-31T20:27:02.000Z }
-"2.24.1" = { created_at = 2021-04-01T21:02:52.000Z }
-"2.25.0" = { created_at = 2021-04-14T16:22:27.000Z }
-"2.25.1" = { created_at = 2021-04-15T18:42:00.000Z }
-"2.25.2" = { created_at = 2021-04-17T12:03:38.000Z }
-"3.0.0" = { created_at = 2021-04-19T08:14:31.000Z }
-"3.1.0" = { created_at = 2021-04-22T18:34:31.000Z }
-"3.2.0" = { created_at = 2021-05-05T17:28:59.000Z }
-"3.2.1" = { created_at = 2021-05-06T16:23:58.000Z }
-"3.3.0" = { created_at = 2021-05-20T13:52:49.000Z }
-"3.3.1" = { created_at = 2021-05-25T08:35:31.000Z }
-"3.4.0" = { created_at = 2021-06-05T22:54:22.000Z }
-"3.5.1" = { created_at = 2021-06-17T01:34:37.000Z }
-"3.6.0" = { created_at = 2021-06-30T18:46:06.000Z }
-"3.6.1" = { created_at = 2021-07-07T11:36:12.000Z }
-"3.7.0" = { created_at = 2021-07-13T20:52:24.000Z }
-"3.7.1" = { created_at = 2021-07-19T10:35:50.000Z }
-"3.8.0" = { created_at = 2021-07-22T19:27:04.000Z }
-"3.9.0" = { created_at = 2021-07-28T18:10:05.000Z }
-"3.9.1" = { created_at = 2021-07-29T23:54:34.000Z }
-"3.10.0" = { created_at = 2021-08-12T01:44:32.000Z }
-"3.10.1" = { created_at = 2021-08-12T16:16:27.000Z }
-"3.10.2" = { created_at = 2021-08-17T00:36:38.000Z }
-"3.10.3" = { created_at = 2021-08-19T07:38:57.000Z }
-"3.11.0" = { created_at = 2021-08-25T18:05:19.000Z }
-"3.12.0" = { created_at = 2021-09-08T21:41:25.000Z }
-"3.13.0" = { created_at = 2021-09-22T20:16:08.000Z }
-"3.13.1" = { created_at = 2021-09-28T03:32:06.000Z }
-"3.13.2" = { created_at = 2021-09-28T06:05:36.000Z }
-"3.14.0" = { created_at = 2021-10-06T18:54:59.000Z }
-"3.15.0" = { created_at = 2021-10-15T01:05:42.000Z }
-"3.16.0" = { created_at = 2021-10-20T18:11:38.000Z }
-"3.17.0" = { created_at = 2021-11-03T18:51:31.000Z }
-"3.17.1" = { created_at = 2021-11-09T21:54:45.000Z }
-"3.18.0" = { created_at = 2021-11-17T20:27:50.000Z }
-"3.18.1" = { created_at = 2021-11-22T22:30:47.000Z }
-"3.19.0" = { created_at = 2021-12-01T21:57:51.000Z }
-"3.20.0" = { created_at = 2021-12-16T22:37:15.000Z }
-"3.21.0" = { created_at = 2021-12-29T22:18:34.000Z }
-"3.21.1" = { created_at = 2022-01-07T20:23:54.000Z }
-"3.22.0" = { created_at = 2022-01-13T00:46:32.000Z }
-"3.22.1" = { created_at = 2022-01-14T19:19:23.000Z }
-"3.23.0" = { created_at = 2022-01-26T19:03:57.000Z }
-"3.23.1" = { created_at = 2022-01-27T22:55:46.000Z }
-"3.23.2" = { created_at = 2022-01-28T15:36:41.000Z }
-"3.24.1" = { created_at = 2022-02-04T19:00:33.000Z }
-"3.25.0" = { created_at = 2022-02-23T19:06:26.000Z }
-"3.25.1" = { created_at = 2022-03-02T18:11:22.000Z }
-"3.26.0" = { created_at = 2022-03-09T12:58:36.000Z }
-"3.26.1" = { created_at = 2022-03-10T00:35:32.000Z }
-"3.27.0" = { created_at = 2022-03-24T21:17:41.000Z }
-"3.28.0" = { created_at = 2022-04-01T15:00:31.000Z }
-"3.29.1" = { created_at = 2022-04-13T21:02:18.000Z }
-"3.30.0" = { created_at = 2022-04-20T13:18:47.000Z }
-"3.31.0" = { created_at = 2022-04-29T20:47:07.000Z }
-"3.31.1" = { created_at = 2022-05-03T21:56:22.000Z }
-"3.32.0" = { created_at = 2022-05-04T10:31:33.000Z }
-"3.32.1" = { created_at = 2022-05-05T09:36:46.000Z }
-"3.33.0" = { created_at = 2022-05-19T19:32:01.000Z }
-"3.33.1" = { created_at = 2022-05-19T23:08:30.000Z }
-"3.33.2" = { created_at = 2022-05-27T18:43:02.000Z }
-"3.34.0" = { created_at = 2022-06-08T13:23:26.000Z }
-"3.34.1" = { created_at = 2022-06-10T12:32:08.000Z }
-"3.35.0" = { created_at = 2022-06-22T19:56:19.000Z }
-"3.35.1" = { created_at = 2022-06-24T18:32:18.000Z }
-"3.35.2" = { created_at = 2022-06-29T13:07:52.000Z }
-"3.35.3" = { created_at = 2022-07-01T08:49:24.000Z }
-"3.36.0" = { created_at = 2022-07-13T23:48:30.000Z }
-"3.37.0" = { created_at = 2022-07-27T11:28:58.000Z }
-"3.37.1" = { created_at = 2022-07-27T21:36:27.000Z }
-"3.37.2" = { created_at = 2022-07-30T00:10:02.000Z }
-"3.38.0" = { created_at = 2022-08-16T21:01:49.000Z }
-"3.39.0" = { created_at = 2022-09-01T08:01:25.000Z }
-"3.39.1" = { created_at = 2022-09-02T15:35:02.000Z }
-"3.39.2" = { created_at = 2022-09-07T10:50:16.000Z }
-"3.39.3" = { created_at = 2022-09-08T06:37:46.000Z }
-"3.39.4" = { created_at = 2022-09-14T01:41:08.000Z }
-"3.40.0" = { created_at = 2022-09-14T21:31:02.000Z }
-"3.40.1" = { created_at = 2022-09-17T02:12:26.000Z }
-"3.40.2" = { created_at = 2022-09-27T01:12:50.000Z }
-"3.41.1" = { created_at = 2022-10-05T22:24:46.000Z }
-"3.42.0" = { created_at = 2022-10-07T10:35:31.000Z }
-"3.43.0" = { created_at = 2022-10-14T16:24:21.000Z }
-"3.43.1" = { created_at = 2022-10-15T00:09:04.000Z }
-"3.44.0" = { created_at = 2022-10-24T20:18:10.000Z }
-"3.44.1" = { created_at = 2022-10-25T11:38:39.000Z }
-"3.44.2" = { created_at = 2022-10-26T11:50:32.000Z }
-"3.44.3" = { created_at = 2022-10-28T08:22:53.000Z }
-"3.45.0" = { created_at = 2022-10-31T08:52:54.000Z }
-"3.46.0" = { created_at = 2022-11-02T22:13:41.000Z }
-"3.46.1" = { created_at = 2022-11-09T00:13:47.000Z }
-"3.47.1" = { created_at = 2022-11-18T23:31:42.000Z }
-"3.47.2" = { created_at = 2022-11-22T19:30:04.000Z }
-"3.48.0" = { created_at = 2022-11-23T21:32:10.000Z }
-"3.49.0" = { created_at = 2022-12-08T21:40:36.000Z }
-"3.50.0" = { created_at = 2022-12-19T19:12:53.000Z }
-"3.50.1" = { created_at = 2022-12-21T10:33:07.000Z }
-"3.50.2" = { created_at = 2022-12-21T21:19:42.000Z }
-"3.51.0" = { created_at = 2023-01-04T14:34:31.000Z }
-"3.51.1" = { created_at = 2023-01-11T22:30:25.000Z }
-"3.52.0" = { created_at = 2023-01-18T19:50:42.000Z }
-"3.52.1" = { created_at = 2023-01-19T22:17:33.000Z }
-"3.53.0" = { created_at = 2023-01-25T10:45:01.000Z }
-"3.53.1" = { created_at = 2023-01-25T21:25:18.000Z }
-"3.54.0" = { created_at = 2023-02-06T22:05:18.000Z }
-"3.55.0" = { created_at = 2023-02-14T11:04:22.000Z }
-"3.56.0" = { created_at = 2023-03-02T21:12:57.000Z }
-"3.57.0" = { created_at = 2023-03-08T23:41:55.000Z }
-"3.57.1" = { created_at = 2023-03-09T10:08:04.000Z }
-"3.58.0" = { created_at = 2023-03-15T15:54:55.000Z }
-"3.59.0" = { created_at = 2023-03-22T23:26:20.000Z }
-"3.59.1" = { created_at = 2023-03-24T21:48:52.000Z }
-"3.60.0" = { created_at = 2023-03-27T18:44:25.000Z }
-"3.60.1" = { created_at = 2023-03-30T17:16:22.000Z }
-"3.61.0" = { created_at = 2023-04-03T16:24:56.000Z }
-"3.61.1" = { created_at = 2023-04-05T15:49:23.000Z }
-"3.62.0" = { created_at = 2023-04-06T20:22:15.000Z }
-"3.63.0" = { created_at = 2023-04-12T21:27:32.000Z }
-"3.64.0" = { created_at = 2023-04-18T23:47:53.000Z }
-"3.65.0" = { created_at = 2023-04-26T20:34:59.000Z }
-"3.65.1" = { created_at = 2023-04-27T01:37:28.000Z }
-"3.66.0" = { created_at = 2023-05-03T21:02:50.000Z }
-"3.67.0" = { created_at = 2023-05-11T18:52:03.000Z }
-"3.67.1" = { created_at = 2023-05-15T19:05:07.000Z }
-"3.68.0" = { created_at = 2023-05-18T23:40:02.000Z }
-"3.69.0" = { created_at = 2023-06-01T14:23:51.000Z }
-"3.70.0" = { created_at = 2023-06-08T18:24:05.000Z }
-"3.71.0" = { created_at = 2023-06-12T13:40:46.000Z }
-"3.72.0" = { created_at = 2023-06-15T23:23:12.000Z }
-"3.72.1" = { created_at = 2023-06-16T16:30:42.000Z }
-"3.72.2" = { created_at = 2023-06-17T08:05:00.000Z }
-"3.73.0" = { created_at = 2023-06-22T18:51:40.000Z }
-"3.74.0" = { created_at = 2023-06-30T08:42:58.000Z }
-"3.75.0" = { created_at = 2023-07-12T21:52:01.000Z }
-"3.76.0" = { created_at = 2023-07-20T12:38:16.000Z }
-"3.76.1" = { created_at = 2023-07-25T20:51:19.000Z }
-"3.77.0" = { created_at = 2023-08-04T02:44:04.000Z }
-"3.77.1" = { created_at = 2023-08-05T01:47:44.000Z }
-"3.78.0" = { created_at = 2023-08-09T17:47:29.000Z }
-"3.78.1" = { created_at = 2023-08-11T09:51:48.000Z }
-"3.79.0" = { created_at = 2023-08-25T20:35:27.000Z }
-"3.80.0" = { created_at = 2023-08-31T21:12:03.000Z }
-"3.81.0" = { created_at = 2023-09-06T20:43:50.000Z }
-"3.82.0" = { created_at = 2023-09-12T00:18:43.000Z }
-"3.82.1" = { created_at = 2023-09-12T18:34:40.000Z }
-"3.83.0" = { created_at = 2023-09-15T21:39:33.000Z }
-"3.84.0" = { created_at = 2023-09-19T20:03:43.000Z }
-"3.85.0" = { created_at = 2023-09-22T21:54:59.000Z }
-"3.86.0" = { created_at = 2023-09-26T15:18:35.000Z }
-"3.87.0" = { created_at = 2023-10-06T16:56:36.000Z }
-"3.88.0" = { created_at = 2023-10-10T01:35:39.000Z }
-"3.88.1" = { created_at = 2023-10-11T18:09:58.000Z }
-"3.89.0" = { created_at = 2023-10-16T21:18:56.000Z }
-"3.90.0" = { created_at = 2023-10-23T18:28:02.000Z }
-"3.90.1" = { created_at = 2023-10-24T16:22:14.000Z }
-"3.91.0" = { created_at = 2023-10-25T22:22:45.000Z }
-"3.91.1" = { created_at = 2023-10-27T22:28:41.000Z }
-"3.92.0" = { created_at = 2023-11-03T14:22:43.000Z }
-"3.93.0" = { created_at = 2023-11-09T22:09:44.000Z }
-"3.94.0" = { created_at = 2023-11-14T22:52:57.000Z }
-"3.94.1" = { created_at = 2023-11-16T09:58:30.000Z }
-"3.94.2" = { created_at = 2023-11-17T14:38:37.000Z }
-"3.95.0" = { created_at = 2023-12-01T19:41:51.000Z }
-"3.96.0" = { created_at = 2023-12-07T15:09:54.000Z }
-"3.96.1" = { created_at = 2023-12-07T22:53:26.000Z }
-"3.96.2" = { created_at = 2023-12-08T18:18:13.000Z }
-"3.97.0" = { created_at = 2023-12-14T09:33:00.000Z }
-"3.98.0" = { created_at = 2023-12-19T09:03:21.000Z }
-"3.99.0" = { created_at = 2023-12-20T22:08:09.000Z }
-"3.100.0" = { created_at = 2024-01-03T23:03:11.000Z }
-"3.101.0" = { created_at = 2024-01-09T21:21:13.000Z }
-"3.101.1" = { created_at = 2024-01-10T15:16:36.000Z }
-"3.102.0" = { created_at = 2024-01-18T19:49:30.000Z }
-"3.103.0" = { created_at = 2024-01-24T22:24:34.000Z }
-"3.103.1" = { created_at = 2024-01-25T05:53:43.000Z }
-"3.104.0" = { created_at = 2024-01-31T09:17:37.000Z }
-"3.104.1" = { created_at = 2024-02-01T00:34:25.000Z }
-"3.104.2" = { created_at = 2024-02-01T09:39:41.000Z }
-"3.105.0" = { created_at = 2024-02-07T22:26:03.000Z }
-"3.106.0" = { created_at = 2024-02-16T00:00:36.000Z }
-"3.107.0" = { created_at = 2024-02-21T20:50:29.000Z }
-"3.108.0" = { created_at = 2024-02-29T23:12:16.000Z }
-"3.108.1" = { created_at = 2024-03-01T18:01:20.000Z }
-"3.109.0" = { created_at = 2024-03-07T15:10:36.000Z }
-"3.110.0" = { created_at = 2024-03-14T11:51:45.000Z }
-"3.111.0" = { created_at = 2024-03-15T09:05:18.000Z }
-"3.111.1" = { created_at = 2024-03-15T20:37:31.000Z }
-"3.112.0" = { created_at = 2024-03-27T21:12:00.000Z }
-"3.113.0" = { created_at = 2024-04-15T16:28:17.000Z }
-"3.113.1" = { created_at = 2024-04-18T08:14:51.000Z }
-"3.113.2" = { created_at = 2024-04-18T22:09:08.000Z }
-"3.113.3" = { created_at = 2024-04-19T16:57:16.000Z }
-"3.114.0" = { created_at = 2024-04-26T19:05:50.000Z }
-"3.115.0" = { created_at = 2024-05-02T20:47:56.000Z }
-"3.115.1" = { created_at = 2024-05-06T07:26:48.000Z }
-"3.115.2" = { created_at = 2024-05-06T17:34:24.000Z }
-"3.116.0" = { created_at = 2024-05-10T22:10:01.000Z }
-"3.116.1" = { created_at = 2024-05-15T06:07:24.000Z }
-"3.117.0" = { created_at = 2024-05-24T20:27:56.000Z }
-"3.118.0" = { created_at = 2024-05-31T10:48:07.000Z }
-"3.119.0" = { created_at = 2024-06-05T11:54:52.000Z }
-"3.120.0" = { created_at = 2024-06-12T16:17:05.000Z }
-"3.121.0" = { created_at = 2024-06-22T00:04:34.000Z }
-"3.122.0" = { created_at = 2024-07-01T17:36:11.000Z }
-"3.123.0" = { created_at = 2024-07-10T17:22:24.000Z }
-"3.124.0" = { created_at = 2024-07-12T10:16:55.000Z }
-"3.125.0" = { created_at = 2024-07-18T21:40:52.000Z }
-"3.126.0" = { created_at = 2024-07-22T21:13:11.000Z }
-"3.127.0" = { created_at = 2024-07-25T21:15:48.000Z }
-"3.128.0" = { created_at = 2024-08-05T17:30:38.000Z }
-"3.129.0" = { created_at = 2024-08-12T14:46:41.000Z }
-"3.130.0" = { created_at = 2024-08-23T15:23:53.000Z }
-"3.131.0" = { created_at = 2024-09-04T21:22:18.000Z }
-"3.132.0" = { created_at = 2024-09-11T07:30:05.000Z }
-"3.133.0" = { created_at = 2024-09-16T23:29:30.000Z }
-"3.134.0" = { created_at = 2024-09-23T15:02:37.000Z }
-"3.134.1" = { created_at = 2024-09-25T20:52:16.000Z }
-"3.135.0" = { created_at = 2024-10-01T13:58:40.000Z }
-"3.135.1" = { created_at = 2024-10-04T03:34:34.000Z }
-"3.136.0" = { created_at = 2024-10-07T21:15:17.000Z }
-"3.136.1" = { created_at = 2024-10-08T08:40:34.000Z }
-"3.137.0" = { created_at = 2024-10-17T20:55:38.000Z }
-"3.138.0" = { created_at = 2024-11-06T20:18:18.000Z }
-"3.139.0" = { created_at = 2024-11-14T22:10:28.000Z }
-"3.140.0" = { created_at = 2024-11-19T12:52:28.000Z }
-"3.141.0" = { created_at = 2024-11-22T13:07:20.000Z }
-"3.142.0" = { created_at = 2024-11-26T14:54:46.000Z }
-"3.143.0" = { created_at = 2024-12-12T05:12:34.000Z }
-"3.144.0" = { created_at = 2024-12-20T16:40:43.000Z }
-"3.144.1" = { created_at = 2024-12-20T22:17:52.000Z }
-"3.145.0" = { created_at = 2025-01-07T12:12:13.000Z }
-"3.146.0" = { created_at = 2025-01-15T21:54:49.000Z }
-"3.147.0" = { created_at = 2025-01-21T17:06:56.000Z }
-"3.148.0" = { created_at = 2025-01-31T10:12:41.000Z }
-"3.149.0" = { created_at = 2025-02-07T19:28:58.000Z }
-"3.150.0" = { created_at = 2025-02-11T10:07:04.000Z }
-"3.151.0" = { created_at = 2025-02-21T15:23:21.000Z }
-"3.152.0" = { created_at = 2025-02-21T21:35:16.000Z }
-"3.153.0" = { created_at = 2025-02-27T09:58:30.000Z }
-"3.153.1" = { created_at = 2025-02-28T22:26:07.000Z }
-"3.154.0" = { created_at = 2025-03-07T13:16:48.000Z }
-"3.155.0" = { created_at = 2025-03-12T15:04:46.000Z }
-"3.156.0" = { created_at = 2025-03-13T13:22:58.000Z }
-"3.157.0" = { created_at = 2025-03-18T16:47:47.000Z }
-"3.158.0" = { created_at = 2025-03-24T21:00:57.000Z }
-"3.159.0" = { created_at = 2025-03-27T14:45:01.000Z }
-"3.160.0" = { created_at = 2025-04-01T10:36:52.000Z }
-"3.161.0" = { created_at = 2025-04-09T09:04:16.000Z }
-"3.162.0" = { created_at = 2025-04-09T15:17:18.000Z }
-"3.163.0" = { created_at = 2025-04-16T14:33:33.000Z }
-"3.165.0" = { created_at = 2025-04-25T09:03:04.000Z }
-"3.166.0" = { created_at = 2025-04-29T12:44:21.000Z }
-"3.167.0" = { created_at = 2025-05-01T12:41:16.000Z }
-"3.168.0" = { created_at = 2025-05-07T13:55:20.000Z }
-"3.169.0" = { created_at = 2025-05-08T09:53:05.000Z }
-"3.170.0" = { created_at = 2025-05-15T11:53:48.000Z }
-"3.171.0" = { created_at = 2025-05-21T14:58:04.000Z }
-"3.172.0" = { created_at = 2025-05-29T11:54:36.000Z }
-"3.173.0" = { created_at = 2025-05-29T22:28:41.000Z }
-"3.174.0" = { created_at = 2025-06-04T20:54:43.000Z }
-"3.175.0" = { created_at = 2025-06-05T21:19:16.000Z }
-"3.176.0" = { created_at = 2025-06-12T08:53:42.000Z }
-"3.177.0" = { created_at = 2025-06-13T08:20:16.000Z }
-"3.178.0" = { created_at = 2025-06-20T06:34:03.000Z }
-"3.181.0" = { created_at = 2025-06-27T08:38:10.000Z }
-"3.182.0" = { created_at = 2025-07-14T10:50:35.000Z }
-"3.183.0" = { created_at = 2025-07-16T18:17:20.000Z }
-"3.184.0" = { created_at = 2025-07-18T11:02:45.000Z }
-"3.185.0" = { created_at = 2025-07-21T12:10:36.000Z }
-"3.186.0" = { created_at = 2025-07-25T08:33:56.000Z }
-"3.187.0" = { created_at = 2025-07-31T13:19:57.000Z }
-"3.188.0" = { created_at = 2025-08-07T09:07:23.000Z }
-"3.189.0" = { created_at = 2025-08-12T16:51:35.000Z }
-"3.190.0" = { created_at = 2025-08-15T15:00:32.000Z }
-"3.191.0" = { created_at = 2025-08-21T07:22:02.000Z }
-"3.192.0" = { created_at = 2025-08-29T11:15:00.000Z }
-"3.193.0" = { created_at = 2025-09-04T11:42:32.000Z }
-"3.194.0" = { created_at = 2025-09-08T16:30:14.000Z }
-"3.195.0" = { created_at = 2025-09-10T13:08:08.000Z }
-"3.196.0" = { created_at = 2025-09-12T21:25:58.000Z }
-"3.197.0" = { created_at = 2025-09-17T16:15:40.000Z }
-"3.198.0" = { created_at = 2025-09-26T17:44:31.000Z }
-"3.199.0" = { created_at = 2025-10-01T23:11:44.000Z }
-"3.200.0" = { created_at = 2025-10-03T13:57:07.000Z }
-"3.201.0" = { created_at = 2025-10-06T12:32:11.000Z }
-"3.202.0" = { created_at = 2025-10-10T10:32:07.000Z }
-"3.203.0" = { created_at = 2025-10-15T20:51:31.000Z }
-"3.204.0" = { created_at = 2025-10-23T03:09:11.000Z }
-"3.205.0" = { created_at = 2025-10-28T09:05:07.000Z }
-"3.206.0" = { created_at = 2025-11-05T16:19:07.000Z }
-"3.207.0" = { created_at = 2025-11-12T13:30:19.000Z }
-"3.208.0" = { created_at = 2025-11-20T14:37:01.000Z }
-"3.209.0" = { created_at = 2025-11-26T14:02:19.000Z }
-"3.210.0" = { created_at = 2025-12-03T14:18:18.000Z }
-"3.211.0" = { created_at = 2025-12-11T21:36:37.000Z }
-"3.212.0" = { created_at = 2025-12-12T18:51:16.000Z }
-"3.213.0" = { created_at = 2025-12-17T16:07:33.000Z }
+"2.11.0" = { created_at = 2020-09-30T18:00:47.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.11.0" }
+"2.15.1" = { created_at = 2020-12-04T20:06:10.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.15.1" }
+"2.15.5" = { created_at = 2020-12-11T11:49:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.15.5" }
+"2.16.1" = { created_at = 2020-12-22T20:53:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.16.1" }
+"2.21.0" = { created_at = 2021-02-17T20:42:48.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.21.0" }
+"2.21.1" = { created_at = 2021-02-18T18:50:12.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.21.1" }
+"2.21.2" = { created_at = 2021-02-22T10:41:13.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.21.2" }
+"2.22.0" = { created_at = 2021-03-03T18:45:26.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.22.0" }
+"2.23.0" = { created_at = 2021-03-17T18:08:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.23.0" }
+"2.23.1" = { created_at = 2021-03-18T04:14:20.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.23.1" }
+"2.23.2" = { created_at = 2021-03-25T17:39:55.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.23.2" }
+"2.24.0" = { created_at = 2021-03-31T20:27:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.24.0" }
+"2.24.1" = { created_at = 2021-04-01T21:02:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.24.1" }
+"2.25.0" = { created_at = 2021-04-14T16:22:27.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.25.0" }
+"2.25.1" = { created_at = 2021-04-15T18:42:00.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.25.1" }
+"2.25.2" = { created_at = 2021-04-17T12:03:38.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v2.25.2" }
+"3.0.0" = { created_at = 2021-04-19T08:14:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.0.0" }
+"3.1.0" = { created_at = 2021-04-22T18:34:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.1.0" }
+"3.2.0" = { created_at = 2021-05-05T17:28:59.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.2.0" }
+"3.2.1" = { created_at = 2021-05-06T16:23:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.2.1" }
+"3.3.0" = { created_at = 2021-05-20T13:52:49.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.3.0" }
+"3.3.1" = { created_at = 2021-05-25T08:35:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.3.1" }
+"3.4.0" = { created_at = 2021-06-05T22:54:22.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.4.0" }
+"3.5.1" = { created_at = 2021-06-17T01:34:37.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.5.1" }
+"3.6.0" = { created_at = 2021-06-30T18:46:06.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.6.0" }
+"3.6.1" = { created_at = 2021-07-07T11:36:12.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.6.1" }
+"3.7.0" = { created_at = 2021-07-13T20:52:24.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.7.0" }
+"3.7.1" = { created_at = 2021-07-19T10:35:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.7.1" }
+"3.8.0" = { created_at = 2021-07-22T19:27:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.8.0" }
+"3.9.0" = { created_at = 2021-07-28T18:10:05.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.9.0" }
+"3.9.1" = { created_at = 2021-07-29T23:54:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.9.1" }
+"3.10.0" = { created_at = 2021-08-12T01:44:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.10.0" }
+"3.10.1" = { created_at = 2021-08-12T16:16:27.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.10.1" }
+"3.10.2" = { created_at = 2021-08-17T00:36:38.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.10.2" }
+"3.10.3" = { created_at = 2021-08-19T07:38:57.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.10.3" }
+"3.11.0" = { created_at = 2021-08-25T18:05:19.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.11.0" }
+"3.12.0" = { created_at = 2021-09-08T21:41:25.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.12.0" }
+"3.13.0" = { created_at = 2021-09-22T20:16:08.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.13.0" }
+"3.13.1" = { created_at = 2021-09-28T03:32:06.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.13.1" }
+"3.13.2" = { created_at = 2021-09-28T06:05:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.13.2" }
+"3.14.0" = { created_at = 2021-10-06T18:54:59.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.14.0" }
+"3.15.0" = { created_at = 2021-10-15T01:05:42.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.15.0" }
+"3.16.0" = { created_at = 2021-10-20T18:11:38.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.16.0" }
+"3.17.0" = { created_at = 2021-11-03T18:51:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.17.0" }
+"3.17.1" = { created_at = 2021-11-09T21:54:45.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.17.1" }
+"3.18.0" = { created_at = 2021-11-17T20:27:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.18.0" }
+"3.18.1" = { created_at = 2021-11-22T22:30:47.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.18.1" }
+"3.19.0" = { created_at = 2021-12-01T21:57:51.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.19.0" }
+"3.20.0" = { created_at = 2021-12-16T22:37:15.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.20.0" }
+"3.21.0" = { created_at = 2021-12-29T22:18:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.21.0" }
+"3.21.1" = { created_at = 2022-01-07T20:23:54.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.21.1" }
+"3.22.0" = { created_at = 2022-01-13T00:46:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.22.0" }
+"3.22.1" = { created_at = 2022-01-14T19:19:23.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.22.1" }
+"3.23.0" = { created_at = 2022-01-26T19:03:57.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.23.0" }
+"3.23.1" = { created_at = 2022-01-27T22:55:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.23.1" }
+"3.23.2" = { created_at = 2022-01-28T15:36:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.23.2" }
+"3.24.1" = { created_at = 2022-02-04T19:00:33.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.24.1" }
+"3.25.0" = { created_at = 2022-02-23T19:06:26.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.25.0" }
+"3.25.1" = { created_at = 2022-03-02T18:11:22.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.25.1" }
+"3.26.0" = { created_at = 2022-03-09T12:58:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.26.0" }
+"3.26.1" = { created_at = 2022-03-10T00:35:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.26.1" }
+"3.27.0" = { created_at = 2022-03-24T21:17:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.27.0" }
+"3.28.0" = { created_at = 2022-04-01T15:00:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.28.0" }
+"3.29.1" = { created_at = 2022-04-13T21:02:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.29.1" }
+"3.30.0" = { created_at = 2022-04-20T13:18:47.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.30.0" }
+"3.31.0" = { created_at = 2022-04-29T20:47:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.31.0" }
+"3.31.1" = { created_at = 2022-05-03T21:56:22.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.31.1" }
+"3.32.0" = { created_at = 2022-05-04T10:31:33.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.32.0" }
+"3.32.1" = { created_at = 2022-05-05T09:36:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.32.1" }
+"3.33.0" = { created_at = 2022-05-19T19:32:01.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.33.0" }
+"3.33.1" = { created_at = 2022-05-19T23:08:30.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.33.1" }
+"3.33.2" = { created_at = 2022-05-27T18:43:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.33.2" }
+"3.34.0" = { created_at = 2022-06-08T13:23:26.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.34.0" }
+"3.34.1" = { created_at = 2022-06-10T12:32:08.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.34.1" }
+"3.35.0" = { created_at = 2022-06-22T19:56:19.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.35.0" }
+"3.35.1" = { created_at = 2022-06-24T18:32:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.35.1" }
+"3.35.2" = { created_at = 2022-06-29T13:07:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.35.2" }
+"3.35.3" = { created_at = 2022-07-01T08:49:24.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.35.3" }
+"3.36.0" = { created_at = 2022-07-13T23:48:30.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.36.0" }
+"3.37.0" = { created_at = 2022-07-27T11:28:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.37.0" }
+"3.37.1" = { created_at = 2022-07-27T21:36:27.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.37.1" }
+"3.37.2" = { created_at = 2022-07-30T00:10:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.37.2" }
+"3.38.0" = { created_at = 2022-08-16T21:01:49.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.38.0" }
+"3.39.0" = { created_at = 2022-09-01T08:01:25.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.39.0" }
+"3.39.1" = { created_at = 2022-09-02T15:35:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.39.1" }
+"3.39.2" = { created_at = 2022-09-07T10:50:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.39.2" }
+"3.39.3" = { created_at = 2022-09-08T06:37:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.39.3" }
+"3.39.4" = { created_at = 2022-09-14T01:41:08.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.39.4" }
+"3.40.0" = { created_at = 2022-09-14T21:31:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.40.0" }
+"3.40.1" = { created_at = 2022-09-17T02:12:26.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.40.1" }
+"3.40.2" = { created_at = 2022-09-27T01:12:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.40.2" }
+"3.41.1" = { created_at = 2022-10-05T22:24:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.41.1" }
+"3.42.0" = { created_at = 2022-10-07T10:35:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.42.0" }
+"3.43.0" = { created_at = 2022-10-14T16:24:21.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.43.0" }
+"3.43.1" = { created_at = 2022-10-15T00:09:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.43.1" }
+"3.44.0" = { created_at = 2022-10-24T20:18:10.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.44.0" }
+"3.44.1" = { created_at = 2022-10-25T11:38:39.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.44.1" }
+"3.44.2" = { created_at = 2022-10-26T11:50:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.44.2" }
+"3.44.3" = { created_at = 2022-10-28T08:22:53.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.44.3" }
+"3.45.0" = { created_at = 2022-10-31T08:52:54.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.45.0" }
+"3.46.0" = { created_at = 2022-11-02T22:13:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.46.0" }
+"3.46.1" = { created_at = 2022-11-09T00:13:47.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.46.1" }
+"3.47.1" = { created_at = 2022-11-18T23:31:42.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.47.1" }
+"3.47.2" = { created_at = 2022-11-22T19:30:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.47.2" }
+"3.48.0" = { created_at = 2022-11-23T21:32:10.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.48.0" }
+"3.49.0" = { created_at = 2022-12-08T21:40:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.49.0" }
+"3.50.0" = { created_at = 2022-12-19T19:12:53.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.50.0" }
+"3.50.1" = { created_at = 2022-12-21T10:33:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.50.1" }
+"3.50.2" = { created_at = 2022-12-21T21:19:42.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.50.2" }
+"3.51.0" = { created_at = 2023-01-04T14:34:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.51.0" }
+"3.51.1" = { created_at = 2023-01-11T22:30:25.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.51.1" }
+"3.52.0" = { created_at = 2023-01-18T19:50:42.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.52.0" }
+"3.52.1" = { created_at = 2023-01-19T22:17:33.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.52.1" }
+"3.53.0" = { created_at = 2023-01-25T10:45:01.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.53.0" }
+"3.53.1" = { created_at = 2023-01-25T21:25:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.53.1" }
+"3.54.0" = { created_at = 2023-02-06T22:05:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.54.0" }
+"3.55.0" = { created_at = 2023-02-14T11:04:22.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.55.0" }
+"3.56.0" = { created_at = 2023-03-02T21:12:57.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.56.0" }
+"3.57.0" = { created_at = 2023-03-08T23:41:55.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.57.0" }
+"3.57.1" = { created_at = 2023-03-09T10:08:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.57.1" }
+"3.58.0" = { created_at = 2023-03-15T15:54:55.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.58.0" }
+"3.59.0" = { created_at = 2023-03-22T23:26:20.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.59.0" }
+"3.59.1" = { created_at = 2023-03-24T21:48:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.59.1" }
+"3.60.0" = { created_at = 2023-03-27T18:44:25.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.60.0" }
+"3.60.1" = { created_at = 2023-03-30T17:16:22.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.60.1" }
+"3.61.0" = { created_at = 2023-04-03T16:24:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.61.0" }
+"3.61.1" = { created_at = 2023-04-05T15:49:23.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.61.1" }
+"3.62.0" = { created_at = 2023-04-06T20:22:15.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.62.0" }
+"3.63.0" = { created_at = 2023-04-12T21:27:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.63.0" }
+"3.64.0" = { created_at = 2023-04-18T23:47:53.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.64.0" }
+"3.65.0" = { created_at = 2023-04-26T20:34:59.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.65.0" }
+"3.65.1" = { created_at = 2023-04-27T01:37:28.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.65.1" }
+"3.66.0" = { created_at = 2023-05-03T21:02:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.66.0" }
+"3.67.0" = { created_at = 2023-05-11T18:52:03.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.67.0" }
+"3.67.1" = { created_at = 2023-05-15T19:05:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.67.1" }
+"3.68.0" = { created_at = 2023-05-18T23:40:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.68.0" }
+"3.69.0" = { created_at = 2023-06-01T14:23:51.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.69.0" }
+"3.70.0" = { created_at = 2023-06-08T18:24:05.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.70.0" }
+"3.71.0" = { created_at = 2023-06-12T13:40:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.71.0" }
+"3.72.0" = { created_at = 2023-06-15T23:23:12.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.72.0" }
+"3.72.1" = { created_at = 2023-06-16T16:30:42.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.72.1" }
+"3.72.2" = { created_at = 2023-06-17T08:05:00.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.72.2" }
+"3.73.0" = { created_at = 2023-06-22T18:51:40.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.73.0" }
+"3.74.0" = { created_at = 2023-06-30T08:42:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.74.0" }
+"3.75.0" = { created_at = 2023-07-12T21:52:01.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.75.0" }
+"3.76.0" = { created_at = 2023-07-20T12:38:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.76.0" }
+"3.76.1" = { created_at = 2023-07-25T20:51:19.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.76.1" }
+"3.77.0" = { created_at = 2023-08-04T02:44:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.77.0" }
+"3.77.1" = { created_at = 2023-08-05T01:47:44.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.77.1" }
+"3.78.0" = { created_at = 2023-08-09T17:47:29.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.78.0" }
+"3.78.1" = { created_at = 2023-08-11T09:51:48.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.78.1" }
+"3.79.0" = { created_at = 2023-08-25T20:35:27.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.79.0" }
+"3.80.0" = { created_at = 2023-08-31T21:12:03.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.80.0" }
+"3.81.0" = { created_at = 2023-09-06T20:43:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.81.0" }
+"3.82.0" = { created_at = 2023-09-12T00:18:43.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.82.0" }
+"3.82.1" = { created_at = 2023-09-12T18:34:40.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.82.1" }
+"3.83.0" = { created_at = 2023-09-15T21:39:33.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.83.0" }
+"3.84.0" = { created_at = 2023-09-19T20:03:43.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.84.0" }
+"3.85.0" = { created_at = 2023-09-22T21:54:59.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.85.0" }
+"3.86.0" = { created_at = 2023-09-26T15:18:35.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.86.0" }
+"3.87.0" = { created_at = 2023-10-06T16:56:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.87.0" }
+"3.88.0" = { created_at = 2023-10-10T01:35:39.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.88.0" }
+"3.88.1" = { created_at = 2023-10-11T18:09:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.88.1" }
+"3.89.0" = { created_at = 2023-10-16T21:18:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.89.0" }
+"3.90.0" = { created_at = 2023-10-23T18:28:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.90.0" }
+"3.90.1" = { created_at = 2023-10-24T16:22:14.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.90.1" }
+"3.91.0" = { created_at = 2023-10-25T22:22:45.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.91.0" }
+"3.91.1" = { created_at = 2023-10-27T22:28:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.91.1" }
+"3.92.0" = { created_at = 2023-11-03T14:22:43.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.92.0" }
+"3.93.0" = { created_at = 2023-11-09T22:09:44.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.93.0" }
+"3.94.0" = { created_at = 2023-11-14T22:52:57.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.94.0" }
+"3.94.1" = { created_at = 2023-11-16T09:58:30.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.94.1" }
+"3.94.2" = { created_at = 2023-11-17T14:38:37.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.94.2" }
+"3.95.0" = { created_at = 2023-12-01T19:41:51.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.95.0" }
+"3.96.0" = { created_at = 2023-12-07T15:09:54.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.96.0" }
+"3.96.1" = { created_at = 2023-12-07T22:53:26.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.96.1" }
+"3.96.2" = { created_at = 2023-12-08T18:18:13.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.96.2" }
+"3.97.0" = { created_at = 2023-12-14T09:33:00.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.97.0" }
+"3.98.0" = { created_at = 2023-12-19T09:03:21.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.98.0" }
+"3.99.0" = { created_at = 2023-12-20T22:08:09.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.99.0" }
+"3.100.0" = { created_at = 2024-01-03T23:03:11.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.100.0" }
+"3.101.0" = { created_at = 2024-01-09T21:21:13.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.101.0" }
+"3.101.1" = { created_at = 2024-01-10T15:16:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.101.1" }
+"3.102.0" = { created_at = 2024-01-18T19:49:30.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.102.0" }
+"3.103.0" = { created_at = 2024-01-24T22:24:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.103.0" }
+"3.103.1" = { created_at = 2024-01-25T05:53:43.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.103.1" }
+"3.104.0" = { created_at = 2024-01-31T09:17:37.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.104.0" }
+"3.104.1" = { created_at = 2024-02-01T00:34:25.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.104.1" }
+"3.104.2" = { created_at = 2024-02-01T09:39:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.104.2" }
+"3.105.0" = { created_at = 2024-02-07T22:26:03.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.105.0" }
+"3.106.0" = { created_at = 2024-02-16T00:00:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.106.0" }
+"3.107.0" = { created_at = 2024-02-21T20:50:29.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.107.0" }
+"3.108.0" = { created_at = 2024-02-29T23:12:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.108.0" }
+"3.108.1" = { created_at = 2024-03-01T18:01:20.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.108.1" }
+"3.109.0" = { created_at = 2024-03-07T15:10:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.109.0" }
+"3.110.0" = { created_at = 2024-03-14T11:51:45.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.110.0" }
+"3.111.0" = { created_at = 2024-03-15T09:05:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.111.0" }
+"3.111.1" = { created_at = 2024-03-15T20:37:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.111.1" }
+"3.112.0" = { created_at = 2024-03-27T21:12:00.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.112.0" }
+"3.113.0" = { created_at = 2024-04-15T16:28:17.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.113.0" }
+"3.113.1" = { created_at = 2024-04-18T08:14:51.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.113.1" }
+"3.113.2" = { created_at = 2024-04-18T22:09:08.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.113.2" }
+"3.113.3" = { created_at = 2024-04-19T16:57:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.113.3" }
+"3.114.0" = { created_at = 2024-04-26T19:05:50.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.114.0" }
+"3.115.0" = { created_at = 2024-05-02T20:47:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.115.0" }
+"3.115.1" = { created_at = 2024-05-06T07:26:48.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.115.1" }
+"3.115.2" = { created_at = 2024-05-06T17:34:24.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.115.2" }
+"3.116.0" = { created_at = 2024-05-10T22:10:01.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.116.0" }
+"3.116.1" = { created_at = 2024-05-15T06:07:24.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.116.1" }
+"3.117.0" = { created_at = 2024-05-24T20:27:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.117.0" }
+"3.118.0" = { created_at = 2024-05-31T10:48:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.118.0" }
+"3.119.0" = { created_at = 2024-06-05T11:54:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.119.0" }
+"3.120.0" = { created_at = 2024-06-12T16:17:05.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.120.0" }
+"3.121.0" = { created_at = 2024-06-22T00:04:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.121.0" }
+"3.122.0" = { created_at = 2024-07-01T17:36:11.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.122.0" }
+"3.123.0" = { created_at = 2024-07-10T17:22:24.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.123.0" }
+"3.124.0" = { created_at = 2024-07-12T10:16:55.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.124.0" }
+"3.125.0" = { created_at = 2024-07-18T21:40:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.125.0" }
+"3.126.0" = { created_at = 2024-07-22T21:13:11.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.126.0" }
+"3.127.0" = { created_at = 2024-07-25T21:15:48.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.127.0" }
+"3.128.0" = { created_at = 2024-08-05T17:30:38.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.128.0" }
+"3.129.0" = { created_at = 2024-08-12T14:46:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.129.0" }
+"3.130.0" = { created_at = 2024-08-23T15:23:53.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.130.0" }
+"3.131.0" = { created_at = 2024-09-04T21:22:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.131.0" }
+"3.132.0" = { created_at = 2024-09-11T07:30:05.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.132.0" }
+"3.133.0" = { created_at = 2024-09-16T23:29:30.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.133.0" }
+"3.134.0" = { created_at = 2024-09-23T15:02:37.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.134.0" }
+"3.134.1" = { created_at = 2024-09-25T20:52:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.134.1" }
+"3.135.0" = { created_at = 2024-10-01T13:58:40.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.135.0" }
+"3.135.1" = { created_at = 2024-10-04T03:34:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.135.1" }
+"3.136.0" = { created_at = 2024-10-07T21:15:17.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.136.0" }
+"3.136.1" = { created_at = 2024-10-08T08:40:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.136.1" }
+"3.137.0" = { created_at = 2024-10-17T20:55:38.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.137.0" }
+"3.138.0" = { created_at = 2024-11-06T20:18:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.138.0" }
+"3.139.0" = { created_at = 2024-11-14T22:10:28.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.139.0" }
+"3.140.0" = { created_at = 2024-11-19T12:52:28.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.140.0" }
+"3.141.0" = { created_at = 2024-11-22T13:07:20.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.141.0" }
+"3.142.0" = { created_at = 2024-11-26T14:54:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.142.0" }
+"3.143.0" = { created_at = 2024-12-12T05:12:34.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.143.0" }
+"3.144.0" = { created_at = 2024-12-20T16:40:43.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.144.0" }
+"3.144.1" = { created_at = 2024-12-20T22:17:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.144.1" }
+"3.145.0" = { created_at = 2025-01-07T12:12:13.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.145.0" }
+"3.146.0" = { created_at = 2025-01-15T21:54:49.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.146.0" }
+"3.147.0" = { created_at = 2025-01-21T17:06:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.147.0" }
+"3.148.0" = { created_at = 2025-01-31T10:12:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.148.0" }
+"3.149.0" = { created_at = 2025-02-07T19:28:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.149.0" }
+"3.150.0" = { created_at = 2025-02-11T10:07:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.150.0" }
+"3.151.0" = { created_at = 2025-02-21T15:23:21.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.151.0" }
+"3.152.0" = { created_at = 2025-02-21T21:35:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.152.0" }
+"3.153.0" = { created_at = 2025-02-27T09:58:30.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.153.0" }
+"3.153.1" = { created_at = 2025-02-28T22:26:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.153.1" }
+"3.154.0" = { created_at = 2025-03-07T13:16:48.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.154.0" }
+"3.155.0" = { created_at = 2025-03-12T15:04:46.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.155.0" }
+"3.156.0" = { created_at = 2025-03-13T13:22:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.156.0" }
+"3.157.0" = { created_at = 2025-03-18T16:47:47.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.157.0" }
+"3.158.0" = { created_at = 2025-03-24T21:00:57.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.158.0" }
+"3.159.0" = { created_at = 2025-03-27T14:45:01.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.159.0" }
+"3.160.0" = { created_at = 2025-04-01T10:36:52.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.160.0" }
+"3.161.0" = { created_at = 2025-04-09T09:04:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.161.0" }
+"3.162.0" = { created_at = 2025-04-09T15:17:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.162.0" }
+"3.163.0" = { created_at = 2025-04-16T14:33:33.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.163.0" }
+"3.165.0" = { created_at = 2025-04-25T09:03:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.165.0" }
+"3.166.0" = { created_at = 2025-04-29T12:44:21.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.166.0" }
+"3.167.0" = { created_at = 2025-05-01T12:41:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.167.0" }
+"3.168.0" = { created_at = 2025-05-07T13:55:20.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.168.0" }
+"3.169.0" = { created_at = 2025-05-08T09:53:05.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.169.0" }
+"3.170.0" = { created_at = 2025-05-15T11:53:48.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.170.0" }
+"3.171.0" = { created_at = 2025-05-21T14:58:04.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.171.0" }
+"3.172.0" = { created_at = 2025-05-29T11:54:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.172.0" }
+"3.173.0" = { created_at = 2025-05-29T22:28:41.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.173.0" }
+"3.174.0" = { created_at = 2025-06-04T20:54:43.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.174.0" }
+"3.175.0" = { created_at = 2025-06-05T21:19:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.175.0" }
+"3.176.0" = { created_at = 2025-06-12T08:53:42.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.176.0" }
+"3.177.0" = { created_at = 2025-06-13T08:20:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.177.0" }
+"3.178.0" = { created_at = 2025-06-20T06:34:03.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.178.0" }
+"3.181.0" = { created_at = 2025-06-27T08:38:10.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.181.0" }
+"3.182.0" = { created_at = 2025-07-14T10:50:35.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.182.0" }
+"3.183.0" = { created_at = 2025-07-16T18:17:20.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.183.0" }
+"3.184.0" = { created_at = 2025-07-18T11:02:45.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.184.0" }
+"3.185.0" = { created_at = 2025-07-21T12:10:36.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.185.0" }
+"3.186.0" = { created_at = 2025-07-25T08:33:56.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.186.0" }
+"3.187.0" = { created_at = 2025-07-31T13:19:57.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.187.0" }
+"3.188.0" = { created_at = 2025-08-07T09:07:23.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.188.0" }
+"3.189.0" = { created_at = 2025-08-12T16:51:35.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.189.0" }
+"3.190.0" = { created_at = 2025-08-15T15:00:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.190.0" }
+"3.191.0" = { created_at = 2025-08-21T07:22:02.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.191.0" }
+"3.192.0" = { created_at = 2025-08-29T11:15:00.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.192.0" }
+"3.193.0" = { created_at = 2025-09-04T11:42:32.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.193.0" }
+"3.194.0" = { created_at = 2025-09-08T16:30:14.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.194.0" }
+"3.195.0" = { created_at = 2025-09-10T13:08:08.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.195.0" }
+"3.196.0" = { created_at = 2025-09-12T21:25:58.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.196.0" }
+"3.197.0" = { created_at = 2025-09-17T16:15:40.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.197.0" }
+"3.198.0" = { created_at = 2025-09-26T17:44:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.198.0" }
+"3.199.0" = { created_at = 2025-10-01T23:11:44.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.199.0" }
+"3.200.0" = { created_at = 2025-10-03T13:57:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.200.0" }
+"3.201.0" = { created_at = 2025-10-06T12:32:11.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.201.0" }
+"3.202.0" = { created_at = 2025-10-10T10:32:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.202.0" }
+"3.203.0" = { created_at = 2025-10-15T20:51:31.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.203.0" }
+"3.204.0" = { created_at = 2025-10-23T03:09:11.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.204.0" }
+"3.205.0" = { created_at = 2025-10-28T09:05:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.205.0" }
+"3.206.0" = { created_at = 2025-11-05T16:19:07.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.206.0" }
+"3.207.0" = { created_at = 2025-11-12T13:30:19.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.207.0" }
+"3.208.0" = { created_at = 2025-11-20T14:37:01.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.208.0" }
+"3.209.0" = { created_at = 2025-11-26T14:02:19.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.209.0" }
+"3.210.0" = { created_at = 2025-12-03T14:18:18.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.210.0" }
+"3.211.0" = { created_at = 2025-12-11T21:36:37.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.211.0" }
+"3.212.0" = { created_at = 2025-12-12T18:51:16.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.212.0" }
+"3.213.0" = { created_at = 2025-12-17T16:07:33.000Z, release_url = "https://github.com/pulumi/pulumi/releases/tag/v3.213.0" }

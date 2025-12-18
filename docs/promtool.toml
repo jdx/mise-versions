@@ -1,215 +1,215 @@
 [versions]
-"0.11.0" = { created_at = 2015-02-23T19:21:00.000Z }
-"0.11.1" = { created_at = 2015-02-27T12:33:35.000Z }
-"0.12.0" = { created_at = 2015-03-04T12:58:57.000Z }
-"0.13.0" = { created_at = 2015-04-08T16:51:43.000Z }
-"0.13.1" = { created_at = 2015-04-09T14:41:06.000Z }
-"0.13.2" = { created_at = 2015-05-06T09:11:07.000Z }
-"0.13.3" = { created_at = 2015-05-11T16:05:31.000Z }
-"0.13.4" = { created_at = 2015-05-23T14:56:48.000Z }
-"0.14.0" = { created_at = 2015-06-01T18:31:45.000Z }
-"0.15.0" = { created_at = 2015-07-22T17:18:12.000Z }
-"0.15.1" = { created_at = 2015-07-27T15:53:33.000Z }
-"0.16.0" = { created_at = 2015-10-09T20:49:17.000Z }
-"0.16.1" = { created_at = 2015-10-16T10:40:31.000Z }
-"0.16.2" = { created_at = 2016-01-18T12:07:48.000Z }
-"0.17.0" = { created_at = 2016-03-02T16:47:11.000Z }
-"0.18.0" = { created_at = 2016-04-18T07:45:18.000Z }
-"0.19.0" = { created_at = 2016-05-24T21:04:58.000Z }
-"0.19.1" = { created_at = 2016-05-26T00:33:01.000Z }
-"0.19.2" = { created_at = 2016-05-29T17:41:00.000Z }
-"0.19.3" = { created_at = 2016-06-14T16:04:56.000Z }
-"0.20.0" = { created_at = 2016-06-15T15:52:52.000Z }
-"1.0.0" = { created_at = 2016-07-18T14:19:29.000Z }
-"1.0.1" = { created_at = 2016-07-22T19:51:12.000Z }
-"1.0.2" = { created_at = 2016-08-24T11:03:00.000Z }
-"1.1.0" = { created_at = 2016-09-03T19:01:04.000Z }
-"1.1.1" = { created_at = 2016-09-07T09:27:27.000Z }
-"1.1.2" = { created_at = 2016-09-08T13:04:07.000Z }
-"1.1.3" = { created_at = 2016-09-16T11:33:59.000Z }
-"1.2.0" = { created_at = 2016-10-07T12:50:26.000Z }
-"1.2.1" = { created_at = 2016-10-10T15:54:22.000Z }
-"1.2.2" = { created_at = 2016-10-30T22:49:56.000Z }
-"1.3.0" = { created_at = 2016-11-01T16:24:33.000Z }
-"1.2.3" = { created_at = 2016-11-03T21:41:18.000Z }
-"1.3.1" = { created_at = 2016-11-04T20:20:28.000Z }
-"1.4.0" = { created_at = 2016-11-25T12:35:04.000Z }
-"1.4.1" = { created_at = 2016-11-28T08:33:26.000Z }
-"1.5.0" = { created_at = 2017-01-23T13:09:57.000Z }
-"1.5.1" = { created_at = 2017-02-07T10:55:48.000Z }
-"1.5.2" = { created_at = 2017-02-10T14:34:48.000Z }
-"1.6.0" = { created_at = 2017-04-14T18:14:27.000Z }
-"1.6.1" = { created_at = 2017-04-19T13:23:34.000Z }
-"1.5.3" = { created_at = 2017-05-11T12:22:02.000Z }
-"1.6.2" = { created_at = 2017-05-11T12:56:43.000Z }
-"1.6.3" = { created_at = 2017-05-19T07:58:22.000Z }
-"1.7.0" = { created_at = 2017-06-07T09:41:34.000Z }
-"1.7.1" = { created_at = 2017-06-12T11:41:59.000Z }
-"1.7.2" = { created_at = 2017-09-26T15:42:52.000Z }
-"1.8.0" = { created_at = 2017-10-06T22:10:48.000Z }
-"1.8.1" = { created_at = 2017-10-23T14:13:29.000Z }
-"1.8.2" = { created_at = 2017-11-04T16:06:46.000Z }
-"2.0.0" = { created_at = 2017-11-08T07:09:51.000Z }
-"2.1.0" = { created_at = 2018-01-19T11:57:45.000Z }
-"2.2.0" = { created_at = 2018-03-08T16:37:57.000Z }
-"2.2.1" = { created_at = 2018-03-14T14:12:35.000Z }
-"2.3.0" = { created_at = 2018-06-05T11:35:48.000Z }
-"2.3.1" = { created_at = 2018-06-19T15:55:12.000Z }
-"2.3.2" = { created_at = 2018-07-12T14:00:53.000Z }
-"2.4.0" = { created_at = 2018-09-11T10:44:59.000Z }
-"2.4.1" = { created_at = 2018-09-19T13:42:25.000Z }
-"2.4.2" = { created_at = 2018-09-21T07:20:33.000Z }
-"2.4.3" = { created_at = 2018-10-04T08:40:31.000Z }
-"2.5.0" = { created_at = 2018-11-06T11:39:27.000Z }
-"2.6.0" = { created_at = 2018-12-17T15:12:45.000Z }
-"2.6.1" = { created_at = 2019-01-15T16:42:35.000Z }
-"2.7.0" = { created_at = 2019-01-28T10:08:18.000Z }
-"2.7.1" = { created_at = 2019-01-31T11:15:38.000Z }
-"2.7.2" = { created_at = 2019-03-02T14:31:38.000Z }
-"2.8.0" = { created_at = 2019-03-12T04:10:26.000Z }
-"2.8.1" = { created_at = 2019-03-28T18:02:44.000Z }
-"2.9.0" = { created_at = 2019-04-15T09:05:40.000Z }
-"2.9.1" = { created_at = 2019-04-16T13:53:20.000Z }
-"2.9.2" = { created_at = 2019-04-24T15:31:21.000Z }
-"2.10.0" = { created_at = 2019-05-25T12:26:52.000Z }
-"2.11.0" = { created_at = 2019-07-09T09:42:52.000Z }
-"2.11.1" = { created_at = 2019-07-10T13:50:03.000Z }
-"2.11.2" = { created_at = 2019-08-14T10:07:10.000Z }
-"2.12.0" = { created_at = 2019-08-18T12:32:41.000Z }
-"2.13.0" = { created_at = 2019-10-04T11:24:04.000Z }
-"2.13.1" = { created_at = 2019-10-17T13:13:39.000Z }
-"2.14.0" = { created_at = 2019-11-11T14:21:40.000Z }
-"2.15.0" = { created_at = 2019-12-23T12:00:16.000Z }
-"2.15.1" = { created_at = 2019-12-25T01:01:15.000Z }
-"2.15.2" = { created_at = 2020-01-06T14:48:00.000Z }
-"2.16.0" = { created_at = 2020-02-13T23:35:49.000Z }
-"2.17.0" = { created_at = 2020-03-24T17:00:04.000Z }
-"2.17.1" = { created_at = 2020-03-26T16:14:39.000Z }
-"2.17.2" = { created_at = 2020-04-20T08:23:04.000Z }
-"2.18.0" = { created_at = 2020-05-05T14:22:56.000Z }
-"2.18.1" = { created_at = 2020-05-07T16:48:44.000Z }
-"2.18.2" = { created_at = 2020-06-09T09:02:55.000Z }
-"2.19.0" = { created_at = 2020-06-09T10:26:32.000Z }
-"2.19.1" = { created_at = 2020-06-18T16:31:42.000Z }
-"2.19.2" = { created_at = 2020-06-26T08:58:29.000Z }
-"2.20.0" = { created_at = 2020-07-22T18:47:51.000Z }
-"2.19.3" = { created_at = 2020-07-24T12:17:20.000Z }
-"2.20.1" = { created_at = 2020-08-05T17:22:28.000Z }
-"2.21.0" = { created_at = 2020-09-11T11:08:28.000Z }
-"2.22.0" = { created_at = 2020-10-15T12:26:21.000Z }
-"2.22.1" = { created_at = 2020-11-05T13:58:36.000Z }
-"2.22.2" = { created_at = 2020-11-16T12:38:15.000Z }
-"2.23.0" = { created_at = 2020-11-26T10:52:38.000Z }
-"2.24.0" = { created_at = 2021-01-06T13:45:20.000Z }
-"2.24.1" = { created_at = 2021-01-20T00:05:58.000Z }
-"2.25.0" = { created_at = 2021-02-17T14:13:36.000Z }
-"2.25.1" = { created_at = 2021-03-14T12:24:11.000Z }
-"2.25.2" = { created_at = 2021-03-16T18:04:05.000Z }
-"2.26.0" = { created_at = 2021-03-31T11:47:47.000Z }
-"2.27.0" = { created_at = 2021-05-12T17:33:59.000Z }
-"2.26.1" = { created_at = 2021-05-18T12:51:32.000Z }
-"2.27.1" = { created_at = 2021-05-18T13:45:48.000Z }
-"2.28.0" = { created_at = 2021-06-21T15:23:49.000Z }
-"2.28.1" = { created_at = 2021-07-01T13:38:23.000Z }
-"2.29.0" = { created_at = 2021-08-11T05:34:09.000Z }
-"2.29.1" = { created_at = 2021-08-11T14:12:31.000Z }
-"2.29.2" = { created_at = 2021-08-27T08:25:04.000Z }
-"2.30.0" = { created_at = 2021-09-14T09:02:14.000Z }
-"2.30.1" = { created_at = 2021-09-28T08:56:46.000Z }
-"2.30.2" = { created_at = 2021-10-01T11:32:08.000Z }
-"2.30.3" = { created_at = 2021-10-05T15:02:16.000Z }
-"2.31.0" = { created_at = 2021-11-02T10:08:02.000Z }
-"2.31.1" = { created_at = 2021-11-05T20:13:38.000Z }
-"2.30.4" = { created_at = 2021-12-09T11:35:58.000Z }
-"2.31.2" = { created_at = 2021-12-09T11:43:35.000Z }
-"2.32.0" = { created_at = 2021-12-14T15:10:35.000Z }
-"2.32.1" = { created_at = 2021-12-17T19:16:02.000Z }
-"2.33.0" = { created_at = 2022-01-29T21:22:46.000Z }
-"2.33.1" = { created_at = 2022-02-02T15:03:12.000Z }
-"2.33.2" = { created_at = 2022-02-11T14:27:18.000Z }
-"2.33.3" = { created_at = 2022-02-11T20:26:21.000Z }
-"2.33.4" = { created_at = 2022-02-22T16:27:53.000Z }
-"2.33.5" = { created_at = 2022-03-08T16:35:22.000Z }
-"2.34.0" = { created_at = 2022-03-15T14:58:35.000Z }
-"2.35.0" = { created_at = 2022-04-21T09:40:20.000Z }
-"2.36.0" = { created_at = 2022-05-30T13:42:26.000Z }
-"2.36.1" = { created_at = 2022-06-09T14:42:56.000Z }
-"2.36.2" = { created_at = 2022-06-20T13:06:11.000Z }
-"2.37.0" = { created_at = 2022-07-14T14:25:14.000Z }
-"2.38.0" = { created_at = 2022-08-16T13:20:13.000Z }
-"2.37.1" = { created_at = 2022-09-12T12:38:55.000Z }
-"2.39.0" = { created_at = 2022-10-05T05:05:47.000Z }
-"2.39.1" = { created_at = 2022-10-07T15:53:44.000Z }
-"2.37.2" = { created_at = 2022-11-04T11:03:41.000Z }
-"2.40.0" = { created_at = 2022-11-07T18:07:40.000Z }
-"2.39.2" = { created_at = 2022-11-09T12:30:06.000Z }
-"2.40.1" = { created_at = 2022-11-09T14:17:39.000Z }
-"2.40.2" = { created_at = 2022-11-17T13:36:49.000Z }
-"2.37.3" = { created_at = 2022-11-23T10:50:27.000Z }
-"2.40.3" = { created_at = 2022-11-24T09:05:35.000Z }
-"2.37.4" = { created_at = 2022-11-29T10:51:55.000Z }
-"2.40.4" = { created_at = 2022-11-29T10:52:48.000Z }
-"2.40.5" = { created_at = 2022-12-01T12:46:48.000Z }
-"2.37.5" = { created_at = 2022-12-09T12:43:31.000Z }
-"2.40.6" = { created_at = 2022-12-09T12:44:30.000Z }
-"2.40.7" = { created_at = 2022-12-14T08:46:20.000Z }
-"2.41.0" = { created_at = 2022-12-20T10:36:36.000Z }
-"2.42.0" = { created_at = 2023-01-31T17:06:54.000Z }
-"2.37.6" = { created_at = 2023-02-20T09:31:36.000Z }
-"2.43.0" = { created_at = 2023-03-21T12:52:52.000Z }
-"2.43.0+stringlabels" = { created_at = 2023-03-21T12:09:28.000Z }
-"2.37.7" = { created_at = 2023-04-27T09:08:50.000Z }
-"2.43.1" = { created_at = 2023-05-04T20:52:49.000Z }
-"2.43.1+stringlabels" = { created_at = 2023-05-04T20:52:05.000Z }
-"2.37.8" = { created_at = 2023-05-05T05:59:34.000Z }
-"2.44.0" = { created_at = 2023-05-14T06:14:45.000Z }
-"2.45.0" = { created_at = 2023-06-23T15:06:43.000Z }
-"2.46.0" = { created_at = 2023-07-25T12:27:52.000Z }
-"2.37.9" = { created_at = 2023-07-28T15:47:59.000Z }
-"2.47.0" = { created_at = 2023-09-06T10:17:21.000Z }
-"2.45.1" = { created_at = 2023-09-29T21:08:23.000Z }
-"2.47.1" = { created_at = 2023-10-04T10:28:17.000Z }
-"2.47.2" = { created_at = 2023-10-12T16:04:08.000Z }
-"2.48.0" = { created_at = 2023-11-16T04:33:24.000Z }
-"2.48.1" = { created_at = 2023-12-08T23:29:56.000Z }
-"2.45.2" = { created_at = 2023-12-19T14:05:40.000Z }
-"2.49.0" = { created_at = 2024-01-15T10:49:11.000Z }
-"2.49.1" = { created_at = 2024-01-15T16:56:53.000Z }
-"2.45.3" = { created_at = 2024-01-24T14:27:28.000Z }
-"2.50.0" = { created_at = 2024-02-22T09:36:14.000Z }
-"2.50.1" = { created_at = 2024-02-26T11:34:11.000Z }
-"2.45.4" = { created_at = 2024-03-18T10:55:36.000Z }
-"2.51.0" = { created_at = 2024-03-19T10:52:43.000Z }
-"2.51.1" = { created_at = 2024-03-28T09:24:30.000Z }
-"2.51.2" = { created_at = 2024-04-10T14:03:36.000Z }
-"2.45.5" = { created_at = 2024-05-02T08:56:40.000Z }
-"2.52.0" = { created_at = 2024-05-08T21:54:51.000Z }
-"2.53.0" = { created_at = 2024-06-19T07:37:21.000Z }
-"2.45.6" = { created_at = 2024-06-21T13:46:17.000Z }
-"2.53.1" = { created_at = 2024-07-10T10:14:26.000Z }
-"2.53.2" = { created_at = 2024-08-09T14:53:06.000Z }
-"2.54.0" = { created_at = 2024-08-09T11:34:47.000Z }
-"2.54.1" = { created_at = 2024-08-27T10:54:37.000Z }
-"2.55.0" = { created_at = 2024-10-22T13:45:11.000Z }
-"2.53.3" = { created_at = 2024-11-05T12:16:19.000Z }
-"2.55.1" = { created_at = 2024-11-06T10:06:29.000Z }
-"3.0.0" = { created_at = 2024-11-14T16:30:20.000Z }
-"3.0.1" = { created_at = 2024-11-28T17:18:22.000Z }
-"3.1.0" = { created_at = 2025-01-02T13:50:23.000Z }
-"3.2.0" = { created_at = 2025-02-17T18:39:50.000Z }
-"3.2.1" = { created_at = 2025-02-26T09:15:44.000Z }
-"2.53.4" = { created_at = 2025-03-18T14:47:37.000Z }
-"3.3.0" = { created_at = 2025-04-15T13:29:42.000Z }
-"3.3.1" = { created_at = 2025-05-02T15:00:59.000Z }
-"3.4.0" = { created_at = 2025-05-17T06:48:57.000Z }
-"3.4.1" = { created_at = 2025-05-31T10:42:13.000Z }
-"3.4.2" = { created_at = 2025-06-26T20:49:26.000Z }
-"2.53.5" = { created_at = 2025-06-30T10:16:21.000Z }
-"3.5.0" = { created_at = 2025-07-14T15:34:17.000Z }
-"3.6.0" = { created_at = 2025-09-21T19:49:05.000Z }
-"3.7.0" = { created_at = 2025-10-15T10:15:50.000Z }
-"3.7.1" = { created_at = 2025-10-17T06:29:37.000Z }
-"3.7.2" = { created_at = 2025-10-22T12:38:44.000Z }
-"3.7.3" = { created_at = 2025-10-30T07:23:22.000Z }
-"3.8.0" = { created_at = 2025-12-02T09:06:03.000Z }
-"3.8.1" = { created_at = 2025-12-16T08:44:31.000Z }
+"0.11.0" = { created_at = 2015-02-23T19:21:00.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.11.0" }
+"0.11.1" = { created_at = 2015-02-27T12:33:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.11.1" }
+"0.12.0" = { created_at = 2015-03-04T12:58:57.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.12.0" }
+"0.13.0" = { created_at = 2015-04-08T16:51:43.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.13.0" }
+"0.13.1" = { created_at = 2015-04-09T14:41:06.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.13.1" }
+"0.13.2" = { created_at = 2015-05-06T09:11:07.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.13.2" }
+"0.13.3" = { created_at = 2015-05-11T16:05:31.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.13.3" }
+"0.13.4" = { created_at = 2015-05-23T14:56:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.13.4" }
+"0.14.0" = { created_at = 2015-06-01T18:31:45.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.14.0" }
+"0.15.0" = { created_at = 2015-07-22T17:18:12.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.15.0" }
+"0.15.1" = { created_at = 2015-07-27T15:53:33.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.15.1" }
+"0.16.0" = { created_at = 2015-10-09T20:49:17.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.16.0" }
+"0.16.1" = { created_at = 2015-10-16T10:40:31.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.16.1" }
+"0.16.2" = { created_at = 2016-01-18T12:07:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.16.2" }
+"0.17.0" = { created_at = 2016-03-02T16:47:11.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.17.0" }
+"0.18.0" = { created_at = 2016-04-18T07:45:18.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.18.0" }
+"0.19.0" = { created_at = 2016-05-24T21:04:58.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.19.0" }
+"0.19.1" = { created_at = 2016-05-26T00:33:01.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.19.1" }
+"0.19.2" = { created_at = 2016-05-29T17:41:00.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.19.2" }
+"0.19.3" = { created_at = 2016-06-14T16:04:56.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.19.3" }
+"0.20.0" = { created_at = 2016-06-15T15:52:52.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/0.20.0" }
+"1.0.0" = { created_at = 2016-07-18T14:19:29.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2016-07-22T19:51:12.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2016-08-24T11:03:00.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.0.2" }
+"1.1.0" = { created_at = 2016-09-03T19:01:04.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2016-09-07T09:27:27.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2016-09-08T13:04:07.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.1.2" }
+"1.1.3" = { created_at = 2016-09-16T11:33:59.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.1.3" }
+"1.2.0" = { created_at = 2016-10-07T12:50:26.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2016-10-10T15:54:22.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2016-10-30T22:49:56.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.2.2" }
+"1.3.0" = { created_at = 2016-11-01T16:24:33.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.3.0" }
+"1.2.3" = { created_at = 2016-11-03T21:41:18.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.2.3" }
+"1.3.1" = { created_at = 2016-11-04T20:20:28.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.3.1" }
+"1.4.0" = { created_at = 2016-11-25T12:35:04.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2016-11-28T08:33:26.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.4.1" }
+"1.5.0" = { created_at = 2017-01-23T13:09:57.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.5.0" }
+"1.5.1" = { created_at = 2017-02-07T10:55:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.5.1" }
+"1.5.2" = { created_at = 2017-02-10T14:34:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.5.2" }
+"1.6.0" = { created_at = 2017-04-14T18:14:27.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.6.0" }
+"1.6.1" = { created_at = 2017-04-19T13:23:34.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.6.1" }
+"1.5.3" = { created_at = 2017-05-11T12:22:02.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.5.3" }
+"1.6.2" = { created_at = 2017-05-11T12:56:43.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.6.2" }
+"1.6.3" = { created_at = 2017-05-19T07:58:22.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.6.3" }
+"1.7.0" = { created_at = 2017-06-07T09:41:34.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.7.0" }
+"1.7.1" = { created_at = 2017-06-12T11:41:59.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.7.1" }
+"1.7.2" = { created_at = 2017-09-26T15:42:52.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.7.2" }
+"1.8.0" = { created_at = 2017-10-06T22:10:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.8.0" }
+"1.8.1" = { created_at = 2017-10-23T14:13:29.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.8.1" }
+"1.8.2" = { created_at = 2017-11-04T16:06:46.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v1.8.2" }
+"2.0.0" = { created_at = 2017-11-08T07:09:51.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.0.0" }
+"2.1.0" = { created_at = 2018-01-19T11:57:45.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.1.0" }
+"2.2.0" = { created_at = 2018-03-08T16:37:57.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.2.0" }
+"2.2.1" = { created_at = 2018-03-14T14:12:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.2.1" }
+"2.3.0" = { created_at = 2018-06-05T11:35:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.3.0" }
+"2.3.1" = { created_at = 2018-06-19T15:55:12.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.3.1" }
+"2.3.2" = { created_at = 2018-07-12T14:00:53.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.3.2" }
+"2.4.0" = { created_at = 2018-09-11T10:44:59.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.4.0" }
+"2.4.1" = { created_at = 2018-09-19T13:42:25.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.4.1" }
+"2.4.2" = { created_at = 2018-09-21T07:20:33.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.4.2" }
+"2.4.3" = { created_at = 2018-10-04T08:40:31.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.4.3" }
+"2.5.0" = { created_at = 2018-11-06T11:39:27.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.5.0" }
+"2.6.0" = { created_at = 2018-12-17T15:12:45.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2019-01-15T16:42:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.6.1" }
+"2.7.0" = { created_at = 2019-01-28T10:08:18.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.7.0" }
+"2.7.1" = { created_at = 2019-01-31T11:15:38.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.7.1" }
+"2.7.2" = { created_at = 2019-03-02T14:31:38.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.7.2" }
+"2.8.0" = { created_at = 2019-03-12T04:10:26.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.8.0" }
+"2.8.1" = { created_at = 2019-03-28T18:02:44.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.8.1" }
+"2.9.0" = { created_at = 2019-04-15T09:05:40.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.9.0" }
+"2.9.1" = { created_at = 2019-04-16T13:53:20.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.9.1" }
+"2.9.2" = { created_at = 2019-04-24T15:31:21.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.9.2" }
+"2.10.0" = { created_at = 2019-05-25T12:26:52.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.10.0" }
+"2.11.0" = { created_at = 2019-07-09T09:42:52.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2019-07-10T13:50:03.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.11.1" }
+"2.11.2" = { created_at = 2019-08-14T10:07:10.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.11.2" }
+"2.12.0" = { created_at = 2019-08-18T12:32:41.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.12.0" }
+"2.13.0" = { created_at = 2019-10-04T11:24:04.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.13.0" }
+"2.13.1" = { created_at = 2019-10-17T13:13:39.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.13.1" }
+"2.14.0" = { created_at = 2019-11-11T14:21:40.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.14.0" }
+"2.15.0" = { created_at = 2019-12-23T12:00:16.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.15.0" }
+"2.15.1" = { created_at = 2019-12-25T01:01:15.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.15.1" }
+"2.15.2" = { created_at = 2020-01-06T14:48:00.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.15.2" }
+"2.16.0" = { created_at = 2020-02-13T23:35:49.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.16.0" }
+"2.17.0" = { created_at = 2020-03-24T17:00:04.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.17.0" }
+"2.17.1" = { created_at = 2020-03-26T16:14:39.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.17.1" }
+"2.17.2" = { created_at = 2020-04-20T08:23:04.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.17.2" }
+"2.18.0" = { created_at = 2020-05-05T14:22:56.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.18.0" }
+"2.18.1" = { created_at = 2020-05-07T16:48:44.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.18.1" }
+"2.18.2" = { created_at = 2020-06-09T09:02:55.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.18.2" }
+"2.19.0" = { created_at = 2020-06-09T10:26:32.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.19.0" }
+"2.19.1" = { created_at = 2020-06-18T16:31:42.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.19.1" }
+"2.19.2" = { created_at = 2020-06-26T08:58:29.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.19.2" }
+"2.20.0" = { created_at = 2020-07-22T18:47:51.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.20.0" }
+"2.19.3" = { created_at = 2020-07-24T12:17:20.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.19.3" }
+"2.20.1" = { created_at = 2020-08-05T17:22:28.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.20.1" }
+"2.21.0" = { created_at = 2020-09-11T11:08:28.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.21.0" }
+"2.22.0" = { created_at = 2020-10-15T12:26:21.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.22.0" }
+"2.22.1" = { created_at = 2020-11-05T13:58:36.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.22.1" }
+"2.22.2" = { created_at = 2020-11-16T12:38:15.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.22.2" }
+"2.23.0" = { created_at = 2020-11-26T10:52:38.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.23.0" }
+"2.24.0" = { created_at = 2021-01-06T13:45:20.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.24.0" }
+"2.24.1" = { created_at = 2021-01-20T00:05:58.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.24.1" }
+"2.25.0" = { created_at = 2021-02-17T14:13:36.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.25.0" }
+"2.25.1" = { created_at = 2021-03-14T12:24:11.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.25.1" }
+"2.25.2" = { created_at = 2021-03-16T18:04:05.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.25.2" }
+"2.26.0" = { created_at = 2021-03-31T11:47:47.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.26.0" }
+"2.27.0" = { created_at = 2021-05-12T17:33:59.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.27.0" }
+"2.26.1" = { created_at = 2021-05-18T12:51:32.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.26.1" }
+"2.27.1" = { created_at = 2021-05-18T13:45:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.27.1" }
+"2.28.0" = { created_at = 2021-06-21T15:23:49.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.28.0" }
+"2.28.1" = { created_at = 2021-07-01T13:38:23.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.28.1" }
+"2.29.0" = { created_at = 2021-08-11T05:34:09.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.29.0" }
+"2.29.1" = { created_at = 2021-08-11T14:12:31.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.29.1" }
+"2.29.2" = { created_at = 2021-08-27T08:25:04.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.29.2" }
+"2.30.0" = { created_at = 2021-09-14T09:02:14.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.30.0" }
+"2.30.1" = { created_at = 2021-09-28T08:56:46.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.30.1" }
+"2.30.2" = { created_at = 2021-10-01T11:32:08.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.30.2" }
+"2.30.3" = { created_at = 2021-10-05T15:02:16.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.30.3" }
+"2.31.0" = { created_at = 2021-11-02T10:08:02.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.31.0" }
+"2.31.1" = { created_at = 2021-11-05T20:13:38.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.31.1" }
+"2.30.4" = { created_at = 2021-12-09T11:35:58.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.30.4" }
+"2.31.2" = { created_at = 2021-12-09T11:43:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.31.2" }
+"2.32.0" = { created_at = 2021-12-14T15:10:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.32.0" }
+"2.32.1" = { created_at = 2021-12-17T19:16:02.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.32.1" }
+"2.33.0" = { created_at = 2022-01-29T21:22:46.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.33.0" }
+"2.33.1" = { created_at = 2022-02-02T15:03:12.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.33.1" }
+"2.33.2" = { created_at = 2022-02-11T14:27:18.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.33.2" }
+"2.33.3" = { created_at = 2022-02-11T20:26:21.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.33.3" }
+"2.33.4" = { created_at = 2022-02-22T16:27:53.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.33.4" }
+"2.33.5" = { created_at = 2022-03-08T16:35:22.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.33.5" }
+"2.34.0" = { created_at = 2022-03-15T14:58:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.34.0" }
+"2.35.0" = { created_at = 2022-04-21T09:40:20.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.35.0" }
+"2.36.0" = { created_at = 2022-05-30T13:42:26.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.36.0" }
+"2.36.1" = { created_at = 2022-06-09T14:42:56.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.36.1" }
+"2.36.2" = { created_at = 2022-06-20T13:06:11.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.36.2" }
+"2.37.0" = { created_at = 2022-07-14T14:25:14.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.0" }
+"2.38.0" = { created_at = 2022-08-16T13:20:13.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.38.0" }
+"2.37.1" = { created_at = 2022-09-12T12:38:55.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.1" }
+"2.39.0" = { created_at = 2022-10-05T05:05:47.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.39.0" }
+"2.39.1" = { created_at = 2022-10-07T15:53:44.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.39.1" }
+"2.37.2" = { created_at = 2022-11-04T11:03:41.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.2" }
+"2.40.0" = { created_at = 2022-11-07T18:07:40.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.0" }
+"2.39.2" = { created_at = 2022-11-09T12:30:06.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.39.2" }
+"2.40.1" = { created_at = 2022-11-09T14:17:39.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.1" }
+"2.40.2" = { created_at = 2022-11-17T13:36:49.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.2" }
+"2.37.3" = { created_at = 2022-11-23T10:50:27.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.3" }
+"2.40.3" = { created_at = 2022-11-24T09:05:35.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.3" }
+"2.37.4" = { created_at = 2022-11-29T10:51:55.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.4" }
+"2.40.4" = { created_at = 2022-11-29T10:52:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.4" }
+"2.40.5" = { created_at = 2022-12-01T12:46:48.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.5" }
+"2.37.5" = { created_at = 2022-12-09T12:43:31.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.5" }
+"2.40.6" = { created_at = 2022-12-09T12:44:30.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.6" }
+"2.40.7" = { created_at = 2022-12-14T08:46:20.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.40.7" }
+"2.41.0" = { created_at = 2022-12-20T10:36:36.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.41.0" }
+"2.42.0" = { created_at = 2023-01-31T17:06:54.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.42.0" }
+"2.37.6" = { created_at = 2023-02-20T09:31:36.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.6" }
+"2.43.0" = { created_at = 2023-03-21T12:52:52.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.43.0" }
+"2.43.0+stringlabels" = { created_at = 2023-03-21T12:09:28.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.43.0+stringlabels" }
+"2.37.7" = { created_at = 2023-04-27T09:08:50.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.7" }
+"2.43.1" = { created_at = 2023-05-04T20:52:49.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.43.1" }
+"2.43.1+stringlabels" = { created_at = 2023-05-04T20:52:05.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.43.1+stringlabels" }
+"2.37.8" = { created_at = 2023-05-05T05:59:34.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.8" }
+"2.44.0" = { created_at = 2023-05-14T06:14:45.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.44.0" }
+"2.45.0" = { created_at = 2023-06-23T15:06:43.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.0" }
+"2.46.0" = { created_at = 2023-07-25T12:27:52.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.46.0" }
+"2.37.9" = { created_at = 2023-07-28T15:47:59.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.37.9" }
+"2.47.0" = { created_at = 2023-09-06T10:17:21.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.47.0" }
+"2.45.1" = { created_at = 2023-09-29T21:08:23.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.1" }
+"2.47.1" = { created_at = 2023-10-04T10:28:17.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.47.1" }
+"2.47.2" = { created_at = 2023-10-12T16:04:08.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.47.2" }
+"2.48.0" = { created_at = 2023-11-16T04:33:24.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.48.0" }
+"2.48.1" = { created_at = 2023-12-08T23:29:56.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.48.1" }
+"2.45.2" = { created_at = 2023-12-19T14:05:40.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.2" }
+"2.49.0" = { created_at = 2024-01-15T10:49:11.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.49.0" }
+"2.49.1" = { created_at = 2024-01-15T16:56:53.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.49.1" }
+"2.45.3" = { created_at = 2024-01-24T14:27:28.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.3" }
+"2.50.0" = { created_at = 2024-02-22T09:36:14.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.50.0" }
+"2.50.1" = { created_at = 2024-02-26T11:34:11.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.50.1" }
+"2.45.4" = { created_at = 2024-03-18T10:55:36.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.4" }
+"2.51.0" = { created_at = 2024-03-19T10:52:43.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.51.0" }
+"2.51.1" = { created_at = 2024-03-28T09:24:30.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.51.1" }
+"2.51.2" = { created_at = 2024-04-10T14:03:36.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.51.2" }
+"2.45.5" = { created_at = 2024-05-02T08:56:40.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.5" }
+"2.52.0" = { created_at = 2024-05-08T21:54:51.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.52.0" }
+"2.53.0" = { created_at = 2024-06-19T07:37:21.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.53.0" }
+"2.45.6" = { created_at = 2024-06-21T13:46:17.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.45.6" }
+"2.53.1" = { created_at = 2024-07-10T10:14:26.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.53.1" }
+"2.53.2" = { created_at = 2024-08-09T14:53:06.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.53.2" }
+"2.54.0" = { created_at = 2024-08-09T11:34:47.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.54.0" }
+"2.54.1" = { created_at = 2024-08-27T10:54:37.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.54.1" }
+"2.55.0" = { created_at = 2024-10-22T13:45:11.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.55.0" }
+"2.53.3" = { created_at = 2024-11-05T12:16:19.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.53.3" }
+"2.55.1" = { created_at = 2024-11-06T10:06:29.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.55.1" }
+"3.0.0" = { created_at = 2024-11-14T16:30:20.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.0.0" }
+"3.0.1" = { created_at = 2024-11-28T17:18:22.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.0.1" }
+"3.1.0" = { created_at = 2025-01-02T13:50:23.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.1.0" }
+"3.2.0" = { created_at = 2025-02-17T18:39:50.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.2.0" }
+"3.2.1" = { created_at = 2025-02-26T09:15:44.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.2.1" }
+"2.53.4" = { created_at = 2025-03-18T14:47:37.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.53.4" }
+"3.3.0" = { created_at = 2025-04-15T13:29:42.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.3.0" }
+"3.3.1" = { created_at = 2025-05-02T15:00:59.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.3.1" }
+"3.4.0" = { created_at = 2025-05-17T06:48:57.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.4.0" }
+"3.4.1" = { created_at = 2025-05-31T10:42:13.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.4.1" }
+"3.4.2" = { created_at = 2025-06-26T20:49:26.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.4.2" }
+"2.53.5" = { created_at = 2025-06-30T10:16:21.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v2.53.5" }
+"3.5.0" = { created_at = 2025-07-14T15:34:17.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.5.0" }
+"3.6.0" = { created_at = 2025-09-21T19:49:05.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.6.0" }
+"3.7.0" = { created_at = 2025-10-15T10:15:50.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.7.0" }
+"3.7.1" = { created_at = 2025-10-17T06:29:37.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.7.1" }
+"3.7.2" = { created_at = 2025-10-22T12:38:44.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.7.2" }
+"3.7.3" = { created_at = 2025-10-30T07:23:22.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.7.3" }
+"3.8.0" = { created_at = 2025-12-02T09:06:03.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.8.0" }
+"3.8.1" = { created_at = 2025-12-16T08:44:31.000Z, release_url = "https://github.com/prometheus/prometheus/releases/tag/v3.8.1" }
