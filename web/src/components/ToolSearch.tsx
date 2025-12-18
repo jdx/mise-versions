@@ -85,7 +85,7 @@ function getBackendType(backend: string): string {
 function cleanBackend(backend: string): string {
   const bracketIndex = backend.indexOf("[");
   let result = bracketIndex > 0 ? backend.slice(0, bracketIndex) : backend;
-  if (result.length > 30) result = result.slice(0, 30) + "...";
+  if (result.length > 25) result = result.slice(0, 25) + "...";
   return result;
 }
 
