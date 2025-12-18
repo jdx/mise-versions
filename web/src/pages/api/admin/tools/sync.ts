@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
+import { runAnalyticsMigrations } from '../../../../../../src/analytics';
 
 interface ToolMetadata {
   name: string;
@@ -43,6 +44,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   const db = drizzle(runtime.env.ANALYTICS_DB);
+
+  // Run migrations to ensure schema is up to date
+  await runAnalyticsMigrations(db);
+
   const now = new Date().toISOString();
 
   let inserted = 0;
