@@ -1,5 +1,5 @@
 {
-  "tool_count": 957,
+  "tool_count": 956,
   "tools": [
     {
       "name": "1password",
@@ -288,22 +288,6 @@
       ],
       "homepage": "https://owasp.org/www-project-amass/",
       "description": "In-depth attack surface mapping and asset discovery"
-    },
-    {
-      "name": "amazon-ecr-credential-helper",
-      "latest_version": "0.11.0",
-      "latest_stable_version": "0.11.0",
-      "version_count": 15,
-      "last_updated": "2025-11-07T23:55:22.000Z",
-      "github": "awslabs/amazon-ecr-credential-helper",
-      "repo_url": "https://github.com/awslabs/amazon-ecr-credential-helper",
-      "backends": [
-        "aqua:awslabs/amazon-ecr-credential-helper",
-        "asdf:dex4er/asdf-amazon-ecr-credential-helper"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/awslabs/amazon-ecr-credential-helper/registry.yaml",
-      "license": "Apache-2.0",
-      "description": "Automatically gets credentials for Amazon ECR on docker push/docker pull"
     },
     {
       "name": "amazon-ecs-cli",
