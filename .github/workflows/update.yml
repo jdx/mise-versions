@@ -40,7 +40,9 @@ jobs:
       - name: Sync to R2
         run: ./scripts/sync-to-r2.sh
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       - uses: actions/configure-pages@v5
       - name: Upload static files as artifact
         id: deployment
