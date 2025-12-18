@@ -1288,6 +1288,64 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       };
     },
 
+    // Get sparklines for multiple tools at once (for index page hot tools)
+    async getBatchSparklines(toolNames: string[]): Promise<Record<string, number[]>> {
+      if (toolNames.length === 0) return {};
+
+      const now = Math.floor(Date.now() / 1000);
+      const sparklineStart = new Date((now - 14 * 86400) * 1000).toISOString().split("T")[0];
+
+      // Get tool IDs
+      const toolRecords = await db
+        .select({ id: tools.id, name: tools.name })
+        .from(tools)
+        .where(sql`${tools.name} IN (${sql.join(toolNames.map(n => sql`${n}`), sql`, `)})`)
+        .all();
+
+      if (toolRecords.length === 0) return {};
+
+      const toolIdMap = new Map(toolRecords.map(t => [t.id, t.name]));
+      const toolIds = toolRecords.map(t => t.id);
+
+      // Get sparkline data for all tools
+      const sparklineData = await db
+        .select({
+          tool_id: dailyToolStats.tool_id,
+          date: dailyToolStats.date,
+          downloads: dailyToolStats.downloads,
+        })
+        .from(dailyToolStats)
+        .where(and(
+          sql`${dailyToolStats.tool_id} IN (${sql.join(toolIds.map(id => sql`${id}`), sql`, `)})`,
+          sql`${dailyToolStats.date} >= ${sparklineStart}`
+        ))
+        .orderBy(dailyToolStats.date)
+        .all();
+
+      // Group by tool
+      const dataByTool = new Map<number, Map<string, number>>();
+      for (const d of sparklineData) {
+        if (!dataByTool.has(d.tool_id)) {
+          dataByTool.set(d.tool_id, new Map());
+        }
+        dataByTool.get(d.tool_id)!.set(d.date, d.downloads);
+      }
+
+      // Build sparklines for each tool (exclude current day)
+      const result: Record<string, number[]> = {};
+      for (const [toolId, toolName] of toolIdMap) {
+        const dateMap = dataByTool.get(toolId) || new Map();
+        const sparkline: number[] = [];
+        for (let i = 13; i >= 1; i--) {
+          const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
+          sparkline.push(dateMap.get(date) ?? 0);
+        }
+        result[toolName] = sparkline;
+      }
+
+      return result;
+    },
+
     // Backfill rollup tables for the last N days (one-time migration)
     async backfillRollupTables(days: number = 90, d1?: D1Database): Promise<{ daysProcessed: number }> {
       let daysProcessed = 0;

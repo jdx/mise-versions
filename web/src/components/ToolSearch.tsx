@@ -20,6 +20,36 @@ interface Tool {
 interface Props {
   tools: Tool[];
   downloads: Record<string, number>;
+  sparklines?: Record<string, number[]>;
+}
+
+// Mini sparkline SVG component
+function Sparkline({ data, color = "#B026FF" }: { data: number[]; color?: string }) {
+  if (!data || data.length === 0) return null;
+
+  const max = Math.max(...data, 1);
+  const width = 80;
+  const height = 24;
+  const padding = 2;
+
+  const points = data.map((value, i) => {
+    const x = padding + (i / (data.length - 1)) * (width - padding * 2);
+    const y = height - padding - (value / max) * (height - padding * 2);
+    return `${x},${y}`;
+  }).join(" ");
+
+  return (
+    <svg width={width} height={height} class="opacity-60 group-hover:opacity-100 transition-opacity">
+      <polyline
+        points={points}
+        fill="none"
+        stroke={color}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
 }
 
 // Format relative time
@@ -57,7 +87,7 @@ function getInitialState() {
   };
 }
 
-export function ToolSearch({ tools, downloads }: Props) {
+export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
   const initial = getInitialState();
   const [search, setSearch] = useState(initial.search);
   const [sortBy, setSortBy] = useState<SortKey>(initial.sortBy);
@@ -237,28 +267,43 @@ export function ToolSearch({ tools, downloads }: Props) {
     <div>
       {/* Hot Tools Section */}
       {hotTools.length > 0 && !search.trim() && selectedBackends.size === 0 && (
-        <div class="mb-6">
-          <h2 class="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
+        <div class="mb-8">
+          <h2 class="text-sm font-medium text-gray-400 mb-4 flex items-center gap-2">
             <span class="text-orange-400">🔥</span> Hot Tools
             <span class="text-xs text-gray-500">(30 day downloads)</span>
           </h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hotTools.map((tool, index) => (
               <a
                 key={tool.name}
                 href={`/tools/${tool.name}`}
-                class="bg-dark-800 border border-dark-600 rounded-lg p-3 hover:border-neon-purple/50 hover:bg-dark-700 transition-all group"
+                class="bg-dark-800 border border-dark-600 rounded-lg p-4 hover:border-neon-purple/50 hover:bg-dark-700 transition-all group"
               >
-                <div class="flex items-start justify-between mb-1">
-                  <span class="text-xs text-gray-500 font-mono">#{index + 1}</span>
-                  <span class="text-sm font-semibold text-white">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
-                </div>
-                <div class="text-sm font-medium text-gray-200 group-hover:text-neon-purple transition-colors truncate">
-                  {tool.name}
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs text-gray-500 font-mono bg-dark-700 px-1.5 py-0.5 rounded">#{index + 1}</span>
+                    <span class="text-base font-semibold text-gray-100 group-hover:text-neon-purple transition-colors">
+                      {tool.name}
+                    </span>
+                  </div>
+                  <span class="text-sm font-semibold text-neon-blue">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
                 </div>
                 {tool.description && (
-                  <div class="text-xs text-gray-500 truncate mt-1">{tool.description.slice(0, 40)}</div>
+                  <div class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-2 mb-3">
+                    {tool.description}
+                  </div>
                 )}
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    {tool.backends && tool.backends[0] && (
+                      <span class="px-2 py-0.5 rounded text-xs bg-dark-700 text-gray-500">
+                        {getBackendType(tool.backends[0])}
+                      </span>
+                    )}
+                    <span class="text-xs text-gray-500">{tool.version_count} versions</span>
+                  </div>
+                  {sparklines[tool.name] && <Sparkline data={sparklines[tool.name]} />}
+                </div>
               </a>
             ))}
           </div>
