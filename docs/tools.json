@@ -10629,10 +10629,10 @@
     },
     {
       "name": "promtool",
-      "latest_version": "3.8.0",
-      "latest_stable_version": "3.8.0",
-      "version_count": 213,
-      "last_updated": "2025-12-02T09:06:03.000Z",
+      "latest_version": "3.8.1",
+      "latest_stable_version": "3.8.1",
+      "version_count": 214,
+      "last_updated": "2025-12-16T08:44:31.000Z",
       "github": "prometheus/prometheus",
       "repo_url": "https://github.com/prometheus/prometheus",
       "backends": [
@@ -10729,7 +10729,7 @@
       "latest_version": "test.protobuf.27.1",
       "latest_stable_version": "test.protobuf.27.1",
       "version_count": 25,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:11:08.743Z",
       "backends": [
         "asdf:mise-plugins/mise-protoc-gen-grpc-web"
       ]
@@ -10789,7 +10789,7 @@
       "latest_version": "GE-Proton10-26",
       "latest_stable_version": "GE-Proton10-26",
       "version_count": 217,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:11:20.515Z",
       "backends": [
         "asdf:mise-plugins/mise-protonge"
       ]
@@ -10811,10 +10811,10 @@
     },
     {
       "name": "psqldef",
-      "latest_version": "3.8.9",
-      "latest_stable_version": "3.8.9",
-      "version_count": 368,
-      "last_updated": "2025-12-14T15:17:19.000Z",
+      "latest_version": "3.8.13",
+      "latest_stable_version": "3.8.13",
+      "version_count": 372,
+      "last_updated": "2025-12-17T05:55:48.000Z",
       "github": "sqldef/sqldef",
       "repo_url": "https://github.com/sqldef/sqldef",
       "backends": [
@@ -10826,10 +10826,10 @@
     },
     {
       "name": "pulumi",
-      "latest_version": "3.212.0",
-      "latest_stable_version": "3.212.0",
-      "version_count": 307,
-      "last_updated": "2025-12-12T18:51:16.000Z",
+      "latest_version": "3.213.0",
+      "latest_stable_version": "3.213.0",
+      "version_count": 308,
+      "last_updated": "2025-12-17T16:07:33.000Z",
       "github": "pulumi/pulumi",
       "repo_url": "https://github.com/pulumi/pulumi",
       "backends": [
@@ -10875,7 +10875,7 @@
       "latest_version": "<html>",
       "latest_stable_version": "<html>",
       "version_count": 8,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:02.420Z",
       "backends": [
         "asdf:mise-plugins/mise-purty"
       ]
@@ -10885,7 +10885,7 @@
       "latest_version": "3.15-dev",
       "latest_stable_version": "3.14.2",
       "version_count": 994,
-      "last_updated": "2025-12-05T16:49:16.000Z",
+      "last_updated": "2025-12-18T00:12:04.355Z",
       "backends": [
         "core:python"
       ],
@@ -10927,10 +10927,10 @@
     },
     {
       "name": "quarkus",
-      "latest_version": "3.30.3",
-      "latest_stable_version": "3.30.3",
+      "latest_version": "3.30.4",
+      "latest_stable_version": "3.30.4",
       "version_count": 24,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:17.703Z",
       "backends": [
         "asdf:mise-plugins/mise-quarkus"
       ]
@@ -10940,17 +10940,17 @@
       "latest_version": "4.5.2",
       "latest_stable_version": "4.5.2",
       "version_count": 96,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:19.718Z",
       "backends": [
         "asdf:mise-plugins/mise-r"
       ]
     },
     {
       "name": "rabbitmq",
-      "latest_version": "4.2.1",
-      "latest_stable_version": "4.2.1",
-      "version_count": 454,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "4.2.2",
+      "latest_stable_version": "4.2.2",
+      "version_count": 456,
+      "last_updated": "2025-12-18T00:12:21.353Z",
       "backends": [
         "asdf:mise-plugins/asdf-rabbitmq"
       ]
@@ -10960,17 +10960,17 @@
       "latest_version": "9.0",
       "latest_stable_version": "9.0",
       "version_count": 66,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:23.277Z",
       "backends": [
         "asdf:mise-plugins/mise-racket"
       ]
     },
     {
       "name": "railway",
-      "latest_version": "4.15.0",
-      "latest_stable_version": "4.15.0",
-      "version_count": 237,
-      "last_updated": "2025-12-12T23:34:37.000Z",
+      "latest_version": "4.15.1",
+      "latest_stable_version": "4.15.1",
+      "version_count": 238,
+      "last_updated": "2025-12-17T17:46:08.000Z",
       "github": "railwayapp/cli",
       "repo_url": "https://github.com/railwayapp/cli",
       "backends": [
@@ -10989,7 +10989,7 @@
       "latest_version": "2025.11",
       "latest_stable_version": "2025.11",
       "version_count": 57,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:32.349Z",
       "backends": [
         "asdf:mise-plugins/mise-raku"
       ]
@@ -11066,7 +11066,7 @@
       "latest_version": "8.4.0",
       "latest_stable_version": "8.4.0",
       "version_count": 244,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:53.991Z",
       "backends": [
         "asdf:mise-plugins/mise-redis"
       ]
@@ -11076,7 +11076,7 @@
       "latest_version": "beta-9",
       "latest_stable_version": "beta-9",
       "version_count": 311,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:12:55.489Z",
       "backends": [
         "asdf:mise-plugins/mise-redis-cli"
       ]
@@ -11100,10 +11100,10 @@
     },
     {
       "name": "redpanda-connect",
-      "latest_version": "4.73.0",
-      "latest_stable_version": "4.73.0",
-      "version_count": 404,
-      "last_updated": "2025-12-12T01:15:23.000Z",
+      "latest_version": "4.75.1",
+      "latest_stable_version": "4.75.1",
+      "version_count": 407,
+      "last_updated": "2025-12-16T12:19:24.000Z",
       "github": "redpanda-data/connect",
       "repo_url": "https://github.com/redpanda-data/connect",
       "backends": [
@@ -11352,10 +11352,10 @@
     },
     {
       "name": "rke",
-      "latest_version": "1.8.8",
-      "latest_stable_version": "1.8.8",
-      "version_count": 217,
-      "last_updated": "2025-10-01T17:24:46.000Z",
+      "latest_version": "1.8.9",
+      "latest_stable_version": "1.8.9",
+      "version_count": 218,
+      "last_updated": "2025-11-26T14:54:46.000Z",
       "github": "rancher/rke",
       "repo_url": "https://github.com/rancher/rke",
       "backends": [
@@ -11371,7 +11371,7 @@
       "latest_version": "0.48",
       "latest_stable_version": "0.48",
       "version_count": 8,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:14:00.991Z",
       "backends": [
         "asdf:mise-plugins/mise-rlwrap"
       ]
