@@ -1,5 +1,6 @@
 ---
 import { AuthButton } from '../components/AuthButton';
+import { AdminButton } from '../components/AdminButton';
 import { MAUCounter } from '../components/MAUCounter';
 
 interface Props {
@@ -73,6 +74,7 @@ const canonicalUrl = new URL(Astro.url.pathname, "https://mise-tools.jdx.dev").h
           >
             Stats
           </a>
+          <AdminButton client:load />
           <AuthButton client:load />
         </nav>
       </div>

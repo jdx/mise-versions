@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getAuthCookie } from '../lib/auth';
+import { isAdmin } from '../lib/admin';
+
+// Server-side admin check
+const runtime = Astro.locals.runtime;
+const auth = await getAuthCookie(Astro.request, runtime.env.API_SECRET);
+
+if (!auth || !isAdmin(auth.username)) {
+  return Astro.redirect('/');
+}
+---
+
+<Layout title="Admin" description="Admin dashboard">
+  <div class="space-y-8">
+    <div>
+      <h1 class="text-2xl font-bold text-gray-100">Admin Dashboard</h1>
+      <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
+    </div>
+
+    <!-- Token Stats Overview -->
+    <div id="admin-stats" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
+        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
+        <div class="h-8 bg-dark-700 rounded w-16"></div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
+        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
+        <div class="h-8 bg-dark-700 rounded w-16"></div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
+        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
+        <div class="h-8 bg-dark-700 rounded w-16"></div>
+      </div>
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
+        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
+        <div class="h-8 bg-dark-700 rounded w-16"></div>
+      </div>
+    </div>
+
+    <!-- Expiring Tokens Alert -->
+    <div id="expiring-alert" class="hidden bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+      <h3 class="text-orange-400 font-medium mb-2">Tokens Expiring Soon (24h)</h3>
+      <div id="expiring-list" class="space-y-1"></div>
+    </div>
+
+    <!-- Token Details Table -->
+    <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
+      <div class="px-4 py-3 border-b border-dark-600">
+        <h2 class="text-lg font-semibold text-gray-200">Token Pool</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-dark-700">
+            <tr>
+              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">User</th>
+              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Usage</th>
+              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Last Used</th>
+              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Status</th>
+              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Expires</th>
+            </tr>
+          </thead>
+          <tbody id="token-table-body" class="divide-y divide-dark-600">
+            <tr>
+              <td colspan="5" class="px-4 py-8 text-center text-gray-500">
+                Loading...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  async function loadAdminData() {
+    try {
+      const response = await fetch('/api/admin/tokens');
+      if (!response.ok) {
+        throw new Error('Failed to load admin data');
+      }
+      const data = await response.json();
+
+      // Count rate-limited tokens
+      const rateLimitedCount = data.tokens.filter((t: { rate_limited_at: string | null }) => {
+        if (!t.rate_limited_at) return false;
+        return new Date(t.rate_limited_at) > new Date();
+      }).length;
+
+      // Update stats cards
+      const statsContainer = document.getElementById('admin-stats');
+      if (statsContainer) {
+        statsContainer.innerHTML = `
+          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+            <div class="text-sm text-gray-400 mb-1">Active Tokens</div>
+            <div class="text-3xl font-bold text-green-400">${data.stats.active}</div>
+          </div>
+          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+            <div class="text-sm text-gray-400 mb-1">Total Tokens</div>
+            <div class="text-3xl font-bold text-gray-100">${data.stats.total}</div>
+          </div>
+          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+            <div class="text-sm text-gray-400 mb-1">Rate Limited</div>
+            <div class="text-3xl font-bold text-orange-400">${rateLimitedCount}</div>
+          </div>
+          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
+            <div class="text-sm text-gray-400 mb-1">Expiring Soon</div>
+            <div class="text-3xl font-bold ${data.expiringSoon.length > 0 ? 'text-orange-400' : 'text-gray-100'}">${data.expiringSoon.length}</div>
+          </div>
+        `;
+      }
+
+      // Show expiring tokens alert if any
+      const alertContainer = document.getElementById('expiring-alert');
+      const expiringList = document.getElementById('expiring-list');
+      if (alertContainer && expiringList && data.expiringSoon.length > 0) {
+        alertContainer.classList.remove('hidden');
+        expiringList.innerHTML = data.expiringSoon.map((t: { user_name: string | null; expires_at: string }) => `
+          <div class="text-sm text-orange-300">${t.user_name || 'Unknown'} - expires ${new Date(t.expires_at).toLocaleString()}</div>
+        `).join('');
+      }
+
+      // Populate token table
+      const tableBody = document.getElementById('token-table-body');
+      if (tableBody) {
+        if (data.tokens.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="5" class="px-4 py-8 text-center text-gray-500">No tokens in pool</td>
+            </tr>
+          `;
+        } else {
+          tableBody.innerHTML = data.tokens.map((t: {
+            user_name: string | null;
+            user_id: string | null;
+            usage_count: number;
+            last_used: string | null;
+            is_active: number;
+            rate_limited_at: string | null;
+            expires_at: string | null;
+          }) => {
+            const isRateLimited = t.rate_limited_at && new Date(t.rate_limited_at) > new Date();
+            const statusClass = isRateLimited ? 'text-orange-400' : (t.is_active ? 'text-green-400' : 'text-red-400');
+            const statusText = isRateLimited ? 'Rate Limited' : (t.is_active ? 'Active' : 'Inactive');
+
+            return `
+              <tr class="hover:bg-dark-700/50">
+                <td class="px-4 py-3">
+                  <div class="text-gray-200">${t.user_name || 'Unknown'}</div>
+                  <div class="text-xs text-gray-500">${t.user_id || ''}</div>
+                </td>
+                <td class="px-4 py-3 text-gray-300">${t.usage_count.toLocaleString()}</td>
+                <td class="px-4 py-3 text-gray-400 text-sm">${t.last_used ? new Date(t.last_used).toLocaleString() : 'Never'}</td>
+                <td class="px-4 py-3">
+                  <span class="${statusClass} text-sm">${statusText}</span>
+                </td>
+                <td class="px-4 py-3 text-gray-400 text-sm">${t.expires_at ? new Date(t.expires_at).toLocaleDateString() : 'Never'}</td>
+              </tr>
+            `;
+          }).join('');
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load admin data:', error);
+      const tableBody = document.getElementById('token-table-body');
+      if (tableBody) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="5" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
+          </tr>
+        `;
+      }
+    }
+  }
+
+  loadAdminData();
+</script>
