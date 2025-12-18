@@ -1,62 +1,62 @@
 [versions]
-"1.0" = { created_at = 2016-12-23T02:02:53.000Z }
-"17.04.0" = { created_at = 2017-04-07T15:30:38.000Z }
-"17.04.1" = { created_at = 2017-05-02T15:38:26.000Z }
-"17.07.0" = { created_at = 2017-07-11T21:37:23.000Z }
-"17.07.1" = { created_at = 2017-07-26T21:46:09.000Z }
-"17.10.0" = { created_at = 2017-10-18T18:15:05.000Z }
-"17.10.1" = { created_at = 2017-11-09T22:01:42.000Z }
-"18.01.0" = { created_at = 2018-01-24T22:56:15.000Z }
-"18.04.0" = { created_at = 2018-04-19T19:03:29.000Z }
-"18.07.0" = { created_at = 2018-07-26T12:42:00.000Z }
-"18.04.1" = { created_at = 2018-09-26T19:51:46.000Z }
-"18.07.1" = { created_at = 2018-09-26T19:57:39.000Z }
-"18.10.0" = { created_at = 2018-10-11T11:11:52.000Z }
-"19.01.0" = { created_at = 2019-01-30T18:27:24.000Z }
-"19.04.0" = { created_at = 2019-04-29T14:21:33.000Z }
-"19.04.1" = { created_at = 2019-05-04T03:35:16.000Z }
-"19.07.0" = { created_at = 2019-07-31T14:00:55.000Z }
-"19.07.1" = { created_at = 2019-09-12T19:02:38.000Z }
-"19.10.0" = { created_at = 2019-10-29T17:53:43.000Z }
-"20.01.0" = { created_at = 2020-01-30T20:56:36.000Z }
-"19.07.2" = { created_at = 2020-02-21T16:32:36.000Z }
-"19.10.1" = { created_at = 2020-02-21T23:13:51.000Z }
-"20.01.1" = { created_at = 2020-02-27T20:12:06.000Z }
-"20.04.0" = { created_at = 2020-04-27T20:29:59.000Z }
-"20.07.0" = { created_at = 2020-07-31T05:55:00.000Z }
-"20.07.1" = { created_at = 2020-09-22T16:35:01.000Z }
-"20.10.0" = { created_at = 2020-10-30T16:24:38.000Z }
-"20.10.1" = { created_at = 2021-01-07T23:09:22.000Z }
-"21.01.0" = { created_at = 2021-01-29T16:12:18.000Z }
-"21.01.1" = { created_at = 2021-02-11T03:51:28.000Z }
-"21.01.2" = { created_at = 2021-04-08T14:16:45.000Z }
-"21.04.0" = { created_at = 2021-04-30T23:48:06.000Z }
-"21.04.1" = { created_at = 2021-06-21T16:28:46.000Z }
-"21.07.0" = { created_at = 2021-07-30T14:35:38.000Z }
-"21.07.1" = { created_at = 2021-08-12T15:42:04.000Z }
-"21.07.2" = { created_at = 2021-09-29T18:08:43.000Z }
-"21.10.0" = { created_at = 2021-10-27T12:35:43.000Z }
-"21.10.1" = { created_at = 2021-12-15T16:52:39.000Z }
-"22.01.0" = { created_at = 2022-01-28T20:54:19.000Z }
-"22.01.1" = { created_at = 2022-03-17T18:47:52.000Z }
-"22.04.0" = { created_at = 2022-04-29T12:03:10.000Z }
-"22.07.0" = { created_at = 2022-07-28T18:23:55.000Z }
-"22.10.0" = { created_at = 2022-10-31T16:07:16.000Z }
-"23.01.0" = { created_at = 2023-01-30T17:02:43.000Z }
-"23.01.1" = { created_at = 2023-03-21T12:49:45.000Z }
-"23.04.0" = { created_at = 2023-04-27T18:37:24.000Z }
-"23.07.0" = { created_at = 2023-08-04T22:08:45.000Z }
-"23.07.1" = { created_at = 2023-09-01T01:19:22.000Z }
-"23.10.0" = { created_at = 2023-11-02T19:01:19.000Z }
-"24.02.0" = { created_at = 2024-03-04T23:18:32.000Z }
-"24.06.0" = { created_at = 2024-06-28T08:11:12.000Z }
-"24.06.1" = { created_at = 2024-07-27T03:17:46.000Z }
-"24.10.0" = { created_at = 2024-10-30T20:07:56.000Z }
-"24.10.1" = { created_at = 2025-02-24T14:55:23.000Z }
-"25.02.0" = { created_at = 2025-02-28T15:42:17.000Z }
-"25.02.1" = { created_at = 2025-03-12T14:27:51.000Z }
-"25.06.0" = { created_at = 2025-06-27T13:37:36.000Z }
-"25.06.1" = { created_at = 2025-08-06T15:41:27.000Z }
-"25.06.2" = { created_at = 2025-08-15T16:19:53.000Z }
-"25.10.0" = { created_at = 2025-10-31T15:35:16.000Z }
-"25.06.3" = { created_at = 2025-11-11T23:46:03.000Z }
+"1.0" = { created_at = 2016-12-23T02:02:53.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v1.0" }
+"17.04.0" = { created_at = 2017-04-07T15:30:38.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v17.04.0" }
+"17.04.1" = { created_at = 2017-05-02T15:38:26.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v17.04.1" }
+"17.07.0" = { created_at = 2017-07-11T21:37:23.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v17.07.0" }
+"17.07.1" = { created_at = 2017-07-26T21:46:09.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v17.07.1" }
+"17.10.0" = { created_at = 2017-10-18T18:15:05.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v17.10.0" }
+"17.10.1" = { created_at = 2017-11-09T22:01:42.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v17.10.1" }
+"18.01.0" = { created_at = 2018-01-24T22:56:15.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v18.01.0" }
+"18.04.0" = { created_at = 2018-04-19T19:03:29.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v18.04.0" }
+"18.07.0" = { created_at = 2018-07-26T12:42:00.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v18.07.0" }
+"18.04.1" = { created_at = 2018-09-26T19:51:46.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v18.04.1" }
+"18.07.1" = { created_at = 2018-09-26T19:57:39.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v18.07.1" }
+"18.10.0" = { created_at = 2018-10-11T11:11:52.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v18.10.0" }
+"19.01.0" = { created_at = 2019-01-30T18:27:24.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.01.0" }
+"19.04.0" = { created_at = 2019-04-29T14:21:33.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.04.0" }
+"19.04.1" = { created_at = 2019-05-04T03:35:16.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.04.1" }
+"19.07.0" = { created_at = 2019-07-31T14:00:55.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.07.0" }
+"19.07.1" = { created_at = 2019-09-12T19:02:38.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.07.1" }
+"19.10.0" = { created_at = 2019-10-29T17:53:43.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.10.0" }
+"20.01.0" = { created_at = 2020-01-30T20:56:36.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.01.0" }
+"19.07.2" = { created_at = 2020-02-21T16:32:36.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.07.2" }
+"19.10.1" = { created_at = 2020-02-21T23:13:51.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v19.10.1" }
+"20.01.1" = { created_at = 2020-02-27T20:12:06.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.01.1" }
+"20.04.0" = { created_at = 2020-04-27T20:29:59.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.04.0" }
+"20.07.0" = { created_at = 2020-07-31T05:55:00.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.07.0" }
+"20.07.1" = { created_at = 2020-09-22T16:35:01.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.07.1" }
+"20.10.0" = { created_at = 2020-10-30T16:24:38.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.10.0" }
+"20.10.1" = { created_at = 2021-01-07T23:09:22.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v20.10.1" }
+"21.01.0" = { created_at = 2021-01-29T16:12:18.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.01.0" }
+"21.01.1" = { created_at = 2021-02-11T03:51:28.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.01.1" }
+"21.01.2" = { created_at = 2021-04-08T14:16:45.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.01.2" }
+"21.04.0" = { created_at = 2021-04-30T23:48:06.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.04.0" }
+"21.04.1" = { created_at = 2021-06-21T16:28:46.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.04.1" }
+"21.07.0" = { created_at = 2021-07-30T14:35:38.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.07.0" }
+"21.07.1" = { created_at = 2021-08-12T15:42:04.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.07.1" }
+"21.07.2" = { created_at = 2021-09-29T18:08:43.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.07.2" }
+"21.10.0" = { created_at = 2021-10-27T12:35:43.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.10.0" }
+"21.10.1" = { created_at = 2021-12-15T16:52:39.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v21.10.1" }
+"22.01.0" = { created_at = 2022-01-28T20:54:19.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v22.01.0" }
+"22.01.1" = { created_at = 2022-03-17T18:47:52.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v22.01.1" }
+"22.04.0" = { created_at = 2022-04-29T12:03:10.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v22.04.0" }
+"22.07.0" = { created_at = 2022-07-28T18:23:55.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v22.07.0" }
+"22.10.0" = { created_at = 2022-10-31T16:07:16.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v22.10.0" }
+"23.01.0" = { created_at = 2023-01-30T17:02:43.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v23.01.0" }
+"23.01.1" = { created_at = 2023-03-21T12:49:45.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v23.01.1" }
+"23.04.0" = { created_at = 2023-04-27T18:37:24.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v23.04.0" }
+"23.07.0" = { created_at = 2023-08-04T22:08:45.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v23.07.0" }
+"23.07.1" = { created_at = 2023-09-01T01:19:22.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v23.07.1" }
+"23.10.0" = { created_at = 2023-11-02T19:01:19.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v23.10.0" }
+"24.02.0" = { created_at = 2024-03-04T23:18:32.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v24.02.0" }
+"24.06.0" = { created_at = 2024-06-28T08:11:12.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v24.06.0" }
+"24.06.1" = { created_at = 2024-07-27T03:17:46.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v24.06.1" }
+"24.10.0" = { created_at = 2024-10-30T20:07:56.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v24.10.0" }
+"24.10.1" = { created_at = 2025-02-24T14:55:23.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v24.10.1" }
+"25.02.0" = { created_at = 2025-02-28T15:42:17.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.02.0" }
+"25.02.1" = { created_at = 2025-03-12T14:27:51.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.02.1" }
+"25.06.0" = { created_at = 2025-06-27T13:37:36.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.06.0" }
+"25.06.1" = { created_at = 2025-08-06T15:41:27.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.06.1" }
+"25.06.2" = { created_at = 2025-08-15T16:19:53.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.06.2" }
+"25.10.0" = { created_at = 2025-10-31T15:35:16.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.10.0" }
+"25.06.3" = { created_at = 2025-11-11T23:46:03.000Z, release_url = "https://github.com/NetApp/trident/releases/tag/v25.06.3" }
