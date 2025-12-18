@@ -288,11 +288,9 @@ export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
                   </div>
                   <span class="text-sm font-semibold text-neon-blue">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
                 </div>
-                {tool.description && (
-                  <div class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-2 mb-3">
-                    {tool.description}
-                  </div>
-                )}
+                <div class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-2 mb-3 min-h-[2.5rem]">
+                  {tool.description || ""}
+                </div>
                 <div class="flex items-center justify-between">
                   <div class="flex items-center gap-2">
                     {tool.backends && tool.backends[0] && (

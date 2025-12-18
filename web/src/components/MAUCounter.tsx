@@ -25,7 +25,7 @@ export function MAUCounter() {
   }
 
   return (
-    <span class="text-sm text-gray-400 hover:text-gray-300 transition-colors">
+    <span class="text-sm text-gray-500 hover:text-gray-400 transition-colors">
       mise loved by {formatCompact(mau)} devs this month
     </span>
   );
