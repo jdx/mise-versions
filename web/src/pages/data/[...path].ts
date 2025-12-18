@@ -25,7 +25,8 @@ export const GET: APIRoute = async ({ params, locals }) => {
     const runtime = locals.runtime;
     const bucket = runtime.env.DATA_BUCKET;
 
-    const data = await getFromR2(bucket, dataPath);
+    // All data is stored under tools/ prefix in R2
+    const data = await getFromR2(bucket, `tools/${dataPath}`);
 
     if (!data) {
       return new Response(`File not found: ${dataPath}`, {

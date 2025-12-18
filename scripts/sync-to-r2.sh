@@ -9,6 +9,6 @@ BUCKET="mise-versions-data"
 
 echo "Syncing docs/ to R2 bucket: $BUCKET"
 
-s5cmd --endpoint-url "$R2_ENDPOINT" sync docs/ "s3://$BUCKET/"
+s5cmd --endpoint-url "$R2_ENDPOINT" sync docs/ "s3://$BUCKET/tools/"
 
 echo "Sync complete"

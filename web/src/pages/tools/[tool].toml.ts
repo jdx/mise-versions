@@ -23,8 +23,8 @@ export const GET: APIRoute = async ({ params, locals }) => {
     const runtime = locals.runtime;
     const bucket = runtime.env.DATA_BUCKET;
 
-    // Fetch TOML from R2
-    const data = await getFromR2(bucket, `${tool}.toml`);
+    // Fetch TOML from R2 (stored under tools/ prefix)
+    const data = await getFromR2(bucket, `tools/${tool}.toml`);
 
     if (!data) {
       return new Response(`Tool "${tool}" not found`, {

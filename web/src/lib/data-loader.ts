@@ -32,23 +32,25 @@ export interface VersionUpdatesData {
   days: number;
 }
 
+const R2_PREFIX = 'tools/';
+
 /**
  * Load tools.json manifest from R2
  */
 export async function loadToolsJson(bucket: R2Bucket): Promise<ToolsData | null> {
-  return getJsonFromR2<ToolsData>(bucket, 'tools.json');
+  return getJsonFromR2<ToolsData>(bucket, `${R2_PREFIX}tools.json`);
 }
 
 /**
  * Load tools_updated.json from R2 (version update statistics)
  */
 export async function loadToolsUpdatedJson(bucket: R2Bucket): Promise<VersionUpdatesData | null> {
-  return getJsonFromR2<VersionUpdatesData>(bucket, 'tools_updated.json');
+  return getJsonFromR2<VersionUpdatesData>(bucket, `${R2_PREFIX}tools_updated.json`);
 }
 
 /**
  * Load a tool's TOML version file from R2
  */
 export async function loadToolToml(bucket: R2Bucket, tool: string): Promise<string | null> {
-  return getTextFromR2(bucket, `${tool}.toml`);
+  return getTextFromR2(bucket, `${R2_PREFIX}${tool}.toml`);
 }
