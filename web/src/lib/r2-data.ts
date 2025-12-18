@@ -20,7 +20,7 @@ export async function getFromR2(
   // Determine content type from key or object metadata
   let contentType = object.httpMetadata?.contentType || 'application/octet-stream';
   if (!object.httpMetadata?.contentType) {
-    if (key.endsWith('.toml')) contentType = 'application/toml';
+    if (key.endsWith('.toml')) contentType = 'text/plain; charset=utf-8';
     else if (key.endsWith('.json')) contentType = 'application/json';
     else if (key.endsWith('.png')) contentType = 'image/png';
   }
