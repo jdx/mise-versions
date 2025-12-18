@@ -1,149 +1,149 @@
 [versions]
-"6.0.0" = { created_at = 2014-01-31T23:59:46.000Z }
-"6.0.1" = { created_at = 2014-02-24T23:10:17.000Z }
-"6.0.2" = { created_at = 2014-04-10T18:24:33.000Z }
-"6.1.0" = { created_at = 2014-04-10T16:51:35.000Z }
-"6.1.1" = { created_at = 2014-04-23T20:58:23.000Z }
-"6.1.2" = { created_at = 2014-05-07T23:36:21.000Z }
-"6.2.0" = { created_at = 2014-06-19T21:51:51.000Z }
-"6.3.0" = { created_at = 2014-07-14T18:19:21.000Z }
-"6.3.1" = { created_at = 2014-07-22T17:40:45.000Z }
-"6.3.2" = { created_at = 2014-07-24T00:23:29.000Z }
-"6.4.0" = { created_at = 2014-08-13T22:09:40.000Z }
-"6.5.0" = { created_at = 2014-08-25T17:19:40.000Z }
-"6.5.1" = { created_at = 2014-08-27T20:37:28.000Z }
-"6.6.0" = { created_at = 2014-09-05T20:40:46.000Z }
-"6.6.1" = { created_at = 2014-09-23T23:04:24.000Z }
-"6.6.2" = { created_at = 2014-10-17T18:07:52.000Z }
-"6.7.0" = { created_at = 2014-11-12T01:45:10.000Z }
-"6.8.0" = { created_at = 2014-12-10T19:20:33.000Z }
-"6.9.0" = { created_at = 2015-01-20T17:56:57.000Z }
-"6.10.0" = { created_at = 2015-02-11T22:24:41.000Z }
-"6.11.0" = { created_at = 2015-04-14T00:38:22.000Z }
-"6.11.1" = { created_at = 2015-04-20T21:12:22.000Z }
-"6.11.2" = { created_at = 2015-04-27T21:08:21.000Z }
-"6.11.3" = { created_at = 2015-05-20T18:57:55.000Z }
-"6.12.0" = { created_at = 2015-06-30T00:02:14.000Z }
-"6.12.1" = { created_at = 2015-07-06T22:45:09.000Z }
-"6.12.2" = { created_at = 2015-07-15T21:18:50.000Z }
-"6.12.3" = { created_at = 2015-08-31T20:27:30.000Z }
-"6.12.4" = { created_at = 2015-09-18T17:53:18.000Z }
-"6.13.0" = { created_at = 2015-10-15T22:50:39.000Z }
-"6.14.0" = { created_at = 2015-11-18T23:07:58.000Z }
-"6.14.1" = { created_at = 2015-12-22T23:13:52.000Z }
-"6.15.0" = { created_at = 2016-01-13T00:06:54.000Z }
-"6.16.0" = { created_at = 2016-02-24T18:43:07.000Z }
-"6.16.1" = { created_at = 2016-02-26T16:08:52.000Z }
-"6.17.0" = { created_at = 2016-04-15T17:44:41.000Z }
-"6.17.1" = { created_at = 2016-05-02T22:36:32.000Z }
-"6.18.0" = { created_at = 2016-05-10T22:02:33.000Z }
-"6.18.1" = { created_at = 2016-05-24T15:39:15.000Z }
-"6.19.0" = { created_at = 2016-06-08T23:02:06.000Z }
-"6.20.0" = { created_at = 2016-06-29T23:27:54.000Z }
-"6.21.0" = { created_at = 2016-07-27T16:20:18.000Z }
-"6.21.1" = { created_at = 2016-08-10T23:13:34.000Z }
-"6.22.0" = { created_at = 2016-09-23T02:59:46.000Z }
-"6.22.1" = { created_at = 2016-09-24T00:50:35.000Z }
-"6.22.2" = { created_at = 2016-10-26T23:58:17.000Z }
-"6.23.0" = { created_at = 2016-12-22T01:05:12.000Z }
-"6.23.1" = { created_at = 2017-01-13T00:02:20.000Z }
-"6.24.0" = { created_at = 2017-02-10T17:40:15.000Z }
-"6.25.0" = { created_at = 2017-02-28T00:08:13.000Z }
-"6.26.0" = { created_at = 2017-04-06T23:07:22.000Z }
-"6.27.0" = { created_at = 2017-06-08T21:15:16.000Z }
-"6.28.0" = { created_at = 2017-06-27T23:04:43.000Z }
-"6.29.0" = { created_at = 2017-07-24T23:31:51.000Z }
-"6.29.1" = { created_at = 2017-08-17T00:39:09.000Z }
-"6.29.2" = { created_at = 2017-08-25T19:04:13.000Z }
-"6.30.0" = { created_at = 2017-09-01T06:01:07.000Z }
-"6.31.0" = { created_at = 2017-09-15T19:08:36.000Z }
-"6.32.0" = { created_at = 2017-09-26T21:33:38.000Z }
-"6.33.0" = { created_at = 2017-11-20T22:57:27.000Z }
-"6.33.1" = { created_at = 2017-12-15T00:02:22.000Z }
-"6.34.0" = { created_at = 2018-01-10T00:34:06.000Z }
-"6.34.1" = { created_at = 2018-01-17T18:18:29.000Z }
-"6.35.0" = { created_at = 2018-03-08T22:40:39.000Z }
-"6.35.1" = { created_at = 2018-03-14T18:32:22.000Z }
-"6.35.2" = { created_at = 2018-03-15T21:50:00.000Z }
-"6.36.0" = { created_at = 2018-04-02T20:52:36.000Z }
-"6.36.1" = { created_at = 2018-04-04T21:23:31.000Z }
-"6.36.2" = { created_at = 2018-05-16T23:09:42.000Z }
-"6.37.0" = { created_at = 2018-05-25T22:49:39.000Z }
-"6.38.0" = { created_at = 2018-08-07T17:50:04.000Z }
-"6.39.0" = { created_at = 2018-09-11T21:28:25.000Z }
-"6.39.1" = { created_at = 2018-09-18T21:38:49.000Z }
-"6.40.0" = { created_at = 2018-10-08T17:31:45.000Z }
-"6.40.1" = { created_at = 2018-10-31T17:46:23.000Z }
-"6.41.0" = { created_at = 2018-11-28T23:08:16.000Z }
-"6.42.0" = { created_at = 2019-01-11T23:51:09.000Z }
-"6.43.0" = { created_at = 2019-02-20T18:08:57.000Z }
-"6.44.0" = { created_at = 2019-05-01T00:25:58.000Z }
-"6.44.1" = { created_at = 2019-05-08T20:51:10.000Z }
-"6.45.0" = { created_at = 2019-06-03T17:11:41.000Z }
-"6.46.0" = { created_at = 2019-07-09T17:08:07.000Z }
-"6.46.1" = { created_at = 2019-08-23T17:19:01.000Z }
-"6.47.1" = { created_at = 2019-10-18T16:04:47.000Z }
-"6.47.2" = { created_at = 2019-11-05T01:28:09.000Z }
-"6.48.0" = { created_at = 2019-12-04T22:55:36.000Z }
-"6.49.0" = { created_at = 2020-01-07T00:44:51.000Z }
-"6.50.0" = { created_at = 2020-03-03T19:56:55.000Z }
-"6.51.0" = { created_at = 2020-04-07T18:36:54.000Z }
-"7.0.0" = { created_at = 2020-06-17T00:30:08.000Z }
-"7.0.1" = { created_at = 2020-06-24T17:39:29.000Z }
-"7.0.2" = { created_at = 2020-07-21T16:23:27.000Z }
-"6.52.0" = { created_at = 2020-08-26T18:53:46.000Z }
-"7.1.0" = { created_at = 2020-09-09T17:47:12.000Z }
-"6.53.0" = { created_at = 2020-10-01T04:39:48.000Z }
-"7.2.0" = { created_at = 2020-12-10T20:19:43.000Z }
-"7.3.0" = { created_at = 2021-08-16T20:05:47.000Z }
-"8.0.0" = { created_at = 2021-09-16T20:48:34.000Z }
-"7.4.0" = { created_at = 2021-11-15T19:56:18.000Z }
-"8.1.0" = { created_at = 2022-01-03T18:30:50.000Z }
-"8.2.0" = { created_at = 2022-02-09T23:34:51.000Z }
-"8.3.0" = { created_at = 2022-03-11T01:07:08.000Z }
-"8.4.0" = { created_at = 2022-06-02T20:51:45.000Z }
-"7.5.0" = { created_at = 2022-06-04T00:48:33.000Z }
-"8.5.0" = { created_at = 2022-09-12T21:14:28.000Z }
-"8.6.0" = { created_at = 2023-02-16T21:54:31.000Z }
-"7.6.0" = { created_at = 2023-02-27T21:27:09.000Z }
-"8.6.1" = { created_at = 2023-02-27T18:46:59.000Z }
-"7.7.1" = { created_at = 2023-06-15T18:33:30.000Z }
-"8.7.1" = { created_at = 2023-06-15T18:41:17.000Z }
-"7.7.2" = { created_at = 2023-08-30T23:52:29.000Z }
-"8.7.2" = { created_at = 2023-08-30T21:46:54.000Z }
-"7.7.3" = { created_at = 2023-09-12T20:30:57.000Z }
-"8.7.3" = { created_at = 2023-09-12T19:32:35.000Z }
-"7.7.4" = { created_at = 2023-10-20T16:47:10.000Z }
-"8.7.4" = { created_at = 2023-10-20T16:51:14.000Z }
-"7.7.5" = { created_at = 2023-11-20T21:06:47.000Z }
-"8.7.5" = { created_at = 2023-11-20T21:01:30.000Z }
-"7.7.6" = { created_at = 2023-12-14T20:01:13.000Z }
-"8.7.6" = { created_at = 2023-12-14T19:57:42.000Z }
-"7.7.7" = { created_at = 2023-12-26T21:29:53.000Z }
-"8.7.7" = { created_at = 2023-12-26T21:18:45.000Z }
-"7.7.8" = { created_at = 2024-02-08T20:58:24.000Z }
-"8.7.8" = { created_at = 2024-02-08T23:48:52.000Z }
-"7.7.9" = { created_at = 2024-03-06T21:27:59.000Z }
-"8.7.9" = { created_at = 2024-03-06T21:12:56.000Z }
-"7.7.10" = { created_at = 2024-04-04T01:24:08.000Z }
-"8.7.10" = { created_at = 2024-04-04T01:10:24.000Z }
-"7.7.11" = { created_at = 2024-07-09T14:47:29.000Z }
-"8.7.11" = { created_at = 2024-07-09T18:47:35.000Z }
-"7.7.12" = { created_at = 2024-08-21T14:43:43.000Z }
-"8.8.0" = { created_at = 2024-08-21T14:56:07.000Z }
-"7.7.13" = { created_at = 2024-09-12T13:53:48.000Z }
-"8.8.1" = { created_at = 2024-09-12T02:38:36.000Z }
-"7.7.14" = { created_at = 2024-09-20T14:23:22.000Z }
-"8.8.2" = { created_at = 2024-09-20T15:00:17.000Z }
-"7.7.15" = { created_at = 2024-10-29T14:34:40.000Z }
-"8.8.3" = { created_at = 2024-10-29T14:52:28.000Z }
-"7.8.0" = { created_at = 2024-12-02T21:32:53.000Z }
-"8.9.0" = { created_at = 2024-12-02T21:11:05.000Z }
-"8.10.0" = { created_at = 2025-02-25T17:14:41.000Z }
-"8.11.0" = { created_at = 2025-03-11T19:41:53.000Z }
-"8.12.0" = { created_at = 2025-03-28T14:50:34.000Z }
-"8.13.0" = { created_at = 2025-04-11T17:16:16.000Z }
-"8.14.0" = { created_at = 2025-05-12T22:33:18.000Z }
-"8.14.1" = { created_at = 2025-06-10T15:12:55.000Z }
-"8.16.0" = { created_at = 2025-09-18T14:31:02.000Z }
-"8.17.0" = { created_at = 2025-11-19T14:43:00.000Z }
+"6.0.0" = { created_at = 2014-01-31T23:59:46.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.0.0" }
+"6.0.1" = { created_at = 2014-02-24T23:10:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.0.1" }
+"6.0.2" = { created_at = 2014-04-10T18:24:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.0.2" }
+"6.1.0" = { created_at = 2014-04-10T16:51:35.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.1.0" }
+"6.1.1" = { created_at = 2014-04-23T20:58:23.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.1.1" }
+"6.1.2" = { created_at = 2014-05-07T23:36:21.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.1.2" }
+"6.2.0" = { created_at = 2014-06-19T21:51:51.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.2.0" }
+"6.3.0" = { created_at = 2014-07-14T18:19:21.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.3.0" }
+"6.3.1" = { created_at = 2014-07-22T17:40:45.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.3.1" }
+"6.3.2" = { created_at = 2014-07-24T00:23:29.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.3.2" }
+"6.4.0" = { created_at = 2014-08-13T22:09:40.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.4.0" }
+"6.5.0" = { created_at = 2014-08-25T17:19:40.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.5.0" }
+"6.5.1" = { created_at = 2014-08-27T20:37:28.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.5.1" }
+"6.6.0" = { created_at = 2014-09-05T20:40:46.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.6.0" }
+"6.6.1" = { created_at = 2014-09-23T23:04:24.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.6.1" }
+"6.6.2" = { created_at = 2014-10-17T18:07:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.6.2" }
+"6.7.0" = { created_at = 2014-11-12T01:45:10.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.7.0" }
+"6.8.0" = { created_at = 2014-12-10T19:20:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.8.0" }
+"6.9.0" = { created_at = 2015-01-20T17:56:57.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.9.0" }
+"6.10.0" = { created_at = 2015-02-11T22:24:41.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.10.0" }
+"6.11.0" = { created_at = 2015-04-14T00:38:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.11.0" }
+"6.11.1" = { created_at = 2015-04-20T21:12:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.11.1" }
+"6.11.2" = { created_at = 2015-04-27T21:08:21.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.11.2" }
+"6.11.3" = { created_at = 2015-05-20T18:57:55.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.11.3" }
+"6.12.0" = { created_at = 2015-06-30T00:02:14.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.12.0" }
+"6.12.1" = { created_at = 2015-07-06T22:45:09.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.12.1" }
+"6.12.2" = { created_at = 2015-07-15T21:18:50.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.12.2" }
+"6.12.3" = { created_at = 2015-08-31T20:27:30.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.12.3" }
+"6.12.4" = { created_at = 2015-09-18T17:53:18.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.12.4" }
+"6.13.0" = { created_at = 2015-10-15T22:50:39.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.13.0" }
+"6.14.0" = { created_at = 2015-11-18T23:07:58.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.14.0" }
+"6.14.1" = { created_at = 2015-12-22T23:13:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.14.1" }
+"6.15.0" = { created_at = 2016-01-13T00:06:54.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.15.0" }
+"6.16.0" = { created_at = 2016-02-24T18:43:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.16.0" }
+"6.16.1" = { created_at = 2016-02-26T16:08:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.16.1" }
+"6.17.0" = { created_at = 2016-04-15T17:44:41.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.17.0" }
+"6.17.1" = { created_at = 2016-05-02T22:36:32.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.17.1" }
+"6.18.0" = { created_at = 2016-05-10T22:02:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.18.0" }
+"6.18.1" = { created_at = 2016-05-24T15:39:15.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.18.1" }
+"6.19.0" = { created_at = 2016-06-08T23:02:06.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.19.0" }
+"6.20.0" = { created_at = 2016-06-29T23:27:54.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.20.0" }
+"6.21.0" = { created_at = 2016-07-27T16:20:18.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.21.0" }
+"6.21.1" = { created_at = 2016-08-10T23:13:34.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.21.1" }
+"6.22.0" = { created_at = 2016-09-23T02:59:46.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.22.0" }
+"6.22.1" = { created_at = 2016-09-24T00:50:35.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.22.1" }
+"6.22.2" = { created_at = 2016-10-26T23:58:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.22.2" }
+"6.23.0" = { created_at = 2016-12-22T01:05:12.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.23.0" }
+"6.23.1" = { created_at = 2017-01-13T00:02:20.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.23.1" }
+"6.24.0" = { created_at = 2017-02-10T17:40:15.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.24.0" }
+"6.25.0" = { created_at = 2017-02-28T00:08:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.25.0" }
+"6.26.0" = { created_at = 2017-04-06T23:07:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.26.0" }
+"6.27.0" = { created_at = 2017-06-08T21:15:16.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.27.0" }
+"6.28.0" = { created_at = 2017-06-27T23:04:43.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.28.0" }
+"6.29.0" = { created_at = 2017-07-24T23:31:51.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.29.0" }
+"6.29.1" = { created_at = 2017-08-17T00:39:09.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.29.1" }
+"6.29.2" = { created_at = 2017-08-25T19:04:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.29.2" }
+"6.30.0" = { created_at = 2017-09-01T06:01:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.30.0" }
+"6.31.0" = { created_at = 2017-09-15T19:08:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.31.0" }
+"6.32.0" = { created_at = 2017-09-26T21:33:38.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.32.0" }
+"6.33.0" = { created_at = 2017-11-20T22:57:27.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.33.0" }
+"6.33.1" = { created_at = 2017-12-15T00:02:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.33.1" }
+"6.34.0" = { created_at = 2018-01-10T00:34:06.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.34.0" }
+"6.34.1" = { created_at = 2018-01-17T18:18:29.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.34.1" }
+"6.35.0" = { created_at = 2018-03-08T22:40:39.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.35.0" }
+"6.35.1" = { created_at = 2018-03-14T18:32:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.35.1" }
+"6.35.2" = { created_at = 2018-03-15T21:50:00.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.35.2" }
+"6.36.0" = { created_at = 2018-04-02T20:52:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.36.0" }
+"6.36.1" = { created_at = 2018-04-04T21:23:31.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.36.1" }
+"6.36.2" = { created_at = 2018-05-16T23:09:42.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.36.2" }
+"6.37.0" = { created_at = 2018-05-25T22:49:39.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.37.0" }
+"6.38.0" = { created_at = 2018-08-07T17:50:04.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.38.0" }
+"6.39.0" = { created_at = 2018-09-11T21:28:25.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.39.0" }
+"6.39.1" = { created_at = 2018-09-18T21:38:49.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.39.1" }
+"6.40.0" = { created_at = 2018-10-08T17:31:45.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.40.0" }
+"6.40.1" = { created_at = 2018-10-31T17:46:23.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.40.1" }
+"6.41.0" = { created_at = 2018-11-28T23:08:16.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.41.0" }
+"6.42.0" = { created_at = 2019-01-11T23:51:09.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.42.0" }
+"6.43.0" = { created_at = 2019-02-20T18:08:57.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.43.0" }
+"6.44.0" = { created_at = 2019-05-01T00:25:58.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.44.0" }
+"6.44.1" = { created_at = 2019-05-08T20:51:10.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.44.1" }
+"6.45.0" = { created_at = 2019-06-03T17:11:41.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.45.0" }
+"6.46.0" = { created_at = 2019-07-09T17:08:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.46.0" }
+"6.46.1" = { created_at = 2019-08-23T17:19:01.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.46.1" }
+"6.47.1" = { created_at = 2019-10-18T16:04:47.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.47.1" }
+"6.47.2" = { created_at = 2019-11-05T01:28:09.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.47.2" }
+"6.48.0" = { created_at = 2019-12-04T22:55:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.48.0" }
+"6.49.0" = { created_at = 2020-01-07T00:44:51.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.49.0" }
+"6.50.0" = { created_at = 2020-03-03T19:56:55.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.50.0" }
+"6.51.0" = { created_at = 2020-04-07T18:36:54.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.51.0" }
+"7.0.0" = { created_at = 2020-06-17T00:30:08.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0" }
+"7.0.1" = { created_at = 2020-06-24T17:39:29.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.1" }
+"7.0.2" = { created_at = 2020-07-21T16:23:27.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.2" }
+"6.52.0" = { created_at = 2020-08-26T18:53:46.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.52.0" }
+"7.1.0" = { created_at = 2020-09-09T17:47:12.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.1.0" }
+"6.53.0" = { created_at = 2020-10-01T04:39:48.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.53.0" }
+"7.2.0" = { created_at = 2020-12-10T20:19:43.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.2.0" }
+"7.3.0" = { created_at = 2021-08-16T20:05:47.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.3.0" }
+"8.0.0" = { created_at = 2021-09-16T20:48:34.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.0.0" }
+"7.4.0" = { created_at = 2021-11-15T19:56:18.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.4.0" }
+"8.1.0" = { created_at = 2022-01-03T18:30:50.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.1.0" }
+"8.2.0" = { created_at = 2022-02-09T23:34:51.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.2.0" }
+"8.3.0" = { created_at = 2022-03-11T01:07:08.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.3.0" }
+"8.4.0" = { created_at = 2022-06-02T20:51:45.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.4.0" }
+"7.5.0" = { created_at = 2022-06-04T00:48:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.5.0" }
+"8.5.0" = { created_at = 2022-09-12T21:14:28.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.5.0" }
+"8.6.0" = { created_at = 2023-02-16T21:54:31.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.6.0" }
+"7.6.0" = { created_at = 2023-02-27T21:27:09.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.6.0" }
+"8.6.1" = { created_at = 2023-02-27T18:46:59.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.6.1" }
+"7.7.1" = { created_at = 2023-06-15T18:33:30.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.1" }
+"8.7.1" = { created_at = 2023-06-15T18:41:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.1" }
+"7.7.2" = { created_at = 2023-08-30T23:52:29.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.2" }
+"8.7.2" = { created_at = 2023-08-30T21:46:54.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.2" }
+"7.7.3" = { created_at = 2023-09-12T20:30:57.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.3" }
+"8.7.3" = { created_at = 2023-09-12T19:32:35.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.3" }
+"7.7.4" = { created_at = 2023-10-20T16:47:10.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.4" }
+"8.7.4" = { created_at = 2023-10-20T16:51:14.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.4" }
+"7.7.5" = { created_at = 2023-11-20T21:06:47.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.5" }
+"8.7.5" = { created_at = 2023-11-20T21:01:30.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.5" }
+"7.7.6" = { created_at = 2023-12-14T20:01:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.6" }
+"8.7.6" = { created_at = 2023-12-14T19:57:42.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.6" }
+"7.7.7" = { created_at = 2023-12-26T21:29:53.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.7" }
+"8.7.7" = { created_at = 2023-12-26T21:18:45.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.7" }
+"7.7.8" = { created_at = 2024-02-08T20:58:24.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.8" }
+"8.7.8" = { created_at = 2024-02-08T23:48:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.8" }
+"7.7.9" = { created_at = 2024-03-06T21:27:59.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.9" }
+"8.7.9" = { created_at = 2024-03-06T21:12:56.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.9" }
+"7.7.10" = { created_at = 2024-04-04T01:24:08.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.10" }
+"8.7.10" = { created_at = 2024-04-04T01:10:24.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.10" }
+"7.7.11" = { created_at = 2024-07-09T14:47:29.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.11" }
+"8.7.11" = { created_at = 2024-07-09T18:47:35.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.11" }
+"7.7.12" = { created_at = 2024-08-21T14:43:43.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.12" }
+"8.8.0" = { created_at = 2024-08-21T14:56:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.0" }
+"7.7.13" = { created_at = 2024-09-12T13:53:48.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.13" }
+"8.8.1" = { created_at = 2024-09-12T02:38:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.1" }
+"7.7.14" = { created_at = 2024-09-20T14:23:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.14" }
+"8.8.2" = { created_at = 2024-09-20T15:00:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.2" }
+"7.7.15" = { created_at = 2024-10-29T14:34:40.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.15" }
+"8.8.3" = { created_at = 2024-10-29T14:52:28.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.3" }
+"7.8.0" = { created_at = 2024-12-02T21:32:53.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.8.0" }
+"8.9.0" = { created_at = 2024-12-02T21:11:05.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.9.0" }
+"8.10.0" = { created_at = 2025-02-25T17:14:41.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.10.0" }
+"8.11.0" = { created_at = 2025-03-11T19:41:53.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.11.0" }
+"8.12.0" = { created_at = 2025-03-28T14:50:34.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.12.0" }
+"8.13.0" = { created_at = 2025-04-11T17:16:16.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.13.0" }
+"8.14.0" = { created_at = 2025-05-12T22:33:18.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.14.0" }
+"8.14.1" = { created_at = 2025-06-10T15:12:55.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.14.1" }
+"8.16.0" = { created_at = 2025-09-18T14:31:02.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.16.0" }
+"8.17.0" = { created_at = 2025-11-19T14:43:00.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.17.0" }

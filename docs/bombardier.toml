@@ -1,21 +1,21 @@
 [versions]
-"0.3" = { created_at = 2016-07-21T12:23:42.000Z }
-"0.4" = { created_at = 2016-08-09T10:00:37.000Z }
-"0.5" = { created_at = 2016-10-26T07:59:27.000Z }
-"1.0" = { created_at = 2017-02-20T17:56:48.000Z }
-"1.0.1" = { created_at = 2017-02-28T08:06:13.000Z }
-"1.0.2" = { created_at = 2017-03-04T13:12:32.000Z }
-"1.0.3" = { created_at = 2017-05-04T11:10:31.000Z }
-"1.1" = { created_at = 2017-11-28T12:14:00.000Z }
-"1.1.1" = { created_at = 2017-12-28T07:22:05.000Z }
-"1.1.2" = { created_at = 2018-04-19T11:53:07.000Z }
-"1.2" = { created_at = 2018-06-29T16:46:04.000Z }
-"1.2.1" = { created_at = 2018-12-18T14:43:13.000Z }
-"1.2.2" = { created_at = 2018-12-28T12:31:38.000Z }
-"1.2.3" = { created_at = 2019-01-19T14:24:20.000Z }
-"1.2.4" = { created_at = 2019-02-27T07:51:54.000Z }
-"1.2.5" = { created_at = 2020-10-15T14:26:14.000Z }
-"1.2.6" = { created_at = 2023-04-29T19:49:13.000Z }
-"2.0" = { created_at = 2025-02-23T16:39:03.000Z }
-"2.0.1" = { created_at = 2025-02-23T17:36:39.000Z }
-"2.0.2" = { created_at = 2025-03-04T17:40:20.000Z }
+"0.3" = { created_at = 2016-07-21T12:23:42.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v0.3" }
+"0.4" = { created_at = 2016-08-09T10:00:37.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v0.4" }
+"0.5" = { created_at = 2016-10-26T07:59:27.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v0.5" }
+"1.0" = { created_at = 2017-02-20T17:56:48.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.0" }
+"1.0.1" = { created_at = 2017-02-28T08:06:13.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2017-03-04T13:12:32.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.0.2" }
+"1.0.3" = { created_at = 2017-05-04T11:10:31.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.0.3" }
+"1.1" = { created_at = 2017-11-28T12:14:00.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.1" }
+"1.1.1" = { created_at = 2017-12-28T07:22:05.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2018-04-19T11:53:07.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.1.2" }
+"1.2" = { created_at = 2018-06-29T16:46:04.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2" }
+"1.2.1" = { created_at = 2018-12-18T14:43:13.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2018-12-28T12:31:38.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2019-01-19T14:24:20.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2.3" }
+"1.2.4" = { created_at = 2019-02-27T07:51:54.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2.4" }
+"1.2.5" = { created_at = 2020-10-15T14:26:14.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2.5" }
+"1.2.6" = { created_at = 2023-04-29T19:49:13.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v1.2.6" }
+"2.0" = { created_at = 2025-02-23T16:39:03.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v2.0" }
+"2.0.1" = { created_at = 2025-02-23T17:36:39.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2025-03-04T17:40:20.000Z, release_url = "https://github.com/codesenberg/bombardier/releases/tag/v2.0.2" }

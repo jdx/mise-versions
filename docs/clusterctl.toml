@@ -1,157 +1,157 @@
 [versions]
-"0.2.8" = { created_at = 2019-12-11T20:04:11.000Z }
-"0.2.9" = { created_at = 2020-01-10T19:36:16.000Z }
-"0.2.10" = { created_at = 2020-02-19T19:06:19.000Z }
-"0.3.0" = { created_at = 2020-03-10T19:21:18.000Z }
-"0.3.1" = { created_at = 2020-03-16T22:34:52.000Z }
-"0.3.2" = { created_at = 2020-03-19T19:28:25.000Z }
-"0.3.3" = { created_at = 2020-03-27T22:24:20.000Z }
-"0.3.4" = { created_at = 2020-04-28T22:45:53.000Z }
-"0.3.5" = { created_at = 2020-04-30T15:13:40.000Z }
-"0.2.11" = { created_at = 2020-05-14T15:41:31.000Z }
-"0.3.6" = { created_at = 2020-05-15T15:40:12.000Z }
-"0.3.7" = { created_at = 2020-07-14T14:34:20.000Z }
-"0.3.8" = { created_at = 2020-07-31T20:46:22.000Z }
-"0.3.9" = { created_at = 2020-09-01T02:44:37.000Z }
-"0.3.10" = { created_at = 2020-10-01T14:26:24.000Z }
-"0.3.11" = { created_at = 2020-11-19T18:48:13.000Z }
-"0.3.12" = { created_at = 2020-12-15T16:39:55.000Z }
-"0.3.13" = { created_at = 2021-01-22T18:04:05.000Z }
-"0.3.14" = { created_at = 2021-02-06T03:07:42.000Z }
-"0.3.15" = { created_at = 2021-03-30T16:12:03.000Z }
-"0.3.16" = { created_at = 2021-04-16T01:00:49.000Z }
-"0.3.17" = { created_at = 2021-05-27T18:45:14.000Z }
-"0.3.18" = { created_at = 2021-06-08T21:16:55.000Z }
-"0.3.19" = { created_at = 2021-06-09T17:34:39.000Z }
-"0.4.0" = { created_at = 2021-06-24T16:10:42.000Z }
-"0.3.20" = { created_at = 2021-06-30T22:10:34.000Z }
-"0.3.21" = { created_at = 2021-07-15T20:43:48.000Z }
-"0.3.22" = { created_at = 2021-07-21T17:31:45.000Z }
-"0.4.1" = { created_at = 2021-08-12T23:05:32.000Z }
-"0.3.23" = { created_at = 2021-08-23T21:05:09.000Z }
-"0.4.2" = { created_at = 2021-08-24T19:03:28.000Z }
-"0.4.3" = { created_at = 2021-09-20T18:15:42.000Z }
-"0.4.4" = { created_at = 2021-10-06T14:21:30.000Z }
-"1.0.0" = { created_at = 2021-10-06T16:10:06.000Z }
-"1.0.1" = { created_at = 2021-11-12T17:28:06.000Z }
-"0.3.24" = { created_at = 2021-12-06T17:31:49.000Z }
-"0.4.5" = { created_at = 2021-12-06T17:50:13.000Z }
-"1.0.2" = { created_at = 2021-12-06T17:52:12.000Z }
-"0.3.25" = { created_at = 2022-02-01T18:12:52.000Z }
-"0.4.6" = { created_at = 2022-02-01T18:24:42.000Z }
-"1.0.3" = { created_at = 2022-02-01T18:32:25.000Z }
-"0.4.7" = { created_at = 2022-02-02T15:47:07.000Z }
-"1.0.4" = { created_at = 2022-02-02T15:50:35.000Z }
-"1.1.0" = { created_at = 2022-02-02T18:34:45.000Z }
-"1.1.1" = { created_at = 2022-02-10T18:23:26.000Z }
-"1.1.2" = { created_at = 2022-02-17T19:13:49.000Z }
-"0.4.8" = { created_at = 2022-03-08T18:24:17.000Z }
-"1.0.5" = { created_at = 2022-03-08T18:33:43.000Z }
-"1.1.3" = { created_at = 2022-03-08T18:50:54.000Z }
-"1.1.4" = { created_at = 2022-06-03T17:10:23.000Z }
-"1.1.5" = { created_at = 2022-07-04T13:58:24.000Z }
-"1.2.0" = { created_at = 2022-07-18T14:43:12.000Z }
-"1.2.1" = { created_at = 2022-08-12T16:24:15.000Z }
-"1.1.6" = { created_at = 2022-09-14T09:02:41.000Z }
-"1.2.2" = { created_at = 2022-09-14T09:05:06.000Z }
-"1.2.3" = { created_at = 2022-10-10T12:23:24.000Z }
-"1.2.4" = { created_at = 2022-10-17T13:36:12.000Z }
-"1.2.5" = { created_at = 2022-11-08T15:55:52.000Z }
-"1.2.6" = { created_at = 2022-11-21T04:27:53.000Z }
-"1.2.7" = { created_at = 2022-11-30T12:03:04.000Z }
-"1.3.0" = { created_at = 2022-11-30T19:02:05.000Z }
-"1.2.8" = { created_at = 2022-12-14T16:02:26.000Z }
-"1.3.1" = { created_at = 2022-12-14T15:59:12.000Z }
-"1.2.9" = { created_at = 2023-01-10T13:21:07.000Z }
-"1.3.2" = { created_at = 2023-01-10T13:20:22.000Z }
-"1.2.10" = { created_at = 2023-01-31T17:18:18.000Z }
-"1.3.3" = { created_at = 2023-01-31T17:16:54.000Z }
-"1.2.11" = { created_at = 2023-02-28T16:47:15.000Z }
-"1.3.4" = { created_at = 2023-02-28T18:29:07.000Z }
-"1.3.5" = { created_at = 2023-03-02T15:56:36.000Z }
-"1.2.12" = { created_at = 2023-03-28T16:26:59.000Z }
-"1.3.6" = { created_at = 2023-03-28T16:29:54.000Z }
-"1.4.0" = { created_at = 2023-03-28T16:31:18.000Z }
-"1.4.1" = { created_at = 2023-04-04T17:29:34.000Z }
-"1.3.7" = { created_at = 2023-05-02T15:13:53.000Z }
-"1.4.2" = { created_at = 2023-05-02T15:21:30.000Z }
-"1.3.8" = { created_at = 2023-06-06T15:37:57.000Z }
-"1.4.3" = { created_at = 2023-06-06T15:40:45.000Z }
-"1.3.9" = { created_at = 2023-06-27T15:44:39.000Z }
-"1.4.4" = { created_at = 2023-06-27T15:49:23.000Z }
-"1.3.10" = { created_at = 2023-07-25T15:46:21.000Z }
-"1.4.5" = { created_at = 2023-07-25T15:48:20.000Z }
-"1.5.0" = { created_at = 2023-07-25T15:49:17.000Z }
-"1.4.6" = { created_at = 2023-08-29T15:15:51.000Z }
-"1.5.1" = { created_at = 2023-08-29T15:37:46.000Z }
-"1.4.7" = { created_at = 2023-09-26T15:25:51.000Z }
-"1.5.2" = { created_at = 2023-09-26T15:50:01.000Z }
-"1.4.8" = { created_at = 2023-10-24T15:45:49.000Z }
-"1.5.3" = { created_at = 2023-10-24T16:14:59.000Z }
-"1.4.9" = { created_at = 2023-12-05T17:15:29.000Z }
-"1.5.4" = { created_at = 2023-12-05T17:32:41.000Z }
-"1.6.0" = { created_at = 2023-12-05T17:58:39.000Z }
-"1.5.5" = { created_at = 2024-01-16T18:15:17.000Z }
-"1.6.1" = { created_at = 2024-01-16T17:57:35.000Z }
-"1.5.6" = { created_at = 2024-02-21T17:55:33.000Z }
-"1.6.2" = { created_at = 2024-02-21T18:15:45.000Z }
-"1.5.7" = { created_at = 2024-03-12T16:46:24.000Z }
-"1.6.3" = { created_at = 2024-03-12T17:14:36.000Z }
-"1.5.8" = { created_at = 2024-04-16T16:53:36.000Z }
-"1.6.4" = { created_at = 2024-04-16T16:53:44.000Z }
-"1.7.0" = { created_at = 2024-04-16T17:10:57.000Z }
-"1.7.1" = { created_at = 2024-04-23T17:01:14.000Z }
-"1.6.5" = { created_at = 2024-05-14T16:17:33.000Z }
-"1.7.2" = { created_at = 2024-05-14T16:07:35.000Z }
-"1.6.6" = { created_at = 2024-06-11T16:28:34.000Z }
-"1.7.3" = { created_at = 2024-06-11T10:14:17.000Z }
-"1.6.7" = { created_at = 2024-07-09T15:58:02.000Z }
-"1.7.4" = { created_at = 2024-07-09T15:58:10.000Z }
-"1.6.8" = { created_at = 2024-08-12T16:09:00.000Z }
-"1.7.5" = { created_at = 2024-08-12T16:08:55.000Z }
-"1.8.0" = { created_at = 2024-08-12T16:08:45.000Z }
-"1.8.1" = { created_at = 2024-08-14T05:53:02.000Z }
-"1.8.2" = { created_at = 2024-09-05T16:25:56.000Z }
-"1.7.6" = { created_at = 2024-09-10T16:02:34.000Z }
-"1.8.3" = { created_at = 2024-09-10T16:28:42.000Z }
-"1.7.7" = { created_at = 2024-10-08T15:36:44.000Z }
-"1.8.4" = { created_at = 2024-10-08T15:36:50.000Z }
-"1.7.8" = { created_at = 2024-11-05T16:49:53.000Z }
-"1.8.5" = { created_at = 2024-11-05T16:50:00.000Z }
-"1.7.9" = { created_at = 2024-12-10T16:02:26.000Z }
-"1.8.6" = { created_at = 2024-12-10T16:14:29.000Z }
-"1.9.0" = { created_at = 2024-12-10T16:49:51.000Z }
-"1.9.1" = { created_at = 2024-12-17T17:06:45.000Z }
-"1.8.7" = { created_at = 2024-12-20T15:45:48.000Z }
-"1.9.2" = { created_at = 2024-12-20T15:44:50.000Z }
-"1.8.8" = { created_at = 2024-12-23T13:18:33.000Z }
-"1.9.3" = { created_at = 2024-12-23T13:08:34.000Z }
-"1.8.9" = { created_at = 2025-01-21T17:01:01.000Z }
-"1.9.4" = { created_at = 2025-01-21T17:01:07.000Z }
-"1.8.10" = { created_at = 2025-02-18T18:44:48.000Z }
-"1.9.5" = { created_at = 2025-02-18T19:06:51.000Z }
-"1.8.11" = { created_at = 2025-03-18T14:58:11.000Z }
-"1.9.6" = { created_at = 2025-03-18T15:26:11.000Z }
-"1.8.12" = { created_at = 2025-04-22T16:04:13.000Z }
-"1.9.7" = { created_at = 2025-04-22T16:04:06.000Z }
-"1.10.0" = { created_at = 2025-04-22T15:48:07.000Z }
-"1.10.1" = { created_at = 2025-04-29T16:26:19.000Z }
-"1.9.8" = { created_at = 2025-05-20T16:15:39.000Z }
-"1.10.2" = { created_at = 2025-05-20T16:43:36.000Z }
-"1.9.9" = { created_at = 2025-06-17T16:11:30.000Z }
-"1.10.3" = { created_at = 2025-06-17T16:11:22.000Z }
-"1.9.10" = { created_at = 2025-07-15T15:56:51.000Z }
-"1.10.4" = { created_at = 2025-07-15T16:14:45.000Z }
-"1.9.11" = { created_at = 2025-08-19T15:34:02.000Z }
-"1.10.5" = { created_at = 2025-08-19T15:53:57.000Z }
-"1.11.0" = { created_at = 2025-08-19T15:54:06.000Z }
-"1.10.6" = { created_at = 2025-09-02T16:03:36.000Z }
-"1.11.1" = { created_at = 2025-09-02T15:43:39.000Z }
-"1.10.7" = { created_at = 2025-10-07T16:23:21.000Z }
-"1.11.2" = { created_at = 2025-10-07T16:09:32.000Z }
-"1.10.8" = { created_at = 2025-11-04T16:08:32.000Z }
-"1.11.3" = { created_at = 2025-11-04T16:22:29.000Z }
-"1.12.0-beta.0" = { created_at = 2025-11-04T16:22:38.000Z }
-"1.10.9" = { created_at = 2025-12-09T16:23:54.000Z }
-"1.11.4" = { created_at = 2025-12-09T16:24:03.000Z }
-"1.12.0" = { created_at = 2025-12-09T16:05:53.000Z }
+"0.2.8" = { created_at = 2019-12-11T20:04:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.8" }
+"0.2.9" = { created_at = 2020-01-10T19:36:16.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.9" }
+"0.2.10" = { created_at = 2020-02-19T19:06:19.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.10" }
+"0.3.0" = { created_at = 2020-03-10T19:21:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2020-03-16T22:34:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2020-03-19T19:28:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2020-03-27T22:24:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.3" }
+"0.3.4" = { created_at = 2020-04-28T22:45:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.4" }
+"0.3.5" = { created_at = 2020-04-30T15:13:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.5" }
+"0.2.11" = { created_at = 2020-05-14T15:41:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.11" }
+"0.3.6" = { created_at = 2020-05-15T15:40:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.6" }
+"0.3.7" = { created_at = 2020-07-14T14:34:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.7" }
+"0.3.8" = { created_at = 2020-07-31T20:46:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.8" }
+"0.3.9" = { created_at = 2020-09-01T02:44:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.9" }
+"0.3.10" = { created_at = 2020-10-01T14:26:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.10" }
+"0.3.11" = { created_at = 2020-11-19T18:48:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.11" }
+"0.3.12" = { created_at = 2020-12-15T16:39:55.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.12" }
+"0.3.13" = { created_at = 2021-01-22T18:04:05.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.13" }
+"0.3.14" = { created_at = 2021-02-06T03:07:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.14" }
+"0.3.15" = { created_at = 2021-03-30T16:12:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.15" }
+"0.3.16" = { created_at = 2021-04-16T01:00:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.16" }
+"0.3.17" = { created_at = 2021-05-27T18:45:14.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.17" }
+"0.3.18" = { created_at = 2021-06-08T21:16:55.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.18" }
+"0.3.19" = { created_at = 2021-06-09T17:34:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.19" }
+"0.4.0" = { created_at = 2021-06-24T16:10:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0" }
+"0.3.20" = { created_at = 2021-06-30T22:10:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.20" }
+"0.3.21" = { created_at = 2021-07-15T20:43:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.21" }
+"0.3.22" = { created_at = 2021-07-21T17:31:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.22" }
+"0.4.1" = { created_at = 2021-08-12T23:05:32.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.1" }
+"0.3.23" = { created_at = 2021-08-23T21:05:09.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.23" }
+"0.4.2" = { created_at = 2021-08-24T19:03:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2021-09-20T18:15:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2021-10-06T14:21:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.4" }
+"1.0.0" = { created_at = 2021-10-06T16:10:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2021-11-12T17:28:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.1" }
+"0.3.24" = { created_at = 2021-12-06T17:31:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.24" }
+"0.4.5" = { created_at = 2021-12-06T17:50:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.5" }
+"1.0.2" = { created_at = 2021-12-06T17:52:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.2" }
+"0.3.25" = { created_at = 2022-02-01T18:12:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.25" }
+"0.4.6" = { created_at = 2022-02-01T18:24:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.6" }
+"1.0.3" = { created_at = 2022-02-01T18:32:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.3" }
+"0.4.7" = { created_at = 2022-02-02T15:47:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.7" }
+"1.0.4" = { created_at = 2022-02-02T15:50:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.4" }
+"1.1.0" = { created_at = 2022-02-02T18:34:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2022-02-10T18:23:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2022-02-17T19:13:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.2" }
+"0.4.8" = { created_at = 2022-03-08T18:24:17.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.8" }
+"1.0.5" = { created_at = 2022-03-08T18:33:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.5" }
+"1.1.3" = { created_at = 2022-03-08T18:50:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.3" }
+"1.1.4" = { created_at = 2022-06-03T17:10:23.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.4" }
+"1.1.5" = { created_at = 2022-07-04T13:58:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.5" }
+"1.2.0" = { created_at = 2022-07-18T14:43:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2022-08-12T16:24:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.1" }
+"1.1.6" = { created_at = 2022-09-14T09:02:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.6" }
+"1.2.2" = { created_at = 2022-09-14T09:05:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2022-10-10T12:23:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.3" }
+"1.2.4" = { created_at = 2022-10-17T13:36:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.4" }
+"1.2.5" = { created_at = 2022-11-08T15:55:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.5" }
+"1.2.6" = { created_at = 2022-11-21T04:27:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.6" }
+"1.2.7" = { created_at = 2022-11-30T12:03:04.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.7" }
+"1.3.0" = { created_at = 2022-11-30T19:02:05.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0" }
+"1.2.8" = { created_at = 2022-12-14T16:02:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.8" }
+"1.3.1" = { created_at = 2022-12-14T15:59:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.1" }
+"1.2.9" = { created_at = 2023-01-10T13:21:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.9" }
+"1.3.2" = { created_at = 2023-01-10T13:20:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.2" }
+"1.2.10" = { created_at = 2023-01-31T17:18:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.10" }
+"1.3.3" = { created_at = 2023-01-31T17:16:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.3" }
+"1.2.11" = { created_at = 2023-02-28T16:47:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.11" }
+"1.3.4" = { created_at = 2023-02-28T18:29:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.4" }
+"1.3.5" = { created_at = 2023-03-02T15:56:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.5" }
+"1.2.12" = { created_at = 2023-03-28T16:26:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.12" }
+"1.3.6" = { created_at = 2023-03-28T16:29:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.6" }
+"1.4.0" = { created_at = 2023-03-28T16:31:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2023-04-04T17:29:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.1" }
+"1.3.7" = { created_at = 2023-05-02T15:13:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.7" }
+"1.4.2" = { created_at = 2023-05-02T15:21:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.2" }
+"1.3.8" = { created_at = 2023-06-06T15:37:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.8" }
+"1.4.3" = { created_at = 2023-06-06T15:40:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.3" }
+"1.3.9" = { created_at = 2023-06-27T15:44:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.9" }
+"1.4.4" = { created_at = 2023-06-27T15:49:23.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.4" }
+"1.3.10" = { created_at = 2023-07-25T15:46:21.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.10" }
+"1.4.5" = { created_at = 2023-07-25T15:48:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.5" }
+"1.5.0" = { created_at = 2023-07-25T15:49:17.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.0" }
+"1.4.6" = { created_at = 2023-08-29T15:15:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.6" }
+"1.5.1" = { created_at = 2023-08-29T15:37:46.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.1" }
+"1.4.7" = { created_at = 2023-09-26T15:25:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.7" }
+"1.5.2" = { created_at = 2023-09-26T15:50:01.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.2" }
+"1.4.8" = { created_at = 2023-10-24T15:45:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.8" }
+"1.5.3" = { created_at = 2023-10-24T16:14:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.3" }
+"1.4.9" = { created_at = 2023-12-05T17:15:29.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.9" }
+"1.5.4" = { created_at = 2023-12-05T17:32:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.4" }
+"1.6.0" = { created_at = 2023-12-05T17:58:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.0" }
+"1.5.5" = { created_at = 2024-01-16T18:15:17.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.5" }
+"1.6.1" = { created_at = 2024-01-16T17:57:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.1" }
+"1.5.6" = { created_at = 2024-02-21T17:55:33.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.6" }
+"1.6.2" = { created_at = 2024-02-21T18:15:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.2" }
+"1.5.7" = { created_at = 2024-03-12T16:46:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.7" }
+"1.6.3" = { created_at = 2024-03-12T17:14:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.3" }
+"1.5.8" = { created_at = 2024-04-16T16:53:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.8" }
+"1.6.4" = { created_at = 2024-04-16T16:53:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.4" }
+"1.7.0" = { created_at = 2024-04-16T17:10:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.0" }
+"1.7.1" = { created_at = 2024-04-23T17:01:14.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.1" }
+"1.6.5" = { created_at = 2024-05-14T16:17:33.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.5" }
+"1.7.2" = { created_at = 2024-05-14T16:07:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.2" }
+"1.6.6" = { created_at = 2024-06-11T16:28:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.6" }
+"1.7.3" = { created_at = 2024-06-11T10:14:17.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.3" }
+"1.6.7" = { created_at = 2024-07-09T15:58:02.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.7" }
+"1.7.4" = { created_at = 2024-07-09T15:58:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.4" }
+"1.6.8" = { created_at = 2024-08-12T16:09:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.8" }
+"1.7.5" = { created_at = 2024-08-12T16:08:55.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.5" }
+"1.8.0" = { created_at = 2024-08-12T16:08:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.0" }
+"1.8.1" = { created_at = 2024-08-14T05:53:02.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.1" }
+"1.8.2" = { created_at = 2024-09-05T16:25:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.2" }
+"1.7.6" = { created_at = 2024-09-10T16:02:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.6" }
+"1.8.3" = { created_at = 2024-09-10T16:28:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.3" }
+"1.7.7" = { created_at = 2024-10-08T15:36:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.7" }
+"1.8.4" = { created_at = 2024-10-08T15:36:50.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.4" }
+"1.7.8" = { created_at = 2024-11-05T16:49:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.8" }
+"1.8.5" = { created_at = 2024-11-05T16:50:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.5" }
+"1.7.9" = { created_at = 2024-12-10T16:02:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.9" }
+"1.8.6" = { created_at = 2024-12-10T16:14:29.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.6" }
+"1.9.0" = { created_at = 2024-12-10T16:49:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0" }
+"1.9.1" = { created_at = 2024-12-17T17:06:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.1" }
+"1.8.7" = { created_at = 2024-12-20T15:45:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.7" }
+"1.9.2" = { created_at = 2024-12-20T15:44:50.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.2" }
+"1.8.8" = { created_at = 2024-12-23T13:18:33.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.8" }
+"1.9.3" = { created_at = 2024-12-23T13:08:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.3" }
+"1.8.9" = { created_at = 2025-01-21T17:01:01.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.9" }
+"1.9.4" = { created_at = 2025-01-21T17:01:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.4" }
+"1.8.10" = { created_at = 2025-02-18T18:44:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.10" }
+"1.9.5" = { created_at = 2025-02-18T19:06:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.5" }
+"1.8.11" = { created_at = 2025-03-18T14:58:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.11" }
+"1.9.6" = { created_at = 2025-03-18T15:26:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.6" }
+"1.8.12" = { created_at = 2025-04-22T16:04:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.12" }
+"1.9.7" = { created_at = 2025-04-22T16:04:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.7" }
+"1.10.0" = { created_at = 2025-04-22T15:48:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2025-04-29T16:26:19.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.1" }
+"1.9.8" = { created_at = 2025-05-20T16:15:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.8" }
+"1.10.2" = { created_at = 2025-05-20T16:43:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.2" }
+"1.9.9" = { created_at = 2025-06-17T16:11:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.9" }
+"1.10.3" = { created_at = 2025-06-17T16:11:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.3" }
+"1.9.10" = { created_at = 2025-07-15T15:56:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.10" }
+"1.10.4" = { created_at = 2025-07-15T16:14:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.4" }
+"1.9.11" = { created_at = 2025-08-19T15:34:02.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.11" }
+"1.10.5" = { created_at = 2025-08-19T15:53:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.5" }
+"1.11.0" = { created_at = 2025-08-19T15:54:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0" }
+"1.10.6" = { created_at = 2025-09-02T16:03:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.6" }
+"1.11.1" = { created_at = 2025-09-02T15:43:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.1" }
+"1.10.7" = { created_at = 2025-10-07T16:23:21.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.7" }
+"1.11.2" = { created_at = 2025-10-07T16:09:32.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.2" }
+"1.10.8" = { created_at = 2025-11-04T16:08:32.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.8" }
+"1.11.3" = { created_at = 2025-11-04T16:22:29.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.3" }
+"1.12.0-beta.0" = { created_at = 2025-11-04T16:22:38.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0-beta.0" }
+"1.10.9" = { created_at = 2025-12-09T16:23:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.9" }
+"1.11.4" = { created_at = 2025-12-09T16:24:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.4" }
+"1.12.0" = { created_at = 2025-12-09T16:05:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0" }

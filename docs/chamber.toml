@@ -1,73 +1,73 @@
 [versions]
-"1.0.0" = { created_at = 2017-06-12T23:01:02.000Z }
-"1.0.1" = { created_at = 2017-06-12T23:17:33.000Z }
-"1.0.2" = { created_at = 2017-06-15T21:10:34.000Z }
-"1.1.0" = { created_at = 2017-06-20T17:56:24.000Z }
-"1.1.1" = { created_at = 2017-06-22T19:55:33.000Z }
-"1.1.3" = { created_at = 2017-07-17T23:28:18.000Z }
-"1.2.0" = { created_at = 2017-08-07T20:48:34.000Z }
-"1.3.0" = { created_at = 2017-08-14T19:33:02.000Z }
-"1.4.0" = { created_at = 2017-08-21T05:11:38.000Z }
-"1.5.0" = { created_at = 2017-08-22T21:36:06.000Z }
-"1.6.0" = { created_at = 2017-09-07T03:55:59.000Z }
-"1.7.0" = { created_at = 2017-10-03T18:06:58.000Z }
-"1.8.0" = { created_at = 2017-10-09T18:55:56.000Z }
-"1.9.0" = { created_at = 2017-10-11T18:23:43.000Z }
-"1.10.0" = { created_at = 2017-11-20T07:03:34.000Z }
-"1.11.0" = { created_at = 2017-11-27T18:30:37.000Z }
-"1.12.0" = { created_at = 2017-12-04T23:36:33.000Z }
-"1.13.0" = { created_at = 2017-12-06T04:57:20.000Z }
-"1.14.0" = { created_at = 2017-12-22T18:06:30.000Z }
-"1.14.1" = { created_at = 2017-12-22T18:54:39.000Z }
-"1.15.0" = { created_at = 2018-01-02T20:38:40.000Z }
-"1.16.0" = { created_at = 2018-02-26T21:12:34.000Z }
-"1.17.0" = { created_at = 2018-03-16T18:19:34.000Z }
-"2.0.0" = { created_at = 2018-03-23T20:42:11.000Z }
-"2.1.0" = { created_at = 2018-05-08T18:58:40.000Z }
-"2.1.1" = { created_at = 2018-09-11T22:46:59.000Z }
-"2.2.0" = { created_at = 2018-09-19T19:04:58.000Z }
-"2.3.1" = { created_at = 2018-11-05T23:08:00.000Z }
-"2.3.2" = { created_at = 2018-11-14T19:07:14.000Z }
-"2.3.3" = { created_at = 2019-05-06T23:03:40.000Z }
-"2.4.0" = { created_at = 2019-07-15T18:12:07.000Z }
-"2.5.0" = { created_at = 2019-07-22T23:37:37.000Z }
-"2.7.0" = { created_at = 2019-09-24T18:01:04.000Z }
-"2.7.1" = { created_at = 2019-09-24T18:05:51.000Z }
-"2.7.2" = { created_at = 2019-09-26T20:14:01.000Z }
-"2.7.3" = { created_at = 2019-10-18T01:02:51.000Z }
-"2.7.5" = { created_at = 2019-10-18T17:15:20.000Z }
-"2.8.0" = { created_at = 2020-03-04T23:15:40.000Z }
-"2.8.1" = { created_at = 2020-04-09T21:53:37.000Z }
-"2.8.2" = { created_at = 2020-05-21T17:41:51.000Z }
-"2.9.0" = { created_at = 2020-10-14T19:04:19.000Z }
-"2.9.1" = { created_at = 2020-11-30T21:57:19.000Z }
-"2.10.0" = { created_at = 2021-04-20T19:09:01.000Z }
-"2.10.1" = { created_at = 2021-06-07T15:56:52.000Z }
-"2.10.3" = { created_at = 2021-08-19T17:55:52.000Z }
-"2.10.4" = { created_at = 2021-09-14T15:58:29.000Z }
-"2.10.6" = { created_at = 2021-09-28T19:45:22.000Z }
-"2.10.7" = { created_at = 2021-12-09T17:23:19.000Z }
-"2.10.8" = { created_at = 2022-02-09T15:53:00.000Z }
-"2.10.9" = { created_at = 2022-04-08T21:17:06.000Z }
-"2.10.10" = { created_at = 2022-05-10T18:02:38.000Z }
-"2.10.11" = { created_at = 2022-06-15T23:35:05.000Z }
-"2.10.12" = { created_at = 2022-06-24T00:08:04.000Z }
-"2.11.0" = { created_at = 2022-12-14T00:40:15.000Z }
-"2.11.1" = { created_at = 2023-01-13T18:52:36.000Z }
-"2.12.0" = { created_at = 2023-02-27T17:05:10.000Z }
-"2.13.0" = { created_at = 2023-05-16T19:30:18.000Z }
-"2.13.1" = { created_at = 2023-06-21T15:57:47.000Z }
-"2.13.2" = { created_at = 2023-07-10T15:16:35.000Z }
-"2.13.3" = { created_at = 2023-07-31T15:13:28.000Z }
-"2.13.4" = { created_at = 2023-10-18T20:26:33.000Z }
-"2.13.5" = { created_at = 2023-11-21T16:16:27.000Z }
-"2.13.6" = { created_at = 2023-12-14T18:29:43.000Z }
-"2.14.0" = { created_at = 2024-02-05T17:28:11.000Z }
-"2.14.1" = { created_at = 2024-03-08T19:55:44.000Z }
-"3.0.0" = { created_at = 2024-08-08T14:00:20.000Z }
-"3.0.1" = { created_at = 2024-08-13T17:36:33.000Z }
-"3.1.0" = { created_at = 2024-08-19T20:12:09.000Z }
-"3.1.1" = { created_at = 2024-12-10T20:36:06.000Z }
-"3.1.2" = { created_at = 2025-04-22T15:29:38.000Z }
-"3.1.3" = { created_at = 2025-07-23T22:27:50.000Z }
-"3.1.4" = { created_at = 2025-11-14T20:02:21.000Z }
+"1.0.0" = { created_at = 2017-06-12T23:01:02.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2017-06-12T23:17:33.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2017-06-15T21:10:34.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.0.2" }
+"1.1.0" = { created_at = 2017-06-20T17:56:24.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2017-06-22T19:55:33.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.1.1" }
+"1.1.3" = { created_at = 2017-07-17T23:28:18.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.1.3" }
+"1.2.0" = { created_at = 2017-08-07T20:48:34.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.2.0" }
+"1.3.0" = { created_at = 2017-08-14T19:33:02.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2017-08-21T05:11:38.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.4.0" }
+"1.5.0" = { created_at = 2017-08-22T21:36:06.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.5.0" }
+"1.6.0" = { created_at = 2017-09-07T03:55:59.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.6.0" }
+"1.7.0" = { created_at = 2017-10-03T18:06:58.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.7.0" }
+"1.8.0" = { created_at = 2017-10-09T18:55:56.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2017-10-11T18:23:43.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.9.0" }
+"1.10.0" = { created_at = 2017-11-20T07:03:34.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.10.0" }
+"1.11.0" = { created_at = 2017-11-27T18:30:37.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.11.0" }
+"1.12.0" = { created_at = 2017-12-04T23:36:33.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.12.0" }
+"1.13.0" = { created_at = 2017-12-06T04:57:20.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.13.0" }
+"1.14.0" = { created_at = 2017-12-22T18:06:30.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.14.0" }
+"1.14.1" = { created_at = 2017-12-22T18:54:39.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.14.1" }
+"1.15.0" = { created_at = 2018-01-02T20:38:40.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.15.0" }
+"1.16.0" = { created_at = 2018-02-26T21:12:34.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.16.0" }
+"1.17.0" = { created_at = 2018-03-16T18:19:34.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v1.17.0" }
+"2.0.0" = { created_at = 2018-03-23T20:42:11.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.0.0" }
+"2.1.0" = { created_at = 2018-05-08T18:58:40.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.1.0" }
+"2.1.1" = { created_at = 2018-09-11T22:46:59.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.1.1" }
+"2.2.0" = { created_at = 2018-09-19T19:04:58.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.2.0" }
+"2.3.1" = { created_at = 2018-11-05T23:08:00.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.3.1" }
+"2.3.2" = { created_at = 2018-11-14T19:07:14.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.3.2" }
+"2.3.3" = { created_at = 2019-05-06T23:03:40.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.3.3" }
+"2.4.0" = { created_at = 2019-07-15T18:12:07.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.4.0" }
+"2.5.0" = { created_at = 2019-07-22T23:37:37.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.5.0" }
+"2.7.0" = { created_at = 2019-09-24T18:01:04.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.7.0" }
+"2.7.1" = { created_at = 2019-09-24T18:05:51.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.7.1" }
+"2.7.2" = { created_at = 2019-09-26T20:14:01.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.7.2" }
+"2.7.3" = { created_at = 2019-10-18T01:02:51.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.7.3" }
+"2.7.5" = { created_at = 2019-10-18T17:15:20.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.7.5" }
+"2.8.0" = { created_at = 2020-03-04T23:15:40.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.8.0" }
+"2.8.1" = { created_at = 2020-04-09T21:53:37.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.8.1" }
+"2.8.2" = { created_at = 2020-05-21T17:41:51.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.8.2" }
+"2.9.0" = { created_at = 2020-10-14T19:04:19.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.9.0" }
+"2.9.1" = { created_at = 2020-11-30T21:57:19.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.9.1" }
+"2.10.0" = { created_at = 2021-04-20T19:09:01.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.0" }
+"2.10.1" = { created_at = 2021-06-07T15:56:52.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.1" }
+"2.10.3" = { created_at = 2021-08-19T17:55:52.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.3" }
+"2.10.4" = { created_at = 2021-09-14T15:58:29.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.4" }
+"2.10.6" = { created_at = 2021-09-28T19:45:22.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.6" }
+"2.10.7" = { created_at = 2021-12-09T17:23:19.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.7" }
+"2.10.8" = { created_at = 2022-02-09T15:53:00.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.8" }
+"2.10.9" = { created_at = 2022-04-08T21:17:06.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.9" }
+"2.10.10" = { created_at = 2022-05-10T18:02:38.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.10" }
+"2.10.11" = { created_at = 2022-06-15T23:35:05.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.11" }
+"2.10.12" = { created_at = 2022-06-24T00:08:04.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.10.12" }
+"2.11.0" = { created_at = 2022-12-14T00:40:15.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2023-01-13T18:52:36.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.11.1" }
+"2.12.0" = { created_at = 2023-02-27T17:05:10.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.12.0" }
+"2.13.0" = { created_at = 2023-05-16T19:30:18.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.0" }
+"2.13.1" = { created_at = 2023-06-21T15:57:47.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.1" }
+"2.13.2" = { created_at = 2023-07-10T15:16:35.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.2" }
+"2.13.3" = { created_at = 2023-07-31T15:13:28.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.3" }
+"2.13.4" = { created_at = 2023-10-18T20:26:33.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.4" }
+"2.13.5" = { created_at = 2023-11-21T16:16:27.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.5" }
+"2.13.6" = { created_at = 2023-12-14T18:29:43.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.13.6" }
+"2.14.0" = { created_at = 2024-02-05T17:28:11.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.14.0" }
+"2.14.1" = { created_at = 2024-03-08T19:55:44.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v2.14.1" }
+"3.0.0" = { created_at = 2024-08-08T14:00:20.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.0.0" }
+"3.0.1" = { created_at = 2024-08-13T17:36:33.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.0.1" }
+"3.1.0" = { created_at = 2024-08-19T20:12:09.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.1.0" }
+"3.1.1" = { created_at = 2024-12-10T20:36:06.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.1.1" }
+"3.1.2" = { created_at = 2025-04-22T15:29:38.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.1.2" }
+"3.1.3" = { created_at = 2025-07-23T22:27:50.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.1.3" }
+"3.1.4" = { created_at = 2025-11-14T20:02:21.000Z, release_url = "https://github.com/segmentio/chamber/releases/tag/v3.1.4" }
