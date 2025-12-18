@@ -29,7 +29,7 @@ export function MAUCounter() {
       <div class="relative bg-dark-800 border border-t-0 border-dark-600 rounded-b-lg px-3 py-1">
         {/* Heart icon hanging off bottom-left */}
         <svg
-          class="absolute -bottom-2 -left-1 w-[1.1rem] h-[1.1rem] text-pink-500/60 -rotate-12"
+          class="absolute -bottom-2 -left-1 w-[1.3rem] h-[1.3rem] text-pink-500/60 -rotate-12"
           fill="currentColor"
           viewBox="0 0 24 24"
         >
