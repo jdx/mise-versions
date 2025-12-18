@@ -420,8 +420,10 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .groupBy(platforms.os)
         .all();
 
-      // Daily downloads (last 30 days from raw data)
-      const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
+      // Daily downloads (last 30 days from raw data, excluding current day)
+      const now = Math.floor(Date.now() / 1000);
+      const todayStart = Math.floor(now / 86400) * 86400;
+      const thirtyDaysAgo = now - 30 * 86400;
       const daily = await db
         .select({
           date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
@@ -431,7 +433,8 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .where(
           and(
             eq(downloads.tool_id, toolId),
-            sql`${downloads.created_at} >= ${thirtyDaysAgo}`
+            sql`${downloads.created_at} >= ${thirtyDaysAgo}`,
+            sql`${downloads.created_at} < ${todayStart}`
           )
         )
         .groupBy(sql`date(${downloads.created_at}, 'unixepoch')`)
