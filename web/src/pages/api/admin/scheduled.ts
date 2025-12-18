@@ -53,6 +53,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
       `Rollup tables updated for ${todayStr}: ${todayResult.toolStats} tools, ${todayResult.backendStats} backends`
     );
 
+    // 3. Populate version stats rollup for DAU/MAU
+    const yesterdayVersionStats = await analytics.populateVersionStatsRollup(
+      yesterdayStr,
+      runtime.env.ANALYTICS_DB
+    );
+    console.log(`Version stats rollup for ${yesterdayStr}: ${yesterdayVersionStats ? 'updated' : 'no data'}`);
+
+    const todayVersionStats = await analytics.populateVersionStatsRollup(todayStr, runtime.env.ANALYTICS_DB);
+    console.log(`Version stats rollup for ${todayStr}: ${todayVersionStats ? 'updated' : 'no data'}`);
+
     return jsonResponse({
       success: true,
       aggregation: {
@@ -70,6 +80,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
           toolStats: todayResult.toolStats,
           backendStats: todayResult.backendStats,
         },
+      },
+      versionStats: {
+        yesterday: yesterdayVersionStats,
+        today: todayVersionStats,
       },
     });
   } catch (error) {
