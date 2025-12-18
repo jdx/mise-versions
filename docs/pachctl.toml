@@ -1,282 +1,282 @@
 [versions]
-"0.1" = { created_at = 2014-11-26T22:49:29.000Z }
-"0.2" = { created_at = 2014-12-11T12:15:25.000Z }
-"0.3" = { created_at = 2015-01-23T10:04:49.000Z }
-"0.4" = { created_at = 2015-02-11T22:35:11.000Z }
-"0.4.1" = { created_at = 2015-02-20T10:00:38.000Z }
-"0.5" = { created_at = 2015-03-14T01:19:12.000Z }
-"0.6" = { created_at = 2015-04-14T08:08:24.000Z }
-"0.7" = { created_at = 2015-05-19T07:30:21.000Z }
-"0.7.1" = { created_at = 2015-05-22T22:16:07.000Z }
-"0.8(rc1)" = { created_at = 2015-06-07T21:52:38.000Z }
-"0.8" = { created_at = 2015-06-12T02:27:27.000Z }
-"0.8.1" = { created_at = 2015-06-15T23:28:05.000Z }
-"0.8.2" = { created_at = 2015-06-17T20:32:22.000Z }
-"0.8.3" = { created_at = 2015-06-23T23:13:50.000Z }
-"0.8.4" = { created_at = 2015-07-01T21:39:36.000Z }
-"0.8.5" = { created_at = 2015-07-01T21:49:45.000Z }
-"0.9.0" = { created_at = 2015-07-23T22:13:34.000Z }
-"untagged-2d548afe7d60b4346615" = { created_at = 2016-04-11T17:54:39.000Z }
-"1.0.0(835)" = { created_at = 2016-05-04T17:43:18.000Z }
-"1.0.0(849)" = { created_at = 2016-05-05T00:55:14.000Z }
-"1.0.1(1433)" = { created_at = 2016-06-14T22:15:56.000Z }
-"1.1.0" = { created_at = 2016-07-07T23:13:21.000Z }
-"1.1.0-RC1" = { created_at = 2016-09-10T00:55:06.000Z }
-"1.2.0-RC1" = { created_at = 2016-09-12T23:56:14.000Z }
-"1.2.0-RC2" = { created_at = 2016-09-21T23:45:19.000Z }
-"1.2.0" = { created_at = 2016-09-23T17:27:16.000Z }
-"1.2.1" = { created_at = 2016-09-23T20:39:04.000Z }
-"1.2.2" = { created_at = 2016-10-11T18:57:52.000Z }
-"1.2.3" = { created_at = 2016-10-31T22:41:20.000Z }
-"1.2.4" = { created_at = 2016-11-23T22:19:23.000Z }
-"1.2.5" = { created_at = 2016-12-01T02:00:53.000Z }
-"1.2.6" = { created_at = 2016-12-01T18:13:30.000Z }
-"1.3.0" = { created_at = 2016-12-07T21:57:47.000Z }
-"1.3.1" = { created_at = 2016-12-12T20:56:46.000Z }
-"1.3.2" = { created_at = 2016-12-21T23:29:20.000Z }
-"1.3.3" = { created_at = 2017-01-10T21:31:46.000Z }
-"1.3.4" = { created_at = 2017-01-13T23:14:57.000Z }
-"1.3.5" = { created_at = 2017-02-09T17:39:06.000Z }
-"1.3.6" = { created_at = 2017-02-16T22:12:50.000Z }
-"1.3.8" = { created_at = 2017-02-17T22:58:06.000Z }
-"1.3.9" = { created_at = 2017-02-27T23:15:34.000Z }
-"1.3.10" = { created_at = 2017-03-01T03:17:38.000Z }
-"1.3.11" = { created_at = 2017-03-02T01:13:15.000Z }
-"1.3.12" = { created_at = 2017-03-07T02:12:35.000Z }
-"1.3.13" = { created_at = 2017-03-07T20:48:30.000Z }
-"1.3.14" = { created_at = 2017-03-09T21:30:00.000Z }
-"1.3.15" = { created_at = 2017-03-11T03:01:19.000Z }
-"1.3.16" = { created_at = 2017-03-13T19:55:25.000Z }
-"1.3.17" = { created_at = 2017-03-27T20:48:59.000Z }
-"1.3.18" = { created_at = 2017-03-27T20:48:59.000Z }
-"1.4.0" = { created_at = 2017-03-28T19:07:26.000Z }
-"1.3.19" = { created_at = 2017-03-29T23:04:20.000Z }
-"1.4.1" = { created_at = 2017-04-05T02:12:00.000Z }
-"1.4.2" = { created_at = 2017-04-07T00:54:52.000Z }
-"1.4.3" = { created_at = 2017-04-08T05:27:12.000Z }
-"1.4.4" = { created_at = 2017-04-15T01:17:47.000Z }
-"1.4.5" = { created_at = 2017-04-22T09:44:21.000Z }
-"1.4.6" = { created_at = 2017-05-05T23:08:20.000Z }
-"1.4.7-RC1" = { created_at = 2017-05-10T16:00:24.000Z }
-"1.4.7-RC2" = { created_at = 2017-05-15T19:02:35.000Z }
-"1.4.7" = { created_at = 2017-06-01T20:50:27.000Z }
-"1.4.8-RC1" = { created_at = 2017-06-07T16:43:17.000Z }
-"1.4.8" = { created_at = 2017-06-14T18:29:40.000Z }
-"1.5.0" = { created_at = 2017-07-07T02:03:59.000Z }
-"1.5.1" = { created_at = 2017-08-02T18:55:56.000Z }
-"1.5.2" = { created_at = 2017-08-05T00:12:56.000Z }
-"1.5.3" = { created_at = 2017-08-17T23:11:40.000Z }
-"1.6.0rc8" = { created_at = 2017-09-30T15:54:56.000Z }
-"1.6.0rc9" = { created_at = 2017-10-03T16:48:34.000Z }
-"1.6.0" = { created_at = 2017-10-04T01:08:03.000Z }
-"1.6.1" = { created_at = 2017-10-10T00:12:54.000Z }
-"1.6.2" = { created_at = 2017-10-18T03:20:03.000Z }
-"1.6.3" = { created_at = 2017-10-26T19:36:31.000Z }
-"1.6.4" = { created_at = 2017-11-15T19:54:45.000Z }
-"1.6.5" = { created_at = 2017-11-17T22:32:16.000Z }
-"1.6.6" = { created_at = 2017-12-11T19:19:03.000Z }
-"1.6.7" = { created_at = 2018-01-11T21:28:41.000Z }
-"1.6.8" = { created_at = 2018-01-29T23:26:28.000Z }
-"1.7.0rc1" = { created_at = 2018-02-13T21:17:17.000Z }
-"1.6.9" = { created_at = 2018-02-27T23:54:08.000Z }
-"1.7.0rc2" = { created_at = 2018-02-27T18:50:45.000Z }
-"1.7.0rc3" = { created_at = 2018-03-19T20:02:27.000Z }
-"1.7.0rc4" = { created_at = 2018-03-21T20:15:14.000Z }
-"1.6.10" = { created_at = 2018-03-22T19:36:57.000Z }
-"1.7.0" = { created_at = 2018-03-27T00:55:03.000Z }
-"1.7.1" = { created_at = 2018-04-19T18:27:35.000Z }
-"1.7.2" = { created_at = 2018-05-22T18:54:47.000Z }
-"1.7.3" = { created_at = 2018-05-23T20:22:56.000Z }
-"1.7.4" = { created_at = 2018-07-05T23:30:14.000Z }
-"1.7.5" = { created_at = 2018-08-03T01:20:28.000Z }
-"1.7.6" = { created_at = 2018-08-21T17:42:23.000Z }
-"1.7.7" = { created_at = 2018-09-06T00:25:51.000Z }
-"1.7.8" = { created_at = 2018-09-18T18:30:41.000Z }
-"1.7.9" = { created_at = 2018-09-25T01:02:26.000Z }
-"1.7.10" = { created_at = 2018-10-05T23:15:26.000Z }
-"1.8.0rc1" = { created_at = 2018-10-22T23:38:37.000Z }
-"1.8.0rc2" = { created_at = 2018-11-06T18:56:21.000Z }
-"1.7.11" = { created_at = 2018-11-14T01:46:03.000Z }
-"1.7.12" = { created_at = 2018-11-14T08:00:00.000Z }
-"1.7.13" = { created_at = 2018-11-15T08:00:00.000Z }
-"1.7.14" = { created_at = 2018-11-16T08:00:00.000Z }
-"1.8.0rc4" = { created_at = 2018-12-03T20:36:51.000Z }
-"1.8.0" = { created_at = 2018-12-04T02:42:01.000Z }
-"1.8.1" = { created_at = 2018-12-19T20:27:26.000Z }
-"1.8.2" = { created_at = 2019-01-04T22:44:51.000Z }
-"1.8.2-b01811d728f42bedb77d95f95bceeabffbf7afeb" = { created_at = 2019-01-21T16:47:28.000Z }
-"1.8.2-c2dc1d719856f44183c6be9e6404fa24704b9726" = { created_at = 2019-01-23T22:32:42.000Z }
-"1.8.2-0dd2ae297eab6fb635d3278410566458707d728f" = { created_at = 2019-01-24T23:03:48.000Z }
-"1.8.2-3d440134bca6a690643f64911242930cca174a48" = { created_at = 2019-01-25T21:51:20.000Z }
-"1.8.2-267bb46df4269caf48ff5ffdd247c5bcbffc0cd9" = { created_at = 2019-01-30T22:14:57.000Z }
-"1.8.3" = { created_at = 2019-02-07T00:39:45.000Z }
-"1.8.4" = { created_at = 2019-02-12T17:37:55.000Z }
-"1.8.5" = { created_at = 2019-02-18T22:07:52.000Z }
-"1.8.6" = { created_at = 2019-03-08T21:18:45.000Z }
-"1.9.0rc2" = { created_at = 2019-05-08T22:18:04.000Z }
-"1.8.7" = { created_at = 2019-05-28T20:59:57.000Z }
-"1.9.0rc3" = { created_at = 2019-05-30T00:40:00.000Z }
-"1.9.0rc4" = { created_at = 2019-06-11T23:55:11.000Z }
-"1.9.0" = { created_at = 2019-06-12T22:50:40.000Z }
-"1.9.1" = { created_at = 2019-07-18T19:25:00.000Z }
-"1.9.2" = { created_at = 2019-07-25T21:36:30.000Z }
-"1.9.3" = { created_at = 2019-08-07T21:24:23.000Z }
-"1.9.4" = { created_at = 2019-09-06T18:57:26.000Z }
-"1.8.8" = { created_at = 2019-09-11T21:05:37.000Z }
-"1.9.5" = { created_at = 2019-09-18T18:53:46.000Z }
-"1.9.6" = { created_at = 2019-10-02T21:39:12.000Z }
-"1.9.7" = { created_at = 2019-10-04T22:42:38.000Z }
-"1.9.7-57afde3038f49b0b9d229b233c09f7ef3b9ab694" = { created_at = 2019-10-15T19:22:03.000Z }
-"1.9.7-d520492f159e56e6bcf5cc0329b8975cf06f9142" = { created_at = 2019-10-22T23:34:46.000Z }
-"1.9.8" = { created_at = 2019-11-19T01:17:33.000Z }
-"1.9.8-b2aa2ff10546da504b2bf1669b51de4b12e2b594" = { created_at = 2019-11-19T01:17:33.000Z }
-"1.9.9" = { created_at = 2019-12-20T22:40:24.000Z }
-"1.9.9-1b3f8868a1f7e75af2cb2788ac7d7a79c59c3ef8" = { created_at = 2019-12-20T22:40:24.000Z }
-"1.9.10-83bbb807e7c52289171d7a2f36aff583d065b08e" = { created_at = 2020-01-09T19:53:50.000Z }
-"1.9.10" = { created_at = 2020-01-30T19:51:45.000Z }
-"1.9.10-e6932adad8179d89bfa7498204001a6589321031" = { created_at = 2020-01-30T19:51:45.000Z }
-"1.9.11-63c34d2a5f789db3e98454e37fecebbcae7ae0ca" = { created_at = 2020-01-30T19:51:45.000Z }
-"1.9.12" = { created_at = 2020-02-01T01:52:54.000Z }
-"1.9.11-890996e78e342ddc1403a2bf24402622a8f2b0df" = { created_at = 2020-02-05T06:42:49.000Z }
-"1.9.11" = { created_at = 2020-02-07T19:51:16.000Z }
-"1.9.11-eb1e7d322c9ebedaa0ea53e66af987b4cdb336ab" = { created_at = 2020-02-07T19:51:16.000Z }
-"1.10.0-rc1" = { created_at = 2020-02-28T22:58:55.000Z }
-"1.10.0-rc2" = { created_at = 2020-03-03T01:12:03.000Z }
-"1.10.0-rc3" = { created_at = 2020-03-03T01:58:25.000Z }
-"1.10.0-rc4" = { created_at = 2020-03-06T17:21:27.000Z }
-"1.10.0-rc5" = { created_at = 2020-03-10T01:59:33.000Z }
-"1.10.0" = { created_at = 2020-03-12T00:13:27.000Z }
-"1.10.1" = { created_at = 2020-04-01T04:13:45.000Z }
-"1.10.2" = { created_at = 2020-04-16T02:19:00.000Z }
-"1.10.3" = { created_at = 2020-05-01T23:49:04.000Z }
-"1.10.4" = { created_at = 2020-05-16T01:31:32.000Z }
-"1.10.5" = { created_at = 2020-06-16T04:35:02.000Z }
-"1.11.0" = { created_at = 2020-07-16T02:16:28.000Z }
-"1.11.1" = { created_at = 2020-08-01T00:08:39.000Z }
-"1.11.2" = { created_at = 2020-08-15T00:14:49.000Z }
-"1.11.3" = { created_at = 2020-09-01T19:23:30.000Z }
-"1.11.4" = { created_at = 2020-09-28T21:35:12.000Z }
-"1.11.5" = { created_at = 2020-10-26T18:09:49.000Z }
-"1.11.6" = { created_at = 2020-11-04T23:59:35.000Z }
-"1.11.7" = { created_at = 2020-11-06T18:08:58.000Z }
-"1.11.8" = { created_at = 2020-12-02T20:31:16.000Z }
-"1.11.9" = { created_at = 2020-12-15T14:13:02.000Z }
-"1.12.0" = { created_at = 2021-01-05T18:05:22.000Z }
-"1.12.1" = { created_at = 2021-01-16T01:12:00.000Z }
-"1.12.2" = { created_at = 2021-02-04T01:15:56.000Z }
-"1.12.3" = { created_at = 2021-02-15T22:36:15.000Z }
-"1.12.4" = { created_at = 2021-02-26T23:19:57.000Z }
-"1.12.5" = { created_at = 2021-03-15T21:00:28.000Z }
-"1.13.0" = { created_at = 2021-04-06T16:26:47.000Z }
-"1.13.1" = { created_at = 2021-04-26T17:47:36.000Z }
-"1.13.2" = { created_at = 2021-05-13T20:55:53.000Z }
-"1.13.3" = { created_at = 2021-06-21T20:16:31.000Z }
-"1.13.4" = { created_at = 2021-08-10T00:01:31.000Z }
-"2.0.0" = { created_at = 2021-11-01T18:54:34.000Z }
-"2.0.1" = { created_at = 2021-11-04T21:11:17.000Z }
-"2.0.2" = { created_at = 2021-11-18T20:23:13.000Z }
-"2.0.3" = { created_at = 2021-12-02T19:55:49.000Z }
-"2.0.4" = { created_at = 2021-12-16T23:38:09.000Z }
-"2.0.5" = { created_at = 2022-01-06T18:08:17.000Z }
-"2.0.6" = { created_at = 2022-01-20T19:14:08.000Z }
-"2.0.7" = { created_at = 2022-02-03T19:31:38.000Z }
-"2.0.8" = { created_at = 2022-02-17T18:10:43.000Z }
-"2.1.0" = { created_at = 2022-02-21T22:27:36.000Z }
-"2.1.1" = { created_at = 2022-02-25T23:02:44.000Z }
-"2.1.2" = { created_at = 2022-03-03T19:33:46.000Z }
-"2.1.3" = { created_at = 2022-03-04T23:21:09.000Z }
-"2.1.4" = { created_at = 2022-03-17T19:59:02.000Z }
-"2.1.5" = { created_at = 2022-03-31T22:44:32.000Z }
-"2.1.6" = { created_at = 2022-04-14T17:32:18.000Z }
-"2.1.7" = { created_at = 2022-04-28T17:09:22.000Z }
-"2.1.8" = { created_at = 2022-05-12T18:48:04.000Z }
-"2.2.0" = { created_at = 2022-05-16T22:08:30.000Z }
-"2.1.9" = { created_at = 2022-05-26T14:08:45.000Z }
-"2.2.1" = { created_at = 2022-05-26T14:20:34.000Z }
-"2.2.2" = { created_at = 2022-06-09T18:34:35.000Z }
-"2.2.3" = { created_at = 2022-06-23T19:12:33.000Z }
-"2.2.4" = { created_at = 2022-07-07T18:59:10.000Z }
-"2.2.5" = { created_at = 2022-07-08T18:19:15.000Z }
-"2.2.6" = { created_at = 2022-07-21T17:52:34.000Z }
-"2.2.7" = { created_at = 2022-08-04T17:24:28.000Z }
-"2.2.8" = { created_at = 2022-08-18T17:26:43.000Z }
-"2.3.1" = { created_at = 2022-08-19T23:23:33.000Z }
-"2.3.2" = { created_at = 2022-09-01T16:05:56.000Z }
-"2.3.3" = { created_at = 2022-09-15T17:54:02.000Z }
-"2.3.4" = { created_at = 2022-09-22T14:00:49.000Z }
-"2.3.5" = { created_at = 2022-09-29T18:52:48.000Z }
-"2.3.6" = { created_at = 2022-10-13T15:42:25.000Z }
-"2.3.7" = { created_at = 2022-10-27T18:22:37.000Z }
-"2.3.8" = { created_at = 2022-10-31T17:16:47.000Z }
-"2.3.9" = { created_at = 2022-11-07T17:16:38.000Z }
-"2.4.0" = { created_at = 2022-11-17T15:12:45.000Z }
-"2.4.1" = { created_at = 2022-11-28T16:12:12.000Z }
-"2.4.2" = { created_at = 2022-12-08T18:00:01.000Z }
-"2.4.3" = { created_at = 2023-01-05T22:44:44.000Z }
-"2.4.4" = { created_at = 2023-01-19T15:14:04.000Z }
-"2.4.5" = { created_at = 2023-02-02T15:57:14.000Z }
-"2.4.6" = { created_at = 2023-02-16T17:28:26.000Z }
-"2.5.0" = { created_at = 2023-02-23T21:12:54.000Z }
-"2.5.1" = { created_at = 2023-03-06T22:23:41.000Z }
-"2.5.2" = { created_at = 2023-03-16T15:13:33.000Z }
-"2.5.3" = { created_at = 2023-03-30T17:10:45.000Z }
-"2.5.4" = { created_at = 2023-04-13T16:24:26.000Z }
-"2.5.5" = { created_at = 2023-04-27T15:26:02.000Z }
-"2.5.6" = { created_at = 2023-05-11T15:27:42.000Z }
-"2.6.0" = { created_at = 2023-05-11T17:33:39.000Z }
-"2.6.1" = { created_at = 2023-05-25T15:39:13.000Z }
-"2.6.2" = { created_at = 2023-06-08T15:00:19.000Z }
-"2.6.3" = { created_at = 2023-06-08T19:14:34.000Z }
-"2.6.4" = { created_at = 2023-06-22T15:10:33.000Z }
-"2.6.5" = { created_at = 2023-06-30T17:44:47.000Z }
-"2.5.7" = { created_at = 2023-07-12T16:27:30.000Z }
-"2.6.6" = { created_at = 2023-07-13T17:32:49.000Z }
-"2.6.7" = { created_at = 2023-07-26T17:56:21.000Z }
-"2.6.8" = { created_at = 2023-08-03T15:25:22.000Z }
-"2.6.9" = { created_at = 2023-08-09T21:06:04.000Z }
-"2.7.0" = { created_at = 2023-08-09T16:02:48.000Z }
-"2.6.10" = { created_at = 2023-08-23T14:45:35.000Z }
-"2.7.1" = { created_at = 2023-08-23T23:08:15.000Z }
-"2.7.2" = { created_at = 2023-08-30T17:02:28.000Z }
-"2.7.3" = { created_at = 2023-09-20T13:35:37.000Z }
-"2.7.4" = { created_at = 2023-10-04T17:08:27.000Z }
-"2.5.8" = { created_at = 2023-10-18T19:38:16.000Z }
-"2.7.5" = { created_at = 2023-10-18T15:00:48.000Z }
-"2.6.11" = { created_at = 2023-10-19T15:27:00.000Z }
-"2.7.6" = { created_at = 2023-11-01T14:27:21.000Z }
-"2.5.9" = { created_at = 2023-11-03T20:17:27.000Z }
-"2.8.0" = { created_at = 2023-11-29T14:33:18.000Z }
-"2.8.1" = { created_at = 2023-12-04T17:58:30.000Z }
-"2.8.2" = { created_at = 2023-12-13T18:40:34.000Z }
-"2.8.3" = { created_at = 2024-01-17T17:46:45.000Z }
-"2.8.4" = { created_at = 2024-01-31T17:34:52.000Z }
-"2.9.0" = { created_at = 2024-02-21T17:45:57.000Z }
-"2.9.1" = { created_at = 2024-02-26T22:06:48.000Z }
-"2.8.5" = { created_at = 2024-02-29T17:41:57.000Z }
-"2.7.7" = { created_at = 2024-03-13T18:43:24.000Z }
-"2.8.6" = { created_at = 2024-03-13T16:11:08.000Z }
-"2.9.2" = { created_at = 2024-03-13T14:52:13.000Z }
-"2.9.3" = { created_at = 2024-03-27T04:38:40.000Z }
-"2.7.8" = { created_at = 2024-04-10T20:19:43.000Z }
-"2.8.7" = { created_at = 2024-04-10T18:12:59.000Z }
-"2.9.4" = { created_at = 2024-04-10T14:51:12.000Z }
-"2.8.8" = { created_at = 2024-04-24T14:51:45.000Z }
-"2.9.5" = { created_at = 2024-04-24T18:07:25.000Z }
-"2.8.9" = { created_at = 2024-05-09T23:23:21.000Z }
-"2.9.6" = { created_at = 2024-05-13T15:16:16.000Z }
-"2.10.0" = { created_at = 2024-05-15T16:18:15.000Z }
-"2.10.1" = { created_at = 2024-05-22T16:20:09.000Z }
-"2.8.10" = { created_at = 2024-06-05T15:31:02.000Z }
-"2.9.7" = { created_at = 2024-06-05T16:31:05.000Z }
-"2.10.2" = { created_at = 2024-06-05T17:15:41.000Z }
-"2.10.4" = { created_at = 2024-06-18T17:56:50.000Z }
-"2.10.6" = { created_at = 2024-07-05T16:57:29.000Z }
-"2.10.7" = { created_at = 2024-07-17T14:23:40.000Z }
-"2.11.0" = { created_at = 2024-08-07T20:40:47.000Z }
-"2.11.1" = { created_at = 2024-08-21T14:00:56.000Z }
-"2.11.2" = { created_at = 2024-09-04T17:10:27.000Z }
-"2.11.3" = { created_at = 2024-09-18T14:37:20.000Z }
-"2.11.4" = { created_at = 2024-10-07T15:24:45.000Z }
-"2.11.5" = { created_at = 2024-10-16T16:35:11.000Z }
-"2.11.6" = { created_at = 2024-12-13T17:00:49.000Z }
-"2.12.2" = { created_at = 2025-01-15T20:37:26.000Z }
+"0.1" = { created_at = 2014-11-26T22:49:29.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.1" }
+"0.2" = { created_at = 2014-12-11T12:15:25.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.2" }
+"0.3" = { created_at = 2015-01-23T10:04:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.3" }
+"0.4" = { created_at = 2015-02-11T22:35:11.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.4" }
+"0.4.1" = { created_at = 2015-02-20T10:00:38.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.4.1" }
+"0.5" = { created_at = 2015-03-14T01:19:12.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.5" }
+"0.6" = { created_at = 2015-04-14T08:08:24.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.6" }
+"0.7" = { created_at = 2015-05-19T07:30:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.7" }
+"0.7.1" = { created_at = 2015-05-22T22:16:07.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.7.1" }
+"0.8(rc1)" = { created_at = 2015-06-07T21:52:38.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8(rc1)" }
+"0.8" = { created_at = 2015-06-12T02:27:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8" }
+"0.8.1" = { created_at = 2015-06-15T23:28:05.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2015-06-17T20:32:22.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8.2" }
+"0.8.3" = { created_at = 2015-06-23T23:13:50.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8.3" }
+"0.8.4" = { created_at = 2015-07-01T21:39:36.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8.4" }
+"0.8.5" = { created_at = 2015-07-01T21:49:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.8.5" }
+"0.9.0" = { created_at = 2015-07-23T22:13:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v0.9.0" }
+"untagged-2d548afe7d60b4346615" = { created_at = 2016-04-11T17:54:39.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/untagged-2d548afe7d60b4346615" }
+"1.0.0(835)" = { created_at = 2016-05-04T17:43:18.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.0.0(835)" }
+"1.0.0(849)" = { created_at = 2016-05-05T00:55:14.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.0.0(849)" }
+"1.0.1(1433)" = { created_at = 2016-06-14T22:15:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.0.1(1433)" }
+"1.1.0" = { created_at = 2016-07-07T23:13:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.1.0" }
+"1.1.0-RC1" = { created_at = 2016-09-10T00:55:06.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.1.0-RC1" }
+"1.2.0-RC1" = { created_at = 2016-09-12T23:56:14.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.0-RC1" }
+"1.2.0-RC2" = { created_at = 2016-09-21T23:45:19.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.0-RC2" }
+"1.2.0" = { created_at = 2016-09-23T17:27:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2016-09-23T20:39:04.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2016-10-11T18:57:52.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2016-10-31T22:41:20.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.3" }
+"1.2.4" = { created_at = 2016-11-23T22:19:23.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.4" }
+"1.2.5" = { created_at = 2016-12-01T02:00:53.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.5" }
+"1.2.6" = { created_at = 2016-12-01T18:13:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.2.6" }
+"1.3.0" = { created_at = 2016-12-07T21:57:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.0" }
+"1.3.1" = { created_at = 2016-12-12T20:56:46.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.1" }
+"1.3.2" = { created_at = 2016-12-21T23:29:20.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.2" }
+"1.3.3" = { created_at = 2017-01-10T21:31:46.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.3" }
+"1.3.4" = { created_at = 2017-01-13T23:14:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.4" }
+"1.3.5" = { created_at = 2017-02-09T17:39:06.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.5" }
+"1.3.6" = { created_at = 2017-02-16T22:12:50.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.6" }
+"1.3.8" = { created_at = 2017-02-17T22:58:06.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.8" }
+"1.3.9" = { created_at = 2017-02-27T23:15:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.9" }
+"1.3.10" = { created_at = 2017-03-01T03:17:38.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.10" }
+"1.3.11" = { created_at = 2017-03-02T01:13:15.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.11" }
+"1.3.12" = { created_at = 2017-03-07T02:12:35.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.12" }
+"1.3.13" = { created_at = 2017-03-07T20:48:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.13" }
+"1.3.14" = { created_at = 2017-03-09T21:30:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.14" }
+"1.3.15" = { created_at = 2017-03-11T03:01:19.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.15" }
+"1.3.16" = { created_at = 2017-03-13T19:55:25.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.16" }
+"1.3.17" = { created_at = 2017-03-27T20:48:59.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.17" }
+"1.3.18" = { created_at = 2017-03-27T20:48:59.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.18" }
+"1.4.0" = { created_at = 2017-03-28T19:07:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.0" }
+"1.3.19" = { created_at = 2017-03-29T23:04:20.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.3.19" }
+"1.4.1" = { created_at = 2017-04-05T02:12:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.1" }
+"1.4.2" = { created_at = 2017-04-07T00:54:52.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.2" }
+"1.4.3" = { created_at = 2017-04-08T05:27:12.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.3" }
+"1.4.4" = { created_at = 2017-04-15T01:17:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.4" }
+"1.4.5" = { created_at = 2017-04-22T09:44:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.5" }
+"1.4.6" = { created_at = 2017-05-05T23:08:20.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.6" }
+"1.4.7-RC1" = { created_at = 2017-05-10T16:00:24.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.7-RC1" }
+"1.4.7-RC2" = { created_at = 2017-05-15T19:02:35.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.7-RC2" }
+"1.4.7" = { created_at = 2017-06-01T20:50:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.7" }
+"1.4.8-RC1" = { created_at = 2017-06-07T16:43:17.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.8-RC1" }
+"1.4.8" = { created_at = 2017-06-14T18:29:40.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.4.8" }
+"1.5.0" = { created_at = 2017-07-07T02:03:59.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.5.0" }
+"1.5.1" = { created_at = 2017-08-02T18:55:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.5.1" }
+"1.5.2" = { created_at = 2017-08-05T00:12:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.5.2" }
+"1.5.3" = { created_at = 2017-08-17T23:11:40.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.5.3" }
+"1.6.0rc8" = { created_at = 2017-09-30T15:54:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.0rc8" }
+"1.6.0rc9" = { created_at = 2017-10-03T16:48:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.0rc9" }
+"1.6.0" = { created_at = 2017-10-04T01:08:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.0" }
+"1.6.1" = { created_at = 2017-10-10T00:12:54.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.1" }
+"1.6.2" = { created_at = 2017-10-18T03:20:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.2" }
+"1.6.3" = { created_at = 2017-10-26T19:36:31.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.3" }
+"1.6.4" = { created_at = 2017-11-15T19:54:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.4" }
+"1.6.5" = { created_at = 2017-11-17T22:32:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.5" }
+"1.6.6" = { created_at = 2017-12-11T19:19:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.6" }
+"1.6.7" = { created_at = 2018-01-11T21:28:41.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.7" }
+"1.6.8" = { created_at = 2018-01-29T23:26:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.8" }
+"1.7.0rc1" = { created_at = 2018-02-13T21:17:17.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.0rc1" }
+"1.6.9" = { created_at = 2018-02-27T23:54:08.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.9" }
+"1.7.0rc2" = { created_at = 2018-02-27T18:50:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.0rc2" }
+"1.7.0rc3" = { created_at = 2018-03-19T20:02:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.0rc3" }
+"1.7.0rc4" = { created_at = 2018-03-21T20:15:14.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.0rc4" }
+"1.6.10" = { created_at = 2018-03-22T19:36:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.6.10" }
+"1.7.0" = { created_at = 2018-03-27T00:55:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.0" }
+"1.7.1" = { created_at = 2018-04-19T18:27:35.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.1" }
+"1.7.2" = { created_at = 2018-05-22T18:54:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.2" }
+"1.7.3" = { created_at = 2018-05-23T20:22:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.3" }
+"1.7.4" = { created_at = 2018-07-05T23:30:14.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.4" }
+"1.7.5" = { created_at = 2018-08-03T01:20:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.5" }
+"1.7.6" = { created_at = 2018-08-21T17:42:23.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.6" }
+"1.7.7" = { created_at = 2018-09-06T00:25:51.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.7" }
+"1.7.8" = { created_at = 2018-09-18T18:30:41.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.8" }
+"1.7.9" = { created_at = 2018-09-25T01:02:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.9" }
+"1.7.10" = { created_at = 2018-10-05T23:15:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.10" }
+"1.8.0rc1" = { created_at = 2018-10-22T23:38:37.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.0rc1" }
+"1.8.0rc2" = { created_at = 2018-11-06T18:56:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.0rc2" }
+"1.7.11" = { created_at = 2018-11-14T01:46:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.11" }
+"1.7.12" = { created_at = 2018-11-14T08:00:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.12" }
+"1.7.13" = { created_at = 2018-11-15T08:00:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.13" }
+"1.7.14" = { created_at = 2018-11-16T08:00:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.7.14" }
+"1.8.0rc4" = { created_at = 2018-12-03T20:36:51.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.0rc4" }
+"1.8.0" = { created_at = 2018-12-04T02:42:01.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.0" }
+"1.8.1" = { created_at = 2018-12-19T20:27:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.1" }
+"1.8.2" = { created_at = 2019-01-04T22:44:51.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.2" }
+"1.8.2-b01811d728f42bedb77d95f95bceeabffbf7afeb" = { created_at = 2019-01-21T16:47:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.2-b01811d728f42bedb77d95f95bceeabffbf7afeb" }
+"1.8.2-c2dc1d719856f44183c6be9e6404fa24704b9726" = { created_at = 2019-01-23T22:32:42.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.2-c2dc1d719856f44183c6be9e6404fa24704b9726" }
+"1.8.2-0dd2ae297eab6fb635d3278410566458707d728f" = { created_at = 2019-01-24T23:03:48.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.2-0dd2ae297eab6fb635d3278410566458707d728f" }
+"1.8.2-3d440134bca6a690643f64911242930cca174a48" = { created_at = 2019-01-25T21:51:20.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.2-3d440134bca6a690643f64911242930cca174a48" }
+"1.8.2-267bb46df4269caf48ff5ffdd247c5bcbffc0cd9" = { created_at = 2019-01-30T22:14:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.2-267bb46df4269caf48ff5ffdd247c5bcbffc0cd9" }
+"1.8.3" = { created_at = 2019-02-07T00:39:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.3" }
+"1.8.4" = { created_at = 2019-02-12T17:37:55.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.4" }
+"1.8.5" = { created_at = 2019-02-18T22:07:52.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.5" }
+"1.8.6" = { created_at = 2019-03-08T21:18:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.6" }
+"1.9.0rc2" = { created_at = 2019-05-08T22:18:04.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.0rc2" }
+"1.8.7" = { created_at = 2019-05-28T20:59:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.7" }
+"1.9.0rc3" = { created_at = 2019-05-30T00:40:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.0rc3" }
+"1.9.0rc4" = { created_at = 2019-06-11T23:55:11.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.0rc4" }
+"1.9.0" = { created_at = 2019-06-12T22:50:40.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.0" }
+"1.9.1" = { created_at = 2019-07-18T19:25:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.1" }
+"1.9.2" = { created_at = 2019-07-25T21:36:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.2" }
+"1.9.3" = { created_at = 2019-08-07T21:24:23.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.3" }
+"1.9.4" = { created_at = 2019-09-06T18:57:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.4" }
+"1.8.8" = { created_at = 2019-09-11T21:05:37.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.8.8" }
+"1.9.5" = { created_at = 2019-09-18T18:53:46.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.5" }
+"1.9.6" = { created_at = 2019-10-02T21:39:12.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.6" }
+"1.9.7" = { created_at = 2019-10-04T22:42:38.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.7" }
+"1.9.7-57afde3038f49b0b9d229b233c09f7ef3b9ab694" = { created_at = 2019-10-15T19:22:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.7-57afde3038f49b0b9d229b233c09f7ef3b9ab694" }
+"1.9.7-d520492f159e56e6bcf5cc0329b8975cf06f9142" = { created_at = 2019-10-22T23:34:46.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.7-d520492f159e56e6bcf5cc0329b8975cf06f9142" }
+"1.9.8" = { created_at = 2019-11-19T01:17:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.8" }
+"1.9.8-b2aa2ff10546da504b2bf1669b51de4b12e2b594" = { created_at = 2019-11-19T01:17:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.8-b2aa2ff10546da504b2bf1669b51de4b12e2b594" }
+"1.9.9" = { created_at = 2019-12-20T22:40:24.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.9" }
+"1.9.9-1b3f8868a1f7e75af2cb2788ac7d7a79c59c3ef8" = { created_at = 2019-12-20T22:40:24.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.9-1b3f8868a1f7e75af2cb2788ac7d7a79c59c3ef8" }
+"1.9.10-83bbb807e7c52289171d7a2f36aff583d065b08e" = { created_at = 2020-01-09T19:53:50.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.10-83bbb807e7c52289171d7a2f36aff583d065b08e" }
+"1.9.10" = { created_at = 2020-01-30T19:51:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.10" }
+"1.9.10-e6932adad8179d89bfa7498204001a6589321031" = { created_at = 2020-01-30T19:51:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.10-e6932adad8179d89bfa7498204001a6589321031" }
+"1.9.11-63c34d2a5f789db3e98454e37fecebbcae7ae0ca" = { created_at = 2020-01-30T19:51:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.11-63c34d2a5f789db3e98454e37fecebbcae7ae0ca" }
+"1.9.12" = { created_at = 2020-02-01T01:52:54.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.12" }
+"1.9.11-890996e78e342ddc1403a2bf24402622a8f2b0df" = { created_at = 2020-02-05T06:42:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.11-890996e78e342ddc1403a2bf24402622a8f2b0df" }
+"1.9.11" = { created_at = 2020-02-07T19:51:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.11" }
+"1.9.11-eb1e7d322c9ebedaa0ea53e66af987b4cdb336ab" = { created_at = 2020-02-07T19:51:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.9.11-eb1e7d322c9ebedaa0ea53e66af987b4cdb336ab" }
+"1.10.0-rc1" = { created_at = 2020-02-28T22:58:55.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.0-rc1" }
+"1.10.0-rc2" = { created_at = 2020-03-03T01:12:03.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.0-rc2" }
+"1.10.0-rc3" = { created_at = 2020-03-03T01:58:25.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.0-rc3" }
+"1.10.0-rc4" = { created_at = 2020-03-06T17:21:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.0-rc4" }
+"1.10.0-rc5" = { created_at = 2020-03-10T01:59:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.0-rc5" }
+"1.10.0" = { created_at = 2020-03-12T00:13:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2020-04-01T04:13:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.1" }
+"1.10.2" = { created_at = 2020-04-16T02:19:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.2" }
+"1.10.3" = { created_at = 2020-05-01T23:49:04.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.3" }
+"1.10.4" = { created_at = 2020-05-16T01:31:32.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.4" }
+"1.10.5" = { created_at = 2020-06-16T04:35:02.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.10.5" }
+"1.11.0" = { created_at = 2020-07-16T02:16:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2020-08-01T00:08:39.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.1" }
+"1.11.2" = { created_at = 2020-08-15T00:14:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.2" }
+"1.11.3" = { created_at = 2020-09-01T19:23:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.3" }
+"1.11.4" = { created_at = 2020-09-28T21:35:12.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.4" }
+"1.11.5" = { created_at = 2020-10-26T18:09:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.5" }
+"1.11.6" = { created_at = 2020-11-04T23:59:35.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.6" }
+"1.11.7" = { created_at = 2020-11-06T18:08:58.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.7" }
+"1.11.8" = { created_at = 2020-12-02T20:31:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.8" }
+"1.11.9" = { created_at = 2020-12-15T14:13:02.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.11.9" }
+"1.12.0" = { created_at = 2021-01-05T18:05:22.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2021-01-16T01:12:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.12.1" }
+"1.12.2" = { created_at = 2021-02-04T01:15:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.12.2" }
+"1.12.3" = { created_at = 2021-02-15T22:36:15.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.12.3" }
+"1.12.4" = { created_at = 2021-02-26T23:19:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.12.4" }
+"1.12.5" = { created_at = 2021-03-15T21:00:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.12.5" }
+"1.13.0" = { created_at = 2021-04-06T16:26:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.13.0" }
+"1.13.1" = { created_at = 2021-04-26T17:47:36.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.13.1" }
+"1.13.2" = { created_at = 2021-05-13T20:55:53.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.13.2" }
+"1.13.3" = { created_at = 2021-06-21T20:16:31.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.13.3" }
+"1.13.4" = { created_at = 2021-08-10T00:01:31.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v1.13.4" }
+"2.0.0" = { created_at = 2021-11-01T18:54:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2021-11-04T21:11:17.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2021-11-18T20:23:13.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.2" }
+"2.0.3" = { created_at = 2021-12-02T19:55:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.3" }
+"2.0.4" = { created_at = 2021-12-16T23:38:09.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.4" }
+"2.0.5" = { created_at = 2022-01-06T18:08:17.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.5" }
+"2.0.6" = { created_at = 2022-01-20T19:14:08.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.6" }
+"2.0.7" = { created_at = 2022-02-03T19:31:38.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.7" }
+"2.0.8" = { created_at = 2022-02-17T18:10:43.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.0.8" }
+"2.1.0" = { created_at = 2022-02-21T22:27:36.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.0" }
+"2.1.1" = { created_at = 2022-02-25T23:02:44.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.1" }
+"2.1.2" = { created_at = 2022-03-03T19:33:46.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.2" }
+"2.1.3" = { created_at = 2022-03-04T23:21:09.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.3" }
+"2.1.4" = { created_at = 2022-03-17T19:59:02.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.4" }
+"2.1.5" = { created_at = 2022-03-31T22:44:32.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.5" }
+"2.1.6" = { created_at = 2022-04-14T17:32:18.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.6" }
+"2.1.7" = { created_at = 2022-04-28T17:09:22.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.7" }
+"2.1.8" = { created_at = 2022-05-12T18:48:04.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.8" }
+"2.2.0" = { created_at = 2022-05-16T22:08:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.0" }
+"2.1.9" = { created_at = 2022-05-26T14:08:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.1.9" }
+"2.2.1" = { created_at = 2022-05-26T14:20:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.1" }
+"2.2.2" = { created_at = 2022-06-09T18:34:35.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.2" }
+"2.2.3" = { created_at = 2022-06-23T19:12:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.3" }
+"2.2.4" = { created_at = 2022-07-07T18:59:10.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.4" }
+"2.2.5" = { created_at = 2022-07-08T18:19:15.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.5" }
+"2.2.6" = { created_at = 2022-07-21T17:52:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.6" }
+"2.2.7" = { created_at = 2022-08-04T17:24:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.7" }
+"2.2.8" = { created_at = 2022-08-18T17:26:43.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.2.8" }
+"2.3.1" = { created_at = 2022-08-19T23:23:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.1" }
+"2.3.2" = { created_at = 2022-09-01T16:05:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.2" }
+"2.3.3" = { created_at = 2022-09-15T17:54:02.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.3" }
+"2.3.4" = { created_at = 2022-09-22T14:00:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.4" }
+"2.3.5" = { created_at = 2022-09-29T18:52:48.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.5" }
+"2.3.6" = { created_at = 2022-10-13T15:42:25.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.6" }
+"2.3.7" = { created_at = 2022-10-27T18:22:37.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.7" }
+"2.3.8" = { created_at = 2022-10-31T17:16:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.8" }
+"2.3.9" = { created_at = 2022-11-07T17:16:38.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.3.9" }
+"2.4.0" = { created_at = 2022-11-17T15:12:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.0" }
+"2.4.1" = { created_at = 2022-11-28T16:12:12.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.1" }
+"2.4.2" = { created_at = 2022-12-08T18:00:01.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.2" }
+"2.4.3" = { created_at = 2023-01-05T22:44:44.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.3" }
+"2.4.4" = { created_at = 2023-01-19T15:14:04.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.4" }
+"2.4.5" = { created_at = 2023-02-02T15:57:14.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.5" }
+"2.4.6" = { created_at = 2023-02-16T17:28:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.4.6" }
+"2.5.0" = { created_at = 2023-02-23T21:12:54.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2023-03-06T22:23:41.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.1" }
+"2.5.2" = { created_at = 2023-03-16T15:13:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.2" }
+"2.5.3" = { created_at = 2023-03-30T17:10:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.3" }
+"2.5.4" = { created_at = 2023-04-13T16:24:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.4" }
+"2.5.5" = { created_at = 2023-04-27T15:26:02.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.5" }
+"2.5.6" = { created_at = 2023-05-11T15:27:42.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.6" }
+"2.6.0" = { created_at = 2023-05-11T17:33:39.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2023-05-25T15:39:13.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.1" }
+"2.6.2" = { created_at = 2023-06-08T15:00:19.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.2" }
+"2.6.3" = { created_at = 2023-06-08T19:14:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.3" }
+"2.6.4" = { created_at = 2023-06-22T15:10:33.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.4" }
+"2.6.5" = { created_at = 2023-06-30T17:44:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.5" }
+"2.5.7" = { created_at = 2023-07-12T16:27:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.7" }
+"2.6.6" = { created_at = 2023-07-13T17:32:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.6" }
+"2.6.7" = { created_at = 2023-07-26T17:56:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.7" }
+"2.6.8" = { created_at = 2023-08-03T15:25:22.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.8" }
+"2.6.9" = { created_at = 2023-08-09T21:06:04.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.9" }
+"2.7.0" = { created_at = 2023-08-09T16:02:48.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.0" }
+"2.6.10" = { created_at = 2023-08-23T14:45:35.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.10" }
+"2.7.1" = { created_at = 2023-08-23T23:08:15.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.1" }
+"2.7.2" = { created_at = 2023-08-30T17:02:28.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.2" }
+"2.7.3" = { created_at = 2023-09-20T13:35:37.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.3" }
+"2.7.4" = { created_at = 2023-10-04T17:08:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.4" }
+"2.5.8" = { created_at = 2023-10-18T19:38:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.8" }
+"2.7.5" = { created_at = 2023-10-18T15:00:48.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.5" }
+"2.6.11" = { created_at = 2023-10-19T15:27:00.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.6.11" }
+"2.7.6" = { created_at = 2023-11-01T14:27:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.6" }
+"2.5.9" = { created_at = 2023-11-03T20:17:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.5.9" }
+"2.8.0" = { created_at = 2023-11-29T14:33:18.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.0" }
+"2.8.1" = { created_at = 2023-12-04T17:58:30.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.1" }
+"2.8.2" = { created_at = 2023-12-13T18:40:34.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.2" }
+"2.8.3" = { created_at = 2024-01-17T17:46:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.3" }
+"2.8.4" = { created_at = 2024-01-31T17:34:52.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.4" }
+"2.9.0" = { created_at = 2024-02-21T17:45:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.0" }
+"2.9.1" = { created_at = 2024-02-26T22:06:48.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.1" }
+"2.8.5" = { created_at = 2024-02-29T17:41:57.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.5" }
+"2.7.7" = { created_at = 2024-03-13T18:43:24.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.7" }
+"2.8.6" = { created_at = 2024-03-13T16:11:08.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.6" }
+"2.9.2" = { created_at = 2024-03-13T14:52:13.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.2" }
+"2.9.3" = { created_at = 2024-03-27T04:38:40.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.3" }
+"2.7.8" = { created_at = 2024-04-10T20:19:43.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.7.8" }
+"2.8.7" = { created_at = 2024-04-10T18:12:59.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.7" }
+"2.9.4" = { created_at = 2024-04-10T14:51:12.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.4" }
+"2.8.8" = { created_at = 2024-04-24T14:51:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.8" }
+"2.9.5" = { created_at = 2024-04-24T18:07:25.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.5" }
+"2.8.9" = { created_at = 2024-05-09T23:23:21.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.9" }
+"2.9.6" = { created_at = 2024-05-13T15:16:16.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.6" }
+"2.10.0" = { created_at = 2024-05-15T16:18:15.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.0" }
+"2.10.1" = { created_at = 2024-05-22T16:20:09.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.1" }
+"2.8.10" = { created_at = 2024-06-05T15:31:02.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.8.10" }
+"2.9.7" = { created_at = 2024-06-05T16:31:05.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.9.7" }
+"2.10.2" = { created_at = 2024-06-05T17:15:41.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.2" }
+"2.10.4" = { created_at = 2024-06-18T17:56:50.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.4" }
+"2.10.6" = { created_at = 2024-07-05T16:57:29.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.6" }
+"2.10.7" = { created_at = 2024-07-17T14:23:40.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.10.7" }
+"2.11.0" = { created_at = 2024-08-07T20:40:47.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2024-08-21T14:00:56.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.1" }
+"2.11.2" = { created_at = 2024-09-04T17:10:27.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.2" }
+"2.11.3" = { created_at = 2024-09-18T14:37:20.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.3" }
+"2.11.4" = { created_at = 2024-10-07T15:24:45.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.4" }
+"2.11.5" = { created_at = 2024-10-16T16:35:11.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.5" }
+"2.11.6" = { created_at = 2024-12-13T17:00:49.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.11.6" }
+"2.12.2" = { created_at = 2025-01-15T20:37:26.000Z, release_url = "https://github.com/pachyderm/pachyderm/releases/tag/v2.12.2" }

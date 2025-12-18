@@ -1,40 +1,40 @@
 [versions]
-"0.0.1" = { created_at = 2020-07-30T16:49:52.000Z }
-"0.0.2" = { created_at = 2020-08-14T16:32:41.000Z }
-"0.0.3" = { created_at = 2020-08-15T10:56:07.000Z }
-"0.0.4" = { created_at = 2020-08-20T16:19:42.000Z }
-"0.0.5" = { created_at = 2020-09-17T07:33:44.000Z }
-"0.0.6" = { created_at = 2020-09-29T12:13:35.000Z }
-"0.0.7" = { created_at = 2020-10-19T13:50:18.000Z }
-"0.0.8" = { created_at = 2020-10-19T18:53:06.000Z }
-"0.0.9" = { created_at = 2020-10-25T16:15:18.000Z }
-"0.0.10" = { created_at = 2020-10-26T09:18:15.000Z }
-"0.0.11" = { created_at = 2020-10-29T11:09:57.000Z }
-"0.0.12" = { created_at = 2020-11-12T10:13:35.000Z }
-"0.1.0" = { created_at = 2020-11-18T11:00:09.000Z }
-"0.1.1" = { created_at = 2020-11-27T13:17:03.000Z }
-"0.2.0" = { created_at = 2020-12-16T19:59:21.000Z }
-"0.3.0" = { created_at = 2021-01-07T15:48:52.000Z }
-"0.4.0" = { created_at = 2021-01-25T11:37:29.000Z }
-"0.4.1" = { created_at = 2021-01-25T12:56:37.000Z }
-"0.4.2" = { created_at = 2021-03-10T07:07:50.000Z }
-"0.4.3" = { created_at = 2021-03-19T10:17:45.000Z }
-"0.5.0" = { created_at = 2021-05-31T09:34:53.000Z }
-"0.5.1" = { created_at = 2021-06-04T09:23:09.000Z }
-"0.5.2" = { created_at = 2021-06-18T14:24:22.000Z }
-"0.6.0" = { created_at = 2021-09-07T16:33:45.000Z }
-"0.7.0" = { created_at = 2021-10-20T18:47:49.000Z }
-"0.7.1" = { created_at = 2021-12-07T13:15:27.000Z }
-"0.8.0" = { created_at = 2022-05-04T12:22:01.000Z }
-"0.8.1" = { created_at = 2022-09-08T09:39:51.000Z }
-"0.8.2" = { created_at = 2022-10-04T07:05:56.000Z }
-"1.0.0-m1" = { created_at = 2022-12-16T11:08:31.000Z }
-"0.9.0" = { created_at = 2023-01-25T07:15:34.000Z }
-"1.0.0-m4" = { created_at = 2023-01-28T13:35:11.000Z }
-"1.0-m6" = { created_at = 2023-03-23T08:59:27.000Z }
-"1.0-m7" = { created_at = 2023-07-11T04:59:21.000Z }
-"1.0-m8" = { created_at = 2023-10-26T05:45:11.000Z }
-"1.0.0" = { created_at = 2024-06-14T12:43:37.000Z }
-"1.0.1" = { created_at = 2024-06-20T12:55:15.000Z }
-"1.0.2" = { created_at = 2024-08-20T21:52:04.000Z }
-"1.0.3" = { created_at = 2025-09-17T13:29:52.000Z }
+"0.0.1" = { created_at = 2020-07-30T16:49:52.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.1" }
+"0.0.2" = { created_at = 2020-08-14T16:32:41.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.2" }
+"0.0.3" = { created_at = 2020-08-15T10:56:07.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.3" }
+"0.0.4" = { created_at = 2020-08-20T16:19:42.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.4" }
+"0.0.5" = { created_at = 2020-09-17T07:33:44.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.5" }
+"0.0.6" = { created_at = 2020-09-29T12:13:35.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.6" }
+"0.0.7" = { created_at = 2020-10-19T13:50:18.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.7" }
+"0.0.8" = { created_at = 2020-10-19T18:53:06.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.8" }
+"0.0.9" = { created_at = 2020-10-25T16:15:18.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.9" }
+"0.0.10" = { created_at = 2020-10-26T09:18:15.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.10" }
+"0.0.11" = { created_at = 2020-10-29T11:09:57.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.11" }
+"0.0.12" = { created_at = 2020-11-12T10:13:35.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.0.12" }
+"0.1.0" = { created_at = 2020-11-18T11:00:09.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.1.0" }
+"0.1.1" = { created_at = 2020-11-27T13:17:03.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.1.1" }
+"0.2.0" = { created_at = 2020-12-16T19:59:21.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.2.0" }
+"0.3.0" = { created_at = 2021-01-07T15:48:52.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.3.0" }
+"0.4.0" = { created_at = 2021-01-25T11:37:29.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.4.0" }
+"0.4.1" = { created_at = 2021-01-25T12:56:37.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.4.1" }
+"0.4.2" = { created_at = 2021-03-10T07:07:50.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.4.2" }
+"0.4.3" = { created_at = 2021-03-19T10:17:45.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.4.3" }
+"0.5.0" = { created_at = 2021-05-31T09:34:53.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.5.0" }
+"0.5.1" = { created_at = 2021-06-04T09:23:09.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.5.1" }
+"0.5.2" = { created_at = 2021-06-18T14:24:22.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.5.2" }
+"0.6.0" = { created_at = 2021-09-07T16:33:45.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.6.0" }
+"0.7.0" = { created_at = 2021-10-20T18:47:49.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.7.0" }
+"0.7.1" = { created_at = 2021-12-07T13:15:27.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.7.1" }
+"0.8.0" = { created_at = 2022-05-04T12:22:01.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.8.0" }
+"0.8.1" = { created_at = 2022-09-08T09:39:51.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.8.1" }
+"0.8.2" = { created_at = 2022-10-04T07:05:56.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.8.2" }
+"1.0.0-m1" = { created_at = 2022-12-16T11:08:31.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0.0-m1" }
+"0.9.0" = { created_at = 2023-01-25T07:15:34.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/0.9.0" }
+"1.0.0-m4" = { created_at = 2023-01-28T13:35:11.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0.0-m4" }
+"1.0-m6" = { created_at = 2023-03-23T08:59:27.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0-m6" }
+"1.0-m7" = { created_at = 2023-07-11T04:59:21.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0-m7" }
+"1.0-m8" = { created_at = 2023-10-26T05:45:11.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0-m8" }
+"1.0.0" = { created_at = 2024-06-14T12:43:37.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0.0" }
+"1.0.1" = { created_at = 2024-06-20T12:55:15.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0.1" }
+"1.0.2" = { created_at = 2024-08-20T21:52:04.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0.2" }
+"1.0.3" = { created_at = 2025-09-17T13:29:52.000Z, release_url = "https://github.com/apache/maven-mvnd/releases/tag/1.0.3" }

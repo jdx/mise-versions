@@ -1,153 +1,153 @@
 [versions]
-"1.0.0" = { created_at = 2015-09-12T08:23:15.000Z }
-"1.1.0" = { created_at = 2015-11-02T17:42:44.000Z }
-"2.0.0" = { created_at = 2016-04-21T20:44:20.000Z }
-"2.1.0" = { created_at = 2017-03-03T09:24:21.000Z }
-"2.2.0" = { created_at = 2017-10-18T23:43:09.000Z }
-"2.3.0" = { created_at = 2017-11-12T17:13:51.000Z }
-"2.3.1" = { created_at = 2017-11-12T17:13:51.000Z }
-"2.3.3" = { created_at = 2017-11-12T23:52:56.000Z }
-"2.3.4" = { created_at = 2017-11-30T18:40:25.000Z }
-"2.3.5" = { created_at = 2018-06-08T01:38:13.000Z }
-"2.3.6" = { created_at = 2018-10-26T00:33:14.000Z }
-"2.3.7" = { created_at = 2018-11-06T03:11:35.000Z }
-"2.3.8" = { created_at = 2018-11-07T21:12:28.000Z }
-"2.4.0" = { created_at = 2019-04-18T20:36:31.000Z }
-"2.5.0" = { created_at = 2019-05-17T15:57:54.000Z }
-"2.5.1" = { created_at = 2019-07-16T19:06:24.000Z }
-"2.5.2" = { created_at = 2019-09-05T23:09:49.000Z }
-"2.6.0" = { created_at = 2019-11-26T23:18:54.000Z }
-"2.6.1" = { created_at = 2019-11-27T20:13:08.000Z }
-"2.6.2" = { created_at = 2020-01-02T14:18:07.000Z }
-"2.6.3" = { created_at = 2020-01-02T14:32:07.000Z }
-"2.7.0" = { created_at = 2020-01-06T14:13:42.000Z }
-"2.7.1" = { created_at = 2020-01-13T20:35:10.000Z }
-"2.7.2" = { created_at = 2020-01-14T14:58:10.000Z }
-"2.7.3" = { created_at = 2020-03-11T22:13:42.000Z }
-"2.7.4" = { created_at = 2020-04-13T23:50:37.000Z }
-"2.7.6" = { created_at = 2020-06-08T17:53:28.000Z }
-"2.7.7" = { created_at = 2020-07-24T16:48:57.000Z }
-"2.8.0" = { created_at = 2020-07-28T23:17:51.000Z }
-"2.9.0" = { created_at = 2020-08-26T14:08:15.000Z }
-"2.9.1" = { created_at = 2020-08-29T22:48:55.000Z }
-"2.9.2" = { created_at = 2020-08-31T16:41:06.000Z }
-"2.9.3" = { created_at = 2020-09-02T00:37:45.000Z }
-"2.9.4" = { created_at = 2020-09-04T19:27:42.000Z }
-"2.9.5" = { created_at = 2020-09-23T16:46:29.000Z }
-"2.9.6" = { created_at = 2020-10-01T00:22:25.000Z }
-"2.9.7" = { created_at = 2020-10-01T21:31:06.000Z }
-"2.9.8" = { created_at = 2020-10-15T17:41:37.000Z }
-"2.9.9" = { created_at = 2020-10-16T13:03:55.000Z }
-"2.9.10" = { created_at = 2020-10-21T14:17:24.000Z }
-"2.9.11" = { created_at = 2021-01-20T12:20:59.000Z }
-"2.9.12" = { created_at = 2021-02-06T21:11:16.000Z }
-"2.9.13" = { created_at = 2021-02-09T23:32:13.000Z }
-"2.9.14" = { created_at = 2021-03-15T13:32:41.000Z }
-"2.9.15" = { created_at = 2021-03-15T19:35:26.000Z }
-"2.9.16" = { created_at = 2021-04-10T21:45:36.000Z }
-"2.9.17" = { created_at = 2021-05-14T17:21:32.000Z }
-"2.9.18" = { created_at = 2021-06-17T14:52:47.000Z }
-"2.9.19" = { created_at = 2021-07-06T23:41:43.000Z }
-"2.9.20" = { created_at = 2021-07-27T15:48:51.000Z }
-"2.9.21" = { created_at = 2021-07-29T17:04:08.000Z }
-"2.9.22" = { created_at = 2021-09-11T02:02:48.000Z }
-"2.9.23" = { created_at = 2021-12-13T19:33:50.000Z }
-"2.9.24" = { created_at = 2021-12-14T18:03:03.000Z }
-"2.9.25" = { created_at = 2021-12-29T13:52:35.000Z }
-"2.9.26" = { created_at = 2021-12-29T22:24:52.000Z }
-"2.9.27" = { created_at = 2022-01-04T14:09:04.000Z }
-"2.9.28" = { created_at = 2022-01-13T20:52:45.000Z }
-"2.9.29" = { created_at = 2022-01-18T17:27:47.000Z }
-"2.10.0" = { created_at = 2022-01-25T21:29:05.000Z }
-"2.11.0" = { created_at = 2022-04-08T17:52:26.000Z }
-"2.11.1" = { created_at = 2022-04-08T21:33:12.000Z }
-"2.11.2" = { created_at = 2022-04-26T14:54:36.000Z }
-"2.11.3" = { created_at = 2022-05-22T18:52:25.000Z }
-"2.11.4" = { created_at = 2022-05-22T19:08:14.000Z }
-"2.11.5" = { created_at = 2022-05-23T21:05:53.000Z }
-"2.11.6" = { created_at = 2022-05-28T14:47:13.000Z }
-"2.11.7" = { created_at = 2022-05-30T16:20:33.000Z }
-"2.11.8" = { created_at = 2022-06-02T19:45:14.000Z }
-"2.11.9" = { created_at = 2022-06-04T17:00:20.000Z }
-"2.11.10" = { created_at = 2022-06-08T14:11:10.000Z }
-"2.11.11" = { created_at = 2022-06-21T21:29:37.000Z }
-"2.11.12" = { created_at = 2022-07-06T16:38:05.000Z }
-"2.12.0" = { created_at = 2022-07-10T16:15:50.000Z }
-"2.12.1" = { created_at = 2022-08-31T00:45:40.000Z }
-"2.12.2" = { created_at = 2022-09-24T00:53:48.000Z }
-"2.12.3" = { created_at = 2022-10-03T01:56:33.000Z }
-"2.12.4" = { created_at = 2022-10-03T22:18:31.000Z }
-"2.12.5" = { created_at = 2023-03-14T20:52:01.000Z }
-"2.12.6" = { created_at = 2023-05-26T14:44:32.000Z }
-"2.12.7" = { created_at = 2023-06-19T19:13:17.000Z }
-"2.12.8" = { created_at = 2023-07-31T09:23:25.000Z }
-"2.12.9" = { created_at = 2023-09-04T08:47:19.000Z }
-"2.19.10" = { created_at = 2023-10-20T12:47:44.000Z }
-"2.20.0" = { created_at = 2023-10-27T23:57:29.000Z }
-"2.20.1" = { created_at = 2023-10-30T14:49:55.000Z }
-"2.20.2" = { created_at = 2023-10-30T21:02:07.000Z }
-"2.20.3" = { created_at = 2023-10-30T21:23:51.000Z }
-"2.20.4" = { created_at = 2023-10-31T00:55:22.000Z }
-"2.20.5" = { created_at = 2023-10-31T13:48:35.000Z }
-"2.20.6" = { created_at = 2023-11-02T15:34:54.000Z }
-"2.20.7" = { created_at = 2023-11-16T21:58:47.000Z }
-"2.20.8" = { created_at = 2023-11-29T21:28:15.000Z }
-"2.20.9" = { created_at = 2023-11-30T20:17:50.000Z }
-"2.20.10" = { created_at = 2023-12-18T12:08:25.000Z }
-"2.20.11" = { created_at = 2024-01-06T01:18:14.000Z }
-"2.20.12" = { created_at = 2024-01-06T19:28:42.000Z }
-"2.20.13" = { created_at = 2024-01-11T14:23:27.000Z }
-"2.20.14" = { created_at = 2024-01-11T21:33:31.000Z }
-"2.20.15" = { created_at = 2024-01-26T21:47:45.000Z }
-"2.20.16" = { created_at = 2024-01-29T13:24:13.000Z }
-"2.20.17" = { created_at = 2024-02-17T00:42:15.000Z }
-"2.20.18" = { created_at = 2024-02-23T20:49:45.000Z }
-"2.20.19" = { created_at = 2024-03-12T00:32:28.000Z }
-"2.20.20" = { created_at = 2024-04-24T13:35:32.000Z }
-"2.20.21" = { created_at = 2024-05-12T19:35:39.000Z }
-"2.20.22" = { created_at = 2024-05-15T14:30:26.000Z }
-"2.20.23" = { created_at = 2024-05-15T21:28:36.000Z }
-"2.20.24" = { created_at = 2024-05-17T03:11:56.000Z }
-"2.20.25" = { created_at = 2024-05-21T12:09:01.000Z }
-"2.20.26" = { created_at = 2024-05-22T02:21:32.000Z }
-"2.20.27" = { created_at = 2024-05-22T12:07:32.000Z }
-"2.20.28" = { created_at = 2024-05-22T12:28:02.000Z }
-"2.20.29" = { created_at = 2024-05-22T17:30:46.000Z }
-"2.20.30" = { created_at = 2024-05-22T18:40:04.000Z }
-"2.20.31" = { created_at = 2024-05-23T13:43:22.000Z }
-"2.20.32" = { created_at = 2024-05-27T02:18:10.000Z }
-"2.20.33" = { created_at = 2024-06-07T18:26:22.000Z }
-"2.20.34" = { created_at = 2024-06-11T19:35:18.000Z }
-"2.20.35" = { created_at = 2024-07-02T08:04:57.000Z }
-"2.20.36" = { created_at = 2024-07-08T07:42:27.000Z }
-"2.20.37" = { created_at = 2024-07-10T10:30:19.000Z }
-"2.21.0" = { created_at = 2024-10-11T23:17:06.000Z }
-"2.21.1" = { created_at = 2024-10-24T16:02:52.000Z }
-"2.21.2" = { created_at = 2024-10-24T18:26:23.000Z }
-"2.21.3" = { created_at = 2025-01-14T15:36:53.000Z }
-"2.22.0" = { created_at = 2025-03-03T10:13:16.000Z }
-"2.22.1" = { created_at = 2025-03-14T08:59:10.000Z }
-"2.22.2" = { created_at = 2025-03-14T10:31:02.000Z }
-"2.22.3" = { created_at = 2025-03-20T21:54:12.000Z }
-"2.22.4" = { created_at = 2025-03-25T12:13:43.000Z }
-"2.23.0" = { created_at = 2025-04-05T08:58:53.000Z }
-"2.23.1" = { created_at = 2025-04-07T15:16:31.000Z }
-"2.23.2" = { created_at = 2025-04-28T17:12:03.000Z }
-"2.23.3" = { created_at = 2025-04-29T14:36:42.000Z }
-"2.23.4" = { created_at = 2025-05-08T11:15:06.000Z }
-"2.23.5" = { created_at = 2025-05-08T17:38:42.000Z }
-"2.23.6" = { created_at = 2025-05-20T09:22:11.000Z }
-"2.23.7" = { created_at = 2025-05-21T13:22:40.000Z }
-"2.23.8" = { created_at = 2025-05-21T13:27:55.000Z }
-"2.23.9" = { created_at = 2025-07-18T09:10:09.000Z }
-"2.23.10" = { created_at = 2025-07-22T13:19:56.000Z }
-"2.23.11" = { created_at = 2025-08-06T20:30:47.000Z }
-"2.24.0" = { created_at = 2025-08-20T20:39:54.000Z }
-"2.24.1" = { created_at = 2025-08-29T09:09:05.000Z }
-"2.24.2" = { created_at = 2025-08-29T14:15:16.000Z }
-"2.24.3" = { created_at = 2025-09-03T12:44:28.000Z }
-"2.24.4" = { created_at = 2025-10-16T14:51:29.000Z }
-"2.24.5" = { created_at = 2025-10-24T14:22:48.000Z }
-"2.24.6" = { created_at = 2025-10-31T15:00:13.000Z }
-"2.24.7" = { created_at = 2025-11-08T08:24:13.000Z }
-"2.24.8" = { created_at = 2025-12-04T19:42:32.000Z }
+"1.0.0" = { created_at = 2015-09-12T08:23:15.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2015-11-02T17:42:44.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v1.1.0" }
+"2.0.0" = { created_at = 2016-04-21T20:44:20.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.0.0" }
+"2.1.0" = { created_at = 2017-03-03T09:24:21.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.1.0" }
+"2.2.0" = { created_at = 2017-10-18T23:43:09.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.2.0" }
+"2.3.0" = { created_at = 2017-11-12T17:13:51.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.0" }
+"2.3.1" = { created_at = 2017-11-12T17:13:51.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.1" }
+"2.3.3" = { created_at = 2017-11-12T23:52:56.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.3" }
+"2.3.4" = { created_at = 2017-11-30T18:40:25.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.4" }
+"2.3.5" = { created_at = 2018-06-08T01:38:13.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.5" }
+"2.3.6" = { created_at = 2018-10-26T00:33:14.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.6" }
+"2.3.7" = { created_at = 2018-11-06T03:11:35.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.7" }
+"2.3.8" = { created_at = 2018-11-07T21:12:28.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.3.8" }
+"2.4.0" = { created_at = 2019-04-18T20:36:31.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.4.0" }
+"2.5.0" = { created_at = 2019-05-17T15:57:54.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2019-07-16T19:06:24.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.5.1" }
+"2.5.2" = { created_at = 2019-09-05T23:09:49.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.5.2" }
+"2.6.0" = { created_at = 2019-11-26T23:18:54.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2019-11-27T20:13:08.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.6.1" }
+"2.6.2" = { created_at = 2020-01-02T14:18:07.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.6.2" }
+"2.6.3" = { created_at = 2020-01-02T14:32:07.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.6.3" }
+"2.7.0" = { created_at = 2020-01-06T14:13:42.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.0" }
+"2.7.1" = { created_at = 2020-01-13T20:35:10.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.1" }
+"2.7.2" = { created_at = 2020-01-14T14:58:10.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.2" }
+"2.7.3" = { created_at = 2020-03-11T22:13:42.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.3" }
+"2.7.4" = { created_at = 2020-04-13T23:50:37.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.4" }
+"2.7.6" = { created_at = 2020-06-08T17:53:28.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.6" }
+"2.7.7" = { created_at = 2020-07-24T16:48:57.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.7.7" }
+"2.8.0" = { created_at = 2020-07-28T23:17:51.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.8.0" }
+"2.9.0" = { created_at = 2020-08-26T14:08:15.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.0" }
+"2.9.1" = { created_at = 2020-08-29T22:48:55.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.1" }
+"2.9.2" = { created_at = 2020-08-31T16:41:06.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.2" }
+"2.9.3" = { created_at = 2020-09-02T00:37:45.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.3" }
+"2.9.4" = { created_at = 2020-09-04T19:27:42.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.4" }
+"2.9.5" = { created_at = 2020-09-23T16:46:29.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.5" }
+"2.9.6" = { created_at = 2020-10-01T00:22:25.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.6" }
+"2.9.7" = { created_at = 2020-10-01T21:31:06.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.7" }
+"2.9.8" = { created_at = 2020-10-15T17:41:37.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.8" }
+"2.9.9" = { created_at = 2020-10-16T13:03:55.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.9" }
+"2.9.10" = { created_at = 2020-10-21T14:17:24.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.10" }
+"2.9.11" = { created_at = 2021-01-20T12:20:59.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.11" }
+"2.9.12" = { created_at = 2021-02-06T21:11:16.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.12" }
+"2.9.13" = { created_at = 2021-02-09T23:32:13.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.13" }
+"2.9.14" = { created_at = 2021-03-15T13:32:41.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.14" }
+"2.9.15" = { created_at = 2021-03-15T19:35:26.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.15" }
+"2.9.16" = { created_at = 2021-04-10T21:45:36.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.16" }
+"2.9.17" = { created_at = 2021-05-14T17:21:32.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.17" }
+"2.9.18" = { created_at = 2021-06-17T14:52:47.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.18" }
+"2.9.19" = { created_at = 2021-07-06T23:41:43.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.19" }
+"2.9.20" = { created_at = 2021-07-27T15:48:51.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.20" }
+"2.9.21" = { created_at = 2021-07-29T17:04:08.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.21" }
+"2.9.22" = { created_at = 2021-09-11T02:02:48.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.22" }
+"2.9.23" = { created_at = 2021-12-13T19:33:50.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.23" }
+"2.9.24" = { created_at = 2021-12-14T18:03:03.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.24" }
+"2.9.25" = { created_at = 2021-12-29T13:52:35.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.25" }
+"2.9.26" = { created_at = 2021-12-29T22:24:52.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.26" }
+"2.9.27" = { created_at = 2022-01-04T14:09:04.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.27" }
+"2.9.28" = { created_at = 2022-01-13T20:52:45.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.28" }
+"2.9.29" = { created_at = 2022-01-18T17:27:47.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.9.29" }
+"2.10.0" = { created_at = 2022-01-25T21:29:05.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.10.0" }
+"2.11.0" = { created_at = 2022-04-08T17:52:26.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2022-04-08T21:33:12.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.1" }
+"2.11.2" = { created_at = 2022-04-26T14:54:36.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.2" }
+"2.11.3" = { created_at = 2022-05-22T18:52:25.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.3" }
+"2.11.4" = { created_at = 2022-05-22T19:08:14.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.4" }
+"2.11.5" = { created_at = 2022-05-23T21:05:53.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.5" }
+"2.11.6" = { created_at = 2022-05-28T14:47:13.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.6" }
+"2.11.7" = { created_at = 2022-05-30T16:20:33.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.7" }
+"2.11.8" = { created_at = 2022-06-02T19:45:14.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.8" }
+"2.11.9" = { created_at = 2022-06-04T17:00:20.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.9" }
+"2.11.10" = { created_at = 2022-06-08T14:11:10.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.10" }
+"2.11.11" = { created_at = 2022-06-21T21:29:37.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.11" }
+"2.11.12" = { created_at = 2022-07-06T16:38:05.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.11.12" }
+"2.12.0" = { created_at = 2022-07-10T16:15:50.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.0" }
+"2.12.1" = { created_at = 2022-08-31T00:45:40.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.1" }
+"2.12.2" = { created_at = 2022-09-24T00:53:48.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.2" }
+"2.12.3" = { created_at = 2022-10-03T01:56:33.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.3" }
+"2.12.4" = { created_at = 2022-10-03T22:18:31.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.4" }
+"2.12.5" = { created_at = 2023-03-14T20:52:01.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.5" }
+"2.12.6" = { created_at = 2023-05-26T14:44:32.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.6" }
+"2.12.7" = { created_at = 2023-06-19T19:13:17.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.7" }
+"2.12.8" = { created_at = 2023-07-31T09:23:25.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.8" }
+"2.12.9" = { created_at = 2023-09-04T08:47:19.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.12.9" }
+"2.19.10" = { created_at = 2023-10-20T12:47:44.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.19.10" }
+"2.20.0" = { created_at = 2023-10-27T23:57:29.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.0" }
+"2.20.1" = { created_at = 2023-10-30T14:49:55.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.1" }
+"2.20.2" = { created_at = 2023-10-30T21:02:07.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.2" }
+"2.20.3" = { created_at = 2023-10-30T21:23:51.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.3" }
+"2.20.4" = { created_at = 2023-10-31T00:55:22.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.4" }
+"2.20.5" = { created_at = 2023-10-31T13:48:35.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.5" }
+"2.20.6" = { created_at = 2023-11-02T15:34:54.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.6" }
+"2.20.7" = { created_at = 2023-11-16T21:58:47.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.7" }
+"2.20.8" = { created_at = 2023-11-29T21:28:15.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.8" }
+"2.20.9" = { created_at = 2023-11-30T20:17:50.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.9" }
+"2.20.10" = { created_at = 2023-12-18T12:08:25.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.10" }
+"2.20.11" = { created_at = 2024-01-06T01:18:14.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.11" }
+"2.20.12" = { created_at = 2024-01-06T19:28:42.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.12" }
+"2.20.13" = { created_at = 2024-01-11T14:23:27.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.13" }
+"2.20.14" = { created_at = 2024-01-11T21:33:31.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.14" }
+"2.20.15" = { created_at = 2024-01-26T21:47:45.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.15" }
+"2.20.16" = { created_at = 2024-01-29T13:24:13.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.16" }
+"2.20.17" = { created_at = 2024-02-17T00:42:15.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.17" }
+"2.20.18" = { created_at = 2024-02-23T20:49:45.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.18" }
+"2.20.19" = { created_at = 2024-03-12T00:32:28.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.19" }
+"2.20.20" = { created_at = 2024-04-24T13:35:32.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.20" }
+"2.20.21" = { created_at = 2024-05-12T19:35:39.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.21" }
+"2.20.22" = { created_at = 2024-05-15T14:30:26.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.22" }
+"2.20.23" = { created_at = 2024-05-15T21:28:36.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.23" }
+"2.20.24" = { created_at = 2024-05-17T03:11:56.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.24" }
+"2.20.25" = { created_at = 2024-05-21T12:09:01.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.25" }
+"2.20.26" = { created_at = 2024-05-22T02:21:32.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.26" }
+"2.20.27" = { created_at = 2024-05-22T12:07:32.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.27" }
+"2.20.28" = { created_at = 2024-05-22T12:28:02.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.28" }
+"2.20.29" = { created_at = 2024-05-22T17:30:46.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.29" }
+"2.20.30" = { created_at = 2024-05-22T18:40:04.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.30" }
+"2.20.31" = { created_at = 2024-05-23T13:43:22.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.31" }
+"2.20.32" = { created_at = 2024-05-27T02:18:10.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.32" }
+"2.20.33" = { created_at = 2024-06-07T18:26:22.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.33" }
+"2.20.34" = { created_at = 2024-06-11T19:35:18.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.34" }
+"2.20.35" = { created_at = 2024-07-02T08:04:57.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.35" }
+"2.20.36" = { created_at = 2024-07-08T07:42:27.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.36" }
+"2.20.37" = { created_at = 2024-07-10T10:30:19.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.20.37" }
+"2.21.0" = { created_at = 2024-10-11T23:17:06.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.21.0" }
+"2.21.1" = { created_at = 2024-10-24T16:02:52.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.21.1" }
+"2.21.2" = { created_at = 2024-10-24T18:26:23.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.21.2" }
+"2.21.3" = { created_at = 2025-01-14T15:36:53.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.21.3" }
+"2.22.0" = { created_at = 2025-03-03T10:13:16.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.22.0" }
+"2.22.1" = { created_at = 2025-03-14T08:59:10.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.22.1" }
+"2.22.2" = { created_at = 2025-03-14T10:31:02.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.22.2" }
+"2.22.3" = { created_at = 2025-03-20T21:54:12.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.22.3" }
+"2.22.4" = { created_at = 2025-03-25T12:13:43.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.22.4" }
+"2.23.0" = { created_at = 2025-04-05T08:58:53.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.0" }
+"2.23.1" = { created_at = 2025-04-07T15:16:31.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.1" }
+"2.23.2" = { created_at = 2025-04-28T17:12:03.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.2" }
+"2.23.3" = { created_at = 2025-04-29T14:36:42.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.3" }
+"2.23.4" = { created_at = 2025-05-08T11:15:06.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.4" }
+"2.23.5" = { created_at = 2025-05-08T17:38:42.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.5" }
+"2.23.6" = { created_at = 2025-05-20T09:22:11.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.6" }
+"2.23.7" = { created_at = 2025-05-21T13:22:40.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.7" }
+"2.23.8" = { created_at = 2025-05-21T13:27:55.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.8" }
+"2.23.9" = { created_at = 2025-07-18T09:10:09.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.9" }
+"2.23.10" = { created_at = 2025-07-22T13:19:56.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.10" }
+"2.23.11" = { created_at = 2025-08-06T20:30:47.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.23.11" }
+"2.24.0" = { created_at = 2025-08-20T20:39:54.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.0" }
+"2.24.1" = { created_at = 2025-08-29T09:09:05.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.1" }
+"2.24.2" = { created_at = 2025-08-29T14:15:16.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.2" }
+"2.24.3" = { created_at = 2025-09-03T12:44:28.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.3" }
+"2.24.4" = { created_at = 2025-10-16T14:51:29.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.4" }
+"2.24.5" = { created_at = 2025-10-24T14:22:48.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.5" }
+"2.24.6" = { created_at = 2025-10-31T15:00:13.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.6" }
+"2.24.7" = { created_at = 2025-11-08T08:24:13.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.7" }
+"2.24.8" = { created_at = 2025-12-04T19:42:32.000Z, release_url = "https://github.com/tdewolff/minify/releases/tag/v2.24.8" }
