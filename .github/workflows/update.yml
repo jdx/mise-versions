@@ -37,6 +37,10 @@ jobs:
             last-processed-tool-
       - run: ./scripts/update.sh "${{ github.event.schedule }}"
       - run: git checkout docs && git clean -df docs
+      - name: Sync to R2
+        run: ./scripts/sync-to-r2.sh
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       - uses: actions/configure-pages@v5
       - name: Upload static files as artifact
         id: deployment

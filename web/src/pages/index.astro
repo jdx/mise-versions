@@ -3,30 +3,25 @@ import Layout from '../layouts/Layout.astro';
 import { ToolSearch } from '../components/ToolSearch';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
+import { loadToolsJson, type ToolsData } from '../lib/data-loader';
 
-// Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
-// Cache for 10 minutes at Cloudflare edge
-const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json', {
-  cf: { cacheTtl: 600 },
-});
-const toolsData = await toolsRes.json() as {
-  tool_count: number;
-  tools: Array<{
-    name: string;
-    latest_version: string;
-    latest_stable_version?: string;
-    version_count: number;
-    last_updated: string | null;
-    description?: string;
-    backends?: string[];
-    github?: string;
-  }>;
-};
+const runtime = Astro.locals.runtime;
+
+// Load tools.json from R2 bucket
+let toolsData: ToolsData = { tool_count: 0, tools: [] };
+try {
+  const bucket = runtime.env.DATA_BUCKET;
+  const data = await loadToolsJson(bucket);
+  if (data) {
+    toolsData = data;
+  }
+} catch (e) {
+  console.error('Failed to load tools.json from R2:', e);
+}
 
 // Fetch downloads data
 let downloads: Record<string, number> = {};
 try {
-  const runtime = Astro.locals.runtime;
   const db = drizzle(runtime.env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
   downloads = await analytics.getAll30DayDownloads();

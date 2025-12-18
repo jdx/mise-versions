@@ -2,33 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
+import { loadToolsJson, loadToolsUpdatedJson, type ToolsData, type VersionUpdatesData } from '../lib/data-loader';
 
 // Get the D1 database from Cloudflare runtime
 const runtime = Astro.locals.runtime;
 const db = drizzle(runtime.env.ANALYTICS_DB);
 const analytics = setupAnalytics(db);
+const bucket = runtime.env.DATA_BUCKET;
 
-// Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
-// Cache for 10 minutes at Cloudflare edge
-const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json', {
-  cf: { cacheTtl: 600 },
-});
-const toolsData = await toolsRes.json() as {
-  tool_count: number;
-  tools: Array<{
-    name: string;
-    latest_version: string;
-    version_count: number;
-    backends?: string[];
-  }>;
-};
+// Load tools.json from R2 bucket
+let toolsData: ToolsData = { tool_count: 0, tools: [] };
+try {
+  const data = await loadToolsJson(bucket);
+  if (data) {
+    toolsData = data;
+  }
+} catch (e) {
+  console.error('Failed to load tools.json from R2:', e);
+}
 
 // Fetch analytics data with error handling for local dev
 let downloads: Record<string, number> = {};
 let backendStatsData: { downloads_by_backend: Array<{ backend: string; count: number }>; top_tools_by_backend: Record<string, Array<{ tool: string; count: number }>> } | null = null;
 let dauMauData: { daily: Array<{ date: string; dau: number }>; current_mau: number } | null = null;
 let growthData: { global: { wow: number | null; mom: number | null }; topGrowing: Array<{ tool: string; thisWeek: number; wow: number | null }>; topDeclining: Array<{ tool: string; thisWeek: number; wow: number | null }> } | null = null;
-let versionUpdatesData: { daily: Array<{ date: string; count: number }>; total_updates: number; unique_tools: number; avg_per_day: number } | null = null;
+let versionUpdatesData: VersionUpdatesData | null = null;
 
 try {
   [downloads, backendStatsData, dauMauData, growthData] = await Promise.all([
@@ -42,16 +40,11 @@ try {
   // Use empty/mock data for local dev
 }
 
-// Fetch version updates data from GitHub Pages
+// Load version updates data from R2 bucket
 try {
-  const versionRes = await fetch('https://mise-versions.jdx.dev/tools_updated.json', {
-    cf: { cacheTtl: 600 },
-  });
-  if (versionRes.ok) {
-    versionUpdatesData = await versionRes.json();
-  }
+  versionUpdatesData = await loadToolsUpdatedJson(bucket);
 } catch (e) {
-  console.error('Failed to fetch version updates data:', e);
+  console.error('Failed to load version updates data from R2:', e);
 }
 
 // Helper functions

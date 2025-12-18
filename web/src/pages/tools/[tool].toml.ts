@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
+import { getFromR2 } from '../../lib/r2-data';
 
-export const GET: APIRoute = async ({ params }) => {
+export const GET: APIRoute = async ({ params, locals }) => {
   const { tool } = params;
 
   if (!tool) {
@@ -19,32 +20,28 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   try {
-    // Fetch TOML from GitHub Pages
-    const response = await fetch(`https://mise-versions.jdx.dev/${tool}.toml`, {
-      cf: { cacheTtl: 600 },
-    } as RequestInit);
+    const runtime = locals.runtime;
+    const bucket = runtime.env.DATA_BUCKET;
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        return new Response(`Tool "${tool}" not found`, {
-          status: 404,
-          headers: { 'Content-Type': 'text/plain' },
-        });
-      }
-      throw new Error(`Failed to fetch: ${response.status}`);
+    // Fetch TOML from R2
+    const data = await getFromR2(bucket, `${tool}.toml`);
+
+    if (!data) {
+      return new Response(`Tool "${tool}" not found`, {
+        status: 404,
+        headers: { 'Content-Type': 'text/plain' },
+      });
     }
 
-    const tomlContent = await response.text();
-
-    return new Response(tomlContent, {
+    return new Response(data.body, {
       status: 200,
       headers: {
-        'Content-Type': 'application/toml',
+        'Content-Type': data.contentType,
         'Cache-Control': 'public, max-age=600',
       },
     });
   } catch (error) {
-    console.error('Error fetching TOML:', error);
+    console.error('Error fetching TOML from R2:', error);
     return new Response('Failed to fetch tool data', {
       status: 500,
       headers: { 'Content-Type': 'text/plain' },

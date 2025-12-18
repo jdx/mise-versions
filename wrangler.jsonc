@@ -31,6 +31,12 @@
       "database_id": "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8"
     }
   ],
+  "r2_buckets": [
+    {
+      "binding": "DATA_BUCKET",
+      "bucket_name": "mise-versions-data"
+    }
+  ],
   "vars": {
     "ENVIRONMENT": "production"
   }

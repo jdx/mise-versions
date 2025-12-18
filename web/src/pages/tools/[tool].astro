@@ -7,6 +7,7 @@ import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
 import { getLatestStableVersion } from '../../lib/versions';
+import { loadToolsJson, loadToolToml } from '../../lib/data-loader';
 
 const { tool } = Astro.params;
 
@@ -14,29 +15,14 @@ if (!tool) {
   return Astro.redirect('/');
 }
 
-// Fetch tools.json directly from GitHub Pages (avoid subrequest to same Worker)
-// Cache for 10 minutes at Cloudflare edge
-const toolsRes = await fetch('https://mise-versions.jdx.dev/tools.json', {
-  cf: { cacheTtl: 600 },
-});
-const toolsData = await toolsRes.json() as {
-  tools: Array<{
-    name: string;
-    latest_version: string;
-    version_count: number;
-    last_updated: string | null;
-    description?: string;
-    backends?: string[];
-    homepage?: string;
-    repo_url?: string;
-    license?: string;
-    github?: string;
-    authors?: string[];
-    security?: Array<{ type: string; algorithm?: string }>;
-    package_urls?: Record<string, string>;
-    aqua_link?: string;
-  }>;
-};
+const runtime = Astro.locals.runtime;
+const bucket = runtime.env.DATA_BUCKET;
+
+// Load tools.json from R2 bucket
+const toolsData = await loadToolsJson(bucket);
+if (!toolsData) {
+  return Astro.redirect('/');
+}
 
 const toolMeta = toolsData.tools.find(t => t.name === tool);
 
@@ -44,15 +30,11 @@ if (!toolMeta) {
   return Astro.redirect('/');
 }
 
-// Fetch versions from TOML file directly from GitHub Pages
-// Cache for 10 minutes at Cloudflare edge
+// Load versions from TOML file in R2 bucket
 let versions: Array<{ version: string; created_at?: string | null; release_url?: string | null }> = [];
 try {
-  const tomlRes = await fetch(`https://mise-versions.jdx.dev/${tool}.toml`, {
-    cf: { cacheTtl: 600 },
-  });
-  if (tomlRes.ok) {
-    const tomlText = await tomlRes.text();
+  const tomlText = await loadToolToml(bucket, tool);
+  if (tomlText) {
     // TOML format: [versions] with "version" = { created_at = ..., release_url = ... } entries
     const parsed = smolToml.parse(tomlText) as { versions?: Record<string, { created_at?: string; release_url?: string }> };
     const versionsObj = parsed.versions || {};
@@ -63,7 +45,7 @@ try {
     }));
   }
 } catch (e) {
-  console.error('Failed to fetch versions TOML:', e);
+  console.error('Failed to load versions TOML from R2:', e);
 }
 
 // Fetch download stats
