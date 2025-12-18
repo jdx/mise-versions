@@ -2,37 +2,15 @@ import type { APIRoute } from 'astro';
 import { ImageResponse } from 'workers-og';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../../../src/analytics';
+import { loadToolsJson, type ToolMeta } from '../../../lib/data-loader';
 
-interface ToolMeta {
+interface OGToolMeta {
   name: string;
   description?: string;
   latest_version: string;
   version_count: number;
   github?: string;
   backends?: string[];
-}
-
-// Cache for tools.json to avoid repeated fetches
-let toolsCache: { tools: ToolMeta[]; timestamp: number } | null = null;
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
-
-async function getToolMeta(toolName: string): Promise<ToolMeta | null> {
-  const now = Date.now();
-
-  // Use cache if valid
-  if (toolsCache && now - toolsCache.timestamp < CACHE_TTL) {
-    return toolsCache.tools.find((t) => t.name === toolName) || null;
-  }
-
-  try {
-    const response = await fetch('https://mise-versions.jdx.dev/tools.json');
-    if (!response.ok) return null;
-    const data = (await response.json()) as { tools: ToolMeta[] };
-    toolsCache = { tools: data.tools, timestamp: now };
-    return data.tools.find((t) => t.name === toolName) || null;
-  } catch {
-    return null;
-  }
 }
 
 // Get primary backend type from backends array
@@ -60,7 +38,7 @@ function escapeHtml(str: string): string {
 
 const MISE_LOGO_URL = 'https://mise.jdx.dev/logo.svg';
 
-function generateImage(tool: ToolMeta, downloads: number | null, backend: string | null): Response {
+function generateImage(tool: OGToolMeta, downloads: number | null, backend: string | null): Response {
   const description = tool.description
     ? tool.description.length > 120
       ? tool.description.slice(0, 120) + '...'
@@ -135,10 +113,11 @@ function generateImage(tool: ToolMeta, downloads: number | null, backend: string
 export const GET: APIRoute = async ({ params, locals }) => {
   const toolName = params.tool!;
   const runtime = locals.runtime;
+  const bucket = runtime.env.DATA_BUCKET;
 
   // Fetch tool meta and downloads in parallel
-  const [tool, downloads] = await Promise.all([
-    getToolMeta(toolName),
+  const [toolsData, downloads] = await Promise.all([
+    loadToolsJson(bucket),
     (async () => {
       try {
         const db = drizzle(runtime.env.ANALYTICS_DB);
@@ -150,6 +129,8 @@ export const GET: APIRoute = async ({ params, locals }) => {
       }
     })(),
   ]);
+
+  const tool = toolsData?.tools.find((t) => t.name === toolName);
 
   if (!tool) {
     // Return a generic mise tools image for unknown tools
