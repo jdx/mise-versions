@@ -1,7 +1,10 @@
 import type { APIRoute } from 'astro';
+import { drizzle } from 'drizzle-orm/d1';
 import { getFromR2 } from '../../lib/r2-data';
+import { hashIP, getClientIP } from '../../lib/hash';
+import { setupAnalytics } from '../../../../src/analytics';
 
-export const GET: APIRoute = async ({ params, locals }) => {
+export const GET: APIRoute = async ({ request, params, locals }) => {
   const { tool } = params;
 
   if (!tool) {
@@ -32,6 +35,18 @@ export const GET: APIRoute = async ({ params, locals }) => {
         headers: { 'Content-Type': 'text/plain' },
       });
     }
+
+    // Track version request for DAU/MAU (fire and forget)
+    const clientIP = getClientIP(request);
+    hashIP(clientIP, runtime.env.API_SECRET).then(async (ipHash) => {
+      try {
+        const db = drizzle(runtime.env.ANALYTICS_DB);
+        const analytics = setupAnalytics(db);
+        await analytics.trackVersionRequest(ipHash);
+      } catch (e) {
+        console.error('Failed to track version request:', e);
+      }
+    });
 
     return new Response(data.body, {
       status: 200,

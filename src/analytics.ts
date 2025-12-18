@@ -75,6 +75,20 @@ export const dailyBackendStats = sqliteTable("daily_backend_stats", {
   unique_users: integer("unique_users").notNull(),
 });
 
+// Version requests table - tracks mise CLI requests for DAU/MAU
+export const versionRequests = sqliteTable("version_requests", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  ip_hash: text("ip_hash").notNull(),
+  created_at: integer("created_at").notNull(), // Unix timestamp
+});
+
+// Daily stats for version requests (for mise DAU/MAU)
+export const dailyVersionStats = sqliteTable("daily_version_stats", {
+  date: text("date").primaryKey(), // YYYY-MM-DD
+  total_requests: integer("total_requests").notNull(),
+  unique_users: integer("unique_users").notNull(), // DAU
+});
+
 export function setupAnalytics(db: ReturnType<typeof drizzle>) {
   // Cache for tool, backend, and platform IDs to avoid repeated lookups
   const toolCache = new Map<string, number>();
@@ -192,6 +206,119 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
   }
 
   return {
+    // Track a version request (for mise DAU/MAU) with daily deduplication per IP
+    async trackVersionRequest(ipHash: string): Promise<{ deduplicated: boolean }> {
+      const now = Math.floor(Date.now() / 1000);
+      const todayStart = Math.floor(now / 86400) * 86400; // Start of today (UTC)
+
+      // Check if already tracked today for this IP
+      const existing = await db
+        .select()
+        .from(versionRequests)
+        .where(
+          and(
+            eq(versionRequests.ip_hash, ipHash),
+            sql`${versionRequests.created_at} >= ${todayStart}`
+          )
+        )
+        .limit(1)
+        .get();
+
+      if (existing) {
+        return { deduplicated: true };
+      }
+
+      // Insert new record
+      await db.insert(versionRequests).values({
+        ip_hash: ipHash,
+        created_at: now,
+      });
+
+      return { deduplicated: false };
+    },
+
+    // Get mise DAU/MAU (unique users making version requests)
+    async getMiseDAUMAU(days: number = 30) {
+      const now = Math.floor(Date.now() / 1000);
+      const startDate = new Date((now - days * 86400) * 1000).toISOString().split("T")[0];
+
+      // Get DAU from rollup table
+      const dauResults = await db
+        .select({
+          date: dailyVersionStats.date,
+          dau: dailyVersionStats.unique_users,
+        })
+        .from(dailyVersionStats)
+        .where(sql`${dailyVersionStats.date} >= ${startDate}`)
+        .orderBy(dailyVersionStats.date)
+        .all();
+
+      // Get current MAU (30-day unique users)
+      const thirtyDaysAgo = now - 30 * 86400;
+      const mauResult = await db
+        .select({
+          mau: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(versionRequests)
+        .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
+        .get();
+
+      const currentMAU = mauResult?.mau ?? 0;
+
+      // Fill in missing days with 0
+      const dailyData: Array<{ date: string; dau: number }> = [];
+      const dauMap = new Map(dauResults.map(r => [r.date, r.dau]));
+
+      for (let i = days - 1; i >= 0; i--) {
+        const dayTimestamp = now - i * 86400;
+        const date = new Date(dayTimestamp * 1000).toISOString().split("T")[0];
+        dailyData.push({
+          date,
+          dau: dauMap.get(date) ?? 0,
+        });
+      }
+
+      return {
+        daily: dailyData,
+        current_mau: currentMAU,
+      };
+    },
+
+    // Populate daily_version_stats rollup table for a specific date
+    async populateVersionStatsRollup(date: string, d1?: D1Database): Promise<boolean> {
+      const dateStart = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000);
+      const dateEnd = dateStart + 86400;
+
+      const stats = await db
+        .select({
+          total: sql<number>`count(*)`,
+          unique_users: sql<number>`count(distinct ip_hash)`,
+        })
+        .from(versionRequests)
+        .where(
+          and(
+            sql`${versionRequests.created_at} >= ${dateStart}`,
+            sql`${versionRequests.created_at} < ${dateEnd}`
+          )
+        )
+        .get();
+
+      if (stats && stats.total > 0) {
+        if (d1) {
+          await d1.prepare(
+            "INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users) VALUES (?, ?, ?)"
+          ).bind(date, stats.total, stats.unique_users).run();
+        } else {
+          await db.run(sql`
+            INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users)
+            VALUES (${date}, ${stats.total}, ${stats.unique_users})
+          `);
+        }
+        return true;
+      }
+      return false;
+    },
+
     // Track a download with daily deduplication per IP/tool/version
     async trackDownload(
       tool: string,
@@ -1603,6 +1730,30 @@ export async function runAnalyticsMigrations(
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type)`
   );
+
+  // Create version_requests table for mise DAU/MAU tracking
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS version_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      ip_hash TEXT NOT NULL,
+      created_at INTEGER NOT NULL
+    )
+  `);
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_at ON version_requests(created_at)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_hash ON version_requests(ip_hash)`
+  );
+
+  // Create daily_version_stats rollup table
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS daily_version_stats (
+      date TEXT PRIMARY KEY,
+      total_requests INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL
+    )
+  `);
 
   console.log("Analytics migrations completed");
 }

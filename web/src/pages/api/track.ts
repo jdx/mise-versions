@@ -1,24 +1,7 @@
 import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../../src/analytics';
-
-// Hash IP address with HMAC-SHA256 for privacy
-async function hashIP(ip: string, secret: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    'raw',
-    encoder.encode(secret),
-    { name: 'HMAC', hash: 'SHA-256' },
-    false,
-    ['sign']
-  );
-  const signature = await crypto.subtle.sign('HMAC', key, encoder.encode(ip));
-  const hashArray = Array.from(new Uint8Array(signature));
-  return hashArray
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
-    .slice(0, 12);
-}
+import { hashIP, getClientIP } from '../../lib/hash';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
@@ -38,13 +21,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     const runtime = locals.runtime;
-
-    // Get client IP
-    const clientIP =
-      request.headers.get('CF-Connecting-IP') ||
-      request.headers.get('X-Forwarded-For')?.split(',')[0] ||
-      'unknown';
-
+    const clientIP = getClientIP(request);
     const ipHash = await hashIP(clientIP, runtime.env.API_SECRET);
 
     const db = drizzle(runtime.env.ANALYTICS_DB);
