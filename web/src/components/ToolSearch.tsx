@@ -333,7 +333,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
   const SortButton = ({ label, sortKey }: { label: string; sortKey: SortKey }) => (
     <button
       onClick={() => setSortBy(sortKey)}
-      class={`text-sm font-medium transition-colors ${
+      class={`text-sm font-medium transition-colors whitespace-nowrap ${
         sortBy === sortKey ? "text-neon-purple" : "text-gray-400 hover:text-gray-200"
       }`}
     >
