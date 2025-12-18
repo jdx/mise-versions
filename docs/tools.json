@@ -1614,6 +1614,12 @@
       "latest_stable_version": "1.3.5",
       "version_count": 202,
       "last_updated": "2025-12-17T08:52:16.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:bun"
       ],
@@ -3099,10 +3105,7 @@
       "latest_version": "3.22.1",
       "latest_stable_version": "3.22.1",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "backends": [
-        "spm:danger/swift"
-      ]
+      "last_updated": "2025-01-01T00:00:00.000Z"
     },
     {
       "name": "dapr",
@@ -3232,6 +3235,12 @@
       "latest_stable_version": "2.6.0",
       "version_count": 286,
       "last_updated": "2025-12-17T13:32:44.615Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:deno"
       ],
@@ -5027,6 +5036,12 @@
       "latest_stable_version": "1.25.5",
       "version_count": 341,
       "last_updated": "2025-12-16T20:00:53.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:go"
       ],
@@ -9405,6 +9420,15 @@
       "latest_stable_version": "25.2.1",
       "version_count": 820,
       "last_updated": "2025-12-10T00:00:00.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        },
+        {
+          "type": "gpg"
+        }
+      ],
       "backends": [
         "core:node"
       ],
@@ -11408,6 +11432,12 @@
       "latest_stable_version": "3.4.8",
       "version_count": 660,
       "last_updated": "2025-12-18T00:38:07.093Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        }
+      ],
       "backends": [
         "core:ruby"
       ],
@@ -11806,7 +11836,7 @@
       "latest_version": "3.4.0",
       "latest_stable_version": "3.4.0",
       "version_count": 20,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:05:38.588Z",
       "backends": [
         "vfox:mise-plugins/mise-semver",
         "asdf:mathew-fleisch/asdf-semver"
@@ -12222,9 +12252,12 @@
       "name": "sourcery",
       "latest_version": "2.3.0",
       "latest_stable_version": "2.3.0",
-      "version_count": 103,
-      "last_updated": "2025-12-18T00:40:59.563Z",
+      "version_count": 102,
+      "last_updated": "2025-09-18T10:20:10.000Z",
+      "github": "krzysztofzablocki/Sourcery",
+      "repo_url": "https://github.com/krzysztofzablocki/Sourcery",
       "backends": [
+        "github:krzysztofzablocki/Sourcery[exe=bin/sourcery]",
         "asdf:mise-plugins/mise-sourcery"
       ]
     },
@@ -12524,10 +12557,10 @@
     },
     {
       "name": "steampipe",
-      "latest_version": "2.3.2",
-      "latest_stable_version": "2.3.2",
-      "version_count": 140,
-      "last_updated": "2025-11-03T08:51:51.000Z",
+      "latest_version": "2.3.4",
+      "latest_stable_version": "2.3.4",
+      "version_count": 142,
+      "last_updated": "2025-12-16T15:57:55.000Z",
       "github": "turbot/steampipe",
       "repo_url": "https://github.com/turbot/steampipe",
       "backends": [
@@ -12726,6 +12759,15 @@
       "latest_stable_version": "6.2.3",
       "version_count": 56,
       "last_updated": "2025-12-09T23:45:54.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        },
+        {
+          "type": "gpg"
+        }
+      ],
       "backends": [
         "core:swift"
       ],
@@ -12759,9 +12801,12 @@
       "name": "swiftgen",
       "latest_version": "6.6.3",
       "latest_stable_version": "6.6.3",
-      "version_count": 58,
-      "last_updated": "2025-12-18T00:43:57.830Z",
+      "version_count": 44,
+      "last_updated": "2024-03-02T20:48:35.000Z",
+      "github": "SwiftGen/SwiftGen",
+      "repo_url": "https://github.com/SwiftGen/SwiftGen",
       "backends": [
+        "github:SwiftGen/SwiftGen[exe=swiftgen/bin/swiftgen]",
         "asdf:mise-plugins/mise-swiftgen"
       ]
     },
@@ -13804,9 +13849,13 @@
       "latest_stable_version": "4.115.1",
       "version_count": 440,
       "last_updated": "2025-01-01T00:00:00.000Z",
+      "github": "tuist/tuist",
+      "repo_url": "https://github.com/tuist/tuist",
       "backends": [
+        "aqua:tuist/tuist",
         "asdf:mise-plugins/mise-tuist"
-      ]
+      ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tuist/tuist/registry.yaml"
     },
     {
       "name": "tusd",
@@ -15064,6 +15113,16 @@
       "latest_stable_version": "0.15.2",
       "version_count": 23,
       "last_updated": "2025-11-26T00:00:00.000Z",
+      "security": [
+        {
+          "type": "checksum",
+          "algorithm": "sha256"
+        },
+        {
+          "type": "minisign",
+          "public_key": "RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U"
+        }
+      ],
       "backends": [
         "core:zig"
       ],
@@ -15082,9 +15141,11 @@
       "github": "nektro/zigmod",
       "repo_url": "https://github.com/nektro/zigmod",
       "backends": [
+        "aqua:nektro/zigmod",
         "github:nektro/zigmod",
         "asdf:mise-plugins/asdf-zigmod"
       ],
+      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/nektro/zigmod/registry.yaml",
       "license": "MIT",
       "description": "📦 A package manager for the Zig programming language."
     },

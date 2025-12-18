@@ -1,49 +1,49 @@
 [versions]
-"0.1.0" = { created_at = 2023-05-17T13:23:05.000Z }
-"0.1.1" = { created_at = 2023-05-18T10:30:25.000Z }
-"0.1.2" = { created_at = 2023-05-22T08:17:20.000Z }
-"0.2.0" = { created_at = 2023-05-23T21:31:09.000Z }
-"0.3.0" = { created_at = 2023-05-27T11:40:56.000Z }
-"0.4.0" = { created_at = 2023-05-29T09:56:04.000Z }
-"0.5.0" = { created_at = 2023-05-31T11:29:48.000Z }
-"0.6.0" = { created_at = 2023-06-03T08:57:07.000Z }
-"0.7.0" = { created_at = 2023-06-12T15:36:34.000Z }
-"0.8.0" = { created_at = 2023-06-18T13:11:33.000Z }
-"0.9.0" = { created_at = 2023-06-21T11:41:02.000Z }
-"0.10.0" = { created_at = 2023-07-07T13:47:51.000Z }
-"0.11.0" = { created_at = 2023-07-18T19:46:47.000Z }
-"0.12.0" = { created_at = 2023-08-27T11:48:43.000Z }
-"0.13.0" = { created_at = 2023-08-29T15:08:52.000Z }
-"0.14.0" = { created_at = 2023-10-01T20:25:32.000Z }
-"0.15.0" = { created_at = 2023-10-03T12:13:06.000Z }
-"0.15.1" = { created_at = 2023-10-03T12:55:13.000Z }
-"0.15.2" = { created_at = 2023-10-04T09:38:35.000Z }
-"0.16.0" = { created_at = 2023-12-16T23:04:25.000Z }
-"0.17.0" = { created_at = 2024-01-15T21:45:10.000Z }
-"0.18.0" = { created_at = 2024-01-20T14:40:32.000Z }
-"0.19.0" = { created_at = 2024-01-21T12:48:39.000Z }
-"0.20.0" = { created_at = 2024-02-01T10:36:17.000Z }
-"0.21.0" = { created_at = 2024-02-03T13:14:56.000Z }
-"0.22.0" = { created_at = 2024-02-09T22:15:51.000Z }
-"0.23.0" = { created_at = 2024-02-13T18:35:22.000Z }
-"0.24.0" = { created_at = 2024-02-15T19:43:35.000Z }
-"0.25.0" = { created_at = 2024-02-19T22:33:12.000Z }
-"0.26.0" = { created_at = 2024-02-23T10:49:08.000Z }
-"0.27.0" = { created_at = 2024-02-26T16:44:07.000Z }
-"0.28.0" = { created_at = 2024-03-07T09:50:54.000Z }
-"0.29.0" = { created_at = 2024-03-11T09:41:33.000Z }
-"0.30.0" = { created_at = 2024-03-19T18:01:13.000Z }
-"0.31.0" = { created_at = 2024-03-22T10:24:45.000Z }
-"0.32.0" = { created_at = 2024-03-29T09:26:09.000Z }
-"0.33.0" = { created_at = 2024-04-24T16:53:48.000Z }
-"0.34.0" = { created_at = 2024-05-20T20:18:16.000Z }
-"0.35.0" = { created_at = 2024-06-24T13:06:13.000Z }
-"0.36.0" = { created_at = 2024-07-07T20:43:50.000Z }
-"0.37.0" = { created_at = 2024-07-20T19:25:08.000Z }
-"0.38.0" = { created_at = 2024-08-02T01:44:18.000Z }
-"0.39.0" = { created_at = 2024-08-21T01:20:06.000Z }
-"0.40.0" = { created_at = 2024-09-22T18:15:43.000Z }
-"0.41.0" = { created_at = 2024-09-29T19:01:53.000Z }
-"0.42.0" = { created_at = 2024-10-21T21:20:53.000Z }
-"0.43.0" = { created_at = 2024-12-09T19:56:34.000Z }
-"0.44.0" = { created_at = 2025-02-26T22:53:45.000Z }
+"0.1.0" = { created_at = 2023-05-17T13:23:05.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.1.0" }
+"0.1.1" = { created_at = 2023-05-18T10:30:25.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.1.1" }
+"0.1.2" = { created_at = 2023-05-22T08:17:20.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.1.2" }
+"0.2.0" = { created_at = 2023-05-23T21:31:09.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.2.0" }
+"0.3.0" = { created_at = 2023-05-27T11:40:56.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.3.0" }
+"0.4.0" = { created_at = 2023-05-29T09:56:04.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.4.0" }
+"0.5.0" = { created_at = 2023-05-31T11:29:48.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.5.0" }
+"0.6.0" = { created_at = 2023-06-03T08:57:07.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.6.0" }
+"0.7.0" = { created_at = 2023-06-12T15:36:34.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.7.0" }
+"0.8.0" = { created_at = 2023-06-18T13:11:33.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.8.0" }
+"0.9.0" = { created_at = 2023-06-21T11:41:02.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.9.0" }
+"0.10.0" = { created_at = 2023-07-07T13:47:51.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.10.0" }
+"0.11.0" = { created_at = 2023-07-18T19:46:47.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.11.0" }
+"0.12.0" = { created_at = 2023-08-27T11:48:43.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.12.0" }
+"0.13.0" = { created_at = 2023-08-29T15:08:52.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.13.0" }
+"0.14.0" = { created_at = 2023-10-01T20:25:32.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.14.0" }
+"0.15.0" = { created_at = 2023-10-03T12:13:06.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.15.0" }
+"0.15.1" = { created_at = 2023-10-03T12:55:13.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.15.1" }
+"0.15.2" = { created_at = 2023-10-04T09:38:35.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.15.2" }
+"0.16.0" = { created_at = 2023-12-16T23:04:25.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.16.0" }
+"0.17.0" = { created_at = 2024-01-15T21:45:10.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.17.0" }
+"0.18.0" = { created_at = 2024-01-20T14:40:32.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.18.0" }
+"0.19.0" = { created_at = 2024-01-21T12:48:39.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.19.0" }
+"0.20.0" = { created_at = 2024-02-01T10:36:17.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.20.0" }
+"0.21.0" = { created_at = 2024-02-03T13:14:56.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.21.0" }
+"0.22.0" = { created_at = 2024-02-09T22:15:51.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.22.0" }
+"0.23.0" = { created_at = 2024-02-13T18:35:22.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.23.0" }
+"0.24.0" = { created_at = 2024-02-15T19:43:35.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.24.0" }
+"0.25.0" = { created_at = 2024-02-19T22:33:12.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.25.0" }
+"0.26.0" = { created_at = 2024-02-23T10:49:08.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.26.0" }
+"0.27.0" = { created_at = 2024-02-26T16:44:07.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.27.0" }
+"0.28.0" = { created_at = 2024-03-07T09:50:54.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.28.0" }
+"0.29.0" = { created_at = 2024-03-11T09:41:33.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.29.0" }
+"0.30.0" = { created_at = 2024-03-19T18:01:13.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.30.0" }
+"0.31.0" = { created_at = 2024-03-22T10:24:45.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.31.0" }
+"0.32.0" = { created_at = 2024-03-29T09:26:09.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.32.0" }
+"0.33.0" = { created_at = 2024-04-24T16:53:48.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.33.0" }
+"0.34.0" = { created_at = 2024-05-20T20:18:16.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.34.0" }
+"0.35.0" = { created_at = 2024-06-24T13:06:13.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.35.0" }
+"0.36.0" = { created_at = 2024-07-07T20:43:50.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.36.0" }
+"0.37.0" = { created_at = 2024-07-20T19:25:08.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.37.0" }
+"0.38.0" = { created_at = 2024-08-02T01:44:18.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.38.0" }
+"0.39.0" = { created_at = 2024-08-21T01:20:06.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.39.0" }
+"0.40.0" = { created_at = 2024-09-22T18:15:43.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.40.0" }
+"0.41.0" = { created_at = 2024-09-29T19:01:53.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.41.0" }
+"0.42.0" = { created_at = 2024-10-21T21:20:53.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.42.0" }
+"0.43.0" = { created_at = 2024-12-09T19:56:34.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.43.0" }
+"0.44.0" = { created_at = 2025-02-26T22:53:45.000Z, release_url = "https://github.com/astral-sh/rye/releases/tag/0.44.0" }
