@@ -889,7 +889,7 @@
   "dagu": {
     "license": "GPL-3.0",
     "homepage": "https://dagu.cloud",
-    "description": "A self-contained, lightweight workflow engine for enterprise and small teams. Single binary with Web UI. 100% open source. No vendor lock-in. It natively supports running containers and executing commands over SSH. Offline or air-gapped environment ready.",
+    "description": "No-code, self-contained, language-agnostic workflow engine. Offline or air-gapped environment ready.",
     "authors": null
   },
   "dapr": {
@@ -4813,6 +4813,24 @@
     "license": "MIT",
     "homepage": "https://ziglang.org/news/migrating-from-github-to-codeberg/",
     "description": "Moved to Codeberg",
+    "authors": null
+  },
+  "sourcery": {
+    "license": "MIT",
+    "homepage": "http://merowing.info",
+    "description": "Meta-programming for Swift, stop writing boilerplate code.",
+    "authors": null
+  },
+  "swiftgen": {
+    "license": "MIT",
+    "homepage": null,
+    "description": "The Swift code generator for your assets, storyboards, Localizable.strings, … — Get rid of all String-based APIs!",
+    "authors": null
+  },
+  "tuist": {
+    "license": null,
+    "homepage": "https://tuist.dev",
+    "description": "A virtual platform team for mobile devs who ship ",
     "authors": null
   }
 }
