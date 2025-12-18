@@ -740,37 +740,48 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     },
 
     // Get DAU and rolling MAU history for the last N days
-    // Uses daily_stats rollup table for fast DAU lookups
+    // Combines users from both downloads and version_requests tables (deduplicated)
     async getDAUMAUHistory(days: number = 30) {
       const now = Math.floor(Date.now() / 1000);
-      const startDate = new Date((now - days * 86400) * 1000).toISOString().split("T")[0];
+      const startTimestamp = now - days * 86400;
+      const startDate = new Date(startTimestamp * 1000).toISOString().split("T")[0];
 
-      // Get DAU from rollup table (fast!)
-      const dauResults = await db
-        .select({
-          date: dailyStats.date,
-          dau: dailyStats.unique_users,
-        })
-        .from(dailyStats)
-        .where(sql`${dailyStats.date} >= ${startDate}`)
-        .orderBy(dailyStats.date)
-        .all();
-
-      // Get current MAU (still needs raw query for DISTINCT over 30 days)
+      // Get combined MAU (unique users across both tables in last 30 days)
       const thirtyDaysAgo = now - 30 * 86400;
       const mauResult = await db
         .select({
           mau: sql<number>`count(distinct ip_hash)`,
         })
-        .from(downloads)
-        .where(sql`${downloads.created_at} >= ${thirtyDaysAgo}`)
+        .from(
+          sql`(
+            SELECT ip_hash FROM downloads WHERE created_at >= ${thirtyDaysAgo}
+            UNION
+            SELECT ip_hash FROM version_requests WHERE created_at >= ${thirtyDaysAgo}
+          )`
+        )
         .get();
 
       const currentMAU = mauResult?.mau ?? 0;
 
+      // Get combined DAU for each day in a single query (deduplicated across both tables)
+      const dauResults = await db.all(sql`
+        SELECT date, COUNT(DISTINCT ip_hash) as dau
+        FROM (
+          SELECT date(created_at, 'unixepoch') as date, ip_hash
+          FROM downloads
+          WHERE created_at >= ${startTimestamp}
+          UNION
+          SELECT date(created_at, 'unixepoch') as date, ip_hash
+          FROM version_requests
+          WHERE created_at >= ${startTimestamp}
+        )
+        GROUP BY date
+        ORDER BY date
+      `) as Array<{ date: string; dau: number }>;
+
       // Fill in missing days with 0
-      const dailyData: Array<{ date: string; dau: number }> = [];
       const dauMap = new Map(dauResults.map(r => [r.date, r.dau]));
+      const dailyData: Array<{ date: string; dau: number }> = [];
 
       for (let i = days - 1; i >= 0; i--) {
         const dayTimestamp = now - i * 86400;
