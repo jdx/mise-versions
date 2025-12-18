@@ -10,12 +10,12 @@ interface Props {
 }
 
 const {
-  title = "mise tools",
+  title = "mise versions",
   description = "Browse tool versions and download stats for mise",
   ogImage = "https://mise-tools.jdx.dev/api/og",
 } = Astro.props;
 
-const fullTitle = title === "mise tools" ? title : `${title} - mise tools`;
+const fullTitle = title === "mise versions" ? title : `${title} | mise versions`;
 const canonicalUrl = new URL(Astro.url.pathname, "https://mise-tools.jdx.dev").href;
 ---
 
@@ -33,7 +33,7 @@ const canonicalUrl = new URL(Astro.url.pathname, "https://mise-tools.jdx.dev").h
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="mise tools" />
+    <meta property="og:site_name" content="mise versions" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -64,7 +64,7 @@ const canonicalUrl = new URL(Astro.url.pathname, "https://mise-tools.jdx.dev").h
           href="/"
           class="text-xl font-bold text-neon-purple hover:text-neon-pink transition-colors"
         >
-          mise tools
+          mise versions
         </a>
         <nav class="flex items-center gap-6">
           <MAUCounter client:load />
