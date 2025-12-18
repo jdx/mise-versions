@@ -15,6 +15,7 @@ interface Tool {
   description?: string;
   backends?: string[];
   github?: string;
+  security?: Array<{ type: string; algorithm?: string }>;
 }
 
 interface TrendingTool {
@@ -29,6 +30,24 @@ interface Props {
   tools: Tool[];
   downloads: Record<string, number>;
   trendingTools?: TrendingTool[];
+}
+
+// Security lock icon
+function LockIcon({ security }: { security: Array<{ type: string; algorithm?: string }> }) {
+  const types = security.map(s => {
+    if (s.type === "checksum") return s.algorithm ? `checksum (${s.algorithm})` : "checksum";
+    if (s.type === "github_attestations") return "GitHub attestations";
+    return s.type.toUpperCase();
+  });
+  const tooltip = `Verified: ${types.join(", ")}`;
+
+  return (
+    <span title={tooltip} class="text-green-400 opacity-70 group-hover:opacity-100 transition-opacity">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 1C8.676 1 6 3.676 6 7v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+      </svg>
+    </span>
+  );
 }
 
 // Mini sparkline SVG component
@@ -307,6 +326,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
                     </span>
                     {tool.dailyBoost > 40 && <span class="text-orange-400" title="Hot! 1.4x+ recent activity">🔥</span>}
                     {tool.dailyBoost > 20 && tool.dailyBoost <= 40 && <span class="text-green-400" title="Trending 1.2x+ recent activity">↑</span>}
+                    {tool.security && tool.security.length > 0 && <LockIcon security={tool.security} />}
                   </div>
                   <span class="text-sm font-semibold text-neon-blue">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
                 </div>
@@ -433,9 +453,12 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
             {filteredTools.map((tool) => (
               <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3">
-                  <a href={`/tools/${tool.name}`} class="text-neon-purple hover:text-neon-pink font-medium transition-colors">
-                    <HighlightedName name={tool.name} />
-                  </a>
+                  <div class="flex items-center gap-1.5 group">
+                    <a href={`/tools/${tool.name}`} class="text-neon-purple hover:text-neon-pink font-medium transition-colors">
+                      <HighlightedName name={tool.name} />
+                    </a>
+                    {tool.security && tool.security.length > 0 && <LockIcon security={tool.security} />}
+                  </div>
                 </td>
                 <td class="px-4 py-3 text-sm font-mono">
                   {tool.github ? (
