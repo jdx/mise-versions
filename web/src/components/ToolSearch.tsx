@@ -62,6 +62,10 @@ const securityLabels: Record<SecurityLevel, string> = {
 };
 
 function LockIcon({ security }: { security: Array<{ type: string; algorithm?: string }> }) {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const iconRef = useRef<HTMLSpanElement>(null);
+
   const types = security.map(s => {
     if (s.type === "checksum") return s.algorithm ? `checksum (${s.algorithm})` : "checksum";
     if (s.type === "github_attestations") return "GitHub attestations";
@@ -70,14 +74,32 @@ function LockIcon({ security }: { security: Array<{ type: string; algorithm?: st
   const level = getSecurityLevel(security);
   const tooltip = `${securityLabels[level]}: ${types.join(", ")}`;
 
+  const handleMouseEnter = () => {
+    if (iconRef.current) {
+      const rect = iconRef.current.getBoundingClientRect();
+      setTooltipPos({ x: rect.left + rect.width / 2, y: rect.top });
+    }
+    setShowTooltip(true);
+  };
+
   return (
-    <span class={`${securityColors[level]} opacity-70 group-hover:opacity-100 transition-opacity relative inline-flex items-center lock-tooltip`}>
+    <span
+      ref={iconRef}
+      class={`${securityColors[level]} opacity-70 group-hover:opacity-100 transition-opacity inline-flex items-center cursor-help`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 1C8.676 1 6 3.676 6 7v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
       </svg>
-      <span class="lock-tooltip-text absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 border border-dark-500 rounded text-xs text-gray-300 whitespace-nowrap pointer-events-none opacity-0 transition-opacity z-50">
-        {tooltip}
-      </span>
+      {showTooltip && (
+        <span
+          class="fixed px-2 py-1 bg-dark-700 border border-dark-500 rounded text-xs text-gray-300 whitespace-nowrap pointer-events-none z-[9999] -translate-x-1/2"
+          style={{ left: `${tooltipPos.x}px`, top: `${tooltipPos.y - 28}px` }}
+        >
+          {tooltip}
+        </span>
+      )}
     </span>
   );
 }
