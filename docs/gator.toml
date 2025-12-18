@@ -1,44 +1,44 @@
 [versions]
-"3.7.0" = { created_at = 2021-11-15T20:49:59.000Z }
-"3.7.1" = { created_at = 2022-02-02T20:54:39.000Z }
-"3.7.2" = { created_at = 2022-04-18T22:19:54.000Z }
-"3.8.0" = { created_at = 2022-04-21T23:18:45.000Z }
-"3.8.1" = { created_at = 2022-05-04T23:48:46.000Z }
-"3.9.0" = { created_at = 2022-07-15T17:44:05.000Z }
-"3.9.1" = { created_at = 2022-10-06T23:26:15.000Z }
-"3.9.2" = { created_at = 2022-10-12T22:19:46.000Z }
-"3.10.0" = { created_at = 2022-10-19T23:05:45.000Z }
-"3.11.0" = { created_at = 2023-01-04T17:23:35.000Z }
-"3.12.0" = { created_at = 2023-04-14T17:21:01.000Z }
-"3.11.1" = { created_at = 2023-04-26T02:29:31.000Z }
-"3.13.0" = { created_at = 2023-08-08T22:53:41.000Z }
-"3.13.1" = { created_at = 2023-10-09T16:27:40.000Z }
-"3.13.2" = { created_at = 2023-10-10T01:00:52.000Z }
-"3.13.3" = { created_at = 2023-10-13T22:36:42.000Z }
-"3.14.0" = { created_at = 2023-11-01T23:13:24.000Z }
-"3.13.4" = { created_at = 2023-11-02T00:57:59.000Z }
-"3.15.0" = { created_at = 2024-02-05T17:55:37.000Z }
-"3.14.1" = { created_at = 2024-03-12T23:24:40.000Z }
-"3.15.1" = { created_at = 2024-03-12T23:25:10.000Z }
-"3.14.2" = { created_at = 2024-04-22T20:54:48.000Z }
-"3.16.0" = { created_at = 2024-05-09T18:46:26.000Z }
-"3.16.2" = { created_at = 2024-05-22T00:32:47.000Z }
-"3.16.3" = { created_at = 2024-05-24T22:16:05.000Z }
-"3.17.0-rc.0" = { created_at = 2024-08-12T20:18:30.000Z }
-"3.17.0-rc.1" = { created_at = 2024-08-14T21:45:41.000Z }
-"3.17.0" = { created_at = 2024-08-21T22:49:48.000Z }
-"3.17.1" = { created_at = 2024-09-12T00:28:18.000Z }
-"3.18.0-rc.0" = { created_at = 2024-11-22T21:15:18.000Z }
-"3.18.0-rc.1" = { created_at = 2024-12-05T18:43:01.000Z }
-"3.18.0" = { created_at = 2024-12-12T00:07:35.000Z }
-"3.18.1" = { created_at = 2024-12-16T21:46:15.000Z }
-"3.18.2" = { created_at = 2025-01-09T18:37:18.000Z }
-"3.17.2" = { created_at = 2025-01-24T03:01:12.000Z }
-"3.19.0" = { created_at = 2025-04-09T18:56:18.000Z }
-"3.18.3" = { created_at = 2025-04-25T23:00:35.000Z }
-"3.19.1" = { created_at = 2025-04-25T20:19:05.000Z }
-"3.19.2" = { created_at = 2025-06-17T21:08:52.000Z }
-"3.19.3" = { created_at = 2025-07-15T19:30:35.000Z }
-"3.20.0" = { created_at = 2025-07-24T18:35:43.000Z }
-"3.20.1" = { created_at = 2025-08-29T22:52:52.000Z }
-"3.21.0" = { created_at = 2025-11-19T21:46:33.000Z }
+"3.7.0" = { created_at = 2021-11-15T20:49:59.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.7.0" }
+"3.7.1" = { created_at = 2022-02-02T20:54:39.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.7.1" }
+"3.7.2" = { created_at = 2022-04-18T22:19:54.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.7.2" }
+"3.8.0" = { created_at = 2022-04-21T23:18:45.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.8.0" }
+"3.8.1" = { created_at = 2022-05-04T23:48:46.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.8.1" }
+"3.9.0" = { created_at = 2022-07-15T17:44:05.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.9.0" }
+"3.9.1" = { created_at = 2022-10-06T23:26:15.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.9.1" }
+"3.9.2" = { created_at = 2022-10-12T22:19:46.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.9.2" }
+"3.10.0" = { created_at = 2022-10-19T23:05:45.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.10.0" }
+"3.11.0" = { created_at = 2023-01-04T17:23:35.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.11.0" }
+"3.12.0" = { created_at = 2023-04-14T17:21:01.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.12.0" }
+"3.11.1" = { created_at = 2023-04-26T02:29:31.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.11.1" }
+"3.13.0" = { created_at = 2023-08-08T22:53:41.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.13.0" }
+"3.13.1" = { created_at = 2023-10-09T16:27:40.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.13.1" }
+"3.13.2" = { created_at = 2023-10-10T01:00:52.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.13.2" }
+"3.13.3" = { created_at = 2023-10-13T22:36:42.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.13.3" }
+"3.14.0" = { created_at = 2023-11-01T23:13:24.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.14.0" }
+"3.13.4" = { created_at = 2023-11-02T00:57:59.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.13.4" }
+"3.15.0" = { created_at = 2024-02-05T17:55:37.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.15.0" }
+"3.14.1" = { created_at = 2024-03-12T23:24:40.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.14.1" }
+"3.15.1" = { created_at = 2024-03-12T23:25:10.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.15.1" }
+"3.14.2" = { created_at = 2024-04-22T20:54:48.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.14.2" }
+"3.16.0" = { created_at = 2024-05-09T18:46:26.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.16.0" }
+"3.16.2" = { created_at = 2024-05-22T00:32:47.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.16.2" }
+"3.16.3" = { created_at = 2024-05-24T22:16:05.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.16.3" }
+"3.17.0-rc.0" = { created_at = 2024-08-12T20:18:30.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.17.0-rc.0" }
+"3.17.0-rc.1" = { created_at = 2024-08-14T21:45:41.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.17.0-rc.1" }
+"3.17.0" = { created_at = 2024-08-21T22:49:48.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.17.0" }
+"3.17.1" = { created_at = 2024-09-12T00:28:18.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.17.1" }
+"3.18.0-rc.0" = { created_at = 2024-11-22T21:15:18.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.0-rc.0" }
+"3.18.0-rc.1" = { created_at = 2024-12-05T18:43:01.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.0-rc.1" }
+"3.18.0" = { created_at = 2024-12-12T00:07:35.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.0" }
+"3.18.1" = { created_at = 2024-12-16T21:46:15.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.1" }
+"3.18.2" = { created_at = 2025-01-09T18:37:18.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.2" }
+"3.17.2" = { created_at = 2025-01-24T03:01:12.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.17.2" }
+"3.19.0" = { created_at = 2025-04-09T18:56:18.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.19.0" }
+"3.18.3" = { created_at = 2025-04-25T23:00:35.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.18.3" }
+"3.19.1" = { created_at = 2025-04-25T20:19:05.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.19.1" }
+"3.19.2" = { created_at = 2025-06-17T21:08:52.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.19.2" }
+"3.19.3" = { created_at = 2025-07-15T19:30:35.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.19.3" }
+"3.20.0" = { created_at = 2025-07-24T18:35:43.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.20.0" }
+"3.20.1" = { created_at = 2025-08-29T22:52:52.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.20.1" }
+"3.21.0" = { created_at = 2025-11-19T21:46:33.000Z, release_url = "https://github.com/open-policy-agent/gatekeeper/releases/tag/v3.21.0" }
