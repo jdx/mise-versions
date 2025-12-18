@@ -1,131 +1,131 @@
 [versions]
-"0.4.0" = { created_at = 2020-06-16T00:46:04.000Z }
-"0.4.1" = { created_at = 2020-06-17T20:44:55.000Z }
-"0.4.2" = { created_at = 2020-06-18T03:13:41.000Z }
-"0.4.3" = { created_at = 2020-06-20T20:55:24.000Z }
-"0.4.4" = { created_at = 2020-06-24T16:13:47.000Z }
-"0.4.5" = { created_at = 2020-06-27T00:14:03.000Z }
-"0.5.0" = { created_at = 2020-07-06T17:13:43.000Z }
-"0.5.1" = { created_at = 2020-07-07T01:29:31.000Z }
-"0.5.2" = { created_at = 2020-07-07T20:08:01.000Z }
-"0.5.3" = { created_at = 2020-07-09T21:21:22.000Z }
-"0.5.4" = { created_at = 2020-07-11T00:48:49.000Z }
-"0.5.5" = { created_at = 2020-07-11T16:55:44.000Z }
-"0.5.6" = { created_at = 2020-07-14T03:37:33.000Z }
-"0.5.7" = { created_at = 2020-07-15T19:22:24.000Z }
-"0.5.8" = { created_at = 2020-07-15T22:52:24.000Z }
-"0.6.0" = { created_at = 2020-07-17T18:42:30.000Z }
-"0.6.1" = { created_at = 2020-07-17T19:36:06.000Z }
-"0.6.2" = { created_at = 2020-07-18T02:22:19.000Z }
-"0.6.3" = { created_at = 2020-07-18T18:22:03.000Z }
-"0.7.0" = { created_at = 2020-08-03T22:39:35.000Z }
-"0.7.1" = { created_at = 2020-08-05T00:23:51.000Z }
-"0.7.2" = { created_at = 2020-08-05T02:35:33.000Z }
-"0.7.3" = { created_at = 2020-08-05T03:56:12.000Z }
-"0.7.4" = { created_at = 2020-08-05T14:35:59.000Z }
-"0.8.0" = { created_at = 2020-08-09T03:12:35.000Z }
-"0.9.0" = { created_at = 2020-08-14T17:31:05.000Z }
-"0.9.1" = { created_at = 2020-08-27T16:07:48.000Z }
-"0.10.0" = { created_at = 2020-11-23T01:01:33.000Z }
-"0.11.0" = { created_at = 2020-12-21T01:09:21.000Z }
-"0.11.1" = { created_at = 2021-01-20T14:31:19.000Z }
-"0.12.0" = { created_at = 2021-04-03T23:00:58.000Z }
-"0.13.0" = { created_at = 2021-04-17T19:41:00.000Z }
-"0.13.1" = { created_at = 2021-05-05T21:25:28.000Z }
-"0.14.0" = { created_at = 2021-05-16T21:14:20.000Z }
-"0.14.1" = { created_at = 2021-05-24T16:16:37.000Z }
-"0.15.0" = { created_at = 2021-06-13T00:22:29.000Z }
-"0.15.1" = { created_at = 2021-08-07T22:47:34.000Z }
-"0.16.0" = { created_at = 2021-08-28T17:39:19.000Z }
-"0.16.1" = { created_at = 2021-08-28T23:03:48.000Z }
-"0.16.3" = { created_at = 2021-08-31T04:19:26.000Z }
-"0.17.0" = { created_at = 2021-09-04T22:14:35.000Z }
-"0.17.1" = { created_at = 2021-09-13T23:10:32.000Z }
-"0.17.2" = { created_at = 2021-09-22T00:11:14.000Z }
-"0.17.3" = { created_at = 2021-09-23T23:26:04.000Z }
-"0.18.0" = { created_at = 2021-10-10T01:04:27.000Z }
-"0.18.1" = { created_at = 2021-10-16T21:32:27.000Z }
-"0.18.2" = { created_at = 2021-11-01T02:39:37.000Z }
-"0.19.0" = { created_at = 2021-12-05T22:35:23.000Z }
-"0.19.1" = { created_at = 2021-12-05T22:59:50.000Z }
-"0.19.2" = { created_at = 2021-12-18T21:15:17.000Z }
-"0.20.0" = { created_at = 2022-01-17T00:33:08.000Z }
-"0.21.2" = { created_at = 2022-01-26T13:55:02.000Z }
-"0.22.0" = { created_at = 2022-02-01T16:34:43.000Z }
-"0.22.1" = { created_at = 2022-02-12T00:44:30.000Z }
-"0.22.2" = { created_at = 2022-02-12T19:57:06.000Z }
-"0.23.0" = { created_at = 2022-02-25T00:35:03.000Z }
-"0.23.1" = { created_at = 2022-03-14T14:50:30.000Z }
-"0.24.0" = { created_at = 2022-03-26T23:42:22.000Z }
-"0.24.1" = { created_at = 2022-03-28T00:56:32.000Z }
-"0.24.2" = { created_at = 2022-03-31T14:06:52.000Z }
-"0.24.3" = { created_at = 2022-04-01T14:52:30.000Z }
-"0.24.4" = { created_at = 2022-04-07T23:44:22.000Z }
-"0.25.0" = { created_at = 2022-04-16T16:09:47.000Z }
-"0.25.1" = { created_at = 2022-04-17T14:49:08.000Z }
-"0.26.0" = { created_at = 2022-04-20T01:30:25.000Z }
-"0.27.0" = { created_at = 2022-04-23T23:46:11.000Z }
-"0.27.1" = { created_at = 2022-04-30T18:57:34.000Z }
-"0.28.0" = { created_at = 2022-05-11T23:05:08.000Z }
-"0.29.0" = { created_at = 2022-05-21T16:22:09.000Z }
-"0.29.1" = { created_at = 2022-05-22T19:43:44.000Z }
-"0.30.0" = { created_at = 2022-06-30T00:50:18.000Z }
-"0.30.1" = { created_at = 2022-07-02T02:50:09.000Z }
-"0.30.2" = { created_at = 2022-07-02T03:51:04.000Z }
-"0.30.3" = { created_at = 2022-07-05T12:48:09.000Z }
-"0.31.0" = { created_at = 2022-08-28T01:40:52.000Z }
-"0.31.1" = { created_at = 2022-08-29T13:17:17.000Z }
-"0.32.0" = { created_at = 2022-09-10T21:33:25.000Z }
-"0.32.1" = { created_at = 2022-09-11T01:24:10.000Z }
-"0.32.2" = { created_at = 2022-10-24T13:56:42.000Z }
-"0.33.0" = { created_at = 2022-11-20T23:26:24.000Z }
-"0.34.0" = { created_at = 2022-12-19T01:07:03.000Z }
-"0.34.1" = { created_at = 2022-12-21T00:08:17.000Z }
-"0.34.2" = { created_at = 2023-01-17T12:19:12.000Z }
-"0.34.4" = { created_at = 2023-01-17T13:28:28.000Z }
-"0.34.5" = { created_at = 2023-02-12T22:24:18.000Z }
-"0.35.0" = { created_at = 2023-03-11T06:28:43.000Z }
-"0.35.1" = { created_at = 2023-03-13T00:37:15.000Z }
-"0.35.3" = { created_at = 2023-03-13T05:03:06.000Z }
-"0.35.4" = { created_at = 2023-04-10T16:27:58.000Z }
-"0.36.0" = { created_at = 2023-04-17T23:00:14.000Z }
-"0.36.1" = { created_at = 2023-05-04T03:05:06.000Z }
-"0.37.0" = { created_at = 2023-06-02T23:59:51.000Z }
-"0.37.1" = { created_at = 2023-06-03T00:29:03.000Z }
-"0.38.0" = { created_at = 2023-07-02T01:38:13.000Z }
-"0.38.1" = { created_at = 2023-07-02T19:09:42.000Z }
-"0.38.2" = { created_at = 2023-07-03T03:00:28.000Z }
-"0.38.3" = { created_at = 2023-07-03T17:07:22.000Z }
-"0.39.0" = { created_at = 2023-07-08T17:09:46.000Z }
-"0.39.1" = { created_at = 2023-07-13T01:06:52.000Z }
-"0.40.0" = { created_at = 2023-07-31T01:43:38.000Z }
-"0.40.1" = { created_at = 2023-07-31T14:43:51.000Z }
-"0.40.2" = { created_at = 2023-08-01T02:16:15.000Z }
-"0.41.0" = { created_at = 2023-09-10T01:29:40.000Z }
-"0.42.0" = { created_at = 2023-10-27T01:19:13.000Z }
-"0.42.1" = { created_at = 2023-10-27T02:33:47.000Z }
-"0.42.2" = { created_at = 2023-10-27T04:26:14.000Z }
-"0.42.3" = { created_at = 2023-10-27T13:52:10.000Z }
-"0.42.5" = { created_at = 2023-10-29T00:17:19.000Z }
-"0.43.0" = { created_at = 2023-11-18T23:53:46.000Z }
-"0.43.1" = { created_at = 2023-11-25T23:59:37.000Z }
-"0.43.2" = { created_at = 2023-12-01T00:25:44.000Z }
-"0.44.0" = { created_at = 2023-12-18T01:02:07.000Z }
-"0.45.0" = { created_at = 2023-12-25T21:46:23.000Z }
-"0.45.1" = { created_at = 2024-04-05T01:53:48.000Z }
-"0.46.0" = { created_at = 2024-05-25T14:47:45.000Z }
-"0.46.1" = { created_at = 2024-05-26T19:14:43.000Z }
-"0.46.2" = { created_at = 2024-06-08T21:37:23.000Z }
-"0.46.3" = { created_at = 2024-06-17T22:59:34.000Z }
-"0.47.0" = { created_at = 2024-07-01T01:05:20.000Z }
-"0.47.1" = { created_at = 2024-07-07T01:20:56.000Z }
-"0.47.2" = { created_at = 2024-07-11T02:07:15.000Z }
-"0.47.4" = { created_at = 2024-10-19T18:47:10.000Z }
-"0.47.5" = { created_at = 2024-10-27T03:25:10.000Z }
-"0.47.6" = { created_at = 2024-12-01T23:26:55.000Z }
-"0.48.0" = { created_at = 2024-12-21T22:53:53.000Z }
-"0.49.0" = { created_at = 2025-02-02T00:08:39.000Z }
-"0.49.1" = { created_at = 2025-03-18T15:29:32.000Z }
-"0.50.0" = { created_at = 2025-05-18T22:30:56.000Z }
-"0.50.1" = { created_at = 2025-06-30T21:51:34.000Z }
-"0.50.2" = { created_at = 2025-09-13T21:48:58.000Z }
+"0.4.0" = { created_at = 2020-06-16T00:46:04.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.0" }
+"0.4.1" = { created_at = 2020-06-17T20:44:55.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.1" }
+"0.4.2" = { created_at = 2020-06-18T03:13:41.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.2" }
+"0.4.3" = { created_at = 2020-06-20T20:55:24.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.3" }
+"0.4.4" = { created_at = 2020-06-24T16:13:47.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.4" }
+"0.4.5" = { created_at = 2020-06-27T00:14:03.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.5" }
+"0.5.0" = { created_at = 2020-07-06T17:13:43.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.0" }
+"0.5.1" = { created_at = 2020-07-07T01:29:31.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.1" }
+"0.5.2" = { created_at = 2020-07-07T20:08:01.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.2" }
+"0.5.3" = { created_at = 2020-07-09T21:21:22.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.3" }
+"0.5.4" = { created_at = 2020-07-11T00:48:49.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.4" }
+"0.5.5" = { created_at = 2020-07-11T16:55:44.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.5" }
+"0.5.6" = { created_at = 2020-07-14T03:37:33.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.6" }
+"0.5.7" = { created_at = 2020-07-15T19:22:24.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.7" }
+"0.5.8" = { created_at = 2020-07-15T22:52:24.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.5.8" }
+"0.6.0" = { created_at = 2020-07-17T18:42:30.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.6.0" }
+"0.6.1" = { created_at = 2020-07-17T19:36:06.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.6.1" }
+"0.6.2" = { created_at = 2020-07-18T02:22:19.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.6.2" }
+"0.6.3" = { created_at = 2020-07-18T18:22:03.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.6.3" }
+"0.7.0" = { created_at = 2020-08-03T22:39:35.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.7.0" }
+"0.7.1" = { created_at = 2020-08-05T00:23:51.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.7.1" }
+"0.7.2" = { created_at = 2020-08-05T02:35:33.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.7.2" }
+"0.7.3" = { created_at = 2020-08-05T03:56:12.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.7.3" }
+"0.7.4" = { created_at = 2020-08-05T14:35:59.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.7.4" }
+"0.8.0" = { created_at = 2020-08-09T03:12:35.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.8.0" }
+"0.9.0" = { created_at = 2020-08-14T17:31:05.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.9.0" }
+"0.9.1" = { created_at = 2020-08-27T16:07:48.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.9.1" }
+"0.10.0" = { created_at = 2020-11-23T01:01:33.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.10.0" }
+"0.11.0" = { created_at = 2020-12-21T01:09:21.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.11.0" }
+"0.11.1" = { created_at = 2021-01-20T14:31:19.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.11.1" }
+"0.12.0" = { created_at = 2021-04-03T23:00:58.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.12.0" }
+"0.13.0" = { created_at = 2021-04-17T19:41:00.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.13.0" }
+"0.13.1" = { created_at = 2021-05-05T21:25:28.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.13.1" }
+"0.14.0" = { created_at = 2021-05-16T21:14:20.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.14.0" }
+"0.14.1" = { created_at = 2021-05-24T16:16:37.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.14.1" }
+"0.15.0" = { created_at = 2021-06-13T00:22:29.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.15.0" }
+"0.15.1" = { created_at = 2021-08-07T22:47:34.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.15.1" }
+"0.16.0" = { created_at = 2021-08-28T17:39:19.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.16.0" }
+"0.16.1" = { created_at = 2021-08-28T23:03:48.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.16.1" }
+"0.16.3" = { created_at = 2021-08-31T04:19:26.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.16.3" }
+"0.17.0" = { created_at = 2021-09-04T22:14:35.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.17.0" }
+"0.17.1" = { created_at = 2021-09-13T23:10:32.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.17.1" }
+"0.17.2" = { created_at = 2021-09-22T00:11:14.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.17.2" }
+"0.17.3" = { created_at = 2021-09-23T23:26:04.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.17.3" }
+"0.18.0" = { created_at = 2021-10-10T01:04:27.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.18.0" }
+"0.18.1" = { created_at = 2021-10-16T21:32:27.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.18.1" }
+"0.18.2" = { created_at = 2021-11-01T02:39:37.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.18.2" }
+"0.19.0" = { created_at = 2021-12-05T22:35:23.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.19.0" }
+"0.19.1" = { created_at = 2021-12-05T22:59:50.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.19.1" }
+"0.19.2" = { created_at = 2021-12-18T21:15:17.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.19.2" }
+"0.20.0" = { created_at = 2022-01-17T00:33:08.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.20.0" }
+"0.21.2" = { created_at = 2022-01-26T13:55:02.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.21.2" }
+"0.22.0" = { created_at = 2022-02-01T16:34:43.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.22.0" }
+"0.22.1" = { created_at = 2022-02-12T00:44:30.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.22.1" }
+"0.22.2" = { created_at = 2022-02-12T19:57:06.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.22.2" }
+"0.23.0" = { created_at = 2022-02-25T00:35:03.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.23.0" }
+"0.23.1" = { created_at = 2022-03-14T14:50:30.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.23.1" }
+"0.24.0" = { created_at = 2022-03-26T23:42:22.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.24.0" }
+"0.24.1" = { created_at = 2022-03-28T00:56:32.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.24.1" }
+"0.24.2" = { created_at = 2022-03-31T14:06:52.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.24.2" }
+"0.24.3" = { created_at = 2022-04-01T14:52:30.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.24.3" }
+"0.24.4" = { created_at = 2022-04-07T23:44:22.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.24.4" }
+"0.25.0" = { created_at = 2022-04-16T16:09:47.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.25.0" }
+"0.25.1" = { created_at = 2022-04-17T14:49:08.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.25.1" }
+"0.26.0" = { created_at = 2022-04-20T01:30:25.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.26.0" }
+"0.27.0" = { created_at = 2022-04-23T23:46:11.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.27.0" }
+"0.27.1" = { created_at = 2022-04-30T18:57:34.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.27.1" }
+"0.28.0" = { created_at = 2022-05-11T23:05:08.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.28.0" }
+"0.29.0" = { created_at = 2022-05-21T16:22:09.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.29.0" }
+"0.29.1" = { created_at = 2022-05-22T19:43:44.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.29.1" }
+"0.30.0" = { created_at = 2022-06-30T00:50:18.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.30.0" }
+"0.30.1" = { created_at = 2022-07-02T02:50:09.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.30.1" }
+"0.30.2" = { created_at = 2022-07-02T03:51:04.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.30.2" }
+"0.30.3" = { created_at = 2022-07-05T12:48:09.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.30.3" }
+"0.31.0" = { created_at = 2022-08-28T01:40:52.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.31.0" }
+"0.31.1" = { created_at = 2022-08-29T13:17:17.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.31.1" }
+"0.32.0" = { created_at = 2022-09-10T21:33:25.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.32.0" }
+"0.32.1" = { created_at = 2022-09-11T01:24:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.32.1" }
+"0.32.2" = { created_at = 2022-10-24T13:56:42.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.32.2" }
+"0.33.0" = { created_at = 2022-11-20T23:26:24.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.33.0" }
+"0.34.0" = { created_at = 2022-12-19T01:07:03.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.0" }
+"0.34.1" = { created_at = 2022-12-21T00:08:17.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.1" }
+"0.34.2" = { created_at = 2023-01-17T12:19:12.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.2" }
+"0.34.4" = { created_at = 2023-01-17T13:28:28.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.4" }
+"0.34.5" = { created_at = 2023-02-12T22:24:18.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.5" }
+"0.35.0" = { created_at = 2023-03-11T06:28:43.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.0" }
+"0.35.1" = { created_at = 2023-03-13T00:37:15.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.1" }
+"0.35.3" = { created_at = 2023-03-13T05:03:06.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.3" }
+"0.35.4" = { created_at = 2023-04-10T16:27:58.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.4" }
+"0.36.0" = { created_at = 2023-04-17T23:00:14.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.36.0" }
+"0.36.1" = { created_at = 2023-05-04T03:05:06.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.36.1" }
+"0.37.0" = { created_at = 2023-06-02T23:59:51.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.37.0" }
+"0.37.1" = { created_at = 2023-06-03T00:29:03.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.37.1" }
+"0.38.0" = { created_at = 2023-07-02T01:38:13.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.38.0" }
+"0.38.1" = { created_at = 2023-07-02T19:09:42.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.38.1" }
+"0.38.2" = { created_at = 2023-07-03T03:00:28.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.38.2" }
+"0.38.3" = { created_at = 2023-07-03T17:07:22.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.38.3" }
+"0.39.0" = { created_at = 2023-07-08T17:09:46.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.39.0" }
+"0.39.1" = { created_at = 2023-07-13T01:06:52.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.39.1" }
+"0.40.0" = { created_at = 2023-07-31T01:43:38.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.40.0" }
+"0.40.1" = { created_at = 2023-07-31T14:43:51.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.40.1" }
+"0.40.2" = { created_at = 2023-08-01T02:16:15.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.40.2" }
+"0.41.0" = { created_at = 2023-09-10T01:29:40.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.41.0" }
+"0.42.0" = { created_at = 2023-10-27T01:19:13.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.42.0" }
+"0.42.1" = { created_at = 2023-10-27T02:33:47.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.42.1" }
+"0.42.2" = { created_at = 2023-10-27T04:26:14.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.42.2" }
+"0.42.3" = { created_at = 2023-10-27T13:52:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.42.3" }
+"0.42.5" = { created_at = 2023-10-29T00:17:19.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.42.5" }
+"0.43.0" = { created_at = 2023-11-18T23:53:46.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.43.0" }
+"0.43.1" = { created_at = 2023-11-25T23:59:37.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.43.1" }
+"0.43.2" = { created_at = 2023-12-01T00:25:44.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.43.2" }
+"0.44.0" = { created_at = 2023-12-18T01:02:07.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.44.0" }
+"0.45.0" = { created_at = 2023-12-25T21:46:23.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.45.0" }
+"0.45.1" = { created_at = 2024-04-05T01:53:48.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.45.1" }
+"0.46.0" = { created_at = 2024-05-25T14:47:45.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.46.0" }
+"0.46.1" = { created_at = 2024-05-26T19:14:43.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.46.1" }
+"0.46.2" = { created_at = 2024-06-08T21:37:23.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.46.2" }
+"0.46.3" = { created_at = 2024-06-17T22:59:34.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.46.3" }
+"0.47.0" = { created_at = 2024-07-01T01:05:20.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.0" }
+"0.47.1" = { created_at = 2024-07-07T01:20:56.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.1" }
+"0.47.2" = { created_at = 2024-07-11T02:07:15.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.2" }
+"0.47.4" = { created_at = 2024-10-19T18:47:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.4" }
+"0.47.5" = { created_at = 2024-10-27T03:25:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.5" }
+"0.47.6" = { created_at = 2024-12-01T23:26:55.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.6" }
+"0.48.0" = { created_at = 2024-12-21T22:53:53.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.48.0" }
+"0.49.0" = { created_at = 2025-02-02T00:08:39.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.49.0" }
+"0.49.1" = { created_at = 2025-03-18T15:29:32.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.49.1" }
+"0.50.0" = { created_at = 2025-05-18T22:30:56.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.50.0" }
+"0.50.1" = { created_at = 2025-06-30T21:51:34.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.50.1" }
+"0.50.2" = { created_at = 2025-09-13T21:48:58.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.50.2" }

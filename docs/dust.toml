@@ -1,43 +1,43 @@
 [versions]
-"untagged-1499119fdec1dec70238" = { created_at = 2018-03-19T19:27:33.000Z }
-"0.1.1" = { created_at = 2018-03-19T18:44:30.000Z }
-"0.1.2" = { created_at = 2018-03-19T20:11:55.000Z }
-"0.2.0" = { created_at = 2018-04-03T18:53:37.000Z }
-"0.2.1" = { created_at = 2018-04-03T19:54:53.000Z }
-"0.2.2" = { created_at = 2018-04-06T20:07:13.000Z }
-"0.2.3" = { created_at = 2018-04-18T12:40:52.000Z }
-"0.3.0" = { created_at = 2018-04-27T11:44:24.000Z }
-"0.3.1" = { created_at = 2018-05-09T10:46:42.000Z }
-"0.4.0.1" = { created_at = 2019-10-08T23:35:30.000Z }
-"0.4.1.2" = { created_at = 2019-11-02T01:11:42.000Z }
-"0.4.2" = { created_at = 2019-12-08T23:36:48.000Z }
-"0.4.3" = { created_at = 2019-12-30T22:07:04.000Z }
-"0.4.4" = { created_at = 2020-01-19T09:32:49.000Z }
-"0.4.5.0" = { created_at = 2020-02-03T20:54:19.000Z }
-"0.5.0" = { created_at = 2020-02-19T20:22:54.000Z }
-"0.5.1" = { created_at = 2020-03-01T16:23:26.000Z }
-"0.5.2" = { created_at = 2020-08-02T13:26:33.000Z }
-"0.5.3" = { created_at = 2020-09-03T20:47:52.000Z }
-"0.5.4" = { created_at = 2021-01-16T15:12:52.000Z }
-"0.6.0" = { created_at = 2021-06-23T08:25:04.000Z }
-"0.6.1" = { created_at = 2021-07-19T13:09:21.000Z }
-"0.6.2" = { created_at = 2021-08-05T07:47:47.000Z }
-"0.7.5" = { created_at = 2021-09-19T12:33:03.000Z }
-"0.8.0" = { created_at = 2022-02-26T11:34:24.000Z }
-"0.8.1-alpha.1" = { created_at = 2022-02-27T09:49:05.000Z }
-"0.8.1-alpha.2" = { created_at = 2022-02-27T11:01:31.000Z }
-"0.8.1" = { created_at = 2022-07-14T07:07:48.000Z }
-"0.8.2" = { created_at = 2022-08-23T10:49:08.000Z }
-"0.8.3" = { created_at = 2022-08-31T20:14:56.000Z }
-"0.8.4" = { created_at = 2023-01-29T10:24:36.000Z }
-"0.8.5" = { created_at = 2023-03-14T08:18:23.000Z }
-"0.8.6" = { created_at = 2023-05-05T19:36:49.000Z }
-"0.9.0" = { created_at = 2024-01-07T11:23:35.000Z }
-"1.0.0" = { created_at = 2024-03-25T22:01:25.000Z }
-"1.1.0" = { created_at = 2024-07-05T20:17:45.000Z }
-"1.1.1" = { created_at = 2024-07-17T18:35:44.000Z }
-"1.1.2" = { created_at = 2025-02-27T22:01:19.000Z }
-"1.2.0" = { created_at = 2025-04-01T22:19:59.000Z }
-"1.2.1" = { created_at = 2025-06-04T19:07:23.000Z }
-"1.2.2" = { created_at = 2025-07-06T08:43:18.000Z }
-"1.2.3" = { created_at = 2025-07-31T21:33:44.000Z }
+"untagged-1499119fdec1dec70238" = { created_at = 2018-03-19T19:27:33.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/untagged-1499119fdec1dec70238" }
+"0.1.1" = { created_at = 2018-03-19T18:44:30.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2018-03-19T20:11:55.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.1.2" }
+"0.2.0" = { created_at = 2018-04-03T18:53:37.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2018-04-03T19:54:53.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2018-04-06T20:07:13.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2018-04-18T12:40:52.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.2.3" }
+"0.3.0" = { created_at = 2018-04-27T11:44:24.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2018-05-09T10:46:42.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.3.1" }
+"0.4.0.1" = { created_at = 2019-10-08T23:35:30.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.4.0.1" }
+"0.4.1.2" = { created_at = 2019-11-02T01:11:42.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.4.1.2" }
+"0.4.2" = { created_at = 2019-12-08T23:36:48.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2019-12-30T22:07:04.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2020-01-19T09:32:49.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.4.4" }
+"0.4.5.0" = { created_at = 2020-02-03T20:54:19.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.4.5.0" }
+"0.5.0" = { created_at = 2020-02-19T20:22:54.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2020-03-01T16:23:26.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2020-08-02T13:26:33.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.5.2" }
+"0.5.3" = { created_at = 2020-09-03T20:47:52.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.5.3" }
+"0.5.4" = { created_at = 2021-01-16T15:12:52.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.5.4" }
+"0.6.0" = { created_at = 2021-06-23T08:25:04.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2021-07-19T13:09:21.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2021-08-05T07:47:47.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.6.2" }
+"0.7.5" = { created_at = 2021-09-19T12:33:03.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.7.5" }
+"0.8.0" = { created_at = 2022-02-26T11:34:24.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.0" }
+"0.8.1-alpha.1" = { created_at = 2022-02-27T09:49:05.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.1-alpha.1" }
+"0.8.1-alpha.2" = { created_at = 2022-02-27T11:01:31.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.1-alpha.2" }
+"0.8.1" = { created_at = 2022-07-14T07:07:48.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2022-08-23T10:49:08.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.2" }
+"0.8.3" = { created_at = 2022-08-31T20:14:56.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.3" }
+"0.8.4" = { created_at = 2023-01-29T10:24:36.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.4" }
+"0.8.5" = { created_at = 2023-03-14T08:18:23.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.5" }
+"0.8.6" = { created_at = 2023-05-05T19:36:49.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.8.6" }
+"0.9.0" = { created_at = 2024-01-07T11:23:35.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v0.9.0" }
+"1.0.0" = { created_at = 2024-03-25T22:01:25.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2024-07-05T20:17:45.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2024-07-17T18:35:44.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2025-02-27T22:01:19.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.1.2" }
+"1.2.0" = { created_at = 2025-04-01T22:19:59.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2025-06-04T19:07:23.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2025-07-06T08:43:18.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2025-07-31T21:33:44.000Z, release_url = "https://github.com/bootandy/dust/releases/tag/v1.2.3" }

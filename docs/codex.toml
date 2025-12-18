@@ -1,65 +1,65 @@
 [versions]
-"0.2.0" = { created_at = 2025-06-30T19:12:54.000Z }
-"0.3.0" = { created_at = 2025-07-08T05:32:51.000Z }
-"0.4.0" = { created_at = 2025-07-09T06:53:36.000Z }
-"0.5.0" = { created_at = 2025-07-10T21:44:23.000Z }
-"0.6.0" = { created_at = 2025-07-12T23:22:59.000Z }
-"0.7.0" = { created_at = 2025-07-14T16:42:53.000Z }
-"0.8.0" = { created_at = 2025-07-19T00:22:08.000Z }
-"0.9.0" = { created_at = 2025-07-23T00:52:46.000Z }
-"0.10.0" = { created_at = 2025-07-24T21:48:57.000Z }
-"0.11.0" = { created_at = 2025-08-02T00:41:10.000Z }
-"0.12.0" = { created_at = 2025-08-05T01:27:47.000Z }
-"0.13.0" = { created_at = 2025-08-05T20:56:20.000Z }
-"0.14.0" = { created_at = 2025-08-06T16:17:54.000Z }
-"0.15.0" = { created_at = 2025-08-07T17:21:16.000Z }
-"0.16.0" = { created_at = 2025-08-07T17:53:00.000Z }
-"0.19.0" = { created_at = 2025-08-08T01:31:57.000Z }
-"0.20.0" = { created_at = 2025-08-09T00:20:03.000Z }
-"0.21.0" = { created_at = 2025-08-12T04:32:08.000Z }
-"0.22.0" = { created_at = 2025-08-15T17:21:00.000Z }
-"0.23.0" = { created_at = 2025-08-20T05:36:20.000Z }
-"0.24.0" = { created_at = 2025-08-26T17:28:23.000Z }
-"0.25.0" = { created_at = 2025-08-27T08:30:11.000Z }
-"0.26.0" = { created_at = 2025-08-29T03:22:19.000Z }
-"0.27.0" = { created_at = 2025-08-29T06:02:04.000Z }
-"0.28.0" = { created_at = 2025-09-02T22:08:53.000Z }
-"0.29.0" = { created_at = 2025-09-03T08:20:02.000Z }
-"0.30.0" = { created_at = 2025-09-05T21:55:50.000Z }
-"0.31.0" = { created_at = 2025-09-08T21:20:14.000Z }
-"0.32.0" = { created_at = 2025-09-10T17:12:55.000Z }
-"0.33.0" = { created_at = 2025-09-10T19:41:15.000Z }
-"0.34.0" = { created_at = 2025-09-10T21:15:41.000Z }
-"0.35.0" = { created_at = 2025-09-15T15:52:25.000Z }
-"0.36.0" = { created_at = 2025-09-15T17:04:50.000Z }
-"0.37.0" = { created_at = 2025-09-17T17:48:22.000Z }
-"0.38.0" = { created_at = 2025-09-17T18:05:35.000Z }
-"0.39.0" = { created_at = 2025-09-18T21:37:30.000Z }
-"0.40.0" = { created_at = 2025-09-23T16:15:34.000Z }
-"0.41.0" = { created_at = 2025-09-24T16:56:32.000Z }
-"0.42.0" = { created_at = 2025-09-26T18:29:00.000Z }
-"0.44.0" = { created_at = 2025-10-03T16:43:34.000Z }
-"0.45.0" = { created_at = 2025-10-06T19:03:34.000Z }
-"0.46.0" = { created_at = 2025-10-09T01:48:45.000Z }
-"0.47.0" = { created_at = 2025-10-17T16:46:07.000Z }
-"0.48.0" = { created_at = 2025-10-23T23:24:01.000Z }
-"0.49.0" = { created_at = 2025-10-24T18:36:20.000Z }
-"0.50.0" = { created_at = 2025-10-25T21:16:35.000Z }
-"0.52.0" = { created_at = 2025-10-30T18:09:31.000Z }
-"0.53.0" = { created_at = 2025-10-31T00:56:29.000Z }
-"0.54.0" = { created_at = 2025-11-04T18:31:30.000Z }
-"0.55.0" = { created_at = 2025-11-04T20:00:54.000Z }
-"0.56.0" = { created_at = 2025-11-07T17:46:07.000Z }
-"0.57.0" = { created_at = 2025-11-09T22:07:45.000Z }
-"0.58.0" = { created_at = 2025-11-13T17:39:02.000Z }
-"0.59.0" = { created_at = 2025-11-19T17:48:27.000Z }
-"0.60.1" = { created_at = 2025-11-19T19:22:45.000Z }
-"0.61.0" = { created_at = 2025-11-20T15:50:17.000Z }
-"0.63.0" = { created_at = 2025-11-21T18:00:39.000Z }
-"0.64.0" = { created_at = 2025-12-02T21:51:19.000Z }
-"0.65.0" = { created_at = 2025-12-04T17:55:41.000Z }
-"0.66.0" = { created_at = 2025-12-09T03:05:23.000Z }
-"0.69.0" = { created_at = 2025-12-10T22:01:08.000Z }
-"0.71.0" = { created_at = 2025-12-11T17:50:53.000Z }
-"0.72.0" = { created_at = 2025-12-13T00:54:04.000Z }
-"0.73.0" = { created_at = 2025-12-15T22:08:17.000Z }
+"0.2.0" = { created_at = 2025-06-30T19:12:54.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.2.0" }
+"0.3.0" = { created_at = 2025-07-08T05:32:51.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.3.0" }
+"0.4.0" = { created_at = 2025-07-09T06:53:36.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.4.0" }
+"0.5.0" = { created_at = 2025-07-10T21:44:23.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.5.0" }
+"0.6.0" = { created_at = 2025-07-12T23:22:59.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.6.0" }
+"0.7.0" = { created_at = 2025-07-14T16:42:53.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.7.0" }
+"0.8.0" = { created_at = 2025-07-19T00:22:08.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.8.0" }
+"0.9.0" = { created_at = 2025-07-23T00:52:46.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.9.0" }
+"0.10.0" = { created_at = 2025-07-24T21:48:57.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.10.0" }
+"0.11.0" = { created_at = 2025-08-02T00:41:10.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.11.0" }
+"0.12.0" = { created_at = 2025-08-05T01:27:47.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.12.0" }
+"0.13.0" = { created_at = 2025-08-05T20:56:20.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.13.0" }
+"0.14.0" = { created_at = 2025-08-06T16:17:54.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.14.0" }
+"0.15.0" = { created_at = 2025-08-07T17:21:16.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.15.0" }
+"0.16.0" = { created_at = 2025-08-07T17:53:00.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.16.0" }
+"0.19.0" = { created_at = 2025-08-08T01:31:57.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.19.0" }
+"0.20.0" = { created_at = 2025-08-09T00:20:03.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.20.0" }
+"0.21.0" = { created_at = 2025-08-12T04:32:08.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.21.0" }
+"0.22.0" = { created_at = 2025-08-15T17:21:00.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.22.0" }
+"0.23.0" = { created_at = 2025-08-20T05:36:20.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.23.0" }
+"0.24.0" = { created_at = 2025-08-26T17:28:23.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.24.0" }
+"0.25.0" = { created_at = 2025-08-27T08:30:11.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.25.0" }
+"0.26.0" = { created_at = 2025-08-29T03:22:19.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.26.0" }
+"0.27.0" = { created_at = 2025-08-29T06:02:04.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.27.0" }
+"0.28.0" = { created_at = 2025-09-02T22:08:53.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.28.0" }
+"0.29.0" = { created_at = 2025-09-03T08:20:02.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.29.0" }
+"0.30.0" = { created_at = 2025-09-05T21:55:50.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.30.0" }
+"0.31.0" = { created_at = 2025-09-08T21:20:14.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.31.0" }
+"0.32.0" = { created_at = 2025-09-10T17:12:55.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.32.0" }
+"0.33.0" = { created_at = 2025-09-10T19:41:15.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.33.0" }
+"0.34.0" = { created_at = 2025-09-10T21:15:41.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.34.0" }
+"0.35.0" = { created_at = 2025-09-15T15:52:25.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.35.0" }
+"0.36.0" = { created_at = 2025-09-15T17:04:50.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.36.0" }
+"0.37.0" = { created_at = 2025-09-17T17:48:22.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.37.0" }
+"0.38.0" = { created_at = 2025-09-17T18:05:35.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.38.0" }
+"0.39.0" = { created_at = 2025-09-18T21:37:30.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.39.0" }
+"0.40.0" = { created_at = 2025-09-23T16:15:34.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.40.0" }
+"0.41.0" = { created_at = 2025-09-24T16:56:32.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.41.0" }
+"0.42.0" = { created_at = 2025-09-26T18:29:00.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.42.0" }
+"0.44.0" = { created_at = 2025-10-03T16:43:34.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.44.0" }
+"0.45.0" = { created_at = 2025-10-06T19:03:34.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.45.0" }
+"0.46.0" = { created_at = 2025-10-09T01:48:45.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.46.0" }
+"0.47.0" = { created_at = 2025-10-17T16:46:07.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.47.0" }
+"0.48.0" = { created_at = 2025-10-23T23:24:01.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.48.0" }
+"0.49.0" = { created_at = 2025-10-24T18:36:20.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.49.0" }
+"0.50.0" = { created_at = 2025-10-25T21:16:35.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.50.0" }
+"0.52.0" = { created_at = 2025-10-30T18:09:31.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.52.0" }
+"0.53.0" = { created_at = 2025-10-31T00:56:29.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.53.0" }
+"0.54.0" = { created_at = 2025-11-04T18:31:30.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.54.0" }
+"0.55.0" = { created_at = 2025-11-04T20:00:54.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.55.0" }
+"0.56.0" = { created_at = 2025-11-07T17:46:07.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.56.0" }
+"0.57.0" = { created_at = 2025-11-09T22:07:45.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.57.0" }
+"0.58.0" = { created_at = 2025-11-13T17:39:02.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.58.0" }
+"0.59.0" = { created_at = 2025-11-19T17:48:27.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.59.0" }
+"0.60.1" = { created_at = 2025-11-19T19:22:45.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.60.1" }
+"0.61.0" = { created_at = 2025-11-20T15:50:17.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.61.0" }
+"0.63.0" = { created_at = 2025-11-21T18:00:39.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.63.0" }
+"0.64.0" = { created_at = 2025-12-02T21:51:19.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.64.0" }
+"0.65.0" = { created_at = 2025-12-04T17:55:41.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.65.0" }
+"0.66.0" = { created_at = 2025-12-09T03:05:23.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.66.0" }
+"0.69.0" = { created_at = 2025-12-10T22:01:08.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.69.0" }
+"0.71.0" = { created_at = 2025-12-11T17:50:53.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.71.0" }
+"0.72.0" = { created_at = 2025-12-13T00:54:04.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.72.0" }
+"0.73.0" = { created_at = 2025-12-15T22:08:17.000Z, release_url = "https://github.com/openai/codex/releases/tag/rust-v0.73.0" }

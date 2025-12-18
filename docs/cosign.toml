@@ -1,51 +1,51 @@
 [versions]
-"1.0.0" = { created_at = 2021-07-28T14:38:03.000Z }
-"1.1.0" = { created_at = 2021-08-25T21:51:14.000Z }
-"1.2.0" = { created_at = 2021-09-14T22:57:11.000Z }
-"1.2.1" = { created_at = 2021-09-20T17:19:09.000Z }
-"1.3.0" = { created_at = 2021-11-03T00:05:51.000Z }
-"1.3.1" = { created_at = 2021-11-11T19:36:12.000Z }
-"1.4.0" = { created_at = 2021-12-06T22:34:26.000Z }
-"1.4.1" = { created_at = 2021-12-10T16:58:09.000Z }
-"1.5.0" = { created_at = 2022-01-24T18:40:47.000Z }
-"1.5.1" = { created_at = 2022-01-31T18:04:58.000Z }
-"1.5.2" = { created_at = 2022-02-18T21:54:14.000Z }
-"1.6.0" = { created_at = 2022-03-04T08:02:21.000Z }
-"1.7.1" = { created_at = 2022-04-05T17:33:11.000Z }
-"1.7.2" = { created_at = 2022-04-12T11:59:50.000Z }
-"1.8.0" = { created_at = 2022-04-27T13:57:03.000Z }
-"1.9.0" = { created_at = 2022-06-03T13:47:38.000Z }
-"1.10.0" = { created_at = 2022-07-22T09:54:04.000Z }
-"1.10.1" = { created_at = 2022-08-04T17:06:36.000Z }
-"1.11.0" = { created_at = 2022-08-18T14:12:43.000Z }
-"1.11.1" = { created_at = 2022-08-24T15:22:11.000Z }
-"1.12.0" = { created_at = 2022-09-14T15:55:03.000Z }
-"1.12.1" = { created_at = 2022-09-21T13:19:04.000Z }
-"1.13.0" = { created_at = 2022-10-07T16:06:31.000Z }
-"1.13.1" = { created_at = 2022-10-17T18:00:05.000Z }
-"2.0.0" = { created_at = 2023-02-23T19:26:35.000Z }
-"2.0.1" = { created_at = 2023-04-06T19:14:05.000Z }
-"2.0.2" = { created_at = 2023-04-24T19:04:56.000Z }
-"2.1.0" = { created_at = 2023-06-23T17:13:03.000Z }
-"2.1.1" = { created_at = 2023-06-27T08:56:35.000Z }
-"2.2.0" = { created_at = 2023-08-31T18:59:32.000Z }
-"2.2.1" = { created_at = 2023-11-07T12:40:13.000Z }
-"1.13.2" = { created_at = 2023-12-02T02:28:54.000Z }
-"2.2.2" = { created_at = 2023-12-05T19:04:41.000Z }
-"2.2.3" = { created_at = 2024-01-31T17:55:44.000Z }
-"1.13.6" = { created_at = 2024-03-21T22:32:05.000Z }
-"2.2.4" = { created_at = 2024-04-10T21:57:55.000Z }
-"2.3.0" = { created_at = 2024-07-22T17:19:43.000Z }
-"2.4.0" = { created_at = 2024-08-06T21:45:29.000Z }
-"2.4.1" = { created_at = 2024-10-03T17:32:17.000Z }
-"2.4.2" = { created_at = 2025-02-04T20:02:24.000Z }
-"2.4.3" = { created_at = 2025-02-19T19:41:51.000Z }
-"2.5.0" = { created_at = 2025-04-07T22:23:41.000Z }
-"2.5.1" = { created_at = 2025-06-16T17:26:20.000Z }
-"2.5.2" = { created_at = 2025-06-17T20:21:53.000Z }
-"2.5.3" = { created_at = 2025-07-17T19:57:34.000Z }
-"2.6.0" = { created_at = 2025-09-12T20:27:49.000Z }
-"2.6.1" = { created_at = 2025-10-02T17:57:28.000Z }
-"3.0.1" = { created_at = 2025-10-07T22:19:26.000Z }
-"3.0.2" = { created_at = 2025-10-10T18:21:52.000Z }
-"3.0.3" = { created_at = 2025-12-10T00:02:53.000Z }
+"1.0.0" = { created_at = 2021-07-28T14:38:03.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2021-08-25T21:51:14.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.1.0" }
+"1.2.0" = { created_at = 2021-09-14T22:57:11.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2021-09-20T17:19:09.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.2.1" }
+"1.3.0" = { created_at = 2021-11-03T00:05:51.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.3.0" }
+"1.3.1" = { created_at = 2021-11-11T19:36:12.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.3.1" }
+"1.4.0" = { created_at = 2021-12-06T22:34:26.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2021-12-10T16:58:09.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.4.1" }
+"1.5.0" = { created_at = 2022-01-24T18:40:47.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.5.0" }
+"1.5.1" = { created_at = 2022-01-31T18:04:58.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.5.1" }
+"1.5.2" = { created_at = 2022-02-18T21:54:14.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.5.2" }
+"1.6.0" = { created_at = 2022-03-04T08:02:21.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.6.0" }
+"1.7.1" = { created_at = 2022-04-05T17:33:11.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.7.1" }
+"1.7.2" = { created_at = 2022-04-12T11:59:50.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.7.2" }
+"1.8.0" = { created_at = 2022-04-27T13:57:03.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2022-06-03T13:47:38.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.9.0" }
+"1.10.0" = { created_at = 2022-07-22T09:54:04.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2022-08-04T17:06:36.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.10.1" }
+"1.11.0" = { created_at = 2022-08-18T14:12:43.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2022-08-24T15:22:11.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.11.1" }
+"1.12.0" = { created_at = 2022-09-14T15:55:03.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2022-09-21T13:19:04.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.12.1" }
+"1.13.0" = { created_at = 2022-10-07T16:06:31.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.13.0" }
+"1.13.1" = { created_at = 2022-10-17T18:00:05.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.13.1" }
+"2.0.0" = { created_at = 2023-02-23T19:26:35.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2023-04-06T19:14:05.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2023-04-24T19:04:56.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.0.2" }
+"2.1.0" = { created_at = 2023-06-23T17:13:03.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.1.0" }
+"2.1.1" = { created_at = 2023-06-27T08:56:35.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.1.1" }
+"2.2.0" = { created_at = 2023-08-31T18:59:32.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.2.0" }
+"2.2.1" = { created_at = 2023-11-07T12:40:13.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.2.1" }
+"1.13.2" = { created_at = 2023-12-02T02:28:54.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.13.2" }
+"2.2.2" = { created_at = 2023-12-05T19:04:41.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.2.2" }
+"2.2.3" = { created_at = 2024-01-31T17:55:44.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.2.3" }
+"1.13.6" = { created_at = 2024-03-21T22:32:05.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v1.13.6" }
+"2.2.4" = { created_at = 2024-04-10T21:57:55.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.2.4" }
+"2.3.0" = { created_at = 2024-07-22T17:19:43.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.3.0" }
+"2.4.0" = { created_at = 2024-08-06T21:45:29.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.4.0" }
+"2.4.1" = { created_at = 2024-10-03T17:32:17.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.4.1" }
+"2.4.2" = { created_at = 2025-02-04T20:02:24.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.4.2" }
+"2.4.3" = { created_at = 2025-02-19T19:41:51.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.4.3" }
+"2.5.0" = { created_at = 2025-04-07T22:23:41.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2025-06-16T17:26:20.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.5.1" }
+"2.5.2" = { created_at = 2025-06-17T20:21:53.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.5.2" }
+"2.5.3" = { created_at = 2025-07-17T19:57:34.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.5.3" }
+"2.6.0" = { created_at = 2025-09-12T20:27:49.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2025-10-02T17:57:28.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v2.6.1" }
+"3.0.1" = { created_at = 2025-10-07T22:19:26.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v3.0.1" }
+"3.0.2" = { created_at = 2025-10-10T18:21:52.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v3.0.2" }
+"3.0.3" = { created_at = 2025-12-10T00:02:53.000Z, release_url = "https://github.com/sigstore/cosign/releases/tag/v3.0.3" }

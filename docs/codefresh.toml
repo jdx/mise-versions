@@ -1,470 +1,470 @@
 [versions]
-"0.5.8" = { created_at = 2018-01-07T21:30:52.000Z }
-"0.5.9" = { created_at = 2018-01-08T09:57:08.000Z }
-"0.6.0" = { created_at = 2018-01-09T12:33:26.000Z }
-"0.6.3" = { created_at = 2018-01-10T08:11:38.000Z }
-"0.6.4" = { created_at = 2018-01-10T09:09:58.000Z }
-"0.6.6" = { created_at = 2018-01-11T00:39:47.000Z }
-"0.6.9" = { created_at = 2018-01-11T14:37:06.000Z }
-"0.6.91" = { created_at = 2018-01-14T09:03:00.000Z }
-"0.7.2" = { created_at = 2018-01-15T09:27:24.000Z }
-"0.7.4" = { created_at = 2018-01-15T13:36:22.000Z }
-"0.7.6" = { created_at = 2018-01-16T21:17:10.000Z }
-"0.7.8" = { created_at = 2018-01-22T11:08:11.000Z }
-"0.7.9" = { created_at = 2018-01-22T16:43:53.000Z }
-"0.8.0" = { created_at = 2018-01-22T22:38:02.000Z }
-"0.8.1" = { created_at = 2018-01-22T22:50:48.000Z }
-"0.8.2" = { created_at = 2018-01-22T23:12:37.000Z }
-"0.8.3" = { created_at = 2018-01-25T10:22:25.000Z }
-"0.8.4" = { created_at = 2018-01-29T09:30:05.000Z }
-"0.8.5" = { created_at = 2018-01-30T00:21:26.000Z }
-"0.8.6" = { created_at = 2018-02-01T13:54:30.000Z }
-"0.8.8" = { created_at = 2018-02-03T23:36:01.000Z }
-"0.8.9" = { created_at = 2018-02-03T23:42:43.000Z }
-"0.8.10" = { created_at = 2018-02-06T05:09:32.000Z }
-"0.8.11" = { created_at = 2018-02-06T18:56:34.000Z }
-"0.8.14" = { created_at = 2018-02-11T14:55:11.000Z }
-"0.8.15" = { created_at = 2018-02-12T09:31:38.000Z }
-"0.8.16" = { created_at = 2018-02-12T13:13:50.000Z }
-"0.8.18" = { created_at = 2018-02-13T12:44:55.000Z }
-"0.8.19" = { created_at = 2018-02-13T13:36:11.000Z }
-"0.8.20" = { created_at = 2018-02-13T14:51:44.000Z }
-"0.8.21" = { created_at = 2018-02-14T07:14:06.000Z }
-"0.8.22" = { created_at = 2018-02-14T13:12:03.000Z }
-"0.8.23" = { created_at = 2018-02-18T12:10:11.000Z }
-"0.8.24" = { created_at = 2018-02-20T14:28:13.000Z }
-"0.8.25" = { created_at = 2018-02-28T14:52:01.000Z }
-"0.8.26" = { created_at = 2018-03-01T09:19:22.000Z }
-"0.8.27" = { created_at = 2018-03-01T10:38:45.000Z }
-"0.8.28" = { created_at = 2018-03-01T12:58:54.000Z }
-"0.8.29" = { created_at = 2018-03-02T11:04:10.000Z }
-"0.8.30" = { created_at = 2018-03-07T12:23:11.000Z }
-"0.8.31" = { created_at = 2018-03-08T15:23:54.000Z }
-"0.8.32" = { created_at = 2018-03-13T04:46:00.000Z }
-"0.8.33" = { created_at = 2018-03-13T15:41:00.000Z }
-"0.8.34" = { created_at = 2018-03-13T15:54:44.000Z }
-"0.8.35" = { created_at = 2018-03-13T16:16:31.000Z }
-"0.8.36" = { created_at = 2018-03-13T17:30:28.000Z }
-"0.8.37" = { created_at = 2018-03-16T14:22:36.000Z }
-"0.8.38" = { created_at = 2018-03-19T07:37:06.000Z }
-"0.8.39" = { created_at = 2018-03-19T11:49:12.000Z }
-"0.8.40" = { created_at = 2018-03-25T06:21:31.000Z }
-"0.8.41" = { created_at = 2018-03-25T13:08:31.000Z }
-"0.8.42" = { created_at = 2018-03-28T13:50:54.000Z }
-"0.8.43" = { created_at = 2018-04-05T13:10:18.000Z }
-"0.8.44" = { created_at = 2018-04-23T08:01:49.000Z }
-"0.8.45" = { created_at = 2018-04-23T09:15:49.000Z }
-"0.8.46" = { created_at = 2018-04-23T10:36:57.000Z }
-"0.8.47" = { created_at = 2018-04-26T11:14:17.000Z }
-"0.8.48" = { created_at = 2018-04-26T13:45:53.000Z }
-"0.8.49" = { created_at = 2018-04-28T16:00:59.000Z }
-"0.8.50" = { created_at = 2018-04-29T07:36:17.000Z }
-"0.8.52" = { created_at = 2018-05-03T20:14:04.000Z }
-"0.8.53" = { created_at = 2018-05-10T13:46:00.000Z }
-"0.8.54" = { created_at = 2018-05-21T09:19:18.000Z }
-"0.8.55" = { created_at = 2018-06-18T21:29:49.000Z }
-"0.8.56" = { created_at = 2018-06-19T12:18:54.000Z }
-"0.8.58" = { created_at = 2018-07-01T14:51:44.000Z }
-"0.8.62" = { created_at = 2018-07-09T22:03:06.000Z }
-"0.8.63" = { created_at = 2018-07-11T04:43:51.000Z }
-"0.8.65" = { created_at = 2018-07-23T08:07:16.000Z }
-"0.8.66" = { created_at = 2018-07-23T12:06:26.000Z }
-"0.8.67" = { created_at = 2018-07-23T12:47:17.000Z }
-"0.8.68" = { created_at = 2018-07-29T06:50:08.000Z }
-"0.8.69" = { created_at = 2018-07-29T07:59:04.000Z }
-"0.8.71" = { created_at = 2018-08-06T09:58:54.000Z }
-"0.8.72" = { created_at = 2018-08-06T13:08:43.000Z }
-"0.8.73" = { created_at = 2018-08-17T09:17:02.000Z }
-"0.8.74" = { created_at = 2018-08-19T08:52:24.000Z }
-"0.8.75" = { created_at = 2018-08-27T08:55:44.000Z }
-"0.8.76" = { created_at = 2018-08-27T09:11:46.000Z }
-"0.8.77" = { created_at = 2018-10-11T09:25:06.000Z }
-"0.8.78" = { created_at = 2018-10-16T18:46:49.000Z }
-"0.8.79" = { created_at = 2018-10-22T09:14:03.000Z }
-"0.8.80" = { created_at = 2018-11-18T14:53:25.000Z }
-"0.8.81" = { created_at = 2018-11-19T15:54:20.000Z }
-"${{PACKAGE_VERSION}}" = { created_at = 2018-11-21T14:39:24.000Z }
-"0.8.82" = { created_at = 2018-11-21T13:25:29.000Z }
-"0.8.83" = { created_at = 2018-11-21T14:14:05.000Z }
-"0.8.88" = { created_at = 2018-11-22T16:28:27.000Z }
-"0.8.89" = { created_at = 2018-11-28T10:08:49.000Z }
-"0.8.91" = { created_at = 2018-11-28T14:41:20.000Z }
-"0.8.94" = { created_at = 2018-11-29T05:37:16.000Z }
-"0.8.96" = { created_at = 2018-11-29T13:49:08.000Z }
-"0.8.102" = { created_at = 2018-12-03T13:54:01.000Z }
-"0.8.108" = { created_at = 2018-12-07T08:38:35.000Z }
-"0.8.109" = { created_at = 2018-12-10T13:17:21.000Z }
-"0.9.0" = { created_at = 2018-12-11T06:22:06.000Z }
-"0.9.1" = { created_at = 2018-12-11T17:13:35.000Z }
-"0.9.2" = { created_at = 2018-12-14T14:24:03.000Z }
-"0.9.3" = { created_at = 2018-12-16T09:11:10.000Z }
-"0.9.4" = { created_at = 2018-12-17T07:00:50.000Z }
-"0.9.5" = { created_at = 2018-12-17T12:45:58.000Z }
-"0.9.6" = { created_at = 2018-12-17T15:09:31.000Z }
-"0.9.7" = { created_at = 2018-12-19T13:33:12.000Z }
-"0.9.8" = { created_at = 2018-12-19T17:44:34.000Z }
-"0.9.9" = { created_at = 2018-12-20T13:15:06.000Z }
-"0.9.10" = { created_at = 2018-12-21T09:45:43.000Z }
-"0.9.11" = { created_at = 2018-12-23T10:42:36.000Z }
-"0.9.12" = { created_at = 2018-12-25T06:20:11.000Z }
-"0.9.13" = { created_at = 2018-12-25T17:50:30.000Z }
-"0.9.14" = { created_at = 2018-12-25T18:03:16.000Z }
-"0.9.15" = { created_at = 2018-12-28T13:31:19.000Z }
-"0.9.16" = { created_at = 2018-12-28T14:56:05.000Z }
-"0.9.17" = { created_at = 2018-12-28T15:36:09.000Z }
-"0.9.18" = { created_at = 2018-12-31T16:25:42.000Z }
-"0.9.19" = { created_at = 2019-01-02T11:23:18.000Z }
-"0.9.20" = { created_at = 2019-01-03T07:19:48.000Z }
-"0.9.21" = { created_at = 2019-01-03T07:58:56.000Z }
-"0.9.22" = { created_at = 2019-01-04T12:26:11.000Z }
-"0.9.23" = { created_at = 2019-01-08T13:48:39.000Z }
-"0.9.24" = { created_at = 2019-01-08T21:31:07.000Z }
-"0.9.25" = { created_at = 2019-01-09T15:49:02.000Z }
-"0.9.26" = { created_at = 2019-01-10T15:53:25.000Z }
-"0.9.29" = { created_at = 2019-01-10T19:21:55.000Z }
-"0.9.30" = { created_at = 2019-01-10T19:30:49.000Z }
-"0.10.0" = { created_at = 2019-01-14T13:53:22.000Z }
-"0.10.1" = { created_at = 2019-01-14T14:51:07.000Z }
-"0.10.2" = { created_at = 2019-01-15T08:29:36.000Z }
-"0.10.3" = { created_at = 2019-01-16T21:59:09.000Z }
-"0.10.4" = { created_at = 2019-01-18T13:12:41.000Z }
-"0.11.0" = { created_at = 2019-01-20T13:01:12.000Z }
-"0.11.1" = { created_at = 2019-01-22T10:41:22.000Z }
-"0.11.2" = { created_at = 2019-01-25T10:51:19.000Z }
-"0.12.0" = { created_at = 2019-01-27T11:43:23.000Z }
-"0.13.0" = { created_at = 2019-01-28T14:40:57.000Z }
-"0.13.1" = { created_at = 2019-01-30T12:22:28.000Z }
-"0.13.2" = { created_at = 2019-01-31T11:49:05.000Z }
-"0.13.3" = { created_at = 2019-02-04T10:08:52.000Z }
-"0.13.4" = { created_at = 2019-02-04T10:49:11.000Z }
-"0.13.5" = { created_at = 2019-02-04T12:04:56.000Z }
-"0.14.0" = { created_at = 2019-02-05T16:32:34.000Z }
-"0.14.1" = { created_at = 2019-02-07T16:59:15.000Z }
-"0.14.2" = { created_at = 2019-02-11T10:19:45.000Z }
-"0.15.0" = { created_at = 2019-02-12T12:48:49.000Z }
-"0.15.1" = { created_at = 2019-02-12T15:04:48.000Z }
-"0.16.0" = { created_at = 2019-02-12T21:54:30.000Z }
-"0.16.1" = { created_at = 2019-02-13T13:31:30.000Z }
-"0.16.2" = { created_at = 2019-02-13T14:03:17.000Z }
-"0.16.3" = { created_at = 2019-02-14T08:28:04.000Z }
-"0.16.4" = { created_at = 2019-02-14T09:11:19.000Z }
-"0.16.6" = { created_at = 2019-02-19T15:58:43.000Z }
-"0.16.7" = { created_at = 2019-02-19T16:15:55.000Z }
-"0.17.0" = { created_at = 2019-02-26T13:36:15.000Z }
-"0.17.1" = { created_at = 2019-02-26T13:58:02.000Z }
-"0.17.2" = { created_at = 2019-02-26T14:15:36.000Z }
-"0.17.3" = { created_at = 2019-02-26T23:31:49.000Z }
-"0.17.4" = { created_at = 2019-03-01T10:40:04.000Z }
-"0.17.5" = { created_at = 2019-03-01T10:54:07.000Z }
-"0.17.6" = { created_at = 2019-03-01T13:09:32.000Z }
-"0.17.7" = { created_at = 2019-03-12T13:24:42.000Z }
-"0.17.8" = { created_at = 2019-03-12T16:24:43.000Z }
-"0.17.9" = { created_at = 2019-03-14T19:04:47.000Z }
-"0.17.10" = { created_at = 2019-03-22T08:51:01.000Z }
-"0.17.11" = { created_at = 2019-03-29T09:23:23.000Z }
-"0.17.12" = { created_at = 2019-04-11T08:19:53.000Z }
-"0.17.14" = { created_at = 2019-04-12T10:06:32.000Z }
-"0.18.0" = { created_at = 2019-04-22T07:08:29.000Z }
-"0.18.1" = { created_at = 2019-04-22T15:01:53.000Z }
-"0.19.1" = { created_at = 2019-05-02T11:47:22.000Z }
-"0.19.2" = { created_at = 2019-05-03T08:15:23.000Z }
-"0.19.3" = { created_at = 2019-05-03T08:25:30.000Z }
-"0.19.4" = { created_at = 2019-05-04T09:07:29.000Z }
-"0.19.5" = { created_at = 2019-05-04T12:16:05.000Z }
-"0.19.6" = { created_at = 2019-05-27T16:56:21.000Z }
-"0.19.7" = { created_at = 2019-05-28T09:35:38.000Z }
-"0.20.0" = { created_at = 2019-05-30T13:57:46.000Z }
-"0.20.1" = { created_at = 2019-06-03T11:43:14.000Z }
-"0.20.2" = { created_at = 2019-06-03T14:22:26.000Z }
-"0.20.3" = { created_at = 2019-06-03T14:44:33.000Z }
-"0.21.0" = { created_at = 2019-06-13T10:57:28.000Z }
-"0.21.1" = { created_at = 2019-06-21T11:07:25.000Z }
-"0.23.0" = { created_at = 2019-06-25T05:53:36.000Z }
-"0.24.0" = { created_at = 2019-06-27T13:57:45.000Z }
-"0.24.1" = { created_at = 2019-07-01T07:00:37.000Z }
-"0.25.0" = { created_at = 2019-07-03T03:47:53.000Z }
-"0.26.0" = { created_at = 2019-07-10T09:34:01.000Z }
-"0.27.0" = { created_at = 2019-07-10T09:57:17.000Z }
-"0.27.3" = { created_at = 2019-07-10T10:21:08.000Z }
-"0.28.0" = { created_at = 2019-07-10T10:52:57.000Z }
-"0.28.1" = { created_at = 2019-07-10T12:20:05.000Z }
-"0.29.0" = { created_at = 2019-07-22T13:55:20.000Z }
-"0.30.0" = { created_at = 2019-07-28T12:40:46.000Z }
-"0.30.1" = { created_at = 2019-08-06T16:14:09.000Z }
-"0.31.0" = { created_at = 2019-08-07T06:02:05.000Z }
-"0.31.1" = { created_at = 2019-08-16T08:34:25.000Z }
-"0.32.0" = { created_at = 2019-09-05T14:53:31.000Z }
-"0.32.1" = { created_at = 2019-09-05T15:27:58.000Z }
-"0.33.0" = { created_at = 2019-09-19T10:38:51.000Z }
-"0.33.1" = { created_at = 2019-09-24T14:50:54.000Z }
-"0.33.2" = { created_at = 2019-10-10T08:54:46.000Z }
-"0.33.3" = { created_at = 2019-10-10T09:39:03.000Z }
-"0.34.0" = { created_at = 2019-10-13T09:11:16.000Z }
-"0.35.0" = { created_at = 2019-11-04T09:49:54.000Z }
-"0.36.0" = { created_at = 2019-11-22T09:43:43.000Z }
-"0.36.2" = { created_at = 2019-12-10T16:43:34.000Z }
-"0.37.0" = { created_at = 2019-12-10T21:59:46.000Z }
-"0.37.2" = { created_at = 2019-12-11T15:45:03.000Z }
-"0.37.5" = { created_at = 2019-12-18T12:44:00.000Z }
-"0.37.6" = { created_at = 2019-12-19T12:43:11.000Z }
-"0.39.0" = { created_at = 2019-12-22T07:54:00.000Z }
-"0.39.1" = { created_at = 2019-12-24T10:55:23.000Z }
-"0.39.2" = { created_at = 2019-12-24T11:07:33.000Z }
-"0.39.3" = { created_at = 2019-12-24T13:24:36.000Z }
-"0.39.4" = { created_at = 2019-12-24T15:59:21.000Z }
-"0.39.5" = { created_at = 2019-12-25T11:22:33.000Z }
-"0.39.6" = { created_at = 2019-12-26T15:39:38.000Z }
-"0.40.0" = { created_at = 2019-12-29T20:11:19.000Z }
-"0.40.1" = { created_at = 2020-01-01T15:27:57.000Z }
-"0.41.0" = { created_at = 2020-01-06T10:14:03.000Z }
-"0.41.1" = { created_at = 2020-01-10T12:13:44.000Z }
-"0.41.11" = { created_at = 2020-01-13T09:47:39.000Z }
-"0.41.12" = { created_at = 2020-01-21T07:09:52.000Z }
-"0.41.13" = { created_at = 2020-01-21T16:34:31.000Z }
-"0.42.0" = { created_at = 2020-01-28T09:06:56.000Z }
-"0.42.1" = { created_at = 2020-01-28T09:59:45.000Z }
-"0.42.2" = { created_at = 2020-02-04T15:43:38.000Z }
-"0.43.0" = { created_at = 2020-02-13T07:25:12.000Z }
-"0.43.1" = { created_at = 2020-02-14T09:56:04.000Z }
-"0.43.2" = { created_at = 2020-02-24T12:33:30.000Z }
-"0.43.3" = { created_at = 2020-02-24T15:52:00.000Z }
-"0.43.4" = { created_at = 2020-02-25T11:58:02.000Z }
-"0.43.5" = { created_at = 2020-02-25T15:51:12.000Z }
-"0.43.6" = { created_at = 2020-02-27T15:30:12.000Z }
-"0.43.7" = { created_at = 2020-03-04T13:50:57.000Z }
-"0.43.8" = { created_at = 2020-03-04T15:43:03.000Z }
-"0.43.9" = { created_at = 2020-03-05T13:27:46.000Z }
-"0.43.10" = { created_at = 2020-03-11T11:27:23.000Z }
-"0.43.11" = { created_at = 2020-03-13T09:31:42.000Z }
-"0.43.12" = { created_at = 2020-03-17T13:35:17.000Z }
-"0.43.13" = { created_at = 2020-03-18T12:03:18.000Z }
-"0.43.14" = { created_at = 2020-03-18T12:43:11.000Z }
-"0.43.15" = { created_at = 2020-03-19T13:46:58.000Z }
-"0.43.16" = { created_at = 2020-03-20T10:17:07.000Z }
-"0.44.0" = { created_at = 2020-03-22T07:34:54.000Z }
-"0.45.0" = { created_at = 2020-03-23T08:38:09.000Z }
-"0.50.0" = { created_at = 2020-03-27T16:00:00.000Z }
-"0.50.1" = { created_at = 2020-04-02T07:50:05.000Z }
-"0.50.2" = { created_at = 2020-04-05T11:59:04.000Z }
-"0.50.3" = { created_at = 2020-04-06T15:36:50.000Z }
-"0.50.5" = { created_at = 2020-04-14T12:27:45.000Z }
-"0.51.0" = { created_at = 2020-04-16T12:14:20.000Z }
-"0.52.0" = { created_at = 2020-04-23T07:48:09.000Z }
-"0.52.1" = { created_at = 2020-04-29T13:09:48.000Z }
-"0.52.2" = { created_at = 2020-04-30T08:05:08.000Z }
-"0.52.3" = { created_at = 2020-04-30T11:52:05.000Z }
-"0.52.4" = { created_at = 2020-05-03T08:18:43.000Z }
-"0.52.5" = { created_at = 2020-05-04T09:45:51.000Z }
-"0.52.7" = { created_at = 2020-05-05T10:24:34.000Z }
-"0.53.0" = { created_at = 2020-05-05T13:52:41.000Z }
-"0.54.0" = { created_at = 2020-05-05T14:42:42.000Z }
-"0.55.0" = { created_at = 2020-05-06T21:12:29.000Z }
-"0.56.0" = { created_at = 2020-05-12T08:41:57.000Z }
-"0.57.0" = { created_at = 2020-05-12T09:39:47.000Z }
-"0.58.0" = { created_at = 2020-05-12T11:51:05.000Z }
-"0.59.0" = { created_at = 2020-05-12T12:54:31.000Z }
-"0.59.1" = { created_at = 2020-05-12T15:37:55.000Z }
-"0.59.2" = { created_at = 2020-05-13T09:59:08.000Z }
-"0.60.0" = { created_at = 2020-05-14T10:06:23.000Z }
-"0.60.1" = { created_at = 2020-05-14T11:01:56.000Z }
-"0.60.2" = { created_at = 2020-05-14T12:33:08.000Z }
-"0.62.0" = { created_at = 2020-05-18T06:18:15.000Z }
-"0.63.0" = { created_at = 2020-05-18T14:31:55.000Z }
-"0.63.2" = { created_at = 2020-05-18T15:15:27.000Z }
-"0.63.4" = { created_at = 2020-05-19T13:46:05.000Z }
-"0.63.6" = { created_at = 2020-05-20T12:21:57.000Z }
-"0.63.9" = { created_at = 2020-05-20T13:27:11.000Z }
-"0.63.11" = { created_at = 2020-05-21T08:02:32.000Z }
-"0.63.13" = { created_at = 2020-05-21T13:47:10.000Z }
-"0.64.0" = { created_at = 2020-05-21T18:07:50.000Z }
-"0.64.4" = { created_at = 2020-05-31T13:27:27.000Z }
-"0.64.6" = { created_at = 2020-05-31T18:40:24.000Z }
-"0.64.9" = { created_at = 2020-06-02T08:48:28.000Z }
-"0.65.0" = { created_at = 2020-06-02T12:23:35.000Z }
-"0.65.1" = { created_at = 2020-06-03T06:27:58.000Z }
-"0.65.2" = { created_at = 2020-06-03T11:35:54.000Z }
-"0.66.0" = { created_at = 2020-06-03T13:39:42.000Z }
-"0.67.0" = { created_at = 2020-06-03T13:55:44.000Z }
-"0.68.0" = { created_at = 2020-06-03T14:19:56.000Z }
-"0.68.1" = { created_at = 2020-06-04T10:59:56.000Z }
-"0.68.3" = { created_at = 2020-06-08T16:56:27.000Z }
-"0.68.4" = { created_at = 2020-06-09T14:15:50.000Z }
-"0.68.5" = { created_at = 2020-06-11T05:37:26.000Z }
-"0.68.6" = { created_at = 2020-06-11T16:35:33.000Z }
-"0.68.7" = { created_at = 2020-06-16T07:39:24.000Z }
-"0.68.8" = { created_at = 2020-06-17T11:16:10.000Z }
-"0.68.10" = { created_at = 2020-06-18T09:39:05.000Z }
-"0.68.11" = { created_at = 2020-06-18T10:23:20.000Z }
-"0.68.13" = { created_at = 2020-06-18T14:10:12.000Z }
-"0.68.16" = { created_at = 2020-06-22T13:29:28.000Z }
-"0.68.17" = { created_at = 2020-06-22T15:41:47.000Z }
-"0.69.0" = { created_at = 2020-06-23T14:59:11.000Z }
-"0.69.2" = { created_at = 2020-06-25T04:28:09.000Z }
-"0.69.3" = { created_at = 2020-06-26T11:45:31.000Z }
-"0.69.4" = { created_at = 2020-06-28T14:28:07.000Z }
-"0.69.5" = { created_at = 2020-06-29T08:28:16.000Z }
-"0.69.6" = { created_at = 2020-06-30T07:39:26.000Z }
-"0.70.0" = { created_at = 2020-07-02T06:45:40.000Z }
-"0.70.1" = { created_at = 2020-07-02T10:19:21.000Z }
-"0.70.2" = { created_at = 2020-07-05T17:31:27.000Z }
-"0.70.3" = { created_at = 2020-07-09T08:32:58.000Z }
-"0.70.4" = { created_at = 2020-07-14T06:46:42.000Z }
-"0.70.5" = { created_at = 2020-07-16T20:08:24.000Z }
-"0.70.6" = { created_at = 2020-07-17T07:59:45.000Z }
-"0.70.7" = { created_at = 2020-07-17T09:30:03.000Z }
-"0.70.9" = { created_at = 2020-07-21T14:57:04.000Z }
-"0.71.0" = { created_at = 2020-07-21T16:17:03.000Z }
-"0.71.2" = { created_at = 2020-07-22T06:40:57.000Z }
-"0.71.3" = { created_at = 2020-07-22T07:44:11.000Z }
-"0.71.6" = { created_at = 2020-07-26T06:50:36.000Z }
-"0.71.7" = { created_at = 2020-07-30T05:35:25.000Z }
-"0.71.8" = { created_at = 2020-08-03T14:32:28.000Z }
-"0.72.0" = { created_at = 2020-08-04T13:36:12.000Z }
-"0.72.1" = { created_at = 2020-08-10T15:58:37.000Z }
-"0.72.3" = { created_at = 2020-09-06T06:53:56.000Z }
-"0.72.4" = { created_at = 2020-09-16T10:03:54.000Z }
-"0.72.5" = { created_at = 2020-09-16T13:21:56.000Z }
-"0.72.6" = { created_at = 2020-09-19T18:35:00.000Z }
-"0.72.7" = { created_at = 2020-09-19T19:58:37.000Z }
-"0.72.8" = { created_at = 2020-09-23T07:04:25.000Z }
-"0.72.9" = { created_at = 2020-10-08T08:06:27.000Z }
-"0.73.0" = { created_at = 2020-10-08T17:41:05.000Z }
-"0.73.1" = { created_at = 2020-10-09T07:31:11.000Z }
-"0.73.2" = { created_at = 2020-10-09T07:40:25.000Z }
-"0.73.4" = { created_at = 2020-10-12T15:10:47.000Z }
-"0.73.5" = { created_at = 2020-10-13T07:16:06.000Z }
-"0.73.6" = { created_at = 2020-10-15T12:04:46.000Z }
-"0.73.7" = { created_at = 2020-10-18T15:10:15.000Z }
-"0.73.8" = { created_at = 2020-10-20T11:01:07.000Z }
-"0.73.9" = { created_at = 2020-10-21T11:57:12.000Z }
-"0.73.10" = { created_at = 2020-10-22T09:20:31.000Z }
-"0.73.11" = { created_at = 2020-10-23T18:06:32.000Z }
-"0.73.12" = { created_at = 2020-10-25T18:15:25.000Z }
-"0.73.13" = { created_at = 2020-11-04T08:44:52.000Z }
-"0.73.14" = { created_at = 2020-11-04T13:13:24.000Z }
-"0.73.15" = { created_at = 2020-11-05T09:09:20.000Z }
-"0.73.16" = { created_at = 2020-11-05T10:53:55.000Z }
-"0.73.17" = { created_at = 2020-11-08T07:40:12.000Z }
-"0.73.18" = { created_at = 2020-11-09T13:40:36.000Z }
-"0.73.19" = { created_at = 2020-11-11T11:52:45.000Z }
-"0.73.20" = { created_at = 2020-11-15T08:12:10.000Z }
-"0.73.21" = { created_at = 2020-11-17T13:01:33.000Z }
-"0.73.22" = { created_at = 2020-12-01T13:02:15.000Z }
-"0.73.23" = { created_at = 2020-12-02T12:20:08.000Z }
-"0.73.24" = { created_at = 2020-12-07T10:35:59.000Z }
-"0.73.25" = { created_at = 2020-12-07T12:58:13.000Z }
-"0.73.26" = { created_at = 2020-12-09T14:45:08.000Z }
-"0.73.27" = { created_at = 2020-12-09T16:31:06.000Z }
-"0.73.28" = { created_at = 2020-12-10T09:06:42.000Z }
-"0.73.30" = { created_at = 2020-12-10T09:27:56.000Z }
-"0.73.32" = { created_at = 2020-12-14T21:37:06.000Z }
-"0.73.33" = { created_at = 2020-12-16T12:14:24.000Z }
-"0.73.34" = { created_at = 2020-12-17T07:00:57.000Z }
-"0.74.0" = { created_at = 2020-12-21T20:26:28.000Z }
-"0.74.1" = { created_at = 2020-12-22T11:29:10.000Z }
-"0.74.2" = { created_at = 2020-12-23T15:13:47.000Z }
-"0.74.4" = { created_at = 2020-12-29T12:11:35.000Z }
-"0.74.7" = { created_at = 2021-01-25T08:46:13.000Z }
-"0.74.8" = { created_at = 2021-01-25T17:14:12.000Z }
-"0.74.9" = { created_at = 2021-01-27T15:22:35.000Z }
-"0.75.1" = { created_at = 2021-02-10T15:36:11.000Z }
-"0.75.2" = { created_at = 2021-02-12T14:08:26.000Z }
-"0.75.3" = { created_at = 2021-02-17T14:05:48.000Z }
-"0.75.4" = { created_at = 2021-02-18T09:24:06.000Z }
-"0.75.5" = { created_at = 2021-02-23T12:49:54.000Z }
-"0.75.6" = { created_at = 2021-02-24T15:23:18.000Z }
-"0.75.7" = { created_at = 2021-02-25T12:39:18.000Z }
-"0.75.8" = { created_at = 2021-03-08T11:17:33.000Z }
-"0.75.9" = { created_at = 2021-04-11T06:07:46.000Z }
-"0.75.10" = { created_at = 2021-04-14T14:31:02.000Z }
-"0.75.12" = { created_at = 2021-04-25T13:15:00.000Z }
-"0.75.13" = { created_at = 2021-04-26T06:20:20.000Z }
-"0.75.14" = { created_at = 2021-04-27T06:56:41.000Z }
-"0.75.15" = { created_at = 2021-04-27T08:31:34.000Z }
-"0.75.16" = { created_at = 2021-04-27T16:04:53.000Z }
-"0.75.17" = { created_at = 2021-05-10T16:15:06.000Z }
-"0.75.18" = { created_at = 2021-05-11T15:00:25.000Z }
-"0.75.19" = { created_at = 2021-05-17T19:07:18.000Z }
-"0.75.20" = { created_at = 2021-05-19T08:46:51.000Z }
-"0.75.21" = { created_at = 2021-05-19T10:10:35.000Z }
-"0.75.22" = { created_at = 2021-05-20T07:29:55.000Z }
-"0.75.23" = { created_at = 2021-05-27T07:52:43.000Z }
-"0.75.25" = { created_at = 2021-06-03T12:30:36.000Z }
-"0.75.26" = { created_at = 2021-06-11T12:50:00.000Z }
-"0.75.28" = { created_at = 2021-06-29T12:05:48.000Z }
-"0.75.29" = { created_at = 2021-07-04T05:58:47.000Z }
-"0.75.30" = { created_at = 2021-07-21T08:34:25.000Z }
-"0.75.31" = { created_at = 2021-07-21T09:09:46.000Z }
-"0.75.32" = { created_at = 2021-07-27T09:55:15.000Z }
-"0.75.34" = { created_at = 2021-08-05T08:33:28.000Z }
-"0.75.35" = { created_at = 2021-08-05T12:48:48.000Z }
-"0.76.0" = { created_at = 2021-08-15T07:22:59.000Z }
-"0.77.0" = { created_at = 2021-08-17T13:32:28.000Z }
-"0.78.0" = { created_at = 2021-08-18T14:12:43.000Z }
-"0.78.1" = { created_at = 2021-08-23T09:43:24.000Z }
-"0.78.2" = { created_at = 2021-10-06T05:59:13.000Z }
-"0.78.3" = { created_at = 2022-01-06T13:14:39.000Z }
-"0.78.4" = { created_at = 2022-01-11T11:01:32.000Z }
-"0.78.5" = { created_at = 2022-03-08T15:25:26.000Z }
-"0.79.0" = { created_at = 2022-03-30T17:22:22.000Z }
-"0.79.1" = { created_at = 2022-05-19T15:45:52.000Z }
-"0.79.2" = { created_at = 2022-07-27T13:56:16.000Z }
-"0.80.0" = { created_at = 2022-09-06T07:47:25.000Z }
-"0.80.1" = { created_at = 2022-10-20T08:52:41.000Z }
-"0.80.2" = { created_at = 2022-11-07T10:11:53.000Z }
-"0.80.3" = { created_at = 2022-11-09T13:24:57.000Z }
-"0.80.4" = { created_at = 2022-11-16T09:00:11.000Z }
-"0.81.0" = { created_at = 2022-12-04T15:04:49.000Z }
-"0.81.1" = { created_at = 2022-12-12T08:55:35.000Z }
-"0.81.2" = { created_at = 2022-12-12T10:52:57.000Z }
-"0.81.3" = { created_at = 2022-12-14T10:14:10.000Z }
-"0.81.4" = { created_at = 2022-12-14T12:49:18.000Z }
-"0.81.5" = { created_at = 2023-01-08T16:33:18.000Z }
-"0.81.6" = { created_at = 2023-01-27T07:59:01.000Z }
-"0.81.8" = { created_at = 2023-01-29T10:38:17.000Z }
-"0.81.9" = { created_at = 2023-02-07T14:31:12.000Z }
-"0.82.0" = { created_at = 2023-02-10T09:13:37.000Z }
-"0.82.1" = { created_at = 2023-02-10T12:22:29.000Z }
-"0.82.2" = { created_at = 2023-02-19T14:11:45.000Z }
-"0.82.3" = { created_at = 2023-02-22T13:19:32.000Z }
-"0.82.5" = { created_at = 2023-03-08T12:57:17.000Z }
-"0.82.6" = { created_at = 2023-03-28T07:33:26.000Z }
-"0.82.7" = { created_at = 2023-04-13T06:44:38.000Z }
-"0.82.8" = { created_at = 2023-04-23T16:25:34.000Z }
-"0.82.9" = { created_at = 2023-04-24T04:28:38.000Z }
-"0.83.1" = { created_at = 2023-05-02T07:58:11.000Z }
-"0.83.2" = { created_at = 2023-05-02T13:43:27.000Z }
-"0.83.3" = { created_at = 2023-05-02T20:04:32.000Z }
-"0.84.0" = { created_at = 2023-05-08T10:40:15.000Z }
-"0.84.1" = { created_at = 2023-05-08T18:50:00.000Z }
-"0.84.2" = { created_at = 2023-05-24T08:58:52.000Z }
-"0.84.3" = { created_at = 2023-05-28T10:02:08.000Z }
-"0.84.5" = { created_at = 2023-07-03T13:45:20.000Z }
-"0.84.6" = { created_at = 2023-07-04T09:51:47.000Z }
-"0.84.7" = { created_at = 2023-07-20T07:17:17.000Z }
-"0.84.8" = { created_at = 2023-07-24T22:25:24.000Z }
-"0.84.9" = { created_at = 2023-08-24T10:21:52.000Z }
-"0.84.10" = { created_at = 2023-08-24T16:02:02.000Z }
-"0.85.0" = { created_at = 2023-08-27T10:36:44.000Z }
-"0.86.0" = { created_at = 2023-08-30T15:47:51.000Z }
-"0.87.0" = { created_at = 2023-09-29T16:32:04.000Z }
-"0.87.1" = { created_at = 2023-10-20T16:03:58.000Z }
-"0.87.2" = { created_at = 2023-11-07T08:11:21.000Z }
-"0.87.3" = { created_at = 2024-02-13T12:33:16.000Z }
-"0.87.4" = { created_at = 2024-04-30T14:21:44.000Z }
-"0.87.5" = { created_at = 2024-07-18T16:03:06.000Z }
-"0.87.6" = { created_at = 2024-08-12T14:35:07.000Z }
-"0.88.0" = { created_at = 2024-11-21T10:00:25.000Z }
-"0.88.1" = { created_at = 2024-11-21T16:41:38.000Z }
-"0.88.2" = { created_at = 2024-11-22T11:47:21.000Z }
-"0.88.3" = { created_at = 2024-11-27T08:01:42.000Z }
-"0.88.4" = { created_at = 2024-11-27T14:13:07.000Z }
-"0.88.5" = { created_at = 2024-12-08T10:23:25.000Z }
-"0.88.6" = { created_at = 2025-04-11T06:28:52.000Z }
-"0.89.0" = { created_at = 2025-06-17T15:00:06.000Z }
-"0.89.1" = { created_at = 2025-06-19T14:04:22.000Z }
-"0.89.2" = { created_at = 2025-07-10T09:01:17.000Z }
-"0.89.3" = { created_at = 2025-08-04T07:42:36.000Z }
-"0.89.4" = { created_at = 2025-09-18T13:58:15.000Z }
-"0.89.5" = { created_at = 2025-10-29T08:01:46.000Z }
-"0.89.6" = { created_at = 2025-12-08T08:39:01.000Z }
+"0.5.8" = { created_at = 2018-01-07T21:30:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.5.8" }
+"0.5.9" = { created_at = 2018-01-08T09:57:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.5.9" }
+"0.6.0" = { created_at = 2018-01-09T12:33:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.6.0" }
+"0.6.3" = { created_at = 2018-01-10T08:11:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.6.3" }
+"0.6.4" = { created_at = 2018-01-10T09:09:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.6.4" }
+"0.6.6" = { created_at = 2018-01-11T00:39:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.6.6" }
+"0.6.9" = { created_at = 2018-01-11T14:37:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.6.9" }
+"0.6.91" = { created_at = 2018-01-14T09:03:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.6.91" }
+"0.7.2" = { created_at = 2018-01-15T09:27:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.7.2" }
+"0.7.4" = { created_at = 2018-01-15T13:36:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.7.4" }
+"0.7.6" = { created_at = 2018-01-16T21:17:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.7.6" }
+"0.7.8" = { created_at = 2018-01-22T11:08:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.7.8" }
+"0.7.9" = { created_at = 2018-01-22T16:43:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.7.9" }
+"0.8.0" = { created_at = 2018-01-22T22:38:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2018-01-22T22:50:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2018-01-22T23:12:37.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.2" }
+"0.8.3" = { created_at = 2018-01-25T10:22:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.3" }
+"0.8.4" = { created_at = 2018-01-29T09:30:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.4" }
+"0.8.5" = { created_at = 2018-01-30T00:21:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.5" }
+"0.8.6" = { created_at = 2018-02-01T13:54:30.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.6" }
+"0.8.8" = { created_at = 2018-02-03T23:36:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.8" }
+"0.8.9" = { created_at = 2018-02-03T23:42:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.9" }
+"0.8.10" = { created_at = 2018-02-06T05:09:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.10" }
+"0.8.11" = { created_at = 2018-02-06T18:56:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.11" }
+"0.8.14" = { created_at = 2018-02-11T14:55:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.14" }
+"0.8.15" = { created_at = 2018-02-12T09:31:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.15" }
+"0.8.16" = { created_at = 2018-02-12T13:13:50.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.16" }
+"0.8.18" = { created_at = 2018-02-13T12:44:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.18" }
+"0.8.19" = { created_at = 2018-02-13T13:36:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.19" }
+"0.8.20" = { created_at = 2018-02-13T14:51:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.20" }
+"0.8.21" = { created_at = 2018-02-14T07:14:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.21" }
+"0.8.22" = { created_at = 2018-02-14T13:12:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.22" }
+"0.8.23" = { created_at = 2018-02-18T12:10:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.23" }
+"0.8.24" = { created_at = 2018-02-20T14:28:13.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.24" }
+"0.8.25" = { created_at = 2018-02-28T14:52:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.25" }
+"0.8.26" = { created_at = 2018-03-01T09:19:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.26" }
+"0.8.27" = { created_at = 2018-03-01T10:38:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.27" }
+"0.8.28" = { created_at = 2018-03-01T12:58:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.28" }
+"0.8.29" = { created_at = 2018-03-02T11:04:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.29" }
+"0.8.30" = { created_at = 2018-03-07T12:23:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.30" }
+"0.8.31" = { created_at = 2018-03-08T15:23:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.31" }
+"0.8.32" = { created_at = 2018-03-13T04:46:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.32" }
+"0.8.33" = { created_at = 2018-03-13T15:41:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.33" }
+"0.8.34" = { created_at = 2018-03-13T15:54:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.34" }
+"0.8.35" = { created_at = 2018-03-13T16:16:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.35" }
+"0.8.36" = { created_at = 2018-03-13T17:30:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.36" }
+"0.8.37" = { created_at = 2018-03-16T14:22:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.37" }
+"0.8.38" = { created_at = 2018-03-19T07:37:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.38" }
+"0.8.39" = { created_at = 2018-03-19T11:49:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.39" }
+"0.8.40" = { created_at = 2018-03-25T06:21:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.40" }
+"0.8.41" = { created_at = 2018-03-25T13:08:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.41" }
+"0.8.42" = { created_at = 2018-03-28T13:50:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.42" }
+"0.8.43" = { created_at = 2018-04-05T13:10:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.43" }
+"0.8.44" = { created_at = 2018-04-23T08:01:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.44" }
+"0.8.45" = { created_at = 2018-04-23T09:15:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.45" }
+"0.8.46" = { created_at = 2018-04-23T10:36:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.46" }
+"0.8.47" = { created_at = 2018-04-26T11:14:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.47" }
+"0.8.48" = { created_at = 2018-04-26T13:45:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.48" }
+"0.8.49" = { created_at = 2018-04-28T16:00:59.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.49" }
+"0.8.50" = { created_at = 2018-04-29T07:36:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.50" }
+"0.8.52" = { created_at = 2018-05-03T20:14:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.52" }
+"0.8.53" = { created_at = 2018-05-10T13:46:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.53" }
+"0.8.54" = { created_at = 2018-05-21T09:19:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.54" }
+"0.8.55" = { created_at = 2018-06-18T21:29:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.55" }
+"0.8.56" = { created_at = 2018-06-19T12:18:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.56" }
+"0.8.58" = { created_at = 2018-07-01T14:51:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.58" }
+"0.8.62" = { created_at = 2018-07-09T22:03:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.62" }
+"0.8.63" = { created_at = 2018-07-11T04:43:51.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.63" }
+"0.8.65" = { created_at = 2018-07-23T08:07:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.65" }
+"0.8.66" = { created_at = 2018-07-23T12:06:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.66" }
+"0.8.67" = { created_at = 2018-07-23T12:47:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.67" }
+"0.8.68" = { created_at = 2018-07-29T06:50:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.68" }
+"0.8.69" = { created_at = 2018-07-29T07:59:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.69" }
+"0.8.71" = { created_at = 2018-08-06T09:58:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.71" }
+"0.8.72" = { created_at = 2018-08-06T13:08:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.72" }
+"0.8.73" = { created_at = 2018-08-17T09:17:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.73" }
+"0.8.74" = { created_at = 2018-08-19T08:52:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.74" }
+"0.8.75" = { created_at = 2018-08-27T08:55:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.75" }
+"0.8.76" = { created_at = 2018-08-27T09:11:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.76" }
+"0.8.77" = { created_at = 2018-10-11T09:25:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.77" }
+"0.8.78" = { created_at = 2018-10-16T18:46:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.78" }
+"0.8.79" = { created_at = 2018-10-22T09:14:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.79" }
+"0.8.80" = { created_at = 2018-11-18T14:53:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.80" }
+"0.8.81" = { created_at = 2018-11-19T15:54:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.81" }
+"${{PACKAGE_VERSION}}" = { created_at = 2018-11-21T14:39:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v${{PACKAGE_VERSION}}" }
+"0.8.82" = { created_at = 2018-11-21T13:25:29.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.82" }
+"0.8.83" = { created_at = 2018-11-21T14:14:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.83" }
+"0.8.88" = { created_at = 2018-11-22T16:28:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.88" }
+"0.8.89" = { created_at = 2018-11-28T10:08:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.89" }
+"0.8.91" = { created_at = 2018-11-28T14:41:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.91" }
+"0.8.94" = { created_at = 2018-11-29T05:37:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.94" }
+"0.8.96" = { created_at = 2018-11-29T13:49:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.96" }
+"0.8.102" = { created_at = 2018-12-03T13:54:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.102" }
+"0.8.108" = { created_at = 2018-12-07T08:38:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.108" }
+"0.8.109" = { created_at = 2018-12-10T13:17:21.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.8.109" }
+"0.9.0" = { created_at = 2018-12-11T06:22:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2018-12-11T17:13:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.1" }
+"0.9.2" = { created_at = 2018-12-14T14:24:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.2" }
+"0.9.3" = { created_at = 2018-12-16T09:11:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.3" }
+"0.9.4" = { created_at = 2018-12-17T07:00:50.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.4" }
+"0.9.5" = { created_at = 2018-12-17T12:45:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.5" }
+"0.9.6" = { created_at = 2018-12-17T15:09:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.6" }
+"0.9.7" = { created_at = 2018-12-19T13:33:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.7" }
+"0.9.8" = { created_at = 2018-12-19T17:44:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.8" }
+"0.9.9" = { created_at = 2018-12-20T13:15:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.9" }
+"0.9.10" = { created_at = 2018-12-21T09:45:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.10" }
+"0.9.11" = { created_at = 2018-12-23T10:42:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.11" }
+"0.9.12" = { created_at = 2018-12-25T06:20:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.12" }
+"0.9.13" = { created_at = 2018-12-25T17:50:30.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.13" }
+"0.9.14" = { created_at = 2018-12-25T18:03:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.14" }
+"0.9.15" = { created_at = 2018-12-28T13:31:19.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.15" }
+"0.9.16" = { created_at = 2018-12-28T14:56:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.16" }
+"0.9.17" = { created_at = 2018-12-28T15:36:09.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.17" }
+"0.9.18" = { created_at = 2018-12-31T16:25:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.18" }
+"0.9.19" = { created_at = 2019-01-02T11:23:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.19" }
+"0.9.20" = { created_at = 2019-01-03T07:19:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.20" }
+"0.9.21" = { created_at = 2019-01-03T07:58:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.21" }
+"0.9.22" = { created_at = 2019-01-04T12:26:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.22" }
+"0.9.23" = { created_at = 2019-01-08T13:48:39.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.23" }
+"0.9.24" = { created_at = 2019-01-08T21:31:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.24" }
+"0.9.25" = { created_at = 2019-01-09T15:49:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.25" }
+"0.9.26" = { created_at = 2019-01-10T15:53:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.26" }
+"0.9.29" = { created_at = 2019-01-10T19:21:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.29" }
+"0.9.30" = { created_at = 2019-01-10T19:30:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.9.30" }
+"0.10.0" = { created_at = 2019-01-14T13:53:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.10.0" }
+"0.10.1" = { created_at = 2019-01-14T14:51:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.10.1" }
+"0.10.2" = { created_at = 2019-01-15T08:29:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.10.2" }
+"0.10.3" = { created_at = 2019-01-16T21:59:09.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.10.3" }
+"0.10.4" = { created_at = 2019-01-18T13:12:41.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.10.4" }
+"0.11.0" = { created_at = 2019-01-20T13:01:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2019-01-22T10:41:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.11.1" }
+"0.11.2" = { created_at = 2019-01-25T10:51:19.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.11.2" }
+"0.12.0" = { created_at = 2019-01-27T11:43:23.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.12.0" }
+"0.13.0" = { created_at = 2019-01-28T14:40:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.13.0" }
+"0.13.1" = { created_at = 2019-01-30T12:22:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.13.1" }
+"0.13.2" = { created_at = 2019-01-31T11:49:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.13.2" }
+"0.13.3" = { created_at = 2019-02-04T10:08:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.13.3" }
+"0.13.4" = { created_at = 2019-02-04T10:49:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.13.4" }
+"0.13.5" = { created_at = 2019-02-04T12:04:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.13.5" }
+"0.14.0" = { created_at = 2019-02-05T16:32:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.14.0" }
+"0.14.1" = { created_at = 2019-02-07T16:59:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.14.1" }
+"0.14.2" = { created_at = 2019-02-11T10:19:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.14.2" }
+"0.15.0" = { created_at = 2019-02-12T12:48:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.15.0" }
+"0.15.1" = { created_at = 2019-02-12T15:04:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.15.1" }
+"0.16.0" = { created_at = 2019-02-12T21:54:30.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.0" }
+"0.16.1" = { created_at = 2019-02-13T13:31:30.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.1" }
+"0.16.2" = { created_at = 2019-02-13T14:03:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.2" }
+"0.16.3" = { created_at = 2019-02-14T08:28:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.3" }
+"0.16.4" = { created_at = 2019-02-14T09:11:19.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.4" }
+"0.16.6" = { created_at = 2019-02-19T15:58:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.6" }
+"0.16.7" = { created_at = 2019-02-19T16:15:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.16.7" }
+"0.17.0" = { created_at = 2019-02-26T13:36:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.0" }
+"0.17.1" = { created_at = 2019-02-26T13:58:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.1" }
+"0.17.2" = { created_at = 2019-02-26T14:15:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.2" }
+"0.17.3" = { created_at = 2019-02-26T23:31:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.3" }
+"0.17.4" = { created_at = 2019-03-01T10:40:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.4" }
+"0.17.5" = { created_at = 2019-03-01T10:54:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.5" }
+"0.17.6" = { created_at = 2019-03-01T13:09:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.6" }
+"0.17.7" = { created_at = 2019-03-12T13:24:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.7" }
+"0.17.8" = { created_at = 2019-03-12T16:24:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.8" }
+"0.17.9" = { created_at = 2019-03-14T19:04:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.9" }
+"0.17.10" = { created_at = 2019-03-22T08:51:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.10" }
+"0.17.11" = { created_at = 2019-03-29T09:23:23.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.11" }
+"0.17.12" = { created_at = 2019-04-11T08:19:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.12" }
+"0.17.14" = { created_at = 2019-04-12T10:06:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.17.14" }
+"0.18.0" = { created_at = 2019-04-22T07:08:29.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.18.0" }
+"0.18.1" = { created_at = 2019-04-22T15:01:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.18.1" }
+"0.19.1" = { created_at = 2019-05-02T11:47:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.1" }
+"0.19.2" = { created_at = 2019-05-03T08:15:23.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.2" }
+"0.19.3" = { created_at = 2019-05-03T08:25:30.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.3" }
+"0.19.4" = { created_at = 2019-05-04T09:07:29.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.4" }
+"0.19.5" = { created_at = 2019-05-04T12:16:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.5" }
+"0.19.6" = { created_at = 2019-05-27T16:56:21.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.6" }
+"0.19.7" = { created_at = 2019-05-28T09:35:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.19.7" }
+"0.20.0" = { created_at = 2019-05-30T13:57:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.20.0" }
+"0.20.1" = { created_at = 2019-06-03T11:43:14.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.20.1" }
+"0.20.2" = { created_at = 2019-06-03T14:22:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.20.2" }
+"0.20.3" = { created_at = 2019-06-03T14:44:33.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.20.3" }
+"0.21.0" = { created_at = 2019-06-13T10:57:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.21.0" }
+"0.21.1" = { created_at = 2019-06-21T11:07:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.21.1" }
+"0.23.0" = { created_at = 2019-06-25T05:53:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.23.0" }
+"0.24.0" = { created_at = 2019-06-27T13:57:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.24.0" }
+"0.24.1" = { created_at = 2019-07-01T07:00:37.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.24.1" }
+"0.25.0" = { created_at = 2019-07-03T03:47:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.25.0" }
+"0.26.0" = { created_at = 2019-07-10T09:34:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.26.0" }
+"0.27.0" = { created_at = 2019-07-10T09:57:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.27.0" }
+"0.27.3" = { created_at = 2019-07-10T10:21:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.27.3" }
+"0.28.0" = { created_at = 2019-07-10T10:52:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.28.0" }
+"0.28.1" = { created_at = 2019-07-10T12:20:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.28.1" }
+"0.29.0" = { created_at = 2019-07-22T13:55:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.29.0" }
+"0.30.0" = { created_at = 2019-07-28T12:40:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.30.0" }
+"0.30.1" = { created_at = 2019-08-06T16:14:09.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.30.1" }
+"0.31.0" = { created_at = 2019-08-07T06:02:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.31.0" }
+"0.31.1" = { created_at = 2019-08-16T08:34:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.31.1" }
+"0.32.0" = { created_at = 2019-09-05T14:53:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.32.0" }
+"0.32.1" = { created_at = 2019-09-05T15:27:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.32.1" }
+"0.33.0" = { created_at = 2019-09-19T10:38:51.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.33.0" }
+"0.33.1" = { created_at = 2019-09-24T14:50:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.33.1" }
+"0.33.2" = { created_at = 2019-10-10T08:54:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.33.2" }
+"0.33.3" = { created_at = 2019-10-10T09:39:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.33.3" }
+"0.34.0" = { created_at = 2019-10-13T09:11:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.34.0" }
+"0.35.0" = { created_at = 2019-11-04T09:49:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.35.0" }
+"0.36.0" = { created_at = 2019-11-22T09:43:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.36.0" }
+"0.36.2" = { created_at = 2019-12-10T16:43:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.36.2" }
+"0.37.0" = { created_at = 2019-12-10T21:59:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.37.0" }
+"0.37.2" = { created_at = 2019-12-11T15:45:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.37.2" }
+"0.37.5" = { created_at = 2019-12-18T12:44:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.37.5" }
+"0.37.6" = { created_at = 2019-12-19T12:43:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.37.6" }
+"0.39.0" = { created_at = 2019-12-22T07:54:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.0" }
+"0.39.1" = { created_at = 2019-12-24T10:55:23.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.1" }
+"0.39.2" = { created_at = 2019-12-24T11:07:33.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.2" }
+"0.39.3" = { created_at = 2019-12-24T13:24:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.3" }
+"0.39.4" = { created_at = 2019-12-24T15:59:21.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.4" }
+"0.39.5" = { created_at = 2019-12-25T11:22:33.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.5" }
+"0.39.6" = { created_at = 2019-12-26T15:39:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.39.6" }
+"0.40.0" = { created_at = 2019-12-29T20:11:19.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.40.0" }
+"0.40.1" = { created_at = 2020-01-01T15:27:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.40.1" }
+"0.41.0" = { created_at = 2020-01-06T10:14:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.41.0" }
+"0.41.1" = { created_at = 2020-01-10T12:13:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.41.1" }
+"0.41.11" = { created_at = 2020-01-13T09:47:39.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.41.11" }
+"0.41.12" = { created_at = 2020-01-21T07:09:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.41.12" }
+"0.41.13" = { created_at = 2020-01-21T16:34:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.41.13" }
+"0.42.0" = { created_at = 2020-01-28T09:06:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.42.0" }
+"0.42.1" = { created_at = 2020-01-28T09:59:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.42.1" }
+"0.42.2" = { created_at = 2020-02-04T15:43:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.42.2" }
+"0.43.0" = { created_at = 2020-02-13T07:25:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.0" }
+"0.43.1" = { created_at = 2020-02-14T09:56:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.1" }
+"0.43.2" = { created_at = 2020-02-24T12:33:30.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.2" }
+"0.43.3" = { created_at = 2020-02-24T15:52:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.3" }
+"0.43.4" = { created_at = 2020-02-25T11:58:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.4" }
+"0.43.5" = { created_at = 2020-02-25T15:51:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.5" }
+"0.43.6" = { created_at = 2020-02-27T15:30:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.6" }
+"0.43.7" = { created_at = 2020-03-04T13:50:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.7" }
+"0.43.8" = { created_at = 2020-03-04T15:43:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.8" }
+"0.43.9" = { created_at = 2020-03-05T13:27:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.9" }
+"0.43.10" = { created_at = 2020-03-11T11:27:23.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.10" }
+"0.43.11" = { created_at = 2020-03-13T09:31:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.11" }
+"0.43.12" = { created_at = 2020-03-17T13:35:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.12" }
+"0.43.13" = { created_at = 2020-03-18T12:03:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.13" }
+"0.43.14" = { created_at = 2020-03-18T12:43:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.14" }
+"0.43.15" = { created_at = 2020-03-19T13:46:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.15" }
+"0.43.16" = { created_at = 2020-03-20T10:17:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.43.16" }
+"0.44.0" = { created_at = 2020-03-22T07:34:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.44.0" }
+"0.45.0" = { created_at = 2020-03-23T08:38:09.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.45.0" }
+"0.50.0" = { created_at = 2020-03-27T16:00:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.50.0" }
+"0.50.1" = { created_at = 2020-04-02T07:50:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.50.1" }
+"0.50.2" = { created_at = 2020-04-05T11:59:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.50.2" }
+"0.50.3" = { created_at = 2020-04-06T15:36:50.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.50.3" }
+"0.50.5" = { created_at = 2020-04-14T12:27:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.50.5" }
+"0.51.0" = { created_at = 2020-04-16T12:14:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.51.0" }
+"0.52.0" = { created_at = 2020-04-23T07:48:09.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.0" }
+"0.52.1" = { created_at = 2020-04-29T13:09:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.1" }
+"0.52.2" = { created_at = 2020-04-30T08:05:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.2" }
+"0.52.3" = { created_at = 2020-04-30T11:52:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.3" }
+"0.52.4" = { created_at = 2020-05-03T08:18:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.4" }
+"0.52.5" = { created_at = 2020-05-04T09:45:51.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.5" }
+"0.52.7" = { created_at = 2020-05-05T10:24:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.52.7" }
+"0.53.0" = { created_at = 2020-05-05T13:52:41.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.53.0" }
+"0.54.0" = { created_at = 2020-05-05T14:42:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.54.0" }
+"0.55.0" = { created_at = 2020-05-06T21:12:29.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.55.0" }
+"0.56.0" = { created_at = 2020-05-12T08:41:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.56.0" }
+"0.57.0" = { created_at = 2020-05-12T09:39:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.57.0" }
+"0.58.0" = { created_at = 2020-05-12T11:51:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.58.0" }
+"0.59.0" = { created_at = 2020-05-12T12:54:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.59.0" }
+"0.59.1" = { created_at = 2020-05-12T15:37:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.59.1" }
+"0.59.2" = { created_at = 2020-05-13T09:59:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.59.2" }
+"0.60.0" = { created_at = 2020-05-14T10:06:23.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.60.0" }
+"0.60.1" = { created_at = 2020-05-14T11:01:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.60.1" }
+"0.60.2" = { created_at = 2020-05-14T12:33:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.60.2" }
+"0.62.0" = { created_at = 2020-05-18T06:18:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.62.0" }
+"0.63.0" = { created_at = 2020-05-18T14:31:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.0" }
+"0.63.2" = { created_at = 2020-05-18T15:15:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.2" }
+"0.63.4" = { created_at = 2020-05-19T13:46:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.4" }
+"0.63.6" = { created_at = 2020-05-20T12:21:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.6" }
+"0.63.9" = { created_at = 2020-05-20T13:27:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.9" }
+"0.63.11" = { created_at = 2020-05-21T08:02:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.11" }
+"0.63.13" = { created_at = 2020-05-21T13:47:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.63.13" }
+"0.64.0" = { created_at = 2020-05-21T18:07:50.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.64.0" }
+"0.64.4" = { created_at = 2020-05-31T13:27:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.64.4" }
+"0.64.6" = { created_at = 2020-05-31T18:40:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.64.6" }
+"0.64.9" = { created_at = 2020-06-02T08:48:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.64.9" }
+"0.65.0" = { created_at = 2020-06-02T12:23:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.65.0" }
+"0.65.1" = { created_at = 2020-06-03T06:27:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.65.1" }
+"0.65.2" = { created_at = 2020-06-03T11:35:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.65.2" }
+"0.66.0" = { created_at = 2020-06-03T13:39:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.66.0" }
+"0.67.0" = { created_at = 2020-06-03T13:55:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.67.0" }
+"0.68.0" = { created_at = 2020-06-03T14:19:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.0" }
+"0.68.1" = { created_at = 2020-06-04T10:59:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.1" }
+"0.68.3" = { created_at = 2020-06-08T16:56:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.3" }
+"0.68.4" = { created_at = 2020-06-09T14:15:50.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.4" }
+"0.68.5" = { created_at = 2020-06-11T05:37:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.5" }
+"0.68.6" = { created_at = 2020-06-11T16:35:33.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.6" }
+"0.68.7" = { created_at = 2020-06-16T07:39:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.7" }
+"0.68.8" = { created_at = 2020-06-17T11:16:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.8" }
+"0.68.10" = { created_at = 2020-06-18T09:39:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.10" }
+"0.68.11" = { created_at = 2020-06-18T10:23:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.11" }
+"0.68.13" = { created_at = 2020-06-18T14:10:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.13" }
+"0.68.16" = { created_at = 2020-06-22T13:29:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.16" }
+"0.68.17" = { created_at = 2020-06-22T15:41:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.68.17" }
+"0.69.0" = { created_at = 2020-06-23T14:59:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.69.0" }
+"0.69.2" = { created_at = 2020-06-25T04:28:09.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.69.2" }
+"0.69.3" = { created_at = 2020-06-26T11:45:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.69.3" }
+"0.69.4" = { created_at = 2020-06-28T14:28:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.69.4" }
+"0.69.5" = { created_at = 2020-06-29T08:28:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.69.5" }
+"0.69.6" = { created_at = 2020-06-30T07:39:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.69.6" }
+"0.70.0" = { created_at = 2020-07-02T06:45:40.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.0" }
+"0.70.1" = { created_at = 2020-07-02T10:19:21.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.1" }
+"0.70.2" = { created_at = 2020-07-05T17:31:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.2" }
+"0.70.3" = { created_at = 2020-07-09T08:32:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.3" }
+"0.70.4" = { created_at = 2020-07-14T06:46:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.4" }
+"0.70.5" = { created_at = 2020-07-16T20:08:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.5" }
+"0.70.6" = { created_at = 2020-07-17T07:59:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.6" }
+"0.70.7" = { created_at = 2020-07-17T09:30:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.7" }
+"0.70.9" = { created_at = 2020-07-21T14:57:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.70.9" }
+"0.71.0" = { created_at = 2020-07-21T16:17:03.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.71.0" }
+"0.71.2" = { created_at = 2020-07-22T06:40:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.71.2" }
+"0.71.3" = { created_at = 2020-07-22T07:44:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.71.3" }
+"0.71.6" = { created_at = 2020-07-26T06:50:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.71.6" }
+"0.71.7" = { created_at = 2020-07-30T05:35:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.71.7" }
+"0.71.8" = { created_at = 2020-08-03T14:32:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.71.8" }
+"0.72.0" = { created_at = 2020-08-04T13:36:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.0" }
+"0.72.1" = { created_at = 2020-08-10T15:58:37.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.1" }
+"0.72.3" = { created_at = 2020-09-06T06:53:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.3" }
+"0.72.4" = { created_at = 2020-09-16T10:03:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.4" }
+"0.72.5" = { created_at = 2020-09-16T13:21:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.5" }
+"0.72.6" = { created_at = 2020-09-19T18:35:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.6" }
+"0.72.7" = { created_at = 2020-09-19T19:58:37.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.7" }
+"0.72.8" = { created_at = 2020-09-23T07:04:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.8" }
+"0.72.9" = { created_at = 2020-10-08T08:06:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.72.9" }
+"0.73.0" = { created_at = 2020-10-08T17:41:05.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.0" }
+"0.73.1" = { created_at = 2020-10-09T07:31:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.1" }
+"0.73.2" = { created_at = 2020-10-09T07:40:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.2" }
+"0.73.4" = { created_at = 2020-10-12T15:10:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.4" }
+"0.73.5" = { created_at = 2020-10-13T07:16:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.5" }
+"0.73.6" = { created_at = 2020-10-15T12:04:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.6" }
+"0.73.7" = { created_at = 2020-10-18T15:10:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.7" }
+"0.73.8" = { created_at = 2020-10-20T11:01:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.8" }
+"0.73.9" = { created_at = 2020-10-21T11:57:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.9" }
+"0.73.10" = { created_at = 2020-10-22T09:20:31.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.10" }
+"0.73.11" = { created_at = 2020-10-23T18:06:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.11" }
+"0.73.12" = { created_at = 2020-10-25T18:15:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.12" }
+"0.73.13" = { created_at = 2020-11-04T08:44:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.13" }
+"0.73.14" = { created_at = 2020-11-04T13:13:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.14" }
+"0.73.15" = { created_at = 2020-11-05T09:09:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.15" }
+"0.73.16" = { created_at = 2020-11-05T10:53:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.16" }
+"0.73.17" = { created_at = 2020-11-08T07:40:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.17" }
+"0.73.18" = { created_at = 2020-11-09T13:40:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.18" }
+"0.73.19" = { created_at = 2020-11-11T11:52:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.19" }
+"0.73.20" = { created_at = 2020-11-15T08:12:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.20" }
+"0.73.21" = { created_at = 2020-11-17T13:01:33.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.21" }
+"0.73.22" = { created_at = 2020-12-01T13:02:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.22" }
+"0.73.23" = { created_at = 2020-12-02T12:20:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.23" }
+"0.73.24" = { created_at = 2020-12-07T10:35:59.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.24" }
+"0.73.25" = { created_at = 2020-12-07T12:58:13.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.25" }
+"0.73.26" = { created_at = 2020-12-09T14:45:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.26" }
+"0.73.27" = { created_at = 2020-12-09T16:31:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.27" }
+"0.73.28" = { created_at = 2020-12-10T09:06:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.28" }
+"0.73.30" = { created_at = 2020-12-10T09:27:56.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.30" }
+"0.73.32" = { created_at = 2020-12-14T21:37:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.32" }
+"0.73.33" = { created_at = 2020-12-16T12:14:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.33" }
+"0.73.34" = { created_at = 2020-12-17T07:00:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.73.34" }
+"0.74.0" = { created_at = 2020-12-21T20:26:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.0" }
+"0.74.1" = { created_at = 2020-12-22T11:29:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.1" }
+"0.74.2" = { created_at = 2020-12-23T15:13:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.2" }
+"0.74.4" = { created_at = 2020-12-29T12:11:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.4" }
+"0.74.7" = { created_at = 2021-01-25T08:46:13.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.7" }
+"0.74.8" = { created_at = 2021-01-25T17:14:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.8" }
+"0.74.9" = { created_at = 2021-01-27T15:22:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.74.9" }
+"0.75.1" = { created_at = 2021-02-10T15:36:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.1" }
+"0.75.2" = { created_at = 2021-02-12T14:08:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.2" }
+"0.75.3" = { created_at = 2021-02-17T14:05:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.3" }
+"0.75.4" = { created_at = 2021-02-18T09:24:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.4" }
+"0.75.5" = { created_at = 2021-02-23T12:49:54.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.5" }
+"0.75.6" = { created_at = 2021-02-24T15:23:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.6" }
+"0.75.7" = { created_at = 2021-02-25T12:39:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.7" }
+"0.75.8" = { created_at = 2021-03-08T11:17:33.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.8" }
+"0.75.9" = { created_at = 2021-04-11T06:07:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.9" }
+"0.75.10" = { created_at = 2021-04-14T14:31:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.10" }
+"0.75.12" = { created_at = 2021-04-25T13:15:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.12" }
+"0.75.13" = { created_at = 2021-04-26T06:20:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.13" }
+"0.75.14" = { created_at = 2021-04-27T06:56:41.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.14" }
+"0.75.15" = { created_at = 2021-04-27T08:31:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.15" }
+"0.75.16" = { created_at = 2021-04-27T16:04:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.16" }
+"0.75.17" = { created_at = 2021-05-10T16:15:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.17" }
+"0.75.18" = { created_at = 2021-05-11T15:00:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.18" }
+"0.75.19" = { created_at = 2021-05-17T19:07:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.19" }
+"0.75.20" = { created_at = 2021-05-19T08:46:51.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.20" }
+"0.75.21" = { created_at = 2021-05-19T10:10:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.21" }
+"0.75.22" = { created_at = 2021-05-20T07:29:55.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.22" }
+"0.75.23" = { created_at = 2021-05-27T07:52:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.23" }
+"0.75.25" = { created_at = 2021-06-03T12:30:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.25" }
+"0.75.26" = { created_at = 2021-06-11T12:50:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.26" }
+"0.75.28" = { created_at = 2021-06-29T12:05:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.28" }
+"0.75.29" = { created_at = 2021-07-04T05:58:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.29" }
+"0.75.30" = { created_at = 2021-07-21T08:34:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.30" }
+"0.75.31" = { created_at = 2021-07-21T09:09:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.31" }
+"0.75.32" = { created_at = 2021-07-27T09:55:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.32" }
+"0.75.34" = { created_at = 2021-08-05T08:33:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.34" }
+"0.75.35" = { created_at = 2021-08-05T12:48:48.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.75.35" }
+"0.76.0" = { created_at = 2021-08-15T07:22:59.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.76.0" }
+"0.77.0" = { created_at = 2021-08-17T13:32:28.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.77.0" }
+"0.78.0" = { created_at = 2021-08-18T14:12:43.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.78.0" }
+"0.78.1" = { created_at = 2021-08-23T09:43:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.78.1" }
+"0.78.2" = { created_at = 2021-10-06T05:59:13.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.78.2" }
+"0.78.3" = { created_at = 2022-01-06T13:14:39.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.78.3" }
+"0.78.4" = { created_at = 2022-01-11T11:01:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.78.4" }
+"0.78.5" = { created_at = 2022-03-08T15:25:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.78.5" }
+"0.79.0" = { created_at = 2022-03-30T17:22:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.79.0" }
+"0.79.1" = { created_at = 2022-05-19T15:45:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.79.1" }
+"0.79.2" = { created_at = 2022-07-27T13:56:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.79.2" }
+"0.80.0" = { created_at = 2022-09-06T07:47:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.80.0" }
+"0.80.1" = { created_at = 2022-10-20T08:52:41.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.80.1" }
+"0.80.2" = { created_at = 2022-11-07T10:11:53.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.80.2" }
+"0.80.3" = { created_at = 2022-11-09T13:24:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.80.3" }
+"0.80.4" = { created_at = 2022-11-16T09:00:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.80.4" }
+"0.81.0" = { created_at = 2022-12-04T15:04:49.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.0" }
+"0.81.1" = { created_at = 2022-12-12T08:55:35.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.1" }
+"0.81.2" = { created_at = 2022-12-12T10:52:57.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.2" }
+"0.81.3" = { created_at = 2022-12-14T10:14:10.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.3" }
+"0.81.4" = { created_at = 2022-12-14T12:49:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.4" }
+"0.81.5" = { created_at = 2023-01-08T16:33:18.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.5" }
+"0.81.6" = { created_at = 2023-01-27T07:59:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.6" }
+"0.81.8" = { created_at = 2023-01-29T10:38:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.8" }
+"0.81.9" = { created_at = 2023-02-07T14:31:12.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.81.9" }
+"0.82.0" = { created_at = 2023-02-10T09:13:37.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.0" }
+"0.82.1" = { created_at = 2023-02-10T12:22:29.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.1" }
+"0.82.2" = { created_at = 2023-02-19T14:11:45.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.2" }
+"0.82.3" = { created_at = 2023-02-22T13:19:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.3" }
+"0.82.5" = { created_at = 2023-03-08T12:57:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.5" }
+"0.82.6" = { created_at = 2023-03-28T07:33:26.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.6" }
+"0.82.7" = { created_at = 2023-04-13T06:44:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.7" }
+"0.82.8" = { created_at = 2023-04-23T16:25:34.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.8" }
+"0.82.9" = { created_at = 2023-04-24T04:28:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.82.9" }
+"0.83.1" = { created_at = 2023-05-02T07:58:11.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.83.1" }
+"0.83.2" = { created_at = 2023-05-02T13:43:27.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.83.2" }
+"0.83.3" = { created_at = 2023-05-02T20:04:32.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.83.3" }
+"0.84.0" = { created_at = 2023-05-08T10:40:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.0" }
+"0.84.1" = { created_at = 2023-05-08T18:50:00.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.1" }
+"0.84.2" = { created_at = 2023-05-24T08:58:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.2" }
+"0.84.3" = { created_at = 2023-05-28T10:02:08.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.3" }
+"0.84.5" = { created_at = 2023-07-03T13:45:20.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.5" }
+"0.84.6" = { created_at = 2023-07-04T09:51:47.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.6" }
+"0.84.7" = { created_at = 2023-07-20T07:17:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.7" }
+"0.84.8" = { created_at = 2023-07-24T22:25:24.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.8" }
+"0.84.9" = { created_at = 2023-08-24T10:21:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.9" }
+"0.84.10" = { created_at = 2023-08-24T16:02:02.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.84.10" }
+"0.85.0" = { created_at = 2023-08-27T10:36:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.85.0" }
+"0.86.0" = { created_at = 2023-08-30T15:47:51.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.86.0" }
+"0.87.0" = { created_at = 2023-09-29T16:32:04.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.0" }
+"0.87.1" = { created_at = 2023-10-20T16:03:58.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.1" }
+"0.87.2" = { created_at = 2023-11-07T08:11:21.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.2" }
+"0.87.3" = { created_at = 2024-02-13T12:33:16.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.3" }
+"0.87.4" = { created_at = 2024-04-30T14:21:44.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.4" }
+"0.87.5" = { created_at = 2024-07-18T16:03:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.5" }
+"0.87.6" = { created_at = 2024-08-12T14:35:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.87.6" }
+"0.88.0" = { created_at = 2024-11-21T10:00:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.0" }
+"0.88.1" = { created_at = 2024-11-21T16:41:38.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.1" }
+"0.88.2" = { created_at = 2024-11-22T11:47:21.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.2" }
+"0.88.3" = { created_at = 2024-11-27T08:01:42.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.3" }
+"0.88.4" = { created_at = 2024-11-27T14:13:07.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.4" }
+"0.88.5" = { created_at = 2024-12-08T10:23:25.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.5" }
+"0.88.6" = { created_at = 2025-04-11T06:28:52.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.88.6" }
+"0.89.0" = { created_at = 2025-06-17T15:00:06.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.0" }
+"0.89.1" = { created_at = 2025-06-19T14:04:22.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.1" }
+"0.89.2" = { created_at = 2025-07-10T09:01:17.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.2" }
+"0.89.3" = { created_at = 2025-08-04T07:42:36.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.3" }
+"0.89.4" = { created_at = 2025-09-18T13:58:15.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.4" }
+"0.89.5" = { created_at = 2025-10-29T08:01:46.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.5" }
+"0.89.6" = { created_at = 2025-12-08T08:39:01.000Z, release_url = "https://github.com/codefresh-io/cli/releases/tag/v0.89.6" }

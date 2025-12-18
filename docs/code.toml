@@ -1,242 +1,243 @@
 [versions]
-"0.1.3" = { created_at = 2025-08-10T07:26:31.000Z }
-"0.1.4" = { created_at = 2025-08-12T00:17:37.000Z }
-"0.1.5" = { created_at = 2025-08-12T01:53:33.000Z }
-"0.1.6" = { created_at = 2025-08-12T06:58:55.000Z }
-"0.1.7" = { created_at = 2025-08-12T13:34:27.000Z }
-"0.1.8" = { created_at = 2025-08-13T11:39:54.000Z }
-"0.1.9" = { created_at = 2025-08-13T21:12:39.000Z }
-"0.1.10" = { created_at = 2025-08-14T09:32:01.000Z }
-"0.1.11" = { created_at = 2025-08-14T10:11:28.000Z }
-"0.1.12" = { created_at = 2025-08-14T11:56:11.000Z }
-"0.1.13" = { created_at = 2025-08-16T02:50:20.000Z }
-"0.2.1" = { created_at = 2025-08-18T22:35:22.000Z }
-"0.2.2" = { created_at = 2025-08-19T02:09:43.000Z }
-"0.2.3" = { created_at = 2025-08-19T02:31:52.000Z }
-"0.2.4" = { created_at = 2025-08-19T04:06:32.000Z }
-"0.2.5" = { created_at = 2025-08-19T22:00:49.000Z }
-"0.2.6" = { created_at = 2025-08-20T01:12:56.000Z }
-"0.2.7" = { created_at = 2025-08-20T10:58:54.000Z }
-"0.2.8" = { created_at = 2025-08-21T00:34:54.000Z }
-"0.2.9" = { created_at = 2025-08-21T01:02:41.000Z }
-"0.2.10" = { created_at = 2025-08-23T08:46:12.000Z }
-"0.2.11" = { created_at = 2025-08-23T20:40:37.000Z }
-"0.2.12" = { created_at = 2025-08-23T21:18:13.000Z }
-"0.2.13" = { created_at = 2025-08-23T22:22:14.000Z }
-"0.2.14" = { created_at = 2025-08-23T22:49:37.000Z }
-"0.2.15" = { created_at = 2025-08-23T23:10:46.000Z }
-"0.2.16" = { created_at = 2025-08-23T23:37:31.000Z }
-"0.2.17" = { created_at = 2025-08-24T00:01:29.000Z }
-"0.2.18" = { created_at = 2025-08-24T00:30:32.000Z }
-"0.2.19" = { created_at = 2025-08-24T00:48:36.000Z }
-"0.2.20" = { created_at = 2025-08-24T01:15:51.000Z }
-"0.2.21" = { created_at = 2025-08-24T02:10:48.000Z }
-"0.2.22" = { created_at = 2025-08-24T04:53:22.000Z }
-"0.2.23" = { created_at = 2025-08-24T06:00:27.000Z }
-"0.2.24" = { created_at = 2025-08-24T06:24:57.000Z }
-"0.2.25" = { created_at = 2025-08-24T06:40:03.000Z }
-"0.2.26" = { created_at = 2025-08-24T07:18:28.000Z }
-"0.2.27" = { created_at = 2025-08-24T11:36:47.000Z }
-"0.2.28" = { created_at = 2025-08-24T18:28:36.000Z }
-"0.2.29" = { created_at = 2025-08-24T23:05:00.000Z }
-"0.2.30" = { created_at = 2025-08-24T23:39:08.000Z }
-"0.2.31" = { created_at = 2025-08-25T01:15:39.000Z }
-"0.2.32" = { created_at = 2025-08-25T11:11:14.000Z }
-"0.2.33" = { created_at = 2025-08-26T06:10:48.000Z }
-"0.2.34" = { created_at = 2025-08-26T07:29:26.000Z }
-"0.2.35" = { created_at = 2025-08-27T00:49:13.000Z }
-"0.2.36" = { created_at = 2025-08-27T01:30:14.000Z }
-"0.2.37" = { created_at = 2025-08-27T02:17:20.000Z }
-"0.2.38" = { created_at = 2025-08-29T01:55:54.000Z }
-"0.2.40" = { created_at = 2025-08-29T03:07:58.000Z }
-"0.2.41" = { created_at = 2025-08-29T03:51:11.000Z }
-"0.2.42" = { created_at = 2025-08-29T04:29:17.000Z }
-"0.2.43" = { created_at = 2025-08-29T06:19:39.000Z }
-"0.2.44" = { created_at = 2025-08-29T20:42:00.000Z }
-"0.2.45" = { created_at = 2025-08-30T00:37:24.000Z }
-"0.2.46" = { created_at = 2025-08-30T01:00:49.000Z }
-"0.2.47" = { created_at = 2025-08-30T01:54:51.000Z }
-"0.2.48" = { created_at = 2025-08-30T02:51:18.000Z }
-"0.2.49" = { created_at = 2025-08-30T03:57:57.000Z }
-"0.2.50" = { created_at = 2025-08-30T04:13:21.000Z }
-"0.2.51" = { created_at = 2025-08-30T04:23:54.000Z }
-"0.2.52" = { created_at = 2025-08-30T05:25:35.000Z }
-"0.2.53" = { created_at = 2025-09-01T08:14:33.000Z }
-"0.2.54" = { created_at = 2025-09-01T11:01:13.000Z }
-"0.2.55" = { created_at = 2025-09-01T11:36:53.000Z }
-"0.2.56" = { created_at = 2025-09-01T12:34:52.000Z }
-"0.2.59" = { created_at = 2025-09-05T09:31:33.000Z }
-"0.2.60" = { created_at = 2025-09-05T10:22:38.000Z }
-"0.2.61" = { created_at = 2025-09-05T11:01:51.000Z }
-"0.2.62" = { created_at = 2025-09-05T11:48:41.000Z }
-"0.2.63" = { created_at = 2025-09-05T13:34:17.000Z }
-"0.2.65" = { created_at = 2025-09-05T14:37:27.000Z }
-"0.2.66" = { created_at = 2025-09-05T15:28:12.000Z }
-"0.2.67" = { created_at = 2025-09-05T16:20:51.000Z }
-"0.2.68" = { created_at = 2025-09-06T00:10:46.000Z }
-"0.2.69" = { created_at = 2025-09-06T04:27:50.000Z }
-"0.2.70" = { created_at = 2025-09-06T10:26:47.000Z }
-"0.2.71" = { created_at = 2025-09-06T11:36:09.000Z }
-"0.2.72" = { created_at = 2025-09-06T12:23:52.000Z }
-"0.2.73" = { created_at = 2025-09-06T13:54:13.000Z }
-"0.2.74" = { created_at = 2025-09-06T23:29:06.000Z }
-"0.2.75" = { created_at = 2025-09-07T01:14:42.000Z }
-"0.2.76" = { created_at = 2025-09-07T01:42:38.000Z }
-"0.2.77" = { created_at = 2025-09-07T07:53:12.000Z }
-"0.2.78" = { created_at = 2025-09-07T09:02:34.000Z }
-"0.2.79" = { created_at = 2025-09-07T09:50:18.000Z }
-"0.2.80" = { created_at = 2025-09-07T10:04:13.000Z }
-"0.2.81" = { created_at = 2025-09-07T19:56:11.000Z }
-"0.2.82" = { created_at = 2025-09-07T20:17:30.000Z }
-"0.2.83" = { created_at = 2025-09-07T20:48:16.000Z }
-"0.2.84" = { created_at = 2025-09-07T22:19:25.000Z }
-"0.2.85" = { created_at = 2025-09-07T23:48:07.000Z }
-"0.2.86" = { created_at = 2025-09-08T00:06:50.000Z }
-"0.2.87" = { created_at = 2025-09-08T00:48:07.000Z }
-"0.2.88" = { created_at = 2025-09-08T01:25:11.000Z }
-"0.2.89" = { created_at = 2025-09-08T02:02:16.000Z }
-"0.2.90" = { created_at = 2025-09-08T02:40:46.000Z }
-"0.2.91" = { created_at = 2025-09-08T03:05:53.000Z }
-"0.2.92" = { created_at = 2025-09-08T09:30:29.000Z }
-"0.2.93" = { created_at = 2025-09-08T12:33:04.000Z }
-"0.2.94" = { created_at = 2025-09-08T14:05:31.000Z }
-"0.2.95" = { created_at = 2025-09-08T14:18:22.000Z }
-"0.2.96" = { created_at = 2025-09-08T15:06:32.000Z }
-"0.2.97" = { created_at = 2025-09-08T22:41:51.000Z }
-"0.2.98" = { created_at = 2025-09-09T00:17:50.000Z }
-"0.2.99" = { created_at = 2025-09-09T00:36:08.000Z }
-"0.2.100" = { created_at = 2025-09-09T01:44:57.000Z }
-"0.2.101" = { created_at = 2025-09-09T04:37:44.000Z }
-"0.2.102" = { created_at = 2025-09-09T04:55:43.000Z }
-"0.2.103" = { created_at = 2025-09-09T05:15:24.000Z }
-"0.2.104" = { created_at = 2025-09-09T06:22:06.000Z }
-"0.2.105" = { created_at = 2025-09-09T07:41:18.000Z }
-"0.2.106" = { created_at = 2025-09-09T10:46:48.000Z }
-"0.2.107" = { created_at = 2025-09-09T22:37:35.000Z }
-"0.2.108" = { created_at = 2025-09-10T00:08:01.000Z }
-"0.2.109" = { created_at = 2025-09-10T00:32:59.000Z }
-"0.2.110" = { created_at = 2025-09-10T01:25:33.000Z }
-"0.2.111" = { created_at = 2025-09-10T01:44:17.000Z }
-"0.2.112" = { created_at = 2025-09-10T02:30:28.000Z }
-"0.2.113" = { created_at = 2025-09-10T07:56:37.000Z }
-"0.2.114" = { created_at = 2025-09-10T08:20:31.000Z }
-"0.2.115" = { created_at = 2025-09-10T08:43:21.000Z }
-"0.2.116" = { created_at = 2025-09-10T11:39:44.000Z }
-"0.2.117" = { created_at = 2025-09-10T12:09:57.000Z }
-"0.2.118" = { created_at = 2025-09-11T00:01:27.000Z }
-"0.2.119" = { created_at = 2025-09-11T00:18:00.000Z }
-"0.2.120" = { created_at = 2025-09-11T09:22:01.000Z }
-"0.2.121" = { created_at = 2025-09-11T10:11:47.000Z }
-"0.2.122" = { created_at = 2025-09-11T10:24:05.000Z }
-"0.2.123" = { created_at = 2025-09-11T11:06:18.000Z }
-"0.2.124" = { created_at = 2025-09-11T12:28:08.000Z }
-"0.2.125" = { created_at = 2025-09-11T12:47:50.000Z }
-"0.2.126" = { created_at = 2025-09-11T13:08:52.000Z }
-"0.2.127" = { created_at = 2025-09-11T13:40:15.000Z }
-"0.2.128" = { created_at = 2025-09-11T23:07:54.000Z }
-"0.2.129" = { created_at = 2025-09-12T00:57:31.000Z }
-"0.2.130" = { created_at = 2025-09-12T06:33:45.000Z }
-"0.2.131" = { created_at = 2025-09-12T08:58:57.000Z }
-"0.2.132" = { created_at = 2025-09-12T10:34:49.000Z }
-"0.2.133" = { created_at = 2025-09-12T11:28:27.000Z }
-"0.2.134" = { created_at = 2025-09-12T12:28:58.000Z }
-"0.2.135" = { created_at = 2025-09-12T12:53:09.000Z }
-"0.2.136" = { created_at = 2025-09-12T13:21:10.000Z }
-"0.2.137" = { created_at = 2025-09-12T14:10:47.000Z }
-"0.2.138" = { created_at = 2025-09-12T14:43:33.000Z }
-"0.2.139" = { created_at = 2025-09-12T15:37:29.000Z }
-"0.2.140" = { created_at = 2025-09-12T16:11:26.000Z }
-"0.2.141" = { created_at = 2025-09-12T16:29:48.000Z }
-"0.2.142" = { created_at = 2025-09-12T16:56:19.000Z }
-"0.2.143" = { created_at = 2025-09-13T04:13:16.000Z }
-"0.2.144" = { created_at = 2025-09-13T09:34:51.000Z }
-"0.2.145" = { created_at = 2025-09-13T19:53:42.000Z }
-"0.2.146" = { created_at = 2025-09-14T03:04:39.000Z }
-"0.2.147" = { created_at = 2025-09-14T09:30:52.000Z }
-"0.2.148" = { created_at = 2025-09-14T09:48:25.000Z }
-"0.2.149" = { created_at = 2025-09-16T07:37:13.000Z }
-"0.2.150" = { created_at = 2025-09-16T17:05:13.000Z }
-"0.2.151" = { created_at = 2025-09-16T17:38:59.000Z }
-"0.2.152" = { created_at = 2025-09-17T06:20:42.000Z }
-"0.2.153" = { created_at = 2025-09-18T04:35:17.000Z }
-"0.2.154" = { created_at = 2025-09-18T07:00:42.000Z }
-"0.2.155" = { created_at = 2025-09-18T08:45:55.000Z }
-"0.2.156" = { created_at = 2025-09-22T01:48:44.000Z }
-"0.2.157" = { created_at = 2025-09-22T03:19:10.000Z }
-"0.2.158" = { created_at = 2025-09-22T09:01:39.000Z }
-"0.2.159" = { created_at = 2025-09-22T09:29:51.000Z }
-"0.2.160" = { created_at = 2025-09-22T10:57:11.000Z }
-"0.2.161" = { created_at = 2025-09-22T11:22:46.000Z }
-"0.2.162" = { created_at = 2025-09-22T12:16:22.000Z }
-"0.2.163" = { created_at = 2025-09-25T04:31:52.000Z }
-"0.2.164" = { created_at = 2025-09-25T07:28:39.000Z }
-"0.2.165" = { created_at = 2025-09-25T11:32:48.000Z }
-"0.2.166" = { created_at = 2025-09-25T12:17:10.000Z }
-"0.2.167" = { created_at = 2025-09-26T01:37:27.000Z }
-"0.2.168" = { created_at = 2025-09-26T12:50:42.000Z }
-"0.2.169" = { created_at = 2025-09-26T13:12:38.000Z }
-"0.2.170" = { created_at = 2025-09-27T03:35:41.000Z }
-"0.2.171" = { created_at = 2025-09-27T07:47:46.000Z }
-"0.2.172" = { created_at = 2025-09-28T22:51:47.000Z }
-"0.2.173" = { created_at = 2025-09-29T01:26:27.000Z }
-"0.2.174" = { created_at = 2025-09-29T02:20:12.000Z }
-"0.2.175" = { created_at = 2025-09-29T11:32:29.000Z }
-"0.2.176" = { created_at = 2025-09-29T12:04:59.000Z }
-"0.2.177" = { created_at = 2025-09-29T22:43:32.000Z }
-"0.2.178" = { created_at = 2025-09-30T01:47:07.000Z }
-"0.2.179" = { created_at = 2025-09-30T13:17:04.000Z }
-"0.2.180" = { created_at = 2025-10-01T00:00:07.000Z }
-"0.2.181" = { created_at = 2025-10-01T12:12:51.000Z }
-"0.2.182" = { created_at = 2025-10-03T07:11:02.000Z }
-"0.2.183" = { created_at = 2025-10-03T09:53:21.000Z }
-"0.2.184" = { created_at = 2025-10-03T12:36:06.000Z }
-"0.2.185" = { created_at = 2025-10-03T20:50:36.000Z }
-"0.2.186" = { created_at = 2025-10-06T02:23:01.000Z }
-"0.2.187" = { created_at = 2025-10-06T08:47:41.000Z }
-"0.2.188" = { created_at = 2025-10-06T11:15:56.000Z }
-"0.4.0" = { created_at = 2025-10-26T22:28:00.000Z }
-"0.4.1" = { created_at = 2025-10-27T10:31:02.000Z }
-"0.4.2" = { created_at = 2025-10-27T14:21:15.000Z }
-"0.4.3" = { created_at = 2025-10-27T15:31:16.000Z }
-"0.4.4" = { created_at = 2025-10-29T04:01:50.000Z }
-"0.4.5" = { created_at = 2025-10-30T07:36:30.000Z }
-"0.4.6" = { created_at = 2025-10-30T09:29:09.000Z }
-"0.4.7" = { created_at = 2025-10-30T14:05:13.000Z }
-"0.4.8" = { created_at = 2025-11-03T06:00:40.000Z }
-"0.4.9" = { created_at = 2025-11-03T10:38:21.000Z }
-"0.4.10" = { created_at = 2025-11-07T07:39:51.000Z }
-"0.4.11" = { created_at = 2025-11-07T22:41:41.000Z }
-"0.4.12" = { created_at = 2025-11-08T15:05:56.000Z }
-"0.4.13" = { created_at = 2025-11-13T04:49:48.000Z }
-"0.4.14" = { created_at = 2025-11-13T14:24:07.000Z }
-"0.4.15" = { created_at = 2025-11-14T02:17:02.000Z }
-"0.4.16" = { created_at = 2025-11-15T03:47:42.000Z }
-"0.4.17" = { created_at = 2025-11-17T09:51:28.000Z }
-"0.4.18" = { created_at = 2025-11-17T11:47:10.000Z }
-"0.4.19" = { created_at = 2025-11-17T12:17:32.000Z }
-"0.4.20" = { created_at = 2025-11-18T07:01:53.000Z }
-"0.4.21" = { created_at = 2025-11-20T18:52:29.000Z }
-"0.5.0" = { created_at = 2025-11-21T13:03:52.000Z }
-"0.5.1" = { created_at = 2025-11-21T21:17:16.000Z }
-"0.5.2" = { created_at = 2025-11-22T03:03:33.000Z }
-"0.5.3" = { created_at = 2025-11-24T09:23:31.000Z }
-"0.5.4" = { created_at = 2025-11-24T12:06:11.000Z }
-"0.5.5" = { created_at = 2025-11-25T16:25:04.000Z }
-"0.5.6" = { created_at = 2025-11-26T00:06:01.000Z }
-"0.5.7" = { created_at = 2025-11-26T21:42:12.000Z }
-"0.5.8" = { created_at = 2025-11-26T22:39:58.000Z }
-"0.5.9" = { created_at = 2025-11-27T04:19:01.000Z }
-"0.5.10" = { created_at = 2025-11-27T04:44:57.000Z }
-"0.5.11" = { created_at = 2025-11-27T08:04:37.000Z }
-"0.5.12" = { created_at = 2025-11-27T08:50:22.000Z }
-"0.5.13" = { created_at = 2025-11-27T13:11:17.000Z }
-"0.5.14" = { created_at = 2025-11-28T07:13:08.000Z }
-"0.5.15" = { created_at = 2025-11-28T08:15:05.000Z }
-"0.6.0" = { created_at = 2025-12-09T17:46:10.000Z }
-"0.6.1" = { created_at = 2025-12-10T06:47:43.000Z }
-"0.6.2" = { created_at = 2025-12-12T05:23:14.000Z }
-"0.6.3" = { created_at = 2025-12-12T07:12:01.000Z }
-"0.6.4" = { created_at = 2025-12-13T03:32:52.000Z }
-"0.6.5" = { created_at = 2025-12-13T07:00:32.000Z }
-"0.6.6" = { created_at = 2025-12-15T02:03:02.000Z }
-"0.6.7" = { created_at = 2025-12-17T10:57:34.000Z }
+"0.1.3" = { created_at = 2025-08-10T07:26:31.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.3" }
+"0.1.4" = { created_at = 2025-08-12T00:17:37.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.4" }
+"0.1.5" = { created_at = 2025-08-12T01:53:33.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.5" }
+"0.1.6" = { created_at = 2025-08-12T06:58:55.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.6" }
+"0.1.7" = { created_at = 2025-08-12T13:34:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.7" }
+"0.1.8" = { created_at = 2025-08-13T11:39:54.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.8" }
+"0.1.9" = { created_at = 2025-08-13T21:12:39.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.9" }
+"0.1.10" = { created_at = 2025-08-14T09:32:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.10" }
+"0.1.11" = { created_at = 2025-08-14T10:11:28.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.11" }
+"0.1.12" = { created_at = 2025-08-14T11:56:11.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.12" }
+"0.1.13" = { created_at = 2025-08-16T02:50:20.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.1.13" }
+"0.2.1" = { created_at = 2025-08-18T22:35:22.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2025-08-19T02:09:43.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2025-08-19T02:31:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2025-08-19T04:06:32.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.4" }
+"0.2.5" = { created_at = 2025-08-19T22:00:49.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.5" }
+"0.2.6" = { created_at = 2025-08-20T01:12:56.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.6" }
+"0.2.7" = { created_at = 2025-08-20T10:58:54.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.7" }
+"0.2.8" = { created_at = 2025-08-21T00:34:54.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.8" }
+"0.2.9" = { created_at = 2025-08-21T01:02:41.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.9" }
+"0.2.10" = { created_at = 2025-08-23T08:46:12.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.10" }
+"0.2.11" = { created_at = 2025-08-23T20:40:37.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.11" }
+"0.2.12" = { created_at = 2025-08-23T21:18:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.12" }
+"0.2.13" = { created_at = 2025-08-23T22:22:14.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.13" }
+"0.2.14" = { created_at = 2025-08-23T22:49:37.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.14" }
+"0.2.15" = { created_at = 2025-08-23T23:10:46.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.15" }
+"0.2.16" = { created_at = 2025-08-23T23:37:31.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.16" }
+"0.2.17" = { created_at = 2025-08-24T00:01:29.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.17" }
+"0.2.18" = { created_at = 2025-08-24T00:30:32.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.18" }
+"0.2.19" = { created_at = 2025-08-24T00:48:36.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.19" }
+"0.2.20" = { created_at = 2025-08-24T01:15:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.20" }
+"0.2.21" = { created_at = 2025-08-24T02:10:48.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.21" }
+"0.2.22" = { created_at = 2025-08-24T04:53:22.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.22" }
+"0.2.23" = { created_at = 2025-08-24T06:00:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.23" }
+"0.2.24" = { created_at = 2025-08-24T06:24:57.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.24" }
+"0.2.25" = { created_at = 2025-08-24T06:40:03.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.25" }
+"0.2.26" = { created_at = 2025-08-24T07:18:28.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.26" }
+"0.2.27" = { created_at = 2025-08-24T11:36:47.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.27" }
+"0.2.28" = { created_at = 2025-08-24T18:28:36.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.28" }
+"0.2.29" = { created_at = 2025-08-24T23:05:00.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.29" }
+"0.2.30" = { created_at = 2025-08-24T23:39:08.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.30" }
+"0.2.31" = { created_at = 2025-08-25T01:15:39.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.31" }
+"0.2.32" = { created_at = 2025-08-25T11:11:14.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.32" }
+"0.2.33" = { created_at = 2025-08-26T06:10:48.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.33" }
+"0.2.34" = { created_at = 2025-08-26T07:29:26.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.34" }
+"0.2.35" = { created_at = 2025-08-27T00:49:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.35" }
+"0.2.36" = { created_at = 2025-08-27T01:30:14.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.36" }
+"0.2.37" = { created_at = 2025-08-27T02:17:20.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.37" }
+"0.2.38" = { created_at = 2025-08-29T01:55:54.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.38" }
+"0.2.40" = { created_at = 2025-08-29T03:07:58.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.40" }
+"0.2.41" = { created_at = 2025-08-29T03:51:11.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.41" }
+"0.2.42" = { created_at = 2025-08-29T04:29:17.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.42" }
+"0.2.43" = { created_at = 2025-08-29T06:19:39.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.43" }
+"0.2.44" = { created_at = 2025-08-29T20:42:00.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.44" }
+"0.2.45" = { created_at = 2025-08-30T00:37:24.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.45" }
+"0.2.46" = { created_at = 2025-08-30T01:00:49.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.46" }
+"0.2.47" = { created_at = 2025-08-30T01:54:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.47" }
+"0.2.48" = { created_at = 2025-08-30T02:51:18.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.48" }
+"0.2.49" = { created_at = 2025-08-30T03:57:57.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.49" }
+"0.2.50" = { created_at = 2025-08-30T04:13:21.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.50" }
+"0.2.51" = { created_at = 2025-08-30T04:23:54.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.51" }
+"0.2.52" = { created_at = 2025-08-30T05:25:35.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.52" }
+"0.2.53" = { created_at = 2025-09-01T08:14:33.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.53" }
+"0.2.54" = { created_at = 2025-09-01T11:01:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.54" }
+"0.2.55" = { created_at = 2025-09-01T11:36:53.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.55" }
+"0.2.56" = { created_at = 2025-09-01T12:34:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.56" }
+"0.2.59" = { created_at = 2025-09-05T09:31:33.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.59" }
+"0.2.60" = { created_at = 2025-09-05T10:22:38.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.60" }
+"0.2.61" = { created_at = 2025-09-05T11:01:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.61" }
+"0.2.62" = { created_at = 2025-09-05T11:48:41.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.62" }
+"0.2.63" = { created_at = 2025-09-05T13:34:17.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.63" }
+"0.2.65" = { created_at = 2025-09-05T14:37:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.65" }
+"0.2.66" = { created_at = 2025-09-05T15:28:12.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.66" }
+"0.2.67" = { created_at = 2025-09-05T16:20:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.67" }
+"0.2.68" = { created_at = 2025-09-06T00:10:46.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.68" }
+"0.2.69" = { created_at = 2025-09-06T04:27:50.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.69" }
+"0.2.70" = { created_at = 2025-09-06T10:26:47.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.70" }
+"0.2.71" = { created_at = 2025-09-06T11:36:09.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.71" }
+"0.2.72" = { created_at = 2025-09-06T12:23:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.72" }
+"0.2.73" = { created_at = 2025-09-06T13:54:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.73" }
+"0.2.74" = { created_at = 2025-09-06T23:29:06.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.74" }
+"0.2.75" = { created_at = 2025-09-07T01:14:42.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.75" }
+"0.2.76" = { created_at = 2025-09-07T01:42:38.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.76" }
+"0.2.77" = { created_at = 2025-09-07T07:53:12.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.77" }
+"0.2.78" = { created_at = 2025-09-07T09:02:34.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.78" }
+"0.2.79" = { created_at = 2025-09-07T09:50:18.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.79" }
+"0.2.80" = { created_at = 2025-09-07T10:04:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.80" }
+"0.2.81" = { created_at = 2025-09-07T19:56:11.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.81" }
+"0.2.82" = { created_at = 2025-09-07T20:17:30.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.82" }
+"0.2.83" = { created_at = 2025-09-07T20:48:16.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.83" }
+"0.2.84" = { created_at = 2025-09-07T22:19:25.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.84" }
+"0.2.85" = { created_at = 2025-09-07T23:48:07.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.85" }
+"0.2.86" = { created_at = 2025-09-08T00:06:50.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.86" }
+"0.2.87" = { created_at = 2025-09-08T00:48:07.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.87" }
+"0.2.88" = { created_at = 2025-09-08T01:25:11.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.88" }
+"0.2.89" = { created_at = 2025-09-08T02:02:16.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.89" }
+"0.2.90" = { created_at = 2025-09-08T02:40:46.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.90" }
+"0.2.91" = { created_at = 2025-09-08T03:05:53.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.91" }
+"0.2.92" = { created_at = 2025-09-08T09:30:29.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.92" }
+"0.2.93" = { created_at = 2025-09-08T12:33:04.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.93" }
+"0.2.94" = { created_at = 2025-09-08T14:05:31.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.94" }
+"0.2.95" = { created_at = 2025-09-08T14:18:22.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.95" }
+"0.2.96" = { created_at = 2025-09-08T15:06:32.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.96" }
+"0.2.97" = { created_at = 2025-09-08T22:41:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.97" }
+"0.2.98" = { created_at = 2025-09-09T00:17:50.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.98" }
+"0.2.99" = { created_at = 2025-09-09T00:36:08.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.99" }
+"0.2.100" = { created_at = 2025-09-09T01:44:57.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.100" }
+"0.2.101" = { created_at = 2025-09-09T04:37:44.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.101" }
+"0.2.102" = { created_at = 2025-09-09T04:55:43.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.102" }
+"0.2.103" = { created_at = 2025-09-09T05:15:24.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.103" }
+"0.2.104" = { created_at = 2025-09-09T06:22:06.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.104" }
+"0.2.105" = { created_at = 2025-09-09T07:41:18.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.105" }
+"0.2.106" = { created_at = 2025-09-09T10:46:48.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.106" }
+"0.2.107" = { created_at = 2025-09-09T22:37:35.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.107" }
+"0.2.108" = { created_at = 2025-09-10T00:08:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.108" }
+"0.2.109" = { created_at = 2025-09-10T00:32:59.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.109" }
+"0.2.110" = { created_at = 2025-09-10T01:25:33.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.110" }
+"0.2.111" = { created_at = 2025-09-10T01:44:17.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.111" }
+"0.2.112" = { created_at = 2025-09-10T02:30:28.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.112" }
+"0.2.113" = { created_at = 2025-09-10T07:56:37.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.113" }
+"0.2.114" = { created_at = 2025-09-10T08:20:31.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.114" }
+"0.2.115" = { created_at = 2025-09-10T08:43:21.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.115" }
+"0.2.116" = { created_at = 2025-09-10T11:39:44.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.116" }
+"0.2.117" = { created_at = 2025-09-10T12:09:57.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.117" }
+"0.2.118" = { created_at = 2025-09-11T00:01:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.118" }
+"0.2.119" = { created_at = 2025-09-11T00:18:00.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.119" }
+"0.2.120" = { created_at = 2025-09-11T09:22:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.120" }
+"0.2.121" = { created_at = 2025-09-11T10:11:47.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.121" }
+"0.2.122" = { created_at = 2025-09-11T10:24:05.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.122" }
+"0.2.123" = { created_at = 2025-09-11T11:06:18.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.123" }
+"0.2.124" = { created_at = 2025-09-11T12:28:08.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.124" }
+"0.2.125" = { created_at = 2025-09-11T12:47:50.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.125" }
+"0.2.126" = { created_at = 2025-09-11T13:08:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.126" }
+"0.2.127" = { created_at = 2025-09-11T13:40:15.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.127" }
+"0.2.128" = { created_at = 2025-09-11T23:07:54.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.128" }
+"0.2.129" = { created_at = 2025-09-12T00:57:31.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.129" }
+"0.2.130" = { created_at = 2025-09-12T06:33:45.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.130" }
+"0.2.131" = { created_at = 2025-09-12T08:58:57.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.131" }
+"0.2.132" = { created_at = 2025-09-12T10:34:49.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.132" }
+"0.2.133" = { created_at = 2025-09-12T11:28:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.133" }
+"0.2.134" = { created_at = 2025-09-12T12:28:58.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.134" }
+"0.2.135" = { created_at = 2025-09-12T12:53:09.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.135" }
+"0.2.136" = { created_at = 2025-09-12T13:21:10.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.136" }
+"0.2.137" = { created_at = 2025-09-12T14:10:47.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.137" }
+"0.2.138" = { created_at = 2025-09-12T14:43:33.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.138" }
+"0.2.139" = { created_at = 2025-09-12T15:37:29.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.139" }
+"0.2.140" = { created_at = 2025-09-12T16:11:26.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.140" }
+"0.2.141" = { created_at = 2025-09-12T16:29:48.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.141" }
+"0.2.142" = { created_at = 2025-09-12T16:56:19.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.142" }
+"0.2.143" = { created_at = 2025-09-13T04:13:16.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.143" }
+"0.2.144" = { created_at = 2025-09-13T09:34:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.144" }
+"0.2.145" = { created_at = 2025-09-13T19:53:42.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.145" }
+"0.2.146" = { created_at = 2025-09-14T03:04:39.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.146" }
+"0.2.147" = { created_at = 2025-09-14T09:30:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.147" }
+"0.2.148" = { created_at = 2025-09-14T09:48:25.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.148" }
+"0.2.149" = { created_at = 2025-09-16T07:37:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.149" }
+"0.2.150" = { created_at = 2025-09-16T17:05:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.150" }
+"0.2.151" = { created_at = 2025-09-16T17:38:59.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.151" }
+"0.2.152" = { created_at = 2025-09-17T06:20:42.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.152" }
+"0.2.153" = { created_at = 2025-09-18T04:35:17.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.153" }
+"0.2.154" = { created_at = 2025-09-18T07:00:42.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.154" }
+"0.2.155" = { created_at = 2025-09-18T08:45:55.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.155" }
+"0.2.156" = { created_at = 2025-09-22T01:48:44.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.156" }
+"0.2.157" = { created_at = 2025-09-22T03:19:10.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.157" }
+"0.2.158" = { created_at = 2025-09-22T09:01:39.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.158" }
+"0.2.159" = { created_at = 2025-09-22T09:29:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.159" }
+"0.2.160" = { created_at = 2025-09-22T10:57:11.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.160" }
+"0.2.161" = { created_at = 2025-09-22T11:22:46.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.161" }
+"0.2.162" = { created_at = 2025-09-22T12:16:22.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.162" }
+"0.2.163" = { created_at = 2025-09-25T04:31:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.163" }
+"0.2.164" = { created_at = 2025-09-25T07:28:39.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.164" }
+"0.2.165" = { created_at = 2025-09-25T11:32:48.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.165" }
+"0.2.166" = { created_at = 2025-09-25T12:17:10.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.166" }
+"0.2.167" = { created_at = 2025-09-26T01:37:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.167" }
+"0.2.168" = { created_at = 2025-09-26T12:50:42.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.168" }
+"0.2.169" = { created_at = 2025-09-26T13:12:38.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.169" }
+"0.2.170" = { created_at = 2025-09-27T03:35:41.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.170" }
+"0.2.171" = { created_at = 2025-09-27T07:47:46.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.171" }
+"0.2.172" = { created_at = 2025-09-28T22:51:47.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.172" }
+"0.2.173" = { created_at = 2025-09-29T01:26:27.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.173" }
+"0.2.174" = { created_at = 2025-09-29T02:20:12.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.174" }
+"0.2.175" = { created_at = 2025-09-29T11:32:29.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.175" }
+"0.2.176" = { created_at = 2025-09-29T12:04:59.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.176" }
+"0.2.177" = { created_at = 2025-09-29T22:43:32.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.177" }
+"0.2.178" = { created_at = 2025-09-30T01:47:07.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.178" }
+"0.2.179" = { created_at = 2025-09-30T13:17:04.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.179" }
+"0.2.180" = { created_at = 2025-10-01T00:00:07.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.180" }
+"0.2.181" = { created_at = 2025-10-01T12:12:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.181" }
+"0.2.182" = { created_at = 2025-10-03T07:11:02.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.182" }
+"0.2.183" = { created_at = 2025-10-03T09:53:21.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.183" }
+"0.2.184" = { created_at = 2025-10-03T12:36:06.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.184" }
+"0.2.185" = { created_at = 2025-10-03T20:50:36.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.185" }
+"0.2.186" = { created_at = 2025-10-06T02:23:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.186" }
+"0.2.187" = { created_at = 2025-10-06T08:47:41.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.187" }
+"0.2.188" = { created_at = 2025-10-06T11:15:56.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.2.188" }
+"0.4.0" = { created_at = 2025-10-26T22:28:00.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2025-10-27T10:31:02.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2025-10-27T14:21:15.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2025-10-27T15:31:16.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2025-10-29T04:01:50.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.4" }
+"0.4.5" = { created_at = 2025-10-30T07:36:30.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.5" }
+"0.4.6" = { created_at = 2025-10-30T09:29:09.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.6" }
+"0.4.7" = { created_at = 2025-10-30T14:05:13.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.7" }
+"0.4.8" = { created_at = 2025-11-03T06:00:40.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.8" }
+"0.4.9" = { created_at = 2025-11-03T10:38:21.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.9" }
+"0.4.10" = { created_at = 2025-11-07T07:39:51.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.10" }
+"0.4.11" = { created_at = 2025-11-07T22:41:41.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.11" }
+"0.4.12" = { created_at = 2025-11-08T15:05:56.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.12" }
+"0.4.13" = { created_at = 2025-11-13T04:49:48.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.13" }
+"0.4.14" = { created_at = 2025-11-13T14:24:07.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.14" }
+"0.4.15" = { created_at = 2025-11-14T02:17:02.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.15" }
+"0.4.16" = { created_at = 2025-11-15T03:47:42.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.16" }
+"0.4.17" = { created_at = 2025-11-17T09:51:28.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.17" }
+"0.4.18" = { created_at = 2025-11-17T11:47:10.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.18" }
+"0.4.19" = { created_at = 2025-11-17T12:17:32.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.19" }
+"0.4.20" = { created_at = 2025-11-18T07:01:53.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.20" }
+"0.4.21" = { created_at = 2025-11-20T18:52:29.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.4.21" }
+"0.5.0" = { created_at = 2025-11-21T13:03:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2025-11-21T21:17:16.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2025-11-22T03:03:33.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.2" }
+"0.5.3" = { created_at = 2025-11-24T09:23:31.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.3" }
+"0.5.4" = { created_at = 2025-11-24T12:06:11.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.4" }
+"0.5.5" = { created_at = 2025-11-25T16:25:04.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.5" }
+"0.5.6" = { created_at = 2025-11-26T00:06:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.6" }
+"0.5.7" = { created_at = 2025-11-26T21:42:12.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.7" }
+"0.5.8" = { created_at = 2025-11-26T22:39:58.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.8" }
+"0.5.9" = { created_at = 2025-11-27T04:19:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.9" }
+"0.5.10" = { created_at = 2025-11-27T04:44:57.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.10" }
+"0.5.11" = { created_at = 2025-11-27T08:04:37.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.11" }
+"0.5.12" = { created_at = 2025-11-27T08:50:22.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.12" }
+"0.5.13" = { created_at = 2025-11-27T13:11:17.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.13" }
+"0.5.14" = { created_at = 2025-11-28T07:13:08.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.14" }
+"0.5.15" = { created_at = 2025-11-28T08:15:05.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.5.15" }
+"0.6.0" = { created_at = 2025-12-09T17:46:10.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2025-12-10T06:47:43.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2025-12-12T05:23:14.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.2" }
+"0.6.3" = { created_at = 2025-12-12T07:12:01.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.3" }
+"0.6.4" = { created_at = 2025-12-13T03:32:52.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.4" }
+"0.6.5" = { created_at = 2025-12-13T07:00:32.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.5" }
+"0.6.6" = { created_at = 2025-12-15T02:03:02.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.6" }
+"0.6.7" = { created_at = 2025-12-17T10:57:34.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.7" }
+"0.6.8" = { created_at = 2025-12-18T00:02:10.000Z, release_url = "https://github.com/just-every/code/releases/tag/v0.6.8" }

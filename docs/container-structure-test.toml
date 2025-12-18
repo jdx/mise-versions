@@ -1,40 +1,40 @@
 [versions]
-"0.1.0" = { created_at = 2017-10-24T21:49:42.000Z }
-"0.1.1" = { created_at = 2017-10-26T18:13:51.000Z }
-"0.1.2" = { created_at = 2017-12-21T16:43:18.000Z }
-"0.1.3" = { created_at = 2018-01-09T19:12:54.000Z }
-"0.2.0" = { created_at = 2018-01-25T22:01:11.000Z }
-"0.2.1" = { created_at = 2018-02-21T19:24:19.000Z }
-"0.3.0" = { created_at = 2018-03-19T19:36:40.000Z }
-"1.0.0" = { created_at = 2018-03-19T22:14:21.000Z }
-"1.1.0" = { created_at = 2018-04-10T19:29:39.000Z }
-"1.2.0" = { created_at = 2018-05-14T18:01:32.000Z }
-"1.2.1" = { created_at = 2018-05-14T23:00:51.000Z }
-"1.2.2" = { created_at = 2018-05-17T18:47:53.000Z }
-"1.3.0" = { created_at = 2018-06-14T17:37:18.000Z }
-"1.4.0" = { created_at = 2018-07-18T22:57:43.000Z }
-"1.5.0" = { created_at = 2018-08-14T17:46:43.000Z }
-"1.6.0" = { created_at = 2018-10-31T21:39:42.000Z }
-"1.7.0" = { created_at = 2018-12-19T21:21:15.000Z }
-"1.8.0" = { created_at = 2019-02-19T21:36:35.000Z }
-"1.9.0" = { created_at = 2020-03-16T19:04:15.000Z }
-"1.9.1" = { created_at = 2020-09-30T23:40:14.000Z }
-"1.10.0" = { created_at = 2021-01-07T17:36:53.000Z }
-"1.11.0" = { created_at = 2021-11-09T17:57:06.000Z }
-"1.13.0" = { created_at = 2022-11-03T13:37:27.000Z }
-"1.14.0" = { created_at = 2022-11-22T13:04:18.000Z }
-"1.15.0" = { created_at = 2023-03-15T13:49:26.000Z }
-"1.16.0" = { created_at = 2023-08-01T17:02:54.000Z }
-"1.16.1" = { created_at = 2023-11-21T19:58:09.000Z }
-"1.17.0" = { created_at = 2024-02-28T22:31:39.000Z }
-"1.18.0" = { created_at = 2024-05-03T21:10:09.000Z }
-"1.18.1" = { created_at = 2024-05-03T22:05:20.000Z }
-"1.19.0" = { created_at = 2024-07-17T13:19:10.000Z }
-"1.19.1" = { created_at = 2024-07-17T18:31:16.000Z }
-"1.19.2" = { created_at = 2024-08-20T17:09:39.000Z }
-"1.19.3" = { created_at = 2024-10-22T17:44:43.000Z }
-"1.20.0" = { created_at = 2025-09-20T15:10:38.000Z }
-"1.21.0" = { created_at = 2025-10-01T15:41:49.000Z }
-"1.21.1" = { created_at = 2025-10-01T19:07:57.000Z }
-"1.22.0" = { created_at = 2025-11-13T21:02:28.000Z }
-"1.22.1" = { created_at = 2025-12-16T21:24:29.000Z }
+"0.1.0" = { created_at = 2017-10-24T21:49:42.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2017-10-26T18:13:51.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2017-12-21T16:43:18.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.1.2" }
+"0.1.3" = { created_at = 2018-01-09T19:12:54.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.1.3" }
+"0.2.0" = { created_at = 2018-01-25T22:01:11.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2018-02-21T19:24:19.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.2.1" }
+"0.3.0" = { created_at = 2018-03-19T19:36:40.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v0.3.0" }
+"1.0.0" = { created_at = 2018-03-19T22:14:21.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2018-04-10T19:29:39.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.1.0" }
+"1.2.0" = { created_at = 2018-05-14T18:01:32.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2018-05-14T23:00:51.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2018-05-17T18:47:53.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.2.2" }
+"1.3.0" = { created_at = 2018-06-14T17:37:18.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2018-07-18T22:57:43.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.4.0" }
+"1.5.0" = { created_at = 2018-08-14T17:46:43.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.5.0" }
+"1.6.0" = { created_at = 2018-10-31T21:39:42.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.6.0" }
+"1.7.0" = { created_at = 2018-12-19T21:21:15.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.7.0" }
+"1.8.0" = { created_at = 2019-02-19T21:36:35.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2020-03-16T19:04:15.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.9.0" }
+"1.9.1" = { created_at = 2020-09-30T23:40:14.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.9.1" }
+"1.10.0" = { created_at = 2021-01-07T17:36:53.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.10.0" }
+"1.11.0" = { created_at = 2021-11-09T17:57:06.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.11.0" }
+"1.13.0" = { created_at = 2022-11-03T13:37:27.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.13.0" }
+"1.14.0" = { created_at = 2022-11-22T13:04:18.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.14.0" }
+"1.15.0" = { created_at = 2023-03-15T13:49:26.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.15.0" }
+"1.16.0" = { created_at = 2023-08-01T17:02:54.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.16.0" }
+"1.16.1" = { created_at = 2023-11-21T19:58:09.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.16.1" }
+"1.17.0" = { created_at = 2024-02-28T22:31:39.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.17.0" }
+"1.18.0" = { created_at = 2024-05-03T21:10:09.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.18.0" }
+"1.18.1" = { created_at = 2024-05-03T22:05:20.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.18.1" }
+"1.19.0" = { created_at = 2024-07-17T13:19:10.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.19.0" }
+"1.19.1" = { created_at = 2024-07-17T18:31:16.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.19.1" }
+"1.19.2" = { created_at = 2024-08-20T17:09:39.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.19.2" }
+"1.19.3" = { created_at = 2024-10-22T17:44:43.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.19.3" }
+"1.20.0" = { created_at = 2025-09-20T15:10:38.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.20.0" }
+"1.21.0" = { created_at = 2025-10-01T15:41:49.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.21.0" }
+"1.21.1" = { created_at = 2025-10-01T19:07:57.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.21.1" }
+"1.22.0" = { created_at = 2025-11-13T21:02:28.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.22.0" }
+"1.22.1" = { created_at = 2025-12-16T21:24:29.000Z, release_url = "https://github.com/GoogleContainerTools/container-structure-test/releases/tag/v1.22.1" }
