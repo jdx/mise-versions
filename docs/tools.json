@@ -2223,10 +2223,10 @@
     },
     {
       "name": "clickhouse",
-      "latest_version": "25.11.2.24-stable",
-      "latest_stable_version": "25.11.2.24-stable",
+      "latest_version": "25.11.3.54-stable",
+      "latest_stable_version": "25.11.3.54-stable",
       "version_count": 100,
-      "last_updated": "2025-12-17T13:18:43.144Z",
+      "last_updated": "2025-12-18T09:54:50.386Z",
       "backends": [
         "vfox:mise-plugins/vfox-clickhouse",
         "asdf:mise-plugins/mise-clickhouse"
@@ -2417,10 +2417,10 @@
     },
     {
       "name": "code",
-      "latest_version": "0.6.9",
-      "latest_stable_version": "0.6.9",
-      "version_count": 243,
-      "last_updated": "2025-12-18T07:24:06.000Z",
+      "latest_version": "0.6.10",
+      "latest_stable_version": "0.6.10",
+      "version_count": 244,
+      "last_updated": "2025-12-18T09:23:34.000Z",
       "github": "just-every/code",
       "repo_url": "https://github.com/just-every/code",
       "backends": [
