@@ -20,8 +20,8 @@ export const GET: APIRoute = async ({ params, locals }) => {
     return new Response('Not found', { status: 404 });
   }
 
-  // Validate tool name (alphanumeric, hyphens, underscores, slashes for namespaced tools)
-  if (!/^[\w\-\/]+$/.test(tool)) {
+  // Validate tool name (alphanumeric, hyphens, underscores, slashes, periods for extensions)
+  if (!/^[\w\-\/\.]+$/.test(tool)) {
     return new Response('Invalid tool name', {
       status: 400,
       headers: { 'Content-Type': 'text/plain' },
@@ -42,10 +42,18 @@ export const GET: APIRoute = async ({ params, locals }) => {
       });
     }
 
+    // Determine content type based on extension
+    let contentType = 'text/plain; charset=utf-8';
+    if (tool.endsWith('.gz')) {
+      contentType = 'application/gzip';
+    } else if (tool.endsWith('.toml')) {
+      contentType = 'text/plain; charset=utf-8';
+    }
+
     return new Response(data.body, {
       status: 200,
       headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
+        'Content-Type': contentType,
         'Cache-Control': 'public, max-age=600',
       },
     });
