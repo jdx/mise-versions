@@ -380,11 +380,6 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
                     <span class="text-green-400">○</span> {ghData.open_issues.toLocaleString()} issues
                   </span>
                 )}
-                {ghData.watchers > 0 && (
-                  <span class="text-gray-400">
-                    <span class="text-gray-500">👁</span> {ghData.watchers.toLocaleString()}
-                  </span>
-                )}
               </div>
               {/* Secondary info row */}
               <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-500">
