@@ -49,6 +49,7 @@
       "repo_url": "https://github.com/nektos/act",
       "backends": [
         "aqua:nektos/act",
+        "ubi:nektos/act",
         "asdf:gr1m0h/asdf-act"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/nektos/act/registry.yaml",
@@ -66,6 +67,7 @@
       "repo_url": "https://github.com/mpalmer/action-validator",
       "backends": [
         "aqua:mpalmer/action-validator",
+        "ubi:mpalmer/action-validator",
         "asdf:mpalmer/action-validator",
         "cargo:action-validator"
       ],
@@ -87,6 +89,7 @@
       "repo_url": "https://github.com/rhysd/actionlint",
       "backends": [
         "aqua:rhysd/actionlint",
+        "ubi:rhysd/actionlint",
         "asdf:crazy-matt/asdf-actionlint",
         "go:github.com/rhysd/actionlint/cmd/actionlint"
       ],
@@ -170,6 +173,7 @@
       "repo_url": "https://github.com/slok/agebox",
       "backends": [
         "aqua:slok/agebox",
+        "ubi:slok/agebox",
         "asdf:slok/asdf-agebox"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/slok/agebox/registry.yaml",
@@ -278,12 +282,6 @@
       "last_updated": "2025-09-04T20:46:52.000Z",
       "github": "owasp-amass/amass",
       "repo_url": "https://github.com/owasp-amass/amass",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:owasp-amass/amass",
         "asdf:dhoeric/asdf-amass"
@@ -331,7 +329,7 @@
       "github": "aws-amplify/amplify-cli",
       "repo_url": "https://github.com/aws-amplify/amplify-cli",
       "backends": [
-        "github:aws-amplify/amplify-cli[rename_exe=amplify]",
+        "ubi:aws-amplify/amplify-cli[exe=amplify-pkg,rename_exe=amplify]",
         "asdf:LozanoMatheus/asdf-aws-amplify-cli"
       ],
       "license": "Apache-2.0",
@@ -422,6 +420,7 @@
       "repo_url": "https://github.com/chainguard-dev/apko",
       "backends": [
         "aqua:chainguard-dev/apko",
+        "ubi:chainguard-dev/apko",
         "asdf:omissis/asdf-apko"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/chainguard-dev/apko/registry.yaml",
@@ -467,12 +466,6 @@
       "last_updated": "2025-12-12T12:19:54.000Z",
       "github": "apollographql/router",
       "repo_url": "https://github.com/apollographql/router",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:apollographql/router",
         "asdf:safx/asdf-apollo-router"
@@ -488,12 +481,6 @@
       "last_updated": "2025-12-15T23:42:02.000Z",
       "github": "apollographql/rover",
       "repo_url": "https://github.com/apollographql/rover",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:apollographql/rover"
       ],
@@ -508,15 +495,6 @@
       "last_updated": "2025-12-08T23:17:27.000Z",
       "github": "aquaproj/aqua",
       "repo_url": "https://github.com/aquaproj/aqua",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        },
-        {
-          "type": "slsa"
-        }
-      ],
       "backends": [
         "github:aquaproj/aqua"
       ],
@@ -615,6 +593,7 @@
       "repo_url": "https://github.com/argoproj/argo-cd",
       "backends": [
         "aqua:argoproj/argo-cd",
+        "ubi:argoproj/argo-cd[exe=argocd]",
         "asdf:beardix/asdf-argocd"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/argoproj/argo-cd/registry.yaml",
@@ -641,12 +620,6 @@
       "last_updated": "2023-10-02T09:03:30.000Z",
       "github": "moul/assh",
       "repo_url": "https://github.com/moul/assh",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:moul/assh",
         "asdf:mise-plugins/mise-assh"
@@ -687,12 +660,6 @@
       "last_updated": "2025-11-03T16:55:15.000Z",
       "github": "astronomer/astro-cli",
       "repo_url": "https://github.com/astronomer/astro-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:astronomer/astro-cli[exe=astro]"
       ],
@@ -743,6 +710,7 @@
       "repo_url": "https://github.com/atuinsh/atuin",
       "backends": [
         "aqua:atuinsh/atuin",
+        "ubi:atuinsh/atuin",
         "cargo:atuin"
       ],
       "package_urls": {
@@ -761,12 +729,6 @@
       "last_updated": "2025-03-22T17:49:06.000Z",
       "github": "tj-actions/auto-doc",
       "repo_url": "https://github.com/tj-actions/auto-doc",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:tj-actions/auto-doc",
         "asdf:mise-plugins/mise-auto-doc"
@@ -783,7 +745,7 @@
       "github": "aws-amplify/amplify-cli",
       "repo_url": "https://github.com/aws-amplify/amplify-cli",
       "backends": [
-        "github:aws-amplify/amplify-cli[rename_exe=amplify]",
+        "ubi:aws-amplify/amplify-cli[exe=amplify-pkg,rename_exe=amplify]",
         "asdf:LozanoMatheus/asdf-aws-amplify-cli"
       ],
       "license": "Apache-2.0",
@@ -948,12 +910,6 @@
       "last_updated": "2021-06-13T07:40:31.000Z",
       "github": "jckuester/awsls",
       "repo_url": "https://github.com/jckuester/awsls",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:jckuester/awsls",
         "asdf:chessmango/asdf-awsls"
@@ -969,12 +925,6 @@
       "last_updated": "2022-02-14T05:02:26.000Z",
       "github": "jckuester/awsrm",
       "repo_url": "https://github.com/jckuester/awsrm",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:jckuester/awsrm",
         "asdf:chessmango/asdf-awsrm"
@@ -990,12 +940,6 @@
       "last_updated": "2022-01-16T16:31:44.000Z",
       "github": "jckuester/awsweeper",
       "repo_url": "https://github.com/jckuester/awsweeper",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:jckuester/awsweeper",
         "asdf:chessmango/asdf-awsweeper"
@@ -1059,12 +1003,6 @@
       "last_updated": "2025-12-06T10:01:17.000Z",
       "github": "babashka/babashka",
       "repo_url": "https://github.com/babashka/babashka",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:babashka/babashka[exe=bb]",
         "asdf:pitch-io/asdf-babashka"
@@ -1149,6 +1087,7 @@
       "repo_url": "https://github.com/sharkdp/bat",
       "backends": [
         "aqua:sharkdp/bat",
+        "ubi:sharkdp/bat",
         "cargo:bat",
         "asdf:https://gitlab.com/wt0f/asdf-bat"
       ],
@@ -1202,6 +1141,7 @@
       "repo_url": "https://github.com/bazelbuild/bazel",
       "backends": [
         "aqua:bazelbuild/bazel",
+        "ubi:bazelbuild/bazel",
         "asdf:rajatvig/asdf-bazel"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bazelbuild/bazel/registry.yaml",
@@ -1259,14 +1199,8 @@
       "last_updated": "2025-10-15T00:24:51.000Z",
       "github": "cloudfoundry-incubator/bosh-backup-and-restore",
       "repo_url": "https://github.com/cloudfoundry-incubator/bosh-backup-and-restore",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
-        "github:cloudfoundry-incubator/bosh-backup-and-restore[bin=bosh-backup-and-restore,asset_pattern=bbr-*-{darwin_os}-{amd64_arch}]",
+        "ubi:cloudfoundry-incubator/bosh-backup-and-restore[matching=bbr-1]",
         "asdf:mise-plugins/tanzu-plug-in-for-asdf"
       ],
       "license": "Apache-2.0",
@@ -1335,6 +1269,7 @@
       "repo_url": "https://github.com/biomejs/biome",
       "backends": [
         "aqua:biomejs/biome",
+        "ubi:biomejs/biome",
         "npm:@biomejs/biome"
       ],
       "package_urls": {
@@ -1423,6 +1358,7 @@
       "repo_url": "https://github.com/MordechaiHadad/bob",
       "backends": [
         "aqua:MordechaiHadad/bob",
+        "ubi:MordechaiHadad/bob[matching_regex=bob-(linux|macos|windows)-(arm|x86_64)\\.zip$]",
         "cargo:bob-nvim"
       ],
       "package_urls": {
@@ -1503,14 +1439,8 @@
       "last_updated": "2025-10-15T00:24:51.000Z",
       "github": "cloudfoundry-incubator/bosh-backup-and-restore",
       "repo_url": "https://github.com/cloudfoundry-incubator/bosh-backup-and-restore",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
-        "github:cloudfoundry-incubator/bosh-backup-and-restore[bin=bosh-backup-and-restore,asset_pattern=bbr-*-{darwin_os}-{amd64_arch}]",
+        "ubi:cloudfoundry-incubator/bosh-backup-and-restore[matching=bbr-1]",
         "asdf:mise-plugins/tanzu-plug-in-for-asdf"
       ],
       "license": "Apache-2.0",
@@ -1590,7 +1520,8 @@
       "github": "aristocratos/btop",
       "repo_url": "https://github.com/aristocratos/btop",
       "backends": [
-        "aqua:aristocratos/btop"
+        "aqua:aristocratos/btop",
+        "ubi:aristocratos/btop"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aristocratos/btop/registry.yaml",
       "license": "Apache-2.0",
@@ -1620,6 +1551,7 @@
       "repo_url": "https://github.com/bufbuild/buf",
       "backends": [
         "aqua:bufbuild/buf",
+        "ubi:bufbuild/buf",
         "asdf:truepay/asdf-buf"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bufbuild/buf/registry.yaml",
@@ -1738,6 +1670,7 @@
       "repo_url": "https://github.com/inovex/CalendarSync",
       "backends": [
         "aqua:inovex/CalendarSync",
+        "ubi:inovex/CalendarSync",
         "asdf:FeryET/asdf-calendarsync"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/inovex/CalendarSync/registry.yaml",
@@ -1787,6 +1720,7 @@
       "repo_url": "https://github.com/cargo-bins/cargo-binstall",
       "backends": [
         "aqua:cargo-bins/cargo-binstall",
+        "ubi:cargo-bins/cargo-binstall[tag_regex=^\\\\d\\\\.]",
         "cargo:cargo-binstall"
       ],
       "package_urls": {
@@ -1806,6 +1740,7 @@
       "repo_url": "https://github.com/mitsuhiko/insta",
       "backends": [
         "aqua:mitsuhiko/insta",
+        "ubi:mitsuhiko/insta",
         "cargo:insta"
       ],
       "package_urls": {
@@ -1826,6 +1761,7 @@
       "repo_url": "https://github.com/sagiegurari/cargo-make",
       "backends": [
         "aqua:sagiegurari/cargo-make",
+        "ubi:sagiegurari/cargo-make",
         "asdf:mise-plugins/asdf-cargo-make",
         "cargo:cargo-make"
       ],
@@ -1970,6 +1906,7 @@
       "repo_url": "https://github.com/segmentio/chamber",
       "backends": [
         "aqua:segmentio/chamber",
+        "ubi:segmentio/chamber",
         "asdf:mintel/asdf-chamber"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/segmentio/chamber/registry.yaml",
@@ -1986,6 +1923,7 @@
       "repo_url": "https://github.com/miniscruff/changie",
       "backends": [
         "aqua:miniscruff/changie",
+        "ubi:miniscruff/changie",
         "asdf:pdemagny/asdf-changie"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/miniscruff/changie/registry.yaml",
@@ -2034,6 +1972,7 @@
       "repo_url": "https://github.com/twpayne/chezmoi",
       "backends": [
         "aqua:twpayne/chezmoi",
+        "ubi:twpayne/chezmoi",
         "asdf:joke/asdf-chezmoi"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/twpayne/chezmoi/registry.yaml",
@@ -2072,6 +2011,7 @@
       "repo_url": "https://github.com/jpillora/chisel",
       "backends": [
         "aqua:jpillora/chisel",
+        "ubi:jpillora/chisel",
         "go:github.com/jpillora/chisel",
         "asdf:lwiechec/asdf-chisel"
       ],
@@ -2092,6 +2032,7 @@
       "repo_url": "https://github.com/theryangeary/choose",
       "backends": [
         "aqua:theryangeary/choose",
+        "ubi:theryangeary/choose",
         "cargo:choose",
         "asdf:carbonteq/asdf-choose"
       ],
@@ -2126,12 +2067,6 @@
       "last_updated": "2020-03-12T08:31:27.000Z",
       "github": "mhausenblas/cidrchk",
       "repo_url": "https://github.com/mhausenblas/cidrchk",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:mhausenblas/cidrchk",
         "asdf:ORCID/asdf-cidrchk"
@@ -2148,6 +2083,7 @@
       "repo_url": "https://github.com/cilium/cilium-cli",
       "backends": [
         "aqua:cilium/cilium-cli",
+        "ubi:cilium/cilium-cli[exe=cilium]",
         "asdf:carnei-ro/asdf-cilium-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cilium/cilium-cli/registry.yaml",
@@ -2163,12 +2099,6 @@
       "last_updated": "2025-10-24T17:57:09.000Z",
       "github": "cilium/hubble",
       "repo_url": "https://github.com/cilium/hubble",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:cilium/hubble",
         "asdf:NitriKx/asdf-cilium-hubble"
@@ -2186,6 +2116,7 @@
       "repo_url": "https://github.com/CircleCI-Public/circleci-cli",
       "backends": [
         "aqua:CircleCI-Public/circleci-cli",
+        "ubi:CircleCI-Public/circleci-cli[exe=circleci]",
         "asdf:ucpr/asdf-circleci-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/CircleCI-Public/circleci-cli/registry.yaml",
@@ -2203,6 +2134,7 @@
       "repo_url": "https://github.com/CircleCI-Public/circleci-cli",
       "backends": [
         "aqua:CircleCI-Public/circleci-cli",
+        "ubi:CircleCI-Public/circleci-cli[exe=circleci]",
         "asdf:ucpr/asdf-circleci-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/CircleCI-Public/circleci-cli/registry.yaml",
@@ -2266,7 +2198,8 @@
       "github": "smtg-ai/claude-squad",
       "repo_url": "https://github.com/smtg-ai/claude-squad",
       "backends": [
-        "aqua:smtg-ai/claude-squad"
+        "aqua:smtg-ai/claude-squad",
+        "ubi:smtg-ai/claude-squad"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/smtg-ai/claude-squad/registry.yaml",
       "license": "AGPL-3.0",
@@ -2290,10 +2223,10 @@
     },
     {
       "name": "clickhouse",
-      "latest_version": "25.11.3.54-stable",
-      "latest_stable_version": "25.11.3.54-stable",
+      "latest_version": "25.12.1.649-stable",
+      "latest_stable_version": "25.12.1.649-stable",
       "version_count": 100,
-      "last_updated": "2025-12-18T09:54:50.386Z",
+      "last_updated": "2025-12-18T20:07:22.697Z",
       "backends": [
         "vfox:mise-plugins/vfox-clickhouse",
         "asdf:mise-plugins/mise-clickhouse"
@@ -2307,12 +2240,6 @@
       "last_updated": "2025-10-23T13:43:15.000Z",
       "github": "clj-kondo/clj-kondo",
       "repo_url": "https://github.com/clj-kondo/clj-kondo",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:clj-kondo/clj-kondo",
         "asdf:rynkowsg/asdf-clj-kondo"
@@ -2386,14 +2313,8 @@
       "last_updated": "2025-12-01T16:40:56.000Z",
       "github": "kubernetes-sigs/cluster-api-provider-aws",
       "repo_url": "https://github.com/kubernetes-sigs/cluster-api-provider-aws",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
-        "github:kubernetes-sigs/cluster-api-provider-aws[bin=cluster-api-provider-aws,asset_pattern=clusterawsadm-{darwin_os}-{amd64_arch}]",
+        "ubi:kubernetes-sigs/cluster-api-provider-aws",
         "asdf:kahun/asdf-clusterawsadm"
       ],
       "license": "Apache-2.0",
@@ -2461,7 +2382,8 @@
       "github": "suzuki-shunsuke/cmdx",
       "repo_url": "https://github.com/suzuki-shunsuke/cmdx",
       "backends": [
-        "aqua:suzuki-shunsuke/cmdx"
+        "aqua:suzuki-shunsuke/cmdx",
+        "ubi:suzuki-shunsuke/cmdx"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/suzuki-shunsuke/cmdx/registry.yaml",
       "license": "MIT",
@@ -2495,14 +2417,15 @@
     },
     {
       "name": "code",
-      "latest_version": "0.6.10",
-      "latest_stable_version": "0.6.10",
-      "version_count": 244,
-      "last_updated": "2025-12-18T09:23:34.000Z",
+      "latest_version": "0.6.11",
+      "latest_stable_version": "0.6.11",
+      "version_count": 245,
+      "last_updated": "2025-12-18T19:52:41.000Z",
       "github": "just-every/code",
       "repo_url": "https://github.com/just-every/code",
       "backends": [
         "aqua:just-every/code",
+        "ubi:just-every/code",
         "npm:@just-every/code"
       ],
       "package_urls": {
@@ -2561,10 +2484,10 @@
     },
     {
       "name": "codex",
-      "latest_version": "0.74.0",
-      "latest_stable_version": "0.74.0",
-      "version_count": 65,
-      "last_updated": "2025-12-18T17:40:25.000Z",
+      "latest_version": "0.75.0",
+      "latest_stable_version": "0.75.0",
+      "version_count": 66,
+      "last_updated": "2025-12-18T19:00:49.000Z",
       "github": "openai/codex",
       "repo_url": "https://github.com/openai/codex",
       "backends": [
@@ -2596,6 +2519,7 @@
       "repo_url": "https://github.com/abiosoft/colima",
       "backends": [
         "aqua:abiosoft/colima",
+        "ubi:abiosoft/colima",
         "asdf:CrouchingMuppet/asdf-colima"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/abiosoft/colima/registry.yaml",
@@ -2662,12 +2586,6 @@
       "last_updated": "2025-06-13T12:26:27.000Z",
       "github": "ConduitIO/conduit",
       "repo_url": "https://github.com/ConduitIO/conduit",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:ConduitIO/conduit",
         "asdf:gmcabrita/asdf-conduit"
@@ -2733,7 +2651,8 @@
       "github": "apple/container",
       "repo_url": "https://github.com/apple/container",
       "backends": [
-        "aqua:apple/container"
+        "aqua:apple/container",
+        "ubi:apple/container"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/apple/container/registry.yaml",
       "license": "Apache-2.0",
@@ -2765,7 +2684,8 @@
       "github": "dagger/container-use",
       "repo_url": "https://github.com/dagger/container-use",
       "backends": [
-        "aqua:dagger/container-use"
+        "aqua:dagger/container-use",
+        "ubi:dagger/container-use"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dagger/container-use/registry.yaml",
       "license": "Apache-2.0",
@@ -2818,6 +2738,7 @@
       "repo_url": "https://github.com/cloud66-oss/copper",
       "backends": [
         "aqua:cloud66-oss/copper",
+        "ubi:cloud66-oss/copper",
         "asdf:vladlosev/asdf-copper"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloud66-oss/copper/registry.yaml",
@@ -2843,12 +2764,6 @@
       "last_updated": "2025-12-09T11:44:03.000Z",
       "github": "coredns/coredns",
       "repo_url": "https://github.com/coredns/coredns",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:coredns/coredns",
         "asdf:s3than/asdf-coredns"
@@ -2866,7 +2781,8 @@
       "github": "uutils/coreutils",
       "repo_url": "https://github.com/uutils/coreutils",
       "backends": [
-        "aqua:uutils/coreutils"
+        "aqua:uutils/coreutils",
+        "ubi:uutils/coreutils"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/uutils/coreutils/registry.yaml",
       "license": "MIT",
@@ -2914,7 +2830,8 @@
       "github": "SUPERCILEX/fuc",
       "repo_url": "https://github.com/SUPERCILEX/fuc",
       "backends": [
-        "aqua:SUPERCILEX/fuc/cpz"
+        "aqua:SUPERCILEX/fuc/cpz",
+        "ubi:SUPERCILEX/fuc[matching=cpz,rename_exe=cpz]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml",
       "license": "Apache-2.0",
@@ -2930,6 +2847,7 @@
       "repo_url": "https://github.com/google/go-containerregistry",
       "backends": [
         "aqua:google/go-containerregistry",
+        "ubi:google/go-containerregistry[exe=crane]",
         "asdf:dmpe/asdf-crane"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/google/go-containerregistry/registry.yaml",
@@ -2987,7 +2905,8 @@
       "github": "schollz/croc",
       "repo_url": "https://github.com/schollz/croc",
       "backends": [
-        "aqua:schollz/croc"
+        "aqua:schollz/croc",
+        "ubi:schollz/croc"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/schollz/croc/registry.yaml",
       "license": "MIT",
@@ -3079,6 +2998,7 @@
       "repo_url": "https://github.com/bcicen/ctop",
       "backends": [
         "aqua:bcicen/ctop",
+        "ubi:bcicen/ctop",
         "asdf:NeoHsu/asdf-ctop"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/bcicen/ctop/registry.yaml",
@@ -3162,7 +3082,8 @@
       "github": "dagu-org/dagu",
       "repo_url": "https://github.com/dagu-org/dagu",
       "backends": [
-        "aqua:dagu-org/dagu"
+        "aqua:dagu-org/dagu",
+        "ubi:dagu-org/dagu"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dagu-org/dagu/registry.yaml",
       "license": "GPL-3.0",
@@ -3221,12 +3142,6 @@
       "last_updated": "2025-12-18T13:04:43.000Z",
       "github": "databricks/cli",
       "repo_url": "https://github.com/databricks/cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:databricks/cli[exe=databricks]"
       ],
@@ -3302,6 +3217,7 @@
       "repo_url": "https://github.com/dandavison/delta",
       "backends": [
         "aqua:dandavison/delta",
+        "ubi:dandavison/delta",
         "asdf:andweeb/asdf-delta",
         "cargo:git-delta"
       ],
@@ -3342,12 +3258,6 @@
       "last_updated": "2025-12-18T12:32:34.000Z",
       "github": "depot/cli",
       "repo_url": "https://github.com/depot/cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:depot/cli[exe=depot]",
         "asdf:depot/asdf-depot"
@@ -3431,6 +3341,7 @@
       "repo_url": "https://github.com/Wilfred/difftastic",
       "backends": [
         "aqua:Wilfred/difftastic",
+        "ubi:Wilfred/difftastic[exe=difft]",
         "asdf:volf52/asdf-difftastic",
         "cargo:difftastic"
       ],
@@ -3479,6 +3390,7 @@
       "repo_url": "https://github.com/wagoodman/dive",
       "backends": [
         "aqua:wagoodman/dive",
+        "ubi:wagoodman/dive",
         "asdf:looztra/asdf-dive"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/wagoodman/dive/registry.yaml",
@@ -3494,7 +3406,7 @@
       "github": "cross-language-cpp/djinni-generator",
       "repo_url": "https://github.com/cross-language-cpp/djinni-generator",
       "backends": [
-        "github:cross-language-cpp/djinni-generator[bin=djinni,asset_pattern=djinni]",
+        "ubi:cross-language-cpp/djinni-generator[exe=djinni]",
         "asdf:cross-language-cpp/asdf-djinni"
       ],
       "license": "Apache-2.0",
@@ -3552,6 +3464,7 @@
       "repo_url": "https://github.com/mintoolkit/mint",
       "backends": [
         "aqua:mintoolkit/mint",
+        "ubi:mintoolkit/mint[extract_all=true]",
         "asdf:xataz/asdf-docker-slim"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mintoolkit/mint/registry.yaml",
@@ -3586,6 +3499,7 @@
       "repo_url": "https://github.com/digitalocean/doctl",
       "backends": [
         "aqua:digitalocean/doctl",
+        "ubi:digitalocean/doctl",
         "asdf:maristgeek/asdf-doctl"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/digitalocean/doctl/registry.yaml",
@@ -3613,6 +3527,7 @@
       "repo_url": "https://github.com/stepchowfun/docuum",
       "backends": [
         "aqua:stepchowfun/docuum",
+        "ubi:stepchowfun/docuum",
         "cargo:docuum",
         "asdf:bradym/asdf-docuum"
       ],
@@ -3632,7 +3547,8 @@
       "github": "mr-karan/doggo",
       "repo_url": "https://github.com/mr-karan/doggo",
       "backends": [
-        "aqua:mr-karan/doggo"
+        "aqua:mr-karan/doggo",
+        "ubi:mr-karan/doggo"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mr-karan/doggo/registry.yaml",
       "license": "GPL-3.0",
@@ -3657,12 +3573,6 @@
       "last_updated": "2025-06-23T19:27:54.000Z",
       "github": "DopplerHQ/cli",
       "repo_url": "https://github.com/DopplerHQ/cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:DopplerHQ/cli[exe=doppler]",
         "asdf:takutakahashi/asdf-doppler"
@@ -3681,6 +3591,7 @@
       "repo_url": "https://github.com/dotenv-linter/dotenv-linter",
       "backends": [
         "aqua:dotenv-linter/dotenv-linter",
+        "ubi:dotenv-linter/dotenv-linter",
         "asdf:wesleimp/asdf-dotenv-linter",
         "cargo:dotenv-linter"
       ],
@@ -3701,7 +3612,8 @@
       "github": "dotenvx/dotenvx",
       "repo_url": "https://github.com/dotenvx/dotenvx",
       "backends": [
-        "aqua:dotenvx/dotenvx"
+        "aqua:dotenvx/dotenvx",
+        "ubi:dotenvx/dotenvx"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/dotenvx/dotenvx/registry.yaml",
       "license": "BSD-3-Clause",
@@ -3813,6 +3725,7 @@
       "repo_url": "https://github.com/harness/drone-cli",
       "backends": [
         "aqua:harness/drone-cli",
+        "ubi:harness/drone-cli[exe=drone]",
         "asdf:virtualstaticvoid/asdf-drone"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/harness/drone-cli/registry.yaml",
@@ -3863,6 +3776,7 @@
       "repo_url": "https://github.com/Byron/dua-cli",
       "backends": [
         "aqua:Byron/dua-cli",
+        "ubi:Byron/dua-cli[exe=dua]",
         "cargo:dua-cli"
       ],
       "package_urls": {
@@ -3882,7 +3796,8 @@
       "github": "duckdb/duckdb",
       "repo_url": "https://github.com/duckdb/duckdb",
       "backends": [
-        "aqua:duckdb/duckdb"
+        "aqua:duckdb/duckdb",
+        "ubi:duckdb/duckdb"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/duckdb/duckdb/registry.yaml",
       "license": "MIT",
@@ -3914,6 +3829,7 @@
       "repo_url": "https://github.com/bootandy/dust",
       "backends": [
         "aqua:bootandy/dust",
+        "ubi:bootandy/dust",
         "asdf:looztra/asdf-dust",
         "cargo:du-dust"
       ],
@@ -3959,12 +3875,6 @@
       "last_updated": "2025-12-17T15:14:59.000Z",
       "github": "Dynatrace/dynatrace-configuration-as-code",
       "repo_url": "https://github.com/Dynatrace/dynatrace-configuration-as-code",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:Dynatrace/dynatrace-configuration-as-code[exe=monaco]",
         "asdf:nsaputro/asdf-monaco"
@@ -4063,6 +3973,7 @@
       "repo_url": "https://github.com/editorconfig-checker/editorconfig-checker",
       "backends": [
         "aqua:editorconfig-checker/editorconfig-checker",
+        "ubi:editorconfig-checker/editorconfig-checker[exe=ec]",
         "asdf:gabitchov/asdf-editorconfig-checker"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/editorconfig-checker/editorconfig-checker/registry.yaml",
@@ -4173,6 +4084,7 @@
       "repo_url": "https://github.com/EnvCLI/EnvCLI",
       "backends": [
         "aqua:EnvCLI/EnvCLI",
+        "ubi:EnvCLI/EnvCLI[exe=envcli]",
         "asdf:zekker6/asdf-envcli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/EnvCLI/EnvCLI/registry.yaml",
@@ -4215,6 +4127,7 @@
       "repo_url": "https://github.com/pulumi/esc",
       "backends": [
         "aqua:pulumi/esc",
+        "ubi:pulumi/esc",
         "asdf:fxsalazar/asdf-esc"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pulumi/esc/registry.yaml",
@@ -4276,6 +4189,7 @@
       "repo_url": "https://github.com/eza-community/eza",
       "backends": [
         "aqua:eza-community/eza",
+        "ubi:eza-community/eza",
         "asdf:mise-plugins/mise-eza",
         "cargo:eza"
       ],
@@ -4310,8 +4224,10 @@
       "last_updated": "2025-08-26T07:32:04.000Z",
       "github": "sharkdp/fd",
       "repo_url": "https://github.com/sharkdp/fd",
+      "description": "A simple, fast and user-friendly alternative to 'find'",
       "backends": [
         "aqua:sharkdp/fd",
+        "ubi:sharkdp/fd",
         "asdf:https://gitlab.com/wt0f/asdf-fd",
         "cargo:fd-find"
       ],
@@ -4320,8 +4236,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sharkdp/fd/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://github.com/sharkdp/fd",
-      "description": "A simple, fast and user-friendly alternative to 'find'"
+      "homepage": "https://github.com/sharkdp/fd"
     },
     {
       "name": "ffmpeg",
@@ -4405,12 +4320,6 @@
       "last_updated": "2024-03-05T14:00:33.000Z",
       "github": "flux-subsystem-argo/flamingo",
       "repo_url": "https://github.com/flux-subsystem-argo/flamingo",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:flux-subsystem-argo/flamingo",
         "asdf:log2/asdf-flamingo"
@@ -4470,12 +4379,6 @@
       "last_updated": "2025-09-21T10:20:24.000Z",
       "github": "FlutterGen/flutter_gen",
       "repo_url": "https://github.com/FlutterGen/flutter_gen",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:FlutterGen/flutter_gen[exe=fluttergen]",
         "asdf:FlutterGen/asdf-fluttergen"
@@ -4542,7 +4445,8 @@
       "github": "foundry-rs/foundry",
       "repo_url": "https://github.com/foundry-rs/foundry",
       "backends": [
-        "aqua:foundry-rs/foundry"
+        "aqua:foundry-rs/foundry",
+        "ubi:foundry-rs/foundry[extract_all=true]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/foundry-rs/foundry/registry.yaml",
       "license": "Apache-2.0",
@@ -4557,12 +4461,6 @@
       "last_updated": "2025-10-13T17:46:48.000Z",
       "github": "tetratelabs/func-e",
       "repo_url": "https://github.com/tetratelabs/func-e",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:tetratelabs/func-e",
         "asdf:mise-plugins/mise-func-e"
@@ -4579,12 +4477,6 @@
       "last_updated": "2025-12-17T10:59:26.000Z",
       "github": "sighupio/furyctl",
       "repo_url": "https://github.com/sighupio/furyctl",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:sighupio/furyctl",
         "asdf:sighupio/asdf-furyctl"
@@ -4620,6 +4512,7 @@
       "repo_url": "https://github.com/junegunn/fzf",
       "backends": [
         "aqua:junegunn/fzf",
+        "ubi:junegunn/fzf",
         "asdf:kompiro/asdf-fzf"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/junegunn/fzf/registry.yaml",
@@ -4663,6 +4556,7 @@
       "repo_url": "https://github.com/open-policy-agent/gatekeeper",
       "backends": [
         "aqua:open-policy-agent/gatekeeper",
+        "ubi:open-policy-agent/gatekeeper[exe=gator]",
         "asdf:MxNxPx/asdf-gator"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/open-policy-agent/gatekeeper/registry.yaml",
@@ -4697,7 +4591,6 @@
       "version_count": 508,
       "last_updated": "2025-12-17T13:53:06.412Z",
       "backends": [
-        "vfox:mise-plugins/vfox-gcloud",
         "asdf:mise-plugins/mise-gcloud"
       ]
     },
@@ -4724,12 +4617,6 @@
       "last_updated": "2021-06-18T08:32:09.000Z",
       "github": "tetratelabs-attic/getenvoy",
       "repo_url": "https://github.com/tetratelabs-attic/getenvoy",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:tetratelabs-attic/getenvoy",
         "asdf:mise-plugins/mise-getenvoy"
@@ -4747,6 +4634,7 @@
       "repo_url": "https://github.com/GitGuardian/ggshield",
       "backends": [
         "aqua:GitGuardian/ggshield",
+        "ubi:GitGuardian/ggshield",
         "pipx:ggshield"
       ],
       "package_urls": {
@@ -4767,6 +4655,7 @@
       "repo_url": "https://github.com/cli/cli",
       "backends": [
         "aqua:cli/cli",
+        "ubi:cli/cli[exe=gh]",
         "asdf:bartlomiejdanek/asdf-github-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cli/cli/registry.yaml",
@@ -4783,7 +4672,8 @@
       "github": "suzuki-shunsuke/ghalint",
       "repo_url": "https://github.com/suzuki-shunsuke/ghalint",
       "backends": [
-        "aqua:suzuki-shunsuke/ghalint"
+        "aqua:suzuki-shunsuke/ghalint",
+        "ubi:suzuki-shunsuke/ghalint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/suzuki-shunsuke/ghalint/registry.yaml",
       "license": "MIT",
@@ -4809,6 +4699,7 @@
       "repo_url": "https://github.com/haskell/ghcup-hs",
       "backends": [
         "aqua:haskell/ghcup-hs",
+        "ubi:haskell/ghcup-hs[exe=ghcup]",
         "asdf:mise-plugins/mise-ghcup"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/haskell/ghcup-hs/registry.yaml",
@@ -4914,7 +4805,8 @@
       "github": "git-lfs/git-lfs",
       "repo_url": "https://github.com/git-lfs/git-lfs",
       "backends": [
-        "aqua:git-lfs/git-lfs"
+        "aqua:git-lfs/git-lfs",
+        "ubi:git-lfs/git-lfs"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/git-lfs/git-lfs/registry.yaml",
       "homepage": "https://git-lfs.com",
@@ -4928,12 +4820,6 @@
       "last_updated": "2022-08-24T08:41:38.000Z",
       "github": "0ghny/gitconfig",
       "repo_url": "https://github.com/0ghny/gitconfig",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:0ghny/gitconfig",
         "asdf:0ghny/asdf-gitconfig"
@@ -4952,6 +4838,7 @@
       "repo_url": "https://github.com/cli/cli",
       "backends": [
         "aqua:cli/cli",
+        "ubi:cli/cli[exe=gh]",
         "asdf:bartlomiejdanek/asdf-github-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cli/cli/registry.yaml",
@@ -5017,6 +4904,7 @@
       "repo_url": "https://github.com/altsem/gitu",
       "backends": [
         "aqua:altsem/gitu",
+        "ubi:altsem/gitu",
         "cargo:gitu"
       ],
       "package_urls": {
@@ -5056,7 +4944,8 @@
       "github": "gittools/gitversion",
       "repo_url": "https://github.com/gittools/gitversion",
       "backends": [
-        "aqua:gittools/gitversion"
+        "aqua:gittools/gitversion",
+        "ubi:gittools/gitversion"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/gittools/gitversion/registry.yaml",
       "license": "MIT",
@@ -5069,8 +4958,10 @@
       "latest_stable_version": "1.80.4",
       "version_count": 115,
       "last_updated": "2025-12-18T18:17:34.001Z",
+      "github": "gitlab-org/cli",
+      "repo_url": "https://github.com/gitlab-org/cli",
       "backends": [
-        "gitlab:gitlab-org/cli[exe=glab]",
+        "ubi:gitlab-org/cli[provider=gitlab,exe=glab]",
         "asdf:mise-plugins/mise-glab"
       ]
     },
@@ -5099,12 +4990,6 @@
       "last_updated": "2025-09-27T02:28:29.000Z",
       "github": "lingrino/glen",
       "repo_url": "https://github.com/lingrino/glen",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:lingrino/glen",
         "asdf:bradym/asdf-glen"
@@ -5121,12 +5006,6 @@
       "last_updated": "2025-12-18T18:26:02.000Z",
       "github": "solo-io/gloo",
       "repo_url": "https://github.com/solo-io/gloo",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:solo-io/gloo",
         "asdf:halilkaya/asdf-glooctl"
@@ -5246,6 +5125,7 @@
       "repo_url": "https://github.com/jstemmer/go-junit-report",
       "backends": [
         "aqua:jstemmer/go-junit-report",
+        "ubi:jstemmer/go-junit-report",
         "asdf:jwillker/asdf-go-junit-report"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jstemmer/go-junit-report/registry.yaml",
@@ -5292,7 +5172,8 @@
       "github": "rfjakob/gocryptfs",
       "repo_url": "https://github.com/rfjakob/gocryptfs",
       "backends": [
-        "aqua:rfjakob/gocryptfs"
+        "aqua:rfjakob/gocryptfs",
+        "ubi:rfjakob/gocryptfs"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rfjakob/gocryptfs/registry.yaml",
       "license": "MIT",
@@ -5309,6 +5190,7 @@
       "repo_url": "https://github.com/mvdan/gofumpt",
       "backends": [
         "aqua:mvdan/gofumpt",
+        "ubi:mvdan/gofumpt",
         "asdf:looztra/asdf-gofumpt"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mvdan/gofumpt/registry.yaml",
@@ -5326,6 +5208,7 @@
       "repo_url": "https://github.com/itchyny/gojq",
       "backends": [
         "aqua:itchyny/gojq",
+        "ubi:itchyny/gojq",
         "asdf:jimmidyson/asdf-gojq",
         "go:github.com/itchyny/gojq/cmd/gojq"
       ],
@@ -5345,7 +5228,8 @@
       "github": "cloudflare/gokey",
       "repo_url": "https://github.com/cloudflare/gokey",
       "backends": [
-        "aqua:cloudflare/gokey"
+        "aqua:cloudflare/gokey",
+        "ubi:cloudflare/gokey"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudflare/gokey/registry.yaml",
       "license": "BSD-3-Clause",
@@ -5361,6 +5245,7 @@
       "repo_url": "https://github.com/golangci/golangci-lint",
       "backends": [
         "aqua:golangci/golangci-lint",
+        "ubi:golangci/golangci-lint",
         "asdf:hypnoglow/asdf-golangci-lint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/golangci/golangci-lint/registry.yaml",
@@ -5378,6 +5263,7 @@
       "repo_url": "https://github.com/nametake/golangci-lint-langserver",
       "backends": [
         "aqua:nametake/golangci-lint-langserver",
+        "ubi:nametake/golangci-lint-langserver",
         "go:github.com/nametake/golangci-lint-langserver"
       ],
       "package_urls": {
@@ -5397,6 +5283,7 @@
       "repo_url": "https://github.com/segmentio/golines",
       "backends": [
         "aqua:segmentio/golines",
+        "ubi:segmentio/golines",
         "go:github.com/segmentio/golines"
       ],
       "package_urls": {
@@ -5465,6 +5352,7 @@
       "repo_url": "https://github.com/goreleaser/goreleaser",
       "backends": [
         "aqua:goreleaser/goreleaser",
+        "ubi:goreleaser/goreleaser",
         "asdf:kforsthoevel/asdf-goreleaser"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/goreleaser/goreleaser/registry.yaml",
@@ -5661,7 +5549,8 @@
       "github": "tomnomnom/gron",
       "repo_url": "https://github.com/tomnomnom/gron",
       "backends": [
-        "aqua:tomnomnom/gron"
+        "aqua:tomnomnom/gron",
+        "ubi:tomnomnom/gron"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tomnomnom/gron/registry.yaml",
       "license": "MIT",
@@ -5721,6 +5610,7 @@
       "repo_url": "https://github.com/anchore/grype",
       "backends": [
         "aqua:anchore/grype",
+        "ubi:anchore/grype",
         "asdf:poikilotherm/asdf-grype"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/anchore/grype/registry.yaml",
@@ -5795,6 +5685,7 @@
       "repo_url": "https://github.com/hadolint/hadolint",
       "backends": [
         "aqua:hadolint/hadolint",
+        "ubi:hadolint/hadolint",
         "asdf:devlincashman/asdf-hadolint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/hadolint/hadolint/registry.yaml",
@@ -5947,7 +5838,8 @@
       "github": "helix-editor/helix",
       "repo_url": "https://github.com/helix-editor/helix",
       "backends": [
-        "aqua:helix-editor/helix"
+        "aqua:helix-editor/helix",
+        "ubi:helix-editor/helix[extract_all=true]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/helix-editor/helix/registry.yaml",
       "license": "MPL-2.0",
@@ -6011,14 +5903,8 @@
       "last_updated": "2025-11-18T23:39:43.000Z",
       "github": "databus23/helm-diff",
       "repo_url": "https://github.com/databus23/helm-diff",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
-        "github:databus23/helm-diff[bin_path=diff/bin,rename_exe=helm-diff]",
+        "ubi:databus23/helm-diff[exe=diff,rename_exe=helm-diff]",
         "asdf:mise-plugins/mise-helm-diff"
       ],
       "license": "Apache-2.0",
@@ -6049,7 +5935,8 @@
       "github": "mrjosh/helm-ls",
       "repo_url": "https://github.com/mrjosh/helm-ls",
       "backends": [
-        "aqua:mrjosh/helm-ls"
+        "aqua:mrjosh/helm-ls",
+        "ubi:mrjosh/helm-ls[rename_exe=helm_ls]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mrjosh/helm-ls/registry.yaml",
       "license": "MIT",
@@ -6065,6 +5952,7 @@
       "repo_url": "https://github.com/helmfile/helmfile",
       "backends": [
         "aqua:helmfile/helmfile",
+        "ubi:helmfile/helmfile",
         "asdf:feniix/asdf-helmfile"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/helmfile/helmfile/registry.yaml",
@@ -6080,12 +5968,6 @@
       "last_updated": "2025-12-16T18:50:13.000Z",
       "github": "Praqma/helmsman",
       "repo_url": "https://github.com/Praqma/helmsman",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:Praqma/helmsman",
         "asdf:luisdavim/asdf-helmsman"
@@ -6102,7 +5984,8 @@
       "github": "helmwave/helmwave",
       "repo_url": "https://github.com/helmwave/helmwave",
       "backends": [
-        "aqua:helmwave/helmwave"
+        "aqua:helmwave/helmwave",
+        "ubi:helmwave/helmwave"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/helmwave/helmwave/registry.yaml",
       "license": "MIT",
@@ -6139,6 +6022,7 @@
       "repo_url": "https://github.com/sharkdp/hexyl",
       "backends": [
         "aqua:sharkdp/hexyl",
+        "ubi:sharkdp/hexyl",
         "cargo:hexyl"
       ],
       "package_urls": {
@@ -6167,11 +6051,6 @@
       "last_updated": "2025-02-07T23:14:24.000Z",
       "github": "ddworken/hishtory",
       "repo_url": "https://github.com/ddworken/hishtory",
-      "security": [
-        {
-          "type": "slsa"
-        }
-      ],
       "backends": [
         "github:ddworken/hishtory",
         "asdf:asdf-community/asdf-hishtory"
@@ -6207,7 +6086,8 @@
       "github": "jdx/hk",
       "repo_url": "https://github.com/jdx/hk",
       "backends": [
-        "aqua:jdx/hk"
+        "aqua:jdx/hk",
+        "ubi:jdx/hk"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jdx/hk/registry.yaml",
       "license": "MIT",
@@ -6282,6 +6162,7 @@
       "repo_url": "https://github.com/mgdm/htmlq",
       "backends": [
         "aqua:mgdm/htmlq",
+        "ubi:mgdm/htmlq",
         "cargo:htmlq"
       ],
       "package_urls": {
@@ -6334,6 +6215,7 @@
       "repo_url": "https://github.com/gohugoio/hugo",
       "backends": [
         "aqua:gohugoio/hugo",
+        "ubi:gohugoio/hugo",
         "asdf:NeoHsu/asdf-hugo",
         "asdf:nklmilojevic/asdf-hugo"
       ],
@@ -6389,6 +6271,7 @@
       "repo_url": "https://github.com/blacknon/hwatch",
       "backends": [
         "aqua:blacknon/hwatch",
+        "ubi:blacknon/hwatch",
         "asdf:chessmango/asdf-hwatch"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/blacknon/hwatch/registry.yaml",
@@ -6421,6 +6304,7 @@
       "repo_url": "https://github.com/sharkdp/hyperfine",
       "backends": [
         "aqua:sharkdp/hyperfine",
+        "ubi:sharkdp/hyperfine",
         "asdf:volf52/asdf-hyperfine",
         "cargo:hyperfine"
       ],
@@ -6530,12 +6414,6 @@
       "last_updated": "2025-12-12T16:22:12.000Z",
       "github": "Infisical/cli",
       "repo_url": "https://github.com/Infisical/cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:Infisical/cli"
       ],
@@ -6622,6 +6500,7 @@
       "repo_url": "https://github.com/01mf02/jaq",
       "backends": [
         "aqua:01mf02/jaq",
+        "ubi:01mf02/jaq",
         "cargo:jaq"
       ],
       "package_urls": {
@@ -6679,6 +6558,7 @@
       "repo_url": "https://github.com/kellyjonbrazil/jc",
       "backends": [
         "aqua:kellyjonbrazil/jc",
+        "ubi:kellyjonbrazil/jc",
         "pipx:jc"
       ],
       "package_urls": {
@@ -6702,6 +6582,7 @@
       "repo_url": "https://github.com/josephburnett/jd",
       "backends": [
         "aqua:josephburnett/jd",
+        "ubi:josephburnett/jd",
         "go:github.com/josephburnett/jd"
       ],
       "package_urls": {
@@ -6747,6 +6628,7 @@
       "repo_url": "https://github.com/jj-vcs/jj",
       "backends": [
         "aqua:jj-vcs/jj",
+        "ubi:jj-vcs/jj",
         "cargo:jj-cli"
       ],
       "package_urls": {
@@ -6766,7 +6648,8 @@
       "github": "idursun/jjui",
       "repo_url": "https://github.com/idursun/jjui",
       "backends": [
-        "aqua:idursun/jjui"
+        "aqua:idursun/jjui",
+        "ubi:idursun/jjui"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml",
       "license": "MIT",
@@ -6846,6 +6729,7 @@
       "repo_url": "https://github.com/jqlang/jq",
       "backends": [
         "aqua:jqlang/jq",
+        "ubi:jqlang/jq",
         "asdf:mise-plugins/asdf-jq"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jqlang/jq/registry.yaml",
@@ -6910,7 +6794,8 @@
       "github": "sourcemeta/jsonschema",
       "repo_url": "https://github.com/sourcemeta/jsonschema",
       "backends": [
-        "aqua:sourcemeta/jsonschema"
+        "aqua:sourcemeta/jsonschema",
+        "ubi:sourcemeta/jsonschema"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sourcemeta/jsonschema/registry.yaml",
       "license": "AGPL-3.0",
@@ -6926,6 +6811,7 @@
       "repo_url": "https://github.com/jj-vcs/jj",
       "backends": [
         "aqua:jj-vcs/jj",
+        "ubi:jj-vcs/jj",
         "cargo:jj-cli"
       ],
       "package_urls": {
@@ -6945,7 +6831,8 @@
       "github": "idursun/jjui",
       "repo_url": "https://github.com/idursun/jjui",
       "backends": [
-        "aqua:idursun/jjui"
+        "aqua:idursun/jjui",
+        "ubi:idursun/jjui"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/idursun/jjui/registry.yaml",
       "license": "MIT",
@@ -6972,6 +6859,7 @@
       "repo_url": "https://github.com/casey/just",
       "backends": [
         "aqua:casey/just",
+        "ubi:casey/just",
         "asdf:olofvndrhr/asdf-just",
         "cargo:just"
       ],
@@ -6993,6 +6881,7 @@
       "repo_url": "https://github.com/mike-engel/jwt-cli",
       "backends": [
         "aqua:mike-engel/jwt-cli",
+        "ubi:mike-engel/jwt-cli[exe=jwt]",
         "cargo:jwt-cli"
       ],
       "package_urls": {
@@ -7010,12 +6899,6 @@
       "last_updated": "2024-12-06T18:52:01.000Z",
       "github": "jwt-rs/jwt-ui",
       "repo_url": "https://github.com/jwt-rs/jwt-ui",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:jwt-rs/jwt-ui[exe=jwtui]",
         "cargo:jwt-ui"
@@ -7037,6 +6920,7 @@
       "repo_url": "https://github.com/jenkins-x/jx",
       "backends": [
         "aqua:jenkins-x/jx",
+        "ubi:jenkins-x/jx",
         "asdf:vbehar/asdf-jx"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jenkins-x/jx/registry.yaml",
@@ -7054,6 +6938,7 @@
       "repo_url": "https://github.com/k0sproject/k0sctl",
       "backends": [
         "aqua:k0sproject/k0sctl",
+        "ubi:k0sproject/k0sctl",
         "asdf:Its-Alex/asdf-plugin-k0sctl"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k0sproject/k0sctl/registry.yaml",
@@ -7069,6 +6954,7 @@
       "repo_url": "https://github.com/sl1pm4t/k2tf",
       "backends": [
         "aqua:sl1pm4t/k2tf",
+        "ubi:sl1pm4t/k2tf",
         "asdf:carlduevel/asdf-k2tf"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sl1pm4t/k2tf/registry.yaml",
@@ -7085,6 +6971,7 @@
       "repo_url": "https://github.com/k3d-io/k3d",
       "backends": [
         "aqua:k3d-io/k3d",
+        "ubi:k3d-io/k3d",
         "asdf:spencergilbert/asdf-k3d"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k3d-io/k3d/registry.yaml",
@@ -7135,6 +7022,7 @@
       "repo_url": "https://github.com/grafana/k6",
       "backends": [
         "aqua:grafana/k6",
+        "ubi:grafana/k6",
         "asdf:gr1m0h/asdf-k6"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/grafana/k6/registry.yaml",
@@ -7152,6 +7040,7 @@
       "repo_url": "https://github.com/derailed/k9s",
       "backends": [
         "aqua:derailed/k9s",
+        "ubi:derailed/k9s",
         "asdf:looztra/asdf-k9s"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/derailed/k9s/registry.yaml",
@@ -7238,12 +7127,6 @@
       "last_updated": "2024-11-09T22:26:18.000Z",
       "github": "kcctl/kcctl",
       "repo_url": "https://github.com/kcctl/kcctl",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:kcctl/kcctl",
         "asdf:joschi/asdf-kcctl"
@@ -7294,6 +7177,7 @@
       "repo_url": "https://github.com/Kotlin/kotlin-interactive-shell",
       "backends": [
         "aqua:Kotlin/kotlin-interactive-shell",
+        "ubi:Kotlin/kotlin-interactive-shell[exe=ki]",
         "asdf:comdotlinux/asdf-ki"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Kotlin/kotlin-interactive-shell/registry.yaml",
@@ -7310,6 +7194,7 @@
       "repo_url": "https://github.com/jkfran/killport",
       "backends": [
         "aqua:jkfran/killport",
+        "ubi:jkfran/killport",
         "cargo:killport"
       ],
       "package_urls": {
@@ -7330,6 +7215,7 @@
       "repo_url": "https://github.com/kubernetes-sigs/kind",
       "backends": [
         "aqua:kubernetes-sigs/kind",
+        "ubi:kubernetes-sigs/kind",
         "asdf:johnlayton/asdf-kind"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubernetes-sigs/kind/registry.yaml",
@@ -7412,6 +7298,7 @@
       "repo_url": "https://github.com/kubernetes/kompose",
       "backends": [
         "aqua:kubernetes/kompose",
+        "ubi:kubernetes/kompose",
         "asdf:technikhil314/asdf-kompose"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/kubernetes/kompose/registry.yaml",
@@ -7455,12 +7342,6 @@
       "last_updated": "2025-11-06T22:00:02.000Z",
       "github": "vmware-tanzu/kpack-cli",
       "repo_url": "https://github.com/vmware-tanzu/kpack-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vmware-tanzu/kpack-cli[exe=kp]",
         "asdf:asdf-community/asdf-kpack-cli"
@@ -7475,12 +7356,6 @@
       "last_updated": "2025-11-06T22:00:02.000Z",
       "github": "vmware-tanzu/kpack-cli",
       "repo_url": "https://github.com/vmware-tanzu/kpack-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vmware-tanzu/kpack-cli[exe=kp]",
         "asdf:asdf-community/asdf-kpack-cli"
@@ -7514,6 +7389,7 @@
       "repo_url": "https://github.com/ohkrab/krab",
       "backends": [
         "aqua:ohkrab/krab",
+        "ubi:ohkrab/krab",
         "asdf:ohkrab/asdf-krab"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/ohkrab/krab/registry.yaml",
@@ -7563,6 +7439,7 @@
       "repo_url": "https://github.com/viaduct-ai/kustomize-sops",
       "backends": [
         "aqua:viaduct-ai/kustomize-sops",
+        "ubi:viaduct-ai/kustomize-sops[exe=ksops]",
         "asdf:janpieper/asdf-ksops"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/viaduct-ai/kustomize-sops/registry.yaml",
@@ -7884,12 +7761,6 @@
       "last_updated": "2025-10-28T18:46:19.000Z",
       "github": "konstructio/kubefirst",
       "repo_url": "https://github.com/konstructio/kubefirst",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:konstructio/kubefirst",
         "asdf:Claywd/asdf-kubefirst"
@@ -8251,7 +8122,8 @@
       "github": "jesseduffield/lazydocker",
       "repo_url": "https://github.com/jesseduffield/lazydocker",
       "backends": [
-        "aqua:jesseduffield/lazydocker"
+        "aqua:jesseduffield/lazydocker",
+        "ubi:jesseduffield/lazydocker"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jesseduffield/lazydocker/registry.yaml",
       "license": "MIT",
@@ -8282,7 +8154,8 @@
       "github": "Lifailon/lazyjournal",
       "repo_url": "https://github.com/Lifailon/lazyjournal",
       "backends": [
-        "aqua:Lifailon/lazyjournal"
+        "aqua:Lifailon/lazyjournal",
+        "ubi:Lifailon/lazyjournal"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Lifailon/lazyjournal/registry.yaml",
       "license": "MIT",
@@ -8298,7 +8171,8 @@
       "github": "Adembc/lazyssh",
       "repo_url": "https://github.com/Adembc/lazyssh",
       "backends": [
-        "aqua:Adembc/lazyssh"
+        "aqua:Adembc/lazyssh",
+        "ubi:Adembc/lazyssh"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/Adembc/lazyssh/registry.yaml",
       "license": "Apache-2.0",
@@ -8324,6 +8198,7 @@
       "repo_url": "https://github.com/evilmartians/lefthook",
       "backends": [
         "aqua:evilmartians/lefthook",
+        "ubi:evilmartians/lefthook",
         "npm:lefthook",
         "asdf:jtzero/asdf-lefthook",
         "go:github.com/evilmartians/lefthook"
@@ -8384,12 +8259,6 @@
       "last_updated": "2025-02-14T12:10:54.000Z",
       "github": "tursodatabase/libsql",
       "repo_url": "https://github.com/tursodatabase/libsql",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:tursodatabase/libsql[version_prefix=libsql-server-v]",
         "asdf:jonasb/asdf-libsql-server"
@@ -8408,6 +8277,7 @@
       "repo_url": "https://github.com/mono0926/LicensePlist",
       "backends": [
         "aqua:mono0926/LicensePlist",
+        "ubi:mono0926/LicensePlist[exe=license-plist]",
         "asdf:MacPaw/asdf-license-plist"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/mono0926/LicensePlist/registry.yaml",
@@ -8522,7 +8392,8 @@
       "github": "tstack/lnav",
       "repo_url": "https://github.com/tstack/lnav",
       "backends": [
-        "aqua:tstack/lnav"
+        "aqua:tstack/lnav",
+        "ubi:tstack/lnav"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tstack/lnav/registry.yaml",
       "license": "BSD-2-Clause",
@@ -8537,12 +8408,6 @@
       "last_updated": "2025-12-11T13:08:54.000Z",
       "github": "localstack/localstack-cli",
       "repo_url": "https://github.com/localstack/localstack-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:localstack/localstack-cli[exe=localstack]"
       ],
@@ -8585,6 +8450,7 @@
       "repo_url": "https://github.com/loeffel-io/ls-lint",
       "backends": [
         "aqua:loeffel-io/ls-lint",
+        "ubi:loeffel-io/ls-lint",
         "npm:@ls-lint/ls-lint",
         "asdf:Ameausoone/asdf-ls-lint"
       ],
@@ -8683,6 +8549,7 @@
       "repo_url": "https://github.com/lycheeverse/lychee",
       "backends": [
         "aqua:lycheeverse/lychee",
+        "ubi:lycheeverse/lychee",
         "cargo:lychee"
       ],
       "package_urls": {
@@ -8701,12 +8568,6 @@
       "last_updated": "2025-11-13T06:45:17.000Z",
       "github": "mobile-dev-inc/maestro",
       "repo_url": "https://github.com/mobile-dev-inc/maestro",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:mobile-dev-inc/maestro",
         "asdf:dotanuki-labs/asdf-maestro"
@@ -8767,6 +8628,7 @@
       "repo_url": "https://github.com/alajmo/mani",
       "backends": [
         "aqua:alajmo/mani",
+        "ubi:alajmo/mani",
         "asdf:anweber/asdf-mani"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/alajmo/mani/registry.yaml",
@@ -8782,12 +8644,6 @@
       "last_updated": "2025-12-08T20:53:28.000Z",
       "github": "kovetskiy/mark",
       "repo_url": "https://github.com/kovetskiy/mark",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:kovetskiy/mark",
         "asdf:jfreeland/asdf-mark"
@@ -8922,9 +8778,9 @@
       "github": "Michael-F-Bryan/mdbook-linkcheck",
       "repo_url": "https://github.com/Michael-F-Bryan/mdbook-linkcheck",
       "backends": [
-        "github:Michael-F-Bryan/mdbook-linkcheck[bin=mdbook-linkcheck]",
-        "cargo:mdbook-linkcheck",
-        "asdf:mise-plugins/mise-mdbook-linkcheck"
+        "ubi:Michael-F-Bryan/mdbook-linkcheck",
+        "asdf:mise-plugins/mise-mdbook-linkcheck",
+        "cargo:mdbook-linkcheck"
       ],
       "package_urls": {
         "cargo": "https://crates.io/crates/mdbook-linkcheck"
@@ -8957,12 +8813,6 @@
       "last_updated": "2024-08-15T18:37:26.000Z",
       "github": "charmbracelet/melt",
       "repo_url": "https://github.com/charmbracelet/melt",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:charmbracelet/melt",
         "asdf:chessmango/asdf-melt"
@@ -9129,6 +8979,7 @@
       "repo_url": "https://github.com/metalbear-co/mirrord",
       "backends": [
         "aqua:metalbear-co/mirrord",
+        "ubi:metalbear-co/mirrord",
         "asdf:metalbear-co/asdf-mirrord"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/metalbear-co/mirrord/registry.yaml",
@@ -9156,6 +9007,7 @@
       "repo_url": "https://github.com/FiloSottile/mkcert",
       "backends": [
         "aqua:FiloSottile/mkcert",
+        "ubi:FiloSottile/mkcert",
         "asdf:salasrod/asdf-mkcert"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/FiloSottile/mkcert/registry.yaml",
@@ -9214,7 +9066,8 @@
       "github": "rui314/mold",
       "repo_url": "https://github.com/rui314/mold",
       "backends": [
-        "aqua:rui314/mold"
+        "aqua:rui314/mold",
+        "ubi:rui314/mold"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rui314/mold/registry.yaml",
       "license": "MIT",
@@ -9255,7 +9108,8 @@
       "github": "pvolok/mprocs",
       "repo_url": "https://github.com/pvolok/mprocs",
       "backends": [
-        "aqua:pvolok/mprocs"
+        "aqua:pvolok/mprocs",
+        "ubi:pvolok/mprocs"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/pvolok/mprocs/registry.yaml",
       "license": "MIT",
@@ -9374,6 +9228,7 @@
       "repo_url": "https://github.com/denisidoro/navi",
       "backends": [
         "aqua:denisidoro/navi",
+        "ubi:denisidoro/navi",
         "cargo:navi"
       ],
       "package_urls": {
@@ -9422,7 +9277,8 @@
       "github": "neondatabase/neonctl",
       "repo_url": "https://github.com/neondatabase/neonctl",
       "backends": [
-        "aqua:neondatabase/neonctl"
+        "aqua:neondatabase/neonctl",
+        "ubi:neondatabase/neonctl"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/neondatabase/neonctl/registry.yaml",
       "license": "Apache-2.0",
@@ -9471,6 +9327,7 @@
       "repo_url": "https://github.com/newrelic/newrelic-cli",
       "backends": [
         "aqua:newrelic/newrelic-cli",
+        "ubi:newrelic/newrelic-cli[exe=newrelic]",
         "asdf:NeoHsu/asdf-newrelic-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/newrelic/newrelic-cli/registry.yaml",
@@ -9488,6 +9345,7 @@
       "repo_url": "https://github.com/newrelic/newrelic-cli",
       "backends": [
         "aqua:newrelic/newrelic-cli",
+        "ubi:newrelic/newrelic-cli[exe=newrelic]",
         "asdf:NeoHsu/asdf-newrelic-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/newrelic/newrelic-cli/registry.yaml",
@@ -9505,6 +9363,7 @@
       "repo_url": "https://github.com/goreleaser/nfpm",
       "backends": [
         "aqua:goreleaser/nfpm",
+        "ubi:goreleaser/nfpm",
         "asdf:ORCID/asdf-nfpm"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/goreleaser/nfpm/registry.yaml",
@@ -9630,12 +9489,6 @@
       "last_updated": "2025-09-22T17:48:41.000Z",
       "github": "nats-io/nsc",
       "repo_url": "https://github.com/nats-io/nsc",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:nats-io/nsc",
         "asdf:dex4er/asdf-nsc"
@@ -9653,6 +9506,7 @@
       "repo_url": "https://github.com/sharkdp/numbat",
       "backends": [
         "aqua:sharkdp/numbat",
+        "ubi:sharkdp/numbat",
         "cargo:numbat-cli"
       ],
       "package_urls": {
@@ -9686,7 +9540,8 @@
       "github": "cloudentity/oauth2c",
       "repo_url": "https://github.com/cloudentity/oauth2c",
       "backends": [
-        "aqua:cloudentity/oauth2c"
+        "aqua:cloudentity/oauth2c",
+        "ubi:cloudentity/oauth2c"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudentity/oauth2c/registry.yaml",
       "license": "Apache-2.0",
@@ -9731,12 +9586,6 @@
       "last_updated": "2024-05-11T14:35:57.000Z",
       "github": "cube2222/octosql",
       "repo_url": "https://github.com/cube2222/octosql",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:cube2222/octosql"
       ],
@@ -9867,7 +9716,8 @@
       "github": "siderolabs/omni",
       "repo_url": "https://github.com/siderolabs/omni",
       "backends": [
-        "aqua:siderolabs/omni/omnictl"
+        "aqua:siderolabs/omni/omnictl",
+        "ubi:siderolabs/omni[exe=omnictl]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/siderolabs/omni/registry.yaml",
       "description": "SaaS-simple deployment of Kubernetes - on your own hardware."
@@ -9942,12 +9792,6 @@
       "last_updated": "2025-11-24T19:37:04.000Z",
       "github": "openbao/openbao",
       "repo_url": "https://github.com/openbao/openbao",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:openbao/openbao[exe=bao]"
       ],
@@ -9964,7 +9808,8 @@
       "github": "sst/opencode",
       "repo_url": "https://github.com/sst/opencode",
       "backends": [
-        "aqua:sst/opencode"
+        "aqua:sst/opencode",
+        "ubi:sst/opencode"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sst/opencode/registry.yaml",
       "license": "MIT",
@@ -9997,7 +9842,8 @@
       "github": "opengrep/opengrep",
       "repo_url": "https://github.com/opengrep/opengrep",
       "backends": [
-        "aqua:opengrep/opengrep"
+        "aqua:opengrep/opengrep",
+        "ubi:opengrep/opengrep"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/opengrep/opengrep/registry.yaml",
       "license": "LGPL-2.1",
@@ -10049,6 +9895,7 @@
       "repo_url": "https://github.com/opentofu/opentofu",
       "backends": [
         "aqua:opentofu/opentofu",
+        "ubi:opentofu/opentofu[exe=tofu]",
         "asdf:virtualroot/asdf-opentofu"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/opentofu/opentofu/registry.yaml",
@@ -10081,14 +9928,8 @@
       "last_updated": "2021-07-01T09:05:39.000Z",
       "github": "opsgenie/opsgenie-lamp",
       "repo_url": "https://github.com/opsgenie/opsgenie-lamp",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
-        "github:opsgenie/opsgenie-lamp[bin=opsgenie-lamp]",
+        "ubi:opsgenie/opsgenie-lamp",
         "asdf:mise-plugins/mise-opsgenie-lamp"
       ],
       "license": "Apache-2.0",
@@ -10145,12 +9986,6 @@
       "last_updated": "2024-03-26T02:34:51.000Z",
       "github": "DarthSim/overmind",
       "repo_url": "https://github.com/DarthSim/overmind",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:DarthSim/overmind",
         "go:github.com/DarthSim/overmind/v2"
@@ -10171,6 +10006,7 @@
       "repo_url": "https://github.com/oxipng/oxipng",
       "backends": [
         "aqua:oxipng/oxipng",
+        "ubi:oxipng/oxipng",
         "cargo:oxipng"
       ],
       "package_urls": {
@@ -10191,6 +10027,7 @@
       "repo_url": "https://github.com/mrjackwills/oxker",
       "backends": [
         "aqua:mrjackwills/oxker",
+        "ubi:mrjackwills/oxker",
         "cargo:oxker"
       ],
       "package_urls": {
@@ -10211,6 +10048,7 @@
       "repo_url": "https://github.com/oxc-project/oxc",
       "backends": [
         "aqua:oxc-project/oxc/oxlint",
+        "ubi:oxc-project/oxc",
         "npm:oxlint"
       ],
       "package_urls": {
@@ -10390,7 +10228,8 @@
       "github": "suzuki-shunsuke/pinact",
       "repo_url": "https://github.com/suzuki-shunsuke/pinact",
       "backends": [
-        "aqua:suzuki-shunsuke/pinact"
+        "aqua:suzuki-shunsuke/pinact",
+        "ubi:suzuki-shunsuke/pinact"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/suzuki-shunsuke/pinact/registry.yaml",
       "license": "MIT",
@@ -10476,7 +10315,8 @@
       "github": "jdx/pitchfork",
       "repo_url": "https://github.com/jdx/pitchfork",
       "backends": [
-        "aqua:jdx/pitchfork"
+        "aqua:jdx/pitchfork",
+        "ubi:jdx/pitchfork"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/jdx/pitchfork/registry.yaml",
       "license": "MIT",
@@ -10507,15 +10347,6 @@
       "last_updated": "2025-12-17T09:48:25.000Z",
       "github": "prefix-dev/pixi",
       "repo_url": "https://github.com/prefix-dev/pixi",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        },
-        {
-          "type": "slsa"
-        }
-      ],
       "backends": [
         "github:prefix-dev/pixi"
       ],
@@ -10533,6 +10364,7 @@
       "repo_url": "https://github.com/apple/pkl",
       "backends": [
         "aqua:apple/pkl",
+        "ubi:apple/pkl",
         "asdf:mise-plugins/asdf-pkl"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/apple/pkl/registry.yaml",
@@ -10567,6 +10399,7 @@
       "repo_url": "https://github.com/FairwindsOps/pluto",
       "backends": [
         "aqua:FairwindsOps/pluto",
+        "ubi:FairwindsOps/pluto",
         "asdf:FairwindsOps/asdf-pluto"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/FairwindsOps/pluto/registry.yaml",
@@ -10584,6 +10417,7 @@
       "repo_url": "https://github.com/pnpm/pnpm",
       "backends": [
         "aqua:pnpm/pnpm",
+        "ubi:pnpm/pnpm",
         "npm:pnpm"
       ],
       "package_urls": {
@@ -10687,6 +10521,7 @@
       "repo_url": "https://github.com/justjanne/powerline-go",
       "backends": [
         "aqua:justjanne/powerline-go",
+        "ubi:justjanne/powerline-go",
         "asdf:dex4er/asdf-powerline-go"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/justjanne/powerline-go/registry.yaml",
@@ -10754,6 +10589,7 @@
       "repo_url": "https://github.com/pre-commit/pre-commit",
       "backends": [
         "aqua:pre-commit/pre-commit",
+        "ubi:pre-commit/pre-commit",
         "asdf:jonathanmorley/asdf-pre-commit",
         "pipx:pre-commit"
       ],
@@ -10792,12 +10628,6 @@
       "last_updated": "2025-12-05T22:50:20.000Z",
       "github": "F1bonacc1/process-compose",
       "repo_url": "https://github.com/F1bonacc1/process-compose",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:F1bonacc1/process-compose"
       ],
@@ -11080,12 +10910,6 @@
       "last_updated": "2025-11-09T20:30:08.000Z",
       "github": "natesales/q",
       "repo_url": "https://github.com/natesales/q",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:natesales/q",
         "asdf:moritz-makandra/asdf-plugin-qdns"
@@ -11221,6 +11045,7 @@
       "repo_url": "https://github.com/rclone/rclone",
       "backends": [
         "aqua:rclone/rclone",
+        "ubi:rclone/rclone",
         "asdf:johnlayton/asdf-rclone"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/rclone/rclone/registry.yaml",
@@ -11236,12 +11061,6 @@
       "last_updated": "2025-08-01T19:27:07.000Z",
       "github": "FairwindsOps/reckoner",
       "repo_url": "https://github.com/FairwindsOps/reckoner",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:FairwindsOps/reckoner",
         "asdf:FairwindsOps/asdf-reckoner"
@@ -11280,6 +11099,7 @@
       "repo_url": "https://github.com/barthr/redo",
       "backends": [
         "aqua:barthr/redo",
+        "ubi:barthr/redo",
         "asdf:chessmango/asdf-redo"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/barthr/redo/registry.yaml",
@@ -11396,6 +11216,7 @@
       "repo_url": "https://github.com/rest-sh/restish",
       "backends": [
         "aqua:rest-sh/restish",
+        "ubi:rest-sh/restish",
         "go:github.com/danielgtaylor/restish"
       ],
       "package_urls": {
@@ -11452,6 +11273,7 @@
       "repo_url": "https://github.com/BurntSushi/ripgrep",
       "backends": [
         "aqua:BurntSushi/ripgrep",
+        "ubi:BurntSushi/ripgrep[exe=rg]",
         "asdf:https://gitlab.com/wt0f/asdf-ripgrep",
         "cargo:ripgrep"
       ],
@@ -11488,6 +11310,7 @@
       "repo_url": "https://github.com/BurntSushi/ripgrep",
       "backends": [
         "aqua:BurntSushi/ripgrep",
+        "ubi:BurntSushi/ripgrep[exe=rg]",
         "asdf:https://gitlab.com/wt0f/asdf-ripgrep",
         "cargo:ripgrep"
       ],
@@ -11509,6 +11332,7 @@
       "repo_url": "https://github.com/phiresky/ripgrep-all",
       "backends": [
         "aqua:phiresky/ripgrep-all",
+        "ubi:phiresky/ripgrep-all[exe=rga]",
         "cargo:ripgrep_all"
       ],
       "package_urls": {
@@ -11569,7 +11393,8 @@
       "github": "SUPERCILEX/fuc",
       "repo_url": "https://github.com/SUPERCILEX/fuc",
       "backends": [
-        "aqua:SUPERCILEX/fuc/rmz"
+        "aqua:SUPERCILEX/fuc/rmz",
+        "ubi:SUPERCILEX/fuc[matching=rmz,rename_exe=rmz]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/SUPERCILEX/fuc/registry.yaml",
       "license": "Apache-2.0",
@@ -11615,6 +11440,7 @@
       "repo_url": "https://github.com/astral-sh/ruff",
       "backends": [
         "aqua:astral-sh/ruff",
+        "ubi:astral-sh/ruff",
         "asdf:simhem/asdf-ruff"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/astral-sh/ruff/registry.yaml",
@@ -11665,6 +11491,7 @@
       "repo_url": "https://github.com/rustic-rs/rustic",
       "backends": [
         "aqua:rustic-rs/rustic",
+        "ubi:rustic-rs/rustic",
         "cargo:rustic-rs"
       ],
       "package_urls": {
@@ -11701,13 +11528,7 @@
       "latest_version": "2.3.0",
       "latest_stable_version": "2.3.0",
       "version_count": 15,
-      "last_updated": "2025-12-18T11:29:37.983Z",
-      "github": "peak/s5cmd",
-      "repo_url": "https://github.com/peak/s5cmd",
-      "backends": [
-        "aqua:peak/s5cmd"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/peak/s5cmd/registry.yaml"
+      "last_updated": "2025-12-18T11:29:37.983Z"
     },
     {
       "name": "saml2aws",
@@ -11735,7 +11556,8 @@
       "github": "sqshq/sampler",
       "repo_url": "https://github.com/sqshq/sampler",
       "backends": [
-        "aqua:sqshq/sampler"
+        "aqua:sqshq/sampler",
+        "ubi:sqshq/sampler"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sqshq/sampler/registry.yaml",
       "license": "GPL-3.0",
@@ -11847,12 +11669,6 @@
       "last_updated": "2025-11-25T17:11:08.000Z",
       "github": "software-mansion/scarb",
       "repo_url": "https://github.com/software-mansion/scarb",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:software-mansion/scarb",
         "asdf:software-mansion/asdf-scarb"
@@ -11871,6 +11687,7 @@
       "repo_url": "https://github.com/mozilla/sccache",
       "backends": [
         "aqua:mozilla/sccache",
+        "ubi:mozilla/sccache",
         "asdf:emersonmx/asdf-sccache",
         "cargo:sccache"
       ],
@@ -11899,12 +11716,6 @@
       "last_updated": "2025-07-15T18:15:29.000Z",
       "github": "pantsbuild/scie-pants",
       "repo_url": "https://github.com/pantsbuild/scie-pants",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:pantsbuild/scie-pants",
         "asdf:robzr/asdf-scie-pants"
@@ -11923,6 +11734,7 @@
       "repo_url": "https://github.com/thomasschafer/scooter",
       "backends": [
         "aqua:thomasschafer/scooter",
+        "ubi:thomasschafer/scooter",
         "cargo:scooter"
       ],
       "package_urls": {
@@ -11959,6 +11771,7 @@
       "repo_url": "https://github.com/chmln/sd",
       "backends": [
         "aqua:chmln/sd",
+        "ubi:chmln/sd",
         "cargo:sd"
       ],
       "package_urls": {
@@ -12016,7 +11829,7 @@
       "version_count": 20,
       "last_updated": "2025-12-18T01:05:38.588Z",
       "backends": [
-        "vfox:mise-plugins/vfox-semver",
+        "vfox:mise-plugins/mise-semver",
         "asdf:mathew-fleisch/asdf-semver"
       ],
       "license": "Apache-2.0",
@@ -12041,7 +11854,8 @@
       "github": "getsentry/sentry-cli",
       "repo_url": "https://github.com/getsentry/sentry-cli",
       "backends": [
-        "aqua:getsentry/sentry-cli"
+        "aqua:getsentry/sentry-cli",
+        "ubi:getsentry/sentry-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/getsentry/sentry-cli/registry.yaml",
       "homepage": "https://docs.sentry.io/cli/",
@@ -12056,7 +11870,8 @@
       "github": "getsentry/sentry-cli",
       "repo_url": "https://github.com/getsentry/sentry-cli",
       "backends": [
-        "aqua:getsentry/sentry-cli"
+        "aqua:getsentry/sentry-cli",
+        "ubi:getsentry/sentry-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/getsentry/sentry-cli/registry.yaml",
       "homepage": "https://docs.sentry.io/cli/",
@@ -12135,6 +11950,7 @@
       "repo_url": "https://github.com/mvdan/sh",
       "backends": [
         "aqua:mvdan/sh",
+        "ubi:mvdan/sh",
         "asdf:luizm/asdf-shfmt",
         "go:mvdan.cc/sh/v3/cmd/shfmt"
       ],
@@ -12164,12 +11980,6 @@
       "last_updated": "2025-12-17T15:37:05.000Z",
       "github": "signadot/cli",
       "repo_url": "https://github.com/signadot/cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:signadot/cli[exe=signadot]"
       ],
@@ -12234,7 +12044,8 @@
       "github": "skeema/skeema",
       "repo_url": "https://github.com/skeema/skeema",
       "backends": [
-        "aqua:skeema/skeema"
+        "aqua:skeema/skeema",
+        "ubi:skeema/skeema"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/skeema/skeema/registry.yaml",
       "license": "Apache-2.0",
@@ -12305,12 +12116,6 @@
       "last_updated": "2025-11-10T13:32:09.000Z",
       "github": "charmbracelet/soft-serve",
       "repo_url": "https://github.com/charmbracelet/soft-serve",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:charmbracelet/soft-serve[exe=soft]",
         "asdf:chessmango/asdf-soft-serve"
@@ -12359,12 +12164,6 @@
       "last_updated": "2025-02-19T01:09:52.000Z",
       "github": "vmware-tanzu/sonobuoy",
       "repo_url": "https://github.com/vmware-tanzu/sonobuoy",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vmware-tanzu/sonobuoy",
         "asdf:Nick-Triller/asdf-sonobuoy"
@@ -12383,6 +12182,7 @@
       "repo_url": "https://github.com/getsops/sops",
       "backends": [
         "aqua:getsops/sops",
+        "ubi:getsops/sops",
         "asdf:mise-plugins/mise-sops"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/getsops/sops/registry.yaml",
@@ -12494,7 +12294,8 @@
       "github": "specstoryai/getspecstory",
       "repo_url": "https://github.com/specstoryai/getspecstory",
       "backends": [
-        "aqua:specstoryai/getspecstory"
+        "aqua:specstoryai/getspecstory",
+        "ubi:specstoryai/getspecstory"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/specstoryai/getspecstory/registry.yaml",
       "homepage": "https://specstory.com/",
@@ -12600,12 +12401,6 @@
       "last_updated": "2025-12-05T20:54:03.000Z",
       "github": "sst/sst",
       "repo_url": "https://github.com/sst/sst",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:sst/sst"
       ],
@@ -12686,6 +12481,7 @@
       "repo_url": "https://github.com/starship/starship",
       "backends": [
         "aqua:starship/starship",
+        "ubi:starship/starship",
         "asdf:gr1m0h/asdf-starship",
         "cargo:starship"
       ],
@@ -13060,7 +12856,8 @@
       "github": "siderolabs/talos",
       "repo_url": "https://github.com/siderolabs/talos",
       "backends": [
-        "aqua:siderolabs/talos"
+        "aqua:siderolabs/talos",
+        "ubi:siderolabs/talos[exe=talosctl]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/siderolabs/talos/registry.yaml",
       "license": "MPL-2.0",
@@ -13076,7 +12873,8 @@
       "github": "siderolabs/talos",
       "repo_url": "https://github.com/siderolabs/talos",
       "backends": [
-        "aqua:siderolabs/talos"
+        "aqua:siderolabs/talos",
+        "ubi:siderolabs/talos[exe=talosctl]"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/siderolabs/talos/registry.yaml",
       "license": "MPL-2.0",
@@ -13108,12 +12906,6 @@
       "last_updated": "2025-01-29T02:08:57.000Z",
       "github": "vmware-tanzu/tanzu-cli",
       "repo_url": "https://github.com/vmware-tanzu/tanzu-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vmware-tanzu/tanzu-cli[rename_exe=tanzu]"
       ],
@@ -13130,6 +12922,7 @@
       "repo_url": "https://github.com/tamasfe/taplo",
       "backends": [
         "aqua:tamasfe/taplo",
+        "ubi:tamasfe/taplo",
         "cargo:taplo-cli"
       ],
       "package_urls": {
@@ -13150,6 +12943,7 @@
       "repo_url": "https://github.com/go-task/task",
       "backends": [
         "aqua:go-task/task",
+        "ubi:go-task/task",
         "asdf:particledecay/asdf-task"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/go-task/task/registry.yaml",
@@ -13166,7 +12960,8 @@
       "github": "k1LoW/tbls",
       "repo_url": "https://github.com/k1LoW/tbls",
       "backends": [
-        "aqua:k1LoW/tbls"
+        "aqua:k1LoW/tbls",
+        "ubi:k1LoW/tbls"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/k1LoW/tbls/registry.yaml",
       "license": "MIT",
@@ -13531,6 +13326,7 @@
       "repo_url": "https://github.com/terraform-linters/tflint",
       "backends": [
         "aqua:terraform-linters/tflint",
+        "ubi:terraform-linters/tflint",
         "asdf:skyzyx/asdf-tflint"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/terraform-linters/tflint/registry.yaml",
@@ -13609,12 +13405,6 @@
       "last_updated": "2025-12-15T21:37:41.000Z",
       "github": "warrensbox/terraform-switcher",
       "repo_url": "https://github.com/warrensbox/terraform-switcher",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:warrensbox/terraform-switcher[exe=tfswitch]",
         "asdf:iul1an/asdf-tfswitch"
@@ -13693,6 +13483,7 @@
       "repo_url": "https://github.com/Myriad-Dreamin/tinymist",
       "backends": [
         "aqua:Myriad-Dreamin/tinymist",
+        "ubi:Myriad-Dreamin/tinymist",
         "cargo:tinymist"
       ],
       "package_urls": {
@@ -13739,6 +13530,7 @@
       "repo_url": "https://github.com/tldr-pages/tlrc",
       "backends": [
         "aqua:tldr-pages/tlrc",
+        "ubi:tldr-pages/tlrc",
         "cargo:tlrc"
       ],
       "package_urls": {
@@ -13768,6 +13560,7 @@
       "backends": [
         "cargo:tokei",
         "aqua:XAMPPRocky/tokei",
+        "ubi:XAMPPRocky/tokei",
         "asdf:gasuketsu/asdf-tokei"
       ],
       "package_urls": {
@@ -13788,7 +13581,8 @@
       "github": "tombi-toml/tombi",
       "repo_url": "https://github.com/tombi-toml/tombi",
       "backends": [
-        "aqua:tombi-toml/tombi"
+        "aqua:tombi-toml/tombi",
+        "ubi:tombi-toml/tombi"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/tombi-toml/tombi/registry.yaml",
       "license": "MIT",
@@ -13813,12 +13607,6 @@
       "last_updated": "2024-07-15T20:03:03.000Z",
       "github": "elementalvoid/tonnage",
       "repo_url": "https://github.com/elementalvoid/tonnage",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:elementalvoid/tonnage",
         "asdf:elementalvoid/asdf-tonnage"
@@ -13834,12 +13622,6 @@
       "last_updated": "2025-12-17T09:56:04.000Z",
       "github": "traefik/traefik",
       "repo_url": "https://github.com/traefik/traefik",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:traefik/traefik",
         "asdf:Dabolus/asdf-traefik"
@@ -13856,12 +13638,6 @@
       "last_updated": "2024-09-05T06:37:16.000Z",
       "github": "transifex/cli",
       "repo_url": "https://github.com/transifex/cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:transifex/cli[exe=tx]",
         "asdf:ORCID/asdf-transifex"
@@ -13963,6 +13739,7 @@
       "repo_url": "https://github.com/trzsz/trzsz-ssh",
       "backends": [
         "aqua:trzsz/trzsz-ssh",
+        "ubi:trzsz/trzsz-ssh",
         "go:github.com/trzsz/trzsz-ssh/cmd/tssh"
       ],
       "package_urls": {
@@ -13983,6 +13760,7 @@
       "repo_url": "https://github.com/trzsz/trzsz-ssh",
       "backends": [
         "aqua:trzsz/trzsz-ssh",
+        "ubi:trzsz/trzsz-ssh",
         "go:github.com/trzsz/trzsz-ssh/cmd/tssh"
       ],
       "package_urls": {
@@ -14001,12 +13779,6 @@
       "last_updated": "2025-09-15T17:55:27.000Z",
       "github": "tsuru/tsuru-client",
       "repo_url": "https://github.com/tsuru/tsuru-client",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:tsuru/tsuru-client[exe=tsuru]",
         "asdf:virtualstaticvoid/asdf-tsuru"
@@ -14056,12 +13828,6 @@
       "last_updated": "2025-04-02T07:35:50.000Z",
       "github": "tus/tusd",
       "repo_url": "https://github.com/tus/tusd",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:tus/tusd"
       ],
@@ -14079,6 +13845,7 @@
       "repo_url": "https://github.com/crate-ci/typos",
       "backends": [
         "aqua:crate-ci/typos",
+        "ubi:crate-ci/typos",
         "asdf:aschiavon91/asdf-typos",
         "cargo:typos-cli"
       ],
@@ -14099,6 +13866,7 @@
       "repo_url": "https://github.com/typst/typst",
       "backends": [
         "aqua:typst/typst",
+        "ubi:typst/typst",
         "asdf:stephane-klein/asdf-typst",
         "cargo:typst-cli"
       ],
@@ -14120,6 +13888,7 @@
       "repo_url": "https://github.com/Enter-tainer/typstyle",
       "backends": [
         "aqua:Enter-tainer/typstyle",
+        "ubi:Enter-tainer/typstyle",
         "cargo:typstyle"
       ],
       "package_urls": {
@@ -14140,6 +13909,7 @@
       "repo_url": "https://github.com/cloudfoundry/uaa-cli",
       "backends": [
         "aqua:cloudfoundry/uaa-cli",
+        "ubi:cloudfoundry/uaa-cli[exe=uaa]",
         "asdf:mise-plugins/tanzu-plug-in-for-asdf"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudfoundry/uaa-cli/registry.yaml",
@@ -14156,6 +13926,7 @@
       "repo_url": "https://github.com/cloudfoundry/uaa-cli",
       "backends": [
         "aqua:cloudfoundry/uaa-cli",
+        "ubi:cloudfoundry/uaa-cli[exe=uaa]",
         "asdf:mise-plugins/tanzu-plug-in-for-asdf"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cloudfoundry/uaa-cli/registry.yaml",
@@ -14171,7 +13942,8 @@
       "github": "houseabsolute/ubi",
       "repo_url": "https://github.com/houseabsolute/ubi",
       "backends": [
-        "aqua:houseabsolute/ubi"
+        "aqua:houseabsolute/ubi",
+        "ubi:houseabsolute/ubi"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/houseabsolute/ubi/registry.yaml",
       "license": "Apache-2.0",
@@ -14266,6 +14038,7 @@
       "repo_url": "https://github.com/jdx/usage",
       "backends": [
         "aqua:jdx/usage",
+        "ubi:jdx/usage",
         "asdf:mise-plugins/mise-usage",
         "cargo:usage-cli"
       ],
@@ -14301,8 +14074,10 @@
       "last_updated": "2025-12-16T13:32:35.000Z",
       "github": "astral-sh/uv",
       "repo_url": "https://github.com/astral-sh/uv",
+      "description": "An extremely fast Python package installer and resolver, written in Rust",
       "backends": [
         "aqua:astral-sh/uv",
+        "ubi:astral-sh/uv",
         "asdf:asdf-community/asdf-uv",
         "pipx:uv"
       ],
@@ -14311,8 +14086,7 @@
       },
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/astral-sh/uv/registry.yaml",
       "license": "Apache-2.0",
-      "homepage": "https://docs.astral.sh/uv",
-      "description": "An extremely fast Python package and project manager, written in Rust."
+      "homepage": "https://docs.astral.sh/uv"
     },
     {
       "name": "v",
@@ -14479,12 +14253,6 @@
       "last_updated": "2025-12-11T11:32:53.000Z",
       "github": "vespa-engine/vespa",
       "repo_url": "https://github.com/vespa-engine/vespa",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vespa-engine/vespa"
       ],
@@ -14501,7 +14269,8 @@
       "github": "version-fox/vfox",
       "repo_url": "https://github.com/version-fox/vfox",
       "backends": [
-        "aqua:version-fox/vfox"
+        "aqua:version-fox/vfox",
+        "ubi:version-fox/vfox"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/version-fox/vfox/registry.yaml",
       "license": "Apache-2.0",
@@ -14566,6 +14335,7 @@
       "repo_url": "https://github.com/sharkdp/vivid",
       "backends": [
         "aqua:sharkdp/vivid",
+        "ubi:sharkdp/vivid",
         "cargo:vivid"
       ],
       "package_urls": {
@@ -14604,12 +14374,6 @@
       "last_updated": "2025-09-19T21:01:32.000Z",
       "github": "vultr/vultr-cli",
       "repo_url": "https://github.com/vultr/vultr-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vultr/vultr-cli",
         "asdf:ikuradon/asdf-vultr-cli"
@@ -14625,12 +14389,6 @@
       "last_updated": "2025-09-19T21:01:32.000Z",
       "github": "vultr/vultr-cli",
       "repo_url": "https://github.com/vultr/vultr-cli",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:vultr/vultr-cli",
         "asdf:ikuradon/asdf-vultr-cli"
@@ -14697,6 +14455,7 @@
       "repo_url": "https://github.com/aduros/wasm4",
       "backends": [
         "aqua:aduros/wasm4",
+        "ubi:aduros/wasm4[exe=w4]",
         "asdf:jtakakura/asdf-wasm4"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/aduros/wasm4/registry.yaml",
@@ -14748,6 +14507,7 @@
       "repo_url": "https://github.com/watchexec/watchexec",
       "backends": [
         "aqua:watchexec/watchexec",
+        "ubi:watchexec/watchexec",
         "cargo:watchexec-cli"
       ],
       "package_urls": {
@@ -14782,12 +14542,6 @@
       "last_updated": "2023-12-06T14:51:12.000Z",
       "github": "weaveworks/weave-gitops",
       "repo_url": "https://github.com/weaveworks/weave-gitops",
-      "security": [
-        {
-          "type": "checksum",
-          "algorithm": "sha256"
-        }
-      ],
       "backends": [
         "github:weaveworks/weave-gitops[exe=gitops]",
         "asdf:deas/asdf-weave-gitops"
@@ -14842,6 +14596,7 @@
       "repo_url": "https://github.com/wren-lang/wren-cli",
       "backends": [
         "aqua:wren-lang/wren-cli",
+        "ubi:wren-lang/wren-cli[exe=wren_cli]",
         "asdf:jtakakura/asdf-wren-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/wren-lang/wren-cli/registry.yaml",
@@ -14858,6 +14613,7 @@
       "repo_url": "https://github.com/wren-lang/wren-cli",
       "backends": [
         "aqua:wren-lang/wren-cli",
+        "ubi:wren-lang/wren-cli[exe=wren_cli]",
         "asdf:jtakakura/asdf-wren-cli"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/wren-lang/wren-cli/registry.yaml",
@@ -14918,6 +14674,7 @@
       "repo_url": "https://github.com/cpisciotta/xcbeautify",
       "backends": [
         "aqua:cpisciotta/xcbeautify",
+        "ubi:cpisciotta/xcbeautify",
         "asdf:mise-plugins/asdf-xcbeautify"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/cpisciotta/xcbeautify/registry.yaml",
@@ -14994,6 +14751,7 @@
       "repo_url": "https://github.com/ducaale/xh",
       "backends": [
         "aqua:ducaale/xh",
+        "ubi:ducaale/xh",
         "asdf:NeoHsu/asdf-xh",
         "cargo:xh"
       ],
@@ -15040,6 +14798,7 @@
       "repo_url": "https://github.com/google/yamlfmt",
       "backends": [
         "aqua:google/yamlfmt",
+        "ubi:google/yamlfmt",
         "asdf:mise-plugins/asdf-yamlfmt",
         "go:github.com/google/yamlfmt/cmd/yamlfmt"
       ],
@@ -15079,6 +14838,7 @@
       "repo_url": "https://github.com/yaml/yamlscript",
       "backends": [
         "aqua:yaml/yamlscript",
+        "ubi:yaml/yamlscript[matching_regex=^ys,extract_all=true]",
         "asdf:mise-plugins/mise-yamlscript"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/yaml/yamlscript/registry.yaml",
@@ -15154,6 +14914,7 @@
       "repo_url": "https://github.com/sclevine/yj",
       "backends": [
         "aqua:sclevine/yj",
+        "ubi:sclevine/yj",
         "asdf:ryodocx/asdf-yj"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/sclevine/yj/registry.yaml",
@@ -15187,6 +14948,7 @@
       "repo_url": "https://github.com/ytdl-org/ytdl-nightly",
       "backends": [
         "aqua:ytdl-org/ytdl-nightly",
+        "ubi:ytdl-org/ytdl-nightly[matching_regex=^youtube-dl$,rename_exe=youtube-dl]",
         "asdf:mise-plugins/mise-youtube-dl"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/ytdl-org/ytdl-nightly/registry.yaml",
@@ -15204,6 +14966,7 @@
       "repo_url": "https://github.com/mikefarah/yq",
       "backends": [
         "aqua:mikefarah/yq",
+        "ubi:mikefarah/yq",
         "asdf:sudermanjr/asdf-yq",
         "go:github.com/mikefarah/yq/v4"
       ],
@@ -15278,6 +15041,7 @@
       "repo_url": "https://github.com/zellij-org/zellij",
       "backends": [
         "aqua:zellij-org/zellij",
+        "ubi:zellij-org/zellij",
         "asdf:chessmango/asdf-zellij",
         "cargo:zellij"
       ],
@@ -15299,6 +15063,7 @@
       "repo_url": "https://github.com/MaybeJustJames/zephyr",
       "backends": [
         "aqua:MaybeJustJames/zephyr",
+        "ubi:MaybeJustJames/zephyr",
         "asdf:nsaunders/asdf-zephyr"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/MaybeJustJames/zephyr/registry.yaml",
@@ -15357,6 +15122,7 @@
       "repo_url": "https://github.com/zizmorcore/zizmor",
       "backends": [
         "aqua:zizmorcore/zizmor",
+        "ubi:zizmorcore/zizmor",
         "cargo:zizmor"
       ],
       "package_urls": {
@@ -15376,7 +15142,8 @@
       "github": "zigtools/zls",
       "repo_url": "https://github.com/zigtools/zls",
       "backends": [
-        "aqua:zigtools/zls"
+        "aqua:zigtools/zls",
+        "ubi:zigtools/zls"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/zigtools/zls/registry.yaml",
       "license": "MIT",
@@ -15393,6 +15160,7 @@
       "repo_url": "https://github.com/getzola/zola",
       "backends": [
         "aqua:getzola/zola",
+        "ubi:getzola/zola",
         "asdf:salasrod/asdf-zola"
       ],
       "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/getzola/zola/registry.yaml",
@@ -15410,6 +15178,7 @@
       "repo_url": "https://github.com/ajeetdsouza/zoxide",
       "backends": [
         "aqua:ajeetdsouza/zoxide",
+        "ubi:ajeetdsouza/zoxide",
         "cargo:zoxide"
       ],
       "package_urls": {
