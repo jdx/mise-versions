@@ -19,22 +19,20 @@ try {
   console.error('Failed to load tools.json from R2:', e);
 }
 
-// Fetch downloads data
+// Fetch downloads and trending data
 let downloads: Record<string, number> = {};
-let sparklines: Record<string, number[]> = {};
+let trendingTools: Array<{
+  name: string;
+  downloads_30d: number;
+  trendingScore: number;
+  dailyBoost: number;
+  sparkline: number[];
+}> = [];
 try {
   const db = drizzle(runtime.env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
   downloads = await analytics.getAll30DayDownloads();
-
-  // Get top 6 tools for sparklines
-  const topTools = toolsData.tools
-    .map(t => ({ name: t.name, downloads: downloads[t.name] || 0 }))
-    .sort((a, b) => b.downloads - a.downloads)
-    .slice(0, 6)
-    .map(t => t.name);
-
-  sparklines = await analytics.getBatchSparklines(topTools);
+  trendingTools = await analytics.getTrendingTools(6);
 } catch (e) {
   console.error('Failed to fetch downloads:', e);
 }
@@ -45,5 +43,5 @@ try {
     <h1 class="text-2xl font-bold text-gray-100 mb-2">mise tools</h1>
   </div>
 
-  <ToolSearch client:load tools={toolsData.tools} downloads={downloads} sparklines={sparklines} />
+  <ToolSearch client:load tools={toolsData.tools} downloads={downloads} trendingTools={trendingTools} />
 </Layout>

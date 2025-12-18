@@ -17,10 +17,18 @@ interface Tool {
   github?: string;
 }
 
+interface TrendingTool {
+  name: string;
+  downloads_30d: number;
+  trendingScore: number;
+  dailyBoost: number;
+  sparkline: number[];
+}
+
 interface Props {
   tools: Tool[];
   downloads: Record<string, number>;
-  sparklines?: Record<string, number[]>;
+  trendingTools?: TrendingTool[];
 }
 
 // Mini sparkline SVG component
@@ -87,7 +95,7 @@ function getInitialState() {
   };
 }
 
-export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
+export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
   const initial = getInitialState();
   const [search, setSearch] = useState(initial.search);
   const [sortBy, setSortBy] = useState<SortKey>(initial.sortBy);
@@ -229,13 +237,17 @@ export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
     window.location.href = `/tools/${name}`;
   };
 
+  // Merge trending tools with tool metadata
   const hotTools = useMemo(() => {
-    if (!tools || !downloads) return [];
-    return tools
-      .map((t) => ({ ...t, downloads_30d: downloads[t.name] || 0 }))
-      .sort((a, b) => b.downloads_30d - a.downloads_30d)
-      .slice(0, 6);
-  }, [tools, downloads]);
+    if (!tools || trendingTools.length === 0) return [];
+    const toolMap = new Map(tools.map(t => [t.name, t]));
+    return trendingTools
+      .map(t => {
+        const meta = toolMap.get(t.name);
+        return meta ? { ...meta, ...t } : null;
+      })
+      .filter((t): t is Tool & TrendingTool => t !== null);
+  }, [tools, trendingTools]);
 
   const SortButton = ({ label, sortKey }: { label: string; sortKey: SortKey }) => (
     <button
@@ -270,7 +282,7 @@ export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
         <div class="mb-8">
           <h2 class="text-sm font-medium text-gray-400 mb-4 flex items-center gap-2">
             <span class="text-orange-400">🔥</span> Hot Tools
-            <span class="text-xs text-gray-500">(30 day downloads)</span>
+            <span class="text-xs text-gray-500">(trending + 30d downloads)</span>
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {hotTools.map((tool, index) => (
@@ -285,6 +297,8 @@ export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
                     <span class="text-base font-semibold text-gray-100 group-hover:text-neon-purple transition-colors">
                       {tool.name}
                     </span>
+                    {tool.dailyBoost > 40 && <span class="text-orange-400" title="Hot! 1.4x+ recent activity">🔥</span>}
+                    {tool.dailyBoost > 20 && tool.dailyBoost <= 40 && <span class="text-green-400" title="Trending 1.2x+ recent activity">↑</span>}
                   </div>
                   <span class="text-sm font-semibold text-neon-blue">{(tool.downloads_30d / 1000).toFixed(1)}k</span>
                 </div>
@@ -300,7 +314,7 @@ export function ToolSearch({ tools, downloads, sparklines = {} }: Props) {
                     )}
                     <span class="text-xs text-gray-500">{tool.version_count} versions</span>
                   </div>
-                  {sparklines[tool.name] && <Sparkline data={sparklines[tool.name]} />}
+                  {tool.sparkline && <Sparkline data={tool.sparkline} />}
                 </div>
               </a>
             ))}

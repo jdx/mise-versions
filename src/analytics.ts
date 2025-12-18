@@ -1346,6 +1346,116 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       return result;
     },
 
+    // Get trending tools combining monthly popularity + daily momentum
+    async getTrendingTools(limit: number = 6): Promise<Array<{
+      name: string;
+      downloads_30d: number;
+      trendingScore: number;
+      dailyBoost: number;
+      sparkline: number[];
+    }>> {
+      const now = Math.floor(Date.now() / 1000);
+      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
+
+      // Get 30-day totals and daily breakdown for all tools
+      const dailyData = await db
+        .select({
+          tool_id: dailyToolStats.tool_id,
+          name: tools.name,
+          date: dailyToolStats.date,
+          downloads: dailyToolStats.downloads,
+        })
+        .from(dailyToolStats)
+        .innerJoin(tools, eq(dailyToolStats.tool_id, tools.id))
+        .where(sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`)
+        .orderBy(dailyToolStats.date)
+        .all();
+
+      // Group by tool
+      const toolData = new Map<string, { total: number; daily: Map<string, number> }>();
+      for (const row of dailyData) {
+        if (!toolData.has(row.name)) {
+          toolData.set(row.name, { total: 0, daily: new Map() });
+        }
+        const data = toolData.get(row.name)!;
+        data.total += row.downloads;
+        data.daily.set(row.date, row.downloads);
+      }
+
+      if (toolData.size === 0) return [];
+
+      // Find max downloads for normalization
+      const maxDownloads = Math.max(...[...toolData.values()].map(d => d.total), 1);
+
+      // Calculate trending scores
+      const results: Array<{
+        name: string;
+        downloads_30d: number;
+        trendingScore: number;
+        dailyBoost: number;
+        sparkline: number[];
+      }> = [];
+
+      for (const [name, data] of toolData) {
+        // Build sparkline (last 13 days, excluding today)
+        const sparkline: number[] = [];
+        for (let i = 13; i >= 1; i--) {
+          const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
+          sparkline.push(data.daily.get(date) ?? 0);
+        }
+
+        // Calculate recent vs baseline averages (excluding today)
+        let recentSum = 0;
+        let recentDays = 0;
+        let baselineSum = 0;
+        let baselineDays = 0;
+
+        for (let i = 1; i <= 30; i++) {
+          const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
+          const downloads = data.daily.get(date) ?? 0;
+
+          if (i <= 3) {
+            // Recent: last 3 days (excluding today)
+            recentSum += downloads;
+            recentDays++;
+          } else {
+            // Baseline: days 4-30
+            baselineSum += downloads;
+            baselineDays++;
+          }
+        }
+
+        const recentAvg = recentDays > 0 ? recentSum / recentDays : 0;
+        const baselineAvg = baselineDays > 0 ? baselineSum / baselineDays : 0;
+
+        // Calculate daily boost (0-50, based on recent momentum)
+        let dailyBoost = 0;
+        if (baselineAvg > 0 && recentAvg > baselineAvg) {
+          const ratio = recentAvg / baselineAvg;
+          dailyBoost = Math.min(50, (ratio - 1) * 100);
+        }
+
+        // Monthly score normalized to 0-100
+        const monthlyScore = (data.total / maxDownloads) * 100;
+
+        // Total trending score
+        const trendingScore = monthlyScore + dailyBoost;
+
+        results.push({
+          name,
+          downloads_30d: data.total,
+          trendingScore,
+          dailyBoost,
+          sparkline,
+        });
+      }
+
+      // Sort by trending score descending
+      results.sort((a, b) => b.trendingScore - a.trendingScore);
+
+      return results.slice(0, limit);
+    },
+
     // Backfill rollup tables for the last N days (one-time migration)
     async backfillRollupTables(days: number = 90, d1?: D1Database): Promise<{ daysProcessed: number }> {
       let daysProcessed = 0;
