@@ -1847,10 +1847,10 @@
     },
     {
       "name": "cfn-lint",
-      "latest_version": "1.43.0",
-      "latest_stable_version": "1.43.0",
-      "version_count": 420,
-      "last_updated": "2025-12-15T18:20:38.000Z",
+      "latest_version": "1.43.1",
+      "latest_stable_version": "1.43.1",
+      "version_count": 421,
+      "last_updated": "2025-12-18T20:25:36.000Z",
       "backends": [
         "pipx:cfn-lint"
       ],
@@ -2949,10 +2949,10 @@
     },
     {
       "name": "crush",
-      "latest_version": "0.27.0",
-      "latest_stable_version": "0.27.0",
-      "version_count": 84,
-      "last_updated": "2025-12-17T18:56:28.000Z",
+      "latest_version": "0.28.0",
+      "latest_stable_version": "0.28.0",
+      "version_count": 85,
+      "last_updated": "2025-12-18T21:11:12.000Z",
       "github": "charmbracelet/crush",
       "repo_url": "https://github.com/charmbracelet/crush",
       "backends": [
