@@ -1,23 +1,23 @@
 [versions]
-"2.6.6-fl.4-main-0d5eae51" = { created_at = 2023-03-19T12:01:26.000Z }
-"2.6.7-fl.4-main-c4ce7dcc" = { created_at = 2023-03-24T07:30:34.000Z }
-"2.7.2-fl.6-main-b1742696" = { created_at = 2023-05-14T11:51:35.000Z }
-"2.7.3-fl.6-main-9462532b" = { created_at = 2023-05-28T14:53:35.000Z }
-"2.7.5-fl.6-main-07ce8cf3" = { created_at = 2023-06-20T05:37:50.000Z }
-"2.7.6-fl.15-main-52691a11" = { created_at = 2023-06-22T12:57:30.000Z }
-"2.7.7-fl.15-main-cdbce523" = { created_at = 2023-07-06T12:07:26.000Z }
-"2.8.0-rc2-fl.15-main-ed1f41f7" = { created_at = 2023-07-06T12:08:10.000Z }
-"2.7.10-fl.15-main-688d2fd7" = { created_at = 2023-08-03T12:42:26.000Z }
-"0.5.0" = { created_at = 2023-10-30T06:55:30.000Z }
-"0.5.1" = { created_at = 2023-11-01T18:30:47.000Z }
-"0.6.0" = { created_at = 2023-11-07T10:47:44.000Z }
-"0.6.1" = { created_at = 2023-11-07T17:13:33.000Z }
-"0.7.0" = { created_at = 2023-12-29T17:58:50.000Z }
-"0.8.0" = { created_at = 2024-02-10T11:51:25.000Z }
-"0.8.1" = { created_at = 2024-02-10T13:20:34.000Z }
-"0.8.2" = { created_at = 2024-02-10T14:13:02.000Z }
-"0.8.3" = { created_at = 2024-02-16T07:05:26.000Z }
-"0.9.0" = { created_at = 2024-02-25T17:31:03.000Z }
-"0.10.0" = { created_at = 2024-02-27T16:07:37.000Z }
-"0.10.1" = { created_at = 2024-03-04T13:45:53.000Z }
-"0.10.2" = { created_at = 2024-03-05T14:00:33.000Z }
+"2.6.6-fl.4-main-0d5eae51" = { created_at = 2023-03-19T12:01:26.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.6.6-fl.4-main-0d5eae51" }
+"2.6.7-fl.4-main-c4ce7dcc" = { created_at = 2023-03-24T07:30:34.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.6.7-fl.4-main-c4ce7dcc" }
+"2.7.2-fl.6-main-b1742696" = { created_at = 2023-05-14T11:51:35.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.7.2-fl.6-main-b1742696" }
+"2.7.3-fl.6-main-9462532b" = { created_at = 2023-05-28T14:53:35.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.7.3-fl.6-main-9462532b" }
+"2.7.5-fl.6-main-07ce8cf3" = { created_at = 2023-06-20T05:37:50.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.7.5-fl.6-main-07ce8cf3" }
+"2.7.6-fl.15-main-52691a11" = { created_at = 2023-06-22T12:57:30.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.7.6-fl.15-main-52691a11" }
+"2.7.7-fl.15-main-cdbce523" = { created_at = 2023-07-06T12:07:26.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.7.7-fl.15-main-cdbce523" }
+"2.8.0-rc2-fl.15-main-ed1f41f7" = { created_at = 2023-07-06T12:08:10.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.8.0-rc2-fl.15-main-ed1f41f7" }
+"2.7.10-fl.15-main-688d2fd7" = { created_at = 2023-08-03T12:42:26.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v2.7.10-fl.15-main-688d2fd7" }
+"0.5.0" = { created_at = 2023-10-30T06:55:30.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2023-11-01T18:30:47.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.5.1" }
+"0.6.0" = { created_at = 2023-11-07T10:47:44.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2023-11-07T17:13:33.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.6.1" }
+"0.7.0" = { created_at = 2023-12-29T17:58:50.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2024-02-10T11:51:25.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2024-02-10T13:20:34.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2024-02-10T14:13:02.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.8.2" }
+"0.8.3" = { created_at = 2024-02-16T07:05:26.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.8.3" }
+"0.9.0" = { created_at = 2024-02-25T17:31:03.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.9.0" }
+"0.10.0" = { created_at = 2024-02-27T16:07:37.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.10.0" }
+"0.10.1" = { created_at = 2024-03-04T13:45:53.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.10.1" }
+"0.10.2" = { created_at = 2024-03-05T14:00:33.000Z, release_url = "https://github.com/flux-subsystem-argo/flamingo/releases/tag/v0.10.2" }

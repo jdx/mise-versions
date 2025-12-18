@@ -1,182 +1,182 @@
 [versions]
-"1.0.0" = { created_at = 2018-07-21T01:02:52.000Z }
-"1.1.0" = { created_at = 2018-07-21T15:34:58.000Z }
-"1.1.1" = { created_at = 2018-07-21T18:29:32.000Z }
-"1.1.2" = { created_at = 2018-07-23T01:16:09.000Z }
-"1.2.0" = { created_at = 2018-08-10T19:59:52.000Z }
-"1.3.0" = { created_at = 2018-09-13T00:33:46.000Z }
-"1.4.0" = { created_at = 2018-09-26T19:28:22.000Z }
-"1.5.0" = { created_at = 2018-09-30T03:11:40.000Z }
-"1.6.0" = { created_at = 2018-10-02T02:21:19.000Z }
-"1.6.1" = { created_at = 2018-10-02T03:44:25.000Z }
-"1.7.0" = { created_at = 2018-10-02T14:52:18.000Z }
-"1.7.1" = { created_at = 2018-10-02T17:34:05.000Z }
-"1.7.2" = { created_at = 2018-10-04T14:47:18.000Z }
-"1.7.3" = { created_at = 2018-10-07T00:31:14.000Z }
-"1.8.0" = { created_at = 2018-10-07T23:26:18.000Z }
-"1.9.0" = { created_at = 2018-10-07T23:42:42.000Z }
-"1.10.0" = { created_at = 2018-10-09T23:46:21.000Z }
-"1.11.0" = { created_at = 2018-10-10T02:13:29.000Z }
-"1.11.1" = { created_at = 2018-10-10T14:50:28.000Z }
-"1.12.0" = { created_at = 2018-10-12T23:53:38.000Z }
-"1.12.1" = { created_at = 2018-10-17T12:42:20.000Z }
-"1.13.0" = { created_at = 2018-10-20T22:28:42.000Z }
-"1.14.0" = { created_at = 2018-10-22T23:55:51.000Z }
-"1.15.0" = { created_at = 2018-10-23T21:38:17.000Z }
-"1.16.0" = { created_at = 2018-10-24T21:56:01.000Z }
-"1.16.1" = { created_at = 2018-10-25T17:38:14.000Z }
-"1.17.0" = { created_at = 2018-10-26T19:04:15.000Z }
-"1.18.0" = { created_at = 2018-10-28T00:30:58.000Z }
-"1.19.0" = { created_at = 2018-11-03T16:37:21.000Z }
-"1.19.1" = { created_at = 2018-11-06T00:18:36.000Z }
-"1.19.2" = { created_at = 2018-11-07T04:35:26.000Z }
-"1.19.3" = { created_at = 2018-11-08T01:39:52.000Z }
-"1.20.0" = { created_at = 2018-11-13T03:45:35.000Z }
-"1.21.0" = { created_at = 2018-11-18T14:43:05.000Z }
-"1.22.0" = { created_at = 2018-12-10T15:48:48.000Z }
-"1.23.0" = { created_at = 2019-01-07T01:57:46.000Z }
-"1.24.0" = { created_at = 2019-02-07T02:06:20.000Z }
-"1.25.0" = { created_at = 2019-03-30T00:27:54.000Z }
-"1.25.1" = { created_at = 2019-03-30T20:29:52.000Z }
-"2.0.0" = { created_at = 2019-04-17T00:00:12.000Z }
-"2.1.0" = { created_at = 2019-08-01T22:39:09.000Z }
-"3.0.0" = { created_at = 2019-11-15T19:52:05.000Z }
-"3.0.1" = { created_at = 2019-11-17T18:12:54.000Z }
-"3.0.2" = { created_at = 2019-11-23T14:56:27.000Z }
-"3.0.3" = { created_at = 2019-11-30T15:44:23.000Z }
-"3.1.0" = { created_at = 2020-01-11T22:01:53.000Z }
-"3.2.0" = { created_at = 2020-01-19T17:41:07.000Z }
-"3.2.1" = { created_at = 2020-01-22T23:10:23.000Z }
-"3.2.2" = { created_at = 2020-01-23T01:42:14.000Z }
-"3.3.0" = { created_at = 2020-02-01T21:48:05.000Z }
-"4.0.0" = { created_at = 2020-02-26T22:38:16.000Z }
-"4.0.1" = { created_at = 2020-02-27T01:41:54.000Z }
-"4.1.0" = { created_at = 2020-03-03T01:24:22.000Z }
-"4.1.1" = { created_at = 2020-04-05T15:36:37.000Z }
-"4.2.0" = { created_at = 2020-05-09T15:37:08.000Z }
-"4.3.0" = { created_at = 2020-05-31T14:25:58.000Z }
-"4.3.1" = { created_at = 2020-06-03T12:51:11.000Z }
-"5.0.0" = { created_at = 2020-07-24T15:58:43.000Z }
-"5.0.1" = { created_at = 2020-07-25T18:55:59.000Z }
-"6.0.0" = { created_at = 2020-08-12T22:07:24.000Z }
-"6.1.0" = { created_at = 2020-08-31T14:29:04.000Z }
-"6.1.1" = { created_at = 2020-09-02T00:48:43.000Z }
-"6.1.2" = { created_at = 2020-09-02T12:36:19.000Z }
-"6.2.0" = { created_at = 2020-11-03T20:15:48.000Z }
-"7.0.0" = { created_at = 2020-12-02T22:11:47.000Z }
-"7.0.1" = { created_at = 2020-12-03T21:56:16.000Z }
-"7.0.2" = { created_at = 2020-12-05T16:57:43.000Z }
-"7.1.0" = { created_at = 2020-12-08T22:41:02.000Z }
-"7.1.1" = { created_at = 2020-12-09T18:21:15.000Z }
-"7.1.2" = { created_at = 2020-12-09T20:55:01.000Z }
-"7.2.0" = { created_at = 2020-12-11T14:56:09.000Z }
-"7.2.1" = { created_at = 2021-01-22T16:49:21.000Z }
-"7.2.2" = { created_at = 2021-02-03T18:48:59.000Z }
-"7.3.0" = { created_at = 2021-03-05T21:19:24.000Z }
-"7.4.0" = { created_at = 2021-04-09T18:07:23.000Z }
-"7.4.1" = { created_at = 2021-04-22T22:07:07.000Z }
-"7.5.0" = { created_at = 2021-05-05T13:10:47.000Z }
-"7.6.0" = { created_at = 2021-09-04T00:32:33.000Z }
-"7.6.1" = { created_at = 2021-09-09T16:46:31.000Z }
-"8.0.0" = { created_at = 2021-11-22T18:19:03.000Z }
-"8.0.1" = { created_at = 2021-11-24T13:48:26.000Z }
-"8.0.2" = { created_at = 2021-11-24T14:07:32.000Z }
-"8.0.3" = { created_at = 2021-11-25T02:31:42.000Z }
-"8.0.4" = { created_at = 2021-11-25T17:39:58.000Z }
-"8.0.5" = { created_at = 2021-11-30T15:50:42.000Z }
-"8.0.6" = { created_at = 2021-11-30T18:31:59.000Z }
-"8.0.7" = { created_at = 2021-12-02T17:02:43.000Z }
-"8.1.0" = { created_at = 2021-12-03T02:07:34.000Z }
-"8.1.1" = { created_at = 2021-12-06T17:12:16.000Z }
-"8.1.2" = { created_at = 2021-12-08T01:13:20.000Z }
-"8.1.3" = { created_at = 2021-12-08T21:09:49.000Z }
-"8.2.0" = { created_at = 2021-12-09T15:25:50.000Z }
-"8.2.1" = { created_at = 2021-12-12T18:26:47.000Z }
-"8.2.2" = { created_at = 2021-12-17T16:13:44.000Z }
-"8.2.3" = { created_at = 2021-12-17T23:29:50.000Z }
-"8.2.4" = { created_at = 2021-12-22T00:10:59.000Z }
-"8.2.5" = { created_at = 2021-12-29T01:13:26.000Z }
-"8.2.6" = { created_at = 2022-01-07T15:00:46.000Z }
-"8.2.7" = { created_at = 2022-01-07T17:00:57.000Z }
-"8.3.0" = { created_at = 2022-02-22T23:12:49.000Z }
-"8.4.0" = { created_at = 2022-03-12T17:54:32.000Z }
-"8.5.0" = { created_at = 2022-03-21T14:27:27.000Z }
-"8.5.1" = { created_at = 2022-03-22T19:35:22.000Z }
-"8.5.2" = { created_at = 2022-03-28T13:20:34.000Z }
-"8.5.3" = { created_at = 2022-03-29T16:55:33.000Z }
-"8.6.0" = { created_at = 2022-04-05T16:51:48.000Z }
-"8.6.1" = { created_at = 2022-04-06T15:30:59.000Z }
-"8.7.0" = { created_at = 2022-04-16T22:42:30.000Z }
-"8.7.1" = { created_at = 2022-04-19T02:03:39.000Z }
-"8.7.2" = { created_at = 2022-04-20T23:34:31.000Z }
-"8.8.0" = { created_at = 2022-04-21T13:32:36.000Z }
-"8.8.1" = { created_at = 2022-04-21T22:01:46.000Z }
-"8.8.2" = { created_at = 2022-04-23T16:19:19.000Z }
-"8.8.3" = { created_at = 2022-04-27T12:30:13.000Z }
-"8.8.4" = { created_at = 2022-04-28T02:51:16.000Z }
-"8.8.5" = { created_at = 2022-05-25T13:12:54.000Z }
-"8.8.6" = { created_at = 2022-05-28T16:54:59.000Z }
-"8.8.7" = { created_at = 2022-06-02T21:50:03.000Z }
-"8.8.8" = { created_at = 2022-06-20T20:08:19.000Z }
-"8.8.9" = { created_at = 2022-06-27T18:42:31.000Z }
-"8.8.10" = { created_at = 2022-06-27T22:06:35.000Z }
-"8.8.11" = { created_at = 2022-06-28T11:13:42.000Z }
-"8.8.12" = { created_at = 2022-07-11T15:48:11.000Z }
-"8.9.0" = { created_at = 2022-07-27T23:28:31.000Z }
-"8.10.0" = { created_at = 2022-08-07T18:20:41.000Z }
-"8.10.1" = { created_at = 2022-08-08T12:56:33.000Z }
-"8.10.2" = { created_at = 2022-08-08T19:49:53.000Z }
-"8.10.3" = { created_at = 2022-08-12T14:25:23.000Z }
-"8.11.0" = { created_at = 2022-08-17T00:43:45.000Z }
-"8.11.1" = { created_at = 2022-08-24T22:55:57.000Z }
-"8.11.2" = { created_at = 2022-08-26T14:49:04.000Z }
-"8.12.0" = { created_at = 2022-09-04T14:09:48.000Z }
-"8.13.0" = { created_at = 2022-09-22T01:02:06.000Z }
-"8.14.0" = { created_at = 2022-10-10T21:12:37.000Z }
-"8.14.1" = { created_at = 2022-10-11T12:13:06.000Z }
-"8.15.0" = { created_at = 2022-10-13T14:12:07.000Z }
-"8.15.1" = { created_at = 2022-11-20T18:35:24.000Z }
-"8.15.2" = { created_at = 2022-12-02T01:15:04.000Z }
-"8.15.3" = { created_at = 2023-01-22T02:16:02.000Z }
-"8.15.4" = { created_at = 2023-02-25T15:02:50.000Z }
-"8.16.0" = { created_at = 2023-02-26T14:55:42.000Z }
-"8.16.1" = { created_at = 2023-03-14T17:06:58.000Z }
-"8.16.2" = { created_at = 2023-03-30T13:22:43.000Z }
-"8.16.3" = { created_at = 2023-04-19T17:30:28.000Z }
-"8.16.4" = { created_at = 2023-06-06T18:30:20.000Z }
-"8.17.0" = { created_at = 2023-06-15T12:47:07.000Z }
-"8.18.0" = { created_at = 2023-08-22T19:30:01.000Z }
-"8.18.1" = { created_at = 2023-11-17T20:57:52.000Z }
-"8.18.2" = { created_at = 2024-02-01T17:06:20.000Z }
-"8.18.3" = { created_at = 2024-06-01T13:44:53.000Z }
-"8.18.4" = { created_at = 2024-06-14T15:34:41.000Z }
-"8.19.0" = { created_at = 2024-09-14T00:45:04.000Z }
-"8.19.1" = { created_at = 2024-09-14T09:02:24.000Z }
-"8.19.2" = { created_at = 2024-09-16T13:43:50.000Z }
-"8.19.3" = { created_at = 2024-09-26T14:21:10.000Z }
-"8.20.0" = { created_at = 2024-10-03T15:01:26.000Z }
-"8.20.1" = { created_at = 2024-10-07T16:55:42.000Z }
-"8.21.0" = { created_at = 2024-10-15T02:12:51.000Z }
-"8.21.1" = { created_at = 2024-10-18T11:36:40.000Z }
-"8.21.2" = { created_at = 2024-10-28T13:31:02.000Z }
-"8.21.3" = { created_at = 2024-12-19T20:36:41.000Z }
-"8.21.4" = { created_at = 2024-12-20T15:36:11.000Z }
-"8.22.0" = { created_at = 2024-12-20T15:57:53.000Z }
-"8.22.1" = { created_at = 2024-12-30T16:22:41.000Z }
-"8.23.0" = { created_at = 2025-01-13T14:53:38.000Z }
-"8.23.1" = { created_at = 2025-01-15T12:49:21.000Z }
-"8.23.2" = { created_at = 2025-01-24T14:23:34.000Z }
-"8.23.3" = { created_at = 2025-01-29T14:45:23.000Z }
-"8.24.0" = { created_at = 2025-02-20T02:06:25.000Z }
-"8.24.2" = { created_at = 2025-03-22T12:08:23.000Z }
-"8.24.3" = { created_at = 2025-04-11T14:25:21.000Z }
-"8.25.0" = { created_at = 2025-04-29T14:48:24.000Z }
-"8.25.1" = { created_at = 2025-04-30T13:49:43.000Z }
-"8.26.0" = { created_at = 2025-05-12T20:58:42.000Z }
-"8.27.0" = { created_at = 2025-06-01T16:33:58.000Z }
-"8.27.1" = { created_at = 2025-06-08T01:57:37.000Z }
-"8.27.2" = { created_at = 2025-06-09T00:33:42.000Z }
-"8.28.0" = { created_at = 2025-07-20T16:15:51.000Z }
-"8.29.0" = { created_at = 2025-11-04T21:36:48.000Z }
-"8.29.1" = { created_at = 2025-11-19T21:11:56.000Z }
-"8.30.0" = { created_at = 2025-11-26T16:26:23.000Z }
+"1.0.0" = { created_at = 2018-07-21T01:02:52.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2018-07-21T15:34:58.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2018-07-21T18:29:32.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2018-07-23T01:16:09.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.1.2" }
+"1.2.0" = { created_at = 2018-08-10T19:59:52.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.2.0" }
+"1.3.0" = { created_at = 2018-09-13T00:33:46.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2018-09-26T19:28:22.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.4.0" }
+"1.5.0" = { created_at = 2018-09-30T03:11:40.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.5.0" }
+"1.6.0" = { created_at = 2018-10-02T02:21:19.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.6.0" }
+"1.6.1" = { created_at = 2018-10-02T03:44:25.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.6.1" }
+"1.7.0" = { created_at = 2018-10-02T14:52:18.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.7.0" }
+"1.7.1" = { created_at = 2018-10-02T17:34:05.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.7.1" }
+"1.7.2" = { created_at = 2018-10-04T14:47:18.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.7.2" }
+"1.7.3" = { created_at = 2018-10-07T00:31:14.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.7.3" }
+"1.8.0" = { created_at = 2018-10-07T23:26:18.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2018-10-07T23:42:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.9.0" }
+"1.10.0" = { created_at = 2018-10-09T23:46:21.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.10.0" }
+"1.11.0" = { created_at = 2018-10-10T02:13:29.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2018-10-10T14:50:28.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.11.1" }
+"1.12.0" = { created_at = 2018-10-12T23:53:38.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2018-10-17T12:42:20.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.12.1" }
+"1.13.0" = { created_at = 2018-10-20T22:28:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.13.0" }
+"1.14.0" = { created_at = 2018-10-22T23:55:51.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.14.0" }
+"1.15.0" = { created_at = 2018-10-23T21:38:17.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.15.0" }
+"1.16.0" = { created_at = 2018-10-24T21:56:01.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.16.0" }
+"1.16.1" = { created_at = 2018-10-25T17:38:14.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.16.1" }
+"1.17.0" = { created_at = 2018-10-26T19:04:15.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.17.0" }
+"1.18.0" = { created_at = 2018-10-28T00:30:58.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.18.0" }
+"1.19.0" = { created_at = 2018-11-03T16:37:21.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.19.0" }
+"1.19.1" = { created_at = 2018-11-06T00:18:36.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.19.1" }
+"1.19.2" = { created_at = 2018-11-07T04:35:26.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.19.2" }
+"1.19.3" = { created_at = 2018-11-08T01:39:52.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.19.3" }
+"1.20.0" = { created_at = 2018-11-13T03:45:35.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.20.0" }
+"1.21.0" = { created_at = 2018-11-18T14:43:05.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.21.0" }
+"1.22.0" = { created_at = 2018-12-10T15:48:48.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.22.0" }
+"1.23.0" = { created_at = 2019-01-07T01:57:46.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.23.0" }
+"1.24.0" = { created_at = 2019-02-07T02:06:20.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.24.0" }
+"1.25.0" = { created_at = 2019-03-30T00:27:54.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.25.0" }
+"1.25.1" = { created_at = 2019-03-30T20:29:52.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v1.25.1" }
+"2.0.0" = { created_at = 2019-04-17T00:00:12.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v2.0.0" }
+"2.1.0" = { created_at = 2019-08-01T22:39:09.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v2.1.0" }
+"3.0.0" = { created_at = 2019-11-15T19:52:05.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.0.0" }
+"3.0.1" = { created_at = 2019-11-17T18:12:54.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.0.1" }
+"3.0.2" = { created_at = 2019-11-23T14:56:27.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.0.2" }
+"3.0.3" = { created_at = 2019-11-30T15:44:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.0.3" }
+"3.1.0" = { created_at = 2020-01-11T22:01:53.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.1.0" }
+"3.2.0" = { created_at = 2020-01-19T17:41:07.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.2.0" }
+"3.2.1" = { created_at = 2020-01-22T23:10:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.2.1" }
+"3.2.2" = { created_at = 2020-01-23T01:42:14.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.2.2" }
+"3.3.0" = { created_at = 2020-02-01T21:48:05.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v3.3.0" }
+"4.0.0" = { created_at = 2020-02-26T22:38:16.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.0.0" }
+"4.0.1" = { created_at = 2020-02-27T01:41:54.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.0.1" }
+"4.1.0" = { created_at = 2020-03-03T01:24:22.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.1.0" }
+"4.1.1" = { created_at = 2020-04-05T15:36:37.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.1.1" }
+"4.2.0" = { created_at = 2020-05-09T15:37:08.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.2.0" }
+"4.3.0" = { created_at = 2020-05-31T14:25:58.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.3.0" }
+"4.3.1" = { created_at = 2020-06-03T12:51:11.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v4.3.1" }
+"5.0.0" = { created_at = 2020-07-24T15:58:43.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v5.0.0" }
+"5.0.1" = { created_at = 2020-07-25T18:55:59.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v5.0.1" }
+"6.0.0" = { created_at = 2020-08-12T22:07:24.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v6.0.0" }
+"6.1.0" = { created_at = 2020-08-31T14:29:04.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v6.1.0" }
+"6.1.1" = { created_at = 2020-09-02T00:48:43.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v6.1.1" }
+"6.1.2" = { created_at = 2020-09-02T12:36:19.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v6.1.2" }
+"6.2.0" = { created_at = 2020-11-03T20:15:48.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v6.2.0" }
+"7.0.0" = { created_at = 2020-12-02T22:11:47.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.0.0" }
+"7.0.1" = { created_at = 2020-12-03T21:56:16.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.0.1" }
+"7.0.2" = { created_at = 2020-12-05T16:57:43.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.0.2" }
+"7.1.0" = { created_at = 2020-12-08T22:41:02.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.1.0" }
+"7.1.1" = { created_at = 2020-12-09T18:21:15.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.1.1" }
+"7.1.2" = { created_at = 2020-12-09T20:55:01.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.1.2" }
+"7.2.0" = { created_at = 2020-12-11T14:56:09.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.2.0" }
+"7.2.1" = { created_at = 2021-01-22T16:49:21.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.2.1" }
+"7.2.2" = { created_at = 2021-02-03T18:48:59.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.2.2" }
+"7.3.0" = { created_at = 2021-03-05T21:19:24.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.3.0" }
+"7.4.0" = { created_at = 2021-04-09T18:07:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.4.0" }
+"7.4.1" = { created_at = 2021-04-22T22:07:07.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.4.1" }
+"7.5.0" = { created_at = 2021-05-05T13:10:47.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.5.0" }
+"7.6.0" = { created_at = 2021-09-04T00:32:33.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.6.0" }
+"7.6.1" = { created_at = 2021-09-09T16:46:31.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v7.6.1" }
+"8.0.0" = { created_at = 2021-11-22T18:19:03.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.0" }
+"8.0.1" = { created_at = 2021-11-24T13:48:26.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.1" }
+"8.0.2" = { created_at = 2021-11-24T14:07:32.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.2" }
+"8.0.3" = { created_at = 2021-11-25T02:31:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.3" }
+"8.0.4" = { created_at = 2021-11-25T17:39:58.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.4" }
+"8.0.5" = { created_at = 2021-11-30T15:50:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.5" }
+"8.0.6" = { created_at = 2021-11-30T18:31:59.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.6" }
+"8.0.7" = { created_at = 2021-12-02T17:02:43.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.0.7" }
+"8.1.0" = { created_at = 2021-12-03T02:07:34.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.1.0" }
+"8.1.1" = { created_at = 2021-12-06T17:12:16.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.1.1" }
+"8.1.2" = { created_at = 2021-12-08T01:13:20.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.1.2" }
+"8.1.3" = { created_at = 2021-12-08T21:09:49.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.1.3" }
+"8.2.0" = { created_at = 2021-12-09T15:25:50.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.0" }
+"8.2.1" = { created_at = 2021-12-12T18:26:47.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.1" }
+"8.2.2" = { created_at = 2021-12-17T16:13:44.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.2" }
+"8.2.3" = { created_at = 2021-12-17T23:29:50.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.3" }
+"8.2.4" = { created_at = 2021-12-22T00:10:59.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.4" }
+"8.2.5" = { created_at = 2021-12-29T01:13:26.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.5" }
+"8.2.6" = { created_at = 2022-01-07T15:00:46.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.6" }
+"8.2.7" = { created_at = 2022-01-07T17:00:57.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.2.7" }
+"8.3.0" = { created_at = 2022-02-22T23:12:49.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.3.0" }
+"8.4.0" = { created_at = 2022-03-12T17:54:32.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.4.0" }
+"8.5.0" = { created_at = 2022-03-21T14:27:27.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.5.0" }
+"8.5.1" = { created_at = 2022-03-22T19:35:22.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.5.1" }
+"8.5.2" = { created_at = 2022-03-28T13:20:34.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.5.2" }
+"8.5.3" = { created_at = 2022-03-29T16:55:33.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.5.3" }
+"8.6.0" = { created_at = 2022-04-05T16:51:48.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.6.0" }
+"8.6.1" = { created_at = 2022-04-06T15:30:59.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.6.1" }
+"8.7.0" = { created_at = 2022-04-16T22:42:30.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.7.0" }
+"8.7.1" = { created_at = 2022-04-19T02:03:39.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.7.1" }
+"8.7.2" = { created_at = 2022-04-20T23:34:31.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.7.2" }
+"8.8.0" = { created_at = 2022-04-21T13:32:36.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.0" }
+"8.8.1" = { created_at = 2022-04-21T22:01:46.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.1" }
+"8.8.2" = { created_at = 2022-04-23T16:19:19.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.2" }
+"8.8.3" = { created_at = 2022-04-27T12:30:13.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.3" }
+"8.8.4" = { created_at = 2022-04-28T02:51:16.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.4" }
+"8.8.5" = { created_at = 2022-05-25T13:12:54.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.5" }
+"8.8.6" = { created_at = 2022-05-28T16:54:59.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.6" }
+"8.8.7" = { created_at = 2022-06-02T21:50:03.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.7" }
+"8.8.8" = { created_at = 2022-06-20T20:08:19.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.8" }
+"8.8.9" = { created_at = 2022-06-27T18:42:31.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.9" }
+"8.8.10" = { created_at = 2022-06-27T22:06:35.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.10" }
+"8.8.11" = { created_at = 2022-06-28T11:13:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.11" }
+"8.8.12" = { created_at = 2022-07-11T15:48:11.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.8.12" }
+"8.9.0" = { created_at = 2022-07-27T23:28:31.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.9.0" }
+"8.10.0" = { created_at = 2022-08-07T18:20:41.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.10.0" }
+"8.10.1" = { created_at = 2022-08-08T12:56:33.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.10.1" }
+"8.10.2" = { created_at = 2022-08-08T19:49:53.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.10.2" }
+"8.10.3" = { created_at = 2022-08-12T14:25:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.10.3" }
+"8.11.0" = { created_at = 2022-08-17T00:43:45.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.11.0" }
+"8.11.1" = { created_at = 2022-08-24T22:55:57.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.11.1" }
+"8.11.2" = { created_at = 2022-08-26T14:49:04.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.11.2" }
+"8.12.0" = { created_at = 2022-09-04T14:09:48.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.12.0" }
+"8.13.0" = { created_at = 2022-09-22T01:02:06.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.13.0" }
+"8.14.0" = { created_at = 2022-10-10T21:12:37.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.14.0" }
+"8.14.1" = { created_at = 2022-10-11T12:13:06.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.14.1" }
+"8.15.0" = { created_at = 2022-10-13T14:12:07.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.15.0" }
+"8.15.1" = { created_at = 2022-11-20T18:35:24.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.15.1" }
+"8.15.2" = { created_at = 2022-12-02T01:15:04.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.15.2" }
+"8.15.3" = { created_at = 2023-01-22T02:16:02.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.15.3" }
+"8.15.4" = { created_at = 2023-02-25T15:02:50.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.15.4" }
+"8.16.0" = { created_at = 2023-02-26T14:55:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.16.0" }
+"8.16.1" = { created_at = 2023-03-14T17:06:58.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.16.1" }
+"8.16.2" = { created_at = 2023-03-30T13:22:43.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.16.2" }
+"8.16.3" = { created_at = 2023-04-19T17:30:28.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.16.3" }
+"8.16.4" = { created_at = 2023-06-06T18:30:20.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.16.4" }
+"8.17.0" = { created_at = 2023-06-15T12:47:07.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.17.0" }
+"8.18.0" = { created_at = 2023-08-22T19:30:01.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.18.0" }
+"8.18.1" = { created_at = 2023-11-17T20:57:52.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.18.1" }
+"8.18.2" = { created_at = 2024-02-01T17:06:20.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.18.2" }
+"8.18.3" = { created_at = 2024-06-01T13:44:53.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.18.3" }
+"8.18.4" = { created_at = 2024-06-14T15:34:41.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.18.4" }
+"8.19.0" = { created_at = 2024-09-14T00:45:04.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.19.0" }
+"8.19.1" = { created_at = 2024-09-14T09:02:24.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.19.1" }
+"8.19.2" = { created_at = 2024-09-16T13:43:50.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.19.2" }
+"8.19.3" = { created_at = 2024-09-26T14:21:10.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.19.3" }
+"8.20.0" = { created_at = 2024-10-03T15:01:26.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.20.0" }
+"8.20.1" = { created_at = 2024-10-07T16:55:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.20.1" }
+"8.21.0" = { created_at = 2024-10-15T02:12:51.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.21.0" }
+"8.21.1" = { created_at = 2024-10-18T11:36:40.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.21.1" }
+"8.21.2" = { created_at = 2024-10-28T13:31:02.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.21.2" }
+"8.21.3" = { created_at = 2024-12-19T20:36:41.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.21.3" }
+"8.21.4" = { created_at = 2024-12-20T15:36:11.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.21.4" }
+"8.22.0" = { created_at = 2024-12-20T15:57:53.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.22.0" }
+"8.22.1" = { created_at = 2024-12-30T16:22:41.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.22.1" }
+"8.23.0" = { created_at = 2025-01-13T14:53:38.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.23.0" }
+"8.23.1" = { created_at = 2025-01-15T12:49:21.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.23.1" }
+"8.23.2" = { created_at = 2025-01-24T14:23:34.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.23.2" }
+"8.23.3" = { created_at = 2025-01-29T14:45:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.23.3" }
+"8.24.0" = { created_at = 2025-02-20T02:06:25.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.24.0" }
+"8.24.2" = { created_at = 2025-03-22T12:08:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.24.2" }
+"8.24.3" = { created_at = 2025-04-11T14:25:21.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.24.3" }
+"8.25.0" = { created_at = 2025-04-29T14:48:24.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.25.0" }
+"8.25.1" = { created_at = 2025-04-30T13:49:43.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.25.1" }
+"8.26.0" = { created_at = 2025-05-12T20:58:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.26.0" }
+"8.27.0" = { created_at = 2025-06-01T16:33:58.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.27.0" }
+"8.27.1" = { created_at = 2025-06-08T01:57:37.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.27.1" }
+"8.27.2" = { created_at = 2025-06-09T00:33:42.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.27.2" }
+"8.28.0" = { created_at = 2025-07-20T16:15:51.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.28.0" }
+"8.29.0" = { created_at = 2025-11-04T21:36:48.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.29.0" }
+"8.29.1" = { created_at = 2025-11-19T21:11:56.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.29.1" }
+"8.30.0" = { created_at = 2025-11-26T16:26:23.000Z, release_url = "https://github.com/gitleaks/gitleaks/releases/tag/v8.30.0" }
