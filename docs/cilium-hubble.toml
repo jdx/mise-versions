@@ -1,43 +1,43 @@
 [versions]
-"0.6.0" = { created_at = 2020-05-29T21:10:14.000Z }
-"0.6.1" = { created_at = 2020-06-05T23:35:40.000Z }
-"0.5.2" = { created_at = 2020-07-22T16:28:48.000Z }
-"0.7.0" = { created_at = 2020-10-19T18:10:44.000Z }
-"0.7.1" = { created_at = 2020-10-22T08:37:19.000Z }
-"0.8.0" = { created_at = 2021-05-03T14:18:52.000Z }
-"0.8.1" = { created_at = 2021-07-19T09:08:23.000Z }
-"0.8.2" = { created_at = 2021-09-10T09:42:14.000Z }
-"0.9.0" = { created_at = 2021-11-30T17:27:24.000Z }
-"0.10.0" = { created_at = 2022-06-22T16:31:16.000Z }
-"0.11.0" = { created_at = 2023-01-11T14:22:09.000Z }
-"0.11.1" = { created_at = 2023-01-24T17:23:39.000Z }
-"0.11.2" = { created_at = 2023-02-15T10:26:21.000Z }
-"0.11.3" = { created_at = 2023-03-15T11:13:08.000Z }
-"0.11.4" = { created_at = 2023-04-25T21:13:03.000Z }
-"0.11.5" = { created_at = 2023-05-08T13:44:21.000Z }
-"0.11.6" = { created_at = 2023-06-07T16:35:04.000Z }
-"0.12.0" = { created_at = 2023-07-10T14:02:29.000Z }
-"0.12.1" = { created_at = 2023-10-11T09:49:52.000Z }
-"0.12.2" = { created_at = 2023-10-12T11:39:11.000Z }
-"0.12.3" = { created_at = 2023-12-08T16:01:28.000Z }
-"0.13.0" = { created_at = 2024-01-15T13:08:17.000Z }
-"0.13.1" = { created_at = 2024-03-08T19:58:33.000Z }
-"0.13.2" = { created_at = 2024-03-11T17:59:26.000Z }
-"0.13.3" = { created_at = 2024-04-17T15:11:21.000Z }
-"0.13.4" = { created_at = 2024-05-13T15:07:18.000Z }
-"0.13.5" = { created_at = 2024-06-05T21:44:21.000Z }
-"0.13.6" = { created_at = 2024-07-18T18:34:28.000Z }
-"1.16.0" = { created_at = 2024-07-25T14:40:41.000Z }
-"1.16.1" = { created_at = 2024-09-12T14:42:19.000Z }
-"1.16.2" = { created_at = 2024-10-04T14:57:58.000Z }
-"1.16.3" = { created_at = 2024-10-28T15:37:26.000Z }
-"1.16.4" = { created_at = 2024-11-21T15:06:05.000Z }
-"1.16.5" = { created_at = 2024-12-18T21:58:02.000Z }
-"1.16.6" = { created_at = 2025-01-22T22:15:01.000Z }
-"1.17.0" = { created_at = 2025-02-07T12:45:55.000Z }
-"1.17.1" = { created_at = 2025-02-12T15:43:50.000Z }
-"1.17.2" = { created_at = 2025-04-01T20:56:17.000Z }
-"1.17.3" = { created_at = 2025-04-30T23:17:40.000Z }
-"1.17.5" = { created_at = 2025-06-23T09:47:56.000Z }
-"1.18.0" = { created_at = 2025-08-11T15:37:01.000Z }
-"1.18.3" = { created_at = 2025-10-24T17:57:09.000Z }
+"0.6.0" = { created_at = 2020-05-29T21:10:14.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2020-06-05T23:35:40.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.6.1" }
+"0.5.2" = { created_at = 2020-07-22T16:28:48.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.5.2" }
+"0.7.0" = { created_at = 2020-10-19T18:10:44.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2020-10-22T08:37:19.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.7.1" }
+"0.8.0" = { created_at = 2021-05-03T14:18:52.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2021-07-19T09:08:23.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2021-09-10T09:42:14.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.8.2" }
+"0.9.0" = { created_at = 2021-11-30T17:27:24.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.9.0" }
+"0.10.0" = { created_at = 2022-06-22T16:31:16.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.10.0" }
+"0.11.0" = { created_at = 2023-01-11T14:22:09.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2023-01-24T17:23:39.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.1" }
+"0.11.2" = { created_at = 2023-02-15T10:26:21.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.2" }
+"0.11.3" = { created_at = 2023-03-15T11:13:08.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.3" }
+"0.11.4" = { created_at = 2023-04-25T21:13:03.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.4" }
+"0.11.5" = { created_at = 2023-05-08T13:44:21.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.5" }
+"0.11.6" = { created_at = 2023-06-07T16:35:04.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.11.6" }
+"0.12.0" = { created_at = 2023-07-10T14:02:29.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.12.0" }
+"0.12.1" = { created_at = 2023-10-11T09:49:52.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.12.1" }
+"0.12.2" = { created_at = 2023-10-12T11:39:11.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.12.2" }
+"0.12.3" = { created_at = 2023-12-08T16:01:28.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.12.3" }
+"0.13.0" = { created_at = 2024-01-15T13:08:17.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.0" }
+"0.13.1" = { created_at = 2024-03-08T19:58:33.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.1" }
+"0.13.2" = { created_at = 2024-03-11T17:59:26.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.2" }
+"0.13.3" = { created_at = 2024-04-17T15:11:21.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.3" }
+"0.13.4" = { created_at = 2024-05-13T15:07:18.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.4" }
+"0.13.5" = { created_at = 2024-06-05T21:44:21.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.5" }
+"0.13.6" = { created_at = 2024-07-18T18:34:28.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v0.13.6" }
+"1.16.0" = { created_at = 2024-07-25T14:40:41.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.0" }
+"1.16.1" = { created_at = 2024-09-12T14:42:19.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.1" }
+"1.16.2" = { created_at = 2024-10-04T14:57:58.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.2" }
+"1.16.3" = { created_at = 2024-10-28T15:37:26.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.3" }
+"1.16.4" = { created_at = 2024-11-21T15:06:05.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.4" }
+"1.16.5" = { created_at = 2024-12-18T21:58:02.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.5" }
+"1.16.6" = { created_at = 2025-01-22T22:15:01.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.16.6" }
+"1.17.0" = { created_at = 2025-02-07T12:45:55.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.17.0" }
+"1.17.1" = { created_at = 2025-02-12T15:43:50.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.17.1" }
+"1.17.2" = { created_at = 2025-04-01T20:56:17.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.17.2" }
+"1.17.3" = { created_at = 2025-04-30T23:17:40.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.17.3" }
+"1.17.5" = { created_at = 2025-06-23T09:47:56.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.17.5" }
+"1.18.0" = { created_at = 2025-08-11T15:37:01.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.18.0" }
+"1.18.3" = { created_at = 2025-10-24T17:57:09.000Z, release_url = "https://github.com/cilium/hubble/releases/tag/v1.18.3" }
