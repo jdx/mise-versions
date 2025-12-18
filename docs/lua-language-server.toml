@@ -1,93 +1,94 @@
 [versions]
-"2.5.4" = { created_at = 2021-12-16T14:06:12.000Z }
-"2.5.5" = { created_at = 2021-12-17T08:01:02.000Z }
-"2.5.6" = { created_at = 2021-12-27T07:26:50.000Z }
-"2.6.0" = { created_at = 2022-01-13T10:48:39.000Z }
-"2.6.1" = { created_at = 2022-01-24T09:44:39.000Z }
-"2.6.2" = { created_at = 2022-01-25T09:04:31.000Z }
-"2.6.3" = { created_at = 2022-01-27T15:06:22.000Z }
-"2.6.4" = { created_at = 2022-02-09T06:10:03.000Z }
-"2.6.5" = { created_at = 2022-02-17T05:55:32.000Z }
-"2.6.6" = { created_at = 2022-02-21T13:07:16.000Z }
-"2.6.7" = { created_at = 2022-03-09T10:59:42.000Z }
-"2.6.8" = { created_at = 2022-04-08T21:43:45.000Z }
-"3.0.0" = { created_at = 2022-04-09T19:57:48.000Z }
-"3.0.1" = { created_at = 2022-04-11T11:41:34.000Z }
-"3.0.2" = { created_at = 2022-04-15T11:51:41.000Z }
-"3.1.0" = { created_at = 2022-04-17T11:33:35.000Z }
-"3.2.0" = { created_at = 2022-04-25T05:00:09.000Z }
-"3.2.1" = { created_at = 2022-04-25T06:10:44.000Z }
-"3.2.2" = { created_at = 2022-04-26T13:40:13.000Z }
-"3.2.3" = { created_at = 2022-05-16T11:01:24.000Z }
-"3.2.4" = { created_at = 2022-05-25T10:16:18.000Z }
-"3.2.5" = { created_at = 2022-06-09T08:52:13.000Z }
-"3.3.0" = { created_at = 2022-06-15T11:42:34.000Z }
-"3.3.1" = { created_at = 2022-06-18T09:36:48.000Z }
-"3.4.0" = { created_at = 2022-06-29T09:56:56.000Z }
-"3.4.1" = { created_at = 2022-07-05T08:30:36.000Z }
-"3.4.2" = { created_at = 2022-07-06T08:21:00.000Z }
-"3.5.0" = { created_at = 2022-07-19T13:21:11.000Z }
-"3.5.1" = { created_at = 2022-07-26T08:32:26.000Z }
-"3.5.2" = { created_at = 2022-08-01T09:50:49.000Z }
-"3.5.3" = { created_at = 2022-08-12T20:35:05.000Z }
-"3.5.4" = { created_at = 2022-09-06T12:11:31.000Z }
-"3.5.5" = { created_at = 2022-09-07T09:00:33.000Z }
-"3.5.6" = { created_at = 2022-09-16T07:34:45.000Z }
-"3.6.0" = { created_at = 2022-11-07T19:55:58.000Z }
-"3.6.1" = { created_at = 2022-11-08T10:28:08.000Z }
-"3.6.2" = { created_at = 2022-11-09T16:22:20.000Z }
-"3.6.3" = { created_at = 2022-11-14T07:32:09.000Z }
-"3.6.4" = { created_at = 2022-11-29T12:51:40.000Z }
-"3.6.5" = { created_at = 2023-01-16T13:16:15.000Z }
-"3.6.6" = { created_at = 2023-01-17T09:28:50.000Z }
-"3.6.7" = { created_at = 2023-01-20T09:02:04.000Z }
-"3.6.8" = { created_at = 2023-01-31T12:22:05.000Z }
-"3.6.9" = { created_at = 2023-02-02T08:46:56.000Z }
-"3.6.10" = { created_at = 2023-02-06T22:18:42.000Z }
-"3.6.11" = { created_at = 2023-02-13T08:00:12.000Z }
-"3.6.12" = { created_at = 2023-03-02T09:27:26.000Z }
-"3.6.13" = { created_at = 2023-03-02T14:52:53.000Z }
-"3.6.14" = { created_at = 2023-03-09T13:33:36.000Z }
-"3.6.17" = { created_at = 2023-03-09T13:43:51.000Z }
-"3.6.18" = { created_at = 2023-03-23T06:24:11.000Z }
-"3.6.19" = { created_at = 2023-04-26T06:18:41.000Z }
-"3.6.20" = { created_at = 2023-05-23T07:58:14.000Z }
-"3.6.21" = { created_at = 2023-05-24T10:01:35.000Z }
-"3.6.22" = { created_at = 2023-06-14T07:36:38.000Z }
-"3.6.23" = { created_at = 2023-07-07T03:42:19.000Z }
-"3.6.24" = { created_at = 2023-07-21T10:07:18.000Z }
-"3.6.25" = { created_at = 2023-07-26T07:28:30.000Z }
-"3.7.0" = { created_at = 2023-08-24T09:30:38.000Z }
-"3.7.1" = { created_at = 2023-11-07T03:17:21.000Z }
-"3.7.2" = { created_at = 2023-11-09T06:14:10.000Z }
-"3.7.3" = { created_at = 2023-11-14T09:05:58.000Z }
-"3.7.4" = { created_at = 2024-01-05T06:12:52.000Z }
-"3.8.0" = { created_at = 2024-04-22T07:30:29.000Z }
-"3.8.3" = { created_at = 2024-04-23T09:22:49.000Z }
-"3.9.0" = { created_at = 2024-05-11T11:46:06.000Z }
-"3.9.1" = { created_at = 2024-05-14T10:28:51.000Z }
-"3.9.2" = { created_at = 2024-06-06T03:36:45.000Z }
-"3.9.3" = { created_at = 2024-06-11T13:57:41.000Z }
-"3.10.0" = { created_at = 2024-08-01T11:03:44.000Z }
-"3.10.1" = { created_at = 2024-08-02T08:53:27.000Z }
-"3.10.2" = { created_at = 2024-08-07T05:24:32.000Z }
-"3.10.3" = { created_at = 2024-08-08T10:11:51.000Z }
-"3.10.4" = { created_at = 2024-08-16T11:56:52.000Z }
-"3.10.5" = { created_at = 2024-08-19T09:58:19.000Z }
-"3.10.6" = { created_at = 2024-09-10T07:42:13.000Z }
-"3.11.0" = { created_at = 2024-09-30T09:43:20.000Z }
-"3.11.1" = { created_at = 2024-10-09T06:28:02.000Z }
-"3.12.0" = { created_at = 2024-10-30T08:48:56.000Z }
-"3.13.0" = { created_at = 2024-11-13T06:41:18.000Z }
-"3.13.2" = { created_at = 2024-11-21T09:42:29.000Z }
-"3.13.3" = { created_at = 2024-12-06T10:56:59.000Z }
-"3.13.4" = { created_at = 2024-12-13T11:44:45.000Z }
-"3.13.5" = { created_at = 2024-12-20T03:19:01.000Z }
-"3.13.6" = { created_at = 2025-02-06T07:15:13.000Z }
-"3.13.7" = { created_at = 2025-03-10T14:09:45.000Z }
-"3.13.8" = { created_at = 2025-03-12T10:20:15.000Z }
-"3.13.9" = { created_at = 2025-03-13T03:34:24.000Z }
-"3.14.0" = { created_at = 2025-04-07T14:49:48.000Z }
-"3.15.0" = { created_at = 2025-06-25T09:45:25.000Z }
-"3.16.0" = { created_at = 2025-12-02T06:57:22.000Z }
-"3.16.1" = { created_at = 2025-12-08T06:23:05.000Z }
+"2.5.4" = { created_at = 2021-12-16T14:06:12.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.5.4" }
+"2.5.5" = { created_at = 2021-12-17T08:01:02.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.5.5" }
+"2.5.6" = { created_at = 2021-12-27T07:26:50.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.5.6" }
+"2.6.0" = { created_at = 2022-01-13T10:48:39.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.0" }
+"2.6.1" = { created_at = 2022-01-24T09:44:39.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.1" }
+"2.6.2" = { created_at = 2022-01-25T09:04:31.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.2" }
+"2.6.3" = { created_at = 2022-01-27T15:06:22.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.3" }
+"2.6.4" = { created_at = 2022-02-09T06:10:03.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.4" }
+"2.6.5" = { created_at = 2022-02-17T05:55:32.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.5" }
+"2.6.6" = { created_at = 2022-02-21T13:07:16.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.6" }
+"2.6.7" = { created_at = 2022-03-09T10:59:42.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.7" }
+"2.6.8" = { created_at = 2022-04-08T21:43:45.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/2.6.8" }
+"3.0.0" = { created_at = 2022-04-09T19:57:48.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.0.0" }
+"3.0.1" = { created_at = 2022-04-11T11:41:34.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.0.1" }
+"3.0.2" = { created_at = 2022-04-15T11:51:41.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.0.2" }
+"3.1.0" = { created_at = 2022-04-17T11:33:35.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.1.0" }
+"3.2.0" = { created_at = 2022-04-25T05:00:09.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.2.0" }
+"3.2.1" = { created_at = 2022-04-25T06:10:44.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.2.1" }
+"3.2.2" = { created_at = 2022-04-26T13:40:13.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.2.2" }
+"3.2.3" = { created_at = 2022-05-16T11:01:24.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.2.3" }
+"3.2.4" = { created_at = 2022-05-25T10:16:18.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.2.4" }
+"3.2.5" = { created_at = 2022-06-09T08:52:13.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.2.5" }
+"3.3.0" = { created_at = 2022-06-15T11:42:34.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.3.0" }
+"3.3.1" = { created_at = 2022-06-18T09:36:48.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.3.1" }
+"3.4.0" = { created_at = 2022-06-29T09:56:56.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.4.0" }
+"3.4.1" = { created_at = 2022-07-05T08:30:36.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.4.1" }
+"3.4.2" = { created_at = 2022-07-06T08:21:00.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.4.2" }
+"3.5.0" = { created_at = 2022-07-19T13:21:11.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.0" }
+"3.5.1" = { created_at = 2022-07-26T08:32:26.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.1" }
+"3.5.2" = { created_at = 2022-08-01T09:50:49.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.2" }
+"3.5.3" = { created_at = 2022-08-12T20:35:05.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.3" }
+"3.5.4" = { created_at = 2022-09-06T12:11:31.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.4" }
+"3.5.5" = { created_at = 2022-09-07T09:00:33.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.5" }
+"3.5.6" = { created_at = 2022-09-16T07:34:45.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.5.6" }
+"3.6.0" = { created_at = 2022-11-07T19:55:58.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.0" }
+"3.6.1" = { created_at = 2022-11-08T10:28:08.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.1" }
+"3.6.2" = { created_at = 2022-11-09T16:22:20.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.2" }
+"3.6.3" = { created_at = 2022-11-14T07:32:09.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.3" }
+"3.6.4" = { created_at = 2022-11-29T12:51:40.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.4" }
+"3.6.5" = { created_at = 2023-01-16T13:16:15.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.5" }
+"3.6.6" = { created_at = 2023-01-17T09:28:50.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.6" }
+"3.6.7" = { created_at = 2023-01-20T09:02:04.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.7" }
+"3.6.8" = { created_at = 2023-01-31T12:22:05.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.8" }
+"3.6.9" = { created_at = 2023-02-02T08:46:56.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.9" }
+"3.6.10" = { created_at = 2023-02-06T22:18:42.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.10" }
+"3.6.11" = { created_at = 2023-02-13T08:00:12.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.11" }
+"3.6.12" = { created_at = 2023-03-02T09:27:26.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.12" }
+"3.6.13" = { created_at = 2023-03-02T14:52:53.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.13" }
+"3.6.14" = { created_at = 2023-03-09T13:33:36.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.14" }
+"3.6.17" = { created_at = 2023-03-09T13:43:51.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.17" }
+"3.6.18" = { created_at = 2023-03-23T06:24:11.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.18" }
+"3.6.19" = { created_at = 2023-04-26T06:18:41.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.19" }
+"3.6.20" = { created_at = 2023-05-23T07:58:14.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.20" }
+"3.6.21" = { created_at = 2023-05-24T10:01:35.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.21" }
+"3.6.22" = { created_at = 2023-06-14T07:36:38.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.22" }
+"3.6.23" = { created_at = 2023-07-07T03:42:19.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.23" }
+"3.6.24" = { created_at = 2023-07-21T10:07:18.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.24" }
+"3.6.25" = { created_at = 2023-07-26T07:28:30.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.6.25" }
+"3.7.0" = { created_at = 2023-08-24T09:30:38.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.7.0" }
+"3.7.1" = { created_at = 2023-11-07T03:17:21.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.7.1" }
+"3.7.2" = { created_at = 2023-11-09T06:14:10.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.7.2" }
+"3.7.3" = { created_at = 2023-11-14T09:05:58.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.7.3" }
+"3.7.4" = { created_at = 2024-01-05T06:12:52.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.7.4" }
+"3.8.0" = { created_at = 2024-04-22T07:30:29.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.8.0" }
+"3.8.3" = { created_at = 2024-04-23T09:22:49.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.8.3" }
+"3.9.0" = { created_at = 2024-05-11T11:46:06.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.9.0" }
+"3.9.1" = { created_at = 2024-05-14T10:28:51.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.9.1" }
+"3.9.2" = { created_at = 2024-06-06T03:36:45.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.9.2" }
+"3.9.3" = { created_at = 2024-06-11T13:57:41.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.9.3" }
+"3.10.0" = { created_at = 2024-08-01T11:03:44.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.0" }
+"3.10.1" = { created_at = 2024-08-02T08:53:27.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.1" }
+"3.10.2" = { created_at = 2024-08-07T05:24:32.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.2" }
+"3.10.3" = { created_at = 2024-08-08T10:11:51.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.3" }
+"3.10.4" = { created_at = 2024-08-16T11:56:52.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.4" }
+"3.10.5" = { created_at = 2024-08-19T09:58:19.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.5" }
+"3.10.6" = { created_at = 2024-09-10T07:42:13.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.10.6" }
+"3.11.0" = { created_at = 2024-09-30T09:43:20.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.11.0" }
+"3.11.1" = { created_at = 2024-10-09T06:28:02.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.11.1" }
+"3.12.0" = { created_at = 2024-10-30T08:48:56.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.12.0" }
+"3.13.0" = { created_at = 2024-11-13T06:41:18.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.0" }
+"3.13.2" = { created_at = 2024-11-21T09:42:29.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.2" }
+"3.13.3" = { created_at = 2024-12-06T10:56:59.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.3" }
+"3.13.4" = { created_at = 2024-12-13T11:44:45.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.4" }
+"3.13.5" = { created_at = 2024-12-20T03:19:01.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.5" }
+"3.13.6" = { created_at = 2025-02-06T07:15:13.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.6" }
+"3.13.7" = { created_at = 2025-03-10T14:09:45.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.7" }
+"3.13.8" = { created_at = 2025-03-12T10:20:15.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.8" }
+"3.13.9" = { created_at = 2025-03-13T03:34:24.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.13.9" }
+"3.14.0" = { created_at = 2025-04-07T14:49:48.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.14.0" }
+"3.15.0" = { created_at = 2025-06-25T09:45:25.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.15.0" }
+"3.16.0" = { created_at = 2025-12-02T06:57:22.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.16.0" }
+"3.16.1" = { created_at = 2025-12-08T06:23:05.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.16.1" }
+"3.16.2" = { created_at = 2025-12-18T07:05:00.000Z, release_url = "https://github.com/LuaLS/lua-language-server/releases/tag/3.16.2" }

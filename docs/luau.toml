@@ -1,199 +1,199 @@
 [versions]
-"0.501" = { created_at = 2021-11-03T16:43:20.000Z }
-"0.503" = { created_at = 2021-11-05T15:47:21.000Z }
-"0.504" = { created_at = 2021-11-12T14:58:34.000Z }
-"0.505" = { created_at = 2021-11-19T16:10:07.000Z }
-"0.506" = { created_at = 2021-12-03T06:41:04.000Z }
-"0.507" = { created_at = 2021-12-10T22:05:05.000Z }
-"0.509" = { created_at = 2022-01-07T01:46:53.000Z }
-"0.510" = { created_at = 2022-01-14T16:20:09.000Z }
-"0.511" = { created_at = 2022-01-21T17:00:19.000Z }
-"0.512" = { created_at = 2022-01-27T23:46:05.000Z }
-"0.513" = { created_at = 2022-02-04T20:46:08.000Z }
-"0.514" = { created_at = 2022-02-11T19:02:09.000Z }
-"0.515" = { created_at = 2022-02-18T01:18:01.000Z }
-"0.516" = { created_at = 2022-02-25T01:08:54.000Z }
-"0.517" = { created_at = 2022-03-04T16:36:33.000Z }
-"0.518" = { created_at = 2022-03-11T16:55:02.000Z }
-"0.519" = { created_at = 2022-03-18T00:46:04.000Z }
-"0.520" = { created_at = 2022-03-24T22:04:14.000Z }
-"0.521" = { created_at = 2022-03-31T21:04:40.000Z }
-"0.522" = { created_at = 2022-04-07T21:29:01.000Z }
-"0.523" = { created_at = 2022-04-14T23:57:43.000Z }
-"0.524" = { created_at = 2022-04-21T21:44:27.000Z }
-"0.525" = { created_at = 2022-04-29T01:24:24.000Z }
-"0.526" = { created_at = 2022-05-06T00:05:57.000Z }
-"0.527" = { created_at = 2022-05-13T19:36:37.000Z }
-"0.528" = { created_at = 2022-05-20T00:02:24.000Z }
-"0.529" = { created_at = 2022-05-26T22:08:16.000Z }
-"0.530" = { created_at = 2022-06-03T22:15:45.000Z }
-"0.531" = { created_at = 2022-06-10T16:58:21.000Z }
-"0.532" = { created_at = 2022-06-17T01:05:14.000Z }
-"0.533" = { created_at = 2022-06-24T01:56:19.000Z }
-"0.534" = { created_at = 2022-07-01T00:07:56.000Z }
-"0.535" = { created_at = 2022-07-08T01:22:50.000Z }
-"0.536" = { created_at = 2022-07-14T22:52:26.000Z }
-"0.537" = { created_at = 2022-07-21T21:16:54.000Z }
-"0.538" = { created_at = 2022-07-29T04:24:07.000Z }
-"0.539" = { created_at = 2022-08-04T22:35:33.000Z }
-"0.540" = { created_at = 2022-08-11T21:14:32.000Z }
-"0.541" = { created_at = 2022-08-18T21:32:08.000Z }
-"0.542" = { created_at = 2022-08-25T21:54:02.000Z }
-"0.543" = { created_at = 2022-09-01T23:14:03.000Z }
-"0.544" = { created_at = 2022-09-08T22:14:25.000Z }
-"0.545" = { created_at = 2022-09-15T22:38:17.000Z }
-"0.546" = { created_at = 2022-09-23T19:17:25.000Z }
-"0.547" = { created_at = 2022-09-29T22:42:23.000Z }
-"0.548" = { created_at = 2022-10-07T01:44:51.000Z }
-"0.549" = { created_at = 2022-10-14T19:48:41.000Z }
-"0.550" = { created_at = 2022-10-21T17:54:01.000Z }
-"0.551" = { created_at = 2022-10-28T10:37:29.000Z }
-"0.552" = { created_at = 2022-11-04T17:33:22.000Z }
-"0.553" = { created_at = 2022-11-10T22:53:13.000Z }
-"0.554" = { created_at = 2022-11-18T19:47:21.000Z }
-"0.555" = { created_at = 2022-12-02T18:09:59.000Z }
-"0.556" = { created_at = 2022-12-09T19:57:01.000Z }
-"0.557" = { created_at = 2023-01-04T20:53:17.000Z }
-"0.558" = { created_at = 2023-01-06T21:14:35.000Z }
-"0.559" = { created_at = 2023-01-13T22:10:01.000Z }
-"0.560" = { created_at = 2023-01-20T20:27:03.000Z }
-"0.561" = { created_at = 2023-01-27T22:28:31.000Z }
-"0.562" = { created_at = 2023-02-03T19:41:13.000Z }
-"0.563" = { created_at = 2023-02-10T19:40:38.000Z }
-"0.564" = { created_at = 2023-02-17T23:41:51.000Z }
-"0.565" = { created_at = 2023-02-24T21:49:38.000Z }
-"0.566" = { created_at = 2023-03-03T20:21:14.000Z }
-"0.567" = { created_at = 2023-03-10T20:21:07.000Z }
-"0.568" = { created_at = 2023-03-17T19:20:37.000Z }
-"0.569" = { created_at = 2023-03-24T18:03:04.000Z }
-"0.570" = { created_at = 2023-03-31T18:42:49.000Z }
-"0.571" = { created_at = 2023-04-07T21:01:29.000Z }
-"0.572" = { created_at = 2023-04-14T18:06:22.000Z }
-"0.573" = { created_at = 2023-04-21T22:14:26.000Z }
-"0.574" = { created_at = 2023-04-28T19:55:13.000Z }
-"0.575" = { created_at = 2023-05-05T22:41:46.000Z }
-"0.576" = { created_at = 2023-05-12T17:50:47.000Z }
-"0.577" = { created_at = 2023-05-19T19:37:30.000Z }
-"0.578" = { created_at = 2023-05-25T21:36:34.000Z }
-"0.579" = { created_at = 2023-06-02T19:52:15.000Z }
-"0.580" = { created_at = 2023-06-09T17:08:00.000Z }
-"0.581" = { created_at = 2023-06-16T17:35:18.000Z }
-"0.582" = { created_at = 2023-06-24T06:19:39.000Z }
-"0.583" = { created_at = 2023-07-07T20:10:48.000Z }
-"0.584" = { created_at = 2023-07-14T18:08:53.000Z }
-"0.588" = { created_at = 2023-07-28T15:13:53.000Z }
-"0.589" = { created_at = 2023-08-04T19:18:54.000Z }
-"0.590" = { created_at = 2023-08-11T14:42:37.000Z }
-"0.591" = { created_at = 2023-08-18T18:15:41.000Z }
-"0.592" = { created_at = 2023-08-25T17:23:55.000Z }
-"0.593" = { created_at = 2023-09-01T17:58:27.000Z }
-"0.594" = { created_at = 2023-09-08T00:13:49.000Z }
-"0.595" = { created_at = 2023-09-15T17:26:59.000Z }
-"0.596" = { created_at = 2023-09-22T19:12:15.000Z }
-"0.597" = { created_at = 2023-09-30T01:13:05.000Z }
-"0.598" = { created_at = 2023-10-06T19:02:32.000Z }
-"0.599" = { created_at = 2023-10-13T20:20:12.000Z }
-"0.600" = { created_at = 2023-10-21T01:10:30.000Z }
-"0.601" = { created_at = 2023-10-27T21:18:41.000Z }
-"0.602" = { created_at = 2023-11-03T23:45:04.000Z }
-"0.603" = { created_at = 2023-11-10T21:10:07.000Z }
-"0.604" = { created_at = 2023-11-17T18:46:18.000Z }
-"0.605" = { created_at = 2023-12-05T22:31:02.000Z }
-"0.606" = { created_at = 2023-12-08T21:50:16.000Z }
-"0.607" = { created_at = 2023-12-15T21:29:06.000Z }
-"0.608" = { created_at = 2024-01-12T22:25:27.000Z }
-"0.609" = { created_at = 2024-01-19T18:04:46.000Z }
-"0.610" = { created_at = 2024-01-27T03:20:56.000Z }
-"0.611" = { created_at = 2024-02-02T21:32:42.000Z }
-"0.612" = { created_at = 2024-02-09T17:51:12.000Z }
-"0.613" = { created_at = 2024-02-16T02:04:39.000Z }
-"0.614" = { created_at = 2024-02-23T20:08:34.000Z }
-"0.615" = { created_at = 2024-03-01T18:45:26.000Z }
-"0.616" = { created_at = 2024-03-09T00:47:53.000Z }
-"0.617" = { created_at = 2024-03-15T23:37:39.000Z }
-"0.618" = { created_at = 2024-03-22T17:47:10.000Z }
-"0.619" = { created_at = 2024-03-30T23:14:44.000Z }
-"0.620" = { created_at = 2024-04-05T20:45:09.000Z }
-"0.621" = { created_at = 2024-04-12T17:18:49.000Z }
-"0.622" = { created_at = 2024-04-19T21:48:02.000Z }
-"0.623" = { created_at = 2024-04-25T22:26:09.000Z }
-"0.624" = { created_at = 2024-05-03T20:17:51.000Z }
-"0.625" = { created_at = 2024-05-10T18:21:45.000Z }
-"0.626" = { created_at = 2024-05-16T23:02:03.000Z }
-"0.627" = { created_at = 2024-05-26T17:09:09.000Z }
-"0.628" = { created_at = 2024-05-31T19:18:18.000Z }
-"0.629" = { created_at = 2024-06-07T17:51:12.000Z }
-"0.630" = { created_at = 2024-06-14T20:21:20.000Z }
-"0.631" = { created_at = 2024-06-20T23:37:55.000Z }
-"0.632" = { created_at = 2024-06-29T00:34:49.000Z }
-"0.633" = { created_at = 2024-07-08T21:57:06.000Z }
-"0.634" = { created_at = 2024-07-12T17:03:36.000Z }
-"0.635" = { created_at = 2024-07-19T18:20:47.000Z }
-"0.636" = { created_at = 2024-07-26T17:47:49.000Z }
-"0.637" = { created_at = 2024-08-02T14:30:04.000Z }
-"0.638" = { created_at = 2024-08-02T14:30:04.000Z }
-"0.639" = { created_at = 2024-08-16T18:29:33.000Z }
-"0.640" = { created_at = 2024-08-23T16:35:30.000Z }
-"0.641" = { created_at = 2024-08-30T20:16:51.000Z }
-"0.642" = { created_at = 2024-09-06T20:34:50.000Z }
-"0.643" = { created_at = 2024-09-13T18:48:25.000Z }
-"0.644" = { created_at = 2024-09-20T16:53:26.000Z }
-"0.645" = { created_at = 2024-09-27T18:58:21.000Z }
-"0.646" = { created_at = 2024-10-04T18:29:55.000Z }
-"0.647" = { created_at = 2024-10-12T00:48:30.000Z }
-"0.648" = { created_at = 2024-10-18T17:27:15.000Z }
-"0.649" = { created_at = 2024-10-25T20:15:01.000Z }
-"0.650" = { created_at = 2024-11-01T19:06:07.000Z }
-"0.651" = { created_at = 2024-11-08T21:41:45.000Z }
-"0.652" = { created_at = 2024-11-15T22:29:30.000Z }
-"0.653" = { created_at = 2024-11-22T21:00:51.000Z }
-"0.654" = { created_at = 2024-11-27T15:34:14.000Z }
-"0.655" = { created_at = 2024-12-13T21:02:30.000Z }
-"0.656" = { created_at = 2025-01-10T19:34:39.000Z }
-"0.657" = { created_at = 2025-01-17T22:55:39.000Z }
-"0.658" = { created_at = 2025-01-24T20:15:19.000Z }
-"0.659" = { created_at = 2025-02-01T02:58:36.000Z }
-"0.660" = { created_at = 2025-02-08T00:17:11.000Z }
-"0.661" = { created_at = 2025-02-14T21:57:46.000Z }
-"0.662" = { created_at = 2025-02-21T18:24:12.000Z }
-"0.663" = { created_at = 2025-02-28T22:42:30.000Z }
-"0.664" = { created_at = 2025-03-07T18:07:27.000Z }
-"0.665" = { created_at = 2025-03-14T20:11:24.000Z }
-"0.666" = { created_at = 2025-03-21T21:43:00.000Z }
-"0.667" = { created_at = 2025-03-28T23:15:46.000Z }
-"0.668" = { created_at = 2025-04-04T21:11:51.000Z }
-"0.669" = { created_at = 2025-04-12T00:44:21.000Z }
-"0.670" = { created_at = 2025-04-18T20:44:39.000Z }
-"0.671" = { created_at = 2025-04-25T21:19:27.000Z }
-"0.672" = { created_at = 2025-05-02T21:00:23.000Z }
-"0.673" = { created_at = 2025-05-09T23:35:47.000Z }
-"0.674" = { created_at = 2025-05-16T19:39:58.000Z }
-"0.675" = { created_at = 2025-05-27T21:24:46.000Z }
-"0.676" = { created_at = 2025-05-30T18:17:49.000Z }
-"0.677" = { created_at = 2025-06-06T18:52:47.000Z }
-"0.678" = { created_at = 2025-06-13T16:36:35.000Z }
-"0.679" = { created_at = 2025-06-20T22:55:42.000Z }
-"0.680" = { created_at = 2025-06-27T20:14:36.000Z }
-"0.681" = { created_at = 2025-07-04T16:26:45.000Z }
-"0.682" = { created_at = 2025-07-11T18:36:47.000Z }
-"0.683" = { created_at = 2025-07-18T20:46:08.000Z }
-"0.684" = { created_at = 2025-07-25T22:33:42.000Z }
-"0.685" = { created_at = 2025-08-01T21:44:50.000Z }
-"0.686" = { created_at = 2025-08-08T17:18:16.000Z }
-"0.687" = { created_at = 2025-08-15T18:48:43.000Z }
-"0.688" = { created_at = 2025-08-22T22:26:46.000Z }
-"0.689" = { created_at = 2025-08-29T20:05:44.000Z }
-"0.690" = { created_at = 2025-09-05T18:47:07.000Z }
-"0.691" = { created_at = 2025-09-15T20:16:27.000Z }
-"0.692" = { created_at = 2025-09-19T20:58:08.000Z }
-"0.693" = { created_at = 2025-09-26T20:21:09.000Z }
-"0.694" = { created_at = 2025-10-03T16:13:36.000Z }
-"0.695" = { created_at = 2025-10-11T22:31:03.000Z }
-"696" = { created_at = 2025-10-17T17:25:51.000Z }
-"0.697" = { created_at = 2025-10-24T20:17:02.000Z }
-"0.698" = { created_at = 2025-10-31T03:18:46.000Z }
-"0.699" = { created_at = 2025-11-07T20:14:50.000Z }
-"0.700" = { created_at = 2025-11-14T23:03:39.000Z }
-"0.701" = { created_at = 2025-11-21T19:15:22.000Z }
-"0.702" = { created_at = 2025-12-02T23:22:03.000Z }
-"0.703" = { created_at = 2025-12-12T19:50:52.000Z }
+"0.501" = { created_at = 2021-11-03T16:43:20.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.501" }
+"0.503" = { created_at = 2021-11-05T15:47:21.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.503" }
+"0.504" = { created_at = 2021-11-12T14:58:34.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.504" }
+"0.505" = { created_at = 2021-11-19T16:10:07.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.505" }
+"0.506" = { created_at = 2021-12-03T06:41:04.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.506" }
+"0.507" = { created_at = 2021-12-10T22:05:05.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.507" }
+"0.509" = { created_at = 2022-01-07T01:46:53.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.509" }
+"0.510" = { created_at = 2022-01-14T16:20:09.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.510" }
+"0.511" = { created_at = 2022-01-21T17:00:19.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.511" }
+"0.512" = { created_at = 2022-01-27T23:46:05.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.512" }
+"0.513" = { created_at = 2022-02-04T20:46:08.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.513" }
+"0.514" = { created_at = 2022-02-11T19:02:09.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.514" }
+"0.515" = { created_at = 2022-02-18T01:18:01.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.515" }
+"0.516" = { created_at = 2022-02-25T01:08:54.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.516" }
+"0.517" = { created_at = 2022-03-04T16:36:33.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.517" }
+"0.518" = { created_at = 2022-03-11T16:55:02.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.518" }
+"0.519" = { created_at = 2022-03-18T00:46:04.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.519" }
+"0.520" = { created_at = 2022-03-24T22:04:14.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.520" }
+"0.521" = { created_at = 2022-03-31T21:04:40.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.521" }
+"0.522" = { created_at = 2022-04-07T21:29:01.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.522" }
+"0.523" = { created_at = 2022-04-14T23:57:43.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.523" }
+"0.524" = { created_at = 2022-04-21T21:44:27.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.524" }
+"0.525" = { created_at = 2022-04-29T01:24:24.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.525" }
+"0.526" = { created_at = 2022-05-06T00:05:57.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.526" }
+"0.527" = { created_at = 2022-05-13T19:36:37.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.527" }
+"0.528" = { created_at = 2022-05-20T00:02:24.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.528" }
+"0.529" = { created_at = 2022-05-26T22:08:16.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.529" }
+"0.530" = { created_at = 2022-06-03T22:15:45.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.530" }
+"0.531" = { created_at = 2022-06-10T16:58:21.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.531" }
+"0.532" = { created_at = 2022-06-17T01:05:14.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.532" }
+"0.533" = { created_at = 2022-06-24T01:56:19.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.533" }
+"0.534" = { created_at = 2022-07-01T00:07:56.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.534" }
+"0.535" = { created_at = 2022-07-08T01:22:50.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.535" }
+"0.536" = { created_at = 2022-07-14T22:52:26.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.536" }
+"0.537" = { created_at = 2022-07-21T21:16:54.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.537" }
+"0.538" = { created_at = 2022-07-29T04:24:07.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.538" }
+"0.539" = { created_at = 2022-08-04T22:35:33.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.539" }
+"0.540" = { created_at = 2022-08-11T21:14:32.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.540" }
+"0.541" = { created_at = 2022-08-18T21:32:08.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.541" }
+"0.542" = { created_at = 2022-08-25T21:54:02.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.542" }
+"0.543" = { created_at = 2022-09-01T23:14:03.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.543" }
+"0.544" = { created_at = 2022-09-08T22:14:25.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.544" }
+"0.545" = { created_at = 2022-09-15T22:38:17.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.545" }
+"0.546" = { created_at = 2022-09-23T19:17:25.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.546" }
+"0.547" = { created_at = 2022-09-29T22:42:23.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.547" }
+"0.548" = { created_at = 2022-10-07T01:44:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.548" }
+"0.549" = { created_at = 2022-10-14T19:48:41.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.549" }
+"0.550" = { created_at = 2022-10-21T17:54:01.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.550" }
+"0.551" = { created_at = 2022-10-28T10:37:29.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.551" }
+"0.552" = { created_at = 2022-11-04T17:33:22.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.552" }
+"0.553" = { created_at = 2022-11-10T22:53:13.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.553" }
+"0.554" = { created_at = 2022-11-18T19:47:21.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.554" }
+"0.555" = { created_at = 2022-12-02T18:09:59.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.555" }
+"0.556" = { created_at = 2022-12-09T19:57:01.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.556" }
+"0.557" = { created_at = 2023-01-04T20:53:17.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.557" }
+"0.558" = { created_at = 2023-01-06T21:14:35.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.558" }
+"0.559" = { created_at = 2023-01-13T22:10:01.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.559" }
+"0.560" = { created_at = 2023-01-20T20:27:03.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.560" }
+"0.561" = { created_at = 2023-01-27T22:28:31.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.561" }
+"0.562" = { created_at = 2023-02-03T19:41:13.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.562" }
+"0.563" = { created_at = 2023-02-10T19:40:38.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.563" }
+"0.564" = { created_at = 2023-02-17T23:41:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.564" }
+"0.565" = { created_at = 2023-02-24T21:49:38.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.565" }
+"0.566" = { created_at = 2023-03-03T20:21:14.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.566" }
+"0.567" = { created_at = 2023-03-10T20:21:07.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.567" }
+"0.568" = { created_at = 2023-03-17T19:20:37.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.568" }
+"0.569" = { created_at = 2023-03-24T18:03:04.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.569" }
+"0.570" = { created_at = 2023-03-31T18:42:49.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.570" }
+"0.571" = { created_at = 2023-04-07T21:01:29.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.571" }
+"0.572" = { created_at = 2023-04-14T18:06:22.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.572" }
+"0.573" = { created_at = 2023-04-21T22:14:26.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.573" }
+"0.574" = { created_at = 2023-04-28T19:55:13.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.574" }
+"0.575" = { created_at = 2023-05-05T22:41:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.575" }
+"0.576" = { created_at = 2023-05-12T17:50:47.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.576" }
+"0.577" = { created_at = 2023-05-19T19:37:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.577" }
+"0.578" = { created_at = 2023-05-25T21:36:34.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.578" }
+"0.579" = { created_at = 2023-06-02T19:52:15.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.579" }
+"0.580" = { created_at = 2023-06-09T17:08:00.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.580" }
+"0.581" = { created_at = 2023-06-16T17:35:18.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.581" }
+"0.582" = { created_at = 2023-06-24T06:19:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.582" }
+"0.583" = { created_at = 2023-07-07T20:10:48.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.583" }
+"0.584" = { created_at = 2023-07-14T18:08:53.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.584" }
+"0.588" = { created_at = 2023-07-28T15:13:53.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.588" }
+"0.589" = { created_at = 2023-08-04T19:18:54.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.589" }
+"0.590" = { created_at = 2023-08-11T14:42:37.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.590" }
+"0.591" = { created_at = 2023-08-18T18:15:41.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.591" }
+"0.592" = { created_at = 2023-08-25T17:23:55.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.592" }
+"0.593" = { created_at = 2023-09-01T17:58:27.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.593" }
+"0.594" = { created_at = 2023-09-08T00:13:49.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.594" }
+"0.595" = { created_at = 2023-09-15T17:26:59.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.595" }
+"0.596" = { created_at = 2023-09-22T19:12:15.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.596" }
+"0.597" = { created_at = 2023-09-30T01:13:05.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.597" }
+"0.598" = { created_at = 2023-10-06T19:02:32.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.598" }
+"0.599" = { created_at = 2023-10-13T20:20:12.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.599" }
+"0.600" = { created_at = 2023-10-21T01:10:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.600" }
+"0.601" = { created_at = 2023-10-27T21:18:41.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.601" }
+"0.602" = { created_at = 2023-11-03T23:45:04.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.602" }
+"0.603" = { created_at = 2023-11-10T21:10:07.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.603" }
+"0.604" = { created_at = 2023-11-17T18:46:18.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.604" }
+"0.605" = { created_at = 2023-12-05T22:31:02.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.605" }
+"0.606" = { created_at = 2023-12-08T21:50:16.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.606" }
+"0.607" = { created_at = 2023-12-15T21:29:06.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.607" }
+"0.608" = { created_at = 2024-01-12T22:25:27.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.608" }
+"0.609" = { created_at = 2024-01-19T18:04:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.609" }
+"0.610" = { created_at = 2024-01-27T03:20:56.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.610" }
+"0.611" = { created_at = 2024-02-02T21:32:42.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.611" }
+"0.612" = { created_at = 2024-02-09T17:51:12.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.612" }
+"0.613" = { created_at = 2024-02-16T02:04:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.613" }
+"0.614" = { created_at = 2024-02-23T20:08:34.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.614" }
+"0.615" = { created_at = 2024-03-01T18:45:26.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.615" }
+"0.616" = { created_at = 2024-03-09T00:47:53.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.616" }
+"0.617" = { created_at = 2024-03-15T23:37:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.617" }
+"0.618" = { created_at = 2024-03-22T17:47:10.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.618" }
+"0.619" = { created_at = 2024-03-30T23:14:44.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.619" }
+"0.620" = { created_at = 2024-04-05T20:45:09.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.620" }
+"0.621" = { created_at = 2024-04-12T17:18:49.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.621" }
+"0.622" = { created_at = 2024-04-19T21:48:02.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.622" }
+"0.623" = { created_at = 2024-04-25T22:26:09.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.623" }
+"0.624" = { created_at = 2024-05-03T20:17:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.624" }
+"0.625" = { created_at = 2024-05-10T18:21:45.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.625" }
+"0.626" = { created_at = 2024-05-16T23:02:03.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.626" }
+"0.627" = { created_at = 2024-05-26T17:09:09.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.627" }
+"0.628" = { created_at = 2024-05-31T19:18:18.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.628" }
+"0.629" = { created_at = 2024-06-07T17:51:12.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.629" }
+"0.630" = { created_at = 2024-06-14T20:21:20.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.630" }
+"0.631" = { created_at = 2024-06-20T23:37:55.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.631" }
+"0.632" = { created_at = 2024-06-29T00:34:49.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.632" }
+"0.633" = { created_at = 2024-07-08T21:57:06.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.633" }
+"0.634" = { created_at = 2024-07-12T17:03:36.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.634" }
+"0.635" = { created_at = 2024-07-19T18:20:47.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.635" }
+"0.636" = { created_at = 2024-07-26T17:47:49.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.636" }
+"0.637" = { created_at = 2024-08-02T14:30:04.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.637" }
+"0.638" = { created_at = 2024-08-02T14:30:04.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.638" }
+"0.639" = { created_at = 2024-08-16T18:29:33.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.639" }
+"0.640" = { created_at = 2024-08-23T16:35:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.640" }
+"0.641" = { created_at = 2024-08-30T20:16:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.641" }
+"0.642" = { created_at = 2024-09-06T20:34:50.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.642" }
+"0.643" = { created_at = 2024-09-13T18:48:25.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.643" }
+"0.644" = { created_at = 2024-09-20T16:53:26.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.644" }
+"0.645" = { created_at = 2024-09-27T18:58:21.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.645" }
+"0.646" = { created_at = 2024-10-04T18:29:55.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.646" }
+"0.647" = { created_at = 2024-10-12T00:48:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.647" }
+"0.648" = { created_at = 2024-10-18T17:27:15.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.648" }
+"0.649" = { created_at = 2024-10-25T20:15:01.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.649" }
+"0.650" = { created_at = 2024-11-01T19:06:07.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.650" }
+"0.651" = { created_at = 2024-11-08T21:41:45.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.651" }
+"0.652" = { created_at = 2024-11-15T22:29:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.652" }
+"0.653" = { created_at = 2024-11-22T21:00:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.653" }
+"0.654" = { created_at = 2024-11-27T15:34:14.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.654" }
+"0.655" = { created_at = 2024-12-13T21:02:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.655" }
+"0.656" = { created_at = 2025-01-10T19:34:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.656" }
+"0.657" = { created_at = 2025-01-17T22:55:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.657" }
+"0.658" = { created_at = 2025-01-24T20:15:19.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.658" }
+"0.659" = { created_at = 2025-02-01T02:58:36.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.659" }
+"0.660" = { created_at = 2025-02-08T00:17:11.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.660" }
+"0.661" = { created_at = 2025-02-14T21:57:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.661" }
+"0.662" = { created_at = 2025-02-21T18:24:12.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.662" }
+"0.663" = { created_at = 2025-02-28T22:42:30.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.663" }
+"0.664" = { created_at = 2025-03-07T18:07:27.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.664" }
+"0.665" = { created_at = 2025-03-14T20:11:24.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.665" }
+"0.666" = { created_at = 2025-03-21T21:43:00.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.666" }
+"0.667" = { created_at = 2025-03-28T23:15:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.667" }
+"0.668" = { created_at = 2025-04-04T21:11:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.668" }
+"0.669" = { created_at = 2025-04-12T00:44:21.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.669" }
+"0.670" = { created_at = 2025-04-18T20:44:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.670" }
+"0.671" = { created_at = 2025-04-25T21:19:27.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.671" }
+"0.672" = { created_at = 2025-05-02T21:00:23.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.672" }
+"0.673" = { created_at = 2025-05-09T23:35:47.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.673" }
+"0.674" = { created_at = 2025-05-16T19:39:58.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.674" }
+"0.675" = { created_at = 2025-05-27T21:24:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.675" }
+"0.676" = { created_at = 2025-05-30T18:17:49.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.676" }
+"0.677" = { created_at = 2025-06-06T18:52:47.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.677" }
+"0.678" = { created_at = 2025-06-13T16:36:35.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.678" }
+"0.679" = { created_at = 2025-06-20T22:55:42.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.679" }
+"0.680" = { created_at = 2025-06-27T20:14:36.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.680" }
+"0.681" = { created_at = 2025-07-04T16:26:45.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.681" }
+"0.682" = { created_at = 2025-07-11T18:36:47.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.682" }
+"0.683" = { created_at = 2025-07-18T20:46:08.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.683" }
+"0.684" = { created_at = 2025-07-25T22:33:42.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.684" }
+"0.685" = { created_at = 2025-08-01T21:44:50.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.685" }
+"0.686" = { created_at = 2025-08-08T17:18:16.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.686" }
+"0.687" = { created_at = 2025-08-15T18:48:43.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.687" }
+"0.688" = { created_at = 2025-08-22T22:26:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.688" }
+"0.689" = { created_at = 2025-08-29T20:05:44.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.689" }
+"0.690" = { created_at = 2025-09-05T18:47:07.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.690" }
+"0.691" = { created_at = 2025-09-15T20:16:27.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.691" }
+"0.692" = { created_at = 2025-09-19T20:58:08.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.692" }
+"0.693" = { created_at = 2025-09-26T20:21:09.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.693" }
+"0.694" = { created_at = 2025-10-03T16:13:36.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.694" }
+"0.695" = { created_at = 2025-10-11T22:31:03.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.695" }
+"696" = { created_at = 2025-10-17T17:25:51.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/696" }
+"0.697" = { created_at = 2025-10-24T20:17:02.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.697" }
+"0.698" = { created_at = 2025-10-31T03:18:46.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.698" }
+"0.699" = { created_at = 2025-11-07T20:14:50.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.699" }
+"0.700" = { created_at = 2025-11-14T23:03:39.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.700" }
+"0.701" = { created_at = 2025-11-21T19:15:22.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.701" }
+"0.702" = { created_at = 2025-12-02T23:22:03.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.702" }
+"0.703" = { created_at = 2025-12-12T19:50:52.000Z, release_url = "https://github.com/luau-lang/luau/releases/tag/0.703" }
