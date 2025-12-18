@@ -19,36 +19,17 @@ if (!auth || !isAdmin(auth.username)) {
       <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
     </div>
 
-    <!-- Token Stats Overview -->
-    <div id="admin-stats" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
-        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
-        <div class="h-8 bg-dark-700 rounded w-16"></div>
-      </div>
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
-        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
-        <div class="h-8 bg-dark-700 rounded w-16"></div>
-      </div>
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
-        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
-        <div class="h-8 bg-dark-700 rounded w-16"></div>
-      </div>
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 animate-pulse">
-        <div class="h-4 bg-dark-700 rounded w-24 mb-2"></div>
-        <div class="h-8 bg-dark-700 rounded w-16"></div>
-      </div>
-    </div>
-
-    <!-- Expiring Tokens Alert -->
-    <div id="expiring-alert" class="hidden bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
-      <h3 class="text-orange-400 font-medium mb-2">Tokens Expiring Soon (24h)</h3>
-      <div id="expiring-list" class="space-y-1"></div>
-    </div>
-
-    <!-- Token Details Table -->
+    <!-- Token Pool Card (collapsible) -->
     <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
-      <div class="px-4 py-3 border-b border-dark-600 flex items-center justify-between">
-        <h2 class="text-lg font-semibold text-gray-200">Token Pool</h2>
+      <!-- Header with stats summary (always visible) -->
+      <div class="px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-6">
+          <h2 class="text-lg font-semibold text-gray-200">Token Pool</h2>
+          <!-- Inline stats (visible when collapsed) -->
+          <div id="inline-stats" class="flex items-center gap-4 text-sm">
+            <span class="text-gray-500">Loading...</span>
+          </div>
+        </div>
         <div class="flex items-center gap-2">
           <button
             id="delete-invalid-btn"
@@ -58,42 +39,62 @@ if (!auth || !isAdmin(auth.username)) {
           </button>
           <button
             id="test-tokens-btn"
-            class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
+            class="hidden px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
           >
             Test All Tokens
           </button>
+          <button
+            id="expand-btn"
+            class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1"
+          >
+            <span id="expand-text">Expand</span>
+            <svg id="expand-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
         </div>
       </div>
-      <div class="relative">
-        <!-- Loading overlay -->
-        <div id="table-loading-overlay" class="hidden absolute inset-0 bg-dark-900/70 z-10 flex items-center justify-center">
-          <div class="flex flex-col items-center gap-2">
-            <svg class="animate-spin h-8 w-8 text-neon-purple" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <span class="text-sm text-gray-400">Testing tokens...</span>
+
+      <!-- Expiring Tokens Alert (inside card, visible when expanded) -->
+      <div id="expiring-alert" class="hidden mx-4 mb-4 bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+        <h3 class="text-orange-400 font-medium mb-2">Tokens Expiring Soon (24h)</h3>
+        <div id="expiring-list" class="space-y-1"></div>
+      </div>
+
+      <!-- Expanded content -->
+      <div id="expanded-content" class="hidden">
+        <div class="border-t border-dark-600"></div>
+        <div class="relative">
+          <!-- Loading overlay -->
+          <div id="table-loading-overlay" class="hidden absolute inset-0 bg-dark-900/70 z-10 flex items-center justify-center">
+            <div class="flex flex-col items-center gap-2">
+              <svg class="animate-spin h-8 w-8 text-neon-purple" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span class="text-sm text-gray-400">Testing tokens...</span>
+            </div>
           </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-dark-700">
-              <tr>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">User</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Usage</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Last Used</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Status</th>
-                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400 w-20"></th>
-              </tr>
-            </thead>
-            <tbody id="token-table-body" class="divide-y divide-dark-600">
-              <tr>
-                <td colspan="5" class="px-4 py-8 text-center text-gray-500">
-                  Loading...
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-dark-700">
+                <tr>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">User</th>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Usage</th>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Last Used</th>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Status</th>
+                  <th class="px-4 py-2 text-left text-sm font-medium text-gray-400 w-20"></th>
+                </tr>
+              </thead>
+              <tbody id="token-table-body" class="divide-y divide-dark-600">
+                <tr>
+                  <td colspan="5" class="px-4 py-8 text-center text-gray-500">
+                    Loading...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -116,6 +117,33 @@ if (!auth || !isAdmin(auth.username)) {
   // Store test results
   let testResults: Map<number, { valid: boolean; error?: string; rateLimit?: { remaining: number; limit: number } }> = new Map();
 
+  // Track expanded state
+  let isExpanded = false;
+
+  function toggleExpanded() {
+    isExpanded = !isExpanded;
+    const expandedContent = document.getElementById('expanded-content');
+    const expandText = document.getElementById('expand-text');
+    const expandIcon = document.getElementById('expand-icon');
+    const testBtn = document.getElementById('test-tokens-btn');
+    const deleteInvalidBtn = document.getElementById('delete-invalid-btn');
+
+    if (isExpanded) {
+      expandedContent?.classList.remove('hidden');
+      if (expandText) expandText.textContent = 'Collapse';
+      expandIcon?.classList.add('rotate-180');
+      testBtn?.classList.remove('hidden');
+      // Show delete invalid button if there are invalid tokens
+      updateDeleteInvalidButton();
+    } else {
+      expandedContent?.classList.add('hidden');
+      if (expandText) expandText.textContent = 'Expand';
+      expandIcon?.classList.remove('rotate-180');
+      testBtn?.classList.add('hidden');
+      deleteInvalidBtn?.classList.add('hidden');
+    }
+  }
+
   function getInvalidTokenIds(): number[] {
     const invalidIds: number[] = [];
     testResults.forEach((result, id) => {
@@ -131,9 +159,9 @@ if (!auth || !isAdmin(auth.username)) {
     if (!btn) return;
 
     const invalidIds = getInvalidTokenIds();
-    if (invalidIds.length > 0) {
+    if (invalidIds.length > 0 && isExpanded) {
       btn.classList.remove('hidden');
-      btn.textContent = `Delete Invalid Tokens (${invalidIds.length})`;
+      btn.textContent = `Delete Invalid (${invalidIds.length})`;
     } else {
       btn.classList.add('hidden');
     }
@@ -273,6 +301,19 @@ if (!auth || !isAdmin(auth.username)) {
     }
   }
 
+  function updateInlineStats(stats: { active: number; total: number }, rateLimitedCount: number, expiringSoonCount: number) {
+    const inlineStats = document.getElementById('inline-stats');
+    if (!inlineStats) return;
+
+    inlineStats.innerHTML = `
+      <span class="text-green-400">${stats.active} active</span>
+      <span class="text-gray-600">|</span>
+      <span class="text-gray-400">${stats.total} total</span>
+      ${rateLimitedCount > 0 ? `<span class="text-gray-600">|</span><span class="text-orange-400">${rateLimitedCount} rate limited</span>` : ''}
+      ${expiringSoonCount > 0 ? `<span class="text-gray-600">|</span><span class="text-orange-400">${expiringSoonCount} expiring</span>` : ''}
+    `;
+  }
+
   async function loadAdminData() {
     try {
       const response = await fetch('/api/admin/tokens');
@@ -288,43 +329,31 @@ if (!auth || !isAdmin(auth.username)) {
         return new Date(t.rate_limited_at) > new Date();
       }).length;
 
-      // Update stats cards
-      const statsContainer = document.getElementById('admin-stats');
-      if (statsContainer) {
-        statsContainer.innerHTML = `
-          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-            <div class="text-sm text-gray-400 mb-1">Active Tokens</div>
-            <div class="text-3xl font-bold text-green-400">${data.stats.active}</div>
-          </div>
-          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-            <div class="text-sm text-gray-400 mb-1">Total Tokens</div>
-            <div class="text-3xl font-bold text-gray-100">${data.stats.total}</div>
-          </div>
-          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-            <div class="text-sm text-gray-400 mb-1">Rate Limited</div>
-            <div class="text-3xl font-bold text-orange-400">${rateLimitedCount}</div>
-          </div>
-          <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-            <div class="text-sm text-gray-400 mb-1">Expiring Soon</div>
-            <div class="text-3xl font-bold ${data.expiringSoon.length > 0 ? 'text-orange-400' : 'text-gray-100'}">${data.expiringSoon.length}</div>
-          </div>
-        `;
-      }
+      // Update inline stats
+      updateInlineStats(data.stats, rateLimitedCount, data.expiringSoon.length);
 
-      // Show expiring tokens alert if any
+      // Show expiring tokens alert if any (when expanded)
       const alertContainer = document.getElementById('expiring-alert');
       const expiringList = document.getElementById('expiring-list');
-      if (alertContainer && expiringList && data.expiringSoon.length > 0) {
-        alertContainer.classList.remove('hidden');
-        expiringList.innerHTML = data.expiringSoon.map((t: { user_name: string | null; expires_at: string }) => `
-          <div class="text-sm text-orange-300">${t.user_name || 'Unknown'} - expires ${new Date(t.expires_at).toLocaleString()}</div>
-        `).join('');
+      if (alertContainer && expiringList) {
+        if (data.expiringSoon.length > 0) {
+          alertContainer.classList.remove('hidden');
+          expiringList.innerHTML = data.expiringSoon.map((t: { user_name: string | null; expires_at: string }) => `
+            <div class="text-sm text-orange-300">${t.user_name || 'Unknown'} - expires ${new Date(t.expires_at).toLocaleString()}</div>
+          `).join('');
+        } else {
+          alertContainer.classList.add('hidden');
+        }
       }
 
       // Render token table
       renderTokenTable();
     } catch (error) {
       console.error('Failed to load admin data:', error);
+      const inlineStats = document.getElementById('inline-stats');
+      if (inlineStats) {
+        inlineStats.innerHTML = '<span class="text-red-400">Failed to load</span>';
+      }
       const tableBody = document.getElementById('token-table-body');
       if (tableBody) {
         tableBody.innerHTML = `
@@ -389,6 +418,7 @@ if (!auth || !isAdmin(auth.username)) {
   loadAdminData();
 
   // Bind buttons
+  document.getElementById('expand-btn')?.addEventListener('click', toggleExpanded);
   document.getElementById('test-tokens-btn')?.addEventListener('click', testAllTokens);
   document.getElementById('delete-invalid-btn')?.addEventListener('click', deleteInvalidTokens);
 </script>
