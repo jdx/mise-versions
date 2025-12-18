@@ -51,7 +51,7 @@ function getSecurityLevel(security: Array<{ type: string; algorithm?: string }>)
 
 const securityColors: Record<SecurityLevel, string> = {
   attested: "text-green-400",
-  signed: "text-yellow-400",
+  signed: "text-orange-400",
   basic: "text-gray-400",
 };
 
@@ -90,7 +90,7 @@ function LockIcon({ security }: { security: Array<{ type: string; algorithm?: st
       onMouseLeave={() => setShowTooltip(false)}
     >
       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 1C8.676 1 6 3.676 6 7v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+        <path d="M12 2L4 5v6c0 5.55 3.84 10.74 8 12 4.16-1.26 8-6.45 8-12V5l-8-3zm0 10.99h6c-.53 4.12-3.28 7.79-6 8.94V13H6V6.3l6-2.25v8.94z"/>
       </svg>
       {showTooltip && (
         <span
