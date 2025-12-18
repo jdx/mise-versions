@@ -1,82 +1,82 @@
 [versions]
-"0.11.0" = { created_at = 2017-02-27T11:20:11.000Z }
-"0.12.2" = { created_at = 2017-04-12T17:06:25.000Z }
-"0.13.0" = { created_at = 2017-05-08T15:01:03.000Z }
-"0.14.0" = { created_at = 2017-05-10T15:57:01.000Z }
-"0.15.0" = { created_at = 2017-05-19T19:10:51.000Z }
-"0.16.0" = { created_at = 2017-06-16T12:35:06.000Z }
-"0.17.0" = { created_at = 2017-07-07T16:37:59.000Z }
-"0.17.1" = { created_at = 2017-08-04T15:42:37.000Z }
-"0.17.2" = { created_at = 2017-08-31T19:23:20.000Z }
-"0.18.0" = { created_at = 2017-11-20T18:46:35.000Z }
-"0.18.2" = { created_at = 2017-12-07T16:08:43.000Z }
-"0.19.0" = { created_at = 2018-01-23T12:30:36.000Z }
-"0.20.0" = { created_at = 2018-03-22T15:42:54.000Z }
-"0.21.0" = { created_at = 2018-05-23T06:48:35.000Z }
-"0.21.1" = { created_at = 2018-06-04T09:38:46.000Z }
-"0.22.0" = { created_at = 2018-07-06T16:02:31.000Z }
-"0.22.1" = { created_at = 2018-07-23T13:36:57.000Z }
-"0.23.0" = { created_at = 2018-11-22T13:42:40.000Z }
-"0.23.1" = { created_at = 2018-12-18T10:41:19.000Z }
-"0.24.0" = { created_at = 2019-03-20T09:59:53.000Z }
-"0.25.0" = { created_at = 2019-07-31T10:09:38.000Z }
-"0.25.1" = { created_at = 2019-08-13T10:23:08.000Z }
-"0.26.0" = { created_at = 2019-12-16T10:27:18.000Z }
-"0.26.1" = { created_at = 2020-02-24T08:09:12.000Z }
-"0.26.2" = { created_at = 2020-03-18T11:45:27.000Z }
-"0.27.0" = { created_at = 2020-07-14T12:07:32.000Z }
-"0.27.1" = { created_at = 2020-07-30T10:11:33.000Z }
-"0.28.0" = { created_at = 2020-09-21T12:04:04.000Z }
-"0.29.0" = { created_at = 2020-11-11T13:07:04.000Z }
-"0.30.0" = { created_at = 2021-01-20T13:03:50.000Z }
-"0.31.0" = { created_at = 2021-03-11T09:30:49.000Z }
-"0.31.1" = { created_at = 2021-03-17T13:10:45.000Z }
-"0.32.0" = { created_at = 2021-05-12T15:18:06.000Z }
-"0.33.0" = { created_at = 2021-06-29T10:26:59.000Z }
-"0.34.0" = { created_at = 2021-09-09T10:48:04.000Z }
-"0.34.1" = { created_at = 2021-09-16T08:09:22.000Z }
-"0.35.0" = { created_at = 2021-11-17T09:09:25.000Z }
-"0.36.0" = { created_at = 2022-01-24T09:32:04.000Z }
-"0.37.0" = { created_at = 2022-03-15T09:29:00.000Z }
-"0.38.0" = { created_at = 2022-05-04T14:43:12.000Z }
-"0.38.1" = { created_at = 2022-05-06T08:39:51.000Z }
-"0.38.2" = { created_at = 2022-05-11T13:35:26.000Z }
-"0.38.3" = { created_at = 2022-05-18T07:11:36.000Z }
-"0.39.0" = { created_at = 2022-07-05T07:46:46.000Z }
-"0.40.0" = { created_at = 2022-09-08T09:04:30.000Z }
-"0.41.0" = { created_at = 2022-11-02T11:49:08.000Z }
-"0.42.0" = { created_at = 2022-12-20T09:12:38.000Z }
-"0.43.0" = { created_at = 2023-02-20T10:54:07.000Z }
-"0.43.1" = { created_at = 2023-02-27T10:51:55.000Z }
-"0.44.0" = { created_at = 2023-04-24T09:24:46.000Z }
-"0.44.1" = { created_at = 2023-05-08T12:30:19.000Z }
-"0.45.0" = { created_at = 2023-06-19T08:30:13.000Z }
-"0.45.1" = { created_at = 2023-08-04T13:47:29.000Z }
-"0.46.0" = { created_at = 2023-08-14T13:21:51.000Z }
-"0.47.0" = { created_at = 2023-10-10T10:37:48.000Z }
-"0.48.0" = { created_at = 2023-12-06T10:20:27.000Z }
-"0.49.0" = { created_at = 2024-01-29T09:35:38.000Z }
-"0.50.0" = { created_at = 2024-03-25T11:12:10.000Z }
-"0.51.0" = { created_at = 2024-05-13T12:53:19.000Z }
-"0.52.0" = { created_at = 2024-06-25T11:02:54.000Z }
-"0.53.0" = { created_at = 2024-08-13T09:37:51.000Z }
-"0.54.0" = { created_at = 2024-09-30T09:31:27.000Z }
-"0.55.0" = { created_at = 2024-11-11T15:19:41.000Z }
-"0.55.1" = { created_at = 2024-12-19T15:57:55.000Z }
-"0.55.2" = { created_at = 2024-12-20T10:22:48.000Z }
-"0.56.0" = { created_at = 2025-01-06T16:45:58.000Z }
-"0.57.0" = { created_at = 2025-02-13T12:24:46.000Z }
-"1.0.0-rc1" = { created_at = 2025-03-25T14:34:07.000Z }
-"0.58.0" = { created_at = 2025-03-31T09:08:18.000Z }
-"0.59.0" = { created_at = 2025-05-05T13:25:29.000Z }
-"1.0.0-rc2" = { created_at = 2025-05-05T09:53:06.000Z }
-"1.0.0" = { created_at = 2025-05-06T10:42:29.000Z }
-"1.1.0" = { created_at = 2025-06-25T14:00:31.000Z }
-"1.2.0" = { created_at = 2025-08-13T09:43:39.000Z }
-"1.2.1" = { created_at = 2025-08-13T10:51:43.000Z }
-"1.2.2" = { created_at = 2025-08-19T11:13:04.000Z }
-"1.2.3" = { created_at = 2025-08-27T07:34:51.000Z }
-"1.3.0" = { created_at = 2025-09-23T09:17:11.000Z }
-"1.4.0" = { created_at = 2025-11-10T10:53:55.000Z }
-"1.4.1" = { created_at = 2025-11-20T16:28:46.000Z }
-"1.4.2" = { created_at = 2025-11-24T16:27:43.000Z }
+"0.11.0" = { created_at = 2017-02-27T11:20:11.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.11.0" }
+"0.12.2" = { created_at = 2017-04-12T17:06:25.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.12.2" }
+"0.13.0" = { created_at = 2017-05-08T15:01:03.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.13.0" }
+"0.14.0" = { created_at = 2017-05-10T15:57:01.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.14.0" }
+"0.15.0" = { created_at = 2017-05-19T19:10:51.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.15.0" }
+"0.16.0" = { created_at = 2017-06-16T12:35:06.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.16.0" }
+"0.17.0" = { created_at = 2017-07-07T16:37:59.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.17.0" }
+"0.17.1" = { created_at = 2017-08-04T15:42:37.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.17.1" }
+"0.17.2" = { created_at = 2017-08-31T19:23:20.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.17.2" }
+"0.18.0" = { created_at = 2017-11-20T18:46:35.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.18.0" }
+"0.18.2" = { created_at = 2017-12-07T16:08:43.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.18.2" }
+"0.19.0" = { created_at = 2018-01-23T12:30:36.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.19.0" }
+"0.20.0" = { created_at = 2018-03-22T15:42:54.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.20.0" }
+"0.21.0" = { created_at = 2018-05-23T06:48:35.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.21.0" }
+"0.21.1" = { created_at = 2018-06-04T09:38:46.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.21.1" }
+"0.22.0" = { created_at = 2018-07-06T16:02:31.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.22.0" }
+"0.22.1" = { created_at = 2018-07-23T13:36:57.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.22.1" }
+"0.23.0" = { created_at = 2018-11-22T13:42:40.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.23.0" }
+"0.23.1" = { created_at = 2018-12-18T10:41:19.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.23.1" }
+"0.24.0" = { created_at = 2019-03-20T09:59:53.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.24.0" }
+"0.25.0" = { created_at = 2019-07-31T10:09:38.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.25.0" }
+"0.25.1" = { created_at = 2019-08-13T10:23:08.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.25.1" }
+"0.26.0" = { created_at = 2019-12-16T10:27:18.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.26.0" }
+"0.26.1" = { created_at = 2020-02-24T08:09:12.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.26.1" }
+"0.26.2" = { created_at = 2020-03-18T11:45:27.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.26.2" }
+"0.27.0" = { created_at = 2020-07-14T12:07:32.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.27.0" }
+"0.27.1" = { created_at = 2020-07-30T10:11:33.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.27.1" }
+"0.28.0" = { created_at = 2020-09-21T12:04:04.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.28.0" }
+"0.29.0" = { created_at = 2020-11-11T13:07:04.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.29.0" }
+"0.30.0" = { created_at = 2021-01-20T13:03:50.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.30.0" }
+"0.31.0" = { created_at = 2021-03-11T09:30:49.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.31.0" }
+"0.31.1" = { created_at = 2021-03-17T13:10:45.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.31.1" }
+"0.32.0" = { created_at = 2021-05-12T15:18:06.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.32.0" }
+"0.33.0" = { created_at = 2021-06-29T10:26:59.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.33.0" }
+"0.34.0" = { created_at = 2021-09-09T10:48:04.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.34.0" }
+"0.34.1" = { created_at = 2021-09-16T08:09:22.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.34.1" }
+"0.35.0" = { created_at = 2021-11-17T09:09:25.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.35.0" }
+"0.36.0" = { created_at = 2022-01-24T09:32:04.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.36.0" }
+"0.37.0" = { created_at = 2022-03-15T09:29:00.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.37.0" }
+"0.38.0" = { created_at = 2022-05-04T14:43:12.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.38.0" }
+"0.38.1" = { created_at = 2022-05-06T08:39:51.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.38.1" }
+"0.38.2" = { created_at = 2022-05-11T13:35:26.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.38.2" }
+"0.38.3" = { created_at = 2022-05-18T07:11:36.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.38.3" }
+"0.39.0" = { created_at = 2022-07-05T07:46:46.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.39.0" }
+"0.40.0" = { created_at = 2022-09-08T09:04:30.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.40.0" }
+"0.41.0" = { created_at = 2022-11-02T11:49:08.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.41.0" }
+"0.42.0" = { created_at = 2022-12-20T09:12:38.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.42.0" }
+"0.43.0" = { created_at = 2023-02-20T10:54:07.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.43.0" }
+"0.43.1" = { created_at = 2023-02-27T10:51:55.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.43.1" }
+"0.44.0" = { created_at = 2023-04-24T09:24:46.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.44.0" }
+"0.44.1" = { created_at = 2023-05-08T12:30:19.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.44.1" }
+"0.45.0" = { created_at = 2023-06-19T08:30:13.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.45.0" }
+"0.45.1" = { created_at = 2023-08-04T13:47:29.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.45.1" }
+"0.46.0" = { created_at = 2023-08-14T13:21:51.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.46.0" }
+"0.47.0" = { created_at = 2023-10-10T10:37:48.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.47.0" }
+"0.48.0" = { created_at = 2023-12-06T10:20:27.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.48.0" }
+"0.49.0" = { created_at = 2024-01-29T09:35:38.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.49.0" }
+"0.50.0" = { created_at = 2024-03-25T11:12:10.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.50.0" }
+"0.51.0" = { created_at = 2024-05-13T12:53:19.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.51.0" }
+"0.52.0" = { created_at = 2024-06-25T11:02:54.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.52.0" }
+"0.53.0" = { created_at = 2024-08-13T09:37:51.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.53.0" }
+"0.54.0" = { created_at = 2024-09-30T09:31:27.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.54.0" }
+"0.55.0" = { created_at = 2024-11-11T15:19:41.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.55.0" }
+"0.55.1" = { created_at = 2024-12-19T15:57:55.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.55.1" }
+"0.55.2" = { created_at = 2024-12-20T10:22:48.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.55.2" }
+"0.56.0" = { created_at = 2025-01-06T16:45:58.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.56.0" }
+"0.57.0" = { created_at = 2025-02-13T12:24:46.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.57.0" }
+"1.0.0-rc1" = { created_at = 2025-03-25T14:34:07.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.0.0-rc1" }
+"0.58.0" = { created_at = 2025-03-31T09:08:18.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.58.0" }
+"0.59.0" = { created_at = 2025-05-05T13:25:29.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v0.59.0" }
+"1.0.0-rc2" = { created_at = 2025-05-05T09:53:06.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.0.0-rc2" }
+"1.0.0" = { created_at = 2025-05-06T10:42:29.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2025-06-25T14:00:31.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.1.0" }
+"1.2.0" = { created_at = 2025-08-13T09:43:39.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2025-08-13T10:51:43.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2025-08-19T11:13:04.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2025-08-27T07:34:51.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.2.3" }
+"1.3.0" = { created_at = 2025-09-23T09:17:11.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2025-11-10T10:53:55.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2025-11-20T16:28:46.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.4.1" }
+"1.4.2" = { created_at = 2025-11-24T16:27:43.000Z, release_url = "https://github.com/grafana/k6/releases/tag/v1.4.2" }

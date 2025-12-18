@@ -1,5 +1,5 @@
 {
-  "tool_count": 959,
+  "tool_count": 958,
   "tools": [
     {
       "name": "1password",
@@ -6930,10 +6930,10 @@
     },
     {
       "name": "k0sctl",
-      "latest_version": "0.27.1",
-      "latest_stable_version": "0.27.1",
-      "version_count": 65,
-      "last_updated": "2025-12-09T13:27:02.000Z",
+      "latest_version": "0.28.0",
+      "latest_stable_version": "0.28.0",
+      "version_count": 66,
+      "last_updated": "2025-12-16T12:20:21.000Z",
       "github": "k0sproject/k0sctl",
       "repo_url": "https://github.com/k0sproject/k0sctl",
       "backends": [
@@ -6978,22 +6978,6 @@
       "license": "MIT",
       "homepage": "https://k3d.io/",
       "description": "Little helper to run CNCF's k3s in Docker"
-    },
-    {
-      "name": "k3kcli",
-      "latest_version": "0.3.4",
-      "latest_stable_version": "0.3.4",
-      "version_count": 9,
-      "last_updated": "2025-01-01T00:00:00.000Z",
-      "github": "rancher/k3k",
-      "repo_url": "https://github.com/rancher/k3k",
-      "backends": [
-        "ubi:rancher/k3k[tag_regex=v\\\\d,matching=k3kcli]",
-        "asdf:xanmanning/asdf-k3kcli"
-      ],
-      "license": "Apache-2.0",
-      "homepage": "https://rancher.github.io/k3k-product-docs",
-      "description": "Kubernetes in Kubernetes"
     },
     {
       "name": "k3s",
@@ -7223,10 +7207,10 @@
     },
     {
       "name": "kind",
-      "latest_version": "0.30.0",
-      "latest_stable_version": "0.30.0",
-      "version_count": 28,
-      "last_updated": "2025-08-27T17:42:16.000Z",
+      "latest_version": "0.31.0",
+      "latest_stable_version": "0.31.0",
+      "version_count": 29,
+      "last_updated": "2025-12-18T00:51:55.000Z",
       "github": "kubernetes-sigs/kind",
       "repo_url": "https://github.com/kubernetes-sigs/kind",
       "backends": [
@@ -7498,9 +7482,9 @@
     {
       "name": "kube-code-generator",
       "latest_version": "0.36.0-alpha.0",
-      "latest_stable_version": "0.34.3",
+      "latest_stable_version": "0.35.0",
       "version_count": 30,
-      "last_updated": "2025-12-17T23:31:06.487Z",
+      "last_updated": "2025-12-18T10:44:58.948Z",
       "backends": [
         "asdf:mise-plugins/mise-kube-code-generator"
       ]

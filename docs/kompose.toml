@@ -1,51 +1,51 @@
 [versions]
-"0.1.0" = { created_at = 2016-09-09T09:46:31.000Z }
-"0.1.1" = { created_at = 2016-10-06T19:54:17.000Z }
-"0.1.2" = { created_at = 2016-10-31T11:22:29.000Z }
-"0.2.0" = { created_at = 2017-01-27T20:37:05.000Z }
-"0.3.0" = { created_at = 2017-02-24T14:56:16.000Z }
-"0.4.0" = { created_at = 2017-03-21T18:55:23.000Z }
-"0.5.0" = { created_at = 2017-04-04T16:52:17.000Z }
-"0.6.0" = { created_at = 2017-04-28T14:01:03.000Z }
-"0.7.0" = { created_at = 2017-05-25T16:06:41.000Z }
-"1.0.0" = { created_at = 2017-07-20T15:56:38.000Z }
-"1.1.0" = { created_at = 2017-08-30T15:45:24.000Z }
-"1.2.0" = { created_at = 2017-09-18T18:39:31.000Z }
-"1.3.0" = { created_at = 2017-10-10T19:25:37.000Z }
-"1.4.0" = { created_at = 2017-10-31T20:48:12.000Z }
-"1.5.0" = { created_at = 2017-11-21T16:22:57.000Z }
-"1.6.0" = { created_at = 2017-12-11T18:51:08.000Z }
-"1.7.0" = { created_at = 2018-01-04T17:09:47.000Z }
-"1.8.0" = { created_at = 2018-01-24T15:52:14.000Z }
-"1.9.0" = { created_at = 2018-02-13T21:00:52.000Z }
-"1.10.0" = { created_at = 2018-03-06T15:44:03.000Z }
-"1.11.0" = { created_at = 2018-03-26T16:03:57.000Z }
-"1.12.0" = { created_at = 2018-04-18T13:59:33.000Z }
-"1.13.0" = { created_at = 2018-05-14T13:16:43.000Z }
-"1.14.0" = { created_at = 2018-06-04T17:50:54.000Z }
-"1.15.0" = { created_at = 2018-06-28T16:05:25.000Z }
-"1.16.0" = { created_at = 2018-07-24T16:54:29.000Z }
-"1.17.0" = { created_at = 2018-11-05T15:34:31.000Z }
-"1.18.0" = { created_at = 2019-03-01T20:30:00.000Z }
-"1.19.0" = { created_at = 2019-10-16T17:39:36.000Z }
-"1.20.0" = { created_at = 2019-12-23T17:05:10.000Z }
-"1.21.0" = { created_at = 2020-02-25T17:06:39.000Z }
-"1.22.0" = { created_at = 2020-10-28T18:36:31.000Z }
-"1.23.0" = { created_at = 2021-07-13T13:20:29.000Z }
-"1.24.0" = { created_at = 2021-08-29T14:53:41.000Z }
-"1.25" = { created_at = 2021-10-23T06:49:39.000Z }
-"1.26.0" = { created_at = 2021-11-13T14:49:53.000Z }
-"1.26.1" = { created_at = 2022-01-10T20:34:01.000Z }
-"1.27.0" = { created_at = 2022-11-18T16:31:23.000Z }
-"1.28.0" = { created_at = 2023-01-23T18:44:44.000Z }
-"1.29.0" = { created_at = 2023-07-05T18:53:32.000Z }
-"1.30.0" = { created_at = 2023-07-18T12:46:19.000Z }
-"1.31.0" = { created_at = 2023-09-29T15:42:16.000Z }
-"1.31.1" = { created_at = 2023-10-06T17:36:09.000Z }
-"1.31.2" = { created_at = 2023-10-12T12:54:11.000Z }
-"1.32.0" = { created_at = 2024-01-18T15:02:06.000Z }
-"1.33.0" = { created_at = 2024-04-25T22:46:51.000Z }
-"1.34.0" = { created_at = 2024-06-02T23:20:46.000Z }
-"1.35.0" = { created_at = 2024-12-12T13:59:52.000Z }
-"1.36.0" = { created_at = 2025-05-14T18:17:40.000Z }
-"1.37.0" = { created_at = 2025-08-11T18:55:47.000Z }
+"0.1.0" = { created_at = 2016-09-09T09:46:31.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2016-10-06T19:54:17.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2016-10-31T11:22:29.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.1.2" }
+"0.2.0" = { created_at = 2017-01-27T20:37:05.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.2.0" }
+"0.3.0" = { created_at = 2017-02-24T14:56:16.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.3.0" }
+"0.4.0" = { created_at = 2017-03-21T18:55:23.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.4.0" }
+"0.5.0" = { created_at = 2017-04-04T16:52:17.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.5.0" }
+"0.6.0" = { created_at = 2017-04-28T14:01:03.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2017-05-25T16:06:41.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v0.7.0" }
+"1.0.0" = { created_at = 2017-07-20T15:56:38.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2017-08-30T15:45:24.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.1.0" }
+"1.2.0" = { created_at = 2017-09-18T18:39:31.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.2.0" }
+"1.3.0" = { created_at = 2017-10-10T19:25:37.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2017-10-31T20:48:12.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.4.0" }
+"1.5.0" = { created_at = 2017-11-21T16:22:57.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.5.0" }
+"1.6.0" = { created_at = 2017-12-11T18:51:08.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.6.0" }
+"1.7.0" = { created_at = 2018-01-04T17:09:47.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.7.0" }
+"1.8.0" = { created_at = 2018-01-24T15:52:14.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2018-02-13T21:00:52.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.9.0" }
+"1.10.0" = { created_at = 2018-03-06T15:44:03.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.10.0" }
+"1.11.0" = { created_at = 2018-03-26T16:03:57.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.11.0" }
+"1.12.0" = { created_at = 2018-04-18T13:59:33.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.12.0" }
+"1.13.0" = { created_at = 2018-05-14T13:16:43.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.13.0" }
+"1.14.0" = { created_at = 2018-06-04T17:50:54.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.14.0" }
+"1.15.0" = { created_at = 2018-06-28T16:05:25.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.15.0" }
+"1.16.0" = { created_at = 2018-07-24T16:54:29.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.16.0" }
+"1.17.0" = { created_at = 2018-11-05T15:34:31.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.17.0" }
+"1.18.0" = { created_at = 2019-03-01T20:30:00.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.18.0" }
+"1.19.0" = { created_at = 2019-10-16T17:39:36.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.19.0" }
+"1.20.0" = { created_at = 2019-12-23T17:05:10.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.20.0" }
+"1.21.0" = { created_at = 2020-02-25T17:06:39.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.21.0" }
+"1.22.0" = { created_at = 2020-10-28T18:36:31.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.22.0" }
+"1.23.0" = { created_at = 2021-07-13T13:20:29.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.23.0" }
+"1.24.0" = { created_at = 2021-08-29T14:53:41.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.24.0" }
+"1.25" = { created_at = 2021-10-23T06:49:39.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.25" }
+"1.26.0" = { created_at = 2021-11-13T14:49:53.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.26.0" }
+"1.26.1" = { created_at = 2022-01-10T20:34:01.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.26.1" }
+"1.27.0" = { created_at = 2022-11-18T16:31:23.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.27.0" }
+"1.28.0" = { created_at = 2023-01-23T18:44:44.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.28.0" }
+"1.29.0" = { created_at = 2023-07-05T18:53:32.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.29.0" }
+"1.30.0" = { created_at = 2023-07-18T12:46:19.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.30.0" }
+"1.31.0" = { created_at = 2023-09-29T15:42:16.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.31.0" }
+"1.31.1" = { created_at = 2023-10-06T17:36:09.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.31.1" }
+"1.31.2" = { created_at = 2023-10-12T12:54:11.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.31.2" }
+"1.32.0" = { created_at = 2024-01-18T15:02:06.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.32.0" }
+"1.33.0" = { created_at = 2024-04-25T22:46:51.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.33.0" }
+"1.34.0" = { created_at = 2024-06-02T23:20:46.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.34.0" }
+"1.35.0" = { created_at = 2024-12-12T13:59:52.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.35.0" }
+"1.36.0" = { created_at = 2025-05-14T18:17:40.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.36.0" }
+"1.37.0" = { created_at = 2025-08-11T18:55:47.000Z, release_url = "https://github.com/kubernetes/kompose/releases/tag/v1.37.0" }

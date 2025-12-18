@@ -1,49 +1,49 @@
 [versions]
-"0.21.0" = { created_at = 2021-02-24T09:27:27.000Z }
-"0.22.0" = { created_at = 2021-04-07T01:27:01.000Z }
-"0.23.0" = { created_at = 2021-05-19T07:53:28.000Z }
-"0.23.1" = { created_at = 2021-06-15T10:09:43.000Z }
-"0.24.0" = { created_at = 2021-06-29T20:59:48.000Z }
-"0.23.2" = { created_at = 2021-07-06T10:07:32.000Z }
-"0.25.0" = { created_at = 2021-08-11T05:21:04.000Z }
-"0.25.1" = { created_at = 2021-09-16T12:06:58.000Z }
-"0.26.0" = { created_at = 2021-09-22T17:19:31.000Z }
-"knative-v1.0.0" = { created_at = 2021-11-02T19:38:26.000Z }
-"knative-v1.1.0" = { created_at = 2021-12-14T14:10:47.000Z }
-"knative-v1.2.0" = { created_at = 2022-01-26T03:24:56.000Z }
-"knative-v1.3.1" = { created_at = 2022-03-11T18:53:48.000Z }
-"knative-v1.4.0" = { created_at = 2022-04-19T23:14:42.000Z }
-"knative-v1.4.1" = { created_at = 2022-05-17T10:47:45.000Z }
-"knative-v1.5.0" = { created_at = 2022-05-31T18:17:22.000Z }
-"knative-v1.6.0" = { created_at = 2022-07-13T10:02:55.000Z }
-"knative-v1.6.1" = { created_at = 2022-08-17T11:08:51.000Z }
-"knative-v1.7.0" = { created_at = 2022-08-23T21:21:23.000Z }
-"knative-v1.7.1" = { created_at = 2022-10-11T10:29:22.000Z }
-"knative-v1.8.0" = { created_at = 2022-10-19T11:57:43.000Z }
-"knative-v1.8.1" = { created_at = 2022-10-20T16:22:37.000Z }
-"knative-v1.9.0" = { created_at = 2023-01-26T20:48:20.000Z }
-"knative-v1.7.2" = { created_at = 2023-03-07T10:28:57.000Z }
-"knative-v1.8.2" = { created_at = 2023-03-07T10:46:14.000Z }
-"knative-v1.9.1" = { created_at = 2023-03-07T10:05:22.000Z }
-"knative-v1.9.2" = { created_at = 2023-03-23T12:51:09.000Z }
-"knative-v1.10.0" = { created_at = 2023-04-26T10:28:49.000Z }
-"knative-v1.11.0" = { created_at = 2023-07-27T07:54:00.000Z }
-"knative-v1.10.1" = { created_at = 2023-10-17T10:41:11.000Z }
-"knative-v1.11.1" = { created_at = 2023-10-17T10:44:47.000Z }
-"knative-v1.12.0" = { created_at = 2023-10-25T15:58:03.000Z }
-"knative-v1.11.2" = { created_at = 2023-10-31T10:49:49.000Z }
-"knative-v1.13.0" = { created_at = 2024-01-24T17:02:15.000Z }
-"knative-v1.14.0" = { created_at = 2024-04-24T13:01:08.000Z }
-"knative-v1.15.0" = { created_at = 2024-07-24T15:34:14.000Z }
-"knative-v1.16.0" = { created_at = 2024-10-22T17:19:48.000Z }
-"knative-v1.16.1" = { created_at = 2024-12-03T10:44:02.000Z }
-"knative-v1.17.0" = { created_at = 2025-01-22T16:38:13.000Z }
-"knative-v1.18.0" = { created_at = 2025-04-23T19:55:44.000Z }
-"knative-v1.19.0" = { created_at = 2025-07-23T13:30:42.000Z }
-"knative-v1.19.1" = { created_at = 2025-08-19T10:16:57.000Z }
-"knative-v1.19.2" = { created_at = 2025-08-26T10:20:04.000Z }
-"knative-v1.19.3" = { created_at = 2025-09-02T10:18:44.000Z }
-"knative-v1.19.4" = { created_at = 2025-09-09T11:14:26.000Z }
-"knative-v1.19.5" = { created_at = 2025-09-16T10:21:38.000Z }
-"knative-v1.19.6" = { created_at = 2025-10-28T11:04:04.000Z }
-"knative-v1.20.0" = { created_at = 2025-10-30T10:43:47.000Z }
+"0.21.0" = { created_at = 2021-02-24T09:27:27.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.21.0" }
+"0.22.0" = { created_at = 2021-04-07T01:27:01.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.22.0" }
+"0.23.0" = { created_at = 2021-05-19T07:53:28.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.23.0" }
+"0.23.1" = { created_at = 2021-06-15T10:09:43.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.23.1" }
+"0.24.0" = { created_at = 2021-06-29T20:59:48.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.24.0" }
+"0.23.2" = { created_at = 2021-07-06T10:07:32.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.23.2" }
+"0.25.0" = { created_at = 2021-08-11T05:21:04.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.25.0" }
+"0.25.1" = { created_at = 2021-09-16T12:06:58.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.25.1" }
+"0.26.0" = { created_at = 2021-09-22T17:19:31.000Z, release_url = "https://github.com/knative/client/releases/tag/v0.26.0" }
+"knative-v1.0.0" = { created_at = 2021-11-02T19:38:26.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.0.0" }
+"knative-v1.1.0" = { created_at = 2021-12-14T14:10:47.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.1.0" }
+"knative-v1.2.0" = { created_at = 2022-01-26T03:24:56.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.2.0" }
+"knative-v1.3.1" = { created_at = 2022-03-11T18:53:48.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.3.1" }
+"knative-v1.4.0" = { created_at = 2022-04-19T23:14:42.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.4.0" }
+"knative-v1.4.1" = { created_at = 2022-05-17T10:47:45.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.4.1" }
+"knative-v1.5.0" = { created_at = 2022-05-31T18:17:22.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.5.0" }
+"knative-v1.6.0" = { created_at = 2022-07-13T10:02:55.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.6.0" }
+"knative-v1.6.1" = { created_at = 2022-08-17T11:08:51.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.6.1" }
+"knative-v1.7.0" = { created_at = 2022-08-23T21:21:23.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.7.0" }
+"knative-v1.7.1" = { created_at = 2022-10-11T10:29:22.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.7.1" }
+"knative-v1.8.0" = { created_at = 2022-10-19T11:57:43.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.8.0" }
+"knative-v1.8.1" = { created_at = 2022-10-20T16:22:37.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.8.1" }
+"knative-v1.9.0" = { created_at = 2023-01-26T20:48:20.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.9.0" }
+"knative-v1.7.2" = { created_at = 2023-03-07T10:28:57.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.7.2" }
+"knative-v1.8.2" = { created_at = 2023-03-07T10:46:14.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.8.2" }
+"knative-v1.9.1" = { created_at = 2023-03-07T10:05:22.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.9.1" }
+"knative-v1.9.2" = { created_at = 2023-03-23T12:51:09.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.9.2" }
+"knative-v1.10.0" = { created_at = 2023-04-26T10:28:49.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.10.0" }
+"knative-v1.11.0" = { created_at = 2023-07-27T07:54:00.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.11.0" }
+"knative-v1.10.1" = { created_at = 2023-10-17T10:41:11.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.10.1" }
+"knative-v1.11.1" = { created_at = 2023-10-17T10:44:47.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.11.1" }
+"knative-v1.12.0" = { created_at = 2023-10-25T15:58:03.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.12.0" }
+"knative-v1.11.2" = { created_at = 2023-10-31T10:49:49.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.11.2" }
+"knative-v1.13.0" = { created_at = 2024-01-24T17:02:15.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.13.0" }
+"knative-v1.14.0" = { created_at = 2024-04-24T13:01:08.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.14.0" }
+"knative-v1.15.0" = { created_at = 2024-07-24T15:34:14.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.15.0" }
+"knative-v1.16.0" = { created_at = 2024-10-22T17:19:48.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.16.0" }
+"knative-v1.16.1" = { created_at = 2024-12-03T10:44:02.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.16.1" }
+"knative-v1.17.0" = { created_at = 2025-01-22T16:38:13.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.17.0" }
+"knative-v1.18.0" = { created_at = 2025-04-23T19:55:44.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.18.0" }
+"knative-v1.19.0" = { created_at = 2025-07-23T13:30:42.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.0" }
+"knative-v1.19.1" = { created_at = 2025-08-19T10:16:57.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.1" }
+"knative-v1.19.2" = { created_at = 2025-08-26T10:20:04.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.2" }
+"knative-v1.19.3" = { created_at = 2025-09-02T10:18:44.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.3" }
+"knative-v1.19.4" = { created_at = 2025-09-09T11:14:26.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.4" }
+"knative-v1.19.5" = { created_at = 2025-09-16T10:21:38.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.5" }
+"knative-v1.19.6" = { created_at = 2025-10-28T11:04:04.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.19.6" }
+"knative-v1.20.0" = { created_at = 2025-10-30T10:43:47.000Z, release_url = "https://github.com/knative/client/releases/tag/knative-v1.20.0" }
