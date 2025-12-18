@@ -265,11 +265,11 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
       const currentMAU = mauResult?.mau ?? 0;
 
-      // Fill in missing days with 0
+      // Fill in missing days with 0 (exclude current day since it's incomplete)
       const dailyData: Array<{ date: string; dau: number }> = [];
       const dauMap = new Map(dauResults.map(r => [r.date, r.dau]));
 
-      for (let i = days - 1; i >= 0; i--) {
+      for (let i = days - 1; i >= 1; i--) {
         const dayTimestamp = now - i * 86400;
         const date = new Date(dayTimestamp * 1000).toISOString().split("T")[0];
         dailyData.push({
@@ -1163,8 +1163,8 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         versionCounts.get(d.date)!.set(d.version, d.count);
       }
 
-      // Fill timeline
-      for (let i = days - 1; i >= 0; i--) {
+      // Fill timeline (exclude current day since it's incomplete)
+      for (let i = days - 1; i >= 1; i--) {
         const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
         const dayCounts = versionCounts.get(date) || new Map();
 
@@ -1266,10 +1266,10 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .orderBy(dailyToolStats.date)
         .all();
 
-      // Fill missing days with 0
+      // Fill missing days with 0 (exclude current day since it's incomplete)
       const sparkline: number[] = [];
       const sparklineMap = new Map(sparklineData.map(d => [d.date, d.downloads]));
-      for (let i = 13; i >= 0; i--) {
+      for (let i = 13; i >= 1; i--) {
         const date = new Date((now - i * 86400) * 1000).toISOString().split("T")[0];
         sparkline.push(sparklineMap.get(date) ?? 0);
       }
