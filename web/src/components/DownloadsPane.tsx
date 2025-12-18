@@ -27,12 +27,12 @@ function DailyBarChart({
 
   const maxCount = Math.max(...daily.map((d) => d.count), 1);
 
-  // Fill in missing days for the last 30 days
+  // Fill in missing days for the last 30 days (excluding today since it's incomplete)
   const today = new Date();
   const days: Array<{ date: string; count: number }> = [];
   const dailyMap = new Map(daily.map((d) => [d.date, d.count]));
 
-  for (let i = 29; i >= 0; i--) {
+  for (let i = 30; i >= 1; i--) {
     const date = new Date(today);
     date.setDate(date.getDate() - i);
     const dateStr = date.toISOString().split("T")[0];
