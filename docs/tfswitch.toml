@@ -1,80 +1,81 @@
 [versions]
-"0.2.165" = { created_at = 2018-05-24T19:34:10.000Z }
-"0.2.168" = { created_at = 2018-05-24T19:55:30.000Z }
-"0.2.169" = { created_at = 2018-05-24T19:57:57.000Z }
-"0.2.171" = { created_at = 2018-05-24T20:05:04.000Z }
-"0.2.172" = { created_at = 2018-05-24T20:07:01.000Z }
-"0.2.173" = { created_at = 2018-05-24T20:08:16.000Z }
-"0.2.174" = { created_at = 2018-05-24T20:39:37.000Z }
-"0.2.175" = { created_at = 2018-05-24T21:07:32.000Z }
-"0.2.177" = { created_at = 2018-05-24T20:05:00.000Z }
-"0.2.180" = { created_at = 2018-05-24T20:08:39.000Z }
-"0.2.189" = { created_at = 2018-05-24T20:40:20.000Z }
-"0.2.190" = { created_at = 2018-05-24T21:14:19.000Z }
-"0.2.191" = { created_at = 2018-05-24T22:43:33.000Z }
-"0.2.192" = { created_at = 2018-05-25T03:19:57.000Z }
-"0.2.193" = { created_at = 2018-05-25T03:23:04.000Z }
-"0.2.195" = { created_at = 2018-05-25T04:30:19.000Z }
-"0.3.195" = { created_at = 2018-05-25T21:42:46.000Z }
-"0.3.210" = { created_at = 2018-05-26T01:10:30.000Z }
-"0.3.238" = { created_at = 2018-05-26T01:53:22.000Z }
-"0.3.256" = { created_at = 2018-05-26T03:24:51.000Z }
-"0.3.379" = { created_at = 2018-05-28T22:33:25.000Z }
-"0.3.475" = { created_at = 2018-06-23T22:59:26.000Z }
-"0.4.552" = { created_at = 2018-06-24T16:10:40.000Z }
-"0.4.571" = { created_at = 2018-09-28T17:03:08.000Z }
-"0.4.583" = { created_at = 2018-10-24T21:08:37.000Z }
-"0.4.595" = { created_at = 2018-10-24T21:27:54.000Z }
-"0.4.611" = { created_at = 2019-03-02T20:43:08.000Z }
-"0.5.642" = { created_at = 2019-04-08T23:10:26.000Z }
-"0.6.696" = { created_at = 2019-05-22T19:35:17.000Z }
-"0.6.697" = { created_at = 2019-05-22T19:35:47.000Z }
-"0.7.737" = { created_at = 2019-06-10T05:31:33.000Z }
-"0.7.817" = { created_at = 2020-03-05T20:13:23.000Z }
-"0.8.832" = { created_at = 2020-04-16T22:47:11.000Z }
-"0.9.934" = { created_at = 2020-11-13T04:11:23.000Z }
-"0.9.939" = { created_at = 2021-01-09T07:20:10.000Z }
-"0.10.958" = { created_at = 2021-01-13T09:13:25.000Z }
-"0.10.1010" = { created_at = 2021-02-05T10:20:24.000Z }
-"0.11.1066" = { created_at = 2021-03-09T04:14:23.000Z }
-"0.11.1071" = { created_at = 2021-03-09T04:58:58.000Z }
-"0.12.1092" = { created_at = 2021-05-06T01:34:24.000Z }
-"0.12.1097" = { created_at = 2021-06-07T02:21:34.000Z }
-"0.12.1119" = { created_at = 2021-07-02T22:09:52.000Z }
-"0.12.1168" = { created_at = 2021-07-13T18:20:56.000Z }
-"0.13.1201" = { created_at = 2021-11-29T03:05:09.000Z }
-"0.13.1218" = { created_at = 2022-03-08T21:40:28.000Z }
-"0.13.1221" = { created_at = 2022-05-11T14:27:05.000Z }
-"0.13.1250" = { created_at = 2022-05-27T17:09:08.000Z }
-"0.13.1275" = { created_at = 2022-06-20T06:23:25.000Z }
-"0.13.1288" = { created_at = 2022-07-04T06:17:07.000Z }
-"0.13.1300" = { created_at = 2022-10-27T06:00:49.000Z }
-"0.13.1308" = { created_at = 2023-02-06T01:34:12.000Z }
-"1.0.0" = { created_at = 2024-04-01T07:21:35.000Z }
-"1.0.1" = { created_at = 2024-04-01T22:27:15.000Z }
-"1.0.2" = { created_at = 2024-04-02T00:19:33.000Z }
-"1.1.0" = { created_at = 2024-04-25T07:11:11.000Z }
-"1.1.1" = { created_at = 2024-04-26T07:18:52.000Z }
-"1.2.0" = { created_at = 2024-07-05T19:28:51.000Z }
-"1.2.1" = { created_at = 2024-07-06T09:29:04.000Z }
-"1.2.2" = { created_at = 2024-07-10T05:31:15.000Z }
-"1.2.3" = { created_at = 2024-09-27T16:30:26.000Z }
-"1.2.4" = { created_at = 2024-11-22T22:23:31.000Z }
-"1.3.0" = { created_at = 2025-01-26T21:54:19.000Z }
-"1.4.0" = { created_at = 2025-02-27T18:19:12.000Z }
-"1.4.1" = { created_at = 2025-03-07T12:34:54.000Z }
-"1.4.2" = { created_at = 2025-03-14T21:06:55.000Z }
-"1.4.3" = { created_at = 2025-03-26T23:46:54.000Z }
-"1.4.4" = { created_at = 2025-04-07T20:07:25.000Z }
-"1.4.5" = { created_at = 2025-05-13T12:11:34.000Z }
-"1.4.6" = { created_at = 2025-07-03T00:02:41.000Z }
-"1.4.7" = { created_at = 2025-07-24T13:23:34.000Z }
-"1.5.0" = { created_at = 2025-08-07T17:56:49.000Z }
-"1.5.1" = { created_at = 2025-09-05T23:03:19.000Z }
-"1.6.0" = { created_at = 2025-09-07T10:34:59.000Z }
-"1.7.0" = { created_at = 2025-10-02T19:56:45.000Z }
-"1.8.0" = { created_at = 2025-10-23T20:22:41.000Z }
-"1.9.0" = { created_at = 2025-11-02T20:41:02.000Z }
-"1.10.0" = { created_at = 2025-11-26T11:49:18.000Z }
-"1.11.0" = { created_at = 2025-12-13T22:21:23.000Z }
-"1.12.0" = { created_at = 2025-12-14T21:37:49.000Z }
+"0.2.165" = { created_at = 2018-05-24T19:34:10.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.165" }
+"0.2.168" = { created_at = 2018-05-24T19:55:30.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.168" }
+"0.2.169" = { created_at = 2018-05-24T19:57:57.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.169" }
+"0.2.171" = { created_at = 2018-05-24T20:05:04.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.171" }
+"0.2.172" = { created_at = 2018-05-24T20:07:01.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.172" }
+"0.2.173" = { created_at = 2018-05-24T20:08:16.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.173" }
+"0.2.174" = { created_at = 2018-05-24T20:39:37.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.174" }
+"0.2.175" = { created_at = 2018-05-24T21:07:32.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.175" }
+"0.2.177" = { created_at = 2018-05-24T20:05:00.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.177" }
+"0.2.180" = { created_at = 2018-05-24T20:08:39.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.180" }
+"0.2.189" = { created_at = 2018-05-24T20:40:20.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.189" }
+"0.2.190" = { created_at = 2018-05-24T21:14:19.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.190" }
+"0.2.191" = { created_at = 2018-05-24T22:43:33.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.191" }
+"0.2.192" = { created_at = 2018-05-25T03:19:57.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.192" }
+"0.2.193" = { created_at = 2018-05-25T03:23:04.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.193" }
+"0.2.195" = { created_at = 2018-05-25T04:30:19.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.2.195" }
+"0.3.195" = { created_at = 2018-05-25T21:42:46.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.3.195" }
+"0.3.210" = { created_at = 2018-05-26T01:10:30.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.3.210" }
+"0.3.238" = { created_at = 2018-05-26T01:53:22.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.3.238" }
+"0.3.256" = { created_at = 2018-05-26T03:24:51.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.3.256" }
+"0.3.379" = { created_at = 2018-05-28T22:33:25.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.3.379" }
+"0.3.475" = { created_at = 2018-06-23T22:59:26.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.3.475" }
+"0.4.552" = { created_at = 2018-06-24T16:10:40.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.4.552" }
+"0.4.571" = { created_at = 2018-09-28T17:03:08.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.4.571" }
+"0.4.583" = { created_at = 2018-10-24T21:08:37.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.4.583" }
+"0.4.595" = { created_at = 2018-10-24T21:27:54.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.4.595" }
+"0.4.611" = { created_at = 2019-03-02T20:43:08.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.4.611" }
+"0.5.642" = { created_at = 2019-04-08T23:10:26.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.5.642" }
+"0.6.696" = { created_at = 2019-05-22T19:35:17.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.6.696" }
+"0.6.697" = { created_at = 2019-05-22T19:35:47.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.6.697" }
+"0.7.737" = { created_at = 2019-06-10T05:31:33.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.7.737" }
+"0.7.817" = { created_at = 2020-03-05T20:13:23.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.7.817" }
+"0.8.832" = { created_at = 2020-04-16T22:47:11.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.8.832" }
+"0.9.934" = { created_at = 2020-11-13T04:11:23.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.9.934" }
+"0.9.939" = { created_at = 2021-01-09T07:20:10.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.9.939" }
+"0.10.958" = { created_at = 2021-01-13T09:13:25.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.10.958" }
+"0.10.1010" = { created_at = 2021-02-05T10:20:24.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.10.1010" }
+"0.11.1066" = { created_at = 2021-03-09T04:14:23.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.11.1066" }
+"0.11.1071" = { created_at = 2021-03-09T04:58:58.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.11.1071" }
+"0.12.1092" = { created_at = 2021-05-06T01:34:24.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.12.1092" }
+"0.12.1097" = { created_at = 2021-06-07T02:21:34.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.12.1097" }
+"0.12.1119" = { created_at = 2021-07-02T22:09:52.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.12.1119" }
+"0.12.1168" = { created_at = 2021-07-13T18:20:56.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.12.1168" }
+"0.13.1201" = { created_at = 2021-11-29T03:05:09.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1201" }
+"0.13.1218" = { created_at = 2022-03-08T21:40:28.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1218" }
+"0.13.1221" = { created_at = 2022-05-11T14:27:05.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1221" }
+"0.13.1250" = { created_at = 2022-05-27T17:09:08.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1250" }
+"0.13.1275" = { created_at = 2022-06-20T06:23:25.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1275" }
+"0.13.1288" = { created_at = 2022-07-04T06:17:07.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1288" }
+"0.13.1300" = { created_at = 2022-10-27T06:00:49.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1300" }
+"0.13.1308" = { created_at = 2023-02-06T01:34:12.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/0.13.1308" }
+"1.0.0" = { created_at = 2024-04-01T07:21:35.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/1.0.0" }
+"1.0.1" = { created_at = 2024-04-01T22:27:15.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/1.0.1" }
+"1.0.2" = { created_at = 2024-04-02T00:19:33.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/1.0.2" }
+"1.1.0" = { created_at = 2024-04-25T07:11:11.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2024-04-26T07:18:52.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.1.1" }
+"1.2.0" = { created_at = 2024-07-05T19:28:51.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2024-07-06T09:29:04.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2024-07-10T05:31:15.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2024-09-27T16:30:26.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.2.3" }
+"1.2.4" = { created_at = 2024-11-22T22:23:31.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.2.4" }
+"1.3.0" = { created_at = 2025-01-26T21:54:19.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2025-02-27T18:19:12.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2025-03-07T12:34:54.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.1" }
+"1.4.2" = { created_at = 2025-03-14T21:06:55.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.2" }
+"1.4.3" = { created_at = 2025-03-26T23:46:54.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.3" }
+"1.4.4" = { created_at = 2025-04-07T20:07:25.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.4" }
+"1.4.5" = { created_at = 2025-05-13T12:11:34.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.5" }
+"1.4.6" = { created_at = 2025-07-03T00:02:41.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.6" }
+"1.4.7" = { created_at = 2025-07-24T13:23:34.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.4.7" }
+"1.5.0" = { created_at = 2025-08-07T17:56:49.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.5.0" }
+"1.5.1" = { created_at = 2025-09-05T23:03:19.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.5.1" }
+"1.6.0" = { created_at = 2025-09-07T10:34:59.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.6.0" }
+"1.7.0" = { created_at = 2025-10-02T19:56:45.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.7.0" }
+"1.8.0" = { created_at = 2025-10-23T20:22:41.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2025-11-02T20:41:02.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.9.0" }
+"1.10.0" = { created_at = 2025-11-26T11:49:18.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.10.0" }
+"1.11.0" = { created_at = 2025-12-13T22:21:23.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.11.0" }
+"1.12.0" = { created_at = 2025-12-14T21:37:49.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.12.0" }
+"1.13.0" = { created_at = 2025-12-15T21:37:41.000Z, release_url = "https://github.com/warrensbox/terraform-switcher/releases/tag/v1.13.0" }

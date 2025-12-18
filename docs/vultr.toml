@@ -1,74 +1,74 @@
 [versions]
-"0.1.0" = { created_at = 2019-06-24T14:22:17.000Z }
-"0.1.1" = { created_at = 2019-07-08T13:34:40.000Z }
-"0.1.2" = { created_at = 2019-07-15T13:15:07.000Z }
-"0.1.3" = { created_at = 2019-08-21T13:36:01.000Z }
-"0.1.4" = { created_at = 2019-08-26T12:50:06.000Z }
-"0.1.5" = { created_at = 2019-09-03T12:20:28.000Z }
-"0.1.6" = { created_at = 2019-09-04T12:35:22.000Z }
-"0.1.7" = { created_at = 2019-10-17T15:26:48.000Z }
-"0.1.8" = { created_at = 2019-10-17T15:53:01.000Z }
-"0.1.9" = { created_at = 2019-11-11T16:54:46.000Z }
-"0.1.10" = { created_at = 2019-11-13T12:22:00.000Z }
-"0.1.11" = { created_at = 2019-12-09T14:50:49.000Z }
-"0.2.0" = { created_at = 2020-03-11T13:31:36.000Z }
-"0.2.1" = { created_at = 2020-03-18T13:14:52.000Z }
-"0.3.0" = { created_at = 2020-04-14T13:59:25.000Z }
-"0.3.1" = { created_at = 2020-05-18T13:06:03.000Z }
-"0.3.2" = { created_at = 2020-06-05T12:13:30.000Z }
-"0.4.0" = { created_at = 2020-09-03T13:37:34.000Z }
-"1.0.0" = { created_at = 2020-11-19T15:23:14.000Z }
-"2.0.0" = { created_at = 2020-11-24T13:57:18.000Z }
-"2.0.1" = { created_at = 2020-12-08T14:57:08.000Z }
-"2.1.0" = { created_at = 2020-12-18T20:35:15.000Z }
-"2.2.0" = { created_at = 2021-01-29T16:47:41.000Z }
-"2.3.0" = { created_at = 2021-02-12T15:53:26.000Z }
-"2.4.0" = { created_at = 2021-04-01T16:37:52.000Z }
-"2.4.1" = { created_at = 2021-04-12T15:41:53.000Z }
-"2.5.0" = { created_at = 2021-05-07T13:06:53.000Z }
-"2.5.1" = { created_at = 2021-05-12T14:22:41.000Z }
-"2.5.2" = { created_at = 2021-05-17T12:09:37.000Z }
-"2.5.3" = { created_at = 2021-06-28T12:10:48.000Z }
-"2.6.0" = { created_at = 2021-07-07T11:38:52.000Z }
-"2.7.0" = { created_at = 2021-07-16T18:17:51.000Z }
-"2.8.0" = { created_at = 2021-08-23T17:32:09.000Z }
-"2.8.1" = { created_at = 2021-09-01T19:41:26.000Z }
-"2.8.2" = { created_at = 2021-09-07T16:18:00.000Z }
-"2.8.3" = { created_at = 2021-09-20T15:35:35.000Z }
-"2.8.4" = { created_at = 2021-09-28T15:22:21.000Z }
-"2.8.5" = { created_at = 2021-10-20T23:09:07.000Z }
-"2.9.0" = { created_at = 2021-10-27T14:17:37.000Z }
-"2.10.0" = { created_at = 2021-11-04T14:08:33.000Z }
-"2.11.0" = { created_at = 2021-11-23T13:06:30.000Z }
-"2.11.1" = { created_at = 2021-11-29T19:30:53.000Z }
-"2.11.2" = { created_at = 2021-12-01T20:55:36.000Z }
-"2.11.3" = { created_at = 2021-12-13T19:17:26.000Z }
-"2.12.0" = { created_at = 2022-01-21T16:31:09.000Z }
-"2.12.1" = { created_at = 2022-02-07T13:36:02.000Z }
-"2.12.2" = { created_at = 2022-04-01T18:04:41.000Z }
-"2.13.0" = { created_at = 2022-04-15T13:15:08.000Z }
-"2.14.0" = { created_at = 2022-05-09T18:07:44.000Z }
-"2.14.1" = { created_at = 2022-06-03T13:30:18.000Z }
-"2.14.2" = { created_at = 2022-06-14T19:34:52.000Z }
-"2.15.0" = { created_at = 2022-10-04T20:10:29.000Z }
-"2.15.1" = { created_at = 2023-03-09T20:01:51.000Z }
-"2.16.2" = { created_at = 2023-03-31T17:11:11.000Z }
-"2.17.0" = { created_at = 2023-06-14T16:18:31.000Z }
-"2.18.2" = { created_at = 2023-08-24T14:11:30.000Z }
-"2.19.0" = { created_at = 2023-10-18T17:56:42.000Z }
-"2.20.0" = { created_at = 2023-11-01T17:04:18.000Z }
-"2.21.0" = { created_at = 2023-11-29T15:27:59.000Z }
-"2.22.0" = { created_at = 2024-02-01T18:55:12.000Z }
-"3.0.0" = { created_at = 2024-02-15T05:22:48.000Z }
-"3.0.1" = { created_at = 2024-02-27T18:32:15.000Z }
-"3.0.2" = { created_at = 2024-03-12T16:12:36.000Z }
-"3.0.3" = { created_at = 2024-03-15T14:13:55.000Z }
-"3.1.0" = { created_at = 2024-05-17T17:23:19.000Z }
-"3.2.0" = { created_at = 2024-06-11T17:05:25.000Z }
-"3.3.0" = { created_at = 2024-07-05T15:59:21.000Z }
-"3.3.1" = { created_at = 2024-07-29T19:47:32.000Z }
-"3.4.0" = { created_at = 2024-10-31T13:08:32.000Z }
-"3.5.0" = { created_at = 2025-06-17T21:43:11.000Z }
-"3.6.0" = { created_at = 2025-07-17T21:09:16.000Z }
-"3.7.0" = { created_at = 2025-09-03T17:58:00.000Z }
-"3.8.0" = { created_at = 2025-09-19T21:01:32.000Z }
+"0.1.0" = { created_at = 2019-06-24T14:22:17.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2019-07-08T13:34:40.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2019-07-15T13:15:07.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.2" }
+"0.1.3" = { created_at = 2019-08-21T13:36:01.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.3" }
+"0.1.4" = { created_at = 2019-08-26T12:50:06.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.4" }
+"0.1.5" = { created_at = 2019-09-03T12:20:28.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.5" }
+"0.1.6" = { created_at = 2019-09-04T12:35:22.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.6" }
+"0.1.7" = { created_at = 2019-10-17T15:26:48.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.7" }
+"0.1.8" = { created_at = 2019-10-17T15:53:01.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.8" }
+"0.1.9" = { created_at = 2019-11-11T16:54:46.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.9" }
+"0.1.10" = { created_at = 2019-11-13T12:22:00.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.10" }
+"0.1.11" = { created_at = 2019-12-09T14:50:49.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.1.11" }
+"0.2.0" = { created_at = 2020-03-11T13:31:36.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2020-03-18T13:14:52.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.2.1" }
+"0.3.0" = { created_at = 2020-04-14T13:59:25.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2020-05-18T13:06:03.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2020-06-05T12:13:30.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.3.2" }
+"0.4.0" = { created_at = 2020-09-03T13:37:34.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v0.4.0" }
+"1.0.0" = { created_at = 2020-11-19T15:23:14.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v1.0.0" }
+"2.0.0" = { created_at = 2020-11-24T13:57:18.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2020-12-08T14:57:08.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.0.1" }
+"2.1.0" = { created_at = 2020-12-18T20:35:15.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.1.0" }
+"2.2.0" = { created_at = 2021-01-29T16:47:41.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.2.0" }
+"2.3.0" = { created_at = 2021-02-12T15:53:26.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.3.0" }
+"2.4.0" = { created_at = 2021-04-01T16:37:52.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.4.0" }
+"2.4.1" = { created_at = 2021-04-12T15:41:53.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.4.1" }
+"2.5.0" = { created_at = 2021-05-07T13:06:53.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2021-05-12T14:22:41.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.5.1" }
+"2.5.2" = { created_at = 2021-05-17T12:09:37.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.5.2" }
+"2.5.3" = { created_at = 2021-06-28T12:10:48.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.5.3" }
+"2.6.0" = { created_at = 2021-07-07T11:38:52.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.6.0" }
+"2.7.0" = { created_at = 2021-07-16T18:17:51.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.7.0" }
+"2.8.0" = { created_at = 2021-08-23T17:32:09.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.8.0" }
+"2.8.1" = { created_at = 2021-09-01T19:41:26.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.8.1" }
+"2.8.2" = { created_at = 2021-09-07T16:18:00.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.8.2" }
+"2.8.3" = { created_at = 2021-09-20T15:35:35.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.8.3" }
+"2.8.4" = { created_at = 2021-09-28T15:22:21.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.8.4" }
+"2.8.5" = { created_at = 2021-10-20T23:09:07.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.8.5" }
+"2.9.0" = { created_at = 2021-10-27T14:17:37.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.9.0" }
+"2.10.0" = { created_at = 2021-11-04T14:08:33.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.10.0" }
+"2.11.0" = { created_at = 2021-11-23T13:06:30.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2021-11-29T19:30:53.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.11.1" }
+"2.11.2" = { created_at = 2021-12-01T20:55:36.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.11.2" }
+"2.11.3" = { created_at = 2021-12-13T19:17:26.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.11.3" }
+"2.12.0" = { created_at = 2022-01-21T16:31:09.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.12.0" }
+"2.12.1" = { created_at = 2022-02-07T13:36:02.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.12.1" }
+"2.12.2" = { created_at = 2022-04-01T18:04:41.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.12.2" }
+"2.13.0" = { created_at = 2022-04-15T13:15:08.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.13.0" }
+"2.14.0" = { created_at = 2022-05-09T18:07:44.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.14.0" }
+"2.14.1" = { created_at = 2022-06-03T13:30:18.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.14.1" }
+"2.14.2" = { created_at = 2022-06-14T19:34:52.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.14.2" }
+"2.15.0" = { created_at = 2022-10-04T20:10:29.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.15.0" }
+"2.15.1" = { created_at = 2023-03-09T20:01:51.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.15.1" }
+"2.16.2" = { created_at = 2023-03-31T17:11:11.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.16.2" }
+"2.17.0" = { created_at = 2023-06-14T16:18:31.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.17.0" }
+"2.18.2" = { created_at = 2023-08-24T14:11:30.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.18.2" }
+"2.19.0" = { created_at = 2023-10-18T17:56:42.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.19.0" }
+"2.20.0" = { created_at = 2023-11-01T17:04:18.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.20.0" }
+"2.21.0" = { created_at = 2023-11-29T15:27:59.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.21.0" }
+"2.22.0" = { created_at = 2024-02-01T18:55:12.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v2.22.0" }
+"3.0.0" = { created_at = 2024-02-15T05:22:48.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.0.0" }
+"3.0.1" = { created_at = 2024-02-27T18:32:15.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.0.1" }
+"3.0.2" = { created_at = 2024-03-12T16:12:36.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.0.2" }
+"3.0.3" = { created_at = 2024-03-15T14:13:55.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.0.3" }
+"3.1.0" = { created_at = 2024-05-17T17:23:19.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.1.0" }
+"3.2.0" = { created_at = 2024-06-11T17:05:25.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.2.0" }
+"3.3.0" = { created_at = 2024-07-05T15:59:21.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.3.0" }
+"3.3.1" = { created_at = 2024-07-29T19:47:32.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.3.1" }
+"3.4.0" = { created_at = 2024-10-31T13:08:32.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.4.0" }
+"3.5.0" = { created_at = 2025-06-17T21:43:11.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.5.0" }
+"3.6.0" = { created_at = 2025-07-17T21:09:16.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.6.0" }
+"3.7.0" = { created_at = 2025-09-03T17:58:00.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.7.0" }
+"3.8.0" = { created_at = 2025-09-19T21:01:32.000Z, release_url = "https://github.com/vultr/vultr-cli/releases/tag/v3.8.0" }

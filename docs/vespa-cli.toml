@@ -1,254 +1,254 @@
 [versions]
-"7.469.18" = { created_at = 2021-09-21T22:48:19.000Z }
-"7.475.17" = { created_at = 2021-09-30T16:43:28.000Z }
-"7.481.18" = { created_at = 2021-10-12T16:42:35.000Z }
-"7.501.17" = { created_at = 2021-11-16T16:09:31.000Z }
-"7.508.20" = { created_at = 2021-12-01T16:11:12.000Z }
-"7.528.38" = { created_at = 2022-01-17T16:09:16.000Z }
-"7.534.29" = { created_at = 2022-01-27T22:09:43.000Z }
-"7.542.42" = { created_at = 2022-02-14T16:09:14.000Z }
-"7.552.18" = { created_at = 2022-03-02T16:10:15.000Z }
-"7.553.2" = { created_at = 2022-03-03T16:09:47.000Z }
-"7.555.50" = { created_at = 2022-03-10T04:10:02.000Z }
-"7.557.46" = { created_at = 2022-03-15T10:10:52.000Z }
-"7.564.19" = { created_at = 2022-03-24T16:09:42.000Z }
-"7.565.113" = { created_at = 2022-03-29T10:39:44.000Z }
-"7.567.26" = { created_at = 2022-03-30T10:45:51.000Z }
-"7.569.71" = { created_at = 2022-04-04T10:11:34.000Z }
-"7.573.29" = { created_at = 2022-04-12T12:37:29.000Z }
-"7.574.71" = { created_at = 2022-04-19T13:03:16.000Z }
-"7.577.27" = { created_at = 2022-04-26T16:10:29.000Z }
-"7.578.64" = { created_at = 2022-04-27T16:09:47.000Z }
-"7.580.54" = { created_at = 2022-05-02T16:09:51.000Z }
-"8.4.15" = { created_at = 2022-06-22T09:47:15.000Z }
-"8.12.48" = { created_at = 2022-07-06T10:13:03.000Z }
-"8.40.27" = { created_at = 2022-08-23T16:10:00.000Z }
-"8.42.21" = { created_at = 2022-08-25T16:09:44.000Z }
-"8.43.64" = { created_at = 2022-08-29T16:09:47.000Z }
-"8.44.22" = { created_at = 2022-08-30T10:11:46.000Z }
-"8.45.22" = { created_at = 2022-08-31T16:09:51.000Z }
-"8.48.22" = { created_at = 2022-09-06T16:09:57.000Z }
-"8.51.18" = { created_at = 2022-09-13T22:09:56.000Z }
-"8.54.61" = { created_at = 2022-09-19T16:14:21.000Z }
-"8.56.20" = { created_at = 2022-09-21T16:10:32.000Z }
-"8.59.13" = { created_at = 2022-09-27T16:09:48.000Z }
-"8.62.51" = { created_at = 2022-10-04T16:09:53.000Z }
-"8.64.13" = { created_at = 2022-10-06T16:10:06.000Z }
-"8.65.41" = { created_at = 2022-10-10T16:10:16.000Z }
-"8.75.16" = { created_at = 2022-10-27T22:10:14.000Z }
-"8.76.18" = { created_at = 2022-10-31T16:10:13.000Z }
-"8.77.26" = { created_at = 2022-11-01T22:12:01.000Z }
-"8.78.45" = { created_at = 2022-11-03T22:10:14.000Z }
-"8.79.36" = { created_at = 2022-11-07T22:10:08.000Z }
-"8.82.24" = { created_at = 2022-11-14T04:12:09.000Z }
-"8.83.34" = { created_at = 2022-11-14T16:12:45.000Z }
-"8.85.9" = { created_at = 2022-11-16T22:11:43.000Z }
-"8.86.28" = { created_at = 2022-11-17T16:10:04.000Z }
-"8.89.6" = { created_at = 2022-11-23T16:12:13.000Z }
-"8.90.59" = { created_at = 2022-11-28T21:02:12.000Z }
-"8.94.46" = { created_at = 2022-12-06T16:10:00.000Z }
-"8.95.34" = { created_at = 2022-12-07T16:10:09.000Z }
-"8.97.26" = { created_at = 2022-12-12T22:10:05.000Z }
-"8.98.34" = { created_at = 2022-12-13T22:11:57.000Z }
-"8.101.28" = { created_at = 2022-12-19T22:24:54.000Z }
-"8.106.1" = { created_at = 2023-01-05T16:27:21.000Z }
-"8.108.22" = { created_at = 2023-01-10T22:26:03.000Z }
-"8.109.47" = { created_at = 2023-01-12T22:25:47.000Z }
-"8.113.20" = { created_at = 2023-01-23T04:25:29.000Z }
-"8.115.24" = { created_at = 2023-01-24T22:27:21.000Z }
-"8.116.26" = { created_at = 2023-01-30T04:47:19.000Z }
-"8.119.40" = { created_at = 2023-02-02T16:31:02.000Z }
-"8.120.11" = { created_at = 2023-02-06T22:25:58.000Z }
-"8.121.38" = { created_at = 2023-02-08T16:26:45.000Z }
-"8.125.29" = { created_at = 2023-02-15T22:25:58.000Z }
-"8.130.48" = { created_at = 2023-02-27T22:25:38.000Z }
-"8.131.17" = { created_at = 2023-02-28T16:26:05.000Z }
-"8.132.43" = { created_at = 2023-03-02T22:25:45.000Z }
-"8.136.37" = { created_at = 2023-03-13T22:25:10.000Z }
-"8.144.19" = { created_at = 2023-03-27T04:26:15.000Z }
-"8.145.27" = { created_at = 2023-03-27T16:29:41.000Z }
-"8.146.12" = { created_at = 2023-03-28T16:34:50.000Z }
-"8.148.14" = { created_at = 2023-03-30T16:30:56.000Z }
-"8.149.36" = { created_at = 2023-04-11T22:30:47.000Z }
-"8.151.21" = { created_at = 2023-04-13T22:30:51.000Z }
-"8.153.19" = { created_at = 2023-04-17T16:32:49.000Z }
-"8.154.35" = { created_at = 2023-04-20T09:07:49.000Z }
-"8.155.19" = { created_at = 2023-04-20T16:30:51.000Z }
-"8.156.36" = { created_at = 2023-04-24T16:30:58.000Z }
-"8.157.14" = { created_at = 2023-04-25T16:31:43.000Z }
-"8.158.10" = { created_at = 2023-04-26T16:31:37.000Z }
-"8.159.53" = { created_at = 2023-05-02T22:31:41.000Z }
-"8.161.74" = { created_at = 2023-05-08T22:32:00.000Z }
-"8.162.29" = { created_at = 2023-05-10T22:31:20.000Z }
-"8.164.52" = { created_at = 2023-05-16T10:54:41.000Z }
-"8.167.17" = { created_at = 2023-05-24T16:35:16.000Z }
-"8.168.43" = { created_at = 2023-05-30T16:33:22.000Z }
-"8.170.18" = { created_at = 2023-06-02T11:58:59.000Z }
-"8.171.43" = { created_at = 2023-06-05T18:21:53.000Z }
-"8.184.20" = { created_at = 2023-06-27T18:25:59.000Z }
-"8.194.16" = { created_at = 2023-07-13T16:31:35.000Z }
-"8.198.18" = { created_at = 2023-07-21T07:53:27.000Z }
-"8.209.11" = { created_at = 2023-08-10T22:33:00.000Z }
-"8.212.18" = { created_at = 2023-08-16T16:31:48.000Z }
-"8.213.13" = { created_at = 2023-08-17T16:33:49.000Z }
-"8.215.17" = { created_at = 2023-08-22T22:33:42.000Z }
-"8.217.46" = { created_at = 2023-08-28T16:34:45.000Z }
-"8.218.31" = { created_at = 2023-08-29T16:31:41.000Z }
-"8.220.105" = { created_at = 2023-09-04T16:32:03.000Z }
-"8.221.29" = { created_at = 2023-09-05T22:31:10.000Z }
-"8.223.15" = { created_at = 2023-09-11T22:33:06.000Z }
-"8.224.19" = { created_at = 2023-09-12T18:47:20.000Z }
-"8.226.19" = { created_at = 2023-09-18T04:16:25.000Z }
-"8.227.41" = { created_at = 2023-09-19T15:43:47.000Z }
-"8.229.1" = { created_at = 2023-09-20T22:31:55.000Z }
-"8.230.17" = { created_at = 2023-09-22T07:03:12.000Z }
-"8.237.19" = { created_at = 2023-10-04T22:31:42.000Z }
-"8.238.22" = { created_at = 2023-10-05T16:33:15.000Z }
-"8.240.5" = { created_at = 2023-10-11T07:57:03.000Z }
-"8.241.13" = { created_at = 2023-10-12T16:32:11.000Z }
-"8.243.29" = { created_at = 2023-10-17T22:07:19.000Z }
-"8.244.20" = { created_at = 2023-10-18T16:33:31.000Z }
-"8.245.22" = { created_at = 2023-10-19T15:32:33.000Z }
-"8.247.19" = { created_at = 2023-10-24T22:31:45.000Z }
-"8.249.12" = { created_at = 2023-10-27T06:34:23.000Z }
-"8.250.43" = { created_at = 2023-10-31T11:49:13.000Z }
-"8.255.38" = { created_at = 2023-11-09T04:31:44.000Z }
-"8.258.16" = { created_at = 2023-11-15T08:54:27.000Z }
-"8.260.15" = { created_at = 2023-11-17T10:12:09.000Z }
-"8.262.17" = { created_at = 2023-11-21T16:32:07.000Z }
-"8.263.7" = { created_at = 2023-11-22T19:35:05.000Z }
-"8.265.12" = { created_at = 2023-11-29T22:17:16.000Z }
-"8.268.18" = { created_at = 2023-12-05T22:31:54.000Z }
-"8.279.6" = { created_at = 2023-12-28T16:31:03.000Z }
-"8.281.22" = { created_at = 2024-01-03T22:31:12.000Z }
-"8.283.46" = { created_at = 2024-01-09T22:15:22.000Z }
-"8.287.20" = { created_at = 2024-01-16T22:31:26.000Z }
-"8.293.15" = { created_at = 2024-01-25T22:15:30.000Z }
-"8.294.50" = { created_at = 2024-01-29T22:30:41.000Z }
-"8.299.14" = { created_at = 2024-02-07T09:01:51.000Z }
-"8.302.40" = { created_at = 2024-02-12T22:28:56.000Z }
-"8.309.34" = { created_at = 2024-02-26T22:15:11.000Z }
-"8.314.57" = { created_at = 2024-03-05T14:35:25.000Z }
-"8.315.19" = { created_at = 2024-03-06T16:31:42.000Z }
-"8.320.68" = { created_at = 2024-03-18T16:32:40.000Z }
-"8.323.45" = { created_at = 2024-03-25T22:31:20.000Z }
-"8.326.37" = { created_at = 2024-04-04T16:33:05.000Z }
-"8.328.24" = { created_at = 2024-04-10T16:31:03.000Z }
-"8.329.17" = { created_at = 2024-04-15T04:29:52.000Z }
-"8.331.34" = { created_at = 2024-04-17T16:29:39.000Z }
-"8.338.38" = { created_at = 2024-05-02T16:29:36.000Z }
-"8.340.17" = { created_at = 2024-05-07T16:30:43.000Z }
-"8.341.29" = { created_at = 2024-05-13T16:30:17.000Z }
-"8.342.20" = { created_at = 2024-05-14T16:32:44.000Z }
-"8.343.11" = { created_at = 2024-05-15T16:30:41.000Z }
-"8.346.21" = { created_at = 2024-05-23T16:31:28.000Z }
-"8.350.38" = { created_at = 2024-06-03T16:33:20.000Z }
-"8.353.26" = { created_at = 2024-06-06T16:32:34.000Z }
-"8.354.46" = { created_at = 2024-06-10T22:15:04.000Z }
-"8.355.18" = { created_at = 2024-06-11T22:14:56.000Z }
-"8.356.16" = { created_at = 2024-06-12T22:15:04.000Z }
-"8.357.16" = { created_at = 2024-06-13T22:15:04.000Z }
-"8.358.34" = { created_at = 2024-06-18T07:55:46.000Z }
-"8.360.19" = { created_at = 2024-06-20T16:35:31.000Z }
-"8.365.21" = { created_at = 2024-07-03T07:21:28.000Z }
-"8.367.14" = { created_at = 2024-07-03T16:31:38.000Z }
-"8.371.16" = { created_at = 2024-07-11T16:27:48.000Z }
-"8.387.10" = { created_at = 2024-08-07T16:25:22.000Z }
-"8.391.23" = { created_at = 2024-08-13T16:24:06.000Z }
-"lsp-v2.0.6" = { created_at = 2024-08-22T07:22:29.000Z }
-"8.403.12" = { created_at = 2024-09-03T11:49:39.000Z }
-"lsp-v2.0.10" = { created_at = 2024-09-05T16:05:09.000Z }
-"lsp-v2.0.9" = { created_at = 2024-09-05T12:25:21.000Z }
-"8.405.15" = { created_at = 2024-09-05T13:51:00.000Z }
-"8.408.12" = { created_at = 2024-09-16T12:23:58.000Z }
-"lsp-v2.0.11" = { created_at = 2024-09-20T16:40:50.000Z }
-"8.413.11" = { created_at = 2024-09-24T11:34:25.000Z }
-"lsp-v2.0.12" = { created_at = 2024-09-26T09:19:21.000Z }
-"lsp-v2.0.13" = { created_at = 2024-09-27T11:57:18.000Z }
-"8.416.42" = { created_at = 2024-09-30T12:12:46.000Z }
-"8.420.10" = { created_at = 2024-10-08T11:41:09.000Z }
-"lsp-v2.0.14" = { created_at = 2024-10-11T07:44:28.000Z }
-"lsp-v2.0.15" = { created_at = 2024-10-11T13:45:44.000Z }
-"8.423.30" = { created_at = 2024-10-14T12:27:17.000Z }
-"lsp-v2.1.0" = { created_at = 2024-10-25T12:37:56.000Z }
-"lsp-v2.1.1" = { created_at = 2024-10-25T14:12:34.000Z }
-"lsp-v2.1.2" = { created_at = 2024-10-25T14:12:34.000Z }
-"lsp-v2.1.3" = { created_at = 2024-10-25T15:01:20.000Z }
-"lsp-v2.1.4" = { created_at = 2024-11-07T09:10:32.000Z }
-"lsp-v2.1.5" = { created_at = 2024-11-08T09:14:59.000Z }
-"8.441.21" = { created_at = 2024-11-14T12:25:04.000Z }
-"lsp-v2.2.0" = { created_at = 2024-11-22T12:09:38.000Z }
-"lsp-v2.2.1" = { created_at = 2024-11-22T15:48:14.000Z }
-"8.447.14" = { created_at = 2024-11-26T12:51:52.000Z }
-"8.448.13" = { created_at = 2024-11-27T12:27:44.000Z }
-"8.453.24" = { created_at = 2024-12-09T12:42:59.000Z }
-"8.459.67" = { created_at = 2025-01-06T17:17:16.000Z }
-"8.460.16" = { created_at = 2025-01-07T14:18:16.000Z }
-"8.461.16" = { created_at = 2025-01-09T16:21:02.000Z }
-"lsp-v2.2.2" = { created_at = 2025-01-13T12:40:24.000Z }
-"lsp-v2.2.3" = { created_at = 2025-01-15T13:19:49.000Z }
-"8.466.24" = { created_at = 2025-01-20T12:05:18.000Z }
-"8.470.28" = { created_at = 2025-01-27T17:40:55.000Z }
-"8.471.25" = { created_at = 2025-01-28T18:56:24.000Z }
-"8.472.109" = { created_at = 2025-02-03T14:40:16.000Z }
-"8.476.30" = { created_at = 2025-02-10T12:20:09.000Z }
-"8.478.26" = { created_at = 2025-02-12T11:45:46.000Z }
-"8.482.31" = { created_at = 2025-02-19T14:17:35.000Z }
-"8.485.42" = { created_at = 2025-02-24T12:07:12.000Z }
-"8.488.1" = { created_at = 2025-02-27T15:27:44.000Z }
-"lsp-v2.2.4" = { created_at = 2025-02-28T16:21:38.000Z }
-"8.489.59" = { created_at = 2025-03-03T14:43:42.000Z }
-"8.491.19" = { created_at = 2025-03-05T12:31:16.000Z }
-"8.492.15" = { created_at = 2025-03-06T12:00:40.000Z }
-"lsp-v2.2.5" = { created_at = 2025-03-07T08:40:35.000Z }
-"8.494.23" = { created_at = 2025-03-12T03:11:43.000Z }
-"lsp-v2.3.0" = { created_at = 2025-03-13T11:42:01.000Z }
-"8.497.38" = { created_at = 2025-03-17T11:16:27.000Z }
-"8.499.20" = { created_at = 2025-03-19T13:14:40.000Z }
-"8.501.49" = { created_at = 2025-03-24T12:49:06.000Z }
-"8.502.19" = { created_at = 2025-03-25T12:14:29.000Z }
-"8.503.27" = { created_at = 2025-03-26T12:20:30.000Z }
-"8.504.27" = { created_at = 2025-03-31T11:55:01.000Z }
-"8.506.13" = { created_at = 2025-04-07T02:10:02.000Z }
-"8.507.34" = { created_at = 2025-04-07T11:34:21.000Z }
-"lsp-v2.3.1" = { created_at = 2025-04-10T13:22:24.000Z }
-"lsp-v2.4.0" = { created_at = 2025-04-11T15:08:19.000Z }
-"8.510.84" = { created_at = 2025-04-22T13:25:17.000Z }
-"8.512.63" = { created_at = 2025-04-28T11:43:54.000Z }
-"8.513.17" = { created_at = 2025-04-29T11:39:20.000Z }
-"8.515.40" = { created_at = 2025-05-05T14:43:14.000Z }
-"lsp-v2.4.1" = { created_at = 2025-05-09T10:13:49.000Z }
-"8.520.18" = { created_at = 2025-05-14T12:02:19.000Z }
-"8.523.24" = { created_at = 2025-05-21T13:01:48.000Z }
-"8.524.25" = { created_at = 2025-05-22T15:03:00.000Z }
-"8.526.15" = { created_at = 2025-05-28T15:35:09.000Z }
-"lsp-v2.4.2" = { created_at = 2025-06-05T09:03:19.000Z }
-"8.533.16" = { created_at = 2025-06-13T06:53:21.000Z }
-"8.536.21" = { created_at = 2025-06-19T07:51:52.000Z }
-"8.538.52" = { created_at = 2025-06-23T11:29:26.000Z }
-"8.542.42" = { created_at = 2025-06-30T11:41:50.000Z }
-"lsp-v2.4.3" = { created_at = 2025-07-15T13:35:37.000Z }
-"8.550.14" = { created_at = 2025-07-16T10:45:19.000Z }
-"8.551.21" = { created_at = 2025-07-17T11:21:30.000Z }
-"8.553.3" = { created_at = 2025-07-22T11:56:39.000Z }
-"8.556.6" = { created_at = 2025-07-29T10:51:21.000Z }
-"lsp-v2.4.4" = { created_at = 2025-08-04T07:45:51.000Z }
-"8.562.17" = { created_at = 2025-08-12T07:26:12.000Z }
-"lsp-v2.4.6" = { created_at = 2025-09-04T09:31:40.000Z }
-"lsp-v2.4.7" = { created_at = 2025-09-04T18:17:39.000Z }
-"8.578.22" = { created_at = 2025-09-10T15:34:27.000Z }
-"8.579.17" = { created_at = 2025-09-11T11:49:41.000Z }
-"8.583.10" = { created_at = 2025-09-19T06:30:22.000Z }
-"8.586.25" = { created_at = 2025-09-29T15:23:33.000Z }
-"8.591.16" = { created_at = 2025-10-13T12:28:06.000Z }
-"8.589.18" = { created_at = 2025-10-14T11:34:59.000Z }
-"8.596.20" = { created_at = 2025-10-20T02:14:14.000Z }
-"8.599.6" = { created_at = 2025-10-27T10:19:38.000Z }
-"8.600.35" = { created_at = 2025-10-28T07:39:12.000Z }
-"8.603.19" = { created_at = 2025-11-05T03:19:49.000Z }
-"8.608.33" = { created_at = 2025-11-13T16:29:33.000Z }
-"8.613.57" = { created_at = 2025-11-25T10:14:55.000Z }
-"8.614.22" = { created_at = 2025-12-01T03:15:39.000Z }
-"8.617.12" = { created_at = 2025-12-03T14:53:29.000Z }
-"8.618.24" = { created_at = 2025-12-08T03:15:43.000Z }
-"8.620.35" = { created_at = 2025-12-11T11:32:53.000Z }
+"7.469.18" = { created_at = 2021-09-21T22:48:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.469.18" }
+"7.475.17" = { created_at = 2021-09-30T16:43:28.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.475.17" }
+"7.481.18" = { created_at = 2021-10-12T16:42:35.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.481.18" }
+"7.501.17" = { created_at = 2021-11-16T16:09:31.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.501.17" }
+"7.508.20" = { created_at = 2021-12-01T16:11:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.508.20" }
+"7.528.38" = { created_at = 2022-01-17T16:09:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.528.38" }
+"7.534.29" = { created_at = 2022-01-27T22:09:43.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.534.29" }
+"7.542.42" = { created_at = 2022-02-14T16:09:14.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.542.42" }
+"7.552.18" = { created_at = 2022-03-02T16:10:15.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.552.18" }
+"7.553.2" = { created_at = 2022-03-03T16:09:47.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.553.2" }
+"7.555.50" = { created_at = 2022-03-10T04:10:02.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.555.50" }
+"7.557.46" = { created_at = 2022-03-15T10:10:52.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.557.46" }
+"7.564.19" = { created_at = 2022-03-24T16:09:42.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.564.19" }
+"7.565.113" = { created_at = 2022-03-29T10:39:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.565.113" }
+"7.567.26" = { created_at = 2022-03-30T10:45:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.567.26" }
+"7.569.71" = { created_at = 2022-04-04T10:11:34.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.569.71" }
+"7.573.29" = { created_at = 2022-04-12T12:37:29.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.573.29" }
+"7.574.71" = { created_at = 2022-04-19T13:03:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.574.71" }
+"7.577.27" = { created_at = 2022-04-26T16:10:29.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.577.27" }
+"7.578.64" = { created_at = 2022-04-27T16:09:47.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.578.64" }
+"7.580.54" = { created_at = 2022-05-02T16:09:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v7.580.54" }
+"8.4.15" = { created_at = 2022-06-22T09:47:15.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.4.15" }
+"8.12.48" = { created_at = 2022-07-06T10:13:03.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.12.48" }
+"8.40.27" = { created_at = 2022-08-23T16:10:00.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.40.27" }
+"8.42.21" = { created_at = 2022-08-25T16:09:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.42.21" }
+"8.43.64" = { created_at = 2022-08-29T16:09:47.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.43.64" }
+"8.44.22" = { created_at = 2022-08-30T10:11:46.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.44.22" }
+"8.45.22" = { created_at = 2022-08-31T16:09:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.45.22" }
+"8.48.22" = { created_at = 2022-09-06T16:09:57.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.48.22" }
+"8.51.18" = { created_at = 2022-09-13T22:09:56.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.51.18" }
+"8.54.61" = { created_at = 2022-09-19T16:14:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.54.61" }
+"8.56.20" = { created_at = 2022-09-21T16:10:32.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.56.20" }
+"8.59.13" = { created_at = 2022-09-27T16:09:48.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.59.13" }
+"8.62.51" = { created_at = 2022-10-04T16:09:53.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.62.51" }
+"8.64.13" = { created_at = 2022-10-06T16:10:06.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.64.13" }
+"8.65.41" = { created_at = 2022-10-10T16:10:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.65.41" }
+"8.75.16" = { created_at = 2022-10-27T22:10:14.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.75.16" }
+"8.76.18" = { created_at = 2022-10-31T16:10:13.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.76.18" }
+"8.77.26" = { created_at = 2022-11-01T22:12:01.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.77.26" }
+"8.78.45" = { created_at = 2022-11-03T22:10:14.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.78.45" }
+"8.79.36" = { created_at = 2022-11-07T22:10:08.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.79.36" }
+"8.82.24" = { created_at = 2022-11-14T04:12:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.82.24" }
+"8.83.34" = { created_at = 2022-11-14T16:12:45.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.83.34" }
+"8.85.9" = { created_at = 2022-11-16T22:11:43.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.85.9" }
+"8.86.28" = { created_at = 2022-11-17T16:10:04.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.86.28" }
+"8.89.6" = { created_at = 2022-11-23T16:12:13.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.89.6" }
+"8.90.59" = { created_at = 2022-11-28T21:02:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.90.59" }
+"8.94.46" = { created_at = 2022-12-06T16:10:00.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.94.46" }
+"8.95.34" = { created_at = 2022-12-07T16:10:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.95.34" }
+"8.97.26" = { created_at = 2022-12-12T22:10:05.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.97.26" }
+"8.98.34" = { created_at = 2022-12-13T22:11:57.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.98.34" }
+"8.101.28" = { created_at = 2022-12-19T22:24:54.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.101.28" }
+"8.106.1" = { created_at = 2023-01-05T16:27:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.106.1" }
+"8.108.22" = { created_at = 2023-01-10T22:26:03.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.108.22" }
+"8.109.47" = { created_at = 2023-01-12T22:25:47.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.109.47" }
+"8.113.20" = { created_at = 2023-01-23T04:25:29.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.113.20" }
+"8.115.24" = { created_at = 2023-01-24T22:27:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.115.24" }
+"8.116.26" = { created_at = 2023-01-30T04:47:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.116.26" }
+"8.119.40" = { created_at = 2023-02-02T16:31:02.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.119.40" }
+"8.120.11" = { created_at = 2023-02-06T22:25:58.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.120.11" }
+"8.121.38" = { created_at = 2023-02-08T16:26:45.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.121.38" }
+"8.125.29" = { created_at = 2023-02-15T22:25:58.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.125.29" }
+"8.130.48" = { created_at = 2023-02-27T22:25:38.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.130.48" }
+"8.131.17" = { created_at = 2023-02-28T16:26:05.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.131.17" }
+"8.132.43" = { created_at = 2023-03-02T22:25:45.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.132.43" }
+"8.136.37" = { created_at = 2023-03-13T22:25:10.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.136.37" }
+"8.144.19" = { created_at = 2023-03-27T04:26:15.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.144.19" }
+"8.145.27" = { created_at = 2023-03-27T16:29:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.145.27" }
+"8.146.12" = { created_at = 2023-03-28T16:34:50.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.146.12" }
+"8.148.14" = { created_at = 2023-03-30T16:30:56.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.148.14" }
+"8.149.36" = { created_at = 2023-04-11T22:30:47.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.149.36" }
+"8.151.21" = { created_at = 2023-04-13T22:30:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.151.21" }
+"8.153.19" = { created_at = 2023-04-17T16:32:49.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.153.19" }
+"8.154.35" = { created_at = 2023-04-20T09:07:49.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.154.35" }
+"8.155.19" = { created_at = 2023-04-20T16:30:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.155.19" }
+"8.156.36" = { created_at = 2023-04-24T16:30:58.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.156.36" }
+"8.157.14" = { created_at = 2023-04-25T16:31:43.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.157.14" }
+"8.158.10" = { created_at = 2023-04-26T16:31:37.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.158.10" }
+"8.159.53" = { created_at = 2023-05-02T22:31:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.159.53" }
+"8.161.74" = { created_at = 2023-05-08T22:32:00.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.161.74" }
+"8.162.29" = { created_at = 2023-05-10T22:31:20.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.162.29" }
+"8.164.52" = { created_at = 2023-05-16T10:54:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.164.52" }
+"8.167.17" = { created_at = 2023-05-24T16:35:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.167.17" }
+"8.168.43" = { created_at = 2023-05-30T16:33:22.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.168.43" }
+"8.170.18" = { created_at = 2023-06-02T11:58:59.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.170.18" }
+"8.171.43" = { created_at = 2023-06-05T18:21:53.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.171.43" }
+"8.184.20" = { created_at = 2023-06-27T18:25:59.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.184.20" }
+"8.194.16" = { created_at = 2023-07-13T16:31:35.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.194.16" }
+"8.198.18" = { created_at = 2023-07-21T07:53:27.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.198.18" }
+"8.209.11" = { created_at = 2023-08-10T22:33:00.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.209.11" }
+"8.212.18" = { created_at = 2023-08-16T16:31:48.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.212.18" }
+"8.213.13" = { created_at = 2023-08-17T16:33:49.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.213.13" }
+"8.215.17" = { created_at = 2023-08-22T22:33:42.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.215.17" }
+"8.217.46" = { created_at = 2023-08-28T16:34:45.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.217.46" }
+"8.218.31" = { created_at = 2023-08-29T16:31:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.218.31" }
+"8.220.105" = { created_at = 2023-09-04T16:32:03.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.220.105" }
+"8.221.29" = { created_at = 2023-09-05T22:31:10.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.221.29" }
+"8.223.15" = { created_at = 2023-09-11T22:33:06.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.223.15" }
+"8.224.19" = { created_at = 2023-09-12T18:47:20.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.224.19" }
+"8.226.19" = { created_at = 2023-09-18T04:16:25.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.226.19" }
+"8.227.41" = { created_at = 2023-09-19T15:43:47.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.227.41" }
+"8.229.1" = { created_at = 2023-09-20T22:31:55.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.229.1" }
+"8.230.17" = { created_at = 2023-09-22T07:03:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.230.17" }
+"8.237.19" = { created_at = 2023-10-04T22:31:42.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.237.19" }
+"8.238.22" = { created_at = 2023-10-05T16:33:15.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.238.22" }
+"8.240.5" = { created_at = 2023-10-11T07:57:03.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.240.5" }
+"8.241.13" = { created_at = 2023-10-12T16:32:11.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.241.13" }
+"8.243.29" = { created_at = 2023-10-17T22:07:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.243.29" }
+"8.244.20" = { created_at = 2023-10-18T16:33:31.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.244.20" }
+"8.245.22" = { created_at = 2023-10-19T15:32:33.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.245.22" }
+"8.247.19" = { created_at = 2023-10-24T22:31:45.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.247.19" }
+"8.249.12" = { created_at = 2023-10-27T06:34:23.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.249.12" }
+"8.250.43" = { created_at = 2023-10-31T11:49:13.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.250.43" }
+"8.255.38" = { created_at = 2023-11-09T04:31:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.255.38" }
+"8.258.16" = { created_at = 2023-11-15T08:54:27.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.258.16" }
+"8.260.15" = { created_at = 2023-11-17T10:12:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.260.15" }
+"8.262.17" = { created_at = 2023-11-21T16:32:07.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.262.17" }
+"8.263.7" = { created_at = 2023-11-22T19:35:05.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.263.7" }
+"8.265.12" = { created_at = 2023-11-29T22:17:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.265.12" }
+"8.268.18" = { created_at = 2023-12-05T22:31:54.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.268.18" }
+"8.279.6" = { created_at = 2023-12-28T16:31:03.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.279.6" }
+"8.281.22" = { created_at = 2024-01-03T22:31:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.281.22" }
+"8.283.46" = { created_at = 2024-01-09T22:15:22.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.283.46" }
+"8.287.20" = { created_at = 2024-01-16T22:31:26.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.287.20" }
+"8.293.15" = { created_at = 2024-01-25T22:15:30.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.293.15" }
+"8.294.50" = { created_at = 2024-01-29T22:30:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.294.50" }
+"8.299.14" = { created_at = 2024-02-07T09:01:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.299.14" }
+"8.302.40" = { created_at = 2024-02-12T22:28:56.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.302.40" }
+"8.309.34" = { created_at = 2024-02-26T22:15:11.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.309.34" }
+"8.314.57" = { created_at = 2024-03-05T14:35:25.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.314.57" }
+"8.315.19" = { created_at = 2024-03-06T16:31:42.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.315.19" }
+"8.320.68" = { created_at = 2024-03-18T16:32:40.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.320.68" }
+"8.323.45" = { created_at = 2024-03-25T22:31:20.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.323.45" }
+"8.326.37" = { created_at = 2024-04-04T16:33:05.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.326.37" }
+"8.328.24" = { created_at = 2024-04-10T16:31:03.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.328.24" }
+"8.329.17" = { created_at = 2024-04-15T04:29:52.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.329.17" }
+"8.331.34" = { created_at = 2024-04-17T16:29:39.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.331.34" }
+"8.338.38" = { created_at = 2024-05-02T16:29:36.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.338.38" }
+"8.340.17" = { created_at = 2024-05-07T16:30:43.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.340.17" }
+"8.341.29" = { created_at = 2024-05-13T16:30:17.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.341.29" }
+"8.342.20" = { created_at = 2024-05-14T16:32:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.342.20" }
+"8.343.11" = { created_at = 2024-05-15T16:30:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.343.11" }
+"8.346.21" = { created_at = 2024-05-23T16:31:28.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.346.21" }
+"8.350.38" = { created_at = 2024-06-03T16:33:20.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.350.38" }
+"8.353.26" = { created_at = 2024-06-06T16:32:34.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.353.26" }
+"8.354.46" = { created_at = 2024-06-10T22:15:04.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.354.46" }
+"8.355.18" = { created_at = 2024-06-11T22:14:56.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.355.18" }
+"8.356.16" = { created_at = 2024-06-12T22:15:04.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.356.16" }
+"8.357.16" = { created_at = 2024-06-13T22:15:04.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.357.16" }
+"8.358.34" = { created_at = 2024-06-18T07:55:46.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.358.34" }
+"8.360.19" = { created_at = 2024-06-20T16:35:31.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.360.19" }
+"8.365.21" = { created_at = 2024-07-03T07:21:28.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.365.21" }
+"8.367.14" = { created_at = 2024-07-03T16:31:38.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.367.14" }
+"8.371.16" = { created_at = 2024-07-11T16:27:48.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.371.16" }
+"8.387.10" = { created_at = 2024-08-07T16:25:22.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.387.10" }
+"8.391.23" = { created_at = 2024-08-13T16:24:06.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.391.23" }
+"lsp-v2.0.6" = { created_at = 2024-08-22T07:22:29.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.6" }
+"8.403.12" = { created_at = 2024-09-03T11:49:39.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.403.12" }
+"lsp-v2.0.10" = { created_at = 2024-09-05T16:05:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.10" }
+"lsp-v2.0.9" = { created_at = 2024-09-05T12:25:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.9" }
+"8.405.15" = { created_at = 2024-09-05T13:51:00.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.405.15" }
+"8.408.12" = { created_at = 2024-09-16T12:23:58.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.408.12" }
+"lsp-v2.0.11" = { created_at = 2024-09-20T16:40:50.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.11" }
+"8.413.11" = { created_at = 2024-09-24T11:34:25.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.413.11" }
+"lsp-v2.0.12" = { created_at = 2024-09-26T09:19:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.12" }
+"lsp-v2.0.13" = { created_at = 2024-09-27T11:57:18.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.13" }
+"8.416.42" = { created_at = 2024-09-30T12:12:46.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.416.42" }
+"8.420.10" = { created_at = 2024-10-08T11:41:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.420.10" }
+"lsp-v2.0.14" = { created_at = 2024-10-11T07:44:28.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.14" }
+"lsp-v2.0.15" = { created_at = 2024-10-11T13:45:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.0.15" }
+"8.423.30" = { created_at = 2024-10-14T12:27:17.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.423.30" }
+"lsp-v2.1.0" = { created_at = 2024-10-25T12:37:56.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.1.0" }
+"lsp-v2.1.1" = { created_at = 2024-10-25T14:12:34.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.1.1" }
+"lsp-v2.1.2" = { created_at = 2024-10-25T14:12:34.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.1.2" }
+"lsp-v2.1.3" = { created_at = 2024-10-25T15:01:20.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.1.3" }
+"lsp-v2.1.4" = { created_at = 2024-11-07T09:10:32.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.1.4" }
+"lsp-v2.1.5" = { created_at = 2024-11-08T09:14:59.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.1.5" }
+"8.441.21" = { created_at = 2024-11-14T12:25:04.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.441.21" }
+"lsp-v2.2.0" = { created_at = 2024-11-22T12:09:38.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.2.0" }
+"lsp-v2.2.1" = { created_at = 2024-11-22T15:48:14.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.2.1" }
+"8.447.14" = { created_at = 2024-11-26T12:51:52.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.447.14" }
+"8.448.13" = { created_at = 2024-11-27T12:27:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.448.13" }
+"8.453.24" = { created_at = 2024-12-09T12:42:59.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.453.24" }
+"8.459.67" = { created_at = 2025-01-06T17:17:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.459.67" }
+"8.460.16" = { created_at = 2025-01-07T14:18:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.460.16" }
+"8.461.16" = { created_at = 2025-01-09T16:21:02.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.461.16" }
+"lsp-v2.2.2" = { created_at = 2025-01-13T12:40:24.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.2.2" }
+"lsp-v2.2.3" = { created_at = 2025-01-15T13:19:49.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.2.3" }
+"8.466.24" = { created_at = 2025-01-20T12:05:18.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.466.24" }
+"8.470.28" = { created_at = 2025-01-27T17:40:55.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.470.28" }
+"8.471.25" = { created_at = 2025-01-28T18:56:24.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.471.25" }
+"8.472.109" = { created_at = 2025-02-03T14:40:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.472.109" }
+"8.476.30" = { created_at = 2025-02-10T12:20:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.476.30" }
+"8.478.26" = { created_at = 2025-02-12T11:45:46.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.478.26" }
+"8.482.31" = { created_at = 2025-02-19T14:17:35.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.482.31" }
+"8.485.42" = { created_at = 2025-02-24T12:07:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.485.42" }
+"8.488.1" = { created_at = 2025-02-27T15:27:44.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.488.1" }
+"lsp-v2.2.4" = { created_at = 2025-02-28T16:21:38.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.2.4" }
+"8.489.59" = { created_at = 2025-03-03T14:43:42.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.489.59" }
+"8.491.19" = { created_at = 2025-03-05T12:31:16.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.491.19" }
+"8.492.15" = { created_at = 2025-03-06T12:00:40.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.492.15" }
+"lsp-v2.2.5" = { created_at = 2025-03-07T08:40:35.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.2.5" }
+"8.494.23" = { created_at = 2025-03-12T03:11:43.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.494.23" }
+"lsp-v2.3.0" = { created_at = 2025-03-13T11:42:01.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.3.0" }
+"8.497.38" = { created_at = 2025-03-17T11:16:27.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.497.38" }
+"8.499.20" = { created_at = 2025-03-19T13:14:40.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.499.20" }
+"8.501.49" = { created_at = 2025-03-24T12:49:06.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.501.49" }
+"8.502.19" = { created_at = 2025-03-25T12:14:29.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.502.19" }
+"8.503.27" = { created_at = 2025-03-26T12:20:30.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.503.27" }
+"8.504.27" = { created_at = 2025-03-31T11:55:01.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.504.27" }
+"8.506.13" = { created_at = 2025-04-07T02:10:02.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.506.13" }
+"8.507.34" = { created_at = 2025-04-07T11:34:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.507.34" }
+"lsp-v2.3.1" = { created_at = 2025-04-10T13:22:24.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.3.1" }
+"lsp-v2.4.0" = { created_at = 2025-04-11T15:08:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.0" }
+"8.510.84" = { created_at = 2025-04-22T13:25:17.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.510.84" }
+"8.512.63" = { created_at = 2025-04-28T11:43:54.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.512.63" }
+"8.513.17" = { created_at = 2025-04-29T11:39:20.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.513.17" }
+"8.515.40" = { created_at = 2025-05-05T14:43:14.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.515.40" }
+"lsp-v2.4.1" = { created_at = 2025-05-09T10:13:49.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.1" }
+"8.520.18" = { created_at = 2025-05-14T12:02:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.520.18" }
+"8.523.24" = { created_at = 2025-05-21T13:01:48.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.523.24" }
+"8.524.25" = { created_at = 2025-05-22T15:03:00.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.524.25" }
+"8.526.15" = { created_at = 2025-05-28T15:35:09.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.526.15" }
+"lsp-v2.4.2" = { created_at = 2025-06-05T09:03:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.2" }
+"8.533.16" = { created_at = 2025-06-13T06:53:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.533.16" }
+"8.536.21" = { created_at = 2025-06-19T07:51:52.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.536.21" }
+"8.538.52" = { created_at = 2025-06-23T11:29:26.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.538.52" }
+"8.542.42" = { created_at = 2025-06-30T11:41:50.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.542.42" }
+"lsp-v2.4.3" = { created_at = 2025-07-15T13:35:37.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.3" }
+"8.550.14" = { created_at = 2025-07-16T10:45:19.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.550.14" }
+"8.551.21" = { created_at = 2025-07-17T11:21:30.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.551.21" }
+"8.553.3" = { created_at = 2025-07-22T11:56:39.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.553.3" }
+"8.556.6" = { created_at = 2025-07-29T10:51:21.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.556.6" }
+"lsp-v2.4.4" = { created_at = 2025-08-04T07:45:51.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.4" }
+"8.562.17" = { created_at = 2025-08-12T07:26:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.562.17" }
+"lsp-v2.4.6" = { created_at = 2025-09-04T09:31:40.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.6" }
+"lsp-v2.4.7" = { created_at = 2025-09-04T18:17:39.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/lsp-v2.4.7" }
+"8.578.22" = { created_at = 2025-09-10T15:34:27.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.578.22" }
+"8.579.17" = { created_at = 2025-09-11T11:49:41.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.579.17" }
+"8.583.10" = { created_at = 2025-09-19T06:30:22.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.583.10" }
+"8.586.25" = { created_at = 2025-09-29T15:23:33.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.586.25" }
+"8.591.16" = { created_at = 2025-10-13T12:28:06.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.591.16" }
+"8.589.18" = { created_at = 2025-10-14T11:34:59.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.589.18" }
+"8.596.20" = { created_at = 2025-10-20T02:14:14.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.596.20" }
+"8.599.6" = { created_at = 2025-10-27T10:19:38.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.599.6" }
+"8.600.35" = { created_at = 2025-10-28T07:39:12.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.600.35" }
+"8.603.19" = { created_at = 2025-11-05T03:19:49.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.603.19" }
+"8.608.33" = { created_at = 2025-11-13T16:29:33.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.608.33" }
+"8.613.57" = { created_at = 2025-11-25T10:14:55.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.613.57" }
+"8.614.22" = { created_at = 2025-12-01T03:15:39.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.614.22" }
+"8.617.12" = { created_at = 2025-12-03T14:53:29.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.617.12" }
+"8.618.24" = { created_at = 2025-12-08T03:15:43.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.618.24" }
+"8.620.35" = { created_at = 2025-12-11T11:32:53.000Z, release_url = "https://github.com/vespa-engine/vespa/releases/tag/v8.620.35" }

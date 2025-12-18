@@ -1,48 +1,48 @@
 [versions]
-"0.0.1" = { created_at = 2020-08-23T15:27:51.000Z }
-"0.1.0" = { created_at = 2020-09-17T13:08:13.000Z }
-"0.1.1" = { created_at = 2020-11-05T13:22:07.000Z }
-"0.2.0" = { created_at = 2020-11-18T13:51:00.000Z }
-"0.2.1" = { created_at = 2020-12-17T01:16:28.000Z }
-"0.2.2" = { created_at = 2020-12-28T01:00:22.000Z }
-"0.2.3" = { created_at = 2021-04-19T08:03:34.000Z }
-"0.2.4" = { created_at = 2021-05-08T13:45:52.000Z }
-"0.2.5" = { created_at = 2021-06-10T01:13:23.000Z }
-"0.2.6" = { created_at = 2021-08-03T09:07:02.000Z }
-"0.2.7" = { created_at = 2021-08-12T00:37:51.000Z }
-"0.2.8" = { created_at = 2021-09-03T13:44:36.000Z }
-"0.2.9" = { created_at = 2021-09-04T02:52:43.000Z }
-"0.2.10" = { created_at = 2021-10-15T13:51:26.000Z }
-"0.2.11" = { created_at = 2021-10-28T02:07:22.000Z }
-"0.2.12" = { created_at = 2021-11-25T01:08:40.000Z }
-"0.2.13" = { created_at = 2021-11-30T02:18:40.000Z }
-"0.3.0" = { created_at = 2021-12-10T08:08:20.000Z }
-"0.3.1" = { created_at = 2022-01-26T01:18:44.000Z }
-"0.3.2" = { created_at = 2022-03-15T06:57:54.000Z }
-"0.3.3" = { created_at = 2022-04-18T00:37:28.000Z }
-"0.3.4" = { created_at = 2022-07-08T02:46:01.000Z }
-"0.3.5" = { created_at = 2022-08-05T14:01:37.000Z }
-"0.3.6" = { created_at = 2022-08-10T15:02:27.000Z }
-"0.3.7" = { created_at = 2022-08-25T14:03:15.000Z }
-"0.3.8" = { created_at = 2022-09-22T08:39:52.000Z }
-"0.3.9" = { created_at = 2022-12-07T13:40:04.000Z }
-"0.3.10" = { created_at = 2022-12-26T06:32:34.000Z }
-"0.3.11" = { created_at = 2023-03-09T02:48:08.000Z }
-"0.3.12" = { created_at = 2023-06-13T04:32:02.000Z }
-"0.3.13" = { created_at = 2023-08-03T02:16:41.000Z }
-"0.3.14" = { created_at = 2023-08-08T06:46:08.000Z }
-"0.3.15" = { created_at = 2023-09-04T14:01:49.000Z }
-"0.3.16" = { created_at = 2023-09-14T01:10:00.000Z }
-"0.3.17" = { created_at = 2023-10-02T04:21:47.000Z }
-"0.3.18" = { created_at = 2023-10-05T03:02:13.000Z }
-"0.3.19" = { created_at = 2023-11-17T04:49:21.000Z }
-"0.3.20" = { created_at = 2024-01-11T01:09:14.000Z }
-"0.3.21" = { created_at = 2024-04-11T01:25:09.000Z }
-"0.3.22" = { created_at = 2024-04-16T09:23:39.000Z }
-"0.3.23" = { created_at = 2024-05-01T01:38:53.000Z }
-"0.3.24" = { created_at = 2024-08-06T14:15:46.000Z }
-"0.3.25" = { created_at = 2024-11-06T09:31:31.000Z }
-"0.4.0" = { created_at = 2024-11-11T09:37:33.000Z }
-"0.4.1" = { created_at = 2024-12-03T09:01:18.000Z }
-"0.4.2" = { created_at = 2025-04-28T05:31:39.000Z }
-"0.4.3" = { created_at = 2025-08-10T01:09:15.000Z }
+"0.0.1" = { created_at = 2020-08-23T15:27:51.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.0.1" }
+"0.1.0" = { created_at = 2020-09-17T13:08:13.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2020-11-05T13:22:07.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.1.1" }
+"0.2.0" = { created_at = 2020-11-18T13:51:00.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2020-12-17T01:16:28.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2020-12-28T01:00:22.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2021-04-19T08:03:34.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2021-05-08T13:45:52.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.4" }
+"0.2.5" = { created_at = 2021-06-10T01:13:23.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.5" }
+"0.2.6" = { created_at = 2021-08-03T09:07:02.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.6" }
+"0.2.7" = { created_at = 2021-08-12T00:37:51.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.7" }
+"0.2.8" = { created_at = 2021-09-03T13:44:36.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.8" }
+"0.2.9" = { created_at = 2021-09-04T02:52:43.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.9" }
+"0.2.10" = { created_at = 2021-10-15T13:51:26.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.10" }
+"0.2.11" = { created_at = 2021-10-28T02:07:22.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.11" }
+"0.2.12" = { created_at = 2021-11-25T01:08:40.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.12" }
+"0.2.13" = { created_at = 2021-11-30T02:18:40.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.2.13" }
+"0.3.0" = { created_at = 2021-12-10T08:08:20.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2022-01-26T01:18:44.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2022-03-15T06:57:54.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2022-04-18T00:37:28.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.3" }
+"0.3.4" = { created_at = 2022-07-08T02:46:01.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.4" }
+"0.3.5" = { created_at = 2022-08-05T14:01:37.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.5" }
+"0.3.6" = { created_at = 2022-08-10T15:02:27.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.6" }
+"0.3.7" = { created_at = 2022-08-25T14:03:15.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.7" }
+"0.3.8" = { created_at = 2022-09-22T08:39:52.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.8" }
+"0.3.9" = { created_at = 2022-12-07T13:40:04.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.9" }
+"0.3.10" = { created_at = 2022-12-26T06:32:34.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.10" }
+"0.3.11" = { created_at = 2023-03-09T02:48:08.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.11" }
+"0.3.12" = { created_at = 2023-06-13T04:32:02.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.12" }
+"0.3.13" = { created_at = 2023-08-03T02:16:41.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.13" }
+"0.3.14" = { created_at = 2023-08-08T06:46:08.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.14" }
+"0.3.15" = { created_at = 2023-09-04T14:01:49.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.15" }
+"0.3.16" = { created_at = 2023-09-14T01:10:00.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.16" }
+"0.3.17" = { created_at = 2023-10-02T04:21:47.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.17" }
+"0.3.18" = { created_at = 2023-10-05T03:02:13.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.18" }
+"0.3.19" = { created_at = 2023-11-17T04:49:21.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.19" }
+"0.3.20" = { created_at = 2024-01-11T01:09:14.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.20" }
+"0.3.21" = { created_at = 2024-04-11T01:25:09.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.21" }
+"0.3.22" = { created_at = 2024-04-16T09:23:39.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.22" }
+"0.3.23" = { created_at = 2024-05-01T01:38:53.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.23" }
+"0.3.24" = { created_at = 2024-08-06T14:15:46.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.24" }
+"0.3.25" = { created_at = 2024-11-06T09:31:31.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.3.25" }
+"0.4.0" = { created_at = 2024-11-11T09:37:33.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2024-12-03T09:01:18.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2025-04-28T05:31:39.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2025-08-10T01:09:15.000Z, release_url = "https://github.com/minamijoyo/tfmigrate/releases/tag/v0.4.3" }

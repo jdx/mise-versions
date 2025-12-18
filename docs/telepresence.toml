@@ -1,61 +1,61 @@
 [versions]
-"2.9.0" = { created_at = 2022-11-15T15:16:55.000Z }
-"2.9.1" = { created_at = 2022-11-15T22:54:01.000Z }
-"2.9.2" = { created_at = 2022-11-16T20:41:40.000Z }
-"2.9.3" = { created_at = 2022-11-23T20:35:07.000Z }
-"2.9.5" = { created_at = 2022-12-08T21:39:34.000Z }
-"2.10.0" = { created_at = 2023-01-11T17:06:18.000Z }
-"2.10.1" = { created_at = 2023-01-11T20:11:36.000Z }
-"2.10.2" = { created_at = 2023-01-16T19:12:58.000Z }
-"2.10.4" = { created_at = 2023-01-20T09:56:57.000Z }
-"2.10.5" = { created_at = 2023-02-06T17:38:18.000Z }
-"2.10.6" = { created_at = 2023-02-14T20:30:10.000Z }
-"2.11.0" = { created_at = 2023-02-22T19:43:55.000Z }
-"2.11.1" = { created_at = 2023-02-27T16:23:26.000Z }
-"2.12.0" = { created_at = 2023-03-20T14:48:49.000Z }
-"2.12.1" = { created_at = 2023-03-22T20:32:27.000Z }
-"2.12.2" = { created_at = 2023-04-04T21:55:36.000Z }
-"2.13.0" = { created_at = 2023-04-18T15:52:49.000Z }
-"2.13.1" = { created_at = 2023-04-20T18:42:46.000Z }
-"2.13.2-rc.0" = { created_at = 2023-05-11T15:14:41.000Z }
-"2.13.2-rc.1" = { created_at = 2023-05-11T17:55:54.000Z }
-"2.13.2" = { created_at = 2023-05-12T18:12:09.000Z }
-"2.13.3" = { created_at = 2023-05-25T21:06:27.000Z }
-"2.14.0" = { created_at = 2023-06-12T20:52:31.000Z }
-"2.14.1" = { created_at = 2023-07-07T18:48:37.000Z }
-"2.14.3" = { created_at = 2023-08-23T19:48:26.000Z }
-"2.14.4" = { created_at = 2023-08-23T20:32:26.000Z }
-"2.15.0" = { created_at = 2023-08-29T18:20:33.000Z }
-"2.15.1" = { created_at = 2023-09-07T19:21:41.000Z }
-"2.16.0" = { created_at = 2023-10-02T15:18:20.000Z }
-"2.16.1" = { created_at = 2023-10-12T16:10:07.000Z }
-"2.17.0" = { created_at = 2023-11-14T15:13:22.000Z }
-"2.18.0" = { created_at = 2024-02-10T06:37:17.000Z }
-"2.19.0" = { created_at = 2024-06-14T19:51:40.000Z }
-"2.19.1" = { created_at = 2024-07-12T09:21:52.000Z }
-"2.20.0" = { created_at = 2024-10-03T06:03:24.000Z }
-"2.20.1" = { created_at = 2024-10-10T13:22:50.000Z }
-"2.20.2" = { created_at = 2024-10-21T03:25:45.000Z }
-"2.20.3" = { created_at = 2024-11-18T16:41:18.000Z }
-"2.21.0" = { created_at = 2024-12-13T10:23:30.000Z }
-"2.21.1" = { created_at = 2024-12-17T10:47:02.000Z }
-"2.21.2" = { created_at = 2025-01-26T22:53:41.000Z }
-"2.21.3" = { created_at = 2025-02-06T06:23:09.000Z }
-"2.22.0" = { created_at = 2025-03-14T07:05:21.000Z }
-"2.22.1" = { created_at = 2025-03-27T03:42:09.000Z }
-"2.22.2" = { created_at = 2025-03-28T22:10:37.000Z }
-"2.22.3" = { created_at = 2025-04-08T01:57:01.000Z }
-"2.22.4" = { created_at = 2025-04-26T12:27:52.000Z }
-"2.22.5" = { created_at = 2025-05-29T04:19:12.000Z }
-"2.22.6" = { created_at = 2025-06-03T21:18:35.000Z }
-"2.23.0" = { created_at = 2025-06-17T14:50:44.000Z }
-"2.23.1" = { created_at = 2025-06-24T20:45:51.000Z }
-"2.23.2" = { created_at = 2025-06-27T15:32:13.000Z }
-"2.23.3" = { created_at = 2025-07-07T15:04:45.000Z }
-"2.23.4" = { created_at = 2025-07-18T10:55:25.000Z }
-"2.23.5" = { created_at = 2025-07-20T10:58:52.000Z }
-"2.23.6" = { created_at = 2025-07-23T06:17:29.000Z }
-"2.24.0" = { created_at = 2025-08-25T21:38:39.000Z }
-"2.24.1" = { created_at = 2025-09-05T15:16:31.000Z }
-"2.25.0" = { created_at = 2025-10-16T18:25:53.000Z }
-"2.25.1" = { created_at = 2025-11-10T21:31:25.000Z }
+"2.9.0" = { created_at = 2022-11-15T15:16:55.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.9.0" }
+"2.9.1" = { created_at = 2022-11-15T22:54:01.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.9.1" }
+"2.9.2" = { created_at = 2022-11-16T20:41:40.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.9.2" }
+"2.9.3" = { created_at = 2022-11-23T20:35:07.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.9.3" }
+"2.9.5" = { created_at = 2022-12-08T21:39:34.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.9.5" }
+"2.10.0" = { created_at = 2023-01-11T17:06:18.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.10.0" }
+"2.10.1" = { created_at = 2023-01-11T20:11:36.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.10.1" }
+"2.10.2" = { created_at = 2023-01-16T19:12:58.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.10.2" }
+"2.10.4" = { created_at = 2023-01-20T09:56:57.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.10.4" }
+"2.10.5" = { created_at = 2023-02-06T17:38:18.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.10.5" }
+"2.10.6" = { created_at = 2023-02-14T20:30:10.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.10.6" }
+"2.11.0" = { created_at = 2023-02-22T19:43:55.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2023-02-27T16:23:26.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.11.1" }
+"2.12.0" = { created_at = 2023-03-20T14:48:49.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.12.0" }
+"2.12.1" = { created_at = 2023-03-22T20:32:27.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.12.1" }
+"2.12.2" = { created_at = 2023-04-04T21:55:36.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.12.2" }
+"2.13.0" = { created_at = 2023-04-18T15:52:49.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.13.0" }
+"2.13.1" = { created_at = 2023-04-20T18:42:46.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.13.1" }
+"2.13.2-rc.0" = { created_at = 2023-05-11T15:14:41.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.13.2-rc.0" }
+"2.13.2-rc.1" = { created_at = 2023-05-11T17:55:54.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.13.2-rc.1" }
+"2.13.2" = { created_at = 2023-05-12T18:12:09.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.13.2" }
+"2.13.3" = { created_at = 2023-05-25T21:06:27.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.13.3" }
+"2.14.0" = { created_at = 2023-06-12T20:52:31.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.14.0" }
+"2.14.1" = { created_at = 2023-07-07T18:48:37.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.14.1" }
+"2.14.3" = { created_at = 2023-08-23T19:48:26.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.14.3" }
+"2.14.4" = { created_at = 2023-08-23T20:32:26.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.14.4" }
+"2.15.0" = { created_at = 2023-08-29T18:20:33.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.15.0" }
+"2.15.1" = { created_at = 2023-09-07T19:21:41.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.15.1" }
+"2.16.0" = { created_at = 2023-10-02T15:18:20.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.16.0" }
+"2.16.1" = { created_at = 2023-10-12T16:10:07.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.16.1" }
+"2.17.0" = { created_at = 2023-11-14T15:13:22.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.17.0" }
+"2.18.0" = { created_at = 2024-02-10T06:37:17.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.18.0" }
+"2.19.0" = { created_at = 2024-06-14T19:51:40.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.19.0" }
+"2.19.1" = { created_at = 2024-07-12T09:21:52.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.19.1" }
+"2.20.0" = { created_at = 2024-10-03T06:03:24.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.20.0" }
+"2.20.1" = { created_at = 2024-10-10T13:22:50.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.20.1" }
+"2.20.2" = { created_at = 2024-10-21T03:25:45.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.20.2" }
+"2.20.3" = { created_at = 2024-11-18T16:41:18.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.20.3" }
+"2.21.0" = { created_at = 2024-12-13T10:23:30.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.21.0" }
+"2.21.1" = { created_at = 2024-12-17T10:47:02.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.21.1" }
+"2.21.2" = { created_at = 2025-01-26T22:53:41.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.21.2" }
+"2.21.3" = { created_at = 2025-02-06T06:23:09.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.21.3" }
+"2.22.0" = { created_at = 2025-03-14T07:05:21.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.0" }
+"2.22.1" = { created_at = 2025-03-27T03:42:09.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.1" }
+"2.22.2" = { created_at = 2025-03-28T22:10:37.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.2" }
+"2.22.3" = { created_at = 2025-04-08T01:57:01.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.3" }
+"2.22.4" = { created_at = 2025-04-26T12:27:52.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.4" }
+"2.22.5" = { created_at = 2025-05-29T04:19:12.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.5" }
+"2.22.6" = { created_at = 2025-06-03T21:18:35.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.22.6" }
+"2.23.0" = { created_at = 2025-06-17T14:50:44.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.0" }
+"2.23.1" = { created_at = 2025-06-24T20:45:51.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.1" }
+"2.23.2" = { created_at = 2025-06-27T15:32:13.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.2" }
+"2.23.3" = { created_at = 2025-07-07T15:04:45.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.3" }
+"2.23.4" = { created_at = 2025-07-18T10:55:25.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.4" }
+"2.23.5" = { created_at = 2025-07-20T10:58:52.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.5" }
+"2.23.6" = { created_at = 2025-07-23T06:17:29.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.23.6" }
+"2.24.0" = { created_at = 2025-08-25T21:38:39.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.24.0" }
+"2.24.1" = { created_at = 2025-09-05T15:16:31.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.24.1" }
+"2.25.0" = { created_at = 2025-10-16T18:25:53.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.25.0" }
+"2.25.1" = { created_at = 2025-11-10T21:31:25.000Z, release_url = "https://github.com/telepresenceio/telepresence/releases/tag/v2.25.1" }

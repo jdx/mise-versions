@@ -12992,10 +12992,10 @@
     },
     {
       "name": "tbls",
-      "latest_version": "1.92.0",
-      "latest_stable_version": "1.92.0",
-      "version_count": 224,
-      "last_updated": "2025-12-10T06:24:57.000Z",
+      "latest_version": "1.92.1",
+      "latest_stable_version": "1.92.1",
+      "version_count": 225,
+      "last_updated": "2025-12-17T11:00:12.000Z",
       "github": "k1LoW/tbls",
       "repo_url": "https://github.com/k1LoW/tbls",
       "backends": [
@@ -13059,8 +13059,8 @@
       "name": "teleport-community",
       "latest_version": "18.5.1",
       "latest_stable_version": "18.5.1",
-      "version_count": 745,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "version_count": 746,
+      "last_updated": "2025-12-18T01:24:12.422Z",
       "backends": [
         "asdf:mise-plugins/mise-teleport-community"
       ]
@@ -13083,10 +13083,10 @@
     },
     {
       "name": "television",
-      "latest_version": "0.13.12",
-      "latest_stable_version": "0.13.12",
-      "version_count": 69,
-      "last_updated": "2025-11-28T14:03:37.000Z",
+      "latest_version": "0.14.1",
+      "latest_stable_version": "0.14.1",
+      "version_count": 71,
+      "last_updated": "2025-12-17T11:57:16.000Z",
       "github": "alexpasmantier/television",
       "repo_url": "https://github.com/alexpasmantier/television",
       "backends": [
@@ -13149,10 +13149,10 @@
     },
     {
       "name": "terraform",
-      "latest_version": "1.14.2",
-      "latest_stable_version": "1.14.2",
-      "version_count": 244,
-      "last_updated": "2025-12-11T11:54:09.000Z",
+      "latest_version": "1.14.3",
+      "latest_stable_version": "1.14.3",
+      "version_count": 245,
+      "last_updated": "2025-12-17T10:46:55.000Z",
       "github": "hashicorp/terraform",
       "repo_url": "https://github.com/hashicorp/terraform",
       "backends": [
@@ -13247,10 +13247,10 @@
     },
     {
       "name": "terragrunt",
-      "latest_version": "0.95.1",
-      "latest_stable_version": "0.95.1",
-      "version_count": 827,
-      "last_updated": "2025-12-12T19:54:27.000Z",
+      "latest_version": "0.96.1",
+      "latest_stable_version": "0.96.1",
+      "version_count": 829,
+      "last_updated": "2025-12-17T15:14:20.000Z",
       "github": "gruntwork-io/terragrunt",
       "repo_url": "https://github.com/gruntwork-io/terragrunt",
       "backends": [
@@ -13317,7 +13317,7 @@
       "latest_version": "1.26.0",
       "latest_stable_version": "1.26.0",
       "version_count": 109,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:25:44.174Z",
       "backends": [
         "asdf:mise-plugins/mise-hashicorp"
       ]
@@ -13327,7 +13327,7 @@
       "latest_version": "0.16.0-rc.7",
       "latest_stable_version": "0.15.1",
       "version_count": 65,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:25:50.804Z",
       "github": "flux-iac/tofu-controller",
       "repo_url": "https://github.com/flux-iac/tofu-controller",
       "backends": [
@@ -13438,10 +13438,10 @@
     },
     {
       "name": "tfswitch",
-      "latest_version": "1.12.0",
-      "latest_stable_version": "1.12.0",
-      "version_count": 79,
-      "last_updated": "2025-12-14T21:37:49.000Z",
+      "latest_version": "1.13.0",
+      "latest_stable_version": "1.13.0",
+      "version_count": 80,
+      "last_updated": "2025-12-15T21:37:41.000Z",
       "github": "warrensbox/terraform-switcher",
       "repo_url": "https://github.com/warrensbox/terraform-switcher",
       "backends": [
@@ -13538,7 +13538,7 @@
       "latest_version": "untagged-06565b820c16842beb6f",
       "latest_stable_version": "untagged-06565b820c16842beb6f",
       "version_count": 75,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:26:57.794Z",
       "backends": [
         "asdf:mise-plugins/mise-tinytex"
       ]
@@ -13585,7 +13585,7 @@
       "latest_version": "3.6a",
       "latest_stable_version": "3.6a",
       "version_count": 39,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:27:03.750Z",
       "backends": [
         "asdf:mise-plugins/mise-tmux"
       ]
@@ -13633,7 +13633,7 @@
       "latest_version": "10.1.50",
       "latest_stable_version": "10.1.50",
       "version_count": 391,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:27:22.040Z",
       "backends": [
         "asdf:mise-plugins/mise-tomcat"
       ]
@@ -13655,10 +13655,10 @@
     },
     {
       "name": "traefik",
-      "latest_version": "3.6.4",
-      "latest_stable_version": "3.6.4",
-      "version_count": 247,
-      "last_updated": "2025-12-05T09:42:04.000Z",
+      "latest_version": "2.11.33",
+      "latest_stable_version": "2.11.33",
+      "version_count": 249,
+      "last_updated": "2025-12-17T09:56:04.000Z",
       "github": "traefik/traefik",
       "repo_url": "https://github.com/traefik/traefik",
       "backends": [
@@ -13736,10 +13736,10 @@
     },
     {
       "name": "trivy",
-      "latest_version": "0.68.1",
-      "latest_stable_version": "0.68.1",
-      "version_count": 176,
-      "last_updated": "2025-12-03T08:50:26.000Z",
+      "latest_version": "0.68.2",
+      "latest_stable_version": "0.68.2",
+      "version_count": 177,
+      "last_updated": "2025-12-17T05:57:32.000Z",
       "github": "aquasecurity/trivy",
       "repo_url": "https://github.com/aquasecurity/trivy",
       "backends": [
@@ -13845,10 +13845,10 @@
     },
     {
       "name": "tuist",
-      "latest_version": "4.115.1",
-      "latest_stable_version": "4.115.1",
-      "version_count": 440,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "4.116.2",
+      "latest_stable_version": "4.116.2",
+      "version_count": 436,
+      "last_updated": "2025-12-17T12:58:23.000Z",
       "github": "tuist/tuist",
       "repo_url": "https://github.com/tuist/tuist",
       "backends": [
@@ -14105,10 +14105,10 @@
     },
     {
       "name": "uv",
-      "latest_version": "0.9.17",
-      "latest_stable_version": "0.9.17",
-      "version_count": 238,
-      "last_updated": "2025-12-09T22:36:00.000Z",
+      "latest_version": "0.9.18",
+      "latest_stable_version": "0.9.18",
+      "version_count": 239,
+      "last_updated": "2025-12-16T13:32:35.000Z",
       "github": "astral-sh/uv",
       "repo_url": "https://github.com/astral-sh/uv",
       "description": "An extremely fast Python package installer and resolver, written in Rust",
@@ -14127,10 +14127,10 @@
     },
     {
       "name": "v",
-      "latest_version": "weekly.2025.50",
-      "latest_stable_version": "weekly.2025.50",
-      "version_count": 306,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "weekly.2025.51",
+      "latest_stable_version": "weekly.2025.51",
+      "version_count": 307,
+      "last_updated": "2025-12-18T01:30:07.236Z",
       "backends": [
         "asdf:mise-plugins/mise-v"
       ]
@@ -14202,10 +14202,10 @@
     },
     {
       "name": "vcluster",
-      "latest_version": "0.30.3",
-      "latest_stable_version": "0.30.3",
-      "version_count": 112,
-      "last_updated": "2025-12-01T09:57:25.000Z",
+      "latest_version": "0.30.4",
+      "latest_stable_version": "0.30.4",
+      "version_count": 117,
+      "last_updated": "2025-12-17T15:03:04.000Z",
       "github": "loft-sh/vcluster",
       "repo_url": "https://github.com/loft-sh/vcluster",
       "backends": [
@@ -14332,10 +14332,10 @@
     },
     {
       "name": "victoria-metrics",
-      "latest_version": "1.131.0",
-      "latest_stable_version": "1.131.0",
-      "version_count": 367,
-      "last_updated": "2025-12-01T10:11:54.000Z",
+      "latest_version": "1.122.11",
+      "latest_stable_version": "1.122.11",
+      "version_count": 370,
+      "last_updated": "2025-12-14T22:09:43.000Z",
       "github": "VictoriaMetrics/VictoriaMetrics",
       "repo_url": "https://github.com/VictoriaMetrics/VictoriaMetrics",
       "backends": [
@@ -14388,7 +14388,7 @@
       "latest_version": "2024.24",
       "latest_stable_version": "2024.24",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:32:02.285Z",
       "backends": [
         "vfox:mise-plugins/vfox-vlang"
       ]
@@ -14398,7 +14398,7 @@
       "latest_version": "1.1.0-alpha",
       "latest_stable_version": "1.0.0",
       "version_count": 10,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:32:04.505Z",
       "backends": [
         "asdf:mise-plugins/mise-hashicorp"
       ]
@@ -14467,7 +14467,7 @@
       "latest_version": "20+threads",
       "latest_stable_version": "20+threads",
       "version_count": 31,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:32:20.202Z",
       "backends": [
         "asdf:mise-plugins/mise-wasi-sdk"
       ]
@@ -14477,7 +14477,7 @@
       "latest_version": "0.5.0",
       "latest_stable_version": "0.5.0",
       "version_count": 7,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T01:32:22.541Z",
       "backends": [
         "asdf:mise-plugins/mise-wasm3"
       ]
