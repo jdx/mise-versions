@@ -11397,7 +11397,7 @@
       "latest_version": "8.13.1",
       "latest_stable_version": "8.13.1",
       "version_count": 38,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:38:02.292Z",
       "backends": [
         "asdf:mise-plugins/mise-coq"
       ]
@@ -11405,9 +11405,9 @@
     {
       "name": "ruby",
       "latest_version": "4.0-dev",
-      "latest_stable_version": "3.4.7",
-      "version_count": 659,
-      "last_updated": "2025-10-23T10:00:15.000Z",
+      "latest_stable_version": "3.4.8",
+      "version_count": 660,
+      "last_updated": "2025-12-18T00:38:07.093Z",
       "backends": [
         "core:ruby"
       ],
@@ -11439,7 +11439,7 @@
       "latest_version": "stable",
       "latest_stable_version": "stable",
       "version_count": 146,
-      "last_updated": "2025-12-11T14:58:19.000Z",
+      "last_updated": "2025-12-18T00:38:26.709Z",
       "backends": [
         "core:rust",
         "asdf:code-lever/asdf-rust"
@@ -11452,10 +11452,10 @@
     },
     {
       "name": "rust-analyzer",
-      "latest_version": "2025-12-08",
-      "latest_stable_version": "2025-12-08",
-      "version_count": 314,
-      "last_updated": "2025-12-07T15:06:49.000Z",
+      "latest_version": "2025-12-15",
+      "latest_stable_version": "2025-12-15",
+      "version_count": 315,
+      "last_updated": "2025-12-14T22:33:33.000Z",
       "github": "rust-lang/rust-analyzer",
       "repo_url": "https://github.com/rust-lang/rust-analyzer",
       "backends": [
@@ -11548,7 +11548,7 @@
       "latest_version": "2.5.11",
       "latest_stable_version": "2.5.11",
       "version_count": 166,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:38:56.537Z",
       "backends": [
         "asdf:mise-plugins/mise-sbcl"
       ]
@@ -11558,7 +11558,7 @@
       "latest_version": "1.11.7",
       "latest_stable_version": "1.11.7",
       "version_count": 18,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:38:58.763Z",
       "backends": [
         "asdf:mise-plugins/mise-sbt"
       ]
@@ -11568,7 +11568,7 @@
       "latest_version": "3.7.4",
       "latest_stable_version": "3.7.4",
       "version_count": 135,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:39:03.076Z",
       "backends": [
         "asdf:mise-plugins/mise-scala",
         "vfox:mise-plugins/vfox-scala"
@@ -11592,10 +11592,10 @@
     },
     {
       "name": "scaleway",
-      "latest_version": "2.48.0",
-      "latest_stable_version": "2.48.0",
-      "version_count": 88,
-      "last_updated": "2025-12-11T15:38:11.000Z",
+      "latest_version": "2.49.0",
+      "latest_stable_version": "2.49.0",
+      "version_count": 89,
+      "last_updated": "2025-12-17T12:11:49.000Z",
       "github": "scaleway/scaleway-cli",
       "repo_url": "https://github.com/scaleway/scaleway-cli",
       "backends": [
@@ -11609,10 +11609,10 @@
     },
     {
       "name": "scaleway-cli",
-      "latest_version": "2.48.0",
-      "latest_stable_version": "2.48.0",
-      "version_count": 88,
-      "last_updated": "2025-12-11T15:38:11.000Z",
+      "latest_version": "2.49.0",
+      "latest_stable_version": "2.49.0",
+      "version_count": 89,
+      "last_updated": "2025-12-17T12:11:49.000Z",
       "github": "scaleway/scaleway-cli",
       "repo_url": "https://github.com/scaleway/scaleway-cli",
       "backends": [
@@ -11682,7 +11682,7 @@
       "latest_version": "early-access-release",
       "latest_stable_version": "early-access-release",
       "version_count": 224,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:39:23.719Z",
       "backends": [
         "asdf:mise-plugins/mise-schemacrawler"
       ]
@@ -11766,17 +11766,17 @@
       "latest_version": "05_20250930",
       "latest_stable_version": "05_20250930",
       "version_count": 340,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:39:35.809Z",
       "backends": [
         "asdf:mise-plugins/mise-seed7"
       ]
     },
     {
       "name": "semgrep",
-      "latest_version": "1.145.2",
-      "latest_stable_version": "1.145.2",
-      "version_count": 322,
-      "last_updated": "2025-12-13T01:53:32.000Z",
+      "latest_version": "1.146.0",
+      "latest_stable_version": "1.146.0",
+      "version_count": 323,
+      "last_updated": "2025-12-17T20:44:23.000Z",
       "backends": [
         "pipx:semgrep",
         "asdf:mise-plugins/mise-semgrep"
@@ -11796,7 +11796,7 @@
       "latest_version": "0.2.0",
       "latest_stable_version": "0.2.0",
       "version_count": 17,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:39:38.574Z",
       "backends": [
         "asdf:mise-plugins/mise-semtag"
       ]
@@ -11819,17 +11819,17 @@
       "latest_version": "0.40.0",
       "latest_stable_version": "0.40.0",
       "version_count": 89,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:39:41.445Z",
       "backends": [
         "asdf:mise-plugins/mise-hashicorp"
       ]
     },
     {
       "name": "sentry",
-      "latest_version": "2.58.4",
-      "latest_stable_version": "2.58.4",
-      "version_count": 347,
-      "last_updated": "2025-12-12T10:27:46.000Z",
+      "latest_version": "3.0.1",
+      "latest_stable_version": "3.0.1",
+      "version_count": 349,
+      "last_updated": "2025-12-17T15:39:43.000Z",
       "github": "getsentry/sentry-cli",
       "repo_url": "https://github.com/getsentry/sentry-cli",
       "backends": [
@@ -11842,10 +11842,10 @@
     },
     {
       "name": "sentry-cli",
-      "latest_version": "2.58.4",
-      "latest_stable_version": "2.58.4",
-      "version_count": 347,
-      "last_updated": "2025-12-12T10:27:46.000Z",
+      "latest_version": "3.0.1",
+      "latest_stable_version": "3.0.1",
+      "version_count": 349,
+      "last_updated": "2025-12-17T15:39:43.000Z",
       "github": "getsentry/sentry-cli",
       "repo_url": "https://github.com/getsentry/sentry-cli",
       "backends": [
@@ -11861,7 +11861,7 @@
       "latest_version": "0.8.2",
       "latest_stable_version": "0.8.2",
       "version_count": 18,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:39:58.780Z",
       "backends": [
         "asdf:mise-plugins/mise-hashicorp"
       ]
@@ -11870,8 +11870,8 @@
       "name": "serverless",
       "latest_version": "beta1.1",
       "latest_stable_version": "beta1.1",
-      "version_count": 490,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "version_count": 491,
+      "last_updated": "2025-12-18T00:40:00.461Z",
       "backends": [
         "asdf:mise-plugins/mise-serverless"
       ]
@@ -11881,7 +11881,7 @@
       "latest_version": "0.22.4",
       "latest_stable_version": "0.22.4",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:40:02.578Z",
       "backends": [
         "asdf:mise-plugins/mise-setup-envtest"
       ]
@@ -11961,20 +11961,20 @@
     },
     {
       "name": "shorebird",
-      "latest_version": "1.6.71",
-      "latest_stable_version": "1.6.71",
-      "version_count": 238,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "1.6.72",
+      "latest_stable_version": "1.6.72",
+      "version_count": 239,
+      "last_updated": "2025-12-18T00:40:12.174Z",
       "backends": [
         "asdf:mise-plugins/mise-shorebird"
       ]
     },
     {
       "name": "signadot",
-      "latest_version": "1.3.0",
-      "latest_stable_version": "1.3.0",
-      "version_count": 33,
-      "last_updated": "2025-10-31T21:20:25.000Z",
+      "latest_version": "1.4.0",
+      "latest_stable_version": "1.4.0",
+      "version_count": 34,
+      "last_updated": "2025-12-17T15:37:05.000Z",
       "github": "signadot/cli",
       "repo_url": "https://github.com/signadot/cli",
       "backends": [
@@ -12090,7 +12090,7 @@
       "latest_version": "1.65.0",
       "latest_stable_version": "1.65.0",
       "version_count": 30,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:40:32.968Z",
       "backends": [
         "asdf:mise-plugins/mise-smithy"
       ]
@@ -12100,7 +12100,7 @@
       "latest_version": "2022.1",
       "latest_stable_version": "2022.1",
       "version_count": 75,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:40:34.910Z",
       "backends": [
         "asdf:mise-plugins/mise-smlnj"
       ]
@@ -12223,7 +12223,7 @@
       "latest_version": "2.3.0",
       "latest_stable_version": "2.3.0",
       "version_count": 103,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:40:59.563Z",
       "backends": [
         "asdf:mise-plugins/mise-sourcery"
       ]
@@ -12261,10 +12261,10 @@
     },
     {
       "name": "spark",
-      "latest_version": "4.1.0-rc3",
-      "latest_stable_version": "4.0.1",
-      "version_count": 269,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "latest_version": "4.1.0",
+      "latest_stable_version": "4.1.0",
+      "version_count": 270,
+      "last_updated": "2025-12-18T00:41:09.287Z",
       "github": "apache/spark",
       "repo_url": "https://github.com/apache/spark",
       "backends": [
@@ -12330,7 +12330,7 @@
       "latest_version": "4.0.0",
       "latest_stable_version": "4.0.0",
       "version_count": 268,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:41:17.298Z",
       "backends": [
         "asdf:mise-plugins/mise-spring-boot"
       ]
@@ -12356,17 +12356,17 @@
       "latest_version": "3.51.1",
       "latest_stable_version": "3.51.1",
       "version_count": 253,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:41:22.663Z",
       "backends": [
         "asdf:mise-plugins/mise-sqlite"
       ]
     },
     {
       "name": "sqlite3def",
-      "latest_version": "3.8.9",
-      "latest_stable_version": "3.8.9",
-      "version_count": 368,
-      "last_updated": "2025-12-14T15:17:19.000Z",
+      "latest_version": "3.8.13",
+      "latest_stable_version": "3.8.13",
+      "version_count": 372,
+      "last_updated": "2025-12-17T05:55:48.000Z",
       "github": "sqldef/sqldef",
       "repo_url": "https://github.com/sqldef/sqldef",
       "backends": [
@@ -12396,7 +12396,7 @@
       "latest_version": "sshuttle-0.72",
       "latest_stable_version": "sshuttle-0.72",
       "version_count": 54,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:41:43.994Z",
       "backends": [
         "asdf:mise-plugins/mise-sshuttle"
       ]
@@ -12574,10 +12574,10 @@
     },
     {
       "name": "stripe",
-      "latest_version": "1.33.0",
-      "latest_stable_version": "1.33.0",
-      "version_count": 215,
-      "last_updated": "2025-11-26T01:09:23.000Z",
+      "latest_version": "1.34.0",
+      "latest_stable_version": "1.34.0",
+      "version_count": 218,
+      "last_updated": "2025-12-17T19:37:38.000Z",
       "github": "stripe/stripe-cli",
       "repo_url": "https://github.com/stripe/stripe-cli",
       "backends": [
@@ -12591,10 +12591,10 @@
     },
     {
       "name": "stripe-cli",
-      "latest_version": "1.33.0",
-      "latest_stable_version": "1.33.0",
-      "version_count": 215,
-      "last_updated": "2025-11-26T01:09:23.000Z",
+      "latest_version": "1.34.0",
+      "latest_stable_version": "1.34.0",
+      "version_count": 218,
+      "last_updated": "2025-12-17T19:37:38.000Z",
       "github": "stripe/stripe-cli",
       "repo_url": "https://github.com/stripe/stripe-cli",
       "backends": [
@@ -12628,10 +12628,10 @@
     },
     {
       "name": "supabase",
-      "latest_version": "2.65.5",
-      "latest_stable_version": "2.65.5",
-      "version_count": 587,
-      "last_updated": "2025-12-04T06:34:45.000Z",
+      "latest_version": "2.67.1",
+      "latest_stable_version": "2.67.1",
+      "version_count": 588,
+      "last_updated": "2025-12-13T03:41:06.000Z",
       "github": "supabase/cli",
       "repo_url": "https://github.com/supabase/cli",
       "backends": [
@@ -12740,7 +12740,7 @@
       "latest_version": "4.9.0",
       "latest_stable_version": "4.9.0",
       "version_count": 44,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:43:54.164Z",
       "backends": [
         "asdf:mise-plugins/mise-swift-package-list"
       ]
@@ -12750,7 +12750,7 @@
       "latest_version": "0.58.7",
       "latest_stable_version": "0.58.7",
       "version_count": 311,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:43:55.896Z",
       "backends": [
         "asdf:mise-plugins/mise-swiftformat"
       ]
@@ -12760,7 +12760,7 @@
       "latest_version": "6.6.3",
       "latest_stable_version": "6.6.3",
       "version_count": 58,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "last_updated": "2025-12-18T00:43:57.830Z",
       "backends": [
         "asdf:mise-plugins/mise-swiftgen"
       ]
@@ -12786,8 +12786,8 @@
       "name": "swiprolog",
       "latest_version": "9.2.9",
       "latest_stable_version": "9.2.9",
-      "version_count": 84,
-      "last_updated": "2025-01-01T00:00:00.000Z",
+      "version_count": 85,
+      "last_updated": "2025-12-18T00:44:05.840Z",
       "backends": [
         "asdf:mise-plugins/mise-swiprolog"
       ]
@@ -12810,10 +12810,10 @@
     },
     {
       "name": "tailpipe",
-      "latest_version": "0.7.1",
-      "latest_stable_version": "0.7.1",
-      "version_count": 18,
-      "last_updated": "2025-10-07T12:02:55.000Z",
+      "latest_version": "0.7.2",
+      "latest_stable_version": "0.7.2",
+      "version_count": 19,
+      "last_updated": "2025-12-15T14:41:33.000Z",
       "github": "turbot/tailpipe",
       "repo_url": "https://github.com/turbot/tailpipe",
       "backends": [
@@ -12843,10 +12843,10 @@
     },
     {
       "name": "talos",
-      "latest_version": "1.10.8",
-      "latest_stable_version": "1.10.8",
-      "version_count": 139,
-      "last_updated": "2025-11-18T13:37:12.000Z",
+      "latest_version": "1.11.6",
+      "latest_stable_version": "1.11.6",
+      "version_count": 140,
+      "last_updated": "2025-12-16T13:35:47.000Z",
       "github": "siderolabs/talos",
       "repo_url": "https://github.com/siderolabs/talos",
       "backends": [
@@ -12860,10 +12860,10 @@
     },
     {
       "name": "talosctl",
-      "latest_version": "1.10.8",
-      "latest_stable_version": "1.10.8",
-      "version_count": 139,
-      "last_updated": "2025-11-18T13:37:12.000Z",
+      "latest_version": "1.11.6",
+      "latest_stable_version": "1.11.6",
+      "version_count": 140,
+      "last_updated": "2025-12-16T13:35:47.000Z",
       "github": "siderolabs/talos",
       "repo_url": "https://github.com/siderolabs/talos",
       "backends": [
