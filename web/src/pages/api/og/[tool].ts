@@ -13,12 +13,10 @@ interface OGToolMeta {
   backends?: string[];
 }
 
-// Get primary backend type from backends array
+// Get primary backend from backends array
 function getPrimaryBackend(backends?: string[]): string | null {
   if (!backends || backends.length === 0) return null;
-  const backend = backends[0];
-  const colonIndex = backend.indexOf(':');
-  return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
+  return backends[0];
 }
 
 // Format download count for display
@@ -36,65 +34,48 @@ function escapeHtml(str: string): string {
     .replace(/>/g, '&gt;');
 }
 
-const MISE_LOGO_URL = 'https://mise.jdx.dev/logo.svg';
-
 function generateImage(tool: OGToolMeta, downloads: number | null, backend: string | null): Response {
   const description = tool.description
-    ? tool.description.length > 120
-      ? tool.description.slice(0, 120) + '...'
+    ? tool.description.length > 150
+      ? tool.description.slice(0, 150) + '...'
       : tool.description
     : '';
 
   const versionText = tool.latest_version ? `v${tool.latest_version}` : '';
 
-  // Build stat badges
-  const backendBadge = backend
-    ? `<div style="display: flex; align-items: center; background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 8px; padding: 12px 20px;">
-        <span style="font-size: 20px; color: #00D4FF; font-weight: 600;">${escapeHtml(backend)}</span>
-       </div>`
-    : '';
-
-  const downloadsBadge = downloads
-    ? `<div style="display: flex; align-items: center; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 12px 20px;">
-        <span style="font-size: 28px; color: #ffffff; font-weight: 700;">${formatDownloads(downloads)}</span>
-        <span style="font-size: 18px; color: #9ca3af; margin-left: 10px;">downloads</span>
-       </div>`
-    : '';
-
-  const versionsBadge = tool.version_count > 0
-    ? `<div style="display: flex; align-items: center; background: rgba(176, 38, 255, 0.1); border: 1px solid rgba(176, 38, 255, 0.3); border-radius: 8px; padding: 12px 20px;">
-        <span style="font-size: 20px; color: #B026FF; font-weight: 600;">${tool.version_count}</span>
-        <span style="font-size: 18px; color: #9ca3af; margin-left: 8px;">versions</span>
-       </div>`
-    : '';
-
   const html = `
-    <div style="display: flex; flex-direction: column; width: 1200px; height: 630px; background: linear-gradient(135deg, #0d0d14 0%, #1a1a2e 50%, #0d0d14 100%); padding: 50px 60px;">
-      <!-- Header: branding -->
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px;">
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <img src="${MISE_LOGO_URL}" width="36" height="36" />
-          <span style="font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
+    <div style="display: flex; flex-direction: column; width: 1200px; height: 630px; background: linear-gradient(135deg, #0d0d14 0%, #1a1a2e 50%, #0d0d14 100%); padding: 40px;">
+      <!-- Header -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 28px; font-weight: 800; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
         </div>
-        <span style="font-size: 18px; color: #4b5563;">mise-tools.jdx.dev</span>
+        <span style="font-size: 14px; color: #6b7280;">mise-tools.jdx.dev</span>
       </div>
 
-      <!-- Main content -->
-      <div style="display: flex; flex-direction: column; flex: 1; justify-content: center;">
-        <!-- Tool name and version -->
-        <div style="display: flex; align-items: baseline; gap: 20px; margin-bottom: 24px;">
-          <span style="font-size: 72px; font-weight: 800; color: #B026FF;">${escapeHtml(tool.name)}</span>
-          ${versionText ? `<span style="font-size: 32px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ''}
-        </div>
+      <!-- Tool card (centered, larger version of Hot Tools card style) -->
+      <div style="display: flex; flex: 1; align-items: center; justify-content: center;">
+        <div style="display: flex; flex-direction: column; background: #1a1a2e; border: 2px solid #2d2d44; border-radius: 16px; padding: 40px; width: 900px; min-height: 380px;">
+          <!-- Header row: name + downloads -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <div style="display: flex; align-items: baseline; gap: 16px;">
+              <span style="font-size: 48px; font-weight: 700; color: #f3f4f6;">${escapeHtml(tool.name)}</span>
+              ${versionText ? `<span style="font-size: 24px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ''}
+            </div>
+            ${downloads ? `<span style="font-size: 32px; font-weight: 600; color: #00D4FF;">${formatDownloads(downloads)}</span>` : ''}
+          </div>
 
-        <!-- Description -->
-        ${description ? `<p style="font-size: 28px; color: #d1d5db; margin: 0 0 32px 0; line-height: 1.5;">${escapeHtml(description)}</p>` : ''}
+          <!-- Description -->
+          <div style="font-size: 24px; color: #9ca3af; margin-bottom: 32px; line-height: 1.5; flex: 1;">
+            ${escapeHtml(description)}
+          </div>
 
-        <!-- Stats badges -->
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          ${backendBadge}
-          ${downloadsBadge}
-          ${versionsBadge}
+          <!-- Footer: badges -->
+          <div style="display: flex; align-items: center; gap: 16px;">
+            ${backend ? `<span style="font-size: 18px; color: #6b7280; background: #0d0d14; padding: 8px 16px; border-radius: 8px;">${escapeHtml(backend)}</span>` : ''}
+            ${tool.version_count > 0 ? `<span style="font-size: 18px; color: #6b7280;">${tool.version_count} versions</span>` : ''}
+            ${downloads ? `<span style="font-size: 18px; color: #6b7280;">30d downloads</span>` : ''}
+          </div>
         </div>
       </div>
     </div>

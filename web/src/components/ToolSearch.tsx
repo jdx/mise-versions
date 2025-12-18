@@ -309,7 +309,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
                   <div class="flex items-center gap-2">
                     {tool.backends && tool.backends[0] && (
                       <span class="px-2 py-0.5 rounded text-xs bg-dark-700 text-gray-500">
-                        {getBackendType(tool.backends[0])}
+                        {tool.backends[0]}
                       </span>
                     )}
                     <span class="text-xs text-gray-500">{tool.version_count} versions</span>

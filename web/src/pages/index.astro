@@ -39,9 +39,5 @@ try {
 ---
 
 <Layout title="mise tools" description="Browse tool versions and download stats for mise">
-  <div class="mb-4">
-    <h1 class="text-2xl font-bold text-gray-100 mb-2">mise tools</h1>
-  </div>
-
   <ToolSearch client:load tools={toolsData.tools} downloads={downloads} trendingTools={trendingTools} />
 </Layout>
