@@ -1,49 +1,49 @@
 [versions]
-"1.16.5" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.18.0" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.18.1" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.18.2" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.19.0" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.19.1" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.19.2" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.19.3" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.20.5" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.21.0" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.21.1" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.21.2" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.21.5" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.22.0" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.22.1" = { created_at = 2021-03-29T08:01:58.000Z }
-"1.22.2" = { created_at = 2022-05-13T06:58:53.000Z }
-"1.23.0" = { created_at = 2022-06-10T17:04:14.000Z }
-"1.23.1" = { created_at = 2022-06-10T17:04:14.000Z }
-"2.0.0" = { created_at = 2022-08-19T18:08:52.000Z }
-"2.0.1" = { created_at = 2022-08-19T18:08:52.000Z }
-"2.1.0" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.2.0" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.2.1" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.2.2" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.3.0" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.3.1" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.4.0" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.5.0" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.6.0" = { created_at = 2022-09-28T14:37:06.000Z }
-"2.7.0" = { created_at = 2023-01-20T17:48:04.000Z }
-"2.8.0" = { created_at = 2023-01-20T17:48:04.000Z }
-"2.8.1" = { created_at = 2023-01-20T17:48:04.000Z }
-"2.9.0" = { created_at = 2023-04-20T14:32:08.000Z }
-"2.9.1" = { created_at = 2023-05-30T18:40:19.000Z }
-"2.10.0" = { created_at = 2023-05-30T18:40:19.000Z }
-"2.10.1" = { created_at = 2023-05-30T18:40:19.000Z }
-"2.11.0" = { created_at = 2023-05-30T18:40:19.000Z }
-"2.12.0" = { created_at = 2023-05-30T18:40:19.000Z }
-"2.13.2" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.13.3" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.13.4" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.13.5" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.14.2" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.15.0" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.15.1" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.16.0" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.17.0" = { created_at = 2023-08-15T10:59:07.000Z }
-"2.17.1" = { created_at = 2023-08-15T10:59:07.000Z }
+"1.16.5" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.16.5" }
+"1.18.0" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.18.0" }
+"1.18.1" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.18.1" }
+"1.18.2" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.18.2" }
+"1.19.0" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.19.0" }
+"1.19.1" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.19.1" }
+"1.19.2" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.19.2" }
+"1.19.3" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.19.3" }
+"1.20.5" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.20.5" }
+"1.21.0" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.21.0" }
+"1.21.1" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.21.1" }
+"1.21.2" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.21.2" }
+"1.21.5" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.21.5" }
+"1.22.0" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.22.0" }
+"1.22.1" = { created_at = 2021-03-29T08:01:58.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.22.1" }
+"1.22.2" = { created_at = 2022-05-13T06:58:53.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.22.2" }
+"1.23.0" = { created_at = 2022-06-10T17:04:14.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.23.0" }
+"1.23.1" = { created_at = 2022-06-10T17:04:14.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/1.23.1" }
+"2.0.0" = { created_at = 2022-08-19T18:08:52.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.0.0" }
+"2.0.1" = { created_at = 2022-08-19T18:08:52.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.0.1" }
+"2.1.0" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.1.0" }
+"2.2.0" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.2.0" }
+"2.2.1" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.2.1" }
+"2.2.2" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.2.2" }
+"2.3.0" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.3.0" }
+"2.3.1" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.3.1" }
+"2.4.0" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.4.0" }
+"2.5.0" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.5.0" }
+"2.6.0" = { created_at = 2022-09-28T14:37:06.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.6.0" }
+"2.7.0" = { created_at = 2023-01-20T17:48:04.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.7.0" }
+"2.8.0" = { created_at = 2023-01-20T17:48:04.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.8.0" }
+"2.8.1" = { created_at = 2023-01-20T17:48:04.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.8.1" }
+"2.9.0" = { created_at = 2023-04-20T14:32:08.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.9.0" }
+"2.9.1" = { created_at = 2023-05-30T18:40:19.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.9.1" }
+"2.10.0" = { created_at = 2023-05-30T18:40:19.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.10.0" }
+"2.10.1" = { created_at = 2023-05-30T18:40:19.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.10.1" }
+"2.11.0" = { created_at = 2023-05-30T18:40:19.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.11.0" }
+"2.12.0" = { created_at = 2023-05-30T18:40:19.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.12.0" }
+"2.13.2" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.13.2" }
+"2.13.3" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.13.3" }
+"2.13.4" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.13.4" }
+"2.13.5" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.13.5" }
+"2.14.2" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.14.2" }
+"2.15.0" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.15.0" }
+"2.15.1" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.15.1" }
+"2.16.0" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.16.0" }
+"2.17.0" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.17.0" }
+"2.17.1" = { created_at = 2023-08-15T10:59:07.000Z, release_url = "https://github.com/allure-framework/allurectl/releases/tag/2.17.1" }

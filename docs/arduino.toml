@@ -1,72 +1,72 @@
 [versions]
-"0.4.0" = { created_at = 2019-08-05T13:46:50.000Z }
-"0.5.0" = { created_at = 2019-09-05T11:08:01.000Z }
-"0.6.0" = { created_at = 2019-10-24T09:32:23.000Z }
-"0.7.0" = { created_at = 2019-12-20T14:22:14.000Z }
-"0.7.1" = { created_at = 2019-12-31T11:18:51.000Z }
-"0.7.2" = { created_at = 2020-01-09T09:48:44.000Z }
-"0.8.0" = { created_at = 2020-02-14T15:30:16.000Z }
-"0.9.0" = { created_at = 2020-02-26T16:58:40.000Z }
-"0.10.0" = { created_at = 2020-04-16T15:06:17.000Z }
-"0.11.0" = { created_at = 2020-06-25T09:16:49.000Z }
-"0.12.0" = { created_at = 2020-08-24T09:21:03.000Z }
-"0.12.1" = { created_at = 2020-08-26T13:11:16.000Z }
-"0.13.0" = { created_at = 2020-09-14T10:33:48.000Z }
-"0.14.0" = { created_at = 2020-12-10T13:29:06.000Z }
-"0.14.1" = { created_at = 2021-01-27T09:14:25.000Z }
-"0.15.0" = { created_at = 2021-02-01T16:29:48.000Z }
-"0.15.1" = { created_at = 2021-02-04T10:10:50.000Z }
-"0.15.2" = { created_at = 2021-02-09T13:01:58.000Z }
-"0.16.0" = { created_at = 2021-02-15T09:29:29.000Z }
-"0.16.1" = { created_at = 2021-02-25T10:42:48.000Z }
-"0.17.0" = { created_at = 2021-03-17T15:09:36.000Z }
-"0.18.0" = { created_at = 2021-03-31T09:42:15.000Z }
-"0.18.1" = { created_at = 2021-04-13T13:07:51.000Z }
-"0.18.2" = { created_at = 2021-05-10T14:29:38.000Z }
-"0.18.3" = { created_at = 2021-05-14T12:36:08.000Z }
-"0.19.0" = { created_at = 2021-09-02T14:46:57.000Z }
-"0.19.1" = { created_at = 2021-09-29T08:27:05.000Z }
-"0.19.2" = { created_at = 2021-10-01T10:54:50.000Z }
-"0.19.3" = { created_at = 2021-10-12T09:09:40.000Z }
-"0.20.0" = { created_at = 2021-11-23T14:34:21.000Z }
-"0.20.1" = { created_at = 2021-11-29T11:34:11.000Z }
-"0.20.2" = { created_at = 2021-12-09T13:30:50.000Z }
-"0.21.0" = { created_at = 2022-02-08T15:04:57.000Z }
-"0.21.1" = { created_at = 2022-02-24T15:41:09.000Z }
-"0.22.0" = { created_at = 2022-05-06T11:08:40.000Z }
-"0.23.0" = { created_at = 2022-06-06T14:23:02.000Z }
-"0.24.0" = { created_at = 2022-06-22T10:02:57.000Z }
-"0.25.0" = { created_at = 2022-07-20T09:20:37.000Z }
-"0.25.1" = { created_at = 2022-07-25T15:01:09.000Z }
-"0.26.0" = { created_at = 2022-08-10T14:32:52.000Z }
-"0.27.0" = { created_at = 2022-09-05T08:09:31.000Z }
-"0.27.1" = { created_at = 2022-09-06T16:43:34.000Z }
-"0.28.0" = { created_at = 2022-10-20T08:41:38.000Z }
-"0.29.0" = { created_at = 2022-11-17T09:19:03.000Z }
-"0.30.0" = { created_at = 2023-02-08T14:45:07.000Z }
-"0.31.0" = { created_at = 2023-02-22T16:14:30.000Z }
-"0.32.0" = { created_at = 2023-04-05T08:05:55.000Z }
-"0.32.1" = { created_at = 2023-04-07T13:55:06.000Z }
-"0.32.2" = { created_at = 2023-04-12T09:40:28.000Z }
-"0.33.0" = { created_at = 2023-05-29T15:18:18.000Z }
-"0.32.3" = { created_at = 2023-06-30T11:39:06.000Z }
-"0.33.1" = { created_at = 2023-06-30T15:32:47.000Z }
-"0.34.0" = { created_at = 2023-08-22T15:31:07.000Z }
-"0.34.1" = { created_at = 2023-08-31T10:49:05.000Z }
-"0.34.2" = { created_at = 2023-09-11T09:50:44.000Z }
-"0.35.0" = { created_at = 2024-01-02T10:47:07.000Z }
-"0.35.1" = { created_at = 2024-01-16T13:21:00.000Z }
-"0.35.2" = { created_at = 2024-01-24T11:12:30.000Z }
-"0.35.3" = { created_at = 2024-02-19T13:15:51.000Z }
-"1.0.0" = { created_at = 2024-06-12T12:11:23.000Z }
-"1.0.1" = { created_at = 2024-06-20T18:57:13.000Z }
-"1.0.2" = { created_at = 2024-07-02T12:51:15.000Z }
-"1.0.3" = { created_at = 2024-07-23T08:43:59.000Z }
-"1.0.4" = { created_at = 2024-08-12T13:32:50.000Z }
-"1.1.0" = { created_at = 2024-11-07T14:06:39.000Z }
-"1.1.1" = { created_at = 2024-11-22T08:56:36.000Z }
-"1.2.0" = { created_at = 2025-02-24T15:52:58.000Z }
-"1.2.2" = { created_at = 2025-04-22T13:50:27.000Z }
-"1.3.0" = { created_at = 2025-08-11T08:40:24.000Z }
-"1.3.1" = { created_at = 2025-08-27T15:44:04.000Z }
-"1.4.0" = { created_at = 2025-12-09T15:54:18.000Z }
+"0.4.0" = { created_at = 2019-08-05T13:46:50.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.4.0" }
+"0.5.0" = { created_at = 2019-09-05T11:08:01.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.5.0" }
+"0.6.0" = { created_at = 2019-10-24T09:32:23.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.6.0" }
+"0.7.0" = { created_at = 2019-12-20T14:22:14.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.7.0" }
+"0.7.1" = { created_at = 2019-12-31T11:18:51.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.7.1" }
+"0.7.2" = { created_at = 2020-01-09T09:48:44.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.7.2" }
+"0.8.0" = { created_at = 2020-02-14T15:30:16.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.8.0" }
+"0.9.0" = { created_at = 2020-02-26T16:58:40.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.9.0" }
+"0.10.0" = { created_at = 2020-04-16T15:06:17.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.10.0" }
+"0.11.0" = { created_at = 2020-06-25T09:16:49.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.11.0" }
+"0.12.0" = { created_at = 2020-08-24T09:21:03.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.12.0" }
+"0.12.1" = { created_at = 2020-08-26T13:11:16.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.12.1" }
+"0.13.0" = { created_at = 2020-09-14T10:33:48.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.13.0" }
+"0.14.0" = { created_at = 2020-12-10T13:29:06.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.14.0" }
+"0.14.1" = { created_at = 2021-01-27T09:14:25.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.14.1" }
+"0.15.0" = { created_at = 2021-02-01T16:29:48.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.15.0" }
+"0.15.1" = { created_at = 2021-02-04T10:10:50.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.15.1" }
+"0.15.2" = { created_at = 2021-02-09T13:01:58.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.15.2" }
+"0.16.0" = { created_at = 2021-02-15T09:29:29.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.16.0" }
+"0.16.1" = { created_at = 2021-02-25T10:42:48.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.16.1" }
+"0.17.0" = { created_at = 2021-03-17T15:09:36.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.17.0" }
+"0.18.0" = { created_at = 2021-03-31T09:42:15.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.18.0" }
+"0.18.1" = { created_at = 2021-04-13T13:07:51.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.18.1" }
+"0.18.2" = { created_at = 2021-05-10T14:29:38.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.18.2" }
+"0.18.3" = { created_at = 2021-05-14T12:36:08.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.18.3" }
+"0.19.0" = { created_at = 2021-09-02T14:46:57.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.19.0" }
+"0.19.1" = { created_at = 2021-09-29T08:27:05.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.19.1" }
+"0.19.2" = { created_at = 2021-10-01T10:54:50.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.19.2" }
+"0.19.3" = { created_at = 2021-10-12T09:09:40.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.19.3" }
+"0.20.0" = { created_at = 2021-11-23T14:34:21.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.20.0" }
+"0.20.1" = { created_at = 2021-11-29T11:34:11.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.20.1" }
+"0.20.2" = { created_at = 2021-12-09T13:30:50.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.20.2" }
+"0.21.0" = { created_at = 2022-02-08T15:04:57.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.21.0" }
+"0.21.1" = { created_at = 2022-02-24T15:41:09.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.21.1" }
+"0.22.0" = { created_at = 2022-05-06T11:08:40.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.22.0" }
+"0.23.0" = { created_at = 2022-06-06T14:23:02.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.23.0" }
+"0.24.0" = { created_at = 2022-06-22T10:02:57.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.24.0" }
+"0.25.0" = { created_at = 2022-07-20T09:20:37.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.25.0" }
+"0.25.1" = { created_at = 2022-07-25T15:01:09.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.25.1" }
+"0.26.0" = { created_at = 2022-08-10T14:32:52.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.26.0" }
+"0.27.0" = { created_at = 2022-09-05T08:09:31.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.27.0" }
+"0.27.1" = { created_at = 2022-09-06T16:43:34.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.27.1" }
+"0.28.0" = { created_at = 2022-10-20T08:41:38.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.28.0" }
+"0.29.0" = { created_at = 2022-11-17T09:19:03.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.29.0" }
+"0.30.0" = { created_at = 2023-02-08T14:45:07.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.30.0" }
+"0.31.0" = { created_at = 2023-02-22T16:14:30.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.31.0" }
+"0.32.0" = { created_at = 2023-04-05T08:05:55.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.32.0" }
+"0.32.1" = { created_at = 2023-04-07T13:55:06.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.32.1" }
+"0.32.2" = { created_at = 2023-04-12T09:40:28.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.32.2" }
+"0.33.0" = { created_at = 2023-05-29T15:18:18.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.33.0" }
+"0.32.3" = { created_at = 2023-06-30T11:39:06.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.32.3" }
+"0.33.1" = { created_at = 2023-06-30T15:32:47.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.33.1" }
+"0.34.0" = { created_at = 2023-08-22T15:31:07.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.34.0" }
+"0.34.1" = { created_at = 2023-08-31T10:49:05.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.34.1" }
+"0.34.2" = { created_at = 2023-09-11T09:50:44.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/0.34.2" }
+"0.35.0" = { created_at = 2024-01-02T10:47:07.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v0.35.0" }
+"0.35.1" = { created_at = 2024-01-16T13:21:00.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v0.35.1" }
+"0.35.2" = { created_at = 2024-01-24T11:12:30.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v0.35.2" }
+"0.35.3" = { created_at = 2024-02-19T13:15:51.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v0.35.3" }
+"1.0.0" = { created_at = 2024-06-12T12:11:23.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2024-06-20T18:57:13.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2024-07-02T12:51:15.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.0.2" }
+"1.0.3" = { created_at = 2024-07-23T08:43:59.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.0.3" }
+"1.0.4" = { created_at = 2024-08-12T13:32:50.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.0.4" }
+"1.1.0" = { created_at = 2024-11-07T14:06:39.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2024-11-22T08:56:36.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.1.1" }
+"1.2.0" = { created_at = 2025-02-24T15:52:58.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.2.0" }
+"1.2.2" = { created_at = 2025-04-22T13:50:27.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.2.2" }
+"1.3.0" = { created_at = 2025-08-11T08:40:24.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.3.0" }
+"1.3.1" = { created_at = 2025-08-27T15:44:04.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.3.1" }
+"1.4.0" = { created_at = 2025-12-09T15:54:18.000Z, release_url = "https://github.com/arduino/arduino-cli/releases/tag/v1.4.0" }

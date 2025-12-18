@@ -1,188 +1,188 @@
 [versions]
-"2.17.0-ek.1" = { created_at = 2021-11-22T23:21:52.000Z }
-"2.17.0-ek.2" = { created_at = 2021-11-22T23:36:16.000Z }
-"2.17.0-ek.3" = { created_at = 2021-11-23T17:44:03.000Z }
-"2.17.0-ek.4" = { created_at = 2021-12-04T15:16:54.000Z }
-"2.18.6" = { created_at = 2021-12-15T15:34:29.000Z }
-"2.18.7" = { created_at = 2021-12-15T16:14:39.000Z }
-"2.18.8" = { created_at = 2021-12-16T02:14:27.000Z }
-"2.19.0" = { created_at = 2021-12-21T15:16:16.000Z }
-"2.20.0" = { created_at = 2022-01-18T14:56:15.000Z }
-"2.21.0" = { created_at = 2022-03-10T23:13:39.000Z }
-"2.21.1" = { created_at = 2022-03-21T15:12:00.000Z }
-"2.22.0" = { created_at = 2022-04-25T15:12:56.000Z }
-"2.23.0" = { created_at = 2022-04-25T15:20:08.000Z }
-"2.24.1" = { created_at = 2023-03-20T21:09:45.000Z }
-"2.25.1" = { created_at = 2023-07-11T15:58:28.000Z }
-"2.25.2" = { created_at = 2023-07-20T12:59:46.000Z }
-"2.25.4" = { created_at = 2023-10-24T18:23:13.000Z }
-"2.25.5" = { created_at = 2023-10-26T19:57:14.000Z }
-"2.26.6" = { created_at = 2023-12-29T23:51:30.000Z }
-"3.0.0-beta.5" = { created_at = 2024-01-30T14:59:35.000Z }
-"3.0.0-beta.6" = { created_at = 2024-01-31T00:00:37.000Z }
-"3.0.0-beta.7" = { created_at = 2024-01-31T00:03:58.000Z }
-"3.0.0-beta.8" = { created_at = 2024-02-04T02:23:48.000Z }
-"3.0.0-beta.9" = { created_at = 2024-02-04T03:13:32.000Z }
-"3.0.0-beta.10" = { created_at = 2024-02-05T22:03:28.000Z }
-"3.0.0-beta.11" = { created_at = 2024-02-05T22:39:10.000Z }
-"3.0.0-beta.12" = { created_at = 2024-02-05T23:39:23.000Z }
-"3.0.0-beta.13" = { created_at = 2024-02-06T01:40:12.000Z }
-"3.0.0-beta.14" = { created_at = 2024-02-06T21:25:30.000Z }
-"3.0.0-beta.15" = { created_at = 2024-02-07T22:38:55.000Z }
-"3.0.0-beta.16" = { created_at = 2024-02-13T23:36:35.000Z }
-"3.0.0-beta.17" = { created_at = 2024-02-17T23:49:20.000Z }
-"3.0.0-beta.18" = { created_at = 2024-02-22T16:19:56.000Z }
-"3.0.0-beta.19" = { created_at = 2024-02-22T17:34:11.000Z }
-"3.0.0-beta.20" = { created_at = 2024-02-23T01:10:07.000Z }
-"3.0.0-beta.21" = { created_at = 2024-02-23T02:37:32.000Z }
-"3.0.0-beta.22" = { created_at = 2024-02-23T04:25:41.000Z }
-"3.0.0-beta.23" = { created_at = 2024-02-23T15:33:08.000Z }
-"3.0.0-beta.24" = { created_at = 2024-02-23T22:42:42.000Z }
-"3.0.0-beta.26" = { created_at = 2024-02-23T23:22:58.000Z }
-"3.0.0-beta.27" = { created_at = 2024-02-23T23:48:59.000Z }
-"3.0.0-beta.28" = { created_at = 2024-02-24T00:17:35.000Z }
-"3.0.0-beta.29" = { created_at = 2024-02-24T00:42:38.000Z }
-"3.0.0-beta.30" = { created_at = 2024-02-24T01:33:41.000Z }
-"3.0.0-beta.31" = { created_at = 2024-03-07T15:48:26.000Z }
-"3.0.0-beta.32" = { created_at = 2024-03-08T02:41:39.000Z }
-"3.0.0-beta.33" = { created_at = 2024-03-08T18:51:42.000Z }
-"3.0.0-beta.34" = { created_at = 2024-03-08T23:47:55.000Z }
-"3.0.0-beta.35" = { created_at = 2024-03-10T22:35:29.000Z }
-"3.0.0-beta.36" = { created_at = 2024-03-13T21:08:13.000Z }
-"3.0.0-beta.37" = { created_at = 2024-03-14T03:10:55.000Z }
-"3.0.0-beta.38" = { created_at = 2024-03-27T15:36:52.000Z }
-"3.0.0-beta.39" = { created_at = 2024-03-29T00:45:55.000Z }
-"3.0.0-beta.40" = { created_at = 2024-04-13T01:08:12.000Z }
-"3.0.0-beta.41" = { created_at = 2024-04-13T02:01:45.000Z }
-"3.0.0-beta.42" = { created_at = 2024-04-14T17:59:45.000Z }
-"3.0.0-beta.43" = { created_at = 2024-04-17T14:06:19.000Z }
-"3.0.0-beta.45" = { created_at = 2024-04-17T15:23:54.000Z }
-"3.0.0-beta.46" = { created_at = 2024-04-27T16:49:50.000Z }
-"3.0.0-beta.47" = { created_at = 2024-05-03T14:04:09.000Z }
-"3.0.0-beta.48" = { created_at = 2024-05-04T17:58:39.000Z }
-"3.0.0-beta.49" = { created_at = 2024-05-07T13:43:53.000Z }
-"3.0.0-beta.50" = { created_at = 2024-05-08T03:03:48.000Z }
-"3.0.0-beta.51" = { created_at = 2024-05-18T02:13:13.000Z }
-"3.0.0-beta.52" = { created_at = 2024-05-18T03:03:47.000Z }
-"3.0.0-beta.53" = { created_at = 2024-05-20T16:53:02.000Z }
-"3.0.0-beta.54" = { created_at = 2024-05-21T17:18:53.000Z }
-"3.0.0-beta.55" = { created_at = 2024-06-04T13:52:50.000Z }
-"3.0.0-beta.57" = { created_at = 2024-06-05T13:48:21.000Z }
-"3.0.0-beta.58" = { created_at = 2024-06-06T23:18:51.000Z }
-"3.0.0-beta.59" = { created_at = 2024-06-07T20:15:33.000Z }
-"3.0.0-beta.60" = { created_at = 2024-06-08T03:43:26.000Z }
-"3.0.0-beta.61" = { created_at = 2024-06-09T00:41:12.000Z }
-"3.0.0" = { created_at = 2024-06-10T03:52:34.000Z }
-"3.0.0-beta.62" = { created_at = 2024-06-10T03:16:40.000Z }
-"3.0.0-beta.63" = { created_at = 2024-06-10T03:17:07.000Z }
-"3.0.1" = { created_at = 2024-06-11T13:51:19.000Z }
-"3.1.0" = { created_at = 2024-06-11T22:30:41.000Z }
-"3.2.0" = { created_at = 2024-06-21T02:59:21.000Z }
-"3.2.1" = { created_at = 2024-06-22T00:05:17.000Z }
-"3.2.2" = { created_at = 2024-06-25T17:57:19.000Z }
-"3.3.0" = { created_at = 2024-07-06T16:18:49.000Z }
-"3.3.1" = { created_at = 2024-07-08T16:46:36.000Z }
-"3.3.2" = { created_at = 2024-07-08T18:45:04.000Z }
-"3.4.0" = { created_at = 2024-07-09T22:34:05.000Z }
-"3.5.0" = { created_at = 2024-07-10T21:29:23.000Z }
-"3.5.1" = { created_at = 2024-07-14T16:14:45.000Z }
-"3.5.2" = { created_at = 2024-07-20T15:49:33.000Z }
-"3.6.0" = { created_at = 2024-07-22T02:12:25.000Z }
-"3.7.0" = { created_at = 2024-07-22T22:53:43.000Z }
-"3.8.0" = { created_at = 2024-07-25T01:18:27.000Z }
-"3.9.0" = { created_at = 2024-07-25T02:46:49.000Z }
-"3.9.1" = { created_at = 2024-08-06T23:08:51.000Z }
-"3.10.0" = { created_at = 2024-08-20T16:41:46.000Z }
-"3.11.0" = { created_at = 2024-08-20T23:29:35.000Z }
-"3.12.0" = { created_at = 2024-08-21T20:02:07.000Z }
-"3.12.1" = { created_at = 2024-08-21T22:10:58.000Z }
-"3.13.0" = { created_at = 2024-08-27T19:48:50.000Z }
-"3.13.1" = { created_at = 2024-08-27T22:38:59.000Z }
-"3.13.2" = { created_at = 2024-08-27T23:03:42.000Z }
-"3.13.3" = { created_at = 2024-08-27T23:33:25.000Z }
-"3.14.0" = { created_at = 2024-08-28T20:13:13.000Z }
-"3.14.1" = { created_at = 2024-08-28T22:17:34.000Z }
-"3.15.0" = { created_at = 2024-08-29T16:51:05.000Z }
-"3.16.0" = { created_at = 2024-08-31T20:38:32.000Z }
-"3.16.1" = { created_at = 2024-08-31T23:09:39.000Z }
-"3.17.0" = { created_at = 2024-08-31T23:55:29.000Z }
-"3.17.1" = { created_at = 2024-09-03T00:44:20.000Z }
-"3.17.2" = { created_at = 2024-09-04T21:20:52.000Z }
-"3.17.3" = { created_at = 2024-09-08T18:11:19.000Z }
-"3.18.0" = { created_at = 2024-09-11T17:43:04.000Z }
-"3.18.1" = { created_at = 2024-09-11T20:01:15.000Z }
-"3.19.0" = { created_at = 2024-09-11T23:03:29.000Z }
-"3.20.0" = { created_at = 2024-09-11T23:22:34.000Z }
-"3.21.0" = { created_at = 2024-09-13T13:36:48.000Z }
-"3.22.0" = { created_at = 2024-09-18T01:08:07.000Z }
-"3.23.0" = { created_at = 2024-09-26T21:45:53.000Z }
-"3.24.0" = { created_at = 2024-09-27T17:35:53.000Z }
-"3.25.0" = { created_at = 2024-10-02T01:04:53.000Z }
-"3.26.0" = { created_at = 2024-10-02T01:56:46.000Z }
-"3.27.0" = { created_at = 2024-10-14T19:33:15.000Z }
-"3.28.0" = { created_at = 2024-10-17T14:01:06.000Z }
-"3.29.0" = { created_at = 2024-10-18T18:57:12.000Z }
-"3.29.1" = { created_at = 2024-10-20T15:31:32.000Z }
-"3.29.2" = { created_at = 2024-11-06T22:32:02.000Z }
-"3.29.3" = { created_at = 2024-11-10T16:27:35.000Z }
-"3.29.4" = { created_at = 2024-11-11T16:53:25.000Z }
-"3.29.5" = { created_at = 2024-11-11T18:25:23.000Z }
-"3.29.6" = { created_at = 2024-11-14T14:05:01.000Z }
-"3.30.0" = { created_at = 2024-11-18T14:40:01.000Z }
-"3.31.0" = { created_at = 2024-11-19T12:42:16.000Z }
-"3.32.0" = { created_at = 2024-11-25T00:07:41.000Z }
-"3.33.0" = { created_at = 2024-11-28T16:52:21.000Z }
-"3.34.0" = { created_at = 2024-12-02T23:56:43.000Z }
-"3.35.0" = { created_at = 2024-12-08T17:16:18.000Z }
-"3.35.1" = { created_at = 2024-12-09T04:51:43.000Z }
-"3.35.2" = { created_at = 2024-12-10T18:38:09.000Z }
-"3.35.3" = { created_at = 2024-12-12T19:55:03.000Z }
-"3.36.0" = { created_at = 2024-12-13T04:20:11.000Z }
-"3.37.0" = { created_at = 2024-12-23T20:20:12.000Z }
-"3.38.0" = { created_at = 2024-12-24T03:10:40.000Z }
-"3.38.1" = { created_at = 2024-12-26T19:30:57.000Z }
-"3.39.0" = { created_at = 2024-12-26T21:38:14.000Z }
-"3.40.0" = { created_at = 2025-01-02T01:22:28.000Z }
-"3.41.0" = { created_at = 2025-01-03T20:53:09.000Z }
-"3.42.0" = { created_at = 2025-01-04T18:34:28.000Z }
-"3.43.0" = { created_at = 2025-01-10T18:53:43.000Z }
-"3.44.0" = { created_at = 2025-01-14T01:08:47.000Z }
-"3.45.0" = { created_at = 2025-01-27T18:01:22.000Z }
-"3.46.1" = { created_at = 2025-01-31T02:52:09.000Z }
-"3.47.0" = { created_at = 2025-02-05T14:27:37.000Z }
-"3.47.1" = { created_at = 2025-02-05T21:22:16.000Z }
-"3.48.0" = { created_at = 2025-02-11T14:14:15.000Z }
-"3.48.1" = { created_at = 2025-02-19T17:15:44.000Z }
-"3.48.2" = { created_at = 2025-02-25T13:56:59.000Z }
-"3.49.0" = { created_at = 2025-03-14T14:48:54.000Z }
-"3.49.1" = { created_at = 2025-03-18T13:22:22.000Z }
-"3.50.0" = { created_at = 2025-03-18T14:07:01.000Z }
-"3.50.1" = { created_at = 2025-03-18T22:56:08.000Z }
-"3.50.2" = { created_at = 2025-03-19T02:20:41.000Z }
-"3.50.3" = { created_at = 2025-03-19T13:09:48.000Z }
-"3.51.0" = { created_at = 2025-03-22T19:23:57.000Z }
-"3.51.1" = { created_at = 2025-04-01T00:08:43.000Z }
-"3.52.0" = { created_at = 2025-04-28T22:47:52.000Z }
-"3.52.1" = { created_at = 2025-05-01T02:41:18.000Z }
-"3.52.2" = { created_at = 2025-05-12T19:33:27.000Z }
-"3.53.0" = { created_at = 2025-05-14T16:05:06.000Z }
-"3.54.0" = { created_at = 2025-05-14T16:13:12.000Z }
-"3.54.1" = { created_at = 2025-05-21T02:30:36.000Z }
-"3.55.0" = { created_at = 2025-05-22T18:49:39.000Z }
-"3.56.0" = { created_at = 2025-06-02T18:10:57.000Z }
-"3.56.1-beta.1" = { created_at = 2025-06-06T03:06:03.000Z }
-"3.56.1" = { created_at = 2025-06-09T15:47:44.000Z }
-"3.56.2" = { created_at = 2025-06-19T14:22:10.000Z }
-"3.56.3" = { created_at = 2025-08-22T15:18:32.000Z }
-"3.56.4" = { created_at = 2025-08-22T15:45:29.000Z }
-"3.57.0" = { created_at = 2025-08-28T01:23:53.000Z }
-"3.58.0" = { created_at = 2025-08-28T20:44:36.000Z }
-"3.59.0" = { created_at = 2025-09-17T16:15:34.000Z }
-"3.59.1" = { created_at = 2025-09-21T22:45:04.000Z }
-"3.60.0" = { created_at = 2025-10-01T20:02:09.000Z }
-"3.60.1" = { created_at = 2025-10-14T16:47:27.000Z }
-"3.60.2" = { created_at = 2025-10-22T17:39:40.000Z }
-"3.61.0" = { created_at = 2025-10-22T22:31:16.000Z }
-"3.62.0" = { created_at = 2025-12-01T15:28:04.000Z }
-"3.62.1" = { created_at = 2025-12-13T20:27:50.000Z }
-"3.62.2" = { created_at = 2025-12-14T01:59:29.000Z }
+"2.17.0-ek.1" = { created_at = 2021-11-22T23:21:52.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.17.0-ek.1" }
+"2.17.0-ek.2" = { created_at = 2021-11-22T23:36:16.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.17.0-ek.2" }
+"2.17.0-ek.3" = { created_at = 2021-11-23T17:44:03.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.17.0-ek.3" }
+"2.17.0-ek.4" = { created_at = 2021-12-04T15:16:54.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.17.0-ek.4" }
+"2.18.6" = { created_at = 2021-12-15T15:34:29.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.18.6" }
+"2.18.7" = { created_at = 2021-12-15T16:14:39.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.18.7" }
+"2.18.8" = { created_at = 2021-12-16T02:14:27.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.18.8" }
+"2.19.0" = { created_at = 2021-12-21T15:16:16.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.19.0" }
+"2.20.0" = { created_at = 2022-01-18T14:56:15.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.20.0" }
+"2.21.0" = { created_at = 2022-03-10T23:13:39.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.21.0" }
+"2.21.1" = { created_at = 2022-03-21T15:12:00.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.21.1" }
+"2.22.0" = { created_at = 2022-04-25T15:12:56.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.22.0" }
+"2.23.0" = { created_at = 2022-04-25T15:20:08.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.23.0" }
+"2.24.1" = { created_at = 2023-03-20T21:09:45.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.24.1" }
+"2.25.1" = { created_at = 2023-07-11T15:58:28.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.25.1" }
+"2.25.2" = { created_at = 2023-07-20T12:59:46.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.25.2" }
+"2.25.4" = { created_at = 2023-10-24T18:23:13.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.25.4" }
+"2.25.5" = { created_at = 2023-10-26T19:57:14.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.25.5" }
+"2.26.6" = { created_at = 2023-12-29T23:51:30.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v2.26.6" }
+"3.0.0-beta.5" = { created_at = 2024-01-30T14:59:35.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.5" }
+"3.0.0-beta.6" = { created_at = 2024-01-31T00:00:37.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.6" }
+"3.0.0-beta.7" = { created_at = 2024-01-31T00:03:58.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.7" }
+"3.0.0-beta.8" = { created_at = 2024-02-04T02:23:48.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.8" }
+"3.0.0-beta.9" = { created_at = 2024-02-04T03:13:32.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.9" }
+"3.0.0-beta.10" = { created_at = 2024-02-05T22:03:28.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.10" }
+"3.0.0-beta.11" = { created_at = 2024-02-05T22:39:10.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.11" }
+"3.0.0-beta.12" = { created_at = 2024-02-05T23:39:23.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.12" }
+"3.0.0-beta.13" = { created_at = 2024-02-06T01:40:12.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.13" }
+"3.0.0-beta.14" = { created_at = 2024-02-06T21:25:30.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.14" }
+"3.0.0-beta.15" = { created_at = 2024-02-07T22:38:55.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.15" }
+"3.0.0-beta.16" = { created_at = 2024-02-13T23:36:35.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.16" }
+"3.0.0-beta.17" = { created_at = 2024-02-17T23:49:20.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.17" }
+"3.0.0-beta.18" = { created_at = 2024-02-22T16:19:56.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.18" }
+"3.0.0-beta.19" = { created_at = 2024-02-22T17:34:11.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.19" }
+"3.0.0-beta.20" = { created_at = 2024-02-23T01:10:07.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.20" }
+"3.0.0-beta.21" = { created_at = 2024-02-23T02:37:32.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.21" }
+"3.0.0-beta.22" = { created_at = 2024-02-23T04:25:41.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.22" }
+"3.0.0-beta.23" = { created_at = 2024-02-23T15:33:08.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.23" }
+"3.0.0-beta.24" = { created_at = 2024-02-23T22:42:42.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.24" }
+"3.0.0-beta.26" = { created_at = 2024-02-23T23:22:58.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.26" }
+"3.0.0-beta.27" = { created_at = 2024-02-23T23:48:59.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.27" }
+"3.0.0-beta.28" = { created_at = 2024-02-24T00:17:35.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.28" }
+"3.0.0-beta.29" = { created_at = 2024-02-24T00:42:38.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.29" }
+"3.0.0-beta.30" = { created_at = 2024-02-24T01:33:41.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.30" }
+"3.0.0-beta.31" = { created_at = 2024-03-07T15:48:26.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.31" }
+"3.0.0-beta.32" = { created_at = 2024-03-08T02:41:39.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.32" }
+"3.0.0-beta.33" = { created_at = 2024-03-08T18:51:42.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.33" }
+"3.0.0-beta.34" = { created_at = 2024-03-08T23:47:55.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.34" }
+"3.0.0-beta.35" = { created_at = 2024-03-10T22:35:29.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.35" }
+"3.0.0-beta.36" = { created_at = 2024-03-13T21:08:13.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.36" }
+"3.0.0-beta.37" = { created_at = 2024-03-14T03:10:55.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.37" }
+"3.0.0-beta.38" = { created_at = 2024-03-27T15:36:52.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.38" }
+"3.0.0-beta.39" = { created_at = 2024-03-29T00:45:55.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.39" }
+"3.0.0-beta.40" = { created_at = 2024-04-13T01:08:12.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.40" }
+"3.0.0-beta.41" = { created_at = 2024-04-13T02:01:45.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.41" }
+"3.0.0-beta.42" = { created_at = 2024-04-14T17:59:45.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.42" }
+"3.0.0-beta.43" = { created_at = 2024-04-17T14:06:19.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.43" }
+"3.0.0-beta.45" = { created_at = 2024-04-17T15:23:54.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.45" }
+"3.0.0-beta.46" = { created_at = 2024-04-27T16:49:50.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.46" }
+"3.0.0-beta.47" = { created_at = 2024-05-03T14:04:09.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.47" }
+"3.0.0-beta.48" = { created_at = 2024-05-04T17:58:39.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.48" }
+"3.0.0-beta.49" = { created_at = 2024-05-07T13:43:53.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.49" }
+"3.0.0-beta.50" = { created_at = 2024-05-08T03:03:48.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.50" }
+"3.0.0-beta.51" = { created_at = 2024-05-18T02:13:13.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.51" }
+"3.0.0-beta.52" = { created_at = 2024-05-18T03:03:47.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.52" }
+"3.0.0-beta.53" = { created_at = 2024-05-20T16:53:02.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.53" }
+"3.0.0-beta.54" = { created_at = 2024-05-21T17:18:53.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.54" }
+"3.0.0-beta.55" = { created_at = 2024-06-04T13:52:50.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.55" }
+"3.0.0-beta.57" = { created_at = 2024-06-05T13:48:21.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.57" }
+"3.0.0-beta.58" = { created_at = 2024-06-06T23:18:51.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.58" }
+"3.0.0-beta.59" = { created_at = 2024-06-07T20:15:33.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.59" }
+"3.0.0-beta.60" = { created_at = 2024-06-08T03:43:26.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.60" }
+"3.0.0-beta.61" = { created_at = 2024-06-09T00:41:12.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.61" }
+"3.0.0" = { created_at = 2024-06-10T03:52:34.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0" }
+"3.0.0-beta.62" = { created_at = 2024-06-10T03:16:40.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.62" }
+"3.0.0-beta.63" = { created_at = 2024-06-10T03:17:07.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.0-beta.63" }
+"3.0.1" = { created_at = 2024-06-11T13:51:19.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.0.1" }
+"3.1.0" = { created_at = 2024-06-11T22:30:41.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.1.0" }
+"3.2.0" = { created_at = 2024-06-21T02:59:21.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.2.0" }
+"3.2.1" = { created_at = 2024-06-22T00:05:17.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.2.1" }
+"3.2.2" = { created_at = 2024-06-25T17:57:19.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.2.2" }
+"3.3.0" = { created_at = 2024-07-06T16:18:49.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.3.0" }
+"3.3.1" = { created_at = 2024-07-08T16:46:36.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.3.1" }
+"3.3.2" = { created_at = 2024-07-08T18:45:04.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.3.2" }
+"3.4.0" = { created_at = 2024-07-09T22:34:05.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.4.0" }
+"3.5.0" = { created_at = 2024-07-10T21:29:23.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.5.0" }
+"3.5.1" = { created_at = 2024-07-14T16:14:45.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.5.1" }
+"3.5.2" = { created_at = 2024-07-20T15:49:33.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.5.2" }
+"3.6.0" = { created_at = 2024-07-22T02:12:25.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.6.0" }
+"3.7.0" = { created_at = 2024-07-22T22:53:43.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.7.0" }
+"3.8.0" = { created_at = 2024-07-25T01:18:27.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.8.0" }
+"3.9.0" = { created_at = 2024-07-25T02:46:49.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.9.0" }
+"3.9.1" = { created_at = 2024-08-06T23:08:51.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.9.1" }
+"3.10.0" = { created_at = 2024-08-20T16:41:46.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.10.0" }
+"3.11.0" = { created_at = 2024-08-20T23:29:35.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.11.0" }
+"3.12.0" = { created_at = 2024-08-21T20:02:07.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.12.0" }
+"3.12.1" = { created_at = 2024-08-21T22:10:58.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.12.1" }
+"3.13.0" = { created_at = 2024-08-27T19:48:50.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.13.0" }
+"3.13.1" = { created_at = 2024-08-27T22:38:59.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.13.1" }
+"3.13.2" = { created_at = 2024-08-27T23:03:42.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.13.2" }
+"3.13.3" = { created_at = 2024-08-27T23:33:25.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.13.3" }
+"3.14.0" = { created_at = 2024-08-28T20:13:13.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.14.0" }
+"3.14.1" = { created_at = 2024-08-28T22:17:34.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.14.1" }
+"3.15.0" = { created_at = 2024-08-29T16:51:05.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.15.0" }
+"3.16.0" = { created_at = 2024-08-31T20:38:32.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.16.0" }
+"3.16.1" = { created_at = 2024-08-31T23:09:39.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.16.1" }
+"3.17.0" = { created_at = 2024-08-31T23:55:29.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.17.0" }
+"3.17.1" = { created_at = 2024-09-03T00:44:20.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.17.1" }
+"3.17.2" = { created_at = 2024-09-04T21:20:52.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.17.2" }
+"3.17.3" = { created_at = 2024-09-08T18:11:19.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.17.3" }
+"3.18.0" = { created_at = 2024-09-11T17:43:04.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.18.0" }
+"3.18.1" = { created_at = 2024-09-11T20:01:15.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.18.1" }
+"3.19.0" = { created_at = 2024-09-11T23:03:29.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.19.0" }
+"3.20.0" = { created_at = 2024-09-11T23:22:34.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.20.0" }
+"3.21.0" = { created_at = 2024-09-13T13:36:48.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.21.0" }
+"3.22.0" = { created_at = 2024-09-18T01:08:07.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.22.0" }
+"3.23.0" = { created_at = 2024-09-26T21:45:53.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.23.0" }
+"3.24.0" = { created_at = 2024-09-27T17:35:53.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.24.0" }
+"3.25.0" = { created_at = 2024-10-02T01:04:53.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.25.0" }
+"3.26.0" = { created_at = 2024-10-02T01:56:46.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.26.0" }
+"3.27.0" = { created_at = 2024-10-14T19:33:15.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.27.0" }
+"3.28.0" = { created_at = 2024-10-17T14:01:06.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.28.0" }
+"3.29.0" = { created_at = 2024-10-18T18:57:12.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.0" }
+"3.29.1" = { created_at = 2024-10-20T15:31:32.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.1" }
+"3.29.2" = { created_at = 2024-11-06T22:32:02.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.2" }
+"3.29.3" = { created_at = 2024-11-10T16:27:35.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.3" }
+"3.29.4" = { created_at = 2024-11-11T16:53:25.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.4" }
+"3.29.5" = { created_at = 2024-11-11T18:25:23.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.5" }
+"3.29.6" = { created_at = 2024-11-14T14:05:01.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.29.6" }
+"3.30.0" = { created_at = 2024-11-18T14:40:01.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.30.0" }
+"3.31.0" = { created_at = 2024-11-19T12:42:16.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.31.0" }
+"3.32.0" = { created_at = 2024-11-25T00:07:41.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.32.0" }
+"3.33.0" = { created_at = 2024-11-28T16:52:21.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.33.0" }
+"3.34.0" = { created_at = 2024-12-02T23:56:43.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.34.0" }
+"3.35.0" = { created_at = 2024-12-08T17:16:18.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.35.0" }
+"3.35.1" = { created_at = 2024-12-09T04:51:43.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.35.1" }
+"3.35.2" = { created_at = 2024-12-10T18:38:09.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.35.2" }
+"3.35.3" = { created_at = 2024-12-12T19:55:03.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.35.3" }
+"3.36.0" = { created_at = 2024-12-13T04:20:11.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.36.0" }
+"3.37.0" = { created_at = 2024-12-23T20:20:12.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.37.0" }
+"3.38.0" = { created_at = 2024-12-24T03:10:40.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.38.0" }
+"3.38.1" = { created_at = 2024-12-26T19:30:57.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.38.1" }
+"3.39.0" = { created_at = 2024-12-26T21:38:14.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.39.0" }
+"3.40.0" = { created_at = 2025-01-02T01:22:28.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.40.0" }
+"3.41.0" = { created_at = 2025-01-03T20:53:09.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.41.0" }
+"3.42.0" = { created_at = 2025-01-04T18:34:28.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.42.0" }
+"3.43.0" = { created_at = 2025-01-10T18:53:43.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.43.0" }
+"3.44.0" = { created_at = 2025-01-14T01:08:47.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.44.0" }
+"3.45.0" = { created_at = 2025-01-27T18:01:22.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.45.0" }
+"3.46.1" = { created_at = 2025-01-31T02:52:09.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.46.1" }
+"3.47.0" = { created_at = 2025-02-05T14:27:37.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.47.0" }
+"3.47.1" = { created_at = 2025-02-05T21:22:16.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.47.1" }
+"3.48.0" = { created_at = 2025-02-11T14:14:15.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.48.0" }
+"3.48.1" = { created_at = 2025-02-19T17:15:44.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.48.1" }
+"3.48.2" = { created_at = 2025-02-25T13:56:59.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.48.2" }
+"3.49.0" = { created_at = 2025-03-14T14:48:54.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.49.0" }
+"3.49.1" = { created_at = 2025-03-18T13:22:22.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.49.1" }
+"3.50.0" = { created_at = 2025-03-18T14:07:01.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.50.0" }
+"3.50.1" = { created_at = 2025-03-18T22:56:08.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.50.1" }
+"3.50.2" = { created_at = 2025-03-19T02:20:41.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.50.2" }
+"3.50.3" = { created_at = 2025-03-19T13:09:48.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.50.3" }
+"3.51.0" = { created_at = 2025-03-22T19:23:57.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.51.0" }
+"3.51.1" = { created_at = 2025-04-01T00:08:43.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.51.1" }
+"3.52.0" = { created_at = 2025-04-28T22:47:52.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.52.0" }
+"3.52.1" = { created_at = 2025-05-01T02:41:18.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.52.1" }
+"3.52.2" = { created_at = 2025-05-12T19:33:27.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.52.2" }
+"3.53.0" = { created_at = 2025-05-14T16:05:06.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.53.0" }
+"3.54.0" = { created_at = 2025-05-14T16:13:12.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.54.0" }
+"3.54.1" = { created_at = 2025-05-21T02:30:36.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.54.1" }
+"3.55.0" = { created_at = 2025-05-22T18:49:39.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.55.0" }
+"3.56.0" = { created_at = 2025-06-02T18:10:57.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.56.0" }
+"3.56.1-beta.1" = { created_at = 2025-06-06T03:06:03.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.56.1-beta.1" }
+"3.56.1" = { created_at = 2025-06-09T15:47:44.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.56.1" }
+"3.56.2" = { created_at = 2025-06-19T14:22:10.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.56.2" }
+"3.56.3" = { created_at = 2025-08-22T15:18:32.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.56.3" }
+"3.56.4" = { created_at = 2025-08-22T15:45:29.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.56.4" }
+"3.57.0" = { created_at = 2025-08-28T01:23:53.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.57.0" }
+"3.58.0" = { created_at = 2025-08-28T20:44:36.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.58.0" }
+"3.59.0" = { created_at = 2025-09-17T16:15:34.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.59.0" }
+"3.59.1" = { created_at = 2025-09-21T22:45:04.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.59.1" }
+"3.60.0" = { created_at = 2025-10-01T20:02:09.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.60.0" }
+"3.60.1" = { created_at = 2025-10-14T16:47:27.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.60.1" }
+"3.60.2" = { created_at = 2025-10-22T17:39:40.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.60.2" }
+"3.61.0" = { created_at = 2025-10-22T22:31:16.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.61.0" }
+"3.62.0" = { created_at = 2025-12-01T15:28:04.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.62.0" }
+"3.62.1" = { created_at = 2025-12-13T20:27:50.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.62.1" }
+"3.62.2" = { created_at = 2025-12-14T01:59:29.000Z, release_url = "https://github.com/ekristen/aws-nuke/releases/tag/v3.62.2" }

@@ -1,195 +1,195 @@
 [versions]
-"4.30.0-alpha.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.32.0-alpha.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.32.1-alpha.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.33.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.32.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.37.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.37.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.38.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.38.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.38.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.39.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.40.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.40.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.41.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.41.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.41.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.42.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.43.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.44.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.44.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.44.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.45.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.45.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.45.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.46.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.46.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.47.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.48.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.49.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.50.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.50.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.51.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.51.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.51.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.51.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.51.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"4.52.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.0.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.1.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.1.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.2.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.2.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.3.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.3.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.4.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.5.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"5.6.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.1.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.2.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.2.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.3.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.3.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"6.4.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.3.6" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.4.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.4.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.4.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.4.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.4.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.5.6" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.7" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.8" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.9" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.10" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.11" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.12" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.13" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.14" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.15" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.19" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.20" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.21" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.22" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.23" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.24" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.25" = { created_at = 2025-12-17T14:44:38.814Z }
-"7.6.26" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.0.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.0.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.2.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.3.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.3.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.4.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.5.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"8.5.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"9.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"9.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"9.2.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"9.2.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.2.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.3.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.3.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.3.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.4.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.4.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.5.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.5.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.5.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.6.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.7.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.7.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.7.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.7.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.8.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"10.8.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.0.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.0.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.0.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"11.1.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.0.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.1.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.2.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.2.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.2.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.2.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.2.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.2.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.3.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.4.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.5.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.5.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.5.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.6.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.7.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.7.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.8.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.8.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.9.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.10.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.10.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.10.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.10.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.11.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.11.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.5" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.12.6" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.13.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.13.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.14.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.14.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.14.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.14.3" = { created_at = 2025-12-17T14:44:38.814Z }
-"12.14.4" = { created_at = 2025-12-17T14:44:38.814Z }
-"13.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"13.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.0.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.0.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.0.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.1.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.1.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.1.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.2.0" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.2.1" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.2.2" = { created_at = 2025-12-17T14:44:38.814Z }
-"14.2.3" = { created_at = 2025-12-17T14:44:38.814Z }
+"4.30.0-alpha.0" = { created_at = 2020-10-12T17:45:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.30.0-alpha.0" }
+"4.32.0-alpha.0" = { created_at = 2020-10-27T01:18:34.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.32.0-alpha.0" }
+"4.32.1-alpha.0" = { created_at = 2020-11-11T18:55:22.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.32.1-alpha.0" }
+"4.33.0" = { created_at = 2020-11-19T22:02:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.33.0" }
+"4.32.4" = { created_at = 2020-11-21T06:12:29.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.32.4" }
+"4.37.0" = { created_at = 2020-11-27T20:06:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.37.0" }
+"4.37.1" = { created_at = 2020-12-02T18:47:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.37.1" }
+"4.38.0" = { created_at = 2020-12-05T05:14:28.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.38.0" }
+"4.38.1" = { created_at = 2020-12-08T23:46:47.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.38.1" }
+"4.38.2" = { created_at = 2020-12-09T03:06:44.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.38.2" }
+"4.39.0" = { created_at = 2020-12-10T16:43:18.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.39.0" }
+"4.40.0" = { created_at = 2020-12-15T21:26:02.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.40.0" }
+"4.40.1" = { created_at = 2020-12-18T22:01:28.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.40.1" }
+"4.41.0" = { created_at = 2020-12-30T19:12:06.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.41.0" }
+"4.41.1" = { created_at = 2021-01-08T19:51:19.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.41.1" }
+"4.41.2" = { created_at = 2021-01-12T18:20:41.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.41.2" }
+"4.42.0" = { created_at = 2021-02-09T06:10:26.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.42.0" }
+"4.43.0" = { created_at = 2021-02-11T17:07:54.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.43.0" }
+"4.44.0" = { created_at = 2021-02-16T20:47:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.44.0" }
+"4.44.1" = { created_at = 2021-02-24T00:39:26.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.44.1" }
+"4.44.2" = { created_at = 2021-02-26T20:16:15.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.44.2" }
+"4.45.0" = { created_at = 2021-03-05T02:52:31.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.45.0" }
+"4.45.1" = { created_at = 2021-03-11T03:06:41.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.45.1" }
+"4.45.2" = { created_at = 2021-03-12T18:44:06.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.45.2" }
+"4.46.0" = { created_at = 2021-03-20T02:56:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.46.0" }
+"4.46.1" = { created_at = 2021-03-23T03:58:54.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.46.1" }
+"4.47.1" = { created_at = 2021-04-08T18:22:47.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.47.1" }
+"4.48.0" = { created_at = 2021-04-13T17:19:56.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.48.0" }
+"4.49.0" = { created_at = 2021-04-17T00:54:59.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.49.0" }
+"4.50.0" = { created_at = 2021-04-23T23:06:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.50.0" }
+"4.50.2" = { created_at = 2021-05-03T22:01:18.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.50.2" }
+"4.51.0" = { created_at = 2021-05-13T17:50:48.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.51.0" }
+"4.51.1" = { created_at = 2021-05-18T01:55:45.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.51.1" }
+"4.51.2" = { created_at = 2021-05-20T23:38:38.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.51.2" }
+"4.51.3" = { created_at = 2021-05-25T18:46:45.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.51.3" }
+"4.51.4" = { created_at = 2021-05-28T23:57:56.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.51.4" }
+"4.52.0" = { created_at = 2021-06-01T19:57:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v4.52.0" }
+"5.0.0" = { created_at = 2021-06-14T09:39:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.0.0" }
+"5.0.1" = { created_at = 2021-06-18T20:25:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.0.1" }
+"5.0.2" = { created_at = 2021-06-23T19:58:26.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.0.2" }
+"5.1.0" = { created_at = 2021-06-29T20:08:25.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.1.0" }
+"5.1.1" = { created_at = 2021-07-07T16:19:47.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.1.1" }
+"5.1.2" = { created_at = 2021-07-15T19:38:59.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.1.2" }
+"5.2.0" = { created_at = 2021-07-26T23:42:33.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.2.0" }
+"5.2.1" = { created_at = 2021-07-29T02:46:57.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.2.1" }
+"5.3.0" = { created_at = 2021-08-04T23:57:57.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.3.0" }
+"5.3.1" = { created_at = 2021-08-23T20:17:58.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.3.1" }
+"5.4.0" = { created_at = 2021-09-02T01:42:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.4.0" }
+"5.5.0" = { created_at = 2021-09-07T20:00:29.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.5.0" }
+"5.6.0" = { created_at = 2021-09-14T00:38:36.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v5.6.0" }
+"6.0.0" = { created_at = 2021-09-17T22:24:46.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.0.0" }
+"6.0.1" = { created_at = 2021-09-20T19:05:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.0.1" }
+"6.1.0" = { created_at = 2021-09-24T19:20:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.1.0" }
+"6.1.1" = { created_at = 2021-09-30T16:07:56.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.1.1" }
+"6.2.0" = { created_at = 2021-10-05T19:07:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.2.0" }
+"6.2.1" = { created_at = 2021-10-07T16:34:05.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.2.1" }
+"6.3.0" = { created_at = 2021-10-09T18:57:08.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.3.0" }
+"6.3.1" = { created_at = 2021-10-12T19:55:29.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.3.1" }
+"6.4.0" = { created_at = 2021-11-10T00:38:59.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v6.4.0" }
+"7.3.0" = { created_at = 2021-11-15T02:11:45.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.0" }
+"7.3.1" = { created_at = 2021-11-15T07:47:13.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.1" }
+"7.3.2" = { created_at = 2021-11-16T00:04:31.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.2" }
+"7.3.3" = { created_at = 2021-11-16T09:20:36.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.3" }
+"7.3.4" = { created_at = 2021-11-16T20:09:38.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.4" }
+"7.3.5" = { created_at = 2021-11-17T01:25:05.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.5" }
+"7.3.6" = { created_at = 2021-11-17T06:36:37.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.3.6" }
+"7.4.0" = { created_at = 2021-11-17T23:57:28.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.4.0" }
+"7.4.1" = { created_at = 2021-11-18T18:30:20.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.4.1" }
+"7.4.3" = { created_at = 2021-11-19T20:19:26.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.4.3" }
+"7.4.4" = { created_at = 2021-11-20T01:14:08.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.4.4" }
+"7.4.5" = { created_at = 2021-11-21T01:44:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.4.5" }
+"7.5.0" = { created_at = 2021-11-23T21:05:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.0" }
+"7.5.1" = { created_at = 2021-11-24T03:20:48.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.1" }
+"7.5.2" = { created_at = 2021-11-24T20:04:36.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.2" }
+"7.5.3" = { created_at = 2021-11-26T00:06:12.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.3" }
+"7.5.4" = { created_at = 2021-11-28T20:32:22.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.4" }
+"7.5.5" = { created_at = 2021-11-30T02:26:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.5" }
+"7.5.6" = { created_at = 2021-12-01T22:16:23.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.5.6" }
+"7.6.0" = { created_at = 2021-12-02T06:29:36.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.0" }
+"7.6.1" = { created_at = 2021-12-02T16:10:35.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.1" }
+"7.6.2" = { created_at = 2021-12-02T21:40:01.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.2" }
+"7.6.3" = { created_at = 2021-12-07T01:05:33.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.3" }
+"7.6.4" = { created_at = 2021-12-15T19:51:52.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.4" }
+"7.6.5" = { created_at = 2021-12-20T18:31:09.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.5" }
+"7.6.7" = { created_at = 2022-01-10T02:43:48.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.7" }
+"7.6.8" = { created_at = 2022-01-11T16:09:52.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.8" }
+"7.6.9" = { created_at = 2022-01-12T17:33:58.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.9" }
+"7.6.10" = { created_at = 2022-01-19T18:22:18.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.10" }
+"7.6.11" = { created_at = 2022-01-20T02:53:41.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.11" }
+"7.6.12" = { created_at = 2022-01-23T03:28:46.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.12" }
+"7.6.13" = { created_at = 2022-01-26T20:18:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.13" }
+"7.6.14" = { created_at = 2022-01-28T23:11:45.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.14" }
+"7.6.15" = { created_at = 2022-02-02T20:38:22.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.15" }
+"7.6.19" = { created_at = 2022-02-08T21:58:09.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.19" }
+"7.6.20" = { created_at = 2022-02-14T23:05:17.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.20" }
+"7.6.21" = { created_at = 2022-02-16T21:57:46.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.21" }
+"7.6.22" = { created_at = 2022-02-24T19:54:47.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.22" }
+"7.6.23" = { created_at = 2022-03-07T15:46:55.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.23" }
+"7.6.24" = { created_at = 2022-03-10T21:48:28.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.24" }
+"7.6.25" = { created_at = 2022-03-16T15:39:23.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.25" }
+"7.6.26" = { created_at = 2022-03-22T16:28:56.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v7.6.26" }
+"8.0.0" = { created_at = 2022-04-07T16:14:57.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.0.0" }
+"8.0.1" = { created_at = 2022-04-11T01:19:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.0.1" }
+"8.0.2" = { created_at = 2022-04-15T22:20:20.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.0.2" }
+"8.0.3" = { created_at = 2022-04-25T20:45:24.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.0.3" }
+"8.1.0" = { created_at = 2022-04-29T12:20:55.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.1.0" }
+"8.2.0" = { created_at = 2022-05-10T20:29:09.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.2.0" }
+"8.3.0" = { created_at = 2022-05-23T13:13:48.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.3.0" }
+"8.3.1" = { created_at = 2022-05-27T03:23:18.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.3.1" }
+"8.4.0" = { created_at = 2022-06-02T16:51:29.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.4.0" }
+"8.5.0" = { created_at = 2022-06-10T19:53:35.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.5.0" }
+"8.5.1" = { created_at = 2022-06-14T22:12:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v8.5.1" }
+"9.0.0" = { created_at = 2022-06-21T00:49:32.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v9.0.0" }
+"9.1.0" = { created_at = 2022-06-29T16:45:31.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v9.1.0" }
+"9.2.0" = { created_at = 2022-08-02T02:45:30.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v9.2.0" }
+"9.2.1" = { created_at = 2022-08-06T02:27:15.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v9.2.1" }
+"10.0.0" = { created_at = 2022-09-06T21:05:50.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.0.0" }
+"10.2.3" = { created_at = 2022-10-07T23:12:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.2.3" }
+"10.3.0" = { created_at = 2022-10-12T18:50:04.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.3.0" }
+"10.3.1" = { created_at = 2022-10-20T21:02:46.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.3.1" }
+"10.3.2" = { created_at = 2022-10-25T22:31:26.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.3.2" }
+"10.4.0" = { created_at = 2022-10-25T22:57:47.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.4.0" }
+"10.4.1" = { created_at = 2022-11-11T00:32:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.4.1" }
+"10.5.0" = { created_at = 2022-11-14T22:39:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.5.0" }
+"10.5.1" = { created_at = 2022-11-19T19:55:15.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.5.1" }
+"10.5.2" = { created_at = 2022-12-08T21:49:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.5.2" }
+"10.6.2" = { created_at = 2023-01-13T17:08:25.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.6.2" }
+"10.7.0" = { created_at = 2023-01-23T20:40:43.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.7.0" }
+"10.7.1" = { created_at = 2023-02-04T01:19:09.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.7.1" }
+"10.7.2" = { created_at = 2023-02-10T23:26:08.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.7.2" }
+"10.7.3" = { created_at = 2023-02-15T22:13:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.7.3" }
+"10.8.0" = { created_at = 2023-02-23T19:00:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.8.0" }
+"10.8.1" = { created_at = 2023-02-27T23:35:14.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v10.8.1" }
+"11.0.0" = { created_at = 2023-03-03T02:53:22.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.0.0" }
+"11.0.1" = { created_at = 2023-03-16T22:31:20.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.0.1" }
+"11.0.2" = { created_at = 2023-03-17T18:33:20.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.0.2" }
+"11.0.3" = { created_at = 2023-03-21T19:17:40.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.0.3" }
+"11.0.5" = { created_at = 2023-04-13T22:26:23.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.0.5" }
+"11.1.0" = { created_at = 2023-04-19T16:30:17.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.1.0" }
+"11.1.1" = { created_at = 2023-04-28T20:23:32.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v11.1.1" }
+"12.0.0" = { created_at = 2023-05-02T20:09:50.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.0.0" }
+"12.0.1" = { created_at = 2023-05-18T16:01:32.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.0.1" }
+"12.0.3" = { created_at = 2023-05-25T17:28:09.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.0.3" }
+"12.1.0" = { created_at = 2023-06-06T23:54:37.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.1.0" }
+"12.1.1" = { created_at = 2023-06-16T02:17:39.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.1.1" }
+"12.2.0" = { created_at = 2023-07-20T20:33:57.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.2.0" }
+"12.2.1" = { created_at = 2023-07-21T05:15:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.2.1" }
+"12.2.2" = { created_at = 2023-07-26T21:30:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.2.2" }
+"12.2.3" = { created_at = 2023-07-28T05:17:10.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.2.3" }
+"12.2.4" = { created_at = 2023-08-01T00:08:59.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.2.4" }
+"12.2.5" = { created_at = 2023-08-11T22:12:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.2.5" }
+"12.3.0" = { created_at = 2023-08-15T01:07:04.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.3.0" }
+"12.4.0" = { created_at = 2023-08-25T18:20:59.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.4.0" }
+"12.5.0" = { created_at = 2023-09-21T21:13:29.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.5.0" }
+"12.5.1" = { created_at = 2023-09-26T00:01:21.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.5.1" }
+"12.5.2" = { created_at = 2023-10-03T10:28:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.5.2" }
+"12.6.0" = { created_at = 2023-10-04T17:59:15.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.6.0" }
+"12.7.0" = { created_at = 2023-10-10T21:48:05.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.7.0" }
+"12.7.1" = { created_at = 2023-10-20T20:44:20.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.7.1" }
+"12.8.0" = { created_at = 2023-11-06T23:47:00.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.8.0" }
+"12.8.2" = { created_at = 2023-11-08T19:45:36.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.8.2" }
+"12.9.0" = { created_at = 2023-12-06T18:16:19.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.9.0" }
+"12.10.0" = { created_at = 2023-12-14T22:39:37.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.10.0" }
+"12.10.1" = { created_at = 2024-01-09T23:11:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.10.1" }
+"12.10.2" = { created_at = 2024-02-26T19:49:20.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.10.2" }
+"12.10.3" = { created_at = 2024-03-28T21:45:49.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.10.3" }
+"12.11.0" = { created_at = 2024-04-04T21:04:33.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.11.0" }
+"12.11.1" = { created_at = 2024-04-17T20:04:27.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.11.1" }
+"12.12.0" = { created_at = 2024-05-02T18:49:52.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.0" }
+"12.12.1" = { created_at = 2024-05-23T08:28:34.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.1" }
+"12.12.2" = { created_at = 2024-06-04T21:24:17.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.2" }
+"12.12.3" = { created_at = 2024-06-19T20:24:51.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.3" }
+"12.12.4" = { created_at = 2024-06-26T17:53:31.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.4" }
+"12.12.5" = { created_at = 2024-07-18T21:43:48.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.5" }
+"12.12.6" = { created_at = 2024-08-02T18:46:14.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.12.6" }
+"12.13.0" = { created_at = 2024-10-04T01:35:50.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.13.0" }
+"12.13.1" = { created_at = 2024-11-13T21:42:57.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.13.1" }
+"12.14.0" = { created_at = 2024-12-31T13:08:41.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.14.0" }
+"12.14.1" = { created_at = 2025-01-15T18:24:12.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.14.1" }
+"12.14.2" = { created_at = 2025-01-29T20:47:56.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.14.2" }
+"12.14.3" = { created_at = 2025-02-05T19:47:07.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.14.3" }
+"12.14.4" = { created_at = 2025-02-19T22:07:37.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v12.14.4" }
+"13.0.0" = { created_at = 2025-02-24T22:04:51.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v13.0.0" }
+"13.0.1" = { created_at = 2025-04-10T19:54:54.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v13.0.1" }
+"14.0.0" = { created_at = 2025-06-30T20:06:14.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.0.0" }
+"14.0.1" = { created_at = 2025-09-16T14:11:40.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.0.1" }
+"14.0.2" = { created_at = 2025-09-30T19:36:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.0.2" }
+"14.1.0" = { created_at = 2025-10-07T18:01:12.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.1.0" }
+"14.1.1" = { created_at = 2025-10-09T16:37:28.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.1.1" }
+"14.1.2" = { created_at = 2025-10-15T20:46:18.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.1.2" }
+"14.2.0" = { created_at = 2025-10-22T17:35:16.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.2.0" }
+"14.2.1" = { created_at = 2025-10-30T14:45:54.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.2.1" }
+"14.2.2" = { created_at = 2025-11-03T18:41:11.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.2.2" }
+"14.2.3" = { created_at = 2025-11-20T15:36:36.000Z, release_url = "https://github.com/aws-amplify/amplify-cli/releases/tag/v14.2.3" }

@@ -1,97 +1,97 @@
 [versions]
-"0.11.1" = { created_at = 2023-10-26T22:06:13.000Z }
-"0.11.2" = { created_at = 2023-10-30T18:51:37.000Z }
-"0.11.3" = { created_at = 2023-11-16T12:34:07.000Z }
-"0.13.2" = { created_at = 2023-12-28T17:00:17.000Z }
-"0.14.1" = { created_at = 2024-05-07T14:36:20.000Z }
-"0.14.5" = { created_at = 2024-05-29T17:10:29.000Z }
-"0.14.6" = { created_at = 2024-05-31T13:07:03.000Z }
-"0.14.7" = { created_at = 2024-05-31T16:54:55.000Z }
-"0.18.0" = { created_at = 2024-09-11T16:04:38.000Z }
-"0.18.1" = { created_at = 2024-09-13T15:33:53.000Z }
-"0.19.1" = { created_at = 2024-09-19T18:27:15.000Z }
-"0.19.3" = { created_at = 2024-10-24T23:40:30.000Z }
-"0.19.4" = { created_at = 2024-10-25T19:14:12.000Z }
-"0.19.5" = { created_at = 2024-10-28T17:35:37.000Z }
-"0.19.6" = { created_at = 2024-10-29T19:33:26.000Z }
-"0.19.7" = { created_at = 2024-10-31T18:23:06.000Z }
-"0.19.8" = { created_at = 2024-11-04T16:37:55.000Z }
-"0.19.9" = { created_at = 2024-11-07T17:53:20.000Z }
-"0.20.0" = { created_at = 2024-11-14T17:26:33.000Z }
-"0.20.1" = { created_at = 2024-11-20T17:39:04.000Z }
-"0.20.2" = { created_at = 2024-12-11T00:41:22.000Z }
-"0.21.0" = { created_at = 2024-12-11T22:02:06.000Z }
-"0.22.0" = { created_at = 2024-12-13T23:26:23.000Z }
-"0.22.1" = { created_at = 2024-12-13T23:31:43.000Z }
-"0.22.2" = { created_at = 2024-12-14T18:47:58.000Z }
-"0.22.3" = { created_at = 2024-12-19T20:43:54.000Z }
-"0.22.4" = { created_at = 2024-12-20T19:34:12.000Z }
-"0.22.5" = { created_at = 2025-01-06T23:34:42.000Z }
-"0.22.6" = { created_at = 2025-01-08T23:03:56.000Z }
-"0.22.7" = { created_at = 2025-01-22T00:02:58.000Z }
-"0.23.0" = { created_at = 2025-01-22T23:02:19.000Z }
-"0.24.0" = { created_at = 2025-01-30T23:07:05.000Z }
-"0.25.0" = { created_at = 2025-02-12T21:02:32.000Z }
-"0.25.1" = { created_at = 2025-02-14T19:19:46.000Z }
-"0.25.2" = { created_at = 2025-03-08T07:42:22.000Z }
-"0.25.3" = { created_at = 2025-03-12T18:31:18.000Z }
-"0.25.4" = { created_at = 2025-03-13T14:12:11.000Z }
-"0.25.5" = { created_at = 2025-03-19T22:23:35.000Z }
-"0.25.6" = { created_at = 2025-04-01T13:59:42.000Z }
-"0.25.7" = { created_at = 2025-04-13T22:56:49.000Z }
-"0.26.0" = { created_at = 2025-04-15T17:55:27.000Z }
-"0.26.1" = { created_at = 2025-04-18T20:26:14.000Z }
-"0.27.0" = { created_at = 2025-04-23T16:19:02.000Z }
-"0.27.1" = { created_at = 2025-04-28T19:42:42.000Z }
-"0.27.2" = { created_at = 2025-05-05T16:56:34.000Z }
-"0.27.3" = { created_at = 2025-05-07T18:06:32.000Z }
-"0.27.4" = { created_at = 2025-05-08T20:10:25.000Z }
-"0.27.5" = { created_at = 2025-05-12T15:21:12.000Z }
-"0.27.6" = { created_at = 2025-05-13T00:12:44.000Z }
-"0.27.7" = { created_at = 2025-05-21T15:29:56.000Z }
-"0.27.9" = { created_at = 2025-05-30T07:27:45.000Z }
-"0.28.0" = { created_at = 2025-06-30T11:02:00.000Z }
-"0.29.0" = { created_at = 2025-06-30T22:31:41.000Z }
-"0.29.1" = { created_at = 2025-07-01T20:18:41.000Z }
-"0.29.2" = { created_at = 2025-07-03T15:52:58.000Z }
-"0.29.3" = { created_at = 2025-07-08T16:04:09.000Z }
-"0.29.4" = { created_at = 2025-07-15T19:19:04.000Z }
-"0.29.5" = { created_at = 2025-07-16T14:20:10.000Z }
-"0.29.6" = { created_at = 2025-07-16T20:04:53.000Z }
-"0.29.7" = { created_at = 2025-07-16T23:34:24.000Z }
-"0.29.8" = { created_at = 2025-07-18T15:22:08.000Z }
-"0.29.9" = { created_at = 2025-07-21T18:08:10.000Z }
-"0.29.10" = { created_at = 2025-07-25T23:32:16.000Z }
-"0.30.0" = { created_at = 2025-07-29T14:18:32.000Z }
-"0.30.1" = { created_at = 2025-07-29T21:29:48.000Z }
-"0.30.2" = { created_at = 2025-07-30T16:59:31.000Z }
-"0.30.3" = { created_at = 2025-08-09T08:58:55.000Z }
-"0.30.4" = { created_at = 2025-08-11T18:10:03.000Z }
-"0.30.5" = { created_at = 2025-08-15T13:15:10.000Z }
-"0.30.6" = { created_at = 2025-08-20T06:04:34.000Z }
-"0.30.7" = { created_at = 2025-08-28T15:00:30.000Z }
-"0.30.8" = { created_at = 2025-09-02T16:29:10.000Z }
-"0.30.9" = { created_at = 2025-09-04T13:48:31.000Z }
-"0.30.10" = { created_at = 2025-09-10T21:24:30.000Z }
-"0.30.11" = { created_at = 2025-09-13T13:50:34.000Z }
-"0.30.12" = { created_at = 2025-09-15T16:27:10.000Z }
-"0.30.13" = { created_at = 2025-09-26T14:14:59.000Z }
-"0.30.14" = { created_at = 2025-09-30T08:13:29.000Z }
-"0.30.15" = { created_at = 2025-10-07T20:58:22.000Z }
-"0.30.16" = { created_at = 2025-10-09T21:30:48.000Z }
-"0.30.17" = { created_at = 2025-10-16T08:23:24.000Z }
-"0.30.18" = { created_at = 2025-10-27T15:09:20.000Z }
-"0.30.20" = { created_at = 2025-11-04T03:30:38.000Z }
-"0.30.21" = { created_at = 2025-11-06T09:54:16.000Z }
-"0.30.22" = { created_at = 2025-11-15T13:34:17.000Z }
-"0.30.23" = { created_at = 2025-11-17T19:18:49.000Z }
-"0.30.24" = { created_at = 2025-11-18T08:38:10.000Z }
-"0.30.25" = { created_at = 2025-11-20T11:50:43.000Z }
-"0.30.26" = { created_at = 2025-11-22T21:03:56.000Z }
-"0.30.27" = { created_at = 2025-11-27T08:52:23.000Z }
-"0.30.28" = { created_at = 2025-12-03T21:02:57.000Z }
-"0.30.29" = { created_at = 2025-12-04T14:43:00.000Z }
-"0.30.30" = { created_at = 2025-12-12T11:19:29.000Z }
-"0.30.31" = { created_at = 2025-12-12T14:29:00.000Z }
-"0.30.32" = { created_at = 2025-12-17T01:20:06.000Z }
-"0.30.33" = { created_at = 2025-12-17T14:28:16.000Z }
+"0.11.1" = { created_at = 2023-10-26T22:06:13.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.11.1" }
+"0.11.2" = { created_at = 2023-10-30T18:51:37.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.11.2" }
+"0.11.3" = { created_at = 2023-11-16T12:34:07.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.11.3" }
+"0.13.2" = { created_at = 2023-12-28T17:00:17.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.13.2" }
+"0.14.1" = { created_at = 2024-05-07T14:36:20.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.14.1" }
+"0.14.5" = { created_at = 2024-05-29T17:10:29.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.14.5" }
+"0.14.6" = { created_at = 2024-05-31T13:07:03.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.14.6" }
+"0.14.7" = { created_at = 2024-05-31T16:54:55.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.14.7" }
+"0.18.0" = { created_at = 2024-09-11T16:04:38.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.18.0" }
+"0.18.1" = { created_at = 2024-09-13T15:33:53.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.18.1" }
+"0.19.1" = { created_at = 2024-09-19T18:27:15.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.1" }
+"0.19.3" = { created_at = 2024-10-24T23:40:30.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.3" }
+"0.19.4" = { created_at = 2024-10-25T19:14:12.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.4" }
+"0.19.5" = { created_at = 2024-10-28T17:35:37.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.5" }
+"0.19.6" = { created_at = 2024-10-29T19:33:26.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.6" }
+"0.19.7" = { created_at = 2024-10-31T18:23:06.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.7" }
+"0.19.8" = { created_at = 2024-11-04T16:37:55.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.8" }
+"0.19.9" = { created_at = 2024-11-07T17:53:20.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.19.9" }
+"0.20.0" = { created_at = 2024-11-14T17:26:33.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.20.0" }
+"0.20.1" = { created_at = 2024-11-20T17:39:04.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.20.1" }
+"0.20.2" = { created_at = 2024-12-11T00:41:22.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.20.2" }
+"0.21.0" = { created_at = 2024-12-11T22:02:06.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.21.0" }
+"0.22.0" = { created_at = 2024-12-13T23:26:23.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.0" }
+"0.22.1" = { created_at = 2024-12-13T23:31:43.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.1" }
+"0.22.2" = { created_at = 2024-12-14T18:47:58.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.2" }
+"0.22.3" = { created_at = 2024-12-19T20:43:54.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.3" }
+"0.22.4" = { created_at = 2024-12-20T19:34:12.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.4" }
+"0.22.5" = { created_at = 2025-01-06T23:34:42.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.5" }
+"0.22.6" = { created_at = 2025-01-08T23:03:56.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.6" }
+"0.22.7" = { created_at = 2025-01-22T00:02:58.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.22.7" }
+"0.23.0" = { created_at = 2025-01-22T23:02:19.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.23.0" }
+"0.24.0" = { created_at = 2025-01-30T23:07:05.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.24.0" }
+"0.25.0" = { created_at = 2025-02-12T21:02:32.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.0" }
+"0.25.1" = { created_at = 2025-02-14T19:19:46.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.1" }
+"0.25.2" = { created_at = 2025-03-08T07:42:22.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.2" }
+"0.25.3" = { created_at = 2025-03-12T18:31:18.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.3" }
+"0.25.4" = { created_at = 2025-03-13T14:12:11.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.4" }
+"0.25.5" = { created_at = 2025-03-19T22:23:35.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.5" }
+"0.25.6" = { created_at = 2025-04-01T13:59:42.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.6" }
+"0.25.7" = { created_at = 2025-04-13T22:56:49.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.25.7" }
+"0.26.0" = { created_at = 2025-04-15T17:55:27.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.26.0" }
+"0.26.1" = { created_at = 2025-04-18T20:26:14.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.26.1" }
+"0.27.0" = { created_at = 2025-04-23T16:19:02.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.0" }
+"0.27.1" = { created_at = 2025-04-28T19:42:42.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.1" }
+"0.27.2" = { created_at = 2025-05-05T16:56:34.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.2" }
+"0.27.3" = { created_at = 2025-05-07T18:06:32.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.3" }
+"0.27.4" = { created_at = 2025-05-08T20:10:25.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.4" }
+"0.27.5" = { created_at = 2025-05-12T15:21:12.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.5" }
+"0.27.6" = { created_at = 2025-05-13T00:12:44.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.6" }
+"0.27.7" = { created_at = 2025-05-21T15:29:56.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.7" }
+"0.27.9" = { created_at = 2025-05-30T07:27:45.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.27.9" }
+"0.28.0" = { created_at = 2025-06-30T11:02:00.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.28.0" }
+"0.29.0" = { created_at = 2025-06-30T22:31:41.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.0" }
+"0.29.1" = { created_at = 2025-07-01T20:18:41.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.1" }
+"0.29.2" = { created_at = 2025-07-03T15:52:58.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.2" }
+"0.29.3" = { created_at = 2025-07-08T16:04:09.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.3" }
+"0.29.4" = { created_at = 2025-07-15T19:19:04.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.4" }
+"0.29.5" = { created_at = 2025-07-16T14:20:10.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.5" }
+"0.29.6" = { created_at = 2025-07-16T20:04:53.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.6" }
+"0.29.7" = { created_at = 2025-07-16T23:34:24.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.7" }
+"0.29.8" = { created_at = 2025-07-18T15:22:08.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.8" }
+"0.29.9" = { created_at = 2025-07-21T18:08:10.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.9" }
+"0.29.10" = { created_at = 2025-07-25T23:32:16.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.29.10" }
+"0.30.0" = { created_at = 2025-07-29T14:18:32.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.0" }
+"0.30.1" = { created_at = 2025-07-29T21:29:48.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.1" }
+"0.30.2" = { created_at = 2025-07-30T16:59:31.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.2" }
+"0.30.3" = { created_at = 2025-08-09T08:58:55.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.3" }
+"0.30.4" = { created_at = 2025-08-11T18:10:03.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.4" }
+"0.30.5" = { created_at = 2025-08-15T13:15:10.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.5" }
+"0.30.6" = { created_at = 2025-08-20T06:04:34.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.6" }
+"0.30.7" = { created_at = 2025-08-28T15:00:30.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.7" }
+"0.30.8" = { created_at = 2025-09-02T16:29:10.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.8" }
+"0.30.9" = { created_at = 2025-09-04T13:48:31.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.9" }
+"0.30.10" = { created_at = 2025-09-10T21:24:30.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.10" }
+"0.30.11" = { created_at = 2025-09-13T13:50:34.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.11" }
+"0.30.12" = { created_at = 2025-09-15T16:27:10.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.12" }
+"0.30.13" = { created_at = 2025-09-26T14:14:59.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.13" }
+"0.30.14" = { created_at = 2025-09-30T08:13:29.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.14" }
+"0.30.15" = { created_at = 2025-10-07T20:58:22.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.15" }
+"0.30.16" = { created_at = 2025-10-09T21:30:48.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.16" }
+"0.30.17" = { created_at = 2025-10-16T08:23:24.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.17" }
+"0.30.18" = { created_at = 2025-10-27T15:09:20.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.18" }
+"0.30.20" = { created_at = 2025-11-04T03:30:38.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.20" }
+"0.30.21" = { created_at = 2025-11-06T09:54:16.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.21" }
+"0.30.22" = { created_at = 2025-11-15T13:34:17.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.22" }
+"0.30.23" = { created_at = 2025-11-17T19:18:49.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.23" }
+"0.30.24" = { created_at = 2025-11-18T08:38:10.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.24" }
+"0.30.25" = { created_at = 2025-11-20T11:50:43.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.25" }
+"0.30.26" = { created_at = 2025-11-22T21:03:56.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.26" }
+"0.30.27" = { created_at = 2025-11-27T08:52:23.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.27" }
+"0.30.28" = { created_at = 2025-12-03T21:02:57.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.28" }
+"0.30.29" = { created_at = 2025-12-04T14:43:00.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.29" }
+"0.30.30" = { created_at = 2025-12-12T11:19:29.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.30" }
+"0.30.31" = { created_at = 2025-12-12T14:29:00.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.31" }
+"0.30.32" = { created_at = 2025-12-17T01:20:06.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.32" }
+"0.30.33" = { created_at = 2025-12-17T14:28:16.000Z, release_url = "https://github.com/chainguard-dev/apko/releases/tag/v0.30.33" }
