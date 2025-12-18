@@ -85,7 +85,7 @@ function LockIcon({ security }: { security: Array<{ type: string; algorithm?: st
   return (
     <span
       ref={iconRef}
-      class={`${securityColors[level]} opacity-70 group-hover:opacity-100 transition-opacity inline-flex items-center cursor-help`}
+      class={`${securityColors[level]} opacity-70 group-hover:opacity-100 transition-opacity inline-flex items-center`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={() => setShowTooltip(false)}
     >
