@@ -1,22 +1,20 @@
 import type { APIRoute } from 'astro';
-import { getFromR2 } from '../lib/r2-data';
+import { loadToolsJson } from '../lib/data-loader';
 
-// Legacy endpoint: GET /tools.json - serves tools manifest
+// Legacy endpoint: GET /tools.json - serves tools manifest from D1
 export const GET: APIRoute = async ({ locals }) => {
   try {
     const runtime = locals.runtime;
-    const bucket = runtime.env.DATA_BUCKET;
+    const toolsData = await loadToolsJson(runtime.env.ANALYTICS_DB);
 
-    const data = await getFromR2(bucket, 'tools/tools.json');
-
-    if (!data) {
+    if (!toolsData) {
       return new Response('tools.json not found', {
         status: 404,
         headers: { 'Content-Type': 'text/plain' },
       });
     }
 
-    return new Response(data.body, {
+    return new Response(JSON.stringify(toolsData), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +22,7 @@ export const GET: APIRoute = async ({ locals }) => {
       },
     });
   } catch (error) {
-    console.error('Error fetching tools.json from R2:', error);
+    console.error('Error fetching tools from D1:', error);
     return new Response('Failed to fetch tools.json', {
       status: 500,
       headers: { 'Content-Type': 'text/plain' },

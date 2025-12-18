@@ -18,8 +18,8 @@ if (!tool) {
 const runtime = Astro.locals.runtime;
 const bucket = runtime.env.DATA_BUCKET;
 
-// Load tools.json from R2 bucket
-const toolsData = await loadToolsJson(bucket);
+// Load tools from D1 database
+const toolsData = await loadToolsJson(runtime.env.ANALYTICS_DB);
 if (!toolsData) {
   return Astro.redirect('/');
 }

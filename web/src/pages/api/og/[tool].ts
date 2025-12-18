@@ -98,11 +98,10 @@ function generateImage(tool: OGToolMeta, downloads: number | null, backend: stri
 export const GET: APIRoute = async ({ params, locals }) => {
   const toolName = params.tool!;
   const runtime = locals.runtime;
-  const bucket = runtime.env.DATA_BUCKET;
 
   // Fetch tool meta and downloads in parallel
   const [toolsData, downloads] = await Promise.all([
-    loadToolsJson(bucket),
+    loadToolsJson(runtime.env.ANALYTICS_DB),
     (async () => {
       try {
         const db = drizzle(runtime.env.ANALYTICS_DB);

@@ -1937,5 +1937,34 @@ export async function runAnalyticsMigrations(
     )
   `);
 
+  // Add metadata columns to tools table if they don't exist
+  const toolsColumns = await db.all(sql`PRAGMA table_info(tools)`);
+  const existingToolsCols = new Set((toolsColumns as any[]).map((col: any) => col.name));
+
+  const toolsMetadataCols = [
+    { name: 'latest_version', type: 'TEXT' },
+    { name: 'latest_stable_version', type: 'TEXT' },
+    { name: 'version_count', type: 'INTEGER DEFAULT 0' },
+    { name: 'last_updated', type: 'TEXT' },
+    { name: 'description', type: 'TEXT' },
+    { name: 'github', type: 'TEXT' },
+    { name: 'homepage', type: 'TEXT' },
+    { name: 'repo_url', type: 'TEXT' },
+    { name: 'license', type: 'TEXT' },
+    { name: 'backends', type: 'TEXT' },  // JSON array
+    { name: 'authors', type: 'TEXT' },   // JSON array
+    { name: 'security', type: 'TEXT' },  // JSON array
+    { name: 'package_urls', type: 'TEXT' },  // JSON object
+    { name: 'aqua_link', type: 'TEXT' },
+    { name: 'metadata_updated_at', type: 'TEXT' },
+  ];
+
+  for (const col of toolsMetadataCols) {
+    if (!existingToolsCols.has(col.name)) {
+      console.log(`Adding ${col.name} column to tools table...`);
+      await db.run(sql.raw(`ALTER TABLE tools ADD COLUMN ${col.name} ${col.type}`));
+    }
+  }
+
   console.log("Analytics migrations completed");
 }

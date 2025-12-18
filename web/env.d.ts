@@ -6,6 +6,7 @@ type Runtime = import('@astrojs/cloudflare').Runtime<Env>;
 interface Env {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
+  DATA_BUCKET: R2Bucket;
   GITHUB_CACHE: KVNamespace;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;

@@ -10,15 +10,15 @@ const db = drizzle(runtime.env.ANALYTICS_DB);
 const analytics = setupAnalytics(db);
 const bucket = runtime.env.DATA_BUCKET;
 
-// Load tools.json from R2 bucket
+// Load tools from D1 database
 let toolsData: ToolsData = { tool_count: 0, tools: [] };
 try {
-  const data = await loadToolsJson(bucket);
+  const data = await loadToolsJson(runtime.env.ANALYTICS_DB);
   if (data) {
     toolsData = data;
   }
 } catch (e) {
-  console.error('Failed to load tools.json from R2:', e);
+  console.error('Failed to load tools from D1:', e);
 }
 
 // Fetch analytics data with error handling for local dev

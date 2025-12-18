@@ -105,14 +105,13 @@ export const GET: APIRoute = async ({ locals }) => {
   let toolCount = 960;
 
   try {
-    const bucket = runtime.env.DATA_BUCKET;
     const db = drizzle(runtime.env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
 
     // Fetch trending tools and tool metadata in parallel
     const [trending, toolsData] = await Promise.all([
       analytics.getTrendingTools(6),
-      loadToolsJson(bucket),
+      loadToolsJson(runtime.env.ANALYTICS_DB),
     ]);
 
     if (toolsData) {
