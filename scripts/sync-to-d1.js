@@ -63,8 +63,7 @@ async function main() {
 
     const result = await response.json();
     console.log("Sync completed successfully:");
-    console.log(`  - Inserted: ${result.inserted}`);
-    console.log(`  - Updated: ${result.updated}`);
+    console.log(`  - Upserted: ${result.upserted}`);
     console.log(`  - Errors: ${result.errors}`);
     console.log(`  - Total: ${result.total}`);
 
