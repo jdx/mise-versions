@@ -6,32 +6,14 @@ set -euo pipefail
 
 BUCKET_NAME="mise-versions-data"
 DOCS_DIR="docs"
+PARALLEL_JOBS="${PARALLEL_JOBS:-20}"
 
-if [[ ! -d "$DOCS_DIR" ]]; then
-  echo "Error: $DOCS_DIR directory not found"
-  exit 1
-fi
-
-# Check if wrangler is available
-if ! command -v npx &> /dev/null; then
-  echo "Error: npx not found"
-  exit 1
-fi
-
-# Count files for progress reporting
-total_files=$(find "$DOCS_DIR" -type f | wc -l | tr -d ' ')
-current=0
-
-echo "Syncing $total_files files to R2 bucket: $BUCKET_NAME"
-
-# Iterate through all files in docs/
-find "$DOCS_DIR" -type f | while read -r file; do
-  current=$((current + 1))
-
-  # Get the relative path (without docs/ prefix) for R2 key
-  key="${file#$DOCS_DIR/}"
+upload_file() {
+  local file="$1"
+  local key="${file#docs/}"
 
   # Determine content type based on extension
+  local content_type
   case "$file" in
     *.json) content_type="application/json" ;;
     *.toml) content_type="application/toml" ;;
@@ -40,12 +22,28 @@ find "$DOCS_DIR" -type f | while read -r file; do
     *)      content_type="application/octet-stream" ;;
   esac
 
-  # Upload to R2
   if npx wrangler r2 object put "$BUCKET_NAME/$key" --file "$file" --content-type "$content_type" > /dev/null 2>&1; then
-    echo "[$current/$total_files] Uploaded: $key"
+    echo "✓ $key"
   else
-    echo "[$current/$total_files] Failed: $key"
+    echo "✗ $key" >&2
   fi
-done
+}
+export -f upload_file
+export BUCKET_NAME
+
+if [[ ! -d "$DOCS_DIR" ]]; then
+  echo "Error: $DOCS_DIR directory not found"
+  exit 1
+fi
+
+if ! command -v npx &> /dev/null; then
+  echo "Error: npx not found"
+  exit 1
+fi
+
+total_files=$(find "$DOCS_DIR" -type f | wc -l | tr -d ' ')
+echo "Syncing $total_files files to R2 bucket: $BUCKET_NAME (${PARALLEL_JOBS} parallel jobs)"
+
+find "$DOCS_DIR" -type f | xargs -P "$PARALLEL_JOBS" -I {} bash -c 'upload_file "$@"' _ {}
 
 echo "Sync complete"
