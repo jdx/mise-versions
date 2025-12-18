@@ -50,93 +50,73 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const now = new Date().toISOString();
 
-  let inserted = 0;
-  let updated = 0;
+  let upserted = 0;
   let errors = 0;
 
-  // Process tools in batches
-  const BATCH_SIZE = 50;
-  for (let i = 0; i < body.tools.length; i += BATCH_SIZE) {
-    const batch = body.tools.slice(i, i + BATCH_SIZE);
+  // Process tools using INSERT ... ON CONFLICT DO UPDATE (single query per tool)
+  for (const tool of body.tools) {
+    if (!tool.name) {
+      errors++;
+      continue;
+    }
 
-    for (const tool of batch) {
-      if (!tool.name) {
-        errors++;
-        continue;
-      }
+    try {
+      const backendsJson = tool.backends ? JSON.stringify(tool.backends) : null;
+      const authorsJson = tool.authors ? JSON.stringify(tool.authors) : null;
+      const securityJson = tool.security ? JSON.stringify(tool.security) : null;
+      const packageUrlsJson = tool.package_urls ? JSON.stringify(tool.package_urls) : null;
 
-      try {
-        // Check if tool exists
-        const existing = await db.all(sql`
-          SELECT id FROM tools WHERE name = ${tool.name}
-        `);
-
-        const backendsJson = tool.backends ? JSON.stringify(tool.backends) : null;
-        const authorsJson = tool.authors ? JSON.stringify(tool.authors) : null;
-        const securityJson = tool.security ? JSON.stringify(tool.security) : null;
-        const packageUrlsJson = tool.package_urls ? JSON.stringify(tool.package_urls) : null;
-
-        if (existing.length > 0) {
-          // Update existing tool
-          await db.run(sql`
-            UPDATE tools SET
-              latest_version = ${tool.latest_version || null},
-              latest_stable_version = ${tool.latest_stable_version || null},
-              version_count = ${tool.version_count || 0},
-              last_updated = ${tool.last_updated || null},
-              description = ${tool.description || null},
-              github = ${tool.github || null},
-              homepage = ${tool.homepage || null},
-              repo_url = ${tool.repo_url || null},
-              license = ${tool.license || null},
-              backends = ${backendsJson},
-              authors = ${authorsJson},
-              security = ${securityJson},
-              package_urls = ${packageUrlsJson},
-              aqua_link = ${tool.aqua_link || null},
-              metadata_updated_at = ${now}
-            WHERE name = ${tool.name}
-          `);
-          updated++;
-        } else {
-          // Insert new tool
-          await db.run(sql`
-            INSERT INTO tools (
-              name, latest_version, latest_stable_version, version_count,
-              last_updated, description, github, homepage, repo_url, license,
-              backends, authors, security, package_urls, aqua_link, metadata_updated_at
-            ) VALUES (
-              ${tool.name},
-              ${tool.latest_version || null},
-              ${tool.latest_stable_version || null},
-              ${tool.version_count || 0},
-              ${tool.last_updated || null},
-              ${tool.description || null},
-              ${tool.github || null},
-              ${tool.homepage || null},
-              ${tool.repo_url || null},
-              ${tool.license || null},
-              ${backendsJson},
-              ${authorsJson},
-              ${securityJson},
-              ${packageUrlsJson},
-              ${tool.aqua_link || null},
-              ${now}
-            )
-          `);
-          inserted++;
-        }
-      } catch (e) {
-        console.error(`Failed to sync tool ${tool.name}:`, e);
-        errors++;
-      }
+      // Use INSERT ... ON CONFLICT DO UPDATE (upsert) - single query instead of SELECT + UPDATE/INSERT
+      await db.run(sql`
+        INSERT INTO tools (
+          name, latest_version, latest_stable_version, version_count,
+          last_updated, description, github, homepage, repo_url, license,
+          backends, authors, security, package_urls, aqua_link, metadata_updated_at
+        ) VALUES (
+          ${tool.name},
+          ${tool.latest_version || null},
+          ${tool.latest_stable_version || null},
+          ${tool.version_count || 0},
+          ${tool.last_updated || null},
+          ${tool.description || null},
+          ${tool.github || null},
+          ${tool.homepage || null},
+          ${tool.repo_url || null},
+          ${tool.license || null},
+          ${backendsJson},
+          ${authorsJson},
+          ${securityJson},
+          ${packageUrlsJson},
+          ${tool.aqua_link || null},
+          ${now}
+        )
+        ON CONFLICT(name) DO UPDATE SET
+          latest_version = excluded.latest_version,
+          latest_stable_version = excluded.latest_stable_version,
+          version_count = excluded.version_count,
+          last_updated = excluded.last_updated,
+          description = excluded.description,
+          github = excluded.github,
+          homepage = excluded.homepage,
+          repo_url = excluded.repo_url,
+          license = excluded.license,
+          backends = excluded.backends,
+          authors = excluded.authors,
+          security = excluded.security,
+          package_urls = excluded.package_urls,
+          aqua_link = excluded.aqua_link,
+          metadata_updated_at = excluded.metadata_updated_at
+      `);
+      upserted++;
+    } catch (e) {
+      console.error(`Failed to sync tool ${tool.name}:`, e);
+      errors++;
     }
   }
 
   return jsonResponse({
     success: true,
-    inserted,
-    updated,
+    upserted,
     errors,
     total: body.tools.length,
   });
