@@ -23,8 +23,11 @@ function escapeHtml(str: string): string {
     .replace(/>/g, '&gt;');
 }
 
-function getBackend(backend: string): string {
-  return backend;
+function cleanBackend(backend: string): string {
+  const bracketIndex = backend.indexOf('[');
+  let result = bracketIndex > 0 ? backend.slice(0, bracketIndex) : backend;
+  if (result.length > 30) result = result.slice(0, 30) + '...';
+  return result;
 }
 
 function formatDownloads(count: number): string {
@@ -53,7 +56,7 @@ function generateToolCard(tool: TrendingTool, index: number): string {
       : tool.description
     : '';
 
-  const backend = tool.backends && tool.backends[0] ? getBackend(tool.backends[0]) : '';
+  const backend = tool.backends && tool.backends[0] ? cleanBackend(tool.backends[0]) : '';
   const sparklinePath = generateSparklinePath(tool.sparkline || [], 60, 20);
 
   // Indicator for trending

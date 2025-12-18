@@ -13,10 +13,14 @@ interface OGToolMeta {
   backends?: string[];
 }
 
-// Get primary backend from backends array
+// Get primary backend from backends array (cleaned and truncated)
 function getPrimaryBackend(backends?: string[]): string | null {
   if (!backends || backends.length === 0) return null;
-  return backends[0];
+  let backend = backends[0];
+  const bracketIndex = backend.indexOf('[');
+  if (bracketIndex > 0) backend = backend.slice(0, bracketIndex);
+  if (backend.length > 40) backend = backend.slice(0, 40) + '...';
+  return backend;
 }
 
 // Format download count for display

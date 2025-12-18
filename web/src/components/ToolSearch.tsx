@@ -81,6 +81,14 @@ function getBackendType(backend: string): string {
   return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
 }
 
+// Clean backend string for display (remove options like [exe=...] and truncate)
+function cleanBackend(backend: string): string {
+  const bracketIndex = backend.indexOf("[");
+  let result = bracketIndex > 0 ? backend.slice(0, bracketIndex) : backend;
+  if (result.length > 30) result = result.slice(0, 30) + "...";
+  return result;
+}
+
 // Parse URL params for initial state
 function getInitialState() {
   if (typeof window === 'undefined') return { search: '', sortBy: 'downloads' as SortKey, selectedBackends: new Set<string>() };
@@ -309,7 +317,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
                   <div class="flex items-center gap-2">
                     {tool.backends && tool.backends[0] && (
                       <span class="px-2 py-0.5 rounded text-xs bg-dark-700 text-gray-500">
-                        {tool.backends[0]}
+                        {cleanBackend(tool.backends[0])}
                       </span>
                     )}
                     <span class="text-xs text-gray-500">{tool.version_count} versions</span>
@@ -382,13 +390,13 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
 
       {/* Backend filter chips */}
       {backendCounts.size > 0 && (
-        <div class="mb-6 flex items-center gap-2 overflow-x-auto pb-2">
-          <span class="text-sm text-gray-500 shrink-0">Filter:</span>
+        <div class="mb-6 flex flex-wrap items-center gap-2">
+          <span class="text-sm text-gray-500">Filter:</span>
           {[...backendCounts.entries()].map(([backend, count]) => (
             <button
               key={backend}
               onClick={() => toggleBackend(backend)}
-              class={`px-3 py-1 text-sm rounded-full border transition-colors shrink-0 ${
+              class={`px-3 py-1 text-sm rounded-full border transition-colors ${
                 selectedBackends.has(backend)
                   ? "bg-neon-purple/20 border-neon-purple text-neon-purple"
                   : "bg-dark-800 border-dark-600 text-gray-400 hover:border-gray-500 hover:text-gray-300"
@@ -401,7 +409,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
           {selectedBackends.size > 0 && (
             <button
               onClick={clearFilters}
-              class="px-3 py-1 text-sm rounded-full border border-dark-600 bg-dark-800 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors shrink-0"
+              class="px-3 py-1 text-sm rounded-full border border-dark-600 bg-dark-800 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors"
             >
               Clear
             </button>
@@ -447,7 +455,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
                 <td class="px-4 py-3 text-sm hidden lg:table-cell">
                   {tool.backends && tool.backends[0] && (
                     <span class="px-2 py-0.5 rounded-full text-xs bg-dark-600 text-gray-400">
-                      {tool.backends[0]}
+                      {cleanBackend(tool.backends[0])}
                     </span>
                   )}
                 </td>
