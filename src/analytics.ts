@@ -779,11 +779,11 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         ORDER BY date
       `) as Array<{ date: string; dau: number }>;
 
-      // Fill in missing days with 0
+      // Fill in missing days with 0 (exclude current day since it's incomplete)
       const dauMap = new Map(dauResults.map(r => [r.date, r.dau]));
       const dailyData: Array<{ date: string; dau: number }> = [];
 
-      for (let i = days - 1; i >= 0; i--) {
+      for (let i = days - 1; i >= 1; i--) {
         const dayTimestamp = now - i * 86400;
         const date = new Date(dayTimestamp * 1000).toISOString().split("T")[0];
         dailyData.push({
