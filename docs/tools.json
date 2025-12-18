@@ -1,5 +1,5 @@
 {
-  "tool_count": 959,
+  "tool_count": 957,
   "tools": [
     {
       "name": "1password",
@@ -11924,24 +11924,6 @@
       "description": "Executing shell commands via HTTP server"
     },
     {
-      "name": "shellcheck",
-      "latest_version": "0.11.0",
-      "latest_stable_version": "0.11.0",
-      "version_count": 11,
-      "last_updated": "2025-08-03T23:21:13.000Z",
-      "github": "koalaman/shellcheck",
-      "repo_url": "https://github.com/koalaman/shellcheck",
-      "backends": [
-        "aqua:koalaman/shellcheck",
-        "ubi:koalaman/shellcheck",
-        "asdf:luizm/asdf-shellcheck"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/koalaman/shellcheck/registry.yaml",
-      "license": "GPL-3.0",
-      "homepage": "https://www.shellcheck.net",
-      "description": "ShellCheck, a static analysis tool for shell scripts"
-    },
-    {
       "name": "shellspec",
       "latest_version": "0.28.1",
       "latest_stable_version": "0.28.1",
@@ -12143,10 +12125,10 @@
     },
     {
       "name": "solidity",
-      "latest_version": "0.8.31",
-      "latest_stable_version": "0.8.31",
-      "version_count": 113,
-      "last_updated": "2025-12-03T08:49:27.000Z",
+      "latest_version": "0.8.32",
+      "latest_stable_version": "0.8.32",
+      "version_count": 114,
+      "last_updated": "2025-12-18T06:57:02.000Z",
       "github": "ethereum/solidity",
       "repo_url": "https://github.com/ethereum/solidity",
       "backends": [
@@ -12317,23 +12299,6 @@
       "description": "Install our local first extensions for your favorite AI IDE or Terminal Agent. Sync your conversations to the cloud. File issues and requests."
     },
     {
-      "name": "spectral",
-      "latest_version": "6.15.0",
-      "latest_stable_version": "6.15.0",
-      "version_count": 54,
-      "last_updated": "2025-04-22T09:36:18.000Z",
-      "github": "stoplightio/spectral",
-      "repo_url": "https://github.com/stoplightio/spectral",
-      "backends": [
-        "aqua:stoplightio/spectral",
-        "asdf:vbyrd/asdf-spectral"
-      ],
-      "aqua_link": "https://github.com/aquaproj/aqua-registry/blob/main/pkgs/stoplightio/spectral/registry.yaml",
-      "license": "Apache-2.0",
-      "homepage": "https://stoplight.io/spectral",
-      "description": "A flexible JSON/YAML linter for creating automated style guides, with baked in support for OpenAPI (v3.1, v3.0, and v2.0), Arazzo v1.0, as well as AsyncAPI v2.x."
-    },
-    {
       "name": "spin",
       "latest_version": "1.30.0",
       "latest_stable_version": "1.30.0",
@@ -12353,8 +12318,8 @@
       "name": "spring-boot",
       "latest_version": "4.0.0",
       "latest_stable_version": "4.0.0",
-      "version_count": 268,
-      "last_updated": "2025-12-18T00:41:17.298Z",
+      "version_count": 269,
+      "last_updated": "2025-12-18T11:40:33.952Z",
       "backends": [
         "asdf:mise-plugins/mise-spring-boot"
       ]
@@ -12458,10 +12423,10 @@
     },
     {
       "name": "starboard",
-      "latest_version": "0.15.28",
-      "latest_stable_version": "0.15.28",
-      "version_count": 56,
-      "last_updated": "2025-12-02T05:21:08.000Z",
+      "latest_version": "0.15.29",
+      "latest_stable_version": "0.15.29",
+      "version_count": 57,
+      "last_updated": "2025-12-18T03:10:27.000Z",
       "github": "aquasecurity/starboard",
       "repo_url": "https://github.com/aquasecurity/starboard",
       "backends": [
