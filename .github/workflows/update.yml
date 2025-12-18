@@ -48,6 +48,11 @@ jobs:
         env:
           SYNC_API_URL: https://mise-tools.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+      - name: Sync versions to D1
+        run: node scripts/sync-versions-to-d1.js
+        env:
+          SYNC_API_URL: https://mise-tools.jdx.dev
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
       - uses: actions/configure-pages@v5
       - name: Upload static files as artifact
         id: deployment

@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro';
-import { getFromR2 } from '../lib/r2-data';
+import { drizzle } from 'drizzle-orm/d1';
+import { sql } from 'drizzle-orm';
 
-// Legacy endpoint: GET /:tool - serves plain text version list
+// Legacy endpoint: GET /:tool - serves plain text version list from D1
 // e.g., /node returns one version per line
 export const GET: APIRoute = async ({ params, locals }) => {
   const tool = params.tool;
@@ -14,14 +15,14 @@ export const GET: APIRoute = async ({ params, locals }) => {
   }
 
   // Skip known routes that aren't tools
-  const reservedPaths = ['stats', 'tools', 'data', 'api', 'badge', 'health', 'webhooks'];
+  const reservedPaths = ['stats', 'tools', 'data', 'api', 'badge', 'health', 'webhooks', 'admin'];
   const firstSegment = tool.split('/')[0];
   if (reservedPaths.includes(firstSegment)) {
     return new Response('Not found', { status: 404 });
   }
 
-  // Validate tool name (alphanumeric, hyphens, underscores, slashes, periods for extensions)
-  if (!/^[\w\-\/\.]+$/.test(tool)) {
+  // Validate tool name (alphanumeric, hyphens, underscores, slashes)
+  if (!/^[\w\-\/]+$/.test(tool)) {
     return new Response('Invalid tool name', {
       status: 400,
       headers: { 'Content-Type': 'text/plain' },
@@ -30,41 +31,48 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
   try {
     const runtime = locals.runtime;
-    const bucket = runtime.env.DATA_BUCKET;
+    const db = drizzle(runtime.env.ANALYTICS_DB);
 
-    // Fetch plain text version file from R2
-    const data = await getFromR2(bucket, `tools/${tool}`);
+    // Get tool_id
+    const toolResult = await db.all(sql`
+      SELECT id FROM tools WHERE name = ${tool}
+    `);
 
-    if (!data) {
+    if (toolResult.length === 0) {
       return new Response(`Tool "${tool}" not found`, {
         status: 404,
         headers: { 'Content-Type': 'text/plain' },
       });
     }
 
-    // Determine content type and cache duration based on file type
-    let contentType = 'text/plain; charset=utf-8';
-    let cacheMaxAge = 600; // 10 minutes default
+    const toolId = (toolResult[0] as { id: number }).id;
 
-    if (tool.startsWith('python-precompiled-') && tool.endsWith('.gz')) {
-      // python-precompiled files rarely change, cache for 1 hour
-      contentType = 'application/gzip';
-      cacheMaxAge = 3600;
-    } else if (tool.endsWith('.gz')) {
-      contentType = 'application/gzip';
-    } else if (tool.endsWith('.toml')) {
-      contentType = 'text/plain; charset=utf-8';
+    // Get versions ordered by id (insertion order = oldest first)
+    const versions = await db.all<{ version: string }>(sql`
+      SELECT version FROM versions WHERE tool_id = ${toolId} ORDER BY id ASC
+    `);
+
+    if (versions.length === 0) {
+      return new Response('', {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'public, max-age=600',
+        },
+      });
     }
 
-    return new Response(data.body, {
+    const text = versions.map(v => v.version).join('\n') + '\n';
+
+    return new Response(text, {
       status: 200,
       headers: {
-        'Content-Type': contentType,
-        'Cache-Control': `public, max-age=${cacheMaxAge}`,
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'public, max-age=600',
       },
     });
   } catch (error) {
-    console.error('Error fetching tool from R2:', error);
+    console.error('Error fetching versions from D1:', error);
     return new Response('Failed to fetch tool data', {
       status: 500,
       headers: { 'Content-Type': 'text/plain' },

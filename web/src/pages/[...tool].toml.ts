@@ -1,10 +1,16 @@
 import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
-import { getFromR2 } from '../lib/r2-data';
+import { sql } from 'drizzle-orm';
 import { hashIP, getClientIP } from '../lib/hash';
 import { setupAnalytics } from '../../../src/analytics';
 
-// Legacy endpoint: GET /:tool.toml - serves TOML version file
+interface VersionRow {
+  version: string;
+  created_at: string | null;
+  release_url: string | null;
+}
+
+// Legacy endpoint: GET /:tool.toml - serves TOML version file from D1
 // e.g., /node.toml returns TOML with version metadata
 export const GET: APIRoute = async ({ request, params, locals }) => {
   const tool = params.tool;
@@ -26,23 +32,34 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
 
   try {
     const runtime = locals.runtime;
-    const bucket = runtime.env.DATA_BUCKET;
+    const db = drizzle(runtime.env.ANALYTICS_DB);
 
-    // Fetch TOML from R2
-    const data = await getFromR2(bucket, `tools/${tool}.toml`);
+    // Get tool_id
+    const toolResult = await db.all(sql`
+      SELECT id FROM tools WHERE name = ${tool}
+    `);
 
-    if (!data) {
+    if (toolResult.length === 0) {
       return new Response(`Tool "${tool}" not found`, {
         status: 404,
         headers: { 'Content-Type': 'text/plain' },
       });
     }
 
+    const toolId = (toolResult[0] as { id: number }).id;
+
+    // Get versions ordered by id (insertion order = oldest first)
+    const versions = await db.all<VersionRow>(sql`
+      SELECT version, created_at, release_url
+      FROM versions
+      WHERE tool_id = ${toolId}
+      ORDER BY id ASC
+    `);
+
     // Track version request for DAU/MAU (fire and forget)
     const clientIP = getClientIP(request);
     hashIP(clientIP, runtime.env.API_SECRET).then(async (ipHash) => {
       try {
-        const db = drizzle(runtime.env.ANALYTICS_DB);
         const analytics = setupAnalytics(db);
         await analytics.trackVersionRequest(ipHash);
       } catch (e) {
@@ -50,7 +67,25 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       }
     });
 
-    return new Response(data.body, {
+    // Generate TOML output
+    const lines = ['[versions]'];
+    for (const v of versions) {
+      const parts: string[] = [];
+      if (v.created_at) {
+        parts.push(`created_at = ${v.created_at}`);
+      }
+      if (v.release_url) {
+        parts.push(`release_url = "${v.release_url}"`);
+      }
+
+      if (parts.length > 0) {
+        lines.push(`"${v.version}" = { ${parts.join(', ')} }`);
+      } else {
+        lines.push(`"${v.version}" = {}`);
+      }
+    }
+
+    return new Response(lines.join('\n') + '\n', {
       status: 200,
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
@@ -58,7 +93,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       },
     });
   } catch (error) {
-    console.error('Error fetching TOML from R2:', error);
+    console.error('Error fetching versions from D1:', error);
     return new Response('Failed to fetch tool data', {
       status: 500,
       headers: { 'Content-Type': 'text/plain' },

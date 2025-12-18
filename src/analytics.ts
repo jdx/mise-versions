@@ -1966,5 +1966,23 @@ export async function runAnalyticsMigrations(
     }
   }
 
+  // Create versions table for storing tool version data
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS versions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      tool_id INTEGER NOT NULL,
+      version TEXT NOT NULL,
+      created_at TEXT,
+      release_url TEXT,
+      FOREIGN KEY (tool_id) REFERENCES tools(id),
+      UNIQUE(tool_id, version)
+    )
+  `);
+
+  // Create indices for versions table
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_id ON versions(tool_id)`
+  );
+
   console.log("Analytics migrations completed");
 }
