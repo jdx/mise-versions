@@ -47,8 +47,14 @@ if (!auth || !isAdmin(auth.username)) {
 
     <!-- Token Details Table -->
     <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
-      <div class="px-4 py-3 border-b border-dark-600">
+      <div class="px-4 py-3 border-b border-dark-600 flex items-center justify-between">
         <h2 class="text-lg font-semibold text-gray-200">Token Pool</h2>
+        <button
+          id="test-tokens-btn"
+          class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
+        >
+          Test All Tokens
+        </button>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full">
@@ -75,6 +81,76 @@ if (!auth || !isAdmin(auth.username)) {
 </Layout>
 
 <script>
+  // Store token data globally for test results
+  let tokenData: Array<{
+    id: number;
+    user_name: string | null;
+    user_id: string | null;
+    usage_count: number;
+    last_used: string | null;
+    is_active: number;
+    rate_limited_at: string | null;
+    expires_at: string | null;
+  }> = [];
+
+  // Store test results
+  let testResults: Map<number, { valid: boolean; error?: string; rateLimit?: { remaining: number; limit: number } }> = new Map();
+
+  function renderTokenTable() {
+    const tableBody = document.getElementById('token-table-body');
+    if (!tableBody) return;
+
+    if (tokenData.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="6" class="px-4 py-8 text-center text-gray-500">No tokens in pool</td>
+        </tr>
+      `;
+      return;
+    }
+
+    // Sort by user_id (username)
+    const sortedTokens = [...tokenData].sort((a, b) => {
+      const aName = (a.user_id || '').toLowerCase();
+      const bName = (b.user_id || '').toLowerCase();
+      return aName.localeCompare(bName);
+    });
+
+    tableBody.innerHTML = sortedTokens.map((t) => {
+      const isRateLimited = t.rate_limited_at && new Date(t.rate_limited_at) > new Date();
+      const testResult = testResults.get(t.id);
+
+      let statusClass = isRateLimited ? 'text-orange-400' : (t.is_active ? 'text-green-400' : 'text-red-400');
+      let statusText = isRateLimited ? 'Rate Limited' : (t.is_active ? 'Active' : 'Inactive');
+
+      // Override with test result if available
+      if (testResult) {
+        if (testResult.valid) {
+          statusClass = 'text-green-400';
+          statusText = testResult.rateLimit ? `Valid (${testResult.rateLimit.remaining}/${testResult.rateLimit.limit})` : 'Valid';
+        } else {
+          statusClass = 'text-red-400';
+          statusText = 'Invalid';
+        }
+      }
+
+      return `
+        <tr class="hover:bg-dark-700/50" data-token-id="${t.id}">
+          <td class="px-4 py-3">
+            <div class="text-gray-200">${t.user_id || 'Unknown'}</div>
+            <div class="text-xs text-gray-500">${t.user_name || ''}</div>
+          </td>
+          <td class="px-4 py-3 text-gray-300">${t.usage_count.toLocaleString()}</td>
+          <td class="px-4 py-3 text-gray-400 text-sm">${t.last_used ? new Date(t.last_used).toLocaleString() : 'Never'}</td>
+          <td class="px-4 py-3">
+            <span class="${statusClass} text-sm">${statusText}</span>
+          </td>
+          <td class="px-4 py-3 text-gray-400 text-sm">${t.expires_at ? new Date(t.expires_at).toLocaleDateString() : 'Never'}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
   async function loadAdminData() {
     try {
       const response = await fetch('/api/admin/tokens');
@@ -82,6 +158,7 @@ if (!auth || !isAdmin(auth.username)) {
         throw new Error('Failed to load admin data');
       }
       const data = await response.json();
+      tokenData = data.tokens;
 
       // Count rate-limited tokens
       const rateLimitedCount = data.tokens.filter((t: { rate_limited_at: string | null }) => {
@@ -122,58 +199,66 @@ if (!auth || !isAdmin(auth.username)) {
         `).join('');
       }
 
-      // Populate token table
-      const tableBody = document.getElementById('token-table-body');
-      if (tableBody) {
-        if (data.tokens.length === 0) {
-          tableBody.innerHTML = `
-            <tr>
-              <td colspan="5" class="px-4 py-8 text-center text-gray-500">No tokens in pool</td>
-            </tr>
-          `;
-        } else {
-          tableBody.innerHTML = data.tokens.map((t: {
-            user_name: string | null;
-            user_id: string | null;
-            usage_count: number;
-            last_used: string | null;
-            is_active: number;
-            rate_limited_at: string | null;
-            expires_at: string | null;
-          }) => {
-            const isRateLimited = t.rate_limited_at && new Date(t.rate_limited_at) > new Date();
-            const statusClass = isRateLimited ? 'text-orange-400' : (t.is_active ? 'text-green-400' : 'text-red-400');
-            const statusText = isRateLimited ? 'Rate Limited' : (t.is_active ? 'Active' : 'Inactive');
-
-            return `
-              <tr class="hover:bg-dark-700/50">
-                <td class="px-4 py-3">
-                  <div class="text-gray-200">${t.user_name || 'Unknown'}</div>
-                  <div class="text-xs text-gray-500">${t.user_id || ''}</div>
-                </td>
-                <td class="px-4 py-3 text-gray-300">${t.usage_count.toLocaleString()}</td>
-                <td class="px-4 py-3 text-gray-400 text-sm">${t.last_used ? new Date(t.last_used).toLocaleString() : 'Never'}</td>
-                <td class="px-4 py-3">
-                  <span class="${statusClass} text-sm">${statusText}</span>
-                </td>
-                <td class="px-4 py-3 text-gray-400 text-sm">${t.expires_at ? new Date(t.expires_at).toLocaleDateString() : 'Never'}</td>
-              </tr>
-            `;
-          }).join('');
-        }
-      }
+      // Render token table
+      renderTokenTable();
     } catch (error) {
       console.error('Failed to load admin data:', error);
       const tableBody = document.getElementById('token-table-body');
       if (tableBody) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan="5" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
+            <td colspan="6" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
           </tr>
         `;
       }
     }
   }
 
+  async function testAllTokens() {
+    const btn = document.getElementById('test-tokens-btn') as HTMLButtonElement;
+    if (!btn) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Testing...';
+
+    try {
+      const response = await fetch('/api/admin/tokens/test', { method: 'POST' });
+      if (!response.ok) {
+        throw new Error('Failed to test tokens');
+      }
+      const data = await response.json();
+
+      // Store results
+      testResults.clear();
+      for (const result of data.results) {
+        testResults.set(result.id, {
+          valid: result.valid,
+          error: result.error,
+          rateLimit: result.rateLimit,
+        });
+      }
+
+      // Re-render table with results
+      renderTokenTable();
+
+      btn.textContent = `Tested: ${data.summary.valid}/${data.summary.total} valid`;
+      setTimeout(() => {
+        btn.textContent = 'Test All Tokens';
+      }, 3000);
+    } catch (error) {
+      console.error('Failed to test tokens:', error);
+      btn.textContent = 'Test Failed';
+      setTimeout(() => {
+        btn.textContent = 'Test All Tokens';
+      }, 3000);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  // Initialize
   loadAdminData();
+
+  // Bind test button
+  document.getElementById('test-tokens-btn')?.addEventListener('click', testAllTokens);
 </script>
