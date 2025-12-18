@@ -23,11 +23,21 @@ export function AdminButton() {
   }
 
   return (
-    <a
-      href="/admin"
-      class="text-sm text-gray-400 hover:text-neon-purple transition-colors"
-    >
-      Admin
-    </a>
+    <>
+      <a
+        href="https://github.com/jdx/mise-versions"
+        class="text-sm text-gray-400 hover:text-neon-purple transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Repo
+      </a>
+      <a
+        href="/admin"
+        class="text-sm text-gray-400 hover:text-neon-purple transition-colors"
+      >
+        Admin
+      </a>
+    </>
   );
 }
