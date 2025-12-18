@@ -49,32 +49,52 @@ if (!auth || !isAdmin(auth.username)) {
     <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
       <div class="px-4 py-3 border-b border-dark-600 flex items-center justify-between">
         <h2 class="text-lg font-semibold text-gray-200">Token Pool</h2>
-        <button
-          id="test-tokens-btn"
-          class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
-        >
-          Test All Tokens
-        </button>
+        <div class="flex items-center gap-2">
+          <button
+            id="delete-invalid-btn"
+            class="hidden px-3 py-1.5 bg-red-900/50 hover:bg-red-900 border border-red-700 rounded-lg text-sm text-red-300 hover:text-red-100 transition-colors"
+          >
+            Delete Invalid Tokens
+          </button>
+          <button
+            id="test-tokens-btn"
+            class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors"
+          >
+            Test All Tokens
+          </button>
+        </div>
       </div>
-      <div class="overflow-x-auto">
-        <table class="w-full">
-          <thead class="bg-dark-700">
-            <tr>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">User</th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Usage</th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Last Used</th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Status</th>
-              <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Expires</th>
-            </tr>
-          </thead>
-          <tbody id="token-table-body" class="divide-y divide-dark-600">
-            <tr>
-              <td colspan="5" class="px-4 py-8 text-center text-gray-500">
-                Loading...
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="relative">
+        <!-- Loading overlay -->
+        <div id="table-loading-overlay" class="hidden absolute inset-0 bg-dark-900/70 z-10 flex items-center justify-center">
+          <div class="flex flex-col items-center gap-2">
+            <svg class="animate-spin h-8 w-8 text-neon-purple" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span class="text-sm text-gray-400">Testing tokens...</span>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-dark-700">
+              <tr>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">User</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Usage</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Last Used</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Status</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400 w-20"></th>
+              </tr>
+            </thead>
+            <tbody id="token-table-body" class="divide-y divide-dark-600">
+              <tr>
+                <td colspan="5" class="px-4 py-8 text-center text-gray-500">
+                  Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -96,6 +116,29 @@ if (!auth || !isAdmin(auth.username)) {
   // Store test results
   let testResults: Map<number, { valid: boolean; error?: string; rateLimit?: { remaining: number; limit: number } }> = new Map();
 
+  function getInvalidTokenIds(): number[] {
+    const invalidIds: number[] = [];
+    testResults.forEach((result, id) => {
+      if (!result.valid) {
+        invalidIds.push(id);
+      }
+    });
+    return invalidIds;
+  }
+
+  function updateDeleteInvalidButton() {
+    const btn = document.getElementById('delete-invalid-btn');
+    if (!btn) return;
+
+    const invalidIds = getInvalidTokenIds();
+    if (invalidIds.length > 0) {
+      btn.classList.remove('hidden');
+      btn.textContent = `Delete Invalid Tokens (${invalidIds.length})`;
+    } else {
+      btn.classList.add('hidden');
+    }
+  }
+
   function renderTokenTable() {
     const tableBody = document.getElementById('token-table-body');
     if (!tableBody) return;
@@ -103,7 +146,7 @@ if (!auth || !isAdmin(auth.username)) {
     if (tokenData.length === 0) {
       tableBody.innerHTML = `
         <tr>
-          <td colspan="6" class="px-4 py-8 text-center text-gray-500">No tokens in pool</td>
+          <td colspan="5" class="px-4 py-8 text-center text-gray-500">No tokens in pool</td>
         </tr>
       `;
       return;
@@ -145,10 +188,89 @@ if (!auth || !isAdmin(auth.username)) {
           <td class="px-4 py-3">
             <span class="${statusClass} text-sm">${statusText}</span>
           </td>
-          <td class="px-4 py-3 text-gray-400 text-sm">${t.expires_at ? new Date(t.expires_at).toLocaleDateString() : 'Never'}</td>
+          <td class="px-4 py-3">
+            <button
+              onclick="deleteToken(${t.id})"
+              class="text-gray-500 hover:text-red-400 transition-colors"
+              title="Delete token"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </td>
         </tr>
       `;
     }).join('');
+  }
+
+  async function deleteToken(tokenId: number) {
+    if (!confirm('Are you sure you want to delete this token?')) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/tokens/${tokenId}`, { method: 'DELETE' });
+      if (!response.ok) {
+        throw new Error('Failed to delete token');
+      }
+
+      // Remove from local data and re-render
+      tokenData = tokenData.filter(t => t.id !== tokenId);
+      testResults.delete(tokenId);
+      renderTokenTable();
+      updateDeleteInvalidButton();
+
+      // Reload stats
+      loadAdminData();
+    } catch (error) {
+      console.error('Failed to delete token:', error);
+      alert('Failed to delete token');
+    }
+  }
+
+  async function deleteInvalidTokens() {
+    const invalidIds = getInvalidTokenIds();
+    if (invalidIds.length === 0) return;
+
+    if (!confirm(`Are you sure you want to delete ${invalidIds.length} invalid token(s)?`)) {
+      return;
+    }
+
+    const btn = document.getElementById('delete-invalid-btn') as HTMLButtonElement;
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Deleting...';
+    }
+
+    try {
+      const response = await fetch('/api/admin/tokens/delete-batch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids: invalidIds }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete tokens');
+      }
+
+      // Remove from local data and re-render
+      tokenData = tokenData.filter(t => !invalidIds.includes(t.id));
+      invalidIds.forEach(id => testResults.delete(id));
+      renderTokenTable();
+      updateDeleteInvalidButton();
+
+      // Reload stats
+      loadAdminData();
+    } catch (error) {
+      console.error('Failed to delete invalid tokens:', error);
+      alert('Failed to delete invalid tokens');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        updateDeleteInvalidButton();
+      }
+    }
   }
 
   async function loadAdminData() {
@@ -207,7 +329,7 @@ if (!auth || !isAdmin(auth.username)) {
       if (tableBody) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan="6" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
+            <td colspan="5" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
           </tr>
         `;
       }
@@ -216,10 +338,12 @@ if (!auth || !isAdmin(auth.username)) {
 
   async function testAllTokens() {
     const btn = document.getElementById('test-tokens-btn') as HTMLButtonElement;
+    const overlay = document.getElementById('table-loading-overlay');
     if (!btn) return;
 
     btn.disabled = true;
     btn.textContent = 'Testing...';
+    overlay?.classList.remove('hidden');
 
     try {
       const response = await fetch('/api/admin/tokens/test', { method: 'POST' });
@@ -240,6 +364,7 @@ if (!auth || !isAdmin(auth.username)) {
 
       // Re-render table with results
       renderTokenTable();
+      updateDeleteInvalidButton();
 
       btn.textContent = `Tested: ${data.summary.valid}/${data.summary.total} valid`;
       setTimeout(() => {
@@ -253,12 +378,17 @@ if (!auth || !isAdmin(auth.username)) {
       }, 3000);
     } finally {
       btn.disabled = false;
+      overlay?.classList.add('hidden');
     }
   }
+
+  // Make deleteToken available globally for onclick handlers
+  (window as any).deleteToken = deleteToken;
 
   // Initialize
   loadAdminData();
 
-  // Bind test button
+  // Bind buttons
   document.getElementById('test-tokens-btn')?.addEventListener('click', testAllTokens);
+  document.getElementById('delete-invalid-btn')?.addEventListener('click', deleteInvalidTokens);
 </script>

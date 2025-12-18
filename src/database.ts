@@ -191,7 +191,7 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
           or(isNull(tokens.rate_limited_at), lte(tokens.rate_limited_at, new Date().toISOString()))
         ))
         .get();
-      
+
       const total = await db.select({ count: sql<number>`count(*)` })
         .from(tokens)
         .get();
@@ -200,6 +200,27 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         active: active?.count ?? 0,
         total: total?.count ?? 0,
       };
+    },
+
+    // Delete a token by ID
+    async deleteToken(tokenId: number) {
+      return await db.delete(tokens)
+        .where(eq(tokens.id, tokenId))
+        .run();
+    },
+
+    // Delete multiple tokens by IDs
+    async deleteTokens(tokenIds: number[]) {
+      if (tokenIds.length === 0) return { rowsAffected: 0 };
+
+      let deleted = 0;
+      for (const id of tokenIds) {
+        await db.delete(tokens)
+          .where(eq(tokens.id, id))
+          .run();
+        deleted++;
+      }
+      return { rowsAffected: deleted };
     }
   };
 } 
