@@ -1,105 +1,105 @@
 [versions]
-"0.1.4" = { created_at = 2025-02-16T00:58:04.000Z }
-"0.1.5" = { created_at = 2025-02-16T21:15:02.000Z }
-"0.1.6" = { created_at = 2025-02-16T21:28:05.000Z }
-"0.1.7" = { created_at = 2025-02-16T22:49:25.000Z }
-"0.1.8" = { created_at = 2025-02-16T23:23:39.000Z }
-"0.1.9" = { created_at = 2025-02-17T13:41:13.000Z }
-"0.2.0" = { created_at = 2025-02-17T15:39:52.000Z }
-"0.2.1" = { created_at = 2025-02-17T18:36:20.000Z }
-"0.2.2" = { created_at = 2025-02-17T19:00:24.000Z }
-"0.2.3" = { created_at = 2025-02-17T22:34:02.000Z }
-"0.2.4" = { created_at = 2025-02-18T14:31:20.000Z }
-"0.3.0" = { created_at = 2025-02-19T15:38:23.000Z }
-"0.3.1" = { created_at = 2025-02-19T15:53:11.000Z }
-"0.3.2" = { created_at = 2025-02-19T15:58:30.000Z }
-"0.3.3" = { created_at = 2025-02-19T16:19:50.000Z }
-"0.4.0" = { created_at = 2025-02-20T01:00:16.000Z }
-"0.4.1" = { created_at = 2025-02-20T01:08:07.000Z }
-"0.4.2" = { created_at = 2025-02-21T00:57:28.000Z }
-"0.4.3" = { created_at = 2025-02-21T15:42:48.000Z }
-"0.4.4" = { created_at = 2025-02-22T14:02:48.000Z }
-"0.4.5" = { created_at = 2025-02-23T19:37:57.000Z }
-"0.4.6" = { created_at = 2025-02-24T14:49:44.000Z }
-"0.5.0" = { created_at = 2025-02-25T01:28:40.000Z }
-"0.5.1" = { created_at = 2025-03-20T15:22:25.000Z }
-"0.6.0" = { created_at = 2025-03-21T14:18:43.000Z }
-"0.6.1" = { created_at = 2025-03-22T13:28:46.000Z }
-"0.6.2" = { created_at = 2025-03-24T21:56:31.000Z }
-"0.6.3" = { created_at = 2025-03-29T18:57:15.000Z }
-"0.6.4" = { created_at = 2025-03-29T20:39:14.000Z }
-"0.6.5" = { created_at = 2025-03-30T17:11:06.000Z }
-"0.7.0" = { created_at = 2025-04-04T14:29:51.000Z }
-"0.7.1" = { created_at = 2025-04-09T23:49:56.000Z }
-"0.7.2" = { created_at = 2025-04-10T16:16:14.000Z }
-"0.7.3" = { created_at = 2025-04-10T18:10:15.000Z }
-"0.7.4" = { created_at = 2025-04-11T15:33:24.000Z }
-"0.7.5" = { created_at = 2025-04-11T16:43:20.000Z }
-"0.8.0" = { created_at = 2025-04-17T23:35:47.000Z }
-"0.8.1" = { created_at = 2025-04-18T00:26:19.000Z }
-"0.8.2" = { created_at = 2025-04-18T00:33:24.000Z }
-"0.8.3" = { created_at = 2025-04-22T17:51:38.000Z }
-"0.8.4" = { created_at = 2025-04-23T16:28:36.000Z }
-"0.8.5" = { created_at = 2025-04-23T16:48:00.000Z }
-"1.0.0" = { created_at = 2025-04-26T16:04:46.000Z }
-"1.1.0" = { created_at = 2025-05-14T19:53:01.000Z }
-"1.1.1" = { created_at = 2025-05-16T17:06:48.000Z }
-"1.1.2" = { created_at = 2025-05-25T15:45:47.000Z }
-"1.2.0" = { created_at = 2025-06-13T17:13:04.000Z }
-"1.2.1" = { created_at = 2025-07-09T13:57:58.000Z }
-"1.2.2" = { created_at = 2025-07-21T18:00:07.000Z }
-"1.3.0" = { created_at = 2025-08-12T13:42:08.000Z }
-"1.4.0" = { created_at = 2025-08-12T17:41:34.000Z }
-"1.5.0" = { created_at = 2025-08-14T01:19:27.000Z }
-"1.6.0" = { created_at = 2025-08-16T23:37:17.000Z }
-"1.7.0" = { created_at = 2025-08-17T00:06:52.000Z }
-"1.7.1" = { created_at = 2025-08-18T16:23:18.000Z }
-"1.8.0" = { created_at = 2025-08-18T20:04:11.000Z }
-"1.9.0" = { created_at = 2025-08-19T17:22:45.000Z }
-"1.9.1" = { created_at = 2025-08-19T19:03:52.000Z }
-"1.9.2" = { created_at = 2025-08-19T20:02:17.000Z }
-"1.10.0" = { created_at = 2025-08-22T17:06:40.000Z }
-"1.10.1" = { created_at = 2025-08-22T17:19:05.000Z }
-"1.10.2" = { created_at = 2025-08-22T19:00:24.000Z }
-"1.10.3" = { created_at = 2025-08-24T14:43:12.000Z }
-"1.10.4" = { created_at = 2025-08-24T16:25:40.000Z }
-"1.10.5" = { created_at = 2025-08-26T13:39:19.000Z }
-"1.10.6" = { created_at = 2025-08-26T14:19:59.000Z }
-"1.10.7" = { created_at = 2025-08-27T20:45:12.000Z }
-"1.11.0" = { created_at = 2025-09-06T23:32:03.000Z }
-"1.11.1" = { created_at = 2025-09-07T00:06:51.000Z }
-"1.11.2" = { created_at = 2025-09-07T00:24:29.000Z }
-"1.12.0" = { created_at = 2025-09-07T20:27:20.000Z }
-"1.12.1" = { created_at = 2025-09-13T15:46:36.000Z }
-"1.13.0" = { created_at = 2025-09-17T03:36:04.000Z }
-"1.13.1" = { created_at = 2025-09-17T03:50:40.000Z }
-"1.13.2" = { created_at = 2025-09-17T03:59:43.000Z }
-"1.13.3" = { created_at = 2025-09-17T04:08:18.000Z }
-"1.13.4" = { created_at = 2025-09-17T04:36:05.000Z }
-"1.13.6" = { created_at = 2025-09-17T12:20:03.000Z }
-"1.13.7" = { created_at = 2025-09-17T12:37:44.000Z }
-"1.14.0" = { created_at = 2025-09-18T13:31:07.000Z }
-"1.15.0" = { created_at = 2025-09-19T15:17:39.000Z }
-"1.15.1" = { created_at = 2025-09-19T16:57:54.000Z }
-"1.15.2" = { created_at = 2025-09-20T00:56:07.000Z }
-"1.15.3" = { created_at = 2025-09-21T16:46:18.000Z }
-"1.15.4" = { created_at = 2025-09-22T21:35:12.000Z }
-"1.15.5" = { created_at = 2025-09-22T23:42:47.000Z }
-"1.15.6" = { created_at = 2025-09-25T15:59:20.000Z }
-"1.15.7" = { created_at = 2025-09-29T00:31:56.000Z }
-"1.16.0" = { created_at = 2025-10-02T16:55:22.000Z }
-"1.18.0" = { created_at = 2025-10-05T18:21:57.000Z }
-"1.18.1" = { created_at = 2025-10-05T20:01:22.000Z }
-"1.18.2" = { created_at = 2025-10-06T23:47:17.000Z }
-"1.18.3" = { created_at = 2025-10-07T23:59:20.000Z }
-"1.19.0" = { created_at = 2025-10-15T15:49:55.000Z }
-"1.20.0" = { created_at = 2025-10-29T23:10:38.000Z }
-"1.21.0" = { created_at = 2025-11-15T02:09:26.000Z }
-"1.21.1" = { created_at = 2025-11-19T17:22:11.000Z }
-"1.22.0" = { created_at = 2025-11-19T21:28:24.000Z }
-"1.23.0" = { created_at = 2025-11-21T14:56:10.000Z }
-"1.24.0" = { created_at = 2025-11-21T23:08:51.000Z }
-"1.24.1" = { created_at = 2025-11-22T00:27:22.000Z }
-"1.25.0" = { created_at = 2025-11-25T17:18:10.000Z }
-"1.26.0" = { created_at = 2025-12-04T15:03:16.000Z }
-"1.27.0" = { created_at = 2025-12-12T16:33:24.000Z }
+"0.1.4" = { created_at = 2025-02-16T00:58:04.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.1.4" }
+"0.1.5" = { created_at = 2025-02-16T21:15:02.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.1.5" }
+"0.1.6" = { created_at = 2025-02-16T21:28:05.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.1.6" }
+"0.1.7" = { created_at = 2025-02-16T22:49:25.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.1.7" }
+"0.1.8" = { created_at = 2025-02-16T23:23:39.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.1.8" }
+"0.1.9" = { created_at = 2025-02-17T13:41:13.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.1.9" }
+"0.2.0" = { created_at = 2025-02-17T15:39:52.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2025-02-17T18:36:20.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2025-02-17T19:00:24.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2025-02-17T22:34:02.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2025-02-18T14:31:20.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.2.4" }
+"0.3.0" = { created_at = 2025-02-19T15:38:23.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2025-02-19T15:53:11.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2025-02-19T15:58:30.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2025-02-19T16:19:50.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.3.3" }
+"0.4.0" = { created_at = 2025-02-20T01:00:16.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2025-02-20T01:08:07.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2025-02-21T00:57:28.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2025-02-21T15:42:48.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2025-02-22T14:02:48.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.4" }
+"0.4.5" = { created_at = 2025-02-23T19:37:57.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.5" }
+"0.4.6" = { created_at = 2025-02-24T14:49:44.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.4.6" }
+"0.5.0" = { created_at = 2025-02-25T01:28:40.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2025-03-20T15:22:25.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.5.1" }
+"0.6.0" = { created_at = 2025-03-21T14:18:43.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2025-03-22T13:28:46.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2025-03-24T21:56:31.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.6.2" }
+"0.6.3" = { created_at = 2025-03-29T18:57:15.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.6.3" }
+"0.6.4" = { created_at = 2025-03-29T20:39:14.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.6.4" }
+"0.6.5" = { created_at = 2025-03-30T17:11:06.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.6.5" }
+"0.7.0" = { created_at = 2025-04-04T14:29:51.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2025-04-09T23:49:56.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.7.1" }
+"0.7.2" = { created_at = 2025-04-10T16:16:14.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.7.2" }
+"0.7.3" = { created_at = 2025-04-10T18:10:15.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.7.3" }
+"0.7.4" = { created_at = 2025-04-11T15:33:24.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.7.4" }
+"0.7.5" = { created_at = 2025-04-11T16:43:20.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.7.5" }
+"0.8.0" = { created_at = 2025-04-17T23:35:47.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2025-04-18T00:26:19.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2025-04-18T00:33:24.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.8.2" }
+"0.8.3" = { created_at = 2025-04-22T17:51:38.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.8.3" }
+"0.8.4" = { created_at = 2025-04-23T16:28:36.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.8.4" }
+"0.8.5" = { created_at = 2025-04-23T16:48:00.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v0.8.5" }
+"1.0.0" = { created_at = 2025-04-26T16:04:46.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2025-05-14T19:53:01.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2025-05-16T17:06:48.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2025-05-25T15:45:47.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.1.2" }
+"1.2.0" = { created_at = 2025-06-13T17:13:04.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2025-07-09T13:57:58.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2025-07-21T18:00:07.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.2.2" }
+"1.3.0" = { created_at = 2025-08-12T13:42:08.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2025-08-12T17:41:34.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.4.0" }
+"1.5.0" = { created_at = 2025-08-14T01:19:27.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.5.0" }
+"1.6.0" = { created_at = 2025-08-16T23:37:17.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.6.0" }
+"1.7.0" = { created_at = 2025-08-17T00:06:52.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.7.0" }
+"1.7.1" = { created_at = 2025-08-18T16:23:18.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.7.1" }
+"1.8.0" = { created_at = 2025-08-18T20:04:11.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2025-08-19T17:22:45.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.9.0" }
+"1.9.1" = { created_at = 2025-08-19T19:03:52.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.9.1" }
+"1.9.2" = { created_at = 2025-08-19T20:02:17.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.9.2" }
+"1.10.0" = { created_at = 2025-08-22T17:06:40.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2025-08-22T17:19:05.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.1" }
+"1.10.2" = { created_at = 2025-08-22T19:00:24.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.2" }
+"1.10.3" = { created_at = 2025-08-24T14:43:12.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.3" }
+"1.10.4" = { created_at = 2025-08-24T16:25:40.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.4" }
+"1.10.5" = { created_at = 2025-08-26T13:39:19.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.5" }
+"1.10.6" = { created_at = 2025-08-26T14:19:59.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.6" }
+"1.10.7" = { created_at = 2025-08-27T20:45:12.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.10.7" }
+"1.11.0" = { created_at = 2025-09-06T23:32:03.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2025-09-07T00:06:51.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.11.1" }
+"1.11.2" = { created_at = 2025-09-07T00:24:29.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.11.2" }
+"1.12.0" = { created_at = 2025-09-07T20:27:20.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2025-09-13T15:46:36.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.12.1" }
+"1.13.0" = { created_at = 2025-09-17T03:36:04.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.0" }
+"1.13.1" = { created_at = 2025-09-17T03:50:40.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.1" }
+"1.13.2" = { created_at = 2025-09-17T03:59:43.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.2" }
+"1.13.3" = { created_at = 2025-09-17T04:08:18.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.3" }
+"1.13.4" = { created_at = 2025-09-17T04:36:05.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.4" }
+"1.13.6" = { created_at = 2025-09-17T12:20:03.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.6" }
+"1.13.7" = { created_at = 2025-09-17T12:37:44.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.13.7" }
+"1.14.0" = { created_at = 2025-09-18T13:31:07.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.14.0" }
+"1.15.0" = { created_at = 2025-09-19T15:17:39.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.0" }
+"1.15.1" = { created_at = 2025-09-19T16:57:54.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.1" }
+"1.15.2" = { created_at = 2025-09-20T00:56:07.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.2" }
+"1.15.3" = { created_at = 2025-09-21T16:46:18.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.3" }
+"1.15.4" = { created_at = 2025-09-22T21:35:12.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.4" }
+"1.15.5" = { created_at = 2025-09-22T23:42:47.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.5" }
+"1.15.6" = { created_at = 2025-09-25T15:59:20.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.6" }
+"1.15.7" = { created_at = 2025-09-29T00:31:56.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.15.7" }
+"1.16.0" = { created_at = 2025-10-02T16:55:22.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.16.0" }
+"1.18.0" = { created_at = 2025-10-05T18:21:57.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.18.0" }
+"1.18.1" = { created_at = 2025-10-05T20:01:22.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.18.1" }
+"1.18.2" = { created_at = 2025-10-06T23:47:17.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.18.2" }
+"1.18.3" = { created_at = 2025-10-07T23:59:20.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.18.3" }
+"1.19.0" = { created_at = 2025-10-15T15:49:55.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.19.0" }
+"1.20.0" = { created_at = 2025-10-29T23:10:38.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.20.0" }
+"1.21.0" = { created_at = 2025-11-15T02:09:26.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.21.0" }
+"1.21.1" = { created_at = 2025-11-19T17:22:11.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.21.1" }
+"1.22.0" = { created_at = 2025-11-19T21:28:24.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.22.0" }
+"1.23.0" = { created_at = 2025-11-21T14:56:10.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.23.0" }
+"1.24.0" = { created_at = 2025-11-21T23:08:51.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.24.0" }
+"1.24.1" = { created_at = 2025-11-22T00:27:22.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.24.1" }
+"1.25.0" = { created_at = 2025-11-25T17:18:10.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.25.0" }
+"1.26.0" = { created_at = 2025-12-04T15:03:16.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.26.0" }
+"1.27.0" = { created_at = 2025-12-12T16:33:24.000Z, release_url = "https://github.com/jdx/hk/releases/tag/v1.27.0" }

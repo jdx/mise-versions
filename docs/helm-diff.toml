@@ -1,64 +1,64 @@
 [versions]
-"2.2.1+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.2.1+2" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.3.1+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.4.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.5.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.7.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.8.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.8.2+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.8.2+2" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.9.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.9.0+2" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.9.0+3" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.10.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.11.0+1" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.11.0+2" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.11.0+3" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.11.0+4" = { created_at = 2025-12-17T13:58:03.400Z }
-"2.11.0+5" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.0.0-rc.7" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.1.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.1.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.1.2" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.1.3" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.2.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.3.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.3.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.3.2" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.4.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.4.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.4.2" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.5.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.6.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.7.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.8.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.8.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.2" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.3" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.4" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.5" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.6" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.7" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.8" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.9" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.10" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.11" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.12" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.13" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.9.14" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.10.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.11.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.12.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.12.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.12.2" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.12.3" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.12.4" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.12.5" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.13.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.13.1" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.13.2" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.14.0" = { created_at = 2025-12-17T13:58:03.400Z }
-"3.14.1" = { created_at = 2025-12-17T13:58:03.400Z }
+"2.2.1+1" = { created_at = 2017-03-02T09:29:30.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.2.1+1" }
+"2.2.1+2" = { created_at = 2017-03-14T15:44:40.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.2.1+2" }
+"2.3.1+1" = { created_at = 2017-04-19T22:54:56.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.3.1+1" }
+"2.4.0+1" = { created_at = 2017-05-03T09:12:42.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.4.0+1" }
+"2.5.0+1" = { created_at = 2017-07-13T14:12:25.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.5.0+1" }
+"2.7.0+1" = { created_at = 2017-10-30T10:24:21.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.7.0+1" }
+"2.8.0+1" = { created_at = 2018-02-05T12:54:02.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.8.0+1" }
+"2.8.2+1" = { created_at = 2018-04-11T11:57:10.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.8.2+1" }
+"2.8.2+2" = { created_at = 2018-04-12T13:08:46.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.8.2+2" }
+"2.9.0+1" = { created_at = 2018-04-26T22:48:34.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.9.0+1" }
+"2.9.0+2" = { created_at = 2018-06-12T19:08:00.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.9.0+2" }
+"2.9.0+3" = { created_at = 2018-08-27T01:01:53.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.9.0+3" }
+"2.10.0+1" = { created_at = 2018-08-27T03:39:48.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.10.0+1" }
+"2.11.0+1" = { created_at = 2018-10-11T08:49:38.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.11.0+1" }
+"2.11.0+2" = { created_at = 2018-10-11T09:16:50.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.11.0+2" }
+"2.11.0+3" = { created_at = 2019-01-14T14:28:57.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.11.0+3" }
+"2.11.0+4" = { created_at = 2019-05-15T02:45:52.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.11.0+4" }
+"2.11.0+5" = { created_at = 2019-05-20T13:43:53.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v2.11.0+5" }
+"3.0.0-rc.7" = { created_at = 2019-10-31T14:11:14.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.0.0-rc.7" }
+"3.1.0" = { created_at = 2020-02-14T14:45:30.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.1.0" }
+"3.1.1" = { created_at = 2020-02-26T16:48:09.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.1.1" }
+"3.1.2" = { created_at = 2020-07-22T14:04:43.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.1.2" }
+"3.1.3" = { created_at = 2020-08-15T00:51:09.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.1.3" }
+"3.2.0" = { created_at = 2022-01-08T07:35:46.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.2.0" }
+"3.3.0" = { created_at = 2022-01-10T06:15:50.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.3.0" }
+"3.3.1" = { created_at = 2022-01-10T06:58:34.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.3.1" }
+"3.3.2" = { created_at = 2022-01-10T09:12:21.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.3.2" }
+"3.4.0" = { created_at = 2022-01-22T08:14:26.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.4.0" }
+"3.4.1" = { created_at = 2022-01-23T04:57:43.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.4.1" }
+"3.4.2" = { created_at = 2022-02-13T03:22:10.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.4.2" }
+"3.5.0" = { created_at = 2022-05-14T00:46:28.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.5.0" }
+"3.6.0" = { created_at = 2022-09-23T09:54:11.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.6.0" }
+"3.7.0" = { created_at = 2023-04-24T05:59:48.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.7.0" }
+"3.8.0" = { created_at = 2023-05-16T02:18:58.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.8.0" }
+"3.8.1" = { created_at = 2023-06-04T01:34:34.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.8.1" }
+"3.9.0" = { created_at = 2024-01-13T06:57:39.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.0" }
+"3.9.1" = { created_at = 2024-01-13T10:42:46.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.1" }
+"3.9.2" = { created_at = 2024-01-16T04:39:35.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.2" }
+"3.9.3" = { created_at = 2024-01-27T01:29:47.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.3" }
+"3.9.4" = { created_at = 2024-01-27T06:02:58.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.4" }
+"3.9.5" = { created_at = 2024-02-28T12:37:43.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.5" }
+"3.9.6" = { created_at = 2024-05-14T13:10:41.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.6" }
+"3.9.7" = { created_at = 2024-05-26T12:31:30.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.7" }
+"3.9.8" = { created_at = 2024-06-15T10:36:18.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.8" }
+"3.9.9" = { created_at = 2024-06-30T01:36:27.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.9" }
+"3.9.10" = { created_at = 2024-09-02T09:16:43.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.10" }
+"3.9.11" = { created_at = 2024-09-23T00:14:24.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.11" }
+"3.9.12" = { created_at = 2024-11-14T00:20:46.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.12" }
+"3.9.13" = { created_at = 2024-12-18T23:45:51.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.13" }
+"3.9.14" = { created_at = 2025-01-17T10:38:33.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.9.14" }
+"3.10.0" = { created_at = 2025-02-04T05:38:50.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.10.0" }
+"3.11.0" = { created_at = 2025-04-08T10:07:25.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.11.0" }
+"3.12.0" = { created_at = 2025-05-19T22:43:57.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.12.0" }
+"3.12.1" = { created_at = 2025-05-28T23:26:08.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.12.1" }
+"3.12.2" = { created_at = 2025-06-09T12:52:47.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.12.2" }
+"3.12.3" = { created_at = 2025-07-08T22:39:19.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.12.3" }
+"3.12.4" = { created_at = 2025-07-24T13:51:52.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.12.4" }
+"3.12.5" = { created_at = 2025-08-13T23:53:05.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.12.5" }
+"3.13.0" = { created_at = 2025-09-11T22:35:16.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.13.0" }
+"3.13.1" = { created_at = 2025-10-12T08:32:58.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.13.1" }
+"3.13.2" = { created_at = 2025-11-08T16:06:13.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.13.2" }
+"3.14.0" = { created_at = 2025-11-17T00:39:22.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.14.0" }
+"3.14.1" = { created_at = 2025-11-18T23:39:43.000Z, release_url = "https://github.com/databus23/helm-diff/releases/tag/v3.14.1" }

@@ -1,339 +1,339 @@
 [versions]
-"0.16" = { created_at = 2016-06-06T12:37:59.000Z }
-"0.17" = { created_at = 2016-10-07T14:42:05.000Z }
-"0.18" = { created_at = 2016-12-19T14:38:10.000Z }
-"0.18.1" = { created_at = 2016-12-29T17:12:41.000Z }
-"0.19" = { created_at = 2017-02-27T10:21:29.000Z }
-"0.20" = { created_at = 2017-04-10T07:10:53.000Z }
-"0.20.1" = { created_at = 2017-04-13T14:00:30.000Z }
-"0.20.2" = { created_at = 2017-04-16T09:09:50.000Z }
-"0.20.3" = { created_at = 2017-04-24T11:07:47.000Z }
-"0.20.4" = { created_at = 2017-04-24T19:07:19.000Z }
-"0.20.5" = { created_at = 2017-04-25T07:18:05.000Z }
-"0.20.6" = { created_at = 2017-04-27T08:18:17.000Z }
-"0.20.7" = { created_at = 2017-05-03T07:38:34.000Z }
-"0.21" = { created_at = 2017-05-22T13:11:22.000Z }
-"0.22" = { created_at = 2017-06-12T07:02:57.000Z }
-"0.22.1" = { created_at = 2017-06-13T12:17:45.000Z }
-"0.23" = { created_at = 2017-06-16T07:47:25.000Z }
-"0.24" = { created_at = 2017-06-21T11:53:23.000Z }
-"0.24.1" = { created_at = 2017-06-24T08:26:30.000Z }
-"0.25" = { created_at = 2017-07-07T07:29:08.000Z }
-"0.25.1" = { created_at = 2017-07-10T06:57:34.000Z }
-"0.26" = { created_at = 2017-08-07T07:09:19.000Z }
-"0.27" = { created_at = 2017-09-11T05:32:02.000Z }
-"0.27.1" = { created_at = 2017-09-13T11:03:59.000Z }
-"0.28" = { created_at = 2017-09-25T07:59:12.000Z }
-"0.29" = { created_at = 2017-09-26T19:23:15.000Z }
-"0.30" = { created_at = 2017-10-16T08:39:00.000Z }
-"0.30.1" = { created_at = 2017-10-19T05:41:50.000Z }
-"0.30.2" = { created_at = 2017-10-19T11:34:09.000Z }
-"0.31" = { created_at = 2017-11-20T10:28:21.000Z }
-"0.31.1" = { created_at = 2017-11-27T11:26:08.000Z }
-"0.32" = { created_at = 2017-12-31T09:24:45.000Z }
-"0.32.1" = { created_at = 2018-01-02T09:07:55.000Z }
-"0.32.2" = { created_at = 2018-01-03T09:54:04.000Z }
-"0.32.3" = { created_at = 2018-01-08T11:10:08.000Z }
-"0.32.4" = { created_at = 2018-01-11T08:58:01.000Z }
-"0.33" = { created_at = 2018-01-18T10:13:30.000Z }
-"0.34" = { created_at = 2018-01-22T12:06:38.000Z }
-"0.35" = { created_at = 2018-01-31T10:44:41.000Z }
-"0.36" = { created_at = 2018-02-05T15:22:26.000Z }
-"0.36.1" = { created_at = 2018-02-15T09:07:43.000Z }
-"0.37" = { created_at = 2018-02-27T09:15:23.000Z }
-"0.37.1" = { created_at = 2018-03-07T17:56:23.000Z }
-"0.38" = { created_at = 2018-04-02T11:03:32.000Z }
-"0.38.1" = { created_at = 2018-04-05T16:35:25.000Z }
-"0.38.2" = { created_at = 2018-04-09T08:17:15.000Z }
-"0.39" = { created_at = 2018-04-16T07:31:26.000Z }
-"0.40" = { created_at = 2018-04-23T07:40:57.000Z }
-"0.40.1" = { created_at = 2018-04-25T13:20:44.000Z }
-"0.40.2" = { created_at = 2018-04-30T06:47:41.000Z }
-"0.40.3" = { created_at = 2018-05-09T07:46:30.000Z }
-"0.41" = { created_at = 2018-05-25T16:57:18.000Z }
-"0.42" = { created_at = 2018-06-12T06:37:19.000Z }
-"0.42.1" = { created_at = 2018-06-13T10:16:33.000Z }
-"0.42.2" = { created_at = 2018-06-28T12:36:15.000Z }
-"0.43" = { created_at = 2018-07-09T10:00:04.000Z }
-"0.44" = { created_at = 2018-07-13T06:03:09.000Z }
-"0.45" = { created_at = 2018-07-22T12:09:26.000Z }
-"0.45.1" = { created_at = 2018-07-25T08:56:21.000Z }
-"0.46" = { created_at = 2018-08-01T09:00:52.000Z }
-"0.47" = { created_at = 2018-08-17T09:15:18.000Z }
-"0.47.1" = { created_at = 2018-08-20T08:16:49.000Z }
-"0.48" = { created_at = 2018-08-29T06:33:03.000Z }
-"0.49" = { created_at = 2018-09-24T10:01:04.000Z }
-"0.49.1" = { created_at = 2018-10-10T10:36:37.000Z }
-"0.49.2" = { created_at = 2018-10-11T09:47:57.000Z }
-"0.50" = { created_at = 2018-10-29T09:51:50.000Z }
-"0.51" = { created_at = 2018-11-07T10:09:43.000Z }
-"0.52" = { created_at = 2018-11-28T14:06:31.000Z }
-"0.53" = { created_at = 2018-12-24T08:24:42.000Z }
-"0.54.0" = { created_at = 2019-02-01T09:40:32.000Z }
-"0.55.0" = { created_at = 2019-04-08T16:39:45.000Z }
-"0.55.1" = { created_at = 2019-04-12T09:56:13.000Z }
-"0.55.2" = { created_at = 2019-04-17T12:20:37.000Z }
-"0.55.3" = { created_at = 2019-04-20T14:23:12.000Z }
-"0.55.4" = { created_at = 2019-04-25T07:38:48.000Z }
-"0.55.5" = { created_at = 2019-05-02T13:03:34.000Z }
-"0.55.6" = { created_at = 2019-05-18T07:55:28.000Z }
-"0.56.0" = { created_at = 2019-07-25T16:37:58.000Z }
-"0.56.1" = { created_at = 2019-07-28T14:51:43.000Z }
-"0.56.2" = { created_at = 2019-07-30T09:05:09.000Z }
-"0.56.3" = { created_at = 2019-07-31T12:48:33.000Z }
-"0.57.0" = { created_at = 2019-08-14T08:05:33.000Z }
-"0.57.1" = { created_at = 2019-08-15T18:52:49.000Z }
-"0.57.2" = { created_at = 2019-08-17T17:51:54.000Z }
-"0.58.0" = { created_at = 2019-09-04T15:41:58.000Z }
-"0.58.1" = { created_at = 2019-09-06T09:18:56.000Z }
-"0.58.2" = { created_at = 2019-09-13T08:04:20.000Z }
-"0.58.3" = { created_at = 2019-09-19T15:28:26.000Z }
-"0.59.0" = { created_at = 2019-10-21T09:38:50.000Z }
-"0.59.1" = { created_at = 2019-10-31T15:20:53.000Z }
-"0.60.0" = { created_at = 2019-11-27T10:09:46.000Z }
-"0.60.1" = { created_at = 2019-11-29T14:56:16.000Z }
-"0.61.0" = { created_at = 2019-12-11T08:26:33.000Z }
-"0.62.0" = { created_at = 2019-12-23T10:23:27.000Z }
-"0.62.1" = { created_at = 2020-01-01T17:38:22.000Z }
-"0.62.2" = { created_at = 2020-01-05T18:50:35.000Z }
-"0.63.0" = { created_at = 2020-01-23T12:39:31.000Z }
-"0.63.1" = { created_at = 2020-01-23T20:08:10.000Z }
-"0.63.2" = { created_at = 2020-01-27T12:13:04.000Z }
-"0.64.0" = { created_at = 2020-02-04T09:07:21.000Z }
-"0.64.1" = { created_at = 2020-02-09T20:44:34.000Z }
-"0.65.0" = { created_at = 2020-02-20T08:11:06.000Z }
-"0.65.1" = { created_at = 2020-02-20T13:42:26.000Z }
-"0.65.2" = { created_at = 2020-02-21T10:10:11.000Z }
-"0.65.3" = { created_at = 2020-02-23T09:58:31.000Z }
-"0.66.0" = { created_at = 2020-03-03T15:19:36.000Z }
-"0.67.0" = { created_at = 2020-03-09T20:35:43.000Z }
-"0.67.1" = { created_at = 2020-03-15T19:30:34.000Z }
-"0.68.0" = { created_at = 2020-03-21T11:47:37.000Z }
-"0.68.1" = { created_at = 2020-03-22T10:36:42.000Z }
-"0.68.2" = { created_at = 2020-03-24T08:21:09.000Z }
-"0.68.3" = { created_at = 2020-03-24T12:04:27.000Z }
-"0.69.0" = { created_at = 2020-04-10T09:08:37.000Z }
-"0.69.1" = { created_at = 2020-04-22T07:55:01.000Z }
-"0.69.2" = { created_at = 2020-04-24T07:48:07.000Z }
-"0.70.0" = { created_at = 2020-05-06T11:16:40.000Z }
-"0.71.0" = { created_at = 2020-05-18T16:05:47.000Z }
-"0.71.1" = { created_at = 2020-05-25T09:08:55.000Z }
-"0.72.0" = { created_at = 2020-05-31T12:05:36.000Z }
-"0.73.0" = { created_at = 2020-06-23T16:29:21.000Z }
-"0.74.0" = { created_at = 2020-07-13T10:30:11.000Z }
-"0.74.1" = { created_at = 2020-07-13T18:52:36.000Z }
-"0.74.2" = { created_at = 2020-07-17T17:22:42.000Z }
-"0.74.3" = { created_at = 2020-07-23T16:21:21.000Z }
-"0.75.0" = { created_at = 2020-09-14T09:19:06.000Z }
-"0.75.1" = { created_at = 2020-09-15T06:45:52.000Z }
-"0.76.0" = { created_at = 2020-10-06T15:29:25.000Z }
-"0.76.1" = { created_at = 2020-10-07T07:33:10.000Z }
-"0.76.2" = { created_at = 2020-10-07T08:59:11.000Z }
-"0.76.3" = { created_at = 2020-10-08T17:07:29.000Z }
-"0.76.4" = { created_at = 2020-10-12T08:32:44.000Z }
-"0.76.5" = { created_at = 2020-10-14T15:15:22.000Z }
-"0.77.0" = { created_at = 2020-10-30T10:12:16.000Z }
-"0.78.0" = { created_at = 2020-11-03T13:13:12.000Z }
-"0.78.1" = { created_at = 2020-11-05T09:38:59.000Z }
-"0.78.2" = { created_at = 2020-11-13T10:07:00.000Z }
-"0.79.0" = { created_at = 2020-11-27T09:06:36.000Z }
-"0.79.1" = { created_at = 2020-12-19T15:41:03.000Z }
-"0.80.0" = { created_at = 2020-12-31T13:36:35.000Z }
-"0.81.0" = { created_at = 2021-02-19T17:07:09.000Z }
-"0.82.0" = { created_at = 2021-03-21T17:28:02.000Z }
-"0.82.1" = { created_at = 2021-04-20T11:02:48.000Z }
-"0.83.0" = { created_at = 2021-05-01T12:10:05.000Z }
-"0.83.1" = { created_at = 2021-05-02T14:38:02.000Z }
-"0.84.0" = { created_at = 2021-06-18T14:55:51.000Z }
-"0.84.1" = { created_at = 2021-06-24T11:44:21.000Z }
-"0.84.2" = { created_at = 2021-06-28T10:59:18.000Z }
-"0.84.3" = { created_at = 2021-06-29T11:40:19.000Z }
-"0.84.4" = { created_at = 2021-07-01T11:51:53.000Z }
-"0.85.0" = { created_at = 2021-07-05T10:46:25.000Z }
-"0.86.0" = { created_at = 2021-07-21T09:53:11.000Z }
-"0.86.1" = { created_at = 2021-07-30T10:13:32.000Z }
-"0.87.0" = { created_at = 2021-08-03T10:57:26.000Z }
-"0.88.0" = { created_at = 2021-09-02T09:27:27.000Z }
-"0.88.1" = { created_at = 2021-09-04T09:39:19.000Z }
-"0.89.0" = { created_at = 2021-11-02T10:00:18.000Z }
-"0.89.1" = { created_at = 2021-11-05T15:44:32.000Z }
-"0.89.2" = { created_at = 2021-11-08T15:22:23.000Z }
-"0.89.3" = { created_at = 2021-11-15T12:17:45.000Z }
-"0.89.4" = { created_at = 2021-11-17T08:24:08.000Z }
-"0.90.0" = { created_at = 2021-12-08T09:33:46.000Z }
-"0.90.1" = { created_at = 2021-12-10T10:56:40.000Z }
-"0.91.0" = { created_at = 2021-12-17T09:50:19.000Z }
-"0.91.1" = { created_at = 2021-12-22T15:31:05.000Z }
-"0.91.2" = { created_at = 2021-12-23T15:33:33.000Z }
-"0.92.0" = { created_at = 2022-01-12T08:23:17.000Z }
-"0.92.1" = { created_at = 2022-01-27T11:44:40.000Z }
-"0.92.2" = { created_at = 2022-02-11T14:17:39.000Z }
-"0.93.0" = { created_at = 2022-02-28T08:30:42.000Z }
-"0.93.1" = { created_at = 2022-03-02T12:16:06.000Z }
-"0.93.2" = { created_at = 2022-03-04T12:21:48.000Z }
-"0.93.3" = { created_at = 2022-03-08T10:15:27.000Z }
-"0.94.0" = { created_at = 2022-03-10T09:46:35.000Z }
-"0.94.1" = { created_at = 2022-03-11T13:53:32.000Z }
-"0.94.2" = { created_at = 2022-03-12T10:28:41.000Z }
-"0.95.0" = { created_at = 2022-03-16T14:20:17.000Z }
-"0.96.0" = { created_at = 2022-03-26T09:15:58.000Z }
-"0.97.0" = { created_at = 2022-04-14T08:45:07.000Z }
-"0.97.1" = { created_at = 2022-04-16T16:57:30.000Z }
-"0.97.2" = { created_at = 2022-04-17T08:39:27.000Z }
-"0.97.3" = { created_at = 2022-04-18T17:22:19.000Z }
-"0.98.0" = { created_at = 2022-04-28T10:23:30.000Z }
-"0.99.0" = { created_at = 2022-05-16T08:10:56.000Z }
-"0.99.1" = { created_at = 2022-05-18T11:18:14.000Z }
-"0.100.0" = { created_at = 2022-05-31T08:37:12.000Z }
-"0.100.1" = { created_at = 2022-06-01T10:11:48.000Z }
-"0.100.2" = { created_at = 2022-06-08T10:25:57.000Z }
-"0.101.0" = { created_at = 2022-06-16T07:09:16.000Z }
-"0.102.0" = { created_at = 2022-08-28T16:29:34.000Z }
-"0.102.1" = { created_at = 2022-08-29T12:58:13.000Z }
-"0.102.2" = { created_at = 2022-08-31T10:42:06.000Z }
-"0.102.3" = { created_at = 2022-09-01T10:16:19.000Z }
-"0.103.0" = { created_at = 2022-09-15T16:23:56.000Z }
-"0.103.1" = { created_at = 2022-09-18T13:19:01.000Z }
-"0.104.0" = { created_at = 2022-09-23T14:32:56.000Z }
-"0.104.1" = { created_at = 2022-09-26T17:05:45.000Z }
-"0.104.2" = { created_at = 2022-09-29T10:31:09.000Z }
-"0.104.3" = { created_at = 2022-10-04T14:25:23.000Z }
-"0.105.0" = { created_at = 2022-10-28T12:29:05.000Z }
-"0.106.0" = { created_at = 2022-11-17T18:33:40.000Z }
-"0.107.0" = { created_at = 2022-11-24T13:59:45.000Z }
-"0.108.0" = { created_at = 2022-12-06T13:37:56.000Z }
-"0.109.0" = { created_at = 2022-12-23T10:38:11.000Z }
-"0.110.0" = { created_at = 2023-01-17T12:16:09.000Z }
-"0.111.0" = { created_at = 2023-03-01T20:57:44.000Z }
-"0.111.1" = { created_at = 2023-03-02T10:08:26.000Z }
-"0.111.2" = { created_at = 2023-03-05T12:32:20.000Z }
-"0.111.3" = { created_at = 2023-03-12T11:40:50.000Z }
-"0.112.0" = { created_at = 2023-05-23T08:14:20.000Z }
-"0.112.1" = { created_at = 2023-05-23T17:26:16.000Z }
-"0.112.2" = { created_at = 2023-05-24T10:45:31.000Z }
-"0.112.3" = { created_at = 2023-05-24T14:42:50.000Z }
-"0.112.4" = { created_at = 2023-05-28T13:04:00.000Z }
-"0.112.5" = { created_at = 2023-05-29T07:27:36.000Z }
-"0.112.6" = { created_at = 2023-06-01T09:03:29.000Z }
-"0.112.7" = { created_at = 2023-06-02T07:07:11.000Z }
-"0.113.0" = { created_at = 2023-06-05T15:04:51.000Z }
-"0.114.0" = { created_at = 2023-06-19T17:01:43.000Z }
-"0.114.1" = { created_at = 2023-06-23T11:02:58.000Z }
-"0.115.0" = { created_at = 2023-06-29T15:56:39.000Z }
-"0.115.1" = { created_at = 2023-07-03T17:28:25.000Z }
-"0.115.2" = { created_at = 2023-07-08T17:06:56.000Z }
-"0.115.3" = { created_at = 2023-07-13T16:11:34.000Z }
-"0.115.4" = { created_at = 2023-07-20T06:49:57.000Z }
-"0.116.0" = { created_at = 2023-07-31T10:28:28.000Z }
-"0.116.1" = { created_at = 2023-08-01T07:24:54.000Z }
-"0.117.0" = { created_at = 2023-08-07T12:49:48.000Z }
-"0.118.0" = { created_at = 2023-08-31T07:36:55.000Z }
-"0.118.1" = { created_at = 2023-08-31T09:42:31.000Z }
-"0.118.2" = { created_at = 2023-08-31T11:23:51.000Z }
-"0.119.0" = { created_at = 2023-09-24T15:20:17.000Z }
-"0.120.0" = { created_at = 2023-10-30T14:06:47.000Z }
-"0.120.1" = { created_at = 2023-10-30T16:44:31.000Z }
-"0.120.2" = { created_at = 2023-10-31T16:27:18.000Z }
-"0.120.3" = { created_at = 2023-11-01T17:57:00.000Z }
-"0.120.4" = { created_at = 2023-11-08T11:18:07.000Z }
-"0.121.0" = { created_at = 2023-12-05T15:22:31.000Z }
-"0.121.1" = { created_at = 2023-12-08T08:47:45.000Z }
-"0.121.2" = { created_at = 2024-01-05T12:21:15.000Z }
-"0.122.0" = { created_at = 2024-01-26T15:54:24.000Z }
-"0.123.0" = { created_at = 2024-02-19T16:32:38.000Z }
-"0.123.1" = { created_at = 2024-02-21T08:17:45.000Z }
-"0.123.2" = { created_at = 2024-02-22T15:27:15.000Z }
-"0.123.3" = { created_at = 2024-02-23T17:09:20.000Z }
-"0.123.4" = { created_at = 2024-02-26T16:33:05.000Z }
-"0.123.5" = { created_at = 2024-02-28T15:47:09.000Z }
-"0.123.6" = { created_at = 2024-02-28T18:29:40.000Z }
-"0.123.7" = { created_at = 2024-03-01T16:16:06.000Z }
-"0.123.8" = { created_at = 2024-03-07T13:14:42.000Z }
-"0.124.0" = { created_at = 2024-03-16T15:44:32.000Z }
-"0.124.1" = { created_at = 2024-03-20T11:40:10.000Z }
-"0.125.0" = { created_at = 2024-04-16T15:04:41.000Z }
-"0.125.1" = { created_at = 2024-04-18T08:21:19.000Z }
-"0.125.2" = { created_at = 2024-04-20T15:29:44.000Z }
-"0.125.3" = { created_at = 2024-04-22T17:18:35.000Z }
-"0.125.4" = { created_at = 2024-04-25T13:27:26.000Z }
-"0.125.5" = { created_at = 2024-05-01T15:22:11.000Z }
-"0.125.6" = { created_at = 2024-05-05T10:52:52.000Z }
-"0.125.7" = { created_at = 2024-05-08T14:46:24.000Z }
-"0.126.0" = { created_at = 2024-05-14T13:24:11.000Z }
-"0.126.1" = { created_at = 2024-05-15T10:42:34.000Z }
-"0.126.2" = { created_at = 2024-05-30T15:19:22.000Z }
-"0.126.3" = { created_at = 2024-06-02T13:02:43.000Z }
-"0.127.0" = { created_at = 2024-06-05T10:27:59.000Z }
-"0.128.0" = { created_at = 2024-06-25T16:15:48.000Z }
-"0.128.1" = { created_at = 2024-07-02T06:46:41.000Z }
-"0.128.2" = { created_at = 2024-07-04T08:13:25.000Z }
-"0.129.0" = { created_at = 2024-07-17T13:29:16.000Z }
-"0.130.0" = { created_at = 2024-07-29T13:51:56.000Z }
-"0.131.0" = { created_at = 2024-08-02T09:03:48.000Z }
-"0.132.0" = { created_at = 2024-08-12T15:21:36.000Z }
-"0.132.1" = { created_at = 2024-08-13T10:10:10.000Z }
-"0.132.2" = { created_at = 2024-08-14T16:17:21.000Z }
-"0.133.0" = { created_at = 2024-08-17T19:57:41.000Z }
-"0.133.1" = { created_at = 2024-08-26T13:58:46.000Z }
-"0.134.0" = { created_at = 2024-09-03T09:54:22.000Z }
-"0.134.1" = { created_at = 2024-09-05T10:17:50.000Z }
-"0.134.2" = { created_at = 2024-09-10T10:46:33.000Z }
-"0.134.3" = { created_at = 2024-09-19T14:28:20.000Z }
-"0.135.0" = { created_at = 2024-09-27T13:17:08.000Z }
-"0.136.0" = { created_at = 2024-10-15T13:17:24.000Z }
-"0.136.1" = { created_at = 2024-10-16T16:05:18.000Z }
-"0.136.2" = { created_at = 2024-10-17T14:30:05.000Z }
-"0.136.3" = { created_at = 2024-10-21T13:31:54.000Z }
-"0.136.4" = { created_at = 2024-10-22T08:35:58.000Z }
-"0.136.5" = { created_at = 2024-10-24T12:26:27.000Z }
-"0.137.0" = { created_at = 2024-11-04T16:04:06.000Z }
-"0.137.1" = { created_at = 2024-11-05T11:49:09.000Z }
-"0.138.0" = { created_at = 2024-11-06T11:22:34.000Z }
-"0.139.0" = { created_at = 2024-11-18T16:17:45.000Z }
-"0.139.1" = { created_at = 2024-11-23T14:13:46.000Z }
-"0.139.2" = { created_at = 2024-11-23T15:33:51.000Z }
-"0.139.3" = { created_at = 2024-11-29T15:36:56.000Z }
-"0.139.4" = { created_at = 2024-12-09T17:45:23.000Z }
-"0.139.5" = { created_at = 2024-12-14T19:16:21.000Z }
-"0.140.0" = { created_at = 2024-12-17T14:20:55.000Z }
-"0.140.1" = { created_at = 2024-12-23T16:26:35.000Z }
-"0.140.2" = { created_at = 2024-12-30T15:01:53.000Z }
-"0.141.0" = { created_at = 2025-01-16T13:11:18.000Z }
-"0.142.0" = { created_at = 2025-01-22T12:20:52.000Z }
-"0.143.0" = { created_at = 2025-02-01T15:56:04.000Z }
-"0.143.1" = { created_at = 2025-02-04T08:57:38.000Z }
-"0.144.0" = { created_at = 2025-02-17T16:22:31.000Z }
-"0.144.1" = { created_at = 2025-02-18T12:14:07.000Z }
-"0.144.2" = { created_at = 2025-02-19T12:17:04.000Z }
-"0.145.0" = { created_at = 2025-02-26T15:41:25.000Z }
-"0.146.0" = { created_at = 2025-04-10T14:57:56.000Z }
-"0.146.1" = { created_at = 2025-04-10T16:44:46.000Z }
-"0.146.2" = { created_at = 2025-04-11T17:25:13.000Z }
-"0.146.3" = { created_at = 2025-04-12T17:21:50.000Z }
-"0.146.4" = { created_at = 2025-04-14T13:10:30.000Z }
-"0.146.5" = { created_at = 2025-04-15T17:54:38.000Z }
-"0.146.6" = { created_at = 2025-04-20T10:58:40.000Z }
-"0.146.7" = { created_at = 2025-04-22T17:26:42.000Z }
-"0.147.0" = { created_at = 2025-04-25T15:26:28.000Z }
-"0.147.1" = { created_at = 2025-05-01T13:50:04.000Z }
-"0.147.2" = { created_at = 2025-05-06T11:18:55.000Z }
-"0.147.3" = { created_at = 2025-05-12T12:25:03.000Z }
-"0.147.4" = { created_at = 2025-05-20T10:41:19.000Z }
-"0.147.5" = { created_at = 2025-05-22T11:37:19.000Z }
-"0.147.6" = { created_at = 2025-05-27T11:17:16.000Z }
-"0.147.7" = { created_at = 2025-05-31T12:41:12.000Z }
-"0.147.8" = { created_at = 2025-06-07T12:59:52.000Z }
-"0.147.9" = { created_at = 2025-06-23T08:22:20.000Z }
-"0.148.0" = { created_at = 2025-07-08T13:34:49.000Z }
-"0.148.1" = { created_at = 2025-07-11T12:56:21.000Z }
-"0.148.2" = { created_at = 2025-07-27T12:43:24.000Z }
-"0.149.0" = { created_at = 2025-08-27T15:37:16.000Z }
-"0.149.1" = { created_at = 2025-09-04T14:04:46.000Z }
-"0.150.0" = { created_at = 2025-09-08T13:01:12.000Z }
-"0.150.1" = { created_at = 2025-09-25T10:26:04.000Z }
-"0.151.0" = { created_at = 2025-10-02T13:30:36.000Z }
-"0.151.1" = { created_at = 2025-10-15T14:51:34.000Z }
-"0.151.2" = { created_at = 2025-10-16T16:52:34.000Z }
-"0.152.0" = { created_at = 2025-10-21T16:29:49.000Z }
-"0.152.1" = { created_at = 2025-10-22T19:10:44.000Z }
-"0.152.2" = { created_at = 2025-10-24T15:31:49.000Z }
+"0.16" = { created_at = 2016-06-06T12:37:59.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.16" }
+"0.17" = { created_at = 2016-10-07T14:42:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.17" }
+"0.18" = { created_at = 2016-12-19T14:38:10.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.18" }
+"0.18.1" = { created_at = 2016-12-29T17:12:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.18.1" }
+"0.19" = { created_at = 2017-02-27T10:21:29.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.19" }
+"0.20" = { created_at = 2017-04-10T07:10:53.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20" }
+"0.20.1" = { created_at = 2017-04-13T14:00:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.1" }
+"0.20.2" = { created_at = 2017-04-16T09:09:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.2" }
+"0.20.3" = { created_at = 2017-04-24T11:07:47.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.3" }
+"0.20.4" = { created_at = 2017-04-24T19:07:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.4" }
+"0.20.5" = { created_at = 2017-04-25T07:18:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.5" }
+"0.20.6" = { created_at = 2017-04-27T08:18:17.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.6" }
+"0.20.7" = { created_at = 2017-05-03T07:38:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.20.7" }
+"0.21" = { created_at = 2017-05-22T13:11:22.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.21" }
+"0.22" = { created_at = 2017-06-12T07:02:57.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.22" }
+"0.22.1" = { created_at = 2017-06-13T12:17:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.22.1" }
+"0.23" = { created_at = 2017-06-16T07:47:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.23" }
+"0.24" = { created_at = 2017-06-21T11:53:23.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.24" }
+"0.24.1" = { created_at = 2017-06-24T08:26:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.24.1" }
+"0.25" = { created_at = 2017-07-07T07:29:08.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.25" }
+"0.25.1" = { created_at = 2017-07-10T06:57:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.25.1" }
+"0.26" = { created_at = 2017-08-07T07:09:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.26" }
+"0.27" = { created_at = 2017-09-11T05:32:02.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.27" }
+"0.27.1" = { created_at = 2017-09-13T11:03:59.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.27.1" }
+"0.28" = { created_at = 2017-09-25T07:59:12.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.28" }
+"0.29" = { created_at = 2017-09-26T19:23:15.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.29" }
+"0.30" = { created_at = 2017-10-16T08:39:00.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.30" }
+"0.30.1" = { created_at = 2017-10-19T05:41:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.30.1" }
+"0.30.2" = { created_at = 2017-10-19T11:34:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.30.2" }
+"0.31" = { created_at = 2017-11-20T10:28:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.31" }
+"0.31.1" = { created_at = 2017-11-27T11:26:08.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.31.1" }
+"0.32" = { created_at = 2017-12-31T09:24:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.32" }
+"0.32.1" = { created_at = 2018-01-02T09:07:55.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.32.1" }
+"0.32.2" = { created_at = 2018-01-03T09:54:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.32.2" }
+"0.32.3" = { created_at = 2018-01-08T11:10:08.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.32.3" }
+"0.32.4" = { created_at = 2018-01-11T08:58:01.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.32.4" }
+"0.33" = { created_at = 2018-01-18T10:13:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.33" }
+"0.34" = { created_at = 2018-01-22T12:06:38.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.34" }
+"0.35" = { created_at = 2018-01-31T10:44:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.35" }
+"0.36" = { created_at = 2018-02-05T15:22:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.36" }
+"0.36.1" = { created_at = 2018-02-15T09:07:43.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.36.1" }
+"0.37" = { created_at = 2018-02-27T09:15:23.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.37" }
+"0.37.1" = { created_at = 2018-03-07T17:56:23.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.37.1" }
+"0.38" = { created_at = 2018-04-02T11:03:32.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.38" }
+"0.38.1" = { created_at = 2018-04-05T16:35:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.38.1" }
+"0.38.2" = { created_at = 2018-04-09T08:17:15.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.38.2" }
+"0.39" = { created_at = 2018-04-16T07:31:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.39" }
+"0.40" = { created_at = 2018-04-23T07:40:57.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.40" }
+"0.40.1" = { created_at = 2018-04-25T13:20:44.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.40.1" }
+"0.40.2" = { created_at = 2018-04-30T06:47:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.40.2" }
+"0.40.3" = { created_at = 2018-05-09T07:46:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.40.3" }
+"0.41" = { created_at = 2018-05-25T16:57:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.41" }
+"0.42" = { created_at = 2018-06-12T06:37:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.42" }
+"0.42.1" = { created_at = 2018-06-13T10:16:33.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.42.1" }
+"0.42.2" = { created_at = 2018-06-28T12:36:15.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.42.2" }
+"0.43" = { created_at = 2018-07-09T10:00:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.43" }
+"0.44" = { created_at = 2018-07-13T06:03:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.44" }
+"0.45" = { created_at = 2018-07-22T12:09:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.45" }
+"0.45.1" = { created_at = 2018-07-25T08:56:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.45.1" }
+"0.46" = { created_at = 2018-08-01T09:00:52.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.46" }
+"0.47" = { created_at = 2018-08-17T09:15:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.47" }
+"0.47.1" = { created_at = 2018-08-20T08:16:49.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.47.1" }
+"0.48" = { created_at = 2018-08-29T06:33:03.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.48" }
+"0.49" = { created_at = 2018-09-24T10:01:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.49" }
+"0.49.1" = { created_at = 2018-10-10T10:36:37.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.49.1" }
+"0.49.2" = { created_at = 2018-10-11T09:47:57.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.49.2" }
+"0.50" = { created_at = 2018-10-29T09:51:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.50" }
+"0.51" = { created_at = 2018-11-07T10:09:43.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.51" }
+"0.52" = { created_at = 2018-11-28T14:06:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.52" }
+"0.53" = { created_at = 2018-12-24T08:24:42.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.53" }
+"0.54.0" = { created_at = 2019-02-01T09:40:32.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.54.0" }
+"0.55.0" = { created_at = 2019-04-08T16:39:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.0" }
+"0.55.1" = { created_at = 2019-04-12T09:56:13.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.1" }
+"0.55.2" = { created_at = 2019-04-17T12:20:37.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.2" }
+"0.55.3" = { created_at = 2019-04-20T14:23:12.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.3" }
+"0.55.4" = { created_at = 2019-04-25T07:38:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.4" }
+"0.55.5" = { created_at = 2019-05-02T13:03:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.5" }
+"0.55.6" = { created_at = 2019-05-18T07:55:28.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.55.6" }
+"0.56.0" = { created_at = 2019-07-25T16:37:58.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.56.0" }
+"0.56.1" = { created_at = 2019-07-28T14:51:43.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.56.1" }
+"0.56.2" = { created_at = 2019-07-30T09:05:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.56.2" }
+"0.56.3" = { created_at = 2019-07-31T12:48:33.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.56.3" }
+"0.57.0" = { created_at = 2019-08-14T08:05:33.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.57.0" }
+"0.57.1" = { created_at = 2019-08-15T18:52:49.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.57.1" }
+"0.57.2" = { created_at = 2019-08-17T17:51:54.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.57.2" }
+"0.58.0" = { created_at = 2019-09-04T15:41:58.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.58.0" }
+"0.58.1" = { created_at = 2019-09-06T09:18:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.58.1" }
+"0.58.2" = { created_at = 2019-09-13T08:04:20.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.58.2" }
+"0.58.3" = { created_at = 2019-09-19T15:28:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.58.3" }
+"0.59.0" = { created_at = 2019-10-21T09:38:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.59.0" }
+"0.59.1" = { created_at = 2019-10-31T15:20:53.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.59.1" }
+"0.60.0" = { created_at = 2019-11-27T10:09:46.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.60.0" }
+"0.60.1" = { created_at = 2019-11-29T14:56:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.60.1" }
+"0.61.0" = { created_at = 2019-12-11T08:26:33.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.61.0" }
+"0.62.0" = { created_at = 2019-12-23T10:23:27.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.62.0" }
+"0.62.1" = { created_at = 2020-01-01T17:38:22.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.62.1" }
+"0.62.2" = { created_at = 2020-01-05T18:50:35.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.62.2" }
+"0.63.0" = { created_at = 2020-01-23T12:39:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.63.0" }
+"0.63.1" = { created_at = 2020-01-23T20:08:10.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.63.1" }
+"0.63.2" = { created_at = 2020-01-27T12:13:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.63.2" }
+"0.64.0" = { created_at = 2020-02-04T09:07:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.64.0" }
+"0.64.1" = { created_at = 2020-02-09T20:44:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.64.1" }
+"0.65.0" = { created_at = 2020-02-20T08:11:06.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.65.0" }
+"0.65.1" = { created_at = 2020-02-20T13:42:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.65.1" }
+"0.65.2" = { created_at = 2020-02-21T10:10:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.65.2" }
+"0.65.3" = { created_at = 2020-02-23T09:58:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.65.3" }
+"0.66.0" = { created_at = 2020-03-03T15:19:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.66.0" }
+"0.67.0" = { created_at = 2020-03-09T20:35:43.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.67.0" }
+"0.67.1" = { created_at = 2020-03-15T19:30:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.67.1" }
+"0.68.0" = { created_at = 2020-03-21T11:47:37.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.68.0" }
+"0.68.1" = { created_at = 2020-03-22T10:36:42.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.68.1" }
+"0.68.2" = { created_at = 2020-03-24T08:21:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.68.2" }
+"0.68.3" = { created_at = 2020-03-24T12:04:27.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.68.3" }
+"0.69.0" = { created_at = 2020-04-10T09:08:37.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.69.0" }
+"0.69.1" = { created_at = 2020-04-22T07:55:01.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.69.1" }
+"0.69.2" = { created_at = 2020-04-24T07:48:07.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.69.2" }
+"0.70.0" = { created_at = 2020-05-06T11:16:40.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.70.0" }
+"0.71.0" = { created_at = 2020-05-18T16:05:47.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.71.0" }
+"0.71.1" = { created_at = 2020-05-25T09:08:55.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.71.1" }
+"0.72.0" = { created_at = 2020-05-31T12:05:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.72.0" }
+"0.73.0" = { created_at = 2020-06-23T16:29:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.73.0" }
+"0.74.0" = { created_at = 2020-07-13T10:30:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.74.0" }
+"0.74.1" = { created_at = 2020-07-13T18:52:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.74.1" }
+"0.74.2" = { created_at = 2020-07-17T17:22:42.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.74.2" }
+"0.74.3" = { created_at = 2020-07-23T16:21:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.74.3" }
+"0.75.0" = { created_at = 2020-09-14T09:19:06.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.75.0" }
+"0.75.1" = { created_at = 2020-09-15T06:45:52.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.75.1" }
+"0.76.0" = { created_at = 2020-10-06T15:29:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.76.0" }
+"0.76.1" = { created_at = 2020-10-07T07:33:10.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.76.1" }
+"0.76.2" = { created_at = 2020-10-07T08:59:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.76.2" }
+"0.76.3" = { created_at = 2020-10-08T17:07:29.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.76.3" }
+"0.76.4" = { created_at = 2020-10-12T08:32:44.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.76.4" }
+"0.76.5" = { created_at = 2020-10-14T15:15:22.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.76.5" }
+"0.77.0" = { created_at = 2020-10-30T10:12:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.77.0" }
+"0.78.0" = { created_at = 2020-11-03T13:13:12.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.78.0" }
+"0.78.1" = { created_at = 2020-11-05T09:38:59.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.78.1" }
+"0.78.2" = { created_at = 2020-11-13T10:07:00.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.78.2" }
+"0.79.0" = { created_at = 2020-11-27T09:06:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.79.0" }
+"0.79.1" = { created_at = 2020-12-19T15:41:03.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.79.1" }
+"0.80.0" = { created_at = 2020-12-31T13:36:35.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.80.0" }
+"0.81.0" = { created_at = 2021-02-19T17:07:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.81.0" }
+"0.82.0" = { created_at = 2021-03-21T17:28:02.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.82.0" }
+"0.82.1" = { created_at = 2021-04-20T11:02:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.82.1" }
+"0.83.0" = { created_at = 2021-05-01T12:10:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.83.0" }
+"0.83.1" = { created_at = 2021-05-02T14:38:02.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.83.1" }
+"0.84.0" = { created_at = 2021-06-18T14:55:51.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.84.0" }
+"0.84.1" = { created_at = 2021-06-24T11:44:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.84.1" }
+"0.84.2" = { created_at = 2021-06-28T10:59:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.84.2" }
+"0.84.3" = { created_at = 2021-06-29T11:40:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.84.3" }
+"0.84.4" = { created_at = 2021-07-01T11:51:53.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.84.4" }
+"0.85.0" = { created_at = 2021-07-05T10:46:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.85.0" }
+"0.86.0" = { created_at = 2021-07-21T09:53:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.86.0" }
+"0.86.1" = { created_at = 2021-07-30T10:13:32.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.86.1" }
+"0.87.0" = { created_at = 2021-08-03T10:57:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.87.0" }
+"0.88.0" = { created_at = 2021-09-02T09:27:27.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.88.0" }
+"0.88.1" = { created_at = 2021-09-04T09:39:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.88.1" }
+"0.89.0" = { created_at = 2021-11-02T10:00:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.89.0" }
+"0.89.1" = { created_at = 2021-11-05T15:44:32.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.89.1" }
+"0.89.2" = { created_at = 2021-11-08T15:22:23.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.89.2" }
+"0.89.3" = { created_at = 2021-11-15T12:17:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.89.3" }
+"0.89.4" = { created_at = 2021-11-17T08:24:08.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.89.4" }
+"0.90.0" = { created_at = 2021-12-08T09:33:46.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.90.0" }
+"0.90.1" = { created_at = 2021-12-10T10:56:40.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.90.1" }
+"0.91.0" = { created_at = 2021-12-17T09:50:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.91.0" }
+"0.91.1" = { created_at = 2021-12-22T15:31:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.91.1" }
+"0.91.2" = { created_at = 2021-12-23T15:33:33.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.91.2" }
+"0.92.0" = { created_at = 2022-01-12T08:23:17.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.92.0" }
+"0.92.1" = { created_at = 2022-01-27T11:44:40.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.92.1" }
+"0.92.2" = { created_at = 2022-02-11T14:17:39.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.92.2" }
+"0.93.0" = { created_at = 2022-02-28T08:30:42.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.93.0" }
+"0.93.1" = { created_at = 2022-03-02T12:16:06.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.93.1" }
+"0.93.2" = { created_at = 2022-03-04T12:21:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.93.2" }
+"0.93.3" = { created_at = 2022-03-08T10:15:27.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.93.3" }
+"0.94.0" = { created_at = 2022-03-10T09:46:35.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.94.0" }
+"0.94.1" = { created_at = 2022-03-11T13:53:32.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.94.1" }
+"0.94.2" = { created_at = 2022-03-12T10:28:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.94.2" }
+"0.95.0" = { created_at = 2022-03-16T14:20:17.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.95.0" }
+"0.96.0" = { created_at = 2022-03-26T09:15:58.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.96.0" }
+"0.97.0" = { created_at = 2022-04-14T08:45:07.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.97.0" }
+"0.97.1" = { created_at = 2022-04-16T16:57:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.97.1" }
+"0.97.2" = { created_at = 2022-04-17T08:39:27.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.97.2" }
+"0.97.3" = { created_at = 2022-04-18T17:22:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.97.3" }
+"0.98.0" = { created_at = 2022-04-28T10:23:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.98.0" }
+"0.99.0" = { created_at = 2022-05-16T08:10:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.99.0" }
+"0.99.1" = { created_at = 2022-05-18T11:18:14.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.99.1" }
+"0.100.0" = { created_at = 2022-05-31T08:37:12.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.100.0" }
+"0.100.1" = { created_at = 2022-06-01T10:11:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.100.1" }
+"0.100.2" = { created_at = 2022-06-08T10:25:57.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.100.2" }
+"0.101.0" = { created_at = 2022-06-16T07:09:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.101.0" }
+"0.102.0" = { created_at = 2022-08-28T16:29:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.102.0" }
+"0.102.1" = { created_at = 2022-08-29T12:58:13.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.102.1" }
+"0.102.2" = { created_at = 2022-08-31T10:42:06.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.102.2" }
+"0.102.3" = { created_at = 2022-09-01T10:16:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.102.3" }
+"0.103.0" = { created_at = 2022-09-15T16:23:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.103.0" }
+"0.103.1" = { created_at = 2022-09-18T13:19:01.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.103.1" }
+"0.104.0" = { created_at = 2022-09-23T14:32:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.104.0" }
+"0.104.1" = { created_at = 2022-09-26T17:05:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.104.1" }
+"0.104.2" = { created_at = 2022-09-29T10:31:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.104.2" }
+"0.104.3" = { created_at = 2022-10-04T14:25:23.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.104.3" }
+"0.105.0" = { created_at = 2022-10-28T12:29:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.105.0" }
+"0.106.0" = { created_at = 2022-11-17T18:33:40.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.106.0" }
+"0.107.0" = { created_at = 2022-11-24T13:59:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.107.0" }
+"0.108.0" = { created_at = 2022-12-06T13:37:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.108.0" }
+"0.109.0" = { created_at = 2022-12-23T10:38:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.109.0" }
+"0.110.0" = { created_at = 2023-01-17T12:16:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.110.0" }
+"0.111.0" = { created_at = 2023-03-01T20:57:44.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.111.0" }
+"0.111.1" = { created_at = 2023-03-02T10:08:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.111.1" }
+"0.111.2" = { created_at = 2023-03-05T12:32:20.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.111.2" }
+"0.111.3" = { created_at = 2023-03-12T11:40:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.111.3" }
+"0.112.0" = { created_at = 2023-05-23T08:14:20.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.0" }
+"0.112.1" = { created_at = 2023-05-23T17:26:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.1" }
+"0.112.2" = { created_at = 2023-05-24T10:45:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.2" }
+"0.112.3" = { created_at = 2023-05-24T14:42:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.3" }
+"0.112.4" = { created_at = 2023-05-28T13:04:00.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.4" }
+"0.112.5" = { created_at = 2023-05-29T07:27:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.5" }
+"0.112.6" = { created_at = 2023-06-01T09:03:29.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.6" }
+"0.112.7" = { created_at = 2023-06-02T07:07:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.112.7" }
+"0.113.0" = { created_at = 2023-06-05T15:04:51.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.113.0" }
+"0.114.0" = { created_at = 2023-06-19T17:01:43.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.114.0" }
+"0.114.1" = { created_at = 2023-06-23T11:02:58.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.114.1" }
+"0.115.0" = { created_at = 2023-06-29T15:56:39.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.115.0" }
+"0.115.1" = { created_at = 2023-07-03T17:28:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.115.1" }
+"0.115.2" = { created_at = 2023-07-08T17:06:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.115.2" }
+"0.115.3" = { created_at = 2023-07-13T16:11:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.115.3" }
+"0.115.4" = { created_at = 2023-07-20T06:49:57.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.115.4" }
+"0.116.0" = { created_at = 2023-07-31T10:28:28.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.116.0" }
+"0.116.1" = { created_at = 2023-08-01T07:24:54.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.116.1" }
+"0.117.0" = { created_at = 2023-08-07T12:49:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.117.0" }
+"0.118.0" = { created_at = 2023-08-31T07:36:55.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.118.0" }
+"0.118.1" = { created_at = 2023-08-31T09:42:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.118.1" }
+"0.118.2" = { created_at = 2023-08-31T11:23:51.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.118.2" }
+"0.119.0" = { created_at = 2023-09-24T15:20:17.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.119.0" }
+"0.120.0" = { created_at = 2023-10-30T14:06:47.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.120.0" }
+"0.120.1" = { created_at = 2023-10-30T16:44:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.120.1" }
+"0.120.2" = { created_at = 2023-10-31T16:27:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.120.2" }
+"0.120.3" = { created_at = 2023-11-01T17:57:00.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.120.3" }
+"0.120.4" = { created_at = 2023-11-08T11:18:07.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.120.4" }
+"0.121.0" = { created_at = 2023-12-05T15:22:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.121.0" }
+"0.121.1" = { created_at = 2023-12-08T08:47:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.121.1" }
+"0.121.2" = { created_at = 2024-01-05T12:21:15.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.121.2" }
+"0.122.0" = { created_at = 2024-01-26T15:54:24.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.122.0" }
+"0.123.0" = { created_at = 2024-02-19T16:32:38.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.0" }
+"0.123.1" = { created_at = 2024-02-21T08:17:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.1" }
+"0.123.2" = { created_at = 2024-02-22T15:27:15.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.2" }
+"0.123.3" = { created_at = 2024-02-23T17:09:20.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.3" }
+"0.123.4" = { created_at = 2024-02-26T16:33:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.4" }
+"0.123.5" = { created_at = 2024-02-28T15:47:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.5" }
+"0.123.6" = { created_at = 2024-02-28T18:29:40.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.6" }
+"0.123.7" = { created_at = 2024-03-01T16:16:06.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.7" }
+"0.123.8" = { created_at = 2024-03-07T13:14:42.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.123.8" }
+"0.124.0" = { created_at = 2024-03-16T15:44:32.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.124.0" }
+"0.124.1" = { created_at = 2024-03-20T11:40:10.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.124.1" }
+"0.125.0" = { created_at = 2024-04-16T15:04:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.0" }
+"0.125.1" = { created_at = 2024-04-18T08:21:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.1" }
+"0.125.2" = { created_at = 2024-04-20T15:29:44.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.2" }
+"0.125.3" = { created_at = 2024-04-22T17:18:35.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.3" }
+"0.125.4" = { created_at = 2024-04-25T13:27:26.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.4" }
+"0.125.5" = { created_at = 2024-05-01T15:22:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.5" }
+"0.125.6" = { created_at = 2024-05-05T10:52:52.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.6" }
+"0.125.7" = { created_at = 2024-05-08T14:46:24.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.125.7" }
+"0.126.0" = { created_at = 2024-05-14T13:24:11.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.126.0" }
+"0.126.1" = { created_at = 2024-05-15T10:42:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.126.1" }
+"0.126.2" = { created_at = 2024-05-30T15:19:22.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.126.2" }
+"0.126.3" = { created_at = 2024-06-02T13:02:43.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.126.3" }
+"0.127.0" = { created_at = 2024-06-05T10:27:59.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.127.0" }
+"0.128.0" = { created_at = 2024-06-25T16:15:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.128.0" }
+"0.128.1" = { created_at = 2024-07-02T06:46:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.128.1" }
+"0.128.2" = { created_at = 2024-07-04T08:13:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.128.2" }
+"0.129.0" = { created_at = 2024-07-17T13:29:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.129.0" }
+"0.130.0" = { created_at = 2024-07-29T13:51:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.130.0" }
+"0.131.0" = { created_at = 2024-08-02T09:03:48.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.131.0" }
+"0.132.0" = { created_at = 2024-08-12T15:21:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.132.0" }
+"0.132.1" = { created_at = 2024-08-13T10:10:10.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.132.1" }
+"0.132.2" = { created_at = 2024-08-14T16:17:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.132.2" }
+"0.133.0" = { created_at = 2024-08-17T19:57:41.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.133.0" }
+"0.133.1" = { created_at = 2024-08-26T13:58:46.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.133.1" }
+"0.134.0" = { created_at = 2024-09-03T09:54:22.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.134.0" }
+"0.134.1" = { created_at = 2024-09-05T10:17:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.134.1" }
+"0.134.2" = { created_at = 2024-09-10T10:46:33.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.134.2" }
+"0.134.3" = { created_at = 2024-09-19T14:28:20.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.134.3" }
+"0.135.0" = { created_at = 2024-09-27T13:17:08.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.135.0" }
+"0.136.0" = { created_at = 2024-10-15T13:17:24.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.136.0" }
+"0.136.1" = { created_at = 2024-10-16T16:05:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.136.1" }
+"0.136.2" = { created_at = 2024-10-17T14:30:05.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.136.2" }
+"0.136.3" = { created_at = 2024-10-21T13:31:54.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.136.3" }
+"0.136.4" = { created_at = 2024-10-22T08:35:58.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.136.4" }
+"0.136.5" = { created_at = 2024-10-24T12:26:27.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.136.5" }
+"0.137.0" = { created_at = 2024-11-04T16:04:06.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.137.0" }
+"0.137.1" = { created_at = 2024-11-05T11:49:09.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.137.1" }
+"0.138.0" = { created_at = 2024-11-06T11:22:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.138.0" }
+"0.139.0" = { created_at = 2024-11-18T16:17:45.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.139.0" }
+"0.139.1" = { created_at = 2024-11-23T14:13:46.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.139.1" }
+"0.139.2" = { created_at = 2024-11-23T15:33:51.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.139.2" }
+"0.139.3" = { created_at = 2024-11-29T15:36:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.139.3" }
+"0.139.4" = { created_at = 2024-12-09T17:45:23.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.139.4" }
+"0.139.5" = { created_at = 2024-12-14T19:16:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.139.5" }
+"0.140.0" = { created_at = 2024-12-17T14:20:55.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.140.0" }
+"0.140.1" = { created_at = 2024-12-23T16:26:35.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.140.1" }
+"0.140.2" = { created_at = 2024-12-30T15:01:53.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.140.2" }
+"0.141.0" = { created_at = 2025-01-16T13:11:18.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.141.0" }
+"0.142.0" = { created_at = 2025-01-22T12:20:52.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.142.0" }
+"0.143.0" = { created_at = 2025-02-01T15:56:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.143.0" }
+"0.143.1" = { created_at = 2025-02-04T08:57:38.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.143.1" }
+"0.144.0" = { created_at = 2025-02-17T16:22:31.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.144.0" }
+"0.144.1" = { created_at = 2025-02-18T12:14:07.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.144.1" }
+"0.144.2" = { created_at = 2025-02-19T12:17:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.144.2" }
+"0.145.0" = { created_at = 2025-02-26T15:41:25.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.145.0" }
+"0.146.0" = { created_at = 2025-04-10T14:57:56.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.0" }
+"0.146.1" = { created_at = 2025-04-10T16:44:46.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.1" }
+"0.146.2" = { created_at = 2025-04-11T17:25:13.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.2" }
+"0.146.3" = { created_at = 2025-04-12T17:21:50.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.3" }
+"0.146.4" = { created_at = 2025-04-14T13:10:30.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.4" }
+"0.146.5" = { created_at = 2025-04-15T17:54:38.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.5" }
+"0.146.6" = { created_at = 2025-04-20T10:58:40.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.6" }
+"0.146.7" = { created_at = 2025-04-22T17:26:42.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.146.7" }
+"0.147.0" = { created_at = 2025-04-25T15:26:28.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.0" }
+"0.147.1" = { created_at = 2025-05-01T13:50:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.1" }
+"0.147.2" = { created_at = 2025-05-06T11:18:55.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.2" }
+"0.147.3" = { created_at = 2025-05-12T12:25:03.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.3" }
+"0.147.4" = { created_at = 2025-05-20T10:41:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.4" }
+"0.147.5" = { created_at = 2025-05-22T11:37:19.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.5" }
+"0.147.6" = { created_at = 2025-05-27T11:17:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.6" }
+"0.147.7" = { created_at = 2025-05-31T12:41:12.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.7" }
+"0.147.8" = { created_at = 2025-06-07T12:59:52.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.8" }
+"0.147.9" = { created_at = 2025-06-23T08:22:20.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.147.9" }
+"0.148.0" = { created_at = 2025-07-08T13:34:49.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.148.0" }
+"0.148.1" = { created_at = 2025-07-11T12:56:21.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.148.1" }
+"0.148.2" = { created_at = 2025-07-27T12:43:24.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.148.2" }
+"0.149.0" = { created_at = 2025-08-27T15:37:16.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.149.0" }
+"0.149.1" = { created_at = 2025-09-04T14:04:46.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.149.1" }
+"0.150.0" = { created_at = 2025-09-08T13:01:12.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.150.0" }
+"0.150.1" = { created_at = 2025-09-25T10:26:04.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.150.1" }
+"0.151.0" = { created_at = 2025-10-02T13:30:36.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.151.0" }
+"0.151.1" = { created_at = 2025-10-15T14:51:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.151.1" }
+"0.151.2" = { created_at = 2025-10-16T16:52:34.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.151.2" }
+"0.152.0" = { created_at = 2025-10-21T16:29:49.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.152.0" }
+"0.152.1" = { created_at = 2025-10-22T19:10:44.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.152.1" }
+"0.152.2" = { created_at = 2025-10-24T15:31:49.000Z, release_url = "https://github.com/gohugoio/hugo/releases/tag/v0.152.2" }

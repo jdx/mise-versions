@@ -1,60 +1,60 @@
 [versions]
-"0.41.91" = { created_at = 2025-07-15T14:29:20.000Z }
-"0.41.93" = { created_at = 2025-07-16T19:50:51.000Z }
-"0.41.94" = { created_at = 2025-07-17T13:29:25.000Z }
-"0.41.95" = { created_at = 2025-07-29T19:31:33.000Z }
-"0.41.96" = { created_at = 2025-08-01T10:53:32.000Z }
-"0.41.97" = { created_at = 2025-08-04T19:47:49.000Z }
-"0.41.98" = { created_at = 2025-08-16T16:56:32.000Z }
-"0.41.99" = { created_at = 2025-08-26T15:31:22.000Z }
-"0.42.0" = { created_at = 2025-09-10T19:31:00.000Z }
-"0.42.1" = { created_at = 2025-09-11T12:34:14.000Z }
-"0.42.2" = { created_at = 2025-09-16T21:19:18.000Z }
-"0.42.3" = { created_at = 2025-09-19T09:45:43.000Z }
-"0.42.4" = { created_at = 2025-09-21T17:48:51.000Z }
-"0.42.5" = { created_at = 2025-09-25T13:24:29.000Z }
-"0.42.6" = { created_at = 2025-09-25T16:50:52.000Z }
-"0.43.0" = { created_at = 2025-10-06T16:41:39.000Z }
-"0.43.1" = { created_at = 2025-10-08T20:10:15.000Z }
-"0.43.2" = { created_at = 2025-10-08T22:02:20.000Z }
-"0.43.3" = { created_at = 2025-10-09T14:38:55.000Z }
-"0.43.6" = { created_at = 2025-10-10T14:00:07.000Z }
-"0.43.7" = { created_at = 2025-10-14T15:21:06.000Z }
-"0.43.8" = { created_at = 2025-10-14T15:21:06.000Z }
-"0.43.9" = { created_at = 2025-10-15T18:21:02.000Z }
-"0.43.10" = { created_at = 2025-10-15T22:42:47.000Z }
-"0.43.11" = { created_at = 2025-10-17T00:06:44.000Z }
-"0.43.12" = { created_at = 2025-10-17T14:47:42.000Z }
-"0.43.13" = { created_at = 2025-10-21T18:01:13.000Z }
-"0.43.14" = { created_at = 2025-10-21T18:16:31.000Z }
-"0.43.15" = { created_at = 2025-10-23T17:59:08.000Z }
-"0.43.16" = { created_at = 2025-10-23T21:43:12.000Z }
-"0.43.17" = { created_at = 2025-10-24T21:35:07.000Z }
-"0.43.18" = { created_at = 2025-10-28T12:33:53.000Z }
-"0.43.19" = { created_at = 2025-10-29T12:24:29.000Z }
-"0.43.20" = { created_at = 2025-10-29T23:02:04.000Z }
-"0.43.21" = { created_at = 2025-10-30T11:53:50.000Z }
-"0.43.22" = { created_at = 2025-11-05T20:20:36.000Z }
-"0.43.23" = { created_at = 2025-11-07T20:43:02.000Z }
-"0.43.24" = { created_at = 2025-11-10T19:15:53.000Z }
-"0.43.25" = { created_at = 2025-11-18T20:06:03.000Z }
-"0.43.26" = { created_at = 2025-11-18T20:06:03.000Z }
-"0.43.27" = { created_at = 2025-11-20T16:40:58.000Z }
-"0.43.28" = { created_at = 2025-11-20T21:51:01.000Z }
-"0.43.29" = { created_at = 2025-11-21T21:45:03.000Z }
-"0.43.30" = { created_at = 2025-11-22T00:15:06.000Z }
-"0.43.31" = { created_at = 2025-11-25T02:25:34.000Z }
-"0.43.32" = { created_at = 2025-11-26T18:41:54.000Z }
-"0.43.33" = { created_at = 2025-11-27T19:57:38.000Z }
-"0.43.34" = { created_at = 2025-11-27T22:44:58.000Z }
-"0.43.35" = { created_at = 2025-11-28T00:04:51.000Z }
-"0.43.36" = { created_at = 2025-11-29T05:07:18.000Z }
-"0.43.37" = { created_at = 2025-12-05T17:45:59.000Z }
-"0.43.38" = { created_at = 2025-12-06T00:03:10.000Z }
-"0.43.39" = { created_at = 2025-12-06T00:03:10.000Z }
-"0.43.40" = { created_at = 2025-12-09T14:36:30.000Z }
-"0.43.41" = { created_at = 2025-12-10T08:26:56.000Z }
-"0.43.42" = { created_at = 2025-12-10T17:11:07.000Z }
-"0.43.43" = { created_at = 2025-12-11T03:24:18.000Z }
-"0.43.44" = { created_at = 2025-12-11T21:01:12.000Z }
-"0.43.45" = { created_at = 2025-12-12T16:22:12.000Z }
+"0.41.91" = { created_at = 2025-07-15T14:29:20.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.91" }
+"0.41.93" = { created_at = 2025-07-16T19:50:51.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.93" }
+"0.41.94" = { created_at = 2025-07-17T13:29:25.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.94" }
+"0.41.95" = { created_at = 2025-07-29T19:31:33.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.95" }
+"0.41.96" = { created_at = 2025-08-01T10:53:32.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.96" }
+"0.41.97" = { created_at = 2025-08-04T19:47:49.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.97" }
+"0.41.98" = { created_at = 2025-08-16T16:56:32.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.98" }
+"0.41.99" = { created_at = 2025-08-26T15:31:22.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.41.99" }
+"0.42.0" = { created_at = 2025-09-10T19:31:00.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.0" }
+"0.42.1" = { created_at = 2025-09-11T12:34:14.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.1" }
+"0.42.2" = { created_at = 2025-09-16T21:19:18.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.2" }
+"0.42.3" = { created_at = 2025-09-19T09:45:43.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.3" }
+"0.42.4" = { created_at = 2025-09-21T17:48:51.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.4" }
+"0.42.5" = { created_at = 2025-09-25T13:24:29.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.5" }
+"0.42.6" = { created_at = 2025-09-25T16:50:52.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.42.6" }
+"0.43.0" = { created_at = 2025-10-06T16:41:39.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.0" }
+"0.43.1" = { created_at = 2025-10-08T20:10:15.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.1" }
+"0.43.2" = { created_at = 2025-10-08T22:02:20.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.2" }
+"0.43.3" = { created_at = 2025-10-09T14:38:55.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.3" }
+"0.43.6" = { created_at = 2025-10-10T14:00:07.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.6" }
+"0.43.7" = { created_at = 2025-10-14T15:21:06.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.7" }
+"0.43.8" = { created_at = 2025-10-14T15:21:06.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.8" }
+"0.43.9" = { created_at = 2025-10-15T18:21:02.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.9" }
+"0.43.10" = { created_at = 2025-10-15T22:42:47.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.10" }
+"0.43.11" = { created_at = 2025-10-17T00:06:44.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.11" }
+"0.43.12" = { created_at = 2025-10-17T14:47:42.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.12" }
+"0.43.13" = { created_at = 2025-10-21T18:01:13.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.13" }
+"0.43.14" = { created_at = 2025-10-21T18:16:31.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.14" }
+"0.43.15" = { created_at = 2025-10-23T17:59:08.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.15" }
+"0.43.16" = { created_at = 2025-10-23T21:43:12.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.16" }
+"0.43.17" = { created_at = 2025-10-24T21:35:07.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.17" }
+"0.43.18" = { created_at = 2025-10-28T12:33:53.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.18" }
+"0.43.19" = { created_at = 2025-10-29T12:24:29.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.19" }
+"0.43.20" = { created_at = 2025-10-29T23:02:04.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.20" }
+"0.43.21" = { created_at = 2025-10-30T11:53:50.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.21" }
+"0.43.22" = { created_at = 2025-11-05T20:20:36.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.22" }
+"0.43.23" = { created_at = 2025-11-07T20:43:02.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.23" }
+"0.43.24" = { created_at = 2025-11-10T19:15:53.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.24" }
+"0.43.25" = { created_at = 2025-11-18T20:06:03.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.25" }
+"0.43.26" = { created_at = 2025-11-18T20:06:03.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.26" }
+"0.43.27" = { created_at = 2025-11-20T16:40:58.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.27" }
+"0.43.28" = { created_at = 2025-11-20T21:51:01.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.28" }
+"0.43.29" = { created_at = 2025-11-21T21:45:03.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.29" }
+"0.43.30" = { created_at = 2025-11-22T00:15:06.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.30" }
+"0.43.31" = { created_at = 2025-11-25T02:25:34.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.31" }
+"0.43.32" = { created_at = 2025-11-26T18:41:54.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.32" }
+"0.43.33" = { created_at = 2025-11-27T19:57:38.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.33" }
+"0.43.34" = { created_at = 2025-11-27T22:44:58.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.34" }
+"0.43.35" = { created_at = 2025-11-28T00:04:51.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.35" }
+"0.43.36" = { created_at = 2025-11-29T05:07:18.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.36" }
+"0.43.37" = { created_at = 2025-12-05T17:45:59.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.37" }
+"0.43.38" = { created_at = 2025-12-06T00:03:10.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.38" }
+"0.43.39" = { created_at = 2025-12-06T00:03:10.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.39" }
+"0.43.40" = { created_at = 2025-12-09T14:36:30.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.40" }
+"0.43.41" = { created_at = 2025-12-10T08:26:56.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.41" }
+"0.43.42" = { created_at = 2025-12-10T17:11:07.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.42" }
+"0.43.43" = { created_at = 2025-12-11T03:24:18.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.43" }
+"0.43.44" = { created_at = 2025-12-11T21:01:12.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.44" }
+"0.43.45" = { created_at = 2025-12-12T16:22:12.000Z, release_url = "https://github.com/Infisical/cli/releases/tag/v0.43.45" }
