@@ -447,7 +447,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
                 <td class="px-4 py-3 text-sm hidden lg:table-cell">
                   {tool.backends && tool.backends[0] && (
                     <span class="px-2 py-0.5 rounded-full text-xs bg-dark-600 text-gray-400">
-                      {getBackendType(tool.backends[0])}
+                      {tool.backends[0]}
                     </span>
                   )}
                 </td>
