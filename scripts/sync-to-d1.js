@@ -67,6 +67,14 @@ async function main() {
     console.log(`  - Errors: ${result.errors}`);
     console.log(`  - Total: ${result.total}`);
 
+    // Show failed tools if any
+    if (result.failed_tools && result.failed_tools.length > 0) {
+      console.log("\nFailed tools:");
+      for (const ft of result.failed_tools) {
+        console.log(`  - ${ft.name}: ${ft.error}`);
+      }
+    }
+
     // Only fail if more than 10% of tools failed
     const errorRate = result.errors / result.total;
     if (errorRate > 0.1) {

@@ -52,11 +52,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   let upserted = 0;
   let errors = 0;
+  const failedTools: Array<{ name: string; error: string }> = [];
 
   // Process tools using INSERT ... ON CONFLICT DO UPDATE (single query per tool)
   for (const tool of body.tools) {
     if (!tool.name) {
       errors++;
+      failedTools.push({ name: '(unnamed)', error: 'Missing name' });
       continue;
     }
 
@@ -108,9 +110,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
           metadata_updated_at = excluded.metadata_updated_at
       `);
       upserted++;
-    } catch (e) {
-      console.error(`Failed to sync tool ${tool.name}:`, e);
+    } catch (e: any) {
+      const errorMsg = e?.message || String(e);
+      console.error(`Failed to sync tool ${tool.name}:`, errorMsg);
       errors++;
+      failedTools.push({ name: tool.name, error: errorMsg });
     }
   }
 
@@ -119,5 +123,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     upserted,
     errors,
     total: body.tools.length,
+    failed_tools: failedTools.length > 0 ? failedTools : undefined,
   });
 };
