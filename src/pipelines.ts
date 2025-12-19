@@ -53,10 +53,10 @@ export function getMiseVersionFromHeaders(headers: Headers): string | null {
 }
 
 export async function emitTelemetry(
-  env: { MISE_VERSIONS_STREAM?: PipelinesStreamBinding },
+  env: { MISE_VERSIONS_STREAM_STREAM?: PipelinesStreamBinding },
   event: TelemetryEventV1
 ): Promise<void> {
-  const stream = env.MISE_VERSIONS_STREAM;
+  const stream = env.MISE_VERSIONS_STREAM_STREAM;
   if (!stream || typeof stream.send !== "function") return;
 
   try {
