@@ -56,16 +56,18 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       ORDER BY id ASC
     `);
 
-    // Track version request for DAU/MAU (fire and forget)
+    // Track version request for DAU/MAU using waitUntil to ensure it completes
     const clientIP = getClientIP(request);
-    hashIP(clientIP, runtime.env.API_SECRET).then(async (ipHash) => {
-      try {
-        const analytics = setupAnalytics(db);
-        await analytics.trackVersionRequest(ipHash);
-      } catch (e) {
-        console.error('Failed to track version request:', e);
-      }
-    });
+    runtime.ctx.waitUntil(
+      hashIP(clientIP, runtime.env.API_SECRET).then(async (ipHash) => {
+        try {
+          const analytics = setupAnalytics(db);
+          await analytics.trackVersionRequest(ipHash);
+        } catch (e) {
+          console.error('Failed to track version request:', e);
+        }
+      })
+    );
 
     // Generate TOML output
     const lines = ['[versions]'];
