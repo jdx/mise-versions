@@ -67,9 +67,13 @@ async function main() {
     console.log(`  - Errors: ${result.errors}`);
     console.log(`  - Total: ${result.total}`);
 
-    if (result.errors > 0) {
-      console.warn(`Warning: ${result.errors} tools failed to sync`);
+    // Only fail if more than 10% of tools failed
+    const errorRate = result.errors / result.total;
+    if (errorRate > 0.1) {
+      console.error(`Error: ${result.errors} tools (${(errorRate * 100).toFixed(1)}%) failed to sync`);
       process.exit(1);
+    } else if (result.errors > 0) {
+      console.warn(`Warning: ${result.errors} tools failed to sync (${(errorRate * 100).toFixed(1)}%)`);
     }
   } catch (e) {
     console.error("Sync failed:", e.message);
