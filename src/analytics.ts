@@ -1262,8 +1262,9 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       const wow = lastWeek > 0 ? ((thisWeek - lastWeek) / lastWeek) * 100 : null;
       const mom = lastMonth > 0 ? ((thisMonth - lastMonth) / lastMonth) * 100 : null;
 
-      // Get sparkline data (last 14 days)
+      // Get sparkline data (last 14 days, excluding today)
       const sparklineStart = new Date((now - 14 * 86400) * 1000).toISOString().split("T")[0];
+      const today = new Date(now * 1000).toISOString().split("T")[0];
       const sparklineData = await db
         .select({
           date: dailyToolStats.date,
@@ -1272,7 +1273,8 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .from(dailyToolStats)
         .where(and(
           eq(dailyToolStats.tool_id, toolRecord.id),
-          sql`${dailyToolStats.date} >= ${sparklineStart}`
+          sql`${dailyToolStats.date} >= ${sparklineStart}`,
+          sql`${dailyToolStats.date} < ${today}`
         ))
         .orderBy(dailyToolStats.date)
         .all();
@@ -1302,6 +1304,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
 
       const now = Math.floor(Date.now() / 1000);
       const sparklineStart = new Date((now - 14 * 86400) * 1000).toISOString().split("T")[0];
+      const today = new Date(now * 1000).toISOString().split("T")[0];
 
       // Get tool IDs
       const toolRecords = await db
@@ -1315,7 +1318,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       const toolIdMap = new Map(toolRecords.map(t => [t.id, t.name]));
       const toolIds = toolRecords.map(t => t.id);
 
-      // Get sparkline data for all tools
+      // Get sparkline data for all tools (excluding today)
       const sparklineData = await db
         .select({
           tool_id: dailyToolStats.tool_id,
@@ -1325,7 +1328,8 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .from(dailyToolStats)
         .where(and(
           sql`${dailyToolStats.tool_id} IN (${sql.join(toolIds.map(id => sql`${id}`), sql`, `)})`,
-          sql`${dailyToolStats.date} >= ${sparklineStart}`
+          sql`${dailyToolStats.date} >= ${sparklineStart}`,
+          sql`${dailyToolStats.date} < ${today}`
         ))
         .orderBy(dailyToolStats.date)
         .all();
@@ -1364,8 +1368,9 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     }>> {
       const now = Math.floor(Date.now() / 1000);
       const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
+      const today = new Date(now * 1000).toISOString().split("T")[0];
 
-      // Get 30-day totals and daily breakdown for all tools
+      // Get 30-day totals and daily breakdown for all tools (excluding today)
       const dailyData = await db
         .select({
           tool_id: dailyToolStats.tool_id,
@@ -1375,7 +1380,10 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         })
         .from(dailyToolStats)
         .innerJoin(tools, eq(dailyToolStats.tool_id, tools.id))
-        .where(sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`)
+        .where(and(
+          sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`,
+          sql`${dailyToolStats.date} < ${today}`
+        ))
         .orderBy(dailyToolStats.date)
         .all();
 
