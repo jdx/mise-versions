@@ -1,9 +1,11 @@
 import type { APIRoute } from 'astro';
+import { drizzle } from 'drizzle-orm/d1';
+import { sql } from 'drizzle-orm';
 import { getFromR2 } from '../../lib/r2-data';
 
-// GET /tools/:tool - serves plain text version list or binary files
-// e.g., /tools/node returns one version per line
-// e.g., /tools/python-precompiled-x86_64-unknown-linux-gnu.gz returns gzip file
+// GET /tools/:tool - serves plain text version list from D1, or binary files from R2
+// e.g., /tools/node returns one version per line (from D1)
+// e.g., /tools/python-precompiled-x86_64-unknown-linux-gnu.gz returns gzip file (from R2)
 export const GET: APIRoute = async ({ params, locals }) => {
   const tool = params.tool;
 
@@ -22,43 +24,77 @@ export const GET: APIRoute = async ({ params, locals }) => {
     });
   }
 
+  const runtime = locals.runtime;
+
+  // Binary files (.gz) are served from R2
+  if (tool.endsWith('.gz')) {
+    try {
+      const bucket = runtime.env.DATA_BUCKET;
+      const data = await getFromR2(bucket, `tools/${tool}`);
+
+      if (!data) {
+        return new Response(`File "${tool}" not found`, {
+          status: 404,
+          headers: { 'Content-Type': 'text/plain' },
+        });
+      }
+
+      // Cache python-precompiled files longer (1 hour vs 10 minutes)
+      const cacheMaxAge = tool.startsWith('python-precompiled-') ? 3600 : 600;
+
+      return new Response(data.body, {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/gzip',
+          'Cache-Control': `public, max-age=${cacheMaxAge}`,
+        },
+      });
+    } catch (error) {
+      console.error('Error fetching binary from R2:', error);
+      return new Response('Failed to fetch file', {
+        status: 500,
+        headers: { 'Content-Type': 'text/plain' },
+      });
+    }
+  }
+
+  // Regular tools are served from D1
   try {
-    const runtime = locals.runtime;
-    const bucket = runtime.env.DATA_BUCKET;
+    const db = drizzle(runtime.env.ANALYTICS_DB);
 
-    // Fetch from R2 (stored under tools/ prefix)
-    const data = await getFromR2(bucket, `tools/${tool}`);
+    // Get tool_id
+    const toolResult = await db.all(sql`
+      SELECT id FROM tools WHERE name = ${tool}
+    `);
 
-    if (!data) {
+    if (toolResult.length === 0) {
       return new Response(`Tool "${tool}" not found`, {
         status: 404,
         headers: { 'Content-Type': 'text/plain' },
       });
     }
 
-    // Determine content type and cache duration based on file type
-    let contentType = 'text/plain; charset=utf-8';
-    let cacheMaxAge = 600; // 10 minutes default
+    const toolId = (toolResult[0] as { id: number }).id;
 
-    if (tool.startsWith('python-precompiled-') && tool.endsWith('.gz')) {
-      // python-precompiled files rarely change, cache for 1 hour
-      contentType = 'application/gzip';
-      cacheMaxAge = 3600;
-    } else if (tool.endsWith('.gz')) {
-      contentType = 'application/gzip';
-    } else if (tool.endsWith('.toml')) {
-      contentType = 'text/plain; charset=utf-8';
-    }
+    // Get versions ordered by id (insertion order = oldest first)
+    const versions = await db.all<{ version: string }>(sql`
+      SELECT version
+      FROM versions
+      WHERE tool_id = ${toolId}
+      ORDER BY id ASC
+    `);
 
-    return new Response(data.body, {
+    const text = versions.map(v => v.version).join('\n') + '\n';
+
+    return new Response(text, {
       status: 200,
       headers: {
-        'Content-Type': contentType,
-        'Cache-Control': `public, max-age=${cacheMaxAge}`,
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'public, max-age=600',
       },
     });
   } catch (error) {
-    console.error('Error fetching tool from R2:', error);
+    console.error('Error fetching versions from D1:', error);
     return new Response('Failed to fetch tool data', {
       status: 500,
       headers: { 'Content-Type': 'text/plain' },

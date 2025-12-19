@@ -1,5 +1,5 @@
-// Centralized data loading from D1 and R2
-import { getJsonFromR2, getTextFromR2 } from './r2-data';
+// Centralized data loading from D1
+import { getJsonFromR2 } from './r2-data';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 
@@ -33,8 +33,6 @@ export interface VersionUpdatesData {
   avg_per_day: number;
   days: number;
 }
-
-const R2_PREFIX = 'tools/';
 
 interface ToolRow {
   name: string;
@@ -107,22 +105,8 @@ export async function loadToolsJson(analyticsDb: D1Database): Promise<ToolsData 
 }
 
 /**
- * Load tools.json manifest from R2 (legacy, for fallback)
- */
-export async function loadToolsJsonFromR2(bucket: R2Bucket): Promise<ToolsData | null> {
-  return getJsonFromR2<ToolsData>(bucket, `${R2_PREFIX}tools.json`);
-}
-
-/**
  * Load tools_updated.json from R2 (version update statistics)
  */
 export async function loadToolsUpdatedJson(bucket: R2Bucket): Promise<VersionUpdatesData | null> {
-  return getJsonFromR2<VersionUpdatesData>(bucket, `${R2_PREFIX}tools_updated.json`);
-}
-
-/**
- * Load a tool's TOML version file from R2
- */
-export async function loadToolToml(bucket: R2Bucket, tool: string): Promise<string | null> {
-  return getTextFromR2(bucket, `${R2_PREFIX}${tool}.toml`);
+  return getJsonFromR2<VersionUpdatesData>(bucket, 'tools/tools_updated.json');
 }

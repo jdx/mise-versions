@@ -1,13 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { drizzle } from 'drizzle-orm/d1';
+import { sql } from 'drizzle-orm';
 import { setupAnalytics } from '../../../../src/analytics';
-import * as smolToml from 'smol-toml';
 import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
 import { getLatestStableVersion } from '../../lib/versions';
-import { loadToolsJson, loadToolToml } from '../../lib/data-loader';
+import { loadToolsJson } from '../../lib/data-loader';
 
 const { tool } = Astro.params;
 
@@ -16,7 +16,7 @@ if (!tool) {
 }
 
 const runtime = Astro.locals.runtime;
-const bucket = runtime.env.DATA_BUCKET;
+const db = drizzle(runtime.env.ANALYTICS_DB);
 
 // Load tools from D1 database
 const toolsData = await loadToolsJson(runtime.env.ANALYTICS_DB);
@@ -30,22 +30,30 @@ if (!toolMeta) {
   return Astro.redirect('/');
 }
 
-// Load versions from TOML file in R2 bucket
+// Load versions from D1 database
 let versions: Array<{ version: string; created_at?: string | null; release_url?: string | null }> = [];
 try {
-  const tomlText = await loadToolToml(bucket, tool);
-  if (tomlText) {
-    // TOML format: [versions] with "version" = { created_at = ..., release_url = ... } entries
-    const parsed = smolToml.parse(tomlText) as { versions?: Record<string, { created_at?: string; release_url?: string }> };
-    const versionsObj = parsed.versions || {};
-    versions = Object.entries(versionsObj).map(([version, data]) => ({
-      version,
-      created_at: data?.created_at || null,
-      release_url: data?.release_url || null,
+  // Get tool_id first
+  const toolResult = await db.all<{ id: number }>(sql`
+    SELECT id FROM tools WHERE name = ${tool}
+  `);
+
+  if (toolResult.length > 0) {
+    const toolId = toolResult[0].id;
+    const versionRows = await db.all<{ version: string; created_at: string | null; release_url: string | null }>(sql`
+      SELECT version, created_at, release_url
+      FROM versions
+      WHERE tool_id = ${toolId}
+      ORDER BY id ASC
+    `);
+    versions = versionRows.map(row => ({
+      version: row.version,
+      created_at: row.created_at || null,
+      release_url: row.release_url || null,
     }));
   }
 } catch (e) {
-  console.error('Failed to load versions TOML from R2:', e);
+  console.error('Failed to load versions from D1:', e);
 }
 
 // Fetch download stats
