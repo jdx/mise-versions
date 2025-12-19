@@ -44,10 +44,10 @@ for gz in "$GZ_DIR"/*.gz; do
 
   if [ "$http_code" = "200" ]; then
     echo "  ✓ Uploaded $filename"
-    ((uploaded++))
+    uploaded=$((uploaded + 1))
   else
     echo "  ✗ Failed to upload $filename (HTTP $http_code): $body"
-    ((failed++))
+    failed=$((failed + 1))
   fi
 done
 
