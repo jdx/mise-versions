@@ -152,7 +152,7 @@ SUMMARY_EOF
 		echo "" >> summary.md
 		for tool in $updated_tools_list; do
 			# Link to the local docs file
-			echo "- [$tool](docs/$tool)" >> summary.md
+			echo "- [$tool](docs/$tool.toml)" >> summary.md
 		done
 	else
 		echo "" >> summary.md
@@ -331,40 +331,32 @@ fetch() {
 		increment_stat "total_tools_no_versions"
 		rm -f "docs/$1"
 	else
-		git add "docs/$1"
+		# Process plain text file (used as intermediate for TOML generation)
 		case "$1" in
 		cargo-binstall)
 			mv docs/cargo-binstall{,.tmp}
 			grep -E '^[0-9]' docs/cargo-binstall.tmp >docs/cargo-binstall
 			rm docs/cargo-binstall.tmp
-			git add "docs/$1"
-			;;
-		rust)
-			if [ "$new_lines" -gt 10 ]; then
-				git add "docs/$1"
-			fi
 			;;
 		java)
 			sort -V "docs/$1" -o "docs/$1"
-			git add "docs/$1"
 			;;
 		vault | consul | nomad | terraform | packer | vagrant | boundary | protobuf)
 			mv "docs/$1"{,.tmp}
 			grep -E '^[0-9]' "docs/$1.tmp" >"docs/$1"
 			rm "docs/$1.tmp"
 			sort -V "docs/$1" -o "docs/$1"
-			git add "docs/$1"
-			;;
-		*)
-			git add "docs/$1"
 			;;
 		esac
 
-		# Generate TOML file with timestamps
+		# Generate TOML file with timestamps (only TOML is committed)
 		generate_toml_file "$1" "$token"
 
-		# Only count as updated if the file actually changed (is staged)
-		if git diff --cached --quiet -- "docs/$1" "docs/$1.toml" 2>/dev/null; then
+		# Clean up intermediate plain text file
+		rm -f "docs/$1"
+
+		# Only count as updated if the TOML file actually changed (is staged)
+		if git diff --cached --quiet -- "docs/$1.toml" 2>/dev/null; then
 			:
 		else
 			increment_stat "total_tools_updated"
