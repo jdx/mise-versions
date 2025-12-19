@@ -180,3 +180,6 @@ dist
 .venv/
 
 .playwright-mcp
+
+# Binary .gz files (uploaded to R2 directly, not tracked in git)
+docs/*.gz

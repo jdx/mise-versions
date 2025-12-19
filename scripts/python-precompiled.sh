@@ -4,6 +4,11 @@ set -xeu #o pipefail
 # cpython-3.13.1+20241206-x86_64_v4-unknown-linux-musl-install_only_stripped.tar.gz
 # cpython-3.13.1+20241206-i686-pc-windows-msvc-shared-install_only_stripped.tar.gz
 
+# Create temp directory for .gz files (will be uploaded to R2 separately)
+GZ_DIR="${GZ_DIR:-/tmp/python-precompiled-gz}"
+mkdir -p "$GZ_DIR"
+rm -f "$GZ_DIR"/*.gz
+
 releases=$(gh api graphql -f query="
     query {
       repository(owner: \"indygreg\", name: \"python-build-standalone\") {
@@ -38,12 +43,17 @@ platforms=$(sed -E 's/^cpython-([0-9]+\.?)+\+[0-9]+-(.*)-install_only_stripped.*
 
 for platform in $platforms; do
   grep "\-$platform-" docs/python-precompiled >"docs/python-precompiled-$platform"
-  if ! git diff --quiet "docs/python-precompiled-$platform"; then
-    gzip -9c "docs/python-precompiled-$platform" >"docs/python-precompiled-$platform.gz"
-  fi
+  # Generate .gz to temp directory (not git repo)
+  gzip -9c "docs/python-precompiled-$platform" >"$GZ_DIR/python-precompiled-$platform.gz"
 done
 
-if ! git diff --quiet "docs/python-precompiled"; then
-  gzip -9c "docs/python-precompiled" >"docs/python-precompiled.gz"
-fi
-git add docs/python-precompiled*
+# Generate main .gz file
+gzip -9c "docs/python-precompiled" >"$GZ_DIR/python-precompiled.gz"
+
+# Only add text files to git (not .gz files)
+git add docs/python-precompiled docs/python-precompiled-*
+# Remove any .gz files that might have been tracked previously
+git rm -f --ignore-unmatch docs/python-precompiled*.gz 2>/dev/null || true
+
+echo "Generated .gz files in $GZ_DIR:"
+ls -la "$GZ_DIR"/*.gz
