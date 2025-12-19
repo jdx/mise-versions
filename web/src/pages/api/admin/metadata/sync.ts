@@ -17,7 +17,8 @@ interface SyncRequest {
 
 // POST /api/admin/metadata/sync - Sync tool metadata to D1
 export const POST: APIRoute = async ({ request, locals }) => {
-  const authError = requireApiAuth(request, locals);
+  const runtime = locals.runtime;
+  const authError = requireApiAuth(request, runtime.env.API_SECRET);
   if (authError) return authError;
 
   try {
@@ -27,7 +28,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return errorResponse('Invalid request: metadata array required', 400);
     }
 
-    const runtime = locals.runtime;
     const db = drizzle(runtime.env.ANALYTICS_DB);
 
     let updated = 0;
