@@ -19,6 +19,49 @@ if (!auth || !isAdmin(auth.username)) {
       <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
     </div>
 
+    <!-- D1 Table Counts Card -->
+    <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
+      <div class="px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-6">
+          <h2 class="text-lg font-semibold text-gray-200">D1 Table Counts</h2>
+          <div id="table-counts-inline-stats" class="flex items-center gap-4 text-sm">
+            <span class="text-gray-500">Loading...</span>
+          </div>
+        </div>
+        <button
+          id="table-counts-expand-btn"
+          class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1"
+        >
+          <span id="table-counts-expand-text">Expand</span>
+          <svg id="table-counts-expand-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Expanded content -->
+      <div id="table-counts-expanded-content" class="hidden">
+        <div class="border-t border-dark-600"></div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-dark-700">
+              <tr>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Table</th>
+                <th class="px-4 py-2 text-right text-sm font-medium text-gray-400">Count</th>
+              </tr>
+            </thead>
+            <tbody id="table-counts-body" class="divide-y divide-dark-600">
+              <tr>
+                <td colspan="2" class="px-4 py-8 text-center text-gray-500">
+                  Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- ASDF-Primary Tools Card -->
     <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
       <div class="px-4 py-3 flex items-center justify-between">
@@ -147,6 +190,90 @@ if (!auth || !isAdmin(auth.username)) {
 </Layout>
 
 <script>
+  // D1 Table Counts functionality
+  let tableCountsData: Record<string, number> = {};
+  let isTableCountsExpanded = false;
+
+  function toggleTableCountsExpanded() {
+    isTableCountsExpanded = !isTableCountsExpanded;
+    const expandedContent = document.getElementById('table-counts-expanded-content');
+    const expandText = document.getElementById('table-counts-expand-text');
+    const expandIcon = document.getElementById('table-counts-expand-icon');
+
+    if (isTableCountsExpanded) {
+      expandedContent?.classList.remove('hidden');
+      if (expandText) expandText.textContent = 'Collapse';
+      expandIcon?.classList.add('rotate-180');
+    } else {
+      expandedContent?.classList.add('hidden');
+      if (expandText) expandText.textContent = 'Expand';
+      expandIcon?.classList.remove('rotate-180');
+    }
+  }
+
+  function renderTableCounts() {
+    const tableBody = document.getElementById('table-counts-body');
+    if (!tableBody) return;
+
+    const entries = Object.entries(tableCountsData);
+    if (entries.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="2" class="px-4 py-8 text-center text-gray-500">No tables found</td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = entries.map(([table, count]) => `
+      <tr class="hover:bg-dark-700/50">
+        <td class="px-4 py-2 text-gray-300 font-mono">${table}</td>
+        <td class="px-4 py-2 text-right text-gray-300 font-mono">${count >= 0 ? count.toLocaleString() : '<span class="text-gray-500">N/A</span>'}</td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadTableCounts() {
+    try {
+      const response = await fetch('/api/admin/table-counts');
+      if (!response.ok) {
+        throw new Error('Failed to load table counts');
+      }
+      const data = await response.json();
+      tableCountsData = data.counts;
+
+      // Calculate total rows
+      const totalRows = Object.values(tableCountsData).reduce((sum, count) => sum + (count >= 0 ? count : 0), 0);
+      const tableCount = Object.keys(tableCountsData).length;
+
+      // Update inline stats
+      const inlineStats = document.getElementById('table-counts-inline-stats');
+      if (inlineStats) {
+        inlineStats.innerHTML = `
+          <span class="text-neon-cyan">${tableCount} tables</span>
+          <span class="text-gray-600">|</span>
+          <span class="text-gray-400">${totalRows.toLocaleString()} total rows</span>
+        `;
+      }
+
+      renderTableCounts();
+    } catch (error) {
+      console.error('Failed to load table counts:', error);
+      const inlineStats = document.getElementById('table-counts-inline-stats');
+      if (inlineStats) {
+        inlineStats.innerHTML = '<span class="text-red-400">Failed to load</span>';
+      }
+      const tableBody = document.getElementById('table-counts-body');
+      if (tableBody) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="2" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
+          </tr>
+        `;
+      }
+    }
+  }
+
   // ASDF-Primary Tools functionality
   interface AsdfPrimaryTool {
     name: string;
@@ -551,10 +678,12 @@ if (!auth || !isAdmin(auth.username)) {
   // Initialize
   loadAdminData();
   loadAsdfPrimaryData();
+  loadTableCounts();
 
   // Bind buttons
   document.getElementById('expand-btn')?.addEventListener('click', toggleExpanded);
   document.getElementById('test-tokens-btn')?.addEventListener('click', testAllTokens);
   document.getElementById('delete-invalid-btn')?.addEventListener('click', deleteInvalidTokens);
   document.getElementById('asdf-expand-btn')?.addEventListener('click', toggleAsdfExpanded);
+  document.getElementById('table-counts-expand-btn')?.addEventListener('click', toggleTableCountsExpanded);
 </script>
