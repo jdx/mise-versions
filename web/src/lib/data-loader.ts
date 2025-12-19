@@ -1,5 +1,4 @@
 // Centralized data loading from D1
-import { getJsonFromR2 } from './r2-data';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 
@@ -24,14 +23,6 @@ export interface ToolMeta {
 export interface ToolsData {
   tool_count: number;
   tools: ToolMeta[];
-}
-
-export interface VersionUpdatesData {
-  daily: Array<{ date: string; count: number }>;
-  total_updates: number;
-  unique_tools: number;
-  avg_per_day: number;
-  days: number;
 }
 
 interface ToolRow {
@@ -102,11 +93,4 @@ export async function loadToolsJson(analyticsDb: D1Database): Promise<ToolsData 
     tool_count: tools.length,
     tools,
   };
-}
-
-/**
- * Load tools_updated.json from R2 (version update statistics)
- */
-export async function loadToolsUpdatedJson(bucket: R2Bucket): Promise<VersionUpdatesData | null> {
-  return getJsonFromR2<VersionUpdatesData>(bucket, 'tools/tools_updated.json');
 }

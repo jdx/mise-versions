@@ -2,13 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
-import { loadToolsJson, loadToolsUpdatedJson, type ToolsData, type VersionUpdatesData } from '../lib/data-loader';
+import { loadToolsJson, type ToolsData } from '../lib/data-loader';
+
+// Version updates data type (now from D1)
+interface VersionUpdatesData {
+  daily: Array<{ date: string; count: number }>;
+  total_updates: number;
+  unique_tools: number;
+  avg_per_day: number;
+  days: number;
+}
 
 // Get the D1 database from Cloudflare runtime
 const runtime = Astro.locals.runtime;
 const db = drizzle(runtime.env.ANALYTICS_DB);
 const analytics = setupAnalytics(db);
-const bucket = runtime.env.DATA_BUCKET;
 
 // Load tools from D1 database
 let toolsData: ToolsData = { tool_count: 0, tools: [] };
@@ -29,22 +37,16 @@ let growthData: { global: { wow: number | null; mom: number | null }; topGrowing
 let versionUpdatesData: VersionUpdatesData | null = null;
 
 try {
-  [downloads, backendStatsData, dauMauData, growthData] = await Promise.all([
+  [downloads, backendStatsData, dauMauData, growthData, versionUpdatesData] = await Promise.all([
     analytics.getAll30DayDownloads(),
     analytics.getBackendStats(),
     analytics.getDAUMAUHistory(30),
     analytics.getGrowthMetrics(),
+    analytics.getVersionUpdates(30),
   ]);
 } catch (e) {
   console.error('Failed to fetch analytics data:', e);
   // Use empty/mock data for local dev
-}
-
-// Load version updates data from R2 bucket
-try {
-  versionUpdatesData = await loadToolsUpdatedJson(bucket);
-} catch (e) {
-  console.error('Failed to load version updates data from R2:', e);
 }
 
 // Helper functions

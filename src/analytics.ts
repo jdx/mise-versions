@@ -89,6 +89,14 @@ export const dailyVersionStats = sqliteTable("daily_version_stats", {
   unique_users: integer("unique_users").notNull(), // DAU
 });
 
+// Version updates tracking (when new tool versions are discovered)
+export const versionUpdates = sqliteTable("version_updates", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  date: text("date").notNull(), // YYYY-MM-DD
+  tool_id: integer("tool_id").notNull(),
+  versions_added: integer("versions_added").notNull().default(1),
+});
+
 export function setupAnalytics(db: ReturnType<typeof drizzle>) {
   // Cache for tool, backend, and platform IDs to avoid repeated lookups
   const toolCache = new Map<string, number>();
@@ -1475,6 +1483,77 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       return { daysProcessed };
     },
 
+    // Record version updates (called when syncing new versions)
+    async recordVersionUpdates(toolId: number, versionsAdded: number): Promise<void> {
+      const today = new Date().toISOString().split("T")[0];
+
+      // Upsert: add to existing count for today or insert new
+      await db.run(sql`
+        INSERT INTO version_updates (date, tool_id, versions_added)
+        VALUES (${today}, ${toolId}, ${versionsAdded})
+        ON CONFLICT(date, tool_id) DO UPDATE SET
+          versions_added = version_updates.versions_added + excluded.versions_added
+      `);
+    },
+
+    // Get version updates data for stats page (last 30 days)
+    async getVersionUpdates(days: number = 30): Promise<{
+      daily: Array<{ date: string; count: number }>;
+      total_updates: number;
+      unique_tools: number;
+      avg_per_day: number;
+      days: number;
+    }> {
+      const now = new Date();
+      const startDate = new Date(now);
+      startDate.setDate(startDate.getDate() - days);
+      const startDateStr = startDate.toISOString().split("T")[0];
+
+      // Get daily counts
+      const dailyResults = await db.all<{ date: string; count: number }>(sql`
+        SELECT date, SUM(versions_added) as count
+        FROM version_updates
+        WHERE date >= ${startDateStr}
+        GROUP BY date
+        ORDER BY date ASC
+      `);
+
+      // Get totals
+      const totals = await db.get<{ total: number; unique_tools: number }>(sql`
+        SELECT
+          SUM(versions_added) as total,
+          COUNT(DISTINCT tool_id) as unique_tools
+        FROM version_updates
+        WHERE date >= ${startDateStr}
+      `);
+
+      // Fill in missing days with 0
+      const dailyMap = new Map(dailyResults.map(r => [r.date, r.count]));
+      const daily: Array<{ date: string; count: number }> = [];
+
+      for (let i = 0; i < days; i++) {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + i);
+        const dateStr = date.toISOString().split("T")[0];
+        daily.push({
+          date: dateStr,
+          count: dailyMap.get(dateStr) ?? 0,
+        });
+      }
+
+      const totalUpdates = totals?.total ?? 0;
+      const uniqueTools = totals?.unique_tools ?? 0;
+      const avgPerDay = days > 0 ? totalUpdates / days : 0;
+
+      return {
+        daily,
+        total_updates: totalUpdates,
+        unique_tools: uniqueTools,
+        avg_per_day: Math.round(avgPerDay * 10) / 10,
+        days,
+      };
+    },
+
     // Backfill backend_id for existing records using default backends from registry
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>,
@@ -1982,6 +2061,24 @@ export async function runAnalyticsMigrations(
   // Create indices for versions table
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_id ON versions(tool_id)`
+  );
+
+  // Create version_updates table for tracking when new versions are discovered
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS version_updates (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      versions_added INTEGER NOT NULL DEFAULT 1,
+      FOREIGN KEY (tool_id) REFERENCES tools(id),
+      UNIQUE(date, tool_id)
+    )
+  `);
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_version_updates_date ON version_updates(date)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_version_updates_tool_id ON version_updates(tool_id)`
   );
 
   console.log("Analytics migrations completed");

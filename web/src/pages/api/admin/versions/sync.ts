@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
-import { runAnalyticsMigrations } from '../../../../../../src/analytics';
+import { runAnalyticsMigrations, setupAnalytics } from '../../../../../../src/analytics';
 
 interface VersionData {
   version: string;
@@ -40,6 +40,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const d1 = runtime.env.ANALYTICS_DB;
   const db = drizzle(d1);
+  const analytics = setupAnalytics(db);
 
   // Run migrations to ensure schema is up to date
   await runAnalyticsMigrations(db);
@@ -80,12 +81,25 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
+  // Step 4: Get existing version counts per tool (before sync)
+  const toolIds = [...toolIdMap.values()];
+  const beforeCounts = new Map<number, number>();
+  if (toolIds.length > 0) {
+    const countResults = await d1.prepare(
+      `SELECT tool_id, COUNT(*) as count FROM versions WHERE tool_id IN (${toolIds.map(() => '?').join(',')}) GROUP BY tool_id`
+    ).bind(...toolIds).all<{ tool_id: number; count: number }>();
+    for (const row of countResults.results) {
+      beforeCounts.set(row.tool_id, row.count);
+    }
+  }
+
   let toolsProcessed = 0;
   let versionsUpserted = 0;
   let errors = 0;
 
-  // Step 4: Batch upsert versions for all tools
+  // Step 5: Batch upsert versions for all tools
   const allVersionStatements: D1PreparedStatement[] = [];
+  const toolIdToName = new Map<number, string>();
 
   for (const toolData of body.tools) {
     if (!toolData.tool || !Array.isArray(toolData.versions)) {
@@ -99,6 +113,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       errors++;
       continue;
     }
+
+    toolIdToName.set(toolId, toolData.tool);
 
     for (const v of toolData.versions) {
       if (!v.version) continue;
@@ -129,10 +145,33 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
+  // Step 6: Get new version counts and record updates
+  let newVersionsTotal = 0;
+  if (toolIds.length > 0) {
+    const afterCounts = await d1.prepare(
+      `SELECT tool_id, COUNT(*) as count FROM versions WHERE tool_id IN (${toolIds.map(() => '?').join(',')}) GROUP BY tool_id`
+    ).bind(...toolIds).all<{ tool_id: number; count: number }>();
+
+    for (const row of afterCounts.results) {
+      const beforeCount = beforeCounts.get(row.tool_id) ?? 0;
+      const newVersions = row.count - beforeCount;
+      if (newVersions > 0) {
+        newVersionsTotal += newVersions;
+        // Record the update for stats tracking
+        try {
+          await analytics.recordVersionUpdates(row.tool_id, newVersions);
+        } catch (e) {
+          console.error(`Failed to record version updates for tool ${row.tool_id}:`, e);
+        }
+      }
+    }
+  }
+
   return jsonResponse({
     success: true,
     tools_processed: toolsProcessed,
     versions_upserted: versionsUpserted,
+    new_versions: newVersionsTotal,
     errors,
   });
 };
