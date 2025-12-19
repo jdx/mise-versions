@@ -16,7 +16,8 @@ import { join, basename } from "path";
 import * as smolToml from "smol-toml";
 
 const DOCS_DIR = join(process.cwd(), "docs");
-const BATCH_SIZE = 50; // Number of tools per request
+const BATCH_SIZE = 100; // Number of tools per request
+const PARALLEL_REQUESTS = 4; // Number of parallel requests
 
 async function main() {
   const apiUrl = process.env.SYNC_API_URL;
@@ -66,43 +67,57 @@ async function main() {
 
   console.log(`Parsed ${allTools.length} tools with ${totalVersions} total versions`);
 
-  // Sync in batches
+  // Sync in batches with parallel requests
   const syncUrl = `${apiUrl}/api/admin/versions/sync`;
   let toolsSynced = 0;
   let versionsSynced = 0;
   let errors = 0;
 
+  // Split into batches
+  const batches = [];
   for (let i = 0; i < allTools.length; i += BATCH_SIZE) {
-    const batch = allTools.slice(i, i + BATCH_SIZE);
-    const batchVersions = batch.reduce((sum, t) => sum + t.versions.length, 0);
+    batches.push(allTools.slice(i, i + BATCH_SIZE));
+  }
 
-    console.log(`Syncing batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(allTools.length / BATCH_SIZE)} (${batch.length} tools, ${batchVersions} versions)...`);
+  console.log(`Syncing ${batches.length} batches (${PARALLEL_REQUESTS} parallel requests)...`);
 
-    try {
-      const response = await fetch(syncUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiSecret}`,
-        },
-        body: JSON.stringify({ tools: batch }),
-      });
+  // Process batches in parallel groups
+  for (let i = 0; i < batches.length; i += PARALLEL_REQUESTS) {
+    const parallelBatches = batches.slice(i, i + PARALLEL_REQUESTS);
+    const batchStart = i + 1;
+    const batchEnd = Math.min(i + PARALLEL_REQUESTS, batches.length);
 
-      if (!response.ok) {
-        const text = await response.text();
-        console.error(`Batch sync failed: ${response.status} ${response.statusText}`);
-        console.error(text);
-        errors += batch.length;
-        continue;
+    console.log(`Processing batches ${batchStart}-${batchEnd} of ${batches.length}...`);
+
+    const results = await Promise.allSettled(
+      parallelBatches.map(async (batch, idx) => {
+        const response = await fetch(syncUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiSecret}`,
+          },
+          body: JSON.stringify({ tools: batch }),
+        });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(`${response.status} ${response.statusText}: ${text}`);
+        }
+
+        return { batch, result: await response.json() };
+      })
+    );
+
+    for (const result of results) {
+      if (result.status === 'fulfilled') {
+        toolsSynced += result.value.result.tools_processed || 0;
+        versionsSynced += result.value.result.versions_upserted || 0;
+        errors += result.value.result.errors || 0;
+      } else {
+        console.error(`Batch sync failed:`, result.reason.message);
+        errors += BATCH_SIZE; // Approximate error count
       }
-
-      const result = await response.json();
-      toolsSynced += result.tools_processed || 0;
-      versionsSynced += result.versions_upserted || 0;
-      errors += result.errors || 0;
-    } catch (e) {
-      console.error(`Batch sync failed:`, e.message);
-      errors += batch.length;
     }
   }
 
