@@ -19,6 +19,51 @@ if (!auth || !isAdmin(auth.username)) {
       <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
     </div>
 
+    <!-- ASDF-Primary Tools Card -->
+    <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
+      <div class="px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-6">
+          <h2 class="text-lg font-semibold text-gray-200">ASDF-Primary Tools</h2>
+          <div id="asdf-inline-stats" class="flex items-center gap-4 text-sm">
+            <span class="text-gray-500">Loading...</span>
+          </div>
+        </div>
+        <button
+          id="asdf-expand-btn"
+          class="px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1"
+        >
+          <span id="asdf-expand-text">Expand</span>
+          <svg id="asdf-expand-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Expanded content -->
+      <div id="asdf-expanded-content" class="hidden">
+        <div class="border-t border-dark-600"></div>
+        <div class="overflow-x-auto max-h-96 overflow-y-auto">
+          <table class="w-full">
+            <thead class="bg-dark-700 sticky top-0">
+              <tr>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">#</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Tool</th>
+                <th class="px-4 py-2 text-right text-sm font-medium text-gray-400">30d Downloads</th>
+                <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Backend</th>
+              </tr>
+            </thead>
+            <tbody id="asdf-table-body" class="divide-y divide-dark-600">
+              <tr>
+                <td colspan="4" class="px-4 py-8 text-center text-gray-500">
+                  Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- Token Pool Card (collapsible) -->
     <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
       <!-- Header with stats summary (always visible) -->
@@ -102,6 +147,95 @@ if (!auth || !isAdmin(auth.username)) {
 </Layout>
 
 <script>
+  // ASDF-Primary Tools functionality
+  interface AsdfPrimaryTool {
+    name: string;
+    downloads_30d: number;
+    asdf_backend: string;
+  }
+
+  let asdfToolsData: AsdfPrimaryTool[] = [];
+  let isAsdfExpanded = false;
+
+  function toggleAsdfExpanded() {
+    isAsdfExpanded = !isAsdfExpanded;
+    const expandedContent = document.getElementById('asdf-expanded-content');
+    const expandText = document.getElementById('asdf-expand-text');
+    const expandIcon = document.getElementById('asdf-expand-icon');
+
+    if (isAsdfExpanded) {
+      expandedContent?.classList.remove('hidden');
+      if (expandText) expandText.textContent = 'Collapse';
+      expandIcon?.classList.add('rotate-180');
+    } else {
+      expandedContent?.classList.add('hidden');
+      if (expandText) expandText.textContent = 'Expand';
+      expandIcon?.classList.remove('rotate-180');
+    }
+  }
+
+  function renderAsdfTable() {
+    const tableBody = document.getElementById('asdf-table-body');
+    if (!tableBody) return;
+
+    if (asdfToolsData.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="4" class="px-4 py-8 text-center text-gray-500">No asdf-primary tools found</td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = asdfToolsData.map((tool, index) => `
+      <tr class="hover:bg-dark-700/50">
+        <td class="px-4 py-2 text-gray-500 text-sm">${index + 1}</td>
+        <td class="px-4 py-2">
+          <a href="/tools/${tool.name}" class="text-neon-cyan hover:underline">${tool.name}</a>
+        </td>
+        <td class="px-4 py-2 text-right text-gray-300 font-mono">${tool.downloads_30d.toLocaleString()}</td>
+        <td class="px-4 py-2 text-gray-400 text-sm font-mono">${tool.asdf_backend}</td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadAsdfPrimaryData() {
+    try {
+      const response = await fetch('/api/admin/asdf-primary');
+      if (!response.ok) {
+        throw new Error('Failed to load asdf-primary data');
+      }
+      const data = await response.json();
+      asdfToolsData = data.tools;
+
+      // Update inline stats
+      const inlineStats = document.getElementById('asdf-inline-stats');
+      if (inlineStats) {
+        inlineStats.innerHTML = `
+          <span class="text-neon-cyan">${data.total} tools</span>
+          <span class="text-gray-600">|</span>
+          <span class="text-gray-400">${data.total_downloads?.toLocaleString() || 0} downloads (30d)</span>
+        `;
+      }
+
+      renderAsdfTable();
+    } catch (error) {
+      console.error('Failed to load asdf-primary data:', error);
+      const inlineStats = document.getElementById('asdf-inline-stats');
+      if (inlineStats) {
+        inlineStats.innerHTML = '<span class="text-red-400">Failed to load</span>';
+      }
+      const tableBody = document.getElementById('asdf-table-body');
+      if (tableBody) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="4" class="px-4 py-8 text-center text-red-400">Failed to load data</td>
+          </tr>
+        `;
+      }
+    }
+  }
+
   // Store token data globally for test results
   let tokenData: Array<{
     id: number;
@@ -416,9 +550,11 @@ if (!auth || !isAdmin(auth.username)) {
 
   // Initialize
   loadAdminData();
+  loadAsdfPrimaryData();
 
   // Bind buttons
   document.getElementById('expand-btn')?.addEventListener('click', toggleExpanded);
   document.getElementById('test-tokens-btn')?.addEventListener('click', testAllTokens);
   document.getElementById('delete-invalid-btn')?.addEventListener('click', deleteInvalidTokens);
+  document.getElementById('asdf-expand-btn')?.addEventListener('click', toggleAsdfExpanded);
 </script>
