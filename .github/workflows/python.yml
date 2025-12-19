@@ -32,4 +32,4 @@ jobs:
         run: ./scripts/upload-gz.sh
         env:
           API_URL: https://mise-versions.jdx.dev
-          API_SECRET: ${{ secrets.API_SECRET }}
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
