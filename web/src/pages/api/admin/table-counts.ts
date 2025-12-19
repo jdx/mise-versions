@@ -29,6 +29,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     'version_requests',
     'daily_version_stats',
     'versions',
+    'version_updates',
   ];
 
   const counts: Record<string, number> = {};
