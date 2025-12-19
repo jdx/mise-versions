@@ -1,11 +1,10 @@
 import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
-import { getFromR2 } from '../../lib/r2-data';
 
-// GET /tools/:tool - serves plain text version list from D1, or binary files from R2
-// e.g., /tools/node returns one version per line (from D1)
-// e.g., /tools/python-precompiled-x86_64-unknown-linux-gnu.gz returns gzip file (from R2)
+// GET /tools/:tool - serves plain text version list from D1
+// e.g., /tools/node returns one version per line
+// Note: .gz files are handled by [tool].gz.ts
 export const GET: APIRoute = async ({ params, locals }) => {
   const tool = params.tool;
 
@@ -16,8 +15,8 @@ export const GET: APIRoute = async ({ params, locals }) => {
     });
   }
 
-  // Validate tool name (alphanumeric, hyphens, underscores, slashes, periods for extensions)
-  if (!/^[\w\-\/\.]+$/.test(tool)) {
+  // Validate tool name (alphanumeric, hyphens, underscores, slashes)
+  if (!/^[\w\-\/]+$/.test(tool)) {
     return new Response('Invalid tool name', {
       status: 400,
       headers: { 'Content-Type': 'text/plain' },
@@ -26,39 +25,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
   const runtime = locals.runtime;
 
-  // Binary files (.gz) are served from R2
-  if (tool.endsWith('.gz')) {
-    try {
-      const bucket = runtime.env.DATA_BUCKET;
-      const data = await getFromR2(bucket, `tools/${tool}`);
-
-      if (!data) {
-        return new Response(`File "${tool}" not found`, {
-          status: 404,
-          headers: { 'Content-Type': 'text/plain' },
-        });
-      }
-
-      // Cache python-precompiled files longer (1 hour vs 10 minutes)
-      const cacheMaxAge = tool.startsWith('python-precompiled-') ? 3600 : 600;
-
-      return new Response(data.body, {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/gzip',
-          'Cache-Control': `public, max-age=${cacheMaxAge}`,
-        },
-      });
-    } catch (error) {
-      console.error('Error fetching binary from R2:', error);
-      return new Response('Failed to fetch file', {
-        status: 500,
-        headers: { 'Content-Type': 'text/plain' },
-      });
-    }
-  }
-
-  // Regular tools are served from D1
+  // Serve from D1
   try {
     const db = drizzle(runtime.env.ANALYTICS_DB);
 
