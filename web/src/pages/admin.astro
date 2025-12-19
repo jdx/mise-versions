@@ -14,9 +14,20 @@ if (!auth || !isAdmin(auth.username)) {
 
 <Layout title="Admin" description="Admin dashboard">
   <div class="space-y-8">
-    <div>
-      <h1 class="text-2xl font-bold text-gray-100">Admin Dashboard</h1>
-      <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-100">Admin Dashboard</h1>
+        <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
+      </div>
+      <button
+        id="refresh-btn"
+        class="p-2 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-gray-300 hover:text-white transition-colors"
+        title="Refresh all data"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      </button>
     </div>
 
     <!-- D1 Table Counts Card -->
@@ -190,12 +201,34 @@ if (!auth || !isAdmin(auth.username)) {
 </Layout>
 
 <script>
+  // localStorage helpers for panel state persistence
+  const PANEL_STATE_KEY = 'admin-panel-state';
+
+  function loadPanelState(): Record<string, boolean> {
+    try {
+      const stored = localStorage.getItem(PANEL_STATE_KEY);
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  }
+
+  function savePanelState(panel: string, expanded: boolean) {
+    try {
+      const state = loadPanelState();
+      state[panel] = expanded;
+      localStorage.setItem(PANEL_STATE_KEY, JSON.stringify(state));
+    } catch {
+      // Ignore localStorage errors
+    }
+  }
+
   // D1 Table Counts functionality
   let tableCountsData: Record<string, number> = {};
   let isTableCountsExpanded = false;
 
-  function toggleTableCountsExpanded() {
-    isTableCountsExpanded = !isTableCountsExpanded;
+  function setTableCountsExpanded(expanded: boolean) {
+    isTableCountsExpanded = expanded;
     const expandedContent = document.getElementById('table-counts-expanded-content');
     const expandText = document.getElementById('table-counts-expand-text');
     const expandIcon = document.getElementById('table-counts-expand-icon');
@@ -209,6 +242,11 @@ if (!auth || !isAdmin(auth.username)) {
       if (expandText) expandText.textContent = 'Expand';
       expandIcon?.classList.remove('rotate-180');
     }
+  }
+
+  function toggleTableCountsExpanded() {
+    setTableCountsExpanded(!isTableCountsExpanded);
+    savePanelState('tableCounts', isTableCountsExpanded);
   }
 
   function renderTableCounts() {
@@ -284,8 +322,8 @@ if (!auth || !isAdmin(auth.username)) {
   let asdfToolsData: AsdfPrimaryTool[] = [];
   let isAsdfExpanded = false;
 
-  function toggleAsdfExpanded() {
-    isAsdfExpanded = !isAsdfExpanded;
+  function setAsdfExpanded(expanded: boolean) {
+    isAsdfExpanded = expanded;
     const expandedContent = document.getElementById('asdf-expanded-content');
     const expandText = document.getElementById('asdf-expand-text');
     const expandIcon = document.getElementById('asdf-expand-icon');
@@ -299,6 +337,11 @@ if (!auth || !isAdmin(auth.username)) {
       if (expandText) expandText.textContent = 'Expand';
       expandIcon?.classList.remove('rotate-180');
     }
+  }
+
+  function toggleAsdfExpanded() {
+    setAsdfExpanded(!isAsdfExpanded);
+    savePanelState('asdf', isAsdfExpanded);
   }
 
   function renderAsdfTable() {
@@ -381,8 +424,8 @@ if (!auth || !isAdmin(auth.username)) {
   // Track expanded state
   let isExpanded = false;
 
-  function toggleExpanded() {
-    isExpanded = !isExpanded;
+  function setTokenPoolExpanded(expanded: boolean) {
+    isExpanded = expanded;
     const expandedContent = document.getElementById('expanded-content');
     const expandText = document.getElementById('expand-text');
     const expandIcon = document.getElementById('expand-icon');
@@ -403,6 +446,11 @@ if (!auth || !isAdmin(auth.username)) {
       testBtn?.classList.add('hidden');
       deleteInvalidBtn?.classList.add('hidden');
     }
+  }
+
+  function toggleExpanded() {
+    setTokenPoolExpanded(!isExpanded);
+    savePanelState('tokenPool', isExpanded);
   }
 
   function getInvalidTokenIds(): number[] {
@@ -675,10 +723,40 @@ if (!auth || !isAdmin(auth.username)) {
   // Make deleteToken available globally for onclick handlers
   (window as any).deleteToken = deleteToken;
 
+  // Refresh all data
+  async function refreshAll() {
+    const btn = document.getElementById('refresh-btn') as HTMLButtonElement;
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `
+        <svg class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      `;
+    }
+    await Promise.all([loadAdminData(), loadAsdfPrimaryData(), loadTableCounts()]);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+      `;
+    }
+  }
+
   // Initialize
+  // Load data
   loadAdminData();
   loadAsdfPrimaryData();
   loadTableCounts();
+
+  // Restore panel states from localStorage
+  const savedState = loadPanelState();
+  if (savedState.tableCounts) setTableCountsExpanded(true);
+  if (savedState.asdf) setAsdfExpanded(true);
+  if (savedState.tokenPool) setTokenPoolExpanded(true);
 
   // Bind buttons
   document.getElementById('expand-btn')?.addEventListener('click', toggleExpanded);
@@ -686,4 +764,5 @@ if (!auth || !isAdmin(auth.username)) {
   document.getElementById('delete-invalid-btn')?.addEventListener('click', deleteInvalidTokens);
   document.getElementById('asdf-expand-btn')?.addEventListener('click', toggleAsdfExpanded);
   document.getElementById('table-counts-expand-btn')?.addEventListener('click', toggleTableCountsExpanded);
+  document.getElementById('refresh-btn')?.addEventListener('click', refreshAll);
 </script>
