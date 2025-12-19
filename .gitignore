@@ -183,3 +183,7 @@ dist
 
 # Binary .gz files (uploaded to R2 directly, not tracked in git)
 docs/*.gz
+
+# Generated files - not tracked in git
+docs/tools.json
+docs/metadata-cache.json

@@ -437,11 +437,6 @@ if setup_token_management; then
 	echo "$last_processed_tool" >"last_processed_tool.txt"
 	set_stat "last_processed_tool" "$last_processed_tool"
 
-	# Generate tools.json manifest for the web UI
-	if node scripts/generate-manifest.js; then
-		git add docs/tools.json
-	fi
-
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 		git diff --compact-summary --cached
 

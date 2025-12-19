@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 /**
- * Fetch tool metadata from package registries and GitHub.
+ * Fetch tool metadata from package registries and GitHub, sync to D1.
  *
- * Usage: node fetch-metadata.js [--force] [--tool=name]
+ * Usage: node fetch-metadata.js [--tool=name]
+ *
+ * Environment variables:
+ *   SYNC_API_URL - Base URL of the API (e.g., https://mise-tools.jdx.dev)
+ *   API_SECRET   - API secret for authentication
+ *   TOKEN_MANAGER_URL / TOKEN_MANAGER_SECRET - GitHub token manager (optional)
+ *   GITHUB_TOKEN - Fallback GitHub token (optional)
  *
  * Fetches license, homepage, authors, and description from:
  * - npm (registry.npmjs.org)
@@ -11,15 +17,86 @@
  * - RubyGems (rubygems.org/api/v1)
  * - GitHub (api.github.com)
  *
- * Saves results to docs/metadata-cache.json
+ * Syncs results directly to D1 via /api/admin/metadata/sync
  */
 
-import { readFileSync, writeFileSync, existsSync } from "fs";
-import { join } from "path";
+import { readdirSync } from "fs";
+import { join, basename } from "path";
+import { execSync } from "child_process";
 
 const DOCS_DIR = join(process.cwd(), "docs");
-const TOOLS_FILE = join(DOCS_DIR, "tools.json");
-const CACHE_FILE = join(DOCS_DIR, "metadata-cache.json");
+
+// Get all backends from mise registry
+function getAllBackends() {
+  try {
+    const output = execSync("mise registry", {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "pipe"],
+      maxBuffer: 10 * 1024 * 1024,
+    });
+
+    const backendMap = new Map();
+    for (const line of output.split("\n")) {
+      if (!line.trim()) continue;
+      const parts = line.trim().split(/\s+/);
+      const toolName = parts[0];
+      const backends = parts.slice(1);
+      if (toolName && backends.length > 0) {
+        backendMap.set(toolName, backends);
+      }
+    }
+    return backendMap;
+  } catch (e) {
+    console.error(`Warning: Failed to get mise registry: ${e.message}`);
+    return new Map();
+  }
+}
+
+// Extract GitHub slug from backend string
+function extractGithubSlug(backend) {
+  if (!backend) return null;
+  const match = backend.match(/^(aqua|github|ubi):([^/]+\/[^/\[\s]+)/);
+  if (match) {
+    return match[2].replace(/\[.*$/, "");
+  }
+  return null;
+}
+
+// Get all tools from TOML files
+function getToolsFromToml() {
+  const EXCLUDED_PREFIXES = ["python-precompiled"];
+  const files = readdirSync(DOCS_DIR).filter((f) => {
+    if (!f.endsWith(".toml")) return false;
+    const toolName = basename(f, ".toml");
+    return !EXCLUDED_PREFIXES.some((prefix) => toolName.startsWith(prefix));
+  });
+
+  const backendMap = getAllBackends();
+  const tools = [];
+
+  for (const file of files) {
+    const toolName = basename(file, ".toml");
+    const backends = backendMap.get(toolName) || [];
+
+    // Extract github from backends
+    let github = null;
+    for (const backend of backends) {
+      const slug = extractGithubSlug(backend);
+      if (slug) {
+        github = slug;
+        break;
+      }
+    }
+
+    tools.push({
+      name: toolName,
+      backends,
+      github,
+    });
+  }
+
+  return tools;
+}
 
 // Token manager state
 let currentToken = null;
@@ -399,14 +476,11 @@ function mergeMetadata(sources) {
 // Parse command line arguments
 function parseArgs() {
   const args = {
-    force: false,
     tool: null,
   };
 
   for (const arg of process.argv.slice(2)) {
-    if (arg === "--force") {
-      args.force = true;
-    } else if (arg.startsWith("--tool=")) {
+    if (arg.startsWith("--tool=")) {
       args.tool = arg.slice(7);
     }
   }
@@ -417,20 +491,23 @@ function parseArgs() {
 async function main() {
   const args = parseArgs();
 
-  // Load tools.json
-  if (!existsSync(TOOLS_FILE)) {
-    console.error("tools.json not found. Run generate-manifest.js first.");
+  const syncApiUrl = process.env.SYNC_API_URL;
+  const apiSecret = process.env.API_SECRET;
+
+  if (!syncApiUrl) {
+    console.error("Error: SYNC_API_URL environment variable is required");
     process.exit(1);
   }
-  const toolsData = JSON.parse(readFileSync(TOOLS_FILE, "utf-8"));
-  console.log(`Loaded ${toolsData.tools.length} tools from tools.json`);
 
-  // Load existing cache
-  let cache = {};
-  if (existsSync(CACHE_FILE)) {
-    cache = JSON.parse(readFileSync(CACHE_FILE, "utf-8"));
-    console.log(`Loaded ${Object.keys(cache).length} entries from cache`);
+  if (!apiSecret) {
+    console.error("Error: API_SECRET environment variable is required");
+    process.exit(1);
   }
+
+  // Get tools from TOML files and mise registry
+  console.log("Loading tools from TOML files...");
+  const tools = getToolsFromToml();
+  console.log(`Found ${tools.length} tools`);
 
   // Initialize GitHub token
   const tokenManagerUrl = process.env.TOKEN_MANAGER_URL;
@@ -443,7 +520,7 @@ async function main() {
   }
 
   // Filter tools if specific tool requested
-  let toolsToProcess = toolsData.tools;
+  let toolsToProcess = tools;
   if (args.tool) {
     toolsToProcess = toolsToProcess.filter((t) => t.name === args.tool);
     if (toolsToProcess.length === 0) {
@@ -452,12 +529,10 @@ async function main() {
     }
   }
 
-  // No filtering - we re-fetch everything each run (weekly is fine)
-
   console.log(`Processing ${toolsToProcess.length} tools...`);
 
   let processed = 0;
-  let updated = 0;
+  const metadataEntries = [];
 
   for (const tool of toolsToProcess) {
     processed++;
@@ -483,7 +558,7 @@ async function main() {
         if (npmPkg) {
           const npmMeta = await fetchNpmMetadata(npmPkg);
           if (npmMeta) sources.push(npmMeta);
-          break; // Only fetch from one npm package
+          break;
         }
 
         const crate = extractPackageName(backend, "cargo");
@@ -512,18 +587,54 @@ async function main() {
     // Merge metadata from all sources
     const metadata = mergeMetadata(sources);
 
-    // Only update cache if we got useful data
+    // Only include if we got useful data
     if (metadata.license || metadata.homepage || metadata.authors || metadata.description) {
-      cache[tool.name] = metadata;
-      updated++;
+      metadataEntries.push({
+        name: tool.name,
+        ...metadata,
+      });
     }
   }
 
-  console.log(`\rProcessed ${processed} tools, updated ${updated} entries`);
+  console.log(`\rProcessed ${processed} tools, found metadata for ${metadataEntries.length}`);
 
-  // Save cache
-  writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2));
-  console.log(`Saved ${Object.keys(cache).length} entries to ${CACHE_FILE}`);
+  // Sync to D1 via API
+  const syncUrl = `${syncApiUrl}/api/admin/metadata/sync`;
+  console.log(`Syncing ${metadataEntries.length} entries to ${syncUrl}...`);
+
+  try {
+    const response = await fetch(syncUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apiSecret}`,
+      },
+      body: JSON.stringify({ metadata: metadataEntries }),
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      console.error(`Sync failed: ${response.status} ${response.statusText}`);
+      console.error(text);
+      process.exit(1);
+    }
+
+    const result = await response.json();
+    console.log("Sync completed successfully:");
+    console.log(`  - Updated: ${result.updated}`);
+    console.log(`  - Errors: ${result.errors}`);
+    console.log(`  - Total: ${result.total}`);
+
+    if (result.failed_tools && result.failed_tools.length > 0) {
+      console.log("\nFailed tools:");
+      for (const ft of result.failed_tools) {
+        console.log(`  - ${ft.name}: ${ft.error}`);
+      }
+    }
+  } catch (e) {
+    console.error("Sync failed:", e.message);
+    process.exit(1);
+  }
 }
 
 main().catch((e) => {
