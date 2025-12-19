@@ -1517,49 +1517,61 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       startDate.setDate(startDate.getDate() - days);
       const startDateStr = startDate.toISOString().split("T")[0];
 
-      // Get daily counts
-      const dailyResults = await db.all<{ date: string; count: number }>(sql`
-        SELECT date, SUM(versions_added) as count
-        FROM version_updates
-        WHERE date >= ${startDateStr}
-        GROUP BY date
-        ORDER BY date ASC
-      `);
+      try {
+        // Get daily counts
+        const dailyResults = await db.all<{ date: string; count: number }>(sql`
+          SELECT date, SUM(versions_added) as count
+          FROM version_updates
+          WHERE date >= ${startDateStr}
+          GROUP BY date
+          ORDER BY date ASC
+        `);
 
-      // Get totals
-      const totals = await db.get<{ total: number; unique_tools: number }>(sql`
-        SELECT
-          SUM(versions_added) as total,
-          COUNT(DISTINCT tool_id) as unique_tools
-        FROM version_updates
-        WHERE date >= ${startDateStr}
-      `);
+        // Get totals
+        const totals = await db.get<{ total: number; unique_tools: number }>(sql`
+          SELECT
+            SUM(versions_added) as total,
+            COUNT(DISTINCT tool_id) as unique_tools
+          FROM version_updates
+          WHERE date >= ${startDateStr}
+        `);
 
-      // Fill in missing days with 0
-      const dailyMap = new Map(dailyResults.map(r => [r.date, r.count]));
-      const daily: Array<{ date: string; count: number }> = [];
+        // Fill in missing days with 0
+        const dailyMap = new Map(dailyResults.map(r => [r.date, r.count]));
+        const daily: Array<{ date: string; count: number }> = [];
 
-      for (let i = 0; i < days; i++) {
-        const date = new Date(startDate);
-        date.setDate(date.getDate() + i);
-        const dateStr = date.toISOString().split("T")[0];
-        daily.push({
-          date: dateStr,
-          count: dailyMap.get(dateStr) ?? 0,
-        });
+        for (let i = 0; i < days; i++) {
+          const date = new Date(startDate);
+          date.setDate(date.getDate() + i);
+          const dateStr = date.toISOString().split("T")[0];
+          daily.push({
+            date: dateStr,
+            count: dailyMap.get(dateStr) ?? 0,
+          });
+        }
+
+        const totalUpdates = totals?.total ?? 0;
+        const uniqueTools = totals?.unique_tools ?? 0;
+        const avgPerDay = days > 0 ? totalUpdates / days : 0;
+
+        return {
+          daily,
+          total_updates: totalUpdates,
+          unique_tools: uniqueTools,
+          avg_per_day: Math.round(avgPerDay * 10) / 10,
+          days,
+        };
+      } catch (e) {
+        // Table might not exist yet - return empty data
+        console.error('Failed to get version updates (table may not exist):', e);
+        return {
+          daily: [],
+          total_updates: 0,
+          unique_tools: 0,
+          avg_per_day: 0,
+          days,
+        };
       }
-
-      const totalUpdates = totals?.total ?? 0;
-      const uniqueTools = totals?.unique_tools ?? 0;
-      const avgPerDay = days > 0 ? totalUpdates / days : 0;
-
-      return {
-        daily,
-        total_updates: totalUpdates,
-        unique_tools: uniqueTools,
-        avg_per_day: Math.round(avgPerDay * 10) / 10,
-        days,
-      };
     },
 
     // Backfill backend_id for existing records using default backends from registry
