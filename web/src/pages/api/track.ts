@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../../src/analytics';
 import { hashIP, getClientIP } from '../../lib/hash';
+import { emitTelemetry, getMiseVersionFromHeaders } from '../../../../src/pipelines';
 
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
@@ -34,6 +35,23 @@ export const POST: APIRoute = async ({ request, locals }) => {
       body.os || null,
       body.arch || null,
       body.full || null
+    );
+
+    const miseVersion = getMiseVersionFromHeaders(request.headers);
+    runtime.ctx.waitUntil(
+      emitTelemetry(runtime.env, {
+        schema_version: 1,
+        type: "download",
+        ts: Date.now(),
+        tool: body.tool,
+        version: body.version,
+        os: body.os ?? null,
+        arch: body.arch ?? null,
+        full: body.full ?? null,
+        ip_hash: ipHash,
+        mise_version: miseVersion,
+        source: "api/track",
+      })
     );
 
     return new Response(JSON.stringify({

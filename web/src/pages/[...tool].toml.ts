@@ -3,6 +3,7 @@ import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 import { hashIP, getClientIP } from '../lib/hash';
 import { setupAnalytics } from '../../../src/analytics';
+import { emitTelemetry, getMiseVersionFromHeaders } from '../../../src/pipelines';
 
 interface VersionRow {
   version: string;
@@ -58,11 +59,21 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
 
     // Track version request for DAU/MAU using waitUntil to ensure it completes
     const clientIP = getClientIP(request);
+    const miseVersion = getMiseVersionFromHeaders(request.headers);
     runtime.ctx.waitUntil(
       hashIP(clientIP, runtime.env.API_SECRET).then(async (ipHash) => {
         try {
           const analytics = setupAnalytics(db);
           await analytics.trackVersionRequest(ipHash);
+          await emitTelemetry(runtime.env, {
+            schema_version: 1,
+            type: "version_request",
+            ts: Date.now(),
+            tool,
+            ip_hash: ipHash,
+            mise_version: miseVersion,
+            source: "toml",
+          });
         } catch (e) {
           console.error('Failed to track version request:', e);
         }

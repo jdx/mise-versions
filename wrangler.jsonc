@@ -38,6 +38,12 @@
       "bucket_name": "mise-versions-data"
     }
   ],
+  "pipelines": [
+    {
+      "pipeline": "3dd4ff95e6ab4f0e918af1dc33f091b0",
+      "binding": "MISE_VERSIONS_STREAM"
+    }
+  ],
   "vars": {
     "ENVIRONMENT": "production"
   }

@@ -1,0 +1,19 @@
+{
+  "description": "mise-versions telemetry events mirrored from the Worker into Cloudflare Pipelines",
+  "type": "object",
+  "required": ["schema_version", "type", "ts", "tool", "ip_hash", "source"],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [1] },
+    "type": { "type": "string", "enum": ["download", "version_request"] },
+    "ts": { "type": "integer", "description": "Epoch milliseconds" },
+    "tool": { "type": "string" },
+    "version": { "type": ["string", "null"] },
+    "os": { "type": ["string", "null"] },
+    "arch": { "type": ["string", "null"] },
+    "full": { "type": ["string", "null"], "description": "Backend identifier like aqua:nektos/act" },
+    "ip_hash": { "type": "string" },
+    "mise_version": { "type": ["string", "null"] },
+    "source": { "type": "string", "enum": ["api/track", "toml"] }
+  },
+  "additionalProperties": false
+}
