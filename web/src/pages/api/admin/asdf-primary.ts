@@ -61,15 +61,22 @@ export const GET: APIRoute = async ({ request, locals }) => {
       return jsonResponse({ tools: [], total: 0 });
     }
 
-    // Get 30-day download counts for these tools
+    // Get 30-day download counts for these tools (batch to avoid D1 parameter limit)
     const toolIds = asdfPrimaryTools.map(t => t.id);
-    const downloadCounts = await db.all<{ tool_id: number; downloads: number }>(sql`
-      SELECT tool_id, SUM(downloads) as downloads
-      FROM daily_tool_stats
-      WHERE date >= ${startDate}
-        AND tool_id IN (${sql.join(toolIds.map(id => sql`${id}`), sql`, `)})
-      GROUP BY tool_id
-    `);
+    const BATCH_SIZE = 99;
+    const downloadCounts: Array<{ tool_id: number; downloads: number }> = [];
+
+    for (let i = 0; i < toolIds.length; i += BATCH_SIZE) {
+      const batch = toolIds.slice(i, i + BATCH_SIZE);
+      const batchResults = await db.all<{ tool_id: number; downloads: number }>(sql`
+        SELECT tool_id, SUM(downloads) as downloads
+        FROM daily_tool_stats
+        WHERE date >= ${startDate}
+          AND tool_id IN (${sql.join(batch.map(id => sql`${id}`), sql`, `)})
+        GROUP BY tool_id
+      `);
+      downloadCounts.push(...batchResults);
+    }
 
     // Build map of tool_id -> downloads
     const downloadMap = new Map<number, number>();
