@@ -29,14 +29,24 @@ for gz in "$GZ_DIR"/*.gz; do
   filename=$(basename "$gz")
   echo "Uploading $filename..."
 
-  # Base64 encode the file
-  data=$(base64 < "$gz" | tr -d '\n')
+  # Base64 encode the file and write to temp file to avoid argument list too long
+  tmpfile=$(mktemp)
+  base64 < "$gz" | tr -d '\n' > "$tmpfile"
 
-  # Upload via API
+  # Create JSON payload file
+  jsonfile=$(mktemp)
+  printf '{"filename": "%s", "data": "' "$filename" > "$jsonfile"
+  cat "$tmpfile" >> "$jsonfile"
+  printf '"}' >> "$jsonfile"
+  rm "$tmpfile"
+
+  # Upload via API using file input
   response=$(curl -s -w "\n%{http_code}" -X POST "$API_URL/api/admin/gz/upload" \
     -H "Authorization: Bearer $API_SECRET" \
     -H "Content-Type: application/json" \
-    -d "{\"filename\": \"$filename\", \"data\": \"$data\"}")
+    -d @"$jsonfile")
+
+  rm "$jsonfile"
 
   # Extract HTTP status code (last line)
   http_code=$(echo "$response" | tail -n1)
