@@ -1,6 +1,12 @@
 name: update
 on:
   workflow_dispatch:
+    inputs:
+      full_sync:
+        description: 'Force full sync of all versions to D1'
+        required: false
+        default: 'false'
+        type: boolean
   schedule:
     - cron: "*/15 * * * *"
 
@@ -53,6 +59,7 @@ jobs:
         env:
           SYNC_API_URL: https://mise-tools.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+          FULL_SYNC: ${{ inputs.full_sync || 'false' }}
       - uses: actions/configure-pages@v5
       - name: Upload static files as artifact
         id: deployment

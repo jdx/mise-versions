@@ -7,21 +7,25 @@
  * Environment variables:
  *   SYNC_API_URL - Base URL of the API (e.g., https://mise-tools.jdx.dev)
  *   API_SECRET   - API secret for authentication
+ *   FULL_SYNC    - Set to "true" to sync all tools (default: only sync updated tools)
  *
  * Reads docs/*.toml and POSTs to /api/admin/versions/sync
+ * By default, only syncs tools listed in updated_tools.txt (if it exists)
  */
 
-import { readFileSync, readdirSync } from "fs";
+import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, basename } from "path";
 import * as smolToml from "smol-toml";
 
 const DOCS_DIR = join(process.cwd(), "docs");
+const UPDATED_TOOLS_FILE = join(process.cwd(), "updated_tools.txt");
 const BATCH_SIZE = 100; // Number of tools per request
 const PARALLEL_REQUESTS = 4; // Number of parallel requests
 
 async function main() {
   const apiUrl = process.env.SYNC_API_URL;
   const apiSecret = process.env.API_SECRET;
+  const fullSync = process.env.FULL_SYNC === "true";
 
   if (!apiUrl) {
     console.error("Error: SYNC_API_URL environment variable is required");
@@ -33,9 +37,31 @@ async function main() {
     process.exit(1);
   }
 
-  // Find all TOML files
-  const files = readdirSync(DOCS_DIR).filter(f => f.endsWith('.toml'));
-  console.log(`Found ${files.length} TOML files`);
+  // Determine which tools to sync
+  let toolsToSync = null; // null means all tools
+  if (!fullSync && existsSync(UPDATED_TOOLS_FILE)) {
+    const updatedTools = readFileSync(UPDATED_TOOLS_FILE, "utf-8")
+      .split("\n")
+      .map(t => t.trim())
+      .filter(t => t.length > 0);
+
+    if (updatedTools.length === 0) {
+      console.log("No tools were updated - skipping versions sync");
+      return;
+    }
+
+    toolsToSync = new Set(updatedTools);
+    console.log(`Incremental sync: ${toolsToSync.size} updated tools`);
+  } else {
+    console.log(fullSync ? "Full sync requested" : "No updated_tools.txt found - doing full sync");
+  }
+
+  // Find TOML files (filtered if incremental)
+  let files = readdirSync(DOCS_DIR).filter(f => f.endsWith('.toml'));
+  if (toolsToSync) {
+    files = files.filter(f => toolsToSync.has(basename(f, '.toml')));
+  }
+  console.log(`Found ${files.length} TOML files to sync`);
 
   // Parse all TOML files
   const allTools = [];

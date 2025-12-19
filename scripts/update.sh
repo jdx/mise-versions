@@ -448,7 +448,7 @@ if setup_token_management; then
 		# Get the list of updated tools for the commit message
 		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
 		tools_updated_count=$(get_stat "total_tools_updated")
-		
+
 		commit_msg=""
 		if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
 			# Create a more descriptive commit message with updated tools
@@ -468,6 +468,10 @@ if setup_token_management; then
 		git pull --autostash --rebase origin main
 		git push
 	fi
+
+	# Save updated tools list for D1 sync (one tool per line)
+	echo "$updated_tools_list" | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
+	echo "Updated tools saved to updated_tools.txt: $(wc -l < updated_tools.txt) tools"
 else
 	echo "❌ Token management setup failed"
 	generate_summary
