@@ -59,7 +59,8 @@ add_to_list() {
 set_stat() {
 	local stat_file="$STATS_DIR/$1"
 	local value="$2"
-	echo "$value" > "$stat_file"
+	# Silently fail if stats directory was cleaned up
+	[ -d "$STATS_DIR" ] && echo "$value" > "$stat_file" || true
 }
 
 # Cleanup function
@@ -465,7 +466,7 @@ if setup_token_management; then
 	fi
 
 	# Save updated tools list for D1 sync (one tool per line)
-	echo "$updated_tools_list" | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
+	cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
 	echo "Updated tools saved to updated_tools.txt: $(wc -l < updated_tools.txt) tools"
 else
 	echo "❌ Token management setup failed"
