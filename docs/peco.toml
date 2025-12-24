@@ -1,48 +1,48 @@
 [versions]
-"0.1.7" = { created_at = 2014-06-22T00:45:16.000Z }
-"0.1.8" = { created_at = 2014-06-25T03:54:55.000Z }
-"0.1.9" = { created_at = 2014-06-25T06:25:05.000Z }
-"0.1.10" = { created_at = 2014-06-25T13:54:09.000Z }
-"0.1.11" = { created_at = 2014-06-30T11:22:10.000Z }
-"0.1.12" = { created_at = 2014-07-01T06:28:03.000Z }
-"0.2.0" = { created_at = 2014-07-07T03:09:30.000Z }
-"0.2.1" = { created_at = 2014-07-15T06:03:00.000Z }
-"0.2.2" = { created_at = 2014-07-23T07:37:07.000Z }
-"0.2.3" = { created_at = 2014-07-28T07:00:15.000Z }
-"0.2.4" = { created_at = 2014-08-13T06:09:20.000Z }
-"0.2.5" = { created_at = 2014-08-18T03:08:11.000Z }
-"0.2.6" = { created_at = 2014-08-30T22:24:53.000Z }
-"0.2.7" = { created_at = 2014-09-01T01:18:24.000Z }
-"0.2.8" = { created_at = 2014-09-01T06:10:10.000Z }
-"0.2.9" = { created_at = 2014-09-08T01:26:53.000Z }
-"0.2.10" = { created_at = 2014-09-24T10:11:35.000Z }
-"0.2.11" = { created_at = 2014-12-15T22:41:05.000Z }
-"0.2.12" = { created_at = 2015-02-26T21:55:20.000Z }
-"0.3.0" = { created_at = 2015-03-20T08:25:24.000Z }
-"0.3.1" = { created_at = 2015-03-24T00:13:58.000Z }
-"0.3.2" = { created_at = 2015-03-24T09:02:01.000Z }
-"0.3.3" = { created_at = 2015-07-11T12:02:26.000Z }
-"0.3.4" = { created_at = 2015-09-29T05:21:36.000Z }
-"0.3.5" = { created_at = 2015-10-30T00:01:07.000Z }
-"0.3.6" = { created_at = 2016-05-11T01:24:34.000Z }
-"0.4.0" = { created_at = 2016-08-19T10:09:52.000Z }
-"0.4.1" = { created_at = 2016-08-20T18:26:04.000Z }
-"0.4.2" = { created_at = 2016-08-23T00:29:38.000Z }
-"0.4.3" = { created_at = 2016-10-05T05:51:43.000Z }
-"0.4.4" = { created_at = 2016-10-23T06:34:00.000Z }
-"0.4.5" = { created_at = 2016-10-30T09:40:00.000Z }
-"0.4.6" = { created_at = 2016-12-13T21:50:45.000Z }
-"0.4.7" = { created_at = 2016-12-16T22:29:28.000Z }
-"0.4.8" = { created_at = 2017-02-27T03:01:56.000Z }
-"0.4.9" = { created_at = 2017-02-28T21:51:48.000Z }
-"0.5.0" = { created_at = 2017-03-05T23:56:25.000Z }
-"0.5.1" = { created_at = 2017-03-17T03:41:58.000Z }
-"0.5.2" = { created_at = 2017-12-08T01:20:46.000Z }
-"0.5.3" = { created_at = 2018-03-11T22:16:56.000Z }
-"0.5.4" = { created_at = 2019-12-19T01:48:54.000Z }
-"0.5.5" = { created_at = 2020-01-01T23:26:10.000Z }
-"0.5.6" = { created_at = 2020-01-07T00:38:23.000Z }
-"0.5.7" = { created_at = 2020-01-10T03:45:00.000Z }
-"0.5.8" = { created_at = 2020-07-18T11:12:52.000Z }
-"0.5.10" = { created_at = 2021-06-08T09:15:34.000Z }
-"0.5.11" = { created_at = 2023-03-21T07:31:07.000Z }
+"0.1.7" = { created_at = 2014-06-22T00:45:16.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.1.7" }
+"0.1.8" = { created_at = 2014-06-25T03:54:55.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.1.8" }
+"0.1.9" = { created_at = 2014-06-25T06:25:05.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.1.9" }
+"0.1.10" = { created_at = 2014-06-25T13:54:09.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.1.10" }
+"0.1.11" = { created_at = 2014-06-30T11:22:10.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.1.11" }
+"0.1.12" = { created_at = 2014-07-01T06:28:03.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.1.12" }
+"0.2.0" = { created_at = 2014-07-07T03:09:30.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2014-07-15T06:03:00.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2014-07-23T07:37:07.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2014-07-28T07:00:15.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2014-08-13T06:09:20.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.4" }
+"0.2.5" = { created_at = 2014-08-18T03:08:11.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.5" }
+"0.2.6" = { created_at = 2014-08-30T22:24:53.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.6" }
+"0.2.7" = { created_at = 2014-09-01T01:18:24.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.7" }
+"0.2.8" = { created_at = 2014-09-01T06:10:10.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.8" }
+"0.2.9" = { created_at = 2014-09-08T01:26:53.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.9" }
+"0.2.10" = { created_at = 2014-09-24T10:11:35.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.10" }
+"0.2.11" = { created_at = 2014-12-15T22:41:05.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.11" }
+"0.2.12" = { created_at = 2015-02-26T21:55:20.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.2.12" }
+"0.3.0" = { created_at = 2015-03-20T08:25:24.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2015-03-24T00:13:58.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2015-03-24T09:02:01.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2015-07-11T12:02:26.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.3" }
+"0.3.4" = { created_at = 2015-09-29T05:21:36.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.4" }
+"0.3.5" = { created_at = 2015-10-30T00:01:07.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.5" }
+"0.3.6" = { created_at = 2016-05-11T01:24:34.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.3.6" }
+"0.4.0" = { created_at = 2016-08-19T10:09:52.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2016-08-20T18:26:04.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2016-08-23T00:29:38.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2016-10-05T05:51:43.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2016-10-23T06:34:00.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.4" }
+"0.4.5" = { created_at = 2016-10-30T09:40:00.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.5" }
+"0.4.6" = { created_at = 2016-12-13T21:50:45.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.6" }
+"0.4.7" = { created_at = 2016-12-16T22:29:28.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.7" }
+"0.4.8" = { created_at = 2017-02-27T03:01:56.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.8" }
+"0.4.9" = { created_at = 2017-02-28T21:51:48.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.4.9" }
+"0.5.0" = { created_at = 2017-03-05T23:56:25.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2017-03-17T03:41:58.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2017-12-08T01:20:46.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.2" }
+"0.5.3" = { created_at = 2018-03-11T22:16:56.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.3" }
+"0.5.4" = { created_at = 2019-12-19T01:48:54.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.4" }
+"0.5.5" = { created_at = 2020-01-01T23:26:10.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.5" }
+"0.5.6" = { created_at = 2020-01-07T00:38:23.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.6" }
+"0.5.7" = { created_at = 2020-01-10T03:45:00.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.7" }
+"0.5.8" = { created_at = 2020-07-18T11:12:52.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.8" }
+"0.5.10" = { created_at = 2021-06-08T09:15:34.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.10" }
+"0.5.11" = { created_at = 2023-03-21T07:31:07.000Z, release_url = "https://github.com/peco/peco/releases/tag/v0.5.11" }
