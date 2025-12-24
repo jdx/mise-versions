@@ -82,12 +82,12 @@ generate_summary() {
 	if [ "$(get_stat "summary_generated")" = "true" ]; then
 		return
 	fi
-	
+
 	local end_time=$(date +%s)
 	local duration=$((end_time - START_TIME))
 	local duration_minutes=$((duration / 60))
 	local duration_seconds=$((duration % 60))
-	
+
 	# Create summary file
 	cat > summary.md << SUMMARY_EOF
 # 📊 Mise Versions Update Summary
@@ -163,7 +163,7 @@ SUMMARY_EOF
 	if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
 		cat summary.md >> "$GITHUB_STEP_SUMMARY"
 	fi
-	
+
 	echo "📊 Summary generated:"
 	cat summary.md
 	set_stat "summary_generated" "true"
@@ -256,14 +256,14 @@ get_github_token() {
 
 fetch() {
 	increment_stat "total_tools_checked"
-	
+
 	case "$1" in
 	awscli-local | jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar | dasel | cockroach)
 		increment_stat "total_tools_skipped"
 		return
 		;;
 	esac
-	
+
 	# Get a fresh token for this fetch operation
 	local token_info
 	if ! token_info=$(get_github_token); then
@@ -274,7 +274,7 @@ fetch() {
 	fi
 	local token
 	local token_id
-	
+
 	# Parse token and token_id from the response
 	if [[ "$token_info" == *" "* ]]; then
 		token=$(echo "$token_info" | cut -d' ' -f1)
@@ -321,7 +321,7 @@ fetch() {
 		rm -f "$stderr_file" "docs/$1"
 		return
 	fi
-	
+
 	# Clean up stderr file
 	rm -f "$stderr_file"
 
@@ -418,8 +418,9 @@ if setup_token_management; then
 	last_processed_tool=""
 	for tool in $tools_limited; do
 		if ! timeout 60s bash -c "fetch $tool"; then
-			echo "❌ Failed to fetch $tool, stopping processing"
-			break
+			echo "❌ Failed to fetch $tool, continuing to next tool"
+			# Don't break, continue to next tool
+			continue
 		fi
 		if [ -z "$first_processed_tool" ]; then
 			first_processed_tool="$tool"
@@ -427,7 +428,9 @@ if setup_token_management; then
 		last_processed_tool="$tool"
 	done
 	set_stat "first_processed_tool" "$first_processed_tool"
-	echo "$last_processed_tool" >"last_processed_tool.txt"
+	if [ -n "$last_processed_tool" ]; then
+		echo "$last_processed_tool" >"last_processed_tool.txt"
+	fi
 	set_stat "last_processed_tool" "$last_processed_tool"
 
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
