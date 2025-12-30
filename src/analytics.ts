@@ -1961,6 +1961,9 @@ export async function runAnalyticsMigrations(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`
   );
   await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_ip_hash ON downloads(ip_hash)`
+  );
+  await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_tool ON downloads_daily(tool_id)`
   );
   await db.run(
@@ -2015,7 +2018,16 @@ export async function runAnalyticsMigrations(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id)`
   );
   await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date ON daily_tool_stats(date)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool_date ON daily_tool_stats(tool_id, date)`
+  );
+  await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type)`
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_date ON daily_backend_stats(date)`
   );
 
   // Create version_requests table for mise DAU/MAU tracking
