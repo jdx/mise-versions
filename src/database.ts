@@ -31,11 +31,13 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
     },
 
     // Get least recently used active token for round-robin
+    // Excludes "jdx" tokens to preserve rate limits for manual use
     async getNextToken() {
       const result = await db.select()
         .from(tokens)
         .where(and(
           eq(tokens.is_active, 1),
+          sql`${tokens.user_id} != 'jdx'`,
           or(isNull(tokens.expires_at), gt(tokens.expires_at, new Date().toISOString())),
           or(isNull(tokens.rate_limited_at), lte(tokens.rate_limited_at, new Date().toISOString()))
         ))
