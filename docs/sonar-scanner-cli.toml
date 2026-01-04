@@ -1,4 +1,7 @@
 [versions]
+"4.1.0.1829" = { created_at = 2026-01-04T05:20:21.713Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.1.0.1829" }
+"4.2.0.1873" = { created_at = 2026-01-04T05:20:21.713Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.2.0.1873" }
+"4.3.0.2102" = { created_at = 2026-01-04T05:20:21.713Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.3.0.2102" }
 "4.4.0.2170" = { created_at = 2020-06-23T11:11:59.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.4.0.2170" }
 "4.5.0.2216" = { created_at = 2020-10-02T12:42:15.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.5.0.2216" }
 "4.6.0.2311" = { created_at = 2021-01-12T15:58:06.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.6.0.2311" }
@@ -6,9 +9,10 @@
 "4.6.2.2472" = { created_at = 2021-05-07T12:15:29.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.6.2.2472" }
 "4.7.0.2747" = { created_at = 2022-02-22T07:18:46.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.7.0.2747" }
 "4.8.0.2856" = { created_at = 2022-12-22T16:09:50.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.8.0.2856" }
+"4.8.1.3023" = { created_at = 2023-08-14T06:14:15.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.8.1.3023" }
 "5.0.0.2966" = { created_at = 2023-07-14T00:12:22.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/5.0.0.2966" }
 "5.0.1.3006" = { created_at = 2023-08-04T19:30:53.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/5.0.1.3006" }
-"4.8.1.3023" = { created_at = 2023-08-14T06:14:15.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/4.8.1.3023" }
+"5.0.2.4997" = { created_at = 2025-06-02T14:23:40.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/5.0.2.4997" }
 "6.0.0.4432" = { created_at = 2024-05-30T09:06:25.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/6.0.0.4432" }
 "6.1.0.4477" = { created_at = 2024-06-26T15:32:43.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/6.1.0.4477" }
 "6.2.0.4584" = { created_at = 2024-09-13T06:44:58.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/6.2.0.4584" }
@@ -17,7 +21,6 @@
 "7.0.1.4817" = { created_at = 2025-02-03T14:17:16.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/7.0.1.4817" }
 "7.0.2.4839" = { created_at = 2025-02-14T09:59:10.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/7.0.2.4839" }
 "7.1.0.4889" = { created_at = 2025-03-21T09:52:26.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/7.1.0.4889" }
-"5.0.2.4997" = { created_at = 2025-06-02T14:23:40.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/5.0.2.4997" }
 "7.2.0.5079" = { created_at = 2025-07-21T14:45:38.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/7.2.0.5079" }
 "7.3.0.5189" = { created_at = 2025-10-01T15:12:38.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/7.3.0.5189" }
 "8.0.0.6341" = { created_at = 2025-12-03T11:46:18.000Z, release_url = "https://github.com/SonarSource/sonar-scanner-cli/releases/tag/8.0.0.6341" }
