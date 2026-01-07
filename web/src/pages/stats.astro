@@ -292,7 +292,7 @@ const strokeWidth = 60;
       {dauMauData && dauMauData.daily.length > 0 && (
         <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
           <h2 class="text-lg font-semibold text-gray-200 mb-3">
-            Daily Active Users
+            Daily & Monthly Active Users
             <span class="text-sm font-normal text-gray-400 ml-2">
               (MAU: {formatCompact(dauMauData.current_mau)})
             </span>
@@ -304,17 +304,31 @@ const strokeWidth = 60;
               const padding = { top: 20, right: 50, bottom: 30, left: 50 };
               const chartWidth = width - padding.left - padding.right;
               const chartHeight = height - padding.top - padding.bottom;
-              const data = dauMauData.daily;
-              const mau = dauMauData.current_mau;
-              const maxDAU = Math.max(...data.map(d => d.dau), mau);
-              const yScale = (v: number) => chartHeight - (v / maxDAU) * chartHeight;
+              type DayData = { date: string; dau: number; mau?: number };
+              const data: DayData[] = dauMauData.daily;
+              const maxVal = Math.max(
+                ...data.map(d => d.dau),
+                ...data.map(d => d.mau || 0)
+              );
+              const yScale = (v: number) => chartHeight - (v / maxVal) * chartHeight;
               const barWidth = chartWidth / data.length - 2;
-              const mauY = yScale(mau);
+
+              // Build MAU polyline points
+              const mauPoints: string[] = [];
+              for (let i = 0; i < data.length; i++) {
+                const d = data[i];
+                if (d.mau && d.mau > 0) {
+                  const px = (i / data.length) * chartWidth + barWidth / 2;
+                  const py = yScale(d.mau);
+                  mauPoints.push(String(px) + "," + String(py));
+                }
+              }
+              const mauPath = mauPoints.length > 1 ? "M " + mauPoints.join(" L ") : "";
 
               return (
                 <svg width={width} height={height} class="min-w-[400px]">
                   <text x={padding.left - 10} y={padding.top} text-anchor="end" class="fill-gray-500 text-xs">
-                    {formatCompact(maxDAU)}
+                    {formatCompact(maxVal)}
                   </text>
                   <text x={padding.left - 10} y={padding.top + chartHeight} text-anchor="end" class="fill-gray-500 text-xs">
                     0
@@ -322,7 +336,10 @@ const strokeWidth = 60;
                   <g transform={`translate(${padding.left}, ${padding.top})`}>
                     {data.map((d, i) => {
                       const x = (i / data.length) * chartWidth + 1;
-                      const barHeight = (d.dau / maxDAU) * chartHeight;
+                      const barHeight = (d.dau / maxVal) * chartHeight;
+                      const titleText = d.mau
+                        ? String(d.date) + ": " + d.dau.toLocaleString() + " DAU, " + d.mau.toLocaleString() + " MAU"
+                        : String(d.date) + ": " + d.dau.toLocaleString() + " DAU";
                       return (
                         <rect
                           x={x}
@@ -332,22 +349,19 @@ const strokeWidth = 60;
                           fill="#B026FF"
                           opacity="0.8"
                         >
-                          <title>{d.date}: {d.dau.toLocaleString()} DAU</title>
+                          <title>{titleText}</title>
                         </rect>
                       );
                     })}
-                    <line
-                      x1={0}
-                      y1={mauY}
-                      x2={chartWidth}
-                      y2={mauY}
-                      stroke="#00D4FF"
-                      stroke-width="2"
-                      stroke-dasharray="6,4"
-                    />
-                    <text x={chartWidth + 5} y={mauY + 4} class="fill-cyan-400 text-xs">
-                      MAU
-                    </text>
+                    {mauPath.length > 0 && (
+                      <path d={mauPath} fill="none" stroke="#00D4FF" stroke-width="2" />
+                    )}
+                    <g transform={`translate(${chartWidth - 80}, -10)`}>
+                      <rect x={0} y={0} width={10} height={10} fill="#B026FF" opacity="0.8" />
+                      <text x={14} y={9} class="fill-gray-400 text-xs">DAU</text>
+                      <line x1={40} y1={5} x2={55} y2={5} stroke="#00D4FF" stroke-width="2" />
+                      <text x={59} y={9} class="fill-gray-400 text-xs">MAU</text>
+                    </g>
                     {data.map((d, i) => {
                       if (i % 7 !== 0 && i !== data.length - 1) return null;
                       const x = (i / data.length) * chartWidth + barWidth / 2;
