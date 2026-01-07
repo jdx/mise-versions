@@ -26,6 +26,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return jsonResponse({
       success: true,
       days_processed: result.daysProcessed,
+      mau_days_processed: result.mauDaysProcessed,
     });
   } catch (error) {
     console.error('Backfill rollups error:', error);

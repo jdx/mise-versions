@@ -1,7 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
 
 export interface DAUMAUData {
-  daily: Array<{ date: string; dau: number }>;
+  daily: Array<{ date: string; dau: number; mau: number }>;
   current_mau: number;
 }
 
