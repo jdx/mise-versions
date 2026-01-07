@@ -408,7 +408,8 @@ fetch() {
 	if [ "$remaining" -lt 1000 ]; then
 		log_warn "GitHub rate limit low" "remaining=$remaining" "tool=$1"
 	fi
-	log_info "Fetching versions" "tool=$1"
+	# Log removed to reduce verbosity
+	# log_info "Fetching versions" "tool=$1"
 
 	# Create a temporary file to capture stderr and check for rate limiting
 	local stderr_file
@@ -550,7 +551,14 @@ if setup_token_management; then
 	export STATS_DIR LOG_LEVEL
 	first_processed_tool=""
 	last_processed_tool=""
+	processed_count=0
 	for tool in $tools_limited; do
+		# Log progress every 10 tools
+		processed_count=$((processed_count + 1))
+		if (( processed_count % 10 == 0 )); then
+			log_info "Processing tools..." "count=$processed_count"
+		fi
+
 		if ! timeout 60s bash -c "fetch $tool"; then
 			log_error "Fetch timed out or failed, continuing" "tool=$tool"
 			# Don't break, continue to next tool
