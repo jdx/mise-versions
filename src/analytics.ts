@@ -735,18 +735,25 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         .groupBy(dailyToolBackendStats.tool_id, dailyToolBackendStats.backend_type)
         .all();
 
-      // Get tool names for the tool IDs we found
+      // Get tool names for the tool IDs we found (batch to avoid D1 param limit)
       const toolIds = [...new Set(results.map(r => r.tool_id))];
       if (toolIds.length === 0) {
         return {};
       }
 
-      const toolNames = await db
-        .select({ id: tools.id, name: tools.name })
-        .from(tools)
-        .where(sql`${tools.id} IN (${sql.join(toolIds.map(id => sql`${id}`), sql`, `)})`)
-        .all();
-      const toolIdToName = new Map(toolNames.map(t => [t.id, t.name]));
+      const toolIdToName = new Map<number, string>();
+      const BATCH_SIZE = 99;
+      for (let i = 0; i < toolIds.length; i += BATCH_SIZE) {
+        const batch = toolIds.slice(i, i + BATCH_SIZE);
+        const toolNames = await db
+          .select({ id: tools.id, name: tools.name })
+          .from(tools)
+          .where(sql`${tools.id} IN (${sql.join(batch.map(id => sql`${id}`), sql`, `)})`)
+          .all();
+        for (const t of toolNames) {
+          toolIdToName.set(t.id, t.name);
+        }
+      }
 
       // Group by backend type, then get top tools per type
       const byBackendType = new Map<string, Map<string, number>>();
