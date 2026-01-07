@@ -230,15 +230,34 @@ export async function loadToolsPaginated(
     ORDER BY count DESC
   `;
 
-  // Execute queries
+  // Execute queries with individual error handling
   const mainBindParams = [thirtyDaysAgo, ...bindParams, limit, offset];
   const countBindParams = [...bindParams];
 
-  const [mainResults, countResult, backendCountsResults] = await Promise.all([
-    analyticsDb.prepare(mainQuery).bind(...mainBindParams).all<PaginatedToolRow>(),
-    analyticsDb.prepare(countQuery).bind(...countBindParams).first<{ total: number }>(),
-    analyticsDb.prepare(backendCountsQuery).all<{ backend_type: string; count: number }>(),
-  ]);
+  let mainResults: D1Result<PaginatedToolRow>;
+  let countResult: { total: number } | null;
+  let backendCountsResults: D1Result<{ backend_type: string; count: number }>;
+
+  try {
+    mainResults = await analyticsDb.prepare(mainQuery).bind(...mainBindParams).all<PaginatedToolRow>();
+  } catch (e) {
+    console.error('Main query failed:', e, '\nQuery:', mainQuery, '\nParams:', mainBindParams);
+    throw new Error(`Main query failed: ${e}`);
+  }
+
+  try {
+    countResult = await analyticsDb.prepare(countQuery).bind(...countBindParams).first<{ total: number }>();
+  } catch (e) {
+    console.error('Count query failed:', e, '\nQuery:', countQuery, '\nParams:', countBindParams);
+    throw new Error(`Count query failed: ${e}`);
+  }
+
+  try {
+    backendCountsResults = await analyticsDb.prepare(backendCountsQuery).all<{ backend_type: string; count: number }>();
+  } catch (e) {
+    console.error('Backend counts query failed:', e, '\nQuery:', backendCountsQuery);
+    throw new Error(`Backend counts query failed: ${e}`);
+  }
 
   const totalCount = countResult?.total ?? 0;
   const totalPages = Math.ceil(totalCount / limit);
