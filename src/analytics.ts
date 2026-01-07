@@ -843,10 +843,14 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
         });
       }
 
-      // Current MAU is the most recent value in the mau history
-      const currentMAU = dailyData.length > 0
-        ? dailyData[dailyData.length - 1].mau
-        : 0;
+      // Current MAU is today's value from the rollup table
+      const todayMau = await db
+        .select({ mau: dailyMauStats.mau })
+        .from(dailyMauStats)
+        .where(sql`${dailyMauStats.date} = ${today}`)
+        .get();
+
+      const currentMAU = todayMau?.mau ?? (dailyData.length > 0 ? dailyData[dailyData.length - 1].mau : 0);
 
       return {
         daily: dailyData,
