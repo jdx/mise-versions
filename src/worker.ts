@@ -2,8 +2,8 @@
 // This allows us to use Cloudflare cron triggers for daily rollup tasks
 
 import { drizzle } from 'drizzle-orm/d1';
-import { runMigrations } from './migrations';
-import { runAnalyticsMigrations, setupAnalytics } from './analytics';
+import { runMigrations } from './migrations.js';
+import { runAnalyticsMigrations, setupAnalytics } from './analytics/index.js';
 import astroWorker from '../web/dist/_worker.js/index.js';
 
 interface Env {
