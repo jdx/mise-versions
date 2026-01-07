@@ -210,6 +210,7 @@ export async function loadToolsPaginated(
   `;
 
   // Backend counts query (for filter chips - counts across ALL tools, not just current page)
+  // Filter out NULL and malformed backends JSON
   const backendCountsQuery = `
     SELECT
       SUBSTR(
@@ -220,6 +221,8 @@ export async function loadToolsPaginated(
       COUNT(DISTINCT t.name) as count
     FROM tools t, json_each(t.backends)
     WHERE t.latest_version IS NOT NULL
+      AND t.backends IS NOT NULL
+      AND json_valid(t.backends)
     GROUP BY backend_type
     ORDER BY count DESC
   `;
