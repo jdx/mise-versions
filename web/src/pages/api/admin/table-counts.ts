@@ -16,21 +16,11 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
   const db = drizzle(runtime.env.ANALYTICS_DB);
 
-  // List of all tables to count
-  const tables = [
-    'tools',
-    'backends',
-    'platforms',
-    'downloads',
-    'downloads_daily',
-    'daily_stats',
-    'daily_tool_stats',
-    'daily_backend_stats',
-    'version_requests',
-    'daily_version_stats',
-    'versions',
-    'version_updates',
-  ];
+  // Dynamically discover all tables from sqlite_master
+  const tablesResult = await db.all<{ name: string }>(
+    sql`SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' ORDER BY name`
+  );
+  const tables = tablesResult.map((t) => t.name);
 
   const counts: Record<string, number> = {};
 
