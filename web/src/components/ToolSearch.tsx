@@ -26,10 +26,30 @@ interface TrendingTool {
   sparkline: number[];
 }
 
+interface PaginationInfo {
+  page: number;
+  totalPages: number;
+  totalCount: number;
+}
+
+interface ToolsApiResponse {
+  tools: Tool[];
+  downloads: Record<string, number>;
+  page: number;
+  total_pages: number;
+  total_count: number;
+  backendCounts: Record<string, number>;
+}
+
 interface Props {
   tools: Tool[];
   downloads: Record<string, number>;
   trendingTools?: TrendingTool[];
+  pagination: PaginationInfo;
+  backendCounts: Record<string, number>;
+  initialSearch?: string;
+  initialSort?: SortKey;
+  initialBackends?: string[];
 }
 
 // Security level detection and lock icon
@@ -176,14 +196,141 @@ function getInitialState() {
   };
 }
 
-export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
-  const initial = getInitialState();
-  const [search, setSearch] = useState(initial.search);
-  const [sortBy, setSortBy] = useState<SortKey>(initial.sortBy);
-  const [selectedBackends, setSelectedBackends] = useState<Set<string>>(initial.selectedBackends);
+export function ToolSearch({
+  tools: initialTools,
+  downloads: initialDownloads,
+  trendingTools = [],
+  pagination: initialPagination,
+  backendCounts: initialBackendCounts,
+  initialSearch = '',
+  initialSort = 'downloads',
+  initialBackends = [],
+}: Props) {
+  // State for current data (updated via API)
+  const [tools, setTools] = useState(initialTools);
+  const [downloads, setDownloads] = useState(initialDownloads);
+  const [pagination, setPagination] = useState(initialPagination);
+  const [backendCounts, setBackendCounts] = useState(initialBackendCounts);
+
+  // UI state
+  const [search, setSearch] = useState(initialSearch);
+  const [sortBy, setSortBy] = useState<SortKey>(initialSort);
+  const [selectedBackends, setSelectedBackends] = useState<Set<string>>(new Set(initialBackends));
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
+  const searchDebounceRef = useRef<number>();
+  const isInitialMount = useRef(true);
+
+  // Fetch tools from API
+  const fetchTools = async (params: {
+    page?: number;
+    search?: string;
+    sort?: SortKey;
+    backends?: string[];
+  }) => {
+    setIsLoading(true);
+    try {
+      const searchParams = new URLSearchParams();
+      if (params.page && params.page > 1) searchParams.set('page', String(params.page));
+      if (params.search?.trim()) searchParams.set('q', params.search.trim());
+      if (params.sort && params.sort !== 'downloads') searchParams.set('sort', params.sort);
+      if (params.backends && params.backends.length > 0) {
+        searchParams.set('backends', params.backends.join(','));
+      }
+
+      // Update URL without reload
+      const newUrl = searchParams.toString()
+        ? `${window.location.pathname}?${searchParams.toString()}`
+        : window.location.pathname;
+      window.history.pushState(null, '', newUrl);
+
+      const response = await fetch(`/api/tools?${searchParams.toString()}`);
+      if (!response.ok) throw new Error('Failed to fetch tools');
+
+      const data: ToolsApiResponse = await response.json();
+      setTools(data.tools);
+      setDownloads(data.downloads);
+      setPagination({
+        page: data.page,
+        totalPages: data.total_pages,
+        totalCount: data.total_count,
+      });
+      // Don't update backendCounts - keep the global counts for filter chips
+    } catch (error) {
+      console.error('Failed to fetch tools:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Handle page change
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > pagination.totalPages || newPage === pagination.page) return;
+    fetchTools({
+      page: newPage,
+      search,
+      sort: sortBy,
+      backends: [...selectedBackends],
+    });
+    // Scroll to top of results
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Handle search change with debounce
+  const handleSearchChange = (value: string) => {
+    setSearch(value);
+    setShowSuggestions(true);
+    clearTimeout(searchDebounceRef.current);
+    searchDebounceRef.current = window.setTimeout(() => {
+      fetchTools({
+        page: 1,
+        search: value,
+        sort: sortBy,
+        backends: [...selectedBackends],
+      });
+    }, 300);
+  };
+
+  // Handle sort change
+  const handleSortChange = (newSort: SortKey) => {
+    setSortBy(newSort);
+    fetchTools({
+      page: 1,
+      search,
+      sort: newSort,
+      backends: [...selectedBackends],
+    });
+  };
+
+  // Handle backend filter toggle
+  const handleBackendToggle = (backend: string) => {
+    const newBackends = new Set(selectedBackends);
+    if (newBackends.has(backend)) {
+      newBackends.delete(backend);
+    } else {
+      newBackends.add(backend);
+    }
+    setSelectedBackends(newBackends);
+    fetchTools({
+      page: 1,
+      search,
+      sort: sortBy,
+      backends: [...newBackends],
+    });
+  };
+
+  // Clear all filters
+  const handleClearFilters = () => {
+    setSelectedBackends(new Set());
+    fetchTools({
+      page: 1,
+      search,
+      sort: sortBy,
+      backends: [],
+    });
+  };
 
   // Autocomplete suggestions
   const suggestions = useMemo(() => {
@@ -199,93 +346,32 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
     setSelectedIndex(suggestions.length > 0 ? 0 : -1);
   }, [suggestions]);
 
-  // Sync state to URL
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams();
-    if (search.trim()) params.set("q", search.trim());
-    if (sortBy !== "downloads") params.set("sort", sortBy);
-    if (selectedBackends.size > 0) params.set("backends", [...selectedBackends].join(","));
+  // Convert backendCounts object to sorted Map for rendering
+  const sortedBackendCounts = useMemo(() => {
+    return new Map(
+      Object.entries(backendCounts).sort((a, b) => b[1] - a[1])
+    );
+  }, [backendCounts]);
 
-    const newUrl = params.toString()
-      ? `${window.location.pathname}?${params.toString()}`
-      : window.location.pathname;
-
-    window.history.replaceState(null, "", newUrl);
-  }, [search, sortBy, selectedBackends]);
-
-  // Compute backend counts for filter chips
-  const backendCounts = useMemo(() => {
-    if (!tools) return new Map<string, number>();
-    const counts = new Map<string, number>();
-    for (const tool of tools) {
-      if (tool.backends) {
-        const seenTypes = new Set<string>();
-        for (const backend of tool.backends) {
-          const backendType = getBackendType(backend);
-          if (!seenTypes.has(backendType)) {
-            seenTypes.add(backendType);
-            counts.set(backendType, (counts.get(backendType) || 0) + 1);
-          }
-        }
-      }
-    }
-    return new Map([...counts.entries()].sort((a, b) => b[1] - a[1]));
-  }, [tools]);
-
-  const filteredTools = useMemo(() => {
+  // Tools with downloads (server already provides filtered/sorted data)
+  const toolsWithDownloads = useMemo(() => {
     if (!tools) return [];
-    let toolsWithDownloads = tools.map((t) => ({
+    return tools.map((t) => ({
       ...t,
       downloads_30d: downloads?.[t.name] || 0,
     }));
-
-    if (search.trim()) {
-      const query = search.toLowerCase();
-      toolsWithDownloads = toolsWithDownloads.filter((t) =>
-        t.name.toLowerCase().includes(query)
-      );
-    }
-
-    if (selectedBackends.size > 0) {
-      toolsWithDownloads = toolsWithDownloads.filter((t) => {
-        if (!t.backends) return false;
-        return t.backends.some((backend) =>
-          selectedBackends.has(getBackendType(backend))
-        );
-      });
-    }
-
-    return [...toolsWithDownloads].sort((a, b) => {
-      switch (sortBy) {
-        case "downloads":
-          return b.downloads_30d - a.downloads_30d;
-        case "updated":
-          if (!a.last_updated && !b.last_updated) return 0;
-          if (!a.last_updated) return 1;
-          if (!b.last_updated) return -1;
-          return new Date(b.last_updated).getTime() - new Date(a.last_updated).getTime();
-        case "name":
-        default:
-          return a.name.localeCompare(b.name);
-      }
-    });
-  }, [tools, downloads, search, sortBy, selectedBackends]);
-
-  const toggleBackend = (backend: string) => {
-    setSelectedBackends((prev) => {
-      const next = new Set(prev);
-      if (next.has(backend)) next.delete(backend);
-      else next.add(backend);
-      return next;
-    });
-  };
-
-  const clearFilters = () => setSelectedBackends(new Set());
+  }, [tools, downloads]);
 
   const clearSearch = () => {
     setSearch("");
     setShowSuggestions(false);
+    clearTimeout(searchDebounceRef.current);
+    fetchTools({
+      page: 1,
+      search: "",
+      sort: sortBy,
+      backends: [...selectedBackends],
+    });
     searchRef.current?.focus();
   };
 
@@ -332,15 +418,102 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
 
   const SortButton = ({ label, sortKey }: { label: string; sortKey: SortKey }) => (
     <button
-      onClick={() => setSortBy(sortKey)}
+      onClick={() => handleSortChange(sortKey)}
+      disabled={isLoading}
       class={`text-sm font-medium transition-colors whitespace-nowrap ${
         sortBy === sortKey ? "text-neon-purple" : "text-gray-400 hover:text-gray-200"
-      }`}
+      } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
     >
       {label}
       {sortBy === sortKey && " ↓"}
     </button>
   );
+
+  // Pagination component
+  const Pagination = () => {
+    if (pagination.totalPages <= 1) return null;
+
+    const getPageNumbers = () => {
+      const pages: (number | 'ellipsis')[] = [];
+      const { page, totalPages } = pagination;
+
+      // Always show first page
+      pages.push(1);
+
+      // Show ellipsis if there's a gap after first page
+      if (page > 3) {
+        pages.push('ellipsis');
+      }
+
+      // Show pages around current page
+      for (let i = Math.max(2, page - 1); i <= Math.min(totalPages - 1, page + 1); i++) {
+        if (!pages.includes(i)) {
+          pages.push(i);
+        }
+      }
+
+      // Show ellipsis if there's a gap before last page
+      if (page < totalPages - 2) {
+        pages.push('ellipsis');
+      }
+
+      // Always show last page
+      if (totalPages > 1 && !pages.includes(totalPages)) {
+        pages.push(totalPages);
+      }
+
+      return pages;
+    };
+
+    return (
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+        <button
+          onClick={() => handlePageChange(pagination.page - 1)}
+          disabled={pagination.page <= 1 || isLoading}
+          class="px-3 py-1.5 rounded bg-dark-700 border border-dark-600 text-gray-300 hover:bg-dark-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          aria-label="Previous page"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {getPageNumbers().map((p, i) =>
+          p === 'ellipsis' ? (
+            <span key={`ellipsis-${i}`} class="px-2 text-gray-500">...</span>
+          ) : (
+            <button
+              key={p}
+              onClick={() => handlePageChange(p)}
+              disabled={isLoading}
+              class={`px-3 py-1.5 rounded border transition-colors ${
+                p === pagination.page
+                  ? 'bg-neon-purple/20 border-neon-purple text-neon-purple'
+                  : 'bg-dark-700 border-dark-600 text-gray-300 hover:bg-dark-600'
+              } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              {p}
+            </button>
+          )
+        )}
+
+        <button
+          onClick={() => handlePageChange(pagination.page + 1)}
+          disabled={pagination.page >= pagination.totalPages || isLoading}
+          class="px-3 py-1.5 rounded bg-dark-700 border border-dark-600 text-gray-300 hover:bg-dark-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          aria-label="Next page"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <span class="text-sm text-gray-500 ml-2">
+          Page {pagination.page} of {pagination.totalPages} ({pagination.totalCount.toLocaleString()} tools)
+        </span>
+      </div>
+    );
+  };
 
   const HighlightedName = ({ name }: { name: string }) => {
     const query = search.trim().toLowerCase();
@@ -358,8 +531,8 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
 
   return (
     <div>
-      {/* Hot Tools Section */}
-      {hotTools.length > 0 && !search.trim() && selectedBackends.size === 0 && (
+      {/* Hot Tools Section - only show on first page with no filters */}
+      {hotTools.length > 0 && !search.trim() && selectedBackends.size === 0 && pagination.page === 1 && (
         <div class="mb-8">
           <h2 class="text-sm font-medium text-gray-400 mb-4 flex items-center gap-2">
             <span class="text-orange-400">🔥</span> Hot Tools
@@ -411,10 +584,7 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
             type="text"
             placeholder="Search tools..."
             value={search}
-            onInput={(e) => {
-              setSearch((e.target as HTMLInputElement).value);
-              setShowSuggestions(true);
-            }}
+            onInput={(e) => handleSearchChange((e.target as HTMLInputElement).value)}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
             onKeyDown={handleSearchKeyDown}
@@ -455,26 +625,33 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
             </div>
           )}
         </div>
-        <div class="text-sm text-gray-500 whitespace-nowrap">
+        <div class="text-sm text-gray-500 whitespace-nowrap flex items-center gap-2">
+          {isLoading && (
+            <svg class="animate-spin h-4 w-4 text-neon-purple" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          )}
           {search.trim() || selectedBackends.size > 0
-            ? `${filteredTools.length} of ${tools.length} tools`
-            : `${tools.length} tools`}
+            ? `${pagination.totalCount.toLocaleString()} matching tools`
+            : `${pagination.totalCount.toLocaleString()} tools`}
         </div>
       </div>
 
       {/* Backend filter chips */}
-      {backendCounts.size > 0 && (
+      {sortedBackendCounts.size > 0 && (
         <div class="mb-6 flex flex-wrap items-center gap-2">
           <span class="text-sm text-gray-500">Filter:</span>
-          {[...backendCounts.entries()].map(([backend, count]) => (
+          {[...sortedBackendCounts.entries()].map(([backend, count]) => (
             <button
               key={backend}
-              onClick={() => toggleBackend(backend)}
+              onClick={() => handleBackendToggle(backend)}
+              disabled={isLoading}
               class={`px-3 py-1 text-sm rounded-full border transition-colors ${
                 selectedBackends.has(backend)
                   ? "bg-neon-purple/20 border-neon-purple text-neon-purple"
                   : "bg-dark-800 border-dark-600 text-gray-400 hover:border-gray-500 hover:text-gray-300"
-              }`}
+              } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               {backend}
               <span class="ml-1 text-xs opacity-70">({count})</span>
@@ -482,8 +659,9 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
           ))}
           {selectedBackends.size > 0 && (
             <button
-              onClick={clearFilters}
-              class="px-3 py-1 text-sm rounded-full border border-dark-600 bg-dark-800 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors"
+              onClick={handleClearFilters}
+              disabled={isLoading}
+              class={`px-3 py-1 text-sm rounded-full border border-dark-600 bg-dark-800 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               Clear
             </button>
@@ -503,8 +681,8 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
               <th class="w-10 px-2 py-3 hidden lg:table-cell"></th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-dark-600">
-            {filteredTools.map((tool) => (
+          <tbody class={`divide-y divide-dark-600 ${isLoading ? 'opacity-50' : ''}`}>
+            {toolsWithDownloads.map((tool) => (
               <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3">
                   <div class="flex items-center gap-1.5 group">
@@ -561,6 +739,8 @@ export function ToolSearch({ tools, downloads, trendingTools = [] }: Props) {
           </tbody>
         </table>
       </div>
+
+      <Pagination />
     </div>
   );
 }

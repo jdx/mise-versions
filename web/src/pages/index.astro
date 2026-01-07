@@ -3,23 +3,44 @@ import Layout from '../layouts/Layout.astro';
 import { ToolSearch } from '../components/ToolSearch';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
-import { loadToolsJson, type ToolsData } from '../lib/data-loader';
+import { loadToolsPaginated, type PaginatedToolsResult } from '../lib/data-loader';
 
 const runtime = Astro.locals.runtime;
+const url = Astro.url;
 
-// Load tools from D1 database
-let toolsData: ToolsData = { tool_count: 0, tools: [] };
+// Parse URL params for initial state
+const page = parseInt(url.searchParams.get('page') || '1', 10);
+const search = url.searchParams.get('q') || undefined;
+const sortParam = url.searchParams.get('sort');
+const sort = (sortParam === 'name' || sortParam === 'downloads' || sortParam === 'updated')
+  ? sortParam
+  : 'downloads';
+const backendsParam = url.searchParams.get('backends');
+const backends = backendsParam ? backendsParam.split(',').filter(Boolean) : undefined;
+
+// Load paginated tools from D1 database
+let toolsData: PaginatedToolsResult = {
+  tools: [],
+  downloads: {},
+  total_count: 0,
+  page: 1,
+  limit: 50,
+  total_pages: 0,
+  backendCounts: {},
+};
 try {
-  const data = await loadToolsJson(runtime.env.ANALYTICS_DB);
-  if (data) {
-    toolsData = data;
-  }
+  toolsData = await loadToolsPaginated(runtime.env.ANALYTICS_DB, {
+    page,
+    limit: 50,
+    search,
+    sort,
+    backends,
+  });
 } catch (e) {
   console.error('Failed to load tools from D1:', e);
 }
 
-// Fetch downloads and trending data
-let downloads: Record<string, number> = {};
+// Fetch trending data (only shown on first page without filters)
 let trendingTools: Array<{
   name: string;
   downloads_30d: number;
@@ -30,13 +51,26 @@ let trendingTools: Array<{
 try {
   const db = drizzle(runtime.env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
-  downloads = await analytics.getAll30DayDownloads();
   trendingTools = await analytics.getTrendingTools(6);
 } catch (e) {
-  console.error('Failed to fetch downloads:', e);
+  console.error('Failed to fetch trending tools:', e);
 }
 ---
 
 <Layout title="mise versions" description="Browse tool versions and download stats for mise">
-  <ToolSearch client:load tools={toolsData.tools} downloads={downloads} trendingTools={trendingTools} />
+  <ToolSearch
+    client:load
+    tools={toolsData.tools}
+    downloads={toolsData.downloads}
+    trendingTools={trendingTools}
+    pagination={{
+      page: toolsData.page,
+      totalPages: toolsData.total_pages,
+      totalCount: toolsData.total_count,
+    }}
+    backendCounts={toolsData.backendCounts}
+    initialSearch={search || ''}
+    initialSort={sort}
+    initialBackends={backends || []}
+  />
 </Layout>
