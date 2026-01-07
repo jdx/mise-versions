@@ -261,10 +261,10 @@ async function main() {
         tool.security = info.security;
       }
 
-      // Get backends from registry
-      const backends = backendMap.get(toolName);
-      if (backends && backends.length > 0) {
-        tool.backends = backends;
+      // Get backends from registry (always set, default to empty array)
+      const backends = backendMap.get(toolName) || [];
+      tool.backends = backends;
+      if (backends.length > 0) {
         withBackends++;
 
         const packageUrls = buildPackageUrls(backends);

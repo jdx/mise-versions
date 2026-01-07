@@ -2287,6 +2287,9 @@ export async function runAnalyticsMigrations(
     }
   }
 
+  // Ensure backends column has no NULLs (use empty JSON array as default)
+  await db.run(sql`UPDATE tools SET backends = '[]' WHERE backends IS NULL`);
+
   // Create versions table for storing tool version data
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS versions (
