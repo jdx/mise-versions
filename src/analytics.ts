@@ -576,27 +576,21 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       return counts;
     },
 
-    // Get monthly active users (unique IP hashes in last 30 days)
-    // Note: MAU requires COUNT(DISTINCT) over full 30-day period, so we can't use rollups
-    // But we keep this query - it should be fast with the created_at index
-    // Combines both downloads and version_requests tables for full user count
+    // Get monthly active users from pre-computed rollup table
     async getMAU() {
-      const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
+      const today = new Date().toISOString().split("T")[0];
+      const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
 
+      // Try today's value first, then yesterday's
       const result = await db
-        .select({
-          count: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(
-          sql`(
-            SELECT ip_hash FROM downloads WHERE created_at >= ${thirtyDaysAgo}
-            UNION
-            SELECT ip_hash FROM version_requests WHERE created_at >= ${thirtyDaysAgo}
-          )`
-        )
+        .select({ mau: dailyMauStats.mau })
+        .from(dailyMauStats)
+        .where(sql`${dailyMauStats.date} IN (${today}, ${yesterday})`)
+        .orderBy(sql`${dailyMauStats.date} DESC`)
+        .limit(1)
         .get();
 
-      return result?.count ?? 0;
+      return result?.mau ?? 0;
     },
 
     // Aggregate old data (call this daily via cron)
