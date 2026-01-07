@@ -284,8 +284,12 @@ tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"
 # Process tools
 export -f fetch generate_toml_file increment_stat get_stat add_to_list set_stat
 export STATS_DIR
-export MISE_URL_REPLACEMENTS
-export MISE_GITHUB_TOKEN
+if [ -n "${MISE_URL_REPLACEMENTS:-}" ]; then
+	export MISE_URL_REPLACEMENTS
+fi
+if [ -n "${MISE_GITHUB_TOKEN:-}" ]; then
+	export MISE_GITHUB_TOKEN
+fi
 
 first_processed_tool=""
 last_processed_tool=""
