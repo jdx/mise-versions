@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
+import { jsonResponse, errorResponse } from '../../../../lib/api';
 
 interface MetadataEntry {
   name: string;
@@ -18,8 +18,6 @@ interface SyncRequest {
 // POST /api/admin/metadata/sync - Sync tool metadata to D1
 export const POST: APIRoute = async ({ request, locals }) => {
   const runtime = locals.runtime;
-  const authError = requireApiAuth(request, runtime.env.API_SECRET);
-  if (authError) return authError;
 
   try {
     const body = await request.json() as SyncRequest;

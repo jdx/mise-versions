@@ -39,18 +39,3 @@ export function errorResponse(message: string, status = 400) {
     headers: CORS_HEADERS,
   });
 }
-
-// Check for API auth (Bearer token)
-export function requireApiAuth(request: Request, apiSecret: string): Response | null {
-  const authHeader = request.headers.get('authorization');
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return errorResponse('Missing or invalid authorization header', 401);
-  }
-
-  const secret = authHeader.slice(7);
-  if (secret !== apiSecret) {
-    return errorResponse('Invalid API secret', 401);
-  }
-
-  return null;
-}

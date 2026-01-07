@@ -169,7 +169,7 @@ async function main() {
     } else if (action === 'stats') {
       console.error('📊 Fetching token statistics...');
       
-      const response = await makeRequest(`${baseUrl}/api/stats`, {
+      const response = await makeRequest(`${baseUrl}/api/admin/token-stats`, {
         headers: {
           'Authorization': `Bearer ${secret}`
         }

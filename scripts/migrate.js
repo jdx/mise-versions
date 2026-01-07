@@ -47,7 +47,7 @@ async function makeRequest(url, options = {}) {
 }
 
 async function getMigrationStatus(baseUrl, secret) {
-  const response = await makeRequest(`${baseUrl}/api/migrations`, {
+  const response = await makeRequest(`${baseUrl}/api/admin/migrate`, {
     headers: {
       'Authorization': `Bearer ${secret}`
     }

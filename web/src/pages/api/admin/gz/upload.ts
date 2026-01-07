@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
+import { jsonResponse, errorResponse } from '../../../../lib/api';
 
 interface UploadRequest {
   filename: string;
@@ -9,12 +9,6 @@ interface UploadRequest {
 // POST /api/admin/gz/upload - Upload .gz file to R2
 export const POST: APIRoute = async ({ request, locals }) => {
   const runtime = locals.runtime;
-
-  // Check API auth (Bearer token for CI)
-  const authError = requireApiAuth(request, runtime.env.API_SECRET);
-  if (authError) {
-    return authError;
-  }
 
   let body: UploadRequest;
   try {

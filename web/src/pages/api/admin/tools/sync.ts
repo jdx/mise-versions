@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
+import { jsonResponse, errorResponse } from '../../../../lib/api';
 import { runAnalyticsMigrations } from '../../../../../../src/analytics';
 
 interface ToolMetadata {
@@ -25,12 +25,6 @@ interface ToolMetadata {
 // POST /api/admin/tools/sync - Sync tool metadata from CI
 export const POST: APIRoute = async ({ request, locals }) => {
   const runtime = locals.runtime;
-
-  // Check API auth (Bearer token for CI)
-  const authError = requireApiAuth(request, runtime.env.API_SECRET);
-  if (authError) {
-    return authError;
-  }
 
   let body: { tools: ToolMetadata[] };
   try {

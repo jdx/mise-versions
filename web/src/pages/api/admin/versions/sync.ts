@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
+import { jsonResponse, errorResponse } from '../../../../lib/api';
 import { runAnalyticsMigrations, setupAnalytics } from '../../../../../../src/analytics';
 
 interface VersionData {
@@ -20,12 +20,6 @@ const BATCH_SIZE = 100; // D1 batch limit
 // POST /api/admin/versions/sync - Sync tool versions from CI
 export const POST: APIRoute = async ({ request, locals }) => {
   const runtime = locals.runtime;
-
-  // Check API auth (Bearer token for CI)
-  const authError = requireApiAuth(request, runtime.env.API_SECRET);
-  if (authError) {
-    return authError;
-  }
 
   let body: { tools: ToolVersions[] };
   try {
