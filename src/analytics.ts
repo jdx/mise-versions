@@ -895,20 +895,32 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       }
 
       // 1b. Populate daily_combined_stats (combined unique users from downloads + version_requests)
-      const combinedDauResult = await db
-        .select({
-          unique_users: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(
-          sql`(
-            SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at < ${dateEnd}
+      let combinedDau = 0;
+      if (d1) {
+        // Use raw D1 query to avoid parameter binding issues in subqueries
+        const combinedResult = await d1.prepare(`
+          SELECT COUNT(DISTINCT ip_hash) as unique_users FROM (
+            SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at < ?
             UNION
-            SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at < ${dateEnd}
-          )`
-        )
-        .get();
-
-      const combinedDau = combinedDauResult?.unique_users ?? 0;
+            SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at < ?
+          )
+        `).bind(dateStart, dateEnd, dateStart, dateEnd).first<{ unique_users: number }>();
+        combinedDau = combinedResult?.unique_users ?? 0;
+      } else {
+        const combinedDauResult = await db
+          .select({
+            unique_users: sql<number>`count(distinct ip_hash)`,
+          })
+          .from(
+            sql`(
+              SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at < ${dateEnd}
+              UNION
+              SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at < ${dateEnd}
+            )`
+          )
+          .get();
+        combinedDau = combinedDauResult?.unique_users ?? 0;
+      }
       if (combinedDau > 0) {
         if (d1) {
           await d1.prepare(
@@ -1073,20 +1085,32 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
       const dateStart = dateEnd - 30 * 86400;
 
       // Count unique users across both tables in the 30-day window
-      const mauResult = await db
-        .select({
-          mau: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(
-          sql`(
-            SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
+      let mau = 0;
+      if (d1) {
+        // Use raw D1 query to avoid parameter binding issues in subqueries
+        const mauResult = await d1.prepare(`
+          SELECT COUNT(DISTINCT ip_hash) as mau FROM (
+            SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at <= ?
             UNION
-            SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
-          )`
-        )
-        .get();
-
-      const mau = mauResult?.mau ?? 0;
+            SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at <= ?
+          )
+        `).bind(dateStart, dateEnd, dateStart, dateEnd).first<{ mau: number }>();
+        mau = mauResult?.mau ?? 0;
+      } else {
+        const mauResult = await db
+          .select({
+            mau: sql<number>`count(distinct ip_hash)`,
+          })
+          .from(
+            sql`(
+              SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
+              UNION
+              SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
+            )`
+          )
+          .get();
+        mau = mauResult?.mau ?? 0;
+      }
 
       if (mau > 0) {
         if (d1) {
