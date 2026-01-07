@@ -7,9 +7,12 @@ export MISE_USE_VERSIONS_HOST=0
 export MISE_LIST_ALL_VERSIONS=1
 export MISE_LOG_HTTP=1
 
-# GitHub Token Manager configuration
-export TOKEN_MANAGER_URL="$TOKEN_MANAGER_URL"
-export TOKEN_MANAGER_SECRET="$TOKEN_MANAGER_SECRET"
+# GitHub Proxy configuration
+if [ -n "${GITHUB_PROXY_URL:-}" ] && [ -n "${API_SECRET:-}" ]; then
+	export MISE_URL_REPLACEMENTS="{\"regex:^https://api\\.github\\.com\": \"${GITHUB_PROXY_URL}/gh\"}"
+	# Pass API_SECRET as MISE_GITHUB_TOKEN for proxy authentication
+	export MISE_GITHUB_TOKEN="$API_SECRET"
+fi
 
 # ============================================================================
 # Structured Logging
@@ -214,8 +217,6 @@ generate_summary() {
 | Tools Processed | $(get_stat "total_tools_checked") |
 | Tools Updated | $(get_stat "total_tools_updated") |
 | Success Rate | $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked") ))" || echo "0")% |
-| Tokens Used | $(get_stat "total_tokens_used") |
-| Rate Limits Hit | $(get_stat "total_rate_limits_hit") |
 | Duration | ${duration_minutes}m ${duration_seconds}s |
 
 ## 🎯 Overview
@@ -224,8 +225,6 @@ generate_summary() {
 - **Tools Skipped**: $(get_stat "total_tools_skipped")
 - **Tools Failed**: $(get_stat "total_tools_failed")
 - **Tools with No Versions**: $(get_stat "total_tools_no_versions")
-- **Tokens Used**: $(get_stat "total_tokens_used")
-- **Rate Limits Hit**: $(get_stat "total_rate_limits_hit")
 - **Duration**: ${duration_minutes}m ${duration_seconds}s
 - **Mise Version**: ${CUR_MISE_VERSION:-not set}
 
@@ -233,10 +232,6 @@ generate_summary() {
 - **Success Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked") ))" || echo "0")%
 - **Update Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked") ))" || echo "0")%
 - **Coverage**: $([ "$(get_stat "total_tools_available")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_checked") * 100) / $(get_stat "total_tools_available") ))" || echo "0")%
-
-## 🔧 Token Management
-- **Tokens Consumed**: $(get_stat "total_tokens_used")
-- **Rate Limit Events**: $(get_stat "total_rate_limits_hit")
 
 ## 📋 Details
 - **Tools Available**: $(get_stat "total_tools_available")
@@ -252,7 +247,6 @@ generate_summary() {
 ## 📊 Performance Metrics
 - **Processing Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(( $(get_stat "total_tools_checked") / (duration / 60) ))" || echo "0") tools/minute
 - **Update Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(( $(get_stat "total_tools_updated") / (duration / 60) ))" || echo "0") updates/minute
-- **Token Efficiency**: $([ "$(get_stat "total_tokens_used")" -gt 0 ] && echo "$(( $(get_stat "total_tools_checked") / $(get_stat "total_tokens_used") ))" || echo "0") tools per token
 
 ## 📦 Updated Tools ($(get_stat "total_tools_updated"))
 SUMMARY_EOF
@@ -283,27 +277,9 @@ SUMMARY_EOF
 	set_stat "summary_generated" "true"
 }
 
-# Function to mark a token as rate-limited
-mark_token_rate_limited() {
-	local token_id="$1"
-	local reset_time="${2:-}"
-
-	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
-		return
-	fi
-
-	increment_stat "total_rate_limits_hit"
-
-	# Mark token as rate-limited asynchronously
-	{
-		node scripts/github-token.js mark-rate-limited "$token_id" "$reset_time" || true
-	} &
-}
-
 # Function to generate TOML file with timestamps
 generate_toml_file() {
 	local tool="$1"
-	local token="$2"
 	local toml_file="docs/$tool.toml"
 	local versions_file="docs/$tool"
 
@@ -348,26 +324,6 @@ generate_toml_file() {
 	fi
 }
 
-# Function to get a fresh GitHub token from the token manager
-get_github_token() {
-	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
-		log_error "TOKEN_MANAGER_URL and TOKEN_MANAGER_SECRET not set"
-		return 1
-	fi
-
-	increment_stat "total_tokens_used"
-
-	local token_output
-	if ! token_output=$(node scripts/github-token.js get-token); then
-		log_error "No tokens available"
-		return 1
-	fi
-
-	echo "$token_output"
-	return 0
-}
-
-
 fetch() {
 	increment_stat "total_tools_checked"
 
@@ -378,67 +334,16 @@ fetch() {
 		;;
 	esac
 
-	# Get a fresh token for this fetch operation
-	local token_info
-	if ! token_info=$(get_github_token); then
-		# No tokens available, stop processing this tool gracefully
-		log_warn "No tokens available, skipping" "tool=$1"
-		increment_stat "total_tools_failed"
-		return 1
-	fi
-	local token
-	local token_id
-
-	# Parse token and token_id from the response
-	if [[ "$token_info" == *" "* ]]; then
-		token=$(echo "$token_info" | cut -d' ' -f1)
-		token_id=$(echo "$token_info" | cut -d' ' -f2)
-	else
-		# No valid token received, stop processing this tool
-		log_error "No valid token received, skipping" "tool=$1"
-		increment_stat "total_tools_failed"
-		return 1
-	fi
-
-	local rate_limit_info
-	rate_limit_info=$(GITHUB_TOKEN="$token" mise x -- wait-for-gh-rate-limit 2>&1 || echo "")
-	# Only show rate limit if low
-	local remaining
-	remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+' || echo "5000")
-	if [ "$remaining" -lt 1000 ]; then
-		log_warn "GitHub rate limit low" "remaining=$remaining" "tool=$1"
-	fi
 	# Log removed to reduce verbosity
 	# log_info "Fetching versions" "tool=$1"
 
-	# Create a temporary file to capture stderr and check for rate limiting
-	local stderr_file
-	stderr_file=$(mktemp)
-
-	if ! docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
-		jdxcode/mise -y ls-remote "$1" >"docs/$1" 2>"$stderr_file"; then
+	if ! docker run -e MISE_URL_REPLACEMENTS -e MISE_GITHUB_TOKEN -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
+		jdxcode/mise -y ls-remote "$1" >"docs/$1"; then
 		log_error "Failed to fetch versions" "tool=$1"
 		increment_stat "total_tools_failed"
-
-		cat "$stderr_file" >&2
-
-		# Check if this was a rate limit issue (403 Forbidden)
-		if grep -q "403 Forbidden" "$stderr_file"; then
-			local reset_time=""
-			if [ "$remaining" == "0" ]; then
-				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
-			fi
-			mark_token_rate_limited "$token_id" "$reset_time"
-			log_warn "Rate limited, retrying with new token" "tool=$1" "token_id=$token_id"
-			fetch "$1"
-		fi
-
-		rm -f "$stderr_file" "docs/$1"
+		rm -f "docs/$1"
 		return
 	fi
-
-	# Clean up stderr file
-	rm -f "$stderr_file"
 
 	new_lines=$(wc -l <"docs/$1")
 	if [ "$new_lines" -eq 0 ]; then
@@ -465,7 +370,7 @@ fetch() {
 		esac
 
 		# Generate TOML file with timestamps (only TOML is committed)
-		generate_toml_file "$1" "$token"
+		generate_toml_file "$1"
 
 		# Clean up intermediate plain text file
 		rm -f "docs/$1"
@@ -480,139 +385,92 @@ fetch() {
 	fi
 }
 
-# Enhanced token management setup
-setup_token_management() {
-	log_group_start "Token Management Setup"
+CUR_MISE_VERSION=$(docker run jdxcode/mise -v)
+export CUR_MISE_VERSION
+log_info "Mise version detected" "version=$CUR_MISE_VERSION"
 
-	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
-		log_error "Token manager not configured"
-		log_group_end
-		return 1
-	fi
+tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise registry | awk '{print $1}')"
+total_tools=$(echo "$tools" | wc -w)
+set_stat "total_tools_available" "$total_tools"
+log_info "Tool registry loaded" "total_tools=$total_tools"
 
-	# Check token manager health
-	if ! curl -f -s "$TOKEN_MANAGER_URL/health" >/dev/null 2>&1; then
-		log_error "Token manager health check failed" "url=$TOKEN_MANAGER_URL"
-		log_group_end
-		return 1
-	fi
-	log_info "Token manager health check passed"
-
-	# Get token statistics
-	if STATS=$(curl -s -H "Authorization: Bearer $TOKEN_MANAGER_SECRET" "$TOKEN_MANAGER_URL/api/stats" 2>/dev/null); then
-		ACTIVE_TOKENS=$(echo "$STATS" | jq -r '.active // 0' 2>/dev/null || echo "0")
-		log_info "Token pool status" "active_tokens=$ACTIVE_TOKENS"
-		if [ "$ACTIVE_TOKENS" -eq 0 ]; then
-			log_error "No active tokens available"
-			log_group_end
-			return 1
-		fi
-	fi
-
-	log_group_end
-}
-
-# Setup token management before starting
-if setup_token_management; then
-	log_group_start "Initialization"
-
-	CUR_MISE_VERSION=$(docker run jdxcode/mise -v)
-	export CUR_MISE_VERSION
-	log_info "Mise version detected" "version=$CUR_MISE_VERSION"
-
-	tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise registry | awk '{print $1}')"
-	total_tools=$(echo "$tools" | wc -w)
-	set_stat "total_tools_available" "$total_tools"
-	log_info "Tool registry loaded" "total_tools=$total_tools"
-
-	# Check if tokens are available before starting processing
-	if ! get_github_token >/dev/null 2>&1; then
-		log_warn "No tokens available - stopping early"
-		log_group_end
-		generate_summary
-		exit 0
-	fi
-
-	log_group_end
-
-	# Resume from the last processed tool
-	last_tool_processed=""
-	if [ -f "last_processed_tool.txt" ]; then
-		last_tool_processed=$(cat "last_processed_tool.txt")
-		log_info "Resuming from previous run" "last_tool=$last_tool_processed"
-	fi
-	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
-
-	log_group_start "Processing Tools"
-
-	# Process tools
-	export -f fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
-	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
-	export STATS_DIR LOG_LEVEL
-	first_processed_tool=""
-	last_processed_tool=""
-	processed_count=0
-	for tool in $tools_limited; do
-		# Log progress every 10 tools
-		processed_count=$((processed_count + 1))
-		if (( processed_count % 10 == 0 )); then
-			log_info "Processing tools..." "count=$processed_count"
-		fi
-
-		if ! timeout 60s bash -c "fetch $tool"; then
-			log_error "Fetch timed out or failed, continuing" "tool=$tool"
-			# Don't break, continue to next tool
-			continue
-		fi
-		if [ -z "$first_processed_tool" ]; then
-			first_processed_tool="$tool"
-		fi
-		last_processed_tool="$tool"
-	done
-
-	log_group_end
-	set_stat "first_processed_tool" "$first_processed_tool"
-	if [ -n "$last_processed_tool" ]; then
-		echo "$last_processed_tool" >"last_processed_tool.txt"
-	fi
-	set_stat "last_processed_tool" "$last_processed_tool"
-
-	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
-		git diff --compact-summary --cached
-
-		# Get the list of updated tools for the commit message
-		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
-		tools_updated_count=$(get_stat "total_tools_updated")
-
-		commit_msg=""
-		if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
-			# Create a more descriptive commit message with updated tools
-			if [ "$tools_updated_count" -le 10 ]; then
-				# If 10 or fewer tools, list them all
-				commit_msg="versions: update $tools_updated_count tools ($updated_tools_list)"
-			else
-				# If more than 10 tools, just show the count
-				commit_msg="versions: update $tools_updated_count tools"
-			fi
-		else
-			# Fallback to original message
-			commit_msg="versions: update"
-		fi
-
-		git commit -m "$commit_msg"
-		git pull --autostash --rebase origin main
-		git push
-	fi
-
-	# Save updated tools list for D1 sync (one tool per line)
-	cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
-	updated_count=$(wc -l < updated_tools.txt | tr -d ' ')
-	log_info "Updated tools saved" "file=updated_tools.txt" "count=$updated_count"
-else
-	log_error "Token management setup failed"
-	generate_summary
-	exit 0
+# Resume from the last processed tool
+last_tool_processed=""
+if [ -f "last_processed_tool.txt" ]; then
+	last_tool_processed=$(cat "last_processed_tool.txt")
+	log_info "Resuming from previous run" "last_tool=$last_tool_processed"
 fi
+tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
+
+log_group_start "Processing Tools"
+
+# Process tools
+export -f fetch generate_toml_file increment_stat get_stat add_to_list set_stat
+export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
+export STATS_DIR LOG_LEVEL
+export MISE_URL_REPLACEMENTS
+export MISE_GITHUB_TOKEN
+
+first_processed_tool=""
+last_processed_tool=""
+processed_count=0
+
+for tool in $tools_limited; do
+	# Log progress every 10 tools
+	processed_count=$((processed_count + 1))
+	if (( processed_count % 10 == 0 )); then
+		log_info "Processing tools..." "count=$processed_count"
+	fi
+
+	if ! timeout 60s bash -c "fetch $tool"; then
+		log_error "Fetch timed out or failed, continuing" "tool=$tool"
+		# Don't break, continue to next tool
+		continue
+	fi
+	if [ -z "$first_processed_tool" ]; then
+		first_processed_tool="$tool"
+	fi
+	last_processed_tool="$tool"
+done
+
+log_group_end
+set_stat "first_processed_tool" "$first_processed_tool"
+if [ -n "$last_processed_tool" ]; then
+	echo "$last_processed_tool" >"last_processed_tool.txt"
+fi
+set_stat "last_processed_tool" "$last_processed_tool"
+
+if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
+	git diff --compact-summary --cached
+
+	# Get the list of updated tools for the commit message
+	updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
+	tools_updated_count=$(get_stat "total_tools_updated")
+
+	commit_msg=""
+	if [ -n "$updated_tools_list" ] && [ "$tools_updated_count" -gt 0 ]; then
+		# Create a more descriptive commit message with updated tools
+		if [ "$tools_updated_count" -le 10 ]; then
+			# If 10 or fewer tools, list them all
+			commit_msg="versions: update $tools_updated_count tools ($updated_tools_list)"
+		else
+			# If more than 10 tools, just show the count
+			commit_msg="versions: update $tools_updated_count tools"
+		fi
+	else
+		# Fallback to original message
+		commit_msg="versions: update"
+	fi
+
+	git commit -m "$commit_msg"
+	git pull --autostash --rebase origin main
+	git push
+fi
+
+# Save updated tools list for D1 sync (one tool per line)
+cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
+updated_count=$(wc -l < updated_tools.txt | tr -d ' ')
+log_info "Updated tools saved" "file=updated_tools.txt" "count=$updated_count"
 
 # Always generate and display summary
 generate_summary

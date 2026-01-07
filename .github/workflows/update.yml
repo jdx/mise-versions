@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       full_sync:
-        description: "Force full sync of all versions to D1"
+        description: 'Force full sync of all versions to D1'
         required: false
-        default: "false"
+        default: false
         type: boolean
   schedule:
     - cron: "*/15 * * * *"
@@ -20,29 +20,29 @@ permissions:
   id-token: write
 
 env:
-  GITHUB_API_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
-  GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
-  TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
-  TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+  GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
   DRY_RUN: 0
+
 jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-      - uses: jdx/mise-action@6d1e696aa24c1aa1bcc1adea0212707c71ab78a8 # v3
-      - run: curl https://mise.run | MISE_INSTALL_PATH="$HOME/.local/share/mise/bin/mise" sh && mise --version
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: jdx/mise-action@146a28175021df8ca24f8ee1828cc2a60f980bd5 # v3
       - run: npm install
       - name: Cache last processed tool
         id: cache-last-tool
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5
         with:
           path: last_processed_tool.txt
           key: last-processed-tool-${{ github.run_id }}
           restore-keys: |
             last-processed-tool-
       - run: ./scripts/update.sh "${{ github.event.schedule }}"
+        env:
+          GITHUB_PROXY_URL: https://mise-tools.jdx.dev
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
       - run: git checkout docs && git clean -df docs
       - name: Sync tools to D1
         run: node scripts/sync-to-d1.js

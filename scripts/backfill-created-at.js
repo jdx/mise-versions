@@ -8,9 +8,9 @@
  * and updates TOML files that have placeholder timestamps.
  *
  * Environment variables:
- *   GITHUB_TOKEN - GitHub token for API access
- *   TOKEN_MANAGER_URL - URL of token manager service
- *   TOKEN_MANAGER_SECRET - Secret for token manager
+ *   GITHUB_PROXY_URL - URL of GitHub proxy (e.g., https://mise-tools.jdx.dev)
+ *   API_SECRET       - Secret for proxy authentication
+ *   GITHUB_TOKEN     - Fallback GitHub token (optional)
  */
 
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
@@ -22,79 +22,53 @@ const DOCS_DIR = join(process.cwd(), "docs");
 const CONCURRENCY = 30; // Process 30 tools in parallel
 const COMMIT_INTERVAL = 100; // Commit every 100 tools
 
-// Get a random token from the token manager for each request
-async function getRandomToken() {
-  const baseUrl = process.env.TOKEN_MANAGER_URL;
-  const secret = process.env.TOKEN_MANAGER_SECRET;
+// Fetch versions with timestamps from mise
+async function fetchVersionsWithTimestamps(tool, retries = 2, debug = false) {
+  // Use GitHub Proxy if available, otherwise fall back to direct GitHub access
+  const proxyUrl = process.env.GITHUB_PROXY_URL; // e.g. https://mise-tools.jdx.dev
+  const apiSecret = process.env.API_SECRET;
+  const githubToken = process.env.GITHUB_TOKEN;
 
-  if (!baseUrl || !secret) {
-    return process.env.GITHUB_TOKEN || null;
+  const env = {
+    ...process.env,
+    MISE_LIST_ALL_VERSIONS: "1", // Get all versions, not just first page
+    MISE_USE_VERSIONS_HOST: "0", // Bypass versions host to get real timestamps from GitHub
+  };
+
+  if (proxyUrl && apiSecret) {
+    env.MISE_URL_REPLACEMENTS = JSON.stringify({
+      "regex:https://api\\.github\\.com": `${proxyUrl}/gh`,
+    });
+    env.MISE_GITHUB_TOKEN = apiSecret;
+  } else if (githubToken) {
+    env.MISE_GITHUB_TOKEN = githubToken;
+  }
+
+  if (debug) {
+    env.MISE_DEBUG = "1";
   }
 
   try {
-    const response = await fetch(`${baseUrl}/api/token`, {
-      headers: {
-        Authorization: `Bearer ${secret}`,
-      },
+    const output = execSync(`mise ls-remote --json "${tool}"`, {
+      encoding: "utf-8",
+      stdio: ["pipe", "pipe", "pipe"],
+      env,
+      timeout: 60000,
     });
 
-    if (!response.ok) {
-      return process.env.GITHUB_TOKEN || null;
+    if (!output || !output.trim()) {
+      return null;
     }
 
-    const data = await response.json();
-    return data.token;
+    const data = JSON.parse(output);
+    return data;
   } catch (e) {
-    return process.env.GITHUB_TOKEN || null;
+    const stderr = e.stderr?.toString() || "";
+    if (stderr) {
+      console.log(`  stderr: ${stderr.slice(0, 200)}`);
+    }
+    return null;
   }
-}
-
-// Fetch versions with timestamps from mise
-async function fetchVersionsWithTimestamps(tool, retries = 2, debug = false) {
-  for (let attempt = 0; attempt <= retries; attempt++) {
-    // Get a fresh random token for each attempt
-    const token = await getRandomToken();
-    const env = {
-      ...process.env,
-      MISE_LIST_ALL_VERSIONS: "1", // Get all versions, not just first page
-      MISE_USE_VERSIONS_HOST: "0", // Bypass versions host to get real timestamps from GitHub
-    };
-    if (debug) {
-      env.MISE_DEBUG = "1";
-    }
-    if (token) {
-      env.GITHUB_TOKEN = token;
-    }
-
-    try {
-      const output = execSync(`mise ls-remote --json "${tool}"`, {
-        encoding: "utf-8",
-        stdio: ["pipe", "pipe", "pipe"],
-        env,
-        timeout: 60000,
-      });
-
-      if (!output || !output.trim()) {
-        return null;
-      }
-
-      const data = JSON.parse(output);
-      return data;
-    } catch (e) {
-      const stderr = e.stderr?.toString() || "";
-      // Retry on rate limiting with a new token
-      if (stderr.includes("rate limit") || stderr.includes("403")) {
-        continue;
-      }
-      if (attempt === retries) {
-        if (stderr) {
-          console.log(`  stderr: ${stderr.slice(0, 200)}`);
-        }
-        return null;
-      }
-    }
-  }
-  return null;
 }
 
 // Parse command line arguments
@@ -181,10 +155,9 @@ async function processTool(tool, dryRun, debug = false) {
   for (const [version, data] of Object.entries(existing.versions)) {
     const apiTs = apiTimestamps.get(version);
     // Handle Date object from TOML parser
-    let timestamp =
-      data.created_at instanceof Date
-        ? data.created_at.toISOString()
-        : String(data.created_at);
+    let timestamp = data.created_at instanceof Date
+      ? data.created_at.toISOString()
+      : String(data.created_at);
 
     const isPlaceholder = timestamp === "2025-01-01T00:00:00.000Z";
 
@@ -202,14 +175,7 @@ async function processTool(tool, dryRun, debug = false) {
   }
 
   if (changedCount === 0) {
-    return {
-      tool,
-      status: "skipped",
-      reason:
-        notFoundCount > 0
-          ? `no API data for ${notFoundCount} versions`
-          : "no changes",
-    };
+    return { tool, status: "skipped", reason: notFoundCount > 0 ? `no API data for ${notFoundCount} versions` : "no changes" };
   }
 
   if (!dryRun) {
@@ -223,20 +189,18 @@ async function processTool(tool, dryRun, debug = false) {
 function commitAndPush(message) {
   try {
     // Stage all toml changes
-    execSync("git add -A docs/*.toml", { stdio: "pipe" });
-    const status = execSync('git diff --cached --quiet || echo "changes"', {
-      encoding: "utf-8",
-    });
-    if (status.includes("changes")) {
-      execSync(`git commit -m "${message}"`, { stdio: "pipe" });
+    execSync('git add -A docs/*.toml', { stdio: 'pipe' });
+    const status = execSync('git diff --cached --quiet || echo "changes"', { encoding: 'utf-8' });
+    if (status.includes('changes')) {
+      execSync(`git commit -m "${message}"`, { stdio: 'pipe' });
       console.log(`  Committed: ${message}`);
       // Pull and push
       try {
-        execSync("git pull --rebase origin main", { stdio: "pipe" });
+        execSync('git pull --rebase origin main', { stdio: 'pipe' });
       } catch (e) {
         // Ignore pull errors if no remote changes
       }
-      execSync("git push", { stdio: "pipe" });
+      execSync('git push', { stdio: 'pipe' });
       console.log(`  Pushed to origin`);
       return true;
     }
@@ -257,7 +221,7 @@ async function processInParallel(tools, dryRun, debug = false) {
   for (let i = 0; i < tools.length; i += CONCURRENCY) {
     const batch = tools.slice(i, i + CONCURRENCY);
     const batchResults = await Promise.all(
-      batch.map((tool) => processTool(tool, dryRun, debug)),
+      batch.map(tool => processTool(tool, dryRun, debug))
     );
 
     for (const result of batchResults) {
@@ -265,14 +229,10 @@ async function processInParallel(tools, dryRun, debug = false) {
       if (result.status === "updated") {
         results.updated++;
         uncommittedUpdates++;
-        console.log(
-          `[${completed}/${tools.length}] ${result.tool}: updated ${result.changedCount} timestamps${result.notFoundCount > 0 ? ` (${result.notFoundCount} not in API)` : ""}`,
-        );
+        console.log(`[${completed}/${tools.length}] ${result.tool}: updated ${result.changedCount} timestamps${result.notFoundCount > 0 ? ` (${result.notFoundCount} not in API)` : ""}`);
       } else if (result.status === "failed") {
         results.failed++;
-        console.log(
-          `[${completed}/${tools.length}] ${result.tool}: ${result.error}`,
-        );
+        console.log(`[${completed}/${tools.length}] ${result.tool}: ${result.error}`);
       } else {
         results.skipped++;
       }
@@ -281,17 +241,13 @@ async function processInParallel(tools, dryRun, debug = false) {
     // Commit and push periodically
     if (!dryRun && uncommittedUpdates >= COMMIT_INTERVAL) {
       batchNumber++;
-      commitAndPush(
-        `chore: backfill created_at timestamps (batch ${batchNumber})`,
-      );
+      commitAndPush(`chore: backfill created_at timestamps (batch ${batchNumber})`);
       uncommittedUpdates = 0;
     }
 
     // Progress update
     if (completed % 100 === 0) {
-      console.log(
-        `Progress: ${completed}/${tools.length} (${results.updated} updated, ${results.skipped} skipped, ${results.failed} failed)`,
-      );
+      console.log(`Progress: ${completed}/${tools.length} (${results.updated} updated, ${results.skipped} skipped, ${results.failed} failed)`);
     }
   }
 
@@ -334,11 +290,7 @@ async function main() {
     toolsToProcess = [args.tool];
   }
 
-  const results = await processInParallel(
-    toolsToProcess,
-    args.dryRun,
-    args.debug,
-  );
+  const results = await processInParallel(toolsToProcess, args.dryRun, args.debug);
 
   console.log(`\nDone!`);
   console.log(`  Processed: ${results.processed}`);
