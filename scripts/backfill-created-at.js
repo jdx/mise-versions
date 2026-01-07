@@ -37,7 +37,7 @@ async function fetchVersionsWithTimestamps(tool, retries = 2, debug = false) {
 
   if (proxyUrl && apiSecret) {
     env.MISE_URL_REPLACEMENTS = JSON.stringify({
-      "regex:https://api\\.github\\.com": `${proxyUrl}/gh`,
+      "regex:^https://api\\.github\\.com": `${proxyUrl}/gh`,
     });
     env.MISE_GITHUB_TOKEN = apiSecret;
   } else if (githubToken) {
