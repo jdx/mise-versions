@@ -210,22 +210,14 @@ export async function loadToolsPaginated(
   `;
 
   // Backend counts query (for filter chips - counts across ALL tools, not just current page)
-  // Use subquery to filter valid JSON before json_each processes it
+  // Note: json_each returns value as a plain string, not JSON, so use value directly
   const backendCountsQuery = `
     SELECT
-      SUBSTR(
-        json_extract(value, '$'),
-        1,
-        INSTR(json_extract(value, '$') || ':', ':') - 1
-      ) as backend_type,
+      SUBSTR(value, 1, INSTR(value || ':', ':') - 1) as backend_type,
       COUNT(DISTINCT name) as count
-    FROM (
-      SELECT name, backends
-      FROM tools
-      WHERE latest_version IS NOT NULL
-        AND backends IS NOT NULL
-        AND json_valid(backends)
-    ) t, json_each(t.backends)
+    FROM tools, json_each(backends)
+    WHERE latest_version IS NOT NULL
+      AND backends IS NOT NULL
     GROUP BY backend_type
     ORDER BY count DESC
   `;
