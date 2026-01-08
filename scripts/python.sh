@@ -14,7 +14,7 @@ rm -rf docs
 mkdir -p docs
 mv /tmp/python-precompiled-backup/*.toml docs/ 2>/dev/null || true
 rmdir /tmp/python-precompiled-backup 2>/dev/null || true
-./scripts/python-precompiled.sh 500
+./scripts/python-precompiled.sh
 
 if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 	git diff --compact-summary --cached

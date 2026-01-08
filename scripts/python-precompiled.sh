@@ -9,14 +9,16 @@ GZ_DIR="${GZ_DIR:-/tmp/python-precompiled-gz}"
 mkdir -p "$GZ_DIR"
 rm -f "$GZ_DIR"/*.gz
 
-releases=$(gh api graphql -f query="
-    query {
-      repository(owner: \"indygreg\", name: \"python-build-standalone\") {
-        releases(first: $1) {
+# Paginate through all releases
+releases=$(gh api graphql --paginate -f query='
+    query($endCursor: String) {
+      repository(owner: "indygreg", name: "python-build-standalone") {
+        releases(first: 100, after: $endCursor) {
            nodes { name }
+           pageInfo { hasNextPage, endCursor }
          }
       }
-    }" --jq '.[].repository.releases.nodes.[].name')
+    }' --jq '.data.repository.releases.nodes.[].name')
 
 for release in $releases; do
 	assets=$(gh api graphql --paginate -f query="
