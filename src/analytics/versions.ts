@@ -66,6 +66,7 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
     },
 
     // Get version updates data for stats page (last 30 days)
+    // Returns # of tools updated per day (not # of versions)
     async getVersionUpdates(days: number = 30): Promise<{
       daily: Array<{ date: string; count: number }>;
       total_updates: number;
@@ -79,19 +80,19 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
       const startDateStr = startDate.toISOString().split("T")[0];
 
       try {
-        // Get daily counts
+        // Get daily counts (# of tools updated per day)
         const dailyResults = await db.all<{ date: string; count: number }>(sql`
-          SELECT date, SUM(versions_added) as count
+          SELECT date, COUNT(DISTINCT tool_id) as count
           FROM version_updates
           WHERE date >= ${startDateStr}
           GROUP BY date
           ORDER BY date ASC
         `);
 
-        // Get totals
+        // Get totals (total tool-days with updates, unique tools overall)
         const totals = await db.get<{ total: number; unique_tools: number }>(sql`
           SELECT
-            SUM(versions_added) as total,
+            COUNT(*) as total,
             COUNT(DISTINCT tool_id) as unique_tools
           FROM version_updates
           WHERE date >= ${startDateStr}

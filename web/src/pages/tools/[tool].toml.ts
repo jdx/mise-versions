@@ -48,10 +48,11 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     const toolId = (toolResult[0] as { id: number }).id;
 
     // Get versions ordered by id (insertion order = oldest first)
+    // Only include versions from mise ls-remote (not user-tracked installs)
     const versions = await db.all<VersionRow>(sql`
       SELECT version, created_at, release_url
       FROM versions
-      WHERE tool_id = ${toolId}
+      WHERE tool_id = ${toolId} AND from_mise = 1
       ORDER BY id ASC
     `);
 
