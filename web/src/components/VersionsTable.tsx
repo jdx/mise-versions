@@ -131,6 +131,117 @@ function useDebounce<T>(value: T, delay: number): T {
 
 const ITEMS_PER_PAGE = 100;
 
+// Build release timeline milestones from filtered versions
+function buildTimelineMilestones(
+  versions: Version[],
+  tool?: string
+): {
+  milestones: Array<{
+    version: string;
+    date: Date;
+    isMajor: boolean;
+    position: number;
+    dateStr: string;
+    shortVersion: string;
+  }>;
+  totalReleases: number;
+  totalDays: number;
+  avgDaysBetween: number;
+} | null {
+  const datedVersions = versions
+    .filter((v) => v.created_at)
+    .sort((a, b) => new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime());
+
+  if (datedVersions.length < 2) return null;
+
+  const milestones: Array<{ version: string; date: Date; isMajor: boolean }> = [];
+  const reversedVersions = [...datedVersions].reverse();
+  const seenMajors = new Set<string>();
+  const seenMinors = new Set<string>();
+
+  // Helper to extract the numeric version part (strip distribution prefix)
+  const getNumericVersion = (version: string): string => {
+    if (!tool) return version;
+    const idx = version.indexOf("-");
+    // Check if this looks like a prefixed distribution
+    if (idx > 0 && !/^\d/.test(version)) {
+      return version.substring(idx + 1);
+    }
+    return version;
+  };
+
+  const latestNumeric = getNumericVersion(reversedVersions[0]?.version || "");
+  const latestMajor = latestNumeric.split(".")[0];
+
+  for (const v of reversedVersions) {
+    const numericVersion = getNumericVersion(v.version);
+    const parts = numericVersion.split(".");
+    if (parts.length < 2 || !/^\d/.test(parts[0])) continue;
+
+    const major = parts[0];
+    const minor = `${parts[0]}.${parts[1]}`;
+    const isMinorZero = parts[1] === "0" || parts[1] === "";
+
+    if (isMinorZero && !seenMajors.has(major) && seenMajors.size < 5) {
+      seenMajors.add(major);
+      seenMinors.add(minor);
+      milestones.push({
+        version: v.version,
+        date: new Date(v.created_at!),
+        isMajor: true,
+      });
+    } else if (major === latestMajor && !seenMinors.has(minor) && milestones.length < 10) {
+      seenMinors.add(minor);
+      milestones.push({
+        version: v.version,
+        date: new Date(v.created_at!),
+        isMajor: false,
+      });
+    }
+
+    if (milestones.length >= 10) break;
+  }
+
+  milestones.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+  const latest = datedVersions[datedVersions.length - 1];
+  if (!milestones.some((m) => m.version === latest.version)) {
+    milestones.push({
+      version: latest.version,
+      date: new Date(latest.created_at!),
+      isMajor: false,
+    });
+  }
+
+  const displayMilestones = milestones.slice(-10);
+  if (displayMilestones.length < 2) return null;
+
+  const firstDate = displayMilestones[0].date.getTime();
+  const lastDate = displayMilestones[displayMilestones.length - 1].date.getTime();
+  const range = lastDate - firstDate || 1;
+  const totalDays = (lastDate - firstDate) / (1000 * 60 * 60 * 24);
+  const avgDaysBetween = totalDays / (datedVersions.length - 1);
+
+  return {
+    milestones: displayMilestones.map((m) => {
+      const numericVersion = getNumericVersion(m.version);
+      return {
+        ...m,
+        position: ((m.date.getTime() - firstDate) / range) * 100,
+        dateStr: m.date.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }),
+        shortVersion: numericVersion.split(".").slice(0, m.isMajor ? 1 : 2).join("."),
+      };
+    }),
+    totalReleases: datedVersions.length,
+    totalDays,
+    avgDaysBetween,
+  };
+}
+
 export function VersionsTable({ versions, downloadsByVersion, github, tool }: VersionsTableProps) {
   // Initialize distribution to default for this tool (if it has distributions)
   const defaultDist = tool ? getDefaultDistribution(tool) : null;
@@ -243,6 +354,38 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
     }
     return result.filter((v) => isPrerelease(v.version)).length;
   }, [versions, distribution, tool]);
+
+  // Build timeline from versions filtered by distribution and version prefix only
+  // (not by search or prerelease, as those are more transient filters)
+  const timeline = useMemo(() => {
+    let timelineVersions = versions || [];
+
+    // Filter by distribution
+    if (distribution && tool) {
+      timelineVersions = timelineVersions.filter(
+        (v) => getDistribution(v.version, tool) === distribution
+      );
+    }
+
+    // Filter by version prefix
+    if (versionPrefix) {
+      timelineVersions = timelineVersions.filter((v) => {
+        let versionStr = v.version;
+        if (tool) {
+          const dist = getDistribution(v.version, tool);
+          if (dist !== "default" && dist !== "openjdk" && dist !== "cpython" && dist !== "cruby" && dist !== "node") {
+            const idx = v.version.indexOf("-");
+            if (idx > 0) {
+              versionStr = v.version.substring(idx + 1);
+            }
+          }
+        }
+        return versionStr.startsWith(versionPrefix + ".") || versionStr === versionPrefix;
+      });
+    }
+
+    return buildTimelineMilestones(timelineVersions, tool);
+  }, [versions, distribution, versionPrefix, tool]);
 
   const SortButton = ({ label, sortKey }: { label: string; sortKey: VersionSortKey }) => (
     <button
@@ -369,6 +512,63 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
               onClick={() => setVersionPrefix(prefix)}
             />
           ))}
+        </div>
+      )}
+
+      {/* Release Timeline */}
+      {timeline && (
+        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4 mb-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-medium text-gray-300">Release Timeline</h3>
+            <div class="text-xs text-gray-500">
+              {timeline.totalReleases} releases over{" "}
+              {Math.round(timeline.totalDays / 365) > 0
+                ? `${Math.round(timeline.totalDays / 365)}y`
+                : `${Math.round(timeline.totalDays)}d`}
+              {timeline.avgDaysBetween > 0 && (
+                <span class="ml-2">
+                  (~
+                  {timeline.avgDaysBetween < 30
+                    ? `${Math.round(timeline.avgDaysBetween)}d`
+                    : `${Math.round(timeline.avgDaysBetween / 30)}mo`}{" "}
+                  avg)
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div class="relative h-16">
+            {/* Line */}
+            <div class="absolute top-6 left-0 right-0 h-0.5 bg-dark-600" />
+
+            {/* Milestones */}
+            {timeline.milestones.map((m) => (
+              <div
+                key={m.version}
+                class="absolute -translate-x-1/2 group"
+                style={{ left: `${Math.min(Math.max(m.position, 2), 98)}%` }}
+              >
+                {/* Dot */}
+                <div
+                  class={`w-3 h-3 rounded-full mt-5 ${
+                    m.isMajor ? "bg-neon-purple" : "bg-neon-blue"
+                  } hover:ring-2 hover:ring-neon-purple/50 transition-all cursor-pointer`}
+                />
+                {/* Label */}
+                <div class="absolute top-8 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap">
+                  <span class={`font-mono ${m.isMajor ? "text-gray-300" : "text-gray-500"}`}>
+                    {m.shortVersion}
+                  </span>
+                </div>
+                {/* Tooltip */}
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 border border-dark-600">
+                  <div class="font-mono text-neon-purple">{m.version}</div>
+                  <div class="text-gray-500">{m.dateStr}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
