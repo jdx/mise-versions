@@ -20,34 +20,15 @@ export const ALL: APIRoute = async ({ request, locals, params }) => {
   const db = drizzle(env.DB);
   const database = setupDatabase(db);
 
-  let deactivateFinished = false;
-
-  const startDeactivation = () => {
-    deactivateFinished = false;
-    const p = database
+  // Trigger deactivation
+  ctx.waitUntil(
+    database
       .deactivateExpiredTokens()
       .catch(console.error)
-      .finally(() => {
-        deactivateFinished = true;
-      });
-    ctx.waitUntil(p);
-    return p;
-  };
-
-  let deactivatePromise = startDeactivation();
+  );
 
   // Retry loop (max 3 attempts)
   for (let attempt = 0; attempt < 3; attempt++) {
-    // Get a new token after deactivation
-    if (attempt > 0) {
-      if (!deactivateFinished) {
-        await deactivatePromise;
-      } else {
-        deactivatePromise = startDeactivation();
-        await deactivatePromise;
-      }
-    }
-
     // Get GitHub token
     const token = await database.getNextToken();
     if (!token) {
