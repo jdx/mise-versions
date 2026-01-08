@@ -45,15 +45,25 @@ for platform in $platforms; do
   grep "\-$platform-" docs/python-precompiled >"docs/python-precompiled-$platform"
   # Generate .gz to temp directory (not git repo)
   gzip -9c "docs/python-precompiled-$platform" >"$GZ_DIR/python-precompiled-$platform.gz"
+
+  # Generate TOML file for this platform
+  toml_file="docs/python-precompiled-$platform.toml"
+  while read -r v; do
+    [ -n "$v" ] && echo "{\"version\":\"$v\"}"
+  done < "docs/python-precompiled-$platform" | node scripts/generate-toml.js "python-precompiled-$platform" "$toml_file" > "$toml_file.tmp" && mv "$toml_file.tmp" "$toml_file"
 done
 
 # Generate main .gz file
 gzip -9c "docs/python-precompiled" >"$GZ_DIR/python-precompiled.gz"
 
-# Only add text files to git (not .gz files)
-git add docs/python-precompiled docs/python-precompiled-*
+# Add TOML files to git (not plain text files)
+git add docs/python-precompiled-*.toml
 # Remove any .gz files that might have been tracked previously
 git rm -f --ignore-unmatch docs/python-precompiled*.gz 2>/dev/null || true
+# Remove plain text files from git tracking (they're only used for intermediate processing)
+git rm -f --ignore-unmatch docs/python-precompiled docs/python-precompiled-[!.]* 2>/dev/null || true
+# Clean up plain text files
+rm -f docs/python-precompiled docs/python-precompiled-[!.]*
 
 echo "Generated .gz files in $GZ_DIR:"
 ls -la "$GZ_DIR"/*.gz

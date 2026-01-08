@@ -7,18 +7,21 @@ if [ "${DRY_RUN:-}" == 0 ]; then
 	git config --local user.name "mise-en-versions"
 fi
 
-cp docs/python-precompiled python-precompiled
+# Preserve existing python-precompiled TOML files before clearing docs
+mkdir -p /tmp/python-precompiled-backup
+cp docs/python-precompiled*.toml /tmp/python-precompiled-backup/ 2>/dev/null || true
 rm -rf docs
 mkdir -p docs
-mv python-precompiled docs/python-precompiled
+mv /tmp/python-precompiled-backup/*.toml docs/ 2>/dev/null || true
+rmdir /tmp/python-precompiled-backup 2>/dev/null || true
 ./scripts/python-precompiled.sh 1
 
 if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 	git diff --compact-summary --cached
 	
-	# Count the python-precompiled files for a more descriptive commit message
-	precompiled_files=$(find docs -name "python-precompiled*" -type f | wc -l)
-	platform_count=$(find docs -name "python-precompiled-*" -not -name "*.gz" -type f | wc -l)
+	# Count the python-precompiled TOML files for a more descriptive commit message
+	precompiled_files=$(find docs -name "python-precompiled*.toml" -type f | wc -l)
+	platform_count=$precompiled_files
 	
 	if [ "$platform_count" -gt 0 ]; then
 		commit_msg="python-precompiled: update $platform_count platforms ($precompiled_files total files)"
