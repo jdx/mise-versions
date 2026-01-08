@@ -87,12 +87,14 @@ generate_summary() {
 	local duration=$((end_time - START_TIME))
 	local duration_minutes=$((duration / 60))
 	local duration_seconds=$((duration % 60))
+	local commit_hash=$(git rev-parse HEAD 2>/dev/null || echo "main")
 
 	# Create summary file
 	cat > summary.md << SUMMARY_EOF
 # 📊 Mise Versions Update Summary
 
 **Generated**: $(date '+%Y-%m-%d %H:%M:%S UTC')
+**Commit**: [${commit_hash}](https://github.com/jdx/mise-versions/commit/${commit_hash})
 
 ## 📊 Quick Stats
 | Metric | Value |
@@ -152,7 +154,7 @@ SUMMARY_EOF
 		echo "" >> summary.md
 		for tool in $updated_tools_list; do
 			# Link to the local docs file
-			echo "- [$tool](docs/$tool.toml)" >> summary.md
+			echo "- [$tool](https://github.com/jdx/mise-versions/blob/${commit_hash}/docs/${tool}.toml)" >> summary.md
 		done
 	else
 		echo "" >> summary.md
