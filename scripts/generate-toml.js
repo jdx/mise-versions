@@ -95,40 +95,23 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
 // Parse new version data (preserves order from mise ls-remote)
 const newVersions = parseNdjson(stdinData);
 
-// Track which versions we've output
-const outputVersions = new Set();
-
-// Helper to format a version line
-function formatVersionLine(version, timestamp, releaseUrl) {
-  const isoDate = new Date(timestamp).toISOString();
-  if (releaseUrl) {
-    return `"${version}" = { created_at = ${isoDate}, release_url = "${releaseUrl}" }`;
-  } else {
-    return `"${version}" = { created_at = ${isoDate} }`;
-  }
-}
-
 // Build output with inline tables for compactness
 const lines = ["[versions]"];
-
-// First, output versions from new input (preserving their order)
 for (const v of newVersions) {
   const existing = existingVersions[v.version] || {};
   // Use API timestamp, fall back to existing timestamp, then use current time
   const timestamp = v.created_at || existing.created_at || now;
+  const isoDate = new Date(timestamp).toISOString();
   // Use API release_url, fall back to existing release_url
   const releaseUrl = v.release_url || existing.release_url;
 
-  lines.push(formatVersionLine(v.version, timestamp, releaseUrl));
-  outputVersions.add(v.version);
-}
-
-// Then, append any existing versions that weren't in the new input
-// This preserves historical versions when only fetching recent releases
-for (const [version, data] of Object.entries(existingVersions)) {
-  if (!outputVersions.has(version)) {
-    const timestamp = data.created_at || now;
-    lines.push(formatVersionLine(version, timestamp, data.release_url));
+  // Output as inline table
+  if (releaseUrl) {
+    lines.push(
+      `"${v.version}" = { created_at = ${isoDate}, release_url = "${releaseUrl}" }`
+    );
+  } else {
+    lines.push(`"${v.version}" = { created_at = ${isoDate} }`);
   }
 }
 
