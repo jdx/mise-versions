@@ -262,49 +262,58 @@ function VersionTrendsChart({
   return (
     <div>
       {/* Stacked area chart */}
-      <div class="overflow-x-auto mb-3">
-        <svg
-          width={chartWidth}
-          height={chartHeight}
-          class="w-full"
-          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          preserveAspectRatio="none"
-        >
-          {/* Stacked areas (render from top to bottom for proper layering) */}
-          {[...versionKeys].reverse().map((version, reverseIdx) => {
-            const idx = versionKeys.length - 1 - reverseIdx;
-            const color = VERSION_COLORS[idx % VERSION_COLORS.length];
+      <div class="flex mb-3">
+        {/* Y-axis labels */}
+        <div class="flex flex-col justify-between text-xs text-gray-500 pr-2" style={{ height: `${chartHeight}px` }}>
+          <span>{formatAxisNumber(maxTotal)}</span>
+          <span>{formatAxisNumber(Math.round(maxTotal / 2))}</span>
+          <span>0</span>
+        </div>
+        {/* Chart */}
+        <div class="flex-1 overflow-x-auto">
+          <svg
+            width={chartWidth}
+            height={chartHeight}
+            class="w-full"
+            viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+            preserveAspectRatio="none"
+          >
+            {/* Stacked areas (render from top to bottom for proper layering) */}
+            {[...versionKeys].reverse().map((version, reverseIdx) => {
+              const idx = versionKeys.length - 1 - reverseIdx;
+              const color = VERSION_COLORS[idx % VERSION_COLORS.length];
 
-            // Build area path
-            let path = "";
-            for (let i = 0; i < stackedData.length; i++) {
-              const x = xScale(i);
-              const versionData = stackedData[i].values.find(v => v.version === version);
-              const y = versionData ? yScale(versionData.y1) : chartHeight;
-              path += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
-            }
+              // Build area path
+              let path = "";
+              for (let i = 0; i < stackedData.length; i++) {
+                const x = xScale(i);
+                const versionData = stackedData[i].values.find(v => v.version === version);
+                const y = versionData ? yScale(versionData.y1) : chartHeight;
+                path += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
+              }
 
-            // Complete the area by going back along y0
-            for (let i = stackedData.length - 1; i >= 0; i--) {
-              const x = xScale(i);
-              const versionData = stackedData[i].values.find(v => v.version === version);
-              const y = versionData ? yScale(versionData.y0) : chartHeight;
-              path += ` L ${x} ${y}`;
-            }
-            path += " Z";
+              // Complete the area by going back along y0
+              for (let i = stackedData.length - 1; i >= 0; i--) {
+                const x = xScale(i);
+                const versionData = stackedData[i].values.find(v => v.version === version);
+                const y = versionData ? yScale(versionData.y0) : chartHeight;
+                path += ` L ${x} ${y}`;
+              }
+              path += " Z";
 
-            return (
-              <path
-                key={version}
-                d={path}
-                fill={color}
-                opacity={0.8}
-              >
-                <title>{version}</title>
-              </path>
-            );
-          })}
-        </svg>
+              return (
+                <path
+                  key={version}
+                  d={path}
+                  fill={color}
+                  opacity={0.8}
+                >
+                  <title>{version}</title>
+                </path>
+              );
+            })}
+          </svg>
+        </div>
       </div>
 
       {/* Legend */}
