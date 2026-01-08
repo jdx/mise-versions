@@ -233,7 +233,7 @@ function buildTimelineMilestones(
       const numericVersion = getNumericVersion(m.version);
       return {
         ...m,
-        position: ((m.date.getTime() - firstDate) / range) * 100,
+        position: ((m.date.getTime() - firstMilestoneDate) / range) * 100,
         dateStr: m.date.toLocaleDateString("en-US", {
           month: "short",
           day: "numeric",
