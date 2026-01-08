@@ -60,10 +60,13 @@ gzip -9c "docs/python-precompiled" >"$GZ_DIR/python-precompiled.gz"
 git add docs/python-precompiled-*.toml
 # Remove any .gz files that might have been tracked previously
 git rm -f --ignore-unmatch docs/python-precompiled*.gz 2>/dev/null || true
-# Remove plain text files from git tracking (they're only used for intermediate processing)
-git rm -f --ignore-unmatch docs/python-precompiled docs/python-precompiled-[!.]* 2>/dev/null || true
-# Clean up plain text files
-rm -f docs/python-precompiled docs/python-precompiled-[!.]*
+# Remove main plain text file from git if it was tracked
+git rm -f --ignore-unmatch docs/python-precompiled 2>/dev/null || true
+# Clean up plain text files from filesystem (these are intermediate files, never added to git)
+for platform in $platforms; do
+  rm -f "docs/python-precompiled-$platform"
+done
+rm -f docs/python-precompiled
 
 echo "Generated .gz files in $GZ_DIR:"
 ls -la "$GZ_DIR"/*.gz
