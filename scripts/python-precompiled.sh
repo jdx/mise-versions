@@ -9,6 +9,26 @@ GZ_DIR="${GZ_DIR:-/tmp/python-precompiled-gz}"
 mkdir -p "$GZ_DIR"
 rm -f "$GZ_DIR"/*.gz
 
+# Fetch CPython release dates for accurate timestamps
+echo "Fetching CPython release dates..."
+cpython_dates=$(gh api graphql --paginate -f query='
+    query($endCursor: String) {
+      repository(owner: "python", name: "cpython") {
+        refs(refPrefix: "refs/tags/", first: 100, after: $endCursor) {
+          nodes {
+            name
+            target {
+              ... on Tag { tagger { date } }
+              ... on Commit { committedDate }
+            }
+          }
+          pageInfo { hasNextPage, endCursor }
+        }
+      }
+    }' --jq '.data.repository.refs.nodes[] | "\(.name | sub("^v"; "")) \(.target.tagger.date // .target.committedDate)"')
+# Save to temp file for lookup
+echo "$cpython_dates" > /tmp/cpython-dates.txt
+
 # Paginate through all releases
 releases=$(gh api graphql --paginate -f query='
     query($endCursor: String) {
@@ -51,7 +71,17 @@ for platform in $platforms; do
   # Generate TOML file for this platform
   toml_file="docs/python-precompiled-$platform.toml"
   while read -r v; do
-    [ -n "$v" ] && echo "{\"version\":\"$v\"}"
+    if [ -n "$v" ]; then
+      # Extract Python version (e.g., "cpython-3.8.12+20220227-..." -> "3.8.12")
+      py_version=$(echo "$v" | sed -E 's/^cpython-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+      # Look up release date from CPython tags
+      release_date=$(grep "^${py_version} " /tmp/cpython-dates.txt | head -1 | cut -d' ' -f2)
+      if [ -n "$release_date" ]; then
+        echo "{\"version\":\"$v\",\"created_at\":\"$release_date\"}"
+      else
+        echo "{\"version\":\"$v\"}"
+      fi
+    fi
   done < "docs/python-precompiled-$platform" | node scripts/generate-toml.js "python-precompiled-$platform" "$toml_file" > "$toml_file.tmp" && mv "$toml_file.tmp" "$toml_file"
 done
 
