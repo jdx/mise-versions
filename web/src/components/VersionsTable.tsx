@@ -216,11 +216,17 @@ function buildTimelineMilestones(
   const displayMilestones = milestones.slice(-10);
   if (displayMilestones.length < 2) return null;
 
-  const firstDate = displayMilestones[0].date.getTime();
-  const lastDate = displayMilestones[displayMilestones.length - 1].date.getTime();
-  const range = lastDate - firstDate || 1;
-  const totalDays = (lastDate - firstDate) / (1000 * 60 * 60 * 24);
-  const avgDaysBetween = totalDays / (datedVersions.length - 1);
+  // Use milestone dates for positioning
+  const firstMilestoneDate = displayMilestones[0].date.getTime();
+  const lastMilestoneDate = displayMilestones[displayMilestones.length - 1].date.getTime();
+  const range = lastMilestoneDate - firstMilestoneDate || 1;
+
+  // Calculate total time span from ALL versions for accurate stats
+  const allDates = datedVersions.map(v => new Date(v.created_at!).getTime());
+  const oldestDate = Math.min(...allDates);
+  const newestDate = Math.max(...allDates);
+  const totalDays = (newestDate - oldestDate) / (1000 * 60 * 60 * 24);
+  const avgDaysBetween = datedVersions.length > 1 ? totalDays / (datedVersions.length - 1) : 0;
 
   return {
     milestones: displayMilestones.map((m) => {

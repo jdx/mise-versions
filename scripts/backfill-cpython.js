@@ -97,11 +97,19 @@ async function getAllCPythonTags() {
     if (tags.length === 0) break;
 
     for (const tag of tags) {
-      // Tags are like "v3.12.0", "v2.7.18"
-      const match = tag.name.match(/^v?(\d+\.\d+\.\d+)$/);
-      if (match) {
-        const version = match[1];
+      // Tags are like "v3.12.0", "v2.7.18", or "v2.4" (for .0 releases)
+      const matchFull = tag.name.match(/^v?(\d+\.\d+\.\d+)$/);
+      if (matchFull) {
+        const version = matchFull[1];
         if (CPYTHON_PATTERN.test(version)) {
+          allTags.set(version, tag.name);
+        }
+      }
+      // Also match tags like "v2.4" which is 2.4.0
+      const matchShort = tag.name.match(/^v(\d+\.\d+)$/);
+      if (matchShort) {
+        const version = matchShort[1] + ".0";
+        if (CPYTHON_PATTERN.test(version) && !allTags.has(version)) {
           allTags.set(version, tag.name);
         }
       }
@@ -135,7 +143,11 @@ async function main() {
 
   // Find CPython versions with placeholder timestamps
   const cpythonVersions = [];
-  const PLACEHOLDER = "2025-01-01T00:00:00.000Z";
+  // Multiple placeholder formats that may exist
+  const PLACEHOLDERS = [
+    "2025-01-01T00:00:00.000Z",
+    "2025-12-18T00:12:04.355Z",
+  ];
 
   for (const [version, data] of Object.entries(existing.versions)) {
     if (!CPYTHON_PATTERN.test(version)) continue;
@@ -144,7 +156,7 @@ async function main() {
       ? data.created_at.toISOString()
       : String(data.created_at);
 
-    if (ts === PLACEHOLDER) {
+    if (PLACEHOLDERS.includes(ts)) {
       cpythonVersions.push(version);
     }
   }
