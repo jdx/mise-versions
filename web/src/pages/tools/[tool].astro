@@ -6,7 +6,6 @@ import { setupAnalytics } from '../../../../src/analytics';
 import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
-import { getLatestStableVersion } from '../../lib/versions';
 import { loadToolsJson } from '../../lib/data-loader';
 
 const { tool } = Astro.params;
@@ -84,10 +83,9 @@ for (const v of downloadStats.byVersion) {
 const pageTitle = tool;
 const pageDescription = toolMeta.description || `${tool} - version manager tool`;
 
-// Compute latest stable version (prefer stable, fall back to any latest)
-const latestStable = getLatestStableVersion(versions);
-const latestVersion = versions[versions.length - 1]?.version || toolMeta.latest_version;
-const latestStableVersion = latestStable?.version || latestVersion;
+// Use latest versions from tool metadata (computed during sync)
+const latestVersion = toolMeta.latest_version;
+const latestStableVersion = toolMeta.latest_stable_version || latestVersion;
 
 // Backend URL helper
 function backendToUrl(backend: string): string | null {
