@@ -322,6 +322,16 @@ export async function runAnalyticsMigrations(
     sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_id ON versions(tool_id)`
   );
 
+  // Add from_mise column to versions table (1 = from mise ls-remote, 0 = from user tracking)
+  const versionsColumns = await db.all(sql`PRAGMA table_info(versions)`);
+  const hasFromMise = versionsColumns.some((col: any) => col.name === "from_mise");
+  if (!hasFromMise) {
+    console.log("Adding from_mise column to versions table...");
+    await db.run(sql`ALTER TABLE versions ADD COLUMN from_mise INTEGER DEFAULT 1`);
+    // Set existing versions as from_mise since they came from the sync script
+    await db.run(sql`UPDATE versions SET from_mise = 1 WHERE from_mise IS NULL`);
+  }
+
   // Create version_updates table for tracking when new versions are discovered
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS version_updates (
