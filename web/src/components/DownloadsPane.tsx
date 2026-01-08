@@ -14,6 +14,12 @@ const VERSION_COLORS = [
   "#6B7280", // Gray
 ];
 
+function formatAxisNumber(n: number): string {
+  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
+  if (n >= 1000) return `${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}k`;
+  return n.toString();
+}
+
 function DailyBarChart({
   daily,
 }: {
@@ -40,30 +46,39 @@ function DailyBarChart({
   }
 
   return (
-    <div class="h-32 flex items-end gap-0.5">
-      {days.map((d) => {
-        const height = maxCount > 0 ? (d.count / maxCount) * 100 : 0;
-        const dateObj = new Date(d.date);
-        const label = dateObj.toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-        });
-        return (
-          <div
-            key={d.date}
-            class="flex-1 h-full flex items-end group relative"
-            title={`${label}: ${d.count} downloads`}
-          >
+    <div class="flex">
+      {/* Y-axis labels */}
+      <div class="flex flex-col justify-between text-xs text-gray-500 pr-2 h-32">
+        <span>{formatAxisNumber(maxCount)}</span>
+        <span>{formatAxisNumber(Math.round(maxCount / 2))}</span>
+        <span>0</span>
+      </div>
+      {/* Chart */}
+      <div class="flex-1 h-32 flex items-end gap-0.5">
+        {days.map((d) => {
+          const height = maxCount > 0 ? (d.count / maxCount) * 100 : 0;
+          const dateObj = new Date(d.date);
+          const label = dateObj.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          });
+          return (
             <div
-              class="w-full bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
-              style={{ height: `${Math.max(height, 2)}%` }}
-            />
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
-              {label}: {d.count}
+              key={d.date}
+              class="flex-1 h-full flex items-end group relative"
+              title={`${label}: ${d.count} downloads`}
+            >
+              <div
+                class="w-full bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
+                style={{ height: `${Math.max(height, 2)}%` }}
+              />
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                {label}: {d.count.toLocaleString()}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -108,57 +123,68 @@ function MonthlyLineChart({
   const areaPath = `${linePath} L 100 ${chartHeight} L 0 ${chartHeight} Z`;
 
   return (
-    <div class="h-32 relative">
-      <svg
-        viewBox={`0 0 100 ${chartHeight}`}
-        preserveAspectRatio="none"
-        class="w-full h-full"
-      >
-        {/* Gradient fill under the line */}
-        <defs>
-          <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#B026FF" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#B026FF" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path d={areaPath} fill="url(#areaGradient)" />
-        <path
-          d={linePath}
-          fill="none"
-          stroke="#B026FF"
-          strokeWidth="2"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* Data points */}
-        {points.map((p) => (
-          <circle
-            key={p.month}
-            cx={p.x}
-            cy={p.y}
-            r="3"
-            fill="#B026FF"
-            class="hover:fill-[#FF2D95] cursor-pointer"
-            vectorEffect="non-scaling-stroke"
+    <div class="flex">
+      {/* Y-axis labels */}
+      <div class="flex flex-col justify-between text-xs text-gray-500 pr-2 h-32">
+        <span>{formatAxisNumber(maxCount)}</span>
+        <span>{formatAxisNumber(Math.round(maxCount / 2))}</span>
+        <span>0</span>
+      </div>
+      {/* Chart */}
+      <div class="flex-1">
+        <div class="h-32 relative">
+          <svg
+            viewBox={`0 0 100 ${chartHeight}`}
+            preserveAspectRatio="none"
+            class="w-full h-full"
           >
-            <title>
-              {new Date(p.month + "-01").toLocaleDateString("en-US", {
+            {/* Gradient fill under the line */}
+            <defs>
+              <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#B026FF" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#B026FF" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <path d={areaPath} fill="url(#areaGradient)" />
+            <path
+              d={linePath}
+              fill="none"
+              stroke="#B026FF"
+              strokeWidth="2"
+              vectorEffect="non-scaling-stroke"
+            />
+            {/* Data points */}
+            {points.map((p) => (
+              <circle
+                key={p.month}
+                cx={p.x}
+                cy={p.y}
+                r="3"
+                fill="#B026FF"
+                class="hover:fill-[#FF2D95] cursor-pointer"
+                vectorEffect="non-scaling-stroke"
+              >
+                <title>
+                  {new Date(p.month + "-01").toLocaleDateString("en-US", {
+                    month: "short",
+                    year: "numeric",
+                  })}
+                  : {p.count.toLocaleString()}
+                </title>
+              </circle>
+            ))}
+          </svg>
+        </div>
+        {/* X-axis labels */}
+        <div class="flex justify-between text-xs text-gray-500 mt-1">
+          {months.filter((_, i) => i % 3 === 0 || i === months.length - 1).map((m) => (
+            <span key={m.month}>
+              {new Date(m.month + "-01").toLocaleDateString("en-US", {
                 month: "short",
-                year: "numeric",
               })}
-              : {p.count.toLocaleString()}
-            </title>
-          </circle>
-        ))}
-      </svg>
-      {/* X-axis labels */}
-      <div class="flex justify-between text-xs text-gray-500 mt-1">
-        {months.filter((_, i) => i % 3 === 0 || i === months.length - 1).map((m) => (
-          <span key={m.month}>
-            {new Date(m.month + "-01").toLocaleDateString("en-US", {
-              month: "short",
-            })}
-          </span>
-        ))}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
