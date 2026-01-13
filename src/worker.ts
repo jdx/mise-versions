@@ -72,6 +72,13 @@ export async function scheduled(
     const todayVersionStats = await analytics.populateVersionStatsRollup(todayStr, env.ANALYTICS_DB);
     console.log(`Version stats rollup for ${todayStr}: ${todayVersionStats ? 'updated' : 'no data'}`);
 
+    // 4. Populate daily MAU stats (trailing 30-day MAU for each date)
+    const yesterdayMauStats = await analytics.populateDailyMauStats(yesterdayStr, env.ANALYTICS_DB);
+    console.log(`MAU stats for ${yesterdayStr}: ${yesterdayMauStats ? 'updated' : 'no data'}`);
+
+    const todayMauStats = await analytics.populateDailyMauStats(todayStr, env.ANALYTICS_DB);
+    console.log(`MAU stats for ${todayStr}: ${todayMauStats ? 'updated' : 'no data'}`);
+
     console.log('Scheduled tasks completed successfully');
   } catch (error) {
     console.error('Scheduled task error:', error);
