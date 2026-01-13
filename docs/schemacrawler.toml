@@ -1,228 +1,220 @@
 [versions]
-"11.12.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.01.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.01.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.02.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.02.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.03.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.03.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.03.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.04.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.04.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.04.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.04.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.05.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.05.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.05.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.05.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.05.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.06.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.06.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.06.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.06.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.06.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.06" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.07" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.07.08" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.08.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.08.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.08.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.08.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.08.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.08.06" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.09.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.09.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.09.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.10.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.10.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.10.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.10.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.10.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.10.06" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.11.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.11.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.12.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.14.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.14.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.14.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.14.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.15.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.15.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.15.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.15.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.16.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.16.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.16.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.16.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.17.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.17.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.17.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.17.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.17.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.18.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.19.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.20.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.20.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.20.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.20.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.20.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.20.06" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.21.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"14.21.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.01.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.01.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.01.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.01.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.01.05" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.01.06" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.02.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.02.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.03.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.03.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.03.03" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.03.04" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.04.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.05.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"15.06.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.1.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.1.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.2.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.3.0" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.3.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.3.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.4.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.5.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.5.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.5.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.6.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.7.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.7.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.8.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.9.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.9.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.9.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.9.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.9.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.10.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.11.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.12.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.12.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.12.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.4-A" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.4-B" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.14.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.8" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.9" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.10" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.15.11" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.01" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.02" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.3-A" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.8" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.9" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.10" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.11" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.12" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.14" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.15" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.16" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.17" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.16.18" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.17.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.17.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.17.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.17.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.18.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.18.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.8" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.9" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.10" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.19.11" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.20.8" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.21.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.21.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.21.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.21.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.22.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.22.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.22.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.23.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.23.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.24.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.24.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.24.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.25.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.25.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.25.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.25.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.25.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.26.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.26.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.26.3-alpha-B" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.26.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.27.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.27.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.28.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.28.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.28.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"16.29.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.1" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.2" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.3" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.4" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.5" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.6-A" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.6" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.1.7" = { created_at = 2025-12-18T00:39:23.719Z }
-"17.2.7" = { created_at = 2025-12-29T14:01:36.822Z }
-"17.2.8" = { created_at = 2025-12-30T20:28:54.978Z }
-"17.3.0" = { created_at = 2026-01-01T05:51:56.267Z }
-"early-access-release" = { created_at = 2025-12-18T00:39:23.719Z }
+"14.01.01" = { created_at = 2015-07-21T03:11:19.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.01.01" }
+"14.01.02" = { created_at = 2015-07-29T02:55:34.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/14.01.02" }
+"14.02.01" = { created_at = 2015-08-10T03:39:27.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.02.01" }
+"14.02.02" = { created_at = 2015-08-13T03:55:13.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.02.02" }
+"14.03.01" = { created_at = 2015-09-06T21:31:37.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.03.01" }
+"14.03.02" = { created_at = 2015-09-18T02:52:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.03.02" }
+"14.03.03" = { created_at = 2015-09-20T04:40:59.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.03.03" }
+"14.04.01" = { created_at = 2015-10-12T02:00:06.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.04.01" }
+"14.04.02" = { created_at = 2015-10-15T01:11:11.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.04.02" }
+"14.04.03" = { created_at = 2015-10-20T01:07:51.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.04.03" }
+"14.04.04" = { created_at = 2015-11-10T23:43:22.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.04.04" }
+"14.05.01" = { created_at = 2015-11-15T02:43:21.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.05.01" }
+"14.05.02" = { created_at = 2015-11-25T22:58:20.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.05.02" }
+"14.05.03" = { created_at = 2015-12-03T02:26:45.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.05.03" }
+"14.05.04" = { created_at = 2015-12-04T03:30:40.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.05.04" }
+"14.05.05" = { created_at = 2016-02-04T02:52:29.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.05.05" }
+"14.06.01" = { created_at = 2016-02-09T01:53:09.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.06.01" }
+"14.06.02" = { created_at = 2016-02-11T01:14:54.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.06.02" }
+"14.06.03" = { created_at = 2016-02-11T03:00:13.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.06.03" }
+"14.06.04" = { created_at = 2016-02-14T20:43:31.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.06.04" }
+"14.06.05" = { created_at = 2016-02-15T02:22:35.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.06.05" }
+"14.07.01" = { created_at = 2016-02-27T20:39:13.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.01" }
+"14.07.02" = { created_at = 2016-03-02T13:15:26.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.02" }
+"14.07.03" = { created_at = 2016-03-11T03:54:28.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.03" }
+"14.07.04" = { created_at = 2016-03-17T02:38:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.04" }
+"14.07.05" = { created_at = 2016-03-21T23:16:40.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.05" }
+"14.07.06" = { created_at = 2016-03-26T20:38:12.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.06" }
+"14.07.07" = { created_at = 2016-04-01T00:57:19.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.07" }
+"14.07.08" = { created_at = 2016-04-15T01:23:25.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.07.08" }
+"14.08.01" = { created_at = 2016-05-04T01:42:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.08.01" }
+"14.08.02" = { created_at = 2016-05-16T00:04:04.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/14.08.02" }
+"14.08.03" = { created_at = 2016-05-23T02:16:23.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.08.03" }
+"14.08.04" = { created_at = 2016-05-25T00:06:31.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.08.04" }
+"14.08.05" = { created_at = 2016-06-10T00:00:24.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.08.05" }
+"14.08.06" = { created_at = 2016-06-14T12:18:25.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.08.06" }
+"14.09.01" = { created_at = 2016-07-02T04:13:51.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.09.01" }
+"14.09.02" = { created_at = 2016-07-14T01:25:36.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.09.02" }
+"14.09.03" = { created_at = 2016-07-31T21:03:59.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.09.03" }
+"14.10.01" = { created_at = 2016-09-02T03:48:09.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.10.01" }
+"14.10.02" = { created_at = 2016-09-17T17:21:42.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.10.02" }
+"14.10.03" = { created_at = 2016-10-01T18:03:02.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.10.03" }
+"14.10.04" = { created_at = 2016-10-23T04:23:24.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.10.04" }
+"14.10.05" = { created_at = 2016-10-26T23:53:15.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.10.05" }
+"14.10.06" = { created_at = 2016-10-30T01:44:19.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.10.06" }
+"14.11.01" = { created_at = 2016-12-19T02:06:20.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/14.11.01" }
+"14.11.02" = { created_at = 2016-12-21T02:09:17.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/14.11.02" }
+"11.12.01" = { created_at = 2016-12-24T23:42:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/11.12.01" }
+"14.12.01" = { created_at = 2016-12-24T23:42:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.12.01" }
+"14.14.01" = { created_at = 2017-01-12T03:18:46.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.14.01" }
+"14.14.02" = { created_at = 2017-02-09T01:30:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.14.02" }
+"14.14.03" = { created_at = 2017-02-24T13:09:04.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.14.03" }
+"14.14.04" = { created_at = 2017-03-12T04:23:00.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.14.04" }
+"14.15.01" = { created_at = 2017-03-22T02:35:24.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.15.01" }
+"14.15.02" = { created_at = 2017-03-23T03:42:45.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.15.02" }
+"14.15.03" = { created_at = 2017-03-29T00:52:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.15.03" }
+"14.15.04" = { created_at = 2017-04-01T21:01:03.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.15.04" }
+"14.16.01" = { created_at = 2017-04-14T00:00:41.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.16.01" }
+"14.16.02" = { created_at = 2017-06-16T23:46:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.16.02" }
+"14.16.03" = { created_at = 2017-07-09T04:10:06.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.16.03" }
+"14.16.04" = { created_at = 2017-09-27T02:15:57.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.16.04" }
+"14.17.01" = { created_at = 2017-11-20T01:37:52.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.17.01" }
+"14.17.02" = { created_at = 2017-11-21T04:00:54.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.17.02" }
+"14.17.03" = { created_at = 2017-11-21T18:44:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.17.03" }
+"14.17.04" = { created_at = 2017-12-11T20:05:13.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.17.04" }
+"14.17.05" = { created_at = 2017-12-29T03:40:41.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.17.05" }
+"14.18.01" = { created_at = 2018-01-26T03:53:51.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.18.01" }
+"14.19.01" = { created_at = 2018-02-05T04:38:39.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.19.01" }
+"14.20.01" = { created_at = 2018-03-06T02:06:20.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.20.01" }
+"14.20.02" = { created_at = 2018-03-08T02:17:31.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.20.02" }
+"14.20.03" = { created_at = 2018-03-10T18:09:54.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.20.03" }
+"14.20.04" = { created_at = 2018-04-05T02:02:55.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.20.04" }
+"14.20.05" = { created_at = 2018-04-20T02:32:46.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.20.05" }
+"14.20.06" = { created_at = 2018-05-03T01:17:19.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.20.06" }
+"14.21.01" = { created_at = 2018-05-15T03:11:05.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.21.01" }
+"14.21.02" = { created_at = 2018-05-22T02:53:46.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v14.21.02" }
+"15.01.01" = { created_at = 2018-09-08T23:29:32.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.01.01" }
+"15.01.02" = { created_at = 2018-09-18T03:02:57.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.01.02" }
+"15.01.03" = { created_at = 2018-09-22T04:35:49.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.01.03" }
+"15.01.04" = { created_at = 2018-10-14T06:25:22.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.01.04" }
+"15.01.05" = { created_at = 2018-11-01T02:47:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.01.05" }
+"15.01.06" = { created_at = 2018-11-11T05:18:14.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.01.06" }
+"15.02.02" = { created_at = 2018-11-27T03:49:26.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.02.02" }
+"15.03.01" = { created_at = 2018-12-09T00:20:27.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.03.01" }
+"15.03.02" = { created_at = 2018-12-13T02:17:23.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.03.02" }
+"15.03.03" = { created_at = 2018-12-28T23:41:22.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.03.03" }
+"15.03.04" = { created_at = 2018-12-30T00:21:01.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.03.04" }
+"15.04.01" = { created_at = 2019-02-07T04:27:35.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.04.01" }
+"15.05.01" = { created_at = 2019-03-09T14:56:28.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.05.01" }
+"15.06.01" = { created_at = 2019-03-10T03:08:44.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v15.06.01" }
+"16.1.1" = { created_at = 2019-07-25T09:43:46.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.1.1" }
+"16.1.2" = { created_at = 2019-08-12T01:35:11.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.1.2" }
+"16.2.1" = { created_at = 2019-10-13T14:31:58.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.1" }
+"16.2.2" = { created_at = 2019-10-19T17:06:17.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.2" }
+"16.2.3" = { created_at = 2019-10-21T16:46:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.3" }
+"16.2.4" = { created_at = 2019-10-26T07:17:49.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.4" }
+"16.2.5" = { created_at = 2019-11-18T01:22:36.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.5" }
+"16.2.6" = { created_at = 2019-11-24T01:57:00.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.6" }
+"16.2.7" = { created_at = 2019-12-08T03:15:25.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.2.7" }
+"16.3.0" = { created_at = 2020-01-02T18:40:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.3.0" }
+"16.3.1" = { created_at = 2020-01-17T03:32:21.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.3.1" }
+"16.3.2" = { created_at = 2020-01-18T17:46:58.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.3.2" }
+"16.4.1" = { created_at = 2020-02-05T15:18:05.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.4.1" }
+"16.5.1" = { created_at = 2020-03-13T01:02:58.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.5.1" }
+"16.5.2" = { created_at = 2020-03-13T20:36:55.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.5.2" }
+"16.5.3" = { created_at = 2020-03-28T03:21:24.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.5.3" }
+"16.6.1" = { created_at = 2020-04-18T01:16:16.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.6.1" }
+"16.7.1" = { created_at = 2020-04-29T01:59:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.7.1" }
+"16.7.2" = { created_at = 2020-05-06T01:39:19.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.7.2" }
+"16.8.1" = { created_at = 2020-05-30T15:52:26.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.8.1" }
+"16.9.2" = { created_at = 2020-06-26T01:02:39.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.9.2" }
+"16.9.3" = { created_at = 2020-07-25T20:31:09.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.9.3" }
+"16.9.4" = { created_at = 2020-08-17T18:35:03.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.9.4" }
+"16.9.5" = { created_at = 2020-09-10T00:33:25.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.9.5" }
+"16.10.1" = { created_at = 2020-09-22T00:55:10.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.10.1" }
+"16.11.1" = { created_at = 2020-10-18T04:14:18.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.1" }
+"16.11.2" = { created_at = 2020-10-23T01:07:18.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.2" }
+"16.11.3" = { created_at = 2020-10-24T03:09:00.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.3" }
+"16.11.4" = { created_at = 2020-11-01T02:29:18.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.4" }
+"16.11.5" = { created_at = 2020-11-03T21:34:44.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.5" }
+"16.11.6" = { created_at = 2020-12-01T01:46:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.6" }
+"16.11.7" = { created_at = 2020-12-26T22:13:08.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.11.7" }
+"16.12.1" = { created_at = 2021-02-15T02:27:55.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.12.1" }
+"16.12.2" = { created_at = 2021-02-19T23:49:11.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.12.2" }
+"16.12.3" = { created_at = 2021-02-24T01:20:55.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.12.3" }
+"16.14.1" = { created_at = 2021-03-15T18:36:45.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.14.1" }
+"16.14.2" = { created_at = 2021-03-26T20:54:10.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.14.2" }
+"16.14.3" = { created_at = 2021-03-31T19:37:11.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.14.3" }
+"16.14.4" = { created_at = 2021-04-04T19:30:09.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.14.4" }
+"16.14.5" = { created_at = 2021-04-25T17:13:17.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.14.5" }
+"16.14.6" = { created_at = 2021-05-08T02:03:37.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.14.6" }
+"16.15.1" = { created_at = 2021-06-14T00:32:38.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.1" }
+"16.15.2" = { created_at = 2021-07-07T01:59:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.2" }
+"16.15.4" = { created_at = 2021-08-14T04:10:07.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.4" }
+"16.15.5" = { created_at = 2021-09-12T02:58:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.5" }
+"16.15.6" = { created_at = 2021-09-13T02:06:35.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.6" }
+"16.15.7" = { created_at = 2021-09-16T21:22:45.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.7" }
+"16.15.8" = { created_at = 2021-10-05T00:38:17.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.8" }
+"16.15.9" = { created_at = 2021-10-20T02:33:38.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.9" }
+"16.15.10" = { created_at = 2021-10-23T01:51:11.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.10" }
+"16.15.11" = { created_at = 2021-10-31T03:02:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.15.11" }
+"16.16.01" = { created_at = 2021-11-15T20:13:02.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.01" }
+"16.16.02" = { created_at = 2021-11-17T02:22:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.02" }
+"16.16.3" = { created_at = 2021-11-20T15:39:27.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.3" }
+"16.16.4" = { created_at = 2021-12-19T01:03:59.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.4" }
+"16.16.5" = { created_at = 2021-12-26T01:27:27.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.5" }
+"16.16.6" = { created_at = 2021-12-29T14:58:06.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.6" }
+"16.16.7" = { created_at = 2022-01-09T03:59:11.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.7" }
+"16.16.8" = { created_at = 2022-01-15T02:38:48.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.8" }
+"16.16.9" = { created_at = 2022-01-18T00:59:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.9" }
+"16.16.10" = { created_at = 2022-01-23T21:42:18.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.10" }
+"16.16.11" = { created_at = 2022-02-05T17:23:35.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.11" }
+"16.16.12" = { created_at = 2022-03-19T16:45:47.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.12" }
+"16.16.14" = { created_at = 2022-03-27T15:10:58.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.14" }
+"16.16.15" = { created_at = 2022-05-30T15:54:51.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.15" }
+"16.16.16" = { created_at = 2022-06-07T16:33:06.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.16" }
+"16.16.17" = { created_at = 2022-06-13T19:29:12.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.17" }
+"16.16.18" = { created_at = 2022-06-19T19:52:18.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.16.18" }
+"16.17.1" = { created_at = 2022-07-23T01:37:05.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.17.1" }
+"16.17.2" = { created_at = 2022-07-30T00:55:39.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.17.2" }
+"16.17.3" = { created_at = 2022-08-05T19:30:56.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.17.3" }
+"16.17.4" = { created_at = 2022-08-14T14:17:38.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.17.4" }
+"16.18.1" = { created_at = 2022-08-23T12:55:30.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.18.1" }
+"16.18.2" = { created_at = 2022-09-17T15:10:22.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.18.2" }
+"16.19.1" = { created_at = 2022-11-20T19:09:43.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.1" }
+"16.19.2" = { created_at = 2022-11-24T23:11:08.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.2" }
+"16.19.3" = { created_at = 2022-11-27T22:41:16.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.3" }
+"16.19.4" = { created_at = 2022-12-01T00:03:04.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.4" }
+"16.19.5" = { created_at = 2022-12-16T19:48:33.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.5" }
+"16.19.6" = { created_at = 2023-01-12T22:09:19.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.6" }
+"16.19.7" = { created_at = 2023-01-22T04:17:00.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.7" }
+"16.19.8" = { created_at = 2023-03-18T20:15:16.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.8" }
+"16.19.9" = { created_at = 2023-03-22T00:07:58.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.9" }
+"16.19.10" = { created_at = 2023-05-19T11:15:21.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.10" }
+"16.19.11" = { created_at = 2023-06-03T23:25:30.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.19.11" }
+"16.20.1" = { created_at = 2023-07-03T20:16:58.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.1" }
+"16.20.2" = { created_at = 2023-07-09T00:32:24.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.2" }
+"16.20.3" = { created_at = 2023-07-20T00:23:07.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.3" }
+"16.20.4" = { created_at = 2023-07-26T23:08:34.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.4" }
+"16.20.5" = { created_at = 2023-11-07T18:44:13.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.5" }
+"16.20.6" = { created_at = 2023-11-16T22:29:05.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.6" }
+"16.20.7" = { created_at = 2023-12-20T19:45:03.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.7" }
+"16.20.8" = { created_at = 2023-12-30T17:53:06.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.20.8" }
+"16.21.1" = { created_at = 2024-01-13T18:40:12.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.21.1" }
+"16.21.2" = { created_at = 2024-02-17T14:35:12.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.21.2" }
+"16.21.3" = { created_at = 2024-06-10T01:04:59.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.21.3" }
+"16.21.4" = { created_at = 2024-06-18T11:32:42.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.21.4" }
+"16.22.1" = { created_at = 2024-07-31T01:48:30.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.22.1" }
+"16.22.2" = { created_at = 2024-08-05T01:43:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.22.2" }
+"16.22.3" = { created_at = 2024-11-07T19:51:40.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.22.3" }
+"16.23.1" = { created_at = 2024-11-24T13:22:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.23.1" }
+"16.23.2" = { created_at = 2024-11-27T13:47:01.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.23.2" }
+"16.24.1" = { created_at = 2024-12-17T01:57:52.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.24.1" }
+"16.24.2" = { created_at = 2024-12-22T00:14:12.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.24.2" }
+"16.24.3" = { created_at = 2024-12-28T02:03:34.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.24.3" }
+"16.25.1" = { created_at = 2024-12-29T21:34:55.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.25.1" }
+"16.25.2" = { created_at = 2025-01-12T14:26:47.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.25.2" }
+"16.25.3" = { created_at = 2025-03-24T14:21:44.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.25.3" }
+"16.25.4" = { created_at = 2025-05-24T01:31:49.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.25.4" }
+"16.25.5" = { created_at = 2025-05-28T17:00:21.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.25.5" }
+"16.26.1" = { created_at = 2025-06-03T07:38:08.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.26.1" }
+"16.26.2" = { created_at = 2025-06-22T14:05:27.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.26.2" }
+"16.26.3" = { created_at = 2025-07-14T23:45:01.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.26.3" }
+"16.26.3-alpha-B" = { created_at = 2025-07-14T23:45:53.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.26.3-alpha-B" }
+"16.27.1" = { created_at = 2025-08-19T22:30:31.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.27.1" }
+"16.27.2" = { created_at = 2025-09-03T01:49:14.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.27.2" }
+"16.28.1" = { created_at = 2025-09-14T02:18:50.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.28.1" }
+"16.28.2" = { created_at = 2025-09-20T01:04:05.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.28.2" }
+"16.28.3" = { created_at = 2025-09-26T12:07:16.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.28.3" }
+"16.29.1" = { created_at = 2025-10-03T01:20:41.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v16.29.1" }
+"17.1.1" = { created_at = 2025-10-07T02:06:49.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.1" }
+"17.1.2" = { created_at = 2025-10-27T01:56:22.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.2" }
+"17.1.3" = { created_at = 2025-10-27T12:08:32.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.3" }
+"17.1.4" = { created_at = 2025-11-01T21:27:10.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.4" }
+"17.1.5" = { created_at = 2025-11-11T22:06:57.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.5" }
+"17.1.6" = { created_at = 2025-11-22T00:57:06.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.6" }
+"17.1.7" = { created_at = 2025-11-29T22:23:28.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.1.7" }
+"17.2.7" = { created_at = 2025-12-29T13:15:38.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.2.7" }
+"17.2.8" = { created_at = 2025-12-30T19:29:54.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.2.8" }
+"17.3.0" = { created_at = 2026-01-01T01:00:54.000Z, release_url = "https://github.com/schemacrawler/SchemaCrawler/releases/tag/v17.3.0" }
