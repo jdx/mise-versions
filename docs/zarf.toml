@@ -1,26 +1,26 @@
 [versions]
-"0.51.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.52.1" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.53.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.54.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.55.2" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.55.4" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.55.5" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.55.6" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.56.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.57.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.58.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.59.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.60.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.61.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.61.1" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.61.2" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.62.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.63.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.64.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.65.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.65.1" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.66.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.67.0" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.68.1" = { created_at = 2026-01-07T14:53:57.602Z }
-"0.69.0" = { created_at = 2026-01-08T23:42:06.364Z }
+"0.51.0" = { created_at = 2025-04-03T16:22:34.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.51.0" }
+"0.52.1" = { created_at = 2025-04-18T14:08:03.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.52.1" }
+"0.53.0" = { created_at = 2025-04-23T19:45:56.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.53.0" }
+"0.54.0" = { created_at = 2025-05-01T18:32:36.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.54.0" }
+"0.55.2" = { created_at = 2025-05-15T22:43:04.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.55.2" }
+"0.55.4" = { created_at = 2025-05-22T00:10:07.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.55.4" }
+"0.55.5" = { created_at = 2025-05-22T20:43:58.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.55.5" }
+"0.55.6" = { created_at = 2025-05-29T20:20:55.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.55.6" }
+"0.56.0" = { created_at = 2025-06-12T18:33:59.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.56.0" }
+"0.57.0" = { created_at = 2025-06-26T19:01:48.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.57.0" }
+"0.58.0" = { created_at = 2025-07-10T19:15:36.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.58.0" }
+"0.59.0" = { created_at = 2025-07-24T17:42:48.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.59.0" }
+"0.60.0" = { created_at = 2025-08-07T22:20:03.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.60.0" }
+"0.61.0" = { created_at = 2025-08-21T19:16:17.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.61.0" }
+"0.61.1" = { created_at = 2025-09-02T18:17:18.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.61.1" }
+"0.61.2" = { created_at = 2025-09-05T17:00:25.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.61.2" }
+"0.62.0" = { created_at = 2025-09-18T20:15:17.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.62.0" }
+"0.63.0" = { created_at = 2025-10-02T17:29:32.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.63.0" }
+"0.64.0" = { created_at = 2025-10-16T20:57:39.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.64.0" }
+"0.65.0" = { created_at = 2025-10-30T20:15:07.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.65.0" }
+"0.65.1" = { created_at = 2025-10-31T13:51:00.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.65.1" }
+"0.66.0" = { created_at = 2025-11-13T17:42:36.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.66.0" }
+"0.67.0" = { created_at = 2025-12-05T21:21:22.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.67.0" }
+"0.68.1" = { created_at = 2025-12-18T21:06:05.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.68.1" }
+"0.69.0" = { created_at = 2026-01-08T22:08:42.000Z, release_url = "https://github.com/zarf-dev/zarf/releases/tag/v0.69.0" }
