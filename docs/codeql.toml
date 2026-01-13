@@ -1,154 +1,153 @@
 [versions]
-"2.0.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.0.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.0.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.0.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.0.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.0.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.0.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.1.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.1.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.1.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.1.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.1.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.2.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.3.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.3.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.3.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.3.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.3.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.4.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.7" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.8" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.5.9" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.6.0-beta.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.6.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.6.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.6.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.6.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.7.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.7.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.7.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.7.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.7.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.7.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.8.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.8.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.8.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.8.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.8.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.8.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.9.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.9.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.9.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.9.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.9.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.10.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.10.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.10.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.10.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.10.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.10.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.11.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.12.7" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.13.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.13.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.13.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.13.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.13.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.14.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.15.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.15.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.15.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.15.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.15.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.15.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.16.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.17.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.18.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.18.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.18.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.18.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.18.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.19.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.19.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.19.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.19.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.19.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.20.7" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.21.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.21.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.21.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.21.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.21.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.22.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.22.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.22.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.22.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.22.4" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.0" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.1" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.2" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.3" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.5" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.6" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.7" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.8" = { created_at = 2025-12-17T13:19:48.903Z }
-"2.23.9" = { created_at = 2026-01-09T18:12:21.957Z }
+"2.0.0" = { created_at = 2019-11-13T20:58:04.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2019-11-22T20:30:04.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.2" }
+"2.0.3" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.3" }
+"2.0.4" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.4" }
+"2.0.5" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.5" }
+"2.0.6" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.0.6" }
+"2.1.0" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.1.0" }
+"2.1.1" = { created_at = 2020-01-29T16:23:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.1.1" }
+"2.1.2" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.1.2" }
+"2.1.3" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.1.3" }
+"2.1.4" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.1.4" }
+"2.2.0" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.0" }
+"2.2.1" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.1" }
+"2.2.2" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.2" }
+"2.2.3" = { created_at = 2020-05-06T10:07:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.3" }
+"2.2.4" = { created_at = 2020-06-29T12:03:20.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.4" }
+"2.2.5" = { created_at = 2020-08-21T11:54:52.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.5" }
+"2.2.6" = { created_at = 2020-09-11T14:14:06.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.2.6" }
+"2.3.0" = { created_at = 2020-09-28T17:44:53.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.3.0" }
+"2.3.1" = { created_at = 2020-10-15T15:12:43.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.3.1" }
+"2.3.2" = { created_at = 2020-10-27T18:42:04.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.3.2" }
+"2.3.3" = { created_at = 2020-11-06T19:16:48.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.3.3" }
+"2.4.0" = { created_at = 2020-11-26T16:26:21.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.0" }
+"2.3.4" = { created_at = 2020-12-15T23:09:51.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.3.4" }
+"2.4.1" = { created_at = 2020-12-19T01:44:07.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.1" }
+"2.4.2" = { created_at = 2021-01-22T19:37:57.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.2" }
+"2.4.3" = { created_at = 2021-01-22T19:37:57.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.3" }
+"2.4.4" = { created_at = 2021-02-12T20:37:22.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.4" }
+"2.4.5" = { created_at = 2021-03-08T19:51:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.5" }
+"2.4.6" = { created_at = 2021-03-10T15:50:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.4.6" }
+"2.5.0" = { created_at = 2021-03-26T13:46:39.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2021-04-19T16:46:49.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.1" }
+"2.5.2" = { created_at = 2021-04-21T16:09:32.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.2" }
+"2.5.3" = { created_at = 2021-04-30T16:49:51.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.3" }
+"2.5.4" = { created_at = 2021-05-03T22:05:04.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.4" }
+"2.5.5" = { created_at = 2021-05-17T19:04:32.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.5" }
+"2.5.6" = { created_at = 2021-06-22T16:39:50.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.6" }
+"2.5.7" = { created_at = 2021-07-02T12:44:38.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.7" }
+"2.5.8" = { created_at = 2021-07-26T17:41:49.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.8" }
+"2.5.9" = { created_at = 2021-08-09T20:22:27.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.5.9" }
+"2.6.0" = { created_at = 2021-08-24T22:36:45.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2021-09-07T23:57:53.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.6.1" }
+"2.6.2" = { created_at = 2021-09-21T16:51:14.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.6.2" }
+"2.6.3" = { created_at = 2021-10-06T17:19:57.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.6.3" }
+"2.7.0" = { created_at = 2021-10-27T22:13:20.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.7.0" }
+"2.7.1" = { created_at = 2021-11-15T19:13:25.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.7.1" }
+"2.7.2" = { created_at = 2021-11-22T13:41:58.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.7.2" }
+"2.7.3" = { created_at = 2021-12-07T19:06:44.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.7.3" }
+"2.7.5" = { created_at = 2022-01-17T18:51:05.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.7.5" }
+"2.7.6" = { created_at = 2022-01-24T11:26:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.7.6" }
+"2.8.0" = { created_at = 2022-02-04T21:09:10.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.8.0" }
+"2.8.1" = { created_at = 2022-02-15T15:11:31.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.8.1" }
+"2.8.2" = { created_at = 2022-02-28T18:27:48.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.8.2" }
+"2.8.3" = { created_at = 2022-03-14T19:01:01.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.8.3" }
+"2.8.4" = { created_at = 2022-03-29T16:34:00.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.8.4" }
+"2.8.5" = { created_at = 2022-04-07T13:55:01.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.8.5" }
+"2.9.0" = { created_at = 2022-04-25T22:31:01.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.9.0" }
+"2.9.1" = { created_at = 2022-05-05T15:55:56.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.9.1" }
+"2.9.2" = { created_at = 2022-05-16T13:24:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.9.2" }
+"2.9.3" = { created_at = 2022-05-31T16:36:37.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.9.3" }
+"2.9.4" = { created_at = 2022-06-20T11:34:45.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.9.4" }
+"2.10.0" = { created_at = 2022-06-27T17:24:01.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.10.0" }
+"2.10.1" = { created_at = 2022-07-19T13:46:01.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.10.1" }
+"2.10.2" = { created_at = 2022-08-02T16:30:49.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.10.2" }
+"2.10.3" = { created_at = 2022-08-15T15:57:32.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.10.3" }
+"2.10.4" = { created_at = 2022-08-31T12:10:36.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.10.4" }
+"2.10.5" = { created_at = 2022-09-13T13:44:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.10.5" }
+"2.11.0" = { created_at = 2022-09-28T16:55:14.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2022-10-11T17:27:21.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.1" }
+"2.11.2" = { created_at = 2022-10-11T17:27:21.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.2" }
+"2.11.3" = { created_at = 2022-11-11T12:17:08.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.3" }
+"2.11.4" = { created_at = 2022-11-24T14:02:19.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.4" }
+"2.11.5" = { created_at = 2022-12-07T18:51:57.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.5" }
+"2.11.6" = { created_at = 2022-12-13T13:12:39.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.11.6" }
+"2.12.0" = { created_at = 2023-01-10T20:43:06.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.0" }
+"2.12.1" = { created_at = 2023-01-23T17:49:11.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.1" }
+"2.12.2" = { created_at = 2023-02-07T19:15:12.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.2" }
+"2.12.3" = { created_at = 2023-02-23T15:49:28.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.3" }
+"2.12.4" = { created_at = 2023-03-09T15:29:24.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.4" }
+"2.12.5" = { created_at = 2023-03-21T15:06:48.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.5" }
+"2.12.6" = { created_at = 2023-04-04T15:03:41.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.6" }
+"2.12.7" = { created_at = 2023-04-18T20:16:29.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.12.7" }
+"2.13.0" = { created_at = 2023-04-20T14:44:26.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.13.0" }
+"2.13.1" = { created_at = 2023-05-04T04:22:45.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.13.1" }
+"2.13.3" = { created_at = 2023-05-31T11:32:54.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.13.3" }
+"2.13.4" = { created_at = 2023-06-19T19:56:48.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.13.4" }
+"2.13.5" = { created_at = 2023-06-19T19:56:48.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.13.5" }
+"2.14.0" = { created_at = 2023-07-13T16:40:21.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.0" }
+"2.14.1" = { created_at = 2023-07-27T11:56:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.1" }
+"2.14.2" = { created_at = 2023-08-11T11:10:22.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.2" }
+"2.14.3" = { created_at = 2023-08-25T15:48:38.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.3" }
+"2.14.4" = { created_at = 2023-09-12T14:26:09.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.4" }
+"2.14.5" = { created_at = 2023-09-14T15:07:04.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.5" }
+"2.14.6" = { created_at = 2023-09-26T13:05:52.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.14.6" }
+"2.15.0" = { created_at = 2023-10-11T12:23:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.15.0" }
+"2.15.1" = { created_at = 2023-10-19T15:36:55.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.15.1" }
+"2.15.2" = { created_at = 2023-11-13T12:21:04.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.15.2" }
+"2.15.3" = { created_at = 2023-11-22T12:52:27.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.15.3" }
+"2.15.4" = { created_at = 2023-12-11T16:43:38.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.15.4" }
+"2.15.5" = { created_at = 2023-12-20T16:57:23.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.15.5" }
+"2.16.0" = { created_at = 2024-01-16T13:00:26.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.0" }
+"2.16.1" = { created_at = 2024-01-25T13:57:50.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.1" }
+"2.16.2" = { created_at = 2024-02-12T18:17:10.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.2" }
+"2.16.3" = { created_at = 2024-02-22T11:43:43.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.3" }
+"2.16.4" = { created_at = 2024-03-11T17:42:18.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.4" }
+"2.16.5" = { created_at = 2024-03-21T12:16:59.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.5" }
+"2.16.6" = { created_at = 2024-03-26T12:19:01.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.16.6" }
+"2.17.0" = { created_at = 2024-04-04T15:26:56.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.0" }
+"2.17.1" = { created_at = 2024-04-24T15:35:27.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.1" }
+"2.17.2" = { created_at = 2024-05-07T11:16:02.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.2" }
+"2.17.3" = { created_at = 2024-05-17T16:58:57.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.3" }
+"2.17.4" = { created_at = 2024-06-03T16:01:05.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.4" }
+"2.17.5" = { created_at = 2024-06-12T16:58:46.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.5" }
+"2.17.6" = { created_at = 2024-06-27T17:26:34.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.17.6" }
+"2.18.0" = { created_at = 2024-07-11T09:22:51.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.18.0" }
+"2.18.1" = { created_at = 2024-07-26T16:02:49.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.18.1" }
+"2.18.2" = { created_at = 2024-08-13T14:08:00.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.18.2" }
+"2.18.3" = { created_at = 2024-08-28T12:46:29.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.18.3" }
+"2.18.4" = { created_at = 2024-09-12T14:13:15.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.18.4" }
+"2.19.0" = { created_at = 2024-09-18T12:50:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.19.0" }
+"2.19.1" = { created_at = 2024-10-04T20:51:14.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.19.1" }
+"2.19.2" = { created_at = 2024-10-21T17:16:43.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.19.2" }
+"2.19.3" = { created_at = 2024-11-07T17:10:41.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.19.3" }
+"2.19.4" = { created_at = 2024-12-02T13:28:47.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.19.4" }
+"2.20.0" = { created_at = 2024-12-09T17:15:25.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.0" }
+"2.20.1" = { created_at = 2024-12-10T14:20:15.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.1" }
+"2.20.2" = { created_at = 2025-01-22T14:44:29.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.2" }
+"2.20.3" = { created_at = 2025-01-24T15:48:58.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.3" }
+"2.20.4" = { created_at = 2025-02-06T11:06:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.4" }
+"2.20.5" = { created_at = 2025-02-20T14:30:37.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.5" }
+"2.20.6" = { created_at = 2025-03-06T15:08:35.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.6" }
+"2.20.7" = { created_at = 2025-03-18T12:37:50.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.20.7" }
+"2.21.0" = { created_at = 2025-04-03T13:43:41.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.21.0" }
+"2.21.1" = { created_at = 2025-04-22T11:33:47.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.21.1" }
+"2.21.2" = { created_at = 2025-05-01T12:34:25.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.21.2" }
+"2.21.3" = { created_at = 2025-05-15T11:42:11.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.21.3" }
+"2.21.4" = { created_at = 2025-06-02T11:43:16.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.21.4" }
+"2.22.0" = { created_at = 2025-06-11T15:40:32.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.22.0" }
+"2.22.1" = { created_at = 2025-06-26T11:08:22.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.22.1" }
+"2.22.2" = { created_at = 2025-07-29T17:00:27.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.22.2" }
+"2.22.3" = { created_at = 2025-08-06T20:28:32.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.22.3" }
+"2.22.4" = { created_at = 2025-08-21T10:48:12.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.22.4" }
+"2.23.0" = { created_at = 2025-09-04T15:01:49.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.0" }
+"2.23.1" = { created_at = 2025-09-23T13:38:16.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.1" }
+"2.23.2" = { created_at = 2025-10-02T10:27:58.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.2" }
+"2.23.3" = { created_at = 2025-10-17T13:20:03.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.3" }
+"2.23.5" = { created_at = 2025-11-13T20:56:33.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.5" }
+"2.23.6" = { created_at = 2025-11-24T08:38:34.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.6" }
+"2.23.7" = { created_at = 2025-12-05T14:26:00.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.7" }
+"2.23.8" = { created_at = 2025-12-11T16:34:07.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.8" }
+"2.23.9" = { created_at = 2026-01-09T17:29:47.000Z, release_url = "https://github.com/github/codeql-cli-binaries/releases/tag/v2.23.9" }
