@@ -332,6 +332,20 @@ export async function runAnalyticsMigrations(
     await db.run(sql`UPDATE versions SET from_mise = 1 WHERE from_mise IS NULL`);
   }
 
+  // Add sort_order column to versions table for preserving TOML file order
+  const hasSortOrder = versionsColumns.some((col: any) => col.name === "sort_order");
+  if (!hasSortOrder) {
+    console.log("Adding sort_order column to versions table...");
+    await db.run(sql`ALTER TABLE versions ADD COLUMN sort_order INTEGER`);
+    // Initialize sort_order based on existing id order
+    await db.run(sql`
+      UPDATE versions SET sort_order = (
+        SELECT COUNT(*) FROM versions v2
+        WHERE v2.tool_id = versions.tool_id AND v2.id <= versions.id
+      ) - 1
+    `);
+  }
+
   // Create version_updates table for tracking when new versions are discovered
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS version_updates (

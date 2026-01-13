@@ -76,10 +76,11 @@ async function main() {
       const parsed = smolToml.parse(content);
       const versionsObj = parsed.versions || {};
 
-      const versions = Object.entries(versionsObj).map(([version, data]) => ({
+      const versions = Object.entries(versionsObj).map(([version, data], index) => ({
         version,
         created_at: data?.created_at || null,
         release_url: data?.release_url || null,
+        sort_order: index,
       }));
 
       if (versions.length > 0) {

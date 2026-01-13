@@ -43,7 +43,7 @@ try {
       SELECT version, created_at, release_url
       FROM versions
       WHERE tool_id = ${toolId}
-      ORDER BY id ASC
+      ORDER BY sort_order ASC, id ASC
     `);
     versions = versionRows.map(row => ({
       version: row.version,

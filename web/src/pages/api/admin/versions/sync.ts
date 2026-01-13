@@ -8,6 +8,7 @@ interface VersionData {
   version: string;
   created_at?: string | null;
   release_url?: string | null;
+  sort_order?: number | null;
 }
 
 interface ToolVersions {
@@ -121,13 +122,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
       allVersionStatements.push(
         d1.prepare(`
-          INSERT INTO versions (tool_id, version, created_at, release_url, from_mise)
-          VALUES (?, ?, ?, ?, 1)
+          INSERT INTO versions (tool_id, version, created_at, release_url, from_mise, sort_order)
+          VALUES (?, ?, ?, ?, 1, ?)
           ON CONFLICT(tool_id, version) DO UPDATE SET
             created_at = COALESCE(excluded.created_at, versions.created_at),
             release_url = COALESCE(excluded.release_url, versions.release_url),
-            from_mise = 1
-        `).bind(toolId, v.version, v.created_at || null, v.release_url || null)
+            from_mise = 1,
+            sort_order = COALESCE(excluded.sort_order, versions.sort_order)
+        `).bind(toolId, v.version, v.created_at || null, v.release_url || null, v.sort_order ?? null)
       );
     }
 
