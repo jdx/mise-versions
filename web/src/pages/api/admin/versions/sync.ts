@@ -148,7 +148,56 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
-  // Step 6: Get new version counts and record updates
+  // Step 6: Clean up stale versions (from_mise=1 versions not in the incoming data)
+  // This removes phantom versions that no longer exist in mise ls-remote
+  let versionsDeleted = 0;
+  for (const toolData of body.tools) {
+    if (!toolData.tool || !Array.isArray(toolData.versions)) continue;
+
+    const toolId = toolIdMap.get(toolData.tool);
+    if (!toolId) continue;
+
+    const incomingVersions = new Set(
+      toolData.versions
+        .map(v => v.version)
+        .filter((v): v is string => Boolean(v))
+    );
+
+    if (incomingVersions.size === 0) continue;
+
+    // Get all existing from_mise=1 versions for this tool
+    const existingVersions = await d1.prepare(
+      'SELECT version FROM versions WHERE tool_id = ? AND from_mise = 1'
+    ).bind(toolId).all<{ version: string }>();
+
+    // Find versions to delete (exist in DB but not in incoming)
+    const versionsToDelete = existingVersions.results
+      .map(r => r.version)
+      .filter(v => !incomingVersions.has(v));
+
+    if (versionsToDelete.length === 0) continue;
+
+    // Delete in batches to avoid parameter limits
+    for (let i = 0; i < versionsToDelete.length; i += BATCH_SIZE) {
+      const batch = versionsToDelete.slice(i, i + BATCH_SIZE);
+      const placeholders = batch.map(() => '?').join(',');
+      try {
+        const result = await d1.prepare(`
+          DELETE FROM versions
+          WHERE tool_id = ? AND from_mise = 1 AND version IN (${placeholders})
+        `).bind(toolId, ...batch).run();
+        versionsDeleted += result.meta.changes ?? 0;
+      } catch (e) {
+        console.error(`Failed to clean up stale versions for ${toolData.tool}:`, e);
+      }
+    }
+  }
+
+  if (versionsDeleted > 0) {
+    console.log(`Cleaned up ${versionsDeleted} stale versions`);
+  }
+
+  // Step 7: Get new version counts and record updates
   let newVersionsTotal = 0;
   if (toolIds.length > 0) {
     const afterCounts = await d1.prepare(
@@ -174,6 +223,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     success: true,
     tools_processed: toolsProcessed,
     versions_upserted: versionsUpserted,
+    versions_deleted: versionsDeleted,
     new_versions: newVersionsTotal,
     errors,
   });
