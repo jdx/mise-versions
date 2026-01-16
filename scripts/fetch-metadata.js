@@ -5,10 +5,10 @@
  * Usage: node fetch-metadata.js [--tool=name]
  *
  * Environment variables:
- *   SYNC_API_URL - Base URL of the API (e.g., https://mise-tools.jdx.dev)
- *   API_SECRET   - API secret for authentication
- *   TOKEN_MANAGER_URL / TOKEN_MANAGER_SECRET - GitHub token manager (optional)
- *   GITHUB_TOKEN - Fallback GitHub token (optional)
+ *   SYNC_API_URL     - Base URL of the API (e.g., https://mise-tools.jdx.dev)
+ *   API_SECRET       - API secret for authentication
+ *   GITHUB_PROXY_URL - URL of GitHub proxy (optional)
+ *   GITHUB_TOKEN     - Fallback GitHub token (optional)
  *
  * Fetches license, homepage, authors, and description from:
  * - npm (registry.npmjs.org)
@@ -98,89 +98,6 @@ function getToolsFromToml() {
   return tools;
 }
 
-// Token manager state
-let currentToken = null;
-let currentTokenId = null;
-
-// Get a token from the token manager
-async function getTokenFromManager() {
-  const baseUrl = process.env.TOKEN_MANAGER_URL;
-  const secret = process.env.TOKEN_MANAGER_SECRET;
-
-  if (!baseUrl || !secret) {
-    return null;
-  }
-
-  try {
-    const response = await fetch(`${baseUrl}/api/token`, {
-      headers: {
-        Authorization: `Bearer ${secret}`,
-      },
-    });
-
-    if (!response.ok) {
-      console.error(`Failed to get token from manager: ${response.status}`);
-      return null;
-    }
-
-    const data = await response.json();
-    currentToken = data.token;
-    currentTokenId = data.token_id || data.installation_id;
-    console.log(`Got token from manager (ID: ${currentTokenId})`);
-    return currentToken;
-  } catch (e) {
-    console.error(`Error getting token from manager: ${e.message}`);
-    return null;
-  }
-}
-
-// Mark current token as rate-limited and get a new one
-async function rotateToken() {
-  const baseUrl = process.env.TOKEN_MANAGER_URL;
-  const secret = process.env.TOKEN_MANAGER_SECRET;
-
-  if (!baseUrl || !secret || !currentTokenId) {
-    return null;
-  }
-
-  try {
-    // Mark current token as rate-limited
-    const resetAt = new Date(Date.now() + 60 * 60 * 1000).toISOString(); // 1 hour from now
-    await fetch(`${baseUrl}/api/token/rate-limit`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${secret}`,
-      },
-      body: JSON.stringify({
-        token_id: currentTokenId,
-        reset_at: resetAt,
-      }),
-    });
-    console.log(`Marked token ${currentTokenId} as rate-limited`);
-
-    // Get a new token
-    return await getTokenFromManager();
-  } catch (e) {
-    console.error(`Error rotating token: ${e.message}`);
-    return null;
-  }
-}
-
-// Get the current GitHub token (from manager or env)
-async function getGitHubToken() {
-  // Try token manager first
-  if (!currentToken) {
-    const managerToken = await getTokenFromManager();
-    if (managerToken) return managerToken;
-  } else {
-    return currentToken;
-  }
-
-  // Fall back to env var
-  return process.env.GITHUB_TOKEN || null;
-}
-
 // Rate limiters for each API
 class RateLimiter {
   constructor(requestsPerSecond) {
@@ -254,7 +171,7 @@ async function fetchNpmMetadata(packageName) {
   await rateLimiters.npm.wait();
   try {
     const data = await fetchWithRetry(
-      `https://registry.npmjs.org/${encodeURIComponent(packageName)}`
+      `https://registry.npmjs.org/${encodeURIComponent(packageName)}`,
     );
     if (!data) return null;
 
@@ -295,7 +212,7 @@ async function fetchCargoMetadata(crateName) {
         headers: {
           "User-Agent": "mise-versions (https://github.com/jdx/mise-versions)",
         },
-      }
+      },
     );
     if (!data?.crate) return null;
 
@@ -316,7 +233,7 @@ async function fetchPyPIMetadata(packageName) {
   await rateLimiters.pypi.wait();
   try {
     const data = await fetchWithRetry(
-      `https://pypi.org/pypi/${encodeURIComponent(packageName)}/json`
+      `https://pypi.org/pypi/${encodeURIComponent(packageName)}/json`,
     );
     if (!data?.info) return null;
 
@@ -330,8 +247,7 @@ async function fetchPyPIMetadata(packageName) {
 
     return {
       license: data.info.license || null,
-      homepage:
-        data.info.home_page || data.info.project_urls?.Homepage || null,
+      homepage: data.info.home_page || data.info.project_urls?.Homepage || null,
       description: data.info.summary || null,
       authors: authors.length > 0 ? authors : null,
     };
@@ -346,7 +262,7 @@ async function fetchRubyGemsMetadata(gemName) {
   await rateLimiters.rubygems.wait();
   try {
     const data = await fetchWithRetry(
-      `https://rubygems.org/api/v1/gems/${encodeURIComponent(gemName)}.json`
+      `https://rubygems.org/api/v1/gems/${encodeURIComponent(gemName)}.json`,
     );
     if (!data) return null;
 
@@ -367,43 +283,36 @@ async function fetchRubyGemsMetadata(gemName) {
   }
 }
 
-// Fetch GitHub metadata with token rotation support
+// Fetch GitHub metadata via Proxy or Direct API
 async function fetchGitHubMetadata(owner, repo) {
   await rateLimiters.github.wait();
 
-  const token = await getGitHubToken();
+  const proxyUrl = process.env.GITHUB_PROXY_URL;
+  const apiSecret = process.env.API_SECRET;
+  const githubToken = process.env.GITHUB_TOKEN;
+
+  let url;
+  const headers = {
+    Accept: "application/vnd.github.v3+json",
+    "User-Agent": "mise-versions",
+  };
+
+  if (proxyUrl && apiSecret) {
+    url = `${proxyUrl}/gh/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+    headers["Authorization"] = `Bearer ${apiSecret}`;
+  } else {
+    url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`;
+    if (githubToken) {
+      headers["Authorization"] = `Bearer ${githubToken}`;
+    }
+  }
 
   try {
-    const headers = {
-      Accept: "application/vnd.github.v3+json",
-      "User-Agent": "mise-versions",
-    };
-    if (token) {
-      headers.Authorization = `token ${token}`;
-    }
-
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
 
-    const response = await fetch(
-      `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`,
-      { headers, signal: controller.signal }
-    );
+    const response = await fetch(url, { headers, signal: controller.signal });
     clearTimeout(timeout);
-
-    // Handle rate limiting
-    if (response.status === 403 || response.status === 429) {
-      const remaining = response.headers.get("x-ratelimit-remaining");
-      if (remaining === "0") {
-        console.log(`GitHub rate limited, rotating token...`);
-        const newToken = await rotateToken();
-        if (newToken) {
-          // Retry with new token
-          return fetchGitHubMetadata(owner, repo);
-        }
-      }
-      return null;
-    }
 
     if (response.status === 404) {
       return null;
@@ -509,14 +418,12 @@ async function main() {
   const tools = getToolsFromToml();
   console.log(`Found ${tools.length} tools`);
 
-  // Initialize GitHub token
-  const tokenManagerUrl = process.env.TOKEN_MANAGER_URL;
-  if (tokenManagerUrl) {
-    console.log("Using token manager for GitHub API");
-  } else if (process.env.GITHUB_TOKEN) {
-    console.log("Using GITHUB_TOKEN from environment");
+  // Initialize GitHub proxy
+  const proxyUrl = process.env.GITHUB_PROXY_URL;
+  if (proxyUrl) {
+    console.log("Using GitHub Proxy");
   } else {
-    console.log("No GitHub token configured, API may be rate limited");
+    console.log("No GitHub Proxy configured, API may be rate limited");
   }
 
   // Filter tools if specific tool requested
@@ -537,7 +444,9 @@ async function main() {
   for (const tool of toolsToProcess) {
     processed++;
     if (processed % 10 === 0) {
-      process.stdout.write(`\rProcessing ${processed}/${toolsToProcess.length}...`);
+      process.stdout.write(
+        `\rProcessing ${processed}/${toolsToProcess.length}...`,
+      );
     }
 
     const sources = [];
@@ -588,7 +497,12 @@ async function main() {
     const metadata = mergeMetadata(sources);
 
     // Only include if we got useful data
-    if (metadata.license || metadata.homepage || metadata.authors || metadata.description) {
+    if (
+      metadata.license ||
+      metadata.homepage ||
+      metadata.authors ||
+      metadata.description
+    ) {
       metadataEntries.push({
         name: tool.name,
         ...metadata,
@@ -596,7 +510,9 @@ async function main() {
     }
   }
 
-  console.log(`\rProcessed ${processed} tools, found metadata for ${metadataEntries.length}`);
+  console.log(
+    `\rProcessed ${processed} tools, found metadata for ${metadataEntries.length}`,
+  );
 
   // Sync to D1 via API
   const syncUrl = `${syncApiUrl}/api/admin/metadata/sync`;
@@ -607,7 +523,7 @@ async function main() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiSecret}`,
+        Authorization: `Bearer ${apiSecret}`,
       },
       body: JSON.stringify({ metadata: metadataEntries }),
     });
