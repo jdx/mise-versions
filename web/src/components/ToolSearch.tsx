@@ -92,7 +92,7 @@ function LockIcon({ security }: { security: Array<{ type: string; algorithm?: st
     return s.type.toUpperCase();
   });
   const level = getSecurityLevel(security);
-  const tooltip = `${securityLabels[level]}: ${types.join(", ")}`;
+  const tooltip = types.join(", ");
 
   const handleMouseEnter = () => {
     if (iconRef.current) {
