@@ -1,263 +1,112 @@
 [versions]
-"1.0.3" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.0.4" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.0.5" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.0.5-2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.0.6" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.0.7" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1-M03" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1-M04" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1-beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1-beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1-rc" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.1-rc" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2-eap-44" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2-eap-69" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2-eap-73" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2-eap-77" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2-2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.2-5" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.3" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.3-2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.4" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.4-2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.4-3" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.50" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.51" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.60" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.60-eap-43" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.1.61" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.0_163" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.0_171" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.0_173" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.0_as23" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-M2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2_163" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2_171" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2_173" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2_as23" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2_as30" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2-rc2_as31" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_163" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_171" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_173" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_as23" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_as30" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_as31" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.10_as31x" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.20-eap-11" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.20-eap-33" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.20-eap-71" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.30" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.30-eap-16" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.30-eap-47" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.31" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.40" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.40-eap-16" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.40-eap-51" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.40-eap-62" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.41" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.50" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.50-eap-17" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.50-eap-62" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.51" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.60" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.60-eap-7" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.60-eap-27" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.60-eap-44" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.60-eap-75" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.61" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.70" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.70-eap-4" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.70-eap-40" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.2.71" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3-M2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3-rc" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3-rc2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3-rc3" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3-rc4" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.11" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.20-eap-25" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.20-eap-52" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.20-eap-100" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.30" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.30-eap-11" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.30-eap-45" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.30-eap-125" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.30-eap-164" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.31" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.40" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.40-eap-21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.40-eap-32" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.40-eap-67" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.40-eap-105" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.41" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.50" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.50-eap-5" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.50-eap-54" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.50-eap-86" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.60" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.60-eap-23" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.60-eap-76" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.60-eap-143" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.61" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.70" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.70-eap-42" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.70-eap-184" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.70-eap-274" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.71" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.3.72" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.0-rc" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4-M2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4-M3" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.20-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.20-M2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.21-2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.30-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.30-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.30" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.31" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.4.32" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.0-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.0-M2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.20-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.30-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.30-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.30" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.31" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.5.32" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.0-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.10-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.20-M1" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.20-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.6.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.0-Beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.20-Beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.7.22" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.0-Beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.20-Beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.20-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.8.22" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.0-Beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.20-Beta" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.20-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.20-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.22" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.23" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.24" = { created_at = 2025-12-17T23:30:39.838Z }
-"1.9.25" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-Beta3" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-Beta4" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-Beta5" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-RC1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0-RC3" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.10-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.10-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.20-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.20-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.20-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.21-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.0.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.0-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.0-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.10-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.10-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.20-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.20-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.20-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.20-RC3" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.21-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.21-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.1.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.0-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.0-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.0-RC3" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.10-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.10-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.10" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.20-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.20-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.20-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.20-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.20" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.21-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.21-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.2.21" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.0-Beta1" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.0-Beta2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.0-RC" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.0-RC2" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.0-RC3" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.0" = { created_at = 2025-12-17T23:30:39.838Z }
-"2.3.20-Beta1" = { created_at = 2026-01-08T11:53:45.340Z }
+"build-1.0.0" = { created_at = 2016-02-14T21:14:19.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/build-1.0.0" }
+"1.0.1" = { created_at = 2016-03-16T20:22:21.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/1.0.1" }
+"build-1.0.1" = { created_at = 2016-03-17T13:00:40.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/build-1.0.1" }
+"1.0.1-1" = { created_at = 2016-03-22T14:56:36.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/1.0.1-1" }
+"1.0.1-2" = { created_at = 2016-03-28T11:46:22.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/1.0.1-2" }
+"1.0.2" = { created_at = 2016-05-12T20:28:33.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/1.0.2" }
+"1.0.3" = { created_at = 2016-06-29T15:24:43.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.0.3" }
+"1.0.4" = { created_at = 2016-09-22T09:34:03.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.0.4" }
+"1.0.5" = { created_at = 2016-11-07T16:58:19.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.0.5" }
+"1.0.5-2" = { created_at = 2016-11-15T12:35:04.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.0.5-2" }
+"1.0.6" = { created_at = 2016-12-26T13:41:41.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.0.6" }
+"1.0.7" = { created_at = 2017-02-22T10:54:12.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.0.7" }
+"1.1" = { created_at = 2017-03-01T07:23:41.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1" }
+"1.1.1-rc" = { created_at = 2017-03-07T09:18:15.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.1-rc" }
+"1.1.1" = { created_at = 2017-03-14T08:38:31.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.1" }
+"1.1.2-eap-44" = { created_at = 2017-03-30T17:28:46.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-eap-44" }
+"1.1.2-eap-69" = { created_at = 2017-04-11T12:45:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-eap-69" }
+"1.1.2-eap-73" = { created_at = 2017-04-17T11:07:22.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-eap-73" }
+"1.1.2-eap-77" = { created_at = 2017-04-20T17:37:30.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-eap-77" }
+"1.1.2" = { created_at = 2017-04-25T14:27:30.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2" }
+"1.1.2-2" = { created_at = 2017-04-28T13:10:56.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-2" }
+"1.1.2-5" = { created_at = 2017-06-12T17:15:16.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.2-5" }
+"1.1.3" = { created_at = 2017-06-23T12:58:20.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.3" }
+"1.1.3-2" = { created_at = 2017-07-04T14:18:41.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.3-2" }
+"1.2-M2" = { created_at = 2017-08-08T11:29:05.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2-M2" }
+"1.1.4" = { created_at = 2017-08-14T17:34:49.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.4" }
+"1.1.4-2" = { created_at = 2017-08-18T13:22:12.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.4-2" }
+"1.1.4-3" = { created_at = 2017-08-30T08:40:35.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.4-3" }
+"1.1.50" = { created_at = 2017-09-21T16:06:35.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.50" }
+"1.1.51" = { created_at = 2017-09-28T16:54:37.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.51" }
+"1.1.60" = { created_at = 2017-11-09T17:52:53.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.60" }
+"1.1.61" = { created_at = 2017-11-24T15:55:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.1.61" }
+"1.2.0" = { created_at = 2017-11-27T12:09:33.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.0" }
+"1.2.10" = { created_at = 2017-12-13T11:05:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.10" }
+"1.2.20" = { created_at = 2018-01-16T17:51:55.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.20" }
+"1.2.21" = { created_at = 2018-01-23T14:43:36.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.21" }
+"1.2.30" = { created_at = 2018-02-28T09:25:43.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.30" }
+"1.2.31" = { created_at = 2018-03-23T11:45:20.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.31" }
+"1.2.40" = { created_at = 2018-04-19T14:38:22.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.40" }
+"1.2.41" = { created_at = 2018-04-28T01:08:27.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.41" }
+"1.2.50" = { created_at = 2018-06-13T15:19:13.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.50" }
+"1.2.51" = { created_at = 2018-07-02T11:41:01.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.51" }
+"1.2.60" = { created_at = 2018-08-01T11:24:31.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.60" }
+"1.2.61" = { created_at = 2018-08-17T15:48:41.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.61" }
+"1.2.70" = { created_at = 2018-09-11T15:47:26.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.70" }
+"1.2.71" = { created_at = 2018-09-24T14:23:03.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.2.71" }
+"1.3.0" = { created_at = 2018-10-25T18:23:49.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.0" }
+"1.3.10" = { created_at = 2018-11-08T11:37:18.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.10" }
+"1.3.11" = { created_at = 2018-12-06T09:40:32.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.11" }
+"1.3.20" = { created_at = 2019-01-23T08:16:19.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.20" }
+"1.3.21" = { created_at = 2019-02-06T08:04:35.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.21" }
+"1.3.30" = { created_at = 2019-04-11T07:33:18.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.30" }
+"1.3.31" = { created_at = 2019-04-25T05:42:12.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.31" }
+"1.3.40" = { created_at = 2019-06-19T12:40:27.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.40" }
+"1.3.41" = { created_at = 2019-07-03T16:08:42.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.41" }
+"1.3.50" = { created_at = 2019-08-22T15:37:32.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.50" }
+"1.3.60" = { created_at = 2019-11-18T15:18:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.60" }
+"1.3.61" = { created_at = 2019-11-26T23:28:33.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.61" }
+"1.3.70" = { created_at = 2020-03-03T16:34:15.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.70" }
+"1.3.71" = { created_at = 2020-03-23T15:05:51.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.71" }
+"1.3.72" = { created_at = 2020-04-14T12:57:11.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" }
+"1.4.0" = { created_at = 2020-08-13T08:42:57.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.0" }
+"1.4.10" = { created_at = 2020-09-04T12:26:08.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" }
+"1.4.20" = { created_at = 2020-11-19T08:47:29.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.20" }
+"1.4.21" = { created_at = 2020-12-04T14:57:31.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.21" }
+"1.4.30-RC" = { created_at = 2021-01-15T12:30:48.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.30-RC" }
+"1.4.30" = { created_at = 2021-02-02T15:59:08.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.30" }
+"1.4.31" = { created_at = 2021-02-25T10:47:36.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.31" }
+"1.4.32" = { created_at = 2021-03-25T16:57:24.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.4.32" }
+"1.5.0" = { created_at = 2021-04-26T15:41:18.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.0" }
+"1.5.10" = { created_at = 2021-05-20T11:19:36.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.10" }
+"1.5.20" = { created_at = 2021-06-22T13:58:02.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.20" }
+"1.5.21" = { created_at = 2021-07-08T13:30:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.21" }
+"1.5.30" = { created_at = 2021-08-22T09:18:01.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.30" }
+"1.5.31" = { created_at = 2021-09-15T12:41:20.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.31" }
+"1.6.0" = { created_at = 2021-11-11T17:46:11.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.6.0" }
+"1.5.32" = { created_at = 2021-11-26T12:33:27.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.5.32" }
+"1.6.10" = { created_at = 2021-12-13T14:06:32.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.6.10" }
+"1.6.20" = { created_at = 2022-03-30T08:10:46.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.6.20" }
+"1.6.21" = { created_at = 2022-04-18T18:12:57.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.6.21" }
+"1.7.0" = { created_at = 2022-06-07T15:24:38.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.7.0" }
+"1.7.10" = { created_at = 2022-07-04T12:04:04.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.7.10" }
+"1.7.20" = { created_at = 2022-09-26T17:46:07.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.7.20" }
+"1.7.21" = { created_at = 2022-11-07T13:44:18.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.7.21" }
+"1.7.22" = { created_at = 2022-11-25T14:18:41.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.7.22" }
+"1.8.0" = { created_at = 2022-12-20T09:11:59.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.8.0" }
+"1.8.10" = { created_at = 2023-02-01T13:59:50.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.8.10" }
+"1.8.20" = { created_at = 2023-03-22T21:46:08.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.8.20" }
+"1.8.21" = { created_at = 2023-04-24T14:10:47.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.8.21" }
+"1.8.22" = { created_at = 2023-06-07T15:08:30.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.8.22" }
+"1.9.0" = { created_at = 2023-07-05T07:32:44.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.0" }
+"1.9.10" = { created_at = 2023-08-22T08:43:06.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.10" }
+"1.9.20" = { created_at = 2023-10-31T09:03:46.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.20" }
+"1.9.21" = { created_at = 2023-11-22T20:51:04.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.21" }
+"1.9.22" = { created_at = 2023-12-20T16:28:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.22" }
+"1.9.23" = { created_at = 2024-03-06T12:05:01.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.23" }
+"1.9.24" = { created_at = 2024-05-03T12:14:11.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.24" }
+"2.0.0" = { created_at = 2024-05-16T20:18:04.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.0.0" }
+"1.9.25" = { created_at = 2024-07-18T06:24:17.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v1.9.25" }
+"2.0.10" = { created_at = 2024-07-22T19:04:09.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.0.10" }
+"2.0.20" = { created_at = 2024-08-20T10:32:15.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.0.20" }
+"2.0.21" = { created_at = 2024-09-26T14:17:58.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.0.21" }
+"2.1.0" = { created_at = 2024-11-25T18:11:11.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.1.0" }
+"2.1.10" = { created_at = 2025-01-16T15:50:42.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.1.10" }
+"2.1.20" = { created_at = 2025-03-13T17:15:38.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.1.20" }
+"2.1.21" = { created_at = 2025-04-30T12:13:07.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.1.21" }
+"2.2.0" = { created_at = 2025-06-11T14:48:41.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.2.0" }
+"2.2.10" = { created_at = 2025-08-05T12:15:13.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.2.10" }
+"2.2.20" = { created_at = 2025-08-28T12:25:38.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.2.20" }
+"2.2.21" = { created_at = 2025-10-15T08:42:12.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.2.21" }
+"2.3.0" = { created_at = 2025-12-08T13:12:38.000Z, release_url = "https://github.com/JetBrains/kotlin/releases/tag/v2.3.0" }
