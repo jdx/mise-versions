@@ -4,6 +4,7 @@
 import { drizzle } from 'drizzle-orm/d1';
 import { runMigrations } from './migrations.js';
 import { runAnalyticsMigrations, setupAnalytics } from './analytics/index.js';
+// @ts-expect-error - generated Astro worker bundle has no type declarations
 import astroWorker from '../web/dist/_worker.js/index.js';
 
 interface Env {
