@@ -1,31 +1,137 @@
 [versions]
-"1.8.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.9.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.9.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.9.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.10.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.10.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.11.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.11.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.11.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.12.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.12.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.12.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.13.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.13.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.13.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.13.3" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.14.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.14.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.15.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.15.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.16.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.16.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.16.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.16.3" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.17.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.17.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.18.0" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.18.1" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.18.2" = { created_at = 2025-12-17T13:22:01.459Z }
-"1.19.0" = { created_at = 2026-01-15T19:30:00.145Z }
+"0.5.0" = { created_at = 2014-09-25T00:53:59.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.0" }
+"0.5.1" = { created_at = 2014-10-16T21:21:28.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.1" }
+"0.5.2" = { created_at = 2014-11-04T21:59:20.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.2" }
+"0.5.3" = { created_at = 2014-11-06T21:14:50.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.3" }
+"0.5.4" = { created_at = 2014-12-04T19:07:38.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.4" }
+"0.5.5" = { created_at = 2014-12-12T22:02:58.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.5" }
+"0.5.6" = { created_at = 2014-12-31T17:11:21.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.6" }
+"0.5.7" = { created_at = 2015-01-02T23:29:31.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.7" }
+"0.5.8" = { created_at = 2015-01-16T20:17:58.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.8" }
+"0.5.9" = { created_at = 2015-02-07T20:07:13.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.9" }
+"0.5.10" = { created_at = 2015-02-12T09:37:33.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.5.10" }
+"0.6.0" = { created_at = 2015-02-12T10:29:43.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.6.0" }
+"0.6.1" = { created_at = 2015-03-04T22:47:16.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.6.1" }
+"0.7.0" = { created_at = 2015-04-30T20:21:15.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.0" }
+"0.7.1" = { created_at = 2015-05-01T00:47:34.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.1" }
+"0.7.2" = { created_at = 2015-05-26T16:35:06.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.2" }
+"0.7.3" = { created_at = 2015-06-07T16:03:50.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.3" }
+"0.7.4" = { created_at = 2015-06-24T00:54:56.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.4" }
+"0.7.5" = { created_at = 2015-07-30T17:12:36.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.5" }
+"0.7.6" = { created_at = 2015-08-13T21:30:52.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.6" }
+"0.7.7" = { created_at = 2015-09-05T02:07:39.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.7.7" }
+"0.8.0" = { created_at = 2015-09-19T11:59:32.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.8.0" }
+"0.9.0" = { created_at = 2015-10-16T19:30:23.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.9.0" }
+"0.9.1" = { created_at = 2015-10-30T03:18:47.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.9.1" }
+"0.10.0" = { created_at = 2015-12-23T17:02:35.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.10.0" }
+"0.10.1" = { created_at = 2016-01-08T01:12:15.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.10.1" }
+"0.10.2" = { created_at = 2016-01-13T16:49:38.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.10.2" }
+"0.11.0" = { created_at = 2016-01-23T17:28:31.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.11.0" }
+"0.11.1" = { created_at = 2016-01-25T15:39:39.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.11.1" }
+"0.12.0" = { created_at = 2016-02-16T14:05:09.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.12.0" }
+"0.13.0" = { created_at = 2016-03-07T16:31:51.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.13.0" }
+"0.14.0" = { created_at = 2016-03-21T17:41:43.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.14.0" }
+"0.14.1" = { created_at = 2016-03-21T20:39:25.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.14.1" }
+"0.14.2" = { created_at = 2016-03-22T23:50:36.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.14.2" }
+"0.15.0" = { created_at = 2016-04-01T16:52:57.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.15.0" }
+"0.16.0" = { created_at = 2016-05-05T16:32:00.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.16.0" }
+"0.17.0" = { created_at = 2016-05-17T14:35:25.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.17.0" }
+"0.17.1" = { created_at = 2016-05-18T16:12:49.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.17.1" }
+"0.17.2" = { created_at = 2016-05-18T20:17:11.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.17.2" }
+"0.17.3" = { created_at = 2016-05-20T16:54:42.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.17.3" }
+"0.17.4" = { created_at = 2016-05-26T16:52:39.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.17.4" }
+"0.18.0" = { created_at = 2016-06-14T13:22:22.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.18.0" }
+"0.18.2" = { created_at = 2016-06-17T01:02:13.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.18.2" }
+"0.18.4" = { created_at = 2016-06-21T17:43:08.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.18.4" }
+"0.18.6" = { created_at = 2016-06-28T15:12:00.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.18.6" }
+"0.18.7" = { created_at = 2016-07-03T15:15:16.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.18.7" }
+"0.19.0" = { created_at = 2016-09-02T12:27:52.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.19.0" }
+"0.19.1" = { created_at = 2016-09-09T16:34:04.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.19.1" }
+"0.19.2" = { created_at = 2016-09-16T16:50:43.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.19.2" }
+"0.19.3" = { created_at = 2016-09-29T23:52:10.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.19.3" }
+"0.19.4" = { created_at = 2016-10-07T12:33:29.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.19.4" }
+"0.20.0" = { created_at = 2016-11-22T12:51:11.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.20.0" }
+"0.20.1" = { created_at = 2016-12-05T13:20:44.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.20.1" }
+"0.20.3" = { created_at = 2016-12-23T17:50:43.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.20.3" }
+"0.20.4" = { created_at = 2017-01-06T14:51:34.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.20.4" }
+"0.20.5" = { created_at = 2017-01-20T18:57:33.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.20.5" }
+"0.21.0" = { created_at = 2017-02-20T17:45:26.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.21.0" }
+"0.21.1" = { created_at = 2017-03-06T17:18:06.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.21.1" }
+"0.22.0" = { created_at = 2017-04-20T16:21:08.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.22.0" }
+"0.23.0" = { created_at = 2017-06-26T22:07:18.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.23.0" }
+"0.23.1" = { created_at = 2017-07-07T17:39:39.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.23.1" }
+"0.24.1" = { created_at = 2017-12-13T12:24:18.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/v0.24.1" }
+"0.24.2" = { created_at = 2018-03-08T03:10:02.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.24.2" }
+"0.25.0" = { created_at = 2018-06-11T10:06:19.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.25.0" }
+"0.25.1" = { created_at = 2018-06-27T17:43:11.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.25.1" }
+"0.26.0" = { created_at = 2018-08-09T16:44:18.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.26.0" }
+"0.26.1" = { created_at = 2018-08-27T18:16:00.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.26.1" }
+"0.27.0" = { created_at = 2018-11-01T18:48:42.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.27.0" }
+"0.27.1" = { created_at = 2019-01-30T18:55:56.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.27.1" }
+"0.27.2" = { created_at = 2019-02-05T14:51:38.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.27.2" }
+"0.28.0" = { created_at = 2019-04-17T16:16:49.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.28.0" }
+"0.29.0" = { created_at = 2019-06-05T15:41:55.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.29.0" }
+"0.30.0" = { created_at = 2019-08-01T14:42:31.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.30.0" }
+"0.30.1" = { created_at = 2019-08-12T16:40:18.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.30.1" }
+"0.31.0" = { created_at = 2019-09-23T16:10:02.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.31.0" }
+"0.31.1" = { created_at = 2019-09-30T13:59:03.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.31.1" }
+"0.32.0" = { created_at = 2019-12-11T15:26:25.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.32.0" }
+"0.32.1" = { created_at = 2019-12-18T14:49:32.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.32.1" }
+"0.33.0" = { created_at = 2020-02-14T17:39:23.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.33.0" }
+"0.34.0" = { created_at = 2020-04-06T16:11:05.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.34.0" }
+"0.35.0" = { created_at = 2020-06-09T14:54:17.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.35.0" }
+"0.35.1" = { created_at = 2020-06-19T16:12:26.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.35.1" }
+"0.36.0" = { created_at = 2021-01-26T14:07:34.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.36.0" }
+"0.36.1" = { created_at = 2021-02-02T15:07:35.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/0.36.1" }
+"1.0.0" = { created_at = 2021-03-22T14:08:02.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.0.0" }
+"1.1.0" = { created_at = 2021-07-14T18:12:17.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.1.0" }
+"1.1.1" = { created_at = 2021-07-26T15:26:36.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.1.1" }
+"1.2.0" = { created_at = 2021-10-13T18:35:02.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.2.0" }
+"1.2.1" = { created_at = 2021-10-21T14:15:57.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.2.1" }
+"1.2.2" = { created_at = 2021-11-10T12:16:16.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.2.2" }
+"1.3.0" = { created_at = 2022-01-06T12:28:13.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.3.0" }
+"1.3.1" = { created_at = 2022-01-13T19:51:50.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.3.1" }
+"1.3.2" = { created_at = 2022-01-18T22:42:04.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.3.2" }
+"1.4.0" = { created_at = 2022-04-06T17:24:36.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.4.0" }
+"1.4.1" = { created_at = 2022-04-22T19:00:31.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.4.1" }
+"1.5.0" = { created_at = 2022-07-06T20:39:55.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.5.0" }
+"1.5.1" = { created_at = 2022-09-08T12:21:43.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.5.1" }
+"1.6.0" = { created_at = 2022-10-06T20:16:06.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.6.0" }
+"1.6.1" = { created_at = 2022-10-21T11:47:44.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.6.1" }
+"1.6.2" = { created_at = 2022-11-03T17:20:42.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.6.2" }
+"1.7.0" = { created_at = 2023-01-09T16:49:38.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.7.0" }
+"1.7.1" = { created_at = 2023-01-17T16:13:38.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.7.1" }
+"1.7.2" = { created_at = 2023-01-23T17:07:16.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.7.2" }
+"1.7.3" = { created_at = 2023-03-07T14:33:24.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.7.3" }
+"1.8.0" = { created_at = 2023-04-14T14:14:42.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.8.0" }
+"1.8.1" = { created_at = 2023-04-20T12:57:42.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.8.1" }
+"1.8.2" = { created_at = 2023-05-09T08:53:05.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.8.2" }
+"1.9.0" = { created_at = 2023-07-11T15:32:53.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.9.0" }
+"1.9.1" = { created_at = 2023-07-17T14:34:03.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.9.1" }
+"1.9.2" = { created_at = 2023-07-19T16:34:17.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.9.2" }
+"1.10.0" = { created_at = 2023-10-09T16:03:20.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.10.0" }
+"1.10.1" = { created_at = 2023-10-13T07:25:08.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.10.1" }
+"1.11.0" = { created_at = 2024-01-08T20:06:24.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.11.0" }
+"1.11.1" = { created_at = 2024-01-11T20:16:18.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.11.1" }
+"1.11.2" = { created_at = 2024-01-18T13:36:35.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.11.2" }
+"1.12.0" = { created_at = 2024-04-09T13:10:08.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.12.0" }
+"1.12.1" = { created_at = 2024-04-11T12:32:33.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.12.1" }
+"1.12.2" = { created_at = 2024-05-31T09:04:58.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.12.2" }
+"1.13.0" = { created_at = 2024-07-09T19:50:14.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.13.0" }
+"1.13.1" = { created_at = 2024-07-12T12:43:45.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.13.1" }
+"1.13.2" = { created_at = 2024-08-20T13:50:17.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.13.2" }
+"1.13.3" = { created_at = 2024-09-18T13:44:28.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.13.3" }
+"1.14.0" = { created_at = 2024-10-09T12:10:52.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.14.0" }
+"1.14.1" = { created_at = 2025-01-08T10:27:05.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.14.1" }
+"1.15.0" = { created_at = 2025-01-10T11:39:33.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.15.0" }
+"1.15.1" = { created_at = 2025-02-04T17:42:44.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.15.1" }
+"1.16.0" = { created_at = 2025-04-09T11:18:10.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.16.0" }
+"1.16.1" = { created_at = 2025-04-16T17:15:35.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.16.1" }
+"1.16.2" = { created_at = 2025-04-29T12:31:51.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.16.2" }
+"1.16.3" = { created_at = 2025-05-12T19:46:10.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.16.3" }
+"1.17.0" = { created_at = 2025-07-16T11:25:19.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.17.0" }
+"1.17.1" = { created_at = 2025-07-22T08:46:20.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.17.1" }
+"1.18.0" = { created_at = 2025-10-14T16:21:30.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.18.0" }
+"1.18.1" = { created_at = 2025-10-17T15:11:24.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.18.1" }
+"1.18.2" = { created_at = 2025-10-21T16:35:13.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.18.2" }
+"1.19.0" = { created_at = 2026-01-15T12:53:34.000Z, release_url = "https://github.com/crystal-lang/crystal/releases/tag/1.19.0" }
