@@ -1,17 +1,4 @@
 [versions]
-"0.2.0" = { created_at = 2017-05-01T20:17:01.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.2.0" }
-"0.2.2" = { created_at = 2017-11-18T11:43:47.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.2.2" }
-"0.3.0" = { created_at = 2018-06-11T00:16:28.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2018-07-18T11:55:35.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2018-12-31T00:10:14.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2019-01-04T19:08:21.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.3" }
-"0.3.4" = { created_at = 2019-01-13T13:29:16.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.4" }
-"0.3.5" = { created_at = 2019-04-28T20:10:12.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.5" }
-"0.3.6" = { created_at = 2019-05-28T22:35:19.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.6" }
-"0.3.7" = { created_at = 2019-05-29T08:58:21.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.7" }
-"0.3.8" = { created_at = 2019-07-03T01:15:15.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.3.8" }
-"0.4.0" = { created_at = 2019-09-15T23:18:42.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.4.0" }
-"0.4.2" = { created_at = 2019-09-16T02:39:24.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.4.2" }
 "0.4.3" = { created_at = 2019-11-06T09:59:00.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.4.3" }
 "0.4.4" = { created_at = 2020-08-05T00:45:10.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.4.4" }
 "0.5.0" = { created_at = 2021-07-02T16:02:10.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.5.0" }
@@ -39,4 +26,6 @@
 "0.11.2" = { created_at = 2025-05-30T09:41:12.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.11.2" }
 "0.11.3" = { created_at = 2025-07-12T18:36:01.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.11.3" }
 "0.11.4" = { created_at = 2025-08-31T19:27:45.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.11.4" }
+"stable" = { created_at = 2026-01-19T20:41:46.935Z }
 "0.11.5" = { created_at = 2025-11-02T16:16:26.000Z, release_url = "https://github.com/neovim/neovim/releases/tag/v0.11.5" }
+"nightly" = { created_at = 2026-01-19T20:41:46.935Z }
