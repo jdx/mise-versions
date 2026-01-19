@@ -11,6 +11,118 @@ export MISE_LOG_HTTP=1
 export TOKEN_MANAGER_URL="$TOKEN_MANAGER_URL"
 export TOKEN_MANAGER_SECRET="$TOKEN_MANAGER_SECRET"
 
+# ============================================================================
+# Structured Logging
+# ============================================================================
+# Outputs structured log messages with timestamps and levels.
+# In GitHub Actions, logs are formatted for better visibility in the UI.
+# ============================================================================
+
+LOG_LEVEL="${LOG_LEVEL:-INFO}"
+
+# Get log level priority (works in subshells without associative arrays)
+get_log_priority() {
+	case "$1" in
+		DEBUG) echo 0 ;;
+		INFO)  echo 1 ;;
+		WARN)  echo 2 ;;
+		ERROR) echo 3 ;;
+		*)     echo 1 ;;
+	esac
+}
+
+# Check if we should log at a given level
+should_log() {
+	local level="$1"
+	local current_priority
+	local msg_priority
+	current_priority=$(get_log_priority "$LOG_LEVEL")
+	msg_priority=$(get_log_priority "$level")
+	[ "$msg_priority" -ge "$current_priority" ]
+}
+
+# Format timestamp in ISO 8601
+log_timestamp() {
+	date -u '+%Y-%m-%dT%H:%M:%SZ'
+}
+
+# Main logging function
+# Usage: log LEVEL "message" [key=value ...]
+log() {
+	local level="$1"
+	shift
+	local message="$1"
+	shift
+
+	# Check if we should log at this level
+	if ! should_log "$level"; then
+		return
+	fi
+
+	local timestamp
+	timestamp=$(log_timestamp)
+
+	# Build context string from remaining args
+	local context=""
+	if [ $# -gt 0 ]; then
+		context=" [$*]"
+	fi
+
+	# Format based on environment
+	# All log output goes to stderr to avoid polluting command substitution
+	if [ -n "${GITHUB_ACTIONS:-}" ]; then
+		# GitHub Actions format with grouping support
+		case "$level" in
+			ERROR)
+				echo "::error::[$timestamp] $message$context" >&2
+				;;
+			WARN)
+				echo "::warning::[$timestamp] $message$context" >&2
+				;;
+			DEBUG)
+				echo "::debug::[$timestamp] $message$context" >&2
+				;;
+			*)
+				echo "[$timestamp] [$level] $message$context" >&2
+				;;
+		esac
+	else
+		# Standard terminal format with colors
+		local color=""
+		local reset="\033[0m"
+		case "$level" in
+			ERROR) color="\033[0;31m" ;;  # Red
+			WARN)  color="\033[0;33m" ;;  # Yellow
+			INFO)  color="\033[0;32m" ;;  # Green
+			DEBUG) color="\033[0;36m" ;;  # Cyan
+		esac
+		echo -e "${color}[$timestamp] [$level]${reset} $message$context" >&2
+	fi
+}
+
+# Convenience functions
+log_debug() { log DEBUG "$@"; }
+log_info()  { log INFO "$@"; }
+log_warn()  { log WARN "$@"; }
+log_error() { log ERROR "$@"; }
+
+# Start a log group (GitHub Actions collapsible section)
+log_group_start() {
+	local title="$1"
+	if [ -n "${GITHUB_ACTIONS:-}" ]; then
+		echo "::group::$title" >&2
+	else
+		log_info "=== $title ==="
+	fi
+}
+
+# End a log group
+log_group_end() {
+	if [ -n "${GITHUB_ACTIONS:-}" ]; then
+		echo "::endgroup::" >&2
+	fi
+}
+
 # Statistics tracking variables - now using files
 STATS_DIR="/tmp/mise_stats_$$"
 mkdir -p "$STATS_DIR"
@@ -239,7 +351,7 @@ generate_toml_file() {
 # Function to get a fresh GitHub token from the token manager
 get_github_token() {
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
-		echo "❌ TOKEN_MANAGER_URL and TOKEN_MANAGER_SECRET not set" >&2
+		log_error "TOKEN_MANAGER_URL and TOKEN_MANAGER_SECRET not set"
 		return 1
 	fi
 
@@ -247,7 +359,7 @@ get_github_token() {
 
 	local token_output
 	if ! token_output=$(node scripts/github-token.js get-token); then
-		echo "❌ No tokens available" >&2
+		log_error "No tokens available"
 		return 1
 	fi
 
@@ -270,7 +382,7 @@ fetch() {
 	local token_info
 	if ! token_info=$(get_github_token); then
 		# No tokens available, stop processing this tool gracefully
-		echo "🛑 No tokens available for $1, skipping..."
+		log_warn "No tokens available, skipping" "tool=$1"
 		increment_stat "total_tools_failed"
 		return 1
 	fi
@@ -283,7 +395,7 @@ fetch() {
 		token_id=$(echo "$token_info" | cut -d' ' -f2)
 	else
 		# No valid token received, stop processing this tool
-		echo "❌ No valid token received for $1, skipping..."
+		log_error "No valid token received, skipping" "tool=$1"
 		increment_stat "total_tools_failed"
 		return 1
 	fi
@@ -294,9 +406,9 @@ fetch() {
 	local remaining
 	remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+' || echo "5000")
 	if [ "$remaining" -lt 1000 ]; then
-		echo "$rate_limit_info" >&2
+		log_warn "GitHub rate limit low" "remaining=$remaining" "tool=$1"
 	fi
-	echo "Fetching $1"
+	log_info "Fetching versions" "tool=$1"
 
 	# Create a temporary file to capture stderr and check for rate limiting
 	local stderr_file
@@ -304,7 +416,7 @@ fetch() {
 
 	if ! docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
 		jdxcode/mise -y ls-remote "$1" >"docs/$1" 2>"$stderr_file"; then
-		echo "Failed to fetch versions for $1"
+		log_error "Failed to fetch versions" "tool=$1"
 		increment_stat "total_tools_failed"
 
 		cat "$stderr_file" >&2
@@ -316,7 +428,7 @@ fetch() {
 				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
 			fi
 			mark_token_rate_limited "$token_id" "$reset_time"
-			echo "Rate limited on $1, retrying..." >&2
+			log_warn "Rate limited, retrying with new token" "tool=$1" "token_id=$token_id"
 			fetch "$1"
 		fi
 
@@ -329,7 +441,7 @@ fetch() {
 
 	new_lines=$(wc -l <"docs/$1")
 	if [ "$new_lines" -eq 0 ]; then
-		echo "No versions for $1" >/dev/null
+		log_debug "No versions found" "tool=$1"
 		increment_stat "total_tools_no_versions"
 		rm -f "docs/$1"
 	else
@@ -369,58 +481,78 @@ fetch() {
 
 # Enhanced token management setup
 setup_token_management() {
+	log_group_start "Token Management Setup"
+
 	if [ -z "$TOKEN_MANAGER_URL" ] || [ -z "$TOKEN_MANAGER_SECRET" ]; then
-		echo "❌ Token manager not configured" >&2
+		log_error "Token manager not configured"
+		log_group_end
 		return 1
 	fi
 
 	# Check token manager health
 	if ! curl -f -s "$TOKEN_MANAGER_URL/health" >/dev/null 2>&1; then
-		echo "❌ Token manager health check failed" >&2
+		log_error "Token manager health check failed" "url=$TOKEN_MANAGER_URL"
+		log_group_end
 		return 1
 	fi
+	log_info "Token manager health check passed"
 
 	# Get token statistics
 	if STATS=$(curl -s -H "Authorization: Bearer $TOKEN_MANAGER_SECRET" "$TOKEN_MANAGER_URL/api/stats" 2>/dev/null); then
 		ACTIVE_TOKENS=$(echo "$STATS" | jq -r '.active // 0' 2>/dev/null || echo "0")
-		echo "Available tokens: $ACTIVE_TOKENS"
+		log_info "Token pool status" "active_tokens=$ACTIVE_TOKENS"
 		if [ "$ACTIVE_TOKENS" -eq 0 ]; then
-			echo "❌ No active tokens available" >&2
+			log_error "No active tokens available"
+			log_group_end
 			return 1
 		fi
 	fi
+
+	log_group_end
 }
 
 # Setup token management before starting
 if setup_token_management; then
+	log_group_start "Initialization"
+
 	CUR_MISE_VERSION=$(docker run jdxcode/mise -v)
 	export CUR_MISE_VERSION
+	log_info "Mise version detected" "version=$CUR_MISE_VERSION"
 
 	tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise registry | awk '{print $1}')"
-	set_stat "total_tools_available" "$(echo "$tools" | wc -w)"
+	total_tools=$(echo "$tools" | wc -w)
+	set_stat "total_tools_available" "$total_tools"
+	log_info "Tool registry loaded" "total_tools=$total_tools"
 
 	# Check if tokens are available before starting processing
 	if ! get_github_token >/dev/null 2>&1; then
-		echo "No tokens available - stopping"
+		log_warn "No tokens available - stopping early"
+		log_group_end
 		generate_summary
 		exit 0
 	fi
+
+	log_group_end
 
 	# Resume from the last processed tool
 	last_tool_processed=""
 	if [ -f "last_processed_tool.txt" ]; then
 		last_tool_processed=$(cat "last_processed_tool.txt")
+		log_info "Resuming from previous run" "last_tool=$last_tool_processed"
 	fi
 	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
 
+	log_group_start "Processing Tools"
+
 	# Process tools
 	export -f fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
-	export STATS_DIR
+	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
+	export STATS_DIR LOG_LEVEL
 	first_processed_tool=""
 	last_processed_tool=""
 	for tool in $tools_limited; do
 		if ! timeout 60s bash -c "fetch $tool"; then
-			echo "❌ Failed to fetch $tool, continuing to next tool"
+			log_error "Fetch timed out or failed, continuing" "tool=$tool"
 			# Don't break, continue to next tool
 			continue
 		fi
@@ -429,6 +561,8 @@ if setup_token_management; then
 		fi
 		last_processed_tool="$tool"
 	done
+
+	log_group_end
 	set_stat "first_processed_tool" "$first_processed_tool"
 	if [ -n "$last_processed_tool" ]; then
 		echo "$last_processed_tool" >"last_processed_tool.txt"
@@ -464,9 +598,10 @@ if setup_token_management; then
 
 	# Save updated tools list for D1 sync (one tool per line)
 	cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
-	echo "Updated tools saved to updated_tools.txt: $(wc -l < updated_tools.txt) tools"
+	updated_count=$(wc -l < updated_tools.txt | tr -d ' ')
+	log_info "Updated tools saved" "file=updated_tools.txt" "count=$updated_count"
 else
-	echo "❌ Token management setup failed"
+	log_error "Token management setup failed"
 	generate_summary
 	exit 0
 fi
@@ -474,4 +609,4 @@ fi
 # Always generate and display summary
 generate_summary
 
-echo "✅ Update complete!"
+log_info "Update complete" "tools_checked=$(get_stat total_tools_checked)" "tools_updated=$(get_stat total_tools_updated)"
