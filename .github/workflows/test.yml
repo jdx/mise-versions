@@ -11,14 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - uses: jdx/mise-action@v2
-      - run: npm install
-      - run: npm test
+      - run: bun install
+      - run: bun test
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - uses: jdx/mise-action@v2
-      - run: npm install
-      - run: npm install --prefix web
+      - run: bun install
+      - run: bun install --cwd web
       - run: hk check

@@ -15,10 +15,10 @@ run = "bunx wrangler deploy"
 
 [tools]
 "aqua:chmln/sd" = "latest"
+bun = "latest"
 fd = "latest"
 "github:peak/s5cmd" = "latest"
 hk = "latest"
-node = "22"
 pkl = "latest"
 shellcheck = "latest"
 shfmt = "latest"
