@@ -18,7 +18,8 @@
  * - snapshot, SNAPSHOT (snapshot builds)
  * - master (development branch)
  */
-const PRERELEASE_REGEX = /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
+const PRERELEASE_REGEX =
+  /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
 
 /**
  * Check if a version string appears to be a prerelease/development version
@@ -30,15 +31,19 @@ export function isPrerelease(version: string): boolean {
 /**
  * Filter an array of versions to only include stable releases
  */
-export function filterStableVersions<T extends { version: string }>(versions: T[]): T[] {
-  return versions.filter(v => !isPrerelease(v.version));
+export function filterStableVersions<T extends { version: string }>(
+  versions: T[],
+): T[] {
+  return versions.filter((v) => !isPrerelease(v.version));
 }
 
 /**
  * Get the latest stable version from an array of versions
  * Assumes versions are ordered oldest to newest
  */
-export function getLatestStableVersion<T extends { version: string }>(versions: T[]): T | undefined {
+export function getLatestStableVersion<T extends { version: string }>(
+  versions: T[],
+): T | undefined {
   const stable = filterStableVersions(versions);
   return stable[stable.length - 1];
 }
@@ -48,61 +53,64 @@ export function getLatestStableVersion<T extends { version: string }>(versions: 
  */
 
 // Distribution patterns for different tools
-const DISTRIBUTION_PATTERNS: Record<string, Array<{ prefix: string; name: string }>> = {
+const DISTRIBUTION_PATTERNS: Record<
+  string,
+  Array<{ prefix: string; name: string }>
+> = {
   java: [
-    { prefix: 'temurin-', name: 'temurin' },
-    { prefix: 'graalvm-', name: 'graalvm' },
-    { prefix: 'corretto-', name: 'corretto' },
-    { prefix: 'liberica-', name: 'liberica' },
-    { prefix: 'oracle-', name: 'oracle' },
-    { prefix: 'zulu-', name: 'zulu' },
-    { prefix: 'jetbrains-', name: 'jetbrains' },
-    { prefix: 'dragonwell-', name: 'dragonwell' },
-    { prefix: 'semeru-', name: 'semeru' },
-    { prefix: 'sapmachine-', name: 'sapmachine' },
-    { prefix: 'kona-', name: 'kona' },
-    { prefix: 'mandrel-', name: 'mandrel' },
-    { prefix: 'microsoft-', name: 'microsoft' },
+    { prefix: "temurin-", name: "temurin" },
+    { prefix: "graalvm-", name: "graalvm" },
+    { prefix: "corretto-", name: "corretto" },
+    { prefix: "liberica-", name: "liberica" },
+    { prefix: "oracle-", name: "oracle" },
+    { prefix: "zulu-", name: "zulu" },
+    { prefix: "jetbrains-", name: "jetbrains" },
+    { prefix: "dragonwell-", name: "dragonwell" },
+    { prefix: "semeru-", name: "semeru" },
+    { prefix: "sapmachine-", name: "sapmachine" },
+    { prefix: "kona-", name: "kona" },
+    { prefix: "mandrel-", name: "mandrel" },
+    { prefix: "microsoft-", name: "microsoft" },
   ],
   python: [
-    { prefix: 'pypy', name: 'pypy' },
-    { prefix: 'jython-', name: 'jython' },
-    { prefix: 'ironpython-', name: 'ironpython' },
-    { prefix: 'graalpy-', name: 'graalpy' },
-    { prefix: 'pyston-', name: 'pyston' },
-    { prefix: 'stackless-', name: 'stackless' },
-    { prefix: 'anaconda', name: 'anaconda' },
-    { prefix: 'miniconda', name: 'miniconda' },
-    { prefix: 'miniforge', name: 'miniforge' },
-    { prefix: 'mambaforge', name: 'mambaforge' },
+    { prefix: "pypy", name: "pypy" },
+    { prefix: "jython-", name: "jython" },
+    { prefix: "ironpython-", name: "ironpython" },
+    { prefix: "graalpy-", name: "graalpy" },
+    { prefix: "pyston-", name: "pyston" },
+    { prefix: "stackless-", name: "stackless" },
+    { prefix: "anaconda", name: "anaconda" },
+    { prefix: "miniconda", name: "miniconda" },
+    { prefix: "miniforge", name: "miniforge" },
+    { prefix: "mambaforge", name: "mambaforge" },
   ],
   ruby: [
-    { prefix: 'jruby-', name: 'jruby' },
-    { prefix: 'truffleruby+graalvm-', name: 'truffleruby+graalvm' },
-    { prefix: 'truffleruby-', name: 'truffleruby' },
-    { prefix: 'mruby-', name: 'mruby' },
-    { prefix: 'rbx-', name: 'rubinius' },
-    { prefix: 'ree-', name: 'ree' },
+    { prefix: "jruby-", name: "jruby" },
+    { prefix: "truffleruby+graalvm-", name: "truffleruby+graalvm" },
+    { prefix: "truffleruby-", name: "truffleruby" },
+    { prefix: "mruby-", name: "mruby" },
+    { prefix: "rbx-", name: "rubinius" },
+    { prefix: "ree-", name: "ree" },
   ],
   node: [
-    { prefix: 'lts-', name: 'lts' },
-    { prefix: 'lts/', name: 'lts' },
+    { prefix: "lts-", name: "lts" },
+    { prefix: "lts/", name: "lts" },
   ],
 };
 
 // Default distribution names for each tool (versions without a prefix)
 const DEFAULT_DISTRIBUTION_NAMES: Record<string, string> = {
-  java: 'openjdk',
-  python: 'cpython',
-  ruby: 'cruby',
-  node: 'node',
+  java: "openjdk",
+  python: "cpython",
+  ruby: "cruby",
+  node: "node",
 };
 
 // Default distribution to show on first load (what users see by default)
 const DEFAULT_DISTRIBUTIONS: Record<string, string> = {
-  java: 'openjdk',
-  python: 'cpython',
-  ruby: 'cruby',
+  java: "openjdk",
+  python: "cpython",
+  ruby: "cruby",
 };
 
 /**
@@ -119,13 +127,16 @@ export function getDistribution(version: string, tool: string): string {
   }
 
   // Return the default distribution name for this tool
-  return DEFAULT_DISTRIBUTION_NAMES[tool] || 'default';
+  return DEFAULT_DISTRIBUTION_NAMES[tool] || "default";
 }
 
 /**
  * Get all unique distributions present in a list of versions
  */
-export function getUniqueDistributions(versions: string[], tool: string): string[] {
+export function getUniqueDistributions(
+  versions: string[],
+  tool: string,
+): string[] {
   const dists = new Set<string>();
   for (const v of versions) {
     dists.add(getDistribution(v, tool));

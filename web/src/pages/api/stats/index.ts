@@ -1,7 +1,7 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupDatabase } from '../../../../../src/database';
-import { jsonResponse, requireApiAuth } from '../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupDatabase } from "../../../../../src/database";
+import { jsonResponse, requireApiAuth } from "../../../lib/api";
 
 // GET /api/stats - Token statistics (admin)
 export const GET: APIRoute = async ({ request, locals }) => {

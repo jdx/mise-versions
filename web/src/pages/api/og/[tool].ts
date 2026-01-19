@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { ImageResponse } from 'workers-og';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupAnalytics } from '../../../../../src/analytics';
-import { loadToolsJson, type ToolMeta } from '../../../lib/data-loader';
+import type { APIRoute } from "astro";
+import { ImageResponse } from "workers-og";
+import { drizzle } from "drizzle-orm/d1";
+import { setupAnalytics } from "../../../../../src/analytics";
+import { loadToolsJson, type ToolMeta } from "../../../lib/data-loader";
 
 interface OGToolMeta {
   name: string;
@@ -17,9 +17,9 @@ interface OGToolMeta {
 function getPrimaryBackend(backends?: string[]): string | null {
   if (!backends || backends.length === 0) return null;
   let backend = backends[0];
-  const bracketIndex = backend.indexOf('[');
+  const bracketIndex = backend.indexOf("[");
   if (bracketIndex > 0) backend = backend.slice(0, bracketIndex);
-  if (backend.length > 35) backend = backend.slice(0, 35) + '...';
+  if (backend.length > 35) backend = backend.slice(0, 35) + "...";
   return backend;
 }
 
@@ -32,20 +32,24 @@ function formatDownloads(count: number): string {
 
 function escapeHtml(str: string): string {
   return str
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
-function generateImage(tool: OGToolMeta, downloads: number | null, backend: string | null): Response {
+function generateImage(
+  tool: OGToolMeta,
+  downloads: number | null,
+  backend: string | null,
+): Response {
   const description = tool.description
     ? tool.description.length > 150
-      ? tool.description.slice(0, 150) + '...'
+      ? tool.description.slice(0, 150) + "..."
       : tool.description
-    : '';
+    : "";
 
-  const versionText = tool.latest_version ? `v${tool.latest_version}` : '';
+  const versionText = tool.latest_version ? `v${tool.latest_version}` : "";
 
   const html = `
     <div style="display: flex; flex-direction: column; width: 1200px; height: 630px; background: linear-gradient(135deg, #0d0d14 0%, #1a1a2e 50%, #0d0d14 100%); padding: 40px;">
@@ -64,9 +68,9 @@ function generateImage(tool: OGToolMeta, downloads: number | null, backend: stri
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
             <div style="display: flex; align-items: baseline; gap: 16px;">
               <span style="font-size: 48px; font-weight: 700; color: #f3f4f6;">${escapeHtml(tool.name)}</span>
-              ${versionText ? `<span style="font-size: 24px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ''}
+              ${versionText ? `<span style="font-size: 24px; color: #00D4FF; font-family: monospace;">${escapeHtml(versionText)}</span>` : ""}
             </div>
-            ${downloads ? `<span style="font-size: 32px; font-weight: 600; color: #00D4FF;">${formatDownloads(downloads)}</span>` : ''}
+            ${downloads ? `<span style="font-size: 32px; font-weight: 600; color: #00D4FF;">${formatDownloads(downloads)}</span>` : ""}
           </div>
 
           <!-- Description -->
@@ -76,9 +80,9 @@ function generateImage(tool: OGToolMeta, downloads: number | null, backend: stri
 
           <!-- Footer: badges -->
           <div style="display: flex; align-items: center; gap: 16px;">
-            ${backend ? `<span style="font-size: 18px; color: #6b7280; background: #0d0d14; padding: 8px 16px; border-radius: 8px;">${escapeHtml(backend)}</span>` : ''}
-            ${tool.version_count > 0 ? `<span style="font-size: 18px; color: #6b7280;">${tool.version_count} versions</span>` : ''}
-            ${downloads ? `<span style="font-size: 18px; color: #6b7280;">30d downloads</span>` : ''}
+            ${backend ? `<span style="font-size: 18px; color: #6b7280; background: #0d0d14; padding: 8px 16px; border-radius: 8px;">${escapeHtml(backend)}</span>` : ""}
+            ${tool.version_count > 0 ? `<span style="font-size: 18px; color: #6b7280;">${tool.version_count} versions</span>` : ""}
+            ${downloads ? `<span style="font-size: 18px; color: #6b7280;">30d downloads</span>` : ""}
           </div>
         </div>
       </div>
@@ -89,7 +93,7 @@ function generateImage(tool: OGToolMeta, downloads: number | null, backend: stri
     width: 1200,
     height: 630,
     headers: {
-      'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
     },
   });
 }
@@ -118,12 +122,16 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
   if (!tool) {
     // Return a generic mise tools image for unknown tools
-    return generateImage({
-      name: toolName,
-      description: 'Tool not found',
-      latest_version: '',
-      version_count: 0,
-    }, null, null);
+    return generateImage(
+      {
+        name: toolName,
+        description: "Tool not found",
+        latest_version: "",
+        version_count: 0,
+      },
+      null,
+      null,
+    );
   }
 
   const backend = getPrimaryBackend(tool.backends);

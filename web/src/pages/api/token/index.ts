@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { Octokit } from '@octokit/rest';
-import { setupDatabase } from '../../../../../src/database';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { Octokit } from "@octokit/rest";
+import { setupDatabase } from "../../../../../src/database";
+import { jsonResponse, errorResponse, requireApiAuth } from "../../../lib/api";
 
 const MIN_RATE_LIMIT = 1000;
 
@@ -32,7 +32,8 @@ export const GET: APIRoute = async ({ request, locals }) => {
       ? new Date(token.last_validated)
       : null;
     const shouldValidate =
-      !lastValidated || Date.now() - lastValidated.getTime() > 24 * 60 * 60 * 1000;
+      !lastValidated ||
+      Date.now() - lastValidated.getTime() > 24 * 60 * 60 * 1000;
 
     const octokit = new Octokit({ auth: token.token });
 
@@ -68,7 +69,9 @@ export const GET: APIRoute = async ({ request, locals }) => {
       // Mark token as rate-limited until reset time
       const resetAt = new Date(data.resources.core.reset * 1000).toISOString();
       await database.markTokenRateLimited(token.id, resetAt);
-      console.log(`Token ${token.id} has ${remaining} remaining, marked rate-limited until ${resetAt}`);
+      console.log(
+        `Token ${token.id} has ${remaining} remaining, marked rate-limited until ${resetAt}`,
+      );
     } catch (e) {
       console.log(`Failed to check rate limit for token ${token.id}:`, e);
       // If rate limit check fails, skip this token
@@ -83,5 +86,5 @@ export const GET: APIRoute = async ({ request, locals }) => {
     }
   }
 
-  return errorResponse('No tokens with sufficient rate limit available', 503);
+  return errorResponse("No tokens with sufficient rate limit available", 503);
 };

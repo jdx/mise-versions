@@ -1,7 +1,11 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
+import {
+  jsonResponse,
+  errorResponse,
+  requireApiAuth,
+} from "../../../../lib/api";
 
 interface MetadataEntry {
   name: string;
@@ -22,10 +26,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
   if (authError) return authError;
 
   try {
-    const body = await request.json() as SyncRequest;
+    const body = (await request.json()) as SyncRequest;
 
     if (!body.metadata || !Array.isArray(body.metadata)) {
-      return errorResponse('Invalid request: metadata array required', 400);
+      return errorResponse("Invalid request: metadata array required", 400);
     }
 
     const db = drizzle(runtime.env.ANALYTICS_DB);
@@ -41,7 +45,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
       }
 
       try {
-        const authorsJson = entry.authors ? JSON.stringify(entry.authors) : null;
+        const authorsJson = entry.authors
+          ? JSON.stringify(entry.authors)
+          : null;
 
         // Update only metadata fields, don't touch version info
         await db.run(sql`
@@ -72,10 +78,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
       failed_tools: failedTools.slice(0, 10),
     });
   } catch (e) {
-    console.error('Metadata sync error:', e);
+    console.error("Metadata sync error:", e);
     return errorResponse(
-      e instanceof Error ? e.message : 'Metadata sync failed',
-      500
+      e instanceof Error ? e.message : "Metadata sync failed",
+      500,
     );
   }
 };

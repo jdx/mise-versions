@@ -7,22 +7,22 @@
     {
       "binding": "DB",
       "database_name": "mise-versions",
-      "database_id": "c484af77-97c7-4d1d-b9d0-0d7743c6f4e5"
+      "database_id": "c484af77-97c7-4d1d-b9d0-0d7743c6f4e5",
     },
     {
       "binding": "ANALYTICS_DB",
       "database_name": "mise-tools-track",
-      "database_id": "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8"
-    }
+      "database_id": "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8",
+    },
   ],
   "kv_namespaces": [
     {
       "binding": "GITHUB_CACHE",
-      "id": "4f4aae307f5e4dfda604e16f239a047b"
+      "id": "4f4aae307f5e4dfda604e16f239a047b",
     },
     {
       "binding": "SESSION",
-      "id": "placeholder-session-kv"
-    }
-  ]
+      "id": "placeholder-session-kv",
+    },
+  ],
 }

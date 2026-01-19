@@ -5,7 +5,13 @@
 import { describe, it, beforeEach, afterEach } from "node:test";
 import assert from "node:assert";
 import { spawn } from "node:child_process";
-import { writeFileSync, unlinkSync, existsSync, mkdtempSync, rmSync } from "node:fs";
+import {
+  writeFileSync,
+  unlinkSync,
+  existsSync,
+  mkdtempSync,
+  rmSync,
+} from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { parse } from "smol-toml";
@@ -103,7 +109,10 @@ describe("generate-toml.js", () => {
       // smol-toml parses dates as Date objects
       assert.ok(createdAt instanceof Date);
       // Compare timestamps (Date.toISOString adds .000 for milliseconds)
-      assert.strictEqual(new Date(createdAt).getTime(), new Date(timestamp).getTime());
+      assert.strictEqual(
+        new Date(createdAt).getTime(),
+        new Date(timestamp).getTime(),
+      );
     });
 
     it("should skip empty lines", async () => {
@@ -119,7 +128,9 @@ describe("generate-toml.js", () => {
     it("should handle malformed JSON lines gracefully", async () => {
       const input = '{"version":"1.0.0"}\nnot json\n{"version":"2.0.0"}\n';
 
-      const { stdout, stderr, code } = await runGenerateToml(input, ["test-tool"]);
+      const { stdout, stderr, code } = await runGenerateToml(input, [
+        "test-tool",
+      ]);
       assert.strictEqual(code, 0);
 
       // Should warn about malformed line
@@ -184,11 +195,14 @@ describe("generate-toml.js", () => {
         existingToml,
         `[versions]
 "1.0.0" = { created_at = ${existingTimestamp} }
-`
+`,
       );
 
       const input = '{"version":"1.0.0"}\n{"version":"2.0.0"}\n';
-      const { stdout, code } = await runGenerateToml(input, ["test-tool", existingToml]);
+      const { stdout, code } = await runGenerateToml(input, [
+        "test-tool",
+        existingToml,
+      ]);
       assert.strictEqual(code, 0);
 
       const parsed = parse(stdout);
@@ -208,17 +222,23 @@ describe("generate-toml.js", () => {
         existingToml,
         `[versions]
 "1.0.0" = { created_at = ${existingTimestamp} }
-`
+`,
       );
 
       const input = `{"version":"1.0.0","created_at":"${apiTimestamp}"}\n`;
-      const { stdout, code } = await runGenerateToml(input, ["test-tool", existingToml]);
+      const { stdout, code } = await runGenerateToml(input, [
+        "test-tool",
+        existingToml,
+      ]);
       assert.strictEqual(code, 0);
 
       const parsed = parse(stdout);
       // API timestamp should take precedence (compare as timestamps)
       const v1Date = parsed.versions["1.0.0"].created_at;
-      assert.strictEqual(new Date(v1Date).getTime(), new Date(apiTimestamp).getTime());
+      assert.strictEqual(
+        new Date(v1Date).getTime(),
+        new Date(apiTimestamp).getTime(),
+      );
     });
 
     it("should handle non-existent existing TOML path", async () => {

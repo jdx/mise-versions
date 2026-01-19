@@ -21,19 +21,19 @@ function measureText(text: string, fontSize: number = 11): number {
 // Escape XML special characters
 function escapeXml(str: string): string {
   return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
 
 // Generate shields.io-style SVG badge
 export function generateBadgeSvg(
   label: string,
   value: string,
-  labelColor: string = '#555',
-  valueColor: string = '#4c1'
+  labelColor: string = "#555",
+  valueColor: string = "#4c1",
 ): string {
   const padding = 10;
   const labelWidth = measureText(label) + padding * 2;
@@ -64,12 +64,15 @@ export function generateBadgeSvg(
 }
 
 // SVG response helper
-export function svgResponse(svg: string, cacheSeconds: number = 3600): Response {
+export function svgResponse(
+  svg: string,
+  cacheSeconds: number = 3600,
+): Response {
   return new Response(svg, {
     headers: {
-      'Content-Type': 'image/svg+xml',
-      'Cache-Control': `public, max-age=${cacheSeconds}, stale-while-revalidate=86400`,
-      'Access-Control-Allow-Origin': '*',
+      "Content-Type": "image/svg+xml",
+      "Cache-Control": `public, max-age=${cacheSeconds}, stale-while-revalidate=86400`,
+      "Access-Control-Allow-Origin": "*",
     },
   });
 }

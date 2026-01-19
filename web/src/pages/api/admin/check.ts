@@ -1,7 +1,7 @@
-import type { APIRoute } from 'astro';
-import { getAuthCookie } from '../../../lib/auth';
-import { jsonResponse } from '../../../lib/api';
-import { isAdmin } from '../../../lib/admin';
+import type { APIRoute } from "astro";
+import { getAuthCookie } from "../../../lib/auth";
+import { jsonResponse } from "../../../lib/api";
+import { isAdmin } from "../../../lib/admin";
 
 // GET /api/admin/check - Check if current user is admin
 export const GET: APIRoute = async ({ request, locals }) => {

@@ -1,14 +1,14 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupAnalytics } from '../../../../../../src/analytics';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupAnalytics } from "../../../../../../src/analytics";
 
 export const GET: APIRoute = async ({ params, locals }) => {
   try {
     const { tool } = params;
     if (!tool) {
-      return new Response(JSON.stringify({ error: 'Tool name required' }), {
+      return new Response(JSON.stringify({ error: "Tool name required" }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
+        headers: { "Content-Type": "application/json" },
       });
     }
 
@@ -21,15 +21,18 @@ export const GET: APIRoute = async ({ params, locals }) => {
     return new Response(JSON.stringify(stats), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=300',
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=300",
       },
     });
   } catch (error) {
-    console.error('Get tool growth error:', error);
-    return new Response(JSON.stringify({ error: 'Failed to get tool growth' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    console.error("Get tool growth error:", error);
+    return new Response(
+      JSON.stringify({ error: "Failed to get tool growth" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 };

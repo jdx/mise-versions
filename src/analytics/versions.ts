@@ -8,7 +8,9 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
     // Get mise DAU/MAU (unique users making version requests)
     async getMiseDAUMAU(days: number = 30) {
       const now = Math.floor(Date.now() / 1000);
-      const startDate = new Date((now - days * 86400) * 1000).toISOString().split("T")[0];
+      const startDate = new Date((now - days * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
 
       // Get DAU from rollup table
       const dauResults = await db
@@ -35,7 +37,7 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
 
       // Fill in missing days with 0 (exclude current day since it's incomplete)
       const dailyData: Array<{ date: string; dau: number }> = [];
-      const dauMap = new Map(dauResults.map(r => [r.date, r.dau]));
+      const dauMap = new Map(dauResults.map((r) => [r.date, r.dau]));
 
       for (let i = days - 1; i >= 1; i--) {
         const dayTimestamp = now - i * 86400;
@@ -53,7 +55,10 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
     },
 
     // Record version updates (called when syncing new versions)
-    async recordVersionUpdates(toolId: number, versionsAdded: number): Promise<void> {
+    async recordVersionUpdates(
+      toolId: number,
+      versionsAdded: number,
+    ): Promise<void> {
       const today = new Date().toISOString().split("T")[0];
 
       // Upsert: add to existing count for today or insert new
@@ -90,7 +95,10 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
         `);
 
         // Get totals (total tool-days with updates, unique tools overall)
-        const totals = await db.get<{ total: number; unique_tools: number }>(sql`
+        const totals = await db.get<{
+          total: number;
+          unique_tools: number;
+        }>(sql`
           SELECT
             COUNT(*) as total,
             COUNT(DISTINCT tool_id) as unique_tools
@@ -99,7 +107,7 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
         `);
 
         // Fill in missing days with 0
-        const dailyMap = new Map(dailyResults.map(r => [r.date, r.count]));
+        const dailyMap = new Map(dailyResults.map((r) => [r.date, r.count]));
         const daily: Array<{ date: string; count: number }> = [];
 
         for (let i = 0; i < days; i++) {
@@ -125,7 +133,10 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
         };
       } catch (e) {
         // Table might not exist yet - return empty data
-        console.error('Failed to get version updates (table may not exist):', e);
+        console.error(
+          "Failed to get version updates (table may not exist):",
+          e,
+        );
         return {
           daily: [],
           total_updates: 0,

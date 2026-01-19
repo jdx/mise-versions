@@ -22,7 +22,7 @@ export function useVersionTrends(tool: string, days: number = 30) {
     async function fetchVersionTrends() {
       try {
         const response = await fetch(
-          `/api/downloads/${encodeURIComponent(tool)}/versions?days=${days}`
+          `/api/downloads/${encodeURIComponent(tool)}/versions?days=${days}`,
         );
         if (!response.ok) {
           throw new Error("Failed to fetch version trends");

@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { ImageResponse } from 'workers-og';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupAnalytics } from '../../../../../src/analytics';
-import { loadToolsJson } from '../../../lib/data-loader';
+import type { APIRoute } from "astro";
+import { ImageResponse } from "workers-og";
+import { drizzle } from "drizzle-orm/d1";
+import { setupAnalytics } from "../../../../../src/analytics";
+import { loadToolsJson } from "../../../lib/data-loader";
 
 interface TrendingTool {
   name: string;
@@ -17,16 +17,16 @@ interface TrendingTool {
 
 function escapeHtml(str: string): string {
   return str
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 function cleanBackend(backend: string): string {
-  const bracketIndex = backend.indexOf('[');
+  const bracketIndex = backend.indexOf("[");
   let result = bracketIndex > 0 ? backend.slice(0, bracketIndex) : backend;
-  if (result.length > 25) result = result.slice(0, 25) + '...';
+  if (result.length > 25) result = result.slice(0, 25) + "...";
   return result;
 }
 
@@ -37,34 +37,42 @@ function formatDownloads(count: number): string {
 }
 
 // Generate sparkline SVG path
-function generateSparklinePath(data: number[], width: number, height: number): string {
-  if (!data || data.length === 0) return '';
+function generateSparklinePath(
+  data: number[],
+  width: number,
+  height: number,
+): string {
+  if (!data || data.length === 0) return "";
   const max = Math.max(...data, 1);
   const padding = 2;
 
-  return data.map((value, i) => {
-    const x = padding + (i / (data.length - 1)) * (width - padding * 2);
-    const y = height - padding - (value / max) * (height - padding * 2);
-    return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
-  }).join(' ');
+  return data
+    .map((value, i) => {
+      const x = padding + (i / (data.length - 1)) * (width - padding * 2);
+      const y = height - padding - (value / max) * (height - padding * 2);
+      return `${i === 0 ? "M" : "L"} ${x} ${y}`;
+    })
+    .join(" ");
 }
 
 function generateToolCard(tool: TrendingTool, index: number): string {
   const description = tool.description
     ? tool.description.length > 60
-      ? tool.description.slice(0, 60) + '...'
+      ? tool.description.slice(0, 60) + "..."
       : tool.description
-    : '';
+    : "";
 
-  const backend = tool.backends && tool.backends[0] ? cleanBackend(tool.backends[0]) : '';
+  const backend =
+    tool.backends && tool.backends[0] ? cleanBackend(tool.backends[0]) : "";
   const sparklinePath = generateSparklinePath(tool.sparkline || [], 60, 20);
 
   // Indicator for trending
-  const indicator = tool.dailyBoost > 40
-    ? '<span style="color: #fb923c; margin-left: 4px;">🔥</span>'
-    : tool.dailyBoost > 20
-      ? '<span style="color: #4ade80; margin-left: 4px; font-weight: bold;">↑</span>'
-      : '';
+  const indicator =
+    tool.dailyBoost > 40
+      ? '<span style="color: #fb923c; margin-left: 4px;">🔥</span>'
+      : tool.dailyBoost > 20
+        ? '<span style="color: #4ade80; margin-left: 4px; font-weight: bold;">↑</span>'
+        : "";
 
   return `
     <div style="display: flex; flex-direction: column; background: #1a1a2e; border: 1px solid #2d2d44; border-radius: 12px; padding: 16px; width: 340px;">
@@ -84,14 +92,18 @@ function generateToolCard(tool: TrendingTool, index: number): string {
       <!-- Footer -->
       <div style="display: flex; align-items: center; justify-content: space-between;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          ${backend ? `<span style="font-size: 11px; color: #6b7280; background: #0d0d14; padding: 2px 8px; border-radius: 4px;">${escapeHtml(backend)}</span>` : ''}
-          ${tool.version_count ? `<span style="font-size: 11px; color: #6b7280;">${tool.version_count} versions</span>` : ''}
+          ${backend ? `<span style="font-size: 11px; color: #6b7280; background: #0d0d14; padding: 2px 8px; border-radius: 4px;">${escapeHtml(backend)}</span>` : ""}
+          ${tool.version_count ? `<span style="font-size: 11px; color: #6b7280;">${tool.version_count} versions</span>` : ""}
         </div>
-        ${sparklinePath ? `
+        ${
+          sparklinePath
+            ? `
           <svg width="60" height="20" style="opacity: 0.7;">
             <path d="${sparklinePath}" fill="none" stroke="#B026FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        ` : ''}
+        `
+            : ""
+        }
       </div>
     </div>
   `;
@@ -116,8 +128,8 @@ export const GET: APIRoute = async ({ locals }) => {
 
     if (toolsData) {
       toolCount = toolsData.tool_count;
-      const toolMap = new Map(toolsData.tools.map(t => [t.name, t]));
-      trendingTools = trending.map(t => {
+      const toolMap = new Map(toolsData.tools.map((t) => [t.name, t]));
+      trendingTools = trending.map((t) => {
         const meta = toolMap.get(t.name);
         return {
           ...t,
@@ -128,13 +140,14 @@ export const GET: APIRoute = async ({ locals }) => {
       });
     }
   } catch (e) {
-    console.error('Failed to fetch trending tools for OG image:', e);
+    console.error("Failed to fetch trending tools for OG image:", e);
   }
 
   // Generate tool cards HTML
-  const toolCardsHtml = trendingTools.length > 0
-    ? trendingTools.map((tool, i) => generateToolCard(tool, i)).join('')
-    : '';
+  const toolCardsHtml =
+    trendingTools.length > 0
+      ? trendingTools.map((tool, i) => generateToolCard(tool, i)).join("")
+      : "";
 
   const html = `
     <div style="display: flex; flex-direction: column; width: 1200px; height: 630px; background: linear-gradient(135deg, #0d0d14 0%, #1a1a2e 50%, #0d0d14 100%); padding: 40px;">
@@ -149,7 +162,9 @@ export const GET: APIRoute = async ({ locals }) => {
         </div>
       </div>
 
-      ${trendingTools.length > 0 ? `
+      ${
+        trendingTools.length > 0
+          ? `
       <!-- Hot Tools label -->
       <div style="display: flex; align-items: center; margin-bottom: 16px;">
         <span style="color: #fb923c; margin-right: 8px;">🔥</span>
@@ -161,14 +176,16 @@ export const GET: APIRoute = async ({ locals }) => {
       <div style="display: flex; flex-wrap: wrap; gap: 16px;">
         ${toolCardsHtml}
       </div>
-      ` : `
+      `
+          : `
       <!-- Fallback content when no trending data -->
       <div style="display: flex; flex-direction: column; flex: 1; justify-content: center;">
         <p style="font-size: 28px; color: #9ca3af; margin: 0; line-height: 1.4;">
           Browse tool versions and download stats for mise
         </p>
       </div>
-      `}
+      `
+      }
     </div>
   `;
 
@@ -176,7 +193,7 @@ export const GET: APIRoute = async ({ locals }) => {
     width: 1200,
     height: 630,
     headers: {
-      'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+      "Cache-Control": "public, max-age=3600", // Cache for 1 hour
     },
   });
 };

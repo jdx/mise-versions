@@ -1,34 +1,42 @@
 // Shared API utilities
 
 export const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
 export const CACHE_CONTROL = {
-  STATIC: 'public, max-age=600, stale-while-revalidate=86400', // 10 min + 1 day stale
-  API: 'public, max-age=600, stale-while-revalidate=86400', // 10 min + 1 day stale
+  STATIC: "public, max-age=600, stale-while-revalidate=86400", // 10 min + 1 day stale
+  API: "public, max-age=600, stale-while-revalidate=86400", // 10 min + 1 day stale
 } as const;
 
-export function jsonResponse(data: unknown, status = 200, headers: Record<string, string> = {}) {
+export function jsonResponse(
+  data: unknown,
+  status = 200,
+  headers: Record<string, string> = {},
+) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       ...CORS_HEADERS,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       ...headers,
     },
   });
 }
 
-export function cachedJsonResponse(data: unknown, cacheControl: string, status = 200) {
+export function cachedJsonResponse(
+  data: unknown,
+  cacheControl: string,
+  status = 200,
+) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       ...CORS_HEADERS,
-      'Content-Type': 'application/json',
-      'Cache-Control': cacheControl,
+      "Content-Type": "application/json",
+      "Cache-Control": cacheControl,
     },
   });
 }
@@ -41,15 +49,18 @@ export function errorResponse(message: string, status = 400) {
 }
 
 // Check for API auth (Bearer token)
-export function requireApiAuth(request: Request, apiSecret: string): Response | null {
-  const authHeader = request.headers.get('authorization');
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return errorResponse('Missing or invalid authorization header', 401);
+export function requireApiAuth(
+  request: Request,
+  apiSecret: string,
+): Response | null {
+  const authHeader = request.headers.get("authorization");
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return errorResponse("Missing or invalid authorization header", 401);
   }
 
   const secret = authHeader.slice(7);
   if (secret !== apiSecret) {
-    return errorResponse('Invalid API secret', 401);
+    return errorResponse("Invalid API secret", 401);
   }
 
   return null;

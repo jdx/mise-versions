@@ -21,7 +21,8 @@ const DOCS_DIR = join(process.cwd(), "docs");
 const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
 
 // Prerelease version regex - ported from mise
-const PRERELEASE_REGEX = /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
+const PRERELEASE_REGEX =
+  /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
 
 function isPrerelease(version) {
   return PRERELEASE_REGEX.test(version);
@@ -338,7 +339,7 @@ async function main() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiSecret}`,
+        Authorization: `Bearer ${apiSecret}`,
       },
       body: JSON.stringify({ tools }),
     });
@@ -365,10 +366,14 @@ async function main() {
 
     const errorRate = result.errors / result.total;
     if (errorRate > 0.1) {
-      console.error(`Error: ${result.errors} tools (${(errorRate * 100).toFixed(1)}%) failed to sync`);
+      console.error(
+        `Error: ${result.errors} tools (${(errorRate * 100).toFixed(1)}%) failed to sync`,
+      );
       process.exit(1);
     } else if (result.errors > 0) {
-      console.warn(`Warning: ${result.errors} tools failed to sync (${(errorRate * 100).toFixed(1)}%)`);
+      console.warn(
+        `Warning: ${result.errors} tools failed to sync (${(errorRate * 100).toFixed(1)}%)`,
+      );
     }
   } catch (e) {
     console.error("Sync failed:", e.message);

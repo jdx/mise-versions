@@ -28,7 +28,7 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
           downloads.backend_id,
           downloads.version,
           downloads.platform_id,
-          sql`date(${downloads.created_at}, 'unixepoch')`
+          sql`date(${downloads.created_at}, 'unixepoch')`,
         )
         .all();
 
@@ -52,8 +52,8 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
                 : sql`${downloadsDaily.backend_id} IS NULL`,
               row.platform_id
                 ? eq(downloadsDaily.platform_id, row.platform_id)
-                : sql`${downloadsDaily.platform_id} IS NULL`
-            )
+                : sql`${downloadsDaily.platform_id} IS NULL`,
+            ),
           )
           .get();
 
@@ -101,8 +101,12 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
     // Backfill backend_id for existing records using default backends from registry
     async backfillBackends(
       registry: Array<{ short: string; backends: string[] }>,
-      d1?: D1Database // Optional D1 database for direct operations
-    ): Promise<{ updated: number; tools_mapped: number; backends_created: number }> {
+      d1?: D1Database, // Optional D1 database for direct operations
+    ): Promise<{
+      updated: number;
+      tools_mapped: number;
+      backends_created: number;
+    }> {
       // Build mapping of tool name -> default backend
       const toolToBackend = new Map<string, string>();
       for (const entry of registry) {
@@ -120,8 +124,10 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
         const BATCH_SIZE = 50;
         for (let i = 0; i < uniqueBackends.length; i += BATCH_SIZE) {
           const batch = uniqueBackends.slice(i, i + BATCH_SIZE);
-          const statements = batch.map(full =>
-            d1.prepare("INSERT OR IGNORE INTO backends (full) VALUES (?)").bind(full)
+          const statements = batch.map((full) =>
+            d1
+              .prepare("INSERT OR IGNORE INTO backends (full) VALUES (?)")
+              .bind(full),
           );
           await d1.batch(statements);
           backendsCreated += batch.length;
@@ -129,7 +135,10 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
       } else {
         // Fallback to drizzle one-by-one
         for (const backendFull of uniqueBackends) {
-          await db.insert(backends).values({ full: backendFull }).onConflictDoNothing();
+          await db
+            .insert(backends)
+            .values({ full: backendFull })
+            .onConflictDoNothing();
           backendsCreated++;
         }
       }
@@ -146,18 +155,22 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
       }
 
       // Get all tools with NULL backend_id downloads
-      const toolsWithNullBackend = await db.all(sql`
+      const toolsWithNullBackend = (await db.all(sql`
         SELECT DISTINCT t.id, t.name
         FROM tools t
         JOIN downloads d ON d.tool_id = t.id
         WHERE d.backend_id IS NULL
-      `) as Array<{ id: number; name: string }>;
+      `)) as Array<{ id: number; name: string }>;
 
       let updated = 0;
       let toolsMapped = 0;
 
       // Build batch of updates
-      const updates: Array<{ toolId: number; backendId: number; toolName: string }> = [];
+      const updates: Array<{
+        toolId: number;
+        backendId: number;
+        toolName: string;
+      }> = [];
       for (const tool of toolsWithNullBackend) {
         const backendFull = toolToBackend.get(tool.name);
         if (!backendFull) continue;
@@ -179,12 +192,18 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
 
           for (const { toolId, backendId } of batch) {
             statements.push(
-              d1.prepare("UPDATE downloads SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL")
-                .bind(backendId, toolId)
+              d1
+                .prepare(
+                  "UPDATE downloads SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL",
+                )
+                .bind(backendId, toolId),
             );
             statements.push(
-              d1.prepare("UPDATE downloads_daily SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL")
-                .bind(backendId, toolId)
+              d1
+                .prepare(
+                  "UPDATE downloads_daily SET backend_id = ? WHERE tool_id = ? AND backend_id IS NULL",
+                )
+                .bind(backendId, toolId),
             );
           }
 
@@ -192,18 +211,24 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
             await d1.batch(statements);
             updated += batch.length;
           } catch (e: any) {
-            const batchTools = batch.map(b => b.toolName).join(", ");
-            throw new Error(`D1 batch update failed for tools [${batchTools}]: ${e?.message || e}`);
+            const batchTools = batch.map((b) => b.toolName).join(", ");
+            throw new Error(
+              `D1 batch update failed for tools [${batchTools}]: ${e?.message || e}`,
+            );
           }
         }
       } else if (!d1) {
         // Fallback to drizzle one-by-one (slow but works for small datasets)
         for (const { toolId, backendId } of updates) {
           await db.run(
-            sql.raw(`UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${toolId} AND backend_id IS NULL`)
+            sql.raw(
+              `UPDATE downloads SET backend_id = ${backendId} WHERE tool_id = ${toolId} AND backend_id IS NULL`,
+            ),
           );
           await db.run(
-            sql.raw(`UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${toolId} AND backend_id IS NULL`)
+            sql.raw(
+              `UPDATE downloads_daily SET backend_id = ${backendId} WHERE tool_id = ${toolId} AND backend_id IS NULL`,
+            ),
           );
           updated++;
         }
@@ -228,11 +253,13 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
 
       if (nullCount && nullCount.count > 0) {
         throw new Error(
-          `Cannot make backend_id NOT NULL: ${nullCount.count} records still have NULL backend_id`
+          `Cannot make backend_id NOT NULL: ${nullCount.count} records still have NULL backend_id`,
         );
       }
 
-      console.log("All records have backend_id, proceeding with schema change...");
+      console.log(
+        "All records have backend_id, proceeding with schema change...",
+      );
 
       // Recreate downloads table with NOT NULL constraint
       await db.run(sql`
@@ -260,10 +287,18 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
       await db.run(sql`ALTER TABLE downloads_new RENAME TO downloads`);
 
       // Recreate indices
-      await db.run(sql`CREATE INDEX idx_downloads_tool_id ON downloads(tool_id)`);
-      await db.run(sql`CREATE INDEX idx_downloads_backend_id ON downloads(backend_id)`);
-      await db.run(sql`CREATE INDEX idx_downloads_created_at ON downloads(created_at)`);
-      await db.run(sql`CREATE INDEX idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`);
+      await db.run(
+        sql`CREATE INDEX idx_downloads_tool_id ON downloads(tool_id)`,
+      );
+      await db.run(
+        sql`CREATE INDEX idx_downloads_backend_id ON downloads(backend_id)`,
+      );
+      await db.run(
+        sql`CREATE INDEX idx_downloads_created_at ON downloads(created_at)`,
+      );
+      await db.run(
+        sql`CREATE INDEX idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`,
+      );
 
       // Recreate downloads_daily table with NOT NULL constraint
       await db.run(sql`
@@ -289,12 +324,20 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
       `);
 
       await db.run(sql`DROP TABLE downloads_daily`);
-      await db.run(sql`ALTER TABLE downloads_daily_new RENAME TO downloads_daily`);
+      await db.run(
+        sql`ALTER TABLE downloads_daily_new RENAME TO downloads_daily`,
+      );
 
       // Recreate indices
-      await db.run(sql`CREATE INDEX idx_downloads_daily_tool ON downloads_daily(tool_id)`);
-      await db.run(sql`CREATE INDEX idx_downloads_daily_backend ON downloads_daily(backend_id)`);
-      await db.run(sql`CREATE INDEX idx_downloads_daily_date ON downloads_daily(date)`);
+      await db.run(
+        sql`CREATE INDEX idx_downloads_daily_tool ON downloads_daily(tool_id)`,
+      );
+      await db.run(
+        sql`CREATE INDEX idx_downloads_daily_backend ON downloads_daily(backend_id)`,
+      );
+      await db.run(
+        sql`CREATE INDEX idx_downloads_daily_date ON downloads_daily(date)`,
+      );
 
       console.log("Schema updated: backend_id is now NOT NULL");
     },

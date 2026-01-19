@@ -10,4 +10,4 @@ This repository tracks tool updates through git history analysis. The chart belo
 
 ![Tools Updated](charts/tools_updated.png)
 
-*Timeline showing the number of tools updated each day over the last 30 days*
+_Timeline showing the number of tools updated each day over the last 30 days_

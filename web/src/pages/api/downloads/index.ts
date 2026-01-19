@@ -1,7 +1,11 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupAnalytics } from '../../../../../src/analytics';
-import { cachedJsonResponse, errorResponse, CACHE_CONTROL } from '../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupAnalytics } from "../../../../../src/analytics";
+import {
+  cachedJsonResponse,
+  errorResponse,
+  CACHE_CONTROL,
+} from "../../../lib/api";
 
 // GET /api/downloads - Get aggregate download stats (public)
 export const GET: APIRoute = async ({ locals }) => {
@@ -14,7 +18,7 @@ export const GET: APIRoute = async ({ locals }) => {
 
     return cachedJsonResponse(stats, CACHE_CONTROL.API);
   } catch (error) {
-    console.error('Get all downloads error:', error);
-    return errorResponse('Failed to get download stats', 500);
+    console.error("Get all downloads error:", error);
+    return errorResponse("Failed to get download stats", 500);
   }
 };

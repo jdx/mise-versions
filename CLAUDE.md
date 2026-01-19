@@ -78,6 +78,7 @@ npx wrangler dev
 ### D1 Database Schema
 
 The `ANALYTICS_DB` contains:
+
 - `tools`: Tool metadata (name, latest_version, description, backends, etc.)
 - `versions`: Per-tool version data with created_at timestamps
 - `downloads`: Raw download tracking
@@ -88,6 +89,7 @@ The `ANALYTICS_DB` contains:
 ## GitHub Token Management
 
 The update workflow uses a token rotation system:
+
 - `TOKEN_MANAGER_URL` / `TOKEN_MANAGER_SECRET`: Cloudflare Worker API for token pool
 - `scripts/github-token.js`: Gets tokens, marks rate-limited tokens
 - Tokens rotate automatically when rate limited

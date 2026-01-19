@@ -3,14 +3,14 @@ import type { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 
 export async function runAnalyticsMigrations(
-  db: ReturnType<typeof drizzle>
+  db: ReturnType<typeof drizzle>,
 ): Promise<void> {
   console.log("Running analytics database migrations...");
 
   // Check if we need to migrate from old schema
   const tableInfo = await db.all(sql`PRAGMA table_info(downloads)`);
   const hasOldSchema = tableInfo.some(
-    (col: any) => col.name === "tool" && col.type === "TEXT"
+    (col: any) => col.name === "tool" && col.type === "TEXT",
   );
 
   if (hasOldSchema) {
@@ -131,7 +131,7 @@ export async function runAnalyticsMigrations(
   // Add backend_id column to downloads if it doesn't exist
   const downloadsColumns = await db.all(sql`PRAGMA table_info(downloads)`);
   const hasBackendIdInDownloads = downloadsColumns.some(
-    (col: any) => col.name === "backend_id"
+    (col: any) => col.name === "backend_id",
   );
   if (!hasBackendIdInDownloads) {
     console.log("Adding backend_id column to downloads table...");
@@ -158,46 +158,51 @@ export async function runAnalyticsMigrations(
   // Add backend_id column to downloads_daily if it doesn't exist
   const dailyColumns = await db.all(sql`PRAGMA table_info(downloads_daily)`);
   const hasBackendIdInDaily = dailyColumns.some(
-    (col: any) => col.name === "backend_id"
+    (col: any) => col.name === "backend_id",
   );
   if (!hasBackendIdInDaily) {
     console.log("Adding backend_id column to downloads_daily table...");
-    await db.run(sql`ALTER TABLE downloads_daily ADD COLUMN backend_id INTEGER`);
+    await db.run(
+      sql`ALTER TABLE downloads_daily ADD COLUMN backend_id INTEGER`,
+    );
   }
 
   // Create indices for efficient queries
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_id ON downloads(tool_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_id ON downloads(tool_id)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_backend_id ON downloads(backend_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_backend_id ON downloads(backend_id)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_at ON downloads(created_at)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_at ON downloads(created_at)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_ip_hash ON downloads(ip_hash)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_ip_hash ON downloads(ip_hash)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_tool ON downloads_daily(tool_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_tool ON downloads_daily(tool_id)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_backend ON downloads_daily(backend_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_backend ON downloads_daily(backend_id)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_date ON downloads_daily(date)`
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_date ON downloads_daily(date)`,
   );
 
   // Create rollup tables for fast queries
   // Check if daily_tool_stats needs to be recreated (missing PRIMARY KEY)
   const toolStatsInfo = await db.all(sql`PRAGMA table_info(daily_tool_stats)`);
-  const needsRecreate = toolStatsInfo.length === 0 || !toolStatsInfo.some((col: any) => col.pk > 0);
+  const needsRecreate =
+    toolStatsInfo.length === 0 || !toolStatsInfo.some((col: any) => col.pk > 0);
 
   if (needsRecreate) {
-    console.log("Creating/recreating rollup tables with correct PRIMARY KEY constraints...");
+    console.log(
+      "Creating/recreating rollup tables with correct PRIMARY KEY constraints...",
+    );
 
     await db.run(sql`DROP TABLE IF EXISTS daily_stats`);
     await db.run(sql`
@@ -233,19 +238,19 @@ export async function runAnalyticsMigrations(
 
   // Create indices for rollup tables
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date ON daily_tool_stats(date)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date ON daily_tool_stats(date)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool_date ON daily_tool_stats(tool_id, date)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool_date ON daily_tool_stats(tool_id, date)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_date ON daily_backend_stats(date)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_date ON daily_backend_stats(date)`,
   );
 
   // Create version_requests table for mise DAU/MAU tracking
@@ -257,10 +262,10 @@ export async function runAnalyticsMigrations(
     )
   `);
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_at ON version_requests(created_at)`
+    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_at ON version_requests(created_at)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_hash ON version_requests(ip_hash)`
+    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_hash ON version_requests(ip_hash)`,
   );
 
   // Create daily_version_stats rollup table
@@ -274,30 +279,34 @@ export async function runAnalyticsMigrations(
 
   // Add metadata columns to tools table if they don't exist
   const toolsColumns = await db.all(sql`PRAGMA table_info(tools)`);
-  const existingToolsCols = new Set((toolsColumns as any[]).map((col: any) => col.name));
+  const existingToolsCols = new Set(
+    (toolsColumns as any[]).map((col: any) => col.name),
+  );
 
   const toolsMetadataCols = [
-    { name: 'latest_version', type: 'TEXT' },
-    { name: 'latest_stable_version', type: 'TEXT' },
-    { name: 'version_count', type: 'INTEGER DEFAULT 0' },
-    { name: 'last_updated', type: 'TEXT' },
-    { name: 'description', type: 'TEXT' },
-    { name: 'github', type: 'TEXT' },
-    { name: 'homepage', type: 'TEXT' },
-    { name: 'repo_url', type: 'TEXT' },
-    { name: 'license', type: 'TEXT' },
-    { name: 'backends', type: 'TEXT' },  // JSON array
-    { name: 'authors', type: 'TEXT' },   // JSON array
-    { name: 'security', type: 'TEXT' },  // JSON array
-    { name: 'package_urls', type: 'TEXT' },  // JSON object
-    { name: 'aqua_link', type: 'TEXT' },
-    { name: 'metadata_updated_at', type: 'TEXT' },
+    { name: "latest_version", type: "TEXT" },
+    { name: "latest_stable_version", type: "TEXT" },
+    { name: "version_count", type: "INTEGER DEFAULT 0" },
+    { name: "last_updated", type: "TEXT" },
+    { name: "description", type: "TEXT" },
+    { name: "github", type: "TEXT" },
+    { name: "homepage", type: "TEXT" },
+    { name: "repo_url", type: "TEXT" },
+    { name: "license", type: "TEXT" },
+    { name: "backends", type: "TEXT" }, // JSON array
+    { name: "authors", type: "TEXT" }, // JSON array
+    { name: "security", type: "TEXT" }, // JSON array
+    { name: "package_urls", type: "TEXT" }, // JSON object
+    { name: "aqua_link", type: "TEXT" },
+    { name: "metadata_updated_at", type: "TEXT" },
   ];
 
   for (const col of toolsMetadataCols) {
     if (!existingToolsCols.has(col.name)) {
       console.log(`Adding ${col.name} column to tools table...`);
-      await db.run(sql.raw(`ALTER TABLE tools ADD COLUMN ${col.name} ${col.type}`));
+      await db.run(
+        sql.raw(`ALTER TABLE tools ADD COLUMN ${col.name} ${col.type}`),
+      );
     }
   }
 
@@ -319,21 +328,29 @@ export async function runAnalyticsMigrations(
 
   // Create indices for versions table
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_id ON versions(tool_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_id ON versions(tool_id)`,
   );
 
   // Add from_mise column to versions table (1 = from mise ls-remote, 0 = from user tracking)
   const versionsColumns = await db.all(sql`PRAGMA table_info(versions)`);
-  const hasFromMise = versionsColumns.some((col: any) => col.name === "from_mise");
+  const hasFromMise = versionsColumns.some(
+    (col: any) => col.name === "from_mise",
+  );
   if (!hasFromMise) {
     console.log("Adding from_mise column to versions table...");
-    await db.run(sql`ALTER TABLE versions ADD COLUMN from_mise INTEGER DEFAULT 1`);
+    await db.run(
+      sql`ALTER TABLE versions ADD COLUMN from_mise INTEGER DEFAULT 1`,
+    );
     // Set existing versions as from_mise since they came from the sync script
-    await db.run(sql`UPDATE versions SET from_mise = 1 WHERE from_mise IS NULL`);
+    await db.run(
+      sql`UPDATE versions SET from_mise = 1 WHERE from_mise IS NULL`,
+    );
   }
 
   // Add sort_order column to versions table for preserving TOML file order
-  const hasSortOrder = versionsColumns.some((col: any) => col.name === "sort_order");
+  const hasSortOrder = versionsColumns.some(
+    (col: any) => col.name === "sort_order",
+  );
   if (!hasSortOrder) {
     console.log("Adding sort_order column to versions table...");
     await db.run(sql`ALTER TABLE versions ADD COLUMN sort_order INTEGER`);
@@ -358,10 +375,10 @@ export async function runAnalyticsMigrations(
     )
   `);
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_updates_date ON version_updates(date)`
+    sql`CREATE INDEX IF NOT EXISTS idx_version_updates_date ON version_updates(date)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_updates_tool_id ON version_updates(tool_id)`
+    sql`CREATE INDEX IF NOT EXISTS idx_version_updates_tool_id ON version_updates(tool_id)`,
   );
 
   // Create daily_combined_stats table for combined DAU (downloads + version_requests)
@@ -391,10 +408,10 @@ export async function runAnalyticsMigrations(
     )
   `);
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_date ON daily_tool_backend_stats(date)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_date ON daily_tool_backend_stats(date)`,
   );
   await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_backend ON daily_tool_backend_stats(backend_type)`
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_backend ON daily_tool_backend_stats(backend_type)`,
   );
 
   console.log("Analytics migrations completed");

@@ -53,14 +53,25 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
             onClick={onClose}
             class="text-gray-400 hover:text-gray-200 transition-colors"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
 
         <p class="text-gray-400 text-sm mb-6">
-          Add a download badge to your README to show how many people are using {tool} with mise.
+          Add a download badge to your README to show how many people are using{" "}
+          {tool} with mise.
         </p>
 
         <div class="space-y-6">
@@ -71,7 +82,9 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
             return (
               <div key={badge.id} class="border border-dark-600 rounded-lg p-4">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="text-sm font-medium text-gray-300">{badge.label}</span>
+                  <span class="text-sm font-medium text-gray-300">
+                    {badge.label}
+                  </span>
                   <img src={badge.url} alt={badge.label} class="h-5" />
                 </div>
 
@@ -80,7 +93,9 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
                     <div class="flex items-center justify-between mb-1">
                       <span class="text-xs text-gray-500">Markdown</span>
                       <button
-                        onClick={() => copyToClipboard(markdownSnippet, `${badge.id}-md`)}
+                        onClick={() =>
+                          copyToClipboard(markdownSnippet, `${badge.id}-md`)
+                        }
                         class="text-xs text-neon-blue hover:text-neon-purple transition-colors"
                       >
                         {copiedId === `${badge.id}-md` ? "Copied!" : "Copy"}
@@ -95,7 +110,9 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
                     <div class="flex items-center justify-between mb-1">
                       <span class="text-xs text-gray-500">HTML</span>
                       <button
-                        onClick={() => copyToClipboard(htmlSnippet, `${badge.id}-html`)}
+                        onClick={() =>
+                          copyToClipboard(htmlSnippet, `${badge.id}-html`)
+                        }
                         class="text-xs text-neon-blue hover:text-neon-purple transition-colors"
                       >
                         {copiedId === `${badge.id}-html` ? "Copied!" : "Copy"}
