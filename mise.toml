@@ -15,8 +15,13 @@ run = "bunx wrangler deploy"
 
 [tools]
 "aqua:chmln/sd" = "latest"
+bun = "latest"
 fd = "latest"
 "github:peak/s5cmd" = "latest"
+hk = "latest"
+pkl = "latest"
+shellcheck = "latest"
+shfmt = "latest"
 uv = "latest"
 wait-for-gh-rate-limit = "latest"
 

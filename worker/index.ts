@@ -1,8 +1,8 @@
 // Cloudflare Worker entry point
 // Wraps Astro's generated worker and adds scheduled handler support
 import { drizzle } from "drizzle-orm/d1";
-import { runMigrations } from "../src/migrations";
-import { runAnalyticsMigrations, setupAnalytics } from "../src/analytics";
+import { runMigrations } from "../src/migrations.js";
+import { runAnalyticsMigrations, setupAnalytics } from "../src/analytics/index.js";
 
 // Type for environment bindings
 interface Env {
