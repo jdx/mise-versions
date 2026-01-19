@@ -12,7 +12,10 @@ import assert from "node:assert";
  * Mock request factory
  */
 function createMockRequest(body, options = {}) {
-  const headers = new Map(Object.entries(options.headers || {}));
+  // Store headers with lowercase keys for case-insensitive lookup (per HTTP spec)
+  const headers = new Map(
+    Object.entries(options.headers || {}).map(([k, v]) => [k.toLowerCase(), v]),
+  );
   return {
     json: async () => body,
     headers: {
