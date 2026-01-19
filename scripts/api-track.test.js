@@ -63,17 +63,10 @@ async function handleTrackRequest(request, locals, deps = {}) {
   try {
     const body = await request.json();
 
-    // Validate required fields
+    // Validate required fields (matches real implementation)
+    // Note: !body.tool catches both missing and empty string cases since !"" is true
     if (!body.tool || !body.version) {
       return new Response(JSON.stringify({ error: "Missing required fields: tool, version" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-
-    // Validate field types
-    if (typeof body.tool !== "string" || typeof body.version !== "string") {
-      return new Response(JSON.stringify({ error: "Invalid field types: tool and version must be strings" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       });
@@ -133,6 +126,7 @@ describe("/api/track endpoint", () => {
       const body = JSON.parse(await response.text());
 
       assert.strictEqual(response.status, 400);
+      assert.ok(body.error.includes("Missing required fields"));
     });
 
     it("should reject requests with empty version", async () => {
@@ -143,28 +137,7 @@ describe("/api/track endpoint", () => {
       const body = JSON.parse(await response.text());
 
       assert.strictEqual(response.status, 400);
-    });
-
-    it("should reject requests with non-string tool", async () => {
-      const request = createMockRequest({ tool: 123, version: "1.0.0" });
-      const locals = createMockLocals();
-
-      const response = await handleTrackRequest(request, locals);
-      const body = JSON.parse(await response.text());
-
-      assert.strictEqual(response.status, 400);
-      assert.ok(body.error.includes("Invalid field types"));
-    });
-
-    it("should reject requests with non-string version", async () => {
-      const request = createMockRequest({ tool: "node", version: 123 });
-      const locals = createMockLocals();
-
-      const response = await handleTrackRequest(request, locals);
-      const body = JSON.parse(await response.text());
-
-      assert.strictEqual(response.status, 400);
-      assert.ok(body.error.includes("Invalid field types"));
+      assert.ok(body.error.includes("Missing required fields"));
     });
   });
 
