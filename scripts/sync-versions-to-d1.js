@@ -42,8 +42,8 @@ async function main() {
   if (!fullSync && existsSync(UPDATED_TOOLS_FILE)) {
     const updatedTools = readFileSync(UPDATED_TOOLS_FILE, "utf-8")
       .split("\n")
-      .map(t => t.trim())
-      .filter(t => t.length > 0);
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
 
     if (updatedTools.length === 0) {
       console.log("No tools were updated - skipping versions sync");
@@ -53,13 +53,17 @@ async function main() {
     toolsToSync = new Set(updatedTools);
     console.log(`Incremental sync: ${toolsToSync.size} updated tools`);
   } else {
-    console.log(fullSync ? "Full sync requested" : "No updated_tools.txt found - doing full sync");
+    console.log(
+      fullSync
+        ? "Full sync requested"
+        : "No updated_tools.txt found - doing full sync",
+    );
   }
 
   // Find TOML files (filtered if incremental)
-  let files = readdirSync(DOCS_DIR).filter(f => f.endsWith('.toml'));
+  let files = readdirSync(DOCS_DIR).filter((f) => f.endsWith(".toml"));
   if (toolsToSync) {
-    files = files.filter(f => toolsToSync.has(basename(f, '.toml')));
+    files = files.filter((f) => toolsToSync.has(basename(f, ".toml")));
   }
   console.log(`Found ${files.length} TOML files to sync`);
 
@@ -68,20 +72,22 @@ async function main() {
   let totalVersions = 0;
 
   for (const file of files) {
-    const toolName = basename(file, '.toml');
+    const toolName = basename(file, ".toml");
     const filePath = join(DOCS_DIR, file);
 
     try {
-      const content = readFileSync(filePath, 'utf-8');
+      const content = readFileSync(filePath, "utf-8");
       const parsed = smolToml.parse(content);
       const versionsObj = parsed.versions || {};
 
-      const versions = Object.entries(versionsObj).map(([version, data], index) => ({
-        version,
-        created_at: data?.created_at || null,
-        release_url: data?.release_url || null,
-        sort_order: index,
-      }));
+      const versions = Object.entries(versionsObj).map(
+        ([version, data], index) => ({
+          version,
+          created_at: data?.created_at || null,
+          release_url: data?.release_url || null,
+          sort_order: index,
+        }),
+      );
 
       if (versions.length > 0) {
         allTools.push({ tool: toolName, versions });
@@ -92,7 +98,9 @@ async function main() {
     }
   }
 
-  console.log(`Parsed ${allTools.length} tools with ${totalVersions} total versions`);
+  console.log(
+    `Parsed ${allTools.length} tools with ${totalVersions} total versions`,
+  );
 
   // Sync in batches with parallel requests
   const syncUrl = `${apiUrl}/api/admin/versions/sync`;
@@ -106,7 +114,9 @@ async function main() {
     batches.push(allTools.slice(i, i + BATCH_SIZE));
   }
 
-  console.log(`Syncing ${batches.length} batches (${PARALLEL_REQUESTS} parallel requests)...`);
+  console.log(
+    `Syncing ${batches.length} batches (${PARALLEL_REQUESTS} parallel requests)...`,
+  );
 
   // Process batches in parallel groups
   for (let i = 0; i < batches.length; i += PARALLEL_REQUESTS) {
@@ -114,7 +124,9 @@ async function main() {
     const batchStart = i + 1;
     const batchEnd = Math.min(i + PARALLEL_REQUESTS, batches.length);
 
-    console.log(`Processing batches ${batchStart}-${batchEnd} of ${batches.length}...`);
+    console.log(
+      `Processing batches ${batchStart}-${batchEnd} of ${batches.length}...`,
+    );
 
     const results = await Promise.allSettled(
       parallelBatches.map(async (batch, idx) => {
@@ -122,7 +134,7 @@ async function main() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${apiSecret}`,
+            Authorization: `Bearer ${apiSecret}`,
           },
           body: JSON.stringify({ tools: batch }),
         });
@@ -133,11 +145,11 @@ async function main() {
         }
 
         return { batch, result: await response.json() };
-      })
+      }),
     );
 
     for (const result of results) {
-      if (result.status === 'fulfilled') {
+      if (result.status === "fulfilled") {
         toolsSynced += result.value.result.tools_processed || 0;
         versionsSynced += result.value.result.versions_upserted || 0;
         errors += result.value.result.errors || 0;

@@ -68,7 +68,9 @@ export function useToolGrowth(tool: string) {
   useEffect(() => {
     async function fetchToolGrowth() {
       try {
-        const response = await fetch(`/api/downloads/${encodeURIComponent(tool)}/growth`);
+        const response = await fetch(
+          `/api/downloads/${encodeURIComponent(tool)}/growth`,
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch tool growth data");
         }

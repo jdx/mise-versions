@@ -16,10 +16,18 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
       const sixtyDaysAgo = now - 60 * 86400;
 
       // Get downloads for each period from rollup tables
-      const thisWeekStart = new Date(sevenDaysAgo * 1000).toISOString().split("T")[0];
-      const lastWeekStart = new Date(fourteenDaysAgo * 1000).toISOString().split("T")[0];
-      const thisMonthStart = new Date(thirtyDaysAgo * 1000).toISOString().split("T")[0];
-      const lastMonthStart = new Date(sixtyDaysAgo * 1000).toISOString().split("T")[0];
+      const thisWeekStart = new Date(sevenDaysAgo * 1000)
+        .toISOString()
+        .split("T")[0];
+      const lastWeekStart = new Date(fourteenDaysAgo * 1000)
+        .toISOString()
+        .split("T")[0];
+      const thisMonthStart = new Date(thirtyDaysAgo * 1000)
+        .toISOString()
+        .split("T")[0];
+      const lastMonthStart = new Date(sixtyDaysAgo * 1000)
+        .toISOString()
+        .split("T")[0];
 
       // Global stats for this week
       const thisWeekGlobal = await db
@@ -36,10 +44,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
           total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
         })
         .from(dailyStats)
-        .where(and(
-          sql`${dailyStats.date} >= ${lastWeekStart}`,
-          sql`${dailyStats.date} < ${thisWeekStart}`
-        ))
+        .where(
+          and(
+            sql`${dailyStats.date} >= ${lastWeekStart}`,
+            sql`${dailyStats.date} < ${thisWeekStart}`,
+          ),
+        )
         .get();
 
       // Global stats for this month
@@ -57,10 +67,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
           total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
         })
         .from(dailyStats)
-        .where(and(
-          sql`${dailyStats.date} >= ${lastMonthStart}`,
-          sql`${dailyStats.date} < ${thisMonthStart}`
-        ))
+        .where(
+          and(
+            sql`${dailyStats.date} >= ${lastMonthStart}`,
+            sql`${dailyStats.date} < ${thisMonthStart}`,
+          ),
+        )
         .get();
 
       // Calculate global growth rates
@@ -69,12 +81,14 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
       const thisMonthTotal = thisMonthGlobal?.total ?? 0;
       const lastMonthTotal = lastMonthGlobal?.total ?? 0;
 
-      const wowGrowth = lastWeekTotal > 0
-        ? ((thisWeekTotal - lastWeekTotal) / lastWeekTotal) * 100
-        : null;
-      const momGrowth = lastMonthTotal > 0
-        ? ((thisMonthTotal - lastMonthTotal) / lastMonthTotal) * 100
-        : null;
+      const wowGrowth =
+        lastWeekTotal > 0
+          ? ((thisWeekTotal - lastWeekTotal) / lastWeekTotal) * 100
+          : null;
+      const momGrowth =
+        lastMonthTotal > 0
+          ? ((thisMonthTotal - lastMonthTotal) / lastMonthTotal) * 100
+          : null;
 
       // Get per-tool growth for this week vs last week
       const thisWeekByTool = await db
@@ -93,25 +107,34 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
           downloads: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)`,
         })
         .from(dailyToolStats)
-        .where(and(
-          sql`${dailyToolStats.date} >= ${lastWeekStart}`,
-          sql`${dailyToolStats.date} < ${thisWeekStart}`
-        ))
+        .where(
+          and(
+            sql`${dailyToolStats.date} >= ${lastWeekStart}`,
+            sql`${dailyToolStats.date} < ${thisWeekStart}`,
+          ),
+        )
         .groupBy(dailyToolStats.tool_id)
         .all();
 
       // Build tool growth map
-      const thisWeekMap = new Map(thisWeekByTool.map(t => [t.tool_id, t.downloads]));
-      const lastWeekMap = new Map(lastWeekByTool.map(t => [t.tool_id, t.downloads]));
+      const thisWeekMap = new Map(
+        thisWeekByTool.map((t) => [t.tool_id, t.downloads]),
+      );
+      const lastWeekMap = new Map(
+        lastWeekByTool.map((t) => [t.tool_id, t.downloads]),
+      );
 
       // Get tool names
-      const allToolIds = new Set([...thisWeekMap.keys(), ...lastWeekMap.keys()]);
+      const allToolIds = new Set([
+        ...thisWeekMap.keys(),
+        ...lastWeekMap.keys(),
+      ]);
       const toolNames = await db
         .select({ id: tools.id, name: tools.name })
         .from(tools)
         .where(sql`${tools.id} IN (${[...allToolIds].join(",")})`)
         .all();
-      const toolIdToName = new Map(toolNames.map(t => [t.id, t.name]));
+      const toolIdToName = new Map(toolNames.map((t) => [t.id, t.name]));
 
       // Calculate per-tool growth
       const toolGrowth: Array<{
@@ -131,9 +154,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
         // Only include tools with significant activity
         if (thisWeek < 10 && lastWeek < 10) continue;
 
-        const wow = lastWeek > 0
-          ? ((thisWeek - lastWeek) / lastWeek) * 100
-          : (thisWeek > 0 ? 100 : null);
+        const wow =
+          lastWeek > 0
+            ? ((thisWeek - lastWeek) / lastWeek) * 100
+            : thisWeek > 0
+              ? 100
+              : null;
 
         toolGrowth.push({
           tool: toolName,
@@ -145,12 +171,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
 
       // Sort by WoW growth, filter to top growing and declining
       const growingTools = toolGrowth
-        .filter(t => t.wow !== null && t.wow > 0)
+        .filter((t) => t.wow !== null && t.wow > 0)
         .sort((a, b) => (b.wow ?? 0) - (a.wow ?? 0))
         .slice(0, 10);
 
       const decliningTools = toolGrowth
-        .filter(t => t.wow !== null && t.wow < 0)
+        .filter((t) => t.wow !== null && t.wow < 0)
         .sort((a, b) => (a.wow ?? 0) - (b.wow ?? 0))
         .slice(0, 10);
 

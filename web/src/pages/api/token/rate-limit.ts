@@ -1,7 +1,7 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupDatabase } from '../../../../../src/database';
-import { requireApiAuth, CORS_HEADERS } from '../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupDatabase } from "../../../../../src/database";
+import { requireApiAuth, CORS_HEADERS } from "../../../lib/api";
 
 // POST /api/token/rate-limit - Mark a token as rate-limited
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -19,7 +19,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
     reset_at: string;
   };
 
-  await database.markTokenRateLimited(rateLimitData.token_id, rateLimitData.reset_at);
+  await database.markTokenRateLimited(
+    rateLimitData.token_id,
+    rateLimitData.reset_at,
+  );
 
-  return new Response('Token marked as rate-limited', { headers: CORS_HEADERS });
+  return new Response("Token marked as rate-limited", {
+    headers: CORS_HEADERS,
+  });
 };

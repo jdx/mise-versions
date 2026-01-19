@@ -16,8 +16,13 @@ import {
 
 export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
   // Populate daily_version_stats rollup table for a specific date
-  async function populateVersionStatsRollup(date: string, d1?: D1Database): Promise<boolean> {
-    const dateStart = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000);
+  async function populateVersionStatsRollup(
+    date: string,
+    d1?: D1Database,
+  ): Promise<boolean> {
+    const dateStart = Math.floor(
+      new Date(date + "T00:00:00Z").getTime() / 1000,
+    );
     const dateEnd = dateStart + 86400;
 
     const stats = await db
@@ -29,16 +34,19 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           sql`${versionRequests.created_at} >= ${dateStart}`,
-          sql`${versionRequests.created_at} < ${dateEnd}`
-        )
+          sql`${versionRequests.created_at} < ${dateEnd}`,
+        ),
       )
       .get();
 
     if (stats && stats.total > 0) {
       if (d1) {
-        await d1.prepare(
-          "INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users) VALUES (?, ?, ?)"
-        ).bind(date, stats.total, stats.unique_users).run();
+        await d1
+          .prepare(
+            "INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users) VALUES (?, ?, ?)",
+          )
+          .bind(date, stats.total, stats.unique_users)
+          .run();
       } else {
         await db.run(sql`
           INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users)
@@ -51,7 +59,10 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
   }
 
   // Populate rollup tables for a specific date (call daily via cron)
-  async function populateRollupTables(date: string, d1?: D1Database): Promise<{
+  async function populateRollupTables(
+    date: string,
+    d1?: D1Database,
+  ): Promise<{
     dailyStats: boolean;
     combinedStats: boolean;
     toolStats: number;
@@ -59,7 +70,9 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     toolBackendStats: number;
   }> {
     // Calculate timestamp range for the date (UTC)
-    const dateStart = Math.floor(new Date(date + "T00:00:00Z").getTime() / 1000);
+    const dateStart = Math.floor(
+      new Date(date + "T00:00:00Z").getTime() / 1000,
+    );
     const dateEnd = dateStart + 86400;
 
     // 1. Populate daily_stats
@@ -72,16 +85,19 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           sql`${downloads.created_at} >= ${dateStart}`,
-          sql`${downloads.created_at} < ${dateEnd}`
-        )
+          sql`${downloads.created_at} < ${dateEnd}`,
+        ),
       )
       .get();
 
     if (globalStats && globalStats.total > 0) {
       if (d1) {
-        await d1.prepare(
-          "INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES (?, ?, ?)"
-        ).bind(date, globalStats.total, globalStats.unique_users).run();
+        await d1
+          .prepare(
+            "INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES (?, ?, ?)",
+          )
+          .bind(date, globalStats.total, globalStats.unique_users)
+          .run();
       } else {
         await db.run(sql`
           INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
@@ -94,13 +110,18 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     let combinedDau = 0;
     if (d1) {
       // Use raw D1 query to avoid parameter binding issues in subqueries
-      const combinedResult = await d1.prepare(`
+      const combinedResult = await d1
+        .prepare(
+          `
         SELECT COUNT(DISTINCT ip_hash) as unique_users FROM (
           SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at < ?
           UNION
           SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at < ?
         )
-      `).bind(dateStart, dateEnd, dateStart, dateEnd).first<{ unique_users: number }>();
+      `,
+        )
+        .bind(dateStart, dateEnd, dateStart, dateEnd)
+        .first<{ unique_users: number }>();
       combinedDau = combinedResult?.unique_users ?? 0;
     } else {
       const combinedDauResult = await db
@@ -112,16 +133,19 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
             SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at < ${dateEnd}
             UNION
             SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at < ${dateEnd}
-          )`
+          )`,
         )
         .get();
       combinedDau = combinedDauResult?.unique_users ?? 0;
     }
     if (combinedDau > 0) {
       if (d1) {
-        await d1.prepare(
-          "INSERT OR REPLACE INTO daily_combined_stats (date, unique_users) VALUES (?, ?)"
-        ).bind(date, combinedDau).run();
+        await d1
+          .prepare(
+            "INSERT OR REPLACE INTO daily_combined_stats (date, unique_users) VALUES (?, ?)",
+          )
+          .bind(date, combinedDau)
+          .run();
       } else {
         await db.run(sql`
           INSERT OR REPLACE INTO daily_combined_stats (date, unique_users)
@@ -141,8 +165,8 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           sql`${downloads.created_at} >= ${dateStart}`,
-          sql`${downloads.created_at} < ${dateEnd}`
-        )
+          sql`${downloads.created_at} < ${dateEnd}`,
+        ),
       )
       .groupBy(downloads.tool_id)
       .all();
@@ -151,10 +175,12 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       const BATCH_SIZE = 50;
       for (let i = 0; i < toolStats.length; i += BATCH_SIZE) {
         const batch = toolStats.slice(i, i + BATCH_SIZE);
-        const statements = batch.map(stat =>
-          d1.prepare(
-            "INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users) VALUES (?, ?, ?, ?)"
-          ).bind(date, stat.tool_id, stat.downloads, stat.unique_users)
+        const statements = batch.map((stat) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users) VALUES (?, ?, ?, ?)",
+            )
+            .bind(date, stat.tool_id, stat.downloads, stat.unique_users),
         );
         await d1.batch(statements);
       }
@@ -179,19 +205,25 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           sql`${downloads.created_at} >= ${dateStart}`,
-          sql`${downloads.created_at} < ${dateEnd}`
-        )
+          sql`${downloads.created_at} < ${dateEnd}`,
+        ),
       )
       .groupBy(backends.full)
       .all();
 
     // Group by backend type (prefix before colon)
-    const backendTypeStats = new Map<string, { downloads: number; unique_users: number }>();
+    const backendTypeStats = new Map<
+      string,
+      { downloads: number; unique_users: number }
+    >();
     for (const r of backendResults) {
       const backendType = r.backend_full
         ? r.backend_full.split(":")[0]
         : "unknown";
-      const existing = backendTypeStats.get(backendType) || { downloads: 0, unique_users: 0 };
+      const existing = backendTypeStats.get(backendType) || {
+        downloads: 0,
+        unique_users: 0,
+      };
       existing.downloads += r.downloads;
       existing.unique_users += r.unique_users;
       backendTypeStats.set(backendType, existing);
@@ -199,9 +231,11 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
 
     if (d1 && backendTypeStats.size > 0) {
       const statements = [...backendTypeStats].map(([backendType, stat]) =>
-        d1.prepare(
-          "INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES (?, ?, ?, ?)"
-        ).bind(date, backendType, stat.downloads, stat.unique_users)
+        d1
+          .prepare(
+            "INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES (?, ?, ?, ?)",
+          )
+          .bind(date, backendType, stat.downloads, stat.unique_users),
       );
       await d1.batch(statements);
     } else {
@@ -225,14 +259,18 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           sql`${downloads.created_at} >= ${dateStart}`,
-          sql`${downloads.created_at} < ${dateEnd}`
-        )
+          sql`${downloads.created_at} < ${dateEnd}`,
+        ),
       )
       .groupBy(downloads.tool_id, backends.full)
       .all();
 
     // Group by tool_id and backend_type
-    const toolBackendStats: Array<{ tool_id: number; backend_type: string; downloads: number }> = [];
+    const toolBackendStats: Array<{
+      tool_id: number;
+      backend_type: string;
+      downloads: number;
+    }> = [];
     for (const r of toolBackendResults) {
       const backendType = r.backend_full
         ? r.backend_full.split(":")[0]
@@ -248,10 +286,12 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       const BATCH_SIZE = 50;
       for (let i = 0; i < toolBackendStats.length; i += BATCH_SIZE) {
         const batch = toolBackendStats.slice(i, i + BATCH_SIZE);
-        const statements = batch.map(stat =>
-          d1.prepare(
-            "INSERT OR REPLACE INTO daily_tool_backend_stats (date, tool_id, backend_type, downloads) VALUES (?, ?, ?, ?)"
-          ).bind(date, stat.tool_id, stat.backend_type, stat.downloads)
+        const statements = batch.map((stat) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_tool_backend_stats (date, tool_id, backend_type, downloads) VALUES (?, ?, ?, ?)",
+            )
+            .bind(date, stat.tool_id, stat.backend_type, stat.downloads),
         );
         await d1.batch(statements);
       }
@@ -275,7 +315,10 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
 
   // Populate daily MAU stats for a specific date
   // MAU = unique users in the 30 days ending on this date (across downloads + version_requests)
-  async function populateDailyMauStats(date: string, d1?: D1Database): Promise<boolean> {
+  async function populateDailyMauStats(
+    date: string,
+    d1?: D1Database,
+  ): Promise<boolean> {
     // Calculate the 30-day window ending on this date
     const dateEnd = Math.floor(new Date(date + "T23:59:59Z").getTime() / 1000);
     const dateStart = dateEnd - 30 * 86400;
@@ -284,13 +327,18 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     let mau = 0;
     if (d1) {
       // Use raw D1 query to avoid parameter binding issues in subqueries
-      const mauResult = await d1.prepare(`
+      const mauResult = await d1
+        .prepare(
+          `
         SELECT COUNT(DISTINCT ip_hash) as mau FROM (
           SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at <= ?
           UNION
           SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at <= ?
         )
-      `).bind(dateStart, dateEnd, dateStart, dateEnd).first<{ mau: number }>();
+      `,
+        )
+        .bind(dateStart, dateEnd, dateStart, dateEnd)
+        .first<{ mau: number }>();
       mau = mauResult?.mau ?? 0;
     } else {
       const mauResult = await db
@@ -302,7 +350,7 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
             SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
             UNION
             SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
-          )`
+          )`,
         )
         .get();
       mau = mauResult?.mau ?? 0;
@@ -310,9 +358,12 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
 
     if (mau > 0) {
       if (d1) {
-        await d1.prepare(
-          "INSERT OR REPLACE INTO daily_mau_stats (date, mau) VALUES (?, ?)"
-        ).bind(date, mau).run();
+        await d1
+          .prepare(
+            "INSERT OR REPLACE INTO daily_mau_stats (date, mau) VALUES (?, ?)",
+          )
+          .bind(date, mau)
+          .run();
       } else {
         await db.run(sql`
           INSERT OR REPLACE INTO daily_mau_stats (date, mau)
@@ -330,7 +381,10 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     populateDailyMauStats,
 
     // Backfill rollup tables for the last N days (one-time migration)
-    async backfillRollupTables(days: number = 90, d1?: D1Database): Promise<{ daysProcessed: number; mauDaysProcessed: number }> {
+    async backfillRollupTables(
+      days: number = 90,
+      d1?: D1Database,
+    ): Promise<{ daysProcessed: number; mauDaysProcessed: number }> {
       let daysProcessed = 0;
       let mauDaysProcessed = 0;
       const now = new Date();

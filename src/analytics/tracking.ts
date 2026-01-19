@@ -46,7 +46,9 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
     return id;
   }
 
-  async function getOrCreateBackendId(full: string | null): Promise<number | null> {
+  async function getOrCreateBackendId(
+    full: string | null,
+  ): Promise<number | null> {
     if (!full) return null;
 
     // Check cache first
@@ -81,7 +83,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
   async function getOrCreatePlatformId(
     os: string | null,
-    arch: string | null
+    arch: string | null,
   ): Promise<number | null> {
     if (!os && !arch) return null;
 
@@ -97,8 +99,8 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           os ? eq(platforms.os, os) : sql`${platforms.os} IS NULL`,
-          arch ? eq(platforms.arch, arch) : sql`${platforms.arch} IS NULL`
-        )
+          arch ? eq(platforms.arch, arch) : sql`${platforms.arch} IS NULL`,
+        ),
       )
       .get();
 
@@ -115,8 +117,8 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
       .where(
         and(
           os ? eq(platforms.os, os) : sql`${platforms.os} IS NULL`,
-          arch ? eq(platforms.arch, arch) : sql`${platforms.arch} IS NULL`
-        )
+          arch ? eq(platforms.arch, arch) : sql`${platforms.arch} IS NULL`,
+        ),
       )
       .get();
 
@@ -132,7 +134,9 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
     getOrCreatePlatformId,
 
     // Track a version request (for mise DAU/MAU) with daily deduplication per IP
-    async trackVersionRequest(ipHash: string): Promise<{ deduplicated: boolean }> {
+    async trackVersionRequest(
+      ipHash: string,
+    ): Promise<{ deduplicated: boolean }> {
       const now = Math.floor(Date.now() / 1000);
       const todayStart = Math.floor(now / 86400) * 86400; // Start of today (UTC)
 
@@ -143,8 +147,8 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
         .where(
           and(
             eq(versionRequests.ip_hash, ipHash),
-            sql`${versionRequests.created_at} >= ${todayStart}`
-          )
+            sql`${versionRequests.created_at} >= ${todayStart}`,
+          ),
         )
         .limit(1)
         .get();
@@ -169,7 +173,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
       ipHash: string,
       os: string | null,
       arch: string | null,
-      full: string | null = null // Full backend identifier (e.g., "aqua:nektos/act")
+      full: string | null = null, // Full backend identifier (e.g., "aqua:nektos/act")
     ): Promise<{ deduplicated: boolean }> {
       const toolId = await getOrCreateToolId(tool);
       const backendId = await getOrCreateBackendId(full);
@@ -186,8 +190,8 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
             eq(downloads.tool_id, toolId),
             eq(downloads.version, version),
             eq(downloads.ip_hash, ipHash),
-            sql`${downloads.created_at} >= ${todayStart}`
-          )
+            sql`${downloads.created_at} >= ${todayStart}`,
+          ),
         )
         .limit(1)
         .get();

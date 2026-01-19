@@ -1,5 +1,5 @@
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
 
 export interface Migration {
   id: number;
@@ -10,10 +10,10 @@ export interface Migration {
 export const migrations: Migration[] = [
   {
     id: 1,
-    name: 'initial_schema',
+    name: "initial_schema",
     async up(db) {
-      console.log('Running migration 1: initial_schema');
-      
+      console.log("Running migration 1: initial_schema");
+
       // Create tokens table
       await db.run(sql`
         CREATE TABLE IF NOT EXISTS tokens (
@@ -48,43 +48,53 @@ export const migrations: Migration[] = [
       `);
 
       // Create indices
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_user_id ON tokens(user_id)`);
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_active ON tokens(is_active)`);
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_last_used ON tokens(last_used)`);
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_token_usage_token_id ON token_usage(token_id)`);
-    }
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_user_id ON tokens(user_id)`,
+      );
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_active ON tokens(is_active)`,
+      );
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_last_used ON tokens(last_used)`,
+      );
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_token_usage_token_id ON token_usage(token_id)`,
+      );
+    },
   },
-  
+
   {
     id: 2,
-    name: 'add_rate_limited_at_column',
+    name: "add_rate_limited_at_column",
     async up(db) {
-      console.log('Running migration 2: add_rate_limited_at_column');
-      
+      console.log("Running migration 2: add_rate_limited_at_column");
+
       // Add rate_limited_at column to tokens table
       await db.run(sql`
         ALTER TABLE tokens 
         ADD COLUMN rate_limited_at TEXT
       `);
-      
+
       // Create index for the new column
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_rate_limited ON tokens(rate_limited_at)`);
-    }
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_rate_limited ON tokens(rate_limited_at)`,
+      );
+    },
   },
   {
     id: 3,
-    name: 'drop_token_usage_table',
+    name: "drop_token_usage_table",
     async up(db) {
-      console.log('Running migration 3: drop_token_usage_table');
+      console.log("Running migration 3: drop_token_usage_table");
       await db.run(sql`DROP TABLE IF EXISTS token_usage`);
-    }
+    },
   },
   {
     id: 4,
-    name: 'allow_null_expires_at',
+    name: "allow_null_expires_at",
     async up(db) {
-      console.log('Running migration 4: allow_null_expires_at');
-      
+      console.log("Running migration 4: allow_null_expires_at");
+
       // SQLite doesn't support ALTER COLUMN to change NOT NULL constraint
       // We need to recreate the table with the new schema
       await db.run(sql`
@@ -106,31 +116,39 @@ export const migrations: Migration[] = [
           rate_limited_at TEXT
         )
       `);
-      
+
       // Copy data from old table to new table
       await db.run(sql`
         INSERT INTO tokens_new 
         SELECT * FROM tokens
       `);
-      
+
       // Drop old table
       await db.run(sql`DROP TABLE tokens`);
-      
+
       // Rename new table to original name
       await db.run(sql`ALTER TABLE tokens_new RENAME TO tokens`);
-      
+
       // Recreate indices
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_user_id ON tokens(user_id)`);
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_active ON tokens(is_active)`);
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_last_used ON tokens(last_used)`);
-      await db.run(sql`CREATE INDEX IF NOT EXISTS idx_tokens_rate_limited ON tokens(rate_limited_at)`);
-    }
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_user_id ON tokens(user_id)`,
+      );
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_active ON tokens(is_active)`,
+      );
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_last_used ON tokens(last_used)`,
+      );
+      await db.run(
+        sql`CREATE INDEX IF NOT EXISTS idx_tokens_rate_limited ON tokens(rate_limited_at)`,
+      );
+    },
   },
 ];
 
 export async function runMigrations(db: ReturnType<typeof drizzle>) {
-  console.log('Starting database migrations...');
-  
+  console.log("Starting database migrations...");
+
   // Create migrations table if it doesn't exist
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS migrations (
@@ -144,23 +162,23 @@ export async function runMigrations(db: ReturnType<typeof drizzle>) {
   const appliedMigrations = await db.all(sql`
     SELECT id FROM migrations ORDER BY id
   `);
-  
+
   const appliedIds = new Set(appliedMigrations.map((m: any) => m.id));
-  
+
   // Run pending migrations
   for (const migration of migrations) {
     if (!appliedIds.has(migration.id)) {
       console.log(`Applying migration ${migration.id}: ${migration.name}`);
-      
+
       try {
         await migration.up(db);
-        
+
         // Record migration as applied
         await db.run(sql`
           INSERT INTO migrations (id, name, applied_at)
           VALUES (${migration.id}, ${migration.name}, ${new Date().toISOString()})
         `);
-        
+
         console.log(`✅ Migration ${migration.id} applied successfully`);
       } catch (error) {
         console.error(`❌ Migration ${migration.id} failed:`, error);
@@ -170,8 +188,8 @@ export async function runMigrations(db: ReturnType<typeof drizzle>) {
       console.log(`⏭️  Migration ${migration.id} already applied`);
     }
   }
-  
-  console.log('✅ All migrations completed');
+
+  console.log("✅ All migrations completed");
 }
 
 export async function getMigrationStatus(db: ReturnType<typeof drizzle>) {
@@ -179,12 +197,16 @@ export async function getMigrationStatus(db: ReturnType<typeof drizzle>) {
     const appliedMigrations = await db.all(sql`
       SELECT id, name, applied_at FROM migrations ORDER BY id
     `);
-    
+
     return {
       total: migrations.length,
       applied: appliedMigrations.length,
       pending: migrations.length - appliedMigrations.length,
-      appliedMigrations: appliedMigrations as Array<{ id: number; name: string; applied_at: string }>,
+      appliedMigrations: appliedMigrations as Array<{
+        id: number;
+        name: string;
+        applied_at: string;
+      }>,
     };
   } catch (error) {
     // Migrations table doesn't exist yet
@@ -195,4 +217,4 @@ export async function getMigrationStatus(db: ReturnType<typeof drizzle>) {
       appliedMigrations: [],
     };
   }
-} 
+}

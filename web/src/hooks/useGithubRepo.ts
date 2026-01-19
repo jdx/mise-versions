@@ -28,7 +28,7 @@ interface UseGithubRepoResult {
 
 export function useGithubRepo(
   owner: string | null,
-  repo: string | null
+  repo: string | null,
 ): UseGithubRepoResult {
   const { loading: authLoading } = useAuth();
   const [data, setData] = useState<GithubRepoInfo | null>(null);
@@ -47,7 +47,9 @@ export function useGithubRepo(
     setLoading(true);
     setError(null);
 
-    fetch(`/api/github/repo?owner=${encodeURIComponent(owner)}&repo=${encodeURIComponent(repo)}`)
+    fetch(
+      `/api/github/repo?owner=${encodeURIComponent(owner)}&repo=${encodeURIComponent(repo)}`,
+    )
       .then((res) => {
         if (!res.ok) {
           if (res.status === 401) {
@@ -67,7 +69,9 @@ export function useGithubRepo(
 }
 
 // Helper to parse GitHub URL or slug into owner/repo
-export function parseGithubSlug(slug: string | null): { owner: string; repo: string } | null {
+export function parseGithubSlug(
+  slug: string | null,
+): { owner: string; repo: string } | null {
   if (!slug) return null;
 
   // Handle full URLs like https://github.com/owner/repo

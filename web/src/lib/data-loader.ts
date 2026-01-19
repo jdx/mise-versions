@@ -1,13 +1,13 @@
 // Centralized data loading from D1
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
 
 // Pagination types
 export interface ToolsQueryParams {
   page?: number;
   limit?: number;
   search?: string;
-  sort?: 'name' | 'downloads' | 'updated';
+  sort?: "name" | "downloads" | "updated";
   backends?: string[];
 }
 
@@ -65,7 +65,9 @@ interface ToolRow {
 /**
  * Load tools manifest from D1 database
  */
-export async function loadToolsJson(analyticsDb: D1Database): Promise<ToolsData | null> {
+export async function loadToolsJson(
+  analyticsDb: D1Database,
+): Promise<ToolsData | null> {
   const db = drizzle(analyticsDb);
 
   const rows = await db.all<ToolRow>(sql`
@@ -90,9 +92,9 @@ export async function loadToolsJson(analyticsDb: D1Database): Promise<ToolsData 
     ORDER BY name
   `);
 
-  const tools: ToolMeta[] = rows.map(row => ({
+  const tools: ToolMeta[] = rows.map((row) => ({
     name: row.name,
-    latest_version: row.latest_version || '',
+    latest_version: row.latest_version || "",
     latest_stable_version: row.latest_stable_version || undefined,
     version_count: row.version_count || 0,
     last_updated: row.last_updated,
@@ -123,22 +125,18 @@ interface PaginatedToolRow extends ToolRow {
  */
 export async function loadToolsPaginated(
   analyticsDb: D1Database,
-  params: ToolsQueryParams = {}
+  params: ToolsQueryParams = {},
 ): Promise<PaginatedToolsResult> {
-  const {
-    page = 1,
-    limit = 50,
-    search,
-    sort = 'downloads',
-    backends,
-  } = params;
+  const { page = 1, limit = 50, search, sort = "downloads", backends } = params;
 
   const offset = (page - 1) * limit;
   const now = Math.floor(Date.now() / 1000);
-  const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000).toISOString().split('T')[0];
+  const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
+    .toISOString()
+    .split("T")[0];
 
   // Build WHERE conditions
-  const conditions: string[] = ['t.latest_version IS NOT NULL'];
+  const conditions: string[] = ["t.latest_version IS NOT NULL"];
   const bindParams: (string | number)[] = [];
 
   if (search && search.trim()) {
@@ -148,25 +146,27 @@ export async function loadToolsPaginated(
 
   // Backend filter - check if any backend in the JSON array starts with the backend type
   if (backends && backends.length > 0) {
-    const backendConditions = backends.map(() => "t.backends LIKE '%' || ? || ':%'").join(' OR ');
+    const backendConditions = backends
+      .map(() => "t.backends LIKE '%' || ? || ':%'")
+      .join(" OR ");
     conditions.push(`(${backendConditions})`);
     bindParams.push(...backends);
   }
 
-  const whereClause = conditions.join(' AND ');
+  const whereClause = conditions.join(" AND ");
 
   // Build ORDER BY clause
   let orderClause: string;
   switch (sort) {
-    case 'name':
-      orderClause = 't.name ASC';
+    case "name":
+      orderClause = "t.name ASC";
       break;
-    case 'updated':
-      orderClause = 't.last_updated DESC NULLS LAST';
+    case "updated":
+      orderClause = "t.last_updated DESC NULLS LAST";
       break;
-    case 'downloads':
+    case "downloads":
     default:
-      orderClause = 'downloads_30d DESC, t.name ASC';
+      orderClause = "downloads_30d DESC, t.name ASC";
       break;
   }
 
@@ -231,23 +231,50 @@ export async function loadToolsPaginated(
   let backendCountsResults: D1Result<{ backend_type: string; count: number }>;
 
   try {
-    mainResults = await analyticsDb.prepare(mainQuery).bind(...mainBindParams).all<PaginatedToolRow>();
+    mainResults = await analyticsDb
+      .prepare(mainQuery)
+      .bind(...mainBindParams)
+      .all<PaginatedToolRow>();
   } catch (e) {
-    console.error('Main query failed:', e, '\nQuery:', mainQuery, '\nParams:', mainBindParams);
+    console.error(
+      "Main query failed:",
+      e,
+      "\nQuery:",
+      mainQuery,
+      "\nParams:",
+      mainBindParams,
+    );
     throw new Error(`Main query failed: ${e}`);
   }
 
   try {
-    countResult = await analyticsDb.prepare(countQuery).bind(...countBindParams).first<{ total: number }>();
+    countResult = await analyticsDb
+      .prepare(countQuery)
+      .bind(...countBindParams)
+      .first<{ total: number }>();
   } catch (e) {
-    console.error('Count query failed:', e, '\nQuery:', countQuery, '\nParams:', countBindParams);
+    console.error(
+      "Count query failed:",
+      e,
+      "\nQuery:",
+      countQuery,
+      "\nParams:",
+      countBindParams,
+    );
     throw new Error(`Count query failed: ${e}`);
   }
 
   try {
-    backendCountsResults = await analyticsDb.prepare(backendCountsQuery).all<{ backend_type: string; count: number }>();
+    backendCountsResults = await analyticsDb
+      .prepare(backendCountsQuery)
+      .all<{ backend_type: string; count: number }>();
   } catch (e) {
-    console.error('Backend counts query failed:', e, '\nQuery:', backendCountsQuery);
+    console.error(
+      "Backend counts query failed:",
+      e,
+      "\nQuery:",
+      backendCountsQuery,
+    );
     throw new Error(`Backend counts query failed: ${e}`);
   }
 
@@ -255,9 +282,9 @@ export async function loadToolsPaginated(
   const totalPages = Math.ceil(totalCount / limit);
 
   // Parse tool rows
-  const tools: ToolMeta[] = (mainResults.results || []).map(row => ({
+  const tools: ToolMeta[] = (mainResults.results || []).map((row) => ({
     name: row.name,
-    latest_version: row.latest_version || '',
+    latest_version: row.latest_version || "",
     latest_stable_version: row.latest_stable_version || undefined,
     version_count: row.version_count || 0,
     last_updated: row.last_updated,

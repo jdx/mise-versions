@@ -1,9 +1,12 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
-import { hashIP, getClientIP } from '../../lib/hash';
-import { setupAnalytics } from '../../../../src/analytics';
-import { emitTelemetry, getMiseVersionFromHeaders } from '../../../../src/pipelines';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
+import { hashIP, getClientIP } from "../../lib/hash";
+import { setupAnalytics } from "../../../../src/analytics";
+import {
+  emitTelemetry,
+  getMiseVersionFromHeaders,
+} from "../../../../src/pipelines";
 
 interface VersionRow {
   version: string;
@@ -15,17 +18,17 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
   const { tool } = params;
 
   if (!tool) {
-    return new Response('Tool name required', {
+    return new Response("Tool name required", {
       status: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { "Content-Type": "text/plain" },
     });
   }
 
   // Validate tool name (alphanumeric, hyphens, underscores, slashes for namespaced tools)
   if (!/^[\w\-\/]+$/.test(tool)) {
-    return new Response('Invalid tool name', {
+    return new Response("Invalid tool name", {
       status: 400,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { "Content-Type": "text/plain" },
     });
   }
 
@@ -41,7 +44,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     if (toolResult.length === 0) {
       return new Response(`Tool "${tool}" not found`, {
         status: 404,
-        headers: { 'Content-Type': 'text/plain' },
+        headers: { "Content-Type": "text/plain" },
       });
     }
 
@@ -74,13 +77,13 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
             source: "toml",
           });
         } catch (e) {
-          console.error('Failed to track version request:', e);
+          console.error("Failed to track version request:", e);
         }
-      })
+      }),
     );
 
     // Generate TOML output
-    const lines = ['[versions]'];
+    const lines = ["[versions]"];
     for (const v of versions) {
       const parts: string[] = [];
       if (v.created_at) {
@@ -91,24 +94,24 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       }
 
       if (parts.length > 0) {
-        lines.push(`"${v.version}" = { ${parts.join(', ')} }`);
+        lines.push(`"${v.version}" = { ${parts.join(", ")} }`);
       } else {
         lines.push(`"${v.version}" = {}`);
       }
     }
 
-    return new Response(lines.join('\n') + '\n', {
+    return new Response(lines.join("\n") + "\n", {
       status: 200,
       headers: {
-        'Content-Type': 'text/plain; charset=utf-8',
-        'Cache-Control': 'public, max-age=600',
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "public, max-age=600",
       },
     });
   } catch (error) {
-    console.error('Error fetching versions from D1:', error);
-    return new Response('Failed to fetch tool data', {
+    console.error("Error fetching versions from D1:", error);
+    return new Response("Failed to fetch tool data", {
       status: 500,
-      headers: { 'Content-Type': 'text/plain' },
+      headers: { "Content-Type": "text/plain" },
     });
   }
 };

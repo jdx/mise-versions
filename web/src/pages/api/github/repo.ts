@@ -1,9 +1,9 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { Octokit } from '@octokit/rest';
-import { setupDatabase } from '../../../../../src/database';
-import { getAuthCookie } from '../../../lib/auth';
-import { jsonResponse, errorResponse } from '../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { Octokit } from "@octokit/rest";
+import { setupDatabase } from "../../../../../src/database";
+import { getAuthCookie } from "../../../lib/auth";
+import { jsonResponse, errorResponse } from "../../../lib/api";
 
 // Cache freshness threshold (6 hours in milliseconds)
 const GITHUB_CACHE_FRESH_MS = 6 * 60 * 60 * 1000;
@@ -33,15 +33,18 @@ interface CachedRepoInfo {
 export const GET: APIRoute = async ({ request, locals }) => {
   const runtime = locals.runtime;
   const url = new URL(request.url);
-  const owner = url.searchParams.get('owner');
-  const repo = url.searchParams.get('repo');
+  const owner = url.searchParams.get("owner");
+  const repo = url.searchParams.get("repo");
 
   if (!owner || !repo) {
-    return errorResponse('Missing owner or repo parameter', 400);
+    return errorResponse("Missing owner or repo parameter", 400);
   }
 
   const cacheKey = `github:${owner}/${repo}`;
-  const cached = await runtime.env.GITHUB_CACHE.get<CachedRepoInfo>(cacheKey, 'json');
+  const cached = await runtime.env.GITHUB_CACHE.get<CachedRepoInfo>(
+    cacheKey,
+    "json",
+  );
   const now = Date.now();
   const isFresh = cached && now - cached.cached_at < GITHUB_CACHE_FRESH_MS;
 
@@ -60,7 +63,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
   // No cache and not authenticated - can't fetch from GitHub
   if (!cached && !auth) {
-    return errorResponse('Not authenticated', 401);
+    return errorResponse("Not authenticated", 401);
   }
 
   // User is authenticated - try to refresh the cache
@@ -73,7 +76,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
     if (cached) {
       return jsonResponse(cached.data);
     }
-    return errorResponse('No token found for user', 401);
+    return errorResponse("No token found for user", 401);
   }
 
   try {
@@ -106,11 +109,11 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
     return jsonResponse({ ...repoInfo.data, stale: false });
   } catch (error) {
-    console.error('GitHub repo fetch error:', error);
+    console.error("GitHub repo fetch error:", error);
     // If fetch fails but we have stale cache, serve it (mark as stale)
     if (cached) {
       return jsonResponse({ ...cached.data, stale: true });
     }
-    return errorResponse('Failed to fetch repo info', 500);
+    return errorResponse("Failed to fetch repo info", 500);
   }
 };

@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { Octokit } from '@octokit/rest';
-import { setupDatabase } from '../../../../src/database';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { Octokit } from "@octokit/rest";
+import { setupDatabase } from "../../../../src/database";
+import { jsonResponse, errorResponse, requireApiAuth } from "../../lib/api";
 
 // GET /api/rate-limits - Rate limit status across tokens (admin)
 export const GET: APIRoute = async ({ request, locals }) => {
@@ -35,7 +35,10 @@ export const GET: APIRoute = async ({ request, locals }) => {
           usageCount: token.usage_count,
         });
       } catch (error) {
-        console.log(`Failed to get rate limit for user ${token.user_id}:`, error);
+        console.log(
+          `Failed to get rate limit for user ${token.user_id}:`,
+          error,
+        );
       }
     }
 
@@ -45,7 +48,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
       rateLimits,
     });
   } catch (error) {
-    console.error('Rate limit check error:', error);
-    return errorResponse('Failed to check rate limits', 500);
+    console.error("Rate limit check error:", error);
+    return errorResponse("Failed to check rate limits", 500);
   }
 };

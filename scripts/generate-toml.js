@@ -22,7 +22,7 @@ const [, , tool, existingTomlPath] = process.argv;
 
 if (!tool) {
   console.error(
-    "Usage: cat versions.ndjson | node generate-toml.js <tool> [existing_toml_path]"
+    "Usage: cat versions.ndjson | node generate-toml.js <tool> [existing_toml_path]",
   );
   process.exit(1);
 }
@@ -108,7 +108,7 @@ for (const v of newVersions) {
   // Output as inline table
   if (releaseUrl) {
     lines.push(
-      `"${v.version}" = { created_at = ${isoDate}, release_url = "${releaseUrl}" }`
+      `"${v.version}" = { created_at = ${isoDate}, release_url = "${releaseUrl}" }`,
     );
   } else {
     lines.push(`"${v.version}" = { created_at = ${isoDate} }`);

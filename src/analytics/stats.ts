@@ -80,8 +80,8 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
           and(
             eq(downloads.tool_id, toolId),
             sql`${downloads.created_at} >= ${thirtyDaysAgo}`,
-            sql`${downloads.created_at} < ${todayStart}`
-          )
+            sql`${downloads.created_at} < ${todayStart}`,
+          ),
         )
         .groupBy(sql`date(${downloads.created_at}, 'unixepoch')`)
         .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
@@ -100,8 +100,8 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .where(
           and(
             eq(downloads.tool_id, toolId),
-            sql`${downloads.created_at} >= ${twelveMonthsAgo}`
-          )
+            sql`${downloads.created_at} >= ${twelveMonthsAgo}`,
+          ),
         )
         .groupBy(sql`strftime('%Y-%m', ${downloads.created_at}, 'unixepoch')`)
         .all();
@@ -116,8 +116,8 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .where(
           and(
             eq(downloadsDaily.tool_id, toolId),
-            sql`${downloadsDaily.date} >= date(${twelveMonthsAgo}, 'unixepoch')`
-          )
+            sql`${downloadsDaily.date} >= date(${twelveMonthsAgo}, 'unixepoch')`,
+          ),
         )
         .groupBy(sql`strftime('%Y-%m', ${downloadsDaily.date})`)
         .all();
@@ -172,7 +172,9 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
     // Uses daily_tool_stats rollup table for fast lookups
     async getAll30DayDownloads() {
       const now = Math.floor(Date.now() / 1000);
-      const startDate = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
+      const startDate = new Date((now - 30 * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
 
       // Sum downloads from rollup table (fast!)
       const results = await db
@@ -196,7 +198,9 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
     // Get monthly active users from pre-computed rollup table
     async getMAU() {
       const today = new Date().toISOString().split("T")[0];
-      const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
+      const yesterday = new Date(Date.now() - 86400000)
+        .toISOString()
+        .split("T")[0];
 
       // Try today's value first, then yesterday's
       const result = await db

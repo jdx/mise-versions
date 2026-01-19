@@ -254,7 +254,7 @@ async function fetchNpmMetadata(packageName) {
   await rateLimiters.npm.wait();
   try {
     const data = await fetchWithRetry(
-      `https://registry.npmjs.org/${encodeURIComponent(packageName)}`
+      `https://registry.npmjs.org/${encodeURIComponent(packageName)}`,
     );
     if (!data) return null;
 
@@ -295,7 +295,7 @@ async function fetchCargoMetadata(crateName) {
         headers: {
           "User-Agent": "mise-versions (https://github.com/jdx/mise-versions)",
         },
-      }
+      },
     );
     if (!data?.crate) return null;
 
@@ -316,7 +316,7 @@ async function fetchPyPIMetadata(packageName) {
   await rateLimiters.pypi.wait();
   try {
     const data = await fetchWithRetry(
-      `https://pypi.org/pypi/${encodeURIComponent(packageName)}/json`
+      `https://pypi.org/pypi/${encodeURIComponent(packageName)}/json`,
     );
     if (!data?.info) return null;
 
@@ -330,8 +330,7 @@ async function fetchPyPIMetadata(packageName) {
 
     return {
       license: data.info.license || null,
-      homepage:
-        data.info.home_page || data.info.project_urls?.Homepage || null,
+      homepage: data.info.home_page || data.info.project_urls?.Homepage || null,
       description: data.info.summary || null,
       authors: authors.length > 0 ? authors : null,
     };
@@ -346,7 +345,7 @@ async function fetchRubyGemsMetadata(gemName) {
   await rateLimiters.rubygems.wait();
   try {
     const data = await fetchWithRetry(
-      `https://rubygems.org/api/v1/gems/${encodeURIComponent(gemName)}.json`
+      `https://rubygems.org/api/v1/gems/${encodeURIComponent(gemName)}.json`,
     );
     if (!data) return null;
 
@@ -387,7 +386,7 @@ async function fetchGitHubMetadata(owner, repo) {
 
     const response = await fetch(
       `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`,
-      { headers, signal: controller.signal }
+      { headers, signal: controller.signal },
     );
     clearTimeout(timeout);
 
@@ -537,7 +536,9 @@ async function main() {
   for (const tool of toolsToProcess) {
     processed++;
     if (processed % 10 === 0) {
-      process.stdout.write(`\rProcessing ${processed}/${toolsToProcess.length}...`);
+      process.stdout.write(
+        `\rProcessing ${processed}/${toolsToProcess.length}...`,
+      );
     }
 
     const sources = [];
@@ -588,7 +589,12 @@ async function main() {
     const metadata = mergeMetadata(sources);
 
     // Only include if we got useful data
-    if (metadata.license || metadata.homepage || metadata.authors || metadata.description) {
+    if (
+      metadata.license ||
+      metadata.homepage ||
+      metadata.authors ||
+      metadata.description
+    ) {
       metadataEntries.push({
         name: tool.name,
         ...metadata,
@@ -596,7 +602,9 @@ async function main() {
     }
   }
 
-  console.log(`\rProcessed ${processed} tools, found metadata for ${metadataEntries.length}`);
+  console.log(
+    `\rProcessed ${processed} tools, found metadata for ${metadataEntries.length}`,
+  );
 
   // Sync to D1 via API
   const syncUrl = `${syncApiUrl}/api/admin/metadata/sync`;
@@ -607,7 +615,7 @@ async function main() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiSecret}`,
+        Authorization: `Bearer ${apiSecret}`,
       },
       body: JSON.stringify({ metadata: metadataEntries }),
     });

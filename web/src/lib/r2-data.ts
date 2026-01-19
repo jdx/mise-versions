@@ -10,7 +10,7 @@ export interface R2DataResult {
  */
 export async function getFromR2(
   bucket: R2Bucket,
-  key: string
+  key: string,
 ): Promise<R2DataResult | null> {
   const object = await bucket.get(key);
   if (!object) {
@@ -18,11 +18,12 @@ export async function getFromR2(
   }
 
   // Determine content type from key or object metadata
-  let contentType = object.httpMetadata?.contentType || 'application/octet-stream';
+  let contentType =
+    object.httpMetadata?.contentType || "application/octet-stream";
   if (!object.httpMetadata?.contentType) {
-    if (key.endsWith('.toml')) contentType = 'text/plain; charset=utf-8';
-    else if (key.endsWith('.json')) contentType = 'application/json';
-    else if (key.endsWith('.png')) contentType = 'image/png';
+    if (key.endsWith(".toml")) contentType = "text/plain; charset=utf-8";
+    else if (key.endsWith(".json")) contentType = "application/json";
+    else if (key.endsWith(".png")) contentType = "image/png";
   }
 
   return {
@@ -36,7 +37,7 @@ export async function getFromR2(
  */
 export async function getTextFromR2(
   bucket: R2Bucket,
-  key: string
+  key: string,
 ): Promise<string | null> {
   const object = await bucket.get(key);
   if (!object) {
@@ -50,7 +51,7 @@ export async function getTextFromR2(
  */
 export async function getJsonFromR2<T>(
   bucket: R2Bucket,
-  key: string
+  key: string,
 ): Promise<T | null> {
   const text = await getTextFromR2(bucket, key);
   if (!text) {

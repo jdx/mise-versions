@@ -1,8 +1,15 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
-import { runAnalyticsMigrations, setupAnalytics } from '../../../../../../src/analytics';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
+import {
+  jsonResponse,
+  errorResponse,
+  requireApiAuth,
+} from "../../../../lib/api";
+import {
+  runAnalyticsMigrations,
+  setupAnalytics,
+} from "../../../../../../src/analytics";
 
 interface VersionData {
   version: string;
@@ -32,11 +39,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     body = await request.json();
   } catch {
-    return errorResponse('Invalid JSON body', 400);
+    return errorResponse("Invalid JSON body", 400);
   }
 
   if (!Array.isArray(body.tools) || body.tools.length === 0) {
-    return errorResponse('tools must be a non-empty array', 400);
+    return errorResponse("tools must be a non-empty array", 400);
   }
 
   const d1 = runtime.env.ANALYTICS_DB;
@@ -47,13 +54,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
   await runAnalyticsMigrations(db);
 
   // Step 1: Get all tool names we need
-  const toolNames = body.tools.map(t => t.tool).filter(Boolean);
+  const toolNames = body.tools.map((t) => t.tool).filter(Boolean);
 
   // Step 2: Get existing tool IDs in one query
-  const placeholders = toolNames.map(() => '?').join(',');
-  const existingTools = await d1.prepare(
-    `SELECT id, name FROM tools WHERE name IN (${placeholders})`
-  ).bind(...toolNames).all<{ id: number; name: string }>();
+  const placeholders = toolNames.map(() => "?").join(",");
+  const existingTools = await d1
+    .prepare(`SELECT id, name FROM tools WHERE name IN (${placeholders})`)
+    .bind(...toolNames)
+    .all<{ id: number; name: string }>();
 
   const toolIdMap = new Map<string, number>();
   for (const row of existingTools.results) {
@@ -61,21 +69,24 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   // Step 3: Create missing tools
-  const missingTools = toolNames.filter(name => !toolIdMap.has(name));
+  const missingTools = toolNames.filter((name) => !toolIdMap.has(name));
   if (missingTools.length > 0) {
     // Insert missing tools in batches
     for (let i = 0; i < missingTools.length; i += BATCH_SIZE) {
       const batch = missingTools.slice(i, i + BATCH_SIZE);
-      const statements = batch.map(name =>
-        d1.prepare('INSERT OR IGNORE INTO tools (name) VALUES (?)').bind(name)
+      const statements = batch.map((name) =>
+        d1.prepare("INSERT OR IGNORE INTO tools (name) VALUES (?)").bind(name),
       );
       await d1.batch(statements);
     }
 
     // Fetch IDs for newly created tools
-    const newTools = await d1.prepare(
-      `SELECT id, name FROM tools WHERE name IN (${missingTools.map(() => '?').join(',')})`
-    ).bind(...missingTools).all<{ id: number; name: string }>();
+    const newTools = await d1
+      .prepare(
+        `SELECT id, name FROM tools WHERE name IN (${missingTools.map(() => "?").join(",")})`,
+      )
+      .bind(...missingTools)
+      .all<{ id: number; name: string }>();
 
     for (const row of newTools.results) {
       toolIdMap.set(row.name, row.id);
@@ -86,9 +97,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
   const toolIds = [...toolIdMap.values()];
   const beforeCounts = new Map<number, number>();
   if (toolIds.length > 0) {
-    const countResults = await d1.prepare(
-      `SELECT tool_id, COUNT(*) as count FROM versions WHERE tool_id IN (${toolIds.map(() => '?').join(',')}) GROUP BY tool_id`
-    ).bind(...toolIds).all<{ tool_id: number; count: number }>();
+    const countResults = await d1
+      .prepare(
+        `SELECT tool_id, COUNT(*) as count FROM versions WHERE tool_id IN (${toolIds.map(() => "?").join(",")}) GROUP BY tool_id`,
+      )
+      .bind(...toolIds)
+      .all<{ tool_id: number; count: number }>();
     for (const row of countResults.results) {
       beforeCounts.set(row.tool_id, row.count);
     }
@@ -121,7 +135,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
       if (!v.version) continue;
 
       allVersionStatements.push(
-        d1.prepare(`
+        d1
+          .prepare(
+            `
           INSERT INTO versions (tool_id, version, created_at, release_url, from_mise, sort_order)
           VALUES (?, ?, ?, ?, 1, ?)
           ON CONFLICT(tool_id, version) DO UPDATE SET
@@ -129,7 +145,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
             release_url = COALESCE(excluded.release_url, versions.release_url),
             from_mise = 1,
             sort_order = COALESCE(excluded.sort_order, versions.sort_order)
-        `).bind(toolId, v.version, v.created_at || null, v.release_url || null, v.sort_order ?? null)
+        `,
+          )
+          .bind(
+            toolId,
+            v.version,
+            v.created_at || null,
+            v.release_url || null,
+            v.sort_order ?? null,
+          ),
       );
     }
 
@@ -159,36 +183,47 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     const incomingVersions = new Set(
       toolData.versions
-        .map(v => v.version)
-        .filter((v): v is string => Boolean(v))
+        .map((v) => v.version)
+        .filter((v): v is string => Boolean(v)),
     );
 
     if (incomingVersions.size === 0) continue;
 
     // Get all existing from_mise=1 versions for this tool
-    const existingVersions = await d1.prepare(
-      'SELECT version FROM versions WHERE tool_id = ? AND from_mise = 1'
-    ).bind(toolId).all<{ version: string }>();
+    const existingVersions = await d1
+      .prepare(
+        "SELECT version FROM versions WHERE tool_id = ? AND from_mise = 1",
+      )
+      .bind(toolId)
+      .all<{ version: string }>();
 
     // Find versions to delete (exist in DB but not in incoming)
     const versionsToDelete = existingVersions.results
-      .map(r => r.version)
-      .filter(v => !incomingVersions.has(v));
+      .map((r) => r.version)
+      .filter((v) => !incomingVersions.has(v));
 
     if (versionsToDelete.length === 0) continue;
 
     // Delete in batches to avoid parameter limits
     for (let i = 0; i < versionsToDelete.length; i += BATCH_SIZE) {
       const batch = versionsToDelete.slice(i, i + BATCH_SIZE);
-      const placeholders = batch.map(() => '?').join(',');
+      const placeholders = batch.map(() => "?").join(",");
       try {
-        const result = await d1.prepare(`
+        const result = await d1
+          .prepare(
+            `
           DELETE FROM versions
           WHERE tool_id = ? AND from_mise = 1 AND version IN (${placeholders})
-        `).bind(toolId, ...batch).run();
+        `,
+          )
+          .bind(toolId, ...batch)
+          .run();
         versionsDeleted += result.meta.changes ?? 0;
       } catch (e) {
-        console.error(`Failed to clean up stale versions for ${toolData.tool}:`, e);
+        console.error(
+          `Failed to clean up stale versions for ${toolData.tool}:`,
+          e,
+        );
       }
     }
   }
@@ -200,9 +235,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
   // Step 7: Get new version counts and record updates
   let newVersionsTotal = 0;
   if (toolIds.length > 0) {
-    const afterCounts = await d1.prepare(
-      `SELECT tool_id, COUNT(*) as count FROM versions WHERE tool_id IN (${toolIds.map(() => '?').join(',')}) GROUP BY tool_id`
-    ).bind(...toolIds).all<{ tool_id: number; count: number }>();
+    const afterCounts = await d1
+      .prepare(
+        `SELECT tool_id, COUNT(*) as count FROM versions WHERE tool_id IN (${toolIds.map(() => "?").join(",")}) GROUP BY tool_id`,
+      )
+      .bind(...toolIds)
+      .all<{ tool_id: number; count: number }>();
 
     for (const row of afterCounts.results) {
       const beforeCount = beforeCounts.get(row.tool_id) ?? 0;
@@ -213,7 +251,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
         try {
           await analytics.recordVersionUpdates(row.tool_id, newVersions);
         } catch (e) {
-          console.error(`Failed to record version updates for tool ${row.tool_id}:`, e);
+          console.error(
+            `Failed to record version updates for tool ${row.tool_id}:`,
+            e,
+          );
         }
       }
     }

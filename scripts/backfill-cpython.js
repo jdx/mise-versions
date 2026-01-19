@@ -17,7 +17,7 @@ const CPYTHON_PATTERN = /^[23]\.\d+\.\d+$/;
 async function fetchGitHubReleases(page = 1) {
   const token = process.env.GITHUB_TOKEN;
   const headers = {
-    "Accept": "application/vnd.github+json",
+    Accept: "application/vnd.github+json",
     "User-Agent": "mise-versions-backfill",
   };
   if (token) {
@@ -28,7 +28,9 @@ async function fetchGitHubReleases(page = 1) {
   const response = await fetch(url, { headers });
 
   if (!response.ok) {
-    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `GitHub API error: ${response.status} ${response.statusText}`,
+    );
   }
 
   return response.json();
@@ -37,7 +39,7 @@ async function fetchGitHubReleases(page = 1) {
 async function fetchTagDate(tagName) {
   const token = process.env.GITHUB_TOKEN;
   const headers = {
-    "Accept": "application/vnd.github+json",
+    Accept: "application/vnd.github+json",
     "User-Agent": "mise-versions-backfill",
   };
   if (token) {
@@ -115,11 +117,13 @@ async function getAllCPythonTags() {
       }
     }
 
-    console.log(`  Page ${page}: found ${tags.length} tags (${allTags.size} CPython versions so far)`);
+    console.log(
+      `  Page ${page}: found ${tags.length} tags (${allTags.size} CPython versions so far)`,
+    );
     page++;
 
     // Rate limit protection
-    await new Promise(r => setTimeout(r, 100));
+    await new Promise((r) => setTimeout(r, 100));
   }
 
   return allTags;
@@ -144,24 +148,24 @@ async function main() {
   // Find CPython versions with placeholder timestamps
   const cpythonVersions = [];
   // Multiple placeholder formats that may exist
-  const PLACEHOLDERS = [
-    "2025-01-01T00:00:00.000Z",
-    "2025-12-18T00:12:04.355Z",
-  ];
+  const PLACEHOLDERS = ["2025-01-01T00:00:00.000Z", "2025-12-18T00:12:04.355Z"];
 
   for (const [version, data] of Object.entries(existing.versions)) {
     if (!CPYTHON_PATTERN.test(version)) continue;
 
-    const ts = data.created_at instanceof Date
-      ? data.created_at.toISOString()
-      : String(data.created_at);
+    const ts =
+      data.created_at instanceof Date
+        ? data.created_at.toISOString()
+        : String(data.created_at);
 
     if (PLACEHOLDERS.includes(ts)) {
       cpythonVersions.push(version);
     }
   }
 
-  console.log(`Found ${cpythonVersions.length} CPython versions with placeholder timestamps\n`);
+  console.log(
+    `Found ${cpythonVersions.length} CPython versions with placeholder timestamps\n`,
+  );
 
   if (cpythonVersions.length === 0) {
     console.log("Nothing to do!");
@@ -193,7 +197,7 @@ async function main() {
     }
 
     // Rate limit protection
-    await new Promise(r => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 50));
   }
 
   console.log(`\nFetched dates for ${fetched} versions\n`);
@@ -208,9 +212,10 @@ async function main() {
   let updated = 0;
 
   for (const [version, data] of Object.entries(existing.versions)) {
-    let timestamp = data.created_at instanceof Date
-      ? data.created_at.toISOString()
-      : String(data.created_at);
+    let timestamp =
+      data.created_at instanceof Date
+        ? data.created_at.toISOString()
+        : String(data.created_at);
 
     if (dates.has(version)) {
       timestamp = dates.get(version);
@@ -228,7 +233,7 @@ async function main() {
   }
 }
 
-main().catch(e => {
+main().catch((e) => {
   console.error("Error:", e);
   process.exit(1);
 });

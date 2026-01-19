@@ -1,26 +1,26 @@
 // Auth utilities for cookie-based authentication
 
-export const AUTH_COOKIE_NAME = 'mise_auth';
-export const OAUTH_STATE_COOKIE_NAME = 'mise_oauth_state';
+export const AUTH_COOKIE_NAME = "mise_auth";
+export const OAUTH_STATE_COOKIE_NAME = "mise_oauth_state";
 
 // HMAC signing for secure cookies
 async function signData(data: string, secret: string): Promise<string> {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
-    'raw',
+    "raw",
     encoder.encode(secret),
-    { name: 'HMAC', hash: 'SHA-256' },
+    { name: "HMAC", hash: "SHA-256" },
     false,
-    ['sign']
+    ["sign"],
   );
-  const signature = await crypto.subtle.sign('HMAC', key, encoder.encode(data));
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(data));
   return btoa(String.fromCharCode(...new Uint8Array(signature)));
 }
 
 async function verifySignature(
   data: string,
   signature: string,
-  secret: string
+  secret: string,
 ): Promise<boolean> {
   const expectedSignature = await signData(data, secret);
   // Constant-time comparison to prevent timing attacks
@@ -34,15 +34,15 @@ async function verifySignature(
 
 export async function getAuthCookie(
   request: Request,
-  secret: string
+  secret: string,
 ): Promise<{ username: string } | null> {
-  const cookies = request.headers.get('Cookie') || '';
+  const cookies = request.headers.get("Cookie") || "";
   const match = cookies.match(new RegExp(`${AUTH_COOKIE_NAME}=([^;]+)`));
   if (!match) return null;
 
   try {
     const decoded = decodeURIComponent(match[1]);
-    const [data, signature] = decoded.split('.');
+    const [data, signature] = decoded.split(".");
     if (!data || !signature) return null;
 
     const isValid = await verifySignature(data, signature, secret);
@@ -56,7 +56,7 @@ export async function getAuthCookie(
 
 export async function setAuthCookie(
   username: string,
-  secret: string
+  secret: string,
 ): Promise<string> {
   const data = btoa(JSON.stringify({ username }));
   const signature = await signData(data, secret);
@@ -75,7 +75,7 @@ export function setOAuthStateCookie(state: string): string {
 }
 
 export function getOAuthStateCookie(request: Request): string | null {
-  const cookies = request.headers.get('Cookie') || '';
+  const cookies = request.headers.get("Cookie") || "";
   const match = cookies.match(new RegExp(`${OAUTH_STATE_COOKIE_NAME}=([^;]+)`));
   return match ? match[1] : null;
 }
@@ -85,7 +85,7 @@ export function clearOAuthStateCookie(): string {
 }
 
 // Return URL cookie for preserving page during auth flow
-export const RETURN_TO_COOKIE_NAME = 'mise_return_to';
+export const RETURN_TO_COOKIE_NAME = "mise_return_to";
 
 export function setReturnToCookie(returnTo: string): string {
   // Short-lived cookie (10 minutes) to remember where to return after auth
@@ -94,7 +94,7 @@ export function setReturnToCookie(returnTo: string): string {
 }
 
 export function getReturnToCookie(request: Request): string | null {
-  const cookies = request.headers.get('Cookie') || '';
+  const cookies = request.headers.get("Cookie") || "";
   const match = cookies.match(new RegExp(`${RETURN_TO_COOKIE_NAME}=([^;]+)`));
   if (!match) return null;
   try {
