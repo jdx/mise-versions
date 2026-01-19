@@ -328,7 +328,7 @@ fetch() {
 	rm -f "$stderr_file"
 
 	new_lines=$(wc -l <"docs/$1")
-	if [ ! "$new_lines" -gt 1 ]; then
+	if [ "$new_lines" -eq 0 ]; then
 		echo "No versions for $1" >/dev/null
 		increment_stat "total_tools_no_versions"
 		rm -f "docs/$1"
