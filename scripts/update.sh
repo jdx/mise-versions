@@ -69,20 +69,21 @@ log() {
 	fi
 
 	# Format based on environment
+	# All log output goes to stderr to avoid polluting command substitution
 	if [ -n "${GITHUB_ACTIONS:-}" ]; then
 		# GitHub Actions format with grouping support
 		case "$level" in
 			ERROR)
-				echo "::error::[$timestamp] $message$context"
+				echo "::error::[$timestamp] $message$context" >&2
 				;;
 			WARN)
-				echo "::warning::[$timestamp] $message$context"
+				echo "::warning::[$timestamp] $message$context" >&2
 				;;
 			DEBUG)
-				echo "::debug::[$timestamp] $message$context"
+				echo "::debug::[$timestamp] $message$context" >&2
 				;;
 			*)
-				echo "[$timestamp] [$level] $message$context"
+				echo "[$timestamp] [$level] $message$context" >&2
 				;;
 		esac
 	else
@@ -95,7 +96,7 @@ log() {
 			INFO)  color="\033[0;32m" ;;  # Green
 			DEBUG) color="\033[0;36m" ;;  # Cyan
 		esac
-		echo -e "${color}[$timestamp] [$level]${reset} $message$context"
+		echo -e "${color}[$timestamp] [$level]${reset} $message$context" >&2
 	fi
 }
 
@@ -109,7 +110,7 @@ log_error() { log ERROR "$@"; }
 log_group_start() {
 	local title="$1"
 	if [ -n "${GITHUB_ACTIONS:-}" ]; then
-		echo "::group::$title"
+		echo "::group::$title" >&2
 	else
 		log_info "=== $title ==="
 	fi
@@ -118,7 +119,7 @@ log_group_start() {
 # End a log group
 log_group_end() {
 	if [ -n "${GITHUB_ACTIONS:-}" ]; then
-		echo "::endgroup::"
+		echo "::endgroup::" >&2
 	fi
 }
 
