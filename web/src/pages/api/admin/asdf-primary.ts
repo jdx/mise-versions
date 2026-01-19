@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse } from '../../../lib/api';
-import { requireAdminAuth } from '../../../lib/admin';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
+import { jsonResponse, errorResponse } from "../../../lib/api";
+import { requireAdminAuth } from "../../../lib/admin";
 
 interface AsdfPrimaryTool {
   name: string;
@@ -26,7 +26,9 @@ export const GET: APIRoute = async ({ request, locals }) => {
     // Get all tools with their backends and 30-day download counts
     // A tool is "asdf-primary" if its first backend starts with "asdf:"
     const thirtyDaysAgo = Math.floor(Date.now() / 1000) - 30 * 86400;
-    const startDate = new Date(thirtyDaysAgo * 1000).toISOString().split('T')[0];
+    const startDate = new Date(thirtyDaysAgo * 1000)
+      .toISOString()
+      .split("T")[0];
 
     // First, get all tools with backends
     const toolsWithBackends = await db.all<{
@@ -40,12 +42,16 @@ export const GET: APIRoute = async ({ request, locals }) => {
     `);
 
     // Filter to asdf-primary tools (first backend starts with "asdf:")
-    const asdfPrimaryTools: Array<{ id: number; name: string; asdf_backend: string }> = [];
+    const asdfPrimaryTools: Array<{
+      id: number;
+      name: string;
+      asdf_backend: string;
+    }> = [];
     for (const tool of toolsWithBackends) {
       if (!tool.backends) continue;
       try {
         const backends = JSON.parse(tool.backends) as string[];
-        if (backends.length > 0 && backends[0].startsWith('asdf:')) {
+        if (backends.length > 0 && backends[0].startsWith("asdf:")) {
           asdfPrimaryTools.push({
             id: tool.id,
             name: tool.name,
@@ -62,17 +68,23 @@ export const GET: APIRoute = async ({ request, locals }) => {
     }
 
     // Get 30-day download counts for these tools (batch to avoid D1 parameter limit)
-    const toolIds = asdfPrimaryTools.map(t => t.id);
+    const toolIds = asdfPrimaryTools.map((t) => t.id);
     const BATCH_SIZE = 99;
     const downloadCounts: Array<{ tool_id: number; downloads: number }> = [];
 
     for (let i = 0; i < toolIds.length; i += BATCH_SIZE) {
       const batch = toolIds.slice(i, i + BATCH_SIZE);
-      const batchResults = await db.all<{ tool_id: number; downloads: number }>(sql`
+      const batchResults = await db.all<{
+        tool_id: number;
+        downloads: number;
+      }>(sql`
         SELECT tool_id, SUM(downloads) as downloads
         FROM daily_tool_stats
         WHERE date >= ${startDate}
-          AND tool_id IN (${sql.join(batch.map(id => sql`${id}`), sql`, `)})
+          AND tool_id IN (${sql.join(
+            batch.map((id) => sql`${id}`),
+            sql`, `,
+          )})
         GROUP BY tool_id
       `);
       downloadCounts.push(...batchResults);
@@ -86,7 +98,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
     // Combine and sort by download count
     const results: AsdfPrimaryTool[] = asdfPrimaryTools
-      .map(tool => ({
+      .map((tool) => ({
         name: tool.name,
         downloads_30d: downloadMap.get(tool.id) || 0,
         asdf_backend: tool.asdf_backend,
@@ -99,7 +111,10 @@ export const GET: APIRoute = async ({ request, locals }) => {
       total_downloads: results.reduce((sum, t) => sum + t.downloads_30d, 0),
     });
   } catch (error: any) {
-    console.error('Error fetching asdf-primary tools:', error);
-    return errorResponse(`Failed to fetch asdf-primary tools: ${error.message}`, 500);
+    console.error("Error fetching asdf-primary tools:", error);
+    return errorResponse(
+      `Failed to fetch asdf-primary tools: ${error.message}`,
+      500,
+    );
   }
 };

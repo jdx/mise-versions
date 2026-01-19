@@ -7,12 +7,39 @@
 // Run it to generate the SQL, then execute with wrangler
 
 const tools = [
-  'node', 'python', 'ruby', 'go', 'rust', 'java', 'deno', 'bun',
-  'terraform', 'kubectl', 'helm', 'docker', 'git', 'ripgrep', 'fd',
-  'jq', 'yq', 'fzf', 'bat', 'exa'
+  "node",
+  "python",
+  "ruby",
+  "go",
+  "rust",
+  "java",
+  "deno",
+  "bun",
+  "terraform",
+  "kubectl",
+  "helm",
+  "docker",
+  "git",
+  "ripgrep",
+  "fd",
+  "jq",
+  "yq",
+  "fzf",
+  "bat",
+  "exa",
 ];
 
-const backends = ['core', 'aqua', 'ubi', 'asdf', 'vfox', 'cargo', 'npm', 'go', 'pipx'];
+const backends = [
+  "core",
+  "aqua",
+  "ubi",
+  "asdf",
+  "vfox",
+  "cargo",
+  "npm",
+  "go",
+  "pipx",
+];
 
 // Generate SQL
 console.log(`-- Seed data for local development
@@ -94,56 +121,77 @@ CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(b
 `);
 
 tools.forEach((tool, i) => {
-  console.log(`INSERT OR IGNORE INTO tools (id, name) VALUES (${i + 1}, '${tool}');`);
+  console.log(
+    `INSERT OR IGNORE INTO tools (id, name) VALUES (${i + 1}, '${tool}');`,
+  );
 });
 
-console.log('\n-- Insert backends');
+console.log("\n-- Insert backends");
 backends.forEach((backend, i) => {
-  console.log(`INSERT OR IGNORE INTO backends (id, full) VALUES (${i + 1}, '${backend}:default');`);
+  console.log(
+    `INSERT OR IGNORE INTO backends (id, full) VALUES (${i + 1}, '${backend}:default');`,
+  );
 });
 
-console.log('\n-- Insert platforms');
-console.log(`INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (1, 'macos', 'arm64');`);
-console.log(`INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (2, 'macos', 'x64');`);
-console.log(`INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (3, 'linux', 'x64');`);
-console.log(`INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (4, 'linux', 'arm64');`);
-console.log(`INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (5, 'windows', 'x64');`);
+console.log("\n-- Insert platforms");
+console.log(
+  `INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (1, 'macos', 'arm64');`,
+);
+console.log(
+  `INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (2, 'macos', 'x64');`,
+);
+console.log(
+  `INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (3, 'linux', 'x64');`,
+);
+console.log(
+  `INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (4, 'linux', 'arm64');`,
+);
+console.log(
+  `INSERT OR IGNORE INTO platforms (id, os, arch) VALUES (5, 'windows', 'x64');`,
+);
 
 // Generate dates for the last 45 days
 const now = Date.now();
 const day = 24 * 60 * 60 * 1000;
 
-console.log('\n-- Insert daily stats (last 45 days)');
+console.log("\n-- Insert daily stats (last 45 days)");
 for (let d = 0; d < 45; d++) {
   const date = new Date(now - d * day);
-  const dateStr = date.toISOString().split('T')[0];
+  const dateStr = date.toISOString().split("T")[0];
   const totalDownloads = Math.floor(Math.random() * 5000) + 1000;
   const uniqueUsers = Math.floor(totalDownloads * 0.4);
-  console.log(`INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES ('${dateStr}', ${totalDownloads}, ${uniqueUsers});`);
+  console.log(
+    `INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES ('${dateStr}', ${totalDownloads}, ${uniqueUsers});`,
+  );
 }
 
-console.log('\n-- Insert daily tool stats');
+console.log("\n-- Insert daily tool stats");
 for (let d = 0; d < 45; d++) {
   const date = new Date(now - d * day);
-  const dateStr = date.toISOString().split('T')[0];
+  const dateStr = date.toISOString().split("T")[0];
 
   tools.forEach((tool, toolIdx) => {
     // Popular tools get more downloads
-    const baseDownloads = toolIdx < 5 ? 200 : (toolIdx < 10 ? 100 : 50);
-    const downloads = Math.floor(Math.random() * baseDownloads) + Math.floor(baseDownloads / 2);
+    const baseDownloads = toolIdx < 5 ? 200 : toolIdx < 10 ? 100 : 50;
+    const downloads =
+      Math.floor(Math.random() * baseDownloads) + Math.floor(baseDownloads / 2);
     const uniqueUsers = Math.floor(downloads * 0.4);
-    console.log(`INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users) VALUES ('${dateStr}', ${toolIdx + 1}, ${downloads}, ${uniqueUsers});`);
+    console.log(
+      `INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users) VALUES ('${dateStr}', ${toolIdx + 1}, ${downloads}, ${uniqueUsers});`,
+    );
   });
 }
 
-console.log('\n-- Insert daily backend stats');
+console.log("\n-- Insert daily backend stats");
 for (let d = 0; d < 45; d++) {
   const date = new Date(now - d * day);
-  const dateStr = date.toISOString().split('T')[0];
+  const dateStr = date.toISOString().split("T")[0];
 
   backends.forEach((backend, _) => {
     const downloads = Math.floor(Math.random() * 500) + 100;
     const uniqueUsers = Math.floor(downloads * 0.4);
-    console.log(`INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES ('${dateStr}', '${backend}', ${downloads}, ${uniqueUsers});`);
+    console.log(
+      `INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES ('${dateStr}', '${backend}', ${downloads}, ${uniqueUsers});`,
+    );
   });
 }

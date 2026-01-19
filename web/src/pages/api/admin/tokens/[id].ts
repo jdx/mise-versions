@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupDatabase } from '../../../../../../src/database';
-import { jsonResponse, errorResponse } from '../../../../lib/api';
-import { requireAdminAuth } from '../../../../lib/admin';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupDatabase } from "../../../../../../src/database";
+import { jsonResponse, errorResponse } from "../../../../lib/api";
+import { requireAdminAuth } from "../../../../lib/admin";
 
 // DELETE /api/admin/tokens/[id] - Delete a specific token (admin only)
 export const DELETE: APIRoute = async ({ request, params, locals }) => {
@@ -14,9 +14,9 @@ export const DELETE: APIRoute = async ({ request, params, locals }) => {
     return authResult;
   }
 
-  const tokenId = parseInt(params.id || '', 10);
+  const tokenId = parseInt(params.id || "", 10);
   if (isNaN(tokenId)) {
-    return errorResponse('Invalid token ID', 400);
+    return errorResponse("Invalid token ID", 400);
   }
 
   const db = drizzle(runtime.env.DB);

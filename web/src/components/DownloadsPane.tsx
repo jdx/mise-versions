@@ -26,9 +26,7 @@ function DailyBarChart({
   daily: Array<{ date: string; count: number }>;
 }) {
   if (!daily || daily.length === 0) {
-    return (
-      <div class="text-gray-500 text-sm py-4">No download data yet</div>
-    );
+    return <div class="text-gray-500 text-sm py-4">No download data yet</div>;
   }
 
   const maxCount = Math.max(...daily.map((d) => d.count), 1);
@@ -89,9 +87,7 @@ function MonthlyLineChart({
   monthly: Array<{ month: string; count: number }>;
 }) {
   if (!monthly || monthly.length === 0) {
-    return (
-      <div class="text-gray-500 text-sm py-4">No download data yet</div>
-    );
+    return <div class="text-gray-500 text-sm py-4">No download data yet</div>;
   }
 
   // Fill in missing months for the last 12 months
@@ -177,13 +173,15 @@ function MonthlyLineChart({
         </div>
         {/* X-axis labels */}
         <div class="flex justify-between text-xs text-gray-500 mt-1">
-          {months.filter((_, i) => i % 3 === 0 || i === months.length - 1).map((m) => (
-            <span key={m.month}>
-              {new Date(m.month + "-01").toLocaleDateString("en-US", {
-                month: "short",
-              })}
-            </span>
-          ))}
+          {months
+            .filter((_, i) => i % 3 === 0 || i === months.length - 1)
+            .map((m) => (
+              <span key={m.month}>
+                {new Date(m.month + "-01").toLocaleDateString("en-US", {
+                  month: "short",
+                })}
+              </span>
+            ))}
         </div>
       </div>
     </div>
@@ -191,13 +189,18 @@ function MonthlyLineChart({
 }
 
 interface VersionTrendData {
-  versions: Array<{ version: string; downloads: number; share: number; trend: "growing" | "declining" | "stable" }>;
+  versions: Array<{
+    version: string;
+    downloads: number;
+    share: number;
+    trend: "growing" | "declining" | "stable";
+  }>;
   timeline: Array<{ date: string; [version: string]: number | string }>;
 }
 
 function VersionTrendsChart({
   data,
-  loading
+  loading,
 }: {
   data: VersionTrendData | null;
   loading: boolean;
@@ -220,7 +223,7 @@ function VersionTrendsChart({
 
   // Get top versions for the chart (max 8)
   const topVersions = data.versions.slice(0, 8);
-  const versionKeys = topVersions.map(v => v.version);
+  const versionKeys = topVersions.map((v) => v.version);
 
   // Build stacked chart data
   const chartHeight = 100;
@@ -236,7 +239,7 @@ function VersionTrendsChart({
   }
 
   // Calculate stacked areas
-  const stackedData = data.timeline.map(day => {
+  const stackedData = data.timeline.map((day) => {
     const values: { version: string; y0: number; y1: number }[] = [];
     let cumulative = 0;
 
@@ -253,7 +256,7 @@ function VersionTrendsChart({
     return { date: day.date as string, values, total: cumulative };
   });
 
-  const maxTotal = Math.max(...stackedData.map(d => d.total), 1);
+  const maxTotal = Math.max(...stackedData.map((d) => d.total), 1);
 
   // Create stacked area paths
   const xScale = (i: number) => (i / Math.max(days - 1, 1)) * chartWidth;
@@ -264,7 +267,10 @@ function VersionTrendsChart({
       {/* Stacked area chart */}
       <div class="flex mb-3">
         {/* Y-axis labels */}
-        <div class="flex flex-col justify-between text-xs text-gray-500 pr-2" style={{ height: `${chartHeight}px` }}>
+        <div
+          class="flex flex-col justify-between text-xs text-gray-500 pr-2"
+          style={{ height: `${chartHeight}px` }}
+        >
           <span>{formatAxisNumber(maxTotal)}</span>
           <span>{formatAxisNumber(Math.round(maxTotal / 2))}</span>
           <span>0</span>
@@ -287,7 +293,9 @@ function VersionTrendsChart({
               let path = "";
               for (let i = 0; i < stackedData.length; i++) {
                 const x = xScale(i);
-                const versionData = stackedData[i].values.find(v => v.version === version);
+                const versionData = stackedData[i].values.find(
+                  (v) => v.version === version,
+                );
                 const y = versionData ? yScale(versionData.y1) : chartHeight;
                 path += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
               }
@@ -295,19 +303,16 @@ function VersionTrendsChart({
               // Complete the area by going back along y0
               for (let i = stackedData.length - 1; i >= 0; i--) {
                 const x = xScale(i);
-                const versionData = stackedData[i].values.find(v => v.version === version);
+                const versionData = stackedData[i].values.find(
+                  (v) => v.version === version,
+                );
                 const y = versionData ? yScale(versionData.y0) : chartHeight;
                 path += ` L ${x} ${y}`;
               }
               path += " Z";
 
               return (
-                <path
-                  key={version}
-                  d={path}
-                  fill={color}
-                  opacity={0.8}
-                >
+                <path key={version} d={path} fill={color} opacity={0.8}>
                   <title>{version}</title>
                 </path>
               );
@@ -320,8 +325,14 @@ function VersionTrendsChart({
       <div class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
         {topVersions.map((v, idx) => {
           const color = VERSION_COLORS[idx % VERSION_COLORS.length];
-          const trendIcon = v.trend === "growing" ? "↑" : v.trend === "declining" ? "↓" : "";
-          const trendColor = v.trend === "growing" ? "text-green-400" : v.trend === "declining" ? "text-red-400" : "";
+          const trendIcon =
+            v.trend === "growing" ? "↑" : v.trend === "declining" ? "↓" : "";
+          const trendColor =
+            v.trend === "growing"
+              ? "text-green-400"
+              : v.trend === "declining"
+                ? "text-red-400"
+                : "";
 
           return (
             <div key={v.version} class="flex items-center gap-1">
@@ -354,13 +365,21 @@ type ChartView = "30d" | "12m" | "versions";
 function getStoredChartView(): ChartView {
   if (typeof window === "undefined") return "30d";
   const stored = localStorage.getItem(CHART_VIEW_KEY);
-  if (stored === "30d" || stored === "12m" || stored === "versions") return stored;
+  if (stored === "30d" || stored === "12m" || stored === "versions")
+    return stored;
   return "30d";
 }
 
-export function DownloadsPane({ tool, daily, monthly, byVersion, byOs }: DownloadsPaneProps) {
+export function DownloadsPane({
+  tool,
+  daily,
+  monthly,
+  byVersion,
+  byOs,
+}: DownloadsPaneProps) {
   const [chartView, setChartViewState] = useState<ChartView>("30d");
-  const [versionTrendsData, setVersionTrendsData] = useState<VersionTrendData | null>(null);
+  const [versionTrendsData, setVersionTrendsData] =
+    useState<VersionTrendData | null>(null);
   const [versionTrendsLoading, setVersionTrendsLoading] = useState(false);
 
   // Sync from localStorage on mount (after hydration)
@@ -380,11 +399,15 @@ export function DownloadsPane({ tool, daily, monthly, byVersion, byOs }: Downloa
 
   // Fetch version trends when switching to that tab
   useEffect(() => {
-    if (chartView === "versions" && !versionTrendsData && !versionTrendsLoading) {
+    if (
+      chartView === "versions" &&
+      !versionTrendsData &&
+      !versionTrendsLoading
+    ) {
       setVersionTrendsLoading(true);
       fetch(`/api/downloads/${tool}/version-trends?days=30`)
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           setVersionTrendsData(data);
           setVersionTrendsLoading(false);
         })
@@ -401,7 +424,11 @@ export function DownloadsPane({ tool, daily, monthly, byVersion, byOs }: Downloa
       <div class="mb-4">
         <div class="flex items-center justify-between mb-2">
           <div class="text-sm text-gray-400">
-            {chartView === "30d" ? "Last 30 days" : chartView === "12m" ? "Last 12 months" : "Version trends (30d)"}
+            {chartView === "30d"
+              ? "Last 30 days"
+              : chartView === "12m"
+                ? "Last 12 months"
+                : "Version trends (30d)"}
           </div>
           <div class="flex rounded-lg overflow-hidden border border-dark-600">
             <button
@@ -441,7 +468,10 @@ export function DownloadsPane({ tool, daily, monthly, byVersion, byOs }: Downloa
         ) : chartView === "12m" ? (
           <MonthlyLineChart monthly={monthly || []} />
         ) : (
-          <VersionTrendsChart data={versionTrendsData} loading={versionTrendsLoading} />
+          <VersionTrendsChart
+            data={versionTrendsData}
+            loading={versionTrendsLoading}
+          />
         )}
       </div>
 

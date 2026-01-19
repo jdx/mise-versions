@@ -1,8 +1,8 @@
 // Cloudflare Worker entry point
 // Wraps Astro's generated worker and adds scheduled handler support
-import { drizzle } from 'drizzle-orm/d1';
-import { runMigrations } from '../src/migrations';
-import { runAnalyticsMigrations, setupAnalytics } from '../src/analytics';
+import { drizzle } from "drizzle-orm/d1";
+import { runMigrations } from "../src/migrations";
+import { runAnalyticsMigrations, setupAnalytics } from "../src/analytics";
 
 // Type for environment bindings
 interface Env {
@@ -25,7 +25,7 @@ async function ensureMigrations(env: Env): Promise<void> {
   if (migrationsCompleted) return;
 
   try {
-    console.log('Running database migrations...');
+    console.log("Running database migrations...");
     const db = drizzle(env.DB);
     await runMigrations(db);
 
@@ -34,22 +34,26 @@ async function ensureMigrations(env: Env): Promise<void> {
     await runAnalyticsMigrations(analyticsDb);
 
     migrationsCompleted = true;
-    console.log('Migrations completed');
+    console.log("Migrations completed");
   } catch (error) {
-    console.error('Migration error:', error);
+    console.error("Migration error:", error);
   }
 }
 
 // Dynamically import Astro's handler (built by Astro at build time)
 async function getAstroHandler() {
   // @ts-expect-error - This path is generated at build time by Astro
-  const astroModule = await import('../web/dist/_worker.js/index.js');
+  const astroModule = await import("../web/dist/_worker.js/index.js");
   return astroModule.default;
 }
 
 export default {
   // Forward fetch requests to Astro
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(
+    request: Request,
+    env: Env,
+    ctx: ExecutionContext,
+  ): Promise<Response> {
     // Run migrations once on first request
     await ensureMigrations(env);
 
@@ -59,8 +63,12 @@ export default {
   },
 
   // Cron trigger for daily aggregation
-  async scheduled(_event: ScheduledEvent, env: Env, _ctx: ExecutionContext): Promise<void> {
-    console.log('Running scheduled tasks...');
+  async scheduled(
+    _event: ScheduledEvent,
+    env: Env,
+    _ctx: ExecutionContext,
+  ): Promise<void> {
+    console.log("Running scheduled tasks...");
 
     // Ensure migrations are run
     await ensureMigrations(env);
@@ -71,26 +79,32 @@ export default {
     // 1. Aggregate old data (data older than 90 days)
     const aggregateResult = await analytics.aggregateOldData();
     console.log(
-      `Aggregation complete: ${aggregateResult.aggregated} groups aggregated, ${aggregateResult.deleted} rows deleted`
+      `Aggregation complete: ${aggregateResult.aggregated} groups aggregated, ${aggregateResult.deleted} rows deleted`,
     );
 
     // 2. Populate rollup tables for yesterday (and today so far)
     const now = new Date();
     const yesterday = new Date(now);
     yesterday.setUTCDate(yesterday.getUTCDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split('T')[0];
-    const todayStr = now.toISOString().split('T')[0];
+    const yesterdayStr = yesterday.toISOString().split("T")[0];
+    const todayStr = now.toISOString().split("T")[0];
 
     // Populate yesterday's full data
-    const yesterdayResult = await analytics.populateRollupTables(yesterdayStr, env.ANALYTICS_DB);
+    const yesterdayResult = await analytics.populateRollupTables(
+      yesterdayStr,
+      env.ANALYTICS_DB,
+    );
     console.log(
-      `Rollup tables populated for ${yesterdayStr}: ${yesterdayResult.toolStats} tools, ${yesterdayResult.backendStats} backends`
+      `Rollup tables populated for ${yesterdayStr}: ${yesterdayResult.toolStats} tools, ${yesterdayResult.backendStats} backends`,
     );
 
     // Also update today's partial data
-    const todayResult = await analytics.populateRollupTables(todayStr, env.ANALYTICS_DB);
+    const todayResult = await analytics.populateRollupTables(
+      todayStr,
+      env.ANALYTICS_DB,
+    );
     console.log(
-      `Rollup tables updated for ${todayStr}: ${todayResult.toolStats} tools, ${todayResult.backendStats} backends`
+      `Rollup tables updated for ${todayStr}: ${todayResult.toolStats} tools, ${todayResult.backendStats} backends`,
     );
   },
 };

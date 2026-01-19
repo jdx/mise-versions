@@ -171,7 +171,9 @@ async function getAllTags(repo, tagToVersion) {
 
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
-  const implFilter = process.argv.find((a) => a.startsWith("--impl="))?.slice(7);
+  const implFilter = process.argv
+    .find((a) => a.startsWith("--impl="))
+    ?.slice(7);
 
   if (dryRun) {
     console.log("DRY RUN - no files will be modified\n");

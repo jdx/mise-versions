@@ -1,8 +1,8 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupDatabase } from '../../../../../src/database';
-import { jsonResponse } from '../../../lib/api';
-import { requireAdminAuth } from '../../../lib/admin';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupDatabase } from "../../../../../src/database";
+import { jsonResponse } from "../../../lib/api";
+import { requireAdminAuth } from "../../../lib/admin";
 
 // GET /api/admin/tokens - Get token pool information (admin only)
 export const GET: APIRoute = async ({ request, locals }) => {

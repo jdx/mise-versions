@@ -1,5 +1,5 @@
-import type { APIRoute } from 'astro';
-import { getAuthCookie } from '../../../lib/auth';
+import type { APIRoute } from "astro";
+import { getAuthCookie } from "../../../lib/auth";
 
 // GET /api/auth/me - Check current login state
 export const GET: APIRoute = async ({ request, locals }) => {
@@ -12,6 +12,6 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
   return new Response(JSON.stringify(response), {
     status: 200,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { "Content-Type": "application/json" },
   });
 };

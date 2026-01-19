@@ -7,7 +7,21 @@ import { existsSync, readFileSync } from "fs";
 function serveDocsPlugin() {
   return {
     name: "serve-docs",
-    configureServer(server: { middlewares: { use: (handler: (req: { url?: string }, res: { statusCode: number; setHeader: (name: string, value: string) => void; end: (data?: string) => void }, next: () => void) => void) => void } }) {
+    configureServer(server: {
+      middlewares: {
+        use: (
+          handler: (
+            req: { url?: string },
+            res: {
+              statusCode: number;
+              setHeader: (name: string, value: string) => void;
+              end: (data?: string) => void;
+            },
+            next: () => void,
+          ) => void,
+        ) => void;
+      };
+    }) {
       server.middlewares.use((req, res, next) => {
         if (req.url?.startsWith("/data/")) {
           const filePath = resolve(__dirname, "..", "docs", req.url.slice(6));

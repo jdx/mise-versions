@@ -37,13 +37,19 @@ function formatDate(dateStr: string): string {
   });
 }
 
-function getInterestingPrefixes(versions: Version[], tool?: string, distribution?: string): string[] {
+function getInterestingPrefixes(
+  versions: Version[],
+  tool?: string,
+  distribution?: string,
+): string[] {
   if (!versions || versions.length === 0) return [];
 
   // Filter to current distribution first if specified
   let filteredVersions = versions;
   if (distribution && tool) {
-    filteredVersions = versions.filter((v) => getDistribution(v.version, tool) === distribution);
+    filteredVersions = versions.filter(
+      (v) => getDistribution(v.version, tool) === distribution,
+    );
   }
 
   // Parse versions and group by major
@@ -55,7 +61,13 @@ function getInterestingPrefixes(versions: Version[], tool?: string, distribution
     let versionStr = v.version;
     if (tool && distribution) {
       const dist = getDistribution(v.version, tool);
-      if (dist !== "default" && dist !== "openjdk" && dist !== "cpython" && dist !== "cruby" && dist !== "node") {
+      if (
+        dist !== "default" &&
+        dist !== "openjdk" &&
+        dist !== "cpython" &&
+        dist !== "cruby" &&
+        dist !== "node"
+      ) {
         // Remove the prefix for cleaner grouping
         const idx = v.version.indexOf("-");
         if (idx > 0) {
@@ -134,7 +146,7 @@ const ITEMS_PER_PAGE = 100;
 // Build release timeline milestones from filtered versions
 function buildTimelineMilestones(
   versions: Version[],
-  tool?: string
+  tool?: string,
 ): {
   milestones: Array<{
     version: string;
@@ -150,11 +162,15 @@ function buildTimelineMilestones(
 } | null {
   const datedVersions = versions
     .filter((v) => v.created_at)
-    .sort((a, b) => new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime());
+    .sort(
+      (a, b) =>
+        new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime(),
+    );
 
   if (datedVersions.length < 2) return null;
 
-  const milestones: Array<{ version: string; date: Date; isMajor: boolean }> = [];
+  const milestones: Array<{ version: string; date: Date; isMajor: boolean }> =
+    [];
   const reversedVersions = [...datedVersions].reverse();
   const seenMajors = new Set<string>();
   const seenMinors = new Set<string>();
@@ -190,7 +206,11 @@ function buildTimelineMilestones(
         date: new Date(v.created_at!),
         isMajor: true,
       });
-    } else if (major === latestMajor && !seenMinors.has(minor) && milestones.length < 10) {
+    } else if (
+      major === latestMajor &&
+      !seenMinors.has(minor) &&
+      milestones.length < 10
+    ) {
       seenMinors.add(minor);
       milestones.push({
         version: v.version,
@@ -218,15 +238,17 @@ function buildTimelineMilestones(
 
   // Use milestone dates for positioning
   const firstMilestoneDate = displayMilestones[0].date.getTime();
-  const lastMilestoneDate = displayMilestones[displayMilestones.length - 1].date.getTime();
+  const lastMilestoneDate =
+    displayMilestones[displayMilestones.length - 1].date.getTime();
   const range = lastMilestoneDate - firstMilestoneDate || 1;
 
   // Calculate total time span from ALL versions for accurate stats
-  const allDates = datedVersions.map(v => new Date(v.created_at!).getTime());
+  const allDates = datedVersions.map((v) => new Date(v.created_at!).getTime());
   const oldestDate = Math.min(...allDates);
   const newestDate = Math.max(...allDates);
   const totalDays = (newestDate - oldestDate) / (1000 * 60 * 60 * 24);
-  const avgDaysBetween = datedVersions.length > 1 ? totalDays / (datedVersions.length - 1) : 0;
+  const avgDaysBetween =
+    datedVersions.length > 1 ? totalDays / (datedVersions.length - 1) : 0;
 
   return {
     milestones: displayMilestones.map((m) => {
@@ -239,7 +261,10 @@ function buildTimelineMilestones(
           day: "numeric",
           year: "numeric",
         }),
-        shortVersion: numericVersion.split(".").slice(0, m.isMajor ? 1 : 2).join("."),
+        shortVersion: numericVersion
+          .split(".")
+          .slice(0, m.isMajor ? 1 : 2)
+          .join("."),
       };
     }),
     totalReleases: datedVersions.length,
@@ -248,7 +273,12 @@ function buildTimelineMilestones(
   };
 }
 
-export function VersionsTable({ versions, downloadsByVersion, github, tool }: VersionsTableProps) {
+export function VersionsTable({
+  versions,
+  downloadsByVersion,
+  github,
+  tool,
+}: VersionsTableProps) {
   // Initialize distribution to default for this tool (if it has distributions)
   const defaultDist = tool ? getDefaultDistribution(tool) : null;
   const toolHasDistributions = tool ? hasDistributions(tool) : false;
@@ -271,10 +301,7 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
   // Get unique distributions for this tool
   const distributions = useMemo(() => {
     if (!tool || !toolHasDistributions) return [];
-    return getUniqueDistributions(
-      versions?.map((v) => v.version) || [],
-      tool
-    );
+    return getUniqueDistributions(versions?.map((v) => v.version) || [], tool);
   }, [versions, tool, toolHasDistributions]);
 
   // Sort versions based on selected sort key
@@ -285,12 +312,17 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
     return [...versions].sort((a, b) => {
       switch (sortBy) {
         case "downloads":
-          return (versionDownloads.get(b.version) || 0) - (versionDownloads.get(a.version) || 0);
+          return (
+            (versionDownloads.get(b.version) || 0) -
+            (versionDownloads.get(a.version) || 0)
+          );
         case "released":
           if (!a.created_at && !b.created_at) return 0;
           if (!a.created_at) return 1;
           if (!b.created_at) return -1;
-          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+          return (
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          );
         default:
           return 0;
       }
@@ -299,7 +331,11 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
 
   // Get interesting version prefixes for pill buttons (based on current distribution)
   const interestingPrefixes = useMemo(() => {
-    return getInterestingPrefixes(versions || [], tool, distribution || undefined);
+    return getInterestingPrefixes(
+      versions || [],
+      tool,
+      distribution || undefined,
+    );
   }, [versions, tool, distribution]);
 
   // Filter versions by all criteria
@@ -308,7 +344,9 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
 
     // Filter by distribution
     if (distribution && tool) {
-      result = result.filter((v) => getDistribution(v.version, tool) === distribution);
+      result = result.filter(
+        (v) => getDistribution(v.version, tool) === distribution,
+      );
     }
 
     // Filter by search query
@@ -329,19 +367,35 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
         let versionStr = v.version;
         if (tool) {
           const dist = getDistribution(v.version, tool);
-          if (dist !== "default" && dist !== "openjdk" && dist !== "cpython" && dist !== "cruby" && dist !== "node") {
+          if (
+            dist !== "default" &&
+            dist !== "openjdk" &&
+            dist !== "cpython" &&
+            dist !== "cruby" &&
+            dist !== "node"
+          ) {
             const idx = v.version.indexOf("-");
             if (idx > 0) {
               versionStr = v.version.substring(idx + 1);
             }
           }
         }
-        return versionStr.startsWith(versionPrefix + ".") || versionStr === versionPrefix;
+        return (
+          versionStr.startsWith(versionPrefix + ".") ||
+          versionStr === versionPrefix
+        );
       });
     }
 
     return result;
-  }, [sortedVersions, distribution, debouncedSearch, hidePrerelease, versionPrefix, tool]);
+  }, [
+    sortedVersions,
+    distribution,
+    debouncedSearch,
+    hidePrerelease,
+    versionPrefix,
+    tool,
+  ]);
 
   // Paginated versions
   const displayedVersions = filteredVersions.slice(0, displayCount);
@@ -356,7 +410,9 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
   const prereleaseCount = useMemo(() => {
     let result = versions || [];
     if (distribution && tool) {
-      result = result.filter((v) => getDistribution(v.version, tool) === distribution);
+      result = result.filter(
+        (v) => getDistribution(v.version, tool) === distribution,
+      );
     }
     return result.filter((v) => isPrerelease(v.version)).length;
   }, [versions, distribution, tool]);
@@ -369,7 +425,7 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
     // Filter by distribution
     if (distribution && tool) {
       timelineVersions = timelineVersions.filter(
-        (v) => getDistribution(v.version, tool) === distribution
+        (v) => getDistribution(v.version, tool) === distribution,
       );
     }
 
@@ -379,21 +435,36 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
         let versionStr = v.version;
         if (tool) {
           const dist = getDistribution(v.version, tool);
-          if (dist !== "default" && dist !== "openjdk" && dist !== "cpython" && dist !== "cruby" && dist !== "node") {
+          if (
+            dist !== "default" &&
+            dist !== "openjdk" &&
+            dist !== "cpython" &&
+            dist !== "cruby" &&
+            dist !== "node"
+          ) {
             const idx = v.version.indexOf("-");
             if (idx > 0) {
               versionStr = v.version.substring(idx + 1);
             }
           }
         }
-        return versionStr.startsWith(versionPrefix + ".") || versionStr === versionPrefix;
+        return (
+          versionStr.startsWith(versionPrefix + ".") ||
+          versionStr === versionPrefix
+        );
       });
     }
 
     return buildTimelineMilestones(timelineVersions, tool);
   }, [versions, distribution, versionPrefix, tool]);
 
-  const SortButton = ({ label, sortKey }: { label: string; sortKey: VersionSortKey }) => (
+  const SortButton = ({
+    label,
+    sortKey,
+  }: {
+    label: string;
+    sortKey: VersionSortKey;
+  }) => (
     <button
       onClick={() => setSortBy(sortKey)}
       class={`text-sm font-medium transition-colors ${
@@ -563,7 +634,9 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
                 />
                 {/* Label */}
                 <div class="absolute top-8 left-1/2 -translate-x-1/2 text-xs whitespace-nowrap">
-                  <span class={`font-mono ${m.isMajor ? "text-gray-300" : "text-gray-500"}`}>
+                  <span
+                    class={`font-mono ${m.isMajor ? "text-gray-300" : "text-gray-500"}`}
+                  >
                     {m.shortVersion}
                   </span>
                 </div>
@@ -587,7 +660,9 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
                 <SortButton label="Version" sortKey="default" />
                 <span class="ml-2 text-xs text-gray-500">
                   ({filteredVersions.length.toLocaleString()}{" "}
-                  {filteredVersions.length !== versions?.length && `of ${versions?.length.toLocaleString()}`})
+                  {filteredVersions.length !== versions?.length &&
+                    `of ${versions?.length.toLocaleString()}`}
+                  )
                 </span>
               </th>
               <th class="text-right px-4 py-3 hidden sm:table-cell">
@@ -603,7 +678,9 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
               <tr key={v.version} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3 font-mono text-sm">
                   {(() => {
-                    const url = v.release_url || (github ? buildReleaseUrl(github, v.version) : null);
+                    const url =
+                      v.release_url ||
+                      (github ? buildReleaseUrl(github, v.version) : null);
                     return url ? (
                       <a
                         href={url}
@@ -625,7 +702,9 @@ export function VersionsTable({ versions, downloadsByVersion, github, tool }: Ve
                   {v.created_at ? (
                     <>
                       {formatRelativeTime(v.created_at)}{" "}
-                      <span class="text-gray-500">({formatDate(v.created_at)})</span>
+                      <span class="text-gray-500">
+                        ({formatDate(v.created_at)})
+                      </span>
                     </>
                   ) : (
                     "-"

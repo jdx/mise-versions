@@ -26,14 +26,18 @@ export type TelemetryEventV1 =
       source: "toml";
     };
 
-export function getMiseVersionFromUserAgent(userAgent: string | null): string | null {
+export function getMiseVersionFromUserAgent(
+  userAgent: string | null,
+): string | null {
   if (!userAgent) return null;
 
   // Examples we want to match:
   // - "mise/2025.12.0 ..."
   // - "mise 2025.12.0 ..."
   // - "mise/v2025.12.0 ..."
-  const m = userAgent.match(/\bmise[\/\s]v?(\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?|\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)/i);
+  const m = userAgent.match(
+    /\bmise[\/\s]v?(\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?|\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?)/i,
+  );
   return m?.[1] ?? null;
 }
 
@@ -54,7 +58,7 @@ export function getMiseVersionFromHeaders(headers: Headers): string | null {
 
 export async function emitTelemetry(
   env: { MISE_VERSIONS_STREAM?: PipelinesStreamBinding },
-  event: TelemetryEventV1
+  event: TelemetryEventV1,
 ): Promise<void> {
   const stream = env.MISE_VERSIONS_STREAM;
   if (!stream || typeof stream.send !== "function") return;

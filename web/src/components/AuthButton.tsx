@@ -53,7 +53,8 @@ export function AuthButton() {
   }
 
   // Get current page path for return_to
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const currentPath =
+    typeof window !== "undefined" ? window.location.pathname : "/";
   const loginUrl = `/api/auth/login?return_to=${encodeURIComponent(currentPath)}`;
   const logoutUrl = `/api/auth/logout?return_to=${encodeURIComponent(currentPath)}`;
 

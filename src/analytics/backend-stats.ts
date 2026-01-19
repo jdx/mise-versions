@@ -8,7 +8,9 @@ export function createBackendStatsFunctions(db: ReturnType<typeof drizzle>) {
   // Uses daily_backend_stats rollup table for fast lookups
   async function getDownloadsByBackend() {
     const now = Math.floor(Date.now() / 1000);
-    const startDate = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
+    const startDate = new Date((now - 30 * 86400) * 1000)
+      .toISOString()
+      .split("T")[0];
 
     // Sum downloads from rollup table (fast!)
     const results = await db
@@ -33,7 +35,9 @@ export function createBackendStatsFunctions(db: ReturnType<typeof drizzle>) {
   // Uses daily_tool_backend_stats rollup table for fast lookups
   async function getTopToolsByBackend(limit: number = 5) {
     const now = Math.floor(Date.now() / 1000);
-    const startDate = new Date((now - 30 * 86400) * 1000).toISOString().split("T")[0];
+    const startDate = new Date((now - 30 * 86400) * 1000)
+      .toISOString()
+      .split("T")[0];
 
     // Sum downloads from rollup table grouped by tool and backend type (fast!)
     const results = await db
@@ -44,11 +48,14 @@ export function createBackendStatsFunctions(db: ReturnType<typeof drizzle>) {
       })
       .from(dailyToolBackendStats)
       .where(sql`${dailyToolBackendStats.date} >= ${startDate}`)
-      .groupBy(dailyToolBackendStats.tool_id, dailyToolBackendStats.backend_type)
+      .groupBy(
+        dailyToolBackendStats.tool_id,
+        dailyToolBackendStats.backend_type,
+      )
       .all();
 
     // Get tool names for the tool IDs we found (batch to avoid D1 param limit)
-    const toolIds = [...new Set(results.map(r => r.tool_id))];
+    const toolIds = [...new Set(results.map((r) => r.tool_id))];
     if (toolIds.length === 0) {
       return {};
     }
@@ -60,7 +67,12 @@ export function createBackendStatsFunctions(db: ReturnType<typeof drizzle>) {
       const toolNames = await db
         .select({ id: tools.id, name: tools.name })
         .from(tools)
-        .where(sql`${tools.id} IN (${sql.join(batch.map(id => sql`${id}`), sql`, `)})`)
+        .where(
+          sql`${tools.id} IN (${sql.join(
+            batch.map((id) => sql`${id}`),
+            sql`, `,
+          )})`,
+        )
         .all();
       for (const t of toolNames) {
         toolIdToName.set(t.id, t.name);

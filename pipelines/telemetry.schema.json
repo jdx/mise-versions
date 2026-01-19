@@ -10,7 +10,10 @@
     "version": { "type": ["string", "null"] },
     "os": { "type": ["string", "null"] },
     "arch": { "type": ["string", "null"] },
-    "full": { "type": ["string", "null"], "description": "Backend identifier like aqua:nektos/act" },
+    "full": {
+      "type": ["string", "null"],
+      "description": "Backend identifier like aqua:nektos/act"
+    },
     "ip_hash": { "type": "string" },
     "mise_version": { "type": ["string", "null"] },
     "source": { "type": "string", "enum": ["api/track", "toml"] }

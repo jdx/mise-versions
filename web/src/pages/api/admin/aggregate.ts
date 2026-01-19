@@ -1,7 +1,7 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { setupAnalytics } from '../../../../../src/analytics';
-import { jsonResponse, errorResponse } from '../../../lib/api';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupAnalytics } from "../../../../../src/analytics";
+import { jsonResponse, errorResponse } from "../../../lib/api";
 
 // POST /api/admin/aggregate - Aggregate old download data (requires auth)
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -9,10 +9,10 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const runtime = locals.runtime;
 
     // Verify admin secret
-    const authHeader = request.headers.get('Authorization');
+    const authHeader = request.headers.get("Authorization");
     const expectedAuth = `Bearer ${runtime.env.API_SECRET}`;
     if (authHeader !== expectedAuth) {
-      return errorResponse('Unauthorized', 401);
+      return errorResponse("Unauthorized", 401);
     }
 
     const db = drizzle(runtime.env.ANALYTICS_DB);
@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       deleted: result.deleted,
     });
   } catch (error) {
-    console.error('Aggregate error:', error);
-    return errorResponse('Failed to aggregate data', 500);
+    console.error("Aggregate error:", error);
+    return errorResponse("Failed to aggregate data", 500);
   }
 };

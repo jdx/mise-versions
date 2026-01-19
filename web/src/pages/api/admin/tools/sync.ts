@@ -1,8 +1,12 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { sql } from 'drizzle-orm';
-import { jsonResponse, errorResponse, requireApiAuth } from '../../../../lib/api';
-import { runAnalyticsMigrations } from '../../../../../../src/analytics';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { sql } from "drizzle-orm";
+import {
+  jsonResponse,
+  errorResponse,
+  requireApiAuth,
+} from "../../../../lib/api";
+import { runAnalyticsMigrations } from "../../../../../../src/analytics";
 
 interface ToolMetadata {
   name: string;
@@ -36,11 +40,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     body = await request.json();
   } catch {
-    return errorResponse('Invalid JSON body', 400);
+    return errorResponse("Invalid JSON body", 400);
   }
 
   if (!Array.isArray(body.tools) || body.tools.length === 0) {
-    return errorResponse('tools must be a non-empty array', 400);
+    return errorResponse("tools must be a non-empty array", 400);
   }
 
   const db = drizzle(runtime.env.ANALYTICS_DB);
@@ -58,7 +62,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   for (const tool of body.tools) {
     if (!tool.name) {
       errors++;
-      failedTools.push({ name: '(unnamed)', error: 'Missing name' });
+      failedTools.push({ name: "(unnamed)", error: "Missing name" });
       continue;
     }
 
@@ -66,7 +70,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
       const backendsJson = tool.backends ? JSON.stringify(tool.backends) : null;
       const authorsJson = tool.authors ? JSON.stringify(tool.authors) : null;
       const securityJson = tool.security ? JSON.stringify(tool.security) : null;
-      const packageUrlsJson = tool.package_urls ? JSON.stringify(tool.package_urls) : null;
+      const packageUrlsJson = tool.package_urls
+        ? JSON.stringify(tool.package_urls)
+        : null;
 
       // Use INSERT ... ON CONFLICT DO UPDATE (upsert) - single query instead of SELECT + UPDATE/INSERT
       await db.run(sql`

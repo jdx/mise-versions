@@ -1,9 +1,9 @@
-import type { APIRoute } from 'astro';
-import { drizzle } from 'drizzle-orm/d1';
-import { Octokit } from '@octokit/rest';
-import { setupDatabase } from '../../../../../../src/database';
-import { jsonResponse } from '../../../../lib/api';
-import { requireAdminAuth } from '../../../../lib/admin';
+import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { Octokit } from "@octokit/rest";
+import { setupDatabase } from "../../../../../../src/database";
+import { jsonResponse } from "../../../../lib/api";
+import { requireAdminAuth } from "../../../../lib/admin";
 
 interface TokenTestResult {
   id: number;
@@ -43,9 +43,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
       // Get rate limit info from response headers
       const rateLimit = {
-        remaining: parseInt(response.headers['x-ratelimit-remaining'] || '0', 10),
-        limit: parseInt(response.headers['x-ratelimit-limit'] || '0', 10),
-        reset: new Date(parseInt(response.headers['x-ratelimit-reset'] || '0', 10) * 1000),
+        remaining: parseInt(
+          response.headers["x-ratelimit-remaining"] || "0",
+          10,
+        ),
+        limit: parseInt(response.headers["x-ratelimit-limit"] || "0", 10),
+        reset: new Date(
+          parseInt(response.headers["x-ratelimit-reset"] || "0", 10) * 1000,
+        ),
       };
 
       // Update validation timestamp
@@ -59,7 +64,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
         rateLimit,
       });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorMessage =
+        error instanceof Error ? error.message : "Unknown error";
       results.push({
         id: token.id,
         user_name: token.user_name,
