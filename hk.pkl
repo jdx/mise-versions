@@ -8,14 +8,14 @@ local linters = new Mapping<String, Step> {
         stage = "*"
     }
     ["tsc"] {
-        glob = List("src/**/*.ts")
-        check = "npx tsc --noEmit"
+        glob = List("src/**/*.ts", "worker/**/*.ts")
+        check = "bunx tsc --noEmit"
         batch = true
     }
     ["tsc-web"] {
         glob = List("web/src/**/*.ts", "web/src/**/*.tsx")
         dir = "web"
-        check = "npx tsc --noEmit"
+        check = "bunx tsc --noEmit"
         batch = true
     }
 }
