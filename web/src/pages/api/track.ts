@@ -31,19 +31,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const clientIP = getClientIP(request);
     const ipHash = await hashIP(clientIP, runtime.env.API_SECRET);
 
-    const db = drizzle(runtime.env.ANALYTICS_DB);
-    const analytics = setupAnalytics(db);
-
-    const result = await analytics.trackDownload(
-      body.tool,
-      body.version,
-      ipHash,
-      body.os || null,
-      body.arch || null,
-      body.full || null,
-    );
+    // Check if request is from CI environment
+    const isCI = request.headers.get("x-mise-ci") === "true";
 
     const miseVersion = getMiseVersionFromHeaders(request.headers);
+
+    // Always emit telemetry (includes is_ci flag for analysis)
     runtime.ctx.waitUntil(
       emitTelemetry(runtime.env, {
         schema_version: 1,
@@ -57,7 +50,35 @@ export const POST: APIRoute = async ({ request, locals }) => {
         ip_hash: ipHash,
         mise_version: miseVersion,
         source: "api/track",
+        is_ci: isCI,
       }),
+    );
+
+    // Skip database storage for CI requests (excludes from MAU calculations)
+    if (isCI) {
+      return new Response(
+        JSON.stringify({
+          success: true,
+          deduplicated: false,
+          ci: true,
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    const db = drizzle(runtime.env.ANALYTICS_DB);
+    const analytics = setupAnalytics(db);
+
+    const result = await analytics.trackDownload(
+      body.tool,
+      body.version,
+      ipHash,
+      body.os || null,
+      body.arch || null,
+      body.full || null,
     );
 
     return new Response(
