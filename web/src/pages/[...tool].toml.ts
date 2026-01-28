@@ -64,11 +64,11 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     // Track version request for DAU/MAU using waitUntil to ensure it completes
     const clientIP = getClientIP(request);
     const miseVersion = getMiseVersionFromHeaders(request.headers);
+    const isCI = request.headers.get("x-mise-ci") === "true";
     runtime.ctx.waitUntil(
       hashIP(clientIP, runtime.env.API_SECRET).then(async (ipHash) => {
         try {
-          const analytics = setupAnalytics(db);
-          await analytics.trackVersionRequest(ipHash);
+          // Always emit telemetry (includes is_ci flag for analysis)
           await emitTelemetry(runtime.env, {
             schema_version: 1,
             type: "version_request",
@@ -77,7 +77,13 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
             ip_hash: ipHash,
             mise_version: miseVersion,
             source: "toml",
+            is_ci: isCI,
           });
+          // Skip database storage for CI requests (excludes from MAU calculations)
+          if (!isCI) {
+            const analytics = setupAnalytics(db);
+            await analytics.trackVersionRequest(ipHash);
+          }
         } catch (e) {
           console.error("Failed to track version request:", e);
         }
