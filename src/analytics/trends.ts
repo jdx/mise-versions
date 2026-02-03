@@ -506,11 +506,6 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
 
       if (toolData.size === 0) return [];
 
-      const maxDownloads = Math.max(
-        ...[...toolData.values()].map((d) => d.total),
-        1,
-      );
-
       const results: Array<{
         name: string;
         downloads_30d: number;
@@ -555,14 +550,14 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         const recentAvg = recentDays > 0 ? recentSum / recentDays : 0;
         const baselineAvg = baselineDays > 0 ? baselineSum / baselineDays : 0;
 
+        // Score based purely on recent momentum (ratio of last 3 days vs baseline)
         let dailyBoost = 0;
         if (baselineAvg > 0 && recentAvg > baselineAvg) {
           const ratio = recentAvg / baselineAvg;
-          dailyBoost = Math.min(50, (ratio - 1) * 100);
+          dailyBoost = (ratio - 1) * 100;
         }
 
-        const monthlyScore = (data.total / maxDownloads) * 100;
-        const trendingScore = monthlyScore + dailyBoost;
+        const trendingScore = dailyBoost;
 
         results.push({
           name,
