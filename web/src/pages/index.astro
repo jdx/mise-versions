@@ -47,6 +47,10 @@ let trendingTools: Array<{
   trendingScore: number;
   dailyBoost: number;
   sparkline: number[];
+  description?: string;
+  backends?: string[];
+  security?: Array<{ type: string; algorithm?: string }>;
+  version_count?: number;
 }> = [];
 try {
   const db = drizzle(runtime.env.ANALYTICS_DB);

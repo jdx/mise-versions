@@ -24,6 +24,10 @@ interface TrendingTool {
   trendingScore: number;
   dailyBoost: number;
   sparkline: number[];
+  description?: string;
+  backends?: string[];
+  security?: Array<{ type: string; algorithm?: string }>;
+  version_count?: number;
 }
 
 interface PaginationInfo {
@@ -452,15 +456,8 @@ export function ToolSearch({
 
   // Merge trending tools with tool metadata
   const hotTools = useMemo(() => {
-    if (!tools || trendingTools.length === 0) return [];
-    const toolMap = new Map(tools.map((t) => [t.name, t]));
-    return trendingTools
-      .map((t) => {
-        const meta = toolMap.get(t.name);
-        return meta ? { ...meta, ...t } : null;
-      })
-      .filter((t): t is Tool & TrendingTool => t !== null);
-  }, [tools, trendingTools]);
+    return trendingTools.filter((t) => t.name);
+  }, [trendingTools]);
 
   const SortButton = ({
     label,

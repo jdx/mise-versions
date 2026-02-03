@@ -461,6 +461,10 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         trendingScore: number;
         dailyBoost: number;
         sparkline: number[];
+        description?: string;
+        backends?: string[];
+        security?: Array<{ type: string; algorithm?: string }>;
+        version_count: number;
       }>
     > {
       const now = Math.floor(Date.now() / 1000);
@@ -513,6 +517,10 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         trendingScore: number;
         dailyBoost: number;
         sparkline: number[];
+        description?: string;
+        backends?: string[];
+        security?: Array<{ type: string; algorithm?: string }>;
+        version_count: number;
       }> = [];
 
       for (const [name, data] of toolData) {
@@ -562,11 +570,42 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
           trendingScore,
           dailyBoost,
           sparkline,
+          version_count: 0,
         });
       }
 
       results.sort((a, b) => b.trendingScore - a.trendingScore);
-      return results.slice(0, limit);
+      const topResults = results.slice(0, limit);
+
+      // Fetch metadata for trending tools (description, backends, security, version_count)
+      // These columns exist in the DB but aren't in the drizzle schema, so use raw SQL
+      if (topResults.length > 0) {
+        const names = topResults.map((t) => t.name);
+        const metaRows = await db.all<{
+          name: string;
+          description: string | null;
+          backends: string | null;
+          security: string | null;
+          version_count: number | null;
+        }>(sql`
+          SELECT name, description, backends, security, version_count
+          FROM tools
+          WHERE name IN (${sql.join(names.map((n) => sql`${n}`), sql`, `)})
+        `);
+
+        const metaMap = new Map(metaRows.map((r) => [r.name, r]));
+        for (const result of topResults) {
+          const meta = metaMap.get(result.name);
+          if (meta) {
+            result.description = meta.description || undefined;
+            result.backends = meta.backends ? JSON.parse(meta.backends) : undefined;
+            result.security = meta.security ? JSON.parse(meta.security) : undefined;
+            result.version_count = meta.version_count || 0;
+          }
+        }
+      }
+
+      return topResults;
     },
   };
 }
