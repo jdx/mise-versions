@@ -527,36 +527,28 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
           sparkline.push(data.daily.get(date) ?? 0);
         }
 
-        let recentSum = 0;
-        let recentDays = 0;
-        let baselineSum = 0;
-        let baselineDays = 0;
-
+        // Collect daily values for the 30-day window
+        const dailyValues: number[] = [];
         for (let i = 1; i <= 30; i++) {
           const date = new Date((now - i * 86400) * 1000)
             .toISOString()
             .split("T")[0];
-          const downloads = data.daily.get(date) ?? 0;
-
-          if (i <= 3) {
-            recentSum += downloads;
-            recentDays++;
-          } else {
-            baselineSum += downloads;
-            baselineDays++;
-          }
+          dailyValues.push(data.daily.get(date) ?? 0);
         }
 
-        const recentAvg = recentDays > 0 ? recentSum / recentDays : 0;
-        const baselineAvg = baselineDays > 0 ? baselineSum / baselineDays : 0;
+        // Compute mean and standard deviation over the full 30 days
+        const mean = dailyValues.reduce((a, b) => a + b, 0) / dailyValues.length;
+        const variance =
+          dailyValues.reduce((sum, v) => sum + (v - mean) ** 2, 0) /
+          dailyValues.length;
+        const stddev = Math.sqrt(variance);
 
-        // Score based purely on recent momentum (ratio of last 3 days vs baseline)
-        let dailyBoost = 0;
-        if (baselineAvg > 0 && recentAvg > baselineAvg) {
-          const ratio = recentAvg / baselineAvg;
-          dailyBoost = (ratio - 1) * 100;
-        }
+        // Average of last 3 days
+        const recentAvg = (dailyValues[0] + dailyValues[1] + dailyValues[2]) / 3;
 
+        // Z-score: how many standard deviations the recent average is above the mean
+        // Skip tools with no variance (stddev === 0) or no downloads
+        const dailyBoost = stddev > 0 ? (recentAvg - mean) / stddev : 0;
         const trendingScore = dailyBoost;
 
         results.push({
