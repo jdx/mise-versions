@@ -547,8 +547,9 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         const recentAvg = (dailyValues[0] + dailyValues[1] + dailyValues[2]) / 3;
 
         // Z-score: how many standard deviations the recent average is above the mean
-        // Skip tools with no variance (stddev === 0) or no downloads
-        const dailyBoost = stddev > 0 ? (recentAvg - mean) / stddev : 0;
+        // Require minimum downloads to filter out noise from tiny tools
+        if (data.total < 500 || stddev === 0) continue;
+        const dailyBoost = (recentAvg - mean) / stddev;
         const trendingScore = dailyBoost;
 
         results.push({
