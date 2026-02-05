@@ -41,7 +41,7 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
 
       const total = (rawTotal?.count ?? 0) + (aggTotal?.count ?? 0);
 
-      // Downloads by version (top 10, from raw data only for simplicity)
+      // Downloads by version
       const byVersion = await db
         .select({
           version: downloads.version,
@@ -51,7 +51,6 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .where(eq(downloads.tool_id, toolId))
         .groupBy(downloads.version)
         .orderBy(sql`count(*) DESC`)
-        .limit(10)
         .all();
 
       // Downloads by OS (join with platforms)
