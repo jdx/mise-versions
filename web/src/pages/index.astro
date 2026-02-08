@@ -59,6 +59,8 @@ try {
 } catch (e) {
   console.error('Failed to fetch trending tools:', e);
 }
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
 ---
 
 <Layout title="mise versions" description="Browse tool versions and download stats for mise">

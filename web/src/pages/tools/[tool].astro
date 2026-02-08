@@ -109,6 +109,7 @@ function backendToUrl(backend: string): string | null {
   }
 }
 
+Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
 ---
 
 <Layout title={pageTitle} description={pageDescription}>

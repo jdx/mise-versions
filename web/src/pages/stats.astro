@@ -173,6 +173,8 @@ function generateDonutSegments(data: Array<{ label: string; value: number; color
 const donutSegments = generateDonutSegments(sortedCounts.slice(0, 8));
 const donutSize = 300;
 const strokeWidth = 60;
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
 ---
 
 <Layout title="Stats" description="Download statistics and ecosystem metrics for mise">
