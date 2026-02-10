@@ -80,21 +80,19 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
 
     // 4. Populate daily MAU stats (trailing 30-day MAU for each date)
-    const yesterdayMauStats = await analytics.populateDailyMauStats(
-      yesterdayStr,
-      runtime.env.ANALYTICS_DB,
-    );
-    console.log(
-      `MAU stats for ${yesterdayStr}: ${yesterdayMauStats ? "updated" : "no data"}`,
-    );
-
-    const todayMauStats = await analytics.populateDailyMauStats(
-      todayStr,
-      runtime.env.ANALYTICS_DB,
-    );
-    console.log(
-      `MAU stats for ${todayStr}: ${todayMauStats ? "updated" : "no data"}`,
-    );
+    // Recalculate the last 31 days to correct any stale/inflated values
+    let mauDaysUpdated = 0;
+    for (let i = 30; i >= 0; i--) {
+      const d = new Date(now);
+      d.setUTCDate(d.getUTCDate() - i);
+      const dateStr = d.toISOString().split("T")[0];
+      const result = await analytics.populateDailyMauStats(
+        dateStr,
+        runtime.env.ANALYTICS_DB,
+      );
+      if (result) mauDaysUpdated++;
+    }
+    console.log(`MAU stats recalculated for ${mauDaysUpdated} of 31 days`);
 
     return jsonResponse({
       success: true,
@@ -123,8 +121,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         today: todayVersionStats,
       },
       mauStats: {
-        yesterday: yesterdayMauStats,
-        today: todayMauStats,
+        daysUpdated: mauDaysUpdated,
       },
     });
   } catch (error) {
