@@ -23,11 +23,11 @@ LOG_LEVEL="${LOG_LEVEL:-INFO}"
 # Get log level priority (works in subshells without associative arrays)
 get_log_priority() {
 	case "$1" in
-		DEBUG) echo 0 ;;
-		INFO)  echo 1 ;;
-		WARN)  echo 2 ;;
-		ERROR) echo 3 ;;
-		*)     echo 1 ;;
+	DEBUG) echo 0 ;;
+	INFO) echo 1 ;;
+	WARN) echo 2 ;;
+	ERROR) echo 3 ;;
+	*) echo 1 ;;
 	esac
 }
 
@@ -73,28 +73,28 @@ log() {
 	if [ -n "${GITHUB_ACTIONS:-}" ]; then
 		# GitHub Actions format with grouping support
 		case "$level" in
-			ERROR)
-				echo "::error::[$timestamp] $message$context" >&2
-				;;
-			WARN)
-				echo "::warning::[$timestamp] $message$context" >&2
-				;;
-			DEBUG)
-				echo "::debug::[$timestamp] $message$context" >&2
-				;;
-			*)
-				echo "[$timestamp] [$level] $message$context" >&2
-				;;
+		ERROR)
+			echo "::error::[$timestamp] $message$context" >&2
+			;;
+		WARN)
+			echo "::warning::[$timestamp] $message$context" >&2
+			;;
+		DEBUG)
+			echo "::debug::[$timestamp] $message$context" >&2
+			;;
+		*)
+			echo "[$timestamp] [$level] $message$context" >&2
+			;;
 		esac
 	else
 		# Standard terminal format with colors
 		local color=""
 		local reset="\033[0m"
 		case "$level" in
-			ERROR) color="\033[0;31m" ;;  # Red
-			WARN)  color="\033[0;33m" ;;  # Yellow
-			INFO)  color="\033[0;32m" ;;  # Green
-			DEBUG) color="\033[0;36m" ;;  # Cyan
+		ERROR) color="\033[0;31m" ;; # Red
+		WARN) color="\033[0;33m" ;;  # Yellow
+		INFO) color="\033[0;32m" ;;  # Green
+		DEBUG) color="\033[0;36m" ;; # Cyan
 		esac
 		echo -e "${color}[$timestamp] [$level]${reset} $message$context" >&2
 	fi
@@ -102,8 +102,8 @@ log() {
 
 # Convenience functions
 log_debug() { log DEBUG "$@"; }
-log_info()  { log INFO "$@"; }
-log_warn()  { log WARN "$@"; }
+log_info() { log INFO "$@"; }
+log_warn() { log WARN "$@"; }
 log_error() { log ERROR "$@"; }
 
 # Start a log group (GitHub Actions collapsible section)
@@ -128,27 +128,27 @@ STATS_DIR="/tmp/mise_stats_$$"
 mkdir -p "$STATS_DIR"
 
 # Initialize statistics files
-echo "0" > "$STATS_DIR/total_tools_checked"
-echo "0" > "$STATS_DIR/total_tools_updated"
-echo "0" > "$STATS_DIR/total_tools_skipped"
-echo "0" > "$STATS_DIR/total_tools_failed"
-echo "0" > "$STATS_DIR/total_tools_no_versions"
-echo "0" > "$STATS_DIR/total_tokens_used"
-echo "0" > "$STATS_DIR/total_rate_limits_hit"
-echo "0" > "$STATS_DIR/total_tools_available"
-echo "" > "$STATS_DIR/updated_tools_list"
-echo "" > "$STATS_DIR/first_processed_tool"
-echo "" > "$STATS_DIR/last_processed_tool"
-echo "false" > "$STATS_DIR/summary_generated"
+echo "0" >"$STATS_DIR/total_tools_checked"
+echo "0" >"$STATS_DIR/total_tools_updated"
+echo "0" >"$STATS_DIR/total_tools_skipped"
+echo "0" >"$STATS_DIR/total_tools_failed"
+echo "0" >"$STATS_DIR/total_tools_no_versions"
+echo "0" >"$STATS_DIR/total_tokens_used"
+echo "0" >"$STATS_DIR/total_rate_limits_hit"
+echo "0" >"$STATS_DIR/total_tools_available"
+echo "" >"$STATS_DIR/updated_tools_list"
+echo "" >"$STATS_DIR/first_processed_tool"
+echo "" >"$STATS_DIR/last_processed_tool"
+echo "false" >"$STATS_DIR/summary_generated"
 START_TIME=$(date +%s)
-echo "$START_TIME" > "$STATS_DIR/start_time"
+echo "$START_TIME" >"$STATS_DIR/start_time"
 
 # Helper functions for statistics
 increment_stat() {
 	local stat_file="$STATS_DIR/$1"
 	local current_value
 	current_value=$(cat "$stat_file" 2>/dev/null || echo "0")
-	echo $((current_value + 1)) > "$stat_file"
+	echo $((current_value + 1)) >"$stat_file"
 }
 
 get_stat() {
@@ -162,9 +162,9 @@ add_to_list() {
 	local current_list
 	current_list=$(cat "$list_file" 2>/dev/null || echo "")
 	if [ -n "$current_list" ]; then
-		echo "$current_list $tool" > "$list_file"
+		echo "$current_list $tool" >"$list_file"
 	else
-		echo "$tool" > "$list_file"
+		echo "$tool" >"$list_file"
 	fi
 }
 
@@ -172,7 +172,7 @@ set_stat() {
 	local stat_file="$STATS_DIR/$1"
 	local value="$2"
 	# Silently fail if stats directory was cleaned up
-	[ -d "$STATS_DIR" ] && echo "$value" > "$stat_file" || true
+	[ -d "$STATS_DIR" ] && echo "$value" >"$stat_file" || true
 }
 
 # Cleanup function
@@ -195,14 +195,16 @@ generate_summary() {
 		return
 	fi
 
-	local end_time=$(date +%s)
+	local end_time
+	end_time=$(date +%s)
 	local duration=$((end_time - START_TIME))
 	local duration_minutes=$((duration / 60))
 	local duration_seconds=$((duration % 60))
-	local commit_hash=$(git rev-parse HEAD 2>/dev/null || echo "main")
+	local commit_hash
+	commit_hash=$(git rev-parse HEAD 2>/dev/null || echo "main")
 
 	# Create summary file
-	cat > summary.md << SUMMARY_EOF
+	cat >summary.md <<SUMMARY_EOF
 # 📊 Mise Versions Update Summary
 
 **Generated**: $(date '+%Y-%m-%d %H:%M:%S UTC')
@@ -213,7 +215,7 @@ generate_summary() {
 |--------|-------|
 | Tools Processed | $(get_stat "total_tools_checked") |
 | Tools Updated | $(get_stat "total_tools_updated") |
-| Success Rate | $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked") ))" || echo "0")% |
+| Success Rate | $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$((($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked")))" || echo "0")% |
 | Tokens Used | $(get_stat "total_tokens_used") |
 | Rate Limits Hit | $(get_stat "total_rate_limits_hit") |
 | Duration | ${duration_minutes}m ${duration_seconds}s |
@@ -230,9 +232,9 @@ generate_summary() {
 - **Mise Version**: ${CUR_MISE_VERSION:-not set}
 
 ## 📈 Success Rate
-- **Success Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked") ))" || echo "0")%
-- **Update Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked") ))" || echo "0")%
-- **Coverage**: $([ "$(get_stat "total_tools_available")" -gt 0 ] && echo "$(( ($(get_stat "total_tools_checked") * 100) / $(get_stat "total_tools_available") ))" || echo "0")%
+- **Success Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$((($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked")))" || echo "0")%
+- **Update Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$((($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked")))" || echo "0")%
+- **Coverage**: $([ "$(get_stat "total_tools_available")" -gt 0 ] && echo "$((($(get_stat "total_tools_checked") * 100) / $(get_stat "total_tools_available")))" || echo "0")%
 
 ## 🔧 Token Management
 - **Tokens Consumed**: $(get_stat "total_tokens_used")
@@ -250,9 +252,9 @@ generate_summary() {
 - **Last Tool Processed**: $(get_stat "last_processed_tool")
 
 ## 📊 Performance Metrics
-- **Processing Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(( $(get_stat "total_tools_checked") / (duration / 60) ))" || echo "0") tools/minute
-- **Update Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(( $(get_stat "total_tools_updated") / (duration / 60) ))" || echo "0") updates/minute
-- **Token Efficiency**: $([ "$(get_stat "total_tokens_used")" -gt 0 ] && echo "$(( $(get_stat "total_tools_checked") / $(get_stat "total_tokens_used") ))" || echo "0") tools per token
+- **Processing Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(($(get_stat "total_tools_checked") / (duration / 60)))" || echo "0") tools/minute
+- **Update Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(($(get_stat "total_tools_updated") / (duration / 60)))" || echo "0") updates/minute
+- **Token Efficiency**: $([ "$(get_stat "total_tokens_used")" -gt 0 ] && echo "$(($(get_stat "total_tools_checked") / $(get_stat "total_tokens_used")))" || echo "0") tools per token
 
 ## 📦 Updated Tools ($(get_stat "total_tools_updated"))
 SUMMARY_EOF
@@ -261,21 +263,21 @@ SUMMARY_EOF
 	local updated_tools_list
 	updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
 	if [ -n "$updated_tools_list" ]; then
-		echo "" >> summary.md
-		echo "The following tools were updated:" >> summary.md
-		echo "" >> summary.md
+		echo "" >>summary.md
+		echo "The following tools were updated:" >>summary.md
+		echo "" >>summary.md
 		for tool in $updated_tools_list; do
 			# Link to the local docs file
-			echo "- [$tool](https://github.com/jdx/mise-versions/blob/${commit_hash}/docs/${tool}.toml)" >> summary.md
+			echo "- [$tool](https://github.com/jdx/mise-versions/blob/${commit_hash}/docs/${tool}.toml)" >>summary.md
 		done
 	else
-		echo "" >> summary.md
-		echo "No tools were updated in this run." >> summary.md
+		echo "" >>summary.md
+		echo "No tools were updated in this run." >>summary.md
 	fi
 
 	# Output to GitHub Actions summary
 	if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
-		cat summary.md >> "$GITHUB_STEP_SUMMARY"
+		cat summary.md >>"$GITHUB_STEP_SUMMARY"
 	fi
 
 	echo "📊 Summary generated:"
@@ -322,7 +324,7 @@ generate_toml_file() {
 		if echo "$json_output" | node -e '
 			const data = JSON.parse(require("fs").readFileSync(0, "utf-8"));
 			data.forEach(v => console.log(JSON.stringify(v)));
-		' | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>"$error_output"; then
+		' | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 			mv "$toml_file.tmp" "$toml_file"
 			git add "$toml_file"
 			rm -f "$error_output"
@@ -335,7 +337,7 @@ generate_toml_file() {
 		const fs = require("fs");
 		const versions = fs.readFileSync(process.argv[1], "utf-8").trim().split("\n").filter(v => v);
 		versions.forEach(v => console.log(JSON.stringify({version: v})));
-	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" > "$toml_file.tmp" 2>"$error_output"; then
+	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 		mv "$toml_file.tmp" "$toml_file"
 		git add "$toml_file"
 		rm -f "$error_output"
@@ -366,7 +368,6 @@ get_github_token() {
 	echo "$token_output"
 	return 0
 }
-
 
 fetch() {
 	increment_stat "total_tools_checked"
@@ -540,7 +541,7 @@ if setup_token_management; then
 		last_tool_processed=$(cat "last_processed_tool.txt")
 		log_info "Resuming from previous run" "last_tool=$last_tool_processed"
 	fi
-	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<< "$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
+	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<<"$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
 
 	log_group_start "Processing Tools"
 
@@ -612,8 +613,8 @@ if setup_token_management; then
 	fi
 
 	# Save updated tools list for D1 sync (one tool per line)
-	cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' > updated_tools.txt || true
-	updated_count=$(wc -l < updated_tools.txt | tr -d ' ')
+	cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' >updated_tools.txt || true
+	updated_count=$(wc -l <updated_tools.txt | tr -d ' ')
 	log_info "Updated tools saved" "file=updated_tools.txt" "count=$updated_count"
 else
 	log_error "Token management setup failed"

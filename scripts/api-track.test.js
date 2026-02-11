@@ -60,8 +60,10 @@ function createMockLocals(overrides = {}) {
  * This mimics the logic in web/src/pages/api/track.ts
  */
 async function handleTrackRequest(request, locals, deps = {}) {
-  const { hashIP = async () => "test-hash", trackDownload = async () => ({ deduplicated: false }) } =
-    deps;
+  const {
+    hashIP = async () => "test-hash",
+    trackDownload = async () => ({ deduplicated: false }),
+  } = deps;
 
   try {
     const body = await request.json();
@@ -69,15 +71,25 @@ async function handleTrackRequest(request, locals, deps = {}) {
     // Validate required fields (matches real implementation)
     // Note: !body.tool catches both missing and empty string cases since !"" is true
     if (!body.tool || !body.version) {
-      return new Response(JSON.stringify({ error: "Missing required fields: tool, version" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response(
+        JSON.stringify({ error: "Missing required fields: tool, version" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
     }
 
     // Track the download
     const ipHash = await hashIP("127.0.0.1", locals.runtime.env.API_SECRET);
-    const result = await trackDownload(body.tool, body.version, ipHash, body.os || null, body.arch || null, body.full || null);
+    const result = await trackDownload(
+      body.tool,
+      body.version,
+      ipHash,
+      body.os || null,
+      body.arch || null,
+      body.full || null,
+    );
 
     return new Response(
       JSON.stringify({
@@ -87,7 +99,7 @@ async function handleTrackRequest(request, locals, deps = {}) {
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   } catch (error) {
     return new Response(JSON.stringify({ error: "Failed to track download" }), {
@@ -281,7 +293,10 @@ describe("/api/track endpoint", () => {
 
       const response = await handleTrackRequest(request, locals);
 
-      assert.strictEqual(response.headers.get("Content-Type"), "application/json");
+      assert.strictEqual(
+        response.headers.get("Content-Type"),
+        "application/json",
+      );
     });
 
     it("should return valid JSON in success response", async () => {
