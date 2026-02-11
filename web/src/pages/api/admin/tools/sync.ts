@@ -129,37 +129,51 @@ export const POST: APIRoute = async ({ request, locals }) => {
   let existingToolsSet = new Set<string>();
   try {
     const existingToolsResult = await db.all<{ name: string }>(
-      sql`SELECT name FROM tools`
+      sql`SELECT name FROM tools`,
     );
     existingToolsSet = new Set(existingToolsResult.map((t) => t.name));
   } catch (e) {
-    console.error('Failed to fetch existing tools:', e);
+    console.error("Failed to fetch existing tools:", e);
     // Proceeding without deletion if this fails is safer than deleting everything
   }
 
-  const incomingToolsSet = new Set(body.tools.map((t) => t.name).filter(Boolean) as string[]);
-  const toolsToDelete = [...existingToolsSet].filter((name) => !incomingToolsSet.has(name));
+  const incomingToolsSet = new Set(
+    body.tools.map((t) => t.name).filter(Boolean) as string[],
+  );
+  const toolsToDelete = [...existingToolsSet].filter(
+    (name) => !incomingToolsSet.has(name),
+  );
 
   // Delete tools in batches
   if (toolsToDelete.length > 0) {
-    console.log(`Found ${toolsToDelete.length} tools to delete: ${toolsToDelete.join(', ')}`);
+    // Safety check: Don't delete more than 80 tools
+    if (toolsToDelete.length > 80) {
+      const msg = `Safety check failed: Attempting to delete ${toolsToDelete.length} tools (>80). Aborting deletion.`;
+      console.error(msg);
+      return errorResponse(msg, 400);
+    }
+
+    console.log(
+      `Found ${toolsToDelete.length} tools to delete: ${toolsToDelete.join(", ")}`,
+    );
+
     const BATCH_SIZE = 50;
     for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
       const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
       try {
-        const query = sql`DELETE FROM tools WHERE name IN (`;
-        batch.forEach((name, idx) => {
-          query.append(sql`${name}`);
-          if (idx < batch.length - 1) query.append(sql`, `);
-        });
-        query.append(sql`)`);
+        const query = sql`DELETE FROM tools WHERE name IN (${sql.join(
+          batch.map((name) => sql`${name}`),
+          sql`, `,
+        )})`;
 
         await db.run(query);
         deleted += batch.length;
       } catch (e: any) {
-        console.error(`Failed to delete batch of tools: ${e.message}`);
-        errors += batch.length;
-        failedTools.push({ name: `Batch Delete (${batch[0]}...)`, error: e.message });
+        console.error(`Failed to delete batch of tools: ${e?.message ?? e}`);
+        batch.forEach((name) => {
+          errors++;
+          failedTools.push({ name, error: e?.message ?? String(e) });
+        });
       }
     }
   }

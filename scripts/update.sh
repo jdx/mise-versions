@@ -548,6 +548,9 @@ if setup_token_management; then
 	# Cleanup old tools that are no longer in the registry
 	log_info "Cleaning up old tools"
 	for file in docs/*.toml; do
+		if [[ ! -f "$file" ]]; then
+			continue
+		fi
 		tool_name=$(basename "$file" .toml)
 		# specialized files we want to keep around
 		if [[ "$tool_name" == python-precompiled* ]]; then
@@ -555,7 +558,7 @@ if setup_token_management; then
 		fi
 		if ! echo "$tools" | grep -q "^$tool_name$"; then
 			log_info "Removing old tool" "tool=$tool_name"
-			rm "$file" "docs/$tool_name" 2>/dev/null || true
+			rm -f "$file" "docs/$tool_name"
 			git rm --ignore-unmatch "$file" "docs/$tool_name" 2>/dev/null || true
 		fi
 	done
