@@ -11,6 +11,7 @@ rm -f "$GZ_DIR"/*.gz
 
 # Fetch CPython release dates for accurate timestamps
 echo "Fetching CPython release dates..."
+# shellcheck disable=SC2016
 cpython_dates=$(gh api graphql --paginate -f query='
     query($endCursor: String) {
       repository(owner: "python", name: "cpython") {
@@ -27,9 +28,10 @@ cpython_dates=$(gh api graphql --paginate -f query='
       }
     }' --jq '.data.repository.refs.nodes[] | "\(.name | sub("^v"; "")) \(.target.tagger.date // .target.committedDate)"')
 # Save to temp file for lookup
-echo "$cpython_dates" > /tmp/cpython-dates.txt
+echo "$cpython_dates" >/tmp/cpython-dates.txt
 
 # Paginate through all releases
+# shellcheck disable=SC2016
 releases=$(gh api graphql --paginate -f query='
     query($endCursor: String) {
       repository(owner: "indygreg", name: "python-build-standalone") {
@@ -55,34 +57,34 @@ for release in $releases; do
 	echo "$assets" >>docs/python-precompiled
 done
 
-grep '^cpython-' docs/python-precompiled \
-  | sed -E 's/^cpython-//' \
-  | sort -uV \
-  | sed 's/^/cpython-/' \
-  >docs/python-precompiled.tmp
+grep '^cpython-' docs/python-precompiled |
+	sed -E 's/^cpython-//' |
+	sort -uV |
+	sed 's/^/cpython-/' \
+		>docs/python-precompiled.tmp
 mv docs/python-precompiled.tmp docs/python-precompiled
 platforms=$(sed -E 's/^cpython-([0-9]+\.?)+\+[0-9]+-(.*)-install_only_stripped.*/\2/g' docs/python-precompiled | grep -v cpython | sort -u)
 
 for platform in $platforms; do
-  grep "\-$platform-" docs/python-precompiled >"docs/python-precompiled-$platform"
-  # Generate .gz to temp directory (not git repo)
-  gzip -9c "docs/python-precompiled-$platform" >"$GZ_DIR/python-precompiled-$platform.gz"
+	grep "\-$platform-" docs/python-precompiled >"docs/python-precompiled-$platform"
+	# Generate .gz to temp directory (not git repo)
+	gzip -9c "docs/python-precompiled-$platform" >"$GZ_DIR/python-precompiled-$platform.gz"
 
-  # Generate TOML file for this platform
-  toml_file="docs/python-precompiled-$platform.toml"
-  while read -r v; do
-    if [ -n "$v" ]; then
-      # Extract Python version (e.g., "cpython-3.8.12+20220227-..." -> "3.8.12")
-      py_version=$(echo "$v" | sed -E 's/^cpython-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
-      # Look up release date from CPython tags
-      release_date=$(grep "^${py_version} " /tmp/cpython-dates.txt | head -1 | cut -d' ' -f2)
-      if [ -n "$release_date" ]; then
-        echo "{\"version\":\"$v\",\"created_at\":\"$release_date\"}"
-      else
-        echo "{\"version\":\"$v\"}"
-      fi
-    fi
-  done < "docs/python-precompiled-$platform" | node scripts/generate-toml.js "python-precompiled-$platform" "$toml_file" > "$toml_file.tmp" && mv "$toml_file.tmp" "$toml_file"
+	# Generate TOML file for this platform
+	toml_file="docs/python-precompiled-$platform.toml"
+	while read -r v; do
+		if [ -n "$v" ]; then
+			# Extract Python version (e.g., "cpython-3.8.12+20220227-..." -> "3.8.12")
+			py_version=$(echo "$v" | sed -E 's/^cpython-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+			# Look up release date from CPython tags
+			release_date=$(grep "^${py_version} " /tmp/cpython-dates.txt | head -1 | cut -d' ' -f2)
+			if [ -n "$release_date" ]; then
+				echo "{\"version\":\"$v\",\"created_at\":\"$release_date\"}"
+			else
+				echo "{\"version\":\"$v\"}"
+			fi
+		fi
+	done <"docs/python-precompiled-$platform" | node scripts/generate-toml.js "python-precompiled-$platform" "$toml_file" >"$toml_file.tmp" && mv "$toml_file.tmp" "$toml_file"
 done
 
 # Generate main .gz file
@@ -96,7 +98,7 @@ git rm -f --ignore-unmatch docs/python-precompiled*.gz 2>/dev/null || true
 git rm -f --ignore-unmatch docs/python-precompiled 2>/dev/null || true
 # Clean up plain text files from filesystem (these are intermediate files, never added to git)
 for platform in $platforms; do
-  rm -f "docs/python-precompiled-$platform"
+	rm -f "docs/python-precompiled-$platform"
 done
 rm -f docs/python-precompiled
 

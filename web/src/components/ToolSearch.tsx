@@ -619,9 +619,7 @@ export function ToolSearch({
           <div class="mb-8">
             <h2 class="text-sm font-medium text-gray-400 mb-4 flex items-center gap-2">
               <span class="text-orange-400">🔥</span> Hot Tools
-              <span class="text-xs text-gray-500">
-                (trending)
-              </span>
+              <span class="text-xs text-gray-500">(trending)</span>
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {hotTools.map((tool, index) => (

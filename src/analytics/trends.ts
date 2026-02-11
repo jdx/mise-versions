@@ -537,14 +537,16 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         }
 
         // Compute mean and standard deviation over the full 30 days
-        const mean = dailyValues.reduce((a, b) => a + b, 0) / dailyValues.length;
+        const mean =
+          dailyValues.reduce((a, b) => a + b, 0) / dailyValues.length;
         const variance =
           dailyValues.reduce((sum, v) => sum + (v - mean) ** 2, 0) /
           dailyValues.length;
         const stddev = Math.sqrt(variance);
 
         // Average of last 3 days
-        const recentAvg = (dailyValues[0] + dailyValues[1] + dailyValues[2]) / 3;
+        const recentAvg =
+          (dailyValues[0] + dailyValues[1] + dailyValues[2]) / 3;
 
         // Z-score: how many standard deviations the recent average is above the mean
         // Require minimum downloads to filter out noise from tiny tools
@@ -578,7 +580,10 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         }>(sql`
           SELECT name, description, backends, security, version_count
           FROM tools
-          WHERE name IN (${sql.join(names.map((n) => sql`${n}`), sql`, `)})
+          WHERE name IN (${sql.join(
+            names.map((n) => sql`${n}`),
+            sql`, `,
+          )})
         `);
 
         const metaMap = new Map(metaRows.map((r) => [r.name, r]));
@@ -586,8 +591,12 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
           const meta = metaMap.get(result.name);
           if (meta) {
             result.description = meta.description || undefined;
-            result.backends = meta.backends ? JSON.parse(meta.backends) : undefined;
-            result.security = meta.security ? JSON.parse(meta.security) : undefined;
+            result.backends = meta.backends
+              ? JSON.parse(meta.backends)
+              : undefined;
+            result.security = meta.security
+              ? JSON.parse(meta.security)
+              : undefined;
             result.version_count = meta.version_count || 0;
           }
         }

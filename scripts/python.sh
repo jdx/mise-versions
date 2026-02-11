@@ -18,18 +18,18 @@ rmdir /tmp/python-precompiled-backup 2>/dev/null || true
 
 if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 	git diff --compact-summary --cached
-	
+
 	# Count the python-precompiled TOML files for a more descriptive commit message
 	precompiled_files=$(find docs -name "python-precompiled*.toml" -type f | wc -l)
 	platform_count=$precompiled_files
-	
+
 	if [ "$platform_count" -gt 0 ]; then
 		commit_msg="python-precompiled: update $platform_count platforms ($precompiled_files total files)"
 	else
 		commit_msg="python-precompiled"
 	fi
-	
+
 	git commit -m "$commit_msg"
 	git pull --autostash --rebase origin main
 	git push
-fi 
+fi
