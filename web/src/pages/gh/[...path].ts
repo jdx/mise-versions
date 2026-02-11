@@ -21,11 +21,7 @@ export const ALL: APIRoute = async ({ request, locals, params }) => {
   const database = setupDatabase(db);
 
   // Trigger deactivation
-  ctx.waitUntil(
-    database
-      .deactivateExpiredTokens()
-      .catch(console.error)
-  );
+  ctx.waitUntil(database.deactivateExpiredTokens().catch(console.error));
 
   // Retry loop (max 3 attempts)
   for (let attempt = 0; attempt < 3; attempt++) {

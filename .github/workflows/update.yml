@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       full_sync:
-        description: 'Force full sync of all versions to D1'
+        description: "Force full sync of all versions to D1"
         required: false
         default: false
         type: boolean

@@ -89,6 +89,7 @@ The `ANALYTICS_DB` contains:
 ## GitHub Token Management
 
 The update workflow uses a token rotation system:
+
 - `web/src/pages/gh/[...path].ts`: GitHub proxy that handles token rotation server-side
 - `GITHUB_PROXY_URL`, `API_SECRET`: Proxy URL and API secret for authentication
 - The proxy manages authentication and automatically rotates tokens when rate limits are hit, removing the need for clients to handle raw tokens

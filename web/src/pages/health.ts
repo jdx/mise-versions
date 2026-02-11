@@ -76,7 +76,10 @@ export const GET: APIRoute = async ({ locals }) => {
       migrationStatus = await getMigrationStatus(db);
     } catch (error) {
       // Non-critical - health check still passes if basic connectivity works
-      console.error("Failed to retrieve token statistics for health check:", error);
+      console.error(
+        "Failed to retrieve token statistics for health check:",
+        error,
+      );
     }
   }
 
