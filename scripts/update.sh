@@ -544,6 +544,21 @@ if setup_token_management; then
 
 	log_group_start "Processing Tools"
 
+	# Cleanup old tools that are no longer in the registry
+	log_info "Cleaning up old tools"
+	for file in docs/*.toml; do
+		tool_name=$(basename "$file" .toml)
+		# specialized files we want to keep around
+		if [[ "$tool_name" == python-precompiled* ]]; then
+			continue
+		fi
+		if ! echo "$tools" | grep -q "^$tool_name$"; then
+			log_info "Removing old tool" "tool=$tool_name"
+			rm "$file" "docs/$tool_name" 2>/dev/null || true
+			git rm --ignore-unmatch "$file" "docs/$tool_name" 2>/dev/null || true
+		fi
+	done
+
 	# Process tools
 	export -f fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
