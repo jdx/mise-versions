@@ -161,12 +161,12 @@ export const POST: APIRoute = async ({ request, locals }) => {
     for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
       const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
       try {
-        const query = sql`DELETE FROM tools WHERE name IN (${sql.join(
-          batch.map((name) => sql`${name}`),
-          sql`, `,
-        )})`;
+        const placeholders = batch.map(() => "?").join(", ");
+        const stmt = runtime.env.ANALYTICS_DB.prepare(
+          `DELETE FROM tools WHERE name IN (${placeholders})`,
+        ).bind(...batch);
 
-        await db.run(query);
+        await stmt.run();
         deleted += batch.length;
       } catch (e: any) {
         console.error(`Failed to delete batch of tools: ${e?.message ?? e}`);
