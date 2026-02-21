@@ -56,6 +56,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   let upserted = 0;
   let errors = 0;
+  let deleted = 0;
   const failedTools: Array<{ name: string; error: string }> = [];
 
   // Process tools using INSERT ... ON CONFLICT DO UPDATE (single query per tool)
@@ -124,10 +125,64 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
+  // Fetch existing tools to identify deletions (payload must be complete list)
+  let existingToolsSet = new Set<string>();
+  try {
+    const existingToolsResult = await db.all<{ name: string }>(
+      sql`SELECT name FROM tools`,
+    );
+    existingToolsSet = new Set(existingToolsResult.map((t) => t.name));
+  } catch (e) {
+    console.error("Failed to fetch existing tools:", e);
+    // Proceeding without deletion if this fails is safer than deleting everything
+  }
+
+  const incomingToolsSet = new Set(
+    body.tools.map((t) => t.name).filter(Boolean) as string[],
+  );
+  const toolsToDelete = [...existingToolsSet].filter(
+    (name) => !incomingToolsSet.has(name),
+  );
+
+  // Delete tools in batches
+  if (toolsToDelete.length > 0) {
+    // Safety check: Don't delete more than 80 tools
+    if (toolsToDelete.length > 80) {
+      const msg = `Safety check failed: Attempting to delete ${toolsToDelete.length} tools (>80). Aborting deletion.`;
+      console.error(msg);
+      return errorResponse(msg, 400);
+    }
+
+    console.log(
+      `Found ${toolsToDelete.length} tools to delete: ${toolsToDelete.join(", ")}`,
+    );
+
+    const BATCH_SIZE = 50;
+    for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
+      const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
+      try {
+        const placeholders = batch.map(() => "?").join(", ");
+        const stmt = runtime.env.ANALYTICS_DB.prepare(
+          `DELETE FROM tools WHERE name IN (${placeholders})`,
+        ).bind(...batch);
+
+        await stmt.run();
+        deleted += batch.length;
+      } catch (e: any) {
+        console.error(`Failed to delete batch of tools: ${e?.message ?? e}`);
+        batch.forEach((name) => {
+          errors++;
+          failedTools.push({ name, error: e?.message ?? String(e) });
+        });
+      }
+    }
+  }
+
   return jsonResponse({
     success: true,
     upserted,
     errors,
+    deleted,
     total: body.tools.length,
     failed_tools: failedTools.length > 0 ? failedTools : undefined,
   });
