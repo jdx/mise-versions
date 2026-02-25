@@ -146,9 +146,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   // Delete tools in batches
   if (toolsToDelete.length > 0) {
-    // Safety check: Don't delete more than 80 tools
-    if (toolsToDelete.length > 80) {
-      const msg = `Safety check failed: Attempting to delete ${toolsToDelete.length} tools (>80). Aborting deletion.`;
+    // Safety check: incoming payload must contain at least 80% of existing tools
+    // This prevents a broken/empty payload from wiping the database
+    const minExpected = Math.floor(existingToolsSet.size * 0.8);
+    if (incomingToolsSet.size < minExpected) {
+      const msg = `Safety check failed: Incoming payload has ${incomingToolsSet.size} tools but expected at least ${minExpected} (80% of ${existingToolsSet.size} existing). Aborting deletion.`;
       console.error(msg);
       return errorResponse(msg, 400);
     }
