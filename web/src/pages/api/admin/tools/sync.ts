@@ -163,9 +163,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     // Child tables with FK references to tools(id)
     const childTables = [
       "versions",
+      "version_updates",
       "downloads",
       "downloads_daily",
       "daily_tool_stats",
+      "daily_tool_backend_stats",
     ];
     for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
       const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
