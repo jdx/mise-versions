@@ -160,15 +160,30 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
 
     const BATCH_SIZE = 50;
+    // Child tables with FK references to tools(id)
+    const childTables = [
+      "versions",
+      "downloads",
+      "downloads_daily",
+      "daily_tool_stats",
+    ];
     for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
       const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
       try {
         const placeholders = batch.map(() => "?").join(", ");
-        const stmt = runtime.env.ANALYTICS_DB.prepare(
+        // Delete from child tables first to satisfy FK constraints
+        for (const table of childTables) {
+          await runtime.env.ANALYTICS_DB.prepare(
+            `DELETE FROM ${table} WHERE tool_id IN (SELECT id FROM tools WHERE name IN (${placeholders}))`,
+          )
+            .bind(...batch)
+            .run();
+        }
+        await runtime.env.ANALYTICS_DB.prepare(
           `DELETE FROM tools WHERE name IN (${placeholders})`,
-        ).bind(...batch);
-
-        await stmt.run();
+        )
+          .bind(...batch)
+          .run();
         deleted += batch.length;
       } catch (e: any) {
         console.error(`Failed to delete batch of tools: ${e?.message ?? e}`);
