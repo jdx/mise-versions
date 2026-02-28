@@ -23,7 +23,7 @@ const CONCURRENCY = 30; // Process 30 tools in parallel
 const COMMIT_INTERVAL = 100; // Commit every 100 tools
 
 // Fetch versions with timestamps from mise
-async function fetchVersionsWithTimestamps(tool, retries = 2, debug = false) {
+async function fetchVersionsWithTimestamps(tool, debug = false) {
   // Use GitHub Proxy if available, otherwise fall back to direct GitHub access
   const proxyUrl = process.env.GITHUB_PROXY_URL; // e.g. https://mise-tools.jdx.dev
   const apiSecret = process.env.API_SECRET;
@@ -130,7 +130,7 @@ async function processTool(tool, dryRun, debug = false) {
   }
 
   // Fetch real timestamps from mise
-  const versionData = await fetchVersionsWithTimestamps(tool, 2, debug);
+  const versionData = await fetchVersionsWithTimestamps(tool, debug);
   if (!versionData) {
     return { tool, status: "failed", error: "Failed to fetch versions" };
   }
