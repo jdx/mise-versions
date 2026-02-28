@@ -77,8 +77,9 @@ export const ALL: APIRoute = async ({ request, locals, params }) => {
           await database.markTokenRateLimited(token.id, resetDate);
         } else if (response.status === 401) {
           console.warn(
-            `Token ${token.id} unauthorized (401). Maybe expired/revoked.`,
+            `Token ${token.id} unauthorized (401). Deactivating token.`,
           );
+          await database.deactivateToken(token.id);
         }
       }
 
