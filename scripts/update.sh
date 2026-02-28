@@ -399,6 +399,24 @@ total_tools=$(echo "$tools" | wc -w)
 set_stat "total_tools_available" "$total_tools"
 log_info "Tool registry loaded" "total_tools=$total_tools"
 
+# Cleanup old tools that are no longer in the registry
+log_info "Cleaning up old tools"
+for file in docs/*.toml; do
+	if [[ ! -f "$file" ]]; then
+		continue
+	fi
+	tool_name=$(basename "$file" .toml)
+	# specialized files we want to keep around
+	if [[ "$tool_name" == python-precompiled* ]]; then
+		continue
+	fi
+	if ! echo "$tools" | grep -q "^$tool_name$"; then
+		log_info "Removing old tool" "tool=$tool_name"
+		rm -f "$file" "docs/$tool_name"
+		git rm --ignore-unmatch "$file" "docs/$tool_name" 2>/dev/null || true
+	fi
+done
+
 # Resume from the last processed tool
 last_tool_processed=""
 if [ -f "last_processed_tool.txt" ]; then
