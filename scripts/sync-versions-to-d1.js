@@ -106,6 +106,7 @@ async function main() {
   const syncUrl = `${apiUrl}/api/admin/versions/sync`;
   let toolsSynced = 0;
   let versionsSynced = 0;
+  let newVersions = 0;
   let errors = 0;
 
   // Split into batches
@@ -152,6 +153,7 @@ async function main() {
       if (result.status === "fulfilled") {
         toolsSynced += result.value.result.tools_processed || 0;
         versionsSynced += result.value.result.versions_upserted || 0;
+        newVersions += result.value.result.new_versions || 0;
         errors += result.value.result.errors || 0;
       } else {
         console.error(`Batch sync failed:`, result.reason.message);
@@ -163,6 +165,7 @@ async function main() {
   console.log("\nSync completed:");
   console.log(`  - Tools synced: ${toolsSynced}`);
   console.log(`  - Versions synced: ${versionsSynced}`);
+  console.log(`  - New versions: ${newVersions}`);
   console.log(`  - Errors: ${errors}`);
 
   if (errors > 0) {

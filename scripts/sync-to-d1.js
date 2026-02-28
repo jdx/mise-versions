@@ -354,6 +354,7 @@ async function main() {
     const result = await response.json();
     console.log("Sync completed successfully:");
     console.log(`  - Upserted: ${result.upserted}`);
+    console.log(`  - Deleted: ${result.deleted}`);
     console.log(`  - Errors: ${result.errors}`);
     console.log(`  - Total: ${result.total}`);
 

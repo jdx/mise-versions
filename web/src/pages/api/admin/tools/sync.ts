@@ -56,6 +56,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   let upserted = 0;
   let errors = 0;
+  let deleted = 0;
   const failedTools: Array<{ name: string; error: string }> = [];
 
   // Process tools using INSERT ... ON CONFLICT DO UPDATE (single query per tool)
@@ -124,10 +125,83 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
+  // Fetch existing tools to identify deletions (payload must be complete list)
+  let existingToolsSet = new Set<string>();
+  try {
+    const existingToolsResult = await db.all<{ name: string }>(
+      sql`SELECT name FROM tools`,
+    );
+    existingToolsSet = new Set(existingToolsResult.map((t) => t.name));
+  } catch (e) {
+    console.error("Failed to fetch existing tools:", e);
+    // Proceeding without deletion if this fails is safer than deleting everything
+  }
+
+  const incomingToolsSet = new Set(
+    body.tools.map((t) => t.name).filter(Boolean) as string[],
+  );
+  const toolsToDelete = [...existingToolsSet].filter(
+    (name) => !incomingToolsSet.has(name),
+  );
+
+  // Delete tools in batches
+  if (toolsToDelete.length > 0) {
+    // Safety check: incoming payload must contain at least 80% of existing tools
+    // This prevents a broken/empty payload from wiping the database
+    const minExpected = Math.floor(existingToolsSet.size * 0.8);
+    if (incomingToolsSet.size < minExpected) {
+      const msg = `Safety check failed: Incoming payload has ${incomingToolsSet.size} tools but expected at least ${minExpected} (80% of ${existingToolsSet.size} existing). Aborting deletion.`;
+      console.error(msg);
+      return errorResponse(msg, 400);
+    }
+
+    console.log(
+      `Found ${toolsToDelete.length} tools to delete: ${toolsToDelete.join(", ")}`,
+    );
+
+    const BATCH_SIZE = 50;
+    // Child tables with FK references to tools(id)
+    const childTables = [
+      "versions",
+      "version_updates",
+      "downloads",
+      "downloads_daily",
+      "daily_tool_stats",
+      "daily_tool_backend_stats",
+    ];
+    for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
+      const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
+      try {
+        const placeholders = batch.map(() => "?").join(", ");
+        // Delete from child tables first to satisfy FK constraints
+        for (const table of childTables) {
+          await runtime.env.ANALYTICS_DB.prepare(
+            `DELETE FROM ${table} WHERE tool_id IN (SELECT id FROM tools WHERE name IN (${placeholders}))`,
+          )
+            .bind(...batch)
+            .run();
+        }
+        await runtime.env.ANALYTICS_DB.prepare(
+          `DELETE FROM tools WHERE name IN (${placeholders})`,
+        )
+          .bind(...batch)
+          .run();
+        deleted += batch.length;
+      } catch (e: any) {
+        console.error(`Failed to delete batch of tools: ${e?.message ?? e}`);
+        batch.forEach((name) => {
+          errors++;
+          failedTools.push({ name, error: e?.message ?? String(e) });
+        });
+      }
+    }
+  }
+
   return jsonResponse({
     success: true,
     upserted,
     errors,
+    deleted,
     total: body.tools.length,
     failed_tools: failedTools.length > 0 ? failedTools : undefined,
   });

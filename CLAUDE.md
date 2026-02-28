@@ -18,27 +18,30 @@ mise-versions is a service that tracks and stores version numbers for tools supp
 npm install
 
 # Run tests
-npm test                    # Run all tests
-npm run test:js            # JS unit tests only
-npm run test:shell         # Shell script tests only
+bun run test               # Run all tests (JS + shell)
+bun run test:js            # JS unit tests only
+bun run test:shell         # Shell script tests only
+
+# Run a single JS test file
+node --test scripts/generate-toml.test.js
 
 # Web development (from web/ directory)
 cd web && npm run dev      # Start Astro dev server
 cd web && npm run build    # Build for production
 
 # TypeScript checking
-npx tsc                    # Check types (root)
-cd web && npx tsc          # Check types (web)
+bunx tsc                   # Check types (root)
+cd web && bunx tsc         # Check types (web)
 
-# Linting
-npx eslint . --ext .ts
-npx prettier --check .
+# Linting (or use `mise run lint` / `mise run lint:fix`)
+bunx eslint . --ext .ts
+bunx prettier --check .
 
-# Deploy worker
-npx wrangler deploy
+# Local development
+mise run dev               # or: bunx wrangler dev
 
-# Local wrangler dev
-npx wrangler dev
+# Deploy
+mise run deploy            # builds then deploys
 ```
 
 ## Architecture
@@ -67,10 +70,12 @@ npx wrangler dev
 
 ### Key Files
 
-- `src/analytics.ts`: Drizzle ORM schema and analytics functions for D1
+- `src/analytics/`: Drizzle ORM schema and analytics functions for D1 (schema, tracking, stats, trends, rollups)
+- `src/worker.ts`: Custom worker wrapper for scheduled tasks (daily rollups, maintenance)
 - `web/src/lib/data-loader.ts`: Centralized data loading from D1
 - `scripts/update.sh`: Main version fetching logic with token management
 - `scripts/sync-to-d1.js`: Syncs tool metadata from TOML files to D1
+- `scripts/sync-versions-to-d1.js`: Syncs version data to D1
 - `scripts/fetch-metadata.js`: Fetches external metadata (license, homepage) and syncs to D1
 - `scripts/generate-toml.js`: TOML file generation with timestamp preservation
 - `wrangler.jsonc`: Cloudflare Workers configuration (D1, R2, KV bindings)
