@@ -10,8 +10,8 @@
  * This script is mainly for checking status and monitoring.
  *
  * Environment Variables:
- *   TOKEN_MANAGER_URL      - URL of the token manager API
- *   TOKEN_MANAGER_SECRET   - API secret for authentication
+ *   API_URL      - URL of the API (e.g. https://mise-tools.jdx.dev)
+ *   API_SECRET   - API secret for authentication
  */
 
 import https from "https";
@@ -71,13 +71,13 @@ async function getMigrationStatus(baseUrl, secret) {
 }
 
 async function main() {
-  const baseUrl = process.env.TOKEN_MANAGER_URL;
-  const secret = process.env.TOKEN_MANAGER_SECRET;
+  const baseUrl = process.env.API_URL;
+  const secret = process.env.API_SECRET;
   const action = process.argv[2] || "status";
 
   if (!baseUrl || !secret) {
     console.error(
-      "❌ Missing required environment variables: TOKEN_MANAGER_URL, TOKEN_MANAGER_SECRET",
+      "❌ Missing required environment variables: API_URL, API_SECRET",
     );
     process.exit(1);
   }

@@ -95,6 +95,6 @@ The `ANALYTICS_DB` contains:
 
 The update workflow uses a token rotation system:
 
-- `TOKEN_MANAGER_URL` / `TOKEN_MANAGER_SECRET`: Cloudflare Worker API for token pool
-- `scripts/github-token.js`: Gets tokens, marks rate-limited tokens
-- Tokens rotate automatically when rate limited
+- `web/src/pages/gh/[...path].ts`: GitHub proxy that handles token rotation server-side
+- `GITHUB_PROXY_URL`, `API_SECRET`: Proxy URL and API secret for authentication
+- The proxy manages authentication and automatically rotates tokens when rate limits are hit, removing the need for clients to handle raw tokens
