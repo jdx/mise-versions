@@ -32,8 +32,6 @@ permissions:
 
 env:
   GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
-  TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
-  TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
 
 jobs:
   backfill:
@@ -73,6 +71,9 @@ jobs:
             args="$args --debug"
           fi
           node scripts/${{ github.event.inputs.script }} $args
+        env:
+          GITHUB_PROXY_URL: https://mise-tools.jdx.dev
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
 
       - name: Push any remaining changes
         if: ${{ github.event.inputs.dry_run != 'true' }}
