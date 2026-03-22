@@ -26,7 +26,7 @@ export const GET: APIRoute = async () => {
   const valueColor = "#7c4dff";
 
   // Center of label text area (after icon)
-  const labelTextX = iconAreaWidth + labelTextWidth / 2;
+  const labelTextX = iconAreaWidth + (labelWidth - iconAreaWidth) / 2;
   const valueTextX = labelWidth + valueWidth / 2;
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}">
