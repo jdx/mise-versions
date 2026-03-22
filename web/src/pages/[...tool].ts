@@ -21,6 +21,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
     "data",
     "api",
     "badge",
+    "badge.svg",
     "health",
     "webhooks",
     "admin",
