@@ -87,6 +87,19 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       );
     },
 
+    // Deactivate a token (used when GitHub returns 401)
+    async deactivateToken(tokenId: number) {
+      await db
+        .update(tokens)
+        .set({
+          is_active: 0,
+        })
+        .where(eq(tokens.id, tokenId))
+        .run();
+
+      console.log(`Token ${tokenId} deactivated`);
+    },
+
     // Get all active tokens (all are user tokens now)
     async getAllTokens() {
       return await db
