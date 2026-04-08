@@ -86,6 +86,9 @@
 "cpython-3.11.15+20260324-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
 "cpython-3.11.15+20260324-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
 "cpython-3.11.15+20260324-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T00:52:57.000Z }
+"cpython-3.11.15+20260408-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
+"cpython-3.11.15+20260408-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
+"cpython-3.11.15+20260408-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T00:52:57.000Z }
 "cpython-3.12.11+20250630-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2025-06-03T15:41:53.000Z }
 "cpython-3.12.11+20250630-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2025-06-03T15:41:53.000Z }
 "cpython-3.12.11+20250630-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2025-06-03T15:41:53.000Z }
@@ -173,6 +176,9 @@
 "cpython-3.12.13+20260324-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
 "cpython-3.12.13+20260324-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
 "cpython-3.12.13+20260324-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T12:39:30.000Z }
+"cpython-3.12.13+20260408-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
+"cpython-3.12.13+20260408-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
+"cpython-3.12.13+20260408-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T12:39:30.000Z }
 "cpython-3.13.5+20250630-aarch64-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2025-06-11T15:36:59.000Z }
 "cpython-3.13.5+20250630-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2025-06-11T15:36:59.000Z }
 "cpython-3.13.5+20250630-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2025-06-11T15:36:59.000Z }
@@ -295,6 +301,12 @@
 "cpython-3.13.12+20260324-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-02-03T17:54:12.000Z }
 "cpython-3.13.12+20260324-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-02-03T17:54:12.000Z }
 "cpython-3.13.12+20260324-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-02-03T17:54:12.000Z }
+"cpython-3.13.13+20260408-aarch64-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-04-07T18:19:01.000Z }
+"cpython-3.13.13+20260408-aarch64-pc-windows-msvc-freethreaded-install_only.tar.gz" = { created_at = 2026-04-07T18:19:01.000Z }
+"cpython-3.13.13+20260408-aarch64-pc-windows-msvc-freethreaded-install_only_stripped.tar.gz" = { created_at = 2026-04-07T18:19:01.000Z }
+"cpython-3.13.13+20260408-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-04-07T18:19:01.000Z }
+"cpython-3.13.13+20260408-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-04-07T18:19:01.000Z }
+"cpython-3.13.13+20260408-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-04-07T18:19:01.000Z }
 "cpython-3.14.0b3+20250630-aarch64-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2025-10-07T09:34:52.000Z }
 "cpython-3.14.0b3+20250630-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2025-10-07T09:34:52.000Z }
 "cpython-3.14.0b3+20250630-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2025-10-07T09:34:52.000Z }
@@ -417,6 +429,12 @@
 "cpython-3.14.3+20260324-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-02-03T15:32:20.000Z }
 "cpython-3.14.3+20260324-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-02-03T15:32:20.000Z }
 "cpython-3.14.3+20260324-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-02-03T15:32:20.000Z }
+"cpython-3.14.4+20260408-aarch64-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-04-07T13:13:20.000Z }
+"cpython-3.14.4+20260408-aarch64-pc-windows-msvc-freethreaded-install_only.tar.gz" = { created_at = 2026-04-07T13:13:20.000Z }
+"cpython-3.14.4+20260408-aarch64-pc-windows-msvc-freethreaded-install_only_stripped.tar.gz" = { created_at = 2026-04-07T13:13:20.000Z }
+"cpython-3.14.4+20260408-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-04-07T13:13:20.000Z }
+"cpython-3.14.4+20260408-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-04-07T13:13:20.000Z }
+"cpython-3.14.4+20260408-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-04-07T13:13:20.000Z }
 "cpython-3.15.0a1+20251014-aarch64-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-01-08T01:00:46.713Z }
 "cpython-3.15.0a1+20251014-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-01-08T01:00:46.713Z }
 "cpython-3.15.0a1+20251014-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-01-08T01:00:46.713Z }
@@ -487,3 +505,9 @@
 "cpython-3.15.0a7+20260324-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-25T00:13:03.618Z }
 "cpython-3.15.0a7+20260324-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-25T00:13:03.618Z }
 "cpython-3.15.0a7+20260324-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-25T00:13:03.618Z }
+"cpython-3.15.0a8+20260408-aarch64-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-04-08T12:16:22.415Z }
+"cpython-3.15.0a8+20260408-aarch64-pc-windows-msvc-freethreaded-install_only.tar.gz" = { created_at = 2026-04-08T12:16:22.415Z }
+"cpython-3.15.0a8+20260408-aarch64-pc-windows-msvc-freethreaded-install_only_stripped.tar.gz" = { created_at = 2026-04-08T12:16:22.415Z }
+"cpython-3.15.0a8+20260408-aarch64-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-04-08T12:16:22.415Z }
+"cpython-3.15.0a8+20260408-aarch64-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-04-08T12:16:22.415Z }
+"cpython-3.15.0a8+20260408-aarch64-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-04-08T12:16:22.415Z }
