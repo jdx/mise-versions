@@ -14,8 +14,7 @@ permissions:
   id-token: write
 
 env:
-  GITHUB_API_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
-  GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
 
 jobs:
   analyze:
