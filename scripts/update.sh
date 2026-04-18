@@ -611,8 +611,8 @@ if setup_token_management; then
 		fi
 
 		git commit -m "$commit_msg"
-		git pull --autostash --rebase origin main
-		git push
+		# Push is deferred to the workflow so it only happens after D1 sync
+		# succeeds, preventing orphaned commits when sync fails.
 	fi
 
 	# Save updated tools list for D1 sync (one tool per line)

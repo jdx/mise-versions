@@ -55,6 +55,15 @@ jobs:
           SYNC_API_URL: https://mise-tools.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
           FULL_SYNC: ${{ inputs.full_sync || 'false' }}
+      - name: Push committed versions
+        run: |
+          git fetch origin main
+          if [ "$(git rev-list --count origin/main..HEAD)" -gt 0 ]; then
+            git pull --autostash --rebase origin main
+            git push
+          else
+            echo "No local commits to push"
+          fi
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
       - name: Upload static files as artifact
         id: deployment
