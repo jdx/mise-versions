@@ -16,6 +16,7 @@
 import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, basename } from "path";
 import * as smolToml from "smol-toml";
+import { fetchWithRetry } from "./lib/fetch-with-retry.js";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const UPDATED_TOOLS_FILE = join(process.cwd(), "updated_tools.txt");
@@ -131,7 +132,7 @@ async function main() {
 
     const results = await Promise.allSettled(
       parallelBatches.map(async (batch, idx) => {
-        const response = await fetch(syncUrl, {
+        const response = await fetchWithRetry(syncUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -139,11 +140,6 @@ async function main() {
           },
           body: JSON.stringify({ tools: batch }),
         });
-
-        if (!response.ok) {
-          const text = await response.text();
-          throw new Error(`${response.status} ${response.statusText}: ${text}`);
-        }
 
         return { batch, result: await response.json() };
       }),

@@ -16,6 +16,7 @@ import { readFileSync, readdirSync, existsSync } from "fs";
 import { join, basename } from "path";
 import { parse } from "smol-toml";
 import { execSync } from "child_process";
+import { fetchWithRetry } from "./lib/fetch-with-retry.js";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
@@ -335,7 +336,7 @@ async function main() {
   console.log(`Syncing to ${syncUrl}...`);
 
   try {
-    const response = await fetch(syncUrl, {
+    const response = await fetchWithRetry(syncUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -343,13 +344,6 @@ async function main() {
       },
       body: JSON.stringify({ tools }),
     });
-
-    if (!response.ok) {
-      const text = await response.text();
-      console.error(`Sync failed: ${response.status} ${response.statusText}`);
-      console.error(text);
-      process.exit(1);
-    }
 
     const result = await response.json();
     console.log("Sync completed successfully:");
