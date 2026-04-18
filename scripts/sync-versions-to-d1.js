@@ -165,8 +165,8 @@ async function main() {
   console.log(`  - Errors: ${errors}`);
 
   if (errors > 0) {
-    console.warn(`\nWarning: ${errors} errors occurred during sync`);
-    // Don't exit with error - partial sync is acceptable
+    console.error(`\n${errors} errors occurred during sync after retries`);
+    process.exit(1);
   }
 }
 
