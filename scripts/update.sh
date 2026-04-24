@@ -383,8 +383,12 @@ get_github_token() {
 #   skipped, failed, no_versions, fetched
 # Does NOT touch the git index or mutate counters directly — aggregation
 # happens in the parent after all workers finish.
+#
+# Args: $1 = tool name, $2 = attempt number (internal, defaults to 1)
+FETCH_MAX_ATTEMPTS=3
 fetch() {
 	local tool="$1"
+	local attempt="${2:-1}"
 	local status_file="$RESULTS_DIR/$tool.status"
 
 	case "$tool" in
@@ -440,9 +444,18 @@ fetch() {
 				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
 			fi
 			mark_token_rate_limited "$token_id" "$reset_time"
-			log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id"
 			rm -f "$stderr_file" "docs/$tool"
-			fetch "$tool"
+
+			# Cap retries so 8 parallel workers can't chain-exhaust the token
+			# pool in milliseconds when everyone hits rate limits at once.
+			if [ "$attempt" -lt "$FETCH_MAX_ATTEMPTS" ]; then
+				log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id" "attempt=$attempt"
+				sleep 1
+				fetch "$tool" "$((attempt + 1))"
+				return
+			fi
+			log_error "Rate limited, max retries reached" "tool=$tool" "attempts=$attempt"
+			echo "failed" >"$status_file"
 			return
 		fi
 
@@ -485,15 +498,21 @@ fetch() {
 	echo "fetched" >"$status_file"
 }
 
-# Wrapper used by xargs -P. Ensures a status file exists even if `fetch`
-# times out or crashes, so the parent's aggregation sees every tool.
+# Wrapper used by xargs -P. Ensures a non-empty status file exists even if
+# `fetch` times out or crashes, so the parent's aggregation sees every tool.
+# The tool name is passed as a positional argument (not interpolated into the
+# -c string) to avoid shell injection if a name ever contains quotes.
 run_fetch() {
 	local tool="$1"
 	local status_file="$RESULTS_DIR/$tool.status"
-	if ! timeout 60s bash -c "fetch '$tool'"; then
+	# The `$1` inside the single-quoted bash -c refers to the positional arg
+	# after `--` (the tool name), not a variable in this shell.
+	# shellcheck disable=SC2016
+	if ! timeout 60s bash -c 'fetch "$1"' -- "$tool"; then
 		log_error "Fetch timed out or failed" "tool=$tool"
-		[ -f "$status_file" ] || echo "failed" >"$status_file"
 	fi
+	# If fetch exited without writing a status (timeout/SIGKILL), record it.
+	[ -s "$status_file" ] || echo "failed" >"$status_file"
 }
 
 # Enhanced token management setup
@@ -574,7 +593,17 @@ if setup_token_management; then
 	# Fetch all tools in parallel. Each worker writes a status file to
 	# RESULTS_DIR; the parent aggregates counts and stages git changes afterward.
 	RESULTS_DIR=$(mktemp -d -t mise_results.XXXXXX)
+	export FETCH_MAX_ATTEMPTS
 	export RESULTS_DIR
+
+	# Pre-seed empty status files for every tool. If a worker is hard-killed
+	# (SIGKILL/OOM) before it can write a status, the empty file is still
+	# visible to the aggregator and counted as "failed" rather than silently
+	# dropped from total_tools_checked.
+	while IFS= read -r t; do
+		[ -n "$t" ] || continue
+		: >"$RESULTS_DIR/$t.status"
+	done <<<"$tools"
 
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
@@ -583,22 +612,27 @@ if setup_token_management; then
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 
-	# xargs -P parallelizes across workers. `|| true` prevents xargs's non-zero
-	# exit from individual worker failures from killing the script under `set -e`.
-	# The `$0` inside the single-quoted bash -c is intentional — it refers to the
-	# positional argument passed by xargs, not a variable in this shell.
+	# xargs -P parallelizes across workers. `-d '\n'` splits on newlines only
+	# (defensive against tool names with whitespace), `-r` skips on empty input,
+	# `|| true` prevents xargs's non-zero exit when any worker fails from
+	# killing the script under `set -e`. The `$0` inside the single-quoted
+	# bash -c refers to the positional arg passed by xargs, not a variable
+	# in this shell.
 	# shellcheck disable=SC2016
-	echo "$tools" | xargs -n 1 -P "$PARALLEL_FETCHES" bash -c 'run_fetch "$0"' || true
+	printf '%s\n' "$tools" | xargs -r -d '\n' -n 1 -P "$PARALLEL_FETCHES" bash -c 'run_fetch "$0"' || true
 
 	log_group_end
 
 	log_group_start "Aggregating Results"
 
-	# Count status outcomes from worker output
+	# Count status outcomes from worker output. Empty status files indicate
+	# a worker was hard-killed before it could write a result; treat as failed.
 	for status_file in "$RESULTS_DIR"/*.status; do
 		[ -f "$status_file" ] || continue
 		increment_stat "total_tools_checked"
-		case "$(cat "$status_file")" in
+		status=$(cat "$status_file")
+		[ -n "$status" ] || status="failed"
+		case "$status" in
 		skipped) increment_stat "total_tools_skipped" ;;
 		failed) increment_stat "total_tools_failed" ;;
 		no_versions) increment_stat "total_tools_no_versions" ;;
