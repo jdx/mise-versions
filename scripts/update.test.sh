@@ -63,106 +63,6 @@ echo "=== Shell Script Tests for update.sh ==="
 echo ""
 
 # ============================================
-# Test: Newline escaping in resumption logic
-# ============================================
-echo "--- Newline Escaping Tests ---"
-
-# Test the grep pattern with $'\n' works correctly
-test_newline_resumption() {
-	local tools="tool1
-tool2
-tool3
-tool4
-tool5"
-
-	# This is the pattern from update.sh (simplified)
-	local last_tool="tool2"
-
-	# Using $'\n' for actual newline (the fix from PR #37)
-	local result
-	result=$(grep -m 1 -A 100 -F -x "$last_tool" <<<"$tools"$'\n'"$tools" | tail -n +2 | head -n 3)
-
-	# Should return tool3, tool4, tool5 (after tool2)
-	local expected="tool3
-tool4
-tool5"
-
-	assert_equals "$expected" "$result" "Newline resumption with \$'\\n' returns correct tools"
-}
-test_newline_resumption
-
-# Test that wrong escaping would fail
-test_wrong_newline_escaping() {
-	local tools="tool1
-tool2
-tool3"
-
-	local last_tool="tool2"
-
-	# Wrong way (literal \n in double quotes - this is what was broken)
-	# Note: we're testing that the CORRECT way works, not recreating the bug
-	local result
-	result=$(grep -m 1 -A 100 -F -x "$last_tool" <<<"$tools"$'\n'"$tools" | tail -n +2 | head -n 1)
-
-	assert_equals "tool3" "$result" "Correct escaping finds tool after last processed"
-}
-test_wrong_newline_escaping
-
-# Test resumption from first tool
-test_resumption_from_first() {
-	local tools="alpha
-beta
-gamma"
-
-	local last_tool="alpha"
-	local result
-	result=$(grep -m 1 -A 100 -F -x "$last_tool" <<<"$tools"$'\n'"$tools" | tail -n +2 | head -n 2)
-
-	local expected="beta
-gamma"
-
-	assert_equals "$expected" "$result" "Resumption from first tool returns remaining tools"
-}
-test_resumption_from_first
-
-# Test resumption when tool not found (starts from beginning)
-test_resumption_not_found() {
-	local tools="alpha
-beta
-gamma"
-
-	local last_tool="nonexistent"
-	local result
-	# When grep fails (tool not found), fall back to first 100 tools
-	result=$(grep -m 1 -A 100 -F -x "$last_tool" <<<"$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
-
-	# Should get all tools since nonexistent wasn't found
-	assert_contains "$result" "alpha" "Resumption with nonexistent tool includes first tool"
-}
-test_resumption_not_found
-
-# Test resumption wraps around
-test_resumption_wraparound() {
-	local tools="tool1
-tool2
-tool3"
-
-	local last_tool="tool3"
-	local result
-	result=$(grep -m 1 -A 100 -F -x "$last_tool" <<<"$tools"$'\n'"$tools" | tail -n +2 | head -n 3)
-
-	# After tool3, it should wrap to tool1, tool2, tool3
-	local expected="tool1
-tool2
-tool3"
-
-	assert_equals "$expected" "$result" "Resumption from last tool wraps to beginning"
-}
-test_resumption_wraparound
-
-echo ""
-
-# ============================================
 # Test: NDJSON piping via stdin
 # ============================================
 echo "--- NDJSON Stdin Piping Tests ---"
@@ -245,18 +145,16 @@ echo ""
 # ============================================
 echo "--- Statistics Helper Tests ---"
 
-# Test increment_stat function
-test_increment_stat() {
+# Test atomic increment via byte append (matches update.sh's increment_stat).
+# Appending a single byte is atomic on POSIX, letting parallel workers share
+# the same counter file without locks.
+test_increment_stat_atomic() {
 	local stats_dir="$TEMP_DIR/stats"
 	mkdir -p "$stats_dir"
-	echo "0" >"$stats_dir/counter"
+	: >"$stats_dir/counter"
 
-	# Simulate increment_stat
 	increment_test() {
-		local stat_file="$stats_dir/counter"
-		local current_value
-		current_value=$(cat "$stat_file" 2>/dev/null || echo "0")
-		echo $((current_value + 1)) >"$stat_file"
+		printf '.' >>"$stats_dir/counter"
 	}
 
 	increment_test
@@ -264,29 +162,40 @@ test_increment_stat() {
 	increment_test
 
 	local result
-	result=$(cat "$stats_dir/counter")
+	result=$(wc -c <"$stats_dir/counter" | tr -d ' ')
 
 	assert_equals "3" "$result" "increment_stat increments correctly"
 }
-test_increment_stat
+test_increment_stat_atomic
 
-# Test add_to_list function
+# Stress the counter concurrently to confirm we don't lose increments.
+test_increment_stat_parallel() {
+	local stats_dir="$TEMP_DIR/stats_parallel"
+	mkdir -p "$stats_dir"
+	local counter_file="$stats_dir/counter"
+	: >"$counter_file"
+
+	for _ in $(seq 1 50); do
+		(printf '.' >>"$counter_file") &
+	done
+	wait
+
+	local result
+	result=$(wc -c <"$counter_file" | tr -d ' ')
+
+	assert_equals "50" "$result" "increment_stat loses no increments under concurrency"
+}
+test_increment_stat_parallel
+
+# Test atomic append-style add_to_list (matches update.sh).
+# Short-line appends fit within PIPE_BUF and are atomic on POSIX.
 test_add_to_list() {
 	local stats_dir="$TEMP_DIR/stats2"
 	mkdir -p "$stats_dir"
-	echo "" >"$stats_dir/list"
+	: >"$stats_dir/list"
 
-	# Simulate add_to_list
 	add_to_list_test() {
-		local list_file="$stats_dir/list"
-		local tool="$1"
-		local current_list
-		current_list=$(cat "$list_file" 2>/dev/null || echo "")
-		if [ -n "$current_list" ]; then
-			echo "$current_list $tool" >"$list_file"
-		else
-			echo "$tool" >"$list_file"
-		fi
+		echo "$1" >>"$stats_dir/list"
 	}
 
 	add_to_list_test "node"
@@ -294,7 +203,7 @@ test_add_to_list() {
 	add_to_list_test "go"
 
 	local result
-	result=$(cat "$stats_dir/list")
+	result=$(tr '\n' ' ' <"$stats_dir/list" | sed -E 's/ +$//')
 
 	assert_equals "node python go" "$result" "add_to_list appends tools correctly"
 }

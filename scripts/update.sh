@@ -127,45 +127,54 @@ log_group_end() {
 STATS_DIR="/tmp/mise_stats_$$"
 mkdir -p "$STATS_DIR"
 
-# Initialize statistics files
-echo "0" >"$STATS_DIR/total_tools_checked"
-echo "0" >"$STATS_DIR/total_tools_updated"
-echo "0" >"$STATS_DIR/total_tools_skipped"
-echo "0" >"$STATS_DIR/total_tools_failed"
-echo "0" >"$STATS_DIR/total_tools_no_versions"
-echo "0" >"$STATS_DIR/total_tokens_used"
-echo "0" >"$STATS_DIR/total_rate_limits_hit"
+# Counter files (append-only, one byte per increment for atomic parallel writes)
+# Appending a single byte under PIPE_BUF is atomic on POSIX systems, which lets
+# many parallel workers race on the same counter without locks.
+COUNTERS=(
+	total_tools_checked
+	total_tools_updated
+	total_tools_skipped
+	total_tools_failed
+	total_tools_no_versions
+	total_tokens_used
+	total_rate_limits_hit
+)
+for counter in "${COUNTERS[@]}"; do
+	: >"$STATS_DIR/$counter"
+done
+
+# String stats (set_stat only, not incremented concurrently)
 echo "0" >"$STATS_DIR/total_tools_available"
 echo "" >"$STATS_DIR/updated_tools_list"
-echo "" >"$STATS_DIR/first_processed_tool"
-echo "" >"$STATS_DIR/last_processed_tool"
 echo "false" >"$STATS_DIR/summary_generated"
 START_TIME=$(date +%s)
 echo "$START_TIME" >"$STATS_DIR/start_time"
 
-# Helper functions for statistics
+# Atomic increment — appends a single byte to the counter file.
 increment_stat() {
-	local stat_file="$STATS_DIR/$1"
-	local current_value
-	current_value=$(cat "$stat_file" 2>/dev/null || echo "0")
-	echo $((current_value + 1)) >"$stat_file"
+	printf '.' >>"$STATS_DIR/$1"
 }
 
+# Read a stat. Counter files contain only dots; we return the byte count.
+# String files contain arbitrary text; we return the content.
 get_stat() {
 	local stat_file="$STATS_DIR/$1"
-	cat "$stat_file" 2>/dev/null || echo "0"
+	[ -e "$stat_file" ] || {
+		echo "0"
+		return
+	}
+	local content
+	content=$(cat "$stat_file" 2>/dev/null || echo "")
+	if [ -z "$content" ] || [[ "$content" =~ ^\.+$ ]]; then
+		wc -c <"$stat_file" | tr -d ' '
+	else
+		echo "$content"
+	fi
 }
 
+# Append a tool name to the updated list. One tool per line.
 add_to_list() {
-	local list_file="$STATS_DIR/updated_tools_list"
-	local tool="$1"
-	local current_list
-	current_list=$(cat "$list_file" 2>/dev/null || echo "")
-	if [ -n "$current_list" ]; then
-		echo "$current_list $tool" >"$list_file"
-	else
-		echo "$tool" >"$list_file"
-	fi
+	echo "$1" >>"$STATS_DIR/updated_tools_list"
 }
 
 set_stat() {
@@ -178,6 +187,7 @@ set_stat() {
 # Cleanup function
 cleanup_stats() {
 	rm -rf "$STATS_DIR"
+	[ -n "${RESULTS_DIR:-}" ] && rm -rf "$RESULTS_DIR"
 }
 
 # Set trap to cleanup on exit
@@ -248,8 +258,7 @@ generate_summary() {
 - **Tools Failed**: $(get_stat "total_tools_failed")
 - **Tools with No Versions**: $(get_stat "total_tools_no_versions")
 - **Total Duration**: ${duration_minutes}m ${duration_seconds}s
-- **First Tool Processed**: $(get_stat "first_processed_tool")
-- **Last Tool Processed**: $(get_stat "last_processed_tool")
+- **Parallel Workers**: ${PARALLEL_FETCHES:-8}
 
 ## 📊 Performance Metrics
 - **Processing Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(($(get_stat "total_tools_checked") / (duration / 60)))" || echo "0") tools/minute
@@ -302,7 +311,9 @@ mark_token_rate_limited() {
 	} &
 }
 
-# Function to generate TOML file with timestamps
+# Function to generate TOML file with timestamps.
+# Does NOT run `git add` — the git index is a shared resource and must be
+# updated serially in the parent after all parallel workers finish.
 generate_toml_file() {
 	local tool="$1"
 	local token="$2"
@@ -326,7 +337,6 @@ generate_toml_file() {
 			data.forEach(v => console.log(JSON.stringify(v)));
 		' | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 			mv "$toml_file.tmp" "$toml_file"
-			git add "$toml_file"
 			rm -f "$error_output"
 			return
 		fi
@@ -339,7 +349,6 @@ generate_toml_file() {
 		versions.forEach(v => console.log(JSON.stringify({version: v})));
 	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 		mv "$toml_file.tmp" "$toml_file"
-		git add "$toml_file"
 		rm -f "$error_output"
 	else
 		echo "Warning: Failed to generate TOML for $tool" >&2
@@ -369,12 +378,18 @@ get_github_token() {
 	return 0
 }
 
+# Fetch versions for a single tool. Safe for concurrent execution.
+# Writes a status file to $RESULTS_DIR/$tool.status with one of:
+#   skipped, failed, no_versions, fetched
+# Does NOT touch the git index or mutate counters directly — aggregation
+# happens in the parent after all workers finish.
 fetch() {
-	increment_stat "total_tools_checked"
+	local tool="$1"
+	local status_file="$RESULTS_DIR/$tool.status"
 
-	case "$1" in
+	case "$tool" in
 	awscli-local | jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar | dasel | cockroach)
-		increment_stat "total_tools_skipped"
+		echo "skipped" >"$status_file"
 		return
 		;;
 	esac
@@ -382,9 +397,8 @@ fetch() {
 	# Get a fresh token for this fetch operation
 	local token_info
 	if ! token_info=$(get_github_token); then
-		# No tokens available, stop processing this tool gracefully
-		log_warn "No tokens available, skipping" "tool=$1"
-		increment_stat "total_tools_failed"
+		log_warn "No tokens available, skipping" "tool=$tool"
+		echo "failed" >"$status_file"
 		return 1
 	fi
 	local token
@@ -395,88 +409,90 @@ fetch() {
 		token=$(echo "$token_info" | cut -d' ' -f1)
 		token_id=$(echo "$token_info" | cut -d' ' -f2)
 	else
-		# No valid token received, stop processing this tool
-		log_error "No valid token received, skipping" "tool=$1"
-		increment_stat "total_tools_failed"
+		log_error "No valid token received, skipping" "tool=$tool"
+		echo "failed" >"$status_file"
 		return 1
 	fi
 
 	local rate_limit_info
 	rate_limit_info=$(GITHUB_TOKEN="$token" mise x -- wait-for-gh-rate-limit 2>&1 || echo "")
-	# Only show rate limit if low
 	local remaining
 	remaining=$(echo "$rate_limit_info" | grep -oP 'GitHub rate limit: \K[0-9]+' || echo "5000")
 	if [ "$remaining" -lt 1000 ]; then
-		log_warn "GitHub rate limit low" "remaining=$remaining" "tool=$1"
+		log_warn "GitHub rate limit low" "remaining=$remaining" "tool=$tool"
 	fi
-	log_info "Fetching versions" "tool=$1"
+	log_info "Fetching versions" "tool=$tool"
 
-	# Create a temporary file to capture stderr and check for rate limiting
+	# Create a temporary file to capture stderr and check for rate limiting.
+	# Docker container is used for isolation: `mise ls-remote` may execute
+	# untrusted plugin code (asdf/vfox), and the sandbox contains it.
 	local stderr_file
 	stderr_file=$(mktemp)
 
-	if ! docker run -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
-		jdxcode/mise -y ls-remote "$1" >"docs/$1" 2>"$stderr_file"; then
-		log_error "Failed to fetch versions" "tool=$1"
-		increment_stat "total_tools_failed"
-
+	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
+		jdxcode/mise -y ls-remote "$tool" >"docs/$tool" 2>"$stderr_file"; then
+		log_error "Failed to fetch versions" "tool=$tool"
 		cat "$stderr_file" >&2
 
-		# Check if this was a rate limit issue (403 Forbidden)
 		if grep -q "403 Forbidden" "$stderr_file"; then
 			local reset_time=""
 			if [ "$remaining" == "0" ]; then
 				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
 			fi
 			mark_token_rate_limited "$token_id" "$reset_time"
-			log_warn "Rate limited, retrying with new token" "tool=$1" "token_id=$token_id"
-			fetch "$1"
+			log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id"
+			rm -f "$stderr_file" "docs/$tool"
+			fetch "$tool"
+			return
 		fi
 
-		rm -f "$stderr_file" "docs/$1"
+		rm -f "$stderr_file" "docs/$tool"
+		echo "failed" >"$status_file"
 		return
 	fi
 
-	# Clean up stderr file
 	rm -f "$stderr_file"
 
-	new_lines=$(wc -l <"docs/$1")
+	local new_lines
+	new_lines=$(wc -l <"docs/$tool")
 	if [ "$new_lines" -eq 0 ]; then
-		log_debug "No versions found" "tool=$1"
-		increment_stat "total_tools_no_versions"
-		rm -f "docs/$1"
-	else
-		# Process plain text file (used as intermediate for TOML generation)
-		case "$1" in
-		cargo-binstall)
-			mv docs/cargo-binstall{,.tmp}
-			grep -E '^[0-9]' docs/cargo-binstall.tmp >docs/cargo-binstall
-			rm docs/cargo-binstall.tmp
-			;;
-		java)
-			sort -V "docs/$1" -o "docs/$1"
-			;;
-		vault | consul | nomad | terraform | packer | vagrant | boundary | protobuf)
-			mv "docs/$1"{,.tmp}
-			grep -E '^[0-9]' "docs/$1.tmp" >"docs/$1"
-			rm "docs/$1.tmp"
-			sort -V "docs/$1" -o "docs/$1"
-			;;
-		esac
+		log_debug "No versions found" "tool=$tool"
+		rm -f "docs/$tool"
+		echo "no_versions" >"$status_file"
+		return
+	fi
 
-		# Generate TOML file with timestamps (only TOML is committed)
-		generate_toml_file "$1" "$token"
+	# Tool-specific post-processing of the plain text file before TOML generation
+	case "$tool" in
+	cargo-binstall)
+		mv docs/cargo-binstall{,.tmp}
+		grep -E '^[0-9]' docs/cargo-binstall.tmp >docs/cargo-binstall
+		rm docs/cargo-binstall.tmp
+		;;
+	java)
+		sort -V "docs/$tool" -o "docs/$tool"
+		;;
+	vault | consul | nomad | terraform | packer | vagrant | boundary | protobuf)
+		mv "docs/$tool"{,.tmp}
+		grep -E '^[0-9]' "docs/$tool.tmp" >"docs/$tool"
+		rm "docs/$tool.tmp"
+		sort -V "docs/$tool" -o "docs/$tool"
+		;;
+	esac
 
-		# Clean up intermediate plain text file
-		rm -f "docs/$1"
+	generate_toml_file "$tool" "$token"
+	rm -f "docs/$tool"
+	echo "fetched" >"$status_file"
+}
 
-		# Only count as updated if the TOML file actually changed (is staged)
-		if git diff --cached --quiet -- "docs/$1.toml" 2>/dev/null; then
-			:
-		else
-			increment_stat "total_tools_updated"
-			add_to_list "$1"
-		fi
+# Wrapper used by xargs -P. Ensures a status file exists even if `fetch`
+# times out or crashes, so the parent's aggregation sees every tool.
+run_fetch() {
+	local tool="$1"
+	local status_file="$RESULTS_DIR/$tool.status"
+	if ! timeout 60s bash -c "fetch '$tool'"; then
+		log_error "Fetch timed out or failed" "tool=$tool"
+		[ -f "$status_file" ] || echo "failed" >"$status_file"
 	fi
 }
 
@@ -535,14 +551,6 @@ if setup_token_management; then
 
 	log_group_end
 
-	# Resume from the last processed tool
-	last_tool_processed=""
-	if [ -f "last_processed_tool.txt" ]; then
-		last_tool_processed=$(cat "last_processed_tool.txt")
-		log_info "Resuming from previous run" "last_tool=$last_tool_processed"
-	fi
-	tools_limited=$(grep -m 1 -A 100 -F -x "$last_tool_processed" <<<"$tools"$'\n'"$tools" | tail -n +2 || echo "$tools" | head -n 100)
-
 	log_group_start "Processing Tools"
 
 	# Cleanup old tools that are no longer in the registry
@@ -563,36 +571,62 @@ if setup_token_management; then
 		fi
 	done
 
-	# Process tools
-	export -f fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
+	# Fetch all tools in parallel. Each worker writes a status file to
+	# RESULTS_DIR; the parent aggregates counts and stages git changes afterward.
+	RESULTS_DIR=$(mktemp -d -t mise_results.XXXXXX)
+	export RESULTS_DIR
+
+	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
+	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
+
+	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
-	first_processed_tool=""
-	last_processed_tool=""
-	for tool in $tools_limited; do
-		if ! timeout 60s bash -c "fetch $tool"; then
-			log_error "Fetch timed out or failed, continuing" "tool=$tool"
-			# Don't break, continue to next tool
-			continue
-		fi
-		if [ -z "$first_processed_tool" ]; then
-			first_processed_tool="$tool"
-		fi
-		last_processed_tool="$tool"
-	done
+
+	# xargs -P parallelizes across workers. `|| true` prevents xargs's non-zero
+	# exit from individual worker failures from killing the script under `set -e`.
+	# The `$0` inside the single-quoted bash -c is intentional — it refers to the
+	# positional argument passed by xargs, not a variable in this shell.
+	# shellcheck disable=SC2016
+	echo "$tools" | xargs -n 1 -P "$PARALLEL_FETCHES" bash -c 'run_fetch "$0"' || true
 
 	log_group_end
-	set_stat "first_processed_tool" "$first_processed_tool"
-	if [ -n "$last_processed_tool" ]; then
-		echo "$last_processed_tool" >"last_processed_tool.txt"
-	fi
-	set_stat "last_processed_tool" "$last_processed_tool"
+
+	log_group_start "Aggregating Results"
+
+	# Count status outcomes from worker output
+	for status_file in "$RESULTS_DIR"/*.status; do
+		[ -f "$status_file" ] || continue
+		increment_stat "total_tools_checked"
+		case "$(cat "$status_file")" in
+		skipped) increment_stat "total_tools_skipped" ;;
+		failed) increment_stat "total_tools_failed" ;;
+		no_versions) increment_stat "total_tools_no_versions" ;;
+		fetched) ;; # counted as updated below iff the TOML actually changed
+		esac
+	done
+
+	# Stage all TOML changes at once, then determine which actually changed.
+	# Git index mutation must be serialized — this runs after all workers finish.
+	# We stage TOMLs only; any stray plain-text files are cleaned up by the
+	# workflow's `git checkout docs && git clean -df docs` step.
+	git add 'docs/*.toml' 2>/dev/null || true
+	while IFS= read -r changed_file; do
+		[ -n "$changed_file" ] || continue
+		[[ "$changed_file" == *.toml ]] || continue
+		tool=$(basename "$changed_file" .toml)
+		add_to_list "$tool"
+		increment_stat "total_tools_updated"
+	done < <(git diff --cached --name-only -- 'docs/*.toml' 2>/dev/null)
+
+	log_group_end
 
 	if [ "${DRY_RUN:-}" == 0 ] && ! git diff-index --cached --quiet HEAD; then
 		git diff --compact-summary --cached
 
-		# Get the list of updated tools for the commit message
-		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
+		# Get the list of updated tools for the commit message (newline-separated
+		# from concurrent appends — flatten to a space-separated string).
+		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr '\n' ' ' | sed -E 's/ +/ /g; s/^ //; s/ $//')
 		tools_updated_count=$(get_stat "total_tools_updated")
 
 		commit_msg=""
