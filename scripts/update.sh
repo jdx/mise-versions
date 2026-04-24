@@ -349,20 +349,10 @@ generate_toml_file() {
 	local json_output
 	if json_output=$(mise ls-remote --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
 		local json_count
-		json_count=$(printf '%s' "$json_output" | node -e '
-			try {
-				const d = JSON.parse(require("fs").readFileSync(0, "utf-8"));
-				console.log(Array.isArray(d) ? d.length : 0);
-			} catch {
-				console.log(0);
-			}
-		' 2>/dev/null || echo 0)
+		json_count=$(printf '%s' "$json_output" | jq 'if type == "array" then length else 0 end' 2>/dev/null || echo 0)
 		if [ "${json_count:-0}" -gt 0 ]; then
 			# Convert JSON array to NDJSON and pipe to generate-toml.js
-			if echo "$json_output" | node -e '
-				const data = JSON.parse(require("fs").readFileSync(0, "utf-8"));
-				data.forEach(v => console.log(JSON.stringify(v)));
-			' | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
+			if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 				if toml_has_versions "$toml_file.tmp"; then
 					mv "$toml_file.tmp" "$toml_file"
 					rm -f "$error_output"
@@ -656,7 +646,7 @@ if setup_token_management; then
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
 
-	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
+	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file toml_has_versions increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 
