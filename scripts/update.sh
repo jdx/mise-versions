@@ -320,6 +320,13 @@ mark_token_rate_limited() {
 # Function to generate TOML file with timestamps.
 # Does NOT run `git add` — the git index is a shared resource and must be
 # updated serially in the parent after all parallel workers finish.
+#
+# Refuses to overwrite the existing TOML with an empty `[versions]` table:
+# the local `mise ls-remote --json` call on the runner shares a single
+# GitHub token across all parallel workers and frequently returns `[]`
+# when rate-limited. Prior to this check, that empty result would wipe
+# out hundreds of tools' version history and trip the D1 sync safety
+# check on the next run.
 generate_toml_file() {
 	local tool="$1"
 	local token="$2"
@@ -334,28 +341,45 @@ generate_toml_file() {
 	local error_output
 	error_output=$(mktemp)
 
-	# Try to get JSON with timestamps from mise ls-remote --json
+	# Try to get JSON with timestamps from mise ls-remote --json.
+	# An empty or 0-length array here means the call was rate-limited or
+	# the tool isn't resolvable on this runner — NOT a legitimate "no
+	# versions" result (which `fetch()` would have already filtered out
+	# based on the docker-fetched plain text).
 	local json_output
 	if json_output=$(mise ls-remote --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
-		# Convert JSON array to NDJSON and pipe to generate-toml.js
-		if echo "$json_output" | node -e '
-			const data = JSON.parse(require("fs").readFileSync(0, "utf-8"));
-			data.forEach(v => console.log(JSON.stringify(v)));
-		' | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
-			mv "$toml_file.tmp" "$toml_file"
-			rm -f "$error_output"
-			return
+		local json_count
+		json_count=$(printf '%s' "$json_output" | jq 'if type == "array" then length else 0 end' 2>/dev/null || echo 0)
+		if [ "${json_count:-0}" -gt 0 ]; then
+			# Convert JSON array to NDJSON and pipe to generate-toml.js
+			if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
+				if toml_has_versions "$toml_file.tmp"; then
+					mv "$toml_file.tmp" "$toml_file"
+					rm -f "$error_output"
+					return
+				fi
+				rm -f "$toml_file.tmp"
+			fi
+		else
+			log_warn "mise ls-remote --json returned empty, falling back" "tool=$tool"
 		fi
 	fi
 
-	# Fall back to plain text conversion (preserves existing timestamps)
+	# Fall back to plain text conversion (preserves existing timestamps).
+	# `fetch()` already guaranteed versions_file is non-empty, so this path
+	# should always produce a populated TOML.
 	if node -e '
 		const fs = require("fs");
 		const versions = fs.readFileSync(process.argv[1], "utf-8").trim().split("\n").filter(v => v);
 		versions.forEach(v => console.log(JSON.stringify({version: v})));
 	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
-		mv "$toml_file.tmp" "$toml_file"
-		rm -f "$error_output"
+		if toml_has_versions "$toml_file.tmp"; then
+			mv "$toml_file.tmp" "$toml_file"
+			rm -f "$error_output"
+		else
+			log_warn "Generated TOML had no versions, refusing to overwrite" "tool=$tool"
+			rm -f "$toml_file.tmp" "$error_output"
+		fi
 	else
 		echo "Warning: Failed to generate TOML for $tool" >&2
 		if [ -s "$error_output" ]; then
@@ -363,6 +387,14 @@ generate_toml_file() {
 		fi
 		rm -f "$toml_file.tmp" "$error_output"
 	fi
+}
+
+# Returns 0 iff the given TOML file contains at least one actual version
+# entry (a line starting with `"`). A file consisting only of the
+# `[versions]` header is treated as empty and should not overwrite an
+# existing populated TOML.
+toml_has_versions() {
+	[ -s "$1" ] && grep -q '^"' "$1"
 }
 
 # Function to get a fresh GitHub token from the token manager
@@ -614,7 +646,7 @@ if setup_token_management; then
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
 
-	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file increment_stat get_stat add_to_list set_stat
+	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file toml_has_versions increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 
