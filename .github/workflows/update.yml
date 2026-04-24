@@ -58,10 +58,18 @@ jobs:
           else
             echo "No local commits to push"
           fi
+      # Pages configuration + upload are marked continue-on-error so transient
+      # GitHub-side flakiness (installation-scoped API rate limits have hit
+      # `configure-pages` in the past) doesn't fail the whole workflow after
+      # the real data pipeline (update.sh + D1 sync) has already succeeded.
+      # A missed Pages deploy just means the site serves the previous snapshot
+      # until the next scheduled run redeploys.
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+        continue-on-error: true
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        continue-on-error: true
         with:
           path: docs/
 
@@ -75,3 +83,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
+        continue-on-error: true
