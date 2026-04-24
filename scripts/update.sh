@@ -143,10 +143,13 @@ for counter in "${COUNTERS[@]}"; do
 	: >"$STATS_DIR/$counter"
 done
 
-# String stats (set_stat only, not incremented concurrently)
-echo "0" >"$STATS_DIR/total_tools_available"
-echo "" >"$STATS_DIR/updated_tools_list"
-echo "false" >"$STATS_DIR/summary_generated"
+# String stats (set_stat only, not incremented concurrently).
+# Initialized with empty (zero-byte) files so the get_stat heuristic below
+# — which falls through to wc -c when content is empty — matches the
+# initialization style used for counter files.
+: >"$STATS_DIR/total_tools_available"
+: >"$STATS_DIR/updated_tools_list"
+: >"$STATS_DIR/summary_generated"
 START_TIME=$(date +%s)
 echo "$START_TIME" >"$STATS_DIR/start_time"
 
@@ -156,7 +159,9 @@ increment_stat() {
 }
 
 # Read a stat. Counter files contain only dots; we return the byte count.
-# String files contain arbitrary text; we return the content.
+# String files contain arbitrary text; we return the content. Empty files
+# (zero bytes) return "0", which aligns with the counter representation
+# for unset numeric stats.
 get_stat() {
 	local stat_file="$STATS_DIR/$1"
 	[ -e "$stat_file" ] || {
@@ -173,6 +178,7 @@ get_stat() {
 }
 
 # Append a tool name to the updated list. One tool per line.
+# Short-line appends are atomic under PIPE_BUF on POSIX.
 add_to_list() {
 	echo "$1" >>"$STATS_DIR/updated_tools_list"
 }
@@ -683,8 +689,9 @@ if setup_token_management; then
 		# succeeds, preventing orphaned commits when sync fails.
 	fi
 
-	# Save updated tools list for D1 sync (one tool per line)
-	cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr ' ' '\n' | grep -v '^$' >updated_tools.txt || true
+	# Save updated tools list for D1 sync (one tool per line).
+	# add_to_list already writes one tool per line; just drop any blanks.
+	grep -v '^$' "$STATS_DIR/updated_tools_list" >updated_tools.txt 2>/dev/null || : >updated_tools.txt
 	updated_count=$(wc -l <updated_tools.txt | tr -d ' ')
 	log_info "Updated tools saved" "file=updated_tools.txt" "count=$updated_count"
 else
