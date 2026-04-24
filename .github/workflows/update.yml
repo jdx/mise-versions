@@ -8,7 +8,7 @@ on:
         default: "false"
         type: boolean
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/30 * * * *"
 
 concurrency:
   group: update
@@ -34,15 +34,9 @@ jobs:
       - uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4
       - run: curl https://mise.run | MISE_INSTALL_PATH="$HOME/.local/share/mise/bin/mise" sh && mise --version
       - run: npm install
-      - name: Cache last processed tool
-        id: cache-last-tool
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
-        with:
-          path: last_processed_tool.txt
-          key: last-processed-tool-${{ github.run_id }}
-          restore-keys: |
-            last-processed-tool-
       - run: ./scripts/update.sh "${{ github.event.schedule }}"
+        env:
+          PARALLEL_FETCHES: "8"
       - run: git checkout docs && git clean -df docs
       - name: Sync tools to D1
         run: node scripts/sync-to-d1.js
