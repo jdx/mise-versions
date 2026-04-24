@@ -651,13 +651,17 @@ if setup_token_management; then
 	# We stage TOMLs only; any stray plain-text files are cleaned up by the
 	# workflow's `git checkout docs && git clean -df docs` step.
 	git add 'docs/*.toml' 2>/dev/null || true
+	# `--diff-filter=d` excludes deletions so obsolete tools removed by the
+	# cleanup loop above aren't miscounted as updates (and aren't written
+	# into updated_tools.txt, which sync-versions-to-d1.js would then try
+	# to read as existing TOMLs).
 	while IFS= read -r changed_file; do
 		[ -n "$changed_file" ] || continue
 		[[ "$changed_file" == *.toml ]] || continue
 		tool=$(basename "$changed_file" .toml)
 		add_to_list "$tool"
 		increment_stat "total_tools_updated"
-	done < <(git diff --cached --name-only -- 'docs/*.toml' 2>/dev/null)
+	done < <(git diff --cached --name-only --diff-filter=d -- 'docs/*.toml' 2>/dev/null)
 
 	log_group_end
 
