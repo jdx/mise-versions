@@ -666,7 +666,9 @@ if setup_token_management; then
 
 		# Get the list of updated tools for the commit message (newline-separated
 		# from concurrent appends — flatten to a space-separated string).
-		updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr '\n' ' ' | sed -E 's/ +/ /g; s/^ //; s/ $//')
+		# `|| true` guards against any stage failing under `set -eo pipefail`
+		# (e.g. the stats file missing) so the assignment still produces "".
+		updated_tools_list=$({ cat "$STATS_DIR/updated_tools_list" 2>/dev/null | tr '\n' ' ' | sed -E 's/ +/ /g; s/^ //; s/ $//'; } || true)
 		tools_updated_count=$(get_stat "total_tools_updated")
 
 		commit_msg=""
