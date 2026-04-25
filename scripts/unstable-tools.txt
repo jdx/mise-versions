@@ -1,0 +1,15 @@
+# Tools whose upstream version order is unstable across runs and must be
+# sorted deterministically by semver before writing the TOML. Without this,
+# tools that publish backport patch releases on old major branches (e.g.
+# terraform 0.12.30 released after 0.14.x) will reorder on every run as
+# the JSON path (sorted by created_at) and the plain-text path (sorted by
+# semver) compete, producing endless no-op commits.
+#
+# One tool name per line. Blank lines and lines starting with # are ignored.
+
+boundary
+consul
+nomad
+protobuf
+terraform
+vault

@@ -25,6 +25,7 @@
     "@octokit/auth-oauth-user": "^6.0.0",
     "@octokit/rest": "^22.0.0",
     "drizzle-orm": "^0.45.0",
+    "semver": "^7.7.4",
     "smol-toml": "^1.5.2",
     "workers-og": "^0.0.27"
   }

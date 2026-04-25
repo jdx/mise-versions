@@ -252,6 +252,78 @@ describe("generate-toml.js", () => {
     });
   });
 
+  describe("unstable tool sorting", () => {
+    it("should preserve input order for tools not in the unstable list", async () => {
+      // terraform-style backport pattern: 0.12.30 published after 0.14.3
+      const input = [
+        '{"version":"0.12.29"}',
+        '{"version":"0.13.0"}',
+        '{"version":"0.14.3"}',
+        '{"version":"0.12.30"}',
+        '{"version":"0.14.4"}',
+      ].join("\n");
+
+      const { stdout, code } = await runGenerateToml(input, ["random-tool"]);
+      assert.strictEqual(code, 0);
+
+      const parsed = parse(stdout);
+      assert.deepStrictEqual(Object.keys(parsed.versions), [
+        "0.12.29",
+        "0.13.0",
+        "0.14.3",
+        "0.12.30",
+        "0.14.4",
+      ]);
+    });
+
+    it("should semver-sort tools in the unstable list", async () => {
+      // Same input as above, but for terraform — output must be ascending
+      // semver regardless of input order.
+      const input = [
+        '{"version":"0.12.29"}',
+        '{"version":"0.13.0"}',
+        '{"version":"0.14.3"}',
+        '{"version":"0.12.30"}',
+        '{"version":"0.14.4"}',
+      ].join("\n");
+
+      const { stdout, code } = await runGenerateToml(input, ["terraform"]);
+      assert.strictEqual(code, 0);
+
+      const parsed = parse(stdout);
+      assert.deepStrictEqual(Object.keys(parsed.versions), [
+        "0.12.29",
+        "0.12.30",
+        "0.13.0",
+        "0.14.3",
+        "0.14.4",
+      ]);
+    });
+
+    it("should produce identical output for the same versions in different input orders", async () => {
+      const versions = [
+        { version: "1.5.0", created_at: "2024-05-01T00:00:00Z" },
+        { version: "1.4.10", created_at: "2024-03-01T00:00:00Z" },
+        { version: "1.3.10", created_at: "2024-09-01T00:00:00Z" },
+        { version: "1.4.0", created_at: "2024-01-01T00:00:00Z" },
+        { version: "0.15.5", created_at: "2024-08-01T00:00:00Z" },
+      ];
+      const orderA = versions.map((v) => JSON.stringify(v)).join("\n");
+      const orderB = versions
+        .slice()
+        .reverse()
+        .map((v) => JSON.stringify(v))
+        .join("\n");
+
+      const a = await runGenerateToml(orderA, ["consul"]);
+      const b = await runGenerateToml(orderB, ["consul"]);
+
+      assert.strictEqual(a.code, 0);
+      assert.strictEqual(b.code, 0);
+      assert.strictEqual(a.stdout, b.stdout);
+    });
+  });
+
   describe("TOML output format", () => {
     it("should produce valid TOML output", async () => {
       const input = '{"version":"1.0.0"}\n{"version":"2.0.0"}\n';
