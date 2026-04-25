@@ -322,11 +322,10 @@ mark_token_rate_limited() {
 # updated serially in the parent after all parallel workers finish.
 #
 # Refuses to overwrite the existing TOML with an empty `[versions]` table:
-# the local `mise ls-remote --json` call on the runner shares a single
-# GitHub token across all parallel workers and frequently returns `[]`
-# when rate-limited. Prior to this check, that empty result would wipe
-# out hundreds of tools' version history and trip the D1 sync safety
-# check on the next run.
+# even with a per-tool rotated token, transient API failures could
+# theoretically still produce empty output. Prior to this check, an empty
+# result would wipe out hundreds of tools' version history and trip the
+# D1 sync safety check on the next run.
 generate_toml_file() {
 	local tool="$1"
 	local token="$2"
@@ -342,12 +341,16 @@ generate_toml_file() {
 	error_output=$(mktemp)
 
 	# Try to get JSON with timestamps from mise ls-remote --json.
-	# An empty or 0-length array here means the call was rate-limited or
-	# the tool isn't resolvable on this runner — NOT a legitimate "no
-	# versions" result (which `fetch()` would have already filtered out
-	# based on the docker-fetched plain text).
+	# Pass the rotated per-tool token via GITHUB_API_TOKEN so this call
+	# isn't rate-limited by the workflow's single shared MISE_GITHUB_TOKEN.
+	# Without this, ~58% of tools per run hit GitHub's 5000/hr authenticated
+	# rate limit (8 parallel workers × paginated `/releases` calls all on
+	# one token), aqua's `_list_remote_versions` swallows the 403 into
+	# `Ok(vec![])`, mise emits `[]`, and we'd silently fall through to the
+	# plain-text path — losing `release_url` and `created_at` for any new
+	# version that wasn't already in the existing TOML.
 	local json_output
-	if json_output=$(mise ls-remote --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
+	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
 		local json_count
 		json_count=$(printf '%s' "$json_output" | jq 'if type == "array" then length else 0 end' 2>/dev/null || echo 0)
 		if [ "${json_count:-0}" -gt 0 ]; then
