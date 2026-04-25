@@ -17,8 +17,23 @@
 
 import { readFileSync, existsSync } from "fs";
 import { parse, stringify } from "smol-toml";
+import semver from "semver";
 
 const [, , tool, existingTomlPath] = process.argv;
+
+// Tools whose upstream version order is unstable across runs (e.g. backport
+// patches on old majors interleaved by created_at) get force-sorted by semver
+// to prevent endless no-op TOML reorderings.
+const UNSTABLE_TOOLS_PATH = new URL("./unstable-tools.txt", import.meta.url)
+  .pathname;
+const UNSTABLE_TOOLS = existsSync(UNSTABLE_TOOLS_PATH)
+  ? new Set(
+      readFileSync(UNSTABLE_TOOLS_PATH, "utf-8")
+        .split("\n")
+        .map((l) => l.trim())
+        .filter((l) => l && !l.startsWith("#")),
+    )
+  : new Set();
 
 if (!tool) {
   console.error(
@@ -94,6 +109,25 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
 
 // Parse new version data (preserves order from mise ls-remote)
 const newVersions = parseNdjson(stdinData);
+
+// For "unstable" tools, sort by semver ascending so the output is
+// deterministic regardless of which fetch path produced the input. Versions
+// that don't parse as semver fall back to natural string compare.
+if (UNSTABLE_TOOLS.has(tool)) {
+  newVersions.sort((a, b) => {
+    const av = semver.coerce(a.version);
+    const bv = semver.coerce(b.version);
+    if (av && bv) {
+      const cmp = semver.compare(av, bv);
+      if (cmp !== 0) return cmp;
+    } else if (av) {
+      return -1;
+    } else if (bv) {
+      return 1;
+    }
+    return a.version.localeCompare(b.version);
+  });
+}
 
 // Build output with inline tables for compactness
 const lines = ["[versions]"];
