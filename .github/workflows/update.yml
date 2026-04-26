@@ -25,6 +25,11 @@ env:
   TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
   TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
   DRY_RUN: 0
+  # Disable mise's versions host: this workflow IS what populates it, so
+  # reading from it would create a self-referential cache where any bad
+  # entry (e.g. a version added without metadata after a GitHub rate limit)
+  # gets re-ingested on the next run instead of being corrected from upstream.
+  MISE_USE_VERSIONS_HOST: "false"
 jobs:
   update:
     runs-on: ubuntu-latest
