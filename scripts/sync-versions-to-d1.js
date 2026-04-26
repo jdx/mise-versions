@@ -86,6 +86,7 @@ async function main() {
           version,
           created_at: data?.created_at || null,
           release_url: data?.release_url || null,
+          prerelease: data?.prerelease === true,
           sort_order: index,
         }),
       );
