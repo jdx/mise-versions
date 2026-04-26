@@ -34,6 +34,9 @@ env:
   GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
   TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
   TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+  # Backfill must read from upstream, not from mise-versions itself —
+  # the whole point is to repair entries the host has wrong/stale.
+  MISE_USE_VERSIONS_HOST: "false"
 
 jobs:
   backfill:
