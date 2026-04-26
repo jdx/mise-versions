@@ -474,7 +474,7 @@ fetch() {
 	local stderr_file
 	stderr_file=$(mktemp)
 
-	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_TRUSTED_CONFIG_PATHS=/ \
+	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
 		jdxcode/mise -y ls-remote "$tool" >"docs/$tool" 2>"$stderr_file"; then
 		log_error "Failed to fetch versions" "tool=$tool"
 		cat "$stderr_file" >&2

@@ -30,6 +30,13 @@ env:
   # entry (e.g. a version added without metadata after a GitHub rate limit)
   # gets re-ingested on the next run instead of being corrected from upstream.
   MISE_USE_VERSIONS_HOST: "false"
+  # Include pre-release versions globally so the JSON output of
+  # `mise ls-remote --json` carries `prerelease = true` for tags upstream
+  # has flagged as pre-releases. Without this, mise filters them out before
+  # emitting JSON and the rendered TOML never gets the new `prerelease`
+  # field that scripts/generate-toml.js plumbs through (#135). Requires
+  # mise >= the release containing jdx/mise#9415.
+  MISE_PRERELEASES: "1"
 jobs:
   update:
     runs-on: ubuntu-latest
