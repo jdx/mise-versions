@@ -363,6 +363,20 @@ export async function runAnalyticsMigrations(
     `);
   }
 
+  // Add prerelease column to versions table (1 = upstream marked prerelease,
+  // 0 = stable / unknown). Stored as INTEGER to match the rest of the schema's
+  // boolean-as-int convention. Defaults to 0 for existing rows; the sync
+  // script will refresh values on the next run for tools that emit the flag.
+  const hasPrerelease = versionsColumns.some(
+    (col: any) => col.name === "prerelease",
+  );
+  if (!hasPrerelease) {
+    console.log("Adding prerelease column to versions table...");
+    await db.run(
+      sql`ALTER TABLE versions ADD COLUMN prerelease INTEGER NOT NULL DEFAULT 0`,
+    );
+  }
+
   // Create version_updates table for tracking when new versions are discovered
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS version_updates (

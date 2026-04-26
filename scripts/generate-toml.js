@@ -7,12 +7,20 @@
  *
  * Input JSON format (NDJSON from stdin):
  *   {"version":"1.1.0"}
- *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z","release_url":"https://github.com/..."}
+ *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z","release_url":"https://github.com/...","prerelease":false}
  *
- * Output TOML format (same order as input):
+ * Output TOML format (same order as input). Note that created_at is emitted
+ * as a TOML offset datetime (unquoted), not a string:
  *   [versions]
- *   "1.1.0" = { created_at = "2024-02-20T14:45:00Z" }
- *   "1.0.0" = { created_at = "2024-01-15T10:30:00Z", release_url = "https://github.com/..." }
+ *   "1.1.0" = { created_at = 2024-02-20T14:45:00.000Z }
+ *   "1.0.0" = { created_at = 2024-01-15T10:30:00.000Z, release_url = "https://github.com/..." }
+ *   "1.2.0-rc1" = { created_at = 2024-02-25T09:00:00.000Z, prerelease = true }
+ *
+ * `prerelease = true` is emitted only when the upstream signal says so
+ * (currently github + aqua via the GitHub release flag). It is omitted when
+ * false to keep the TOML compact; downstream consumers default false on
+ * absence. Mise versions older than the field's introduction ignore unknown
+ * keys when parsing entries (toml-rs accepts unknown fields by default).
  */
 
 import { readFileSync, existsSync } from "fs";
@@ -60,6 +68,11 @@ function parseNdjson(ndjsonData) {
           version: obj.version,
           created_at: obj.created_at || null,
           release_url: obj.release_url || null,
+          // Treat absent as "unknown" so we can fall back to the existing
+          // TOML for tools whose plain-text fallback path emits no flag.
+          // Only an explicit boolean from the JSON path is definitive.
+          prerelease:
+            typeof obj.prerelease === "boolean" ? obj.prerelease : null,
         });
       }
     } catch (e) {
@@ -99,6 +112,7 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
         existingVersions[version] = {
           created_at: toISOString(data.created_at),
           release_url: data.release_url || null,
+          prerelease: data.prerelease === true,
         };
       }
     }
@@ -138,15 +152,17 @@ for (const v of newVersions) {
   const isoDate = new Date(timestamp).toISOString();
   // Use API release_url, fall back to existing release_url
   const releaseUrl = v.release_url || existing.release_url;
+  // Prefer the API signal when it's definitive; otherwise fall back to the
+  // existing TOML (e.g. plain-text fallback path emits no flag, but a prior
+  // run may have recorded one). Emit the field only when true so the vast
+  // majority of entries stay one column narrower.
+  const prerelease =
+    v.prerelease !== null ? v.prerelease : existing.prerelease === true;
 
-  // Output as inline table
-  if (releaseUrl) {
-    lines.push(
-      `"${v.version}" = { created_at = ${isoDate}, release_url = "${releaseUrl}" }`,
-    );
-  } else {
-    lines.push(`"${v.version}" = { created_at = ${isoDate} }`);
-  }
+  const parts = [`created_at = ${isoDate}`];
+  if (releaseUrl) parts.push(`release_url = "${releaseUrl}"`);
+  if (prerelease) parts.push(`prerelease = true`);
+  lines.push(`"${v.version}" = { ${parts.join(", ")} }`);
 }
 
 console.log(lines.join("\n"));

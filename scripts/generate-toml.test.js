@@ -252,6 +252,68 @@ describe("generate-toml.js", () => {
     });
   });
 
+  describe("prerelease", () => {
+    it("should emit prerelease = true when input flags it", async () => {
+      const input =
+        '{"version":"1.0.0-rc1","created_at":"2024-01-15T10:30:00Z","prerelease":true}\n';
+      const { stdout, code } = await runGenerateToml(input, ["test-tool"]);
+      assert.strictEqual(code, 0);
+      assert.strictEqual(parse(stdout).versions["1.0.0-rc1"].prerelease, true);
+    });
+
+    it("should omit prerelease when input is false or missing", async () => {
+      const input = [
+        '{"version":"1.0.0","prerelease":false}',
+        '{"version":"2.0.0"}',
+      ].join("\n");
+      const { stdout, code } = await runGenerateToml(input, ["test-tool"]);
+      assert.strictEqual(code, 0);
+      const parsed = parse(stdout);
+      assert.strictEqual(parsed.versions["1.0.0"].prerelease, undefined);
+      assert.strictEqual(parsed.versions["2.0.0"].prerelease, undefined);
+    });
+
+    it("should preserve prerelease from existing TOML when input lacks it", async () => {
+      // Pre-existing flag (from a prior run that did emit it) survives a
+      // fetch where the API path didn't return JSON and we fell back to
+      // the plain-text path that has no prerelease info.
+      const existingToml = join(tempDir, "existing.toml");
+      writeFileSync(
+        existingToml,
+        `[versions]
+"1.0.0-rc1" = { created_at = 2024-01-15T10:30:00.000Z, prerelease = true }
+`,
+      );
+      const input = '{"version":"1.0.0-rc1"}\n';
+      const { stdout, code } = await runGenerateToml(input, [
+        "test-tool",
+        existingToml,
+      ]);
+      assert.strictEqual(code, 0);
+      assert.strictEqual(parse(stdout).versions["1.0.0-rc1"].prerelease, true);
+    });
+
+    it("should let API value override existing prerelease flag", async () => {
+      // Upstream can re-flag a release (e.g. a maintainer un-marking a
+      // prerelease as stable post-publish). The API value wins over the
+      // TOML's previous answer.
+      const existingToml = join(tempDir, "existing.toml");
+      writeFileSync(
+        existingToml,
+        `[versions]
+"1.0.0" = { created_at = 2024-01-15T10:30:00.000Z, prerelease = true }
+`,
+      );
+      const input = '{"version":"1.0.0","prerelease":false}\n';
+      const { stdout, code } = await runGenerateToml(input, [
+        "test-tool",
+        existingToml,
+      ]);
+      assert.strictEqual(code, 0);
+      assert.strictEqual(parse(stdout).versions["1.0.0"].prerelease, undefined);
+    });
+  });
+
   describe("unstable tool sorting", () => {
     it("should preserve input order for tools not in the unstable list", async () => {
       // terraform-style backport pattern: 0.12.30 published after 0.14.3
