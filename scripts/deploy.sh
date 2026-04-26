@@ -11,7 +11,7 @@ echo "=========================================="
 # Check if wrangler is installed
 if ! command -v wrangler &>/dev/null; then
 	echo "❌ Wrangler CLI is not installed. Please install it first:"
-	echo "   mise use -g wrangler"
+	echo "   aube install"
 	exit 1
 fi
 

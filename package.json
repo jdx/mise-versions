@@ -6,7 +6,7 @@
     "web"
   ],
   "scripts": {
-    "test": "aube run test:js && aube run test:shell",
+    "test": "node --test scripts/*.test.js && bash scripts/update.test.sh",
     "test:js": "node --test scripts/*.test.js",
     "test:shell": "bash scripts/update.test.sh"
   },
