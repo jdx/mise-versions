@@ -1,6 +1,6 @@
 /**
  * Seed script for local D1 database
- * Run with: npx wrangler d1 execute ANALYTICS_DB --local --file=scripts/seed.sql
+ * Run with: aube exec wrangler d1 execute ANALYTICS_DB --local --file=scripts/seed.sql
  */
 
 // This script generates SQL to seed the local database
@@ -43,7 +43,7 @@ const backends = [
 
 // Generate SQL
 console.log(`-- Seed data for local development
--- Run: npx wrangler d1 execute ANALYTICS_DB --local --file=web/scripts/seed.sql
+-- Run: aube exec wrangler d1 execute ANALYTICS_DB --local --file=web/scripts/seed.sql
 
 -- Create tables
 CREATE TABLE IF NOT EXISTS tools (

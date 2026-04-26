@@ -10,6 +10,6 @@ mkdir -p public/data
 cp ../docs/*.toml public/data/ 2>/dev/null || true
 
 # Build the Astro app
-npm run build
+aube run build
 
 echo "Build complete. Output in web/dist/"

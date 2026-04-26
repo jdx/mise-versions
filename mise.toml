@@ -1,21 +1,21 @@
 # cache-break: 2025-12-15
-tasks.build = "bunx tsc"
-tasks.dev = "bunx wrangler dev"
-tasks.lint = "bunx eslint . --ext .ts && bunx prettier --check ."
-tasks."lint:fix" = "bunx eslint . --ext .ts --fix && bunx prettier --write ."
+tasks.build = "aube exec tsc"
+tasks.dev = "aube exec wrangler dev"
+tasks.lint = "aube exec eslint . --ext .ts && aube exec prettier --check ."
+tasks."lint:fix" = "aube exec eslint . --ext .ts --fix && aube exec prettier --write ."
 
 tasks.gen.run = [
-  "bunx supabase gen types typescript --project-id fjrwmlxwmhtzflckukna > ./src/database.types.ts",
-  "bunx prettier --write ./src/database.types.ts"
+  "aubx supabase gen types typescript --project-id fjrwmlxwmhtzflckukna > ./src/database.types.ts",
+  "aube exec prettier --write ./src/database.types.ts"
 ]
 
 [tasks.deploy]
 depends = ["build"]
-run = "bunx wrangler deploy"
+run = "aube exec wrangler deploy"
 
 [tools]
 "aqua:chmln/sd" = "latest"
-bun = "latest"
+aube = "latest"
 fd = "latest"
 "github:peak/s5cmd" = "latest"
 hk = "latest"
