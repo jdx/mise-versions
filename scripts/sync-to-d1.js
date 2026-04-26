@@ -45,27 +45,75 @@ function extractGithubSlug(backend) {
   return null;
 }
 
-function getAllBackends() {
-  try {
-    const output = execSync("mise registry", {
-      encoding: "utf-8",
-      stdio: ["pipe", "pipe", "pipe"],
-      maxBuffer: 10 * 1024 * 1024,
-    });
+// Load backends, descriptions, and security info for every tool in a single
+// mise call. `mise registry --json --security` returns one JSON array with
+// every field we need (added in mise v2026.4.22 via jdx/mise#9364) —
+// eliminates the per-tool `mise tool X --json` shell-outs the script
+// previously did just to fetch each tool's `security` array.
+//
+// Falls back to plain `mise registry --json` (no `security`) if the local
+// mise predates the flag, so the rest of the manifest still syncs.
+function runMiseRegistry(args) {
+  return execSync(`mise registry --json${args}`, {
+    encoding: "utf-8",
+    stdio: ["pipe", "pipe", "pipe"],
+    maxBuffer: 32 * 1024 * 1024,
+  });
+}
 
-    const backendMap = new Map();
-    for (const line of output.split("\n")) {
-      if (!line.trim()) continue;
-      const parts = line.trim().split(/\s+/);
-      const toolName = parts[0];
-      const backends = parts.slice(1);
-      if (toolName && backends.length > 0) {
-        backendMap.set(toolName, backends);
+function getRegistryInfo() {
+  let output;
+  try {
+    output = runMiseRegistry(" --security");
+  } catch (e) {
+    // mise older than v2026.4.22 rejects `--security`. Fall back to the
+    // plain registry — security data will be missing from this sync, but
+    // the rest of the manifest (backends, descriptions) still flows.
+    console.warn(
+      `Warning: 'mise registry --json --security' failed (${e.message.split("\n")[0]}); ` +
+        "falling back to 'mise registry --json' without security info. " +
+        "Upgrade mise to v2026.4.22+ to include security metadata.",
+    );
+    try {
+      output = runMiseRegistry("");
+    } catch (fallbackErr) {
+      console.error(
+        `Warning: Failed to get mise registry: ${fallbackErr.message}`,
+      );
+      return new Map();
+    }
+  }
+
+  try {
+    const entries = JSON.parse(output);
+    const infoMap = new Map();
+    // First pass: index every `short`. The previous per-tool
+    // `mise tool <name> --json` call resolved aliases automatically,
+    // so we second-pass each entry's `aliases` to preserve that
+    // behavior for any TOML file whose name is an alias rather than a
+    // short. Shorts win over aliases (so an explicitly-named tool
+    // never has its metadata clobbered by another tool that happens
+    // to alias the same string).
+    for (const entry of entries) {
+      if (!entry.short) continue;
+      infoMap.set(entry.short, {
+        backends: entry.backends || [],
+        description: entry.description || null,
+        security: entry.security || [],
+      });
+    }
+    for (const entry of entries) {
+      if (!entry.short || !Array.isArray(entry.aliases)) continue;
+      const info = infoMap.get(entry.short);
+      if (!info) continue;
+      for (const alias of entry.aliases) {
+        if (!alias || infoMap.has(alias)) continue;
+        infoMap.set(alias, info);
       }
     }
-    return backendMap;
+    return infoMap;
   } catch (e) {
-    console.error(`Warning: Failed to get mise registry: ${e.message}`);
+    console.error(`Warning: Failed to parse mise registry: ${e.message}`);
     return new Map();
   }
 }
@@ -128,29 +176,6 @@ function loadManualOverrides() {
   return {};
 }
 
-function getToolInfo(toolName) {
-  try {
-    const output = execSync(`mise tool "${toolName}" --json`, {
-      encoding: "utf-8",
-      stdio: ["pipe", "pipe", "pipe"],
-    });
-    const data = JSON.parse(output);
-
-    let github = extractGithubSlug(data.backend);
-    if (!github && toolName.includes("/")) {
-      github = toolName;
-    }
-
-    return {
-      github,
-      description: data.description || null,
-      security: data.security || [],
-    };
-  } catch {
-    return { github: null, description: null, security: [] };
-  }
-}
-
 function processTomlFile(filePath) {
   try {
     const content = readFileSync(filePath, "utf-8");
@@ -210,10 +235,10 @@ async function main() {
 
   console.log("Building tool manifest from TOML files...");
 
-  // Load all backends from mise registry upfront
-  console.log("Loading backends from mise registry...");
-  const backendMap = getAllBackends();
-  console.log(`Loaded backends for ${backendMap.size} tools`);
+  // Load backends + descriptions for every tool in one mise call.
+  console.log("Loading registry info from mise...");
+  const registryMap = getRegistryInfo();
+  console.log(`Loaded registry info for ${registryMap.size} tools`);
 
   // Load manual overrides
   const manualOverrides = loadManualOverrides();
@@ -248,23 +273,24 @@ async function main() {
         ...metadata,
       };
 
-      // Get GitHub slug, description, and security from mise
-      const info = getToolInfo(toolName);
-      if (info.github) {
-        tool.github = info.github;
-        tool.repo_url = buildRepoUrl(info.github);
-        withGithub++;
-      }
-      if (info.description) {
-        tool.description = info.description;
+      const registryInfo = registryMap.get(toolName) || {
+        backends: [],
+        description: null,
+        security: [],
+      };
+
+      if (registryInfo.description) {
+        tool.description = registryInfo.description;
         withDesc++;
       }
-      if (info.security && info.security.length > 0) {
-        tool.security = info.security;
+
+      if (registryInfo.security && registryInfo.security.length > 0) {
+        tool.security = registryInfo.security;
       }
 
-      // Get backends from registry (always set, default to empty array)
-      const backends = backendMap.get(toolName) || [];
+      // Backends always set (default empty). github/repo_url/package urls
+      // derive from the backend list.
+      const backends = registryInfo.backends;
       tool.backends = backends;
       if (backends.length > 0) {
         withBackends++;
@@ -280,17 +306,20 @@ async function main() {
           tool.aqua_link = aquaLink;
         }
 
-        if (!tool.github) {
-          for (const backend of backends) {
-            const slug = extractGithubSlug(backend);
-            if (slug) {
-              tool.github = slug;
-              tool.repo_url = buildRepoUrl(slug);
-              withGithub++;
-              break;
-            }
+        for (const backend of backends) {
+          const slug = extractGithubSlug(backend);
+          if (slug) {
+            tool.github = slug;
+            tool.repo_url = buildRepoUrl(slug);
+            withGithub++;
+            break;
           }
         }
+      }
+      if (!tool.github && toolName.includes("/")) {
+        tool.github = toolName;
+        tool.repo_url = buildRepoUrl(toolName);
+        withGithub++;
       }
 
       // Apply manual overrides (highest priority)
