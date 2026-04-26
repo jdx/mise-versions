@@ -44,7 +44,7 @@ jobs:
 
       - uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4
 
-      - run: npm install
+      - run: aube install
 
       - run: mise --version
 

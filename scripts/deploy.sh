@@ -11,7 +11,7 @@ echo "=========================================="
 # Check if wrangler is installed
 if ! command -v wrangler &>/dev/null; then
 	echo "❌ Wrangler CLI is not installed. Please install it first:"
-	echo "   npm install -g wrangler"
+	echo "   mise use -g wrangler"
 	exit 1
 fi
 
@@ -26,7 +26,7 @@ echo "✅ Wrangler is installed and you're logged in"
 
 # Install dependencies
 echo "📦 Installing dependencies..."
-npm install
+aube install
 
 # Function to prompt for secret
 prompt_for_secret() {
