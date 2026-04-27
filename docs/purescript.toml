@@ -1,9 +1,151 @@
 [versions]
+"0.10.1" = { created_at = 2016-10-02T21:43:43.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.1" }
+"0.10.2" = { created_at = 2016-11-07T15:07:04.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.2" }
+"0.10.3" = { created_at = 2016-12-11T02:32:18.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.3" }
+"0.10.4" = { created_at = 2017-01-02T06:12:08.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.4" }
+"0.10.5" = { created_at = 2017-01-06T03:29:22.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.5" }
+"0.10.6" = { created_at = 2017-02-07T03:14:59.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.6" }
+"0.10.7" = { created_at = 2017-02-11T19:48:27.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.10.7" }
+"0.11.0-rc.1" = { created_at = 2017-03-19T23:00:15.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.0-rc.1", prerelease = true }
+"0.11.0" = { created_at = 2017-03-25T20:51:44.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2017-03-28T19:48:35.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.1" }
+"0.11.2" = { created_at = 2017-04-02T18:33:01.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.2" }
+"0.11.3" = { created_at = 2017-04-08T20:22:49.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.3" }
+"0.11.4" = { created_at = 2017-04-17T18:04:19.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.4" }
+"0.11.5" = { created_at = 2017-06-05T01:59:09.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.5" }
+"0.11.6" = { created_at = 2017-07-10T01:36:09.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.6" }
+"0.11.7" = { created_at = 2017-11-15T02:27:56.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.11.7" }
+"0.12.0-rc1" = { created_at = 2018-04-29T20:05:30.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.0-rc1", prerelease = true }
+"0.12.0" = { created_at = 2018-05-21T22:40:59.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.0" }
+"0.12.1" = { created_at = 2018-11-12T22:03:40.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.1" }
+"0.12.2" = { created_at = 2019-01-13T23:40:07.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.2" }
+"0.12.3" = { created_at = 2019-02-24T21:34:45.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.3" }
+"0.12.4" = { created_at = 2019-04-07T22:26:09.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.4" }
+"0.12.5" = { created_at = 2019-04-15T01:43:46.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.12.5" }
+"0.13.0" = { created_at = 2019-05-29T23:48:44.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.0" }
+"0.13.1" = { created_at = 2019-07-04T12:34:40.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.1" }
+"0.13.2" = { created_at = 2019-07-05T13:10:39.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.2" }
+"0.13.3" = { created_at = 2019-08-18T13:09:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.3" }
+"0.13.4" = { created_at = 2019-10-20T21:01:24.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.4" }
+"0.13.5" = { created_at = 2019-11-13T22:25:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.5" }
+"0.13.6" = { created_at = 2020-01-17T01:25:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.6" }
+"0.13.7" = { created_at = 2020-05-23T19:46:11.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.7" }
+"0.13.8" = { created_at = 2020-05-23T20:29:43.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.13.8" }
+"0.14.0-rc.1" = { created_at = 2020-09-16T14:42:40.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.0-rc.1", prerelease = true }
+"0.14.0-rc2" = { created_at = 2020-09-16T23:07:02.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.0-rc2", prerelease = true }
+"0.14.0-rc3" = { created_at = 2020-10-11T18:22:40.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.0-rc3", prerelease = true }
+"0.14.0-rc4" = { created_at = 2020-12-19T14:46:05.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.0-rc4", prerelease = true }
+"0.14.0-rc5" = { created_at = 2020-12-27T20:44:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.0-rc5", prerelease = true }
+"0.14.0" = { created_at = 2021-02-25T18:26:47.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.0" }
+"0.14.1" = { created_at = 2021-04-18T14:09:27.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.1" }
+"0.14.2" = { created_at = 2021-06-05T03:31:27.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.2" }
+"0.14.3" = { created_at = 2021-07-07T02:49:33.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.3" }
+"0.14.4" = { created_at = 2021-08-25T14:02:11.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.4" }
+"0.14.5" = { created_at = 2021-10-22T21:03:52.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.5" }
+"0.14.6" = { created_at = 2022-02-25T17:49:53.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.6" }
+"0.14.7" = { created_at = 2022-02-26T20:17:33.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.7" }
+"0.15.0-alpha-01" = { created_at = 2022-03-01T22:34:38.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-01", prerelease = true }
+"0.15.0-alpha-02" = { created_at = 2022-03-11T15:08:26.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-02", prerelease = true }
+"0.14.8" = { created_at = 2022-04-01T16:35:51.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.8" }
+"0.14.9" = { created_at = 2022-04-01T23:24:14.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.14.9" }
+"0.15.0-alpha-03" = { created_at = 2022-04-01T19:58:57.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-03", prerelease = true }
+"0.15.0-alpha-04" = { created_at = 2022-04-02T02:03:02.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-04", prerelease = true }
+"0.15.0-alpha-05" = { created_at = 2022-04-15T22:41:08.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-05", prerelease = true }
+"0.15.0-alpha-06" = { created_at = 2022-04-25T15:53:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-06", prerelease = true }
+"0.15.0-alpha-07" = { created_at = 2022-04-26T18:38:21.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0-alpha-07", prerelease = true }
+"0.15.0" = { created_at = 2022-04-29T16:40:07.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.0" }
+"0.15.1-0" = { created_at = 2022-05-12T11:35:41.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-0", prerelease = true }
+"0.15.1-1" = { created_at = 2022-05-12T20:43:42.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-1", prerelease = true }
+"0.15.1-2" = { created_at = 2022-05-12T22:04:36.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-2", prerelease = true }
+"0.15.1-3" = { created_at = 2022-05-14T08:27:12.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-3", prerelease = true }
+"0.15.1-4" = { created_at = 2022-05-14T09:41:30.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-4", prerelease = true }
+"0.15.1-5" = { created_at = 2022-05-15T18:57:04.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-5", prerelease = true }
+"0.15.1-6" = { created_at = 2022-05-15T22:21:49.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-6", prerelease = true }
+"0.15.1-7" = { created_at = 2022-05-16T13:55:31.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1-7", prerelease = true }
+"0.15.1" = { created_at = 2022-05-17T18:26:13.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.1" }
+"0.15.2-0" = { created_at = 2022-05-17T19:51:20.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.2-0", prerelease = true }
+"0.15.2" = { created_at = 2022-05-17T21:22:35.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.2" }
+"0.15.3-0" = { created_at = 2022-05-18T16:06:45.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-0", prerelease = true }
+"0.15.3-1" = { created_at = 2022-05-18T17:22:14.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-1", prerelease = true }
+"0.15.3-2" = { created_at = 2022-05-20T21:00:30.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-2", prerelease = true }
+"0.15.3-3" = { created_at = 2022-05-22T22:23:47.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-3", prerelease = true }
+"0.15.3-4" = { created_at = 2022-05-26T23:07:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-4", prerelease = true }
+"0.15.3-5" = { created_at = 2022-05-28T23:21:54.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-5", prerelease = true }
+"0.15.3-6" = { created_at = 2022-05-29T23:03:15.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-6", prerelease = true }
+"0.15.3-7" = { created_at = 2022-05-30T21:05:25.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-7", prerelease = true }
+"0.15.3-8" = { created_at = 2022-06-18T10:57:10.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-8", prerelease = true }
+"0.15.3-9" = { created_at = 2022-06-19T20:12:40.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-9", prerelease = true }
+"0.15.3-10" = { created_at = 2022-06-23T04:50:36.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3-10", prerelease = true }
+"0.15.3" = { created_at = 2022-06-24T13:09:47.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.3" }
+"0.15.4-0" = { created_at = 2022-06-24T14:13:48.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.4-0", prerelease = true }
+"0.15.4" = { created_at = 2022-06-30T20:48:44.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.4" }
+"0.15.5-0" = { created_at = 2022-07-01T00:40:08.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-0", prerelease = true }
+"0.15.5-1" = { created_at = 2022-07-08T12:12:26.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-1", prerelease = true }
+"0.15.5-2" = { created_at = 2022-07-14T13:20:32.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-2", prerelease = true }
+"0.15.5-3" = { created_at = 2022-07-27T12:26:46.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-3", prerelease = true }
+"0.15.5-4" = { created_at = 2022-07-28T13:31:21.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-4", prerelease = true }
+"0.15.5-5" = { created_at = 2022-07-30T22:44:18.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-5", prerelease = true }
+"0.15.5-6" = { created_at = 2022-09-27T12:11:25.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-6", prerelease = true }
+"0.15.5-7" = { created_at = 2022-09-29T17:11:45.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-7", prerelease = true }
+"0.15.5-8" = { created_at = 2022-09-30T05:01:46.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-8", prerelease = true }
+"0.15.5-9" = { created_at = 2022-10-01T12:35:30.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-9", prerelease = true }
+"0.15.5-10" = { created_at = 2022-10-07T12:09:05.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5-10", prerelease = true }
+"0.15.5" = { created_at = 2022-10-10T13:19:53.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.5" }
+"0.15.6-0" = { created_at = 2022-10-17T14:23:17.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.6-0", prerelease = true }
+"0.15.6-1" = { created_at = 2022-10-17T16:24:32.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.6-1", prerelease = true }
+"0.15.6" = { created_at = 2022-10-18T02:10:09.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.6" }
+"0.15.7-0" = { created_at = 2022-10-30T03:54:49.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-0", prerelease = true }
+"0.15.7-1" = { created_at = 2022-11-02T14:48:00.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-1", prerelease = true }
+"0.15.7-2" = { created_at = 2022-11-03T01:17:13.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-2", prerelease = true }
+"0.15.7-3" = { created_at = 2022-11-11T00:15:58.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-3", prerelease = true }
+"0.15.7-4" = { created_at = 2022-11-16T03:32:07.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-4", prerelease = true }
+"0.15.7-5" = { created_at = 2022-11-21T01:45:32.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-5", prerelease = true }
+"0.15.7-6" = { created_at = 2022-12-05T02:20:21.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-6", prerelease = true }
+"0.15.7-7" = { created_at = 2022-12-05T14:56:46.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-7", prerelease = true }
+"0.15.7-8" = { created_at = 2022-12-06T19:11:36.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-8", prerelease = true }
+"0.15.7-9" = { created_at = 2022-12-12T15:31:26.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7-9", prerelease = true }
+"0.15.7" = { created_at = 2022-12-12T16:17:31.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.7" }
+"0.15.8-0" = { created_at = 2023-01-09T20:56:17.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.8-0", prerelease = true }
+"0.15.8-1" = { created_at = 2023-02-04T04:32:14.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.8-1", prerelease = true }
+"0.15.8-2" = { created_at = 2023-02-05T07:11:06.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.8-2", prerelease = true }
+"0.15.8-3" = { created_at = 2023-03-02T09:40:25.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.8-3", prerelease = true }
+"0.15.8-4" = { created_at = 2023-03-04T00:29:39.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.8-4", prerelease = true }
+"0.15.8" = { created_at = 2023-03-06T11:12:01.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.8" }
+"0.15.9-0" = { created_at = 2023-03-11T01:29:17.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-0", prerelease = true }
+"0.15.9-1" = { created_at = 2023-03-21T05:25:54.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-1", prerelease = true }
+"0.15.9-2" = { created_at = 2023-03-21T08:31:54.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-2", prerelease = true }
+"0.15.9-3" = { created_at = 2023-03-24T01:41:33.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-3", prerelease = true }
+"0.15.9-4" = { created_at = 2023-03-29T13:32:09.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-4", prerelease = true }
+"0.15.9-5" = { created_at = 2023-04-02T02:01:32.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-5", prerelease = true }
+"0.15.9-6" = { created_at = 2023-04-22T04:59:08.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-6", prerelease = true }
+"0.15.9-7" = { created_at = 2023-04-26T08:20:20.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-7", prerelease = true }
+"0.15.9-8" = { created_at = 2023-04-26T19:47:58.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9-8", prerelease = true }
 "0.15.9" = { created_at = 2023-04-29T17:02:39.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.9" }
+"0.15.10-0" = { created_at = 2023-05-30T14:28:29.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.10-0", prerelease = true }
+"0.15.10-1" = { created_at = 2023-07-03T10:43:32.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.10-1", prerelease = true }
 "0.15.10" = { created_at = 2023-07-18T21:11:16.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.10" }
+"0.15.11-0" = { created_at = 2023-07-22T14:28:34.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.11-0", prerelease = true }
+"0.15.11-1" = { created_at = 2023-07-24T15:31:51.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.11-1", prerelease = true }
+"0.15.11-2" = { created_at = 2023-07-25T14:01:28.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.11-2", prerelease = true }
+"0.15.11-3" = { created_at = 2023-08-08T18:42:17.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.11-3", prerelease = true }
 "0.15.11" = { created_at = 2023-09-29T14:05:23.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.11" }
 "0.15.12" = { created_at = 2023-10-07T11:21:50.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.12" }
+"0.15.13-0" = { created_at = 2023-11-03T16:03:36.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.13-0", prerelease = true }
+"0.15.13-1" = { created_at = 2023-11-04T02:29:17.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.13-1", prerelease = true }
 "0.15.13" = { created_at = 2023-11-20T17:19:20.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.13" }
+"0.15.14-0" = { created_at = 2023-11-24T11:04:57.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.14-0", prerelease = true }
+"0.15.14-1" = { created_at = 2023-12-14T15:48:36.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.14-1", prerelease = true }
+"0.15.14-2" = { created_at = 2023-12-20T02:04:32.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.14-2", prerelease = true }
 "0.15.14" = { created_at = 2024-01-03T15:58:55.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.14" }
+"0.15.15-0" = { created_at = 2024-02-07T16:02:42.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.15-0", prerelease = true }
 "0.15.15" = { created_at = 2024-02-07T17:22:40.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.15" }
+"0.15.16-0" = { created_at = 2024-02-26T19:16:09.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-0", prerelease = true }
+"0.15.16-1" = { created_at = 2024-04-16T19:25:55.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-1", prerelease = true }
+"0.15.16-2" = { created_at = 2024-07-24T22:10:02.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-2", prerelease = true }
+"0.15.16-3" = { created_at = 2024-07-24T23:50:43.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-3", prerelease = true }
+"0.15.16-4" = { created_at = 2024-09-29T05:55:41.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-4", prerelease = true }
+"0.15.16-5" = { created_at = 2025-05-14T19:21:26.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-5", prerelease = true }
+"0.15.16-6" = { created_at = 2025-06-22T16:01:01.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-6", prerelease = true }
+"0.15.16-7" = { created_at = 2025-06-27T05:21:06.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-7", prerelease = true }
+"0.15.16-8" = { created_at = 2025-10-18T14:24:57.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16-8", prerelease = true }
 "0.15.16" = { created_at = 2026-03-14T10:28:12.000Z, release_url = "https://github.com/purescript/purescript/releases/tag/v0.15.16" }

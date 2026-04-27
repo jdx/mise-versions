@@ -1,5 +1,4 @@
 [versions]
-"1.0.0" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/1.0.0" }
 "1.1.0" = { created_at = 2014-07-27T08:14:06.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/1.1.0" }
 "1.1.1" = { created_at = 2014-07-27T08:40:02.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/1.1.1" }
 "1.2.0" = { created_at = 2014-08-08T08:10:08.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/1.2.0" }
@@ -9,18 +8,48 @@
 "1.3.3" = { created_at = 2014-11-02T20:26:59.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/1.3.3" }
 "2.0.0" = { created_at = 2014-12-09T10:07:45.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/2.0.0" }
 "2.0.1" = { created_at = 2015-01-20T20:21:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/2.0.1" }
-"3.0.0-Beta1" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/3.0.0-Beta1" }
+"3.0.0-Beta1" = { created_at = 2015-02-19T09:07:38.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/3.0.0-Beta1", prerelease = true }
 "3.0.0-Beta2" = { created_at = 2015-04-06T16:19:58.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/3.0.0-Beta2" }
 "3.0.0-Beta3" = { created_at = 2015-06-08T11:48:55.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/3.0.0-Beta3" }
+"3.0.0-beta.4" = { created_at = 2015-06-25T21:27:38.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.0-beta.4" }
+"3.0.0" = { created_at = 2015-07-27T10:14:35.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.0" }
+"3.0.1" = { created_at = 2015-07-28T10:56:55.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.1" }
+"3.0.2" = { created_at = 2015-07-29T08:22:17.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.2" }
+"3.1.0" = { created_at = 2015-08-22T08:00:53.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.1.0" }
+"3.1.1" = { created_at = 2015-08-26T14:09:23.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.1.1" }
 "3.1.2" = { created_at = 2015-09-07T10:44:46.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/3.1.2" }
-"5.0.0-alpha.1" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0-alpha.1" }
-"5.0.0-beta.1" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0-beta.1" }
-"5.0.0-beta.2" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0-beta.2" }
-"5.0.0-beta.3" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0-beta.3" }
-"5.0.0-beta.4" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0-beta.4" }
+"3.2.0" = { created_at = 2015-10-12T00:02:59.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.2.0" }
+"3.3.0" = { created_at = 2015-10-19T06:56:40.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.3.0" }
+"3.4.0" = { created_at = 2016-01-31T01:02:19.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.4.0" }
+"3.4.1" = { created_at = 2016-02-04T23:57:37.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.4.1" }
+"3.5.0" = { created_at = 2016-04-26T08:02:21.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.0" }
+"3.5.1" = { created_at = 2016-04-26T10:07:03.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.1" }
+"3.5.2" = { created_at = 2016-04-26T17:07:51.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.2" }
+"3.5.3" = { created_at = 2016-05-13T04:00:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.3" }
+"3.5.4" = { created_at = 2016-05-18T18:15:02.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.4" }
+"3.6.0" = { created_at = 2016-07-10T13:23:24.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.0" }
+"3.6.1" = { created_at = 2016-07-17T03:05:26.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.1" }
+"4.0.0-beta.1" = { created_at = 2016-07-20T00:40:51.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.1" }
+"3.6.2" = { created_at = 2016-07-26T14:04:59.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.2" }
+"4.0.0-beta.2" = { created_at = 2016-07-26T14:05:28.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.2" }
+"4.0.0-beta.3" = { created_at = 2016-08-11T01:44:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.3" }
+"4.0.0-beta.4" = { created_at = 2016-08-12T02:25:54.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.4" }
+"4.0.0-beta.5" = { created_at = 2016-08-14T01:18:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.5" }
+"3.6.3" = { created_at = 2016-08-29T14:17:48.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.3" }
+"3.6.4" = { created_at = 2016-09-03T02:05:23.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.4" }
+"4.0.0-beta.7" = { created_at = 2016-09-04T01:13:45.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.7" }
+"3.6.5" = { created_at = 2016-11-27T02:08:22.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.5" }
+"4.0.0-beta.8" = { created_at = 2016-11-27T11:28:09.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.8", prerelease = true }
+"4.0.0-beta.9" = { created_at = 2016-11-28T11:43:19.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.9", prerelease = true }
+"4.0.0-beta.10" = { created_at = 2017-02-25T02:20:51.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.10", prerelease = true }
+"4.0.0-beta.11" = { created_at = 2017-02-26T21:38:14.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.11", prerelease = true }
+"4.0.0-beta.12" = { created_at = 2017-05-17T09:03:17.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.12", prerelease = true }
+"4.0.0-beta.13" = { created_at = 2017-12-05T14:45:11.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.13", prerelease = true }
+"4.0.0-beta.14" = { created_at = 2018-08-21T12:59:46.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.14", prerelease = true }
+"4.0.0" = { created_at = 2018-10-12T10:36:18.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0" }
+"5.0.0-alpha.1" = { created_at = 2018-12-13T10:50:01.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0-alpha.1", prerelease = true }
 "5.0.0" = { created_at = 2019-07-30T09:06:02.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.0" }
 "5.0.1" = { created_at = 2019-08-12T10:24:09.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.0.1" }
-"5.1.0" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.1.0" }
 "5.1.1" = { created_at = 2019-10-28T18:33:53.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.1.1" }
 "5.1.2" = { created_at = 2019-11-07T16:01:23.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.1.2" }
 "5.1.3" = { created_at = 2019-12-21T20:39:05.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.1.3" }
@@ -59,21 +88,20 @@
 "5.9.0" = { created_at = 2022-03-10T08:45:47.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.9.0" }
 "5.10.0" = { created_at = 2022-04-13T18:49:06.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.10.0" }
 "5.10.1" = { created_at = 2022-04-14T17:49:06.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.10.1" }
-"5.10.2" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.10.2" }
 "5.10.3" = { created_at = 2022-05-31T12:20:16.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.10.3" }
 "5.11.0" = { created_at = 2022-11-03T12:05:03.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.11.0" }
 "5.11.1" = { created_at = 2022-11-08T11:23:23.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.11.1" }
+"6.0.0-alpha.1" = { created_at = 2022-12-22T11:07:02.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-alpha.1", prerelease = true }
 "5.12.0" = { created_at = 2023-01-20T11:46:03.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/5.12.0" }
-"6.0.0-alpha.1" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-alpha.1" }
-"6.0.0-beta.1" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.1" }
-"6.0.0-beta.2" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.2" }
-"6.0.0-beta.3" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.3" }
-"6.0.0-beta.4" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.4" }
-"6.0.0-beta.5" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.5" }
-"6.0.0-beta.6" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.6" }
-"6.0.0-beta.7" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.7" }
-"6.0.0-rc.1" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-rc.1" }
-"6.0.0-rc.2" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-rc.2" }
+"6.0.0-beta.1" = { created_at = 2023-03-02T19:41:44.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.1", prerelease = true }
+"6.0.0-beta.2" = { created_at = 2023-04-06T18:50:03.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.2", prerelease = true }
+"6.0.0-beta.3" = { created_at = 2023-06-26T12:18:55.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.3", prerelease = true }
+"6.0.0-beta.4" = { created_at = 2023-12-11T16:27:10.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.4", prerelease = true }
+"6.0.0-beta.5" = { created_at = 2024-01-09T22:31:13.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.5", prerelease = true }
+"6.0.0-beta.6" = { created_at = 2024-03-09T03:10:02.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.6", prerelease = true }
+"6.0.0-beta.7" = { created_at = 2024-03-15T11:26:26.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-beta.7", prerelease = true }
+"6.0.0-rc.1" = { created_at = 2024-05-23T09:15:09.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-rc.1", prerelease = true }
+"6.0.0-rc.2" = { created_at = 2024-07-16T06:27:17.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0-rc.2", prerelease = true }
 "6.0.0" = { created_at = 2024-07-22T08:31:42.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.0" }
 "6.0.1" = { created_at = 2024-07-31T17:54:32.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.1" }
 "6.0.2" = { created_at = 2024-08-09T16:57:09.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.0.2" }
@@ -90,39 +118,3 @@
 "6.6.1" = { created_at = 2026-03-14T08:05:40.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.6.1" }
 "6.6.2" = { created_at = 2026-03-17T18:33:16.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.6.2" }
 "6.7.0" = { created_at = 2026-03-23T07:08:12.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/6.7.0" }
-"3.0.0-beta.4" = { created_at = 2015-06-25T21:27:38.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.0-beta.4" }
-"3.0.0" = { created_at = 2015-07-27T10:14:35.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.0" }
-"3.0.1" = { created_at = 2015-07-28T10:56:55.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.1" }
-"3.0.2" = { created_at = 2015-07-29T08:22:17.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.0.2" }
-"3.1.0" = { created_at = 2015-08-22T08:00:53.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.1.0" }
-"3.1.1" = { created_at = 2015-08-26T14:09:23.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.1.1" }
-"3.2.0" = { created_at = 2015-10-12T00:02:59.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.2.0" }
-"3.3.0" = { created_at = 2015-10-19T06:56:40.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.3.0" }
-"3.4.0" = { created_at = 2016-01-31T01:02:19.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.4.0" }
-"3.4.1" = { created_at = 2016-02-04T23:57:37.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.4.1" }
-"3.5.0" = { created_at = 2016-04-26T08:02:21.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.0" }
-"3.5.1" = { created_at = 2016-04-26T10:07:03.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.1" }
-"3.5.2" = { created_at = 2016-04-26T17:07:51.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.2" }
-"3.5.3" = { created_at = 2016-05-13T04:00:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.3" }
-"3.5.4" = { created_at = 2016-05-18T18:15:02.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.5.4" }
-"3.6.0" = { created_at = 2016-07-10T13:23:24.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.0" }
-"3.6.1" = { created_at = 2016-07-17T03:05:26.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.1" }
-"3.6.2" = { created_at = 2016-07-26T14:04:59.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.2" }
-"3.6.3" = { created_at = 2016-08-29T14:17:48.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.3" }
-"3.6.4" = { created_at = 2016-09-03T02:05:23.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.4" }
-"3.6.5" = { created_at = 2016-11-27T02:08:22.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v3.6.5" }
-"4.0.0-beta.1" = { created_at = 2016-07-20T00:40:51.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.1" }
-"4.0.0-beta.2" = { created_at = 2016-07-26T14:05:28.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.2" }
-"4.0.0-beta.3" = { created_at = 2016-08-11T01:44:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.3" }
-"4.0.0-beta.4" = { created_at = 2016-08-12T02:25:54.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.4" }
-"4.0.0-beta.5" = { created_at = 2016-08-14T01:18:20.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.5" }
-"4.0.0-beta.6+1106.build.1025" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.6+1106.build.1025" }
-"4.0.0-beta.7" = { created_at = 2016-09-04T01:13:45.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.7" }
-"4.0.0-beta.8" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.8" }
-"4.0.0-beta.9" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.9" }
-"4.0.0-beta.10" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.10" }
-"4.0.0-beta.11" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.11" }
-"4.0.0-beta.12" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.12" }
-"4.0.0-beta.13" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.13" }
-"4.0.0-beta.14" = { created_at = 2026-04-27T18:32:30.961Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0-beta.14" }
-"4.0.0" = { created_at = 2018-10-12T10:36:18.000Z, release_url = "https://github.com/gittools/gitversion/releases/tag/v4.0.0" }

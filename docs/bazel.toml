@@ -1,463 +1,151 @@
 [versions]
-"0.3.2" = { created_at = 2016-10-07T17:04:58.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.3.2" }
-"0.4.0" = { created_at = 2016-10-26T13:29:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.4.0" }
-"0.4.1" = { created_at = 2016-11-21T09:50:19.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.4.1" }
-"0.4.2" = { created_at = 2016-12-02T12:40:41.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.4.2" }
-"0.4.3" = { created_at = 2016-12-22T12:30:46.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.4.3" }
-"0.4.4" = { created_at = 2017-02-01T18:53:35.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.4.4" }
-"0.4.5" = { created_at = 2017-03-16T12:18:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.4.5" }
-"0.5.0" = { created_at = 2017-05-26T12:11:06.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.5.0" }
-"0.5.1" = { created_at = 2017-06-06T09:32:02.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.5.1" }
-"0.5.2" = { created_at = 2017-06-27T13:08:46.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.5.2" }
-"0.5.3" = { created_at = 2017-07-27T18:27:31.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.5.3" }
-"0.5.4" = { created_at = 2017-08-25T09:24:03.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.5.4" }
-"0.6.0" = { created_at = 2017-09-28T14:36:11.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.6.0" }
-"0.6.1" = { created_at = 2017-10-05T21:52:24.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.6.1" }
-"0.7.0" = { created_at = 2017-10-18T12:34:10.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.7.0" }
-"0.8.0" = { created_at = 2017-11-27T13:16:30.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.8.0" }
-"0.8.1" = { created_at = 2017-12-05T14:28:37.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.8.1" }
-"0.9.0" = { created_at = 2017-12-19T09:31:03.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.9.0" }
-"0.10.0" = { created_at = 2018-02-01T08:43:31.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.10.0" }
-"0.10.1" = { created_at = 2018-02-15T09:02:01.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.10.1" }
-"0.11.0" = { created_at = 2018-02-23T16:09:17.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.11.0" }
-"0.11.1" = { created_at = 2018-03-06T18:32:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.11.1" }
-"0.12.0" = { created_at = 2018-04-11T15:34:17.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.12.0" }
-"0.13.0" = { created_at = 2018-04-30T08:45:36.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.13.0" }
-"0.13.1" = { created_at = 2018-05-23T08:59:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.13.1" }
-"0.14.0" = { created_at = 2018-06-01T13:04:30.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.14.0" }
-"0.14.1" = { created_at = 2018-06-08T12:15:18.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.14.1" }
-"0.15.0" = { created_at = 2018-06-26T12:07:46.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.15.0" }
-"0.15.1" = { created_at = 2018-07-16T14:13:51.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.15.1" }
-"0.15.2" = { created_at = 2018-07-17T12:19:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.15.2" }
-"0.16.0" = { created_at = 2018-07-31T16:55:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.16.0" }
-"0.16.1" = { created_at = 2018-08-13T13:41:24.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.16.1" }
-"0.17.1" = { created_at = 2018-09-14T10:15:51.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.17.1" }
-"0.17.2" = { created_at = 2018-09-21T10:27:03.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.17.2" }
-"0.18.0" = { created_at = 2018-10-15T08:29:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.18.0" }
-"0.18.1" = { created_at = 2018-10-31T14:41:05.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.18.1" }
-"0.19.0" = { created_at = 2018-10-29T14:31:06.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.19.0" }
-"0.19.1" = { created_at = 2018-11-12T15:26:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.19.1" }
-"0.19.2" = { created_at = 2018-11-19T16:19:34.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.19.2" }
-"0.20.0" = { created_at = 2018-11-30T14:34:13.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.20.0" }
-"0.21.0" = { created_at = 2018-12-19T12:53:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.21.0" }
-"0.22.0" = { created_at = 2019-01-28T12:54:50.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.22.0" }
-"0.23.0" = { created_at = 2019-02-26T17:35:57.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.23.0" }
-"0.23.1" = { created_at = 2019-03-04T10:12:22.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.23.1" }
-"0.23.2" = { created_at = 2019-03-11T16:43:36.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.23.2" }
-"0.24.0" = { created_at = 2019-03-26T16:08:37.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.24.0" }
-"0.24.1" = { created_at = 2019-04-02T16:26:14.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.24.1" }
-"0.25.0" = { created_at = 2019-05-01T21:41:23.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.25.0" }
-"0.25.1" = { created_at = 2019-05-07T17:52:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.25.1" }
-"0.25.2" = { created_at = 2019-05-10T20:44:06.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.25.2" }
-"0.25.3" = { created_at = 2019-05-23T19:21:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.25.3" }
-"0.26.0" = { created_at = 2019-05-28T08:31:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.26.0" }
-"0.26.1" = { created_at = 2019-06-06T11:01:55.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.26.1" }
-"0.27.0" = { created_at = 2019-06-17T12:57:30.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.27.0" }
-"0.27.1" = { created_at = 2019-07-02T17:45:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.27.1" }
-"0.27.2" = { created_at = 2019-07-10T15:50:42.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.27.2" }
-"0.28.0" = { created_at = 2019-07-10T16:11:02.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.28.0" }
-"0.28.1" = { created_at = 2019-07-19T15:14:13.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.28.1" }
-"0.29.0" = { created_at = 2019-08-28T14:29:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.29.0" }
-"0.29.1" = { created_at = 2019-09-10T13:39:04.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/0.29.1" }
-"1.0.0" = { created_at = 2019-10-10T09:55:47.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/1.0.0" }
-"1.0.1" = { created_at = 2019-10-21T10:49:39.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/1.0.1" }
-"1.1.0" = { created_at = 2019-10-21T08:40:18.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/1.1.0" }
-"1.2.0" = { created_at = 2019-11-20T15:01:15.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/1.2.0" }
-"1.2.1" = { created_at = 2019-11-26T15:19:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/1.2.1" }
-"2.0.0" = { created_at = 2019-12-19T12:26:22.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/2.0.0" }
-"2.0.1" = { created_at = 2020-02-21T14:49:27.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/2.0.1" }
-"2.1.0" = { created_at = 2020-02-07T12:56:12.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/2.1.0" }
-"2.1.1" = { created_at = 2020-02-21T14:51:30.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/2.1.1" }
-"2.2.0" = { created_at = 2020-03-03T09:22:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/2.2.0" }
-"3.0.0" = { created_at = 2020-04-06T12:49:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.0.0" }
-"3.1.0" = { created_at = 2020-04-21T15:37:50.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.1.0" }
-"3.2.0" = { created_at = 2020-05-27T17:50:24.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.2.0" }
-"3.3.0" = { created_at = 2020-06-17T12:51:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.3.0" }
-"3.3.1" = { created_at = 2020-06-30T15:05:55.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.3.1" }
-"3.4.0" = { created_at = 2020-07-13T15:23:47.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.4.0" }
-"3.4.1" = { created_at = 2020-07-14T06:24:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.4.1" }
-"3.5.0" = { created_at = 2020-09-02T20:07:53.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.5.0" }
-"3.5.1" = { created_at = 2020-10-01T04:30:41.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.5.1" }
-"3.6.0" = { created_at = 2020-10-06T13:07:07.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.6.0" }
-"3.7.0" = { created_at = 2020-10-20T13:22:23.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.7.0" }
-"3.7.1" = { created_at = 2020-11-24T17:34:34.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.7.1" }
-"3.7.2" = { created_at = 2020-12-17T16:03:57.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/3.7.2" }
-"4.0.0" = { created_at = 2021-01-21T07:24:58.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.0.0" }
-"4.1.0" = { created_at = 2021-05-21T11:07:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.1.0" }
-"4.2.0" = { created_at = 2021-08-18T12:44:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.0" }
-"4.2.1" = { created_at = 2021-08-30T13:37:00.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.1" }
-"4.2.2" = { created_at = 2021-12-02T18:12:25.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.2" }
-"4.2.3" = { created_at = 2022-10-18T18:57:12.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.3" }
-"4.2.4" = { created_at = 2023-04-20T12:02:13.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.4" }
-"5.0.0-pre.20210510.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210510.2" }
-"5.0.0-pre.20210510.2.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210510.2.1" }
-"5.0.0-pre.20210510.2.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210510.2.2" }
-"5.0.0-pre.20210516.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210516.1" }
-"5.0.0-pre.20210520.7" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210520.7" }
-"5.0.0-pre.20210604.6" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210604.6" }
-"5.0.0-pre.20210615.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210615.3" }
-"5.0.0-pre.20210623.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210623.2" }
-"5.0.0-pre.20210708.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210708.4" }
-"5.0.0-pre.20210720.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210720.2" }
-"5.0.0-pre.20210722.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210722.2" }
-"5.0.0-pre.20210728.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210728.1" }
-"5.0.0-pre.20210802.5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210802.5" }
-"5.0.0-pre.20210810.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210810.4" }
-"5.0.0-pre.20210817.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210817.2" }
-"5.0.0-pre.20210824.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210824.2" }
-"5.0.0-pre.20210826.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210826.1" }
-"5.0.0-pre.20210831.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210831.2" }
-"5.0.0-pre.20210907.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210907.1" }
-"5.0.0-pre.20210913.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210913.1" }
-"5.0.0-pre.20210916.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210916.1" }
-"5.0.0-pre.20210921.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210921.1" }
-"5.0.0-pre.20210923.7" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210923.7" }
-"5.0.0-pre.20210929.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20210929.1" }
-"5.0.0-pre.20211006.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20211006.1" }
-"5.0.0-pre.20211011.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0-pre.20211011.2" }
-"5.0.0" = { created_at = 2022-01-19T14:04:50.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.0.0" }
-"5.1.0" = { created_at = 2022-03-24T13:57:41.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.1.0" }
-"5.1.1" = { created_at = 2022-04-08T15:45:35.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.1.1" }
 "5.2.0" = { created_at = 2022-06-07T15:31:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.2.0" }
 "5.3.0" = { created_at = 2022-08-23T00:41:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.3.0" }
 "5.3.1" = { created_at = 2022-09-19T17:23:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.3.1" }
+"4.2.3" = { created_at = 2022-10-18T18:57:12.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.3" }
 "5.3.2" = { created_at = 2022-10-19T18:17:32.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.3.2" }
 "5.4.0" = { created_at = 2022-12-15T16:09:53.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.4.0" }
-"5.4.1" = { created_at = 2023-04-19T15:03:56.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.4.1" }
-"6.0.0-pre.20211019.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211019.1" }
-"6.0.0-pre.20211025.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211025.1" }
-"6.0.0-pre.20211101.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211101.2" }
-"6.0.0-pre.20211110.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211110.1" }
-"6.0.0-pre.20211117.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211117.1" }
-"6.0.0-pre.20211202.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211202.4" }
-"6.0.0-pre.20211215.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211215.3" }
-"6.0.0-pre.20211220.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20211220.1" }
-"6.0.0-pre.20220105.5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220105.5" }
-"6.0.0-pre.20220112.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220112.2" }
-"6.0.0-pre.20220123.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220123.2" }
-"6.0.0-pre.20220127.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220127.1" }
-"6.0.0-pre.20220201.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220201.3" }
-"6.0.0-pre.20220208.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220208.2" }
-"6.0.0-pre.20220216.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220216.3" }
-"6.0.0-pre.20220223.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220223.1" }
-"6.0.0-pre.20220310.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220310.1" }
-"6.0.0-pre.20220315.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220315.4" }
-"6.0.0-pre.20220324.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220324.1" }
-"6.0.0-pre.20220328.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220328.1" }
-"6.0.0-pre.20220331.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220331.1" }
-"6.0.0-pre.20220405.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220405.2" }
-"6.0.0-pre.20220407.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220407.1" }
-"6.0.0-pre.20220411.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220411.2" }
-"6.0.0-pre.20220414.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220414.2" }
-"6.0.0-pre.20220421.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220421.3" }
-"6.0.0-pre.20220517.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220517.1" }
-"6.0.0-pre.20220520.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220520.1" }
-"6.0.0-pre.20220526.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220526.1" }
-"6.0.0-pre.20220601.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220601.1" }
-"6.0.0-pre.20220608.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220608.2" }
-"6.0.0-pre.20220630.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220630.1" }
-"6.0.0-pre.20220706.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220706.4" }
-"6.0.0-pre.20220720.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220720.3" }
-"6.0.0-pre.20220801.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220801.1" }
-"6.0.0-pre.20220804.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220804.3" }
-"6.0.0-pre.20220810.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220810.1" }
-"6.0.0-pre.20220816.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220816.1" }
-"6.0.0-pre.20220818.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220818.1" }
-"6.0.0-pre.20220823.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220823.1" }
-"6.0.0-pre.20220825.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220825.4" }
-"6.0.0-pre.20220909.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220909.2" }
-"6.0.0-pre.20220922.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20220922.1" }
-"6.0.0-pre.20221007.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20221007.4" }
-"6.0.0-pre.20221012.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20221012.2" }
-"6.0.0-pre.20221020.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0-pre.20221020.1" }
 "6.0.0" = { created_at = 2022-12-19T15:47:43.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.0.0" }
 "6.1.0" = { created_at = 2023-03-06T17:05:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.1.0" }
 "6.1.1" = { created_at = 2023-03-15T15:40:19.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.1.1" }
 "6.1.2" = { created_at = 2023-04-18T15:24:12.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.1.2" }
+"5.4.1" = { created_at = 2023-04-19T15:03:56.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/5.4.1" }
+"4.2.4" = { created_at = 2023-04-20T12:02:13.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/4.2.4" }
 "6.2.0" = { created_at = 2023-05-09T17:54:38.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.2.0" }
 "6.2.1" = { created_at = 2023-06-02T16:55:20.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.2.1" }
 "6.3.0" = { created_at = 2023-07-24T17:20:21.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.3.0" }
 "6.3.1" = { created_at = 2023-07-31T16:09:22.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.3.1" }
 "6.3.2" = { created_at = 2023-08-08T15:43:38.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.3.2" }
 "6.4.0" = { created_at = 2023-10-19T17:02:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.4.0" }
-"6.5.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.5.0rc1" }
-"6.5.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.5.0rc2" }
-"6.5.0" = { created_at = 2024-01-23T16:39:23.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.5.0" }
-"6.6.0" = { created_at = 2026-01-21T18:31:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.6.0" }
-"7.0.0-pre.20221026.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221026.2" }
-"7.0.0-pre.20221102.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221102.3" }
-"7.0.0-pre.20221111.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221111.3" }
-"7.0.0-pre.20221123.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221123.2" }
-"7.0.0-pre.20221204.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221204.2" }
-"7.0.0-pre.20221207.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221207.2" }
-"7.0.0-pre.20221212.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20221212.2" }
-"7.0.0-pre.20230104.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230104.2" }
-"7.0.0-pre.20230118.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230118.2" }
-"7.0.0-pre.20230123.5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230123.5" }
-"7.0.0-pre.20230128.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230128.3" }
-"7.0.0-pre.20230209.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230209.2" }
-"7.0.0-pre.20230215.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230215.2" }
-"7.0.0-pre.20230302.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230302.1" }
-"7.0.0-pre.20230306.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230306.4" }
-"7.0.0-pre.20230316.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230316.2" }
-"7.0.0-pre.20230322.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230322.4" }
-"7.0.0-pre.20230330.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230330.3" }
-"7.0.0-pre.20230405.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230405.2" }
-"7.0.0-pre.20230410.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230410.1" }
-"7.0.0-pre.20230412.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230412.2" }
-"7.0.0-pre.20230417.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230417.1" }
-"7.0.0-pre.20230420.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230420.2" }
-"7.0.0-pre.20230426.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230426.1" }
-"7.0.0-pre.20230502.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230502.1" }
-"7.0.0-pre.20230504.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230504.4" }
-"7.0.0-pre.20230517.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230517.4" }
-"7.0.0-pre.20230524.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230524.3" }
-"7.0.0-pre.20230530.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230530.3" }
-"7.0.0-pre.20230628.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230628.2" }
-"7.0.0-pre.20230710.5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230710.5" }
-"7.0.0-pre.20230724.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230724.1" }
-"7.0.0-pre.20230810.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230810.1" }
-"7.0.0-pre.20230816.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230816.3" }
-"7.0.0-pre.20230823.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230823.4" }
-"7.0.0-pre.20230906.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230906.2" }
-"7.0.0-pre.20230917.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230917.3" }
-"7.0.0-pre.20230926.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20230926.1" }
-"7.0.0-pre.20231011.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20231011.2" }
-"7.0.0-pre.20231018.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0-pre.20231018.3" }
 "7.0.0" = { created_at = 2023-12-11T16:46:24.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.0" }
-"7.0.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.1rc1" }
-"7.0.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.1rc2" }
+"7.0.1rc1" = { created_at = 2024-01-05T01:53:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.1rc1", prerelease = true }
+"6.5.0rc1" = { created_at = 2024-01-12T10:04:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.5.0rc1", prerelease = true }
+"7.0.1rc2" = { created_at = 2024-01-16T10:13:06.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.1rc2", prerelease = true }
+"6.5.0rc2" = { created_at = 2024-01-18T09:18:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.5.0rc2", prerelease = true }
 "7.0.1" = { created_at = 2024-01-18T17:59:10.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.1" }
-"7.0.2rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.2rc1" }
+"6.5.0" = { created_at = 2024-01-23T16:39:23.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.5.0" }
+"7.0.2rc1" = { created_at = 2024-01-23T20:20:20.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.2rc1", prerelease = true }
 "7.0.2" = { created_at = 2024-01-25T16:07:37.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.0.2" }
-"7.1.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.0rc1" }
-"7.1.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.0rc2" }
+"7.1.0rc1" = { created_at = 2024-02-21T20:06:45.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.0rc1", prerelease = true }
+"7.1.0rc2" = { created_at = 2024-03-07T16:28:23.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.0rc2", prerelease = true }
 "7.1.0" = { created_at = 2024-03-11T17:50:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.0" }
-"7.1.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.1rc1" }
-"7.1.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.1rc2" }
+"7.1.1rc1" = { created_at = 2024-03-15T09:39:51.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.1rc1", prerelease = true }
+"7.1.1rc2" = { created_at = 2024-03-19T20:13:41.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.1rc2", prerelease = true }
 "7.1.1" = { created_at = 2024-03-21T18:04:03.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.1" }
-"7.1.2rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.2rc1" }
-"7.1.2rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.2rc2" }
+"7.1.2rc1" = { created_at = 2024-05-06T18:49:35.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.2rc1", prerelease = true }
+"7.1.2rc2" = { created_at = 2024-05-08T18:27:11.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.2rc2", prerelease = true }
 "7.1.2" = { created_at = 2024-05-08T20:45:18.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.1.2" }
-"7.2.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0rc1" }
-"7.2.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0rc2" }
-"7.2.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0rc3" }
+"7.2.0rc1" = { created_at = 2024-05-15T10:20:53.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0rc1", prerelease = true }
+"7.2.0rc2" = { created_at = 2024-05-29T17:00:27.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0rc2", prerelease = true }
+"7.2.0rc3" = { created_at = 2024-06-05T19:32:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0rc3", prerelease = true }
 "7.2.0" = { created_at = 2024-06-10T12:59:47.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.0" }
-"7.2.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.1rc1" }
-"7.2.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.1rc2" }
+"7.2.1rc1" = { created_at = 2024-06-11T21:58:00.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.1rc1", prerelease = true }
+"7.2.1rc2" = { created_at = 2024-06-20T23:12:04.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.1rc2", prerelease = true }
 "7.2.1" = { created_at = 2024-06-25T15:48:31.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.2.1" }
-"7.3.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.0rc1" }
-"7.3.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.0rc2" }
+"7.3.0rc1" = { created_at = 2024-07-29T16:28:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.0rc1", prerelease = true }
+"7.3.0rc2" = { created_at = 2024-08-06T23:02:34.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.0rc2", prerelease = true }
 "7.3.0" = { created_at = 2024-08-12T16:26:39.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.0" }
-"7.3.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.1rc1" }
-"7.3.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.1rc2" }
+"7.3.1rc1" = { created_at = 2024-08-13T07:31:25.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.1rc1", prerelease = true }
+"7.3.1rc2" = { created_at = 2024-08-14T20:00:55.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.1rc2", prerelease = true }
 "7.3.1" = { created_at = 2024-08-19T16:08:33.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.1" }
-"7.3.2rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.2rc1" }
+"7.3.2rc1" = { created_at = 2024-09-27T08:07:38.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.2rc1", prerelease = true }
 "7.3.2" = { created_at = 2024-10-01T17:41:35.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.3.2" }
-"7.4.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc1" }
-"7.4.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc2" }
-"7.4.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc3" }
-"7.4.0rc4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc4" }
+"8.0.0rc1" = { created_at = 2024-10-08T00:28:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc1", prerelease = true }
+"7.4.0rc1" = { created_at = 2024-10-10T20:24:39.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc1", prerelease = true }
+"7.4.0rc2" = { created_at = 2024-10-15T09:13:59.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc2", prerelease = true }
+"7.4.0rc3" = { created_at = 2024-10-17T09:33:50.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc3", prerelease = true }
+"7.4.0rc4" = { created_at = 2024-10-18T08:37:04.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0rc4", prerelease = true }
 "7.4.0" = { created_at = 2024-10-22T17:19:46.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.0" }
-"7.4.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.1rc1" }
-"7.4.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.1rc2" }
+"8.0.0rc2" = { created_at = 2024-10-28T18:44:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc2", prerelease = true }
+"7.4.1rc1" = { created_at = 2024-10-29T18:21:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.1rc1", prerelease = true }
+"7.4.1rc2" = { created_at = 2024-11-06T18:21:59.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.1rc2", prerelease = true }
 "7.4.1" = { created_at = 2024-11-11T21:20:17.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.4.1" }
-"7.5.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0rc1" }
-"7.5.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0rc2" }
-"7.5.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0rc3" }
-"7.5.0" = { created_at = 2025-01-30T18:28:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0" }
-"7.6.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc1" }
-"7.6.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc2" }
-"7.6.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc3" }
-"7.6.0rc4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc4" }
-"7.6.0rc5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc5" }
-"7.6.0" = { created_at = 2025-03-24T15:51:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0" }
-"7.6.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.1rc1" }
-"7.6.1" = { created_at = 2025-03-31T17:04:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.1" }
-"7.6.2rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.2rc1" }
-"7.6.2" = { created_at = 2025-10-08T17:21:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.2" }
-"7.7.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0rc1" }
-"7.7.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0rc2" }
-"7.7.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0rc3" }
-"7.7.0" = { created_at = 2025-10-30T09:18:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0" }
-"7.7.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.1rc1" }
-"7.7.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.1rc2" }
-"7.7.1" = { created_at = 2025-11-12T17:29:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.1" }
-"8.0.0-pre.20231030.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20231030.2" }
-"8.0.0-pre.20240101.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240101.1" }
-"8.0.0-pre.20240108.6" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240108.6" }
-"8.0.0-pre.20240108.7" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240108.7" }
-"8.0.0-pre.20240128.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240128.3" }
-"8.0.0-pre.20240206.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240206.3" }
-"8.0.0-pre.20240213.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240213.1" }
-"8.0.0-pre.20240226.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240226.1" }
-"8.0.0-pre.20240303.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240303.1" }
-"8.0.0-pre.20240303.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240303.2" }
-"8.0.0-pre.20240401.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240401.3" }
-"8.0.0-pre.20240404.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240404.3" }
-"8.0.0-pre.20240415.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240415.1" }
-"8.0.0-pre.20240422.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240422.4" }
-"8.0.0-pre.20240516.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240516.1" }
-"8.0.0-pre.20240523.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240523.3" }
-"8.0.0-pre.20240530.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240530.1" }
-"8.0.0-pre.20240603.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240603.2" }
-"8.0.0-pre.20240607.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240607.2" }
-"8.0.0-pre.20240618.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240618.2" }
-"8.0.0-pre.20240701.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240701.1" }
-"8.0.0-pre.20240710.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240710.4" }
-"8.0.0-pre.20240718.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240718.2" }
-"8.0.0-pre.20240724.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240724.1" }
-"8.0.0-pre.20240729.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240729.1" }
-"8.0.0-pre.20240730.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240730.1" }
-"8.0.0-pre.20240805.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240805.3" }
-"8.0.0-pre.20240807.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240807.1" }
-"8.0.0-pre.20240812.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240812.1" }
-"8.0.0-pre.20240814.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240814.2" }
-"8.0.0-pre.20240819.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240819.2" }
-"8.0.0-pre.20240821.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240821.2" }
-"8.0.0-pre.20240826.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240826.1" }
-"8.0.0-pre.20240909.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240909.1" }
-"8.0.0-pre.20240911.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240911.1" }
-"8.0.0-pre.20240925.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0-pre.20240925.4" }
-"8.0.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc1" }
-"8.0.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc2" }
-"8.0.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc3" }
-"8.0.0rc4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc4" }
-"8.0.0rc5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc5" }
-"8.0.0rc6" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc6" }
-"8.0.0rc7" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc7" }
-"8.0.0rc8" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc8" }
+"8.0.0rc3" = { created_at = 2024-11-22T16:50:10.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc3", prerelease = true }
+"8.0.0rc4" = { created_at = 2024-11-25T16:21:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc4", prerelease = true }
+"8.0.0rc5" = { created_at = 2024-11-28T00:12:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc5", prerelease = true }
+"8.0.0rc6" = { created_at = 2024-11-28T10:16:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc6", prerelease = true }
+"8.0.0rc7" = { created_at = 2024-12-04T16:46:32.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc7", prerelease = true }
+"8.0.0rc8" = { created_at = 2024-12-06T19:54:59.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0rc8", prerelease = true }
 "8.0.0" = { created_at = 2024-12-09T17:54:47.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.0" }
-"8.0.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.1rc1" }
+"8.0.1rc1" = { created_at = 2025-01-14T23:27:32.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.1rc1", prerelease = true }
 "8.0.1" = { created_at = 2025-01-17T19:10:22.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.0.1" }
-"8.1.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc1" }
-"8.1.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc2" }
-"8.1.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc3" }
-"8.1.0rc4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc4" }
+"7.5.0rc1" = { created_at = 2025-01-21T13:07:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0rc1", prerelease = true }
+"7.5.0rc2" = { created_at = 2025-01-22T21:53:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0rc2", prerelease = true }
+"7.5.0rc3" = { created_at = 2025-01-28T21:31:03.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0rc3", prerelease = true }
+"7.5.0" = { created_at = 2025-01-30T18:28:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.5.0" }
+"8.1.0rc1" = { created_at = 2025-02-04T17:51:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc1", prerelease = true }
+"8.1.0rc2" = { created_at = 2025-02-05T20:52:53.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc2", prerelease = true }
+"8.1.0rc3" = { created_at = 2025-02-07T11:07:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc3", prerelease = true }
+"8.1.0rc4" = { created_at = 2025-02-11T19:34:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0rc4", prerelease = true }
 "8.1.0" = { created_at = 2025-02-13T18:56:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.0" }
-"8.1.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.1rc1" }
+"8.1.1rc1" = { created_at = 2025-02-21T07:53:34.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.1rc1", prerelease = true }
 "8.1.1" = { created_at = 2025-02-25T18:44:48.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.1.1" }
-"8.2.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0rc1" }
-"8.2.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0rc2" }
-"8.2.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0rc3" }
+"7.6.0rc1" = { created_at = 2025-03-11T15:54:04.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc1", prerelease = true }
+"7.6.0rc2" = { created_at = 2025-03-18T15:34:22.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc2", prerelease = true }
+"7.6.0rc3" = { created_at = 2025-03-19T16:00:19.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc3", prerelease = true }
+"7.6.0rc4" = { created_at = 2025-03-19T18:31:55.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc4", prerelease = true }
+"7.6.0rc5" = { created_at = 2025-03-21T10:38:27.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0rc5", prerelease = true }
+"7.6.0" = { created_at = 2025-03-24T15:51:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.0" }
+"7.6.1rc1" = { created_at = 2025-03-27T16:46:40.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.1rc1", prerelease = true }
+"7.6.1" = { created_at = 2025-03-31T17:04:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.1" }
+"8.2.0rc1" = { created_at = 2025-04-07T17:35:53.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0rc1", prerelease = true }
+"8.2.0rc2" = { created_at = 2025-04-09T08:31:07.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0rc2", prerelease = true }
+"8.2.0rc3" = { created_at = 2025-04-10T14:21:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0rc3", prerelease = true }
 "8.2.0" = { created_at = 2025-04-14T16:11:35.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.0" }
-"8.2.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.1rc1" }
+"8.2.1rc1" = { created_at = 2025-04-15T15:34:41.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.1rc1", prerelease = true }
 "8.2.1" = { created_at = 2025-04-17T18:16:57.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.2.1" }
-"8.3.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0rc1" }
-"8.3.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0rc2" }
-"8.3.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0rc3" }
+"8.3.0rc1" = { created_at = 2025-06-16T12:56:59.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0rc1", prerelease = true }
+"8.3.0rc2" = { created_at = 2025-06-17T15:44:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0rc2", prerelease = true }
+"8.3.0rc3" = { created_at = 2025-06-17T19:14:14.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0rc3", prerelease = true }
 "8.3.0" = { created_at = 2025-06-23T18:25:53.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.0" }
-"8.3.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.1rc1" }
-"8.3.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.1rc2" }
+"8.3.1rc1" = { created_at = 2025-06-25T16:22:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.1rc1", prerelease = true }
+"8.3.1rc2" = { created_at = 2025-06-26T23:31:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.1rc2", prerelease = true }
 "8.3.1" = { created_at = 2025-06-30T16:17:42.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.3.1" }
-"8.4.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.0rc1" }
-"8.4.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.0rc2" }
+"8.4.0rc1" = { created_at = 2025-08-20T19:56:18.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.0rc1", prerelease = true }
+"8.4.0rc2" = { created_at = 2025-09-02T15:30:41.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.0rc2", prerelease = true }
 "8.4.0" = { created_at = 2025-09-04T17:49:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.0" }
-"8.4.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.1rc1" }
-"8.4.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.1rc2" }
+"8.4.1rc1" = { created_at = 2025-09-09T19:40:20.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.1rc1", prerelease = true }
+"8.4.1rc2" = { created_at = 2025-09-10T19:11:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.1rc2", prerelease = true }
 "8.4.1" = { created_at = 2025-09-11T17:59:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.1" }
-"8.4.2rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.2rc1" }
-"8.4.2rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.2rc2" }
+"8.4.2rc1" = { created_at = 2025-09-26T07:56:26.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.2rc1", prerelease = true }
+"8.4.2rc2" = { created_at = 2025-09-29T13:58:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.2rc2", prerelease = true }
 "8.4.2" = { created_at = 2025-10-01T16:40:14.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.4.2" }
-"8.5.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc1" }
-"8.5.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc2" }
-"8.5.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc3" }
-"8.5.0rc4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc4" }
+"7.6.2rc1" = { created_at = 2025-10-06T21:02:45.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.2rc1", prerelease = true }
+"7.6.2" = { created_at = 2025-10-08T17:21:28.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.6.2" }
+"7.7.0rc1" = { created_at = 2025-10-17T22:18:00.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0rc1", prerelease = true }
+"7.7.0rc2" = { created_at = 2025-10-27T17:36:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0rc2", prerelease = true }
+"7.7.0rc3" = { created_at = 2025-10-28T09:28:13.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0rc3", prerelease = true }
+"7.7.0" = { created_at = 2025-10-30T09:18:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.0" }
+"9.0.0rc1" = { created_at = 2025-11-03T19:44:02.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc1", prerelease = true }
+"7.7.1rc1" = { created_at = 2025-11-06T10:50:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.1rc1", prerelease = true }
+"7.7.1rc2" = { created_at = 2025-11-10T19:04:52.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.1rc2", prerelease = true }
+"9.0.0rc2" = { created_at = 2025-11-11T18:23:07.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc2", prerelease = true }
+"7.7.1" = { created_at = 2025-11-12T17:29:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/7.7.1" }
+"8.5.0rc1" = { created_at = 2025-11-13T20:36:15.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc1", prerelease = true }
+"8.5.0rc2" = { created_at = 2025-11-14T19:03:23.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc2", prerelease = true }
+"9.0.0rc3" = { created_at = 2025-11-24T18:26:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc3", prerelease = true }
+"8.5.0rc3" = { created_at = 2025-12-09T12:06:06.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc3", prerelease = true }
+"8.5.0rc4" = { created_at = 2025-12-09T21:14:08.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0rc4", prerelease = true }
 "8.5.0" = { created_at = 2025-12-11T17:43:39.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.0" }
-"8.5.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.1rc1" }
-"8.5.1rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.1rc2" }
+"8.5.1rc1" = { created_at = 2025-12-15T22:38:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.1rc1", prerelease = true }
+"8.5.1rc2" = { created_at = 2026-01-07T17:48:58.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.1rc2", prerelease = true }
 "8.5.1" = { created_at = 2026-01-12T18:34:29.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.5.1" }
-"8.6.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0rc1" }
-"8.6.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0rc2" }
-"8.6.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0rc3" }
-"8.6.0" = { created_at = 2026-02-26T19:50:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0" }
-"9.0.0-pre.20241016.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241016.1" }
-"9.0.0-pre.20241020.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241020.2" }
-"9.0.0-pre.20241023.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241023.1" }
-"9.0.0-pre.20241026.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241026.2" }
-"9.0.0-pre.20241105.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241105.2" }
-"9.0.0-pre.20241113.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241113.4" }
-"9.0.0-pre.20241119.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241119.2" }
-"9.0.0-pre.20241125.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241125.3" }
-"9.0.0-pre.20241125.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241125.4" }
-"9.0.0-pre.20241205.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241205.2" }
-"9.0.0-pre.20241208.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241208.1" }
-"9.0.0-pre.20241208.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20241208.2" }
-"9.0.0-pre.20250106.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250106.2" }
-"9.0.0-pre.20250109.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250109.2" }
-"9.0.0-pre.20250115.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250115.2" }
-"9.0.0-pre.20250121.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250121.1" }
-"9.0.0-pre.20250128.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250128.3" }
-"9.0.0-pre.20250210.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250210.1" }
-"9.0.0-pre.20250307.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250307.1" }
-"9.0.0-pre.20250311.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250311.1" }
-"9.0.0-pre.20250317.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250317.2" }
-"9.0.0-pre.20250324.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250324.2" }
-"9.0.0-pre.20250327.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250327.3" }
-"9.0.0-pre.20250402.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250402.1" }
-"9.0.0-pre.20250408.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250408.2" }
-"9.0.0-pre.20250414.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250414.1" }
-"9.0.0-pre.20250421.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250421.1" }
-"9.0.0-pre.20250426.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250426.1" }
-"9.0.0-pre.20250506.6" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250506.6" }
-"9.0.0-pre.20250516.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250516.1" }
-"9.0.0-pre.20250516.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250516.2" }
-"9.0.0-pre.20250526.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250526.2" }
-"9.0.0-pre.20250608.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250608.1" }
-"9.0.0-pre.20250610.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250610.2" }
-"9.0.0-pre.20250616.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250616.2" }
-"9.0.0-pre.20250620.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250620.1" }
-"9.0.0-pre.20250625.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250625.1" }
-"9.0.0-pre.20250706.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250706.3" }
-"9.0.0-pre.20250710.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250710.1" }
-"9.0.0-pre.20250714.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250714.1" }
-"9.0.0-pre.20250716.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250716.1" }
-"9.0.0-pre.20250721.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250721.4" }
-"9.0.0-pre.20250730.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250730.2" }
-"9.0.0-pre.20250805.4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250805.4" }
-"9.0.0-pre.20250831.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250831.1" }
-"9.0.0-pre.20250908.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250908.2" }
-"9.0.0-pre.20250916.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250916.1" }
-"9.0.0-pre.20250921.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20250921.2" }
-"9.0.0-pre.20251008.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20251008.2" }
-"9.0.0-pre.20251014.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20251014.1" }
-"9.0.0-pre.20251022.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20251022.1" }
-"9.0.0-pre.20251025.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20251025.1" }
-"9.0.0-pre.20251029.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0-pre.20251029.2" }
-"9.0.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc1" }
-"9.0.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc2" }
-"9.0.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc3" }
-"9.0.0rc4" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc4" }
-"9.0.0rc5" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc5" }
-"9.0.0rc6" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc6" }
+"9.0.0rc4" = { created_at = 2026-01-13T12:33:42.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc4", prerelease = true }
+"9.0.0rc5" = { created_at = 2026-01-13T15:30:36.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc5", prerelease = true }
+"9.0.0rc6" = { created_at = 2026-01-15T17:33:35.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0rc6", prerelease = true }
 "9.0.0" = { created_at = 2026-01-20T18:11:07.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.0" }
-"9.0.1rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.1rc1" }
+"6.6.0" = { created_at = 2026-01-21T18:31:54.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/6.6.0" }
+"8.6.0rc1" = { created_at = 2026-02-10T20:23:27.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0rc1", prerelease = true }
+"8.6.0rc2" = { created_at = 2026-02-19T22:37:21.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0rc2", prerelease = true }
+"8.6.0rc3" = { created_at = 2026-02-24T17:04:16.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0rc3", prerelease = true }
+"8.6.0" = { created_at = 2026-02-26T19:50:44.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/8.6.0" }
+"9.0.1rc1" = { created_at = 2026-03-05T23:53:30.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.1rc1", prerelease = true }
 "9.0.1" = { created_at = 2026-03-10T16:45:20.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.1" }
-"9.0.2rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2rc1" }
-"9.0.2rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2rc2" }
-"9.0.2rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2rc3" }
+"9.0.2rc1" = { created_at = 2026-04-02T23:01:12.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2rc1", prerelease = true }
+"9.0.2rc2" = { created_at = 2026-04-07T15:34:49.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2rc2", prerelease = true }
+"9.0.2rc3" = { created_at = 2026-04-08T19:45:11.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2rc3", prerelease = true }
 "9.0.2" = { created_at = 2026-04-09T21:58:01.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.0.2" }
-"9.1.0rc1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0rc1" }
-"9.1.0rc2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0rc2" }
-"9.1.0rc3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0rc3" }
+"9.1.0rc1" = { created_at = 2026-04-09T19:51:20.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0rc1", prerelease = true }
+"9.1.0rc2" = { created_at = 2026-04-14T19:04:43.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0rc2", prerelease = true }
+"9.1.0rc3" = { created_at = 2026-04-15T18:50:58.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0rc3", prerelease = true }
 "9.1.0" = { created_at = 2026-04-20T18:48:24.000Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/9.1.0" }
-"10.0.0-pre.20251105.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20251105.2" }
-"10.0.0-pre.20251116.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20251116.2" }
-"10.0.0-pre.20251203.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20251203.1" }
-"10.0.0-pre.20251208.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20251208.3" }
-"10.0.0-pre.20251217.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20251217.3" }
-"10.0.0-pre.20260104.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260104.1" }
-"10.0.0-pre.20260112.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260112.1" }
-"10.0.0-pre.20260114.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260114.1" }
-"10.0.0-pre.20260120.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260120.1" }
-"10.0.0-pre.20260128.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260128.2" }
-"10.0.0-pre.20260204.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260204.1" }
-"10.0.0-pre.20260211.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260211.1" }
-"10.0.0-pre.20260223.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260223.3" }
-"10.0.0-pre.20260308.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260308.2" }
-"10.0.0-pre.20260312.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260312.1" }
-"10.0.0-pre.20260322.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260322.2" }
-"10.0.0-pre.20260329.2" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260329.2" }
-"10.0.0-pre.20260408.3" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260408.3" }
-"10.0.0-pre.20260412.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260412.1" }
-"10.0.0-pre.20260416.1" = { created_at = 2026-04-27T18:30:04.601Z, release_url = "https://github.com/bazelbuild/bazel/releases/tag/10.0.0-pre.20260416.1" }

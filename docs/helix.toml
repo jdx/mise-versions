@@ -1,18 +1,4 @@
 [versions]
-"22.03" = { created_at = 2022-03-29T13:18:45.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.03" }
-"22.05" = { created_at = 2022-05-28T16:08:21.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.05" }
-"22.08" = { created_at = 2022-08-31T17:04:32.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.08" }
-"22.08.1" = { created_at = 2022-09-01T17:09:17.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.08.1" }
-"22.12" = { created_at = 2022-12-07T02:56:56.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.12" }
-"23.03" = { created_at = 2023-03-31T08:14:35.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/23.03" }
-"23.05" = { created_at = 2023-05-18T07:01:56.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/23.05" }
-"23.10" = { created_at = 2023-10-25T16:38:02.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/23.10" }
-"24.03" = { created_at = 2024-03-30T13:32:03.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/24.03" }
-"24.07" = { created_at = 2024-07-14T16:19:47.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/24.07" }
-"25.01" = { created_at = 2025-01-03T19:51:44.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.01" }
-"25.01.1" = { created_at = 2025-01-19T20:51:26.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.01.1" }
-"25.07" = { created_at = 2025-07-15T18:27:33.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.07" }
-"25.07.1" = { created_at = 2025-07-18T14:32:09.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.07.1" }
 "0.0.2" = { created_at = 2021-05-12T13:14:56.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/v0.0.2" }
 "0.0.3" = { created_at = 2021-05-19T06:02:06.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/v0.0.3" }
 "0.0.4" = { created_at = 2021-05-30T09:04:53.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/v0.0.4" }
@@ -29,3 +15,17 @@
 "0.4.1" = { created_at = 2021-08-14T04:33:00.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/v0.4.1" }
 "0.5.0" = { created_at = 2021-10-28T07:44:58.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/v0.5.0" }
 "0.6.0" = { created_at = 2022-01-04T09:54:17.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/v0.6.0" }
+"22.03" = { created_at = 2022-03-29T13:18:45.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.03" }
+"22.05" = { created_at = 2022-05-28T16:08:21.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.05" }
+"22.08" = { created_at = 2022-08-31T17:04:32.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.08" }
+"22.08.1" = { created_at = 2022-09-01T17:09:17.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.08.1" }
+"22.12" = { created_at = 2022-12-07T02:56:56.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/22.12" }
+"23.03" = { created_at = 2023-03-31T08:14:35.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/23.03" }
+"23.05" = { created_at = 2023-05-18T07:01:56.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/23.05" }
+"23.10" = { created_at = 2023-10-25T16:38:02.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/23.10" }
+"24.03" = { created_at = 2024-03-30T13:32:03.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/24.03" }
+"24.07" = { created_at = 2024-07-14T16:19:47.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/24.07" }
+"25.01" = { created_at = 2025-01-03T19:51:44.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.01" }
+"25.01.1" = { created_at = 2025-01-19T20:51:26.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.01.1" }
+"25.07" = { created_at = 2025-07-15T18:27:33.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.07" }
+"25.07.1" = { created_at = 2025-07-18T14:32:09.000Z, release_url = "https://github.com/helix-editor/helix/releases/tag/25.07.1" }

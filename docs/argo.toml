@@ -1,388 +1,271 @@
 [versions]
-"1.0.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/1.0.0" }
-"1.0.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/1.0.1" }
-"1.1.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/1.1.0" }
-"ls" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/ls" }
-"stable" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/stable" }
-"ui-v3-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/ui-v3-rc1" }
-"0.0.0-dev-bom-1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-bom-1" }
-"0.0.0-dev-bom-2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-bom-2" }
-"0.0.0-dev-build-1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-build-1" }
-"0.0.0-dev-build-2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-build-2" }
-"0.0.0-dev-build-3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-build-3" }
-"0.0.0-dev-build-4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-build-4" }
-"0.0.0-dev-dataflow-1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-1" }
-"0.0.0-dev-dataflow-2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-2" }
-"0.0.0-dev-dataflow-3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-3" }
-"0.0.0-dev-dataflow-4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-4" }
-"0.0.0-dev-dataflow-5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-5" }
-"0.0.0-dev-dataflow-6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-6" }
-"0.0.0-dev-dataflow-7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-7" }
-"0.0.0-dev-dataflow-8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-8" }
-"0.0.0-dev-dataflow-9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-9" }
-"0.0.0-dev-dataflow-10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-10" }
-"0.0.0-dev-dataflow-11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-11" }
-"0.0.0-dev-dataflow-13" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-13" }
-"0.0.0-dev-dataflow-14" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-14" }
-"0.0.0-dev-dataflow-15" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-15" }
-"0.0.0-dev-dataflow-16" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-16" }
-"0.0.0-dev-dataflow-17" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-17" }
-"0.0.0-dev-dataflow-18" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-18" }
-"0.0.0-dev-dataflow-19" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-19" }
-"0.0.0-dev-dataflow-20" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-20" }
-"0.0.0-dev-dataflow-21" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-21" }
-"0.0.0-dev-dataflow-22" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-22" }
-"0.0.0-dev-dataflow-23" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-23" }
-"0.0.0-dev-dataflow-24" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-24" }
-"0.0.0-dev-dataflow-25" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-25" }
-"0.0.0-dev-dataflow-26" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-26" }
-"0.0.0-dev-dataflow-27" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-27" }
-"0.0.0-dev-dataflow-28" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-28" }
-"0.0.0-dev-dataflow-29" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-29" }
-"0.0.0-dev-dataflow-30" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-30" }
-"0.0.0-dev-dataflow-31" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-31" }
-"0.0.0-dev-dataflow-32" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-32" }
-"0.0.0-dev-dataflow-33" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-33" }
-"0.0.0-dev-dataflow-34" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-34" }
-"0.0.0-dev-dataflow-35" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-35" }
-"0.0.0-dev-dataflow-36" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-36" }
-"0.0.0-dev-dataflow-37" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-37" }
-"0.0.0-dev-dataflow-38" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-38" }
-"0.0.0-dev-dataflow-39" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-39" }
-"0.0.0-dev-dataflow-40" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-40" }
-"0.0.0-dev-dataflow-41" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-41" }
-"0.0.0-dev-dataflow-42" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-42" }
-"0.0.0-dev-docker-0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-docker-0" }
-"0.0.0-dev-kc-0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-0" }
-"0.0.0-dev-kc-1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-1" }
-"0.0.0-dev-kc-2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-2" }
-"0.0.0-dev-kc-3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-3" }
-"0.0.0-dev-kc-4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-4" }
-"0.0.0-dev-kc-5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-5" }
-"0.0.0-dev-kc-6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-6" }
-"0.0.0-dev-kc-7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-7" }
-"0.0.0-dev-mc-0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-0" }
-"0.0.0-dev-mc-1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-1" }
-"0.0.0-dev-mc-2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-2" }
-"0.0.0-dev-mc-3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-3" }
-"0.0.0-dev-mc-4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-4" }
-"0.0.0-dev-mc-5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-5" }
-"0.0.0-dev-mc-6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-6" }
-"0.0.0-dev-mc-7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-7" }
-"0.0.0-dev-mc-8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-8" }
-"0.0.0-dev-mc-9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-9" }
-"0.0.0-dev-pprof-1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-pprof-1" }
-"0.1.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.1.0" }
-"0.2.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.2.0" }
-"0.3.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.3.3" }
-"0.4.0-alpha1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.0-alpha1" }
-"0.4.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.1" }
-"0.4.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.2" }
-"0.4.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.3" }
-"0.4.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.4" }
-"0.4.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.5" }
-"0.4.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.6" }
-"0.4.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.4.7" }
-"2.0.0-alpha1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.0.0-alpha1" }
-"2.0.0-alpha2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.0.0-alpha2" }
-"2.0.0-alpha3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.0.0-alpha3" }
-"2.0.0-beta1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.0.0-beta1" }
-"2.0.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.0.0" }
-"2.1.0-alpha1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.1.0-alpha1" }
-"2.1.0-beta1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.1.0-beta1" }
-"2.1.0-beta2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.1.0-beta2" }
-"2.1.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.1.0" }
-"2.1.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.1.1" }
-"2.1.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.1.2" }
-"2.2.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.2.0" }
-"2.2.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.2.1" }
-"2.3.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.3.0-rc1" }
-"2.3.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.3.0-rc2" }
-"2.3.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.3.0-rc3" }
-"2.3.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.3.0" }
-"2.4.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.4.0-rc1" }
-"2.4.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.4.0" }
-"2.4.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.4.1" }
-"2.4.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.4.2" }
-"2.4.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.4.3" }
-"2.5.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc1" }
-"2.5.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc2" }
-"2.5.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc3" }
-"2.5.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc4" }
-"2.5.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc5" }
-"2.5.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc6" }
-"2.5.0-rc7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc7" }
-"2.5.0-rc8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc8" }
-"2.5.0-rc9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc9" }
-"2.5.0-rc10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc10" }
-"2.5.0-rc11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc11" }
-"2.5.0-rc12" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0-rc12" }
-"2.5.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.0" }
-"2.5.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.1" }
-"2.5.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.2" }
-"2.5.3-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.5.3-rc4" }
-"2.6.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.0-rc1" }
-"2.6.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.0-rc2" }
-"2.6.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.0-rc3" }
-"2.6.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.0" }
-"2.6.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.1" }
-"2.6.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.2" }
-"2.6.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.3" }
-"2.6.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.6.4" }
-"2.7.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.0-rc1" }
-"2.7.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.0-rc2" }
-"2.7.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.0-rc3" }
-"2.7.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.0-rc4" }
-"2.7.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.0" }
-"2.7.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.1" }
-"2.7.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.2" }
-"2.7.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.3" }
-"2.7.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.4" }
-"2.7.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.5" }
-"2.7.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.6" }
-"2.7.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.7.7" }
-"2.8.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.0-rc1" }
-"2.8.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.0-rc2" }
-"2.8.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.0-rc3" }
-"2.8.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.0-rc4" }
-"2.8.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.0" }
-"2.8.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.1" }
-"2.8.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.8.2" }
-"2.9.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.0-rc1" }
-"2.9.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.0-rc2" }
-"2.9.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.0-rc3" }
-"2.9.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.0-rc4" }
-"2.9.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.0" }
-"2.9.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.1" }
-"2.9.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.2" }
-"2.9.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.3" }
-"2.9.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.4" }
-"2.9.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.5" }
-"2.10.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc1" }
-"2.10.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc2" }
-"2.10.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc3" }
-"2.10.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc4" }
-"2.10.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc5" }
-"2.10.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc6" }
-"2.10.0-rc7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc7" }
-"2.10.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0" }
-"2.10.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.1" }
-"2.10.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.2" }
-"2.11.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0-rc1" }
-"2.11.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0-rc2" }
-"2.11.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0-rc3" }
-"2.11.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0" }
-"2.11.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.1" }
-"2.11.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.2" }
-"2.11.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.3" }
-"2.11.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.4" }
-"2.11.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.5" }
-"2.11.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.6" }
-"2.11.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.7" }
-"2.11.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.8" }
-"2.12.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc1" }
-"2.12.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc2" }
-"2.12.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc3" }
-"2.12.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc4" }
-"2.12.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc5" }
-"2.12.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc6" }
-"2.12.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0" }
-"2.12.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.1" }
-"2.12.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.2" }
-"2.12.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.3" }
-"2.12.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.4" }
-"2.12.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.5" }
-"2.12.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.6" }
-"2.12.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.7" }
-"2.12.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.8" }
-"2.12.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.9" }
-"2.12.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.10" }
-"2.12.11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.11" }
-"2.12.12" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.12" }
-"2.12.13" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.13" }
-"3.0.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc1" }
-"3.0.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc2" }
-"3.0.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc3" }
-"3.0.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc4" }
-"3.0.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc5" }
-"3.0.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc6" }
-"3.0.0-rc7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc7" }
-"3.0.0-rc8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc8" }
-"3.0.0-rc9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc9" }
-"3.0.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0" }
-"3.0.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.1" }
-"3.0.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.2" }
-"3.0.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.3" }
-"3.0.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.4" }
-"3.0.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.5" }
-"3.0.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.6" }
-"3.0.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.7" }
-"3.0.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.8" }
-"3.0.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.9" }
-"3.0.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.10" }
-"3.1.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc1" }
-"3.1.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc2" }
-"3.1.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc3" }
-"3.1.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc4" }
-"3.1.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc5" }
-"3.1.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc6" }
-"3.1.0-rc7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc7" }
-"3.1.0-rc8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc8" }
-"3.1.0-rc9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc9" }
-"3.1.0-rc10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc10" }
-"3.1.0-rc11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc11" }
-"3.1.0-rc12" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc12" }
-"3.1.0-rc13" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc13" }
-"3.1.0-rc14" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc14" }
-"3.1.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0" }
-"3.1.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.1" }
-"3.1.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.2" }
-"3.1.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.3" }
-"3.1.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.4" }
-"3.1.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.5" }
-"3.1.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.6" }
-"3.1.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.7" }
-"3.1.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.8" }
-"3.1.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.9" }
-"3.1.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.10" }
-"3.1.11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.11" }
-"3.1.12" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.12" }
-"3.1.13" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.13" }
-"3.1.14" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.14" }
-"3.1.15" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.15" }
-"3.2.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc1" }
-"3.2.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc2" }
-"3.2.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc3" }
-"3.2.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc4" }
-"3.2.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc5" }
-"3.2.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc6" }
-"3.2.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0" }
-"3.2.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.1" }
-"3.2.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.2" }
-"3.2.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.3" }
-"3.2.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.4" }
-"3.2.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.5" }
-"3.2.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.6" }
-"3.2.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.7" }
-"3.2.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.8" }
-"3.2.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.9" }
-"3.2.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.10" }
-"3.2.11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.11" }
-"3.3.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc1" }
-"3.3.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc2" }
-"3.3.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc3" }
-"3.3.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc4" }
-"3.3.0-rc5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc5" }
-"3.3.0-rc6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc6" }
-"3.3.0-rc7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc7" }
-"3.3.0-rc8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc8" }
-"3.3.0-rc9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc9" }
-"3.3.0-rc10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc10" }
-"3.3.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0" }
-"3.3.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.1" }
-"3.3.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.2" }
-"3.3.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.3" }
-"3.3.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.4" }
-"3.3.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.5" }
-"3.3.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.6" }
-"3.3.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.7" }
-"3.3.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.8" }
-"3.3.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.9" }
-"3.3.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.10" }
-"3.4.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc1" }
-"3.4.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc2" }
-"3.4.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc3" }
-"3.4.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc4" }
-"3.4.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0" }
-"3.4.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.1" }
-"3.4.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.2" }
-"3.4.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.3" }
-"3.4.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.4" }
-"3.4.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.5" }
-"3.4.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.6" }
-"3.4.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.7" }
-"3.4.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.8" }
-"3.4.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.9" }
-"3.4.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.10" }
-"3.4.11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.11" }
-"3.4.12" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.12" }
-"3.4.13" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.13" }
-"3.4.14" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.14" }
-"3.4.15" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.15" }
-"3.4.16" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.16" }
-"3.4.17" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.17" }
-"3.4.18" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.18" }
-"3.5.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.0-rc1" }
-"3.5.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.0-rc2" }
-"3.5.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.0" }
-"3.5.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.1" }
-"3.5.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.2" }
-"3.5.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.3" }
-"3.5.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.4" }
-"3.5.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.5" }
-"3.5.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.6" }
-"3.5.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.7" }
-"3.5.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.8" }
-"3.5.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.9" }
-"3.5.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.10" }
-"3.5.11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.11" }
-"3.5.12" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.12" }
-"3.5.13" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.13" }
-"3.5.14" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.14" }
-"3.5.15" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.15" }
-"3.6.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc1" }
-"3.6.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc2" }
-"3.6.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc3" }
-"3.6.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc4" }
-"3.6.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0" }
-"3.6.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.2" }
-"3.6.3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.3" }
-"3.6.4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.4" }
-"3.6.5" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.5" }
-"3.6.6" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.6" }
-"3.6.7" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.7" }
-"3.6.8" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.8" }
-"3.6.9" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.9" }
-"3.6.10" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.10" }
-"3.6.11" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.11" }
+"2.10.0-rc3" = { created_at = 2020-07-23T22:50:03.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc3", prerelease = true }
+"2.9.4" = { created_at = 2020-07-24T21:17:56.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.4" }
+"2.10.0-rc4" = { created_at = 2020-07-28T22:56:56.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc4", prerelease = true }
+"2.10.0-rc5" = { created_at = 2020-08-03T22:43:36.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc5", prerelease = true }
+"2.9.5" = { created_at = 2020-08-06T22:08:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.9.5" }
+"2.10.0-rc6" = { created_at = 2020-08-06T22:07:33.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc6", prerelease = true }
+"2.10.0-rc7" = { created_at = 2020-08-14T00:41:46.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0-rc7", prerelease = true }
+"2.10.0" = { created_at = 2020-08-18T23:05:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.0" }
+"2.11.0-rc1" = { created_at = 2020-09-01T19:59:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0-rc1", prerelease = true }
+"2.10.1" = { created_at = 2020-09-02T22:53:06.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.1" }
+"2.11.0-rc2" = { created_at = 2020-09-09T17:30:32.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0-rc2", prerelease = true }
+"2.10.2" = { created_at = 2020-09-14T17:29:23.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.10.2" }
+"2.11.0-rc3" = { created_at = 2020-09-14T18:01:36.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0-rc3", prerelease = true }
+"2.11.0" = { created_at = 2020-09-17T20:59:57.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.0" }
+"2.11.1" = { created_at = 2020-09-29T17:25:22.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.1" }
+"2.11.2" = { created_at = 2020-10-05T22:58:10.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.2" }
+"2.11.3" = { created_at = 2020-10-07T22:49:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.3" }
+"2.11.4" = { created_at = 2020-10-14T22:01:46.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.4" }
+"2.11.5" = { created_at = 2020-10-15T22:26:31.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.5" }
+"2.11.6" = { created_at = 2020-10-19T20:39:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.6" }
+"2.11.7" = { created_at = 2020-11-02T20:58:42.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.7" }
+"2.12.0-rc1" = { created_at = 2020-11-06T18:53:48.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc1", prerelease = true }
+"2.12.0-rc2" = { created_at = 2020-11-12T15:18:58.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc2", prerelease = true }
+"2.11.8" = { created_at = 2020-11-21T02:28:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.11.8" }
+"2.12.0-rc3" = { created_at = 2020-11-23T12:20:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc3", prerelease = true }
+"2.12.0-rc4" = { created_at = 2020-12-03T00:39:21.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc4", prerelease = true }
+"2.12.0-rc5" = { created_at = 2020-12-10T13:15:05.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc5", prerelease = true }
+"2.12.0-rc6" = { created_at = 2020-12-15T17:38:20.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0-rc6", prerelease = true }
+"2.12.0" = { created_at = 2020-12-17T18:42:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.0" }
+"2.12.1" = { created_at = 2020-12-18T00:30:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.1" }
+"2.12.2" = { created_at = 2020-12-18T17:59:42.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.2" }
+"2.12.3" = { created_at = 2021-01-04T23:46:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.3" }
+"2.12.4" = { created_at = 2021-01-12T20:35:04.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.4" }
+"2.12.5" = { created_at = 2021-01-19T22:19:32.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.5" }
+"2.12.6" = { created_at = 2021-01-25T19:34:18.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.6" }
+"2.12.7" = { created_at = 2021-02-01T21:45:27.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.7" }
+"2.12.8" = { created_at = 2021-02-08T23:18:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.8" }
+"3.0.0-rc1" = { created_at = 2021-02-08T21:58:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc1", prerelease = true }
+"2.12.9" = { created_at = 2021-02-16T22:24:38.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.9" }
+"3.0.0-rc2" = { created_at = 2021-02-16T16:44:58.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc2", prerelease = true }
+"3.0.0-rc3" = { created_at = 2021-02-23T20:36:30.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc3", prerelease = true }
+"3.0.0-rc4" = { created_at = 2021-03-02T21:21:23.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc4", prerelease = true }
+"2.12.10" = { created_at = 2021-03-08T20:38:55.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.10" }
+"3.0.0-rc5" = { created_at = 2021-03-08T19:06:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc5", prerelease = true }
+"3.0.0-rc6" = { created_at = 2021-03-10T00:47:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc6", prerelease = true }
+"3.0.0-rc7" = { created_at = 2021-03-16T21:29:36.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc7", prerelease = true }
+"3.0.0-rc8" = { created_at = 2021-03-17T15:47:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc8", prerelease = true }
+"3.0.0-rc9" = { created_at = 2021-03-23T18:17:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0-rc9", prerelease = true }
+"3.0.0" = { created_at = 2021-03-30T04:06:43.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.0" }
+"3.0.1" = { created_at = 2021-04-01T18:56:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.1" }
+"2.12.11" = { created_at = 2021-04-05T20:53:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.11" }
+"3.0.2" = { created_at = 2021-04-20T14:15:13.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.2" }
+"3.0.3" = { created_at = 2021-05-11T21:04:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.3" }
+"3.1.0-rc1" = { created_at = 2021-05-12T18:58:49.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc1", prerelease = true }
+"3.1.0-rc2" = { created_at = 2021-05-12T23:12:43.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc2", prerelease = true }
+"3.1.0-rc3" = { created_at = 2021-05-13T20:44:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc3", prerelease = true }
+"3.0.4" = { created_at = 2021-05-14T04:40:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.4" }
+"3.1.0-rc4" = { created_at = 2021-05-14T20:01:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc4", prerelease = true }
+"3.1.0-rc5" = { created_at = 2021-05-17T21:20:05.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc5", prerelease = true }
+"0.0.0-dev-dataflow-4" = { created_at = 2021-05-18T22:35:54.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-4", prerelease = true }
+"0.0.0-dev-dataflow-5" = { created_at = 2021-05-19T21:46:00.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-5", prerelease = true }
+"0.0.0-dev-dataflow-6" = { created_at = 2021-05-20T22:24:23.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-6", prerelease = true }
+"0.0.0-dev-dataflow-7" = { created_at = 2021-05-21T01:54:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-7", prerelease = true }
+"0.0.0-dev-dataflow-8" = { created_at = 2021-05-21T05:30:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-8", prerelease = true }
+"0.0.0-dev-dataflow-9" = { created_at = 2021-05-21T19:42:31.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-9", prerelease = true }
+"3.1.0-rc6" = { created_at = 2021-05-21T15:47:01.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc6", prerelease = true }
+"3.0.5" = { created_at = 2021-05-24T19:11:48.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.5", prerelease = true }
+"3.0.6" = { created_at = 2021-05-24T21:52:15.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.6" }
+"3.1.0-rc7" = { created_at = 2021-05-24T18:52:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc7", prerelease = true }
+"0.0.0-dev-dataflow-10" = { created_at = 2021-05-25T02:20:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-10", prerelease = true }
+"3.0.7" = { created_at = 2021-05-25T18:55:41.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.7" }
+"3.1.0-rc8" = { created_at = 2021-05-25T01:51:15.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc8", prerelease = true }
+"0.0.0-dev-dataflow-11" = { created_at = 2021-05-27T00:38:45.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-11", prerelease = true }
+"3.1.0-rc10" = { created_at = 2021-05-27T22:36:51.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc10", prerelease = true }
+"0.0.0-dev-dataflow-13" = { created_at = 2021-06-01T17:18:28.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-13", prerelease = true }
+"0.0.0-dev-dataflow-14" = { created_at = 2021-06-01T19:37:57.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-14", prerelease = true }
+"0.0.0-dev-dataflow-15" = { created_at = 2021-06-01T20:27:46.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-15", prerelease = true }
+"3.1.0-rc11" = { created_at = 2021-06-01T17:25:30.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc11", prerelease = true }
+"3.1.0-rc12" = { created_at = 2021-06-03T00:49:22.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc12", prerelease = true }
+"0.0.0-dev-dataflow-16" = { created_at = 2021-06-04T00:01:31.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-16", prerelease = true }
+"0.0.0-dev-dataflow-17" = { created_at = 2021-06-04T00:17:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-17", prerelease = true }
+"0.0.0-dev-dataflow-18" = { created_at = 2021-06-04T23:24:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-18", prerelease = true }
+"0.0.0-dev-docker-0" = { created_at = 2021-06-05T22:16:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-docker-0", prerelease = true }
+"0.0.0-dev-dataflow-19" = { created_at = 2021-06-06T19:09:11.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-19", prerelease = true }
+"0.0.0-dev-dataflow-20" = { created_at = 2021-06-08T01:03:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-20", prerelease = true }
+"0.0.0-dev-dataflow-22" = { created_at = 2021-06-08T23:19:54.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-22", prerelease = true }
+"3.1.0-rc13" = { created_at = 2021-06-08T15:37:12.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc13", prerelease = true }
+"0.0.0-dev-dataflow-23" = { created_at = 2021-06-10T01:09:34.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-23", prerelease = true }
+"0.0.0-dev-dataflow-24" = { created_at = 2021-06-10T16:23:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-24", prerelease = true }
+"3.1.0-rc14" = { created_at = 2021-06-10T17:56:39.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0-rc14", prerelease = true }
+"0.0.0-dev-dataflow-25" = { created_at = 2021-06-15T22:44:06.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-25", prerelease = true }
+"0.0.0-dev-dataflow-26" = { created_at = 2021-06-15T22:54:09.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-26", prerelease = true }
+"0.0.0-dev-dataflow-27" = { created_at = 2021-06-21T21:46:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-27", prerelease = true }
+"3.0.8" = { created_at = 2021-06-21T23:03:01.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.8" }
+"3.1.0" = { created_at = 2021-06-21T22:18:25.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.0" }
+"0.0.0-dev-dataflow-28" = { created_at = 2021-06-25T02:38:13.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-28", prerelease = true }
+"0.0.0-dev-dataflow-29" = { created_at = 2021-06-28T17:01:39.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-29", prerelease = true }
+"3.1.1" = { created_at = 2021-06-28T19:56:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.1" }
+"0.0.0-dev-dataflow-30" = { created_at = 2021-07-12T17:19:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-30", prerelease = true }
+"0.0.0-dev-dataflow-31" = { created_at = 2021-07-14T15:37:41.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-31", prerelease = true }
+"3.1.2" = { created_at = 2021-07-15T17:59:13.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.2" }
+"0.0.0-dev-dataflow-33" = { created_at = 2021-07-16T21:55:33.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-33", prerelease = true }
+"0.0.0-dev-dataflow-34" = { created_at = 2021-07-20T16:28:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-34", prerelease = true }
+"0.0.0-dev-dataflow-36" = { created_at = 2021-07-21T23:57:26.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-36", prerelease = true }
+"0.0.0-dev-dataflow-37" = { created_at = 2021-07-23T22:06:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-37", prerelease = true }
+"3.1.3" = { created_at = 2021-07-27T22:59:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.3" }
+"0.0.0-dev-dataflow-39" = { created_at = 2021-07-30T19:33:28.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-39", prerelease = true }
+"3.1.4" = { created_at = 2021-08-03T23:40:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.4" }
+"0.0.0-dev-dataflow-40" = { created_at = 2021-08-04T00:31:43.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-40", prerelease = true }
+"3.1.5" = { created_at = 2021-08-04T04:57:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.5" }
+"0.0.0-dev-dataflow-41" = { created_at = 2021-08-11T03:34:45.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-dataflow-41", prerelease = true }
+"3.1.6" = { created_at = 2021-08-12T23:25:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.6" }
+"2.12.12" = { created_at = 2021-08-18T17:38:09.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.12" }
+"2.12.13" = { created_at = 2021-08-18T23:22:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v2.12.13" }
+"3.0.9" = { created_at = 2021-08-18T16:47:20.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.9" }
+"3.0.10" = { created_at = 2021-08-18T23:40:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.0.10" }
+"3.1.7" = { created_at = 2021-08-18T15:55:12.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.7" }
+"3.1.8" = { created_at = 2021-08-18T23:04:36.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.8" }
+"3.2.0-rc1" = { created_at = 2021-08-19T20:39:05.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc1", prerelease = true }
+"0.0.0-dev-mc-0" = { created_at = 2021-08-28T00:55:26.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-0", prerelease = true }
+"0.0.0-dev-mc-1" = { created_at = 2021-08-29T23:16:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-1", prerelease = true }
+"0.0.0-dev-mc-2" = { created_at = 2021-08-30T16:15:42.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-2", prerelease = true }
+"0.0.0-dev-mc-3" = { created_at = 2021-08-30T16:19:18.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-3", prerelease = true }
+"0.0.0-dev-mc-4" = { created_at = 2021-08-31T16:33:10.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-mc-4", prerelease = true }
+"3.2.0-rc2" = { created_at = 2021-09-01T15:56:03.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc2", prerelease = true }
+"3.1.9" = { created_at = 2021-09-03T21:06:28.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.9" }
+"3.1.10" = { created_at = 2021-09-10T16:20:46.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.10" }
+"3.1.11" = { created_at = 2021-09-14T06:23:10.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.11" }
+"3.2.0-rc3" = { created_at = 2021-09-14T15:08:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc3", prerelease = true }
+"3.1.12" = { created_at = 2021-09-16T12:18:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.12" }
+"3.2.0-rc4" = { created_at = 2021-09-21T16:52:41.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc4", prerelease = true }
+"3.1.13" = { created_at = 2021-09-28T18:19:45.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.13" }
+"3.2.0-rc5" = { created_at = 2021-09-29T16:16:29.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc5", prerelease = true }
+"3.2.0-rc6" = { created_at = 2021-10-06T00:52:34.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0-rc6", prerelease = true }
+"3.2.0" = { created_at = 2021-10-06T00:52:34.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.0" }
+"3.2.1" = { created_at = 2021-10-19T20:20:11.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.1" }
+"3.1.14" = { created_at = 2021-10-20T00:00:21.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.14" }
+"3.2.2" = { created_at = 2021-10-21T15:48:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.2" }
+"3.2.3" = { created_at = 2021-10-26T23:41:32.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.3" }
+"0.0.0-dev-kc-0" = { created_at = 2021-11-09T01:26:15.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-0", prerelease = true }
+"0.0.0-dev-kc-1" = { created_at = 2021-11-09T20:14:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-1", prerelease = true }
+"0.0.0-dev-kc-2" = { created_at = 2021-11-15T20:32:22.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-2", prerelease = true }
+"0.0.0-dev-kc-3" = { created_at = 2021-11-15T20:32:22.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-3", prerelease = true }
+"0.0.0-dev-kc-4" = { created_at = 2021-11-15T20:32:22.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-4", prerelease = true }
+"0.0.0-dev-kc-5" = { created_at = 2021-11-16T18:38:04.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-5", prerelease = true }
+"0.0.0-dev-kc-6" = { created_at = 2021-11-17T23:02:56.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-6", prerelease = true }
+"3.1.15" = { created_at = 2021-11-17T17:19:07.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.1.15" }
+"3.2.4" = { created_at = 2021-11-17T21:47:31.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.4" }
+"0.0.0-dev-kc-7" = { created_at = 2021-11-18T23:58:29.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-kc-7", prerelease = true }
+"3.2.5" = { created_at = 2021-12-15T21:37:21.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.5" }
+"3.2.6" = { created_at = 2021-12-17T18:13:23.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.6" }
+"3.2.7" = { created_at = 2022-01-28T00:29:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.7" }
+"3.3.0-rc1" = { created_at = 2022-01-28T21:02:43.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc1", prerelease = true }
+"3.3.0-rc2" = { created_at = 2022-01-29T23:59:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc2", prerelease = true }
+"0.0.0-dev-bom-1" = { created_at = 2022-02-02T20:01:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v0.0.0-dev-bom-1", prerelease = true }
+"3.3.0-rc3" = { created_at = 2022-02-03T17:55:40.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc3", prerelease = true }
+"3.2.8" = { created_at = 2022-02-04T18:22:57.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.8" }
+"3.3.0-rc4" = { created_at = 2022-02-08T16:50:49.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc4", prerelease = true }
+"3.3.0-rc5" = { created_at = 2022-02-21T17:09:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc5", prerelease = true }
+"3.3.0-rc6" = { created_at = 2022-02-21T17:09:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc6", prerelease = true }
+"3.3.0-rc7" = { created_at = 2022-02-25T12:48:01.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc7", prerelease = true }
+"3.3.0-rc8" = { created_at = 2022-03-01T00:10:27.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc8", prerelease = true }
+"3.2.9" = { created_at = 2022-03-02T20:25:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.9" }
+"3.3.0-rc9" = { created_at = 2022-03-04T19:48:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc9", prerelease = true }
+"3.3.0-rc10" = { created_at = 2022-03-07T15:52:14.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0-rc10", prerelease = true }
+"3.3.0" = { created_at = 2022-03-14T19:19:20.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.0" }
+"3.3.1" = { created_at = 2022-03-18T16:31:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.1" }
+"3.3.2" = { created_at = 2022-04-20T21:10:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.2" }
+"3.3.3" = { created_at = 2022-04-25T15:59:36.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.3" }
+"3.3.4" = { created_at = 2022-04-29T18:30:23.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.4" }
+"3.2.11" = { created_at = 2022-05-03T21:35:28.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.2.11" }
+"3.3.5" = { created_at = 2022-05-03T22:51:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.5" }
+"3.3.6" = { created_at = 2022-05-25T23:11:49.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.6" }
+"3.3.7" = { created_at = 2022-06-20T22:01:48.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.7" }
+"3.3.8" = { created_at = 2022-06-23T21:13:51.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.8" }
+"3.3.9" = { created_at = 2022-08-09T22:06:03.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.9" }
+"3.4.0-rc1" = { created_at = 2022-08-09T19:19:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc1", prerelease = true }
+"3.4.0-rc2" = { created_at = 2022-08-18T20:21:13.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc2", prerelease = true }
+"3.4.0-rc3" = { created_at = 2022-08-31T23:32:39.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc3", prerelease = true }
+"3.4.0-rc4" = { created_at = 2022-09-10T09:41:10.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0-rc4", prerelease = true }
+"3.4.0" = { created_at = 2022-09-19T03:39:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.0" }
+"3.4.1" = { created_at = 2022-10-01T05:40:20.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.1" }
+"3.4.2" = { created_at = 2022-10-23T02:43:45.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.2" }
+"3.4.3" = { created_at = 2022-10-31T04:52:11.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.3" }
+"3.3.10" = { created_at = 2022-11-29T16:50:33.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.3.10" }
+"3.4.4" = { created_at = 2022-11-29T06:57:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.4" }
+"3.4.5" = { created_at = 2023-02-07T06:01:21.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.5" }
+"3.4.6" = { created_at = 2023-03-30T14:00:42.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.6" }
+"3.4.7" = { created_at = 2023-04-11T12:42:48.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.7" }
+"3.4.8" = { created_at = 2023-05-25T19:09:06.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.8" }
+"3.4.9" = { created_at = 2023-07-20T13:07:03.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.9" }
+"3.4.10" = { created_at = 2023-08-15T15:56:13.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.10" }
+"3.5.0-rc1" = { created_at = 2023-08-15T09:39:35.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.0-rc1", prerelease = true }
+"3.4.11" = { created_at = 2023-09-06T11:34:58.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.11" }
+"3.5.0-rc2" = { created_at = 2023-09-20T14:12:04.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.0-rc2", prerelease = true }
+"3.5.0" = { created_at = 2023-10-13T11:48:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.0" }
+"3.4.12" = { created_at = 2023-10-20T02:08:48.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.12" }
+"3.4.13" = { created_at = 2023-11-03T17:36:35.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.13" }
+"3.5.1" = { created_at = 2023-11-03T17:38:42.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.1" }
+"3.4.14" = { created_at = 2023-11-27T17:17:45.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.14" }
+"3.5.2" = { created_at = 2023-11-27T17:58:29.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.2" }
+"3.5.3" = { created_at = 2024-01-11T02:00:55.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.3" }
+"3.4.15" = { created_at = 2024-01-13T22:30:14.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.15" }
+"3.4.16" = { created_at = 2024-01-14T05:00:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.16" }
+"3.5.4" = { created_at = 2024-01-14T04:47:46.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.4" }
+"3.5.5" = { created_at = 2024-02-29T08:24:40.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.5" }
+"3.5.6" = { created_at = 2024-04-19T20:50:44.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.6" }
+"3.4.17" = { created_at = 2024-05-13T01:16:55.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.17" }
+"3.5.7" = { created_at = 2024-05-27T05:37:00.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.7" }
+"3.5.8" = { created_at = 2024-06-17T16:03:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.8" }
+"3.5.9" = { created_at = 2024-07-30T05:26:53.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.9" }
+"3.5.10" = { created_at = 2024-08-01T05:07:37.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.10" }
+"3.6.0-rc1" = { created_at = 2024-09-18T09:40:17.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc1", prerelease = true }
+"3.5.11" = { created_at = 2024-09-20T09:28:49.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.11" }
+"3.6.0-rc2" = { created_at = 2024-10-02T02:45:37.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc2", prerelease = true }
+"3.4.18" = { created_at = 2024-10-07T18:14:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.4.18" }
+"3.6.0-rc3" = { created_at = 2024-10-24T08:58:14.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc3", prerelease = true }
+"3.5.12" = { created_at = 2024-10-30T10:24:59.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.12" }
+"3.6.0-rc4" = { created_at = 2024-10-31T10:29:30.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0-rc4", prerelease = true }
+"3.6.0" = { created_at = 2024-10-31T10:29:30.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.0" }
+"3.5.13" = { created_at = 2024-12-02T13:05:57.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.13" }
+"3.6.2" = { created_at = 2024-12-02T13:05:58.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.2" }
+"3.5.14" = { created_at = 2025-01-31T07:53:14.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.14" }
+"3.6.3" = { created_at = 2025-02-07T14:20:55.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.3" }
+"3.6.4" = { created_at = 2025-02-10T11:15:29.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.4" }
+"3.6.5" = { created_at = 2025-03-11T08:45:56.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.5" }
+"3.6.6" = { created_at = 2025-04-28T15:09:39.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.6" }
+"3.6.7" = { created_at = 2025-04-29T13:39:25.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.7" }
+"3.6.8" = { created_at = 2025-05-28T13:03:00.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.8" }
+"3.6.9" = { created_at = 2025-06-03T12:17:37.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.9" }
+"3.6.10" = { created_at = 2025-06-04T10:47:04.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.10" }
+"3.7.0-rc1" = { created_at = 2025-06-04T08:21:32.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc1", prerelease = true }
+"3.5.15" = { created_at = 2025-06-13T07:54:53.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.5.15" }
+"3.7.0-rc2" = { created_at = 2025-06-23T04:22:42.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc2", prerelease = true }
+"3.7.0-rc3" = { created_at = 2025-06-25T00:37:21.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc3", prerelease = true }
+"3.7.0-rc4" = { created_at = 2025-07-15T05:57:35.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc4", prerelease = true }
+"3.7.0" = { created_at = 2025-07-15T05:57:35.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0" }
+"3.7.1" = { created_at = 2025-08-12T04:24:41.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.1" }
+"3.6.11" = { created_at = 2025-09-11T10:54:47.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.11" }
+"3.7.2" = { created_at = 2025-09-11T14:52:12.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.2" }
 "3.6.12" = { created_at = 2025-10-14T10:31:03.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.12" }
-"3.6.13" = { created_at = 2025-11-13T14:18:27.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.13" }
-"3.6.14" = { created_at = 2025-12-08T11:23:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.14" }
-"3.6.15" = { created_at = 2025-12-09T13:25:18.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.15" }
-"3.6.16" = { created_at = 2026-01-08T08:22:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.16" }
-"3.6.17" = { created_at = 2026-01-21T10:17:58.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.17" }
-"3.6.18" = { created_at = 2026-01-28T13:58:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.18" }
-"3.6.19" = { created_at = 2026-02-16T14:17:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.19" }
-"3.7.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc1" }
-"3.7.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc2" }
-"3.7.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc3" }
-"3.7.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0-rc4" }
-"3.7.0" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.0" }
-"3.7.1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.1" }
-"3.7.2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.2" }
 "3.7.3" = { created_at = 2025-10-14T10:31:03.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.3" }
+"3.6.13" = { created_at = 2025-11-13T14:18:27.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.13" }
 "3.7.4" = { created_at = 2025-11-13T13:23:57.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.4" }
+"3.6.14" = { created_at = 2025-12-08T11:23:50.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.14" }
 "3.7.5" = { created_at = 2025-12-08T11:23:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.5" }
+"3.6.15" = { created_at = 2025-12-09T13:25:18.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.15" }
 "3.7.6" = { created_at = 2025-12-09T13:25:23.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.6" }
+"4.0.0-rc1" = { created_at = 2025-12-11T11:16:54.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc1", prerelease = true }
+"4.0.0-rc2" = { created_at = 2025-12-22T09:03:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc2", prerelease = true }
+"3.6.16" = { created_at = 2026-01-08T08:22:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.16" }
 "3.7.7" = { created_at = 2026-01-08T08:37:49.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.7" }
+"4.0.0-rc3" = { created_at = 2026-01-08T08:21:14.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc3", prerelease = true }
+"3.6.17" = { created_at = 2026-01-21T10:17:58.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.17" }
 "3.7.8" = { created_at = 2026-01-21T09:39:48.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.8" }
+"4.0.0-rc4" = { created_at = 2026-01-21T08:59:08.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc4", prerelease = true }
+"3.6.18" = { created_at = 2026-01-28T13:58:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.18" }
 "3.7.9" = { created_at = 2026-01-28T13:58:16.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.9" }
-"3.7.10" = { created_at = 2026-02-16T10:54:53.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.10" }
-"3.7.11" = { created_at = 2026-03-11T10:53:41.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.11" }
-"3.7.12" = { created_at = 2026-03-18T16:34:38.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.12" }
-"3.7.13" = { created_at = 2026-04-02T13:36:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.13" }
-"3.7.14" = { created_at = 2026-04-23T08:50:37.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.14" }
-"4.0.0-rc1" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc1" }
-"4.0.0-rc2" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc2" }
-"4.0.0-rc3" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc3" }
-"4.0.0-rc4" = { created_at = 2026-04-27T18:57:48.004Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0-rc4" }
 "4.0.0" = { created_at = 2026-02-04T11:29:52.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.0" }
+"3.6.19" = { created_at = 2026-02-16T14:17:19.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.6.19" }
+"3.7.10" = { created_at = 2026-02-16T10:54:53.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.10" }
 "4.0.1" = { created_at = 2026-02-16T14:19:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.1" }
+"3.7.11" = { created_at = 2026-03-11T10:53:41.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.11" }
 "4.0.2" = { created_at = 2026-03-11T10:08:26.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.2" }
+"3.7.12" = { created_at = 2026-03-18T16:34:38.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.12" }
 "4.0.3" = { created_at = 2026-03-18T16:30:10.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.3" }
+"3.7.13" = { created_at = 2026-04-02T13:36:24.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.13" }
 "4.0.4" = { created_at = 2026-04-02T12:21:43.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.4" }
+"3.7.14" = { created_at = 2026-04-23T08:50:37.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v3.7.14" }
 "4.0.5" = { created_at = 2026-04-23T08:52:02.000Z, release_url = "https://github.com/argoproj/argo-workflows/releases/tag/v4.0.5" }

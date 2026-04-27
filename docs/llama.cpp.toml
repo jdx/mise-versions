@@ -1,31 +1,121 @@
 [versions]
-"8912" = { created_at = 2026-04-27T18:34:33.721Z }
-"8913" = { created_at = 2026-04-27T18:34:33.721Z }
-"8914" = { created_at = 2026-04-27T18:34:33.721Z }
-"8916" = { created_at = 2026-04-27T18:34:33.721Z }
-"8917" = { created_at = 2026-04-27T18:34:33.721Z }
-"8918" = { created_at = 2026-04-27T18:34:33.721Z }
-"8919" = { created_at = 2026-04-27T18:34:33.721Z }
-"8920" = { created_at = 2026-04-27T18:34:33.721Z }
-"8922" = { created_at = 2026-04-27T18:34:33.721Z }
-"8924" = { created_at = 2026-04-27T18:34:33.721Z }
-"8925" = { created_at = 2026-04-27T18:34:33.721Z }
-"8926" = { created_at = 2026-04-27T18:34:33.721Z }
-"8927" = { created_at = 2026-04-27T18:34:33.721Z }
-"8929" = { created_at = 2026-04-27T18:34:33.721Z }
-"8931" = { created_at = 2026-04-27T18:34:33.721Z }
-"8933" = { created_at = 2026-04-27T18:34:33.721Z }
-"8934" = { created_at = 2026-04-27T18:34:33.721Z }
-"8935" = { created_at = 2026-04-27T18:34:33.721Z }
-"8936" = { created_at = 2026-04-27T18:34:33.721Z }
-"8937" = { created_at = 2026-04-27T18:34:33.721Z }
-"8940" = { created_at = 2026-04-27T18:34:33.721Z }
-"8941" = { created_at = 2026-04-27T18:34:33.721Z }
-"8943" = { created_at = 2026-04-27T18:34:33.721Z }
-"8944" = { created_at = 2026-04-27T18:34:33.721Z }
-"8946" = { created_at = 2026-04-27T18:34:33.721Z }
-"8947" = { created_at = 2026-04-27T18:34:33.721Z }
-"8948" = { created_at = 2026-04-27T18:34:33.721Z }
-"8949" = { created_at = 2026-04-27T18:34:33.721Z }
-"8950" = { created_at = 2026-04-27T18:34:33.721Z }
-"8951" = { created_at = 2026-04-27T18:34:33.721Z }
+"8792" = { created_at = 2026-04-14T12:58:09.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8792" }
+"8793" = { created_at = 2026-04-14T13:17:45.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8793" }
+"8794" = { created_at = 2026-04-14T14:07:41.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8794" }
+"8795" = { created_at = 2026-04-14T14:32:29.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8795" }
+"8796" = { created_at = 2026-04-14T14:32:58.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8796" }
+"8797" = { created_at = 2026-04-14T21:09:03.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8797" }
+"8798" = { created_at = 2026-04-15T07:24:57.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8798" }
+"8799" = { created_at = 2026-04-15T08:51:50.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8799" }
+"8802" = { created_at = 2026-04-15T13:44:02.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8802" }
+"8804" = { created_at = 2026-04-15T14:01:46.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8804" }
+"8806" = { created_at = 2026-04-15T16:38:38.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8806" }
+"8807" = { created_at = 2026-04-15T17:04:51.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8807" }
+"8808" = { created_at = 2026-04-15T21:52:22.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8808" }
+"8809" = { created_at = 2026-04-16T05:34:05.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8809" }
+"8811" = { created_at = 2026-04-16T08:12:19.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8811" }
+"8813" = { created_at = 2026-04-16T08:14:26.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8813" }
+"8814" = { created_at = 2026-04-16T08:15:15.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8814" }
+"8815" = { created_at = 2026-04-16T08:54:37.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8815" }
+"8816" = { created_at = 2026-04-16T09:21:28.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8816" }
+"8821" = { created_at = 2026-04-16T17:46:21.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8821" }
+"8822" = { created_at = 2026-04-16T19:08:33.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8822" }
+"8823" = { created_at = 2026-04-16T19:10:22.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8823" }
+"8824" = { created_at = 2026-04-16T20:48:34.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8824" }
+"8825" = { created_at = 2026-04-16T21:25:16.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8825" }
+"8826" = { created_at = 2026-04-16T22:12:31.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8826" }
+"8827" = { created_at = 2026-04-17T05:28:33.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8827" }
+"8828" = { created_at = 2026-04-17T08:07:11.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8828" }
+"8829" = { created_at = 2026-04-17T08:11:46.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8829" }
+"8830" = { created_at = 2026-04-17T08:48:33.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8830" }
+"8831" = { created_at = 2026-04-17T09:32:24.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8831" }
+"8832" = { created_at = 2026-04-17T15:24:21.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8832" }
+"8833" = { created_at = 2026-04-17T16:17:11.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8833" }
+"8836" = { created_at = 2026-04-18T07:37:30.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8836" }
+"8837" = { created_at = 2026-04-18T08:04:51.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8837" }
+"8838" = { created_at = 2026-04-18T09:19:40.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8838" }
+"8839" = { created_at = 2026-04-18T18:12:00.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8839" }
+"8840" = { created_at = 2026-04-18T22:27:17.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8840" }
+"8841" = { created_at = 2026-04-19T07:21:53.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8841" }
+"8842" = { created_at = 2026-04-19T07:24:06.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8842" }
+"8843" = { created_at = 2026-04-19T07:25:05.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8843" }
+"8846" = { created_at = 2026-04-19T09:48:35.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8846" }
+"8847" = { created_at = 2026-04-19T09:57:21.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8847" }
+"8848" = { created_at = 2026-04-19T10:59:44.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8848" }
+"8849" = { created_at = 2026-04-19T11:28:35.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8849" }
+"8850" = { created_at = 2026-04-19T16:26:59.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8850" }
+"8851" = { created_at = 2026-04-19T22:41:43.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8851" }
+"8852" = { created_at = 2026-04-20T05:30:24.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8852" }
+"8853" = { created_at = 2026-04-20T05:39:45.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8853" }
+"8854" = { created_at = 2026-04-20T05:42:37.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8854" }
+"8855" = { created_at = 2026-04-20T07:32:46.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8855" }
+"8857" = { created_at = 2026-04-20T14:37:17.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8857" }
+"8858" = { created_at = 2026-04-20T16:02:54.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8858" }
+"8859" = { created_at = 2026-04-20T16:09:39.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8859" }
+"8860" = { created_at = 2026-04-20T16:25:39.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8860" }
+"8861" = { created_at = 2026-04-20T17:41:19.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8861" }
+"8862" = { created_at = 2026-04-20T21:29:19.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8862" }
+"8863" = { created_at = 2026-04-20T21:30:38.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8863" }
+"8864" = { created_at = 2026-04-21T04:41:14.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8864" }
+"8868" = { created_at = 2026-04-21T08:04:46.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8868" }
+"8869" = { created_at = 2026-04-21T08:53:37.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8869" }
+"8870" = { created_at = 2026-04-21T09:01:56.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8870" }
+"8871" = { created_at = 2026-04-21T14:24:55.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8871" }
+"8872" = { created_at = 2026-04-21T14:45:48.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8872" }
+"8873" = { created_at = 2026-04-21T15:58:34.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8873" }
+"8874" = { created_at = 2026-04-21T16:52:02.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8874" }
+"8875" = { created_at = 2026-04-21T18:02:49.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8875" }
+"8876" = { created_at = 2026-04-21T18:29:07.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8876" }
+"8878" = { created_at = 2026-04-21T21:16:04.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8878" }
+"8880" = { created_at = 2026-04-21T23:05:21.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8880" }
+"8881" = { created_at = 2026-04-21T23:24:20.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8881" }
+"8882" = { created_at = 2026-04-22T03:18:57.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8882" }
+"8883" = { created_at = 2026-04-22T08:28:45.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8883" }
+"8884" = { created_at = 2026-04-22T08:40:19.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8884" }
+"8885" = { created_at = 2026-04-22T09:58:43.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8885" }
+"8886" = { created_at = 2026-04-22T10:10:50.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8886" }
+"8887" = { created_at = 2026-04-22T10:16:29.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8887" }
+"8888" = { created_at = 2026-04-22T12:32:56.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8888" }
+"8889" = { created_at = 2026-04-22T12:44:45.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8889" }
+"8890" = { created_at = 2026-04-22T16:10:56.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8890" }
+"8891" = { created_at = 2026-04-22T17:51:40.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8891" }
+"8892" = { created_at = 2026-04-22T17:52:01.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8892" }
+"8893" = { created_at = 2026-04-23T00:34:31.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8893" }
+"8901" = { created_at = 2026-04-23T05:22:49.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8901" }
+"8902" = { created_at = 2026-04-23T08:47:26.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8902" }
+"8905" = { created_at = 2026-04-23T13:38:58.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8905" }
+"8906" = { created_at = 2026-04-23T15:45:02.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8906" }
+"8907" = { created_at = 2026-04-23T15:45:56.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8907" }
+"8908" = { created_at = 2026-04-23T16:39:07.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8908" }
+"8909" = { created_at = 2026-04-23T18:32:46.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8909" }
+"8911" = { created_at = 2026-04-23T21:17:21.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8911" }
+"8912" = { created_at = 2026-04-23T22:53:23.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8912" }
+"8913" = { created_at = 2026-04-23T23:32:59.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8913" }
+"8914" = { created_at = 2026-04-24T01:39:13.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8914" }
+"8916" = { created_at = 2026-04-24T07:17:37.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8916" }
+"8917" = { created_at = 2026-04-24T08:01:46.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8917" }
+"8918" = { created_at = 2026-04-24T08:02:00.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8918" }
+"8919" = { created_at = 2026-04-24T10:36:02.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8919" }
+"8920" = { created_at = 2026-04-24T10:56:03.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8920" }
+"8922" = { created_at = 2026-04-24T17:39:09.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8922" }
+"8924" = { created_at = 2026-04-24T20:55:17.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8924" }
+"8925" = { created_at = 2026-04-24T21:19:55.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8925" }
+"8926" = { created_at = 2026-04-25T06:18:15.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8926" }
+"8927" = { created_at = 2026-04-25T06:20:14.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8927" }
+"8929" = { created_at = 2026-04-25T06:25:35.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8929" }
+"8931" = { created_at = 2026-04-25T12:15:03.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8931" }
+"8933" = { created_at = 2026-04-25T19:24:13.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8933" }
+"8934" = { created_at = 2026-04-26T00:58:26.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8934" }
+"8935" = { created_at = 2026-04-26T04:21:58.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8935" }
+"8936" = { created_at = 2026-04-26T06:27:50.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8936" }
+"8937" = { created_at = 2026-04-26T06:28:14.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8937" }
+"8940" = { created_at = 2026-04-26T11:34:40.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8940" }
+"8941" = { created_at = 2026-04-26T16:26:28.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8941" }
+"8943" = { created_at = 2026-04-27T05:06:39.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8943" }
+"8944" = { created_at = 2026-04-27T06:30:55.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8944" }
+"8946" = { created_at = 2026-04-27T07:58:48.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8946" }
+"8947" = { created_at = 2026-04-27T12:30:29.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8947" }
+"8948" = { created_at = 2026-04-27T12:31:13.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8948" }
+"8949" = { created_at = 2026-04-27T14:25:09.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8949" }
+"8950" = { created_at = 2026-04-27T14:36:59.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8950" }
+"8951" = { created_at = 2026-04-27T15:25:45.000Z, release_url = "https://github.com/ggml-org/llama.cpp/releases/tag/b8951" }

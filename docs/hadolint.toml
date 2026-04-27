@@ -3,7 +3,7 @@
 "1.2" = { created_at = 2016-08-18T19:39:32.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2" }
 "1.2.1" = { created_at = 2016-08-19T14:06:13.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.1" }
 "1.2.2" = { created_at = 2017-11-02T20:24:32.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.2" }
-"1.2.3-rc1" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.3-rc1" }
+"1.2.3-rc1" = { created_at = 2017-12-02T18:51:33.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.3-rc1", prerelease = true }
 "1.2.3" = { created_at = 2017-12-05T18:39:09.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.3" }
 "1.2.4" = { created_at = 2017-12-17T20:52:07.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.4" }
 "1.2.5" = { created_at = 2018-01-04T19:39:25.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.2.5" }
@@ -22,7 +22,6 @@
 "1.7.0" = { created_at = 2018-06-07T11:53:08.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.7.0" }
 "1.7.1" = { created_at = 2018-06-09T19:03:42.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.7.1" }
 "1.7.2" = { created_at = 2018-06-12T08:47:07.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.7.2" }
-"1.7.3" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.7.3" }
 "1.7.4" = { created_at = 2018-06-16T14:04:56.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.7.4" }
 "1.7.5" = { created_at = 2018-06-18T15:44:52.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.7.5" }
 "1.8.0" = { created_at = 2018-06-26T12:59:01.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.8.0" }
@@ -43,7 +42,6 @@
 "1.16.1" = { created_at = 2019-03-15T16:49:38.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.16.1" }
 "1.16.2" = { created_at = 2019-03-18T17:40:58.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.16.2" }
 "1.16.3" = { created_at = 2019-04-01T19:25:22.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.16.3" }
-"1.17.0" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.17.0" }
 "1.17.1" = { created_at = 2019-07-04T10:11:54.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.17.1" }
 "1.17.2" = { created_at = 2019-09-06T21:35:44.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.17.2" }
 "1.17.3" = { created_at = 2019-11-21T09:53:57.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v1.17.3" }
@@ -71,13 +69,6 @@
 "2.6.1" = { created_at = 2021-08-01T11:53:57.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.6.1" }
 "2.7.0" = { created_at = 2021-08-26T09:41:27.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.7.0" }
 "2.8.0" = { created_at = 2021-11-05T13:58:29.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.0" }
-"2.8.1-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.1-armtest" }
-"2.8.2-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.2-armtest" }
-"2.8.3-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.3-armtest" }
-"2.8.4-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.4-armtest" }
-"2.8.5-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.5-armtest" }
-"2.8.6-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.6-armtest" }
-"2.8.7-armtest" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.8.7-armtest" }
 "2.9.0" = { created_at = 2022-03-14T19:47:40.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.9.0" }
 "2.9.1" = { created_at = 2022-03-16T15:54:05.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.9.1" }
 "2.9.2" = { created_at = 2022-03-20T11:52:01.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.9.2" }
@@ -85,8 +76,6 @@
 "2.10.0" = { created_at = 2022-03-31T16:58:43.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.10.0" }
 "2.11.0" = { created_at = 2022-11-09T17:16:50.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.11.0" }
 "2.12.0" = { created_at = 2022-11-09T18:13:09.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.12.0" }
-"2.12.1-beta" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.12.1-beta" }
-"2.13.0-beta" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.13.0-beta" }
-"2.13.1-beta" = { created_at = 2026-04-27T18:32:56.855Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.13.1-beta" }
+"2.12.1-beta" = { created_at = 2022-11-14T14:03:04.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.12.1-beta", prerelease = true }
 "2.13.1" = { created_at = 2025-09-02T15:32:26.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.13.1" }
 "2.14.0" = { created_at = 2025-09-22T09:40:27.000Z, release_url = "https://github.com/hadolint/hadolint/releases/tag/v2.14.0" }

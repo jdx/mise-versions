@@ -1,20 +1,46 @@
 [versions]
+"0.1.0-alpha.0" = { created_at = 2023-01-23T14:27:35.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0-alpha.0", prerelease = true }
+"0.1.0-alpha.1" = { created_at = 2023-02-13T10:28:26.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0-alpha.1", prerelease = true }
+"0.1.0-alpha.2" = { created_at = 2023-02-22T13:25:46.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0-alpha.2", prerelease = true }
+"0.1.0-rc.0" = { created_at = 2023-03-01T09:20:54.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0-rc.0", prerelease = true }
+"0.1.0-rc.1" = { created_at = 2023-03-14T14:21:23.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0-rc.1", prerelease = true }
 "0.1.0-rc.2" = { created_at = 2023-03-20T13:38:42.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0-rc.2" }
 "0.1.0" = { created_at = 2023-03-28T06:41:32.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.1.0" }
+"0.2.0-alpha.0" = { created_at = 2023-04-13T14:02:22.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.2.0-alpha.0", prerelease = true }
+"0.2.0-alpha.1" = { created_at = 2023-05-02T13:15:07.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.2.0-alpha.1", prerelease = true }
+"0.2.0-alpha.2" = { created_at = 2023-05-05T10:57:46.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.2.0-alpha.2", prerelease = true }
 "0.2.0" = { created_at = 2023-05-17T09:06:41.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.2.0" }
 "0.2.1" = { created_at = 2023-05-18T12:54:00.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.2.1" }
 "0.3.0" = { created_at = 2023-05-29T08:55:55.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.3.0" }
 "0.4.0" = { created_at = 2023-06-06T09:58:18.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.4.0" }
+"0.5.0-alpha.0" = { created_at = 2023-06-14T14:47:22.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.0-alpha.0", prerelease = true }
+"0.5.0-alpha.1" = { created_at = 2023-06-19T19:36:11.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.0-alpha.1", prerelease = true }
+"0.5.0-alpha.2" = { created_at = 2023-06-22T11:42:13.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.0-alpha.2", prerelease = true }
 "0.4.1" = { created_at = 2023-06-28T10:41:29.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.4.1" }
+"0.5.0-alpha.3" = { created_at = 2023-06-28T10:35:42.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.0-alpha.3", prerelease = true }
+"0.5.0-alpha.4" = { created_at = 2023-06-29T08:10:43.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.0-alpha.4", prerelease = true }
 "0.5.0" = { created_at = 2023-07-03T09:18:43.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.0" }
 "0.5.1" = { created_at = 2023-07-05T09:31:32.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.1" }
 "0.5.2" = { created_at = 2023-07-11T10:13:43.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.5.2" }
+"0.6.0-alpha.0" = { created_at = 2023-07-17T11:18:34.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.0-alpha.0", prerelease = true }
+"0.6.0-alpha.1" = { created_at = 2023-07-21T08:19:23.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.0-alpha.1", prerelease = true }
+"0.6.0-alpha.2" = { created_at = 2023-07-25T13:52:03.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.0-alpha.2", prerelease = true }
+"0.6.0-alpha.4" = { created_at = 2023-08-03T08:44:12.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.0-alpha.4", prerelease = true }
 "0.6.0" = { created_at = 2023-08-07T07:38:35.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.0" }
 "0.6.1" = { created_at = 2023-08-11T12:31:09.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.1" }
 "0.6.2" = { created_at = 2023-08-15T15:07:53.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.6.2" }
 "0.7.0" = { created_at = 2023-08-23T13:25:28.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v0.7.0" }
+"2.3.0-rc0" = { created_at = 2023-09-27T13:07:40.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.3.0-rc0", prerelease = true }
+"2.3.0-rc1" = { created_at = 2023-10-09T11:08:14.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.3.0-rc1", prerelease = true }
 "2.3.0" = { created_at = 2023-10-23T09:51:54.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.3.0" }
 "2.3.1" = { created_at = 2023-10-31T11:47:42.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.3.1" }
+"2.4.0-rc0" = { created_at = 2023-11-07T20:28:27.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc0", prerelease = true }
+"2.4.0-rc1" = { created_at = 2023-11-09T14:55:02.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc1", prerelease = true }
+"2.4.0-rc2" = { created_at = 2023-11-13T13:28:21.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc2", prerelease = true }
+"2.4.0-rc3" = { created_at = 2023-11-20T16:36:35.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc3", prerelease = true }
+"2.4.0-rc4" = { created_at = 2023-11-24T10:06:58.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc4", prerelease = true }
+"2.4.0-rc5" = { created_at = 2023-11-26T10:44:51.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc5", prerelease = true }
+"2.4.0-rc6" = { created_at = 2023-11-27T08:08:04.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0-rc6", prerelease = true }
 "2.4.0" = { created_at = 2023-12-06T11:53:50.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.0" }
 "2.4.1" = { created_at = 2023-12-21T13:44:35.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.1" }
 "2.4.2" = { created_at = 2024-01-02T14:52:25.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.4.2" }
@@ -24,13 +50,20 @@
 "2.5.1" = { created_at = 2024-01-29T11:23:59.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.5.1" }
 "2.5.2" = { created_at = 2024-01-31T13:21:43.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.5.2" }
 "2.5.3" = { created_at = 2024-02-01T11:26:43.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.5.3" }
+"2.6.0-rc.0" = { created_at = 2024-02-07T11:29:15.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.0-rc.0", prerelease = true }
 "2.5.4" = { created_at = 2024-02-14T16:00:45.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.5.4" }
+"2.6.0-rc.1" = { created_at = 2024-02-14T16:14:40.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.0-rc.1", prerelease = true }
 "2.6.0" = { created_at = 2024-03-04T18:20:03.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.0" }
 "2.6.1" = { created_at = 2024-03-06T15:08:43.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.1" }
 "2.6.2" = { created_at = 2024-03-08T17:15:03.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.2" }
 "2.6.3" = { created_at = 2024-03-13T09:17:04.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.3" }
 "2.6.4" = { created_at = 2024-03-19T16:28:01.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.4" }
 "2.6.5" = { created_at = 2024-06-11T11:30:28.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.6.5" }
+"2.7.0-rc.0" = { created_at = 2024-06-26T10:53:48.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.0-rc.0", prerelease = true }
+"2.7.0-rc.1" = { created_at = 2024-07-08T15:24:40.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.0-rc.1", prerelease = true }
+"2.7.0-rc.2" = { created_at = 2024-07-12T10:08:10.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.0-rc.2", prerelease = true }
+"2.7.0-rc.3" = { created_at = 2024-07-16T15:15:39.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.0-rc.3", prerelease = true }
+"2.7.0-rc.4" = { created_at = 2024-07-19T15:02:22.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.0-rc.4", prerelease = true }
 "2.7.0" = { created_at = 2024-08-01T10:48:35.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.0" }
 "2.7.1" = { created_at = 2024-08-13T15:36:10.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.7.1" }
 "2.8.0" = { created_at = 2024-08-27T15:25:54.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.8.0" }
@@ -41,6 +74,8 @@
 "2.8.5" = { created_at = 2024-11-18T20:10:31.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.8.5" }
 "2.9.1" = { created_at = 2024-11-29T15:25:22.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.9.1" }
 "2.9.2" = { created_at = 2024-12-11T19:55:42.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.9.2" }
+"2.10.0-rc.0" = { created_at = 2025-01-08T12:49:27.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.10.0-rc.0", prerelease = true }
+"2.10.0-rc.1" = { created_at = 2025-01-17T19:14:26.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.10.0-rc.1", prerelease = true }
 "2.9.3" = { created_at = 2025-02-14T14:34:48.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.9.3" }
 "2.10.0" = { created_at = 2025-02-17T22:15:47.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.10.0" }
 "2.9.4" = { created_at = 2025-02-19T20:02:40.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.9.4" }
@@ -50,15 +85,32 @@
 "2.11.2" = { created_at = 2025-03-11T13:49:28.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.11.2" }
 "2.11.3" = { created_at = 2025-03-13T11:10:28.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.11.3" }
 "2.11.4" = { created_at = 2025-04-09T10:06:44.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.11.4" }
+"2.12.0-rc.0" = { created_at = 2025-06-06T20:35:39.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.0-rc.0", prerelease = true }
+"2.12.0-rc.1" = { created_at = 2025-07-10T21:46:14.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.0-rc.1", prerelease = true }
+"2.12.0-rc.2" = { created_at = 2025-07-22T19:36:54.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.0-rc.2", prerelease = true }
+"2.12.0-rc.3" = { created_at = 2025-07-29T17:45:31.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.0-rc.3", prerelease = true }
+"2.12.0-rc.4" = { created_at = 2025-07-30T15:42:39.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.0-rc.4", prerelease = true }
 "2.12.0" = { created_at = 2025-08-04T12:35:13.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.0" }
+"2.12.1-rc.0" = { created_at = 2025-08-14T15:51:54.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.1-rc.0", prerelease = true }
 "2.12.1" = { created_at = 2025-08-26T13:52:24.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.1" }
 "2.12.2" = { created_at = 2025-09-15T10:50:01.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.12.2" }
 "2.13.1" = { created_at = 2025-10-30T09:15:15.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.13.1" }
+"2.14.0-rc.0" = { created_at = 2025-11-20T16:56:50.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.14.0-rc.0", prerelease = true }
 "2.14.0" = { created_at = 2025-11-25T17:11:08.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.14.0" }
+"2.15.0-rc.0" = { created_at = 2025-12-16T21:57:54.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.15.0-rc.0", prerelease = true }
+"2.15.0-rc.1" = { created_at = 2025-12-18T14:31:42.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.15.0-rc.1", prerelease = true }
 "2.15.0" = { created_at = 2025-12-19T14:31:22.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.15.0" }
 "2.15.1" = { created_at = 2026-01-12T16:33:46.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.15.1" }
 "2.15.2" = { created_at = 2026-02-11T14:16:06.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.15.2" }
+"2.16.0-rc.0" = { created_at = 2026-02-13T11:36:37.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.16.0-rc.0", prerelease = true }
 "2.16.0" = { created_at = 2026-02-18T17:50:19.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.16.0" }
+"2.17.0-rc.0" = { created_at = 2026-02-18T23:25:10.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.17.0-rc.0", prerelease = true }
+"2.17.0-rc.1" = { created_at = 2026-02-19T14:09:45.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.17.0-rc.1", prerelease = true }
+"2.16.1-rc.0" = { created_at = 2026-03-09T18:01:46.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.16.1-rc.0", prerelease = true }
 "2.16.1" = { created_at = 2026-03-11T11:36:49.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.16.1" }
+"2.17.0-rc.2" = { created_at = 2026-03-17T15:12:46.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.17.0-rc.2", prerelease = true }
+"2.17.0-rc.4" = { created_at = 2026-03-25T09:49:08.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.17.0-rc.4", prerelease = true }
 "2.17.0" = { created_at = 2026-04-09T18:17:22.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.17.0" }
+"2.18.0-rc.0" = { created_at = 2026-04-16T16:36:34.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.18.0-rc.0", prerelease = true }
+"2.18.0-rc.1" = { created_at = 2026-04-17T16:56:44.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.18.0-rc.1", prerelease = true }
 "2.18.0" = { created_at = 2026-04-21T10:54:52.000Z, release_url = "https://github.com/software-mansion/scarb/releases/tag/v2.18.0" }

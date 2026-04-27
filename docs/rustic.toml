@@ -1,12 +1,6 @@
 [versions]
-"0.2.0-rc1" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0-rc1" }
-"0.2.0-rc2" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0-rc2" }
-"0.2.0-rc3" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0-rc3" }
-"0.2.0-rc4" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0-rc4" }
-"0.2.0-rc5" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0-rc5" }
+"0.2.0-rc1" = { created_at = 2022-06-04T19:46:39.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0-rc1", prerelease = true }
 "0.2.0" = { created_at = 2022-06-13T21:51:54.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.0" }
-"0.2.1-rc0" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.1-rc0" }
-"0.2.1-rc00" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.1-rc00" }
 "0.2.1" = { created_at = 2022-07-08T11:20:54.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.1" }
 "0.2.2" = { created_at = 2022-07-26T03:34:57.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.2" }
 "0.2.3" = { created_at = 2022-07-28T21:26:05.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.2.3" }
@@ -29,7 +23,7 @@
 "0.8.1" = { created_at = 2024-09-08T19:28:13.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.8.1" }
 "0.9.0" = { created_at = 2024-09-29T20:41:22.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.0" }
 "0.9.1" = { created_at = 2024-10-03T18:04:42.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.1" }
-"0.9.2" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.2" }
+"0.9.2" = { created_at = 2024-10-09T17:31:57.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.2", prerelease = true }
 "0.9.3" = { created_at = 2024-10-10T02:39:54.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.3" }
 "0.9.4" = { created_at = 2024-10-24T18:06:55.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.4" }
 "0.9.5" = { created_at = 2024-12-02T23:41:42.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.9.5" }
@@ -40,4 +34,3 @@
 "0.11.0" = { created_at = 2026-02-12T12:04:04.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.11.0" }
 "0.11.1" = { created_at = 2026-03-05T03:15:39.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.11.1" }
 "0.11.2" = { created_at = 2026-04-05T09:44:52.000Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v0.11.2" }
-"10.0.0-rc_corrected" = { created_at = 2026-04-27T18:36:37.942Z, release_url = "https://github.com/rustic-rs/rustic/releases/tag/v10.0.0-rc_corrected" }

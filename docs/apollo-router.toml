@@ -1,61 +1,241 @@
 [versions]
-"1.61.10" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.5.0-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.5.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"1.61.11-beta.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.0-preview.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.0-preview.2" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.0-preview.3" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.1-alpha.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.1-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.2-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.2-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.6.2" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.7.0-preview.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.7.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.7.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.0-preview.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.0-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"1.61.11-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"1.61.11" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"1.61.12-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"1.61.12" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.1-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.2-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.8.2" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.9.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.9.0-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.9.0-rc.3" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.9.0-rc.4" = { created_at = 2026-04-27T18:57:40.574Z }
+"1.38.0-rc.1" = { created_at = 2024-01-18T12:46:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.38.0-rc.1", prerelease = true }
+"1.38.0-rc.2" = { created_at = 2024-01-18T16:11:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.38.0-rc.2", prerelease = true }
+"1.38.0" = { created_at = 2024-01-19T20:07:49.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.38.0" }
+"1.39.0-rc.0" = { created_at = 2024-02-01T10:57:58.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.39.0-rc.0", prerelease = true }
+"1.39.0" = { created_at = 2024-02-05T15:51:49.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.39.0" }
+"1.39.1-rc.0" = { created_at = 2024-02-07T15:20:09.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.39.1-rc.0", prerelease = true }
+"1.39.1-rc.1" = { created_at = 2024-02-07T15:56:12.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.39.1-rc.1", prerelease = true }
+"1.39.1-rc.2" = { created_at = 2024-02-08T10:49:01.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.39.1-rc.2", prerelease = true }
+"1.39.1" = { created_at = 2024-02-13T12:29:55.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.39.1" }
+"1.40.0-rc.0" = { created_at = 2024-02-13T16:12:05.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.0-rc.0", prerelease = true }
+"1.40.0-rc.1" = { created_at = 2024-02-13T20:05:06.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.0-rc.1", prerelease = true }
+"1.40.0" = { created_at = 2024-02-14T15:21:48.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.0" }
+"1.40.1-rc.0" = { created_at = 2024-02-15T10:18:31.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.1-rc.0", prerelease = true }
+"1.40.1-rc.1" = { created_at = 2024-02-16T09:02:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.1-rc.1", prerelease = true }
+"1.40.1" = { created_at = 2024-02-20T08:20:26.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.1" }
+"1.41.0-rc.0" = { created_at = 2024-02-21T21:26:29.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.0-rc.0", prerelease = true }
+"1.41.0-rc.1" = { created_at = 2024-02-22T16:23:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.0-rc.1", prerelease = true }
+"1.41.0-rc.2" = { created_at = 2024-02-23T15:25:20.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.0-rc.2", prerelease = true }
+"1.40.2-rc.0" = { created_at = 2024-03-06T10:52:58.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.2-rc.0", prerelease = true }
+"1.40.2" = { created_at = 2024-03-06T13:09:58.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.40.2" }
+"1.41.0-rc.3" = { created_at = 2024-03-06T19:42:37.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.0-rc.3", prerelease = true }
+"1.41.0-rc.4" = { created_at = 2024-03-07T12:57:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.0-rc.4", prerelease = true }
+"1.42.0-rc.0" = { created_at = 2024-03-07T18:44:33.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.42.0-rc.0", prerelease = true }
+"1.41.0" = { created_at = 2024-03-08T11:42:51.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.0", prerelease = true }
+"1.41.1" = { created_at = 2024-03-08T13:50:58.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.41.1" }
+"1.42.0-rc.1" = { created_at = 2024-03-08T11:58:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.42.0-rc.1", prerelease = true }
+"1.42.0" = { created_at = 2024-03-13T13:06:35.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.42.0" }
+"1.43.0-rc.0" = { created_at = 2024-03-19T11:55:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.0-rc.0", prerelease = true }
+"1.43.0-rc.1" = { created_at = 2024-03-20T23:44:01.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.0-rc.1", prerelease = true }
+"1.43.0" = { created_at = 2024-03-22T11:25:41.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.0" }
+"1.20.1-alpha.0" = { created_at = 2024-03-25T23:19:05.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.20.1-alpha.0", prerelease = true }
+"1.43.1-rc.0" = { created_at = 2024-03-27T10:35:03.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.1-rc.0", prerelease = true }
+"1.43.1-rc.1" = { created_at = 2024-03-27T15:59:08.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.1-rc.1", prerelease = true }
+"1.43.1-rc.3" = { created_at = 2024-03-29T12:36:59.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.1-rc.3", prerelease = true }
+"1.43.1" = { created_at = 2024-04-01T14:44:37.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.1" }
+"1.43.2-rc.0" = { created_at = 2024-04-03T19:07:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.2-rc.0", prerelease = true }
+"1.43.2" = { created_at = 2024-04-04T10:32:28.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.2" }
+"1.43.3-alpha.0" = { created_at = 2024-04-05T16:51:10.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.43.3-alpha.0", prerelease = true }
+"1.44.0-alpha.0" = { created_at = 2024-04-09T15:55:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.44.0-alpha.0", prerelease = true }
+"1.44.0-rc.0" = { created_at = 2024-04-10T09:40:51.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.44.0-rc.0", prerelease = true }
+"1.44.0" = { created_at = 2024-04-12T12:12:33.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.44.0" }
+"1.45.0-alpha.0" = { created_at = 2024-04-16T12:00:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.0-alpha.0", prerelease = true }
+"1.45.0-alpha.1" = { created_at = 2024-04-17T12:50:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.0-alpha.1", prerelease = true }
+"1.45.0-alpha.4" = { created_at = 2024-04-18T17:42:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.0-alpha.4", prerelease = true }
+"1.45.0-rc.0" = { created_at = 2024-04-19T09:39:13.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.0-rc.0", prerelease = true }
+"1.45.0-rc.1" = { created_at = 2024-04-22T09:09:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.0-rc.1", prerelease = true }
+"1.45.0" = { created_at = 2024-04-22T13:30:58.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.0" }
+"1.45.1-rc.0" = { created_at = 2024-04-25T17:20:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.1-rc.0", prerelease = true }
+"1.45.1-rc.1" = { created_at = 2024-04-26T19:39:47.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.1-rc.1", prerelease = true }
+"1.45.1" = { created_at = 2024-04-26T20:52:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.45.1" }
+"1.46.0-rc.0" = { created_at = 2024-05-01T07:51:48.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.46.0-rc.0", prerelease = true }
+"1.46.0-rc.1" = { created_at = 2024-05-02T10:58:26.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.46.0-rc.1", prerelease = true }
+"1.46.0-rc.3" = { created_at = 2024-05-06T15:16:57.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.46.0-rc.3", prerelease = true }
+"1.46.0" = { created_at = 2024-05-07T12:03:04.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.46.0" }
+"1.47.0-rc.0" = { created_at = 2024-05-16T08:16:09.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.47.0-rc.0", prerelease = true }
+"1.47.0" = { created_at = 2024-05-21T13:39:38.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.47.0" }
+"1.48.0-rc.0" = { created_at = 2024-05-29T11:05:45.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.48.0-rc.0", prerelease = true }
+"1.48.0" = { created_at = 2024-06-03T14:29:47.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.48.0" }
+"1.48.1-rc.0" = { created_at = 2024-06-05T18:42:19.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.48.1-rc.0", prerelease = true }
+"1.48.1" = { created_at = 2024-06-10T16:05:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.48.1" }
+"1.49.0-alpha.0" = { created_at = 2024-06-12T08:27:53.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.49.0-alpha.0", prerelease = true }
+"1.49.0-rc.0" = { created_at = 2024-06-13T12:58:46.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.49.0-rc.0", prerelease = true }
+"1.49.0-rc.1" = { created_at = 2024-06-17T09:04:45.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.49.0-rc.1", prerelease = true }
+"1.49.0" = { created_at = 2024-06-18T17:22:28.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.49.0" }
+"1.49.1-rc.0" = { created_at = 2024-06-19T14:10:48.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.49.1-rc.0", prerelease = true }
+"1.49.1" = { created_at = 2024-06-19T15:25:35.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.49.1" }
+"1.50.0-rc.0" = { created_at = 2024-06-27T07:15:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.50.0-rc.0", prerelease = true }
+"1.50.0" = { created_at = 2024-07-02T18:30:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.50.0" }
+"2.0.0-alpha.0" = { created_at = 2024-07-09T13:17:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-alpha.0", prerelease = true }
+"1.51.0-rc.0" = { created_at = 2024-07-10T19:09:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.51.0-rc.0", prerelease = true }
+"1.51.0" = { created_at = 2024-07-16T20:00:59.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.51.0" }
+"1.52.0-rc.0" = { created_at = 2024-07-24T10:37:51.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.52.0-rc.0", prerelease = true }
+"1.52.0" = { created_at = 2024-07-30T13:08:42.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.52.0" }
+"2.0.0-alpha.1" = { created_at = 2024-07-31T11:58:16.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-alpha.1", prerelease = true }
+"2.0.0-alpha.3" = { created_at = 2024-08-20T19:24:14.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-alpha.3", prerelease = true }
+"1.53.0-rc.0" = { created_at = 2024-08-23T04:17:45.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.53.0-rc.0", prerelease = true }
+"1.52.1-rc.0" = { created_at = 2024-08-26T11:30:48.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.52.1-rc.0", prerelease = true }
+"1.52.1-rc.1" = { created_at = 2024-08-27T06:17:50.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.52.1-rc.1", prerelease = true }
+"1.52.1" = { created_at = 2024-08-27T10:40:27.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.52.1" }
+"1.53.0-rc.1" = { created_at = 2024-08-28T08:02:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.53.0-rc.1", prerelease = true }
+"1.53.0" = { created_at = 2024-08-28T13:29:09.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.53.0" }
+"1.54.0-rc.0" = { created_at = 2024-09-04T13:43:14.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.54.0-rc.0", prerelease = true }
+"1.54.0-rc.1" = { created_at = 2024-09-05T17:35:03.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.54.0-rc.1", prerelease = true }
+"1.54.0-rc.2" = { created_at = 2024-09-06T09:43:12.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.54.0-rc.2", prerelease = true }
+"2.0.0-alpha.5" = { created_at = 2024-09-06T17:35:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-alpha.5", prerelease = true }
+"1.54.0-rc.4" = { created_at = 2024-09-10T17:58:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.54.0-rc.4", prerelease = true }
+"1.54.0" = { created_at = 2024-09-10T18:30:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.54.0" }
+"2.0.0-alpha.6" = { created_at = 2024-09-11T19:50:09.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-alpha.6", prerelease = true }
+"1.55.0-rc.0" = { created_at = 2024-09-18T11:56:09.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.0-rc.0", prerelease = true }
+"1.55.0-rc.1" = { created_at = 2024-09-19T15:22:25.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.0-rc.1", prerelease = true }
+"2.0.0-alpha.7" = { created_at = 2024-09-23T17:20:00.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-alpha.7", prerelease = true }
+"1.55.0-rc.2" = { created_at = 2024-09-24T10:17:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.0-rc.2", prerelease = true }
+"1.55.0" = { created_at = 2024-09-24T18:02:28.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.0" }
+"1.55.1-alpha.0" = { created_at = 2024-09-24T10:21:07.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.1-alpha.0", prerelease = true }
+"1.55.1-alpha.1" = { created_at = 2024-09-24T14:30:10.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.1-alpha.1", prerelease = true }
+"1.55.1-alpha.2" = { created_at = 2024-09-25T07:48:50.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.1-alpha.2", prerelease = true }
+"1.52.2-rc.0" = { created_at = 2024-09-26T15:21:33.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.52.2-rc.0", prerelease = true }
+"1.55.1-rc.0" = { created_at = 2024-09-26T07:47:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.1-rc.0", prerelease = true }
+"1.55.1-rc.1" = { created_at = 2024-09-26T12:49:32.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.55.1-rc.1", prerelease = true }
+"1.56.0-rc.0" = { created_at = 2024-09-27T12:04:41.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.56.0-rc.0", prerelease = true }
+"1.56.0" = { created_at = 2024-10-01T17:21:05.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.56.0" }
+"2.0.0-preview.0" = { created_at = 2024-10-01T20:16:24.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-preview.0", prerelease = true }
+"1.57.0-rc.0" = { created_at = 2024-10-17T13:16:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.57.0-rc.0", prerelease = true }
+"1.57.0" = { created_at = 2024-10-22T18:36:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.57.0" }
+"1.57.1-rc.0" = { created_at = 2024-10-30T13:49:51.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.57.1-rc.0", prerelease = true }
+"1.57.1" = { created_at = 2024-11-04T10:27:53.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.57.1" }
+"2.0.0-preview.1" = { created_at = 2024-11-07T17:26:31.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-preview.1", prerelease = true }
+"1.58.0-rc.0" = { created_at = 2024-11-20T16:56:57.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.0-rc.0", prerelease = true }
+"1.58.0-rc.1" = { created_at = 2024-11-21T15:43:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.0-rc.1", prerelease = true }
+"1.58.0-rc.2" = { created_at = 2024-11-21T17:55:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.0-rc.2", prerelease = true }
+"1.58.0-rc.3" = { created_at = 2024-11-27T15:17:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.0-rc.3", prerelease = true }
+"1.58.0" = { created_at = 2024-11-27T16:43:36.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.0" }
+"1.58.1-rc.0" = { created_at = 2024-12-04T11:54:35.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.1-rc.0", prerelease = true }
+"1.58.1-rc.1" = { created_at = 2024-12-05T16:30:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.1-rc.1", prerelease = true }
+"1.58.1" = { created_at = 2024-12-05T19:23:12.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.58.1" }
+"2.0.0-preview.3" = { created_at = 2024-12-09T21:48:26.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-preview.3", prerelease = true }
+"1.59.0-rc.0" = { created_at = 2024-12-11T13:28:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.59.0-rc.0", prerelease = true }
+"1.59.0" = { created_at = 2024-12-17T10:59:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.59.0" }
+"1.59.1-rc.0" = { created_at = 2024-12-18T17:16:01.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.59.1-rc.0", prerelease = true }
+"1.59.1" = { created_at = 2025-01-08T14:43:46.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.59.1" }
+"2.0.0-preview.4" = { created_at = 2025-01-16T20:46:06.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-preview.4", prerelease = true }
+"1.59.2-rc.0" = { created_at = 2025-01-24T11:27:16.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.59.2-rc.0", prerelease = true }
+"1.60.0-rc.0" = { created_at = 2025-01-24T16:19:08.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.60.0-rc.0", prerelease = true }
+"1.59.2" = { created_at = 2025-01-29T12:09:01.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.59.2" }
+"2.0.0-preview.5" = { created_at = 2025-01-31T20:18:57.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-preview.5", prerelease = true }
+"1.60.0-rc.1" = { created_at = 2025-02-03T17:15:27.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.60.0-rc.1", prerelease = true }
+"1.60.0" = { created_at = 2025-02-06T11:25:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.60.0" }
+"1.60.1-rc.0" = { created_at = 2025-02-07T07:21:46.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.60.1-rc.0", prerelease = true }
+"2.0.0-preview.6" = { created_at = 2025-02-07T07:57:08.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-preview.6", prerelease = true }
+"1.60.1-rc.1" = { created_at = 2025-02-12T12:20:35.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.60.1-rc.1", prerelease = true }
+"1.60.1" = { created_at = 2025-02-13T17:44:53.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.60.1" }
+"2.0.0-rc.0" = { created_at = 2025-02-13T14:02:33.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0-rc.0", prerelease = true }
+"2.0.0" = { created_at = 2025-02-17T16:46:37.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.0.0" }
+"1.61.0-rc.0" = { created_at = 2025-02-19T14:04:24.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.0-rc.0", prerelease = true }
+"1.61.0" = { created_at = 2025-02-25T14:28:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.0" }
+"2.1.0-rc.0" = { created_at = 2025-03-19T11:47:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.0-rc.0", prerelease = true }
+"1.61.1-rc.0" = { created_at = 2025-03-20T17:02:01.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.1-rc.0", prerelease = true }
+"2.1.0-rc.1" = { created_at = 2025-03-25T20:25:32.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.0-rc.1", prerelease = true }
+"2.2.0-preview.0" = { created_at = 2025-03-25T16:51:09.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.2.0-preview.0", prerelease = true }
+"2.1.0" = { created_at = 2025-03-26T12:13:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.0" }
+"1.61.1" = { created_at = 2025-03-27T10:53:27.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.1" }
+"1.61.2" = { created_at = 2025-04-07T13:14:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.2" }
+"2.1.1" = { created_at = 2025-04-07T13:16:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.1" }
+"2.1.2-rc.0" = { created_at = 2025-04-08T16:40:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.2-rc.0", prerelease = true }
+"1.61.3-rc.0" = { created_at = 2025-04-11T12:55:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.3-rc.0", prerelease = true }
+"1.61.3" = { created_at = 2025-04-14T12:59:29.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.3" }
+"2.1.2" = { created_at = 2025-04-14T12:48:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.2" }
+"1.61.4-rc.0" = { created_at = 2025-04-15T14:00:41.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.4-rc.0", prerelease = true }
+"1.61.4" = { created_at = 2025-04-16T10:05:59.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.4" }
+"2.1.3-rc.0" = { created_at = 2025-04-16T06:05:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.3-rc.0", prerelease = true }
+"2.1.3-rc.1" = { created_at = 2025-04-16T06:55:10.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.3-rc.1", prerelease = true }
+"2.1.3" = { created_at = 2025-04-16T12:53:03.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.1.3" }
+"1.61.5-rc.0" = { created_at = 2025-04-17T05:39:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.5-rc.0", prerelease = true }
+"1.61.5-rc.1" = { created_at = 2025-04-17T19:26:42.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.5-rc.1", prerelease = true }
+"1.61.5-rc.2" = { created_at = 2025-04-17T19:30:28.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.5-rc.2", prerelease = true }
+"2.2.0-rc.0" = { created_at = 2025-04-23T10:00:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.2.0-rc.0", prerelease = true }
+"1.61.5" = { created_at = 2025-04-28T12:19:24.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.5" }
+"2.2.0" = { created_at = 2025-04-29T12:14:31.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.2.0" }
+"1.61.6-rc.0" = { created_at = 2025-04-30T13:29:46.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.6-rc.0", prerelease = true }
+"1.61.6" = { created_at = 2025-05-06T11:34:27.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.6" }
+"2.2.1-rc.0" = { created_at = 2025-05-06T19:11:43.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.2.1-rc.0", prerelease = true }
+"2.2.1-rc.1" = { created_at = 2025-05-06T19:57:46.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.2.1-rc.1", prerelease = true }
+"2.2.1" = { created_at = 2025-05-14T08:20:51.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.2.1" }
+"2.3.0-alpha.0" = { created_at = 2025-05-14T13:17:26.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.3.0-alpha.0", prerelease = true }
+"2.3.0-preview.0" = { created_at = 2025-05-14T18:17:36.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.3.0-preview.0", prerelease = true }
+"1.61.7-rc.0" = { created_at = 2025-05-23T13:13:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.7-rc.0", prerelease = true }
+"1.61.7-rc.1" = { created_at = 2025-05-26T14:53:06.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.7-rc.1", prerelease = true }
+"1.61.7-rc.2" = { created_at = 2025-05-26T17:33:04.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.7-rc.2", prerelease = true }
+"1.61.7" = { created_at = 2025-05-27T15:11:53.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.7" }
+"2.3.0-rc.0" = { created_at = 2025-05-28T13:06:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.3.0-rc.0", prerelease = true }
+"2.3.0" = { created_at = 2025-06-05T08:32:55.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.3.0" }
+"1.61.8-rc.0" = { created_at = 2025-06-17T12:01:12.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.8-rc.0", prerelease = true }
+"1.61.8" = { created_at = 2025-06-18T10:11:31.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.8" }
+"2.4.0-rc.0" = { created_at = 2025-06-26T09:10:15.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.4.0-rc.0", prerelease = true }
+"1.61.9-rc.0" = { created_at = 2025-06-27T12:26:45.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.9-rc.0", prerelease = true }
+"2.4.0" = { created_at = 2025-07-02T04:47:53.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.4.0" }
+"2.5.0-preview.0" = { created_at = 2025-07-02T15:15:42.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.5.0-preview.0", prerelease = true }
+"1.61.9" = { created_at = 2025-07-09T11:36:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.9" }
+"1.61.10-rc.0" = { created_at = 2025-07-16T14:43:24.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.10-rc.0", prerelease = true }
+"2.5.0-rc.0" = { created_at = 2025-07-24T12:39:03.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.5.0-rc.0", prerelease = true }
+"1.61.10" = { created_at = 2025-07-28T10:33:22.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.10" }
+"2.5.0-rc.1" = { created_at = 2025-07-28T14:30:51.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.5.0-rc.1", prerelease = true }
+"2.5.0" = { created_at = 2025-07-29T18:33:15.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.5.0" }
+"1.61.11-beta.0" = { created_at = 2025-08-07T16:50:59.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.11-beta.0", prerelease = true }
+"2.6.0-preview.1" = { created_at = 2025-08-08T17:51:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.0-preview.1", prerelease = true }
+"2.6.0-preview.2" = { created_at = 2025-08-11T17:59:00.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.0-preview.2", prerelease = true }
+"2.6.0-preview.3" = { created_at = 2025-08-14T13:49:38.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.0-preview.3", prerelease = true }
+"2.6.0-rc.0" = { created_at = 2025-08-20T14:59:56.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.0-rc.0", prerelease = true }
+"2.6.0" = { created_at = 2025-08-26T12:27:22.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.0" }
+"2.6.1-alpha.0" = { created_at = 2025-09-03T06:51:42.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.1-alpha.0", prerelease = true }
+"2.6.1-rc.0" = { created_at = 2025-09-05T09:54:17.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.1-rc.0", prerelease = true }
+"2.6.2-rc.0" = { created_at = 2025-09-05T10:01:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.2-rc.0", prerelease = true }
+"2.6.2-rc.1" = { created_at = 2025-09-05T10:38:32.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.2-rc.1", prerelease = true }
+"2.6.1" = { created_at = 2025-09-08T10:55:32.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.1" }
+"2.6.2" = { created_at = 2025-09-08T14:40:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.6.2" }
+"2.7.0-preview.0" = { created_at = 2025-09-11T20:54:42.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.7.0-preview.0", prerelease = true }
+"2.7.0-rc.0" = { created_at = 2025-09-18T11:41:07.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.7.0-rc.0", prerelease = true }
+"2.7.0" = { created_at = 2025-09-23T13:42:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.7.0" }
+"2.8.0-preview.0" = { created_at = 2025-10-01T17:09:30.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.0-preview.0", prerelease = true }
+"2.8.0-rc.0" = { created_at = 2025-10-22T14:01:00.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.0-rc.0", prerelease = true }
+"2.8.0-rc.1" = { created_at = 2025-10-24T10:39:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.0-rc.1", prerelease = true }
+"1.61.11-rc.1" = { created_at = 2025-10-27T17:55:24.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.11-rc.1", prerelease = true }
+"1.61.11" = { created_at = 2025-10-28T17:29:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.11" }
+"2.8.0" = { created_at = 2025-10-28T14:30:29.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.0" }
+"1.61.12-rc.0" = { created_at = 2025-11-04T14:23:16.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.12-rc.0", prerelease = true }
+"1.61.12" = { created_at = 2025-11-04T16:54:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.12" }
+"2.8.1-rc.0" = { created_at = 2025-11-04T14:41:01.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.1-rc.0", prerelease = true }
+"2.8.1" = { created_at = 2025-11-04T16:35:54.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.1" }
+"2.8.2-rc.0" = { created_at = 2025-11-07T16:44:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.2-rc.0", prerelease = true }
+"2.8.2" = { created_at = 2025-11-11T14:20:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.8.2" }
+"2.9.0-rc.0" = { created_at = 2025-11-21T10:55:28.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.9.0-rc.0", prerelease = true }
+"2.9.0-rc.1" = { created_at = 2025-11-21T12:59:50.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.9.0-rc.1", prerelease = true }
+"2.9.0-rc.3" = { created_at = 2025-11-21T17:23:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.9.0-rc.3", prerelease = true }
+"2.9.0-rc.4" = { created_at = 2025-11-21T22:03:15.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.9.0-rc.4", prerelease = true }
 "2.9.0" = { created_at = 2025-11-28T16:58:11.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.9.0" }
-"2.10.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.10.0-rc.0" = { created_at = 2025-12-08T17:16:17.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.0-rc.0", prerelease = true }
 "2.10.0" = { created_at = 2025-12-12T12:19:54.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.0" }
-"2.11.0-abstract.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.11.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.11.0-abstract.1" = { created_at = 2025-12-18T19:18:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.11.0-abstract.1", prerelease = true }
+"2.11.0-rc.0" = { created_at = 2026-01-22T15:29:23.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.11.0-rc.0", prerelease = true }
 "2.11.0" = { created_at = 2026-01-27T14:37:46.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.11.0" }
-"2.12.0-alpha.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.12.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.12.0-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.12.0-alpha.0" = { created_at = 2026-02-18T10:38:54.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.12.0-alpha.0", prerelease = true }
+"2.12.0-rc.0" = { created_at = 2026-02-18T12:53:29.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.12.0-rc.0", prerelease = true }
+"2.12.0-rc.1" = { created_at = 2026-02-18T16:20:10.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.12.0-rc.1", prerelease = true }
 "2.12.0" = { created_at = 2026-02-24T14:37:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.12.0" }
-"2.10.1-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.10.1-rc.2" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.10.1-rc.1" = { created_at = 2026-03-10T20:37:44.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.1-rc.1", prerelease = true }
+"2.10.1-rc.2" = { created_at = 2026-03-11T07:41:41.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.1-rc.2", prerelease = true }
 "2.10.1" = { created_at = 2026-03-11T14:49:52.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.1" }
-"1.61.13-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"1.61.13-rc.0" = { created_at = 2026-03-24T14:30:35.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.13-rc.0", prerelease = true }
 "1.61.13" = { created_at = 2026-03-24T15:04:17.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v1.61.13" }
-"2.10.2-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.10.2-rc.0" = { created_at = 2026-03-24T13:11:39.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.2-rc.0", prerelease = true }
 "2.10.2" = { created_at = 2026-03-24T13:27:58.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.10.2" }
-"2.12.1-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.12.1-rc.0" = { created_at = 2026-03-24T14:36:41.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.12.1-rc.0", prerelease = true }
 "2.12.1" = { created_at = 2026-03-24T15:36:14.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.12.1" }
-"2.13.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.13.0-rc.0" = { created_at = 2026-03-26T12:45:29.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.13.0-rc.0", prerelease = true }
 "2.13.0" = { created_at = 2026-03-31T18:05:17.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.13.0" }
-"2.13.1-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.13.1-rc.0" = { created_at = 2026-04-01T04:23:32.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.13.1-rc.0", prerelease = true }
 "2.13.1" = { created_at = 2026-04-03T18:15:21.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.13.1" }
-"2.14.0-rc.0" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.14.0-rc.1" = { created_at = 2026-04-27T18:57:40.574Z }
-"2.14.0-rc.2" = { created_at = 2026-04-27T18:57:40.574Z }
+"2.14.0-rc.0" = { created_at = 2026-04-23T08:39:02.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.14.0-rc.0", prerelease = true }
+"2.14.0-rc.1" = { created_at = 2026-04-23T17:44:25.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.14.0-rc.1", prerelease = true }
+"2.14.0-rc.2" = { created_at = 2026-04-24T13:19:28.000Z, release_url = "https://github.com/apollographql/router/releases/tag/v2.14.0-rc.2", prerelease = true }

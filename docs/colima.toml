@@ -1,27 +1,4 @@
 [versions]
-"0.2.0-alpha" = { created_at = 2026-04-27T18:30:55.331Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.2.0-alpha" }
-"0.2.0" = { created_at = 2021-10-12T17:07:47.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.2.0" }
-"0.2.1" = { created_at = 2021-10-13T06:26:33.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.2.1" }
-"0.2.2" = { created_at = 2021-10-15T04:02:37.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.2.2" }
-"0.3.0-ci-test" = { created_at = 2026-04-27T18:30:55.331Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.0-ci-test" }
-"0.3.0" = { created_at = 2022-01-12T20:27:31.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2022-01-13T13:42:14.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2022-01-15T12:51:10.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.2" }
-"0.3.3-pre-01" = { created_at = 2026-04-27T18:30:55.331Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.3-pre-01" }
-"0.3.3-pre-02" = { created_at = 2026-04-27T18:30:55.331Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.3-pre-02" }
-"0.3.3" = { created_at = 2022-02-16T17:02:17.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.3" }
-"0.3.4" = { created_at = 2022-03-07T06:46:57.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.3.4" }
-"0.4.0" = { created_at = 2022-05-15T14:55:02.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2022-05-16T08:40:48.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.1" }
-"0.4.2" = { created_at = 2022-05-19T19:43:12.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.2" }
-"0.4.3" = { created_at = 2022-06-29T07:02:32.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.3" }
-"0.4.4" = { created_at = 2022-07-01T06:02:20.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.4" }
-"0.4.5" = { created_at = 2022-09-25T12:24:40.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.5" }
-"0.4.6" = { created_at = 2022-10-08T10:55:37.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.4.6" }
-"0.5.0" = { created_at = 2022-12-15T06:01:29.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.0" }
-"0.5.1" = { created_at = 2022-12-21T06:14:29.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.1" }
-"0.5.2" = { created_at = 2022-12-27T21:45:27.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.2" }
-"0.5.3" = { created_at = 2023-03-05T20:00:48.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.3" }
 "0.5.4" = { created_at = 2023-03-06T05:42:11.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.4" }
 "0.5.5" = { created_at = 2023-05-20T20:29:15.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.5" }
 "0.5.6" = { created_at = 2023-10-05T06:53:13.000Z, release_url = "https://github.com/abiosoft/colima/releases/tag/v0.5.6" }

@@ -1,229 +1,64 @@
 [versions]
-"0.1.0-beta.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.1.0-beta.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.1.0-beta.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.1.0-beta.4" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.1.0-beta.5" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.1.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.2.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.3.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.4.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.4.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.5.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.5.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.6.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.7.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.7.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.8.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.9.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.9.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.9.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.10.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.11.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.11.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.4" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.5" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.6" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.12.7" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.13.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.13.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.14.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.15.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.15.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.15.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.16.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.16.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.17.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.17.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.18.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.19.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.19.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.20.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.21.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.22.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.23.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.24.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.24.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.25.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.26.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.27.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.28.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.29.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.30.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.31.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.32.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.32.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.32.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.33.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.34.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.35.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.35.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.36.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.4" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.5" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.6" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.7" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.8" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.9" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.37.10" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.38.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.39.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.39.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.39.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.39.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.40.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.40.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.4" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.5" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.41.6" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.42.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.42.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.42.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.42.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.42.4" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.43.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.43.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.43.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.44.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.44.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.45.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.45.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.46.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.46.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.46.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.46.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.47.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.48.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.48.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.49.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.50.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.51.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.52.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.53.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.53.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.53.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.53.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.53.4" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.54.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.55.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.56.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.57.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.58.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.59.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.60.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.60.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.60.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.60.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.61.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.62.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.62.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.62.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.62.3" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.63.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.64.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.65.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.66.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.66.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.66.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.68.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.68.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.69.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.69.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.70.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.71.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.72.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.72.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.73.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.74.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.74.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.75.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.76.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.76.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.77.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.78.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.79.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.80.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.81.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.82.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.83.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.83.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.84.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.84.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.85.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.86.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.86.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.87.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.87.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.88.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.89.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.90.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.91.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.92.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.93.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.94.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.95.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.96.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.97.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.97.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.98.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.99.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.100.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.101.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.101.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.102.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.103.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.103.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.104.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.105.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"0.105.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.0.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.0.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.1.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.1.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.2.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.3.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.4.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.4.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.5.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.6.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.7.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.8.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.9.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.10.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.11.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.11.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.12.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.12.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.12.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.13.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.14.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.14.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.14.2" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.15.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.16.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.17.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.18.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.18.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.19.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.20.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.21.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.22.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.23.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.23.1" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.24.0" = { created_at = 2026-04-27T19:03:36.154Z }
-"1.25.0" = { created_at = 2026-04-27T19:03:36.154Z }
+"0.85.0" = { created_at = 2023-07-12T17:14:54.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.85.0" }
+"0.86.0" = { created_at = 2023-07-31T16:02:33.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.86.0" }
+"0.86.1" = { created_at = 2023-07-31T17:29:18.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.86.1" }
+"0.87.0" = { created_at = 2023-08-14T15:37:24.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.87.0" }
+"0.87.1" = { created_at = 2023-08-17T16:55:25.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.87.1" }
+"0.88.0" = { created_at = 2023-08-25T20:45:04.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.88.0" }
+"0.89.0" = { created_at = 2023-08-31T14:50:32.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.89.0" }
+"0.90.0" = { created_at = 2023-09-11T16:12:04.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.90.0" }
+"0.91.0" = { created_at = 2023-09-20T19:41:58.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.91.0" }
+"0.92.0" = { created_at = 2023-09-27T15:40:36.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.92.0" }
+"0.93.0" = { created_at = 2023-10-10T17:27:02.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.93.0" }
+"0.94.0" = { created_at = 2023-10-20T17:21:02.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.94.0" }
+"0.95.0" = { created_at = 2023-11-07T16:43:15.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.95.0" }
+"0.96.0" = { created_at = 2023-11-09T14:04:03.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.96.0" }
+"0.97.0" = { created_at = 2023-11-16T22:56:21.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.97.0" }
+"0.97.1" = { created_at = 2023-11-17T21:03:01.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.97.1" }
+"0.98.0" = { created_at = 2023-11-29T14:52:29.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.98.0" }
+"0.99.0" = { created_at = 2023-12-21T16:18:42.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.99.0" }
+"0.100.0" = { created_at = 2024-01-05T21:33:52.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.100.0" }
+"0.101.0" = { created_at = 2024-01-17T20:41:58.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.101.0" }
+"0.101.1" = { created_at = 2024-01-19T22:02:00.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.101.1" }
+"0.102.0" = { created_at = 2024-01-26T14:34:48.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.102.0" }
+"0.103.1" = { created_at = 2024-01-31T17:09:10.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.103.1" }
+"0.104.0" = { created_at = 2024-02-07T20:51:32.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.104.0" }
+"0.105.0" = { created_at = 2024-02-14T21:16:51.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.105.0" }
+"0.105.1" = { created_at = 2024-02-26T16:52:54.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v0.105.1" }
+"1.0.0" = { created_at = 2024-02-29T14:50:50.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2024-03-06T19:51:24.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.0.1" }
+"1.1.0" = { created_at = 2024-03-25T21:41:39.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2024-04-04T14:52:41.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.1.1" }
+"1.2.0" = { created_at = 2024-04-12T18:31:54.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.2.0" }
+"1.3.0" = { created_at = 2024-04-26T15:01:02.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.3.0" }
+"1.4.0" = { created_at = 2024-05-09T18:14:05.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2024-05-09T19:45:42.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.4.1" }
+"1.5.0" = { created_at = 2024-05-28T15:11:39.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.5.0" }
+"1.6.0" = { created_at = 2024-06-10T15:39:30.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.6.0" }
+"1.7.0" = { created_at = 2024-06-14T19:48:12.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.7.0" }
+"1.8.0" = { created_at = 2024-06-24T15:43:58.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2024-07-11T17:32:43.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.9.0" }
+"1.10.0" = { created_at = 2024-07-30T16:13:22.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.10.0" }
+"1.11.0" = { created_at = 2024-08-09T17:52:21.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2024-08-20T16:25:16.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.11.1" }
+"1.12.2" = { created_at = 2024-09-11T14:12:05.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.12.2" }
+"1.13.0" = { created_at = 2024-09-24T13:28:54.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.13.0" }
+"1.14.0" = { created_at = 2024-10-07T20:40:35.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.14.0" }
+"1.14.1" = { created_at = 2024-10-15T13:04:47.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.14.1" }
+"1.14.2" = { created_at = 2024-10-21T17:20:27.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.14.2" }
+"1.15.0" = { created_at = 2024-10-28T21:11:30.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.15.0" }
+"1.16.0" = { created_at = 2024-11-04T22:29:29.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.16.0" }
+"1.17.0" = { created_at = 2024-11-21T14:39:32.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.17.0" }
+"1.18.0" = { created_at = 2024-12-09T21:02:30.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.18.0" }
+"1.18.1" = { created_at = 2024-12-13T18:41:06.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.18.1" }
+"1.19.0" = { created_at = 2025-01-22T19:57:03.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.19.0" }
+"1.20.0" = { created_at = 2025-02-21T20:44:43.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.20.0" }
+"1.21.0" = { created_at = 2025-03-17T18:52:13.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.21.0" }
+"1.22.0" = { created_at = 2025-04-01T14:37:47.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.22.0" }
+"1.23.0" = { created_at = 2025-04-24T20:16:01.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.23.0" }
+"1.23.1" = { created_at = 2025-04-25T14:52:09.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.23.1" }
+"1.24.0" = { created_at = 2025-05-14T14:51:25.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.24.0" }
+"1.25.0" = { created_at = 2025-05-16T16:29:38.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.25.0" }
 "1.25.1" = { created_at = 2025-05-16T18:53:39.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.25.1" }
 "1.26.0" = { created_at = 2025-05-20T21:27:25.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.26.0" }
 "1.26.1" = { created_at = 2025-05-22T12:36:11.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.26.1" }
@@ -236,14 +71,11 @@
 "1.31.0" = { created_at = 2025-08-13T14:50:45.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.31.0" }
 "1.32.0" = { created_at = 2025-08-26T21:47:41.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.32.0" }
 "1.33.0" = { created_at = 2025-09-15T20:38:11.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.33.0" }
-"1.34.0" = { created_at = 2026-04-27T19:03:36.154Z }
 "1.34.1" = { created_at = 2025-10-15T15:27:05.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.34.1" }
 "1.34.2" = { created_at = 2025-10-16T12:19:26.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.34.2" }
-"1.35.0" = { created_at = 2026-04-27T19:03:36.154Z }
 "1.36.0" = { created_at = 2025-10-22T20:08:39.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.36.0" }
 "1.37.0" = { created_at = 2025-11-03T18:13:12.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.37.0" }
 "1.38.0" = { created_at = 2025-11-17T17:42:45.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.38.0" }
-"1.38.1" = { created_at = 2026-04-27T19:03:36.154Z }
 "1.38.2" = { created_at = 2025-12-09T21:48:42.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.38.2" }
 "1.39.0" = { created_at = 2025-12-22T21:00:04.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.39.0" }
 "1.40.0" = { created_at = 2026-01-08T12:45:10.000Z, release_url = "https://github.com/anchore/syft/releases/tag/v1.40.0" }

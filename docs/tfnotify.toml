@@ -1,20 +1,4 @@
 [versions]
-"0.1.0" = { created_at = 2018-04-06T17:16:01.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.1.0" }
-"0.1.1" = { created_at = 2018-05-29T09:44:43.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.1.1" }
-"0.1.2" = { created_at = 2018-05-29T11:56:07.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.1.2" }
-"0.1.3" = { created_at = 2018-06-30T16:21:15.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.1.3" }
-"0.1.4" = { created_at = 2018-09-11T05:20:39.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.1.4" }
-"0.2.0" = { created_at = 2018-10-30T08:33:32.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.2.0" }
-"0.3.0" = { created_at = 2019-01-16T07:46:48.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2019-07-30T03:43:14.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2019-09-20T07:57:19.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2019-09-24T08:16:26.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.3.3" }
-"0.4.0" = { created_at = 2019-12-16T05:39:56.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.4.0" }
-"0.5.0" = { created_at = 2020-01-06T09:07:56.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.5.0" }
-"0.5.1" = { created_at = 2020-02-25T10:23:02.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.5.1" }
-"0.5.2" = { created_at = 2020-03-06T03:05:55.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.5.2" }
-"0.5.3" = { created_at = 2020-03-10T03:30:42.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.5.3" }
-"0.5.4" = { created_at = 2020-03-13T15:58:19.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.5.4" }
 "0.5.5" = { created_at = 2020-03-16T07:27:39.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.5.5" }
 "0.6.0" = { created_at = 2020-03-26T07:31:06.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.6.0" }
 "0.6.1" = { created_at = 2020-05-18T06:57:56.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.6.1" }
@@ -26,25 +10,22 @@
 "0.7.4" = { created_at = 2022-02-01T17:07:21.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.7.4" }
 "0.7.5" = { created_at = 2022-02-20T05:48:51.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.7.5" }
 "0.8.0" = { created_at = 2022-12-14T05:29:28.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v0.8.0" }
-"1.0.0-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.0.0-alpha" }
+"1.0.0-alpha" = { created_at = 2025-10-15T06:58:42.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.0.0-alpha", prerelease = true }
 "1.0.0" = { created_at = 2025-10-16T01:16:39.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.0.0" }
+"1.1.0-alpha" = { created_at = 2025-11-03T10:01:27.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha", prerelease = true }
+"1.1.0-alpha-v2" = { created_at = 2025-11-05T18:15:58.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha-v2", prerelease = true }
+"1.1.0-alpha-v3" = { created_at = 2025-11-06T19:57:24.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha-v3", prerelease = true }
 "1.0.1" = { created_at = 2025-11-07T06:39:51.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.0.1" }
-"1.1.0-Alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-Alpha" }
-"1.1.0-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha" }
-"1.1.0-alpha.1" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha.1" }
-"1.1.0-alpha-v2" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha-v2" }
-"1.1.0-alpha-v3" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.0-alpha-v3" }
 "1.1.1" = { created_at = 2025-11-10T08:22:14.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.1" }
 "1.1.2" = { created_at = 2025-11-11T06:55:59.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.2" }
 "1.1.3" = { created_at = 2025-11-11T12:58:48.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.3" }
-"1.1.4-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.4-alpha" }
 "1.1.4" = { created_at = 2025-11-12T09:34:17.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.4" }
-"1.1.5-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.5-alpha" }
+"1.1.4-alpha" = { created_at = 2025-12-01T03:48:12.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.4-alpha", prerelease = true }
 "1.1.5" = { created_at = 2025-12-01T03:47:28.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.5" }
-"1.1.6-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.6-alpha" }
+"1.1.5-alpha" = { created_at = 2025-12-02T14:28:13.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.5-alpha", prerelease = true }
 "1.1.6" = { created_at = 2026-02-05T05:28:54.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.6" }
-"1.1.7-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.7-alpha" }
+"1.1.7-alpha" = { created_at = 2026-02-05T20:21:11.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.7-alpha", prerelease = true }
 "1.1.7" = { created_at = 2026-02-06T05:00:16.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.7" }
+"1.1.6-alpha" = { created_at = 2026-02-10T04:40:11.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.6-alpha", prerelease = true }
 "1.1.8" = { created_at = 2026-02-10T07:35:14.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.8" }
 "1.1.9" = { created_at = 2026-02-21T15:55:55.000Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.1.9" }
-"1.10-alpha" = { created_at = 2026-04-27T18:37:46.744Z, release_url = "https://github.com/mercari/tfnotify/releases/tag/v1.10-alpha" }

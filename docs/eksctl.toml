@@ -1,564 +1,564 @@
 [versions]
-"0.0.2-test" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.0.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.0.4-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.4" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.5" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.6" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.7" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.8" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.9" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.10" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.11" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.12" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.13" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.14" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.15" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.16" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.17" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.18" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.19" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.20" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.21" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-alpha.22" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-beta.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-beta.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-beta.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-beta.4" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0-beta.5" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.4" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.5" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.6" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.7" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.8" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.9" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.10" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.11" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.12" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.13" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.14" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.15" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.16" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.17" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.18" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.19" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.20-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.20-rc.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.20-rc.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.20-rc.4" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.20" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.21" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.22" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.23" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.24" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.25" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.26" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.27" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.28" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.29" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.30" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.31" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.32" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.33" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.34" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.35" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.36" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.37" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.38" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.39-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.39-rc.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.39-rc.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.39-rc.4" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.39-rc.5" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.39" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.1.40" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.2.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.2.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.2.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.3.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.3.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.3.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.4.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.4.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.4.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.4.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.4.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.5.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.5.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.5.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.5.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.6.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.7.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.7.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.8.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.8.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.9.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.9.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.10.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.10.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.10.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.10.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.11.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.11.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.11.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.12.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.12.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.13.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.13.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.14.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.14.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.15.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.15.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.15.0-rc.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.15.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.16.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.16.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.16.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.17.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.17.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.18.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.18.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.19.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.19.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.19.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.20.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.20.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.20.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.21.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.21.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.22.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.22.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.23.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.23.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.23.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.24.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.24.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.24.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.25.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.25.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.26.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.26.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.26.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.27.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.27.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.28.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.28.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.28.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.29.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.29.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.29.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.29.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.29.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.30.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.30.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.30.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.31.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.31.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.31.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.32.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.32.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.33.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.33.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.34.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.34.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.35.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.35.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.36.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.36.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.36.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.36.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.36.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.37.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.37.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.38.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.38.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.39.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.39.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.40.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.40.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.41.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.41.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.42.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.42.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.43.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.43.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.44.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.44.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.45.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.45.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.45.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.46.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.46.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.47.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.47.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.48.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.48.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.49.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.49.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.50.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.50.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.51.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.51.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.52.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.52.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.53.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.53.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.54.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.54.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.55.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.55.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.56.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.56.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.56.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.57.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.57.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.58.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.58.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.59.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.59.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.59.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.60.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.60.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.61.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.61.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.61.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.62.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.62.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.63.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.63.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.63.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.64.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.64.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.64.0-rc.2" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.64.0-rc.3" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.64.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.65.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.65.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.66.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.66.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.67.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.67.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.67.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.68.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.68.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.69.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.69.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.70.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.70.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.71.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.71.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.72.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.72.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.73.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.73.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.74.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.74.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.75.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.75.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.76.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.76.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.77.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.77.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.78.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.78.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.79.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.79.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.80.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.81.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.82.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.82.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.83.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.83.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.84.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.84.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.85.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.85.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.86.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.86.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.87.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.87.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.88.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.88.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.89.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.89.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.90.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.90.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.91.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.91.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.92.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.92.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.93.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.93.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.94.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.94.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.95.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.95.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.96.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.96.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.97.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.97.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.98.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.98.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.99.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.99.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.100.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.100.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.101.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.101.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.102.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.102.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.103.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.103.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.104.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.104.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.104.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.105.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.105.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.106.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.106.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.107.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.107.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.108.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.108.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.109.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.109.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.110.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.110.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.111.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.111.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.112.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.112.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.113.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.113.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.114.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.114.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.115.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.115.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.116.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.116.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.117.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.117.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.118.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.118.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.119.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.119.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.120.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.120.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.121.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.121.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.122.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.122.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.123.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.123.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.124.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.124.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.125.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.125.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.126.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.126.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.127.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.127.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.128.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.128.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.129.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.129.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.130.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.130.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.131.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.131.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.132.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.132.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.133.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.133.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.134.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.134.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.135.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.135.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.136.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.136.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.137.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.137.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.138.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.138.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.139.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.139.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.140.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.140.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.141.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.141.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.142.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.142.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.143.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.143.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.144.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.144.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.145.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.145.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.146.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.146.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.147.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.147.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.148.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.148.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.149.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.149.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.150.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.150.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.151.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.151.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.152.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.152.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.153.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.153.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.154.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.154.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.155.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.155.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.156.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.156.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.157.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.157.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.158.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.158.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.159.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.159.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.160.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.160.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.161.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.161.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.162.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.162.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.163.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.163.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.164.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.164.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.165.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.165.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.166.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.166.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.167.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.167.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.168.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.168.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.169.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.169.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.170.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.170.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.171.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.171.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.172.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.172.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.173.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.173.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.174.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.174.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.175.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.175.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.176.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.176.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.177.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.177.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.178.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.178.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.179.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.179.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.180.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.180.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.181.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.182.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.182.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.183.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.183.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.184.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.184.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.185.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.185.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.186.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.186.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.187.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.187.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.188.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.188.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.189.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.189.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.190.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.190.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.191.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.191.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.192.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.192.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.193.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.193.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.194.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.194.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.195.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.195.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.196.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.196.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.197.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.197.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.198.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.198.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.199.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.199.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.200.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.200.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.201.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.201.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.202.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.202.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.203.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.203.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.204.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.204.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.205.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.205.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.206.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.206.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.207.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.207.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.208.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.208.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.209.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.209.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.210.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.210.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.211.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.211.0" = { created_at = 2025-07-18T22:35:35.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.211.0" }
-"0.212.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.212.0" = { created_at = 2025-07-29T19:23:31.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.212.0" }
-"0.213.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.213.0" = { created_at = 2025-08-26T00:51:18.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.213.0" }
-"0.214.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.214.0" = { created_at = 2025-08-27T06:40:03.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.214.0" }
-"0.215.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.215.0" = { created_at = 2025-10-02T18:49:57.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.215.0" }
-"0.216.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.216.0" = { created_at = 2025-10-30T20:58:57.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.216.0" }
-"0.217.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.217.0" = { created_at = 2025-11-11T22:35:24.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.217.0" }
-"0.218.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.218.0" = { created_at = 2025-11-24T19:26:39.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.218.0" }
-"0.219.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.219.0" = { created_at = 2025-11-27T04:06:10.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.219.0" }
-"0.220.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.220.0" = { created_at = 2025-12-01T06:39:54.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.220.0" }
-"0.221.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.221.0" = { created_at = 2025-12-18T18:38:33.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.221.0" }
-"0.222.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.222.0" = { created_at = 2026-02-06T21:05:30.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.222.0" }
-"0.223.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.223.0" = { created_at = 2026-02-14T06:20:24.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.223.0" }
-"0.224.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.224.0" = { created_at = 2026-03-04T01:28:14.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.224.0" }
-"0.225.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.225.0" = { created_at = 2026-03-30T08:10:14.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.225.0" }
-"latest_release" = { created_at = 2026-04-27T18:59:36.896Z }
-"test-rc-tag" = { created_at = 2026-04-27T18:59:36.896Z }
-"0.80.0" = { created_at = 2026-04-27T18:59:36.896Z }
+"0.0.2-test" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.0.2-test" }
+"0.0.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.0.3" }
+"0.0.4-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.0.4-rc.0" }
+"0.1.0-alpha.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.2" }
+"0.1.0-alpha.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.3" }
+"0.1.0-alpha.4" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.4" }
+"0.1.0-alpha.5" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.5" }
+"0.1.0-alpha.6" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.6" }
+"0.1.0-alpha.7" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.7" }
+"0.1.0-alpha.8" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.8" }
+"0.1.0-alpha.9" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.9" }
+"0.1.0-alpha.10" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.10" }
+"0.1.0-alpha.11" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.11" }
+"0.1.0-alpha.12" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.12" }
+"0.1.0-alpha.13" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.13" }
+"0.1.0-alpha.14" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.14" }
+"0.1.0-alpha.15" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.15" }
+"0.1.0-alpha.16" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.16" }
+"0.1.0-alpha.17" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.17" }
+"0.1.0-alpha.18" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.18" }
+"0.1.0-alpha.19" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.19" }
+"0.1.0-alpha.20" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.20" }
+"0.1.0-alpha.21" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.21" }
+"0.1.0-alpha.22" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-alpha.22" }
+"0.1.0-beta.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-beta.1" }
+"0.1.0-beta.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-beta.2" }
+"0.1.0-beta.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-beta.3" }
+"0.1.0-beta.4" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-beta.4" }
+"0.1.0-beta.5" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0-beta.5" }
+"0.1.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.0" }
+"0.1.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.1" }
+"0.1.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.2" }
+"0.1.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.3" }
+"0.1.4" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.4" }
+"0.1.5" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.5" }
+"0.1.6" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.6" }
+"0.1.7" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.7" }
+"0.1.8" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.8" }
+"0.1.9" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.9" }
+"0.1.10" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.10" }
+"0.1.11" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.11" }
+"0.1.12" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.12" }
+"0.1.13" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.13" }
+"0.1.14" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.14" }
+"0.1.15" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.15" }
+"0.1.16" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.16" }
+"0.1.17" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.17" }
+"0.1.18" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.18" }
+"0.1.19" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.19" }
+"0.1.20-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.20-rc.1" }
+"0.1.20-rc.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.20-rc.2" }
+"0.1.20-rc.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.20-rc.3" }
+"0.1.20-rc.4" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.20-rc.4" }
+"0.1.20" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.20" }
+"0.1.21" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.21" }
+"0.1.22" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.22" }
+"0.1.23" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.23" }
+"0.1.24" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.24" }
+"0.1.25" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.25" }
+"0.1.26" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.26" }
+"0.1.27" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.27" }
+"0.1.28" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.28" }
+"0.1.29" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.29" }
+"0.1.30" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.30" }
+"0.1.31" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.31" }
+"0.1.32" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.32" }
+"0.1.33" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.33" }
+"0.1.34" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.34" }
+"0.1.35" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.35" }
+"0.1.36" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.36" }
+"0.1.37" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.37" }
+"0.1.38" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.38" }
+"0.1.39-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.39-rc.1" }
+"0.1.39-rc.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.39-rc.2" }
+"0.1.39-rc.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.39-rc.3" }
+"0.1.39-rc.4" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.39-rc.4" }
+"0.1.39-rc.5" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.39-rc.5" }
+"0.1.39" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.39" }
+"0.1.40" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.1.40" }
+"0.2.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.2.0-rc.0" }
+"0.2.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.2.0" }
+"0.2.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.2.1" }
+"0.3.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.3.0-rc.0" }
+"0.3.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.3.0" }
+"0.3.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.3.1" }
+"0.4.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.4.0-rc.0" }
+"0.4.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.4.0" }
+"0.4.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.4.1" }
+"0.4.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.4.2" }
+"0.4.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.4.3" }
+"0.5.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.5.0" }
+"0.5.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.5.1" }
+"0.5.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.5.2" }
+"0.5.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.5.3" }
+"0.6.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.6.0" }
+"0.7.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.7.0-rc.0" }
+"0.7.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.7.0" }
+"0.8.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.8.0-rc.0" }
+"0.8.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.8.0" }
+"0.9.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.9.0-rc.0" }
+"0.9.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.9.0" }
+"0.10.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.10.0-rc.0" }
+"0.10.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.10.0" }
+"0.10.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.10.1" }
+"0.10.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.10.2" }
+"0.11.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.11.0-rc.0" }
+"0.11.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.11.0" }
+"0.11.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.11.1" }
+"0.12.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.12.0-rc.0" }
+"0.12.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.12.0" }
+"0.13.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.13.0-rc.0" }
+"0.13.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.13.0" }
+"0.14.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.14.0-rc.0" }
+"0.14.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.14.0" }
+"0.15.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.15.0-rc.0" }
+"0.15.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.15.0-rc.1" }
+"0.15.0-rc.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.15.0-rc.2" }
+"0.15.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.15.0" }
+"0.16.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.16.0-rc.0" }
+"0.16.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.16.0-rc.1" }
+"0.16.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.16.0" }
+"0.17.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.17.0-rc.0" }
+"0.17.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.17.0" }
+"0.18.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.18.0-rc.0" }
+"0.18.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.18.0" }
+"0.19.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.19.0-rc.0" }
+"0.19.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.19.0-rc.1" }
+"0.19.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.19.0" }
+"0.20.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.20.0-rc.0" }
+"0.20.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.20.0-rc.1" }
+"0.20.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.20.0" }
+"0.21.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.21.0-rc.0" }
+"0.21.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.21.0" }
+"0.22.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.22.0-rc.0" }
+"0.22.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.22.0" }
+"0.23.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.23.0-rc.0" }
+"0.23.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.23.0-rc.1" }
+"0.23.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.23.0" }
+"0.24.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.24.0-rc.0" }
+"0.24.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.24.0-rc.1" }
+"0.24.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.24.0" }
+"0.25.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.25.0-rc.0" }
+"0.25.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.25.0" }
+"0.26.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.26.0-rc.0" }
+"0.26.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.26.0-rc.1" }
+"0.26.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.26.0" }
+"0.27.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.27.0-rc.0" }
+"0.27.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.27.0" }
+"0.28.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.28.0-rc.0" }
+"0.28.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.28.0" }
+"0.28.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.28.1" }
+"0.29.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.29.0-rc.0" }
+"0.29.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.29.0-rc.1" }
+"0.29.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.29.0" }
+"0.29.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.29.1" }
+"0.29.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.29.2" }
+"0.30.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.30.0-rc.0" }
+"0.30.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.30.0-rc.1" }
+"0.30.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.30.0" }
+"0.31.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.31.0-rc.0" }
+"0.31.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.31.0-rc.1" }
+"0.31.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.31.0" }
+"0.32.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.32.0-rc.0" }
+"0.32.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.32.0" }
+"0.33.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.33.0-rc.0" }
+"0.33.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.33.0" }
+"0.34.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.34.0-rc.0" }
+"0.34.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.34.0" }
+"0.35.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.35.0-rc.0" }
+"0.35.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.35.0" }
+"0.36.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.36.0-rc.0" }
+"0.36.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.36.0-rc.1" }
+"0.36.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.36.0" }
+"0.36.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.36.1" }
+"0.36.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.36.2" }
+"0.37.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.37.0-rc.0" }
+"0.37.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.37.0" }
+"0.38.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.38.0-rc.0" }
+"0.38.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.38.0" }
+"0.39.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.39.0-rc.0" }
+"0.39.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.39.0" }
+"0.40.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.40.0-rc.0" }
+"0.40.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.40.0" }
+"0.41.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.41.0-rc.0" }
+"0.41.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.41.0" }
+"0.42.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.42.0-rc.0" }
+"0.42.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.42.0" }
+"0.43.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.43.0-rc.0" }
+"0.43.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.43.0" }
+"0.44.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.44.0-rc.0" }
+"0.44.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.44.0" }
+"0.45.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.45.0-rc.0" }
+"0.45.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.45.0-rc.1" }
+"0.45.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.45.0" }
+"0.46.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.46.0-rc.0" }
+"0.46.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.46.0" }
+"0.47.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.47.0-rc.0" }
+"0.47.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.47.0" }
+"0.48.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.48.0-rc.0" }
+"0.48.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.48.0" }
+"0.49.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.49.0-rc.0" }
+"0.49.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.49.0" }
+"0.50.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.50.0-rc.0" }
+"0.50.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.50.0" }
+"0.51.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.51.0-rc.0" }
+"0.51.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.51.0" }
+"0.52.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.52.0-rc.0" }
+"0.52.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.52.0" }
+"0.53.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.53.0-rc.0" }
+"0.53.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.53.0" }
+"0.54.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.54.0-rc.0" }
+"0.54.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.54.0" }
+"0.55.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.55.0-rc.0" }
+"0.55.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.55.0" }
+"0.56.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.56.0-rc.0" }
+"0.56.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.56.0-rc.1" }
+"0.56.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.56.0" }
+"0.57.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.57.0-rc.0" }
+"0.57.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.57.0" }
+"0.58.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.58.0-rc.0" }
+"0.58.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.58.0" }
+"0.59.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.59.0-rc.0" }
+"0.59.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.59.0-rc.1" }
+"0.59.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.59.0" }
+"0.60.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.60.0-rc.0" }
+"0.60.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.60.0" }
+"0.61.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.61.0-rc.0" }
+"0.61.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.61.0-rc.1" }
+"0.61.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.61.0" }
+"0.62.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.62.0-rc.0" }
+"0.62.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.62.0" }
+"0.63.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.63.0-rc.0" }
+"0.63.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.63.0-rc.1" }
+"0.63.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.63.0" }
+"0.64.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.64.0-rc.0" }
+"0.64.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.64.0-rc.1" }
+"0.64.0-rc.2" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.64.0-rc.2" }
+"0.64.0-rc.3" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.64.0-rc.3" }
+"0.64.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.64.0" }
+"0.65.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.65.0-rc.0" }
+"0.65.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.65.0" }
+"0.66.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.66.0-rc.0" }
+"0.66.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.66.0" }
+"0.67.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.67.0-rc.0" }
+"0.67.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.67.0-rc.1" }
+"0.67.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.67.0" }
+"0.68.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.68.0-rc.0" }
+"0.68.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.68.0" }
+"0.69.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.69.0-rc.0" }
+"0.69.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.69.0" }
+"0.70.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.70.0-rc.0" }
+"0.70.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.70.0" }
+"0.71.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.71.0-rc.0" }
+"0.71.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.71.0" }
+"0.72.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.72.0-rc.0" }
+"0.72.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.72.0" }
+"0.73.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.73.0-rc.0" }
+"0.73.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.73.0" }
+"0.74.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.74.0-rc.0" }
+"0.74.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.74.0" }
+"0.75.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.75.0-rc.0" }
+"0.75.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.75.0" }
+"0.76.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.76.0-rc.0" }
+"0.76.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.76.0" }
+"0.77.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.77.0-rc.0" }
+"0.77.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.77.0" }
+"0.78.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.78.0-rc.0" }
+"0.78.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.78.0" }
+"0.79.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.79.0-rc.0" }
+"0.79.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.79.0" }
+"0.80.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.80.0-rc.0" }
+"0.81.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.81.0-rc.0" }
+"0.82.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.82.0-rc.0" }
+"0.82.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.82.0" }
+"0.83.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.83.0-rc.0" }
+"0.83.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.83.0" }
+"0.84.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.84.0-rc.0" }
+"0.84.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.84.0" }
+"0.85.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.85.0-rc.0" }
+"0.85.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.85.0" }
+"0.86.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.86.0-rc.0" }
+"0.86.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.86.0" }
+"0.87.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.87.0-rc.0" }
+"0.87.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.87.0" }
+"0.88.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.88.0-rc.0" }
+"0.88.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.88.0" }
+"0.89.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.89.0-rc.0" }
+"0.89.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.89.0" }
+"0.90.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.90.0-rc.0" }
+"0.90.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.90.0" }
+"0.91.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.91.0-rc.0" }
+"0.91.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.91.0" }
+"0.92.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.92.0-rc.0" }
+"0.92.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.92.0" }
+"0.93.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.93.0-rc.0" }
+"0.93.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.93.0" }
+"0.94.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.94.0-rc.0" }
+"0.94.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.94.0" }
+"0.95.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.95.0-rc.0" }
+"0.95.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.95.0" }
+"0.96.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.96.0-rc.0" }
+"0.96.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.96.0" }
+"0.97.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.97.0-rc.0" }
+"0.97.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.97.0" }
+"0.98.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.98.0-rc.0" }
+"0.98.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.98.0" }
+"0.99.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.99.0-rc.0" }
+"0.99.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.99.0" }
+"0.100.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.100.0-rc.0" }
+"0.100.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.100.0" }
+"0.101.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.101.0-rc.0" }
+"0.101.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.101.0" }
+"0.102.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.102.0-rc.0" }
+"0.102.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.102.0" }
+"0.103.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.103.0-rc.0" }
+"0.103.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.103.0" }
+"0.104.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.104.0-rc.0" }
+"0.104.0-rc.1" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.104.0-rc.1" }
+"0.104.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.104.0" }
+"0.105.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.105.0-rc.0" }
+"0.105.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.105.0" }
+"0.106.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.106.0-rc.0" }
+"0.106.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.106.0" }
+"0.107.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.107.0-rc.0" }
+"0.107.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.107.0" }
+"0.108.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.108.0-rc.0" }
+"0.108.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.108.0" }
+"0.109.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.109.0-rc.0" }
+"0.109.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.109.0" }
+"0.110.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.110.0-rc.0" }
+"0.110.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.110.0" }
+"0.111.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.111.0-rc.0" }
+"0.111.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.111.0" }
+"0.112.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.112.0-rc.0" }
+"0.112.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.112.0" }
+"0.113.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.113.0-rc.0" }
+"0.113.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.113.0" }
+"0.114.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.114.0-rc.0" }
+"0.114.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.114.0" }
+"0.115.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.115.0-rc.0" }
+"0.115.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.115.0" }
+"0.116.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.116.0-rc.0" }
+"0.116.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.116.0" }
+"0.117.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.117.0-rc.0" }
+"0.117.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.117.0" }
+"0.118.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.118.0-rc.0" }
+"0.118.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.118.0" }
+"0.119.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.119.0-rc.0" }
+"0.119.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.119.0" }
+"0.120.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.120.0-rc.0" }
+"0.120.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.120.0" }
+"0.121.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.121.0-rc.0" }
+"0.121.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.121.0" }
+"0.122.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.122.0-rc.0" }
+"0.122.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.122.0" }
+"0.123.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.123.0-rc.0" }
+"0.123.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.123.0" }
+"0.124.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.124.0-rc.0" }
+"0.124.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.124.0" }
+"0.125.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.125.0-rc.0" }
+"0.125.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.125.0" }
+"0.126.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.126.0-rc.0" }
+"0.126.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.126.0" }
+"0.127.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.127.0-rc.0" }
+"0.127.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.127.0" }
+"0.128.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.128.0-rc.0" }
+"0.128.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.128.0" }
+"0.129.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.129.0-rc.0" }
+"0.129.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.129.0" }
+"0.130.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.130.0-rc.0" }
+"0.130.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.130.0" }
+"0.131.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.131.0-rc.0" }
+"0.131.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.131.0" }
+"0.132.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.132.0-rc.0" }
+"0.132.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.132.0" }
+"0.133.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.133.0-rc.0" }
+"0.133.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.133.0" }
+"0.134.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.134.0-rc.0" }
+"0.134.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.134.0" }
+"0.135.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.135.0-rc.0" }
+"0.135.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.135.0" }
+"0.136.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.136.0-rc.0" }
+"0.136.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.136.0" }
+"0.137.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.137.0-rc.0" }
+"0.137.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.137.0" }
+"0.138.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.138.0-rc.0" }
+"0.138.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.138.0" }
+"0.139.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.139.0-rc.0" }
+"0.139.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.139.0" }
+"0.140.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.140.0-rc.0" }
+"0.140.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.140.0" }
+"0.141.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.141.0-rc.0" }
+"0.141.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.141.0" }
+"0.142.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.142.0-rc.0" }
+"0.142.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.142.0" }
+"0.143.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.143.0-rc.0" }
+"0.143.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.143.0" }
+"0.144.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.144.0-rc.0" }
+"0.144.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.144.0" }
+"0.145.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.145.0-rc.0" }
+"0.145.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.145.0" }
+"0.146.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.146.0-rc.0" }
+"0.146.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.146.0" }
+"0.147.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.147.0-rc.0" }
+"0.147.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.147.0" }
+"0.148.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.148.0-rc.0" }
+"0.148.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.148.0" }
+"0.149.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.149.0-rc.0" }
+"0.149.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.149.0" }
+"0.150.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.150.0-rc.0" }
+"0.150.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.150.0" }
+"0.151.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.151.0-rc.0" }
+"0.151.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.151.0" }
+"0.152.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.152.0-rc.0" }
+"0.152.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.152.0" }
+"0.153.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.153.0-rc.0" }
+"0.153.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.153.0" }
+"0.154.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.154.0-rc.0" }
+"0.154.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.154.0" }
+"0.155.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.155.0-rc.0" }
+"0.155.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.155.0" }
+"0.156.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.156.0-rc.0" }
+"0.156.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.156.0" }
+"0.157.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.157.0-rc.0" }
+"0.157.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.157.0" }
+"0.158.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.158.0-rc.0" }
+"0.158.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.158.0" }
+"0.159.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.159.0-rc.0" }
+"0.159.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.159.0" }
+"0.160.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.160.0-rc.0" }
+"0.160.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.160.0" }
+"0.161.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.161.0-rc.0" }
+"0.161.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.161.0" }
+"0.162.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.162.0-rc.0" }
+"0.162.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.162.0" }
+"0.163.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.163.0-rc.0" }
+"0.163.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.163.0" }
+"0.164.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.164.0-rc.0" }
+"0.164.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.164.0" }
+"0.165.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.165.0-rc.0" }
+"0.165.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.165.0" }
+"0.166.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.166.0-rc.0" }
+"0.166.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.166.0" }
+"0.167.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.167.0-rc.0" }
+"0.167.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.167.0" }
+"0.168.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.168.0-rc.0" }
+"0.168.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.168.0" }
+"0.169.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.169.0-rc.0" }
+"0.169.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.169.0" }
+"0.170.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.170.0-rc.0" }
+"0.170.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.170.0" }
+"0.171.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.171.0-rc.0" }
+"0.171.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.171.0" }
+"0.172.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.172.0-rc.0" }
+"0.172.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.172.0" }
+"0.173.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.173.0-rc.0" }
+"0.173.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.173.0" }
+"0.174.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.174.0-rc.0" }
+"0.174.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.174.0" }
+"0.175.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.175.0-rc.0" }
+"0.175.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.175.0" }
+"0.176.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.176.0-rc.0" }
+"0.176.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.176.0" }
+"0.177.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.177.0-rc.0" }
+"0.177.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.177.0" }
+"0.178.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.178.0-rc.0" }
+"0.178.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.178.0" }
+"0.179.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.179.0-rc.0" }
+"0.179.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.179.0" }
+"0.180.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.180.0-rc.0" }
+"0.180.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.180.0" }
+"0.181.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.181.0" }
+"0.182.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.182.0-rc.0" }
+"0.182.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.182.0" }
+"0.183.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.183.0-rc.0" }
+"0.183.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.183.0" }
+"0.184.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.184.0-rc.0" }
+"0.184.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.184.0" }
+"0.185.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.185.0-rc.0" }
+"0.185.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.185.0" }
+"0.186.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.186.0-rc.0" }
+"0.186.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.186.0" }
+"0.187.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.187.0-rc.0" }
+"0.187.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.187.0" }
+"0.188.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.188.0-rc.0" }
+"0.188.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.188.0" }
+"0.189.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.189.0-rc.0" }
+"0.189.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.189.0" }
+"0.190.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.190.0-rc.0" }
+"0.190.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.190.0" }
+"0.191.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.191.0-rc.0" }
+"0.191.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.191.0" }
+"0.192.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.192.0-rc.0" }
+"0.192.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.192.0" }
+"0.193.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.193.0-rc.0" }
+"0.193.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.193.0" }
+"0.194.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.194.0-rc.0" }
+"0.194.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.194.0" }
+"0.195.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.195.0-rc.0" }
+"0.195.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.195.0" }
+"0.196.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.196.0-rc.0" }
+"0.196.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.196.0" }
+"0.197.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.197.0-rc.0" }
+"0.197.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.197.0" }
+"0.198.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.198.0-rc.0" }
+"0.198.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.198.0" }
+"0.199.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.199.0-rc.0" }
+"0.199.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.199.0" }
+"0.200.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.200.0-rc.0" }
+"0.200.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.200.0" }
+"0.201.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.201.0-rc.0" }
+"0.201.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.201.0" }
+"0.202.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.202.0-rc.0" }
+"0.202.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.202.0" }
+"0.203.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.203.0-rc.0" }
+"0.203.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.203.0" }
+"0.204.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.204.0-rc.0" }
+"0.204.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.204.0" }
+"0.205.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.205.0-rc.0" }
+"0.205.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.205.0" }
+"0.206.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.206.0-rc.0" }
+"0.206.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.206.0" }
+"0.207.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.207.0-rc.0" }
+"0.207.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.207.0" }
+"0.208.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.208.0-rc.0" }
+"0.208.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.208.0" }
+"0.209.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.209.0-rc.0" }
+"0.209.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.209.0" }
+"0.210.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.210.0-rc.0" }
+"0.210.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.210.0" }
+"0.211.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.211.0-rc.0" }
+"0.211.0" = { created_at = 2025-07-18T22:35:35.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.211.0" }
+"0.212.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.212.0-rc.0" }
+"0.212.0" = { created_at = 2025-07-29T19:23:31.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.212.0" }
+"0.213.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.213.0-rc.0" }
+"0.213.0" = { created_at = 2025-08-26T00:51:18.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.213.0" }
+"0.214.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.214.0-rc.0" }
+"0.214.0" = { created_at = 2025-08-27T06:40:03.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.214.0" }
+"0.215.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.215.0-rc.0" }
+"0.215.0" = { created_at = 2025-10-02T18:49:57.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.215.0" }
+"0.216.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.216.0-rc.0" }
+"0.216.0" = { created_at = 2025-10-30T20:58:57.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.216.0" }
+"0.217.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.217.0-rc.0" }
+"0.217.0" = { created_at = 2025-11-11T22:35:24.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.217.0" }
+"0.218.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.218.0-rc.0" }
+"0.218.0" = { created_at = 2025-11-24T19:26:39.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.218.0" }
+"0.219.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.219.0-rc.0" }
+"0.219.0" = { created_at = 2025-11-27T04:06:10.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.219.0" }
+"0.220.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.220.0-rc.0" }
+"0.220.0" = { created_at = 2025-12-01T06:39:54.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.220.0" }
+"0.221.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.221.0-rc.0" }
+"0.221.0" = { created_at = 2025-12-18T18:38:33.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.221.0" }
+"0.222.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.222.0-rc.0" }
+"0.222.0" = { created_at = 2026-02-06T21:05:30.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.222.0" }
+"0.223.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.223.0-rc.0" }
+"0.223.0" = { created_at = 2026-02-14T06:20:24.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.223.0" }
+"0.224.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.224.0-rc.0" }
+"0.224.0" = { created_at = 2026-03-04T01:28:14.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.224.0" }
+"0.225.0-rc.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.225.0-rc.0" }
+"0.225.0" = { created_at = 2026-03-30T08:10:14.000Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/0.225.0" }
+"latest_release" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/latest_release" }
+"test-rc-tag" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/test-rc-tag" }
+"0.80.0" = { created_at = 2026-04-27T18:59:36.896Z, release_url = "https://github.com/eksctl-io/eksctl/releases/tag/v0.80.0" }
