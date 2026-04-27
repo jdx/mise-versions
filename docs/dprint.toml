@@ -1,4 +1,6 @@
 [versions]
+"0.4.0-beta" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.0-beta" }
+"0.4.0-beta2" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.0-beta2" }
 "0.4.0" = { created_at = 2020-06-16T00:46:04.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.0" }
 "0.4.1" = { created_at = 2020-06-17T20:44:55.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.1" }
 "0.4.2" = { created_at = 2020-06-18T03:13:41.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.4.2" }
@@ -27,6 +29,7 @@
 "0.9.0" = { created_at = 2020-08-14T17:31:05.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.9.0" }
 "0.9.1" = { created_at = 2020-08-27T16:07:48.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.9.1" }
 "0.10.0" = { created_at = 2020-11-23T01:01:33.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.10.0" }
+"0.10.1" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.10.1" }
 "0.11.0" = { created_at = 2020-12-21T01:09:21.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.11.0" }
 "0.11.1" = { created_at = 2021-01-20T14:31:19.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.11.1" }
 "0.12.0" = { created_at = 2021-04-03T23:00:58.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.12.0" }
@@ -82,10 +85,12 @@
 "0.34.0" = { created_at = 2022-12-19T01:07:03.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.0" }
 "0.34.1" = { created_at = 2022-12-21T00:08:17.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.1" }
 "0.34.2" = { created_at = 2023-01-17T12:19:12.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.2" }
+"0.34.3" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.3" }
 "0.34.4" = { created_at = 2023-01-17T13:28:28.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.4" }
 "0.34.5" = { created_at = 2023-02-12T22:24:18.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.34.5" }
 "0.35.0" = { created_at = 2023-03-11T06:28:43.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.0" }
 "0.35.1" = { created_at = 2023-03-13T00:37:15.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.1" }
+"0.35.2" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.2" }
 "0.35.3" = { created_at = 2023-03-13T05:03:06.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.3" }
 "0.35.4" = { created_at = 2023-04-10T16:27:58.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.35.4" }
 "0.36.0" = { created_at = 2023-04-17T23:00:14.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.36.0" }
@@ -120,6 +125,7 @@
 "0.47.0" = { created_at = 2024-07-01T01:05:20.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.0" }
 "0.47.1" = { created_at = 2024-07-07T01:20:56.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.1" }
 "0.47.2" = { created_at = 2024-07-11T02:07:15.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.2" }
+"0.47.3" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.3" }
 "0.47.4" = { created_at = 2024-10-19T18:47:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.4" }
 "0.47.5" = { created_at = 2024-10-27T03:25:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.5" }
 "0.47.6" = { created_at = 2024-12-01T23:26:55.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.47.6" }
@@ -132,6 +138,7 @@
 "0.51.0" = { created_at = 2025-12-28T01:19:59.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.51.0" }
 "0.51.1" = { created_at = 2025-12-28T20:52:10.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.51.1" }
 "0.52.0" = { created_at = 2026-02-24T18:20:18.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.52.0" }
+"0.52.1" = { created_at = 2026-04-27T18:31:46.139Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.52.1" }
 "0.53.0" = { created_at = 2026-03-16T00:07:41.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.53.0" }
 "0.53.1" = { created_at = 2026-03-26T13:41:33.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.53.1" }
 "0.53.2" = { created_at = 2026-04-01T15:40:06.000Z, release_url = "https://github.com/dprint/dprint/releases/tag/0.53.2" }

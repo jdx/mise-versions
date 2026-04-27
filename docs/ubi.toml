@@ -1,4 +1,27 @@
 [versions]
+"test-release" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/test-release" }
+"ubi-v0.2.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.2.0" }
+"ubi-v0.2.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.2.1" }
+"ubi-v0.2.2" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.2.2" }
+"ubi-v0.3.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.3.0" }
+"ubi-v0.4.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.4.0" }
+"ubi-v0.4.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.4.1" }
+"ubi-v0.4.2" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.4.2" }
+"ubi-v0.5.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.5.0" }
+"ubi-v0.5.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.5.1" }
+"ubi-v0.6.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.6.0" }
+"ubi-v0.6.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.6.1" }
+"ubi-v0.7.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.7.0" }
+"ubi-v0.7.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.7.1" }
+"ubi-v0.7.2" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.7.2" }
+"ubi-v0.7.3" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.7.3" }
+"ubi-v0.7.4" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.7.4" }
+"ubi-v0.8.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.8.0" }
+"ubi-v0.8.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.8.1" }
+"ubi-v0.8.2" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.8.2" }
+"ubi-v0.8.3" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.8.3" }
+"ubi-v0.8.4" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.8.4" }
+"ubi-v0.9.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/ubi-v0.9.0" }
 "0.0.1" = { created_at = 2021-01-07T22:42:56.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.0.1" }
 "0.0.2" = { created_at = 2021-01-09T21:17:07.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.0.2" }
 "0.0.3" = { created_at = 2021-01-15T16:54:58.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.0.3" }
@@ -33,6 +56,8 @@
 "0.0.32" = { created_at = 2024-06-01T04:37:38.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.0.32" }
 "0.1.0" = { created_at = 2024-07-21T19:09:04.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.1.0" }
 "0.1.1" = { created_at = 2024-07-21T22:41:09.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.1.2" }
+"0.2.0" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.2.0" }
 "0.2.1" = { created_at = 2024-10-27T16:23:32.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.2.1" }
 "0.2.2" = { created_at = 2024-11-10T16:59:08.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.2.2" }
 "0.2.3" = { created_at = 2024-11-22T15:09:29.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.2.3" }
@@ -42,6 +67,7 @@
 "0.4.1" = { created_at = 2025-01-18T23:50:35.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.4.1" }
 "0.4.2" = { created_at = 2025-02-04T17:41:32.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.4.2" }
 "0.5.0" = { created_at = 2025-02-16T05:20:14.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2026-04-27T18:38:10.297Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.5.1" }
 "0.5.2" = { created_at = 2025-02-22T17:21:07.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.5.2" }
 "0.6.0" = { created_at = 2025-03-17T01:31:56.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.6.0" }
 "0.6.1" = { created_at = 2025-03-18T20:06:58.000Z, release_url = "https://github.com/houseabsolute/ubi/releases/tag/v0.6.1" }

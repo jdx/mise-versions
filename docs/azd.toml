@@ -1,4 +1,5 @@
 [versions]
+"0.1.0-beta.1" = { created_at = 2026-04-27T18:29:52.643Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.1.0-beta.1" }
 "0.1.0-beta.2" = { created_at = 2022-07-13T20:43:51.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.1.0-beta.2" }
 "0.1.0-beta.3" = { created_at = 2022-07-28T18:29:02.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.1.0-beta.3" }
 "0.1.0-beta.4" = { created_at = 2022-08-10T23:51:38.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.1.0-beta.4" }
@@ -11,6 +12,7 @@
 "0.3.0-beta.4" = { created_at = 2022-10-25T17:46:29.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.3.0-beta.4" }
 "0.3.0-beta.5" = { created_at = 2022-10-26T18:32:18.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.3.0-beta.5" }
 "0.4.0-beta.1" = { created_at = 2022-11-02T17:14:38.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.4.0-beta.1" }
+"0.4.0.-beta.1" = { created_at = 2026-04-27T18:29:52.643Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.4.0.-beta.1" }
 "0.5.0-beta.1" = { created_at = 2023-01-11T16:32:04.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.5.0-beta.1" }
 "0.5.0-beta.2" = { created_at = 2023-01-12T20:50:50.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.5.0-beta.2" }
 "0.5.0-beta.3" = { created_at = 2023-01-14T00:49:09.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_0.5.0-beta.3" }
@@ -77,6 +79,7 @@
 "1.20.1" = { created_at = 2025-10-17T04:52:49.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.20.1" }
 "1.20.2" = { created_at = 2025-10-23T02:07:34.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.20.2" }
 "1.20.3" = { created_at = 2025-10-28T23:27:34.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.20.3" }
+"1.21.0-beta.1" = { created_at = 2026-04-27T18:29:52.643Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.21.0-beta.1" }
 "1.21.0" = { created_at = 2025-11-11T05:14:08.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.21.0" }
 "1.21.1" = { created_at = 2025-11-11T21:39:19.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.21.1" }
 "1.21.2" = { created_at = 2025-11-14T00:02:40.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.21.2" }
@@ -103,6 +106,7 @@
 "1.23.13" = { created_at = 2026-03-26T20:00:00.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.23.13" }
 "1.23.14" = { created_at = 2026-04-04T04:58:28.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.23.14" }
 "1.23.15" = { created_at = 2026-04-11T00:17:58.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.23.15" }
+"1.24.0-beta.1" = { created_at = 2026-04-27T18:29:52.643Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.24.0-beta.1" }
 "1.24.0" = { created_at = 2026-04-15T21:23:45.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.24.0" }
 "1.24.1" = { created_at = 2026-04-18T06:09:10.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.24.1" }
 "1.24.2" = { created_at = 2026-04-25T01:07:58.000Z, release_url = "https://github.com/Azure/azure-dev/releases/tag/azure-dev-cli_1.24.2" }

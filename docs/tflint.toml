@@ -1,7 +1,9 @@
 [versions]
 "0.1.0" = { created_at = 2016-11-27T06:55:02.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.1.1" }
 "0.2.0" = { created_at = 2016-12-24T12:57:05.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.2.0" }
 "0.2.1" = { created_at = 2017-01-09T14:58:00.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.2.2" }
 "0.3.0" = { created_at = 2017-02-12T14:33:06.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.3.0" }
 "0.3.1" = { created_at = 2017-03-12T13:56:13.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.3.1" }
 "0.3.2" = { created_at = 2017-03-25T06:31:09.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.3.2" }
@@ -36,12 +38,14 @@
 "0.9.3" = { created_at = 2019-08-02T14:07:31.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.9.3" }
 "0.10.0" = { created_at = 2019-08-17T12:19:36.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.10.0" }
 "0.10.1" = { created_at = 2019-08-21T05:23:32.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.10.1" }
+"0.10.2" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.10.2" }
 "0.10.3" = { created_at = 2019-08-24T08:21:50.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.10.3" }
 "0.11.0" = { created_at = 2019-09-08T06:28:00.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.11.0" }
 "0.11.1" = { created_at = 2019-09-10T14:39:29.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.11.1" }
 "0.11.2" = { created_at = 2019-09-18T16:38:27.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.11.2" }
 "0.12.0" = { created_at = 2019-09-28T16:58:52.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.12.0" }
 "0.12.1" = { created_at = 2019-10-12T12:23:48.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.12.1" }
+"0.13.0" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.13.0" }
 "0.13.1" = { created_at = 2019-11-16T14:00:01.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.13.1" }
 "0.13.2" = { created_at = 2019-12-07T14:02:04.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.13.2" }
 "0.13.3" = { created_at = 2019-12-18T14:02:30.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.13.3" }
@@ -60,6 +64,7 @@
 "0.18.0" = { created_at = 2020-07-19T13:12:11.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.18.0" }
 "0.19.0" = { created_at = 2020-08-17T09:06:09.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.19.0" }
 "0.19.1" = { created_at = 2020-08-23T07:05:22.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.19.1" }
+"0.20.0" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.20.0" }
 "0.20.1" = { created_at = 2020-09-13T13:14:56.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.20.1" }
 "0.20.2" = { created_at = 2020-09-22T14:37:15.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.20.2" }
 "0.20.3" = { created_at = 2020-10-18T14:32:15.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.20.3" }
@@ -90,6 +95,7 @@
 "0.36.1" = { created_at = 2022-05-05T14:54:30.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.36.1" }
 "0.36.2" = { created_at = 2022-05-06T13:46:23.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.36.2" }
 "0.37.0" = { created_at = 2022-05-29T17:01:52.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.37.0" }
+"0.38.0" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.38.0" }
 "0.38.1" = { created_at = 2022-06-20T17:08:51.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.38.1" }
 "0.39.0" = { created_at = 2022-07-27T15:12:16.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.39.0" }
 "0.39.1" = { created_at = 2022-07-29T13:57:01.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.39.1" }
@@ -126,6 +132,7 @@
 "0.57.0" = { created_at = 2025-05-03T14:56:53.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.57.0" }
 "0.58.0" = { created_at = 2025-05-24T14:18:10.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.58.0" }
 "0.58.1" = { created_at = 2025-07-12T08:53:47.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.58.1" }
+"0.59.0" = { created_at = 2026-04-27T18:37:49.284Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.59.0" }
 "0.59.1" = { created_at = 2025-08-31T08:39:25.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.59.1" }
 "0.60.0" = { created_at = 2025-11-16T08:29:47.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.60.0" }
 "0.61.0" = { created_at = 2026-02-07T06:30:39.000Z, release_url = "https://github.com/terraform-linters/tflint/releases/tag/v0.61.0" }
