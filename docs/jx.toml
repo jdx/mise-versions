@@ -1,34 +1,4 @@
 [versions]
-"3.16.12" = { created_at = 2025-07-31T10:08:00.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.12", prerelease = true }
-"3.16.13" = { created_at = 2025-07-31T10:28:13.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.13" }
-"3.16.14" = { created_at = 2025-07-31T11:28:15.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.14", prerelease = true }
-"3.16.15" = { created_at = 2025-07-31T11:44:21.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.15", prerelease = true }
-"3.16.16" = { created_at = 2025-07-31T12:43:03.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.16", prerelease = true }
-"3.16.17" = { created_at = 2025-08-06T14:18:56.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.17", prerelease = true }
-"3.16.18" = { created_at = 2025-08-06T22:18:18.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.18" }
-"3.16.19" = { created_at = 2025-08-08T10:05:27.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.19" }
-"3.16.20" = { created_at = 2025-08-14T19:52:06.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.20", prerelease = true }
-"3.16.21" = { created_at = 2025-08-22T07:39:19.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.21" }
-"3.16.22" = { created_at = 2025-08-28T20:17:18.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.22", prerelease = true }
-"3.16.23" = { created_at = 2025-08-29T00:12:40.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.23", prerelease = true }
-"3.16.24" = { created_at = 2025-08-29T09:36:05.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.24" }
-"3.16.25" = { created_at = 2025-10-14T10:59:15.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.25" }
-"3.16.26" = { created_at = 2025-10-28T23:06:17.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.26" }
-"3.16.27" = { created_at = 2025-11-05T20:59:49.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.27", prerelease = true }
-"3.16.28" = { created_at = 2025-11-06T17:33:45.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.28" }
-"3.16.29" = { created_at = 2025-11-12T10:56:11.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.29" }
-"3.16.30" = { created_at = 2025-11-12T12:10:02.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.30", prerelease = true }
-"3.16.31" = { created_at = 2025-11-12T12:52:13.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.31", prerelease = true }
-"3.16.32" = { created_at = 2025-11-12T13:02:39.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.32", prerelease = true }
-"3.16.33" = { created_at = 2025-11-12T13:12:51.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.33", prerelease = true }
-"3.16.34" = { created_at = 2025-11-13T23:47:00.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.34" }
-"3.16.35" = { created_at = 2025-11-14T13:48:45.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.35" }
-"3.16.36" = { created_at = 2025-11-20T08:35:28.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.36", prerelease = true }
-"3.16.37" = { created_at = 2025-11-20T10:18:29.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.37", prerelease = true }
-"3.16.38" = { created_at = 2025-12-15T16:38:17.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.38", prerelease = true }
-"3.16.39" = { created_at = 2025-12-16T09:10:21.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.39" }
-"3.16.40" = { created_at = 2025-12-16T17:47:25.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.40" }
-"3.16.41" = { created_at = 2025-12-16T18:53:40.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.41" }
 "3.16.42" = { created_at = 2025-12-17T09:12:39.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.42", prerelease = true }
 "3.16.43" = { created_at = 2025-12-17T09:22:02.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.43" }
 "3.16.44" = { created_at = 2026-02-10T09:21:19.000Z, release_url = "https://github.com/jenkins-x/jx/releases/tag/v3.16.44", prerelease = true }

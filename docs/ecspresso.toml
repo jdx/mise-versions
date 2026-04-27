@@ -1,49 +1,18 @@
 [versions]
-"pre-v2-20220820-0027" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/pre-v2-20220820-0027" }
-"rm" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/rm" }
-"0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0" }
-"0.0.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.0.0" }
-"0.0.1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.0.1" }
-"0.0.2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.0.2" }
-"0.1.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.1.0" }
-"0.2.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.2.0" }
-"0.2.1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.2.1" }
-"0.2.2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.2.2" }
-"0.3.0" = { created_at = 2017-12-14T04:28:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2017-12-26T14:49:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2017-12-28T00:52:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2018-01-18T07:05:12.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.3" }
-"0.3.4" = { created_at = 2018-02-27T09:23:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.4" }
-"0.3.5" = { created_at = 2018-03-14T08:46:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.5" }
-"0.3.6" = { created_at = 2018-03-16T01:33:56.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.3.6" }
-"0.4.0" = { created_at = 2018-03-30T09:44:22.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.4.0" }
-"0.5.0" = { created_at = 2018-04-05T14:17:37.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.5.0" }
-"0.5.1" = { created_at = 2018-04-11T01:40:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.5.1" }
-"0.6.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.6.0" }
-"0.6.1" = { created_at = 2018-06-13T08:22:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2018-06-25T08:30:58.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.6.2" }
-"0.6.3" = { created_at = 2018-08-07T05:06:33.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.6.3" }
-"0.6.4" = { created_at = 2018-09-03T16:17:06.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.6.4" }
-"0.6.5" = { created_at = 2018-11-20T03:47:50.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.6.5" }
-"0.7.0" = { created_at = 2019-03-08T13:55:21.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.7.0" }
 "0.7.1" = { created_at = 2019-05-08T05:57:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.7.1" }
-"0.8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.8" }
 "0.8.0" = { created_at = 2019-06-25T08:46:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.8.0" }
 "0.8.1" = { created_at = 2019-06-26T13:16:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.8.1" }
 "0.8.2" = { created_at = 2019-09-02T01:56:44.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.8.2" }
-"0.9.0-build" = { created_at = 2019-09-13T16:05:50.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.9.0-build" }
 "0.9.0" = { created_at = 2019-09-11T15:04:49.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.9.0" }
+"0.9.0-build" = { created_at = 2019-09-13T16:05:50.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.9.0-build" }
 "0.10.0" = { created_at = 2019-09-27T18:20:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.10.0" }
 "0.10.1" = { created_at = 2019-09-30T14:39:43.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.10.1" }
 "0.10.2" = { created_at = 2019-10-03T07:39:26.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.10.2" }
 "0.11.0" = { created_at = 2019-10-11T17:03:38.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.11.0" }
 "0.11.1" = { created_at = 2019-10-11T17:11:47.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.11.1" }
-"0.12.0-27-gd5d36d3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.12.0-27-gd5d36d3" }
-"0.12.0-alpha" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.12.0-alpha" }
-"0.12.0-alpha2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.12.0-alpha2" }
+"0.12.0-alpha" = { created_at = 2019-10-15T14:02:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.12.0-alpha", prerelease = true }
+"0.12.0-alpha2" = { created_at = 2019-10-16T03:03:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.12.0-alpha2", prerelease = true }
 "0.12.0" = { created_at = 2019-10-16T06:48:38.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.12.0" }
-"0.13.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.13.0" }
-"0.13.1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.13.1" }
 "0.13.2" = { created_at = 2019-11-26T07:24:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.13.2" }
 "0.13.3" = { created_at = 2019-12-06T05:09:25.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.13.3" }
 "0.13.4" = { created_at = 2020-01-14T00:46:21.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.13.4" }
@@ -60,17 +29,17 @@
 "0.17.2" = { created_at = 2020-07-29T09:12:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.17.2" }
 "0.17.3" = { created_at = 2020-08-17T07:58:48.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.17.3" }
 "0.18.0" = { created_at = 2020-08-28T14:38:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.18.0" }
+"0.99.0" = { created_at = 2020-09-04T16:36:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.0", prerelease = true }
+"0.99.1" = { created_at = 2020-09-07T07:55:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.1", prerelease = true }
+"0.99.2" = { created_at = 2020-09-18T16:08:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.2", prerelease = true }
+"0.99.3" = { created_at = 2020-09-18T16:12:21.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.3", prerelease = true }
+"0.99.4" = { created_at = 2020-09-23T02:24:58.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.4", prerelease = true }
+"0.99.5" = { created_at = 2020-09-23T13:47:58.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.5", prerelease = true }
+"0.99.6" = { created_at = 2020-09-25T15:38:18.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.6", prerelease = true }
 "0.18.1" = { created_at = 2020-09-28T13:47:50.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.18.1" }
-"0.99.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.0" }
-"0.99.1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.1" }
-"0.99.2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.2" }
-"0.99.3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.3" }
-"0.99.4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.4" }
-"0.99.5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.5" }
-"0.99.6" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.6" }
-"0.99.7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.7" }
-"0.99.8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.8" }
-"0.99.9" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.9" }
+"0.99.7" = { created_at = 2020-09-28T03:13:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.7", prerelease = true }
+"0.99.8" = { created_at = 2020-09-28T13:49:27.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.8", prerelease = true }
+"0.99.9" = { created_at = 2020-10-16T17:05:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v0.99.9", prerelease = true }
 "1.0.0" = { created_at = 2020-10-20T06:43:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.0.0" }
 "1.1.0" = { created_at = 2020-10-30T17:35:30.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.1.0" }
 "1.1.1" = { created_at = 2020-11-05T07:10:37.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.1.1" }
@@ -82,282 +51,281 @@
 "1.3.1" = { created_at = 2021-01-15T15:10:14.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.3.1" }
 "1.3.2" = { created_at = 2021-01-22T15:53:14.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.3.2" }
 "1.3.3" = { created_at = 2021-02-02T07:40:13.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.3.3" }
+"20210217-2724222" = { created_at = 2021-02-17T06:41:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210217-2724222", prerelease = true }
+"20210218-d783bbf" = { created_at = 2021-02-17T09:05:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210218-d783bbf", prerelease = true }
+"20210223-8df67c3" = { created_at = 2021-02-22T15:54:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210223-8df67c3", prerelease = true }
 "1.4.0" = { created_at = 2021-02-22T14:18:56.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.4.0" }
+"20210228-217e33b" = { created_at = 2021-02-27T04:04:52.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210228-217e33b", prerelease = true }
+"20210304-14e19c3" = { created_at = 2021-03-03T13:43:44.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210304-14e19c3", prerelease = true }
+"20210316-0abd3c1" = { created_at = 2021-03-16T04:53:48.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210316-0abd3c1", prerelease = true }
+"20210326-6c547af" = { created_at = 2021-03-26T17:53:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210326-6c547af", prerelease = true }
+"20210408-21451a1" = { created_at = 2021-04-07T14:18:59.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210408-21451a1", prerelease = true }
+"20210410-1ca1297" = { created_at = 2021-04-09T16:49:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210410-1ca1297", prerelease = true }
 "1.5.0" = { created_at = 2021-04-09T16:49:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.0" }
+"20210414-dd559d8" = { created_at = 2021-04-13T14:00:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210414-dd559d8", prerelease = true }
+"20210417-4c5f797" = { created_at = 2021-04-16T13:08:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210417-4c5f797", prerelease = true }
+"20210418-0fa5d15" = { created_at = 2021-04-17T02:30:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210418-0fa5d15", prerelease = true }
+"20210421-d64e190" = { created_at = 2021-04-20T14:32:13.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210421-d64e190", prerelease = true }
 "1.5.1" = { created_at = 2021-04-20T14:32:13.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.1" }
+"20210502-8cf5b4b" = { created_at = 2021-05-01T08:03:15.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210502-8cf5b4b", prerelease = true }
+"20210503-b5c1b44" = { created_at = 2021-05-02T05:24:14.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210503-b5c1b44", prerelease = true }
 "1.5.2" = { created_at = 2021-05-02T05:24:14.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.2" }
+"20210506-6d782bb" = { created_at = 2021-05-06T06:47:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210506-6d782bb", prerelease = true }
 "1.5.3" = { created_at = 2021-05-06T06:47:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.3" }
+"20210512-2094bbf" = { created_at = 2021-05-11T01:33:01.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210512-2094bbf", prerelease = true }
 "1.5.4" = { created_at = 2021-05-11T01:33:01.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.4" }
+"20210515-5827b4c" = { created_at = 2021-05-14T14:36:46.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210515-5827b4c", prerelease = true }
+"20210528-92a13e4" = { created_at = 2021-05-27T01:21:36.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210528-92a13e4", prerelease = true }
 "1.5.5" = { created_at = 2021-05-27T01:21:36.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.5" }
+"20210601-6388e77" = { created_at = 2021-06-01T14:00:36.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210601-6388e77", prerelease = true }
+"20210610-05bb086" = { created_at = 2021-06-09T07:19:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210610-05bb086", prerelease = true }
 "1.5.6" = { created_at = 2021-06-09T07:19:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.6" }
 "1.5.7" = { created_at = 2021-06-22T07:37:49.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.7" }
-"1.5.8-11-g582a891-2-g46d7812-9-g870bfbc" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891-2-g46d7812-9-g870bfbc" }
-"1.5.8-11-g582a891-2-g46d7812-9-g870bfbc-6-gc91be63" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891-2-g46d7812-9-g870bfbc-6-gc91be63" }
-"1.5.8-11-g582a891-2-g46d7812" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891-2-g46d7812" }
-"1.5.8-11-g582a891" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891" }
+"20210702-ea0cff7" = { created_at = 2021-07-02T14:01:09.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210702-ea0cff7", prerelease = true }
+"20210703-2c8b96a" = { created_at = 2021-07-02T16:07:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210703-2c8b96a", prerelease = true }
+"1.5.8-11-g582a891" = { created_at = 2021-07-09T16:27:53.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891", prerelease = true }
 "1.5.8" = { created_at = 2021-07-09T14:02:07.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8" }
+"1.5.8-11-g582a891-2-g46d7812" = { created_at = 2021-07-20T05:26:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891-2-g46d7812", prerelease = true }
 "1.5.9" = { created_at = 2021-07-20T05:54:26.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.9" }
-"1.6.0-3-g150fbae" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.0-3-g150fbae" }
+"1.5.8-11-g582a891-2-g46d7812-9-g870bfbc" = { created_at = 2021-07-26T02:35:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891-2-g46d7812-9-g870bfbc", prerelease = true }
+"1.5.8-11-g582a891-2-g46d7812-9-g870bfbc-6-gc91be63" = { created_at = 2021-07-30T15:32:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.5.8-11-g582a891-2-g46d7812-9-g870bfbc-6-gc91be63", prerelease = true }
+"1.6.0-3-g150fbae" = { created_at = 2021-08-06T17:49:36.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.0-3-g150fbae", prerelease = true }
 "1.6.0" = { created_at = 2021-08-06T17:30:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.0" }
 "1.6.1" = { created_at = 2021-08-17T04:08:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.1" }
-"1.6.2-2-g98814b0-5-g7623991-3-gf1411f8-13-g0b68b2b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0-5-g7623991-3-gf1411f8-13-g0b68b2b" }
-"1.6.2-2-g98814b0-5-g7623991-3-gf1411f8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0-5-g7623991-3-gf1411f8" }
-"1.6.2-2-g98814b0-5-g7623991" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0-5-g7623991" }
-"1.6.2-2-g98814b0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0" }
 "1.6.2" = { created_at = 2021-08-26T01:56:13.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2" }
-"1.7.0-1-gf61c321-3-gb02f709-1-g40c3166-3-g3ec5bf3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321-3-gb02f709-1-g40c3166-3-g3ec5bf3" }
-"1.7.0-1-gf61c321-3-gb02f709-1-g40c3166" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321-3-gb02f709-1-g40c3166" }
-"1.7.0-1-gf61c321-3-gb02f709" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321-3-gb02f709" }
-"1.7.0-1-gf61c321" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321" }
+"1.6.2-2-g98814b0" = { created_at = 2021-09-07T05:31:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0", prerelease = true }
+"1.6.2-2-g98814b0-5-g7623991" = { created_at = 2021-09-24T17:04:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0-5-g7623991", prerelease = true }
+"1.6.2-2-g98814b0-5-g7623991-3-gf1411f8" = { created_at = 2021-10-08T16:39:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0-5-g7623991-3-gf1411f8", prerelease = true }
+"1.6.2-2-g98814b0-5-g7623991-3-gf1411f8-13-g0b68b2b" = { created_at = 2021-10-15T17:55:15.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.6.2-2-g98814b0-5-g7623991-3-gf1411f8-13-g0b68b2b", prerelease = true }
+"1.7.0-1-gf61c321" = { created_at = 2021-10-29T15:19:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321", prerelease = true }
 "1.7.0" = { created_at = 2021-10-29T14:48:07.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0" }
-"1.7.1-2-ga72bae5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.1-2-ga72bae5" }
+"1.7.0-1-gf61c321-3-gb02f709" = { created_at = 2021-11-02T08:31:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321-3-gb02f709", prerelease = true }
+"1.7.0-1-gf61c321-3-gb02f709-1-g40c3166" = { created_at = 2021-11-04T07:13:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321-3-gb02f709-1-g40c3166", prerelease = true }
+"1.7.0-1-gf61c321-3-gb02f709-1-g40c3166-3-g3ec5bf3" = { created_at = 2021-11-15T08:48:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.0-1-gf61c321-3-gb02f709-1-g40c3166-3-g3ec5bf3", prerelease = true }
 "1.7.1" = { created_at = 2021-11-30T09:00:26.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.1" }
-"1.7.2-2-g92b8c71" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.2-2-g92b8c71" }
+"1.7.1-2-ga72bae5" = { created_at = 2021-12-02T00:51:38.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.1-2-ga72bae5", prerelease = true }
 "1.7.2" = { created_at = 2021-12-06T01:31:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.2" }
+"1.7.2-2-g92b8c71" = { created_at = 2021-12-13T02:52:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.2-2-g92b8c71", prerelease = true }
 "1.7.3" = { created_at = 2021-12-14T05:33:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.3" }
-"1.7.4-1-g4888b8c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.4-1-g4888b8c" }
+"1.7.4-1-g4888b8c" = { created_at = 2021-12-24T14:45:13.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.4-1-g4888b8c", prerelease = true }
 "1.7.4" = { created_at = 2021-12-24T14:33:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.4" }
-"1.7.5-4-ge2324a3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.5-4-ge2324a3" }
 "1.7.5" = { created_at = 2021-12-25T13:09:27.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.5" }
+"1.7.5-4-ge2324a3" = { created_at = 2022-01-11T07:29:25.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.5-4-ge2324a3", prerelease = true }
 "1.7.6" = { created_at = 2022-01-14T16:14:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.6" }
-"1.7.7-7-g69c85de" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de" }
-"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c" }
-"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449-2-g04b07f6" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449-2-g04b07f6" }
-"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449" }
-"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0" }
-"1.7.7-7-g69c85de-2-gefbe5d7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7" }
 "1.7.7" = { created_at = 2022-01-25T04:51:36.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7" }
+"1.7.7-7-g69c85de" = { created_at = 2022-02-18T14:50:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de", prerelease = true }
+"1.7.7-7-g69c85de-2-gefbe5d7" = { created_at = 2022-02-25T13:06:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7", prerelease = true }
 "1.7.8" = { created_at = 2022-02-25T13:23:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.8" }
+"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c" = { created_at = 2022-03-08T07:22:45.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c", prerelease = true }
+"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0" = { created_at = 2022-03-10T09:23:21.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0", prerelease = true }
 "1.7.9" = { created_at = 2022-03-10T01:24:45.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.9" }
 "1.7.10" = { created_at = 2022-03-10T09:23:53.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.10" }
-"1.7.11-5-g22dfb2c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858-2-gc8c5143" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858-2-gc8c5143" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858" }
-"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9" }
+"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449" = { created_at = 2022-03-11T03:00:27.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449", prerelease = true }
+"1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449-2-g04b07f6" = { created_at = 2022-04-30T09:41:50.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.7-7-g69c85de-2-gefbe5d7-2-gf008a7c-4-g54f6cf0-4-g7ec5449-2-g04b07f6", prerelease = true }
 "1.7.11" = { created_at = 2022-05-13T16:39:58.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11" }
+"1.7.11-5-g22dfb2c" = { created_at = 2022-05-20T16:47:41.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c", prerelease = true }
+"1.7.11-5-g22dfb2c-2-ga3d15fd" = { created_at = 2022-06-06T08:48:09.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd", prerelease = true }
+"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df" = { created_at = 2022-06-27T03:13:33.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df", prerelease = true }
 "1.7.12" = { created_at = 2022-06-27T03:13:33.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.12" }
+"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9" = { created_at = 2022-08-30T05:19:53.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9", prerelease = true }
+"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf" = { created_at = 2022-10-04T04:56:26.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf", prerelease = true }
 "1.7.13" = { created_at = 2022-10-04T04:56:26.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.13" }
-"1.7.14-1-g37db6ea" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea" }
-"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed" }
-"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed-2-g19ca425" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed-2-g19ca425" }
-"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3" }
-"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342" }
-"1.7.14-1-g37db6ea-2-g4b65454" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454" }
+"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d" = { created_at = 2022-10-14T18:06:39.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d", prerelease = true }
+"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858" = { created_at = 2022-11-04T00:59:25.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858", prerelease = true }
+"1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858-2-gc8c5143" = { created_at = 2022-11-11T01:29:52.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.11-5-g22dfb2c-2-ga3d15fd-2-g62a45df-4-g9f846f9-2-g4a41daf-9-gefe841d-3-g85e4858-2-gc8c5143", prerelease = true }
+"1.99.1" = { created_at = 2022-11-11T04:55:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.1", prerelease = true }
+"1.7.14-1-g37db6ea" = { created_at = 2022-11-14T07:45:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea", prerelease = true }
 "1.7.14" = { created_at = 2022-11-14T06:01:47.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14" }
+"1.99.2" = { created_at = 2022-11-14T08:28:12.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.2", prerelease = true }
+"1.7.14-1-g37db6ea-2-g4b65454" = { created_at = 2022-11-15T02:17:47.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454", prerelease = true }
+"1.99.3" = { created_at = 2022-11-15T08:26:18.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.3", prerelease = true }
+"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342" = { created_at = 2022-11-18T01:13:10.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342", prerelease = true }
+"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3" = { created_at = 2022-11-21T09:08:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3", prerelease = true }
+"1.99.4" = { created_at = 2022-11-21T09:09:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.4", prerelease = true }
+"1.99.5" = { created_at = 2022-11-25T16:01:52.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.5", prerelease = true }
+"1.99.6" = { created_at = 2022-12-01T07:46:49.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.6", prerelease = true }
+"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed" = { created_at = 2022-12-02T06:38:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed", prerelease = true }
+"1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed-2-g19ca425" = { created_at = 2022-12-05T00:20:52.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.14-1-g37db6ea-2-g4b65454-4-g73b9342-1-g5b131b3-4-g7a550ed-2-g19ca425", prerelease = true }
 "1.7.15" = { created_at = 2022-12-14T03:09:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.7.15" }
-"1.99.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.0" }
-"1.99.1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.1" }
-"1.99.2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.2" }
-"1.99.3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.3" }
-"1.99.4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.4" }
-"1.99.5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.5" }
-"1.99.6" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v1.99.6" }
 "2.0.0" = { created_at = 2022-12-14T06:24:16.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.0" }
 "2.0.1" = { created_at = 2022-12-20T01:29:02.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.1" }
-"2.0.3-2-g7a04e2d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-2-g7a04e2d" }
-"2.0.3-2-g7a04e2d-15-g5479761-4-g9d790d3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-2-g7a04e2d-15-g5479761-4-g9d790d3" }
-"2.0.3-2-g7a04e2d-15-g5479761" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-2-g7a04e2d-15-g5479761" }
-"2.0.3-nightly-1a317daaa2d74e9dccb2428791be433c21152384" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-nightly-1a317daaa2d74e9dccb2428791be433c21152384" }
-"2.0.3-nightly-4156af4566ed753f7cfe8a58d8c0f78355c65240" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-nightly-4156af4566ed753f7cfe8a58d8c0f78355c65240" }
-"2.0.3-nightly-97054235af9e9f9b60a0d337ebdab5f80019b91d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-nightly-97054235af9e9f9b60a0d337ebdab5f80019b91d" }
 "2.0.3" = { created_at = 2022-12-22T08:06:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3" }
-"2.0.4-nightly-780a920475c278623741d14ca16c709bc952621d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4-nightly-780a920475c278623741d14ca16c709bc952621d" }
-"2.0.4-nightly-2522cc42d66d4d86edef86782d0eb9d881b87e95" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4-nightly-2522cc42d66d4d86edef86782d0eb9d881b87e95" }
-"2.0.4-nightly-9205396e656b55a30244e22212fa35a946d2b415" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4-nightly-9205396e656b55a30244e22212fa35a946d2b415" }
+"2.0.3-2-g7a04e2d" = { created_at = 2023-01-10T09:15:28.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-2-g7a04e2d", prerelease = true }
+"2.0.3-2-g7a04e2d-15-g5479761" = { created_at = 2023-01-11T06:40:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-2-g7a04e2d-15-g5479761", prerelease = true }
+"2.0.3-2-g7a04e2d-15-g5479761-4-g9d790d3" = { created_at = 2023-01-11T06:58:45.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-2-g7a04e2d-15-g5479761-4-g9d790d3", prerelease = true }
+"2.0.3-nightly-1a317daaa2d74e9dccb2428791be433c21152384" = { created_at = 2023-01-13T15:57:46.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-nightly-1a317daaa2d74e9dccb2428791be433c21152384", prerelease = true }
+"2.0.3-nightly-97054235af9e9f9b60a0d337ebdab5f80019b91d" = { created_at = 2023-01-13T15:57:46.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-nightly-97054235af9e9f9b60a0d337ebdab5f80019b91d", prerelease = true }
+"2.0.3-nightly-4156af4566ed753f7cfe8a58d8c0f78355c65240" = { created_at = 2023-02-03T14:57:20.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.3-nightly-4156af4566ed753f7cfe8a58d8c0f78355c65240", prerelease = true }
 "2.0.4" = { created_at = 2023-02-03T14:59:10.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4" }
-"2.0.5-nightly-6b91a090c1a52f23bb05aeb2e7ff7d53f8409cfd" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-6b91a090c1a52f23bb05aeb2e7ff7d53f8409cfd" }
-"2.0.5-nightly-16d22d874e9a1b3697db91291e4e161b6dd1fe73" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-16d22d874e9a1b3697db91291e4e161b6dd1fe73" }
-"2.0.5-nightly-39c4a4a143f2f99e0deaea834b8288805875e1a3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-39c4a4a143f2f99e0deaea834b8288805875e1a3" }
-"2.0.5-nightly-112301d99399eecd11b8ed54327411ccb2e5d81d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-112301d99399eecd11b8ed54327411ccb2e5d81d" }
-"2.0.5-nightly-aeb225cfa807a1fc0ff24af2438fc155a321335c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-aeb225cfa807a1fc0ff24af2438fc155a321335c" }
-"2.0.5-nightly-bb07d60c42cb3109a7a72761de1aa623f91a0669" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-bb07d60c42cb3109a7a72761de1aa623f91a0669" }
-"2.0.5-nightly-f3a76a385fa40166f60028193024971150d0ca00" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-f3a76a385fa40166f60028193024971150d0ca00" }
-"2.0.5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5" }
-"2.1.0-nightly-90893110327e38cd6819768923a618a9eaafb1f2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-90893110327e38cd6819768923a618a9eaafb1f2" }
-"2.1.0-nightly-0d58986f5320294f990afb2460416779d2b8f9bb" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-0d58986f5320294f990afb2460416779d2b8f9bb" }
-"2.1.0-nightly-3fbd3a9339faaa5faff4aa3ad2572eb5596f2547" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-3fbd3a9339faaa5faff4aa3ad2572eb5596f2547" }
-"2.1.0-nightly-6aacf22f4d1cb3e645b1980bcf1c2b46decb9852" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-6aacf22f4d1cb3e645b1980bcf1c2b46decb9852" }
-"2.1.0-nightly-8d42cd8802a18f040258c30dcbb889be0c9b07e8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-8d42cd8802a18f040258c30dcbb889be0c9b07e8" }
-"2.1.0-nightly-15e20a677cba122b6dfe9a1f45f82f5a32c7de3b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-15e20a677cba122b6dfe9a1f45f82f5a32c7de3b" }
-"2.1.0-nightly-34f07e41e60cb24b41f22152e6c9b9195292319d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-34f07e41e60cb24b41f22152e6c9b9195292319d" }
-"2.1.0-nightly-76ad1bc41a4cc9264198a2d693678caab76d4b15" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-76ad1bc41a4cc9264198a2d693678caab76d4b15" }
-"2.1.0-nightly-3243dd86eba629d5638e9a3cbaf4af0cc8c1ad8c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-3243dd86eba629d5638e9a3cbaf4af0cc8c1ad8c" }
-"2.1.0-nightly-9247fd63d206120354a5b8d939ab02640f5f822a" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-9247fd63d206120354a5b8d939ab02640f5f822a" }
-"2.1.0-nightly-34423de1020f406ad5ffa9f3cc426bd3f027ff44" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-34423de1020f406ad5ffa9f3cc426bd3f027ff44" }
-"2.1.0-nightly-47570ec76c114c18dda9355d31b54332c1f90228" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-47570ec76c114c18dda9355d31b54332c1f90228" }
-"2.1.0-nightly-476998cec6aa771059b295f60b97df51fdb89d35" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-476998cec6aa771059b295f60b97df51fdb89d35" }
-"2.1.0-nightly-b9c9b844abb8f4e3c49ffaeb2615b92117a494fd" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-b9c9b844abb8f4e3c49ffaeb2615b92117a494fd" }
-"2.1.0-nightly-cf3f14f0771ad49a3aa1404d1110f3b7bca9e7d4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-cf3f14f0771ad49a3aa1404d1110f3b7bca9e7d4" }
+"2.0.4-nightly-9205396e656b55a30244e22212fa35a946d2b415" = { created_at = 2023-02-22T16:43:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4-nightly-9205396e656b55a30244e22212fa35a946d2b415", prerelease = true }
+"2.0.4-nightly-2522cc42d66d4d86edef86782d0eb9d881b87e95" = { created_at = 2023-03-01T12:08:28.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4-nightly-2522cc42d66d4d86edef86782d0eb9d881b87e95", prerelease = true }
+"2.0.4-nightly-780a920475c278623741d14ca16c709bc952621d" = { created_at = 2023-03-01T12:08:28.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.4-nightly-780a920475c278623741d14ca16c709bc952621d", prerelease = true }
+"2.0.5" = { created_at = 2023-03-03T16:05:45.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5", prerelease = true }
+"2.0.5-nightly-39c4a4a143f2f99e0deaea834b8288805875e1a3" = { created_at = 2023-03-03T16:35:48.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-39c4a4a143f2f99e0deaea834b8288805875e1a3", prerelease = true }
+"2.0.5-nightly-aeb225cfa807a1fc0ff24af2438fc155a321335c" = { created_at = 2023-03-03T16:35:48.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-aeb225cfa807a1fc0ff24af2438fc155a321335c", prerelease = true }
+"2.0.5-nightly-f3a76a385fa40166f60028193024971150d0ca00" = { created_at = 2023-03-03T16:35:48.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-f3a76a385fa40166f60028193024971150d0ca00", prerelease = true }
+"2.0.5-nightly-16d22d874e9a1b3697db91291e4e161b6dd1fe73" = { created_at = 2023-03-07T07:19:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-16d22d874e9a1b3697db91291e4e161b6dd1fe73", prerelease = true }
+"2.0.5-nightly-bb07d60c42cb3109a7a72761de1aa623f91a0669" = { created_at = 2023-03-16T05:47:59.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-bb07d60c42cb3109a7a72761de1aa623f91a0669", prerelease = true }
+"2.0.5-nightly-6b91a090c1a52f23bb05aeb2e7ff7d53f8409cfd" = { created_at = 2023-03-24T15:15:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-6b91a090c1a52f23bb05aeb2e7ff7d53f8409cfd", prerelease = true }
+"2.0.5-nightly-112301d99399eecd11b8ed54327411ccb2e5d81d" = { created_at = 2023-03-29T08:19:43.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.0.5-nightly-112301d99399eecd11b8ed54327411ccb2e5d81d", prerelease = true }
+"2.1.0-nightly-15e20a677cba122b6dfe9a1f45f82f5a32c7de3b" = { created_at = 2023-03-31T15:50:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-15e20a677cba122b6dfe9a1f45f82f5a32c7de3b", prerelease = true }
+"2.1.0-nightly-76ad1bc41a4cc9264198a2d693678caab76d4b15" = { created_at = 2023-03-31T15:50:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-76ad1bc41a4cc9264198a2d693678caab76d4b15", prerelease = true }
+"2.1.0-nightly-b9c9b844abb8f4e3c49ffaeb2615b92117a494fd" = { created_at = 2023-03-31T15:50:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-b9c9b844abb8f4e3c49ffaeb2615b92117a494fd", prerelease = true }
 "2.1.0" = { created_at = 2023-03-31T14:42:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0" }
-"2.2.0-nightly-246d331a72ea522a2994701da354508558b44563" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0-nightly-246d331a72ea522a2994701da354508558b44563" }
-"2.2.0-nightly-365109ee5670882eac7993bd50a45c9ae24b20de" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0-nightly-365109ee5670882eac7993bd50a45c9ae24b20de" }
-"2.2.0-nightly-a17b17c7bbcaaada3bc6578765a587492f19a407" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0-nightly-a17b17c7bbcaaada3bc6578765a587492f19a407" }
+"2.1.0-nightly-9247fd63d206120354a5b8d939ab02640f5f822a" = { created_at = 2023-04-14T15:11:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-9247fd63d206120354a5b8d939ab02640f5f822a", prerelease = true }
+"2.1.0-nightly-cf3f14f0771ad49a3aa1404d1110f3b7bca9e7d4" = { created_at = 2023-04-14T15:11:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-cf3f14f0771ad49a3aa1404d1110f3b7bca9e7d4", prerelease = true }
+"2.1.0-nightly-0d58986f5320294f990afb2460416779d2b8f9bb" = { created_at = 2023-04-21T02:27:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-0d58986f5320294f990afb2460416779d2b8f9bb", prerelease = true }
+"2.1.0-nightly-90893110327e38cd6819768923a618a9eaafb1f2" = { created_at = 2023-04-21T02:27:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-90893110327e38cd6819768923a618a9eaafb1f2", prerelease = true }
+"2.1.0-nightly-476998cec6aa771059b295f60b97df51fdb89d35" = { created_at = 2023-05-07T08:40:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-476998cec6aa771059b295f60b97df51fdb89d35", prerelease = true }
+"2.1.0-nightly-34423de1020f406ad5ffa9f3cc426bd3f027ff44" = { created_at = 2023-05-09T05:06:30.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-34423de1020f406ad5ffa9f3cc426bd3f027ff44", prerelease = true }
+"2.1.0-nightly-47570ec76c114c18dda9355d31b54332c1f90228" = { created_at = 2023-05-10T05:43:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-47570ec76c114c18dda9355d31b54332c1f90228", prerelease = true }
+"2.1.0-nightly-8d42cd8802a18f040258c30dcbb889be0c9b07e8" = { created_at = 2023-05-10T05:43:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-8d42cd8802a18f040258c30dcbb889be0c9b07e8", prerelease = true }
+"2.1.0-nightly-34f07e41e60cb24b41f22152e6c9b9195292319d" = { created_at = 2023-05-12T08:05:18.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-34f07e41e60cb24b41f22152e6c9b9195292319d", prerelease = true }
+"2.1.0-nightly-3fbd3a9339faaa5faff4aa3ad2572eb5596f2547" = { created_at = 2023-05-16T00:29:50.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-3fbd3a9339faaa5faff4aa3ad2572eb5596f2547", prerelease = true }
+"2.1.0-nightly-3243dd86eba629d5638e9a3cbaf4af0cc8c1ad8c" = { created_at = 2023-05-18T16:28:38.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-3243dd86eba629d5638e9a3cbaf4af0cc8c1ad8c", prerelease = true }
+"2.1.0-nightly-6aacf22f4d1cb3e645b1980bcf1c2b46decb9852" = { created_at = 2023-05-18T16:28:38.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.1.0-nightly-6aacf22f4d1cb3e645b1980bcf1c2b46decb9852", prerelease = true }
 "2.2.0" = { created_at = 2023-05-26T13:30:20.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0" }
-"2.2.1-nightly-34f9eb8aece3046a04a8694074b264694af93f5f" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-34f9eb8aece3046a04a8694074b264694af93f5f" }
-"2.2.1-nightly-69b2812a17d99164ebe34238bba7325c8e2a167e" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-69b2812a17d99164ebe34238bba7325c8e2a167e" }
-"2.2.1-nightly-ea310a3ebe0e3c9090b7d118272b92e8a2130bed" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-ea310a3ebe0e3c9090b7d118272b92e8a2130bed" }
-"2.2.1-nightly-fb72a9a2461bb31bd75b8a76d39ca1cc5e007c3b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-fb72a9a2461bb31bd75b8a76d39ca1cc5e007c3b" }
+"2.2.0-nightly-365109ee5670882eac7993bd50a45c9ae24b20de" = { created_at = 2023-05-30T08:24:45.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0-nightly-365109ee5670882eac7993bd50a45c9ae24b20de", prerelease = true }
+"2.2.0-nightly-a17b17c7bbcaaada3bc6578765a587492f19a407" = { created_at = 2023-06-02T04:30:56.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0-nightly-a17b17c7bbcaaada3bc6578765a587492f19a407", prerelease = true }
+"2.2.0-nightly-246d331a72ea522a2994701da354508558b44563" = { created_at = 2023-06-16T04:09:43.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.0-nightly-246d331a72ea522a2994701da354508558b44563", prerelease = true }
 "2.2.1" = { created_at = 2023-06-19T02:29:16.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1" }
-"2.2.2-nightly-1d50b310befef291bb62fbdb68fd1eb8a5aa3151" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-1d50b310befef291bb62fbdb68fd1eb8a5aa3151" }
-"2.2.2-nightly-2de100e3664ca97efddfd40658a51f30d7c91e25" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-2de100e3664ca97efddfd40658a51f30d7c91e25" }
-"2.2.2-nightly-9e176011eb5b0b7154bb96af201bb6b198414443" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-9e176011eb5b0b7154bb96af201bb6b198414443" }
-"2.2.2-nightly-d1698e46d5add5c98e288a3276ca708626e30022" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-d1698e46d5add5c98e288a3276ca708626e30022" }
-"2.2.2-nightly-ea5e4b129466a623185ebd22afafd9f154fba5cb" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-ea5e4b129466a623185ebd22afafd9f154fba5cb" }
-"2.2.2-nightly-f8f4431c548c0bbb05ca98d5f8158907af0e91dc" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-f8f4431c548c0bbb05ca98d5f8158907af0e91dc" }
-"2.2.2-nightly-f0743a5e5f4f17c1c8bdc329c13fb416919126b0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-f0743a5e5f4f17c1c8bdc329c13fb416919126b0" }
+"2.2.1-nightly-34f9eb8aece3046a04a8694074b264694af93f5f" = { created_at = 2023-07-07T14:17:59.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-34f9eb8aece3046a04a8694074b264694af93f5f", prerelease = true }
+"2.2.1-nightly-fb72a9a2461bb31bd75b8a76d39ca1cc5e007c3b" = { created_at = 2023-07-07T14:17:59.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-fb72a9a2461bb31bd75b8a76d39ca1cc5e007c3b", prerelease = true }
+"2.2.1-nightly-ea310a3ebe0e3c9090b7d118272b92e8a2130bed" = { created_at = 2023-07-12T01:58:13.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-ea310a3ebe0e3c9090b7d118272b92e8a2130bed", prerelease = true }
+"2.2.1-nightly-69b2812a17d99164ebe34238bba7325c8e2a167e" = { created_at = 2023-07-14T16:59:39.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.1-nightly-69b2812a17d99164ebe34238bba7325c8e2a167e", prerelease = true }
+"2.2.2-nightly-9e176011eb5b0b7154bb96af201bb6b198414443" = { created_at = 2023-07-19T08:13:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-9e176011eb5b0b7154bb96af201bb6b198414443", prerelease = true }
 "2.2.2" = { created_at = 2023-07-19T08:13:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2" }
+"2.2.2-nightly-f8f4431c548c0bbb05ca98d5f8158907af0e91dc" = { created_at = 2023-07-26T08:24:01.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-f8f4431c548c0bbb05ca98d5f8158907af0e91dc", prerelease = true }
+"2.2.2-nightly-2de100e3664ca97efddfd40658a51f30d7c91e25" = { created_at = 2023-08-03T07:12:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-2de100e3664ca97efddfd40658a51f30d7c91e25", prerelease = true }
+"2.2.2-nightly-d1698e46d5add5c98e288a3276ca708626e30022" = { created_at = 2023-08-04T16:15:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-d1698e46d5add5c98e288a3276ca708626e30022", prerelease = true }
 "2.2.3" = { created_at = 2023-08-04T16:15:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.3" }
-"2.2.4-nightly-01bcb082bc540bad197fe8428081a35834c5bee4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-01bcb082bc540bad197fe8428081a35834c5bee4" }
-"2.2.4-nightly-2f23749d08a17a5e832ce0e748ee888e70c1ba4e" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-2f23749d08a17a5e832ce0e748ee888e70c1ba4e" }
-"2.2.4-nightly-0779c4a64e97f5cabbd510a9cb78f637aba30af5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-0779c4a64e97f5cabbd510a9cb78f637aba30af5" }
-"2.2.4-nightly-1483fc3a29904e29407350ad690f0bd93d49a7f1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-1483fc3a29904e29407350ad690f0bd93d49a7f1" }
-"2.2.4-nightly-29000c1c6e49299316e3cee4bdeca8bd5212478a" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-29000c1c6e49299316e3cee4bdeca8bd5212478a" }
-"2.2.4-nightly-b2e6b14ea87ffc183fa35133758e83b48985a7f3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-b2e6b14ea87ffc183fa35133758e83b48985a7f3" }
-"2.2.4-nightly-b44920bae260d83464267adfb01f6ec9ace3a819" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-b44920bae260d83464267adfb01f6ec9ace3a819" }
-"2.2.4-nightly-baaea9bda9e904337148d64f03fca4a617dfcacb" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-baaea9bda9e904337148d64f03fca4a617dfcacb" }
-"2.2.4-nightly-ed07bd0367344fcc07bccbef36f3aba396f19554" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-ed07bd0367344fcc07bccbef36f3aba396f19554" }
-"2.2.4-nightly-fca8d9ad44647546e63b9c4c2c1e0c05e7168f0e" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-fca8d9ad44647546e63b9c4c2c1e0c05e7168f0e" }
+"2.2.2-nightly-ea5e4b129466a623185ebd22afafd9f154fba5cb" = { created_at = 2023-09-18T03:52:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-ea5e4b129466a623185ebd22afafd9f154fba5cb", prerelease = true }
+"2.2.2-nightly-1d50b310befef291bb62fbdb68fd1eb8a5aa3151" = { created_at = 2023-10-01T04:32:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-1d50b310befef291bb62fbdb68fd1eb8a5aa3151", prerelease = true }
+"2.2.2-nightly-f0743a5e5f4f17c1c8bdc329c13fb416919126b0" = { created_at = 2023-10-01T04:32:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.2-nightly-f0743a5e5f4f17c1c8bdc329c13fb416919126b0", prerelease = true }
+"2.2.4-nightly-b44920bae260d83464267adfb01f6ec9ace3a819" = { created_at = 2023-10-06T02:02:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-b44920bae260d83464267adfb01f6ec9ace3a819", prerelease = true }
 "2.2.4" = { created_at = 2023-10-06T02:02:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4" }
-"2.3.0-nightly-5bd516dd08eb6691cb62e2272b7015a6a7737ce2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-nightly-5bd516dd08eb6691cb62e2272b7015a6a7737ce2" }
-"2.3.0-nightly-bfdec9f409beaf12b7b859ee37c04792c9dd66e7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-nightly-bfdec9f409beaf12b7b859ee37c04792c9dd66e7" }
-"2.3.0-nightly-ee3e55f1442ee253305f978272f9aac283c98e87" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-nightly-ee3e55f1442ee253305f978272f9aac283c98e87" }
-"2.3.0-rc1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-rc1" }
+"2.2.4-nightly-29000c1c6e49299316e3cee4bdeca8bd5212478a" = { created_at = 2023-10-10T06:55:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-29000c1c6e49299316e3cee4bdeca8bd5212478a", prerelease = true }
+"2.2.4-nightly-baaea9bda9e904337148d64f03fca4a617dfcacb" = { created_at = 2023-10-10T06:55:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-baaea9bda9e904337148d64f03fca4a617dfcacb", prerelease = true }
+"2.2.4-nightly-fca8d9ad44647546e63b9c4c2c1e0c05e7168f0e" = { created_at = 2023-10-17T00:27:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-fca8d9ad44647546e63b9c4c2c1e0c05e7168f0e", prerelease = true }
+"2.2.4-nightly-1483fc3a29904e29407350ad690f0bd93d49a7f1" = { created_at = 2023-11-14T05:32:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-1483fc3a29904e29407350ad690f0bd93d49a7f1", prerelease = true }
+"2.2.4-nightly-b2e6b14ea87ffc183fa35133758e83b48985a7f3" = { created_at = 2023-11-14T05:32:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-b2e6b14ea87ffc183fa35133758e83b48985a7f3", prerelease = true }
+"2.2.4-nightly-01bcb082bc540bad197fe8428081a35834c5bee4" = { created_at = 2023-12-01T15:13:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-01bcb082bc540bad197fe8428081a35834c5bee4", prerelease = true }
+"2.2.4-nightly-0779c4a64e97f5cabbd510a9cb78f637aba30af5" = { created_at = 2023-12-01T15:13:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-0779c4a64e97f5cabbd510a9cb78f637aba30af5", prerelease = true }
+"2.2.4-nightly-2f23749d08a17a5e832ce0e748ee888e70c1ba4e" = { created_at = 2023-12-08T15:29:27.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-2f23749d08a17a5e832ce0e748ee888e70c1ba4e", prerelease = true }
+"2.2.4-nightly-ed07bd0367344fcc07bccbef36f3aba396f19554" = { created_at = 2023-12-08T15:29:27.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.2.4-nightly-ed07bd0367344fcc07bccbef36f3aba396f19554", prerelease = true }
+"2.3.0-nightly-5bd516dd08eb6691cb62e2272b7015a6a7737ce2" = { created_at = 2023-12-18T08:01:42.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-nightly-5bd516dd08eb6691cb62e2272b7015a6a7737ce2", prerelease = true }
+"2.3.0-nightly-ee3e55f1442ee253305f978272f9aac283c98e87" = { created_at = 2023-12-18T08:01:42.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-nightly-ee3e55f1442ee253305f978272f9aac283c98e87", prerelease = true }
+"2.3.0-rc1" = { created_at = 2023-12-18T07:41:26.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-rc1", prerelease = true }
+"2.3.0-nightly-bfdec9f409beaf12b7b859ee37c04792c9dd66e7" = { created_at = 2023-12-21T04:44:14.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0-nightly-bfdec9f409beaf12b7b859ee37c04792c9dd66e7", prerelease = true }
 "2.3.0" = { created_at = 2023-12-21T04:44:14.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.0" }
-"2.3.1-nightly-b00d06f7d188ebfb26145c4b1f305b9ed0547bb4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.1-nightly-b00d06f7d188ebfb26145c4b1f305b9ed0547bb4" }
-"2.3.1-nightly-c780f9f3672d7c0fced8eed43cc66a573611d848" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.1-nightly-c780f9f3672d7c0fced8eed43cc66a573611d848" }
+"2.3.1-nightly-b00d06f7d188ebfb26145c4b1f305b9ed0547bb4" = { created_at = 2023-12-25T01:48:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.1-nightly-b00d06f7d188ebfb26145c4b1f305b9ed0547bb4", prerelease = true }
 "2.3.1" = { created_at = 2023-12-25T01:48:35.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.1" }
-"2.3.2-nightly-4b2541d3310a0849d99967a1d38c2aec980ea7e9" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-4b2541d3310a0849d99967a1d38c2aec980ea7e9" }
-"2.3.2-nightly-7f009dd6a050180c6429280a207d000c9f74b8a3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-7f009dd6a050180c6429280a207d000c9f74b8a3" }
-"2.3.2-nightly-7f9e5a891ae7e18986d20d75053818b197e7b78b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-7f9e5a891ae7e18986d20d75053818b197e7b78b" }
-"2.3.2-nightly-26d67d66e301c004969b47d0e20a6980daa30534" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-26d67d66e301c004969b47d0e20a6980daa30534" }
-"2.3.2-nightly-5596ef7e19426bd0da3d7a374a3dede79871f07b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-5596ef7e19426bd0da3d7a374a3dede79871f07b" }
-"2.3.2-nightly-a0c5b25524a7fb16c326ee2b4b00c1892e4e810d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-a0c5b25524a7fb16c326ee2b4b00c1892e4e810d" }
-"2.3.2-nightly-d095f28d8b5017a9c3efa4f0d3c72738703b2ebf" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-d095f28d8b5017a9c3efa4f0d3c72738703b2ebf" }
-"2.3.2-nightly-d406c38fb6c5a66ab7016f965d12e53124a61c13" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-d406c38fb6c5a66ab7016f965d12e53124a61c13" }
-"2.3.2-nightly-eccb2b41d2f38546ae17d12040d3682f554b3730" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-eccb2b41d2f38546ae17d12040d3682f554b3730" }
-"2.3.2-nightly-fb4123ec7211b3ff72a7a301ce1ceb762212abc4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-fb4123ec7211b3ff72a7a301ce1ceb762212abc4" }
-"2.3.2-nightly-fd9e1c3ac2c5bb296a69d32e520a534b74afdc59" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-fd9e1c3ac2c5bb296a69d32e520a534b74afdc59" }
+"2.3.1-nightly-c780f9f3672d7c0fced8eed43cc66a573611d848" = { created_at = 2024-01-13T06:08:41.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.1-nightly-c780f9f3672d7c0fced8eed43cc66a573611d848", prerelease = true }
+"2.3.2-nightly-5596ef7e19426bd0da3d7a374a3dede79871f07b" = { created_at = 2024-01-19T14:41:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-5596ef7e19426bd0da3d7a374a3dede79871f07b", prerelease = true }
 "2.3.2" = { created_at = 2024-01-19T14:41:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2" }
-"2.3.3-nightly-35070759113e093be4bf538d83486e4f8bde080f" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-35070759113e093be4bf538d83486e4f8bde080f" }
-"2.3.3-nightly-8adb9fd1038b0b9ff82eed979b06cebba486eea0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-8adb9fd1038b0b9ff82eed979b06cebba486eea0" }
-"2.3.3-nightly-9a207085432d8732d393f44921107b23c6ee6463" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-9a207085432d8732d393f44921107b23c6ee6463" }
-"2.3.3-nightly-76add818eb8b194781b4a7ca4c32cea4cb547b7b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-76add818eb8b194781b4a7ca4c32cea4cb547b7b" }
-"2.3.3-nightly-a5e92cd1dfcb7069983f36714fcdc0eb5cb20fb7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-a5e92cd1dfcb7069983f36714fcdc0eb5cb20fb7" }
-"2.3.3-nightly-c0a0d502edc58db5db9acdbed5cc96463c5bd554" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-c0a0d502edc58db5db9acdbed5cc96463c5bd554" }
-"2.3.3-nightly-ef5d54f796fbeb4b540fe0f3f474067bd3792a3e" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-ef5d54f796fbeb4b540fe0f3f474067bd3792a3e" }
-"2.3.3-nightly-fcb57cc59d3f359f9f14509d9953841af683f08d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-fcb57cc59d3f359f9f14509d9953841af683f08d" }
+"2.3.2-nightly-d406c38fb6c5a66ab7016f965d12e53124a61c13" = { created_at = 2024-02-15T08:58:21.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-d406c38fb6c5a66ab7016f965d12e53124a61c13", prerelease = true }
+"2.3.2-nightly-fb4123ec7211b3ff72a7a301ce1ceb762212abc4" = { created_at = 2024-03-06T06:05:04.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-fb4123ec7211b3ff72a7a301ce1ceb762212abc4", prerelease = true }
+"2.3.2-nightly-fd9e1c3ac2c5bb296a69d32e520a534b74afdc59" = { created_at = 2024-03-07T09:22:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-fd9e1c3ac2c5bb296a69d32e520a534b74afdc59", prerelease = true }
+"2.3.2-nightly-7f9e5a891ae7e18986d20d75053818b197e7b78b" = { created_at = 2024-03-08T16:49:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-7f9e5a891ae7e18986d20d75053818b197e7b78b", prerelease = true }
+"2.3.2-nightly-eccb2b41d2f38546ae17d12040d3682f554b3730" = { created_at = 2024-03-08T16:49:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-eccb2b41d2f38546ae17d12040d3682f554b3730", prerelease = true }
+"2.3.2-nightly-26d67d66e301c004969b47d0e20a6980daa30534" = { created_at = 2024-03-13T05:00:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-26d67d66e301c004969b47d0e20a6980daa30534", prerelease = true }
+"2.3.2-nightly-a0c5b25524a7fb16c326ee2b4b00c1892e4e810d" = { created_at = 2024-03-14T04:37:15.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-a0c5b25524a7fb16c326ee2b4b00c1892e4e810d", prerelease = true }
+"2.3.2-nightly-7f009dd6a050180c6429280a207d000c9f74b8a3" = { created_at = 2024-03-19T09:32:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-7f009dd6a050180c6429280a207d000c9f74b8a3", prerelease = true }
+"2.3.2-nightly-d095f28d8b5017a9c3efa4f0d3c72738703b2ebf" = { created_at = 2024-03-19T09:32:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-d095f28d8b5017a9c3efa4f0d3c72738703b2ebf", prerelease = true }
+"2.3.2-nightly-4b2541d3310a0849d99967a1d38c2aec980ea7e9" = { created_at = 2024-03-26T12:05:06.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.2-nightly-4b2541d3310a0849d99967a1d38c2aec980ea7e9", prerelease = true }
+"2.3.3-nightly-35070759113e093be4bf538d83486e4f8bde080f" = { created_at = 2024-03-29T14:16:30.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-35070759113e093be4bf538d83486e4f8bde080f", prerelease = true }
 "2.3.3" = { created_at = 2024-03-29T14:16:30.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3" }
+"2.3.3-nightly-fcb57cc59d3f359f9f14509d9953841af683f08d" = { created_at = 2024-04-05T16:31:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-fcb57cc59d3f359f9f14509d9953841af683f08d", prerelease = true }
+"2.3.3-nightly-ef5d54f796fbeb4b540fe0f3f474067bd3792a3e" = { created_at = 2024-04-19T14:04:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-ef5d54f796fbeb4b540fe0f3f474067bd3792a3e", prerelease = true }
+"2.3.3-nightly-8adb9fd1038b0b9ff82eed979b06cebba486eea0" = { created_at = 2024-04-26T14:14:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-8adb9fd1038b0b9ff82eed979b06cebba486eea0", prerelease = true }
+"2.3.3-nightly-c0a0d502edc58db5db9acdbed5cc96463c5bd554" = { created_at = 2024-04-26T14:14:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-c0a0d502edc58db5db9acdbed5cc96463c5bd554", prerelease = true }
+"2.3.3-nightly-9a207085432d8732d393f44921107b23c6ee6463" = { created_at = 2024-05-21T01:00:10.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-9a207085432d8732d393f44921107b23c6ee6463", prerelease = true }
+"2.3.3-nightly-a5e92cd1dfcb7069983f36714fcdc0eb5cb20fb7" = { created_at = 2024-05-21T01:00:10.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-a5e92cd1dfcb7069983f36714fcdc0eb5cb20fb7", prerelease = true }
+"2.3.3-nightly-76add818eb8b194781b4a7ca4c32cea4cb547b7b" = { created_at = 2024-05-23T02:39:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.3-nightly-76add818eb8b194781b4a7ca4c32cea4cb547b7b", prerelease = true }
 "2.3.4" = { created_at = 2024-05-23T02:39:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.4" }
-"2.3.5-nightly-5cfeaff32732564c36b6c0910ae8937c2498ef73" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-5cfeaff32732564c36b6c0910ae8937c2498ef73" }
-"2.3.5-nightly-38afbbb816cf32e84e6e1160799f147daf774cd4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-38afbbb816cf32e84e6e1160799f147daf774cd4" }
-"2.3.5-nightly-73fce91d383d5b50707237f65639a8816fee8a64" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-73fce91d383d5b50707237f65639a8816fee8a64" }
-"2.3.5-nightly-781af6c6af4d371248538f42bf254a31c7d52c42" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-781af6c6af4d371248538f42bf254a31c7d52c42" }
+"2.3.5-nightly-73fce91d383d5b50707237f65639a8816fee8a64" = { created_at = 2024-06-21T14:28:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-73fce91d383d5b50707237f65639a8816fee8a64", prerelease = true }
 "2.3.5" = { created_at = 2024-06-21T14:28:31.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5" }
-"2.3.6-nightly-72e1e15a57d6962c2de63e0f8a8a8fb26ceae2f9" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-72e1e15a57d6962c2de63e0f8a8a8fb26ceae2f9" }
-"2.3.6-nightly-338dcd1465ea9a4a8536e57bb456680d73ccfa01" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-338dcd1465ea9a4a8536e57bb456680d73ccfa01" }
-"2.3.6-nightly-50437204c390cccbf199eff5e143e534a03bcf7b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-50437204c390cccbf199eff5e143e534a03bcf7b" }
-"2.3.6-nightly-fb14d94b9cdb7bb64e7a8ae644f404df91e70a57" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-fb14d94b9cdb7bb64e7a8ae644f404df91e70a57" }
+"2.3.5-nightly-38afbbb816cf32e84e6e1160799f147daf774cd4" = { created_at = 2024-07-01T02:20:22.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-38afbbb816cf32e84e6e1160799f147daf774cd4", prerelease = true }
+"2.3.5-nightly-5cfeaff32732564c36b6c0910ae8937c2498ef73" = { created_at = 2024-07-12T05:29:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-5cfeaff32732564c36b6c0910ae8937c2498ef73", prerelease = true }
+"2.3.5-nightly-781af6c6af4d371248538f42bf254a31c7d52c42" = { created_at = 2024-07-12T05:29:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.5-nightly-781af6c6af4d371248538f42bf254a31c7d52c42", prerelease = true }
+"2.3.6-nightly-fb14d94b9cdb7bb64e7a8ae644f404df91e70a57" = { created_at = 2024-07-17T02:45:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-fb14d94b9cdb7bb64e7a8ae644f404df91e70a57", prerelease = true }
 "2.3.6" = { created_at = 2024-07-17T02:25:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6" }
-"2.4.0-nightly-461ab86420ebc12b15449587378bf22d9449ab6c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-461ab86420ebc12b15449587378bf22d9449ab6c" }
-"2.4.0-nightly-2471f0993bc1b5246e61ee4f7a4ad248aa14d00a" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-2471f0993bc1b5246e61ee4f7a4ad248aa14d00a" }
-"2.4.0-nightly-517469fda83bc88b3d903bce8c6dfe324bf70c11" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-517469fda83bc88b3d903bce8c6dfe324bf70c11" }
-"2.4.0-nightly-716523ca956bd8f342a603216a1c32d8c6e90bdd" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-716523ca956bd8f342a603216a1c32d8c6e90bdd" }
-"2.4.0-nightly-e76200cf5b5da0062de11f040338925336fe24b5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-e76200cf5b5da0062de11f040338925336fe24b5" }
-"2.4.0-rc0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-rc0" }
-"2.4.0-rc1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-rc1" }
+"2.3.6-nightly-50437204c390cccbf199eff5e143e534a03bcf7b" = { created_at = 2024-07-19T16:55:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-50437204c390cccbf199eff5e143e534a03bcf7b", prerelease = true }
+"2.3.6-nightly-72e1e15a57d6962c2de63e0f8a8a8fb26ceae2f9" = { created_at = 2024-07-22T05:05:22.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-72e1e15a57d6962c2de63e0f8a8a8fb26ceae2f9", prerelease = true }
+"2.3.6-nightly-338dcd1465ea9a4a8536e57bb456680d73ccfa01" = { created_at = 2024-07-26T05:52:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.3.6-nightly-338dcd1465ea9a4a8536e57bb456680d73ccfa01", prerelease = true }
+"2.4.0-rc0" = { created_at = 2024-07-27T08:47:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-rc0", prerelease = true }
+"2.4.0-nightly-461ab86420ebc12b15449587378bf22d9449ab6c" = { created_at = 2024-07-30T02:09:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-461ab86420ebc12b15449587378bf22d9449ab6c", prerelease = true }
+"2.4.0-nightly-517469fda83bc88b3d903bce8c6dfe324bf70c11" = { created_at = 2024-07-30T02:09:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-517469fda83bc88b3d903bce8c6dfe324bf70c11", prerelease = true }
+"2.4.0-rc1" = { created_at = 2024-08-02T06:32:39.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-rc1", prerelease = true }
+"2.4.0-nightly-2471f0993bc1b5246e61ee4f7a4ad248aa14d00a" = { created_at = 2024-08-06T02:00:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-2471f0993bc1b5246e61ee4f7a4ad248aa14d00a", prerelease = true }
 "2.4.0" = { created_at = 2024-08-06T02:00:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0" }
-"2.4.1-nightly-3a292606bf7f41a89eac2c1bd5e6fef360b0aae2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.1-nightly-3a292606bf7f41a89eac2c1bd5e6fef360b0aae2" }
-"2.4.1-nightly-ae6e6342f501f02b7d95e6d38b8c8accd21eb71a" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.1-nightly-ae6e6342f501f02b7d95e6d38b8c8accd21eb71a" }
+"2.4.0-nightly-716523ca956bd8f342a603216a1c32d8c6e90bdd" = { created_at = 2024-08-28T06:07:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-716523ca956bd8f342a603216a1c32d8c6e90bdd", prerelease = true }
+"2.4.0-nightly-e76200cf5b5da0062de11f040338925336fe24b5" = { created_at = 2024-08-28T06:07:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.0-nightly-e76200cf5b5da0062de11f040338925336fe24b5", prerelease = true }
+"2.4.1-nightly-3a292606bf7f41a89eac2c1bd5e6fef360b0aae2" = { created_at = 2024-08-30T07:00:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.1-nightly-3a292606bf7f41a89eac2c1bd5e6fef360b0aae2", prerelease = true }
 "2.4.1" = { created_at = 2024-08-30T07:00:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.1" }
-"2.4.2-nightly-1ee357557767803b4919009aa99f8d79dd14aa47" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.2-nightly-1ee357557767803b4919009aa99f8d79dd14aa47" }
+"2.4.1-nightly-ae6e6342f501f02b7d95e6d38b8c8accd21eb71a" = { created_at = 2024-09-13T05:40:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.1-nightly-ae6e6342f501f02b7d95e6d38b8c8accd21eb71a", prerelease = true }
+"2.4.2-nightly-1ee357557767803b4919009aa99f8d79dd14aa47" = { created_at = 2024-10-21T04:40:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.2-nightly-1ee357557767803b4919009aa99f8d79dd14aa47", prerelease = true }
 "2.4.2" = { created_at = 2024-10-21T04:40:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.2" }
-"2.4.3-nightly-070a7ec65af1237a2abcc489ca7d92268c4fa5f2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.3-nightly-070a7ec65af1237a2abcc489ca7d92268c4fa5f2" }
+"2.4.3-nightly-070a7ec65af1237a2abcc489ca7d92268c4fa5f2" = { created_at = 2024-11-06T04:43:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.3-nightly-070a7ec65af1237a2abcc489ca7d92268c4fa5f2", prerelease = true }
 "2.4.3" = { created_at = 2024-11-06T04:43:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.3" }
-"2.4.4-nightly-1cde7b04c6014beaad749c652742037450ef0553" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4-nightly-1cde7b04c6014beaad749c652742037450ef0553" }
-"2.4.4-nightly-6ee06bc573223cfc6dc3ca3a1712ce402d802e14" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4-nightly-6ee06bc573223cfc6dc3ca3a1712ce402d802e14" }
-"2.4.4-nightly-81935333ba2e0a4b33a5b4a7bf33a6d0558e7aa8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4-nightly-81935333ba2e0a4b33a5b4a7bf33a6d0558e7aa8" }
+"2.4.4-nightly-6ee06bc573223cfc6dc3ca3a1712ce402d802e14" = { created_at = 2024-11-19T09:00:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4-nightly-6ee06bc573223cfc6dc3ca3a1712ce402d802e14", prerelease = true }
 "2.4.4" = { created_at = 2024-11-19T09:00:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4" }
-"2.4.5-nightly-2a1ef3c6163e14309091fae4e1fa9b28ed097b29" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-2a1ef3c6163e14309091fae4e1fa9b28ed097b29" }
-"2.4.5-nightly-3c8fc45417f263031c58c81e9373001a8a8795ff" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-3c8fc45417f263031c58c81e9373001a8a8795ff" }
-"2.4.5-nightly-69fb47d5da5cc15dd43d7987c14c1a5426af33bb" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-69fb47d5da5cc15dd43d7987c14c1a5426af33bb" }
-"2.4.5-nightly-a024f68afffec70c13e713704831d3dc9ed94147" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-a024f68afffec70c13e713704831d3dc9ed94147" }
-"2.4.5-nightly-b1ebafa0179c20cde68268530e8bf1149d47223e" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-b1ebafa0179c20cde68268530e8bf1149d47223e" }
-"2.4.5-nightly-c1e5ba6a59613b8bd533c9cc608fc646012afe3c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-c1e5ba6a59613b8bd533c9cc608fc646012afe3c" }
-"2.4.5-nightly-da4f0b654dc690b95fff45332b28e5437cf1fb92" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-da4f0b654dc690b95fff45332b28e5437cf1fb92" }
-"2.4.5-nightly-e5e1721ef3601a35c3f54b17f73561620ac9b524" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-e5e1721ef3601a35c3f54b17f73561620ac9b524" }
+"2.4.4-nightly-1cde7b04c6014beaad749c652742037450ef0553" = { created_at = 2024-11-20T03:57:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4-nightly-1cde7b04c6014beaad749c652742037450ef0553", prerelease = true }
+"2.4.4-nightly-81935333ba2e0a4b33a5b4a7bf33a6d0558e7aa8" = { created_at = 2024-11-20T03:57:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.4-nightly-81935333ba2e0a4b33a5b4a7bf33a6d0558e7aa8", prerelease = true }
+"2.4.5-nightly-e5e1721ef3601a35c3f54b17f73561620ac9b524" = { created_at = 2024-12-09T08:47:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-e5e1721ef3601a35c3f54b17f73561620ac9b524", prerelease = true }
 "2.4.5" = { created_at = 2024-12-09T08:47:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5" }
-"2.4.6-nightly-g0c8e772" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.6-nightly-g0c8e772" }
-"2.4.6-nightly-v2.4.6" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.6-nightly-v2.4.6" }
+"2.4.5-nightly-3c8fc45417f263031c58c81e9373001a8a8795ff" = { created_at = 2025-01-06T01:54:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-3c8fc45417f263031c58c81e9373001a8a8795ff", prerelease = true }
+"2.4.5-nightly-69fb47d5da5cc15dd43d7987c14c1a5426af33bb" = { created_at = 2025-01-06T01:54:29.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-69fb47d5da5cc15dd43d7987c14c1a5426af33bb", prerelease = true }
+"2.4.5-nightly-b1ebafa0179c20cde68268530e8bf1149d47223e" = { created_at = 2025-01-08T02:24:19.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-b1ebafa0179c20cde68268530e8bf1149d47223e", prerelease = true }
+"2.4.5-nightly-2a1ef3c6163e14309091fae4e1fa9b28ed097b29" = { created_at = 2025-01-13T08:52:15.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-2a1ef3c6163e14309091fae4e1fa9b28ed097b29", prerelease = true }
+"2.4.5-nightly-a024f68afffec70c13e713704831d3dc9ed94147" = { created_at = 2025-01-13T08:52:15.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-a024f68afffec70c13e713704831d3dc9ed94147", prerelease = true }
+"2.4.5-nightly-da4f0b654dc690b95fff45332b28e5437cf1fb92" = { created_at = 2025-01-23T05:32:58.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-da4f0b654dc690b95fff45332b28e5437cf1fb92", prerelease = true }
+"2.4.5-nightly-c1e5ba6a59613b8bd533c9cc608fc646012afe3c" = { created_at = 2025-01-29T03:01:21.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.5-nightly-c1e5ba6a59613b8bd533c9cc608fc646012afe3c", prerelease = true }
+"2.4.6-nightly-v2.4.6" = { created_at = 2025-03-01T06:56:16.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.6-nightly-v2.4.6", prerelease = true }
 "2.4.6" = { created_at = 2025-03-01T06:56:16.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.6" }
-"2.5.0-nightly-217ec14" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-217ec14" }
-"2.5.0-nightly-a5faa83" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-a5faa83" }
-"2.5.0-nightly-caa2d56" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-caa2d56" }
-"2.5.0-nightly-f361aa7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-f361aa7" }
-"2.5.0-nightly-fe4710b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-fe4710b" }
-"2.5.0-nightly-g7ec42dd" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-g7ec42dd" }
-"2.5.0-nightly-v2.5.0" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-v2.5.0" }
+"2.4.6-nightly-g0c8e772" = { created_at = 2025-03-19T13:18:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.4.6-nightly-g0c8e772", prerelease = true }
+"2.5.0-nightly-v2.5.0" = { created_at = 2025-05-11T06:15:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-v2.5.0", prerelease = true }
 "2.5.0" = { created_at = 2025-05-11T06:15:11.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0" }
-"2.6.0-nightly-7f48261" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0-nightly-7f48261" }
-"2.6.0-nightly-27449f2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0-nightly-27449f2" }
-"2.6.0-nightly-ec9cdc1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0-nightly-ec9cdc1" }
+"2.5.0-nightly-g7ec42dd" = { created_at = 2025-06-04T01:42:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-g7ec42dd", prerelease = true }
+"2.5.0-nightly-217ec14" = { created_at = 2025-07-19T08:49:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-217ec14", prerelease = true }
+"2.5.0-nightly-f361aa7" = { created_at = 2025-07-19T08:11:34.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-f361aa7", prerelease = true }
+"2.5.0-nightly-a5faa83" = { created_at = 2025-07-20T13:55:38.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-a5faa83", prerelease = true }
+"2.5.0-nightly-fe4710b" = { created_at = 2025-07-22T13:07:28.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-fe4710b", prerelease = true }
+"2.5.0-nightly-caa2d56" = { created_at = 2025-07-23T13:44:58.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.5.0-nightly-caa2d56", prerelease = true }
+"2.6.0-nightly-27449f2" = { created_at = 2025-07-24T14:56:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0-nightly-27449f2", prerelease = true }
 "2.6.0" = { created_at = 2025-07-24T14:56:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0" }
-"2.6.1-nightly-5f6bbdc" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.1-nightly-5f6bbdc" }
+"2.6.0-nightly-ec9cdc1" = { created_at = 2025-09-19T13:04:02.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0-nightly-ec9cdc1", prerelease = true }
+"2.6.0-nightly-7f48261" = { created_at = 2025-09-21T08:45:25.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.0-nightly-7f48261", prerelease = true }
+"2.6.1-nightly-5f6bbdc" = { created_at = 2025-09-22T07:57:37.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.1-nightly-5f6bbdc", prerelease = true }
 "2.6.1" = { created_at = 2025-09-22T07:57:37.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.1" }
-"2.6.2-nightly-52e76b8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.2-nightly-52e76b8" }
+"2.6.2-nightly-52e76b8" = { created_at = 2025-10-26T13:37:55.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.2-nightly-52e76b8", prerelease = true }
 "2.6.2" = { created_at = 2025-10-26T13:17:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.2" }
-"2.6.3-nightly-4cd3d4d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.3-nightly-4cd3d4d" }
-"2.6.3-nightly-43708b7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.3-nightly-43708b7" }
+"2.6.3-nightly-43708b7" = { created_at = 2025-10-31T15:24:30.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.3-nightly-43708b7", prerelease = true }
 "2.6.3" = { created_at = 2025-10-31T15:24:30.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.3" }
-"2.6.4-nightly-2c38c14" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.4-nightly-2c38c14" }
-"2.6.4-nightly-5d16988" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.4-nightly-5d16988" }
+"2.6.3-nightly-4cd3d4d" = { created_at = 2025-11-08T11:20:43.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.3-nightly-4cd3d4d", prerelease = true }
+"2.6.4-nightly-2c38c14" = { created_at = 2025-11-21T15:22:56.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.4-nightly-2c38c14", prerelease = true }
 "2.6.4" = { created_at = 2025-11-21T15:22:56.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.4" }
-"2.6.5-nightly-a0d414c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5-nightly-a0d414c" }
-"2.6.5-nightly-bccb1f3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5-nightly-bccb1f3" }
-"2.6.5-nightly-d69c7f5" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5-nightly-d69c7f5" }
+"2.6.4-nightly-5d16988" = { created_at = 2025-11-22T07:09:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.4-nightly-5d16988", prerelease = true }
+"2.6.5-nightly-bccb1f3" = { created_at = 2025-11-28T13:25:07.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5-nightly-bccb1f3", prerelease = true }
 "2.6.5" = { created_at = 2025-11-28T13:25:07.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5" }
-"2.7.0-nightly-7b98188" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-7b98188" }
-"2.7.0-nightly-a03d661" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-a03d661" }
-"2.7.0-nightly-c7b28f2" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-c7b28f2" }
-"2.7.0-nightly-dc5c457" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-dc5c457" }
+"2.6.5-nightly-a0d414c" = { created_at = 2025-12-05T13:27:48.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5-nightly-a0d414c", prerelease = true }
+"2.6.5-nightly-d69c7f5" = { created_at = 2025-12-05T13:57:40.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.6.5-nightly-d69c7f5", prerelease = true }
+"2.7.0-nightly-7b98188" = { created_at = 2025-12-13T09:39:03.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-7b98188", prerelease = true }
+"2.7.0-nightly-dc5c457" = { created_at = 2025-12-13T09:39:03.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-dc5c457", prerelease = true }
 "2.7.0" = { created_at = 2025-12-13T06:54:03.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0" }
-"2.7.1-nightly-1ad23fb" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-1ad23fb" }
-"2.7.1-nightly-323fc27" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-323fc27" }
-"2.7.1-nightly-a86dfff" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-a86dfff" }
-"2.7.1-nightly-abfbcf4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-abfbcf4" }
-"2.7.1-nightly-dea8451" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-dea8451" }
+"2.7.0-nightly-a03d661" = { created_at = 2026-01-30T08:53:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-a03d661", prerelease = true }
+"2.7.0-nightly-c7b28f2" = { created_at = 2026-01-30T08:53:51.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.0-nightly-c7b28f2", prerelease = true }
+"2.7.1-nightly-323fc27" = { created_at = 2026-02-05T10:50:05.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-323fc27", prerelease = true }
 "2.7.1" = { created_at = 2026-02-05T10:50:05.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1" }
-"2.8.0-nightly-83b149b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0-nightly-83b149b" }
-"2.8.0-nightly-b61fafd" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0-nightly-b61fafd" }
-"2.8.0-nightly-d4d5193" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0-nightly-d4d5193" }
+"2.7.1-nightly-1ad23fb" = { created_at = 2026-02-11T07:24:54.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-1ad23fb", prerelease = true }
+"2.7.1-nightly-a86dfff" = { created_at = 2026-02-20T14:13:07.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-a86dfff", prerelease = true }
+"2.7.1-nightly-dea8451" = { created_at = 2026-03-14T12:51:23.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-dea8451", prerelease = true }
+"2.7.1-nightly-abfbcf4" = { created_at = 2026-03-26T16:40:15.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.7.1-nightly-abfbcf4", prerelease = true }
+"2.8.0-nightly-d4d5193" = { created_at = 2026-03-28T06:54:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0-nightly-d4d5193", prerelease = true }
 "2.8.0" = { created_at = 2026-03-28T06:54:00.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0" }
-"2.8.1-nightly-cf8f36d" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.1-nightly-cf8f36d" }
+"2.8.0-nightly-83b149b" = { created_at = 2026-04-05T13:47:24.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0-nightly-83b149b", prerelease = true }
+"2.8.0-nightly-b61fafd" = { created_at = 2026-04-10T16:40:57.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.0-nightly-b61fafd", prerelease = true }
+"2.8.1-nightly-cf8f36d" = { created_at = 2026-04-17T14:29:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.1-nightly-cf8f36d", prerelease = true }
 "2.8.1" = { created_at = 2026-04-17T14:29:32.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.1" }
-"2.8.2-nightly-9a538ad" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.2-nightly-9a538ad" }
+"2.8.2-nightly-9a538ad" = { created_at = 2026-04-25T07:51:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.2-nightly-9a538ad", prerelease = true }
 "2.8.2" = { created_at = 2026-04-25T07:51:17.000Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v2.8.2" }
-"20210217-2724222" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210217-2724222" }
-"20210218-d783bbf" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210218-d783bbf" }
-"20210223-8df67c3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210223-8df67c3" }
-"20210228-217e33b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210228-217e33b" }
-"20210304-14e19c3" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210304-14e19c3" }
-"20210316-0abd3c1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210316-0abd3c1" }
-"20210326-6c547af" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210326-6c547af" }
-"20210408-21451a1" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210408-21451a1" }
-"20210410-1ca1297" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210410-1ca1297" }
-"20210414-dd559d8" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210414-dd559d8" }
-"20210417-4c5f797" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210417-4c5f797" }
-"20210418-0fa5d15" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210418-0fa5d15" }
-"20210421-d64e190" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210421-d64e190" }
-"20210502-8cf5b4b" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210502-8cf5b4b" }
-"20210503-b5c1b44" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210503-b5c1b44" }
-"20210506-6d782bb" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210506-6d782bb" }
-"20210512-2094bbf" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210512-2094bbf" }
-"20210515-5827b4c" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210515-5827b4c" }
-"20210528-92a13e4" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210528-92a13e4" }
-"20210601-6388e77" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210601-6388e77" }
-"20210610-05bb086" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210610-05bb086" }
-"20210702-ea0cff7" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210702-ea0cff7" }
-"20210703-2c8b96a" = { created_at = 2026-04-27T18:31:56.899Z, release_url = "https://github.com/kayac/ecspresso/releases/tag/v20210703-2c8b96a" }

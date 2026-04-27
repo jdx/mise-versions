@@ -1,29 +1,4 @@
 [versions]
-"0.1.0" = { created_at = 2023-07-19T08:29:03.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.1.0" }
-"0.1.1" = { created_at = 2023-07-24T16:32:04.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.1.1" }
-"0.2.0" = { created_at = 2023-07-26T13:11:25.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.2.0" }
-"0.3.0" = { created_at = 2023-08-02T12:15:14.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.3.0" }
-"0.4.0-alpha.0" = { created_at = 2023-08-05T10:15:33.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.4.0-alpha.0", prerelease = true }
-"0.4.0" = { created_at = 2023-08-16T15:46:39.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2023-08-17T11:30:04.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.4.1" }
-"0.5.0" = { created_at = 2023-08-30T10:40:49.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.5.0" }
-"0.6.0" = { created_at = 2023-09-13T13:12:28.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.6.0" }
-"0.7.0" = { created_at = 2023-09-27T11:28:25.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.7.0" }
-"0.7.1" = { created_at = 2023-09-27T16:19:03.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.7.1" }
-"0.8.0" = { created_at = 2023-10-11T10:52:53.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.8.0", prerelease = true }
-"0.8.1" = { created_at = 2023-10-12T06:56:59.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.8.1" }
-"0.8.2" = { created_at = 2023-10-12T10:25:25.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.8.2" }
-"0.8.3-alpha.1" = { created_at = 2023-10-16T10:13:56.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.8.3-alpha.1", prerelease = true }
-"0.8.3" = { created_at = 2023-10-17T09:05:47.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.8.3" }
-"0.9.0" = { created_at = 2023-10-25T12:08:40.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.9.0" }
-"0.9.1" = { created_at = 2023-10-30T14:31:18.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.9.1" }
-"0.10.0" = { created_at = 2023-11-08T11:53:57.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.10.0" }
-"0.10.1" = { created_at = 2023-11-09T10:45:56.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.10.1" }
-"0.10.2" = { created_at = 2023-11-13T16:01:25.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.10.2" }
-"0.11.0" = { created_at = 2023-11-22T12:59:38.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.11.0" }
-"0.12.0" = { created_at = 2023-12-06T13:11:15.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.12.0" }
-"0.13.0" = { created_at = 2023-12-14T10:07:15.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.13.0" }
-"0.13.1" = { created_at = 2023-12-20T16:25:13.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.13.1" }
 "0.14.0" = { created_at = 2024-01-11T12:51:57.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.14.0" }
 "0.15.0" = { created_at = 2024-01-24T12:19:54.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.15.0" }
 "0.16.0" = { created_at = 2024-01-26T08:17:11.000Z, release_url = "https://github.com/foundry-rs/starknet-foundry/releases/tag/v0.16.0" }

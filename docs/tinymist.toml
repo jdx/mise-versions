@@ -1,38 +1,173 @@
 [versions]
-"0.13.17-rc2" = { created_at = 2025-08-02T11:27:42.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.17-rc2", prerelease = true }
-"0.13.18-rc1" = { created_at = 2025-08-02T14:31:40.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/0.13.18-rc1", prerelease = true }
+"0.11.4-qc-typos" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.22-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.12-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
 "0.13.17" = { created_at = 2025-08-03T00:28:35.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.17", prerelease = true }
+"0.13.18-rc1" = { created_at = 2025-08-02T14:31:40.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/0.13.18-rc1", prerelease = true }
+"0.13.19-rc1" = { created_at = 2025-08-05T23:06:56.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/0.13.19-rc1", prerelease = true }
+"0.13.19" = { created_at = 2025-08-07T00:25:59.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/0.13.19", prerelease = true }
+"ng" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.10.1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.10.2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.10.3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.0" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.1-bad" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.1-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.1-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.4" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.5" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.6" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.7" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.8" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.9" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.10" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.11" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.12" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.13" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.14" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.15-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.15-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.15" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.16-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.16" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.17-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.17" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.18-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.18" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.19-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.19" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.20-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.20" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.22" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.23-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.23" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.25" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.27" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.28-2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.28-4" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.28" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.29" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.31-2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.31" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.32" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.33-3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.33" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.11.34-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.0-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.0" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.2-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.4-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.4-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.4-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.4" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.6-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.6-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.6" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.8" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.10-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.10" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.12-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.12" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.14-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.14" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.16-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.16" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.18-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.18-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.18" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.19-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.19-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.19-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.19-rc4" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.19" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.20-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.20-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.20" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.21-pre-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.21-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.21" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.22-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.12.22" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.0-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.0" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.2-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.2-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.4-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.4" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.6-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.6-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.6" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.8" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.10-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.10-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.10" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12-rc4" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12-rc5" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12-rc6" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.12" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.14-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.14-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.14-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.14" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.15-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.15-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.15" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.16-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.16-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.16-rc3" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.16" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.17-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.17-rc2" = { created_at = 2025-08-02T11:27:42.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.17-rc2", prerelease = true }
 "0.13.18-rc2" = { created_at = 2025-08-03T07:05:26.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.18-rc2", prerelease = true }
 "0.13.18" = { created_at = 2025-08-03T19:25:49.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.18" }
-"0.13.19-rc1" = { created_at = 2025-08-05T23:06:56.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/0.13.19-rc1", prerelease = true }
 "0.13.20-rc1" = { created_at = 2025-08-05T04:12:21.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.20-rc1", prerelease = true }
 "0.13.20" = { created_at = 2025-08-05T14:54:13.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.20" }
 "0.13.22-rc1" = { created_at = 2025-08-06T03:42:39.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.22-rc1", prerelease = true }
 "0.13.22-rc2" = { created_at = 2025-08-06T14:19:44.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.22-rc2", prerelease = true }
 "0.13.22" = { created_at = 2025-08-06T16:37:33.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.22" }
-"0.13.19" = { created_at = 2025-08-07T00:25:59.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/0.13.19", prerelease = true }
+"0.13.23-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
 "0.13.23-rc2" = { created_at = 2025-08-08T23:06:38.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.23-rc2", prerelease = true }
 "0.13.23" = { created_at = 2025-08-09T00:42:39.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.23", prerelease = true }
-"0.13.25-rc1" = { created_at = 2025-08-09T23:06:27.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.25-rc1", prerelease = true }
-"0.13.25" = { created_at = 2025-08-10T00:27:28.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.25", prerelease = true }
-"0.13.27-rc1" = { created_at = 2025-08-10T23:08:14.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.27-rc1", prerelease = true }
-"0.13.27" = { created_at = 2025-08-11T00:28:03.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.27", prerelease = true }
+"0.13.24-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.24-rc2" = { created_at = 2026-04-27T20:32:36.201Z }
 "0.13.24-rc3" = { created_at = 2025-08-25T02:44:59.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.24-rc3", prerelease = true }
 "0.13.24" = { created_at = 2025-08-26T08:15:18.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.24" }
+"0.13.25-rc1" = { created_at = 2025-08-09T23:06:27.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.25-rc1", prerelease = true }
+"0.13.25" = { created_at = 2025-08-10T00:27:28.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.25", prerelease = true }
 "0.13.26-rc1" = { created_at = 2025-09-10T10:08:30.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.26-rc1", prerelease = true }
 "0.13.26" = { created_at = 2025-09-13T02:52:46.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.26" }
-"0.13.31-rc1" = { created_at = 2025-09-24T23:06:54.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.31-rc1", prerelease = true }
-"0.13.31" = { created_at = 2025-09-25T00:22:22.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.31", prerelease = true }
+"0.13.27-rc1" = { created_at = 2025-08-10T23:08:14.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.27-rc1", prerelease = true }
+"0.13.27" = { created_at = 2025-08-11T00:28:03.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.27", prerelease = true }
 "0.13.28-rc1" = { created_at = 2025-09-26T07:59:02.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.28-rc1", prerelease = true }
 "0.13.28-rc2" = { created_at = 2025-09-27T12:24:01.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.28-rc2", prerelease = true }
 "0.13.28" = { created_at = 2025-09-28T17:32:19.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.28" }
-"0.13.35-rc1" = { created_at = 2025-10-05T23:05:53.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.35-rc1", prerelease = true }
-"0.13.35" = { created_at = 2025-10-06T00:22:30.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.35", prerelease = true }
-"0.13.39-rc1" = { created_at = 2025-10-10T23:06:18.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.39-rc1", prerelease = true }
-"0.13.39" = { created_at = 2025-10-11T00:21:11.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.39", prerelease = true }
+"0.13.29-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.29" = { created_at = 2026-04-27T20:32:36.201Z }
 "0.13.30-rc1" = { created_at = 2025-10-21T14:07:35.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.30-rc1", prerelease = true }
 "0.13.30-rc2" = { created_at = 2025-10-27T05:54:29.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.30-rc2", prerelease = true }
 "0.13.30" = { created_at = 2025-10-27T10:57:50.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.30" }
+"0.13.31-rc1" = { created_at = 2025-09-24T23:06:54.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.31-rc1", prerelease = true }
+"0.13.31" = { created_at = 2025-09-25T00:22:22.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.31", prerelease = true }
+"0.13.33-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.33" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.35-rc1" = { created_at = 2025-10-05T23:05:53.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.35-rc1", prerelease = true }
+"0.13.35" = { created_at = 2025-10-06T00:22:30.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.35", prerelease = true }
+"0.13.37-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.37" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.39-rc1" = { created_at = 2025-10-10T23:06:18.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.39-rc1", prerelease = true }
+"0.13.39" = { created_at = 2025-10-11T00:21:11.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.13.39", prerelease = true }
+"0.13.41-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.41" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.43-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
+"0.13.43" = { created_at = 2026-04-27T20:32:36.201Z }
 "0.14.0-rc1" = { created_at = 2025-10-29T04:23:36.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.0-rc1", prerelease = true }
 "0.14.0-rc2" = { created_at = 2025-11-01T20:47:18.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.0-rc2", prerelease = true }
 "0.14.0" = { created_at = 2025-11-02T09:15:37.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.0" }
@@ -49,6 +184,7 @@
 "0.14.10-rc1" = { created_at = 2026-01-19T12:31:28.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.10-rc1", prerelease = true }
 "0.14.10-rc2" = { created_at = 2026-01-22T08:20:08.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.10-rc2", prerelease = true }
 "0.14.10" = { created_at = 2026-01-23T18:52:49.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.10" }
+"0.14.12-rc1" = { created_at = 2026-04-27T20:32:36.201Z }
 "0.14.12-rc2" = { created_at = 2026-03-18T03:34:09.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.12-rc2", prerelease = true }
 "0.14.12-rc3" = { created_at = 2026-03-19T10:10:01.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.12-rc3", prerelease = true }
 "0.14.12" = { created_at = 2026-03-21T17:03:01.000Z, release_url = "https://github.com/Myriad-Dreamin/tinymist/releases/tag/v0.14.12" }

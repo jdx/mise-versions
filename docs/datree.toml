@@ -1,4 +1,64 @@
 [versions]
+"1.8.32" = { created_at = 2023-02-28T15:07:50.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.32" }
+"1.8.33-rc" = { created_at = 2023-03-01T07:49:20.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.33-rc", prerelease = true }
+"1.8.33" = { created_at = 2023-03-01T11:43:14.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.33" }
+"1.8.34-rc" = { created_at = 2023-03-01T12:35:04.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.34-rc", prerelease = true }
+"1.8.35-rc" = { created_at = 2023-03-06T14:28:36.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.35-rc", prerelease = true }
+"1.8.36-rc" = { created_at = 2023-03-07T08:57:08.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.36-rc", prerelease = true }
+"1.8.36" = { created_at = 2023-03-07T09:37:54.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.36" }
+"1.8.37-rc" = { created_at = 2023-03-07T13:09:57.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.37-rc", prerelease = true }
+"1.8.37" = { created_at = 2023-03-07T13:22:49.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.37" }
+"1.8.38-rc" = { created_at = 2023-03-09T11:29:31.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.38-rc", prerelease = true }
+"1.8.39-rc" = { created_at = 2023-03-09T14:28:57.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.39-rc", prerelease = true }
+"1.8.39" = { created_at = 2023-03-12T14:49:23.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.39" }
+"1.8.40-rc" = { created_at = 2023-03-14T15:18:24.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.40-rc", prerelease = true }
+"1.8.41-rc" = { created_at = 2023-03-14T15:43:14.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.41-rc", prerelease = true }
+"1.8.41" = { created_at = 2023-03-15T08:47:23.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.41" }
+"1.8.42-rc" = { created_at = 2023-03-15T11:08:33.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.42-rc", prerelease = true }
+"1.8.42" = { created_at = 2023-03-15T12:05:36.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.42" }
+"1.8.43-rc" = { created_at = 2023-03-16T14:23:01.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.43-rc", prerelease = true }
+"1.8.44-rc" = { created_at = 2023-03-16T14:40:03.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.44-rc", prerelease = true }
+"1.8.45-rc" = { created_at = 2023-03-19T09:40:07.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.45-rc", prerelease = true }
+"1.8.45" = { created_at = 2023-03-19T10:08:52.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.45" }
+"1.8.46-rc" = { created_at = 2023-03-26T09:50:15.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.46-rc", prerelease = true }
+"1.8.46" = { created_at = 2023-03-26T10:01:26.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.46" }
+"1.8.47-rc" = { created_at = 2023-03-28T09:38:21.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.47-rc", prerelease = true }
+"1.8.47" = { created_at = 2023-03-28T12:10:34.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.47" }
+"1.8.48-rc" = { created_at = 2023-04-03T09:31:45.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.48-rc", prerelease = true }
+"1.8.49-rc" = { created_at = 2023-04-03T12:16:23.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.49-rc", prerelease = true }
+"1.8.49" = { created_at = 2023-04-03T12:43:32.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.49" }
+"1.8.50-rc" = { created_at = 2023-04-03T15:36:50.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.50-rc", prerelease = true }
+"1.8.51-rc" = { created_at = 2023-04-03T16:02:19.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.51-rc", prerelease = true }
+"1.8.51" = { created_at = 2023-04-03T16:10:46.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.51" }
+"1.8.53-rc" = { created_at = 2023-04-04T07:49:35.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.53-rc", prerelease = true }
+"1.8.54-rc" = { created_at = 2023-04-04T07:58:48.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.54-rc", prerelease = true }
+"1.8.54" = { created_at = 2023-04-04T08:13:24.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.54" }
+"1.8.55-rc" = { created_at = 2023-04-04T09:24:24.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.55-rc", prerelease = true }
+"1.8.56-rc" = { created_at = 2023-04-04T09:28:43.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.56-rc", prerelease = true }
+"1.8.57-rc" = { created_at = 2023-04-04T09:43:37.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.57-rc", prerelease = true }
+"1.8.58-rc" = { created_at = 2023-04-04T11:21:40.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.58-rc", prerelease = true }
+"1.8.59-rc" = { created_at = 2023-04-04T13:15:35.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.59-rc", prerelease = true }
+"1.8.60-rc" = { created_at = 2023-04-04T13:16:29.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.60-rc", prerelease = true }
+"1.8.61-rc" = { created_at = 2023-04-04T13:47:15.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.61-rc", prerelease = true }
+"1.8.62-rc" = { created_at = 2023-04-04T14:08:21.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.62-rc", prerelease = true }
+"1.8.63-rc" = { created_at = 2023-04-04T14:44:30.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.63-rc", prerelease = true }
+"1.8.63" = { created_at = 2023-04-04T14:52:48.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.63" }
+"1.8.64-rc" = { created_at = 2023-04-10T11:44:48.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.64-rc", prerelease = true }
+"1.8.64" = { created_at = 2023-04-10T12:15:09.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.64" }
+"1.8.65-rc" = { created_at = 2023-04-13T13:26:23.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.65-rc", prerelease = true }
+"1.8.65" = { created_at = 2023-04-16T08:48:55.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.65" }
+"1.8.66-rc" = { created_at = 2023-05-01T09:00:09.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.66-rc", prerelease = true }
+"1.8.67-rc" = { created_at = 2023-05-01T23:00:21.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.67-rc", prerelease = true }
+"1.8.67" = { created_at = 2023-05-02T08:34:10.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.67" }
+"1.8.68-rc" = { created_at = 2023-05-02T13:55:45.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.68-rc", prerelease = true }
+"1.8.69-rc" = { created_at = 2023-05-07T08:37:02.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.69-rc", prerelease = true }
+"1.8.70-rc" = { created_at = 2023-05-08T14:35:18.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.70-rc", prerelease = true }
+"1.8.71-rc" = { created_at = 2023-05-10T11:48:51.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.8.71-rc", prerelease = true }
+"1.9.0-rc" = { created_at = 2023-05-10T11:51:59.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.0-rc", prerelease = true }
+"1.9.0" = { created_at = 2023-05-10T12:17:50.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.0" }
+"1.9.1-rc" = { created_at = 2023-05-14T11:26:13.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.1-rc", prerelease = true }
+"1.9.2-rc" = { created_at = 2023-05-14T16:06:01.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.2-rc", prerelease = true }
+"1.9.2" = { created_at = 2023-05-15T08:39:06.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.2" }
 "1.9.3-rc" = { created_at = 2023-05-28T08:02:57.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.3-rc", prerelease = true }
 "1.9.3" = { created_at = 2023-05-29T13:45:58.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.3" }
 "1.9.4-rc" = { created_at = 2023-06-07T11:57:18.000Z, release_url = "https://github.com/datreeio/datree/releases/tag/1.9.4-rc", prerelease = true }

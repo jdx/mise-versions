@@ -1,34 +1,4 @@
 [versions]
-"0.5.7" = { created_at = 2018-03-06T01:11:14.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.5.7" }
-"0.5.8" = { created_at = 2018-03-10T17:41:41.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.5.8" }
-"0.5.9" = { created_at = 2018-03-11T18:45:00.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.5.9" }
-"0.5.10" = { created_at = 2018-03-12T13:27:42.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.5.10" }
-"0.5.11" = { created_at = 2018-03-20T19:16:10.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.5.11" }
-"0.5.12" = { created_at = 2018-03-23T17:38:35.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.5.12" }
-"0.6.0" = { created_at = 2018-03-25T19:01:31.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.6.0" }
-"0.6.1" = { created_at = 2018-03-28T00:02:21.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2018-03-28T18:12:11.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.6.2" }
-"0.6.3" = { created_at = 2018-04-05T12:51:01.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.6.3" }
-"0.7.0" = { created_at = 2018-04-09T16:19:45.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.7.0" }
-"0.7.1" = { created_at = 2018-04-09T16:33:51.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.7.1" }
-"0.7.2" = { created_at = 2018-04-10T17:29:44.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.7.2" }
-"0.8.1" = { created_at = 2018-04-19T01:25:48.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.8.1" }
-"0.8.2" = { created_at = 2018-04-25T14:16:14.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.8.2" }
-"0.9.0" = { created_at = 2018-05-17T00:42:34.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.0" }
-"0.9.1" = { created_at = 2018-06-04T12:08:27.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.1" }
-"0.9.2" = { created_at = 2018-06-15T19:44:38.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.2" }
-"0.9.3" = { created_at = 2018-07-09T02:49:15.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.3" }
-"0.9.4" = { created_at = 2018-09-12T16:17:59.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.4" }
-"0.9.5" = { created_at = 2018-09-14T14:23:22.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.5" }
-"0.9.6" = { created_at = 2018-10-31T02:30:54.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.6" }
-"0.9.7" = { created_at = 2018-10-31T02:36:52.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.9.7" }
-"0.10.0" = { created_at = 2019-03-04T13:18:18.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.10.0" }
-"0.11.0" = { created_at = 2019-03-20T00:54:42.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.11.0" }
-"0.12.0" = { created_at = 2019-06-28T17:14:45.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.12.0" }
-"0.13.0" = { created_at = 2019-08-31T13:21:28.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v0.13.0" }
-"1.0.0-beta1" = { created_at = 2019-10-09T19:36:59.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v1.0.0-beta1", prerelease = true }
-"1.0.0-beta3" = { created_at = 2019-10-11T20:11:28.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v1.0.0-beta3", prerelease = true }
-"1.0.0" = { created_at = 2019-10-11T20:11:28.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v1.0.0" }
 "1.1.0" = { created_at = 2019-10-23T17:03:35.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v1.1.0" }
 "1.1.1" = { created_at = 2019-10-30T20:56:34.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v1.1.1" }
 "1.1.2" = { created_at = 2019-11-01T14:43:06.000Z, release_url = "https://github.com/goreleaser/nfpm/releases/tag/v1.1.2" }

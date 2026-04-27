@@ -1,34 +1,4 @@
 [versions]
-"0.1.10" = { created_at = 2019-03-25T17:54:19.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.1.10" }
-"0.2.0-alpha.0" = { created_at = 2019-05-06T18:11:43.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-alpha.0", prerelease = true }
-"0.2.0-alpha.1" = { created_at = 2019-05-07T20:54:32.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-alpha.1", prerelease = true }
-"0.2.0-alpha.2" = { created_at = 2019-05-15T23:37:16.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-alpha.2", prerelease = true }
-"0.2.0-beta.0" = { created_at = 2019-05-15T23:37:16.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-beta.0", prerelease = true }
-"0.2.0-beta.1" = { created_at = 2019-05-17T00:08:27.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-beta.1", prerelease = true }
-"0.2.0-beta.2" = { created_at = 2019-06-06T22:37:59.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-beta.2", prerelease = true }
-"0.1.11" = { created_at = 2019-06-20T17:28:49.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.1.11" }
-"0.2.0-beta.3" = { created_at = 2019-07-10T23:58:54.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-beta.3", prerelease = true }
-"0.1.12" = { created_at = 2019-07-18T22:42:20.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.1.12" }
-"0.2.0-beta.4" = { created_at = 2019-07-19T02:13:11.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-beta.4", prerelease = true }
-"0.2.0-beta.5" = { created_at = 2019-07-31T19:42:14.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-beta.5", prerelease = true }
-"0.2.0-rc.0" = { created_at = 2019-08-13T19:51:44.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0-rc.0", prerelease = true }
-"0.2.0" = { created_at = 2019-08-19T20:35:30.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.0" }
-"0.2.1" = { created_at = 2019-09-03T20:54:59.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.1" }
-"0.2.2" = { created_at = 2019-10-21T18:16:08.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.2" }
-"0.2.3" = { created_at = 2019-11-15T20:32:32.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.3" }
-"0.2.4" = { created_at = 2019-11-19T20:17:20.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.4" }
-"0.2.5" = { created_at = 2020-01-29T21:54:14.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.5" }
-"0.2.7" = { created_at = 2020-03-11T17:27:37.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.7" }
-"0.2.8" = { created_at = 2020-03-18T16:32:48.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.8" }
-"0.2.9" = { created_at = 2020-04-15T18:35:46.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.2.9" }
-"0.3.0" = { created_at = 2020-04-24T16:30:08.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.3.0" }
-"0.4.0" = { created_at = 2020-08-19T15:03:12.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2020-11-09T22:08:27.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.4.1" }
-"0.5.0" = { created_at = 2021-02-17T00:31:06.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.5.0" }
-"0.6.0-beta.0" = { created_at = 2021-04-27T19:35:38.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.6.0-beta.0", prerelease = true }
-"0.6.0" = { created_at = 2021-06-08T16:45:35.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.6.0" }
-"0.6.1" = { created_at = 2021-06-21T19:30:51.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2021-07-27T14:52:46.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.6.2" }
 "0.7.0" = { created_at = 2021-09-20T15:28:10.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.7.0" }
 "0.8.0" = { created_at = 2021-12-08T14:09:46.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.8.0" }
 "0.9.0" = { created_at = 2022-05-06T03:33:04.000Z, release_url = "https://github.com/kubernetes-sigs/controller-tools/releases/tag/v0.9.0" }
