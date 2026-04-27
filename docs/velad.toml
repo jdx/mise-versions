@@ -1,19 +1,26 @@
 [versions]
+"1.3.0-alpha.1" = { created_at = 2026-04-27T19:04:19.363Z }
+"1.3.0-beta.2" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.3.0" = { created_at = 2022-04-01T09:08:52.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.3.0" }
 "1.3.1" = { created_at = 2022-04-21T07:39:28.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.3.1" }
 "1.3.3" = { created_at = 2022-05-09T04:07:16.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.3.3" }
 "1.3.4" = { created_at = 2022-05-23T16:20:41.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.3.4" }
 "1.3.5" = { created_at = 2022-05-26T07:45:07.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.3.5" }
+"1.4.0-beta.2" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.3.6" = { created_at = 2022-05-31T07:18:12.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.3.6" }
 "1.4.0" = { created_at = 2022-05-31T12:26:57.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.0" }
 "1.4.1" = { created_at = 2022-06-02T09:26:51.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.1" }
 "1.4.2" = { created_at = 2022-06-15T12:05:20.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.2" }
 "1.4.3" = { created_at = 2022-06-21T11:34:19.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.3" }
+"1.5.0-alpha.1" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.4.4" = { created_at = 2022-06-30T11:52:59.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.4" }
 "1.4.5" = { created_at = 2022-07-03T05:35:05.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.5" }
+"1.5.0-alpha.2" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.4.6" = { created_at = 2022-07-12T13:43:32.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.6" }
+"1.5.0-alpha.3" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.4.7" = { created_at = 2022-07-20T09:08:16.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.7" }
 "1.4.8" = { created_at = 2022-07-21T05:11:38.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.4.8" }
+"1.5.0-beta.1" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.5.0-beta.2" = { created_at = 2022-07-28T10:01:58.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.5.0-beta.2" }
 "1.5.0" = { created_at = 2022-08-08T07:29:58.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.5.0" }
 "1.5.2" = { created_at = 2022-08-14T16:28:28.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.5.2" }
@@ -33,6 +40,8 @@
 "1.6.4" = { created_at = 2022-12-06T10:00:47.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.6.4" }
 "1.6.5" = { created_at = 2022-12-20T01:57:53.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.6.5" }
 "1.7.0-alpha.1" = { created_at = 2022-12-27T03:49:40.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.7.0-alpha.1" }
+"1.7.0-beta.1" = { created_at = 2026-04-27T19:04:19.363Z }
+"1.7.0-beta.2" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.7.0" = { created_at = 2023-01-14T14:28:09.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.7.0" }
 "1.7.1" = { created_at = 2023-02-06T01:49:18.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.7.1" }
 "1.7.3" = { created_at = 2023-02-09T10:09:11.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.7.3" }
@@ -40,6 +49,7 @@
 "1.7.5" = { created_at = 2023-03-14T09:01:01.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.7.5" }
 "1.7.6" = { created_at = 2023-03-22T09:24:47.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.7.6" }
 "1.8.0" = { created_at = 2023-04-20T06:55:16.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.8.0" }
+"1.9.4-beta.1" = { created_at = 2026-04-27T19:04:19.363Z }
 "1.9.4" = { created_at = 2023-07-27T06:24:22.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.9.4" }
 "1.9.4-patch.1" = { created_at = 2023-07-28T02:15:26.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.9.4-patch.1" }
 "1.9.5" = { created_at = 2023-08-02T11:16:51.000Z, release_url = "https://github.com/kubevela/velad/releases/tag/v1.9.5" }

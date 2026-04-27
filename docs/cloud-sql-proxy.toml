@@ -1,31 +1,146 @@
 [versions]
+"1.05" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.06" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.07" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.08" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.09" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.10" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.11" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.12" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.13" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.14" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.15" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.16" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.05.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.06.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.07.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.08.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.09.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.10.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.11.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.12.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.13.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.14.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.15.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.16.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.17" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.17.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.18.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.19.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.19.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.19.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.20.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.20.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.20.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.21.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.22.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.23.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.23.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.24.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.25.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.26.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.27.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.27.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.28.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.28.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.29.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.30.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.30.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.31.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.31.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.31.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.32.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.3" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.4" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.5" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.6" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.7" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.8" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.9" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.10" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.11" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.12" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.13" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.14" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.15" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.33.16" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.34.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.34.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.35.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.35.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.35.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.35.3" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.35.4" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.36.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.37.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.37.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.37.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"1.37.3" = { created_at = 2026-04-27T18:58:42.489Z }
 "1.37.4" = { created_at = 2025-01-16T20:54:28.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.4" }
+"1.37.5" = { created_at = 2025-02-19T23:51:23.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.5" }
+"1.37.6" = { created_at = 2025-03-20T20:19:10.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.6" }
+"1.37.7" = { created_at = 2025-04-16T23:25:41.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.7" }
+"1.37.8" = { created_at = 2025-07-15T17:41:49.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.8" }
+"1.37.9" = { created_at = 2025-08-25T19:55:59.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.9" }
+"1.37.10" = { created_at = 2025-10-24T18:00:43.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.10" }
+"1.37.11" = { created_at = 2025-12-09T18:31:43.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.11" }
+"1.37.12" = { created_at = 2026-01-20T23:50:44.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.12" }
+"1.37.13" = { created_at = 2026-02-19T01:41:25.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.13" }
+"1.37.14" = { created_at = 2026-03-19T15:58:27.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.14" }
+"1.37.15" = { created_at = 2026-04-17T17:06:21.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.15" }
+"2.0.0-preview.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.0.0-preview.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.0.0-preview.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.0.0-preview.3" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.0.0-preview.4" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.0.0.preview.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.0.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.1.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.1.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.1.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.2.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.3.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.4.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.5.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.6.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.6.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.7.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.7.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.7.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.8.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.8.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.8.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.9.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.10.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.10.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.11.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.11.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.11.2" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.11.3" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.11.4" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.12.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.13.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.14.0" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.14.1" = { created_at = 2026-04-27T18:58:42.489Z }
+"2.14.2" = { created_at = 2026-04-27T18:58:42.489Z }
 "2.14.3" = { created_at = 2025-01-16T21:22:51.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.14.3" }
 "2.15.0" = { created_at = 2025-01-30T21:00:11.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.15.0" }
-"1.37.5" = { created_at = 2025-02-19T23:51:23.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.5" }
 "2.15.1" = { created_at = 2025-02-19T23:57:01.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.15.1" }
-"1.37.6" = { created_at = 2025-03-20T20:19:10.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.6" }
 "2.15.2" = { created_at = 2025-03-20T20:43:29.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.15.2" }
-"1.37.7" = { created_at = 2025-04-16T23:25:41.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.7" }
 "2.15.3" = { created_at = 2025-04-16T23:29:00.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.15.3" }
 "2.16.0" = { created_at = 2025-04-28T19:44:19.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.16.0" }
 "2.17.0" = { created_at = 2025-06-11T22:06:50.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.17.0" }
 "2.17.1" = { created_at = 2025-06-11T23:06:23.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.17.1" }
 "2.18.0" = { created_at = 2025-07-11T22:57:39.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.18.0" }
-"1.37.8" = { created_at = 2025-07-15T17:41:49.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.8" }
 "2.18.1" = { created_at = 2025-08-14T16:54:30.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.18.1" }
-"1.37.9" = { created_at = 2025-08-25T19:55:59.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.9" }
 "2.18.2" = { created_at = 2025-08-27T22:14:19.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.18.2" }
 "2.18.3" = { created_at = 2025-10-23T21:40:35.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.18.3" }
-"1.37.10" = { created_at = 2025-10-24T18:00:43.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.10" }
 "2.19.0" = { created_at = 2025-10-29T22:04:41.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.19.0" }
-"1.37.11" = { created_at = 2025-12-09T18:31:43.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.11" }
 "2.20.0" = { created_at = 2025-12-09T18:29:03.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.20.0" }
 "2.21.0" = { created_at = 2026-01-16T19:26:03.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.21.0" }
-"1.37.12" = { created_at = 2026-01-20T23:50:44.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.12" }
-"1.37.13" = { created_at = 2026-02-19T01:41:25.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.13" }
 "2.21.1" = { created_at = 2026-02-19T01:34:04.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.21.1" }
 "2.21.2" = { created_at = 2026-03-18T22:19:08.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.21.2" }
-"1.37.14" = { created_at = 2026-03-19T15:58:27.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.14" }
-"1.37.15" = { created_at = 2026-04-17T17:06:21.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v1.37.15" }
 "2.21.3" = { created_at = 2026-04-17T04:50:16.000Z, release_url = "https://github.com/GoogleCloudPlatform/cloud-sql-proxy/releases/tag/v2.21.3" }
