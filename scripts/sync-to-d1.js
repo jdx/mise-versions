@@ -23,7 +23,7 @@ const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
 
 // Prerelease version regex - ported from mise
 const PRERELEASE_REGEX =
-  /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
+  /(-src|-dev|-latest|-stm|[-.](rc|pre)|[-.]M\d+|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
 
 function isPrerelease(version) {
   return PRERELEASE_REGEX.test(version);

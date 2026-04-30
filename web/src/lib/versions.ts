@@ -10,7 +10,8 @@
  * Matches:
  * - -src, -dev, -latest, -stm (build markers)
  * - -rc, .rc (release candidates)
- * - -milestone (milestone releases)
+ * - -M1, -M2, .M1 etc. (Gradle-style milestone tags, e.g. 9.6.0-M1)
+ * - -milestone (milestone releases — long form)
  * - -alpha, -beta (pre-releases)
  * - -pre, .pre (pre-releases)
  * - -next (next version markers)
@@ -19,7 +20,7 @@
  * - master (development branch)
  */
 const PRERELEASE_REGEX =
-  /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
+  /(-src|-dev|-latest|-stm|[-.](rc|pre)|[-.]M\d+|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
 
 /**
  * Check if a version string appears to be a prerelease/development version
