@@ -28,6 +28,9 @@ export {
   dailyCombinedStats,
   dailyMauStats,
   versionUpdates,
+  toolDownloadSummaries,
+  toolPlatformDownloadSummaries,
+  toolVersionDownloadSummaries,
 } from "./schema.js";
 
 // Re-export migrations
@@ -82,6 +85,7 @@ export function setupAnalytics(
     populateDailyMauStats: rollups.populateDailyMauStats,
     populateVersionStatsRollup: rollups.populateVersionStatsRollup,
     backfillArchivedToolStats: rollups.backfillArchivedToolStats,
+    populateToolDownloadSummaries: rollups.populateToolDownloadSummaries,
     backfillRollupTables: rollups.backfillRollupTables,
 
     // Growth functions

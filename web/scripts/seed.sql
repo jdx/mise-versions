@@ -65,6 +65,27 @@ CREATE TABLE IF NOT EXISTS daily_backend_stats (
   PRIMARY KEY (date, backend_type)
 );
 
+CREATE TABLE IF NOT EXISTS tool_download_summaries (
+  tool_id INTEGER PRIMARY KEY,
+  downloads_30d INTEGER NOT NULL DEFAULT 0,
+  downloads_all_time INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS tool_platform_download_summaries (
+  tool_id INTEGER NOT NULL,
+  platform_id INTEGER NOT NULL,
+  downloads_all_time INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (tool_id, platform_id)
+);
+
+CREATE TABLE IF NOT EXISTS tool_version_download_summaries (
+  tool_id INTEGER NOT NULL,
+  version TEXT NOT NULL,
+  downloads_all_time INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (tool_id, version)
+);
+
 -- Create indices
 CREATE INDEX IF NOT EXISTS idx_downloads_tool_id ON downloads(tool_id);
 CREATE INDEX IF NOT EXISTS idx_downloads_backend_id ON downloads(backend_id);
@@ -73,6 +94,9 @@ CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip
 CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id);
 CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date_tool_downloads ON daily_tool_stats(date, tool_id, downloads);
 CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type);
+CREATE INDEX IF NOT EXISTS idx_tool_download_summaries_30d ON tool_download_summaries(downloads_30d DESC, tool_id);
+CREATE INDEX IF NOT EXISTS idx_tool_platform_download_summaries_platform ON tool_platform_download_summaries(platform_id);
+CREATE INDEX IF NOT EXISTS idx_tool_version_download_summaries_tool_downloads ON tool_version_download_summaries(tool_id, downloads_all_time DESC);
 
 -- Insert tools
 
@@ -1470,3 +1494,37 @@ INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, uniqu
 INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES ('2025-11-03', 'npm', 403, 161);
 INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES ('2025-11-03', 'go', 405, 162);
 INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES ('2025-11-03', 'pipx', 340, 136);
+
+INSERT OR REPLACE INTO tool_download_summaries (
+  tool_id,
+  downloads_30d,
+  downloads_all_time,
+  updated_at
+)
+WITH all_time AS (
+  SELECT tool_id, SUM(downloads) AS downloads_all_time
+  FROM (
+    SELECT tool_id, COUNT(*) AS downloads
+    FROM downloads
+    GROUP BY tool_id
+    UNION ALL
+    SELECT tool_id, SUM(count) AS downloads
+    FROM downloads_daily
+    GROUP BY tool_id
+  )
+  GROUP BY tool_id
+),
+recent AS (
+  SELECT tool_id, SUM(downloads) AS downloads_30d
+  FROM daily_tool_stats
+  WHERE date >= (SELECT date(max(date), '-30 days') FROM daily_tool_stats)
+  GROUP BY tool_id
+)
+SELECT
+  t.id,
+  COALESCE(r.downloads_30d, 0),
+  COALESCE(a.downloads_all_time, 0),
+  datetime('now')
+FROM tools t
+LEFT JOIN all_time a ON a.tool_id = t.id
+LEFT JOIN recent r ON r.tool_id = t.id;

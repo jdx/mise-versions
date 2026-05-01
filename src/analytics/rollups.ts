@@ -1,6 +1,6 @@
 // Rollup table population functions
 import type { drizzle } from "drizzle-orm/d1";
-import { sql, eq, and } from "drizzle-orm";
+import { sql, eq, and, type SQL } from "drizzle-orm";
 import {
   backends,
   downloads,
@@ -405,11 +405,260 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     return { rowsInserted: 0 };
   }
 
+  async function runStatement(
+    query: SQL,
+    d1?: D1Database,
+    d1Query?: string,
+    bindings: (string | number)[] = [],
+  ): Promise<void> {
+    if (d1) {
+      if (!d1Query) {
+        throw new Error("D1 query is required when running against D1");
+      }
+      await d1
+        .prepare(d1Query)
+        .bind(...bindings)
+        .run();
+      return;
+    }
+
+    await db.run(query);
+  }
+
+  async function countSummaryRows(d1?: D1Database): Promise<{
+    toolSummaries: number;
+    platformSummaries: number;
+    versionSummaries: number;
+  }> {
+    if (d1) {
+      const [toolRows, platformRows, versionRows] = await Promise.all([
+        d1
+          .prepare("SELECT COUNT(*) AS count FROM tool_download_summaries")
+          .first<{ count: number }>(),
+        d1
+          .prepare(
+            "SELECT COUNT(*) AS count FROM tool_platform_download_summaries",
+          )
+          .first<{ count: number }>(),
+        d1
+          .prepare(
+            "SELECT COUNT(*) AS count FROM tool_version_download_summaries",
+          )
+          .first<{ count: number }>(),
+      ]);
+      return {
+        toolSummaries: toolRows?.count ?? 0,
+        platformSummaries: platformRows?.count ?? 0,
+        versionSummaries: versionRows?.count ?? 0,
+      };
+    }
+
+    const [toolRows, platformRows, versionRows] = await Promise.all([
+      db.get<{ count: number }>(
+        sql`SELECT COUNT(*) AS count FROM tool_download_summaries`,
+      ),
+      db.get<{ count: number }>(
+        sql`SELECT COUNT(*) AS count FROM tool_platform_download_summaries`,
+      ),
+      db.get<{ count: number }>(
+        sql`SELECT COUNT(*) AS count FROM tool_version_download_summaries`,
+      ),
+    ]);
+
+    return {
+      toolSummaries: toolRows?.count ?? 0,
+      platformSummaries: platformRows?.count ?? 0,
+      versionSummaries: versionRows?.count ?? 0,
+    };
+  }
+
+  async function populateToolDownloadSummaries(d1?: D1Database): Promise<{
+    toolSummaries: number;
+    platformSummaries: number;
+    versionSummaries: number;
+  }> {
+    const now = Math.floor(Date.now() / 1000);
+    const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
+      .toISOString()
+      .split("T")[0];
+    const updatedAt = new Date().toISOString();
+
+    await runStatement(
+      sql`
+        INSERT OR REPLACE INTO tool_download_summaries (
+          tool_id,
+          downloads_30d,
+          downloads_all_time,
+          updated_at
+        )
+        WITH all_time AS (
+          SELECT tool_id, SUM(downloads) AS downloads_all_time
+          FROM (
+            SELECT tool_id, COUNT(*) AS downloads
+            FROM downloads
+            GROUP BY tool_id
+            UNION ALL
+            SELECT tool_id, SUM(count) AS downloads
+            FROM downloads_daily
+            GROUP BY tool_id
+          )
+          GROUP BY tool_id
+        ),
+        recent AS (
+          SELECT tool_id, SUM(downloads) AS downloads_30d
+          FROM daily_tool_stats
+          WHERE date >= ${thirtyDaysAgo}
+          GROUP BY tool_id
+        )
+        SELECT
+          t.id,
+          COALESCE(r.downloads_30d, 0),
+          COALESCE(a.downloads_all_time, 0),
+          ${updatedAt}
+        FROM tools t
+        LEFT JOIN all_time a ON a.tool_id = t.id
+        LEFT JOIN recent r ON r.tool_id = t.id
+      `,
+      d1,
+      `
+        INSERT OR REPLACE INTO tool_download_summaries (
+          tool_id,
+          downloads_30d,
+          downloads_all_time,
+          updated_at
+        )
+        WITH all_time AS (
+          SELECT tool_id, SUM(downloads) AS downloads_all_time
+          FROM (
+            SELECT tool_id, COUNT(*) AS downloads
+            FROM downloads
+            GROUP BY tool_id
+            UNION ALL
+            SELECT tool_id, SUM(count) AS downloads
+            FROM downloads_daily
+            GROUP BY tool_id
+          )
+          GROUP BY tool_id
+        ),
+        recent AS (
+          SELECT tool_id, SUM(downloads) AS downloads_30d
+          FROM daily_tool_stats
+          WHERE date >= ?
+          GROUP BY tool_id
+        )
+        SELECT
+          t.id,
+          COALESCE(r.downloads_30d, 0),
+          COALESCE(a.downloads_all_time, 0),
+          ?
+        FROM tools t
+        LEFT JOIN all_time a ON a.tool_id = t.id
+        LEFT JOIN recent r ON r.tool_id = t.id
+      `,
+      [thirtyDaysAgo, updatedAt],
+    );
+
+    await runStatement(
+      sql`
+        INSERT OR REPLACE INTO tool_platform_download_summaries (
+          tool_id,
+          platform_id,
+          downloads_all_time
+        )
+        SELECT
+          tool_id,
+          COALESCE(platform_id, 0) AS platform_id,
+          SUM(downloads) AS downloads_all_time
+        FROM (
+          SELECT tool_id, platform_id, COUNT(*) AS downloads
+          FROM downloads
+          GROUP BY tool_id, platform_id
+          UNION ALL
+          SELECT tool_id, platform_id, SUM(count) AS downloads
+          FROM downloads_daily
+          GROUP BY tool_id, platform_id
+        )
+        GROUP BY tool_id, COALESCE(platform_id, 0)
+      `,
+      d1,
+      `
+        INSERT OR REPLACE INTO tool_platform_download_summaries (
+          tool_id,
+          platform_id,
+          downloads_all_time
+        )
+        SELECT
+          tool_id,
+          COALESCE(platform_id, 0) AS platform_id,
+          SUM(downloads) AS downloads_all_time
+        FROM (
+          SELECT tool_id, platform_id, COUNT(*) AS downloads
+          FROM downloads
+          GROUP BY tool_id, platform_id
+          UNION ALL
+          SELECT tool_id, platform_id, SUM(count) AS downloads
+          FROM downloads_daily
+          GROUP BY tool_id, platform_id
+        )
+        GROUP BY tool_id, COALESCE(platform_id, 0)
+      `,
+    );
+
+    await runStatement(
+      sql`
+        INSERT OR REPLACE INTO tool_version_download_summaries (
+          tool_id,
+          version,
+          downloads_all_time
+        )
+        SELECT
+          tool_id,
+          version,
+          SUM(downloads) AS downloads_all_time
+        FROM (
+          SELECT tool_id, version, COUNT(*) AS downloads
+          FROM downloads
+          GROUP BY tool_id, version
+          UNION ALL
+          SELECT tool_id, version, SUM(count) AS downloads
+          FROM downloads_daily
+          GROUP BY tool_id, version
+        )
+        GROUP BY tool_id, version
+      `,
+      d1,
+      `
+        INSERT OR REPLACE INTO tool_version_download_summaries (
+          tool_id,
+          version,
+          downloads_all_time
+        )
+        SELECT
+          tool_id,
+          version,
+          SUM(downloads) AS downloads_all_time
+        FROM (
+          SELECT tool_id, version, COUNT(*) AS downloads
+          FROM downloads
+          GROUP BY tool_id, version
+          UNION ALL
+          SELECT tool_id, version, SUM(count) AS downloads
+          FROM downloads_daily
+          GROUP BY tool_id, version
+        )
+        GROUP BY tool_id, version
+      `,
+    );
+
+    return countSummaryRows(d1);
+  }
+
   return {
     populateVersionStatsRollup,
     populateRollupTables,
     populateDailyMauStats,
     backfillArchivedToolStats,
+    populateToolDownloadSummaries,
 
     // Backfill rollup tables for the last N days (one-time migration)
     async backfillRollupTables(
@@ -443,6 +692,7 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
       }
 
       const archived = await backfillArchivedToolStats(d1);
+      await populateToolDownloadSummaries(d1);
 
       return {
         daysProcessed,

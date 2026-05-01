@@ -37,6 +37,97 @@ const analyticsMigrations: AnalyticsMigration[] = [
       `);
     },
   },
+  {
+    id: 2,
+    name: "populate_download_summaries",
+    async up(db) {
+      const now = Math.floor(Date.now() / 1000);
+      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
+      const updatedAt = new Date().toISOString();
+
+      await db.run(sql`
+        INSERT OR REPLACE INTO tool_download_summaries (
+          tool_id,
+          downloads_30d,
+          downloads_all_time,
+          updated_at
+        )
+        WITH all_time AS (
+          SELECT tool_id, SUM(downloads) AS downloads_all_time
+          FROM (
+            SELECT tool_id, COUNT(*) AS downloads
+            FROM downloads
+            GROUP BY tool_id
+            UNION ALL
+            SELECT tool_id, SUM(count) AS downloads
+            FROM downloads_daily
+            GROUP BY tool_id
+          )
+          GROUP BY tool_id
+        ),
+        recent AS (
+          SELECT tool_id, SUM(downloads) AS downloads_30d
+          FROM daily_tool_stats
+          WHERE date >= ${thirtyDaysAgo}
+          GROUP BY tool_id
+        )
+        SELECT
+          t.id,
+          COALESCE(r.downloads_30d, 0),
+          COALESCE(a.downloads_all_time, 0),
+          ${updatedAt}
+        FROM tools t
+        LEFT JOIN all_time a ON a.tool_id = t.id
+        LEFT JOIN recent r ON r.tool_id = t.id
+      `);
+
+      await db.run(sql`
+        INSERT OR REPLACE INTO tool_platform_download_summaries (
+          tool_id,
+          platform_id,
+          downloads_all_time
+        )
+        SELECT
+          tool_id,
+          COALESCE(platform_id, 0) AS platform_id,
+          SUM(downloads) AS downloads_all_time
+        FROM (
+          SELECT tool_id, platform_id, COUNT(*) AS downloads
+          FROM downloads
+          GROUP BY tool_id, platform_id
+          UNION ALL
+          SELECT tool_id, platform_id, SUM(count) AS downloads
+          FROM downloads_daily
+          GROUP BY tool_id, platform_id
+        )
+        GROUP BY tool_id, COALESCE(platform_id, 0)
+      `);
+
+      await db.run(sql`
+        INSERT OR REPLACE INTO tool_version_download_summaries (
+          tool_id,
+          version,
+          downloads_all_time
+        )
+        SELECT
+          tool_id,
+          version,
+          SUM(downloads) AS downloads_all_time
+        FROM (
+          SELECT tool_id, version, COUNT(*) AS downloads
+          FROM downloads
+          GROUP BY tool_id, version
+          UNION ALL
+          SELECT tool_id, version, SUM(count) AS downloads
+          FROM downloads_daily
+          GROUP BY tool_id, version
+        )
+        GROUP BY tool_id, version
+      `);
+    },
+  },
 ];
 
 async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {
@@ -510,6 +601,50 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_backend ON daily_tool_backend_stats(backend_type)`,
   );
+
+  // Summary tables for hot read paths. These are maintained by scheduled
+  // rollups and let UI requests avoid scanning downloads/downloads_daily.
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS tool_download_summaries (
+      tool_id INTEGER PRIMARY KEY,
+      downloads_30d INTEGER NOT NULL DEFAULT 0,
+      downloads_all_time INTEGER NOT NULL DEFAULT 0,
+      updated_at TEXT NOT NULL,
+      FOREIGN KEY (tool_id) REFERENCES tools(id)
+    )
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_tool_download_summaries_30d
+    ON tool_download_summaries(downloads_30d DESC, tool_id)
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS tool_platform_download_summaries (
+      tool_id INTEGER NOT NULL,
+      platform_id INTEGER NOT NULL,
+      downloads_all_time INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (tool_id, platform_id),
+      FOREIGN KEY (tool_id) REFERENCES tools(id)
+    )
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_tool_platform_download_summaries_platform
+    ON tool_platform_download_summaries(platform_id)
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS tool_version_download_summaries (
+      tool_id INTEGER NOT NULL,
+      version TEXT NOT NULL,
+      downloads_all_time INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY (tool_id, version),
+      FOREIGN KEY (tool_id) REFERENCES tools(id)
+    )
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_tool_version_download_summaries_tool_downloads
+    ON tool_version_download_summaries(tool_id, downloads_all_time DESC)
+  `);
 
   await runAnalyticsDataMigrations(db);
 

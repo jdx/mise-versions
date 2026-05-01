@@ -110,3 +110,30 @@ export const dailyToolBackendStats = sqliteTable("daily_tool_backend_stats", {
   backend_type: text("backend_type").notNull(), // "aqua", "core", etc.
   downloads: integer("downloads").notNull(),
 });
+
+// Per-tool summary stats for hot UI queries. These are refreshed by scheduled
+// rollups so request paths do not need to scan raw download tables.
+export const toolDownloadSummaries = sqliteTable("tool_download_summaries", {
+  tool_id: integer("tool_id").primaryKey(),
+  downloads_30d: integer("downloads_30d").notNull(),
+  downloads_all_time: integer("downloads_all_time").notNull(),
+  updated_at: text("updated_at").notNull(),
+});
+
+export const toolPlatformDownloadSummaries = sqliteTable(
+  "tool_platform_download_summaries",
+  {
+    tool_id: integer("tool_id").notNull(),
+    platform_id: integer("platform_id").notNull(), // 0 represents unknown
+    downloads_all_time: integer("downloads_all_time").notNull(),
+  },
+);
+
+export const toolVersionDownloadSummaries = sqliteTable(
+  "tool_version_download_summaries",
+  {
+    tool_id: integer("tool_id").notNull(),
+    version: text("version").notNull(),
+    downloads_all_time: integer("downloads_all_time").notNull(),
+  },
+);

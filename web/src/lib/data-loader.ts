@@ -168,10 +168,6 @@ export async function loadToolsPaginated(
   const { page = 1, limit = 50, search, sort = "downloads", backends } = params;
 
   const offset = (page - 1) * limit;
-  const now = Math.floor(Date.now() / 1000);
-  const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
-    .toISOString()
-    .split("T")[0];
 
   // Build WHERE conditions
   const conditions: string[] = ["t.latest_version IS NOT NULL"];
@@ -208,14 +204,8 @@ export async function loadToolsPaginated(
       break;
   }
 
-  // Main query with CTE for downloads
+  // Main query uses summary tables populated by scheduled rollups.
   const mainQuery = `
-    WITH downloads_30d AS (
-      SELECT tool_id, SUM(downloads) as downloads_30d
-      FROM daily_tool_stats
-      WHERE date >= ?
-      GROUP BY tool_id
-    )
     SELECT
       t.name,
       t.latest_version,
@@ -232,9 +222,9 @@ export async function loadToolsPaginated(
       t.security,
       t.package_urls,
       t.aqua_link,
-      COALESCE(d.downloads_30d, 0) as downloads_30d
+      COALESCE(s.downloads_30d, 0) as downloads_30d
     FROM tools t
-    LEFT JOIN downloads_30d d ON d.tool_id = t.id
+    LEFT JOIN tool_download_summaries s ON s.tool_id = t.id
     WHERE ${whereClause}
     ORDER BY ${orderClause}
     LIMIT ? OFFSET ?
@@ -261,7 +251,7 @@ export async function loadToolsPaginated(
   `;
 
   // Execute queries with individual error handling
-  const mainBindParams = [thirtyDaysAgo, ...bindParams, limit, offset];
+  const mainBindParams = [...bindParams, limit, offset];
   const countBindParams = [...bindParams];
 
   let mainResults: D1Result<PaginatedToolRow>;

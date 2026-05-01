@@ -93,6 +93,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
     console.log(`MAU stats recalculated for ${mauDaysUpdated} of 31 days`);
 
+    // 5. Refresh summary tables used by hot UI read paths
+    const summaries = await analytics.populateToolDownloadSummaries(
+      env.ANALYTICS_DB,
+    );
+    console.log(
+      `Download summaries refreshed: ${summaries.toolSummaries} tools, ${summaries.platformSummaries} platform rows, ${summaries.versionSummaries} version rows`,
+    );
+
     return jsonResponse({
       success: true,
       aggregation: {
@@ -122,6 +130,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       mauStats: {
         daysUpdated: mauDaysUpdated,
       },
+      summaries,
     });
   } catch (error) {
     console.error("Scheduled task error:", error);
