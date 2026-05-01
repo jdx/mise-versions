@@ -478,22 +478,22 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         security: string | null;
         version_count: number | null;
       }>(sql`
-	        SELECT
-	          t.name,
-	          s.downloads_30d,
-	          s.trending_score,
-	          s.daily_boost,
-	          s.sparkline,
-	          t.description,
-	          t.backends,
-	          t.security,
-	          t.version_count
-	        FROM trending_tool_summaries s
-	        INNER JOIN tools t ON s.tool_id = t.id
-	        WHERE t.latest_version IS NOT NULL
-	        ORDER BY s.trending_score DESC
-	        LIMIT ${limit}
-	      `);
+        SELECT
+          t.name,
+          s.downloads_30d,
+          s.trending_score,
+          s.daily_boost,
+          s.sparkline,
+          t.description,
+          t.backends,
+          t.security,
+          t.version_count
+        FROM trending_tool_summaries s
+        INNER JOIN tools t ON s.tool_id = t.id
+        WHERE t.latest_version IS NOT NULL
+        ORDER BY s.trending_score DESC
+        LIMIT ${limit}
+      `);
 
       if (summaryRows.length > 0) {
         return summaryRows.map((row) => ({
