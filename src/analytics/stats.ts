@@ -65,73 +65,47 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .groupBy(platforms.os)
         .all();
 
-      // Daily downloads (last 30 days from raw data, excluding current day)
+      // Daily downloads (last 30 days from rollups, excluding current day)
       const now = Math.floor(Date.now() / 1000);
-      const todayStart = Math.floor(now / 86400) * 86400;
-      const thirtyDaysAgo = now - 30 * 86400;
+      const today = new Date(now * 1000).toISOString().split("T")[0];
+      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
       const daily = await db
         .select({
-          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
-          count: sql<number>`count(*)`,
+          date: dailyToolStats.date,
+          count: dailyToolStats.downloads,
         })
-        .from(downloads)
+        .from(dailyToolStats)
         .where(
           and(
-            eq(downloads.tool_id, toolId),
-            sql`${downloads.created_at} >= ${thirtyDaysAgo}`,
-            sql`${downloads.created_at} < ${todayStart}`,
+            eq(dailyToolStats.tool_id, toolId),
+            sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`,
+            sql`${dailyToolStats.date} < ${today}`,
           ),
         )
-        .groupBy(sql`date(${downloads.created_at}, 'unixepoch')`)
-        .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .orderBy(dailyToolStats.date)
         .all();
 
-      // Monthly downloads (last 12 months from raw + aggregated data)
-      const twelveMonthsAgo = Math.floor(Date.now() / 1000) - 365 * 86400;
-
-      // Get from raw data
-      const monthlyRaw = await db
+      // Monthly downloads (last 12 months from rollups)
+      const twelveMonthsAgo = new Date((now - 365 * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
+      const monthly = await db
         .select({
-          month: sql<string>`strftime('%Y-%m', ${downloads.created_at}, 'unixepoch')`,
-          count: sql<number>`count(*)`,
+          month: sql<string>`strftime('%Y-%m', ${dailyToolStats.date})`,
+          count: sql<number>`sum(${dailyToolStats.downloads})`,
         })
-        .from(downloads)
+        .from(dailyToolStats)
         .where(
           and(
-            eq(downloads.tool_id, toolId),
-            sql`${downloads.created_at} >= ${twelveMonthsAgo}`,
+            eq(dailyToolStats.tool_id, toolId),
+            sql`${dailyToolStats.date} >= ${twelveMonthsAgo}`,
           ),
         )
-        .groupBy(sql`strftime('%Y-%m', ${downloads.created_at}, 'unixepoch')`)
+        .groupBy(sql`strftime('%Y-%m', ${dailyToolStats.date})`)
+        .orderBy(sql`strftime('%Y-%m', ${dailyToolStats.date})`)
         .all();
-
-      // Get from aggregated data
-      const monthlyAgg = await db
-        .select({
-          month: sql<string>`strftime('%Y-%m', ${downloadsDaily.date})`,
-          count: sql<number>`sum(${downloadsDaily.count})`,
-        })
-        .from(downloadsDaily)
-        .where(
-          and(
-            eq(downloadsDaily.tool_id, toolId),
-            sql`${downloadsDaily.date} >= date(${twelveMonthsAgo}, 'unixepoch')`,
-          ),
-        )
-        .groupBy(sql`strftime('%Y-%m', ${downloadsDaily.date})`)
-        .all();
-
-      // Merge monthly data
-      const monthlyMap = new Map<string, number>();
-      for (const r of monthlyRaw) {
-        monthlyMap.set(r.month, (monthlyMap.get(r.month) || 0) + r.count);
-      }
-      for (const r of monthlyAgg) {
-        monthlyMap.set(r.month, (monthlyMap.get(r.month) || 0) + r.count);
-      }
-      const monthly = Array.from(monthlyMap.entries())
-        .map(([month, count]) => ({ month, count }))
-        .sort((a, b) => a.month.localeCompare(b.month));
 
       return {
         total,

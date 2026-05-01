@@ -1,11 +1,15 @@
 import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
-import { sql } from "drizzle-orm";
-import { loadToolVersions } from "../lib/version-data";
+import {
+  getCachedText,
+  loadVersionRows,
+  putCachedText,
+  versionsToText,
+} from "../lib/version-files";
 
 // Legacy endpoint: GET /:tool - serves plain text version list from D1
 // e.g., /node returns one version per line
-export const GET: APIRoute = async ({ params, locals }) => {
+export const GET: APIRoute = async ({ request, params, locals }) => {
   const tool = params.tool;
 
   if (!tool) {
@@ -42,28 +46,9 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
   try {
     const runtime = locals.runtime;
-    const db = drizzle(runtime.env.ANALYTICS_DB);
-
-    // Get tool_id
-    const toolResult = await db.all(sql`
-      SELECT id FROM tools WHERE name = ${tool}
-    `);
-
-    if (toolResult.length === 0) {
-      return new Response(`Tool "${tool}" not found`, {
-        status: 404,
-        headers: { "Content-Type": "text/plain" },
-      });
-    }
-
-    const toolId = (toolResult[0] as { id: number }).id;
-
-    const versions = await loadToolVersions(runtime.env.ANALYTICS_DB, toolId, {
-      stableOnly: true,
-    });
-
-    if (versions.length === 0) {
-      return new Response("", {
+    const cached = await getCachedText(request, ":text");
+    if (cached !== null) {
+      return new Response(cached, {
         status: 200,
         headers: {
           "Content-Type": "text/plain; charset=utf-8",
@@ -72,7 +57,19 @@ export const GET: APIRoute = async ({ params, locals }) => {
       });
     }
 
-    const text = versions.map((v) => v.version).join("\n") + "\n";
+    const db = drizzle(runtime.env.ANALYTICS_DB);
+    const versions = await loadVersionRows(db, tool, { stableOnly: true });
+    if (versions === null) {
+      return new Response(`Tool "${tool}" not found`, {
+        status: 404,
+        headers: { "Content-Type": "text/plain" },
+      });
+    }
+
+    const text = versionsToText(versions);
+    runtime.ctx.waitUntil(
+      putCachedText(request, ":text", text, "text/plain; charset=utf-8"),
+    );
 
     return new Response(text, {
       status: 200,

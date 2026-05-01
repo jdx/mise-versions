@@ -6,7 +6,7 @@ import { setupAnalytics } from '../../../../src/analytics';
 import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
-import { loadToolsJson } from '../../lib/data-loader';
+import { loadToolMeta } from '../../lib/data-loader';
 
 const { tool } = Astro.params;
 
@@ -17,14 +17,8 @@ if (!tool) {
 const runtime = Astro.locals.runtime;
 const db = drizzle(runtime.env.ANALYTICS_DB);
 
-// Load tools from D1 database
-const toolsData = await loadToolsJson(runtime.env.ANALYTICS_DB);
-if (!toolsData) {
-  return Astro.redirect('/');
-}
-
-const toolMeta = toolsData.tools.find(t => t.name === tool);
-
+// Load one tool from D1 database
+const toolMeta = await loadToolMeta(runtime.env.ANALYTICS_DB, tool);
 if (!toolMeta) {
   return Astro.redirect('/');
 }
@@ -32,26 +26,19 @@ if (!toolMeta) {
 // Load versions from D1 database
 let versions: Array<{ version: string; created_at?: string | null; release_url?: string | null; prerelease?: boolean }> = [];
 try {
-  // Get tool_id first
-  const toolResult = await db.all<{ id: number }>(sql`
-    SELECT id FROM tools WHERE name = ${tool}
+  const versionRows = await db.all<{ version: string; created_at: string | null; release_url: string | null; prerelease: number }>(sql`
+    SELECT v.version, v.created_at, v.release_url, v.prerelease
+    FROM versions v
+    INNER JOIN tools t ON t.id = v.tool_id
+    WHERE t.name = ${tool}
+    ORDER BY v.sort_order ASC, v.id ASC
   `);
-
-  if (toolResult.length > 0) {
-    const toolId = toolResult[0].id;
-    const versionRows = await db.all<{ version: string; created_at: string | null; release_url: string | null; prerelease: number }>(sql`
-      SELECT version, created_at, release_url, prerelease
-      FROM versions
-      WHERE tool_id = ${toolId}
-      ORDER BY sort_order ASC, id ASC
-    `);
-    versions = versionRows.map(row => ({
-      version: row.version,
-      created_at: row.created_at || null,
-      release_url: row.release_url || null,
-      prerelease: row.prerelease === 1,
-    }));
-  }
+  versions = versionRows.map(row => ({
+    version: row.version,
+    created_at: row.created_at || null,
+    release_url: row.release_url || null,
+    prerelease: row.prerelease === 1,
+  }));
 } catch (e) {
   console.error('Failed to load versions from D1:', e);
 }

@@ -678,23 +678,30 @@ export function VersionsTable({
             {displayedVersions.map((v) => (
               <tr key={v.version} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3 font-mono text-sm">
-                  {(() => {
-                    const url =
-                      v.release_url ||
-                      (github ? buildReleaseUrl(github, v.version) : null);
-                    return url ? (
-                      <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-neon-blue hover:text-neon-purple transition-colors"
-                      >
-                        {v.version}
-                      </a>
-                    ) : (
-                      <span class="text-gray-200">{v.version}</span>
-                    );
-                  })()}
+                  <div class="flex flex-wrap items-center gap-2">
+                    {(() => {
+                      const url =
+                        v.release_url ||
+                        (github ? buildReleaseUrl(github, v.version) : null);
+                      return url ? (
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-neon-blue hover:text-neon-purple transition-colors"
+                        >
+                          {v.version}
+                        </a>
+                      ) : (
+                        <span class="text-gray-200">{v.version}</span>
+                      );
+                    })()}
+                    {isPrerelease(v) && (
+                      <span class="rounded border border-amber-500/30 bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium uppercase leading-none tracking-normal text-amber-300">
+                        prerelease
+                      </span>
+                    )}
+                  </div>
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
                   {(versionDownloads.get(v.version) || 0).toLocaleString()}

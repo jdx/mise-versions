@@ -1,13 +1,17 @@
 import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
-import { sql } from "drizzle-orm";
 import { hashIP, getClientIP } from "../../lib/hash";
-import { loadToolVersions } from "../../lib/version-data";
 import { setupAnalytics } from "../../../../src/analytics";
 import {
   emitTelemetry,
   getMiseVersionFromHeaders,
 } from "../../../../src/pipelines";
+import {
+  getCachedText,
+  loadVersionRows,
+  putCachedText,
+  versionsToToml,
+} from "../../lib/version-files";
 
 export const GET: APIRoute = async ({ request, params, locals }) => {
   const { tool } = params;
@@ -31,21 +35,20 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     const runtime = locals.runtime;
     const db = drizzle(runtime.env.ANALYTICS_DB);
 
-    // Get tool_id
-    const toolResult = await db.all(sql`
-      SELECT id FROM tools WHERE name = ${tool}
-    `);
-
-    if (toolResult.length === 0) {
-      return new Response(`Tool "${tool}" not found`, {
-        status: 404,
-        headers: { "Content-Type": "text/plain" },
-      });
+    let toml = await getCachedText(request, ":toml");
+    if (toml === null) {
+      const versions = await loadVersionRows(db, tool);
+      if (versions === null) {
+        return new Response(`Tool "${tool}" not found`, {
+          status: 404,
+          headers: { "Content-Type": "text/plain" },
+        });
+      }
+      toml = versionsToToml(versions);
+      runtime.ctx.waitUntil(
+        putCachedText(request, ":toml", toml, "text/plain; charset=utf-8"),
+      );
     }
-
-    const toolId = (toolResult[0] as { id: number }).id;
-
-    const versions = await loadToolVersions(runtime.env.ANALYTICS_DB, toolId);
 
     // Track version request for DAU/MAU using waitUntil to ensure it completes
     const clientIP = getClientIP(request);
@@ -76,28 +79,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       }),
     );
 
-    // Generate TOML output
-    const lines = ["[versions]"];
-    for (const v of versions) {
-      const parts: string[] = [];
-      if (v.created_at) {
-        parts.push(`created_at = ${v.created_at}`);
-      }
-      if (v.release_url) {
-        parts.push(`release_url = "${v.release_url}"`);
-      }
-      if (v.prerelease === 1) {
-        parts.push("prerelease = true");
-      }
-
-      if (parts.length > 0) {
-        lines.push(`"${v.version}" = { ${parts.join(", ")} }`);
-      } else {
-        lines.push(`"${v.version}" = {}`);
-      }
-    }
-
-    return new Response(lines.join("\n") + "\n", {
+    return new Response(toml, {
       status: 200,
       headers: {
         "Content-Type": "text/plain; charset=utf-8",

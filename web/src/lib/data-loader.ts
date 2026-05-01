@@ -62,6 +62,26 @@ interface ToolRow {
   aqua_link: string | null;
 }
 
+function parseToolRow(row: ToolRow): ToolMeta {
+  return {
+    name: row.name,
+    latest_version: row.latest_version || "",
+    latest_stable_version: row.latest_stable_version || undefined,
+    version_count: row.version_count || 0,
+    last_updated: row.last_updated,
+    description: row.description || undefined,
+    github: row.github || undefined,
+    homepage: row.homepage || undefined,
+    repo_url: row.repo_url || undefined,
+    license: row.license || undefined,
+    backends: row.backends ? JSON.parse(row.backends) : undefined,
+    authors: row.authors ? JSON.parse(row.authors) : undefined,
+    security: row.security ? JSON.parse(row.security) : undefined,
+    package_urls: row.package_urls ? JSON.parse(row.package_urls) : undefined,
+    aqua_link: row.aqua_link || undefined,
+  };
+}
+
 /**
  * Load tools manifest from D1 database
  */
@@ -92,28 +112,46 @@ export async function loadToolsJson(
     ORDER BY name
   `);
 
-  const tools: ToolMeta[] = rows.map((row) => ({
-    name: row.name,
-    latest_version: row.latest_version || "",
-    latest_stable_version: row.latest_stable_version || undefined,
-    version_count: row.version_count || 0,
-    last_updated: row.last_updated,
-    description: row.description || undefined,
-    github: row.github || undefined,
-    homepage: row.homepage || undefined,
-    repo_url: row.repo_url || undefined,
-    license: row.license || undefined,
-    backends: row.backends ? JSON.parse(row.backends) : undefined,
-    authors: row.authors ? JSON.parse(row.authors) : undefined,
-    security: row.security ? JSON.parse(row.security) : undefined,
-    package_urls: row.package_urls ? JSON.parse(row.package_urls) : undefined,
-    aqua_link: row.aqua_link || undefined,
-  }));
+  const tools: ToolMeta[] = rows.map(parseToolRow);
 
   return {
     tool_count: tools.length,
     tools,
   };
+}
+
+/**
+ * Load one tool from D1 database.
+ */
+export async function loadToolMeta(
+  analyticsDb: D1Database,
+  tool: string,
+): Promise<ToolMeta | null> {
+  const db = drizzle(analyticsDb);
+
+  const row = await db.get<ToolRow>(sql`
+    SELECT
+      name,
+      latest_version,
+      latest_stable_version,
+      version_count,
+      last_updated,
+      description,
+      github,
+      homepage,
+      repo_url,
+      license,
+      backends,
+      authors,
+      security,
+      package_urls,
+      aqua_link
+    FROM tools
+    WHERE name = ${tool}
+      AND latest_version IS NOT NULL
+  `);
+
+  return row ? parseToolRow(row) : null;
 }
 
 interface PaginatedToolRow extends ToolRow {

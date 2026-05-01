@@ -246,6 +246,12 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`,
   );
   await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_platform ON downloads(tool_id, platform_id)`,
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_created ON downloads(tool_id, created_at)`,
+  );
+  await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_ip_hash ON downloads(ip_hash)`,
   );
   await db.run(
@@ -331,6 +337,9 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_hash ON version_requests(ip_hash)`,
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_created ON version_requests(ip_hash, created_at)`,
   );
 
   // Create daily_version_stats rollup table
@@ -427,6 +436,9 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
       ) - 1
     `);
   }
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_mise_order ON versions(tool_id, from_mise, sort_order, id)`,
+  );
 
   // Add prerelease column to versions table (1 = upstream marked prerelease,
   // 0 = stable / unknown). Stored as INTEGER to match the rest of the schema's
