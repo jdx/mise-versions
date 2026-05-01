@@ -30,6 +30,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       success: true,
       days_processed: result.daysProcessed,
       mau_days_processed: result.mauDaysProcessed,
+      archived_tool_rows_inserted: result.archivedToolRowsInserted,
     });
   } catch (error) {
     console.error("Backfill rollups error:", error);

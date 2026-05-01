@@ -74,6 +74,7 @@ export function setupAnalytics(db: ReturnType<typeof drizzle>) {
     populateRollupTables: rollups.populateRollupTables,
     populateDailyMauStats: rollups.populateDailyMauStats,
     populateVersionStatsRollup: rollups.populateVersionStatsRollup,
+    backfillArchivedToolStats: rollups.backfillArchivedToolStats,
     backfillRollupTables: rollups.backfillRollupTables,
 
     // Growth functions

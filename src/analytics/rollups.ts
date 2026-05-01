@@ -375,16 +375,51 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     return false;
   }
 
+  async function backfillArchivedToolStats(
+    d1?: D1Database,
+  ): Promise<{ rowsInserted: number }> {
+    // Archived rows no longer have raw ip_hash values, so downloads are exact
+    // while unique_users uses the best available per-archive-group totals.
+    // Only fill missing date/tool rows to avoid replacing accurate raw rollups.
+    const query = `
+      INSERT INTO daily_tool_stats (date, tool_id, downloads, unique_users)
+      SELECT
+        dd.date,
+        dd.tool_id,
+        SUM(dd.count) as downloads,
+        SUM(dd.unique_ips) as unique_users
+      FROM downloads_daily dd
+      LEFT JOIN daily_tool_stats dts
+        ON dts.date = dd.date
+        AND dts.tool_id = dd.tool_id
+      WHERE dts.tool_id IS NULL
+      GROUP BY dd.date, dd.tool_id
+    `;
+
+    if (d1) {
+      const result = await d1.prepare(query).run();
+      return { rowsInserted: result.meta.changes ?? 0 };
+    }
+
+    await db.run(sql.raw(query));
+    return { rowsInserted: 0 };
+  }
+
   return {
     populateVersionStatsRollup,
     populateRollupTables,
     populateDailyMauStats,
+    backfillArchivedToolStats,
 
     // Backfill rollup tables for the last N days (one-time migration)
     async backfillRollupTables(
       days: number = 90,
       d1?: D1Database,
-    ): Promise<{ daysProcessed: number; mauDaysProcessed: number }> {
+    ): Promise<{
+      daysProcessed: number;
+      mauDaysProcessed: number;
+      archivedToolRowsInserted: number;
+    }> {
       let daysProcessed = 0;
       let mauDaysProcessed = 0;
       const now = new Date();
@@ -407,7 +442,13 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
         }
       }
 
-      return { daysProcessed, mauDaysProcessed };
+      const archived = await backfillArchivedToolStats(d1);
+
+      return {
+        daysProcessed,
+        mauDaysProcessed,
+        archivedToolRowsInserted: archived.rowsInserted,
+      };
     },
   };
 }
