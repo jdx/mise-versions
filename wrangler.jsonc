@@ -16,6 +16,13 @@
   },
   "observability": {
     "enabled": true,
+    // Keep Workers Logs below the included tier; per-request invocation logs
+    // dominate log volume on high-traffic version endpoints.
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 0.01,
+      "invocation_logs": false,
+    },
   },
   "kv_namespaces": [
     {
