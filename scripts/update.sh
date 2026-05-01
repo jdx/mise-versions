@@ -340,7 +340,9 @@ generate_toml_file() {
 	local error_output
 	error_output=$(mktemp)
 
-	# Try to get JSON with timestamps from mise ls-remote --json.
+	# Try to get JSON with timestamps/release URLs/prerelease flags from
+	# mise ls-remote --prerelease --json. The TOML path can carry prerelease
+	# metadata, so collect the superset and let clients filter by that flag.
 	# Pass the rotated per-tool token via GITHUB_API_TOKEN so this call
 	# isn't rate-limited by the workflow's single shared MISE_GITHUB_TOKEN.
 	# Without this, ~58% of tools per run hit GitHub's 5000/hr authenticated
@@ -350,7 +352,7 @@ generate_toml_file() {
 	# plain-text path — losing `release_url` and `created_at` for any new
 	# version that wasn't already in the existing TOML.
 	local json_output
-	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
+	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --prerelease --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
 		local json_count
 		json_count=$(printf '%s' "$json_output" | jq 'if type == "array" then length else 0 end' 2>/dev/null || echo 0)
 		if [ "${json_count:-0}" -gt 0 ]; then

@@ -11,6 +11,7 @@ interface Version {
   version: string;
   created_at?: string | null;
   release_url?: string | null;
+  prerelease?: boolean;
 }
 
 type VersionSortKey = "default" | "downloads" | "released";
@@ -357,7 +358,7 @@ export function VersionsTable({
 
     // Filter by prerelease
     if (hidePrerelease) {
-      result = result.filter((v) => !isPrerelease(v.version));
+      result = result.filter((v) => !isPrerelease(v));
     }
 
     // Filter by version prefix
@@ -414,7 +415,7 @@ export function VersionsTable({
         (v) => getDistribution(v.version, tool) === distribution,
       );
     }
-    return result.filter((v) => isPrerelease(v.version)).length;
+    return result.filter((v) => isPrerelease(v)).length;
   }, [versions, distribution, tool]);
 
   // Build timeline from versions filtered by distribution and version prefix only

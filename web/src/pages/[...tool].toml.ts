@@ -12,6 +12,7 @@ interface VersionRow {
   version: string;
   created_at: string | null;
   release_url: string | null;
+  prerelease: number;
 }
 
 // Legacy endpoint: GET /:tool.toml - serves TOML version file from D1
@@ -55,7 +56,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     // Get versions ordered by sort_order (semantic version order from TOML file)
     // Only include versions from mise ls-remote (not user-tracked installs)
     const versions = await db.all<VersionRow>(sql`
-      SELECT version, created_at, release_url
+      SELECT version, created_at, release_url, prerelease
       FROM versions
       WHERE tool_id = ${toolId} AND from_mise = 1
       ORDER BY sort_order ASC, id ASC
@@ -99,6 +100,9 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       }
       if (v.release_url) {
         parts.push(`release_url = "${v.release_url}"`);
+      }
+      if (v.prerelease === 1) {
+        parts.push("prerelease = true");
       }
 
       if (parts.length > 0) {

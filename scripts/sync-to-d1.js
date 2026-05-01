@@ -21,12 +21,14 @@ import { fetchWithRetry } from "./lib/fetch-with-retry.js";
 const DOCS_DIR = join(process.cwd(), "docs");
 const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
 
-// Prerelease version regex - ported from mise
+// Fallback for tools that do not expose explicit prerelease metadata in TOML.
+// Prefer `prerelease = true` from mise where present; this catches older and
+// non-metadata sources so latest_stable_version does not regress.
 const PRERELEASE_REGEX =
   /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
 
-function isPrerelease(version) {
-  return PRERELEASE_REGEX.test(version);
+function isPrerelease(version, data) {
+  return data?.prerelease === true || PRERELEASE_REGEX.test(version);
 }
 
 function toISOString(value) {
@@ -190,8 +192,8 @@ function processTomlFile(filePath) {
 
     let latestStableVersion = null;
     for (let i = versions.length - 1; i >= 0; i--) {
-      const [version] = versions[i];
-      if (!isPrerelease(version)) {
+      const [version, data] = versions[i];
+      if (!isPrerelease(version, data)) {
         latestStableVersion = version;
         break;
       }

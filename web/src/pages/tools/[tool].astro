@@ -30,7 +30,7 @@ if (!toolMeta) {
 }
 
 // Load versions from D1 database
-let versions: Array<{ version: string; created_at?: string | null; release_url?: string | null }> = [];
+let versions: Array<{ version: string; created_at?: string | null; release_url?: string | null; prerelease?: boolean }> = [];
 try {
   // Get tool_id first
   const toolResult = await db.all<{ id: number }>(sql`
@@ -39,8 +39,8 @@ try {
 
   if (toolResult.length > 0) {
     const toolId = toolResult[0].id;
-    const versionRows = await db.all<{ version: string; created_at: string | null; release_url: string | null }>(sql`
-      SELECT version, created_at, release_url
+    const versionRows = await db.all<{ version: string; created_at: string | null; release_url: string | null; prerelease: number }>(sql`
+      SELECT version, created_at, release_url, prerelease
       FROM versions
       WHERE tool_id = ${toolId}
       ORDER BY sort_order ASC, id ASC
@@ -49,6 +49,7 @@ try {
       version: row.version,
       created_at: row.created_at || null,
       release_url: row.release_url || null,
+      prerelease: row.prerelease === 1,
     }));
   }
 } catch (e) {
