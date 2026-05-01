@@ -2,18 +2,12 @@ import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 import { hashIP, getClientIP } from "../../lib/hash";
+import { loadToolVersions } from "../../lib/version-data";
 import { setupAnalytics } from "../../../../src/analytics";
 import {
   emitTelemetry,
   getMiseVersionFromHeaders,
 } from "../../../../src/pipelines";
-
-interface VersionRow {
-  version: string;
-  created_at: string | null;
-  release_url: string | null;
-  prerelease: number;
-}
 
 export const GET: APIRoute = async ({ request, params, locals }) => {
   const { tool } = params;
@@ -51,14 +45,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
 
     const toolId = (toolResult[0] as { id: number }).id;
 
-    // Get versions ordered by sort_order (semantic version order from TOML file)
-    // Only include versions from mise ls-remote (not user-tracked installs)
-    const versions = await db.all<VersionRow>(sql`
-      SELECT version, created_at, release_url, prerelease
-      FROM versions
-      WHERE tool_id = ${toolId} AND from_mise = 1
-      ORDER BY sort_order ASC, id ASC
-    `);
+    const versions = await loadToolVersions(runtime.env.ANALYTICS_DB, toolId);
 
     // Track version request for DAU/MAU using waitUntil to ensure it completes
     const clientIP = getClientIP(request);

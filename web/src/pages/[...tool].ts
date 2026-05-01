@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
+import { loadToolVersions } from "../lib/version-data";
 
 // Legacy endpoint: GET /:tool - serves plain text version list from D1
 // e.g., /node returns one version per line
@@ -57,11 +58,9 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
     const toolId = (toolResult[0] as { id: number }).id;
 
-    // Get versions ordered by sort_order (semantic version order from TOML file).
-    // Plain text cannot carry prerelease metadata, so keep it stable-only.
-    const versions = await db.all<{ version: string }>(sql`
-      SELECT version FROM versions WHERE tool_id = ${toolId} AND from_mise = 1 AND prerelease = 0 ORDER BY sort_order ASC, id ASC
-    `);
+    const versions = await loadToolVersions(runtime.env.ANALYTICS_DB, toolId, {
+      stableOnly: true,
+    });
 
     if (versions.length === 0) {
       return new Response("", {
