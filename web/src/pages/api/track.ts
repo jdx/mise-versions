@@ -7,6 +7,21 @@ import {
   getMiseVersionFromHeaders,
 } from "../../../../src/pipelines";
 
+const DOWNLOAD_DEDUPE_TTL_SECONDS = 2 * 24 * 60 * 60;
+
+function dedupePart(value: string): string {
+  return encodeURIComponent(value).replace(/\./g, "%2E");
+}
+
+function downloadDedupeKey(
+  tool: string,
+  version: string,
+  ipHash: string,
+): string {
+  const day = Math.floor(Date.now() / 86400000);
+  return `download-dedupe:${day}:${dedupePart(tool)}:${dedupePart(version)}:${ipHash}`;
+}
+
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const body = (await request.json()) as {
@@ -71,6 +86,25 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
     const db = drizzle(runtime.env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
+    const dedupeKey = downloadDedupeKey(body.tool, body.version, ipHash);
+
+    const seen = await runtime.env.DOWNLOAD_DEDUPE.get(dedupeKey);
+    if (seen) {
+      return new Response(
+        JSON.stringify({
+          success: true,
+          deduplicated: true,
+        }),
+        {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    await runtime.env.DOWNLOAD_DEDUPE.put(dedupeKey, "1", {
+      expirationTtl: DOWNLOAD_DEDUPE_TTL_SECONDS,
+    });
 
     const result = await analytics.trackDownload(
       body.tool,

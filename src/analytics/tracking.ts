@@ -179,26 +179,6 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
       const backendId = await getOrCreateBackendId(full);
       const platformId = await getOrCreatePlatformId(os, arch);
       const now = Math.floor(Date.now() / 1000);
-      const todayStart = Math.floor(now / 86400) * 86400; // Start of today (UTC)
-
-      // Check if already tracked today for this IP/tool/version
-      const existing = await db
-        .select({ id: downloads.id })
-        .from(downloads)
-        .where(
-          and(
-            eq(downloads.tool_id, toolId),
-            eq(downloads.version, version),
-            eq(downloads.ip_hash, ipHash),
-            sql`${downloads.created_at} >= ${todayStart}`,
-          ),
-        )
-        .limit(1)
-        .get();
-
-      if (existing) {
-        return { deduplicated: true };
-      }
 
       // Insert new record
       await db.insert(downloads).values({

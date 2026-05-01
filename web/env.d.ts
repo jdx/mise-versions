@@ -18,6 +18,7 @@ interface Env {
   ANALYTICS_DB: D1Database;
   DATA_BUCKET: R2Bucket;
   GITHUB_CACHE: KVNamespace;
+  DOWNLOAD_DEDUPE: KVNamespace;
   MISE_VERSIONS_STREAM: import("../src/pipelines").PipelinesStreamBinding;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;
