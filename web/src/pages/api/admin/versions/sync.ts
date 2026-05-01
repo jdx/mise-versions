@@ -43,16 +43,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return errorResponse("Invalid JSON body", 400);
   }
 
-  if (!Array.isArray(body.tools) || body.tools.length === 0) {
-    return errorResponse("tools must be a non-empty array", 400);
-  }
-
   const d1 = runtime.env.ANALYTICS_DB;
   const db = drizzle(d1);
   const analytics = setupAnalytics(db);
 
   // Run migrations to ensure schema is up to date
   await runAnalyticsMigrations(db);
+
+  if (!Array.isArray(body.tools) || body.tools.length === 0) {
+    return errorResponse("tools must be a non-empty array", 400);
+  }
 
   // Step 1: Get all tool names we need
   const toolNames = body.tools.map((t) => t.tool).filter(Boolean);

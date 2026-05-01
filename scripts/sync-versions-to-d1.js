@@ -38,6 +38,8 @@ async function main() {
     process.exit(1);
   }
 
+  const syncUrl = `${apiUrl}/api/admin/versions/sync`;
+
   // Determine which tools to sync
   let toolsToSync = null; // null means all tools
   if (!fullSync && existsSync(UPDATED_TOOLS_FILE)) {
@@ -105,7 +107,6 @@ async function main() {
   );
 
   // Sync in batches with parallel requests
-  const syncUrl = `${apiUrl}/api/admin/versions/sync`;
   let toolsSynced = 0;
   let versionsSynced = 0;
   let newVersions = 0;

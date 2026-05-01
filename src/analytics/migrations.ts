@@ -2,9 +2,74 @@
 import type { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 
-export async function runAnalyticsMigrations(
-  db: ReturnType<typeof drizzle>,
-): Promise<void> {
+type AnalyticsDb = ReturnType<typeof drizzle>;
+
+interface AnalyticsMigration {
+  id: number;
+  name: string;
+  up: (db: AnalyticsDb) => Promise<void>;
+}
+
+const analyticsMigrations: AnalyticsMigration[] = [
+  {
+    id: 1,
+    name: "backfill_prerelease_flags",
+    async up(db) {
+      await db.run(sql`
+        UPDATE versions
+        SET prerelease = 1
+        WHERE prerelease = 0
+          AND (
+            version GLOB '*-M[0-9]*'
+            OR version GLOB '*-RC[0-9]*'
+            OR lower(version) GLOB '*-m[0-9]*'
+            OR lower(version) GLOB '*-rc[0-9]*'
+            OR lower(version) LIKE '%-alpha%'
+            OR lower(version) LIKE '%-beta%'
+            OR lower(version) LIKE '%-dev%'
+            OR lower(version) LIKE '%-milestone%'
+            OR lower(version) LIKE '%-nightly%'
+            OR lower(version) LIKE '%-pre%'
+            OR lower(version) LIKE '%-preview%'
+            OR lower(version) LIKE '%-snapshot%'
+            OR lower(version) LIKE '%-canary%'
+          )
+      `);
+    },
+  },
+];
+
+async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS analytics_migrations (
+      id INTEGER PRIMARY KEY,
+      name TEXT NOT NULL,
+      applied_at TEXT NOT NULL
+    )
+  `);
+
+  const appliedMigrations = await db.all(sql`
+    SELECT id FROM analytics_migrations ORDER BY id
+  `);
+  const appliedIds = new Set(appliedMigrations.map((m: any) => m.id));
+
+  for (const migration of analyticsMigrations) {
+    if (appliedIds.has(migration.id)) {
+      continue;
+    }
+
+    console.log(
+      `Applying analytics migration ${migration.id}: ${migration.name}`,
+    );
+    await migration.up(db);
+    await db.run(sql`
+      INSERT INTO analytics_migrations (id, name, applied_at)
+      VALUES (${migration.id}, ${migration.name}, ${new Date().toISOString()})
+    `);
+  }
+}
+
+export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   console.log("Running analytics database migrations...");
 
   // Check if we need to migrate from old schema
@@ -427,6 +492,8 @@ export async function runAnalyticsMigrations(
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_backend ON daily_tool_backend_stats(backend_type)`,
   );
+
+  await runAnalyticsDataMigrations(db);
 
   console.log("Analytics migrations completed");
 }
