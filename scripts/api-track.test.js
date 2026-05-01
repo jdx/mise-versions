@@ -63,6 +63,7 @@ async function handleTrackRequest(request, locals, deps = {}) {
   const {
     hashIP = async () => "test-hash",
     trackDownload = async () => ({ deduplicated: false }),
+    pathTool,
   } = deps;
 
   try {
@@ -70,7 +71,9 @@ async function handleTrackRequest(request, locals, deps = {}) {
 
     // Validate required fields (matches real implementation)
     // Note: !body.tool catches both missing and empty string cases since !"" is true
-    if (!body.tool || !body.version) {
+    const tool = pathTool || body.tool;
+
+    if (!tool || !body.version) {
       return new Response(
         JSON.stringify({ error: "Missing required fields: tool, version" }),
         {
@@ -83,7 +86,7 @@ async function handleTrackRequest(request, locals, deps = {}) {
     // Track the download
     const ipHash = await hashIP("127.0.0.1", locals.runtime.env.API_SECRET);
     const result = await trackDownload(
-      body.tool,
+      tool,
       body.version,
       ipHash,
       body.os || null,
@@ -243,6 +246,29 @@ describe("/api/track endpoint", () => {
       assert.strictEqual(response.status, 200);
       assert.strictEqual(body.success, true);
       assert.strictEqual(body.deduplicated, true);
+    });
+
+    it("should track with tool from path when body omits tool", async () => {
+      const request = createMockRequest({
+        version: "20.10.0",
+      });
+      const locals = createMockLocals();
+      let trackedData = null;
+
+      const response = await handleTrackRequest(request, locals, {
+        pathTool: "node",
+        trackDownload: async (tool, version, ipHash, os, arch, full) => {
+          trackedData = { tool, version, ipHash, os, arch, full };
+          return { deduplicated: false };
+        },
+      });
+
+      const body = JSON.parse(await response.text());
+
+      assert.strictEqual(response.status, 200);
+      assert.strictEqual(body.success, true);
+      assert.strictEqual(trackedData.tool, "node");
+      assert.strictEqual(trackedData.version, "20.10.0");
     });
   });
 

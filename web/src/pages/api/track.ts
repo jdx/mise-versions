@@ -6,6 +6,7 @@ import { env } from "cloudflare:workers";
 import {
   emitTelemetry,
   getMiseVersionFromHeaders,
+  type TelemetryEventV1,
 } from "../../../../src/pipelines";
 import { keyPart } from "../../lib/kv-cache";
 
@@ -21,16 +22,36 @@ function downloadDedupeKey(
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
+  return trackDownloadRequest({
+    request,
+    locals,
+    source: "api/track",
+  });
+};
+
+export async function trackDownloadRequest({
+  request,
+  locals,
+  tool: pathTool,
+  source,
+}: {
+  request: Parameters<APIRoute>[0]["request"];
+  locals: Parameters<APIRoute>[0]["locals"];
+  tool?: string;
+  source: Extract<TelemetryEventV1, { type: "download" }>["source"];
+}) {
   try {
     const body = (await request.json()) as {
-      tool: string;
+      tool?: string;
       version: string;
       os?: string;
       arch?: string;
       full?: string;
     };
 
-    if (!body.tool || !body.version) {
+    const tool = pathTool || body.tool;
+
+    if (!tool || !body.version) {
       return new Response(
         JSON.stringify({ error: "Missing required fields: tool, version" }),
         {
@@ -53,14 +74,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
         schema_version: 1,
         type: "download",
         ts: Date.now(),
-        tool: body.tool,
+        tool,
         version: body.version,
         os: body.os ?? null,
         arch: body.arch ?? null,
         full: body.full ?? null,
         ip_hash: ipHash,
         mise_version: miseVersion,
-        source: "api/track",
+        source,
         is_ci: isCI,
       }),
     );
@@ -84,7 +105,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const analytics = setupAnalytics(db, {
       trackingCache: env.DOWNLOAD_DEDUPE,
     });
-    const dedupeKey = downloadDedupeKey(body.tool, body.version, ipHash);
+    const dedupeKey = downloadDedupeKey(tool, body.version, ipHash);
 
     const seen = await env.DOWNLOAD_DEDUPE.get(dedupeKey);
     if (seen) {
@@ -105,7 +126,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     });
 
     const result = await analytics.trackDownload(
-      body.tool,
+      tool,
       body.version,
       ipHash,
       body.os || null,
@@ -130,4 +151,4 @@ export const POST: APIRoute = async ({ request, locals }) => {
       headers: { "Content-Type": "application/json" },
     });
   }
-};
+}

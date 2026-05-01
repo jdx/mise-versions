@@ -1,7 +1,15 @@
 {
   "description": "mise-versions telemetry events mirrored from the Worker into Cloudflare Pipelines",
   "type": "object",
-  "required": ["schema_version", "type", "ts", "tool", "ip_hash", "source"],
+  "required": [
+    "schema_version",
+    "type",
+    "ts",
+    "tool",
+    "ip_hash",
+    "source",
+    "is_ci"
+  ],
   "properties": {
     "schema_version": { "type": "integer", "enum": [1] },
     "type": { "type": "string", "enum": ["download", "version_request"] },
@@ -16,7 +24,11 @@
     },
     "ip_hash": { "type": "string" },
     "mise_version": { "type": ["string", "null"] },
-    "source": { "type": "string", "enum": ["api/track", "toml"] }
+    "source": {
+      "type": "string",
+      "enum": ["api/track", "api/tools/:tool", "toml"]
+    },
+    "is_ci": { "type": "boolean" }
   },
   "additionalProperties": false
 }

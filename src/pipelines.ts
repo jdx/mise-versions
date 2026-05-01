@@ -14,7 +14,8 @@ export type TelemetryEventV1 =
       full: string | null; // backend identifier (e.g. "aqua:nektos/act")
       ip_hash: string;
       mise_version: string | null;
-      source: "api/track";
+      source: "api/track" | "api/tools/:tool";
+      is_ci: boolean;
     }
   | {
       schema_version: 1;
@@ -24,6 +25,7 @@ export type TelemetryEventV1 =
       ip_hash: string;
       mise_version: string | null;
       source: "toml";
+      is_ci: boolean;
     };
 
 export function getMiseVersionFromUserAgent(
