@@ -59,38 +59,39 @@ export async function loadVersionRows(
   tool: string,
   options: { stableOnly?: boolean } = {},
 ): Promise<VersionRow[] | null> {
-  const rows = await db.all<{
-    tool_id: number;
-    version: string | null;
-    created_at: string | null;
-    release_url: string | null;
-    prerelease: number | null;
-  }>(sql`
-    SELECT
-      t.id as tool_id,
-      v.version,
-      v.created_at,
-      v.release_url,
-      v.prerelease
-    FROM tools t
-    LEFT JOIN versions v
-      ON v.tool_id = t.id
-      AND v.from_mise = 1
-      AND (${options.stableOnly ? 1 : 0} = 0 OR v.prerelease = 0)
-    WHERE t.name = ${tool}
-    ORDER BY v.sort_order ASC, v.id ASC
+  const toolRow = await db.get<{ id: number }>(sql`
+    SELECT id
+    FROM tools
+    WHERE name = ${tool}
   `);
 
-  if (rows.length === 0) return null;
+  if (!toolRow) return null;
 
-  return rows
-    .filter((row) => row.version !== null)
-    .map((row) => ({
-      version: row.version!,
-      created_at: row.created_at,
-      release_url: row.release_url,
-      prerelease: row.prerelease ?? 0,
-    }));
+  const stableFilter = options.stableOnly ? sql`AND prerelease = 0` : sql``;
+  const rows = await db.all<{
+    version: string;
+    created_at: string | null;
+    release_url: string | null;
+    prerelease: number;
+  }>(sql`
+    SELECT
+      version,
+      created_at,
+      release_url,
+      prerelease
+    FROM versions
+    WHERE tool_id = ${toolRow.id}
+      AND from_mise = 1
+      ${stableFilter}
+    ORDER BY sort_order ASC, id ASC
+  `);
+
+  return rows.map((row) => ({
+    version: row.version,
+    created_at: row.created_at,
+    release_url: row.release_url,
+    prerelease: row.prerelease,
+  }));
 }
 
 export function versionsToText(versions: Pick<VersionRow, "version">[]) {

@@ -115,6 +115,7 @@ CREATE INDEX IF NOT EXISTS idx_downloads_backend_id ON downloads(backend_id);
 CREATE INDEX IF NOT EXISTS idx_downloads_created_at ON downloads(created_at);
 CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at);
 CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id);
+CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date_tool_downloads ON daily_tool_stats(date, tool_id, downloads);
 CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type);
 
 -- Insert tools

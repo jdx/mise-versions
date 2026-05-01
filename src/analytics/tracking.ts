@@ -183,7 +183,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
       // Check if already tracked today for this IP/tool/version
       const existing = await db
-        .select()
+        .select({ id: downloads.id })
         .from(downloads)
         .where(
           and(

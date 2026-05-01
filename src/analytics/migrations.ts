@@ -315,6 +315,9 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date ON daily_tool_stats(date)`,
   );
   await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date_tool_downloads ON daily_tool_stats(date, tool_id, downloads)`,
+  );
+  await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool_date ON daily_tool_stats(tool_id, date)`,
   );
   await db.run(
@@ -453,6 +456,9 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
       sql`ALTER TABLE versions ADD COLUMN prerelease INTEGER NOT NULL DEFAULT 0`,
     );
   }
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_versions_tool_mise_prerelease_order ON versions(tool_id, from_mise, prerelease, sort_order, id)`,
+  );
 
   // Create version_updates table for tracking when new versions are discovered
   await db.run(sql`
