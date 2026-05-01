@@ -15,30 +15,30 @@ mise-versions is a service that tracks and stores version numbers for tools supp
 
 ```bash
 # Install dependencies
-aube install
+npm install
 
 # Run tests
-aube run test              # Run all tests (JS + shell)
-aube run test:js           # JS unit tests only
-aube run test:shell        # Shell script tests only
+bun run test               # Run all tests (JS + shell)
+bun run test:js            # JS unit tests only
+bun run test:shell         # Shell script tests only
 
 # Run a single JS test file
 node --test scripts/generate-toml.test.js
 
 # Web development (from web/ directory)
-cd web && aube run dev     # Start Astro dev server
-cd web && aube run build   # Build for production
+cd web && npm run dev      # Start Astro dev server
+cd web && npm run build    # Build for production
 
 # TypeScript checking
-aube exec tsc              # Check types (root)
-cd web && aube exec tsc    # Check types (web)
+bunx tsc                   # Check types (root)
+cd web && bunx tsc         # Check types (web)
 
 # Linting (or use `mise run lint` / `mise run lint:fix`)
-aube exec eslint . --ext .ts
-aube exec prettier --check .
+bunx eslint . --ext .ts
+bunx prettier --check .
 
 # Local development
-mise run dev               # or: aube exec wrangler dev
+mise run dev               # or: bunx wrangler dev
 
 # Deploy
 mise run deploy            # builds then deploys

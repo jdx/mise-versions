@@ -26,10 +26,10 @@ jobs:
       - uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4
 
       - name: Install dependencies
-        run: aube ci -r
+        run: npm ci
 
       - name: Build web frontend
-        run: aube run build --filter mise-versions-web
+        run: npm run build -w web
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3

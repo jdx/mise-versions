@@ -9,13 +9,13 @@ local linters = new Mapping<String, Step> {
     }
     ["tsc"] {
         glob = List("src/**/*.ts", "worker/**/*.ts")
-        check = "aube exec tsc --noEmit"
+        check = "bunx tsc --noEmit"
         batch = true
     }
     ["tsc-web"] {
         glob = List("web/src/**/*.ts", "web/src/**/*.tsx")
         dir = "web"
-        check = "aube exec tsc --noEmit"
+        check = "bunx tsc --noEmit"
         batch = true
     }
 }

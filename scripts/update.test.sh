@@ -2,7 +2,7 @@
 # Tests for update.sh shell script logic
 #
 # Run with: bash scripts/update.test.sh
-# Or: aube run test (after adding to package.json)
+# Or: npm test (after adding to package.json)
 
 set -euo pipefail
 
