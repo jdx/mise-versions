@@ -128,6 +128,152 @@ const analyticsMigrations: AnalyticsMigration[] = [
       `);
     },
   },
+  {
+    id: 3,
+    name: "populate_hot_ui_summaries",
+    async up(db) {
+      const LOOKBACK_DAYS = 30;
+      const SPARKLINE_DAYS = 13;
+      const MIN_DOWNLOADS = 500;
+      const now = Math.floor(Date.now() / 1000);
+      const thirtyDaysAgo = new Date((now - LOOKBACK_DAYS * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
+      const today = new Date(now * 1000).toISOString().split("T")[0];
+      const updatedAt = new Date().toISOString();
+      const lookupDates = Array.from(
+        { length: LOOKBACK_DAYS },
+        (_, index) =>
+          new Date((now - (index + 1) * 86400) * 1000)
+            .toISOString()
+            .split("T")[0],
+      );
+      const sparklineDates = lookupDates.slice(0, SPARKLINE_DAYS).reverse();
+
+      await db.run(sql`
+        INSERT OR REPLACE INTO backend_tool_summaries (
+          backend_type,
+          tool_count,
+          updated_at
+        )
+        SELECT
+          SUBSTR(value, 1, INSTR(value || ':', ':') - 1) AS backend_type,
+          COUNT(DISTINCT tools.id) AS tool_count,
+          ${updatedAt}
+        FROM tools, json_each(backends)
+        WHERE latest_version IS NOT NULL
+          AND backends IS NOT NULL
+        GROUP BY backend_type
+      `);
+
+      const backendRows = await db.get<{ count: number }>(sql`
+        SELECT COUNT(*) AS count
+        FROM backend_tool_summaries
+        WHERE updated_at = ${updatedAt}
+      `);
+      if ((backendRows?.count ?? 0) > 0) {
+        await db.run(sql`
+          DELETE FROM backend_tool_summaries
+          WHERE updated_at != ${updatedAt}
+        `);
+      }
+
+      const dailyData = await db.all<{
+        tool_id: number;
+        downloads_30d: number;
+        date: string;
+        downloads: number;
+      }>(sql`
+        WITH candidates AS (
+          SELECT
+            daily_tool_stats.tool_id,
+            SUM(daily_tool_stats.downloads) AS downloads_30d
+          FROM daily_tool_stats
+            INNER JOIN tools ON daily_tool_stats.tool_id = tools.id
+          WHERE
+            daily_tool_stats.date >= ${thirtyDaysAgo}
+            AND daily_tool_stats.date < ${today}
+            AND tools.latest_version IS NOT NULL
+          GROUP BY daily_tool_stats.tool_id
+          HAVING SUM(daily_tool_stats.downloads) >= ${MIN_DOWNLOADS}
+        )
+        SELECT
+          daily_tool_stats.tool_id,
+          candidates.downloads_30d,
+          daily_tool_stats.date,
+          daily_tool_stats.downloads
+        FROM daily_tool_stats
+          INNER JOIN candidates ON daily_tool_stats.tool_id = candidates.tool_id
+        WHERE
+          daily_tool_stats.date >= ${thirtyDaysAgo}
+          AND daily_tool_stats.date < ${today}
+        ORDER BY daily_tool_stats.date
+      `);
+
+      const toolData = new Map<
+        number,
+        { total: number; daily: Map<string, number> }
+      >();
+      for (const row of dailyData) {
+        if (!toolData.has(row.tool_id)) {
+          toolData.set(row.tool_id, {
+            total: row.downloads_30d,
+            daily: new Map(),
+          });
+        }
+        toolData.get(row.tool_id)!.daily.set(row.date, row.downloads);
+      }
+
+      let trendingRows = 0;
+      for (const [toolId, data] of toolData) {
+        const dailyValues = lookupDates.map(
+          (date) => data.daily.get(date) ?? 0,
+        );
+        const mean =
+          dailyValues.reduce((sum, value) => sum + value, 0) /
+          dailyValues.length;
+        const variance =
+          dailyValues.reduce((sum, value) => sum + (value - mean) ** 2, 0) /
+          dailyValues.length;
+        const stddev = Math.sqrt(variance);
+        if (stddev === 0) continue;
+
+        const recentAvg =
+          (dailyValues[0] + dailyValues[1] + dailyValues[2]) / 3;
+        const dailyBoost = (recentAvg - mean) / stddev;
+        const sparkline = sparklineDates.map(
+          (date) => data.daily.get(date) ?? 0,
+        );
+
+        await db.run(sql`
+          INSERT OR REPLACE INTO trending_tool_summaries (
+            tool_id,
+            downloads_30d,
+            daily_boost,
+            trending_score,
+            sparkline,
+            updated_at
+          )
+          VALUES (
+            ${toolId},
+            ${data.total},
+            ${dailyBoost},
+            ${dailyBoost},
+            ${JSON.stringify(sparkline)},
+            ${updatedAt}
+          )
+        `);
+        trendingRows++;
+      }
+
+      if (trendingRows > 0) {
+        await db.run(sql`
+          DELETE FROM trending_tool_summaries
+          WHERE updated_at != ${updatedAt}
+        `);
+      }
+    },
+  },
 ];
 
 async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {

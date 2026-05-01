@@ -495,157 +495,17 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         LIMIT ${limit}
       `);
 
-      if (summaryRows.length > 0) {
-        return summaryRows.map((row) => ({
-          name: row.name,
-          downloads_30d: row.downloads_30d,
-          trendingScore: row.trending_score,
-          dailyBoost: row.daily_boost,
-          sparkline: JSON.parse(row.sparkline),
-          description: row.description || undefined,
-          backends: row.backends ? JSON.parse(row.backends) : undefined,
-          security: row.security ? JSON.parse(row.security) : undefined,
-          version_count: row.version_count || 0,
-        }));
-      }
-
-      const now = Math.floor(Date.now() / 1000);
-      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
-        .toISOString()
-        .split("T")[0];
-      const today = new Date(now * 1000).toISOString().split("T")[0];
-      const lookupDates = Array.from(
-        { length: 30 },
-        (_, index) =>
-          new Date((now - (index + 1) * 86400) * 1000)
-            .toISOString()
-            .split("T")[0],
-      );
-      const sparklineDates = lookupDates.slice(0, 13).reverse();
-
-      const dailyData = await db
-        .select({
-          tool_id: dailyToolStats.tool_id,
-          name: tools.name,
-          date: dailyToolStats.date,
-          downloads: dailyToolStats.downloads,
-        })
-        .from(dailyToolStats)
-        .innerJoin(tools, eq(dailyToolStats.tool_id, tools.id))
-        .where(
-          and(
-            sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`,
-            sql`${dailyToolStats.date} < ${today}`,
-            sql`tools.latest_version IS NOT NULL`,
-          ),
-        )
-        .orderBy(dailyToolStats.date)
-        .all();
-
-      const toolData = new Map<
-        string,
-        { total: number; daily: Map<string, number> }
-      >();
-      for (const row of dailyData) {
-        if (!toolData.has(row.name)) {
-          toolData.set(row.name, { total: 0, daily: new Map() });
-        }
-        const data = toolData.get(row.name)!;
-        data.total += row.downloads;
-        data.daily.set(row.date, row.downloads);
-      }
-
-      if (toolData.size === 0) return [];
-
-      const results: Array<{
-        name: string;
-        downloads_30d: number;
-        trendingScore: number;
-        dailyBoost: number;
-        sparkline: number[];
-        description?: string;
-        backends?: string[];
-        security?: Array<{ type: string; algorithm?: string }>;
-        version_count: number;
-      }> = [];
-
-      for (const [name, data] of toolData) {
-        const sparkline = sparklineDates.map(
-          (date) => data.daily.get(date) ?? 0,
-        );
-
-        // Collect daily values for the 30-day window
-        const dailyValues = lookupDates.map(
-          (date) => data.daily.get(date) ?? 0,
-        );
-
-        // Compute mean and standard deviation over the full 30 days
-        const mean =
-          dailyValues.reduce((a, b) => a + b, 0) / dailyValues.length;
-        const variance =
-          dailyValues.reduce((sum, v) => sum + (v - mean) ** 2, 0) /
-          dailyValues.length;
-        const stddev = Math.sqrt(variance);
-
-        // Average of last 3 days
-        const recentAvg =
-          (dailyValues[0] + dailyValues[1] + dailyValues[2]) / 3;
-
-        // Z-score: how many standard deviations the recent average is above the mean
-        // Require minimum downloads to filter out noise from tiny tools
-        if (data.total < 500 || stddev === 0) continue;
-        const dailyBoost = (recentAvg - mean) / stddev;
-        const trendingScore = dailyBoost;
-
-        results.push({
-          name,
-          downloads_30d: data.total,
-          trendingScore,
-          dailyBoost,
-          sparkline,
-          version_count: 0,
-        });
-      }
-
-      results.sort((a, b) => b.trendingScore - a.trendingScore);
-      const topResults = results.slice(0, limit);
-
-      // Fetch metadata for trending tools (description, backends, security, version_count)
-      // These columns exist in the DB but aren't in the drizzle schema, so use raw SQL
-      if (topResults.length > 0) {
-        const names = topResults.map((t) => t.name);
-        const metaRows = await db.all<{
-          name: string;
-          description: string | null;
-          backends: string | null;
-          security: string | null;
-          version_count: number | null;
-        }>(sql`
-          SELECT name, description, backends, security, version_count
-          FROM tools
-          WHERE name IN (${sql.join(
-            names.map((n) => sql`${n}`),
-            sql`, `,
-          )})
-        `);
-
-        const metaMap = new Map(metaRows.map((r) => [r.name, r]));
-        for (const result of topResults) {
-          const meta = metaMap.get(result.name);
-          if (meta) {
-            result.description = meta.description || undefined;
-            result.backends = meta.backends
-              ? JSON.parse(meta.backends)
-              : undefined;
-            result.security = meta.security
-              ? JSON.parse(meta.security)
-              : undefined;
-            result.version_count = meta.version_count || 0;
-          }
-        }
-      }
-
-      return topResults;
+      return summaryRows.map((row) => ({
+        name: row.name,
+        downloads_30d: row.downloads_30d,
+        trendingScore: row.trending_score,
+        dailyBoost: row.daily_boost,
+        sparkline: JSON.parse(row.sparkline),
+        description: row.description || undefined,
+        backends: row.backends ? JSON.parse(row.backends) : undefined,
+        security: row.security ? JSON.parse(row.security) : undefined,
+        version_count: row.version_count || 0,
+      }));
     },
   };
 }
