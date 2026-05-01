@@ -8,17 +8,65 @@ import {
   downloads,
   versionRequests,
 } from "./schema.js";
+import { keyPart } from "../../web/src/lib/kv-cache.js";
 
 // Caches for ID lookups (shared within the tracking module)
 const toolCache = new Map<string, number>();
 const backendCache = new Map<string, number>();
 const platformCache = new Map<string, number>();
 
-export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
+const ID_CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
+const DAILY_DEDUPE_TTL_SECONDS = 2 * 24 * 60 * 60;
+
+type TrackingCache = {
+  kv?: KVNamespace;
+};
+
+async function getCachedId(
+  cache: TrackingCache,
+  key: string,
+): Promise<number | null> {
+  if (!cache.kv) return null;
+
+  const value = await cache.kv.get(key);
+  if (!value) return null;
+
+  const id = Number(value);
+  return Number.isInteger(id) ? id : null;
+}
+
+async function putCachedId(
+  cache: TrackingCache,
+  key: string,
+  id: number,
+): Promise<void> {
+  if (!cache.kv) return;
+
+  await cache.kv.put(key, String(id), {
+    expirationTtl: ID_CACHE_TTL_SECONDS,
+  });
+}
+
+function dailyDedupeKey(name: string, ipHash: string): string {
+  const day = Math.floor(Date.now() / 86400000);
+  return `tracking-dedupe:${name}:${day}:${ipHash}`;
+}
+
+export function createTrackingFunctions(
+  db: ReturnType<typeof drizzle>,
+  cache: TrackingCache = {},
+) {
   async function getOrCreateToolId(name: string): Promise<number> {
     // Check cache first
     if (toolCache.has(name)) {
       return toolCache.get(name)!;
+    }
+
+    const cacheKey = `tracking-id:tool:${keyPart(name)}`;
+    const cachedId = await getCachedId(cache, cacheKey);
+    if (cachedId) {
+      toolCache.set(name, cachedId);
+      return cachedId;
     }
 
     // Try to find existing
@@ -30,6 +78,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
     if (existing) {
       toolCache.set(name, existing.id);
+      await putCachedId(cache, cacheKey, existing.id);
       return existing.id;
     }
 
@@ -43,6 +92,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
     const id = inserted!.id;
     toolCache.set(name, id);
+    await putCachedId(cache, cacheKey, id);
     return id;
   }
 
@@ -56,6 +106,13 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
       return backendCache.get(full)!;
     }
 
+    const cacheKey = `tracking-id:backend:${keyPart(full)}`;
+    const cachedId = await getCachedId(cache, cacheKey);
+    if (cachedId) {
+      backendCache.set(full, cachedId);
+      return cachedId;
+    }
+
     // Try to find existing
     const existing = await db
       .select({ id: backends.id })
@@ -65,6 +122,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
     if (existing) {
       backendCache.set(full, existing.id);
+      await putCachedId(cache, cacheKey, existing.id);
       return existing.id;
     }
 
@@ -78,6 +136,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
     const id = inserted!.id;
     backendCache.set(full, id);
+    await putCachedId(cache, cacheKey, id);
     return id;
   }
 
@@ -90,6 +149,15 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
     const key = `${os || ""}:${arch || ""}`;
     if (platformCache.has(key)) {
       return platformCache.get(key)!;
+    }
+
+    const cacheKey = `tracking-id:platform:${keyPart(os || "")}:${keyPart(
+      arch || "",
+    )}`;
+    const cachedId = await getCachedId(cache, cacheKey);
+    if (cachedId) {
+      platformCache.set(key, cachedId);
+      return cachedId;
     }
 
     // Try to find existing
@@ -106,6 +174,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
     if (existing) {
       platformCache.set(key, existing.id);
+      await putCachedId(cache, cacheKey, existing.id);
       return existing.id;
     }
 
@@ -124,6 +193,7 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
 
     const id = inserted!.id;
     platformCache.set(key, id);
+    await putCachedId(cache, cacheKey, id);
     return id;
   }
 
@@ -139,6 +209,25 @@ export function createTrackingFunctions(db: ReturnType<typeof drizzle>) {
     ): Promise<{ deduplicated: boolean }> {
       const now = Math.floor(Date.now() / 1000);
       const todayStart = Math.floor(now / 86400) * 86400; // Start of today (UTC)
+
+      if (cache.kv) {
+        const key = dailyDedupeKey("version-request", ipHash);
+        const seen = await cache.kv.get(key);
+        if (seen) {
+          return { deduplicated: true };
+        }
+
+        await cache.kv.put(key, "1", {
+          expirationTtl: DAILY_DEDUPE_TTL_SECONDS,
+        });
+
+        await db.insert(versionRequests).values({
+          ip_hash: ipHash,
+          created_at: now,
+        });
+
+        return { deduplicated: false };
+      }
 
       // Check if already tracked today for this IP
       const existing = await db

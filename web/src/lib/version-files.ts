@@ -1,5 +1,9 @@
 import { sql } from "drizzle-orm";
 import type { drizzle } from "drizzle-orm/d1";
+import {
+  getCachedText as getKvCachedText,
+  putCachedText as putKvCachedText,
+} from "./kv-cache";
 
 type Db = ReturnType<typeof drizzle>;
 
@@ -51,6 +55,36 @@ export async function putCachedText(
         "Cache-Control": `public, max-age=${VERSION_FILE_TTL_SECONDS}`,
       },
     }),
+  );
+}
+
+function versionRowsCacheKey(
+  tool: string,
+  options: { stableOnly?: boolean } = {},
+): string {
+  return `version-rows:${options.stableOnly ? "stable" : "all"}:${encodeURIComponent(tool).replace(/\./g, "%2E")}`;
+}
+
+export async function getCachedVersionRows(
+  kv: KVNamespace,
+  tool: string,
+  options: { stableOnly?: boolean } = {},
+): Promise<VersionRow[] | null> {
+  const cached = await getKvCachedText(kv, versionRowsCacheKey(tool, options));
+  return cached ? (JSON.parse(cached) as VersionRow[]) : null;
+}
+
+export async function putCachedVersionRows(
+  kv: KVNamespace,
+  tool: string,
+  options: { stableOnly?: boolean } = {},
+  rows: VersionRow[],
+): Promise<void> {
+  await putKvCachedText(
+    kv,
+    versionRowsCacheKey(tool, options),
+    JSON.stringify(rows),
+    VERSION_FILE_TTL_SECONDS,
   );
 }
 

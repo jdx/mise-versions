@@ -1,8 +1,10 @@
 import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import {
+  getCachedVersionRows,
   getCachedText,
   loadVersionRows,
+  putCachedVersionRows,
   putCachedText,
   versionsToText,
 } from "../../lib/version-files";
@@ -43,7 +45,25 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     }
 
     const db = drizzle(runtime.env.ANALYTICS_DB);
-    const versions = await loadVersionRows(db, tool, { stableOnly: true });
+    const options = { stableOnly: true };
+    let versions = await getCachedVersionRows(
+      runtime.env.DOWNLOAD_DEDUPE,
+      tool,
+      options,
+    );
+    if (versions === null) {
+      versions = await loadVersionRows(db, tool, options);
+      if (versions !== null) {
+        runtime.ctx.waitUntil(
+          putCachedVersionRows(
+            runtime.env.DOWNLOAD_DEDUPE,
+            tool,
+            options,
+            versions,
+          ),
+        );
+      }
+    }
     if (versions === null) {
       return new Response(`Tool "${tool}" not found`, {
         status: 404,

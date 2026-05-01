@@ -7,8 +7,10 @@ import {
   getMiseVersionFromHeaders,
 } from "../../../../src/pipelines";
 import {
+  getCachedVersionRows,
   getCachedText,
   loadVersionRows,
+  putCachedVersionRows,
   putCachedText,
   versionsToToml,
 } from "../../lib/version-files";
@@ -37,7 +39,23 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
 
     let toml = await getCachedText(request, ":toml");
     if (toml === null) {
-      const versions = await loadVersionRows(db, tool);
+      let versions = await getCachedVersionRows(
+        runtime.env.DOWNLOAD_DEDUPE,
+        tool,
+      );
+      if (versions === null) {
+        versions = await loadVersionRows(db, tool);
+        if (versions !== null) {
+          runtime.ctx.waitUntil(
+            putCachedVersionRows(
+              runtime.env.DOWNLOAD_DEDUPE,
+              tool,
+              {},
+              versions,
+            ),
+          );
+        }
+      }
       if (versions === null) {
         return new Response(`Tool "${tool}" not found`, {
           status: 404,
@@ -70,7 +88,9 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
           });
           // Skip database storage for CI requests (excludes from MAU calculations)
           if (!isCI) {
-            const analytics = setupAnalytics(db);
+            const analytics = setupAnalytics(db, {
+              trackingCache: runtime.env.DOWNLOAD_DEDUPE,
+            });
             await analytics.trackVersionRequest(ipHash);
           }
         } catch (e) {

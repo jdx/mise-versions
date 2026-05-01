@@ -1,9 +1,27 @@
 import type { APIRoute } from "astro";
 import { loadToolsPaginated } from "../../../lib/data-loader";
+import {
+  getCachedJson,
+  putCachedJson,
+  requestCacheKey,
+} from "../../../lib/kv-cache";
+
+const TOOLS_CACHE_TTL_SECONDS = 300;
 
 export const GET: APIRoute = async ({ url, locals }) => {
   try {
     const runtime = locals.runtime;
+    const cacheKey = await requestCacheKey("api-tools", url);
+    const cached = await getCachedJson(runtime.env.DOWNLOAD_DEDUPE, cacheKey);
+    if (cached) {
+      return new Response(JSON.stringify(cached), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+        },
+      });
+    }
 
     // Parse query parameters
     const page = parseInt(url.searchParams.get("page") || "1", 10);
@@ -32,6 +50,14 @@ export const GET: APIRoute = async ({ url, locals }) => {
       sort,
       backends,
     });
+    runtime.ctx.waitUntil(
+      putCachedJson(
+        runtime.env.DOWNLOAD_DEDUPE,
+        cacheKey,
+        result,
+        TOOLS_CACHE_TTL_SECONDS,
+      ),
+    );
 
     return new Response(JSON.stringify(result), {
       status: 200,

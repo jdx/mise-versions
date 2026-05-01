@@ -34,8 +34,15 @@ export {
 export { runAnalyticsMigrations };
 
 // Main factory function that composes all analytics functions
-export function setupAnalytics(db: ReturnType<typeof drizzle>) {
-  const tracking = createTrackingFunctions(db);
+type AnalyticsOptions = {
+  trackingCache?: KVNamespace;
+};
+
+export function setupAnalytics(
+  db: ReturnType<typeof drizzle>,
+  options: AnalyticsOptions = {},
+) {
+  const tracking = createTrackingFunctions(db, { kv: options.trackingCache });
   const stats = createStatsFunctions(db);
   const backendStats = createBackendStatsFunctions(db);
   const trends = createTrendsFunctions(db);

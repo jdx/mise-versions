@@ -6,12 +6,9 @@ import {
   emitTelemetry,
   getMiseVersionFromHeaders,
 } from "../../../../src/pipelines";
+import { keyPart } from "../../lib/kv-cache";
 
 const DOWNLOAD_DEDUPE_TTL_SECONDS = 2 * 24 * 60 * 60;
-
-function dedupePart(value: string): string {
-  return encodeURIComponent(value).replace(/\./g, "%2E");
-}
 
 function downloadDedupeKey(
   tool: string,
@@ -19,7 +16,7 @@ function downloadDedupeKey(
   ipHash: string,
 ): string {
   const day = Math.floor(Date.now() / 86400000);
-  return `download-dedupe:${day}:${dedupePart(tool)}:${dedupePart(version)}:${ipHash}`;
+  return `download-dedupe:${day}:${keyPart(tool)}:${keyPart(version)}:${ipHash}`;
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -85,7 +82,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
 
     const db = drizzle(runtime.env.ANALYTICS_DB);
-    const analytics = setupAnalytics(db);
+    const analytics = setupAnalytics(db, {
+      trackingCache: runtime.env.DOWNLOAD_DEDUPE,
+    });
     const dedupeKey = downloadDedupeKey(body.tool, body.version, ipHash);
 
     const seen = await runtime.env.DOWNLOAD_DEDUPE.get(dedupeKey);
