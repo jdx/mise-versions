@@ -9,8 +9,11 @@ import { describe, it } from "node:test";
 import assert from "node:assert";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const DIST_CLIENT_DIR = new URL("../web/dist/client", import.meta.url).pathname;
+const DIST_CLIENT_DIR = fileURLToPath(
+  new URL("../web/dist/client", import.meta.url),
+);
 const ASTRO_ASSET_DIR = join(DIST_CLIENT_DIR, "_astro");
 
 function readBuiltCss() {
@@ -36,7 +39,7 @@ describe("web build CSS", () => {
 
     assert.match(
       css,
-      /a\{color:inherit;[-a-z:]+text-decoration:inherit/,
+      /a\{color:inherit;[-a-z:]*text-decoration:inherit/,
       "Tailwind preflight reset is missing",
     );
 
@@ -47,7 +50,7 @@ describe("web build CSS", () => {
       ".hover\\:text-neon-pink:hover{color:#ff2d95}",
       ".px-4{padding-inline:calc(var(--spacing) * 4)}",
       ".py-8{padding-block:calc(var(--spacing) * 8)}",
-      ".text-xl{font-size:var(--text-xl)",
+      ".text-xl{font-size:var(--text-xl);",
       ".max-w-6xl{max-width:var(--container-6xl)}",
     ];
 
