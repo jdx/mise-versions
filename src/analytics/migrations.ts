@@ -647,6 +647,18 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   `);
 
   await db.run(sql`
+    CREATE TABLE IF NOT EXISTS backend_tool_summaries (
+      backend_type TEXT PRIMARY KEY,
+      tool_count INTEGER NOT NULL DEFAULT 0,
+      updated_at TEXT NOT NULL
+    )
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_backend_tool_summaries_count
+    ON backend_tool_summaries(tool_count DESC, backend_type)
+  `);
+
+  await db.run(sql`
     CREATE TABLE IF NOT EXISTS trending_tool_summaries (
       tool_id INTEGER PRIMARY KEY,
       downloads_30d INTEGER NOT NULL DEFAULT 0,

@@ -654,6 +654,82 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     return countSummaryRows(d1);
   }
 
+  async function populateBackendToolSummaries(
+    d1?: D1Database,
+  ): Promise<{ backendSummaries: number }> {
+    const updatedAt = new Date().toISOString();
+
+    await runStatement(
+      sql`
+        INSERT OR REPLACE INTO backend_tool_summaries (
+          backend_type,
+          tool_count,
+          updated_at
+        )
+        SELECT
+          SUBSTR(value, 1, INSTR(value || ':', ':') - 1) AS backend_type,
+          COUNT(DISTINCT tools.id) AS tool_count,
+          ${updatedAt}
+        FROM tools, json_each(backends)
+        WHERE latest_version IS NOT NULL
+          AND backends IS NOT NULL
+        GROUP BY backend_type
+      `,
+      d1,
+      `
+        INSERT OR REPLACE INTO backend_tool_summaries (
+          backend_type,
+          tool_count,
+          updated_at
+        )
+        SELECT
+          SUBSTR(value, 1, INSTR(value || ':', ':') - 1) AS backend_type,
+          COUNT(DISTINCT tools.id) AS tool_count,
+          ?
+        FROM tools, json_each(backends)
+        WHERE latest_version IS NOT NULL
+          AND backends IS NOT NULL
+        GROUP BY backend_type
+      `,
+      [updatedAt],
+    );
+
+    const refreshed = d1
+      ? await d1
+          .prepare(
+            "SELECT COUNT(*) AS count FROM backend_tool_summaries WHERE updated_at = ?",
+          )
+          .bind(updatedAt)
+          .first<{ count: number }>()
+      : await db.get<{ count: number }>(sql`
+          SELECT COUNT(*) AS count
+          FROM backend_tool_summaries
+          WHERE updated_at = ${updatedAt}
+        `);
+
+    if ((refreshed?.count ?? 0) > 0) {
+      await runStatement(
+        sql`
+          DELETE FROM backend_tool_summaries
+          WHERE updated_at != ${updatedAt}
+        `,
+        d1,
+        "DELETE FROM backend_tool_summaries WHERE updated_at != ?",
+        [updatedAt],
+      );
+    }
+
+    const total = d1
+      ? await d1
+          .prepare("SELECT COUNT(*) AS count FROM backend_tool_summaries")
+          .first<{ count: number }>()
+      : await db.get<{ count: number }>(
+          sql`SELECT COUNT(*) AS count FROM backend_tool_summaries`,
+        );
+
+    return { backendSummaries: total?.count ?? 0 };
+  }
+
   async function populateTrendingToolSummaries(
     d1?: D1Database,
   ): Promise<{ trendingSummaries: number }> {
@@ -840,6 +916,7 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     populateDailyMauStats,
     backfillArchivedToolStats,
     populateToolDownloadSummaries,
+    populateBackendToolSummaries,
     populateTrendingToolSummaries,
 
     // Backfill rollup tables for the last N days (one-time migration)
@@ -875,6 +952,7 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
 
       const archived = await backfillArchivedToolStats(d1);
       await populateToolDownloadSummaries(d1);
+      await populateBackendToolSummaries(d1);
       await populateTrendingToolSummaries(d1);
 
       return {

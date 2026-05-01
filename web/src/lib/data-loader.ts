@@ -238,8 +238,18 @@ export async function loadToolsPaginated(
   `;
 
   // Backend counts query (for filter chips - counts across ALL tools, not just current page)
-  // Note: json_each returns value as a plain string, not JSON, so use value directly
+  // Uses a scheduled summary table so the request path avoids json_each(backends).
   const backendCountsQuery = `
+    SELECT
+      backend_type,
+      tool_count as count
+    FROM backend_tool_summaries
+    ORDER BY tool_count DESC, backend_type ASC
+  `;
+
+  // Bootstrap fallback for databases that have not run the scheduled summary refresh yet.
+  // Note: json_each returns value as a plain string, not JSON, so use value directly.
+  const backendCountsFallbackQuery = `
     SELECT
       SUBSTR(value, 1, INSTR(value || ':', ':') - 1) as backend_type,
       COUNT(DISTINCT name) as count
@@ -296,14 +306,29 @@ export async function loadToolsPaginated(
     backendCountsResults = await analyticsDb
       .prepare(backendCountsQuery)
       .all<{ backend_type: string; count: number }>();
+    if ((backendCountsResults.results || []).length === 0) {
+      backendCountsResults = await analyticsDb
+        .prepare(backendCountsFallbackQuery)
+        .all<{ backend_type: string; count: number }>();
+    }
   } catch (e) {
-    console.error(
-      "Backend counts query failed:",
-      e,
-      "\nQuery:",
-      backendCountsQuery,
-    );
-    throw new Error(`Backend counts query failed: ${e}`);
+    try {
+      backendCountsResults = await analyticsDb
+        .prepare(backendCountsFallbackQuery)
+        .all<{ backend_type: string; count: number }>();
+    } catch (fallbackError) {
+      console.error(
+        "Backend counts query failed:",
+        e,
+        "\nQuery:",
+        backendCountsQuery,
+        "\nFallback query:",
+        backendCountsFallbackQuery,
+        "\nFallback error:",
+        fallbackError,
+      );
+      throw new Error(`Backend counts query failed: ${fallbackError}`);
+    }
   }
 
   const totalCount = countResult?.total ?? 0;

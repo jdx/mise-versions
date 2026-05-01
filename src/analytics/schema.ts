@@ -138,6 +138,12 @@ export const toolVersionDownloadSummaries = sqliteTable(
   },
 );
 
+export const backendToolSummaries = sqliteTable("backend_tool_summaries", {
+  backend_type: text("backend_type").primaryKey(),
+  tool_count: integer("tool_count").notNull(),
+  updated_at: text("updated_at").notNull(),
+});
+
 export const trendingToolSummaries = sqliteTable("trending_tool_summaries", {
   tool_id: integer("tool_id")
     .primaryKey()

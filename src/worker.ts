@@ -111,6 +111,13 @@ export async function scheduled(
       `Download summaries refreshed: ${summaries.toolSummaries} tools, ${summaries.platformSummaries} platform rows, ${summaries.versionSummaries} version rows`,
     );
 
+    const backendSummaries = await analytics.populateBackendToolSummaries(
+      env.ANALYTICS_DB,
+    );
+    console.log(
+      `Backend summaries refreshed: ${backendSummaries.backendSummaries} backend rows`,
+    );
+
     const trendingSummaries = await analytics.populateTrendingToolSummaries(
       env.ANALYTICS_DB,
     );

@@ -130,6 +130,12 @@ CREATE TABLE IF NOT EXISTS tool_version_download_summaries (
   PRIMARY KEY (tool_id, version)
 );
 
+CREATE TABLE IF NOT EXISTS backend_tool_summaries (
+  backend_type TEXT PRIMARY KEY,
+  tool_count INTEGER NOT NULL DEFAULT 0,
+  updated_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS trending_tool_summaries (
   tool_id INTEGER PRIMARY KEY,
   downloads_30d INTEGER NOT NULL DEFAULT 0,
@@ -150,6 +156,7 @@ CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(b
 CREATE INDEX IF NOT EXISTS idx_tool_download_summaries_30d ON tool_download_summaries(downloads_30d DESC, tool_id);
 CREATE INDEX IF NOT EXISTS idx_tool_platform_download_summaries_platform ON tool_platform_download_summaries(platform_id);
 CREATE INDEX IF NOT EXISTS idx_tool_version_download_summaries_tool_downloads ON tool_version_download_summaries(tool_id, downloads_all_time DESC);
+CREATE INDEX IF NOT EXISTS idx_backend_tool_summaries_count ON backend_tool_summaries(tool_count DESC, backend_type);
 CREATE INDEX IF NOT EXISTS idx_trending_tool_summaries_score ON trending_tool_summaries(trending_score DESC, tool_id);
 
 -- Insert tools
