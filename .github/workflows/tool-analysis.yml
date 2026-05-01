@@ -10,8 +10,6 @@ concurrency:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 env:
   GITHUB_API_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}

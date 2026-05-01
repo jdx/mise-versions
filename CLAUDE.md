@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 mise-versions is a service that tracks and stores version numbers for tools supported by [mise](https://mise.jdx.dev/). It consists of:
 
 1. **Version collection**: Shell scripts run via GitHub Actions (every 15 min) that fetch versions using `mise ls-remote` in Docker
-2. **Static hosting**: Plain text version files and TOML files (with timestamps) served via GitHub Pages at `mise.jdx.dev/<tool>`
+2. **Version data files**: Plain text version files and TOML files (with timestamps) committed under `docs/`
 3. **Web app**: Astro-based frontend deployed to Cloudflare Workers at `mise-tools.jdx.dev`
 4. **Analytics API**: Download tracking and statistics via Cloudflare D1 database
 
@@ -59,7 +59,7 @@ mise run deploy            # builds then deploys
    - Syncs directly to D1 via `/api/admin/metadata/sync`
 
 3. **Storage**:
-   - **GitHub Pages** (`docs/`): Plain text version files for `mise.jdx.dev/<tool>`
+   - **Git repository** (`docs/`): Plain text and TOML version files used as the source for sync jobs and raw GitHub-backed data endpoints
    - **Cloudflare R2** (`DATA_BUCKET`): Binary .gz files only (python-precompiled)
    - **Cloudflare D1** (`ANALYTICS_DB`): Tool metadata, version data, and download analytics
 
