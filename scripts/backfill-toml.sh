@@ -18,8 +18,6 @@ for tool in docs/*; do
 
 	toolname=$(basename "$tool")
 
-	# Skip special files (CNAME, etc)
-	[[ "$toolname" == "CNAME" ]] && continue
 	[[ "$toolname" =~ ^[A-Z] ]] && continue # Skip uppercase files (likely special)
 
 	toml_file="docs/${toolname}.toml"
