@@ -17,10 +17,10 @@ export function useAuth(): AuthState {
     async function checkAuth() {
       try {
         const response = await fetch("/auth/me");
-        // Check if response is JSON (Pages Functions return JSON, dev server returns HTML)
+        // Production Worker returns JSON; `astro dev` may serve HTML for this path
         const contentType = response.headers.get("content-type");
         if (!contentType?.includes("application/json")) {
-          // Not running with Pages Functions (local dev), assume not authenticated
+          // Local dev without full Worker routing — assume not authenticated
           setState({ authenticated: false, username: null, loading: false });
           return;
         }

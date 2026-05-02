@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build script for Cloudflare Pages (Astro SSR)
+# Build the Astro app for Cloudflare Workers (static client under web/dist/).
 
 set -e
 
