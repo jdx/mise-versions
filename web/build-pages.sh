@@ -1,5 +1,6 @@
 #!/bin/bash
-# Build the Astro app for Cloudflare Workers (static client under web/dist/).
+# Build Astro in SSR mode (output: "server", @astrojs/cloudflare) for Workers:
+# a Worker script for server-side routes plus static client assets under web/dist/.
 
 set -e
 
