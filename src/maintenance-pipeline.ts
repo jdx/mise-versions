@@ -76,13 +76,16 @@ export async function runMaintenancePipeline(
         await analytics.populateDailyMauStats(date, env.ANALYTICS_DB);
         ok++;
       } catch (e) {
-        failures.push(`${date}: ${(e as Error).message ?? e}`);
+        failures.push(`${date}: ${errMsg(e)}`);
         console.error(`populateDailyMauStats failed for ${date}:`, e);
       }
     }
-    return failures.length
-      ? `refreshed ${ok}/${targets.length} (failures: ${failures.join("; ")})`
-      : `refreshed ${ok}/${targets.length} (${targets.join(", ")})`;
+    if (failures.length) {
+      throw new Error(
+        `refreshed ${ok}/${targets.length} (failures: ${failures.join("; ")})`,
+      );
+    }
+    return `refreshed ${ok}/${targets.length} (${targets.join(", ")})`;
   });
 
   await runStep(steps, "download-summaries", async () => {
@@ -103,6 +106,11 @@ export async function runMaintenancePipeline(
   return { steps };
 }
 
+function errMsg(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  return String(e);
+}
+
 async function runStep(
   out: StepResult[],
   name: string,
@@ -113,9 +121,8 @@ async function runStep(
     console.log(`[${name}] ok: ${detail}`);
     out.push({ name, ok: true, detail });
   } catch (e) {
-    const msg = (e as Error).message ?? String(e);
     console.error(`[${name}] failed:`, e);
-    out.push({ name, ok: false, error: msg });
+    out.push({ name, ok: false, error: errMsg(e) });
   }
 }
 
@@ -129,19 +136,22 @@ async function runDailyBackfill(
   await runStep(out, name, async () => {
     let ok = 0;
     const failures: string[] = [];
-    for (let i = days - 1; i >= 0; i--) {
+    // Process recent days first so today/yesterday land before any per-
+    // invocation limit kicks in. Older days are best-effort backfill.
+    for (let i = 0; i < days; i++) {
       const dateStr = dateStrAgo(now, i);
       try {
         await fn(dateStr);
         ok++;
       } catch (e) {
-        failures.push(`${dateStr}: ${(e as Error).message ?? e}`);
+        failures.push(`${dateStr}: ${errMsg(e)}`);
         console.error(`${name} failed for ${dateStr}:`, e);
       }
     }
-    return failures.length
-      ? `${ok}/${days} days (${failures.length} failures)`
-      : `${ok}/${days} days`;
+    if (failures.length) {
+      throw new Error(`${ok}/${days} days (${failures.length} failures)`);
+    }
+    return `${ok}/${days} days`;
   });
 }
 
