@@ -12,3 +12,6 @@ docs/
 # Lock files
 package-lock.json
 bun.lock
+
+# Astro components — prettier-plugin-astro is not installed
+*.astro

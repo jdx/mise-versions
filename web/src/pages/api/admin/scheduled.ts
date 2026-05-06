@@ -7,17 +7,15 @@ import {
   setupAnalytics,
 } from "../../../../../src/analytics";
 import { jsonResponse, errorResponse } from "../../../lib/api";
+import { requireBearerOrAdmin } from "../../../lib/admin";
 
-// POST /api/admin/scheduled - Run scheduled tasks (called by cron)
-// This endpoint handles the daily aggregation tasks
+// POST /api/admin/scheduled - Run the same maintenance pipeline as the daily
+// cron. Accepts either Bearer API_SECRET (for external callers) or an admin
+// session cookie (for the admin UI button).
 export const POST: APIRoute = async ({ request, locals }) => {
   try {
-    // Verify admin secret
-    const authHeader = request.headers.get("Authorization");
-    const expectedAuth = `Bearer ${env.API_SECRET}`;
-    if (authHeader !== expectedAuth) {
-      return errorResponse("Unauthorized", 401);
-    }
+    const auth = await requireBearerOrAdmin(request, env.API_SECRET);
+    if (auth instanceof Response) return auth;
 
     console.log("Running scheduled tasks...");
 
