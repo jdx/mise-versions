@@ -3,17 +3,14 @@ import { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 import { env } from "cloudflare:workers";
 import { jsonResponse, errorResponse } from "../../../../lib/api";
-import { isAdmin } from "../../../../lib/admin";
-import { getAuthCookie } from "../../../../lib/auth";
+import { requireAdminAuth } from "../../../../lib/admin";
 
 // GET /api/admin/maintenance/status - Health snapshot for the daily cron.
 // Surfaces whether each rollup table is fresh and whether aggregateOldData
 // is keeping the downloads table within its 90-day retention window.
 export const GET: APIRoute = async ({ request }) => {
-  const auth = await getAuthCookie(request, env.API_SECRET);
-  if (!auth || !isAdmin(auth.username)) {
-    return errorResponse("Unauthorized", 401);
-  }
+  const auth = await requireAdminAuth(request, env.API_SECRET);
+  if (auth instanceof Response) return auth;
 
   try {
     const db = drizzle(env.ANALYTICS_DB);
@@ -63,6 +60,6 @@ export const GET: APIRoute = async ({ request }) => {
     });
   } catch (error) {
     console.error("Maintenance status error:", error);
-    return errorResponse(`Failed to fetch maintenance status: ${error}`, 500);
+    return errorResponse("Failed to fetch maintenance status", 500);
   }
 };

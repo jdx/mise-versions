@@ -26,6 +26,19 @@ export function isAdmin(username: string | null): boolean {
   return username === ADMIN_USERNAME;
 }
 
+// Constant-time string comparison to avoid leaking the secret's prefix
+// through response-time side channels. Returns false immediately on length
+// mismatch — that's acceptable here because the header format ("Bearer …")
+// fixes the length and an attacker already knows it.
+function safeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
 // Accept either a Bearer API_SECRET (for CLI/external callers) or an admin
 // session cookie (for the admin UI). Returns a Response on auth failure.
 export async function requireBearerOrAdmin(
@@ -33,14 +46,11 @@ export async function requireBearerOrAdmin(
   apiSecret: string,
 ): Promise<Response | { source: "bearer" | "cookie" }> {
   const authHeader = request.headers.get("Authorization");
-  if (authHeader === `Bearer ${apiSecret}`) {
+  if (apiSecret && authHeader && safeEqual(authHeader, `Bearer ${apiSecret}`)) {
     return { source: "bearer" };
   }
 
-  const auth = await getAuthCookie(request, apiSecret);
-  if (auth && isAdmin(auth.username)) {
-    return { source: "cookie" };
-  }
-
-  return errorResponse("Unauthorized", 401);
+  const adminAuth = await requireAdminAuth(request, apiSecret);
+  if (adminAuth instanceof Response) return adminAuth;
+  return { source: "cookie" };
 }
