@@ -28,106 +28,103 @@ export async function scheduled(
 ): Promise<void> {
   console.log("Running scheduled tasks via cron trigger...");
 
+  // Migrations are pre-requisites for everything else, so they run outside
+  // the per-step isolation below. If they fail, fail loud.
+  const db = drizzle(env.DB);
+  await runMigrations(db);
+
+  const analyticsDb = drizzle(env.ANALYTICS_DB);
+  await runAnalyticsMigrations(analyticsDb);
+
+  const analytics = setupAnalytics(analyticsDb);
+
+  const now = new Date();
+
+  // Run each section in isolation. aggregateOldData scans the full downloads
+  // table and has been blowing past D1 subrequest limits, which previously
+  // also took out the rollup steps that ran after it.
+  await runStep("aggregate", async () => {
+    const r = await analytics.aggregateOldData();
+    console.log(
+      `Aggregation: ${r.aggregated} groups aggregated, ${r.deleted} rows deleted`,
+    );
+  });
+
+  // Backfill the last 31 days of rollup + MAU tables. This makes the cron
+  // self-healing: any day previously missed (e.g. while aggregateOldData was
+  // throwing) gets refilled on the next successful run.
+  await runStep("rollup", async () => {
+    let ok = 0;
+    for (let i = 30; i >= 0; i--) {
+      const dateStr = dateStrAgo(now, i);
+      try {
+        await analytics.populateRollupTables(dateStr, env.ANALYTICS_DB);
+        ok++;
+      } catch (e) {
+        console.error(`populateRollupTables failed for ${dateStr}:`, e);
+      }
+    }
+    console.log(`Rollup tables refreshed for ${ok}/31 days`);
+  });
+
+  await runStep("version-stats", async () => {
+    let ok = 0;
+    for (let i = 30; i >= 0; i--) {
+      const dateStr = dateStrAgo(now, i);
+      try {
+        await analytics.populateVersionStatsRollup(dateStr, env.ANALYTICS_DB);
+        ok++;
+      } catch (e) {
+        console.error(`populateVersionStatsRollup failed for ${dateStr}:`, e);
+      }
+    }
+    console.log(`Version stats refreshed for ${ok}/31 days`);
+  });
+
+  await runStep("mau", async () => {
+    let ok = 0;
+    for (let i = 30; i >= 0; i--) {
+      const dateStr = dateStrAgo(now, i);
+      try {
+        await analytics.populateDailyMauStats(dateStr, env.ANALYTICS_DB);
+        ok++;
+      } catch (e) {
+        console.error(`populateDailyMauStats failed for ${dateStr}:`, e);
+      }
+    }
+    console.log(`MAU stats refreshed for ${ok}/31 days`);
+  });
+
+  await runStep("download-summaries", async () => {
+    const s = await analytics.populateToolDownloadSummaries(env.ANALYTICS_DB);
+    console.log(
+      `Download summaries: ${s.toolSummaries} tools, ${s.platformSummaries} platforms, ${s.versionSummaries} versions`,
+    );
+  });
+
+  await runStep("backend-summaries", async () => {
+    const s = await analytics.populateBackendToolSummaries(env.ANALYTICS_DB);
+    console.log(`Backend summaries: ${s.backendSummaries} rows`);
+  });
+
+  await runStep("trending-summaries", async () => {
+    const s = await analytics.populateTrendingToolSummaries(env.ANALYTICS_DB);
+    console.log(`Trending summaries: ${s.trendingSummaries} tools`);
+  });
+
+  console.log("Scheduled tasks finished");
+}
+
+function dateStrAgo(now: Date, daysAgo: number): string {
+  const d = new Date(now);
+  d.setUTCDate(d.getUTCDate() - daysAgo);
+  return d.toISOString().split("T")[0];
+}
+
+async function runStep(name: string, fn: () => Promise<void>): Promise<void> {
   try {
-    // Run migrations first
-    const db = drizzle(env.DB);
-    await runMigrations(db);
-
-    const analyticsDb = drizzle(env.ANALYTICS_DB);
-    await runAnalyticsMigrations(analyticsDb);
-
-    const analytics = setupAnalytics(analyticsDb);
-
-    // 1. Aggregate old data (data older than 90 days)
-    const aggregateResult = await analytics.aggregateOldData();
-    console.log(
-      `Aggregation complete: ${aggregateResult.aggregated} groups aggregated, ${aggregateResult.deleted} rows deleted`,
-    );
-
-    // 2. Populate rollup tables for yesterday (and today so far)
-    const now = new Date();
-    const yesterday = new Date(now);
-    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split("T")[0];
-    const todayStr = now.toISOString().split("T")[0];
-
-    // Populate yesterday's full data
-    const yesterdayResult = await analytics.populateRollupTables(
-      yesterdayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Rollup tables populated for ${yesterdayStr}: ${yesterdayResult.toolStats} tools, ${yesterdayResult.backendStats} backends`,
-    );
-
-    // Also update today's partial data
-    const todayResult = await analytics.populateRollupTables(
-      todayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Rollup tables updated for ${todayStr}: ${todayResult.toolStats} tools, ${todayResult.backendStats} backends`,
-    );
-
-    // 3. Populate version stats rollup for DAU/MAU
-    const yesterdayVersionStats = await analytics.populateVersionStatsRollup(
-      yesterdayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Version stats rollup for ${yesterdayStr}: ${yesterdayVersionStats ? "updated" : "no data"}`,
-    );
-
-    const todayVersionStats = await analytics.populateVersionStatsRollup(
-      todayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Version stats rollup for ${todayStr}: ${todayVersionStats ? "updated" : "no data"}`,
-    );
-
-    // 4. Populate daily MAU stats (trailing 30-day MAU for each date)
-    const yesterdayMauStats = await analytics.populateDailyMauStats(
-      yesterdayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `MAU stats for ${yesterdayStr}: ${yesterdayMauStats ? "updated" : "no data"}`,
-    );
-
-    const todayMauStats = await analytics.populateDailyMauStats(
-      todayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `MAU stats for ${todayStr}: ${todayMauStats ? "updated" : "no data"}`,
-    );
-
-    // 5. Refresh summary tables used by hot UI read paths
-    const summaries = await analytics.populateToolDownloadSummaries(
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Download summaries refreshed: ${summaries.toolSummaries} tools, ${summaries.platformSummaries} platform rows, ${summaries.versionSummaries} version rows`,
-    );
-
-    const backendSummaries = await analytics.populateBackendToolSummaries(
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Backend summaries refreshed: ${backendSummaries.backendSummaries} backend rows`,
-    );
-
-    const trendingSummaries = await analytics.populateTrendingToolSummaries(
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Trending summaries refreshed: ${trendingSummaries.trendingSummaries} tools`,
-    );
-
-    console.log("Scheduled tasks completed successfully");
-  } catch (error) {
-    console.error("Scheduled task error:", error);
-    throw error;
+    await fn();
+  } catch (e) {
+    console.error(`Scheduled step '${name}' failed:`, e);
   }
 }

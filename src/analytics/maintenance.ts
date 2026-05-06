@@ -1,101 +1,100 @@
 // Maintenance and data aggregation functions
 import type { drizzle } from "drizzle-orm/d1";
-import { sql, eq, and } from "drizzle-orm";
-import { tools, backends, downloads, downloadsDaily } from "./schema.js";
+import { sql } from "drizzle-orm";
+import { tools, backends, downloads } from "./schema.js";
+
+const AGGREGATE_DAYS_PER_RUN = 7;
 
 export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
   return {
-    // Aggregate old data (call this daily via cron)
-    // Aggregates data older than 90 days into daily summaries
+    // Aggregate old data (call this daily via cron). Aggregates data older
+    // than 90 days into daily summaries, processing up to N oldest days per
+    // invocation to stay under the Workers subrequest limit.
     async aggregateOldData(): Promise<{ aggregated: number; deleted: number }> {
       const ninetyDaysAgo = Math.floor(Date.now() / 1000) - 90 * 86400;
 
-      // Get data to aggregate (grouped by tool, backend, version, platform, date)
-      const toAggregate = await db
-        .select({
-          tool_id: downloads.tool_id,
-          backend_id: downloads.backend_id,
-          version: downloads.version,
-          platform_id: downloads.platform_id,
-          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
-          count: sql<number>`count(*)`,
-          unique_ips: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(downloads)
-        .where(sql`${downloads.created_at} < ${ninetyDaysAgo}`)
-        .groupBy(
-          downloads.tool_id,
-          downloads.backend_id,
-          downloads.version,
-          downloads.platform_id,
-          sql`date(${downloads.created_at}, 'unixepoch')`,
-        )
-        .all();
+      // Find the oldest distinct dates that still have raw rows. Each day is
+      // collapsed via bulk SQL, so the per-day cost is ~3 D1 queries.
+      const oldestDates = await db.all<{
+        d: string;
+        min_ts: number;
+        max_ts: number;
+      }>(sql`
+        SELECT
+          date(created_at, 'unixepoch') AS d,
+          MIN(created_at) AS min_ts,
+          MAX(created_at) AS max_ts
+        FROM downloads
+        WHERE created_at < ${ninetyDaysAgo}
+        GROUP BY d
+        ORDER BY d ASC
+        LIMIT ${AGGREGATE_DAYS_PER_RUN}
+      `);
 
-      if (toAggregate.length === 0) {
+      if (oldestDates.length === 0) {
         return { aggregated: 0, deleted: 0 };
       }
 
-      // Insert aggregated data
-      for (const row of toAggregate) {
-        // Check if aggregation already exists for this date
-        const existing = await db
-          .select()
-          .from(downloadsDaily)
-          .where(
-            and(
-              eq(downloadsDaily.tool_id, row.tool_id),
-              eq(downloadsDaily.version, row.version),
-              eq(downloadsDaily.date, row.date),
-              row.backend_id
-                ? eq(downloadsDaily.backend_id, row.backend_id)
-                : sql`${downloadsDaily.backend_id} IS NULL`,
-              row.platform_id
-                ? eq(downloadsDaily.platform_id, row.platform_id)
-                : sql`${downloadsDaily.platform_id} IS NULL`,
-            ),
-          )
-          .get();
+      let aggregated = 0;
+      let deleted = 0;
 
-        if (existing) {
-          // Update existing aggregation
-          await db
-            .update(downloadsDaily)
-            .set({
-              count: sql`${downloadsDaily.count} + ${row.count}`,
-              unique_ips: sql`${downloadsDaily.unique_ips} + ${row.unique_ips}`,
-            })
-            .where(eq(downloadsDaily.id, existing.id));
-        } else {
-          // Insert new aggregation
-          await db.insert(downloadsDaily).values({
-            tool_id: row.tool_id,
-            backend_id: row.backend_id,
-            version: row.version,
-            platform_id: row.platform_id,
-            date: row.date,
-            count: row.count,
-            unique_ips: row.unique_ips,
-          });
-        }
+      for (const { d: date, min_ts, max_ts } of oldestDates) {
+        // Use the timestamp range so the index on created_at is used. The
+        // upper bound is inclusive because max_ts is the largest existing
+        // timestamp on this date.
+        const dayEnd = max_ts + 1;
+
+        // Clear any partial aggregation from a previous failed run so the
+        // re-insert is idempotent.
+        await db.run(sql`
+          DELETE FROM downloads_daily WHERE date = ${date}
+        `);
+
+        const insertResult = await db.run(sql`
+          INSERT INTO downloads_daily
+            (tool_id, backend_id, version, platform_id, date, count, unique_ips)
+          SELECT
+            tool_id,
+            backend_id,
+            version,
+            platform_id,
+            ${date} AS date,
+            COUNT(*) AS count,
+            COUNT(DISTINCT ip_hash) AS unique_ips
+          FROM downloads
+          WHERE created_at >= ${min_ts} AND created_at < ${dayEnd}
+          GROUP BY tool_id, backend_id, version, platform_id
+        `);
+
+        const deleteResult = await db.run(sql`
+          DELETE FROM downloads
+          WHERE created_at >= ${min_ts} AND created_at < ${dayEnd}
+        `);
+
+        // drizzle's run() on D1 returns the underlying meta with rowsWritten
+        // for inserts and changes for deletes; tolerate either field name.
+        const insertedRows =
+          (
+            insertResult as unknown as {
+              meta?: { rows_written?: number; changes?: number };
+            }
+          ).meta?.rows_written ??
+          (insertResult as unknown as { meta?: { changes?: number } }).meta
+            ?.changes ??
+          0;
+        const deletedRows =
+          (deleteResult as unknown as { meta?: { changes?: number } }).meta
+            ?.changes ?? 0;
+
+        aggregated += insertedRows;
+        deleted += deletedRows;
+
+        console.log(
+          `aggregateOldData: ${date} → ${insertedRows} groups, ${deletedRows} raw rows deleted`,
+        );
       }
 
-      // Count rows to delete
-      const countToDelete = await db
-        .select({ count: sql<number>`count(*)` })
-        .from(downloads)
-        .where(sql`${downloads.created_at} < ${ninetyDaysAgo}`)
-        .get();
-
-      // Delete old raw data
-      await db
-        .delete(downloads)
-        .where(sql`${downloads.created_at} < ${ninetyDaysAgo}`);
-
-      return {
-        aggregated: toAggregate.length,
-        deleted: countToDelete?.count ?? 0,
-      };
+      return { aggregated, deleted };
     },
 
     // Backfill backend_id for existing records using default backends from registry
