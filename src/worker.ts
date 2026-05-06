@@ -1,9 +1,7 @@
 // Custom worker wrapper that adds scheduled event handling to Astro's worker
 // This allows us to use Cloudflare cron triggers for daily rollup tasks
 
-import { drizzle } from "drizzle-orm/d1";
-import { runMigrations } from "./migrations.js";
-import { runAnalyticsMigrations, setupAnalytics } from "./analytics/index.js";
+import { runMaintenancePipeline } from "./maintenance-pipeline.js";
 // @ts-expect-error - generated Astro worker bundle has no type declarations
 import astroWorker from "../web/dist/server/entry.mjs";
 
@@ -27,95 +25,10 @@ export async function scheduled(
   _ctx: ExecutionContext,
 ): Promise<void> {
   console.log("Running scheduled tasks via cron trigger...");
-
-  // Migrations are pre-requisites for everything else, so they run outside
-  // the per-step isolation below. If they fail, fail loud.
-  const db = drizzle(env.DB);
-  await runMigrations(db);
-
-  const analyticsDb = drizzle(env.ANALYTICS_DB);
-  await runAnalyticsMigrations(analyticsDb);
-
-  const analytics = setupAnalytics(analyticsDb);
-
-  const now = new Date();
-
-  // Run each section in isolation. aggregateOldData scans the full downloads
-  // table and has been blowing past D1 subrequest limits, which previously
-  // also took out the rollup steps that ran after it.
-  await runStep("aggregate", async () => {
-    const r = await analytics.aggregateOldData();
-    console.log(
-      `Aggregation: ${r.aggregated} groups aggregated, ${r.deleted} rows deleted`,
-    );
-  });
-
-  // Backfill the last 31 days of rollup + MAU tables. This makes the cron
-  // self-healing: any day previously missed (e.g. while aggregateOldData was
-  // throwing) gets refilled on the next successful run.
-  await runDailyBackfill("rollup", now, "Rollup tables", (dateStr) =>
-    analytics.populateRollupTables(dateStr, env.ANALYTICS_DB),
+  const result = await runMaintenancePipeline(env);
+  const failed = result.steps.filter((s) => !s.ok).map((s) => s.name);
+  console.log(
+    `Scheduled tasks finished: ${result.steps.length - failed.length}/${result.steps.length} steps ok` +
+      (failed.length ? ` (failed: ${failed.join(", ")})` : ""),
   );
-  await runDailyBackfill("version-stats", now, "Version stats", (dateStr) =>
-    analytics.populateVersionStatsRollup(dateStr, env.ANALYTICS_DB),
-  );
-  await runDailyBackfill("mau", now, "MAU stats", (dateStr) =>
-    analytics.populateDailyMauStats(dateStr, env.ANALYTICS_DB),
-  );
-
-  await runStep("download-summaries", async () => {
-    const s = await analytics.populateToolDownloadSummaries(env.ANALYTICS_DB);
-    console.log(
-      `Download summaries: ${s.toolSummaries} tools, ${s.platformSummaries} platforms, ${s.versionSummaries} versions`,
-    );
-  });
-
-  await runStep("backend-summaries", async () => {
-    const s = await analytics.populateBackendToolSummaries(env.ANALYTICS_DB);
-    console.log(`Backend summaries: ${s.backendSummaries} rows`);
-  });
-
-  await runStep("trending-summaries", async () => {
-    const s = await analytics.populateTrendingToolSummaries(env.ANALYTICS_DB);
-    console.log(`Trending summaries: ${s.trendingSummaries} tools`);
-  });
-
-  console.log("Scheduled tasks finished");
-}
-
-const BACKFILL_DAYS = 31;
-
-function dateStrAgo(now: Date, daysAgo: number): string {
-  const d = new Date(now);
-  d.setUTCDate(d.getUTCDate() - daysAgo);
-  return d.toISOString().split("T")[0];
-}
-
-async function runStep(name: string, fn: () => Promise<void>): Promise<void> {
-  try {
-    await fn();
-  } catch (e) {
-    console.error(`Scheduled step '${name}' failed:`, e);
-  }
-}
-
-async function runDailyBackfill(
-  name: string,
-  now: Date,
-  label: string,
-  fn: (dateStr: string) => Promise<unknown>,
-): Promise<void> {
-  await runStep(name, async () => {
-    let ok = 0;
-    for (let i = BACKFILL_DAYS - 1; i >= 0; i--) {
-      const dateStr = dateStrAgo(now, i);
-      try {
-        await fn(dateStr);
-        ok++;
-      } catch (e) {
-        console.error(`${name} failed for ${dateStr}:`, e);
-      }
-    }
-    console.log(`${label} refreshed for ${ok}/${BACKFILL_DAYS} days`);
-  });
 }
