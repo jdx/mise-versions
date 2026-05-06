@@ -1,7 +1,7 @@
 // Maintenance and data aggregation functions
 import type { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
-import { tools, backends, downloads } from "./schema.js";
+import { tools, backends, downloads, downloadsDaily } from "./schema.js";
 
 const AGGREGATE_DAYS_PER_RUN = 7;
 
@@ -12,9 +12,12 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
     // invocation to stay under the Workers subrequest limit.
     async aggregateOldData(): Promise<{ aggregated: number; deleted: number }> {
       const ninetyDaysAgo = Math.floor(Date.now() / 1000) - 90 * 86400;
+      // WHERE bounds the scan; HAVING ensures we only pick dates whose entire
+      // span has crossed the 90-day boundary. Without HAVING, a date that
+      // straddles the cutoff would be aggregated as a half-day and the next
+      // run's idempotent re-insert would wipe the previous slice.
+      const scanCutoff = ninetyDaysAgo + 86400;
 
-      // Find the oldest distinct dates that still have raw rows. Each day is
-      // collapsed via bulk SQL, so the per-day cost is ~3 D1 queries.
       const oldestDates = await db.all<{
         d: string;
         min_ts: number;
@@ -24,9 +27,10 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
           date(created_at, 'unixepoch') AS d,
           MIN(created_at) AS min_ts,
           MAX(created_at) AS max_ts
-        FROM downloads
-        WHERE created_at < ${ninetyDaysAgo}
+        FROM ${downloads}
+        WHERE created_at < ${scanCutoff}
         GROUP BY d
+        HAVING max_ts < ${ninetyDaysAgo}
         ORDER BY d ASC
         LIMIT ${AGGREGATE_DAYS_PER_RUN}
       `);
@@ -39,19 +43,17 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
       let deleted = 0;
 
       for (const { d: date, min_ts, max_ts } of oldestDates) {
-        // Use the timestamp range so the index on created_at is used. The
-        // upper bound is inclusive because max_ts is the largest existing
-        // timestamp on this date.
+        // dayEnd is exclusive; max_ts is the largest existing ts on this date.
         const dayEnd = max_ts + 1;
 
         // Clear any partial aggregation from a previous failed run so the
         // re-insert is idempotent.
         await db.run(sql`
-          DELETE FROM downloads_daily WHERE date = ${date}
+          DELETE FROM ${downloadsDaily} WHERE date = ${date}
         `);
 
         const insertResult = await db.run(sql`
-          INSERT INTO downloads_daily
+          INSERT INTO ${downloadsDaily}
             (tool_id, backend_id, version, platform_id, date, count, unique_ips)
           SELECT
             tool_id,
@@ -61,30 +63,18 @@ export function createMaintenanceFunctions(db: ReturnType<typeof drizzle>) {
             ${date} AS date,
             COUNT(*) AS count,
             COUNT(DISTINCT ip_hash) AS unique_ips
-          FROM downloads
+          FROM ${downloads}
           WHERE created_at >= ${min_ts} AND created_at < ${dayEnd}
           GROUP BY tool_id, backend_id, version, platform_id
         `);
 
         const deleteResult = await db.run(sql`
-          DELETE FROM downloads
+          DELETE FROM ${downloads}
           WHERE created_at >= ${min_ts} AND created_at < ${dayEnd}
         `);
 
-        // drizzle's run() on D1 returns the underlying meta with rowsWritten
-        // for inserts and changes for deletes; tolerate either field name.
-        const insertedRows =
-          (
-            insertResult as unknown as {
-              meta?: { rows_written?: number; changes?: number };
-            }
-          ).meta?.rows_written ??
-          (insertResult as unknown as { meta?: { changes?: number } }).meta
-            ?.changes ??
-          0;
-        const deletedRows =
-          (deleteResult as unknown as { meta?: { changes?: number } }).meta
-            ?.changes ?? 0;
+        const insertedRows = (insertResult as D1Result).meta?.changes ?? 0;
+        const deletedRows = (deleteResult as D1Result).meta?.changes ?? 0;
 
         aggregated += insertedRows;
         deleted += deletedRows;

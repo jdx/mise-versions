@@ -53,47 +53,15 @@ export async function scheduled(
   // Backfill the last 31 days of rollup + MAU tables. This makes the cron
   // self-healing: any day previously missed (e.g. while aggregateOldData was
   // throwing) gets refilled on the next successful run.
-  await runStep("rollup", async () => {
-    let ok = 0;
-    for (let i = 30; i >= 0; i--) {
-      const dateStr = dateStrAgo(now, i);
-      try {
-        await analytics.populateRollupTables(dateStr, env.ANALYTICS_DB);
-        ok++;
-      } catch (e) {
-        console.error(`populateRollupTables failed for ${dateStr}:`, e);
-      }
-    }
-    console.log(`Rollup tables refreshed for ${ok}/31 days`);
-  });
-
-  await runStep("version-stats", async () => {
-    let ok = 0;
-    for (let i = 30; i >= 0; i--) {
-      const dateStr = dateStrAgo(now, i);
-      try {
-        await analytics.populateVersionStatsRollup(dateStr, env.ANALYTICS_DB);
-        ok++;
-      } catch (e) {
-        console.error(`populateVersionStatsRollup failed for ${dateStr}:`, e);
-      }
-    }
-    console.log(`Version stats refreshed for ${ok}/31 days`);
-  });
-
-  await runStep("mau", async () => {
-    let ok = 0;
-    for (let i = 30; i >= 0; i--) {
-      const dateStr = dateStrAgo(now, i);
-      try {
-        await analytics.populateDailyMauStats(dateStr, env.ANALYTICS_DB);
-        ok++;
-      } catch (e) {
-        console.error(`populateDailyMauStats failed for ${dateStr}:`, e);
-      }
-    }
-    console.log(`MAU stats refreshed for ${ok}/31 days`);
-  });
+  await runDailyBackfill("rollup", now, "Rollup tables", (dateStr) =>
+    analytics.populateRollupTables(dateStr, env.ANALYTICS_DB),
+  );
+  await runDailyBackfill("version-stats", now, "Version stats", (dateStr) =>
+    analytics.populateVersionStatsRollup(dateStr, env.ANALYTICS_DB),
+  );
+  await runDailyBackfill("mau", now, "MAU stats", (dateStr) =>
+    analytics.populateDailyMauStats(dateStr, env.ANALYTICS_DB),
+  );
 
   await runStep("download-summaries", async () => {
     const s = await analytics.populateToolDownloadSummaries(env.ANALYTICS_DB);
@@ -115,6 +83,8 @@ export async function scheduled(
   console.log("Scheduled tasks finished");
 }
 
+const BACKFILL_DAYS = 31;
+
 function dateStrAgo(now: Date, daysAgo: number): string {
   const d = new Date(now);
   d.setUTCDate(d.getUTCDate() - daysAgo);
@@ -127,4 +97,25 @@ async function runStep(name: string, fn: () => Promise<void>): Promise<void> {
   } catch (e) {
     console.error(`Scheduled step '${name}' failed:`, e);
   }
+}
+
+async function runDailyBackfill(
+  name: string,
+  now: Date,
+  label: string,
+  fn: (dateStr: string) => Promise<unknown>,
+): Promise<void> {
+  await runStep(name, async () => {
+    let ok = 0;
+    for (let i = BACKFILL_DAYS - 1; i >= 0; i--) {
+      const dateStr = dateStrAgo(now, i);
+      try {
+        await fn(dateStr);
+        ok++;
+      } catch (e) {
+        console.error(`${name} failed for ${dateStr}:`, e);
+      }
+    }
+    console.log(`${label} refreshed for ${ok}/${BACKFILL_DAYS} days`);
+  });
 }
