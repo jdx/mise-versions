@@ -3,8 +3,7 @@
 /**
  * GitHub Token Manager Helper for GitHub Actions
  *
- * This script fetches a GitHub token from the token manager API
- * and can optionally record usage for rate limit tracking.
+ * This script fetches a GitHub token from the token manager API.
  *
  * Usage in GitHub Actions:
  *
@@ -25,7 +24,6 @@
 
 import https from "https";
 import http from "http";
-import fs from "fs";
 
 async function makeRequest(url, options = {}) {
   return new Promise((resolve, reject) => {
@@ -65,45 +63,6 @@ async function makeRequest(url, options = {}) {
       req.write(options.body);
     }
 
-    req.end();
-  });
-}
-
-async function recordUsage(baseUrl, secret, tokenId, endpoint, rateLimitInfo) {
-  const usageUrl = `${baseUrl}/api/token/usage`;
-
-  return new Promise((resolve, reject) => {
-    const urlObj = new URL(usageUrl);
-    const client = urlObj.protocol === "https:" ? https : http;
-
-    const payload = JSON.stringify({
-      token_id: tokenId,
-      endpoint,
-      remaining_requests: rateLimitInfo?.remaining,
-      reset_at: rateLimitInfo?.reset
-        ? new Date(rateLimitInfo.reset * 1000).toISOString()
-        : undefined,
-    });
-
-    const req = client.request(
-      usageUrl,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${secret}`,
-          "Content-Length": Buffer.byteLength(payload),
-        },
-      },
-      (res) => {
-        let data = "";
-        res.on("data", (chunk) => (data += chunk));
-        res.on("end", () => resolve({ status: res.statusCode, data }));
-      },
-    );
-
-    req.on("error", reject);
-    req.write(payload);
     req.end();
   });
 }
@@ -212,7 +171,7 @@ async function main() {
       console.error(`   Total tokens: ${response.data.total}`);
     } else {
       console.error(
-        "❌ Unknown action. Available actions: get-token, record-usage, mark-rate-limited, stats",
+        "❌ Unknown action. Available actions: get-token, mark-rate-limited, stats",
       );
       process.exit(1);
     }
@@ -227,4 +186,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
 
-export { makeRequest, recordUsage, markRateLimited };
+export { makeRequest, markRateLimited };
