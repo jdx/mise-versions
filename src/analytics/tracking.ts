@@ -1,7 +1,7 @@
 // Tracking functions for downloads and version requests
 import type { drizzle } from "drizzle-orm/d1";
 import { sql, eq, and } from "drizzle-orm";
-import { tools, backends, platforms, downloads } from "./schema.js";
+import { tools, backends, platforms } from "./schema.js";
 import { keyPart } from "../../web/src/lib/kv-cache.js";
 
 // Caches for ID lookups (shared within the tracking module)
@@ -209,7 +209,9 @@ export function createTrackingFunctions(
       return { deduplicated: changes === 0 };
     },
 
-    // Track a download with daily deduplication per IP/tool/version
+    // Track a download with daily deduplication per IP/tool/version.
+    // Relies on the UNIQUE(tool_id, version, ip_hash, day) index on downloads;
+    // INSERT OR IGNORE returns changes=0 when the row already exists for today.
     async trackDownload(
       tool: string,
       version: string,
@@ -222,18 +224,17 @@ export function createTrackingFunctions(
       const backendId = await getOrCreateBackendId(full);
       const platformId = await getOrCreatePlatformId(os, arch);
       const now = Math.floor(Date.now() / 1000);
+      const day = Math.floor(now / 86400);
 
-      // Insert new record
-      await db.insert(downloads).values({
-        tool_id: toolId,
-        backend_id: backendId,
-        version,
-        platform_id: platformId,
-        ip_hash: ipHash,
-        created_at: now,
-      });
+      const result = (await db.run(sql`
+        INSERT OR IGNORE INTO downloads
+          (tool_id, backend_id, version, platform_id, ip_hash, created_at, day)
+        VALUES
+          (${toolId}, ${backendId}, ${version}, ${platformId}, ${ipHash}, ${now}, ${day})
+      `)) as { meta?: { changes?: number } };
 
-      return { deduplicated: false };
+      const changes = result.meta?.changes ?? 0;
+      return { deduplicated: changes === 0 };
     },
   };
 }

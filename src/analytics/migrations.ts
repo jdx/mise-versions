@@ -294,6 +294,29 @@ const analyticsMigrations: AnalyticsMigration[] = [
       `);
     },
   },
+  {
+    id: 5,
+    name: "downloads_day_unique_index",
+    async up(db) {
+      const cols = await db.all<{ name: string }>(
+        sql`PRAGMA table_info(downloads)`,
+      );
+      const hasDay = (cols as { name: string }[]).some((c) => c.name === "day");
+      if (!hasDay) {
+        await db.run(sql`ALTER TABLE downloads ADD COLUMN day INTEGER`);
+      }
+      // Mirrors the version_requests dedup index: old rows keep day=NULL,
+      // new tracking writes set day and are deduped via INSERT OR IGNORE.
+      // Matches the prior KV dedup key (tool, version, ip_hash, day) — backend
+      // and platform are intentionally excluded so the same user downloading
+      // for multiple platforms in a day still counts as one download, the
+      // same behavior as the KV dedup it replaces.
+      await db.run(sql`
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_downloads_unique_tool_version_ip_day
+        ON downloads(tool_id, version, ip_hash, day)
+      `);
+    },
+  },
 ];
 
 async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {
@@ -435,6 +458,7 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
         platform_id INTEGER,
         ip_hash TEXT NOT NULL,
         created_at INTEGER NOT NULL,
+        day INTEGER,
         FOREIGN KEY (tool_id) REFERENCES tools(id),
         FOREIGN KEY (backend_id) REFERENCES backends(id),
         FOREIGN KEY (platform_id) REFERENCES platforms(id)

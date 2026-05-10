@@ -20,7 +20,9 @@ export const platforms = sqliteTable("platforms", {
   arch: text("arch"),
 });
 
-// Downloads table with foreign keys and integer timestamp
+// Downloads table with foreign keys and integer timestamp.
+// `day` is the UTC day-bucket (created_at / 86400) and pairs with the
+// UNIQUE(tool_id, version, ip_hash, day) index to dedupe via INSERT OR IGNORE.
 export const downloads = sqliteTable("downloads", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   tool_id: integer("tool_id").notNull(),
@@ -29,6 +31,7 @@ export const downloads = sqliteTable("downloads", {
   platform_id: integer("platform_id"),
   ip_hash: text("ip_hash").notNull(),
   created_at: integer("created_at").notNull(), // Unix timestamp
+  day: integer("day"),
 });
 
 // Daily aggregated data for historical stats (data older than 90 days)
