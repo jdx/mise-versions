@@ -132,26 +132,33 @@ mkdir -p "$STATS_DIR"
 # many parallel workers race on the same counter without locks.
 COUNTERS=(
 	total_tools_checked
+	total_tools_fetched_successfully
 	total_tools_updated
 	total_tools_skipped
 	total_tools_failed
 	total_tools_no_versions
 	total_tokens_used
 	total_rate_limits_hit
+	total_json_metadata_fallbacks
 )
 for counter in "${COUNTERS[@]}"; do
 	: >"$STATS_DIR/$counter"
 done
 
-# String stats (set_stat only, not incremented concurrently).
+# String stats and append-only lists.
 # Initialized with empty (zero-byte) files so the get_stat heuristic below
 # — which falls through to wc -c when content is empty — matches the
 # initialization style used for counter files.
 : >"$STATS_DIR/total_tools_available"
 : >"$STATS_DIR/updated_tools_list"
+: >"$STATS_DIR/failed_tools_list"
+: >"$STATS_DIR/no_versions_tools_list"
+: >"$STATS_DIR/json_metadata_fallback_tools_list"
+: >"$STATS_DIR/fallback_new_versions_list"
 : >"$STATS_DIR/summary_generated"
 START_TIME=$(date +%s)
 echo "$START_TIME" >"$STATS_DIR/start_time"
+SUMMARY_LIST_LIMIT="${SUMMARY_LIST_LIMIT:-50}"
 
 # Atomic increment — appends a single byte to the counter file.
 increment_stat() {
@@ -177,10 +184,16 @@ get_stat() {
 	fi
 }
 
-# Append a tool name to the updated list. One tool per line.
+# Append a stat list item. One item per line.
 # Short-line appends are atomic under PIPE_BUF on POSIX.
 add_to_list() {
-	echo "$1" >>"$STATS_DIR/updated_tools_list"
+	local list_name="updated_tools_list"
+	local item="$1"
+	if [ "$#" -ge 2 ]; then
+		list_name="$1"
+		item="$2"
+	fi
+	echo "$item" >>"$STATS_DIR/$list_name"
 }
 
 set_stat() {
@@ -188,6 +201,71 @@ set_stat() {
 	local value="$2"
 	# Silently fail if stats directory was cleaned up
 	[ -d "$STATS_DIR" ] && echo "$value" >"$stat_file" || true
+}
+
+count_list_items() {
+	local list_file="$STATS_DIR/$1"
+	if [ ! -s "$list_file" ]; then
+		echo "0"
+		return
+	fi
+	awk 'NF { count++ } END { print count + 0 }' "$list_file"
+}
+
+format_summary_item() {
+	local item_format="$1"
+	local item="$2"
+	local commit_hash="$3"
+
+	case "$item_format" in
+	docs_link)
+		echo "- [$item](https://github.com/jdx/mise-versions/blob/${commit_hash}/docs/${item}.toml)"
+		;;
+	fallback_version)
+		local tool="${item%% *}"
+		local version="${item#* }"
+		if [ "$tool" = "$version" ]; then
+			echo "- \`$item\`"
+		else
+			echo "- \`$tool\`: \`$version\`"
+		fi
+		;;
+	*)
+		echo "- \`$item\`"
+		;;
+	esac
+}
+
+append_summary_list_section() {
+	local title="$1"
+	local list_name="$2"
+	local empty_message="$3"
+	local item_format="$4"
+	local commit_hash="$5"
+	local list_file="$STATS_DIR/$list_name"
+	local list_count
+	list_count=$(count_list_items "$list_name")
+
+	{
+		echo ""
+		echo "## $title ($list_count)"
+		echo ""
+	} >>summary.md
+
+	if [ "$list_count" -eq 0 ]; then
+		echo "$empty_message" >>summary.md
+		return
+	fi
+
+	while IFS= read -r item; do
+		[ -n "$item" ] || continue
+		format_summary_item "$item_format" "$item" "$commit_hash" >>summary.md
+	done < <(awk -v limit="$SUMMARY_LIST_LIMIT" 'NF { print; count++; if (count >= limit) exit }' "$list_file")
+
+	if [ "$list_count" -gt "$SUMMARY_LIST_LIMIT" ]; then
+		echo "" >>summary.md
+		echo "... and $((list_count - SUMMARY_LIST_LIMIT)) more" >>summary.md
+	fi
 }
 
 # Cleanup function
@@ -218,77 +296,43 @@ generate_summary() {
 	local duration_seconds=$((duration % 60))
 	local commit_hash
 	commit_hash=$(git rev-parse HEAD 2>/dev/null || echo "main")
+	local fallback_new_versions_count
+	fallback_new_versions_count=$(count_list_items "fallback_new_versions_list")
 
 	# Create summary file
 	cat >summary.md <<SUMMARY_EOF
-# 📊 Mise Versions Update Summary
+# Mise Versions Update Summary
 
 **Generated**: $(date '+%Y-%m-%d %H:%M:%S UTC')
 **Commit**: [${commit_hash}](https://github.com/jdx/mise-versions/commit/${commit_hash})
 
-## 📊 Quick Stats
+## Health
+
 | Metric | Value |
 |--------|-------|
-| Tools Processed | $(get_stat "total_tools_checked") |
-| Tools Updated | $(get_stat "total_tools_updated") |
-| Success Rate | $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$((($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked")))" || echo "0")% |
-| Tokens Used | $(get_stat "total_tokens_used") |
-| Rate Limits Hit | $(get_stat "total_rate_limits_hit") |
+| Tools Available | $(get_stat "total_tools_available") |
+| Tools Checked | $(get_stat "total_tools_checked") |
+| Fetched Successfully | $(get_stat "total_tools_fetched_successfully") |
+| Updated | $(get_stat "total_tools_updated") |
+| Skipped | $(get_stat "total_tools_skipped") |
+| Failed | $(get_stat "total_tools_failed") |
+| No Versions | $(get_stat "total_tools_no_versions") |
 | Duration | ${duration_minutes}m ${duration_seconds}s |
+| Mise Version | ${CUR_MISE_VERSION:-not set} |
 
-## 🎯 Overview
-- **Total Tools Checked**: $(get_stat "total_tools_checked")
-- **Tools Updated**: $(get_stat "total_tools_updated")
-- **Tools Skipped**: $(get_stat "total_tools_skipped")
-- **Tools Failed**: $(get_stat "total_tools_failed")
-- **Tools with No Versions**: $(get_stat "total_tools_no_versions")
-- **Tokens Used**: $(get_stat "total_tokens_used")
-- **Rate Limits Hit**: $(get_stat "total_rate_limits_hit")
-- **Duration**: ${duration_minutes}m ${duration_seconds}s
-- **Mise Version**: ${CUR_MISE_VERSION:-not set}
+## Metadata Quality
 
-## 📈 Success Rate
-- **Success Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$((($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked")))" || echo "0")%
-- **Update Rate**: $([ "$(get_stat "total_tools_checked")" -gt 0 ] && echo "$((($(get_stat "total_tools_updated") * 100) / $(get_stat "total_tools_checked")))" || echo "0")%
-- **Coverage**: $([ "$(get_stat "total_tools_available")" -gt 0 ] && echo "$((($(get_stat "total_tools_checked") * 100) / $(get_stat "total_tools_available")))" || echo "0")%
-
-## 🔧 Token Management
-- **Tokens Consumed**: $(get_stat "total_tokens_used")
-- **Rate Limit Events**: $(get_stat "total_rate_limits_hit")
-
-## 📋 Details
-- **Tools Available**: $(get_stat "total_tools_available")
-- **Tools Processed**: $(get_stat "total_tools_checked")
-- **Tools with Updates**: $(get_stat "total_tools_updated")
-- **Tools Skipped**: $(get_stat "total_tools_skipped")
-- **Tools Failed**: $(get_stat "total_tools_failed")
-- **Tools with No Versions**: $(get_stat "total_tools_no_versions")
-- **Total Duration**: ${duration_minutes}m ${duration_seconds}s
-- **Parallel Workers**: ${PARALLEL_FETCHES:-8}
-
-## 📊 Performance Metrics
-- **Processing Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(($(get_stat "total_tools_checked") / (duration / 60)))" || echo "0") tools/minute
-- **Update Speed**: $([ "$duration" -gt 0 ] && [ "$((duration / 60))" -gt 0 ] && echo "$(($(get_stat "total_tools_updated") / (duration / 60)))" || echo "0") updates/minute
-- **Token Efficiency**: $([ "$(get_stat "total_tokens_used")" -gt 0 ] && echo "$(($(get_stat "total_tools_checked") / $(get_stat "total_tokens_used")))" || echo "0") tools per token
-
-## 📦 Updated Tools ($(get_stat "total_tools_updated"))
+| Metric | Value |
+|--------|-------|
+| JSON Metadata Fallbacks | $(get_stat "total_json_metadata_fallbacks") |
+| New Versions Added Via Fallback | ${fallback_new_versions_count} |
 SUMMARY_EOF
 
-	# Add updated tools list if any tools were updated
-	local updated_tools_list
-	updated_tools_list=$(cat "$STATS_DIR/updated_tools_list" 2>/dev/null || echo "")
-	if [ -n "$updated_tools_list" ]; then
-		echo "" >>summary.md
-		echo "The following tools were updated:" >>summary.md
-		echo "" >>summary.md
-		for tool in $updated_tools_list; do
-			# Link to the local docs file
-			echo "- [$tool](https://github.com/jdx/mise-versions/blob/${commit_hash}/docs/${tool}.toml)" >>summary.md
-		done
-	else
-		echo "" >>summary.md
-		echo "No tools were updated in this run." >>summary.md
-	fi
+	append_summary_list_section "Updated Tools" "updated_tools_list" "No tools were updated in this run." "docs_link" "$commit_hash"
+	append_summary_list_section "Failed Tools" "failed_tools_list" "No tools failed in this run." "code" "$commit_hash"
+	append_summary_list_section "No Versions" "no_versions_tools_list" "No tools returned an empty version list." "code" "$commit_hash"
+	append_summary_list_section "JSON Metadata Fallbacks" "json_metadata_fallback_tools_list" "No tools needed plain-text fallback after an empty JSON metadata response." "docs_link" "$commit_hash"
+	append_summary_list_section "New Versions Added Via Fallback" "fallback_new_versions_list" "No new versions were added through the plain-text fallback path." "fallback_version" "$commit_hash"
 
 	# Output to GitHub Actions summary
 	if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
@@ -315,6 +359,53 @@ mark_token_rate_limited() {
 	{
 		node scripts/github-token.js mark-rate-limited "$token_id" "$reset_time" || true
 	} &
+}
+
+record_fallback_new_versions() {
+	local tool="$1"
+	local versions_file="docs/$tool"
+	local toml_file="docs/$tool.toml"
+
+	[ -s "$versions_file" ] || return
+
+	local new_versions
+	new_versions=$(node --input-type=module - "$versions_file" "$toml_file" <<'NODE'
+import { readFileSync } from "fs";
+import { parse } from "smol-toml";
+
+const [versionsPath, tomlPath] = process.argv.slice(2);
+const seen = new Set();
+const versions = readFileSync(versionsPath, "utf-8")
+  .split(/\r?\n/)
+  .map((version) => version.trim())
+  .filter((version) => {
+    if (!version || seen.has(version)) return false;
+    seen.add(version);
+    return true;
+  });
+
+let existingVersions = null;
+try {
+  const parsed = parse(readFileSync(tomlPath, "utf-8"));
+  if (parsed.versions && typeof parsed.versions === "object") {
+    existingVersions = new Set(Object.keys(parsed.versions));
+  }
+} catch {
+  existingVersions = null;
+}
+
+for (const version of versions) {
+  if (!existingVersions || !existingVersions.has(version)) {
+    console.log(version);
+  }
+}
+NODE
+)
+
+	while IFS= read -r version; do
+		[ -n "$version" ] || continue
+		add_to_list "fallback_new_versions_list" "$tool $version"
+	done <<<"$new_versions"
 }
 
 # Function to generate TOML file with timestamps.
@@ -352,10 +443,13 @@ generate_toml_file() {
 	# plain-text path — losing `release_url` and `created_at` for any new
 	# version that wasn't already in the existing TOML.
 	local json_output
+	local json_metadata_fallback=0
 	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --prerelease --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
+		local json_type
+		json_type=$(printf '%s' "$json_output" | jq -r 'type' 2>/dev/null || echo "invalid")
 		local json_count
 		json_count=$(printf '%s' "$json_output" | jq 'if type == "array" then length else 0 end' 2>/dev/null || echo 0)
-		if [ "${json_count:-0}" -gt 0 ]; then
+		if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
 			# Convert JSON array to NDJSON and pipe to generate-toml.js
 			if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 				if toml_has_versions "$toml_file.tmp"; then
@@ -365,14 +459,20 @@ generate_toml_file() {
 				fi
 				rm -f "$toml_file.tmp"
 			fi
-		else
-			log_warn "mise ls-remote --json returned empty, falling back" "tool=$tool"
+		elif [ "$json_type" = "array" ] && [ "${json_count:-0}" -eq 0 ]; then
+			json_metadata_fallback=1
+			increment_stat "total_json_metadata_fallbacks"
+			add_to_list "json_metadata_fallback_tools_list" "$tool"
+			log_info "mise ls-remote --json returned empty, using plain-text fallback" "tool=$tool"
 		fi
 	fi
 
 	# Fall back to plain text conversion (preserves existing timestamps).
 	# `fetch()` already guaranteed versions_file is non-empty, so this path
 	# should always produce a populated TOML.
+	if [ "$json_metadata_fallback" -eq 1 ]; then
+		record_fallback_new_versions "$tool"
+	fi
 	if node -e '
 		const fs = require("fs");
 		const versions = fs.readFileSync(process.argv[1], "utf-8").trim().split("\n").filter(v => v);
@@ -651,7 +751,7 @@ if setup_token_management; then
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
 
-	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file toml_has_versions increment_stat get_stat add_to_list set_stat
+	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 
@@ -672,14 +772,21 @@ if setup_token_management; then
 	# a worker was hard-killed before it could write a result; treat as failed.
 	for status_file in "$RESULTS_DIR"/*.status; do
 		[ -f "$status_file" ] || continue
+		tool=$(basename "$status_file" .status)
 		increment_stat "total_tools_checked"
 		status=$(cat "$status_file")
 		[ -n "$status" ] || status="failed"
 		case "$status" in
 		skipped) increment_stat "total_tools_skipped" ;;
-		failed) increment_stat "total_tools_failed" ;;
-		no_versions) increment_stat "total_tools_no_versions" ;;
-		fetched) ;; # counted as updated below iff the TOML actually changed
+		failed)
+			increment_stat "total_tools_failed"
+			add_to_list "failed_tools_list" "$tool"
+			;;
+		no_versions)
+			increment_stat "total_tools_no_versions"
+			add_to_list "no_versions_tools_list" "$tool"
+			;;
+		fetched) increment_stat "total_tools_fetched_successfully" ;; # counted as updated below iff the TOML actually changed
 		esac
 	done
 
