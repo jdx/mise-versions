@@ -193,7 +193,7 @@ add_to_list() {
 		list_name="$1"
 		item="$2"
 	fi
-	echo "$item" >>"$STATS_DIR/$list_name"
+	printf '%s\n' "$item" >>"$STATS_DIR/$list_name"
 }
 
 set_stat() {
@@ -259,8 +259,8 @@ append_summary_list_section() {
 
 	while IFS= read -r item; do
 		[ -n "$item" ] || continue
-		format_summary_item "$item_format" "$item" "$commit_hash" >>summary.md
-	done < <(awk -v limit="$SUMMARY_LIST_LIMIT" 'NF { print; count++; if (count >= limit) exit }' "$list_file")
+		format_summary_item "$item_format" "$item" "$commit_hash"
+	done < <(awk -v limit="$SUMMARY_LIST_LIMIT" 'NF { print; count++; if (count >= limit) exit }' "$list_file") >>summary.md
 
 	if [ "$list_count" -gt "$SUMMARY_LIST_LIMIT" ]; then
 		echo "" >>summary.md
@@ -361,7 +361,7 @@ mark_token_rate_limited() {
 	} &
 }
 
-record_fallback_new_versions() {
+collect_fallback_new_versions() {
 	local tool="$1"
 	local versions_file="docs/$tool"
 	local toml_file="docs/$tool.toml"
@@ -402,10 +402,16 @@ for (const version of versions) {
 NODE
 )
 
-	while IFS= read -r version; do
-		[ -n "$version" ] || continue
-		add_to_list "fallback_new_versions_list" "$tool $version"
-	done <<<"$new_versions"
+	printf '%s\n' "$new_versions"
+}
+
+record_fallback_new_versions() {
+	local tool="$1"
+	local new_versions="$2"
+
+	[ -n "$new_versions" ] || return
+
+	printf '%s\n' "$new_versions" | awk -v tool="$tool" 'NF { printf "%s %s\n", tool, $0 }' >>"$STATS_DIR/fallback_new_versions_list"
 }
 
 # Function to generate TOML file with timestamps.
@@ -444,11 +450,10 @@ generate_toml_file() {
 	# version that wasn't already in the existing TOML.
 	local json_output
 	local json_metadata_fallback=0
+	local fallback_new_versions=""
 	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --prerelease --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
-		local json_type
-		json_type=$(printf '%s' "$json_output" | jq -r 'type' 2>/dev/null || echo "invalid")
-		local json_count
-		json_count=$(printf '%s' "$json_output" | jq 'if type == "array" then length else 0 end' 2>/dev/null || echo 0)
+		local json_type json_count
+		read -r json_type json_count < <(printf '%s' "$json_output" | jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' 2>/dev/null || echo "invalid 0")
 		if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
 			# Convert JSON array to NDJSON and pipe to generate-toml.js
 			if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
@@ -471,7 +476,7 @@ generate_toml_file() {
 	# `fetch()` already guaranteed versions_file is non-empty, so this path
 	# should always produce a populated TOML.
 	if [ "$json_metadata_fallback" -eq 1 ]; then
-		record_fallback_new_versions "$tool"
+		fallback_new_versions=$(collect_fallback_new_versions "$tool" || true)
 	fi
 	if node -e '
 		const fs = require("fs");
@@ -480,6 +485,7 @@ generate_toml_file() {
 	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 		if toml_has_versions "$toml_file.tmp"; then
 			mv "$toml_file.tmp" "$toml_file"
+			record_fallback_new_versions "$tool" "$fallback_new_versions"
 			rm -f "$error_output"
 		else
 			log_warn "Generated TOML had no versions, refusing to overwrite" "tool=$tool"
@@ -751,7 +757,7 @@ if setup_token_management; then
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
 
-	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
+	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file collect_fallback_new_versions record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 
