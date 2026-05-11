@@ -24,11 +24,8 @@ interface Env {
   ANALYTICS_ENGINE_API_TOKEN?: string;
   ANALYTICS_ENGINE_DATASET?: string;
   ANALYTICS_ENGINE_CUTOVER_DATE?: string;
-  GITHUB_APP_ID: string;
-  GITHUB_PRIVATE_KEY: string;
   GITHUB_CLIENT_ID: string;
   GITHUB_CLIENT_SECRET: string;
-  GITHUB_WEBHOOK_SECRET: string;
   API_SECRET: string;
 }
 
