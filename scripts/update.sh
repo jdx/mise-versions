@@ -298,29 +298,42 @@ generate_summary() {
 	commit_hash=$(git rev-parse HEAD 2>/dev/null || echo "main")
 	local fallback_new_versions_count
 	fallback_new_versions_count=$(count_list_items "fallback_new_versions_list")
+	local parallel_fetches="${PARALLEL_FETCHES:-8}"
+	local tools_checked
+	tools_checked=$(get_stat "total_tools_checked")
+	local average_processing_time
+	average_processing_time=$(awk -v duration="$duration" -v parallel="$parallel_fetches" -v checked="$tools_checked" 'BEGIN {
+		if (checked > 0) {
+			printf "%.1fs/tool", duration * parallel / checked
+		} else {
+			printf "0s/tool"
+		}
+	}')
 
 	# Create summary file
 	cat >summary.md <<SUMMARY_EOF
-# Mise Versions Update Summary
+# 📊 Mise Versions Update Summary
 
 **Generated**: $(date '+%Y-%m-%d %H:%M:%S UTC')
 **Commit**: [${commit_hash}](https://github.com/jdx/mise-versions/commit/${commit_hash})
 
-## Health
+## 🎯 Health
 
 | Metric | Value |
 |--------|-------|
 | Tools Available | $(get_stat "total_tools_available") |
-| Tools Checked | $(get_stat "total_tools_checked") |
+| Tools Checked | ${tools_checked} |
 | Fetched Successfully | $(get_stat "total_tools_fetched_successfully") |
 | Updated | $(get_stat "total_tools_updated") |
 | Skipped | $(get_stat "total_tools_skipped") |
 | Failed | $(get_stat "total_tools_failed") |
 | No Versions | $(get_stat "total_tools_no_versions") |
 | Duration | ${duration_minutes}m ${duration_seconds}s |
+| Parallel Workers | ${parallel_fetches} |
+| Processing Speed | ${average_processing_time} average (${duration}s × ${parallel_fetches} / ${tools_checked} tools) |
 | Mise Version | ${CUR_MISE_VERSION:-not set} |
 
-## Metadata Quality
+## 🧪 Metadata Quality
 
 | Metric | Value |
 |--------|-------|
@@ -328,11 +341,11 @@ generate_summary() {
 | New Versions Added Via Fallback | ${fallback_new_versions_count} |
 SUMMARY_EOF
 
-	append_summary_list_section "Updated Tools" "updated_tools_list" "No tools were updated in this run." "docs_link" "$commit_hash"
-	append_summary_list_section "Failed Tools" "failed_tools_list" "No tools failed in this run." "code" "$commit_hash"
-	append_summary_list_section "No Versions" "no_versions_tools_list" "No tools returned an empty version list." "code" "$commit_hash"
-	append_summary_list_section "JSON Metadata Fallbacks" "json_metadata_fallback_tools_list" "No tools needed plain-text fallback after an empty JSON metadata response." "docs_link" "$commit_hash"
-	append_summary_list_section "New Versions Added Via Fallback" "fallback_new_versions_list" "No new versions were added through the plain-text fallback path." "fallback_version" "$commit_hash"
+	append_summary_list_section "📦 Updated Tools" "updated_tools_list" "No tools were updated in this run." "docs_link" "$commit_hash"
+	append_summary_list_section "❌ Failed Tools" "failed_tools_list" "No tools failed in this run." "code" "$commit_hash"
+	append_summary_list_section "📭 No Versions" "no_versions_tools_list" "No tools returned an empty version list." "code" "$commit_hash"
+	append_summary_list_section "🔁 JSON Metadata Fallbacks" "json_metadata_fallback_tools_list" "No tools needed plain-text fallback after an empty JSON metadata response." "docs_link" "$commit_hash"
+	append_summary_list_section "🆕 New Versions Added Via Fallback" "fallback_new_versions_list" "No new versions were added through the plain-text fallback path." "fallback_version" "$commit_hash"
 
 	# Output to GitHub Actions summary
 	if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
@@ -368,41 +381,20 @@ collect_fallback_new_versions() {
 
 	[ -s "$versions_file" ] || return
 
-	local new_versions
-	new_versions=$(node --input-type=module - "$versions_file" "$toml_file" <<'NODE'
-import { readFileSync } from "fs";
-import { parse } from "smol-toml";
+	local fetched_versions
+	local existing_versions
+	fetched_versions=$(mktemp)
+	existing_versions=$(mktemp)
 
-const [versionsPath, tomlPath] = process.argv.slice(2);
-const seen = new Set();
-const versions = readFileSync(versionsPath, "utf-8")
-  .split(/\r?\n/)
-  .map((version) => version.trim())
-  .filter((version) => {
-    if (!version || seen.has(version)) return false;
-    seen.add(version);
-    return true;
-  });
+	awk 'NF && !seen[$0]++ { print }' "$versions_file" >"$fetched_versions"
 
-let existingVersions = null;
-try {
-  const parsed = parse(readFileSync(tomlPath, "utf-8"));
-  if (parsed.versions && typeof parsed.versions === "object") {
-    existingVersions = new Set(Object.keys(parsed.versions));
-  }
-} catch {
-  existingVersions = null;
-}
+	if [ -s "$toml_file" ] && yq -o=json '.versions // {}' "$toml_file" 2>/dev/null | jq -r 'keys[]' >"$existing_versions"; then
+		awk 'NR == FNR { existing[$0] = 1; next } !($0 in existing)' "$existing_versions" "$fetched_versions"
+	else
+		cat "$fetched_versions"
+	fi
 
-for (const version of versions) {
-  if (!existingVersions || !existingVersions.has(version)) {
-    console.log(version);
-  }
-}
-NODE
-)
-
-	printf '%s\n' "$new_versions"
+	rm -f "$fetched_versions" "$existing_versions"
 }
 
 record_fallback_new_versions() {
@@ -478,11 +470,7 @@ generate_toml_file() {
 	if [ "$json_metadata_fallback" -eq 1 ]; then
 		fallback_new_versions=$(collect_fallback_new_versions "$tool" || true)
 	fi
-	if node -e '
-		const fs = require("fs");
-		const versions = fs.readFileSync(process.argv[1], "utf-8").trim().split("\n").filter(v => v);
-		versions.forEach(v => console.log(JSON.stringify({version: v})));
-	' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
+	if jq -R -c 'select(length > 0) | {version: .}' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 		if toml_has_versions "$toml_file.tmp"; then
 			mv "$toml_file.tmp" "$toml_file"
 			record_fallback_new_versions "$tool" "$fallback_new_versions"
