@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
-  cacheHeaders,
+  attestationsCacheHeaders,
   getCachedGitHubAttestations,
   githubStatus,
   validDigest,
@@ -22,7 +22,11 @@ export const GET: APIRoute = async ({ params }) => {
       repo,
       digest,
     );
-    return jsonResponse(attestations, 200, cacheHeaders());
+    return jsonResponse(
+      attestations,
+      200,
+      attestationsCacheHeaders(attestations),
+    );
   } catch (error) {
     console.error(
       `GitHub attestation mirror failed for ${owner}/${repo}@${digest}:`,

@@ -5,6 +5,9 @@ const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
 const NEGATIVE_ATTESTATION_FRESH_MS = 30 * 60 * 1000;
+const EDGE_SHORT_TTL_SECONDS = 10 * 60;
+const EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS = 30 * 60;
+const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
 
 interface CacheEntry<T> {
   cached_at: number;
@@ -46,10 +49,46 @@ interface TokenRecord {
   token: string;
 }
 
-export function cacheHeaders(maxAge = 600): Record<string, string> {
+export function cacheHeaders({
+  browserMaxAge = 600,
+  edgeMaxAge = EDGE_SHORT_TTL_SECONDS,
+  immutable = false,
+}: {
+  browserMaxAge?: number;
+  edgeMaxAge?: number;
+  immutable?: boolean;
+} = {}): Record<string, string> {
+  const directives = [
+    `public`,
+    `max-age=${browserMaxAge}`,
+    `s-maxage=${edgeMaxAge}`,
+  ];
+  if (immutable) {
+    directives.push("immutable");
+  } else {
+    directives.push("stale-while-revalidate=86400");
+  }
   return {
-    "Cache-Control": `public, max-age=${maxAge}, stale-while-revalidate=86400`,
+    "Cache-Control": directives.join(", "),
   };
+}
+
+export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
+  const immutable = tag !== "latest" && release.immutable === true;
+  return cacheHeaders({
+    edgeMaxAge: immutable ? EDGE_IMMUTABLE_TTL_SECONDS : EDGE_SHORT_TTL_SECONDS,
+    immutable,
+  });
+}
+
+export function attestationsCacheHeaders(response: GitHubAttestationsResponse) {
+  const positive = response.attestations.length > 0;
+  return cacheHeaders({
+    edgeMaxAge: positive
+      ? EDGE_IMMUTABLE_TTL_SECONDS
+      : EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS,
+    immutable: positive,
+  });
 }
 
 export function validRepoPart(value: string | undefined): value is string {
@@ -299,7 +338,7 @@ async function githubJson<T>(
   if (token) {
     headers.Authorization = `Bearer ${token.token}`;
   }
-  const response = await fetch(url, { headers, redirect: "error" });
+  const response = await fetch(url, { headers, redirect: "manual" });
   if (response.status === 404) {
     throw new GitHubError(404, "Not found", response.headers);
   }

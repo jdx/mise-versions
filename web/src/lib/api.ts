@@ -44,7 +44,10 @@ export function cachedJsonResponse(
 export function errorResponse(message: string, status = 400) {
   return new Response(message, {
     status,
-    headers: CORS_HEADERS,
+    headers: {
+      ...CORS_HEADERS,
+      "Cache-Control": "private, no-store",
+    },
   });
 }
 

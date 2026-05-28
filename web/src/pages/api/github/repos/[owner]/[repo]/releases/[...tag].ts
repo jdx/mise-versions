@@ -2,9 +2,9 @@ import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
-  cacheHeaders,
   getCachedGitHubRelease,
   githubStatus,
+  releaseCacheHeaders,
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
@@ -17,7 +17,7 @@ export const GET: APIRoute = async ({ params }) => {
 
   try {
     const release = await getCachedGitHubRelease(env, owner, repo, tag);
-    return jsonResponse(release, 200, cacheHeaders());
+    return jsonResponse(release, 200, releaseCacheHeaders(tag, release));
   } catch (error) {
     console.error(
       `GitHub release mirror failed for ${owner}/${repo}@${tag}:`,
