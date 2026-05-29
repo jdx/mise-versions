@@ -253,13 +253,14 @@ async function fetchGitHubRelease(
   const publishedAt = data.published_at
     ? new Date(data.published_at).getTime()
     : NaN;
+  const assets = data.assets ?? [];
   const immutable =
+    assets.length > 0 &&
     tag !== "latest" &&
     !data.draft &&
     !data.prerelease &&
     Number.isFinite(publishedAt) &&
     Date.now() - publishedAt > RELEASE_IMMUTABLE_AFTER_MS;
-  const assets = data.assets ?? [];
 
   return {
     tag_name: data.tag_name,
@@ -338,17 +339,7 @@ async function githubJson<T>(
   url: string,
   token: TokenRecord | null,
 ): Promise<T> {
-  const isGitHub = isGitHubApiUrl(url);
-  const headers: Record<string, string> = {
-    "User-Agent": "mise-versions (https://github.com/jdx/mise-versions)",
-  };
-  if (isGitHub) {
-    headers.Accept = "application/vnd.github+json";
-    headers["X-GitHub-Api-Version"] = "2022-11-28";
-  }
-  if (token && isGitHub) {
-    headers.Authorization = `Bearer ${token.token}`;
-  }
+  const headers = githubJsonHeaders(url, token);
   const response = await fetch(url, { headers, redirect: "manual" });
   if (response.status === 404) {
     throw new GitHubError(404, "Not found", response.headers, url);
@@ -398,6 +389,24 @@ function isGitHubApiUrl(value: string | undefined): boolean {
   }
 }
 
+function githubJsonHeaders(
+  url: string,
+  token: TokenRecord | null,
+): Record<string, string> {
+  const isGitHub = isGitHubApiUrl(url);
+  const headers: Record<string, string> = {
+    "User-Agent": "mise-versions (https://github.com/jdx/mise-versions)",
+  };
+  if (isGitHub) {
+    headers.Accept = "application/vnd.github+json";
+    headers["X-GitHub-Api-Version"] = "2022-11-28";
+  }
+  if (token && isGitHub) {
+    headers.Authorization = `Bearer ${token.token}`;
+  }
+  return headers;
+}
+
 function isRateLimited(error: unknown): boolean {
   return (
     error instanceof GitHubError &&
@@ -433,6 +442,7 @@ class GitHubError extends Error {
 
 export const __testing = {
   GitHubError,
+  githubJsonHeaders,
   isGitHubApiUrl,
   isRateLimited,
   validGitHubAttestationBundleUrl,

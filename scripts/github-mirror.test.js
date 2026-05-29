@@ -49,6 +49,7 @@ test("GitHub release mirror caches empty assets as a short cache miss", () => {
     assert.equal(writes.length, 1);
     assert.equal(writes[0].key, "github:release:owner/repo:latest");
     assert.deepEqual(writes[0].options, { expirationTtl: 1800 });
+    assert.equal(JSON.parse(writes[0].value).data.immutable, false);
   `);
 });
 
@@ -61,10 +62,19 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
     } from "./web/src/lib/github/mirror.ts";
 
     const bundleUrl = "https://tmaproduction.blob.core.windows.net/attestations/1/bundle.json?sig=test";
+    const token = { id: 1, token: "secret-github-token" };
     assert.equal(__testing.validGitHubAttestationBundleUrl(bundleUrl), true);
     assert.equal(__testing.validGitHubAttestationBundleUrl("https://example.com/bundle.json"), false);
     assert.equal(__testing.isGitHubApiUrl("https://api.github.com/repos/cli/cli"), true);
     assert.equal(__testing.isGitHubApiUrl(bundleUrl), false);
+    assert.equal(
+      __testing.githubJsonHeaders("https://api.github.com/repos/cli/cli", token).Authorization,
+      "Bearer secret-github-token",
+    );
+    assert.equal(
+      __testing.githubJsonHeaders(bundleUrl, token).Authorization,
+      undefined,
+    );
 
     const seen = [];
     globalThis.fetch = async (url, init) => {
