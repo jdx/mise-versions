@@ -247,7 +247,7 @@ async function fetchGitHubRelease(
   const assets = data.assets ?? [];
   if (assets.length === 0) {
     throw new GitHubError(
-      502,
+      404,
       "GitHub release response did not include assets",
       new Headers(),
     );
@@ -313,7 +313,7 @@ async function hydrateBundle(
       new Headers(),
     );
   }
-  if (!validGitHubApiUrl(attestation.bundle_url)) {
+  if (!validGitHubAttestationBundleUrl(attestation.bundle_url)) {
     throw new GitHubError(
       502,
       "Invalid GitHub attestation bundle URL",
@@ -362,14 +362,22 @@ function assertValidRepo(owner: string, repo: string) {
   }
 }
 
-function validGitHubApiUrl(value: string): boolean {
+function validGitHubAttestationBundleUrl(value: string): boolean {
   try {
     const url = new URL(value);
-    return url.protocol === "https:" && url.hostname === "api.github.com";
+    return (
+      url.protocol === "https:" &&
+      (url.hostname === "api.github.com" ||
+        url.hostname.endsWith(".blob.core.windows.net"))
+    );
   } catch {
     return false;
   }
 }
+
+export const __testing = {
+  validGitHubAttestationBundleUrl,
+};
 
 function isRateLimited(error: unknown): boolean {
   return (
