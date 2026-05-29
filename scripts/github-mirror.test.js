@@ -63,8 +63,8 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
     const bundleUrl = "https://tmaproduction.blob.core.windows.net/attestations/1/bundle.json?sig=test";
     assert.equal(__testing.validGitHubAttestationBundleUrl(bundleUrl), true);
     assert.equal(__testing.validGitHubAttestationBundleUrl("https://example.com/bundle.json"), false);
-    assert.equal(__testing.shouldSendGitHubToken("https://api.github.com/repos/cli/cli"), true);
-    assert.equal(__testing.shouldSendGitHubToken(bundleUrl), false);
+    assert.equal(__testing.isGitHubApiUrl("https://api.github.com/repos/cli/cli"), true);
+    assert.equal(__testing.isGitHubApiUrl(bundleUrl), false);
 
     const seen = [];
     globalThis.fetch = async (url, init) => {
@@ -111,5 +111,29 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
         authorization: undefined,
       },
     ]);
+  `);
+});
+
+test("GitHub rate limiting only applies to GitHub API responses", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { __testing } from "./web/src/lib/github/mirror.ts";
+
+    const headers = new Headers({ "x-ratelimit-reset": "1780092823" });
+    const githubError = new __testing.GitHubError(
+      403,
+      "rate limited",
+      headers,
+      "https://api.github.com/repos/cli/cli/releases/latest",
+    );
+    const azureError = new __testing.GitHubError(
+      403,
+      "expired SAS token",
+      new Headers(),
+      "https://tmaproduction.blob.core.windows.net/attestations/1/bundle.json?sig=test",
+    );
+
+    assert.equal(__testing.isRateLimited(githubError), true);
+    assert.equal(__testing.isRateLimited(azureError), false);
   `);
 });

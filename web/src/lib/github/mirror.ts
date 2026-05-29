@@ -338,23 +338,27 @@ async function githubJson<T>(
   url: string,
   token: TokenRecord | null,
 ): Promise<T> {
+  const isGitHub = isGitHubApiUrl(url);
   const headers: Record<string, string> = {
-    Accept: "application/vnd.github+json",
     "User-Agent": "mise-versions (https://github.com/jdx/mise-versions)",
-    "X-GitHub-Api-Version": "2022-11-28",
   };
-  if (token && shouldSendGitHubToken(url)) {
+  if (isGitHub) {
+    headers.Accept = "application/vnd.github+json";
+    headers["X-GitHub-Api-Version"] = "2022-11-28";
+  }
+  if (token && isGitHub) {
     headers.Authorization = `Bearer ${token.token}`;
   }
   const response = await fetch(url, { headers, redirect: "manual" });
   if (response.status === 404) {
-    throw new GitHubError(404, "Not found", response.headers);
+    throw new GitHubError(404, "Not found", response.headers, url);
   }
   if (!response.ok) {
     throw new GitHubError(
       response.status,
       await response.text(),
       response.headers,
+      url,
     );
   }
   return response.json();
@@ -383,7 +387,10 @@ function validGitHubAttestationBundleUrl(value: string): boolean {
   }
 }
 
-function shouldSendGitHubToken(value: string): boolean {
+function isGitHubApiUrl(value: string | undefined): boolean {
+  if (!value) {
+    return false;
+  }
   try {
     return new URL(value).hostname === "api.github.com";
   } catch {
@@ -391,14 +398,10 @@ function shouldSendGitHubToken(value: string): boolean {
   }
 }
 
-export const __testing = {
-  shouldSendGitHubToken,
-  validGitHubAttestationBundleUrl,
-};
-
 function isRateLimited(error: unknown): boolean {
   return (
     error instanceof GitHubError &&
+    isGitHubApiUrl(error.url) &&
     (error.status === 403 || error.status === 429)
   );
 }
@@ -422,7 +425,15 @@ class GitHubError extends Error {
     readonly status: number,
     message: string,
     readonly headers: Headers,
+    readonly url?: string,
   ) {
     super(message);
   }
 }
+
+export const __testing = {
+  GitHubError,
+  isGitHubApiUrl,
+  isRateLimited,
+  validGitHubAttestationBundleUrl,
+};
