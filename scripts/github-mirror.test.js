@@ -60,8 +60,13 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
       __testing,
       getCachedGitHubAttestations,
     } from "./web/src/lib/github/mirror.ts";
+    import { compress } from "snappyjs";
 
     const bundleUrl = "https://tmaproduction.blob.core.windows.net/attestations/1/bundle.json?sig=test";
+    const bundle = { mediaType: "application/vnd.dev.sigstore.bundle.v0.3+json" };
+    const compressedBundle = compress(
+      new TextEncoder().encode(JSON.stringify(bundle)),
+    );
     const token = { id: 1, token: "secret-github-token" };
     assert.equal(__testing.validGitHubAttestationBundleUrl(bundleUrl), true);
     assert.equal(__testing.validGitHubAttestationBundleUrl("https://example.com/bundle.json"), false);
@@ -88,7 +93,10 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
         }), { status: 200 });
       }
       if (String(url) === bundleUrl) {
-        return new Response(JSON.stringify({ mediaType: "application/vnd.dev.sigstore.bundle.v0.3+json" }), { status: 200 });
+        return new Response(compressedBundle, {
+          status: 200,
+          headers: { "Content-Type": "application/x-snappy" },
+        });
       }
       return new Response("unexpected URL", { status: 500 });
     };
@@ -108,9 +116,7 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
       "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0",
     );
 
-    assert.deepEqual(response.attestations[0].bundle, {
-      mediaType: "application/vnd.dev.sigstore.bundle.v0.3+json",
-    });
+    assert.deepEqual(response.attestations[0].bundle, bundle);
     assert.deepEqual(seen, [
       {
         url: "https://api.github.com/repos/cli/cli/attestations/sha256%3A02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0?per_page=30",

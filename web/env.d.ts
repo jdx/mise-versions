@@ -30,3 +30,7 @@ interface Env {
 declare namespace App {
   interface Locals extends Runtime {}
 }
+
+declare module "snappyjs" {
+  export function uncompress(input: Uint8Array): Uint8Array;
+}

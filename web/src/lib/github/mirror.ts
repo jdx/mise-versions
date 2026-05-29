@@ -1,4 +1,5 @@
 import { drizzle } from "drizzle-orm/d1";
+import { uncompress } from "snappyjs";
 import { setupDatabase } from "../../../../src/database";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
@@ -351,6 +352,16 @@ async function githubJson<T>(
       response.headers,
       url,
     );
+  }
+  return readJsonResponse(response);
+}
+
+async function readJsonResponse<T>(response: Response): Promise<T> {
+  const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
+  if (contentType.split(";")[0].trim() === "application/x-snappy") {
+    const bytes = await response.arrayBuffer();
+    const json = new TextDecoder().decode(uncompress(new Uint8Array(bytes)));
+    return JSON.parse(json);
   }
   return response.json();
 }
