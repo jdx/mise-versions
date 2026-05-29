@@ -15,7 +15,7 @@ function runMirrorTest(source) {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`.trim());
 }
 
-test("GitHub release mirror treats empty assets as a cache miss", () => {
+test("GitHub release mirror caches empty assets as a short cache miss", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
     import {
@@ -23,6 +23,7 @@ test("GitHub release mirror treats empty assets as a cache miss", () => {
       githubStatus,
     } from "./web/src/lib/github/mirror.ts";
 
+    const writes = [];
     globalThis.fetch = async () =>
       new Response(JSON.stringify({
         tag_name: "v1.0.0",
@@ -37,9 +38,7 @@ test("GitHub release mirror treats empty assets as a cache miss", () => {
       DB: {},
       GITHUB_CACHE: {
         get: async () => null,
-        put: async () => {
-          throw new Error("empty releases should not be cached");
-        },
+        put: async (key, value, options) => writes.push({ key, value, options }),
       },
     };
 
@@ -47,10 +46,13 @@ test("GitHub release mirror treats empty assets as a cache miss", () => {
       () => getCachedGitHubRelease(env, "owner", "repo", "latest"),
       (error) => githubStatus(error) === 404,
     );
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].key, "github:release:owner/repo:latest");
+    assert.deepEqual(writes[0].options, { expirationTtl: 1800 });
   `);
 });
 
-test("GitHub attestations hydrate signed blob bundle URLs", () => {
+test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
     import {
@@ -61,10 +63,15 @@ test("GitHub attestations hydrate signed blob bundle URLs", () => {
     const bundleUrl = "https://tmaproduction.blob.core.windows.net/attestations/1/bundle.json?sig=test";
     assert.equal(__testing.validGitHubAttestationBundleUrl(bundleUrl), true);
     assert.equal(__testing.validGitHubAttestationBundleUrl("https://example.com/bundle.json"), false);
+    assert.equal(__testing.shouldSendGitHubToken("https://api.github.com/repos/cli/cli"), true);
+    assert.equal(__testing.shouldSendGitHubToken(bundleUrl), false);
 
     const seen = [];
-    globalThis.fetch = async (url) => {
-      seen.push(String(url));
+    globalThis.fetch = async (url, init) => {
+      seen.push({
+        url: String(url),
+        authorization: init?.headers?.Authorization,
+      });
       if (String(url).startsWith("https://api.github.com/repos/cli/cli/attestations/")) {
         return new Response(JSON.stringify({
           attestations: [{ bundle: null, bundle_url: bundleUrl }],
@@ -95,8 +102,14 @@ test("GitHub attestations hydrate signed blob bundle URLs", () => {
       mediaType: "application/vnd.dev.sigstore.bundle.v0.3+json",
     });
     assert.deepEqual(seen, [
-      "https://api.github.com/repos/cli/cli/attestations/sha256%3A02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0?per_page=30",
-      bundleUrl,
+      {
+        url: "https://api.github.com/repos/cli/cli/attestations/sha256%3A02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0?per_page=30",
+        authorization: undefined,
+      },
+      {
+        url: bundleUrl,
+        authorization: undefined,
+      },
     ]);
   `);
 });

@@ -3,6 +3,8 @@ import { setupDatabase } from "../../../../src/database";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
+const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
+const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
 const NEGATIVE_ATTESTATION_FRESH_MS = 30 * 60 * 1000;
 const EDGE_SHORT_TTL_SECONDS = 10 * 60;
@@ -118,18 +120,31 @@ export async function getCachedGitHubRelease(
   repo: string,
   tag: string,
 ): Promise<GitHubRelease> {
-  return getOrRefresh({
+  const release = await getOrRefresh({
     env,
     cacheKey: `github:release:${owner}/${repo}:${tag}`,
     isFresh: (entry) =>
       (tag !== "latest" && entry.data.immutable === true) ||
-      Date.now() - entry.cached_at < RELEASE_FRESH_MS,
+      Date.now() - entry.cached_at <
+        (entry.data.assets.length === 0
+          ? EMPTY_RELEASE_FRESH_MS
+          : RELEASE_FRESH_MS),
     fetcher: (token) => fetchGitHubRelease(owner, repo, tag, token),
     expirationTtl: (data) =>
-      tag !== "latest" && data.immutable === true
-        ? undefined
-        : CACHE_TTL_SECONDS,
+      data.assets.length === 0
+        ? EMPTY_RELEASE_CACHE_TTL_SECONDS
+        : tag !== "latest" && data.immutable === true
+          ? undefined
+          : CACHE_TTL_SECONDS,
   });
+  if (release.assets.length === 0) {
+    throw new GitHubError(
+      404,
+      "GitHub release response did not include assets",
+      new Headers(),
+    );
+  }
+  return release;
 }
 
 export async function getCachedGitHubAttestations(
@@ -245,13 +260,6 @@ async function fetchGitHubRelease(
     Number.isFinite(publishedAt) &&
     Date.now() - publishedAt > RELEASE_IMMUTABLE_AFTER_MS;
   const assets = data.assets ?? [];
-  if (assets.length === 0) {
-    throw new GitHubError(
-      404,
-      "GitHub release response did not include assets",
-      new Headers(),
-    );
-  }
 
   return {
     tag_name: data.tag_name,
@@ -335,7 +343,7 @@ async function githubJson<T>(
     "User-Agent": "mise-versions (https://github.com/jdx/mise-versions)",
     "X-GitHub-Api-Version": "2022-11-28",
   };
-  if (token) {
+  if (token && shouldSendGitHubToken(url)) {
     headers.Authorization = `Bearer ${token.token}`;
   }
   const response = await fetch(url, { headers, redirect: "manual" });
@@ -375,7 +383,16 @@ function validGitHubAttestationBundleUrl(value: string): boolean {
   }
 }
 
+function shouldSendGitHubToken(value: string): boolean {
+  try {
+    return new URL(value).hostname === "api.github.com";
+  } catch {
+    return false;
+  }
+}
+
 export const __testing = {
+  shouldSendGitHubToken,
   validGitHubAttestationBundleUrl,
 };
 
