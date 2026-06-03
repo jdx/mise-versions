@@ -11,6 +11,7 @@ const NEGATIVE_ATTESTATION_FRESH_MS = 30 * 60 * 1000;
 const EDGE_SHORT_TTL_SECONDS = 10 * 60;
 const EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS = 30 * 60;
 const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
+const MAX_GITHUB_REDIRECTS = 3;
 
 interface CacheEntry<T> {
   cached_at: number;
@@ -269,12 +270,24 @@ async function fetchGitHubRelease(
     prerelease: data.prerelease,
     created_at: data.created_at,
     immutable,
-    assets: assets.map((asset) => ({
-      name: asset.name,
-      browser_download_url: asset.browser_download_url,
-      url: asset.url,
-      digest: asset.digest ?? null,
-    })),
+    assets: assets.map((asset) => normalizeGitHubAsset(asset, owner, repo)),
+  };
+}
+
+function normalizeGitHubAsset(
+  asset: GitHubAsset,
+  owner: string,
+  repo: string,
+): GitHubAsset {
+  return {
+    name: asset.name,
+    browser_download_url: withRequestedGitHubRepo(
+      asset.browser_download_url,
+      owner,
+      repo,
+    ),
+    url: withRequestedGitHubRepo(asset.url, owner, repo),
+    digest: asset.digest ?? null,
   };
 }
 
@@ -340,20 +353,31 @@ async function githubJson<T>(
   url: string,
   token: TokenRecord | null,
 ): Promise<T> {
-  const headers = githubJsonHeaders(url, token);
-  const response = await fetch(url, { headers, redirect: "manual" });
-  if (response.status === 404) {
-    throw new GitHubError(404, "Not found", response.headers, url);
+  let currentUrl = url;
+  for (let redirects = 0; redirects <= MAX_GITHUB_REDIRECTS; redirects++) {
+    const headers = githubJsonHeaders(currentUrl, token);
+    const response = await fetch(currentUrl, { headers, redirect: "manual" });
+    if (isRedirect(response.status)) {
+      const nextUrl = githubRedirectUrl(currentUrl, response);
+      if (nextUrl && redirects < MAX_GITHUB_REDIRECTS) {
+        currentUrl = nextUrl;
+        continue;
+      }
+    }
+    if (response.status === 404) {
+      throw new GitHubError(404, "Not found", response.headers, currentUrl);
+    }
+    if (!response.ok) {
+      throw new GitHubError(
+        response.status,
+        await response.text(),
+        response.headers,
+        currentUrl,
+      );
+    }
+    return readJsonResponse(response);
   }
-  if (!response.ok) {
-    throw new GitHubError(
-      response.status,
-      await response.text(),
-      response.headers,
-      url,
-    );
-  }
-  return readJsonResponse(response);
+  throw new GitHubError(508, "Too many GitHub redirects", new Headers(), url);
 }
 
 async function readJsonResponse<T>(response: Response): Promise<T> {
@@ -397,6 +421,66 @@ function isGitHubApiUrl(value: string | undefined): boolean {
     return new URL(value).hostname === "api.github.com";
   } catch {
     return false;
+  }
+}
+
+function isRedirect(status: number): boolean {
+  return [301, 302, 303, 307, 308].includes(status);
+}
+
+function githubRedirectUrl(
+  currentUrl: string,
+  response: Response,
+): string | null {
+  const location = response.headers.get("location");
+  if (!location || !isGitHubApiUrl(currentUrl)) {
+    return null;
+  }
+  try {
+    const nextUrl = new URL(location, currentUrl).toString();
+    return isGitHubApiUrl(nextUrl) ? nextUrl : null;
+  } catch {
+    return null;
+  }
+}
+
+function withRequestedGitHubRepo(
+  value: string,
+  owner: string,
+  repo: string,
+): string {
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "https:") {
+      return value;
+    }
+    const segments = url.pathname.split("/");
+    if (
+      url.hostname === "github.com" &&
+      segments.length >= 6 &&
+      segments[3] === "releases" &&
+      segments[4] === "download"
+    ) {
+      segments[1] = owner;
+      segments[2] = repo;
+      url.pathname = segments.join("/");
+      return url.toString();
+    }
+    if (
+      url.hostname === "api.github.com" &&
+      segments.length === 7 &&
+      segments[1] === "repos" &&
+      segments[4] === "releases" &&
+      segments[5] === "assets"
+    ) {
+      segments[2] = owner;
+      segments[3] = repo;
+      url.pathname = segments.join("/");
+      return url.toString();
+    }
+    return value;
+  } catch {
+    return value;
   }
 }
 
@@ -454,7 +538,9 @@ class GitHubError extends Error {
 export const __testing = {
   GitHubError,
   githubJsonHeaders,
+  githubRedirectUrl,
   isGitHubApiUrl,
   isRateLimited,
   validGitHubAttestationBundleUrl,
+  withRequestedGitHubRepo,
 };
