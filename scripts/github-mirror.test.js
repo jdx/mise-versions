@@ -153,6 +153,39 @@ test("GitHub release mirror rewrites canonical asset casing to the requested rep
   `);
 });
 
+test("GitHub release mirror limits redirect chains", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let redirects = 0;
+    globalThis.fetch = async () =>
+      new Response("Moved Permanently", {
+        status: 301,
+        headers: {
+          Location: \`https://api.github.com/repositories/\${++redirects}/releases/latest\`,
+        },
+      });
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async () => {},
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "latest"),
+      (error) => githubStatus(error) === 508,
+    );
+    assert.equal(redirects, 4);
+  `);
+});
+
 test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";

@@ -359,7 +359,15 @@ async function githubJson<T>(
     const response = await fetch(currentUrl, { headers, redirect: "manual" });
     if (isRedirect(response.status)) {
       const nextUrl = githubRedirectUrl(currentUrl, response);
-      if (nextUrl && redirects < MAX_GITHUB_REDIRECTS) {
+      if (nextUrl) {
+        if (redirects >= MAX_GITHUB_REDIRECTS) {
+          throw new GitHubError(
+            508,
+            "Too many GitHub redirects",
+            response.headers,
+            currentUrl,
+          );
+        }
         currentUrl = nextUrl;
         continue;
       }
