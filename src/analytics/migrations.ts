@@ -524,6 +524,9 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_at ON downloads(created_at)`,
   );
   await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_ip ON downloads(created_at, ip_hash)`,
+  );
+  await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`,
   );
   await db.run(
@@ -621,6 +624,9 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   `);
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_at ON version_requests(created_at)`,
+  );
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_ip ON version_requests(created_at, ip_hash)`,
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_hash ON version_requests(ip_hash)`,

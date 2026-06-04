@@ -5,7 +5,6 @@ import { env } from "cloudflare:workers";
 import {
   cachedJsonResponse,
   errorResponse,
-  CACHE_CONTROL,
 } from "../../../lib/api";
 
 // GET /api/stats/mau - Get monthly active users (public)
@@ -16,7 +15,10 @@ export const GET: APIRoute = async ({ locals }) => {
 
     const mau = await analytics.getMAU();
 
-    return cachedJsonResponse({ mau }, CACHE_CONTROL.API);
+    return cachedJsonResponse(
+      { mau },
+      "public, max-age=300, stale-while-revalidate=600",
+    );
   } catch (error) {
     console.error("Get MAU error:", error);
     return errorResponse("Failed to get MAU", 500);

@@ -333,7 +333,7 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
           `
         SELECT COUNT(DISTINCT ip_hash) as mau FROM (
           SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at <= ?
-          UNION
+          UNION ALL
           SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at <= ?
         )
       `,
@@ -349,7 +349,7 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
         .from(
           sql`(
             SELECT ip_hash FROM downloads WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
-            UNION
+            UNION ALL
             SELECT ip_hash FROM version_requests WHERE created_at >= ${dateStart} AND created_at <= ${dateEnd}
           )`,
         )
