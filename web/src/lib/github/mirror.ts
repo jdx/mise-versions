@@ -354,23 +354,31 @@ async function githubJson<T>(
   token: TokenRecord | null,
 ): Promise<T> {
   let currentUrl = url;
-  for (let redirects = 0; redirects <= MAX_GITHUB_REDIRECTS; redirects++) {
+  let redirects = 0;
+  while (true) {
     const headers = githubJsonHeaders(currentUrl, token);
     const response = await fetch(currentUrl, { headers, redirect: "manual" });
     if (isRedirect(response.status)) {
       const nextUrl = githubRedirectUrl(currentUrl, response);
-      if (nextUrl) {
-        if (redirects >= MAX_GITHUB_REDIRECTS) {
-          throw new GitHubError(
-            508,
-            "Too many GitHub redirects",
-            response.headers,
-            currentUrl,
-          );
-        }
-        currentUrl = nextUrl;
-        continue;
+      if (!nextUrl) {
+        throw new GitHubError(
+          502,
+          "Unsafe GitHub redirect",
+          response.headers,
+          currentUrl,
+        );
       }
+      if (redirects >= MAX_GITHUB_REDIRECTS) {
+        throw new GitHubError(
+          508,
+          "Too many GitHub redirects",
+          response.headers,
+          currentUrl,
+        );
+      }
+      redirects += 1;
+      currentUrl = nextUrl;
+      continue;
     }
     if (response.status === 404) {
       throw new GitHubError(404, "Not found", response.headers, currentUrl);
@@ -385,7 +393,6 @@ async function githubJson<T>(
     }
     return readJsonResponse(response);
   }
-  throw new GitHubError(508, "Too many GitHub redirects", new Headers(), url);
 }
 
 async function readJsonResponse<T>(response: Response): Promise<T> {

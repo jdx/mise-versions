@@ -186,6 +186,37 @@ test("GitHub release mirror limits redirect chains", () => {
   `);
 });
 
+test("GitHub release mirror rejects unsafe redirects", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    globalThis.fetch = async () =>
+      new Response("Moved Permanently", {
+        status: 301,
+        headers: {
+          Location: "https://example.com/repos/owner/repo/releases/latest",
+        },
+      });
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async () => {},
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "latest"),
+      (error) => githubStatus(error) === 502,
+    );
+  `);
+});
+
 test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
