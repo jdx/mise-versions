@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { isRegisteredGitHubRepo } from "../web/src/lib/github/registry.ts";
+import {
+  isKnownGitHubAttestationRepo,
+  isRegisteredGitHubRepo,
+} from "../web/src/lib/github/registry.ts";
 
 function analyticsDbReturning(row, seen = {}) {
   return {
@@ -48,4 +51,15 @@ test("GitHub registry allowlist rejects unknown repos", async () => {
   );
 
   assert.equal(allowed, false);
+});
+
+test("GitHub attestation allowlist includes python-build-standalone", () => {
+  assert.equal(
+    isKnownGitHubAttestationRepo("Astral-Sh", "Python-Build-Standalone"),
+    true,
+  );
+});
+
+test("GitHub attestation allowlist rejects unknown repos", () => {
+  assert.equal(isKnownGitHubAttestationRepo("crate-ci", "cargo-release"), false);
 });

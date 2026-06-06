@@ -8,7 +8,10 @@ import {
   validDigest,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
-import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
+import {
+  isKnownGitHubAttestationRepo,
+  isRegisteredGitHubRepo,
+} from "../../../../../../../lib/github/registry";
 
 export const GET: APIRoute = async ({ params }) => {
   const { owner, repo, digest } = params;
@@ -23,7 +26,7 @@ export const GET: APIRoute = async ({ params }) => {
     console.error(`GitHub registry check failed for ${owner}/${repo}:`, error);
     return errorResponse("Failed to check GitHub repo registry", 503);
   }
-  if (!registered) {
+  if (!registered && !isKnownGitHubAttestationRepo(owner, repo)) {
     return errorResponse("GitHub repo is not in the mise registry", 403);
   }
 

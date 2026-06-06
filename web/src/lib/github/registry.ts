@@ -1,5 +1,9 @@
 const GITHUB_BACKEND_PREFIXES = ["aqua", "github", "ubi"] as const;
 
+const GITHUB_ATTESTATION_REPOS = new Set([
+  "astral-sh/python-build-standalone",
+]);
+
 function normalizeRepo(owner: string, repo: string): string {
   return `${owner}/${repo}`.toLowerCase();
 }
@@ -45,4 +49,11 @@ export async function isRegisteredGitHubRepo(
     .first<{ allowed: number }>();
 
   return !!row;
+}
+
+export function isKnownGitHubAttestationRepo(
+  owner: string,
+  repo: string,
+): boolean {
+  return GITHUB_ATTESTATION_REPOS.has(normalizeRepo(owner, repo));
 }
