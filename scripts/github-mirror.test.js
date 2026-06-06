@@ -193,6 +193,83 @@ test("GitHub release mirror rejects redirect loops", () => {
   `);
 });
 
+test("GitHub release mirror negative-caches upstream 404s", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const writes = [];
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response("not found", { status: 404 });
+    };
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v404.0.0"),
+      (error) => githubStatus(error) === 404,
+    );
+
+    assert.equal(fetches, 1);
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].key, "github:release-error:owner/repo:v404.0.0");
+    assert.deepEqual(writes[0].options, { expirationTtl: 1800 });
+    assert.equal(JSON.parse(writes[0].value).data.status, 404);
+  `);
+});
+
+test("GitHub release mirror serves fresh negative cache without fetching", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response("unexpected fetch", { status: 500 });
+    };
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          if (key === "github:release-error:owner/repo:v404.0.0") {
+            return {
+              cached_at: Date.now(),
+              data: { status: 404, message: "Not found" },
+            };
+          }
+          return null;
+        },
+        put: async () => {
+          throw new Error("negative cache hit should not write");
+        },
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v404.0.0"),
+      (error) => githubStatus(error) === 404,
+    );
+
+    assert.equal(fetches, 0);
+  `);
+});
+
 test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
