@@ -27,6 +27,8 @@ export async function isRegisteredGitHubRepo(
         SELECT 1 AS allowed
         FROM tools t
         WHERE lower(t.github) = ?
+           -- Some explicit registry entries use owner/repo as the tool name.
+           -- Do not match the repo basename; that would allow unrelated owners.
            OR lower(t.name) = ?
            OR EXISTS (
              SELECT 1

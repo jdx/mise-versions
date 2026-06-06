@@ -44,7 +44,14 @@ export const GET: APIRoute = async ({ request, locals }) => {
   if (!validRepoPart(owner) || !validRepoPart(repo)) {
     return errorResponse("Invalid owner or repo parameter", 400);
   }
-  if (!(await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo))) {
+  let registered: boolean;
+  try {
+    registered = await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo);
+  } catch (error) {
+    console.error(`GitHub registry check failed for ${owner}/${repo}:`, error);
+    return errorResponse("Failed to check GitHub repo registry", 503);
+  }
+  if (!registered) {
     return errorResponse("GitHub repo is not in the mise registry", 403);
   }
 

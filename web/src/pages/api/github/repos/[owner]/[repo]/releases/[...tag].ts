@@ -16,11 +16,18 @@ export const GET: APIRoute = async ({ params }) => {
     return errorResponse("Invalid GitHub release path", 400);
   }
 
+  let registered: boolean;
   try {
-    if (!(await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo))) {
-      return errorResponse("GitHub repo is not in the mise registry", 403);
-    }
+    registered = await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo);
+  } catch (error) {
+    console.error(`GitHub registry check failed for ${owner}/${repo}:`, error);
+    return errorResponse("Failed to check GitHub repo registry", 503);
+  }
+  if (!registered) {
+    return errorResponse("GitHub repo is not in the mise registry", 403);
+  }
 
+  try {
     const release = await getCachedGitHubRelease(env, owner, repo, tag);
     return jsonResponse(release, 200, releaseCacheHeaders(tag, release));
   } catch (error) {
