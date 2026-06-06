@@ -359,27 +359,31 @@ test("GitHub release mirror does not negative-cache rate-limited 403s", () => {
       githubStatus,
     } from "./web/src/lib/github/mirror.ts";
 
-    const writes = [];
-    globalThis.fetch = async () =>
-      new Response("rate limited", {
-        status: 403,
-        headers: { "x-ratelimit-reset": "1780092823" },
-      });
+    async function writesForHeaders(headers) {
+      const writes = [];
+      globalThis.fetch = async () =>
+        new Response("rate limited", { status: 403, headers });
 
-    const env = {
-      DB: {},
-      GITHUB_CACHE: {
-        get: async () => null,
-        put: async (key, value, options) => writes.push({ key, value, options }),
-      },
-    };
+      const env = {
+        DB: {},
+        GITHUB_CACHE: {
+          get: async () => null,
+          put: async (key, value, options) => writes.push({ key, value, options }),
+        },
+      };
 
-    await assert.rejects(
-      () => getCachedGitHubRelease(env, "owner", "repo", "v403.0.0"),
-      (error) => githubStatus(error) === 403,
+      await assert.rejects(
+        () => getCachedGitHubRelease(env, "owner", "repo", "v403.0.0"),
+        (error) => githubStatus(error) === 403,
+      );
+      return writes;
+    }
+
+    assert.equal(
+      (await writesForHeaders({ "x-ratelimit-reset": "1780092823" })).length,
+      0,
     );
-
-    assert.equal(writes.length, 0);
+    assert.equal((await writesForHeaders({ "retry-after": "60" })).length, 0);
   `);
 });
 
@@ -492,11 +496,27 @@ test("GitHub rate limiting only applies to GitHub API responses", () => {
     import assert from "node:assert/strict";
     import { __testing } from "./web/src/lib/github/mirror.ts";
 
-    const headers = new Headers({ "x-ratelimit-reset": "1780092823" });
+    const resetHeaders = new Headers({ "x-ratelimit-reset": "1780092823" });
+    const retryAfterHeaders = new Headers({ "retry-after": "60" });
+    const retryAfterDateHeaders = new Headers({
+      "retry-after": "Sat, 06 Jun 2026 23:00:00 GMT",
+    });
     const githubError = new __testing.GitHubError(
       403,
       "rate limited",
-      headers,
+      resetHeaders,
+      "https://api.github.com/repos/cli/cli/releases/latest",
+    );
+    const secondaryLimitError = new __testing.GitHubError(
+      403,
+      "secondary rate limit",
+      retryAfterHeaders,
+      "https://api.github.com/repos/cli/cli/releases/latest",
+    );
+    const secondaryLimitDateError = new __testing.GitHubError(
+      403,
+      "secondary rate limit",
+      retryAfterDateHeaders,
       "https://api.github.com/repos/cli/cli/releases/latest",
     );
     const azureError = new __testing.GitHubError(
@@ -513,7 +533,14 @@ test("GitHub rate limiting only applies to GitHub API responses", () => {
     );
 
     assert.equal(__testing.isRateLimited(githubError), true);
+    assert.equal(__testing.isRateLimited(secondaryLimitError), true);
+    assert.equal(__testing.isRateLimited(secondaryLimitDateError), true);
     assert.equal(__testing.isRateLimited(azureError), false);
     assert.equal(__testing.isRateLimited(githubForbidden), false);
+    assert.equal(__testing.resetAt(githubError), "2026-05-29T22:13:43.000Z");
+    assert.equal(
+      __testing.resetAt(secondaryLimitDateError),
+      "2026-06-06T23:00:00.000Z",
+    );
   `);
 });

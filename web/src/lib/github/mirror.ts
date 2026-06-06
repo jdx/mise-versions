@@ -592,7 +592,9 @@ function isRateLimited(error: unknown): boolean {
     error instanceof GitHubError &&
     isGitHubApiUrl(error.url) &&
     (error.status === 429 ||
-      (error.status === 403 && error.headers.has("x-ratelimit-reset")))
+      (error.status === 403 &&
+        (error.headers.has("x-ratelimit-reset") ||
+          error.headers.has("retry-after"))))
   );
 }
 
@@ -601,12 +603,23 @@ function resetAt(error: unknown): string | undefined {
     return undefined;
   }
   const reset = error.headers.get("x-ratelimit-reset");
-  if (!reset) {
+  if (reset) {
+    const epochSeconds = Number(reset);
+    return Number.isFinite(epochSeconds)
+      ? new Date(epochSeconds * 1000).toISOString()
+      : undefined;
+  }
+  const retryAfter = error.headers.get("retry-after");
+  if (!retryAfter) {
     return undefined;
   }
-  const epochSeconds = Number(reset);
-  return Number.isFinite(epochSeconds)
-    ? new Date(epochSeconds * 1000).toISOString()
+  const retryAfterSeconds = Number(retryAfter);
+  if (Number.isFinite(retryAfterSeconds)) {
+    return new Date(Date.now() + retryAfterSeconds * 1000).toISOString();
+  }
+  const retryAfterDate = new Date(retryAfter);
+  return Number.isFinite(retryAfterDate.getTime())
+    ? retryAfterDate.toISOString()
     : undefined;
 }
 
@@ -626,5 +639,6 @@ export const __testing = {
   githubJsonHeaders,
   isGitHubApiUrl,
   isRateLimited,
+  resetAt,
   validGitHubAttestationBundleUrl,
 };
