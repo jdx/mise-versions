@@ -109,6 +109,90 @@ test("GitHub release mirror follows API redirects", () => {
   `);
 });
 
+test("GitHub release mirror rejects redirects outside the GitHub API", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const seen = [];
+    globalThis.fetch = async (url) => {
+      seen.push(String(url));
+      return new Response("", {
+        status: 302,
+        headers: {
+          Location: "https://example.com/repos/owner/repo/releases/tags/v1.0.0",
+        },
+      });
+    };
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async () => {},
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v1.0.0"),
+      (error) => githubStatus(error) === 502,
+    );
+    assert.deepEqual(seen, [
+      "https://api.github.com/repos/owner/repo/releases/tags/v1.0.0",
+    ]);
+  `);
+});
+
+test("GitHub release mirror rejects redirect loops", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const seen = [];
+    globalThis.fetch = async (url) => {
+      const current = String(url);
+      seen.push(current);
+      const redirect = Number(new URL(current).searchParams.get("redirect") ?? "0");
+      return new Response("", {
+        status: 302,
+        headers: {
+          Location:
+            redirect < 3
+              ? "https://api.github.com/repos/owner/repo/releases/tags/v1.0.0?redirect=" + (redirect + 1)
+              : "https://example.com/should-not-be-resolved",
+        },
+      });
+    };
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async () => {},
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v1.0.0"),
+      (error) =>
+        githubStatus(error) === 502 &&
+        error.message === "GitHub API redirect limit exceeded",
+    );
+    assert.deepEqual(seen, [
+      "https://api.github.com/repos/owner/repo/releases/tags/v1.0.0",
+      "https://api.github.com/repos/owner/repo/releases/tags/v1.0.0?redirect=1",
+      "https://api.github.com/repos/owner/repo/releases/tags/v1.0.0?redirect=2",
+      "https://api.github.com/repos/owner/repo/releases/tags/v1.0.0?redirect=3",
+    ]);
+  `);
+});
+
 test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";

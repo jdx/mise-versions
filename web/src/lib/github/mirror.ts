@@ -348,11 +348,21 @@ async function fetchGitHubJsonResponse(
   url: string,
   token: TokenRecord | null,
 ): Promise<Response> {
+  const maxRedirects = 3;
   let currentUrl = url;
-  for (let redirectCount = 0; redirectCount <= 3; redirectCount++) {
+  for (let redirectCount = 0; ; redirectCount++) {
     const headers = githubJsonHeaders(currentUrl, token);
     const response = await fetch(currentUrl, { headers, redirect: "manual" });
     if (isGitHubApiRedirect(response)) {
+      await response.body?.cancel();
+      if (redirectCount >= maxRedirects) {
+        throw new GitHubError(
+          502,
+          "GitHub API redirect limit exceeded",
+          response.headers,
+          currentUrl,
+        );
+      }
       const nextUrl = redirectedGitHubApiUrl(currentUrl, response);
       if (!nextUrl) {
         throw new GitHubError(
@@ -366,15 +376,8 @@ async function fetchGitHubJsonResponse(
       continue;
     }
 
-    return await validateGitHubJsonResponse(response, currentUrl);
+    return validateGitHubJsonResponse(response, currentUrl);
   }
-
-  throw new GitHubError(
-    502,
-    "GitHub API redirect limit exceeded",
-    new Headers(),
-    currentUrl,
-  );
 }
 
 async function validateGitHubJsonResponse(
