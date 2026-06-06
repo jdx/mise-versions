@@ -270,6 +270,146 @@ test("GitHub release mirror serves fresh negative cache without fetching", () =>
   `);
 });
 
+test("GitHub release mirror ignores stale negative cache and fetches", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response(JSON.stringify({
+        tag_name: "v1.0.0",
+        draft: false,
+        prerelease: false,
+        created_at: "2026-01-01T00:00:00Z",
+        published_at: "2026-01-01T00:00:00Z",
+        assets: [{
+          name: "tool.tar.gz",
+          browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+          url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+        }],
+      }), { status: 200 });
+    };
+
+    const deletes = [];
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          if (key === "github:release-error:owner/repo:v1.0.0") {
+            return {
+              cached_at: Date.now() - 31 * 60 * 1000,
+              data: { status: 404, message: "Not found" },
+            };
+          }
+          return null;
+        },
+        put: async () => {},
+        delete: async (key) => deletes.push(key),
+      },
+    };
+
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "v1.0.0");
+
+    assert.equal(fetches, 1);
+    assert.equal(release.tag_name, "v1.0.0");
+    assert.deepEqual(deletes, ["github:release-error:owner/repo:v1.0.0"]);
+  `);
+});
+
+test("GitHub release mirror uses status-specific negative cache TTLs", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    async function ttlForStatus(status) {
+      const writes = [];
+      globalThis.fetch = async () => new Response("failure", { status });
+      const env = {
+        DB: {},
+        GITHUB_CACHE: {
+          get: async () => null,
+          put: async (key, value, options) => writes.push({ key, value, options }),
+        },
+      };
+      await assert.rejects(
+        () => getCachedGitHubRelease(env, "owner", "repo", "v" + status),
+        (error) => githubStatus(error) === status,
+      );
+      return writes[0].options.expirationTtl;
+    }
+
+    assert.equal(await ttlForStatus(500), 60);
+    assert.equal(await ttlForStatus(401), 300);
+    assert.equal(await ttlForStatus(403), 300);
+  `);
+});
+
+test("GitHub release mirror does not negative-cache rate-limited 403s", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const writes = [];
+    globalThis.fetch = async () =>
+      new Response("rate limited", {
+        status: 403,
+        headers: { "x-ratelimit-reset": "1780092823" },
+      });
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v403.0.0"),
+      (error) => githubStatus(error) === 403,
+    );
+
+    assert.equal(writes.length, 0);
+  `);
+});
+
+test("GitHub release mirror preserves upstream error when negative-cache write fails", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    globalThis.fetch = async () => new Response("not found", { status: 404 });
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async () => {
+          throw new Error("KV write failed");
+        },
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v404.0.0"),
+      (error) => githubStatus(error) === 404,
+    );
+  `);
+});
+
 test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
@@ -365,8 +505,15 @@ test("GitHub rate limiting only applies to GitHub API responses", () => {
       new Headers(),
       "https://tmaproduction.blob.core.windows.net/attestations/1/bundle.json?sig=test",
     );
+    const githubForbidden = new __testing.GitHubError(
+      403,
+      "forbidden",
+      new Headers(),
+      "https://api.github.com/repos/cli/cli/releases/latest",
+    );
 
     assert.equal(__testing.isRateLimited(githubError), true);
     assert.equal(__testing.isRateLimited(azureError), false);
+    assert.equal(__testing.isRateLimited(githubForbidden), false);
   `);
 });

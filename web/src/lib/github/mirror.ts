@@ -156,7 +156,14 @@ export async function getCachedGitHubRelease(
             : CACHE_TTL_SECONDS,
     });
   } catch (error) {
-    await cacheReleaseError(env, negativeCacheKey, error);
+    try {
+      await cacheReleaseError(env, negativeCacheKey, error);
+    } catch (cacheError) {
+      console.warn(
+        "failed to persist GitHub release negative cache:",
+        cacheError,
+      );
+    }
     throw error;
   }
   if (release.assets.length === 0) {
@@ -166,6 +173,7 @@ export async function getCachedGitHubRelease(
       new Headers(),
     );
   }
+  await clearCachedReleaseError(env, negativeCacheKey);
   return release;
 }
 
@@ -199,7 +207,7 @@ async function cacheReleaseError(
   if (!(error instanceof GitHubError)) {
     return;
   }
-  const freshMs = releaseErrorFreshMs(error.status);
+  const freshMs = releaseErrorFreshMs(error.status, error);
   if (!freshMs) {
     return;
   }
@@ -216,9 +224,23 @@ async function cacheReleaseError(
   );
 }
 
-function releaseErrorFreshMs(status: number): number | null {
+async function clearCachedReleaseError(
+  env: Env,
+  cacheKey: string,
+): Promise<void> {
+  try {
+    await env.GITHUB_CACHE.delete?.(cacheKey);
+  } catch (error) {
+    console.warn("failed to clear GitHub release negative cache:", error);
+  }
+}
+
+function releaseErrorFreshMs(status: number, error?: unknown): number | null {
   if (status === 404) {
     return NEGATIVE_RELEASE_NOT_FOUND_FRESH_MS;
+  }
+  if (error && isRateLimited(error)) {
+    return null;
   }
   if (status === 401 || status === 403) {
     return NEGATIVE_RELEASE_AUTH_FRESH_MS;
@@ -569,7 +591,8 @@ function isRateLimited(error: unknown): boolean {
   return (
     error instanceof GitHubError &&
     isGitHubApiUrl(error.url) &&
-    (error.status === 403 || error.status === 429)
+    (error.status === 429 ||
+      (error.status === 403 && error.headers.has("x-ratelimit-reset")))
   );
 }
 
