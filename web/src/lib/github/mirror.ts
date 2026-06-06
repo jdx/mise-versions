@@ -340,8 +340,47 @@ async function githubJson<T>(
   url: string,
   token: TokenRecord | null,
 ): Promise<T> {
-  const headers = githubJsonHeaders(url, token);
-  const response = await fetch(url, { headers, redirect: "manual" });
+  const response = await fetchGitHubJsonResponse(url, token);
+  return readJsonResponse(response);
+}
+
+async function fetchGitHubJsonResponse(
+  url: string,
+  token: TokenRecord | null,
+): Promise<Response> {
+  let currentUrl = url;
+  for (let redirectCount = 0; redirectCount <= 3; redirectCount++) {
+    const headers = githubJsonHeaders(currentUrl, token);
+    const response = await fetch(currentUrl, { headers, redirect: "manual" });
+    if (isGitHubApiRedirect(response)) {
+      const nextUrl = redirectedGitHubApiUrl(currentUrl, response);
+      if (!nextUrl) {
+        throw new GitHubError(
+          502,
+          "GitHub API redirect location was invalid",
+          response.headers,
+          currentUrl,
+        );
+      }
+      currentUrl = nextUrl;
+      continue;
+    }
+
+    return await validateGitHubJsonResponse(response, currentUrl);
+  }
+
+  throw new GitHubError(
+    502,
+    "GitHub API redirect limit exceeded",
+    new Headers(),
+    currentUrl,
+  );
+}
+
+async function validateGitHubJsonResponse(
+  response: Response,
+  url: string,
+): Promise<Response> {
   if (response.status === 404) {
     throw new GitHubError(404, "Not found", response.headers, url);
   }
@@ -353,7 +392,31 @@ async function githubJson<T>(
       url,
     );
   }
-  return readJsonResponse(response);
+  return response;
+}
+
+function isGitHubApiRedirect(response: Response): boolean {
+  return (
+    response.status >= 300 &&
+    response.status < 400 &&
+    response.headers.has("location")
+  );
+}
+
+function redirectedGitHubApiUrl(
+  currentUrl: string,
+  response: Response,
+): string | null {
+  const location = response.headers.get("location");
+  if (!location || !isGitHubApiUrl(currentUrl)) {
+    return null;
+  }
+  try {
+    const nextUrl = new URL(location, currentUrl);
+    return nextUrl.hostname === "api.github.com" ? nextUrl.toString() : null;
+  } catch {
+    return null;
+  }
 }
 
 async function readJsonResponse<T>(response: Response): Promise<T> {
