@@ -8,6 +8,7 @@ import {
   validDigest,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
+import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
 
 export const GET: APIRoute = async ({ params }) => {
   const { owner, repo, digest } = params;
@@ -16,6 +17,10 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   try {
+    if (!(await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo))) {
+      return errorResponse("GitHub repo is not in the mise registry", 403);
+    }
+
     const attestations = await getCachedGitHubAttestations(
       env,
       owner,

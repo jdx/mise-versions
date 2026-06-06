@@ -8,6 +8,7 @@ import {
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
+import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
 
 export const GET: APIRoute = async ({ params }) => {
   const { owner, repo, tag } = params;
@@ -16,6 +17,10 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   try {
+    if (!(await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo))) {
+      return errorResponse("GitHub repo is not in the mise registry", 403);
+    }
+
     const release = await getCachedGitHubRelease(env, owner, repo, tag);
     return jsonResponse(release, 200, releaseCacheHeaders(tag, release));
   } catch (error) {
