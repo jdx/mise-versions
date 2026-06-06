@@ -229,6 +229,62 @@ test("GitHub release mirror negative-caches upstream 404s", () => {
   `);
 });
 
+test("GitHub release mirror does not serve stale positive cache after upstream 404", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response("not found", { status: 404 });
+    };
+
+    const writes = [];
+    const deletes = [];
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          if (key === "github:release:owner/repo:v1.0.0") {
+            return {
+              cached_at: Date.now() - 7 * 60 * 60 * 1000,
+              data: {
+                tag_name: "v1.0.0",
+                draft: false,
+                prerelease: false,
+                created_at: "2026-01-01T00:00:00Z",
+                immutable: false,
+                assets: [{
+                  name: "tool.tar.gz",
+                  browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+                  url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+                }],
+              },
+            };
+          }
+          return null;
+        },
+        put: async (key, value, options) => writes.push({ key, value, options }),
+        delete: async (key) => deletes.push(key),
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v1.0.0"),
+      (error) => githubStatus(error) === 404,
+    );
+
+    assert.equal(fetches, 1);
+    assert.deepEqual(deletes, ["github:release:owner/repo:v1.0.0"]);
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].key, "github:release-error:owner/repo:v1.0.0");
+  `);
+});
+
 test("GitHub release mirror serves fresh negative cache without fetching", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";

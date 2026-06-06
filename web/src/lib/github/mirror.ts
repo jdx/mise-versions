@@ -154,6 +154,12 @@ export async function getCachedGitHubRelease(
           : tag !== "latest" && data.immutable === true
             ? undefined
             : CACHE_TTL_SECONDS,
+      useStaleOnError: releaseStaleFallbackAllowed,
+      onFetchError: async (error) => {
+        if (githubStatus(error) === 404) {
+          await deleteCachedRelease(env, cacheKey);
+        }
+      },
     });
   } catch (error) {
     try {
@@ -235,6 +241,14 @@ async function clearCachedReleaseError(
   }
 }
 
+async function deleteCachedRelease(env: Env, cacheKey: string): Promise<void> {
+  try {
+    await env.GITHUB_CACHE.delete?.(cacheKey);
+  } catch (error) {
+    console.warn("failed to delete stale GitHub release cache:", error);
+  }
+}
+
 function releaseErrorFreshMs(status: number, error?: unknown): number | null {
   if (status === 404) {
     return NEGATIVE_RELEASE_NOT_FOUND_FRESH_MS;
@@ -249,6 +263,11 @@ function releaseErrorFreshMs(status: number, error?: unknown): number | null {
     return NEGATIVE_RELEASE_TRANSIENT_FRESH_MS;
   }
   return null;
+}
+
+function releaseStaleFallbackAllowed(error: unknown): boolean {
+  const status = githubStatus(error);
+  return isRateLimited(error) || status === null || status >= 500;
 }
 
 export async function getCachedGitHubAttestations(
@@ -279,12 +298,16 @@ async function getOrRefresh<T>({
   isFresh,
   fetcher,
   expirationTtl,
+  useStaleOnError = () => true,
+  onFetchError,
 }: {
   env: Env;
   cacheKey: string;
   isFresh: (entry: CacheEntry<T>) => boolean;
   fetcher: (token: TokenRecord | null) => Promise<T>;
   expirationTtl?: (data: T) => number | undefined;
+  useStaleOnError?: (error: unknown) => boolean;
+  onFetchError?: (error: unknown) => Promise<void>;
 }): Promise<T> {
   const cached = await env.GITHUB_CACHE.get<CacheEntry<T>>(cacheKey, "json");
   if (cached && isFresh(cached)) {
@@ -306,7 +329,8 @@ async function getOrRefresh<T>({
     if (isRateLimited(error) && token) {
       await markRateLimited(env, token.id, resetAt(error));
     }
-    if (cached) {
+    await onFetchError?.(error);
+    if (cached && useStaleOnError(error)) {
       return cached.data;
     }
     throw error;
