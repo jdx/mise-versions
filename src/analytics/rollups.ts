@@ -222,8 +222,7 @@ export function createRollupFunctions(
       for (const row of aeUsers.rows) aeUserSet.add(row.ip_hash);
       const users = new Set([...d1UserSet, ...aeUserSet]);
 
-      const d1OnlyUsers = [...d1UserSet].filter((ip) => !aeUserSet.has(ip));
-      const total = (aeStats.rows[0]?.total ?? 0) + d1OnlyUsers.length;
+      const total = (d1Stats?.total ?? 0) + (aeStats.rows[0]?.total ?? 0);
       if (total <= 0) return null;
 
       if (d1) {
