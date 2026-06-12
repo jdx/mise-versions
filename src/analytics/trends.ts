@@ -5,6 +5,7 @@ import {
   tools,
   downloads,
   dailyToolStats,
+  dailyToolVersionStats,
   dailyCombinedStats,
   dailyMauStats,
   dailyVersionStats,
@@ -240,22 +241,43 @@ export function createTrendsFunctions(
 
       const now = Math.floor(Date.now() / 1000);
       const startTimestamp = now - days * 86400;
+      const startDate = new Date(startTimestamp * 1000)
+        .toISOString()
+        .split("T")[0];
 
-      const versionData = await db
+      let versionData = await db
         .select({
-          version: downloads.version,
-          count: sql<number>`count(*)`,
+          version: dailyToolVersionStats.version,
+          count: sql<number>`sum(${dailyToolVersionStats.downloads})`,
         })
-        .from(downloads)
+        .from(dailyToolVersionStats)
         .where(
           and(
-            eq(downloads.tool_id, toolRecord.id),
-            sql`${downloads.created_at} >= ${startTimestamp}`,
+            eq(dailyToolVersionStats.tool_id, toolRecord.id),
+            sql`${dailyToolVersionStats.date} >= ${startDate}`,
           ),
         )
-        .groupBy(downloads.version)
-        .orderBy(sql`count(*) DESC`)
+        .groupBy(dailyToolVersionStats.version)
+        .orderBy(sql`sum(${dailyToolVersionStats.downloads}) DESC`)
         .all();
+
+      if (versionData.length === 0) {
+        versionData = await db
+          .select({
+            version: downloads.version,
+            count: sql<number>`count(*)`,
+          })
+          .from(downloads)
+          .where(
+            and(
+              eq(downloads.tool_id, toolRecord.id),
+              sql`${downloads.created_at} >= ${startTimestamp}`,
+            ),
+          )
+          .groupBy(downloads.version)
+          .orderBy(sql`count(*) DESC`)
+          .all();
+      }
 
       const totalDownloads = versionData.reduce((sum, v) => sum + v.count, 0);
 
@@ -269,25 +291,43 @@ export function createTrendsFunctions(
         };
       });
 
-      const dailyData = await db
+      let dailyData = await db
         .select({
-          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
-          version: downloads.version,
-          count: sql<number>`count(*)`,
+          date: dailyToolVersionStats.date,
+          version: dailyToolVersionStats.version,
+          count: dailyToolVersionStats.downloads,
         })
-        .from(downloads)
+        .from(dailyToolVersionStats)
         .where(
           and(
-            eq(downloads.tool_id, toolRecord.id),
-            sql`${downloads.created_at} >= ${startTimestamp}`,
+            eq(dailyToolVersionStats.tool_id, toolRecord.id),
+            sql`${dailyToolVersionStats.date} >= ${startDate}`,
           ),
         )
-        .groupBy(
-          sql`date(${downloads.created_at}, 'unixepoch')`,
-          downloads.version,
-        )
-        .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .orderBy(dailyToolVersionStats.date)
         .all();
+
+      if (dailyData.length === 0) {
+        dailyData = await db
+          .select({
+            date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
+            version: downloads.version,
+            count: sql<number>`count(*)`,
+          })
+          .from(downloads)
+          .where(
+            and(
+              eq(downloads.tool_id, toolRecord.id),
+              sql`${downloads.created_at} >= ${startTimestamp}`,
+            ),
+          )
+          .groupBy(
+            sql`date(${downloads.created_at}, 'unixepoch')`,
+            downloads.version,
+          )
+          .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+          .all();
+      }
 
       const topVersions = versions.slice(0, 10).map((v) => v.version);
       const timeline: Array<{
