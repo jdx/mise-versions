@@ -5,7 +5,7 @@ import test from "node:test";
 function runValidationTest(source) {
   const result = spawnSync(
     process.execPath,
-    ["--import", "tsx", "--input-type=module"],
+    ["--import", "tsx", "--input-type=module", "-"],
     {
       cwd: new URL("..", import.meta.url),
       input: source,
