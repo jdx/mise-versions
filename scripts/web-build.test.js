@@ -59,3 +59,13 @@ describe("web build CSS", () => {
     }
   });
 });
+
+describe("web build static version files", () => {
+  it("includes TOML assets under /data", () => {
+    const nodeToml = join(DIST_CLIENT_DIR, "data", "node.toml");
+
+    assert.ok(existsSync(nodeToml), "missing static /data/node.toml asset");
+
+    assert.match(readFileSync(nodeToml, "utf8"), /^\[versions\]/);
+  });
+});

@@ -14,7 +14,16 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "web/dist/client",
-    "run_worker_first": true,
+    "run_worker_first": [
+      "/api/*",
+      "/admin*",
+      "/badge/*",
+      "/github/*",
+      "/health",
+      "/stats*",
+      "/tools/*",
+      "/webhooks/*",
+    ],
   },
   "observability": {
     "enabled": true,
