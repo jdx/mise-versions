@@ -4,6 +4,7 @@ export interface AnalyticsEngineSqlConfig {
   accountId?: string;
   apiToken?: string;
   dataset?: string;
+  cutoverDate?: string;
 }
 
 export interface AnalyticsEngineQueryResult<T> {
@@ -58,11 +59,32 @@ export function writeVersionRequestEvent(
 }
 
 export function hasAnalyticsEngineSql(config?: AnalyticsEngineSqlConfig) {
-  return Boolean(config?.accountId && config?.apiToken && config?.dataset);
+  return Boolean(
+    config?.accountId && config?.apiToken && analyticsEngineDataset(config),
+  );
 }
 
 export function analyticsEngineDataset(config?: AnalyticsEngineSqlConfig) {
   return config?.dataset || ANALYTICS_EVENTS_DATASET;
+}
+
+export function analyticsEngineCutoverDate(
+  config?: AnalyticsEngineSqlConfig,
+): string | undefined {
+  const cutoverDate = config?.cutoverDate;
+  if (!cutoverDate) return undefined;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(cutoverDate)) {
+    throw new Error(`Invalid Analytics Engine cutover date: ${cutoverDate}`);
+  }
+  return cutoverDate;
+}
+
+export function analyticsEngineCoversDate(
+  config: AnalyticsEngineSqlConfig | undefined,
+  date: string,
+): boolean {
+  const cutoverDate = analyticsEngineCutoverDate(config);
+  return !cutoverDate || date >= cutoverDate;
 }
 
 export async function queryAnalyticsEngine<T>(

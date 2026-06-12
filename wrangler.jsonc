@@ -63,6 +63,7 @@
   "vars": {
     "ENVIRONMENT": "production",
     "ANALYTICS_ENGINE_DATASET": "mise_analytics_events",
+    "ANALYTICS_ENGINE_CUTOVER_DATE": "2026-06-12",
   },
   // Environment variables that need to be set via wrangler secret:
   // ANALYTICS_ENGINE_ACCOUNT_ID - Cloudflare account id for Analytics Engine SQL API

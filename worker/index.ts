@@ -2,10 +2,8 @@
 // Wraps Astro's generated worker and adds scheduled handler support
 import { drizzle } from "drizzle-orm/d1";
 import { runMigrations } from "../src/migrations.js";
-import {
-  runAnalyticsMigrations,
-  setupAnalytics,
-} from "../src/analytics/index.js";
+import { runAnalyticsMigrations } from "../src/analytics/index.js";
+import { runMaintenancePipeline } from "../src/maintenance-pipeline.js";
 
 // Type for environment bindings
 interface Env {
@@ -15,6 +13,7 @@ interface Env {
   ANALYTICS_ENGINE_ACCOUNT_ID?: string;
   ANALYTICS_ENGINE_API_TOKEN?: string;
   ANALYTICS_ENGINE_DATASET?: string;
+  ANALYTICS_ENGINE_CUTOVER_DATE?: string;
   ASSETS: Fetcher;
   GITHUB_CACHE: KVNamespace;
   GITHUB_APP_ID: string;
@@ -80,46 +79,13 @@ export default {
     // Ensure migrations are run
     await ensureMigrations(env);
 
-    const analyticsDb = drizzle(env.ANALYTICS_DB);
-    const analytics = setupAnalytics(analyticsDb, {
-      analyticsEngine: {
-        accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
-        apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
-        dataset: env.ANALYTICS_EVENTS
-          ? env.ANALYTICS_ENGINE_DATASET
-          : undefined,
-      },
-    });
-
-    // 1. Aggregate old data (data older than 90 days)
-    const aggregateResult = await analytics.aggregateOldData();
-    console.log(
-      `Aggregation complete: ${aggregateResult.aggregated} groups aggregated, ${aggregateResult.deleted} rows deleted`,
-    );
-
-    // 2. Populate rollup tables for yesterday (and today so far)
-    const now = new Date();
-    const yesterday = new Date(now);
-    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
-    const yesterdayStr = yesterday.toISOString().split("T")[0];
-    const todayStr = now.toISOString().split("T")[0];
-
-    // Populate yesterday's full data
-    const yesterdayResult = await analytics.populateRollupTables(
-      yesterdayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Rollup tables populated for ${yesterdayStr}: ${yesterdayResult.toolStats} tools, ${yesterdayResult.backendStats} backends`,
-    );
-
-    // Also update today's partial data
-    const todayResult = await analytics.populateRollupTables(
-      todayStr,
-      env.ANALYTICS_DB,
-    );
-    console.log(
-      `Rollup tables updated for ${todayStr}: ${todayResult.toolStats} tools, ${todayResult.backendStats} backends`,
-    );
+    const result = await runMaintenancePipeline(env);
+    for (const step of result.steps) {
+      if (step.ok) {
+        console.log(`Scheduled ${step.name} complete:`, step.detail);
+      } else {
+        console.error(`Scheduled ${step.name} failed:`, step.error);
+      }
+    }
   },
 };

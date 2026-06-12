@@ -23,6 +23,7 @@ interface PipelineEnv {
   ANALYTICS_ENGINE_ACCOUNT_ID?: string;
   ANALYTICS_ENGINE_API_TOKEN?: string;
   ANALYTICS_ENGINE_DATASET?: string;
+  ANALYTICS_ENGINE_CUTOVER_DATE?: string;
 }
 
 export interface StepResult {
@@ -49,7 +50,8 @@ export async function runMaintenancePipeline(
     analyticsEngine: {
       accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
       apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
-      dataset: env.ANALYTICS_EVENTS ? env.ANALYTICS_ENGINE_DATASET : undefined,
+      dataset: env.ANALYTICS_ENGINE_DATASET,
+      cutoverDate: env.ANALYTICS_ENGINE_CUTOVER_DATE,
     },
   });
   const now = new Date();

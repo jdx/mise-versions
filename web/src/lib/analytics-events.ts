@@ -5,9 +5,7 @@ let warnedMissingSqlCredentials = false;
 export function analyticsEventsBinding(): AnalyticsEngineDataset | undefined {
   if (
     env.ANALYTICS_EVENTS &&
-    (!env.ANALYTICS_ENGINE_ACCOUNT_ID ||
-      !env.ANALYTICS_ENGINE_API_TOKEN ||
-      !env.ANALYTICS_ENGINE_DATASET)
+    (!env.ANALYTICS_ENGINE_ACCOUNT_ID || !env.ANALYTICS_ENGINE_API_TOKEN)
   ) {
     if (!warnedMissingSqlCredentials) {
       warnedMissingSqlCredentials = true;
@@ -27,8 +25,7 @@ export function analyticsEventsBinding(): AnalyticsEngineDataset | undefined {
   if (
     !env.ANALYTICS_EVENTS ||
     !env.ANALYTICS_ENGINE_ACCOUNT_ID ||
-    !env.ANALYTICS_ENGINE_API_TOKEN ||
-    !env.ANALYTICS_ENGINE_DATASET
+    !env.ANALYTICS_ENGINE_API_TOKEN
   ) {
     return undefined;
   }

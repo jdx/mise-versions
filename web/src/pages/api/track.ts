@@ -38,8 +38,6 @@ export async function trackDownloadRequest({
         },
       );
     }
-    const clientIP = getClientIP(request);
-    const ipHash = await hashIP(clientIP, env.API_SECRET);
 
     // Check if request is from CI environment
     const isCI = request.headers.get("x-mise-ci") === "true";
@@ -66,6 +64,9 @@ export async function trackDownloadRequest({
         },
       );
     }
+
+    const clientIP = getClientIP(request);
+    const ipHash = await hashIP(clientIP, env.API_SECRET);
 
     const db = drizzle(env.ANALYTICS_DB);
     const analyticsEvents = analyticsEventsBinding();

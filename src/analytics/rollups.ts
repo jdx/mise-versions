@@ -18,6 +18,8 @@ import {
   dailyVersionStats,
 } from "./schema.js";
 import {
+  analyticsEngineCoversDate,
+  analyticsEngineCutoverDate,
   analyticsEngineDataset,
   dateRangeSql,
   hasAnalyticsEngineSql,
@@ -150,6 +152,7 @@ export function createRollupFunctions(
     d1?: D1Database,
   ): Promise<boolean | null> {
     if (!hasAnalyticsEngineSql(analyticsEngine)) return null;
+    if (!analyticsEngineCoversDate(analyticsEngine, date)) return null;
 
     const { start, end } = dateRangeSql(date);
     const table = datasetSql();
@@ -198,6 +201,7 @@ export function createRollupFunctions(
     toolBackendStats: number;
   } | null> {
     if (!hasAnalyticsEngineSql(analyticsEngine)) return null;
+    if (!analyticsEngineCoversDate(analyticsEngine, date)) return null;
 
     const { start, end } = dateRangeSql(date);
     const table = datasetSql();
@@ -206,6 +210,33 @@ export function createRollupFunctions(
       AND timestamp <= toDateTime('${end}')
     `;
     const downloadDedupe = "concat(index1, ':', blob2, ':', blob3)";
+    const dedupedDownloads = `
+      WITH deduped AS (
+        SELECT
+          index1 AS ip_hash,
+          blob2 AS tool,
+          blob3 AS version,
+          blob4 AS os,
+          blob5 AS arch,
+          blob7 AS backend_type
+        FROM (
+          SELECT
+            index1,
+            blob2,
+            blob3,
+            blob4,
+            blob5,
+            blob7,
+            row_number() OVER (
+              PARTITION BY ${downloadDedupe}
+              ORDER BY timestamp DESC
+            ) AS rn
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+        )
+        WHERE rn = 1
+      )
+    `;
 
     const [
       globalRows,
@@ -219,11 +250,11 @@ export function createRollupFunctions(
       queryAnalyticsEngine<AeCountRow>(
         analyticsEngine!,
         `
+          ${dedupedDownloads}
           SELECT
-            count(DISTINCT ${downloadDedupe}) AS total,
-            count(DISTINCT index1) AS unique_users
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
+            count(*) AS total,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM deduped
         `,
       ),
       queryAnalyticsEngine<{ unique_users: number }>(
@@ -237,61 +268,61 @@ export function createRollupFunctions(
       queryAnalyticsEngine<AeToolRow>(
         analyticsEngine!,
         `
+          ${dedupedDownloads}
           SELECT
-            blob2 AS tool,
-            count(DISTINCT concat(index1, ':', blob3)) AS downloads,
-            count(DISTINCT index1) AS unique_users
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
+            tool,
+            count(*) AS downloads,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM deduped
           GROUP BY tool
         `,
       ),
       queryAnalyticsEngine<AeBackendRow>(
         analyticsEngine!,
         `
+          ${dedupedDownloads}
           SELECT
-            blob7 AS backend_type,
-            count(DISTINCT ${downloadDedupe}) AS downloads,
-            count(DISTINCT index1) AS unique_users
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
+            backend_type,
+            count(*) AS downloads,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM deduped
           GROUP BY backend_type
         `,
       ),
       queryAnalyticsEngine<AeToolBackendRow>(
         analyticsEngine!,
         `
+          ${dedupedDownloads}
           SELECT
-            blob2 AS tool,
-            blob7 AS backend_type,
-            count(DISTINCT concat(index1, ':', blob3)) AS downloads
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
+            tool,
+            backend_type,
+            count(*) AS downloads
+          FROM deduped
           GROUP BY tool, backend_type
         `,
       ),
       queryAnalyticsEngine<AeVersionRow>(
         analyticsEngine!,
         `
+          ${dedupedDownloads}
           SELECT
-            blob2 AS tool,
-            blob3 AS version,
-            count(DISTINCT index1) AS downloads
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
+            tool,
+            version,
+            count(*) AS downloads
+          FROM deduped
           GROUP BY tool, version
         `,
       ),
       queryAnalyticsEngine<AePlatformRow>(
         analyticsEngine!,
         `
+          ${dedupedDownloads}
           SELECT
-            blob2 AS tool,
-            blob4 AS os,
-            blob5 AS arch,
-            count(DISTINCT concat(index1, ':', blob3)) AS downloads
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
+            tool,
+            os,
+            arch,
+            count(*) AS downloads
+          FROM deduped
           GROUP BY tool, os, arch
         `,
       ),
@@ -299,11 +330,11 @@ export function createRollupFunctions(
 
     const globalStats = globalRows.rows[0];
     const combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
-    if ((!globalStats || globalStats.total <= 0) && combinedDau <= 0) {
+    if (!globalStats && combinedDau <= 0) {
       return null;
     }
 
-    if (globalStats && globalStats.total > 0) {
+    if (globalStats) {
       await runStatement(
         sql`
           INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
@@ -432,6 +463,7 @@ export function createRollupFunctions(
     d1?: D1Database,
   ): Promise<boolean | null> {
     if (!hasAnalyticsEngineSql(analyticsEngine)) return null;
+    if (!analyticsEngineCoversDate(analyticsEngine, date)) return null;
 
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
       throw new Error(`Invalid date for Analytics Engine query: ${date}`);
@@ -442,6 +474,82 @@ export function createRollupFunctions(
     startDate.setUTCDate(startDate.getUTCDate() - 30);
     const start = startDate.toISOString().replace("T", " ").slice(0, 19);
     const table = datasetSql();
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+
+    if (cutoverDate) {
+      const cutoverTimestamp = Math.floor(
+        new Date(`${cutoverDate}T00:00:00Z`).getTime() / 1000,
+      );
+      const startTimestamp = Math.floor(startDate.getTime() / 1000);
+      const endTimestamp = Math.floor(
+        new Date(`${date}T23:59:59Z`).getTime() / 1000,
+      );
+      const users = new Set<string>();
+
+      if (startTimestamp < cutoverTimestamp) {
+        const d1End = Math.min(cutoverTimestamp, endTimestamp + 1);
+        const d1Users = d1
+          ? await d1
+              .prepare(
+                `
+                  SELECT DISTINCT ip_hash FROM (
+                    SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at < ?
+                    UNION
+                    SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at < ?
+                  )
+                `,
+              )
+              .bind(startTimestamp, d1End, startTimestamp, d1End)
+              .all<{ ip_hash: string }>()
+          : {
+              results: await db.all<{ ip_hash: string }>(sql`
+                SELECT DISTINCT ip_hash FROM (
+                  SELECT ip_hash FROM downloads
+                  WHERE created_at >= ${startTimestamp} AND created_at < ${d1End}
+                  UNION
+                  SELECT ip_hash FROM version_requests
+                  WHERE created_at >= ${startTimestamp} AND created_at < ${d1End}
+                )
+              `),
+            };
+        for (const row of d1Users.results ?? []) users.add(row.ip_hash);
+      }
+
+      if (endTimestamp >= cutoverTimestamp) {
+        const aeStart = new Date(
+          Math.max(startTimestamp, cutoverTimestamp) * 1000,
+        )
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const result = await queryAnalyticsEngine<{ ip_hash: string }>(
+          analyticsEngine!,
+          `
+            SELECT DISTINCT index1 AS ip_hash
+            FROM ${table}
+            WHERE
+              blob1 IN ('download', 'version_request')
+              AND timestamp >= toDateTime('${aeStart}')
+              AND timestamp <= toDateTime('${end}')
+          `,
+        );
+        for (const row of result.rows) users.add(row.ip_hash);
+      }
+
+      if (users.size <= 0) return null;
+
+      await runStatement(
+        sql`
+          INSERT OR REPLACE INTO daily_mau_stats (date, mau)
+          VALUES (${date}, ${users.size})
+        `,
+        d1,
+        "INSERT OR REPLACE INTO daily_mau_stats (date, mau) VALUES (?, ?)",
+        [date, users.size],
+      );
+
+      return true;
+    }
 
     const result = await queryAnalyticsEngine<{ mau: number }>(
       analyticsEngine!,

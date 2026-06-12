@@ -16,7 +16,14 @@ interface VersionUpdatesData {
 
 // Get the D1 database from Cloudflare runtime
 const db = drizzle(env.ANALYTICS_DB);
-const analytics = setupAnalytics(db);
+const analytics = setupAnalytics(db, {
+  analyticsEngine: {
+    accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
+    apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
+    dataset: env.ANALYTICS_ENGINE_DATASET,
+    cutoverDate: env.ANALYTICS_ENGINE_CUTOVER_DATE,
+  },
+});
 
 // Load tools from D1 database
 let toolsData: ToolsData = { tool_count: 0, tools: [] };
@@ -555,4 +562,3 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
     </div>
   </div>
 </Layout>
-
