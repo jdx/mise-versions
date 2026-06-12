@@ -67,11 +67,26 @@ interface AePlatformRow {
   downloads: number;
 }
 
+interface AeDownloadRow {
+  ip_hash: string;
+  tool: string;
+  version: string;
+  os: string;
+  arch: string;
+  backend_type: string;
+  sample_weight: number;
+}
+
 export function createRollupFunctions(
   db: ReturnType<typeof drizzle>,
   options: RollupOptions = {},
 ) {
   const analyticsEngine = options.analyticsEngine;
+
+  function aeNumber(value: unknown): number {
+    const n = Number(value ?? 0);
+    return Number.isFinite(n) ? n : 0;
+  }
 
   function datasetSql() {
     return analyticsEngineDataset(analyticsEngine);
@@ -208,7 +223,7 @@ export function createRollupFunctions(
       const aeStats = await queryAnalyticsEngine<{ total: number }>(
         analyticsEngine!,
         `
-          SELECT count(*) AS total
+          SELECT sum(_sample_interval) AS total
           FROM ${table}
           WHERE
             blob1 = 'version_request'
@@ -222,7 +237,7 @@ export function createRollupFunctions(
       for (const row of aeUsers.rows) aeUserSet.add(row.ip_hash);
       const users = new Set([...d1UserSet, ...aeUserSet]);
 
-      const total = (d1Stats?.total ?? 0) + (aeStats.rows[0]?.total ?? 0);
+      const total = (d1Stats?.total ?? 0) + aeNumber(aeStats.rows[0]?.total);
       if (total <= 0) return null;
 
       if (d1) {
@@ -246,7 +261,7 @@ export function createRollupFunctions(
       analyticsEngine!,
       `
         SELECT
-          count(*) AS total,
+          sum(_sample_interval) AS total,
           count(DISTINCT index1) AS unique_users
         FROM ${table}
         WHERE
@@ -257,19 +272,21 @@ export function createRollupFunctions(
     );
 
     const stats = result.rows[0];
-    if (!stats || stats.total <= 0) return null;
+    const total = aeNumber(stats?.total);
+    const uniqueUsers = aeNumber(stats?.unique_users);
+    if (total <= 0) return null;
 
     if (d1) {
       await d1
         .prepare(
           "INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users) VALUES (?, ?, ?)",
         )
-        .bind(date, stats.total, stats.unique_users)
+        .bind(date, total, uniqueUsers)
         .run();
     } else {
       await db.run(sql`
         INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users)
-        VALUES (${date}, ${stats.total}, ${stats.unique_users})
+        VALUES (${date}, ${total}, ${uniqueUsers})
       `);
     }
 
@@ -295,32 +312,19 @@ export function createRollupFunctions(
       timestamp >= toDateTime('${start}')
       AND timestamp <= toDateTime('${end}')
     `;
-    const downloadDedupe = "concat(index1, ':', blob2, ':', blob3)";
     const dedupedDownloads = `
-      WITH deduped AS (
+      (
         SELECT
           index1 AS ip_hash,
           blob2 AS tool,
           blob3 AS version,
-          blob4 AS os,
-          blob5 AS arch,
-          blob7 AS backend_type
-        FROM (
-          SELECT
-            index1,
-            blob2,
-            blob3,
-            blob4,
-            blob5,
-            blob7,
-            row_number() OVER (
-              PARTITION BY ${downloadDedupe}
-              ORDER BY timestamp DESC
-            ) AS rn
-          FROM ${table}
-          WHERE blob1 = 'download' AND ${range}
-        )
-        WHERE rn = 1
+          argMax(blob4, timestamp) AS os,
+          argMax(blob5, timestamp) AS arch,
+          argMax(blob7, timestamp) AS backend_type,
+          max(_sample_interval) AS sample_weight
+        FROM ${table}
+        WHERE blob1 = 'download' AND ${range}
+        GROUP BY index1, blob2, blob3
       )
     `;
 
@@ -336,11 +340,10 @@ export function createRollupFunctions(
       queryAnalyticsEngine<AeCountRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
           SELECT
-            count(*) AS total,
+            sum(sample_weight) AS total,
             count(DISTINCT ip_hash) AS unique_users
-          FROM deduped
+          FROM ${dedupedDownloads}
         `,
       ),
       queryAnalyticsEngine<{ unique_users: number }>(
@@ -354,73 +357,90 @@ export function createRollupFunctions(
       queryAnalyticsEngine<AeToolRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
           SELECT
             tool,
-            count(*) AS downloads,
+            sum(sample_weight) AS downloads,
             count(DISTINCT ip_hash) AS unique_users
-          FROM deduped
+          FROM ${dedupedDownloads}
           GROUP BY tool
         `,
       ),
       queryAnalyticsEngine<AeBackendRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
           SELECT
             backend_type,
-            count(*) AS downloads,
+            sum(sample_weight) AS downloads,
             count(DISTINCT ip_hash) AS unique_users
-          FROM deduped
+          FROM ${dedupedDownloads}
           GROUP BY backend_type
         `,
       ),
       queryAnalyticsEngine<AeToolBackendRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
           SELECT
             tool,
             backend_type,
-            count(*) AS downloads
-          FROM deduped
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
           GROUP BY tool, backend_type
         `,
       ),
       queryAnalyticsEngine<AeVersionRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
           SELECT
             tool,
             version,
-            count(*) AS downloads
-          FROM deduped
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
           GROUP BY tool, version
         `,
       ),
       queryAnalyticsEngine<AePlatformRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
           SELECT
             tool,
             os,
             arch,
-            count(*) AS downloads
-          FROM deduped
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
           GROUP BY tool, os, arch
         `,
       ),
     ]);
 
-    let globalStats = globalRows.rows[0];
-    let combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
-    let toolStatsRows = toolRows.rows;
-    let backendStatsRows = backendRows.rows;
-    let toolBackendStatsRows = toolBackendRows.rows;
-    let versionStatsRows = versionRows.rows;
-    let platformStatsRows = platformRows.rows;
+    let globalStats = globalRows.rows[0]
+      ? {
+          total: aeNumber(globalRows.rows[0].total),
+          unique_users: aeNumber(globalRows.rows[0].unique_users),
+        }
+      : undefined;
+    let combinedDau = aeNumber(combinedRows.rows[0]?.unique_users);
+    let toolStatsRows = toolRows.rows.map((row) => ({
+      ...row,
+      downloads: aeNumber(row.downloads),
+      unique_users: aeNumber(row.unique_users),
+    }));
+    let backendStatsRows = backendRows.rows.map((row) => ({
+      ...row,
+      downloads: aeNumber(row.downloads),
+      unique_users: aeNumber(row.unique_users),
+    }));
+    let toolBackendStatsRows = toolBackendRows.rows.map((row) => ({
+      ...row,
+      downloads: aeNumber(row.downloads),
+    }));
+    let versionStatsRows = versionRows.rows.map((row) => ({
+      ...row,
+      downloads: aeNumber(row.downloads),
+    }));
+    let platformStatsRows = platformRows.rows.map((row) => ({
+      ...row,
+      downloads: aeNumber(row.downloads),
+    }));
     const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
 
     if (cutoverDate && date === cutoverDate) {
@@ -435,6 +455,7 @@ export function createRollupFunctions(
         os: string | null;
         arch: string | null;
         backend_type: string | null;
+        sample_weight: number;
       }>(sql`
         SELECT
           d.ip_hash,
@@ -446,7 +467,8 @@ export function createRollupFunctions(
             WHEN b.full IS NULL THEN 'unknown'
             WHEN instr(b.full, ':') > 0 THEN substr(b.full, 1, instr(b.full, ':') - 1)
             ELSE b.full
-          END AS backend_type
+          END AS backend_type,
+          1 AS sample_weight
         FROM downloads d
         INNER JOIN tools t ON d.tool_id = t.id
         LEFT JOIN backends b ON d.backend_id = b.id
@@ -454,19 +476,11 @@ export function createRollupFunctions(
         WHERE d.created_at >= ${d1Start}
           AND d.created_at < ${d1End}
       `);
-      const aeDownloadRows = await queryAnalyticsEngine<{
-        ip_hash: string;
-        tool: string;
-        version: string;
-        os: string;
-        arch: string;
-        backend_type: string;
-      }>(
+      const aeDownloadRows = await queryAnalyticsEngine<AeDownloadRow>(
         analyticsEngine!,
         `
-          ${dedupedDownloads}
-          SELECT ip_hash, tool, version, os, arch, backend_type
-          FROM deduped
+          SELECT ip_hash, tool, version, os, arch, backend_type, sample_weight
+          FROM ${dedupedDownloads}
         `,
       );
       const downloadsByKey = new Map<
@@ -478,6 +492,7 @@ export function createRollupFunctions(
           os: string | null;
           arch: string | null;
           backend_type: string | null;
+          sample_weight: number;
         }
       >();
       for (const row of d1DownloadRows) {
@@ -489,12 +504,16 @@ export function createRollupFunctions(
           os: row.os || null,
           arch: row.arch || null,
           backend_type: row.backend_type || "unknown",
+          sample_weight: aeNumber(row.sample_weight),
         });
       }
       const downloadRows = [...downloadsByKey.values()];
       const globalUsers = new Set(downloadRows.map((row) => row.ip_hash));
       globalStats = {
-        total: downloadRows.length,
+        total: downloadRows.reduce(
+          (total, row) => total + aeNumber(row.sample_weight),
+          0,
+        ),
         unique_users: globalUsers.size,
       };
 
@@ -537,7 +556,8 @@ export function createRollupFunctions(
           downloads: 0,
           users: new Set<string>(),
         };
-        toolEntry.downloads++;
+        const sampleWeight = aeNumber(row.sample_weight);
+        toolEntry.downloads += sampleWeight;
         toolEntry.users.add(row.ip_hash);
         toolMap.set(row.tool, toolEntry);
 
@@ -545,19 +565,25 @@ export function createRollupFunctions(
           downloads: 0,
           users: new Set<string>(),
         };
-        backendEntry.downloads++;
+        backendEntry.downloads += sampleWeight;
         backendEntry.users.add(row.ip_hash);
         backendMap.set(backendType, backendEntry);
 
         const toolBackendKey = `${row.tool}\0${backendType}`;
         toolBackendMap.set(
           toolBackendKey,
-          (toolBackendMap.get(toolBackendKey) ?? 0) + 1,
+          (toolBackendMap.get(toolBackendKey) ?? 0) + sampleWeight,
         );
         const versionKey = `${row.tool}\0${row.version}`;
-        versionMap.set(versionKey, (versionMap.get(versionKey) ?? 0) + 1);
+        versionMap.set(
+          versionKey,
+          (versionMap.get(versionKey) ?? 0) + sampleWeight,
+        );
         const platformKey = `${row.tool}\0${row.os || ""}\0${row.arch || ""}`;
-        platformMap.set(platformKey, (platformMap.get(platformKey) ?? 0) + 1);
+        platformMap.set(
+          platformKey,
+          (platformMap.get(platformKey) ?? 0) + sampleWeight,
+        );
       }
 
       toolStatsRows = [...toolMap.entries()].map(([tool, stats]) => ({
