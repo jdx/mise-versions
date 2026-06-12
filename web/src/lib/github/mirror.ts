@@ -112,7 +112,7 @@ export function validRepoPart(value: string | undefined): value is string {
 }
 
 export function validReleaseTag(value: string | undefined): value is string {
-  return !!value && /^[A-Za-z0-9_.\/:+-]+$/.test(value);
+  return !!value && /^[A-Za-z0-9_.\/:@+-]+$/.test(value);
 }
 
 export function validDigest(value: string | undefined): value is string {
