@@ -156,6 +156,90 @@ export function createRollupFunctions(
 
     const { start, end } = dateRangeSql(date);
     const table = datasetSql();
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+    if (cutoverDate && date === cutoverDate) {
+      const dateStart = Math.floor(
+        new Date(`${date}T00:00:00Z`).getTime() / 1000,
+      );
+      const dateEnd = dateStart + 86400;
+      const d1Stats = d1
+        ? await d1
+            .prepare(
+              "SELECT count(*) AS total FROM version_requests WHERE created_at >= ? AND created_at < ?",
+            )
+            .bind(dateStart, dateEnd)
+            .first<{ total: number }>()
+        : await db
+            .select({ total: sql<number>`count(*)` })
+            .from(versionRequests)
+            .where(
+              and(
+                sql`${versionRequests.created_at} >= ${dateStart}`,
+                sql`${versionRequests.created_at} < ${dateEnd}`,
+              ),
+            )
+            .get();
+      const d1Users = d1
+        ? await d1
+            .prepare(
+              "SELECT DISTINCT ip_hash FROM version_requests WHERE created_at >= ? AND created_at < ?",
+            )
+            .bind(dateStart, dateEnd)
+            .all<{ ip_hash: string }>()
+        : {
+            results: await db.all<{ ip_hash: string }>(sql`
+              SELECT DISTINCT ip_hash
+              FROM version_requests
+              WHERE created_at >= ${dateStart}
+                AND created_at < ${dateEnd}
+            `),
+          };
+      const aeUsers = await queryAnalyticsEngine<{ ip_hash: string }>(
+        analyticsEngine!,
+        `
+          SELECT DISTINCT index1 AS ip_hash
+          FROM ${table}
+          WHERE
+            blob1 = 'version_request'
+            AND timestamp >= toDateTime('${start}')
+            AND timestamp <= toDateTime('${end}')
+        `,
+      );
+      const aeStats = await queryAnalyticsEngine<{ total: number }>(
+        analyticsEngine!,
+        `
+          SELECT count(*) AS total
+          FROM ${table}
+          WHERE
+            blob1 = 'version_request'
+            AND timestamp >= toDateTime('${start}')
+            AND timestamp <= toDateTime('${end}')
+        `,
+      );
+      const users = new Set<string>();
+      for (const row of d1Users.results ?? []) users.add(row.ip_hash);
+      for (const row of aeUsers.rows) users.add(row.ip_hash);
+
+      const total = (d1Stats?.total ?? 0) + (aeStats.rows[0]?.total ?? 0);
+      if (total <= 0) return null;
+
+      if (d1) {
+        await d1
+          .prepare(
+            "INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users) VALUES (?, ?, ?)",
+          )
+          .bind(date, total, users.size)
+          .run();
+      } else {
+        await db.run(sql`
+          INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users)
+          VALUES (${date}, ${total}, ${users.size})
+        `);
+      }
+
+      return true;
+    }
+
     const result = await queryAnalyticsEngine<AeCountRow>(
       analyticsEngine!,
       `
