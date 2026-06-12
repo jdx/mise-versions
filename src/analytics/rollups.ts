@@ -216,11 +216,14 @@ export function createRollupFunctions(
             AND timestamp <= toDateTime('${end}')
         `,
       );
-      const users = new Set<string>();
-      for (const row of d1Users.results ?? []) users.add(row.ip_hash);
-      for (const row of aeUsers.rows) users.add(row.ip_hash);
+      const d1UserSet = new Set<string>();
+      const aeUserSet = new Set<string>();
+      for (const row of d1Users.results ?? []) d1UserSet.add(row.ip_hash);
+      for (const row of aeUsers.rows) aeUserSet.add(row.ip_hash);
+      const users = new Set([...d1UserSet, ...aeUserSet]);
 
-      const total = (d1Stats?.total ?? 0) + (aeStats.rows[0]?.total ?? 0);
+      const d1OnlyUsers = [...d1UserSet].filter((ip) => !aeUserSet.has(ip));
+      const total = (aeStats.rows[0]?.total ?? 0) + d1OnlyUsers.length;
       if (total <= 0) return null;
 
       if (d1) {
@@ -412,8 +415,180 @@ export function createRollupFunctions(
       ),
     ]);
 
-    const globalStats = globalRows.rows[0];
-    const combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
+    let globalStats = globalRows.rows[0];
+    let combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
+    let toolStatsRows = toolRows.rows;
+    let backendStatsRows = backendRows.rows;
+    let toolBackendStatsRows = toolBackendRows.rows;
+    let versionStatsRows = versionRows.rows;
+    let platformStatsRows = platformRows.rows;
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+
+    if (cutoverDate && date === cutoverDate) {
+      const d1Start = Math.floor(
+        new Date(`${date}T00:00:00Z`).getTime() / 1000,
+      );
+      const d1End = d1Start + 86400;
+      const d1DownloadRows = await db.all<{
+        ip_hash: string;
+        tool: string;
+        version: string;
+        os: string | null;
+        arch: string | null;
+        backend_type: string | null;
+      }>(sql`
+        SELECT
+          d.ip_hash,
+          t.name AS tool,
+          d.version,
+          p.os,
+          p.arch,
+          CASE
+            WHEN b.full IS NULL THEN 'unknown'
+            WHEN instr(b.full, ':') > 0 THEN substr(b.full, 1, instr(b.full, ':') - 1)
+            ELSE b.full
+          END AS backend_type
+        FROM downloads d
+        INNER JOIN tools t ON d.tool_id = t.id
+        LEFT JOIN backends b ON d.backend_id = b.id
+        LEFT JOIN platforms p ON d.platform_id = p.id
+        WHERE d.created_at >= ${d1Start}
+          AND d.created_at < ${d1End}
+      `);
+      const aeDownloadRows = await queryAnalyticsEngine<{
+        ip_hash: string;
+        tool: string;
+        version: string;
+        os: string;
+        arch: string;
+        backend_type: string;
+      }>(
+        analyticsEngine!,
+        `
+          ${dedupedDownloads}
+          SELECT ip_hash, tool, version, os, arch, backend_type
+          FROM deduped
+        `,
+      );
+      const downloadsByKey = new Map<
+        string,
+        {
+          ip_hash: string;
+          tool: string;
+          version: string;
+          os: string | null;
+          arch: string | null;
+          backend_type: string | null;
+        }
+      >();
+      for (const row of d1DownloadRows) {
+        downloadsByKey.set(`${row.ip_hash}:${row.tool}:${row.version}`, row);
+      }
+      for (const row of aeDownloadRows.rows) {
+        downloadsByKey.set(`${row.ip_hash}:${row.tool}:${row.version}`, {
+          ...row,
+          os: row.os || null,
+          arch: row.arch || null,
+          backend_type: row.backend_type || "unknown",
+        });
+      }
+      const downloadRows = [...downloadsByKey.values()];
+      const globalUsers = new Set(downloadRows.map((row) => row.ip_hash));
+      globalStats = {
+        total: downloadRows.length,
+        unique_users: globalUsers.size,
+      };
+
+      const d1CombinedUsers = await db.all<{ ip_hash: string }>(sql`
+        SELECT DISTINCT ip_hash FROM (
+          SELECT ip_hash FROM downloads
+          WHERE created_at >= ${d1Start} AND created_at < ${d1End}
+          UNION
+          SELECT ip_hash FROM version_requests
+          WHERE created_at >= ${d1Start} AND created_at < ${d1End}
+        )
+      `);
+      const aeCombinedUsers = await queryAnalyticsEngine<{ ip_hash: string }>(
+        analyticsEngine!,
+        `
+          SELECT DISTINCT index1 AS ip_hash
+          FROM ${table}
+          WHERE blob1 IN ('download', 'version_request') AND ${range}
+        `,
+      );
+      combinedDau = new Set([
+        ...d1CombinedUsers.map((row) => row.ip_hash),
+        ...aeCombinedUsers.rows.map((row) => row.ip_hash),
+      ]).size;
+
+      const toolMap = new Map<
+        string,
+        { downloads: number; users: Set<string> }
+      >();
+      const backendMap = new Map<
+        string,
+        { downloads: number; users: Set<string> }
+      >();
+      const toolBackendMap = new Map<string, number>();
+      const versionMap = new Map<string, number>();
+      const platformMap = new Map<string, number>();
+      for (const row of downloadRows) {
+        const backendType = row.backend_type || "unknown";
+        const toolEntry = toolMap.get(row.tool) ?? {
+          downloads: 0,
+          users: new Set<string>(),
+        };
+        toolEntry.downloads++;
+        toolEntry.users.add(row.ip_hash);
+        toolMap.set(row.tool, toolEntry);
+
+        const backendEntry = backendMap.get(backendType) ?? {
+          downloads: 0,
+          users: new Set<string>(),
+        };
+        backendEntry.downloads++;
+        backendEntry.users.add(row.ip_hash);
+        backendMap.set(backendType, backendEntry);
+
+        const toolBackendKey = `${row.tool}\0${backendType}`;
+        toolBackendMap.set(
+          toolBackendKey,
+          (toolBackendMap.get(toolBackendKey) ?? 0) + 1,
+        );
+        const versionKey = `${row.tool}\0${row.version}`;
+        versionMap.set(versionKey, (versionMap.get(versionKey) ?? 0) + 1);
+        const platformKey = `${row.tool}\0${row.os || ""}\0${row.arch || ""}`;
+        platformMap.set(platformKey, (platformMap.get(platformKey) ?? 0) + 1);
+      }
+
+      toolStatsRows = [...toolMap.entries()].map(([tool, stats]) => ({
+        tool,
+        downloads: stats.downloads,
+        unique_users: stats.users.size,
+      }));
+      backendStatsRows = [...backendMap.entries()].map(
+        ([backend_type, stats]) => ({
+          backend_type,
+          downloads: stats.downloads,
+          unique_users: stats.users.size,
+        }),
+      );
+      toolBackendStatsRows = [...toolBackendMap.entries()].map(
+        ([key, downloads]) => {
+          const [tool, backend_type] = key.split("\0");
+          return { tool, backend_type, downloads };
+        },
+      );
+      versionStatsRows = [...versionMap.entries()].map(([key, downloads]) => {
+        const [tool, version] = key.split("\0");
+        return { tool, version, downloads };
+      });
+      platformStatsRows = [...platformMap.entries()].map(([key, downloads]) => {
+        const [tool, os, arch] = key.split("\0");
+        return { tool, os, arch, downloads };
+      });
+    }
+
     if (!globalStats && combinedDau <= 0) {
       return null;
     }
@@ -443,15 +618,15 @@ export function createRollupFunctions(
     }
 
     const toolIds = await loadToolIds([
-      ...toolRows.rows.map((r) => r.tool),
-      ...toolBackendRows.rows.map((r) => r.tool),
-      ...versionRows.rows.map((r) => r.tool),
-      ...platformRows.rows.map((r) => r.tool),
+      ...toolStatsRows.map((r) => r.tool),
+      ...toolBackendStatsRows.map((r) => r.tool),
+      ...versionStatsRows.map((r) => r.tool),
+      ...platformStatsRows.map((r) => r.tool),
     ]);
 
     await upsertDailyToolRows(
       date,
-      toolRows.rows
+      toolStatsRows
         .map((row) => ({
           tool_id: toolIds.get(row.tool),
           downloads: row.downloads,
@@ -469,11 +644,11 @@ export function createRollupFunctions(
       d1,
     );
 
-    await upsertDailyBackendRows(date, backendRows.rows, d1);
+    await upsertDailyBackendRows(date, backendStatsRows, d1);
 
     await upsertDailyToolBackendRows(
       date,
-      toolBackendRows.rows
+      toolBackendStatsRows
         .map((row) => ({
           tool_id: toolIds.get(row.tool),
           backend_type: row.backend_type || "unknown",
@@ -493,7 +668,7 @@ export function createRollupFunctions(
 
     await upsertDailyToolVersionRows(
       date,
-      versionRows.rows
+      versionStatsRows
         .map((row) => ({
           tool_id: toolIds.get(row.tool),
           version: row.version,
@@ -516,7 +691,7 @@ export function createRollupFunctions(
       platform_id: number;
       downloads: number;
     }> = [];
-    for (const row of platformRows.rows) {
+    for (const row of platformStatsRows) {
       const toolId = toolIds.get(row.tool);
       if (!toolId) continue;
 
@@ -536,9 +711,9 @@ export function createRollupFunctions(
     return {
       dailyStats: (globalStats?.total ?? 0) > 0,
       combinedStats: combinedDau > 0,
-      toolStats: toolRows.rows.length,
-      backendStats: backendRows.rows.length,
-      toolBackendStats: toolBackendRows.rows.length,
+      toolStats: toolStatsRows.length,
+      backendStats: backendStatsRows.length,
+      toolBackendStats: toolBackendStatsRows.length,
     };
   }
 
