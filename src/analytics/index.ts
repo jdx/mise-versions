@@ -58,12 +58,16 @@ export function setupAnalytics(
   });
   const stats = createStatsFunctions(db);
   const backendStats = createBackendStatsFunctions(db);
-  const trends = createTrendsFunctions(db);
+  const trends = createTrendsFunctions(db, {
+    analyticsEngine: options.analyticsEngine,
+  });
   const rollups = createRollupFunctions(db, {
     analyticsEngine: options.analyticsEngine,
   });
   const growth = createGrowthFunctions(db);
-  const versions = createVersionsFunctions(db);
+  const versions = createVersionsFunctions(db, {
+    analyticsEngine: options.analyticsEngine,
+  });
   const maintenance = createMaintenanceFunctions(db);
 
   return {

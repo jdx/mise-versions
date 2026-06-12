@@ -298,7 +298,10 @@ export function createRollupFunctions(
     ]);
 
     const globalStats = globalRows.rows[0];
-    if (!globalStats || globalStats.total <= 0) return null;
+    const combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
+    if ((!globalStats || globalStats.total <= 0) && combinedDau <= 0) {
+      return null;
+    }
 
     if (globalStats && globalStats.total > 0) {
       await runStatement(
@@ -312,7 +315,6 @@ export function createRollupFunctions(
       );
     }
 
-    const combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
     if (combinedDau > 0) {
       await runStatement(
         sql`

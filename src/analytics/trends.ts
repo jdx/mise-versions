@@ -10,8 +10,65 @@ import {
   dailyVersionStats,
   versionRequests,
 } from "./schema.js";
+import {
+  analyticsEngineDataset,
+  hasAnalyticsEngineSql,
+  queryAnalyticsEngine,
+  type AnalyticsEngineSqlConfig,
+} from "./analytics-engine.js";
 
-export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
+interface TrendsOptions {
+  analyticsEngine?: AnalyticsEngineSqlConfig;
+}
+
+export function createTrendsFunctions(
+  db: ReturnType<typeof drizzle>,
+  options: TrendsOptions = {},
+) {
+  const analyticsEngine = options.analyticsEngine;
+
+  async function getCurrentMiseMAU(now: number): Promise<number> {
+    if (hasAnalyticsEngineSql(analyticsEngine)) {
+      try {
+        const end = new Date(now * 1000)
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const start = new Date((now - 30 * 86400) * 1000)
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const table = analyticsEngineDataset(analyticsEngine);
+        const result = await queryAnalyticsEngine<{ mau: number }>(
+          analyticsEngine!,
+          `
+            SELECT count(DISTINCT index1) AS mau
+            FROM ${table}
+            WHERE
+              blob1 = 'version_request'
+              AND timestamp >= toDateTime('${start}')
+              AND timestamp <= toDateTime('${end}')
+          `,
+        );
+        const mau = result.rows[0]?.mau ?? 0;
+        if (mau > 0) return mau;
+      } catch (error) {
+        console.warn("failed to query Analytics Engine mise MAU:", error);
+      }
+    }
+
+    const thirtyDaysAgo = now - 30 * 86400;
+    const mauResult = await db
+      .select({
+        mau: sql<number>`count(distinct ip_hash)`,
+      })
+      .from(versionRequests)
+      .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
+      .get();
+
+    return mauResult?.mau ?? 0;
+  }
+
   return {
     // Get DAU and rolling MAU history for the last N days
     async getDAUMAUHistory(days: number = 30) {
@@ -98,16 +155,7 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         .orderBy(dailyVersionStats.date)
         .all();
 
-      const thirtyDaysAgo = now - 30 * 86400;
-      const mauResult = await db
-        .select({
-          mau: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(versionRequests)
-        .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
-        .get();
-
-      const currentMAU = mauResult?.mau ?? 0;
+      const currentMAU = await getCurrentMiseMAU(now);
 
       const dailyData: Array<{ date: string; dau: number }> = [];
       const dauMap = new Map(dauResults.map((r) => [r.date, r.dau]));
