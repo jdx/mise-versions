@@ -10,10 +10,11 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const SCRIPT_DIR = dirname(SCRIPT_PATH);
 const REPO_ROOT = join(SCRIPT_DIR, "..");
 
 export function buildStaticVersionFiles({
@@ -39,7 +40,7 @@ export function buildStaticVersionFiles({
   return { tools: files.length };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
   const [docsDir, outputDir] = process.argv.slice(2);
   const result = buildStaticVersionFiles({ docsDir, outputDir });
   console.log(`Generated static version files for ${result.tools} tools`);

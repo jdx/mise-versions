@@ -14,10 +14,15 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "web/dist/client",
+    // Keep dynamic routes Worker-first while allowing generated /data/*.toml
+    // assets to bypass Worker billing. Legacy root routes such as /node.toml,
+    // /python-precompiled.gz, and /tools.json intentionally fall through from
+    // asset lookup to the Worker because they share the root namespace.
     "run_worker_first": [
       "/api/*",
       "/admin*",
       "/badge/*",
+      "/badge.svg",
       "/github/*",
       "/health",
       "/stats*",
