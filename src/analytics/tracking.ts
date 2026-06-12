@@ -229,6 +229,13 @@ export function createTrackingFunctions(
       arch: string | null,
       full: string | null = null, // Full backend identifier (e.g., "aqua:nektos/act")
     ): Promise<{ deduplicated: boolean }> {
+      // Keep dimension tables populated even when raw events are written to
+      // Analytics Engine; scheduled rollups resolve tool/platform names back
+      // to these ids before materializing D1 summaries.
+      const toolId = await getOrCreateToolId(tool);
+      const backendId = await getOrCreateBackendId(full);
+      const platformId = await getOrCreatePlatformId(os, arch);
+
       if (
         writeDownloadEvent(cache.events, {
           tool,
@@ -242,9 +249,6 @@ export function createTrackingFunctions(
         return { deduplicated: false };
       }
 
-      const toolId = await getOrCreateToolId(tool);
-      const backendId = await getOrCreateBackendId(full);
-      const platformId = await getOrCreatePlatformId(os, arch);
       const now = Math.floor(Date.now() / 1000);
       const day = Math.floor(now / 86400);
 

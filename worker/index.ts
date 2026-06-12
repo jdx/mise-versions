@@ -85,7 +85,9 @@ export default {
       analyticsEngine: {
         accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
         apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
-        dataset: env.ANALYTICS_ENGINE_DATASET,
+        dataset: env.ANALYTICS_EVENTS
+          ? env.ANALYTICS_ENGINE_DATASET
+          : undefined,
       },
     });
 

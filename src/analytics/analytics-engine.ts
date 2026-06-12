@@ -58,7 +58,7 @@ export function writeVersionRequestEvent(
 }
 
 export function hasAnalyticsEngineSql(config?: AnalyticsEngineSqlConfig) {
-  return Boolean(config?.accountId && config?.apiToken);
+  return Boolean(config?.accountId && config?.apiToken && config?.dataset);
 }
 
 export function analyticsEngineDataset(config?: AnalyticsEngineSqlConfig) {

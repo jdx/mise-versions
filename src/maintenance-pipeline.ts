@@ -19,6 +19,7 @@ const MAU_BACKFILL_GAP_LIMIT = 3;
 interface PipelineEnv {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
+  ANALYTICS_EVENTS?: AnalyticsEngineDataset;
   ANALYTICS_ENGINE_ACCOUNT_ID?: string;
   ANALYTICS_ENGINE_API_TOKEN?: string;
   ANALYTICS_ENGINE_DATASET?: string;
@@ -48,7 +49,7 @@ export async function runMaintenancePipeline(
     analyticsEngine: {
       accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
       apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
-      dataset: env.ANALYTICS_ENGINE_DATASET,
+      dataset: env.ANALYTICS_EVENTS ? env.ANALYTICS_ENGINE_DATASET : undefined,
     },
   });
   const now = new Date();

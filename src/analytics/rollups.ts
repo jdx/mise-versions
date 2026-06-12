@@ -157,7 +157,7 @@ export function createRollupFunctions(
       analyticsEngine!,
       `
         SELECT
-          count(DISTINCT index1) AS total,
+          count(*) AS total,
           count(DISTINCT index1) AS unique_users
         FROM ${table}
         WHERE
@@ -168,7 +168,7 @@ export function createRollupFunctions(
     );
 
     const stats = result.rows[0];
-    if (!stats || stats.total <= 0) return false;
+    if (!stats || stats.total <= 0) return null;
 
     if (d1) {
       await d1
@@ -298,6 +298,8 @@ export function createRollupFunctions(
     ]);
 
     const globalStats = globalRows.rows[0];
+    if (!globalStats || globalStats.total <= 0) return null;
+
     if (globalStats && globalStats.total > 0) {
       await runStatement(
         sql`
@@ -452,7 +454,7 @@ export function createRollupFunctions(
     );
 
     const mau = result.rows[0]?.mau ?? 0;
-    if (mau <= 0) return false;
+    if (mau <= 0) return null;
 
     await runStatement(
       sql`

@@ -8,6 +8,7 @@ import astroWorker from "../web/dist/server/entry.mjs";
 interface Env {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
+  ANALYTICS_EVENTS?: AnalyticsEngineDataset;
   ANALYTICS_ENGINE_ACCOUNT_ID?: string;
   ANALYTICS_ENGINE_API_TOKEN?: string;
   ANALYTICS_ENGINE_DATASET?: string;
