@@ -3,6 +3,8 @@ import { drizzle } from "drizzle-orm/d1";
 import { setupAnalytics } from "../../../../src/analytics";
 import { hashIP, getClientIP } from "../../lib/hash";
 import { env } from "cloudflare:workers";
+import { logCostProbe } from "../../lib/cost-observability";
+import { analyticsEventsBinding } from "../../lib/analytics-events";
 
 export const POST: APIRoute = async ({ request }) => {
   return trackDownloadRequest({ request });
@@ -15,6 +17,7 @@ export async function trackDownloadRequest({
   request: Parameters<APIRoute>[0]["request"];
   tool?: string;
 }) {
+  const started = Date.now();
   try {
     const body = (await request.json()) as {
       tool?: string;
@@ -43,6 +46,14 @@ export async function trackDownloadRequest({
 
     // Skip database storage for CI requests (excludes from MAU calculations)
     if (isCI) {
+      logCostProbe({
+        route: "api/track",
+        status: 200,
+        duration_ms: Date.now() - started,
+        cache: "none",
+        tracking: "ci_skipped",
+        d1_write: "skipped",
+      });
       return new Response(
         JSON.stringify({
           success: true,
@@ -57,8 +68,10 @@ export async function trackDownloadRequest({
     }
 
     const db = drizzle(env.ANALYTICS_DB);
+    const analyticsEvents = analyticsEventsBinding();
     const analytics = setupAnalytics(db, {
       trackingCache: env.DOWNLOAD_DEDUPE,
+      analyticsEvents,
     });
 
     const result = await analytics.trackDownload(
@@ -69,6 +82,15 @@ export async function trackDownloadRequest({
       body.arch || null,
       body.full || null,
     );
+
+    logCostProbe({
+      route: "api/track",
+      status: 200,
+      duration_ms: Date.now() - started,
+      cache: "none",
+      tracking: result.deduplicated ? "none" : "queued",
+      d1_write: analyticsEvents ? "skipped" : "attempted",
+    });
 
     return new Response(
       JSON.stringify({

@@ -65,6 +65,30 @@ CREATE TABLE IF NOT EXISTS daily_backend_stats (
   PRIMARY KEY (date, backend_type)
 );
 
+CREATE TABLE IF NOT EXISTS daily_tool_backend_stats (
+  date TEXT NOT NULL,
+  tool_id INTEGER NOT NULL,
+  backend_type TEXT NOT NULL,
+  downloads INTEGER NOT NULL,
+  PRIMARY KEY (date, tool_id, backend_type)
+);
+
+CREATE TABLE IF NOT EXISTS daily_tool_version_stats (
+  date TEXT NOT NULL,
+  tool_id INTEGER NOT NULL,
+  version TEXT NOT NULL,
+  downloads INTEGER NOT NULL,
+  PRIMARY KEY (date, tool_id, version)
+);
+
+CREATE TABLE IF NOT EXISTS daily_tool_platform_stats (
+  date TEXT NOT NULL,
+  tool_id INTEGER NOT NULL,
+  platform_id INTEGER NOT NULL,
+  downloads INTEGER NOT NULL,
+  PRIMARY KEY (date, tool_id, platform_id)
+);
+
 CREATE TABLE IF NOT EXISTS tool_download_summaries (
   tool_id INTEGER PRIMARY KEY,
   downloads_30d INTEGER NOT NULL DEFAULT 0,
@@ -109,6 +133,9 @@ CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip
 CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_tool ON daily_tool_stats(tool_id);
 CREATE INDEX IF NOT EXISTS idx_daily_tool_stats_date_tool_downloads ON daily_tool_stats(date, tool_id, downloads);
 CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_type ON daily_backend_stats(backend_type);
+CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_backend ON daily_tool_backend_stats(backend_type);
+CREATE INDEX IF NOT EXISTS idx_daily_tool_version_stats_tool ON daily_tool_version_stats(tool_id);
+CREATE INDEX IF NOT EXISTS idx_daily_tool_platform_stats_tool ON daily_tool_platform_stats(tool_id);
 CREATE INDEX IF NOT EXISTS idx_tool_download_summaries_30d ON tool_download_summaries(downloads_30d DESC, tool_id);
 CREATE INDEX IF NOT EXISTS idx_tool_platform_download_summaries_platform ON tool_platform_download_summaries(platform_id);
 CREATE INDEX IF NOT EXISTS idx_tool_version_download_summaries_tool_downloads ON tool_version_download_summaries(tool_id, downloads_all_time DESC);

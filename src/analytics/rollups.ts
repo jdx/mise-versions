@@ -5,22 +5,633 @@ import {
   backends,
   downloads,
   tools,
+  platforms,
   dailyStats,
   dailyToolStats,
   dailyBackendStats,
   dailyToolBackendStats,
+  dailyToolVersionStats,
+  dailyToolPlatformStats,
   dailyCombinedStats,
   dailyMauStats,
   versionRequests,
   dailyVersionStats,
 } from "./schema.js";
+import {
+  analyticsEngineDataset,
+  dateRangeSql,
+  hasAnalyticsEngineSql,
+  queryAnalyticsEngine,
+  type AnalyticsEngineSqlConfig,
+} from "./analytics-engine.js";
 
-export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
+interface RollupOptions {
+  analyticsEngine?: AnalyticsEngineSqlConfig;
+}
+
+interface AeCountRow {
+  total: number;
+  unique_users: number;
+}
+
+interface AeToolRow {
+  tool: string;
+  downloads: number;
+  unique_users: number;
+}
+
+interface AeBackendRow {
+  backend_type: string;
+  downloads: number;
+  unique_users: number;
+}
+
+interface AeToolBackendRow {
+  tool: string;
+  backend_type: string;
+  downloads: number;
+}
+
+interface AeVersionRow {
+  tool: string;
+  version: string;
+  downloads: number;
+}
+
+interface AePlatformRow {
+  tool: string;
+  os: string;
+  arch: string;
+  downloads: number;
+}
+
+export function createRollupFunctions(
+  db: ReturnType<typeof drizzle>,
+  options: RollupOptions = {},
+) {
+  const analyticsEngine = options.analyticsEngine;
+
+  function datasetSql() {
+    return analyticsEngineDataset(analyticsEngine);
+  }
+
+  async function loadToolIds(
+    names: Iterable<string>,
+  ): Promise<Map<string, number>> {
+    const unique = [...new Set([...names].filter(Boolean))];
+    const result = new Map<string, number>();
+    if (unique.length === 0) return result;
+
+    const BATCH_SIZE = 99;
+    for (let i = 0; i < unique.length; i += BATCH_SIZE) {
+      const batch = unique.slice(i, i + BATCH_SIZE);
+      const rows = await db
+        .select({ id: tools.id, name: tools.name })
+        .from(tools)
+        .where(
+          sql`${tools.name} IN (${sql.join(
+            batch.map((name) => sql`${name}`),
+            sql`, `,
+          )})`,
+        )
+        .all();
+      for (const row of rows) {
+        result.set(row.name, row.id);
+      }
+    }
+
+    return result;
+  }
+
+  async function getOrCreatePlatformId(
+    os: string | null,
+    arch: string | null,
+    d1?: D1Database,
+  ): Promise<number> {
+    if (!os && !arch) return 0;
+
+    const existing = await db
+      .select({ id: platforms.id })
+      .from(platforms)
+      .where(
+        and(
+          os ? eq(platforms.os, os) : sql`${platforms.os} IS NULL`,
+          arch ? eq(platforms.arch, arch) : sql`${platforms.arch} IS NULL`,
+        ),
+      )
+      .get();
+    if (existing) return existing.id;
+
+    if (d1) {
+      await d1
+        .prepare("INSERT INTO platforms (os, arch) VALUES (?, ?)")
+        .bind(os, arch)
+        .run();
+    } else {
+      await db.insert(platforms).values({ os, arch });
+    }
+
+    const inserted = await db
+      .select({ id: platforms.id })
+      .from(platforms)
+      .where(
+        and(
+          os ? eq(platforms.os, os) : sql`${platforms.os} IS NULL`,
+          arch ? eq(platforms.arch, arch) : sql`${platforms.arch} IS NULL`,
+        ),
+      )
+      .get();
+
+    return inserted?.id ?? 0;
+  }
+
+  async function populateVersionStatsRollupFromAnalyticsEngine(
+    date: string,
+    d1?: D1Database,
+  ): Promise<boolean | null> {
+    if (!hasAnalyticsEngineSql(analyticsEngine)) return null;
+
+    const { start, end } = dateRangeSql(date);
+    const table = datasetSql();
+    const result = await queryAnalyticsEngine<AeCountRow>(
+      analyticsEngine!,
+      `
+        SELECT
+          count(DISTINCT index1) AS total,
+          count(DISTINCT index1) AS unique_users
+        FROM ${table}
+        WHERE
+          blob1 = 'version_request'
+          AND timestamp >= toDateTime('${start}')
+          AND timestamp <= toDateTime('${end}')
+      `,
+    );
+
+    const stats = result.rows[0];
+    if (!stats || stats.total <= 0) return false;
+
+    if (d1) {
+      await d1
+        .prepare(
+          "INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users) VALUES (?, ?, ?)",
+        )
+        .bind(date, stats.total, stats.unique_users)
+        .run();
+    } else {
+      await db.run(sql`
+        INSERT OR REPLACE INTO daily_version_stats (date, total_requests, unique_users)
+        VALUES (${date}, ${stats.total}, ${stats.unique_users})
+      `);
+    }
+
+    return true;
+  }
+
+  async function populateRollupTablesFromAnalyticsEngine(
+    date: string,
+    d1?: D1Database,
+  ): Promise<{
+    dailyStats: boolean;
+    combinedStats: boolean;
+    toolStats: number;
+    backendStats: number;
+    toolBackendStats: number;
+  } | null> {
+    if (!hasAnalyticsEngineSql(analyticsEngine)) return null;
+
+    const { start, end } = dateRangeSql(date);
+    const table = datasetSql();
+    const range = `
+      timestamp >= toDateTime('${start}')
+      AND timestamp <= toDateTime('${end}')
+    `;
+    const downloadDedupe = "concat(index1, ':', blob2, ':', blob3)";
+
+    const [
+      globalRows,
+      combinedRows,
+      toolRows,
+      backendRows,
+      toolBackendRows,
+      versionRows,
+      platformRows,
+    ] = await Promise.all([
+      queryAnalyticsEngine<AeCountRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            count(DISTINCT ${downloadDedupe}) AS total,
+            count(DISTINCT index1) AS unique_users
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+        `,
+      ),
+      queryAnalyticsEngine<{ unique_users: number }>(
+        analyticsEngine!,
+        `
+          SELECT count(DISTINCT index1) AS unique_users
+          FROM ${table}
+          WHERE blob1 IN ('download', 'version_request') AND ${range}
+        `,
+      ),
+      queryAnalyticsEngine<AeToolRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            blob2 AS tool,
+            count(DISTINCT concat(index1, ':', blob3)) AS downloads,
+            count(DISTINCT index1) AS unique_users
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+          GROUP BY tool
+        `,
+      ),
+      queryAnalyticsEngine<AeBackendRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            blob7 AS backend_type,
+            count(DISTINCT ${downloadDedupe}) AS downloads,
+            count(DISTINCT index1) AS unique_users
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+          GROUP BY backend_type
+        `,
+      ),
+      queryAnalyticsEngine<AeToolBackendRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            blob2 AS tool,
+            blob7 AS backend_type,
+            count(DISTINCT concat(index1, ':', blob3)) AS downloads
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+          GROUP BY tool, backend_type
+        `,
+      ),
+      queryAnalyticsEngine<AeVersionRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            blob2 AS tool,
+            blob3 AS version,
+            count(DISTINCT index1) AS downloads
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+          GROUP BY tool, version
+        `,
+      ),
+      queryAnalyticsEngine<AePlatformRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            blob2 AS tool,
+            blob4 AS os,
+            blob5 AS arch,
+            count(DISTINCT concat(index1, ':', blob3)) AS downloads
+          FROM ${table}
+          WHERE blob1 = 'download' AND ${range}
+          GROUP BY tool, os, arch
+        `,
+      ),
+    ]);
+
+    const globalStats = globalRows.rows[0];
+    if (globalStats && globalStats.total > 0) {
+      await runStatement(
+        sql`
+          INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
+          VALUES (${date}, ${globalStats.total}, ${globalStats.unique_users})
+        `,
+        d1,
+        "INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES (?, ?, ?)",
+        [date, globalStats.total, globalStats.unique_users],
+      );
+    }
+
+    const combinedDau = combinedRows.rows[0]?.unique_users ?? 0;
+    if (combinedDau > 0) {
+      await runStatement(
+        sql`
+          INSERT OR REPLACE INTO daily_combined_stats (date, unique_users)
+          VALUES (${date}, ${combinedDau})
+        `,
+        d1,
+        "INSERT OR REPLACE INTO daily_combined_stats (date, unique_users) VALUES (?, ?)",
+        [date, combinedDau],
+      );
+    }
+
+    const toolIds = await loadToolIds([
+      ...toolRows.rows.map((r) => r.tool),
+      ...toolBackendRows.rows.map((r) => r.tool),
+      ...versionRows.rows.map((r) => r.tool),
+      ...platformRows.rows.map((r) => r.tool),
+    ]);
+
+    await upsertDailyToolRows(
+      date,
+      toolRows.rows
+        .map((row) => ({
+          tool_id: toolIds.get(row.tool),
+          downloads: row.downloads,
+          unique_users: row.unique_users,
+        }))
+        .filter(
+          (
+            row,
+          ): row is {
+            tool_id: number;
+            downloads: number;
+            unique_users: number;
+          } => typeof row.tool_id === "number",
+        ),
+      d1,
+    );
+
+    await upsertDailyBackendRows(date, backendRows.rows, d1);
+
+    await upsertDailyToolBackendRows(
+      date,
+      toolBackendRows.rows
+        .map((row) => ({
+          tool_id: toolIds.get(row.tool),
+          backend_type: row.backend_type || "unknown",
+          downloads: row.downloads,
+        }))
+        .filter(
+          (
+            row,
+          ): row is {
+            tool_id: number;
+            backend_type: string;
+            downloads: number;
+          } => typeof row.tool_id === "number",
+        ),
+      d1,
+    );
+
+    await upsertDailyToolVersionRows(
+      date,
+      versionRows.rows
+        .map((row) => ({
+          tool_id: toolIds.get(row.tool),
+          version: row.version,
+          downloads: row.downloads,
+        }))
+        .filter(
+          (
+            row,
+          ): row is {
+            tool_id: number;
+            version: string;
+            downloads: number;
+          } => typeof row.tool_id === "number" && row.version.length > 0,
+        ),
+      d1,
+    );
+
+    const platformStats: Array<{
+      tool_id: number;
+      platform_id: number;
+      downloads: number;
+    }> = [];
+    for (const row of platformRows.rows) {
+      const toolId = toolIds.get(row.tool);
+      if (!toolId) continue;
+
+      const platformId = await getOrCreatePlatformId(
+        row.os || null,
+        row.arch || null,
+        d1,
+      );
+      platformStats.push({
+        tool_id: toolId,
+        platform_id: platformId,
+        downloads: row.downloads,
+      });
+    }
+    await upsertDailyToolPlatformRows(date, platformStats, d1);
+
+    return {
+      dailyStats: (globalStats?.total ?? 0) > 0,
+      combinedStats: combinedDau > 0,
+      toolStats: toolRows.rows.length,
+      backendStats: backendRows.rows.length,
+      toolBackendStats: toolBackendRows.rows.length,
+    };
+  }
+
+  async function populateDailyMauStatsFromAnalyticsEngine(
+    date: string,
+    d1?: D1Database,
+  ): Promise<boolean | null> {
+    if (!hasAnalyticsEngineSql(analyticsEngine)) return null;
+
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      throw new Error(`Invalid date for Analytics Engine query: ${date}`);
+    }
+
+    const end = `${date} 23:59:59`;
+    const startDate = new Date(`${date}T23:59:59Z`);
+    startDate.setUTCDate(startDate.getUTCDate() - 30);
+    const start = startDate.toISOString().replace("T", " ").slice(0, 19);
+    const table = datasetSql();
+
+    const result = await queryAnalyticsEngine<{ mau: number }>(
+      analyticsEngine!,
+      `
+        SELECT count(DISTINCT index1) AS mau
+        FROM ${table}
+        WHERE
+          blob1 IN ('download', 'version_request')
+          AND timestamp >= toDateTime('${start}')
+          AND timestamp <= toDateTime('${end}')
+      `,
+    );
+
+    const mau = result.rows[0]?.mau ?? 0;
+    if (mau <= 0) return false;
+
+    await runStatement(
+      sql`
+        INSERT OR REPLACE INTO daily_mau_stats (date, mau)
+        VALUES (${date}, ${mau})
+      `,
+      d1,
+      "INSERT OR REPLACE INTO daily_mau_stats (date, mau) VALUES (?, ?)",
+      [date, mau],
+    );
+
+    return true;
+  }
+
+  async function upsertDailyToolRows(
+    date: string,
+    rows: Array<{ tool_id: number; downloads: number; unique_users: number }>,
+    d1?: D1Database,
+  ) {
+    if (d1 && rows.length > 0) {
+      await batchD1(
+        d1,
+        rows.map((row) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users) VALUES (?, ?, ?, ?)",
+            )
+            .bind(date, row.tool_id, row.downloads, row.unique_users),
+        ),
+      );
+      return;
+    }
+
+    for (const row of rows) {
+      await db.run(sql`
+        INSERT OR REPLACE INTO daily_tool_stats (date, tool_id, downloads, unique_users)
+        VALUES (${date}, ${row.tool_id}, ${row.downloads}, ${row.unique_users})
+      `);
+    }
+  }
+
+  async function upsertDailyBackendRows(
+    date: string,
+    rows: Array<{
+      backend_type: string;
+      downloads: number;
+      unique_users: number;
+    }>,
+    d1?: D1Database,
+  ) {
+    if (d1 && rows.length > 0) {
+      await batchD1(
+        d1,
+        rows.map((row) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users) VALUES (?, ?, ?, ?)",
+            )
+            .bind(
+              date,
+              row.backend_type || "unknown",
+              row.downloads,
+              row.unique_users,
+            ),
+        ),
+      );
+      return;
+    }
+
+    for (const row of rows) {
+      await db.run(sql`
+        INSERT OR REPLACE INTO daily_backend_stats (date, backend_type, downloads, unique_users)
+        VALUES (${date}, ${row.backend_type || "unknown"}, ${row.downloads}, ${row.unique_users})
+      `);
+    }
+  }
+
+  async function upsertDailyToolBackendRows(
+    date: string,
+    rows: Array<{ tool_id: number; backend_type: string; downloads: number }>,
+    d1?: D1Database,
+  ) {
+    if (d1 && rows.length > 0) {
+      await batchD1(
+        d1,
+        rows.map((row) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_tool_backend_stats (date, tool_id, backend_type, downloads) VALUES (?, ?, ?, ?)",
+            )
+            .bind(date, row.tool_id, row.backend_type, row.downloads),
+        ),
+      );
+      return;
+    }
+
+    for (const row of rows) {
+      await db.run(sql`
+        INSERT OR REPLACE INTO daily_tool_backend_stats (date, tool_id, backend_type, downloads)
+        VALUES (${date}, ${row.tool_id}, ${row.backend_type}, ${row.downloads})
+      `);
+    }
+  }
+
+  async function upsertDailyToolVersionRows(
+    date: string,
+    rows: Array<{ tool_id: number; version: string; downloads: number }>,
+    d1?: D1Database,
+  ) {
+    if (d1 && rows.length > 0) {
+      await batchD1(
+        d1,
+        rows.map((row) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_tool_version_stats (date, tool_id, version, downloads) VALUES (?, ?, ?, ?)",
+            )
+            .bind(date, row.tool_id, row.version, row.downloads),
+        ),
+      );
+      return;
+    }
+
+    for (const row of rows) {
+      await db.run(sql`
+        INSERT OR REPLACE INTO daily_tool_version_stats (date, tool_id, version, downloads)
+        VALUES (${date}, ${row.tool_id}, ${row.version}, ${row.downloads})
+      `);
+    }
+  }
+
+  async function upsertDailyToolPlatformRows(
+    date: string,
+    rows: Array<{ tool_id: number; platform_id: number; downloads: number }>,
+    d1?: D1Database,
+  ) {
+    if (d1 && rows.length > 0) {
+      await batchD1(
+        d1,
+        rows.map((row) =>
+          d1
+            .prepare(
+              "INSERT OR REPLACE INTO daily_tool_platform_stats (date, tool_id, platform_id, downloads) VALUES (?, ?, ?, ?)",
+            )
+            .bind(date, row.tool_id, row.platform_id, row.downloads),
+        ),
+      );
+      return;
+    }
+
+    for (const row of rows) {
+      await db.run(sql`
+        INSERT OR REPLACE INTO daily_tool_platform_stats (date, tool_id, platform_id, downloads)
+        VALUES (${date}, ${row.tool_id}, ${row.platform_id}, ${row.downloads})
+      `);
+    }
+  }
+
+  async function batchD1(
+    d1: D1Database,
+    statements: D1PreparedStatement[],
+  ): Promise<void> {
+    const BATCH_SIZE = 50;
+    for (let i = 0; i < statements.length; i += BATCH_SIZE) {
+      await d1.batch(statements.slice(i, i + BATCH_SIZE));
+    }
+  }
+
   // Populate daily_version_stats rollup table for a specific date
   async function populateVersionStatsRollup(
     date: string,
     d1?: D1Database,
   ): Promise<boolean> {
+    const analyticsEngineResult =
+      await populateVersionStatsRollupFromAnalyticsEngine(date, d1);
+    if (analyticsEngineResult !== null) {
+      return analyticsEngineResult;
+    }
+
     const dateStart = Math.floor(
       new Date(date + "T00:00:00Z").getTime() / 1000,
     );
@@ -70,6 +681,14 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     backendStats: number;
     toolBackendStats: number;
   }> {
+    const analyticsEngineResult = await populateRollupTablesFromAnalyticsEngine(
+      date,
+      d1,
+    );
+    if (analyticsEngineResult !== null) {
+      return analyticsEngineResult;
+    }
+
     // Calculate timestamp range for the date (UTC)
     const dateStart = Math.floor(
       new Date(date + "T00:00:00Z").getTime() / 1000,
@@ -320,6 +939,12 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
     date: string,
     d1?: D1Database,
   ): Promise<boolean> {
+    const analyticsEngineResult =
+      await populateDailyMauStatsFromAnalyticsEngine(date, d1);
+    if (analyticsEngineResult !== null) {
+      return analyticsEngineResult;
+    }
+
     // Calculate the 30-day window ending on this date
     const dateEnd = Math.floor(new Date(date + "T23:59:59Z").getTime() / 1000);
     const dateStart = dateEnd - 30 * 86400;
@@ -495,13 +1120,25 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
         WITH all_time AS (
           SELECT tool_id, SUM(downloads) AS downloads_all_time
           FROM (
-            SELECT tool_id, COUNT(*) AS downloads
-            FROM downloads
+            SELECT tool_id, SUM(downloads) AS downloads
+            FROM daily_tool_stats
             GROUP BY tool_id
             UNION ALL
-            SELECT tool_id, SUM(count) AS downloads
-            FROM downloads_daily
-            GROUP BY tool_id
+            SELECT d.tool_id, COUNT(*) AS downloads
+            FROM downloads d
+            LEFT JOIN daily_tool_stats s
+              ON s.tool_id = d.tool_id
+              AND s.date = date(d.created_at, 'unixepoch')
+            WHERE s.tool_id IS NULL
+            GROUP BY d.tool_id
+            UNION ALL
+            SELECT dd.tool_id, SUM(dd.count) AS downloads
+            FROM downloads_daily dd
+            LEFT JOIN daily_tool_stats s
+              ON s.tool_id = dd.tool_id
+              AND s.date = dd.date
+            WHERE s.tool_id IS NULL
+            GROUP BY dd.tool_id
           )
           GROUP BY tool_id
         ),
@@ -531,13 +1168,25 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
         WITH all_time AS (
           SELECT tool_id, SUM(downloads) AS downloads_all_time
           FROM (
-            SELECT tool_id, COUNT(*) AS downloads
-            FROM downloads
+            SELECT tool_id, SUM(downloads) AS downloads
+            FROM daily_tool_stats
             GROUP BY tool_id
             UNION ALL
-            SELECT tool_id, SUM(count) AS downloads
-            FROM downloads_daily
-            GROUP BY tool_id
+            SELECT d.tool_id, COUNT(*) AS downloads
+            FROM downloads d
+            LEFT JOIN daily_tool_stats s
+              ON s.tool_id = d.tool_id
+              AND s.date = date(d.created_at, 'unixepoch')
+            WHERE s.tool_id IS NULL
+            GROUP BY d.tool_id
+            UNION ALL
+            SELECT dd.tool_id, SUM(dd.count) AS downloads
+            FROM downloads_daily dd
+            LEFT JOIN daily_tool_stats s
+              ON s.tool_id = dd.tool_id
+              AND s.date = dd.date
+            WHERE s.tool_id IS NULL
+            GROUP BY dd.tool_id
           )
           GROUP BY tool_id
         ),
@@ -571,13 +1220,27 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
           COALESCE(platform_id, 0) AS platform_id,
           SUM(downloads) AS downloads_all_time
         FROM (
-          SELECT tool_id, platform_id, COUNT(*) AS downloads
-          FROM downloads
+          SELECT tool_id, platform_id, SUM(downloads) AS downloads
+          FROM daily_tool_platform_stats
           GROUP BY tool_id, platform_id
           UNION ALL
-          SELECT tool_id, platform_id, SUM(count) AS downloads
-          FROM downloads_daily
-          GROUP BY tool_id, platform_id
+          SELECT d.tool_id, d.platform_id, COUNT(*) AS downloads
+          FROM downloads d
+          LEFT JOIN daily_tool_platform_stats s
+            ON s.tool_id = d.tool_id
+            AND s.platform_id = COALESCE(d.platform_id, 0)
+            AND s.date = date(d.created_at, 'unixepoch')
+          WHERE s.tool_id IS NULL
+          GROUP BY d.tool_id, d.platform_id
+          UNION ALL
+          SELECT dd.tool_id, dd.platform_id, SUM(dd.count) AS downloads
+          FROM downloads_daily dd
+          LEFT JOIN daily_tool_platform_stats s
+            ON s.tool_id = dd.tool_id
+            AND s.platform_id = COALESCE(dd.platform_id, 0)
+            AND s.date = dd.date
+          WHERE s.tool_id IS NULL
+          GROUP BY dd.tool_id, dd.platform_id
         )
         GROUP BY tool_id, COALESCE(platform_id, 0)
       `,
@@ -593,13 +1256,27 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
           COALESCE(platform_id, 0) AS platform_id,
           SUM(downloads) AS downloads_all_time
         FROM (
-          SELECT tool_id, platform_id, COUNT(*) AS downloads
-          FROM downloads
+          SELECT tool_id, platform_id, SUM(downloads) AS downloads
+          FROM daily_tool_platform_stats
           GROUP BY tool_id, platform_id
           UNION ALL
-          SELECT tool_id, platform_id, SUM(count) AS downloads
-          FROM downloads_daily
-          GROUP BY tool_id, platform_id
+          SELECT d.tool_id, d.platform_id, COUNT(*) AS downloads
+          FROM downloads d
+          LEFT JOIN daily_tool_platform_stats s
+            ON s.tool_id = d.tool_id
+            AND s.platform_id = COALESCE(d.platform_id, 0)
+            AND s.date = date(d.created_at, 'unixepoch')
+          WHERE s.tool_id IS NULL
+          GROUP BY d.tool_id, d.platform_id
+          UNION ALL
+          SELECT dd.tool_id, dd.platform_id, SUM(dd.count) AS downloads
+          FROM downloads_daily dd
+          LEFT JOIN daily_tool_platform_stats s
+            ON s.tool_id = dd.tool_id
+            AND s.platform_id = COALESCE(dd.platform_id, 0)
+            AND s.date = dd.date
+          WHERE s.tool_id IS NULL
+          GROUP BY dd.tool_id, dd.platform_id
         )
         GROUP BY tool_id, COALESCE(platform_id, 0)
       `,
@@ -617,13 +1294,27 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
           version,
           SUM(downloads) AS downloads_all_time
         FROM (
-          SELECT tool_id, version, COUNT(*) AS downloads
-          FROM downloads
+          SELECT tool_id, version, SUM(downloads) AS downloads
+          FROM daily_tool_version_stats
           GROUP BY tool_id, version
           UNION ALL
-          SELECT tool_id, version, SUM(count) AS downloads
-          FROM downloads_daily
-          GROUP BY tool_id, version
+          SELECT d.tool_id, d.version, COUNT(*) AS downloads
+          FROM downloads d
+          LEFT JOIN daily_tool_version_stats s
+            ON s.tool_id = d.tool_id
+            AND s.version = d.version
+            AND s.date = date(d.created_at, 'unixepoch')
+          WHERE s.tool_id IS NULL
+          GROUP BY d.tool_id, d.version
+          UNION ALL
+          SELECT dd.tool_id, dd.version, SUM(dd.count) AS downloads
+          FROM downloads_daily dd
+          LEFT JOIN daily_tool_version_stats s
+            ON s.tool_id = dd.tool_id
+            AND s.version = dd.version
+            AND s.date = dd.date
+          WHERE s.tool_id IS NULL
+          GROUP BY dd.tool_id, dd.version
         )
         GROUP BY tool_id, version
       `,
@@ -639,13 +1330,27 @@ export function createRollupFunctions(db: ReturnType<typeof drizzle>) {
           version,
           SUM(downloads) AS downloads_all_time
         FROM (
-          SELECT tool_id, version, COUNT(*) AS downloads
-          FROM downloads
+          SELECT tool_id, version, SUM(downloads) AS downloads
+          FROM daily_tool_version_stats
           GROUP BY tool_id, version
           UNION ALL
-          SELECT tool_id, version, SUM(count) AS downloads
-          FROM downloads_daily
-          GROUP BY tool_id, version
+          SELECT d.tool_id, d.version, COUNT(*) AS downloads
+          FROM downloads d
+          LEFT JOIN daily_tool_version_stats s
+            ON s.tool_id = d.tool_id
+            AND s.version = d.version
+            AND s.date = date(d.created_at, 'unixepoch')
+          WHERE s.tool_id IS NULL
+          GROUP BY d.tool_id, d.version
+          UNION ALL
+          SELECT dd.tool_id, dd.version, SUM(dd.count) AS downloads
+          FROM downloads_daily dd
+          LEFT JOIN daily_tool_version_stats s
+            ON s.tool_id = dd.tool_id
+            AND s.version = dd.version
+            AND s.date = dd.date
+          WHERE s.tool_id IS NULL
+          GROUP BY dd.tool_id, dd.version
         )
         GROUP BY tool_id, version
       `,

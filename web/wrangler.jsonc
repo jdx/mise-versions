@@ -29,4 +29,13 @@
       "id": "placeholder-session-kv",
     },
   ],
+  "analytics_engine_datasets": [
+    {
+      "binding": "ANALYTICS_EVENTS",
+      "dataset": "mise_analytics_events",
+    },
+  ],
+  "vars": {
+    "ANALYTICS_ENGINE_DATASET": "mise_analytics_events",
+  },
 }

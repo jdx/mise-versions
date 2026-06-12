@@ -54,10 +54,19 @@
       "bucket_name": "mise-versions-data",
     },
   ],
+  "analytics_engine_datasets": [
+    {
+      "binding": "ANALYTICS_EVENTS",
+      "dataset": "mise_analytics_events",
+    },
+  ],
   "vars": {
     "ENVIRONMENT": "production",
+    "ANALYTICS_ENGINE_DATASET": "mise_analytics_events",
   },
   // Environment variables that need to be set via wrangler secret:
+  // ANALYTICS_ENGINE_ACCOUNT_ID - Cloudflare account id for Analytics Engine SQL API
+  // ANALYTICS_ENGINE_API_TOKEN - Token with Account Analytics Read permission
   // GITHUB_APP_ID - Your GitHub App ID
   // GITHUB_PRIVATE_KEY - Your GitHub App private key (PEM format)
   // GITHUB_CLIENT_ID - Your GitHub App client ID

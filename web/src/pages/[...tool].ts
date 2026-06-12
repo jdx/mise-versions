@@ -9,10 +9,12 @@ import {
   putCachedText,
   versionsToText,
 } from "../lib/version-files";
+import { logCostProbe, type CostProbe } from "../lib/cost-observability";
 
 // Legacy endpoint: GET /:tool - serves plain text version list from D1
 // e.g., /node returns one version per line
 export const GET: APIRoute = async ({ request, params, locals }) => {
+  const started = Date.now();
   const tool = params.tool;
 
   if (!tool) {
@@ -50,6 +52,13 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
   try {
     const cached = await getCachedText(request, ":text");
     if (cached !== null) {
+      logCostProbe({
+        route: "[...tool]",
+        status: 200,
+        duration_ms: Date.now() - started,
+        cache: "edge",
+        tracking: "none",
+      });
       return new Response(cached, {
         status: 200,
         headers: {
@@ -61,12 +70,14 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
 
     const db = drizzle(env.ANALYTICS_DB);
     const options = { stableOnly: true };
+    let cache: CostProbe["cache"] = "kv";
     let versions = await getCachedVersionRows(
       env.DOWNLOAD_DEDUPE,
       tool,
       options,
     );
     if (versions === null) {
+      cache = "d1";
       versions = await loadVersionRows(db, tool, options);
       if (versions !== null) {
         locals.cfContext.waitUntil(
@@ -75,6 +86,13 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
       }
     }
     if (versions === null) {
+      logCostProbe({
+        route: "[...tool]",
+        status: 404,
+        duration_ms: Date.now() - started,
+        cache,
+        tracking: "none",
+      });
       return new Response(`Tool "${tool}" not found`, {
         status: 404,
         headers: { "Content-Type": "text/plain" },
@@ -85,6 +103,14 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     locals.cfContext.waitUntil(
       putCachedText(request, ":text", text, "text/plain; charset=utf-8"),
     );
+
+    logCostProbe({
+      route: "[...tool]",
+      status: 200,
+      duration_ms: Date.now() - started,
+      cache,
+      tracking: "none",
+    });
 
     return new Response(text, {
       status: 200,

@@ -11,6 +11,10 @@ import {
 interface Env {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
+  ANALYTICS_EVENTS?: AnalyticsEngineDataset;
+  ANALYTICS_ENGINE_ACCOUNT_ID?: string;
+  ANALYTICS_ENGINE_API_TOKEN?: string;
+  ANALYTICS_ENGINE_DATASET?: string;
   ASSETS: Fetcher;
   GITHUB_CACHE: KVNamespace;
   GITHUB_APP_ID: string;
@@ -77,7 +81,13 @@ export default {
     await ensureMigrations(env);
 
     const analyticsDb = drizzle(env.ANALYTICS_DB);
-    const analytics = setupAnalytics(analyticsDb);
+    const analytics = setupAnalytics(analyticsDb, {
+      analyticsEngine: {
+        accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
+        apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
+        dataset: env.ANALYTICS_ENGINE_DATASET,
+      },
+    });
 
     // 1. Aggregate old data (data older than 90 days)
     const aggregateResult = await analytics.aggregateOldData();

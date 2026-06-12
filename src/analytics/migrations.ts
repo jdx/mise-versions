@@ -801,6 +801,32 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_backend_stats_backend ON daily_tool_backend_stats(backend_type)`,
   );
 
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS daily_tool_version_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      version TEXT NOT NULL,
+      downloads INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id, version)
+    )
+  `);
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_version_stats_tool ON daily_tool_version_stats(tool_id)`,
+  );
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS daily_tool_platform_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      platform_id INTEGER NOT NULL,
+      downloads INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id, platform_id)
+    )
+  `);
+  await db.run(
+    sql`CREATE INDEX IF NOT EXISTS idx_daily_tool_platform_stats_tool ON daily_tool_platform_stats(tool_id)`,
+  );
+
   // Summary tables for hot read paths. These are maintained by scheduled
   // rollups and let UI requests avoid scanning downloads/downloads_daily.
   await db.run(sql`

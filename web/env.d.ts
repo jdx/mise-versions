@@ -19,6 +19,10 @@ interface Env {
   DATA_BUCKET: R2Bucket;
   GITHUB_CACHE: KVNamespace;
   DOWNLOAD_DEDUPE: KVNamespace;
+  ANALYTICS_EVENTS?: AnalyticsEngineDataset;
+  ANALYTICS_ENGINE_ACCOUNT_ID?: string;
+  ANALYTICS_ENGINE_API_TOKEN?: string;
+  ANALYTICS_ENGINE_DATASET?: string;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;
   GITHUB_CLIENT_ID: string;
