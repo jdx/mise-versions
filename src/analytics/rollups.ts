@@ -321,7 +321,7 @@ export function createRollupFunctions(
           argMax(blob4, timestamp) AS os,
           argMax(blob5, timestamp) AS arch,
           argMax(blob7, timestamp) AS backend_type,
-          max(_sample_interval) AS sample_weight
+          argMax(_sample_interval, timestamp) AS sample_weight
         FROM ${table}
         WHERE blob1 = 'download' AND ${range}
         GROUP BY index1, blob2, blob3
