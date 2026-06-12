@@ -60,4 +60,16 @@ describe("build-static-version-files.js", () => {
     );
     assert.strictEqual(existsSync(join(outputDir, "node")), false);
   });
+
+  it("rejects destructive source and output path collisions", () => {
+    assert.throws(
+      () => buildStaticVersionFiles({ docsDir, outputDir: docsDir }),
+      /outputDir must not be the docsDir/,
+    );
+
+    assert.throws(
+      () => buildStaticVersionFiles({ docsDir, outputDir: tempDir }),
+      /outputDir must not be the docsDir/,
+    );
+  });
 });

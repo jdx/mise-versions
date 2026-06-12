@@ -8,33 +8,55 @@ import {
   readdirSync,
   readFileSync,
   rmSync,
+  statSync,
   writeFileSync,
 } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const SCRIPT_DIR = dirname(SCRIPT_PATH);
 const REPO_ROOT = join(SCRIPT_DIR, "..");
 
+function assertSafeOutputDir(docsDir, outputDir) {
+  if (!existsSync(docsDir)) {
+    throw new Error(`Docs directory not found: ${docsDir}`);
+  }
+  if (!statSync(docsDir).isDirectory()) {
+    throw new Error(`Docs path is not a directory: ${docsDir}`);
+  }
+
+  const resolvedDocsDir = resolve(docsDir);
+  const resolvedOutputDir = resolve(outputDir);
+  const docsRelativeToOutput = relative(resolvedOutputDir, resolvedDocsDir);
+  if (
+    resolvedDocsDir === resolvedOutputDir ||
+    (docsRelativeToOutput &&
+      !docsRelativeToOutput.startsWith("..") &&
+      !docsRelativeToOutput.startsWith("/"))
+  ) {
+    throw new Error("outputDir must not be the docsDir or contain docsDir");
+  }
+
+  return { docsDir: resolvedDocsDir, outputDir: resolvedOutputDir };
+}
+
 export function buildStaticVersionFiles({
   docsDir = join(REPO_ROOT, "docs"),
   outputDir = join(REPO_ROOT, "web", "public", "data"),
 } = {}) {
-  if (!existsSync(docsDir)) {
-    throw new Error(`Docs directory not found: ${docsDir}`);
-  }
+  const paths = assertSafeOutputDir(docsDir, outputDir);
 
-  rmSync(outputDir, { recursive: true, force: true });
-  mkdirSync(outputDir, { recursive: true });
+  rmSync(paths.outputDir, { recursive: true, force: true });
+  mkdirSync(paths.outputDir, { recursive: true });
 
-  const files = readdirSync(docsDir)
+  const files = readdirSync(paths.docsDir)
     .filter((file) => file.endsWith(".toml"))
     .sort();
 
   for (const file of files) {
-    const tomlContent = readFileSync(join(docsDir, file), "utf8");
-    writeFileSync(join(outputDir, file), tomlContent);
+    const tomlContent = readFileSync(join(paths.docsDir, file), "utf8");
+    writeFileSync(join(paths.outputDir, file), tomlContent);
   }
 
   return { tools: files.length };
