@@ -309,6 +309,12 @@ generate_summary() {
 			printf "0s/tool"
 		}
 	}')
+	local processing_speed_detail
+	if [ "$tools_checked" -gt 0 ]; then
+		processing_speed_detail="(${duration}s × ${parallel_fetches} / ${tools_checked} tools)"
+	else
+		processing_speed_detail="(no tools checked)"
+	fi
 
 	# Create summary file
 	cat >summary.md <<SUMMARY_EOF
@@ -330,7 +336,7 @@ generate_summary() {
 | No Versions | $(get_stat "total_tools_no_versions") |
 | Duration | ${duration_minutes}m ${duration_seconds}s |
 | Parallel Workers | ${parallel_fetches} |
-| Processing Speed | ${average_processing_time} average (${duration}s × ${parallel_fetches} / ${tools_checked} tools) |
+| Processing Speed | ${average_processing_time} average ${processing_speed_detail} |
 | Mise Version | ${CUR_MISE_VERSION:-not set} |
 
 ## 🧪 Metadata Quality
@@ -388,7 +394,7 @@ collect_fallback_new_versions() {
 
 	awk 'NF && !seen[$0]++ { print }' "$versions_file" >"$fetched_versions"
 
-	if [ -s "$toml_file" ] && yq -o=json '.versions // {}' "$toml_file" 2>/dev/null | jq -r 'keys[]' >"$existing_versions"; then
+	if [ -s "$toml_file" ] && yq -p=toml -o=json '.versions // {}' "$toml_file" 2>/dev/null | jq -r 'keys[]' >"$existing_versions"; then
 		awk 'NR == FNR { existing[$0] = 1; next } !($0 in existing)' "$existing_versions" "$fetched_versions"
 	else
 		cat "$fetched_versions"
@@ -403,7 +409,15 @@ record_fallback_new_versions() {
 
 	[ -n "$new_versions" ] || return
 
-	printf '%s\n' "$new_versions" | awk -v tool="$tool" 'NF { printf "%s %s\n", tool, $0 }' >>"$STATS_DIR/fallback_new_versions_list"
+	(
+		flock 200
+		while IFS= read -r version; do
+			[ -n "$version" ] || continue
+			printf '%s %s\n' "$tool" "$version"
+		done <<VERSIONS_EOF >>"$STATS_DIR/fallback_new_versions_list"
+$new_versions
+VERSIONS_EOF
+	) 200>"$STATS_DIR/fallback_new_versions_list.lock"
 }
 
 # Function to generate TOML file with timestamps.
