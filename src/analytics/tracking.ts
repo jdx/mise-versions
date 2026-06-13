@@ -3,6 +3,10 @@ import type { drizzle } from "drizzle-orm/d1";
 import { sql, eq, and } from "drizzle-orm";
 import { tools, backends, platforms } from "./schema.js";
 import { keyPart } from "../../web/src/lib/kv-cache.js";
+import {
+  writeDownloadEvent,
+  writeVersionRequestEvent,
+} from "./analytics-engine.js";
 
 // Caches for ID lookups (shared within the tracking module)
 const toolCache = new Map<string, number>();
@@ -13,6 +17,7 @@ const ID_CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 
 type TrackingCache = {
   kv?: KVNamespace;
+  events?: AnalyticsEngineDataset;
 };
 
 async function getCachedId(
@@ -197,6 +202,10 @@ export function createTrackingFunctions(
     async trackVersionRequest(
       ipHash: string,
     ): Promise<{ deduplicated: boolean }> {
+      if (writeVersionRequestEvent(cache.events, ipHash)) {
+        return { deduplicated: false };
+      }
+
       const now = Math.floor(Date.now() / 1000);
       const day = Math.floor(now / 86400);
 
@@ -220,9 +229,26 @@ export function createTrackingFunctions(
       arch: string | null,
       full: string | null = null, // Full backend identifier (e.g., "aqua:nektos/act")
     ): Promise<{ deduplicated: boolean }> {
+      // Keep dimension tables populated even when raw events are written to
+      // Analytics Engine; scheduled rollups resolve tool/platform names back
+      // to these ids before materializing D1 summaries.
       const toolId = await getOrCreateToolId(tool);
       const backendId = await getOrCreateBackendId(full);
       const platformId = await getOrCreatePlatformId(os, arch);
+
+      if (
+        writeDownloadEvent(cache.events, {
+          tool,
+          version,
+          ipHash,
+          os,
+          arch,
+          full,
+        })
+      ) {
+        return { deduplicated: false };
+      }
+
       const now = Math.floor(Date.now() / 1000);
       const day = Math.floor(now / 86400);
 

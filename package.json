@@ -6,7 +6,7 @@
     "web"
   ],
   "scripts": {
-    "test": "npm run test:js && npm run test:shell",
+    "test": "aube run test:js && aube run test:shell",
     "test:js": "node --test scripts/*.test.js",
     "test:shell": "bash scripts/update.test.sh"
   },
@@ -29,6 +29,7 @@
     "drizzle-orm": "^0.45.0",
     "semver": "^7.7.4",
     "smol-toml": "^1.5.2",
+    "snappyjs": "^0.7.0",
     "workers-og": "^0.0.27"
   }
 }

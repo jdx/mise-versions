@@ -5,13 +5,122 @@ import {
   tools,
   downloads,
   dailyToolStats,
+  dailyToolVersionStats,
   dailyCombinedStats,
   dailyMauStats,
   dailyVersionStats,
   versionRequests,
 } from "./schema.js";
+import {
+  analyticsEngineCutoverDate,
+  analyticsEngineDataset,
+  hasAnalyticsEngineSql,
+  queryAnalyticsEngine,
+  type AnalyticsEngineSqlConfig,
+} from "./analytics-engine.js";
 
-export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
+interface TrendsOptions {
+  analyticsEngine?: AnalyticsEngineSqlConfig;
+}
+
+export function createTrendsFunctions(
+  db: ReturnType<typeof drizzle>,
+  options: TrendsOptions = {},
+) {
+  const analyticsEngine = options.analyticsEngine;
+
+  async function getCurrentMiseMAU(now: number): Promise<number> {
+    const thirtyDaysAgo = now - 30 * 86400;
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+
+    if (hasAnalyticsEngineSql(analyticsEngine) && cutoverDate) {
+      try {
+        const cutoverTimestamp = Math.floor(
+          new Date(`${cutoverDate}T00:00:00Z`).getTime() / 1000,
+        );
+        if (now >= cutoverTimestamp) {
+          const users = new Set<string>();
+          const d1Users = await db.all<{ ip_hash: string }>(sql`
+            SELECT DISTINCT ip_hash
+            FROM version_requests
+            WHERE created_at >= ${thirtyDaysAgo}
+              AND created_at < ${cutoverTimestamp}
+          `);
+          for (const row of d1Users) users.add(row.ip_hash);
+
+          const aeStart = new Date(
+            Math.max(thirtyDaysAgo, cutoverTimestamp) * 1000,
+          )
+            .toISOString()
+            .replace("T", " ")
+            .slice(0, 19);
+          const aeEnd = new Date(now * 1000)
+            .toISOString()
+            .replace("T", " ")
+            .slice(0, 19);
+          const table = analyticsEngineDataset(analyticsEngine);
+          const result = await queryAnalyticsEngine<{ ip_hash: string }>(
+            analyticsEngine!,
+            `
+              SELECT DISTINCT index1 AS ip_hash
+              FROM ${table}
+              WHERE
+                blob1 = 'version_request'
+                AND timestamp >= toDateTime('${aeStart}')
+                AND timestamp <= toDateTime('${aeEnd}')
+            `,
+          );
+          for (const row of result.rows) users.add(row.ip_hash);
+          return users.size;
+        }
+      } catch (error) {
+        console.warn(
+          "failed to query cutover-aware Analytics Engine mise MAU:",
+          error,
+        );
+      }
+    }
+
+    if (hasAnalyticsEngineSql(analyticsEngine)) {
+      try {
+        const end = new Date(now * 1000)
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const start = new Date((now - 30 * 86400) * 1000)
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const table = analyticsEngineDataset(analyticsEngine);
+        const result = await queryAnalyticsEngine<{ mau: number }>(
+          analyticsEngine!,
+          `
+            SELECT count(DISTINCT index1) AS mau
+            FROM ${table}
+            WHERE
+              blob1 = 'version_request'
+              AND timestamp >= toDateTime('${start}')
+              AND timestamp <= toDateTime('${end}')
+          `,
+        );
+        const mau = result.rows[0]?.mau ?? 0;
+        if (mau > 0) return mau;
+      } catch (error) {
+        console.warn("failed to query Analytics Engine mise MAU:", error);
+      }
+    }
+
+    const mauResult = await db
+      .select({
+        mau: sql<number>`count(distinct ip_hash)`,
+      })
+      .from(versionRequests)
+      .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
+      .get();
+
+    return mauResult?.mau ?? 0;
+  }
+
   return {
     // Get DAU and rolling MAU history for the last N days
     async getDAUMAUHistory(days: number = 30) {
@@ -98,16 +207,7 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         .orderBy(dailyVersionStats.date)
         .all();
 
-      const thirtyDaysAgo = now - 30 * 86400;
-      const mauResult = await db
-        .select({
-          mau: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(versionRequests)
-        .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
-        .get();
-
-      const currentMAU = mauResult?.mau ?? 0;
+      const currentMAU = await getCurrentMiseMAU(now);
 
       const dailyData: Array<{ date: string; dau: number }> = [];
       const dauMap = new Map(dauResults.map((r) => [r.date, r.dau]));
@@ -141,22 +241,43 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
 
       const now = Math.floor(Date.now() / 1000);
       const startTimestamp = now - days * 86400;
+      const startDate = new Date(startTimestamp * 1000)
+        .toISOString()
+        .split("T")[0];
 
-      const versionData = await db
+      let versionData = await db
         .select({
-          version: downloads.version,
-          count: sql<number>`count(*)`,
+          version: dailyToolVersionStats.version,
+          count: sql<number>`sum(${dailyToolVersionStats.downloads})`,
         })
-        .from(downloads)
+        .from(dailyToolVersionStats)
         .where(
           and(
-            eq(downloads.tool_id, toolRecord.id),
-            sql`${downloads.created_at} >= ${startTimestamp}`,
+            eq(dailyToolVersionStats.tool_id, toolRecord.id),
+            sql`${dailyToolVersionStats.date} >= ${startDate}`,
           ),
         )
-        .groupBy(downloads.version)
-        .orderBy(sql`count(*) DESC`)
+        .groupBy(dailyToolVersionStats.version)
+        .orderBy(sql`sum(${dailyToolVersionStats.downloads}) DESC`)
         .all();
+
+      if (versionData.length === 0) {
+        versionData = await db
+          .select({
+            version: downloads.version,
+            count: sql<number>`count(*)`,
+          })
+          .from(downloads)
+          .where(
+            and(
+              eq(downloads.tool_id, toolRecord.id),
+              sql`${downloads.created_at} >= ${startTimestamp}`,
+            ),
+          )
+          .groupBy(downloads.version)
+          .orderBy(sql`count(*) DESC`)
+          .all();
+      }
 
       const totalDownloads = versionData.reduce((sum, v) => sum + v.count, 0);
 
@@ -170,25 +291,43 @@ export function createTrendsFunctions(db: ReturnType<typeof drizzle>) {
         };
       });
 
-      const dailyData = await db
+      let dailyData = await db
         .select({
-          date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
-          version: downloads.version,
-          count: sql<number>`count(*)`,
+          date: dailyToolVersionStats.date,
+          version: dailyToolVersionStats.version,
+          count: dailyToolVersionStats.downloads,
         })
-        .from(downloads)
+        .from(dailyToolVersionStats)
         .where(
           and(
-            eq(downloads.tool_id, toolRecord.id),
-            sql`${downloads.created_at} >= ${startTimestamp}`,
+            eq(dailyToolVersionStats.tool_id, toolRecord.id),
+            sql`${dailyToolVersionStats.date} >= ${startDate}`,
           ),
         )
-        .groupBy(
-          sql`date(${downloads.created_at}, 'unixepoch')`,
-          downloads.version,
-        )
-        .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+        .orderBy(dailyToolVersionStats.date)
         .all();
+
+      if (dailyData.length === 0) {
+        dailyData = await db
+          .select({
+            date: sql<string>`date(${downloads.created_at}, 'unixepoch')`,
+            version: downloads.version,
+            count: sql<number>`count(*)`,
+          })
+          .from(downloads)
+          .where(
+            and(
+              eq(downloads.tool_id, toolRecord.id),
+              sql`${downloads.created_at} >= ${startTimestamp}`,
+            ),
+          )
+          .groupBy(
+            sql`date(${downloads.created_at}, 'unixepoch')`,
+            downloads.version,
+          )
+          .orderBy(sql`date(${downloads.created_at}, 'unixepoch')`)
+          .all();
+      }
 
       const topVersions = versions.slice(0, 10).map((v) => v.version);
       const timeline: Array<{

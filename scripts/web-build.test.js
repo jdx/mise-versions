@@ -2,8 +2,8 @@
 /**
  * Regression tests for the built Astro/Tailwind output.
  *
- * These assume `npm run build -w web` has already run. CI does that before
- * `npm run test`, which keeps this test focused on verifying the artifact.
+ * These assume `aube --dir web run build` has already run. CI does that before
+ * `aube run test`, which keeps this test focused on verifying the artifact.
  */
 import { describe, it } from "node:test";
 import assert from "node:assert";
@@ -19,7 +19,7 @@ const ASTRO_ASSET_DIR = join(DIST_CLIENT_DIR, "_astro");
 function readBuiltCss() {
   assert.ok(
     existsSync(ASTRO_ASSET_DIR),
-    "web build assets are missing; run `npm run build -w web` before tests",
+    "web build assets are missing; run `aube --dir web run build` before tests",
   );
 
   const cssFiles = readdirSync(ASTRO_ASSET_DIR)
@@ -57,5 +57,15 @@ describe("web build CSS", () => {
     for (const utility of expectedUtilities) {
       assert.ok(css.includes(utility), `missing CSS utility: ${utility}`);
     }
+  });
+});
+
+describe("web build static version files", () => {
+  it("includes TOML assets under /data", () => {
+    const nodeToml = join(DIST_CLIENT_DIR, "data", "node.toml");
+
+    assert.ok(existsSync(nodeToml), "missing static /data/node.toml asset");
+
+    assert.match(readFileSync(nodeToml, "utf8"), /^\[versions\]/);
   });
 });

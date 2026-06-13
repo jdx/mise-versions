@@ -2,8 +2,116 @@
 import type { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 import { versionRequests, dailyVersionStats } from "./schema.js";
+import {
+  analyticsEngineCutoverDate,
+  analyticsEngineDataset,
+  hasAnalyticsEngineSql,
+  queryAnalyticsEngine,
+  type AnalyticsEngineSqlConfig,
+} from "./analytics-engine.js";
 
-export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
+interface VersionsOptions {
+  analyticsEngine?: AnalyticsEngineSqlConfig;
+}
+
+export function createVersionsFunctions(
+  db: ReturnType<typeof drizzle>,
+  options: VersionsOptions = {},
+) {
+  const analyticsEngine = options.analyticsEngine;
+
+  async function getCurrentMiseMAU(now: number): Promise<number> {
+    const thirtyDaysAgo = now - 30 * 86400;
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+
+    if (hasAnalyticsEngineSql(analyticsEngine) && cutoverDate) {
+      try {
+        const cutoverTimestamp = Math.floor(
+          new Date(`${cutoverDate}T00:00:00Z`).getTime() / 1000,
+        );
+        if (now >= cutoverTimestamp) {
+          const users = new Set<string>();
+          const d1Users = await db.all<{ ip_hash: string }>(sql`
+            SELECT DISTINCT ip_hash
+            FROM version_requests
+            WHERE created_at >= ${thirtyDaysAgo}
+              AND created_at < ${cutoverTimestamp}
+          `);
+          for (const row of d1Users) users.add(row.ip_hash);
+
+          const aeStart = new Date(
+            Math.max(thirtyDaysAgo, cutoverTimestamp) * 1000,
+          )
+            .toISOString()
+            .replace("T", " ")
+            .slice(0, 19);
+          const aeEnd = new Date(now * 1000)
+            .toISOString()
+            .replace("T", " ")
+            .slice(0, 19);
+          const table = analyticsEngineDataset(analyticsEngine);
+          const result = await queryAnalyticsEngine<{ ip_hash: string }>(
+            analyticsEngine!,
+            `
+              SELECT DISTINCT index1 AS ip_hash
+              FROM ${table}
+              WHERE
+                blob1 = 'version_request'
+                AND timestamp >= toDateTime('${aeStart}')
+                AND timestamp <= toDateTime('${aeEnd}')
+            `,
+          );
+          for (const row of result.rows) users.add(row.ip_hash);
+          return users.size;
+        }
+      } catch (error) {
+        console.warn(
+          "failed to query cutover-aware Analytics Engine mise MAU:",
+          error,
+        );
+      }
+    }
+
+    if (hasAnalyticsEngineSql(analyticsEngine)) {
+      try {
+        const end = new Date(now * 1000)
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const start = new Date((now - 30 * 86400) * 1000)
+          .toISOString()
+          .replace("T", " ")
+          .slice(0, 19);
+        const table = analyticsEngineDataset(analyticsEngine);
+        const result = await queryAnalyticsEngine<{ mau: number }>(
+          analyticsEngine!,
+          `
+            SELECT count(DISTINCT index1) AS mau
+            FROM ${table}
+            WHERE
+              blob1 = 'version_request'
+              AND timestamp >= toDateTime('${start}')
+              AND timestamp <= toDateTime('${end}')
+          `,
+        );
+        const mau = result.rows[0]?.mau ?? 0;
+        if (mau > 0) return mau;
+      } catch (error) {
+        console.warn("failed to query Analytics Engine mise MAU:", error);
+      }
+    }
+
+    const mauResult = await db
+      .select({
+        mau: sql<number>`count(distinct ip_hash)`,
+      })
+      .from(versionRequests)
+      .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
+      .get();
+
+    return mauResult?.mau ?? 0;
+  }
+
   return {
     // Get mise DAU/MAU (unique users making version requests)
     async getMiseDAUMAU(days: number = 30) {
@@ -23,17 +131,7 @@ export function createVersionsFunctions(db: ReturnType<typeof drizzle>) {
         .orderBy(dailyVersionStats.date)
         .all();
 
-      // Get current MAU (30-day unique users)
-      const thirtyDaysAgo = now - 30 * 86400;
-      const mauResult = await db
-        .select({
-          mau: sql<number>`count(distinct ip_hash)`,
-        })
-        .from(versionRequests)
-        .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
-        .get();
-
-      const currentMAU = mauResult?.mau ?? 0;
+      const currentMAU = await getCurrentMiseMAU(now);
 
       // Fill in missing days with 0 (exclude current day since it's incomplete)
       const dailyData: Array<{ date: string; dau: number }> = [];

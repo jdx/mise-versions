@@ -6,7 +6,14 @@ import { env } from "cloudflare:workers";
 export const GET: APIRoute = async ({ locals }) => {
   try {
     const db = drizzle(env.ANALYTICS_DB);
-    const analytics = setupAnalytics(db);
+    const analytics = setupAnalytics(db, {
+      analyticsEngine: {
+        accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
+        apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
+        dataset: env.ANALYTICS_ENGINE_DATASET,
+        cutoverDate: env.ANALYTICS_ENGINE_CUTOVER_DATE,
+      },
+    });
 
     const stats = await analytics.getDAUMAUHistory(30);
 

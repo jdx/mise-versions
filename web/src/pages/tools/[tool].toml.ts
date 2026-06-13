@@ -11,8 +11,11 @@ import {
   putCachedText,
   versionsToToml,
 } from "../../lib/version-files";
+import { logCostProbe, type CostProbe } from "../../lib/cost-observability";
+import { analyticsEventsBinding } from "../../lib/analytics-events";
 
 export const GET: APIRoute = async ({ request, params, locals }) => {
+  const started = Date.now();
   const { tool } = params;
 
   if (!tool) {
@@ -34,9 +37,12 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
     const db = drizzle(env.ANALYTICS_DB);
 
     let toml = await getCachedText(request, ":toml");
+    let cache: CostProbe["cache"] = "edge";
     if (toml === null) {
+      cache = "kv";
       let versions = await getCachedVersionRows(env.DOWNLOAD_DEDUPE, tool);
       if (versions === null) {
+        cache = "d1";
         versions = await loadVersionRows(db, tool);
         if (versions !== null) {
           locals.cfContext.waitUntil(
@@ -45,6 +51,13 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
         }
       }
       if (versions === null) {
+        logCostProbe({
+          route: "tools/[tool].toml",
+          status: 404,
+          duration_ms: Date.now() - started,
+          cache,
+          tracking: "none",
+        });
         return new Response(`Tool "${tool}" not found`, {
           status: 404,
           headers: { "Content-Type": "text/plain" },
@@ -66,6 +79,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
           try {
             const analytics = setupAnalytics(db, {
               trackingCache: env.DOWNLOAD_DEDUPE,
+              analyticsEvents: analyticsEventsBinding(),
             });
             await analytics.trackVersionRequest(ipHash);
           } catch (e) {
@@ -74,6 +88,14 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
         }),
       );
     }
+
+    logCostProbe({
+      route: "tools/[tool].toml",
+      status: 200,
+      duration_ms: Date.now() - started,
+      cache,
+      tracking: isCI ? "ci_skipped" : "queued",
+    });
 
     return new Response(toml, {
       status: 200,

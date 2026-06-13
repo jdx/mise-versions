@@ -8,25 +8,18 @@ set -e
 echo "🚀 GitHub Token Manager Deployment Script"
 echo "=========================================="
 
-# Check if wrangler is installed
-if ! command -v wrangler &>/dev/null; then
-	echo "❌ Wrangler CLI is not installed. Please install it first:"
-	echo "   npm install -g wrangler"
-	exit 1
-fi
+# Install dependencies
+echo "📦 Installing dependencies..."
+aube ci
 
 # Check if user is logged in to Wrangler
-if ! wrangler whoami &>/dev/null; then
+if ! aube exec wrangler whoami &>/dev/null; then
 	echo "🔐 Please log in to Wrangler first:"
-	echo "   wrangler login"
+	echo "   aube exec wrangler login"
 	exit 1
 fi
 
 echo "✅ Wrangler is installed and you're logged in"
-
-# Install dependencies
-echo "📦 Installing dependencies..."
-npm install
 
 # Function to prompt for secret
 prompt_for_secret() {
@@ -37,11 +30,11 @@ prompt_for_secret() {
 	echo "🔑 Setting up $secret_name"
 	echo "   Description: $description"
 
-	if wrangler secret list | grep -q "$secret_name"; then
+	if aube exec wrangler secret list | grep -q "$secret_name"; then
 		echo "   ✅ $secret_name already exists"
 	else
 		echo "   Please enter the value:"
-		wrangler secret put "$secret_name"
+		aube exec wrangler secret put "$secret_name"
 	fi
 }
 
@@ -58,14 +51,14 @@ prompt_for_secret "API_SECRET" "A secure random string for API authentication (g
 
 echo ""
 echo "🏗️  Deploying to Cloudflare Workers..."
-wrangler deploy
+aube exec wrangler deploy
 
 # Get the deployment URL
-WORKER_URL=$(wrangler deployments list --name mise-versions --json | jq -r '.[0].url' 2>/dev/null || echo "")
+WORKER_URL=$(aube exec wrangler deployments list --name mise-versions --json | jq -r '.[0].url' 2>/dev/null || echo "")
 
 if [ -z "$WORKER_URL" ]; then
 	echo "⚠️  Could not automatically detect worker URL. Please check your deployment manually."
-	echo "   Run: wrangler deployments list"
+	echo "   Run: aube exec wrangler deployments list"
 else
 	echo ""
 	echo "🎉 Deployment successful!"

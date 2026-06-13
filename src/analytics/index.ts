@@ -11,6 +11,7 @@ import { createRollupFunctions } from "./rollups.js";
 import { createGrowthFunctions } from "./growth.js";
 import { createVersionsFunctions } from "./versions.js";
 import { createMaintenanceFunctions } from "./maintenance.js";
+import type { AnalyticsEngineSqlConfig } from "./analytics-engine.js";
 
 // Re-export schema tables for external use
 export {
@@ -23,6 +24,8 @@ export {
   dailyToolStats,
   dailyBackendStats,
   dailyToolBackendStats,
+  dailyToolVersionStats,
+  dailyToolPlatformStats,
   versionRequests,
   dailyVersionStats,
   dailyCombinedStats,
@@ -41,19 +44,30 @@ export { runAnalyticsMigrations };
 // Main factory function that composes all analytics functions
 type AnalyticsOptions = {
   trackingCache?: KVNamespace;
+  analyticsEvents?: AnalyticsEngineDataset;
+  analyticsEngine?: AnalyticsEngineSqlConfig;
 };
 
 export function setupAnalytics(
   db: ReturnType<typeof drizzle>,
   options: AnalyticsOptions = {},
 ) {
-  const tracking = createTrackingFunctions(db, { kv: options.trackingCache });
+  const tracking = createTrackingFunctions(db, {
+    kv: options.trackingCache,
+    events: options.analyticsEvents,
+  });
   const stats = createStatsFunctions(db);
   const backendStats = createBackendStatsFunctions(db);
-  const trends = createTrendsFunctions(db);
-  const rollups = createRollupFunctions(db);
+  const trends = createTrendsFunctions(db, {
+    analyticsEngine: options.analyticsEngine,
+  });
+  const rollups = createRollupFunctions(db, {
+    analyticsEngine: options.analyticsEngine,
+  });
   const growth = createGrowthFunctions(db);
-  const versions = createVersionsFunctions(db);
+  const versions = createVersionsFunctions(db, {
+    analyticsEngine: options.analyticsEngine,
+  });
   const maintenance = createMaintenanceFunctions(db);
 
   return {

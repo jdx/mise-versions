@@ -263,15 +263,13 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
     // Get monthly active users from pre-computed rollup table
     async getMAU() {
       const today = new Date().toISOString().split("T")[0];
-      const yesterday = new Date(Date.now() - 86400000)
-        .toISOString()
-        .split("T")[0];
-
-      // Try today's value first, then yesterday's
+      // Prefer today's rollup, but fall back to the latest populated date. The
+      // scheduled MAU step can lag behind other rollups, and returning 0 hides
+      // the header badge even when recent MAU data exists.
       const result = await db
-        .select({ mau: dailyMauStats.mau })
+        .select({ mau: dailyMauStats.mau, date: dailyMauStats.date })
         .from(dailyMauStats)
-        .where(sql`${dailyMauStats.date} IN (${today}, ${yesterday})`)
+        .where(sql`${dailyMauStats.date} <= ${today}`)
         .orderBy(sql`${dailyMauStats.date} DESC`)
         .limit(1)
         .get();

@@ -19,6 +19,11 @@ interface Env {
   DATA_BUCKET: R2Bucket;
   GITHUB_CACHE: KVNamespace;
   DOWNLOAD_DEDUPE: KVNamespace;
+  ANALYTICS_EVENTS?: AnalyticsEngineDataset;
+  ANALYTICS_ENGINE_ACCOUNT_ID?: string;
+  ANALYTICS_ENGINE_API_TOKEN?: string;
+  ANALYTICS_ENGINE_DATASET?: string;
+  ANALYTICS_ENGINE_CUTOVER_DATE?: string;
   GITHUB_APP_ID: string;
   GITHUB_PRIVATE_KEY: string;
   GITHUB_CLIENT_ID: string;
@@ -29,4 +34,8 @@ interface Env {
 
 declare namespace App {
   interface Locals extends Runtime {}
+}
+
+declare module "snappyjs" {
+  export function uncompress(input: Uint8Array): Uint8Array;
 }

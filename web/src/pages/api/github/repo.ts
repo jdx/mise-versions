@@ -4,6 +4,8 @@ import { Octokit } from "@octokit/rest";
 import { setupDatabase } from "../../../../../src/database";
 import { getAuthCookie } from "../../../lib/auth";
 import { jsonResponse, errorResponse } from "../../../lib/api";
+import { validRepoPart } from "../../../lib/github/mirror";
+import { isRegisteredGitHubRepo } from "../../../lib/github/registry";
 
 import { env } from "cloudflare:workers";
 // Cache freshness threshold (6 hours in milliseconds)
@@ -38,6 +40,19 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
   if (!owner || !repo) {
     return errorResponse("Missing owner or repo parameter", 400);
+  }
+  if (!validRepoPart(owner) || !validRepoPart(repo)) {
+    return errorResponse("Invalid owner or repo parameter", 400);
+  }
+  let registered: boolean;
+  try {
+    registered = await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo);
+  } catch (error) {
+    console.error(`GitHub registry check failed for ${owner}/${repo}:`, error);
+    return errorResponse("Failed to check GitHub repo registry", 503);
+  }
+  if (!registered) {
+    return errorResponse("GitHub repo is not in the mise registry", 403);
   }
 
   const cacheKey = `github:${owner}/${repo}`;

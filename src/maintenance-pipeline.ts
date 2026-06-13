@@ -19,6 +19,11 @@ const MAU_BACKFILL_GAP_LIMIT = 3;
 interface PipelineEnv {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
+  ANALYTICS_EVENTS?: AnalyticsEngineDataset;
+  ANALYTICS_ENGINE_ACCOUNT_ID?: string;
+  ANALYTICS_ENGINE_API_TOKEN?: string;
+  ANALYTICS_ENGINE_DATASET?: string;
+  ANALYTICS_ENGINE_CUTOVER_DATE?: string;
 }
 
 export interface StepResult {
@@ -41,7 +46,14 @@ export async function runMaintenancePipeline(
   const analyticsDb = drizzle(env.ANALYTICS_DB);
   await runAnalyticsMigrations(analyticsDb);
 
-  const analytics = setupAnalytics(analyticsDb);
+  const analytics = setupAnalytics(analyticsDb, {
+    analyticsEngine: {
+      accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
+      apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
+      dataset: env.ANALYTICS_ENGINE_DATASET,
+      cutoverDate: env.ANALYTICS_ENGINE_CUTOVER_DATE,
+    },
+  });
   const now = new Date();
   const steps: StepResult[] = [];
 

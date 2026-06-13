@@ -6,10 +6,13 @@ on:
       - main
     paths:
       - "worker/**"
+      - "docs/*.toml"
       - "web/**"
       - "src/**"
       - "wrangler.jsonc"
       - "package.json"
+      - "aube-lock.yaml"
+      - ".config/aube/config.toml"
       - ".github/workflows/deploy.yml"
 
 concurrency:
@@ -21,18 +24,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
-      - uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4
+      - uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4
 
       - name: Install dependencies
-        run: npm ci
+        run: aube ci
 
       - name: Build web frontend
-        run: npm run build -w web
+        run: aube --dir web run build
 
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
