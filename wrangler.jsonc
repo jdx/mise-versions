@@ -82,7 +82,7 @@
   // Environment variables that need to be set via wrangler secret:
   // ANALYTICS_ENGINE_ACCOUNT_ID - Cloudflare account id for Analytics Engine SQL API
   // ANALYTICS_ENGINE_API_TOKEN - Token with Account Analytics Read permission
-  // GITHUB_CLIENT_ID - Your GitHub App client ID
-  // GITHUB_CLIENT_SECRET - Your GitHub App client secret
+  // GITHUB_CLIENT_ID - GitHub OAuth client ID (user token collection)
+  // GITHUB_CLIENT_SECRET - GitHub OAuth client secret
   // API_SECRET - Secret for GitHub Actions authentication
 }
