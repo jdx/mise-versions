@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
+  actions: write
   contents: write
 
 env:
@@ -60,11 +61,17 @@ jobs:
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
           FULL_SYNC: ${{ inputs.full_sync || 'false' }}
       - name: Push committed versions
+        id: push_versions
         run: |
           git fetch origin main
           if [ "$(git rev-list --count origin/main..HEAD)" -gt 0 ]; then
             git pull --autostash --rebase origin main
             git push
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
           else
             echo "No local commits to push"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
           fi
+      - name: Deploy refreshed static version files
+        if: steps.push_versions.outputs.pushed == 'true'
+        run: gh workflow run deploy.yml --ref main
