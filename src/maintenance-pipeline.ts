@@ -193,14 +193,16 @@ async function pickMauTargets(
   `);
   const have = new Set(present.map((r) => r.date));
 
-  const targets = new Set<string>([today, yesterday]);
+  const targets = [today, yesterday];
+  const targetSet = new Set(targets);
   let added = 0;
   for (let i = lookbackDays - 1; i >= 2 && added < gapBackfillLimit; i--) {
     const date = dateStrAgo(now, i);
-    if (!have.has(date) && !targets.has(date)) {
-      targets.add(date);
+    if (!have.has(date) && !targetSet.has(date)) {
+      targets.push(date);
+      targetSet.add(date);
       added++;
     }
   }
-  return [...targets].sort();
+  return targets;
 }

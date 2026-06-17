@@ -180,9 +180,11 @@ export function createTrendsFunctions(
         .where(sql`${dailyMauStats.date} = ${today}`)
         .get();
 
+      const latestNonZeroMau = [...dailyData]
+        .reverse()
+        .find((d) => d.mau > 0)?.mau;
       const currentMAU =
-        todayMau?.mau ??
-        (dailyData.length > 0 ? dailyData[dailyData.length - 1].mau : 0);
+        todayMau && todayMau.mau > 0 ? todayMau.mau : (latestNonZeroMau ?? 0);
 
       return {
         daily: dailyData,
