@@ -62,12 +62,13 @@ export function createTrendsFunctions(
           const result = await queryAnalyticsEngine<{ ip_hash: string }>(
             analyticsEngine!,
             `
-              SELECT DISTINCT index1 AS ip_hash
+              SELECT index1 AS ip_hash
               FROM ${table}
               WHERE
                 blob1 = 'version_request'
                 AND timestamp >= toDateTime('${aeStart}')
                 AND timestamp <= toDateTime('${aeEnd}')
+              GROUP BY index1
             `,
           );
           for (const row of result.rows) users.add(row.ip_hash);

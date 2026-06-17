@@ -212,12 +212,13 @@ export function createRollupFunctions(
       const aeUsers = await queryAnalyticsEngine<{ ip_hash: string }>(
         analyticsEngine!,
         `
-          SELECT DISTINCT index1 AS ip_hash
+          SELECT index1 AS ip_hash
           FROM ${table}
           WHERE
             blob1 = 'version_request'
             AND timestamp >= toDateTime('${start}')
             AND timestamp <= toDateTime('${end}')
+          GROUP BY index1
         `,
       );
       const aeStats = await queryAnalyticsEngine<{ total: number }>(
@@ -529,9 +530,10 @@ export function createRollupFunctions(
       const aeCombinedUsers = await queryAnalyticsEngine<{ ip_hash: string }>(
         analyticsEngine!,
         `
-          SELECT DISTINCT index1 AS ip_hash
+          SELECT index1 AS ip_hash
           FROM ${table}
           WHERE blob1 IN ('download', 'version_request') AND ${range}
+          GROUP BY index1
         `,
       );
       combinedDau = new Set([
@@ -809,12 +811,13 @@ export function createRollupFunctions(
         const result = await queryAnalyticsEngine<{ ip_hash: string }>(
           analyticsEngine!,
           `
-            SELECT DISTINCT index1 AS ip_hash
+            SELECT index1 AS ip_hash
             FROM ${table}
             WHERE
               blob1 IN ('download', 'version_request')
               AND timestamp >= toDateTime('${aeStart}')
               AND timestamp <= toDateTime('${end}')
+            GROUP BY index1
           `,
         );
         for (const row of result.rows) users.add(row.ip_hash);

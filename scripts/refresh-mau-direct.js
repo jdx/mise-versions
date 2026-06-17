@@ -197,12 +197,13 @@ async function refreshMauForDate(config, date) {
       token: config.analyticsEngineApiToken,
       dataset: config.dataset,
       sql: `
-        SELECT DISTINCT index1 AS ip_hash
+        SELECT index1 AS ip_hash
         FROM ${config.dataset}
         WHERE
           blob1 IN ('download', 'version_request')
           AND timestamp >= toDateTime('${aeStart}')
           AND timestamp <= toDateTime('${end}')
+        GROUP BY index1
       `,
     });
     for (const row of aeUsers) users.add(row.ip_hash);
