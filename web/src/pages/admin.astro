@@ -856,6 +856,13 @@ if (!auth || !isAdmin(auth.username)) {
     }
   }
 
+  function setMaintenanceButtonsDisabled(disabled: boolean) {
+    const runBtn = document.getElementById('run-scheduled-btn') as HTMLButtonElement | null;
+    const mauBtn = document.getElementById('refresh-mau-btn') as HTMLButtonElement | null;
+    if (runBtn) runBtn.disabled = disabled;
+    if (mauBtn) mauBtn.disabled = disabled;
+  }
+
   async function runScheduled() {
     const btn = document.getElementById('run-scheduled-btn') as HTMLButtonElement;
     const text = document.getElementById('run-scheduled-text');
@@ -866,7 +873,7 @@ if (!auth || !isAdmin(auth.username)) {
     if (!confirm('Run the daily maintenance pipeline now? This may take 30+ seconds.')) {
       return;
     }
-    btn.disabled = true;
+    setMaintenanceButtonsDisabled(true);
     text.textContent = 'Running...';
     icon.classList.add('animate-spin');
     out.classList.add('hidden');
@@ -889,7 +896,7 @@ if (!auth || !isAdmin(auth.username)) {
       pre.textContent = `Error: ${e}`;
       out.classList.remove('hidden');
     } finally {
-      btn.disabled = false;
+      setMaintenanceButtonsDisabled(false);
       text.textContent = 'Run Scheduled Tasks';
       icon.classList.remove('animate-spin');
     }
@@ -905,7 +912,7 @@ if (!auth || !isAdmin(auth.username)) {
     if (!confirm("Refresh today's and yesterday's MAU rollups now?")) {
       return;
     }
-    btn.disabled = true;
+    setMaintenanceButtonsDisabled(true);
     text.textContent = 'Refreshing...';
     icon.classList.add('animate-spin');
     out.classList.add('hidden');
@@ -927,7 +934,7 @@ if (!auth || !isAdmin(auth.username)) {
       pre.textContent = `Error: ${e}`;
       out.classList.remove('hidden');
     } finally {
-      btn.disabled = false;
+      setMaintenanceButtonsDisabled(false);
       text.textContent = 'Refresh MAU';
       icon.classList.remove('animate-spin');
     }

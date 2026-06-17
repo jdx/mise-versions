@@ -37,12 +37,14 @@ jobs:
 
       - name: Refresh MAU directly
         run: |
-          args=(--days="${{ github.event.inputs.days || '2' }}")
-          if [ -n "${{ github.event.inputs.date }}" ]; then
-            args+=(--date="${{ github.event.inputs.date }}")
+          args=(--days="${INPUT_DAYS:-2}")
+          if [ -n "$INPUT_DATE" ]; then
+            args+=(--date="$INPUT_DATE")
           fi
           node scripts/refresh-mau-direct.js "${args[@]}"
         env:
+          INPUT_DAYS: ${{ github.event.inputs.days }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ANALYTICS_ENGINE_ACCOUNT_ID: ${{ secrets.ANALYTICS_ENGINE_ACCOUNT_ID }}

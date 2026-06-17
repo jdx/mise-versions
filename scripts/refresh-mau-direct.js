@@ -134,6 +134,28 @@ async function queryD1({ accountId, token, databaseId, sql, params = [] }) {
   return rows;
 }
 
+async function legacyD1Mau(config, date, startTs, endTs) {
+  console.log(`Falling back to legacy D1 MAU query for ${date}`);
+  const rows = await queryD1({
+    accountId: config.cloudflareAccountId,
+    token: config.cloudflareApiToken,
+    databaseId: config.analyticsDbId,
+    sql: `
+      SELECT COUNT(DISTINCT ip_hash) as mau FROM (
+        SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at <= ?
+        UNION ALL
+        SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at <= ?
+      )
+    `,
+    params: [startTs, endTs, startTs, endTs],
+  });
+  const mau = Number(rows[0]?.mau ?? 0);
+  if (!Number.isFinite(mau)) {
+    throw new Error(`Unexpected legacy D1 MAU result: ${JSON.stringify(rows)}`);
+  }
+  return mau;
+}
+
 async function refreshMauForDate(config, date) {
   const cutoverDate = config.cutoverDate;
   const cutoverTs = timestamp(`${cutoverDate}T00:00:00`.replace("T", " "));
@@ -186,7 +208,12 @@ async function refreshMauForDate(config, date) {
     for (const row of aeUsers) users.add(row.ip_hash);
   }
 
-  if (users.size <= 0) {
+  let mau = users.size;
+  if (mau <= 0) {
+    mau = await legacyD1Mau(config, date, startTs, endTs);
+  }
+
+  if (mau <= 0) {
     throw new Error(`Refusing to write zero MAU for ${date}`);
   }
 
@@ -198,11 +225,11 @@ async function refreshMauForDate(config, date) {
       INSERT OR REPLACE INTO daily_mau_stats (date, mau)
       VALUES (?, ?)
     `,
-    params: [date, users.size],
+    params: [date, mau],
   });
 
-  console.log(`Refreshed ${date}: ${users.size} MAU`);
-  return { date, mau: users.size };
+  console.log(`Refreshed ${date}: ${mau} MAU`);
+  return { date, mau };
 }
 
 async function main() {

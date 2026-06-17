@@ -30,14 +30,24 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     const targets = [dateStrAgo(0), dateStrAgo(1)];
-    const results = [];
+    const results: Array<{
+      date: string;
+      ok: boolean;
+      refreshed?: boolean;
+      error?: string;
+    }> = [];
     for (const date of targets) {
       try {
         const refreshed = await analytics.populateDailyMauStats(
           date,
           env.ANALYTICS_DB,
         );
-        results.push({ date, ok: true, refreshed });
+        results.push({
+          date,
+          ok: refreshed === true,
+          refreshed,
+          ...(refreshed === true ? {} : { error: "No MAU row was refreshed" }),
+        });
       } catch (error) {
         results.push({
           date,
