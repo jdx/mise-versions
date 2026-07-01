@@ -313,16 +313,18 @@ function appendRegistryOnlyTools(
   existingToolNames = new Set(),
   excludedPrefixes = EXCLUDED_PREFIXES,
 ) {
-  const seen = new Set(tools.map((tool) => tool.name));
+  const existingNames = new Set(tools.map((tool) => tool.name));
   for (const name of existingToolNames) {
-    seen.add(name);
+    existingNames.add(name);
   }
+  const appendedNames = new Set();
   let added = 0;
 
   for (const registryTool of registryTools) {
     if (excludedToolName(registryTool.name, excludedPrefixes)) continue;
     const names = [registryTool.name, ...(registryTool.aliases || [])];
-    if (names.some((name) => seen.has(name))) continue;
+    if (names.some((name) => existingNames.has(name))) continue;
+    if (appendedNames.has(registryTool.name)) continue;
     tools.push(
       buildToolMetadata(
         registryTool.name,
@@ -336,9 +338,7 @@ function appendRegistryOnlyTools(
         manualOverrides[registryTool.name],
       ),
     );
-    for (const name of names) {
-      seen.add(name);
-    }
+    appendedNames.add(registryTool.name);
     added++;
   }
 

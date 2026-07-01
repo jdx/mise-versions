@@ -163,6 +163,36 @@ describe("sync-to-d1.js", () => {
     );
   });
 
+  it("does not let appended registry aliases suppress registry shorts", () => {
+    const tools = [];
+    const added = appendRegistryOnlyTools(
+      tools,
+      [
+        {
+          name: "main-tool",
+          aliases: ["alias-tool"],
+          backends: ["github:example/main-tool"],
+          description: "Main tool",
+          security: [],
+        },
+        {
+          name: "alias-tool",
+          aliases: [],
+          backends: ["github:example/alias-tool"],
+          description: "Separate tool with an overlapping short",
+          security: [],
+        },
+      ],
+      {},
+    );
+
+    assert.equal(added, 2);
+    assert.deepEqual(
+      tools.map((tool) => tool.name),
+      ["main-tool", "alias-tool"],
+    );
+  });
+
   it("keeps excluded prefixes out of registry-only rows", () => {
     assert.equal(excludedToolName("python-precompiled-linux-arm64"), true);
     assert.equal(excludedToolName("python"), false);
