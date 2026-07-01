@@ -1,0 +1,39 @@
+# Tool-specific moving version tags that should not be written to docs/*.toml.
+#
+# The version catalog is meant to track immutable releases. Channels such as
+# "nightly", "dev", "preview", and "master" can point at different artifacts
+# over time, so recording their changing created_at metadata causes noisy churn.
+# Keep these patterns narrow and tool-scoped so normal prerelease tags remain.
+
+[bottom]
+deny = ["^nightly-"]
+
+[crush]
+deny = ["^nightly$"]
+
+[expert]
+deny = ["^nightly$"]
+
+[goreleaser]
+deny = ["-nightly$"]
+
+[infracost]
+deny = ["^preview$"]
+
+[k0sctl]
+deny = ["^dev$"]
+
+[liquibase]
+deny = ["^nightly$"]
+
+[rust-analyzer]
+deny = ["^nightly$"]
+
+[task]
+deny = ["^nightly$"]
+
+[yazi]
+deny = ["^nightly$"]
+
+[zig]
+deny = ["^master$"]

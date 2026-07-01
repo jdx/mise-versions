@@ -314,6 +314,56 @@ describe("generate-toml.js", () => {
     });
   });
 
+  describe("ignored moving version tags", () => {
+    const ignoredVersions = [
+      ["bottom", "nightly-b3694fc3-1782177088"],
+      ["crush", "nightly"],
+      ["expert", "nightly"],
+      ["goreleaser", "2.17.0-cd5f16b4-nightly"],
+      ["infracost", "preview"],
+      ["k0sctl", "dev"],
+      ["liquibase", "nightly"],
+      ["rust-analyzer", "nightly"],
+      ["task", "nightly"],
+      ["yazi", "nightly"],
+      ["zig", "master"],
+    ];
+
+    for (const [toolName, ignoredVersion] of ignoredVersions) {
+      it(`should omit ${ignoredVersion} for ${toolName}`, async () => {
+        const input = [
+          '{"version":"1.0.0","created_at":"2024-01-01T00:00:00Z"}',
+          JSON.stringify({
+            version: ignoredVersion,
+            created_at: "2024-01-02T00:00:00Z",
+            prerelease: true,
+          }),
+        ].join("\n");
+
+        const { stdout, code } = await runGenerateToml(input, [toolName]);
+        assert.strictEqual(code, 0);
+
+        const parsed = parse(stdout);
+        assert.ok(parsed.versions["1.0.0"]);
+        assert.strictEqual(parsed.versions[ignoredVersion], undefined);
+      });
+    }
+
+    it("should keep nightly for tools without ignored-version config", async () => {
+      const input = [
+        '{"version":"1.0.0","created_at":"2024-01-01T00:00:00Z"}',
+        '{"version":"nightly","created_at":"2024-01-02T00:00:00Z","prerelease":true}',
+      ].join("\n");
+
+      const { stdout, code } = await runGenerateToml(input, ["test-tool"]);
+      assert.strictEqual(code, 0);
+
+      const parsed = parse(stdout);
+      assert.ok(parsed.versions["1.0.0"]);
+      assert.strictEqual(parsed.versions.nightly.prerelease, true);
+    });
+  });
+
   describe("unstable tool sorting", () => {
     it("should preserve input order for tools not in the unstable list", async () => {
       // terraform-style backport pattern: 0.12.30 published after 0.14.3

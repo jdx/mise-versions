@@ -43,6 +43,30 @@ const UNSTABLE_TOOLS = existsSync(UNSTABLE_TOOLS_PATH)
     )
   : new Set();
 
+const IGNORED_VERSIONS_PATH = new URL(
+  "./ignored-versions.toml",
+  import.meta.url,
+).pathname;
+
+function loadIgnoredVersionPatterns(path) {
+  if (!existsSync(path)) return new Map();
+
+  const config = parse(readFileSync(path, "utf-8"));
+  const patterns = new Map();
+  for (const [toolName, toolConfig] of Object.entries(config)) {
+    const deny = Array.isArray(toolConfig?.deny) ? toolConfig.deny : [];
+    patterns.set(
+      toolName,
+      deny.map((pattern) => new RegExp(pattern)),
+    );
+  }
+  return patterns;
+}
+
+const IGNORED_VERSION_PATTERNS = loadIgnoredVersionPatterns(
+  IGNORED_VERSIONS_PATH,
+);
+
 if (!tool) {
   console.error(
     "Usage: cat versions.ndjson | node generate-toml.js <tool> [existing_toml_path]",
@@ -122,7 +146,10 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
 }
 
 // Parse new version data (preserves order from mise ls-remote)
-const newVersions = parseNdjson(stdinData);
+const ignoredVersionPatterns = IGNORED_VERSION_PATTERNS.get(tool) || [];
+const newVersions = parseNdjson(stdinData).filter(
+  (v) => !ignoredVersionPatterns.some((pattern) => pattern.test(v.version)),
+);
 
 // For "unstable" tools, sort by semver ascending so the output is
 // deterministic regardless of which fetch path produced the input. Versions
