@@ -53,6 +53,17 @@ test("GitHub registry allowlist rejects unknown repos", async () => {
   assert.equal(allowed, false);
 });
 
+test("GitHub registry allowlist includes Erlang release repos", async () => {
+  const db = {
+    prepare() {
+      throw new Error("database should not be queried");
+    },
+  };
+
+  assert.equal(await isRegisteredGitHubRepo(db, "Erlang", "OTP"), true);
+  assert.equal(await isRegisteredGitHubRepo(db, "Erlef", "OTP_Builds"), true);
+});
+
 test("GitHub attestation allowlist includes python-build-standalone", () => {
   assert.equal(
     isKnownGitHubAttestationRepo("Astral-Sh", "Python-Build-Standalone"),
@@ -61,5 +72,8 @@ test("GitHub attestation allowlist includes python-build-standalone", () => {
 });
 
 test("GitHub attestation allowlist rejects unknown repos", () => {
-  assert.equal(isKnownGitHubAttestationRepo("crate-ci", "cargo-release"), false);
+  assert.equal(
+    isKnownGitHubAttestationRepo("crate-ci", "cargo-release"),
+    false,
+  );
 });

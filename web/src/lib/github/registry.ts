@@ -1,8 +1,8 @@
 const GITHUB_BACKEND_PREFIXES = ["aqua", "github", "ubi"] as const;
 
-const GITHUB_ATTESTATION_REPOS = new Set([
-  "astral-sh/python-build-standalone",
-]);
+const GITHUB_RELEASE_REPOS = new Set(["erlang/otp", "erlef/otp_builds"]);
+
+const GITHUB_ATTESTATION_REPOS = new Set(["astral-sh/python-build-standalone"]);
 
 function normalizeRepo(owner: string, repo: string): string {
   return `${owner}/${repo}`.toLowerCase();
@@ -18,6 +18,10 @@ export async function isRegisteredGitHubRepo(
   repo: string,
 ): Promise<boolean> {
   const slug = normalizeRepo(owner, repo);
+  if (GITHUB_RELEASE_REPOS.has(slug)) {
+    return true;
+  }
+
   const exactBackends = GITHUB_BACKEND_PREFIXES.map(
     (backend) => `${backend}:${slug}`,
   );
