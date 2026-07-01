@@ -21,9 +21,10 @@ const SCRIPT_PATH = new URL("./generate-toml.js", import.meta.url).pathname;
 /**
  * Run generate-toml.js with given stdin input and arguments
  */
-function runGenerateToml(stdinInput, args = []) {
+function runGenerateToml(stdinInput, args = [], options = {}) {
   return new Promise((resolve, reject) => {
     const proc = spawn("node", [SCRIPT_PATH, ...args], {
+      env: { ...process.env, ...options.env },
       stdio: ["pipe", "pipe", "pipe"],
     });
 
@@ -362,6 +363,59 @@ describe("generate-toml.js", () => {
       const parsed = parse(stdout);
       assert.ok(parsed.versions["1.0.0"]);
       assert.strictEqual(parsed.versions.nightly.prerelease, true);
+    });
+
+    it("should warn and ignore malformed ignored-version config", async () => {
+      const ignoredVersionsToml = join(tempDir, "ignored-versions.toml");
+      writeFileSync(ignoredVersionsToml, "[test-tool\n");
+
+      const input = '{"version":"nightly","created_at":"2024-01-02T00:00:00Z"}';
+      const { stdout, stderr, code } = await runGenerateToml(
+        input,
+        ["test-tool"],
+        {
+          env: {
+            MISE_VERSIONS_IGNORED_VERSIONS_PATH: ignoredVersionsToml,
+          },
+        },
+      );
+      assert.strictEqual(code, 0);
+      assert.ok(stderr.includes("Warning: Failed to read ignored versions"));
+      assert.ok(parse(stdout).versions.nightly);
+    });
+
+    it("should warn and skip invalid ignored-version regexes", async () => {
+      const ignoredVersionsToml = join(tempDir, "ignored-versions.toml");
+      writeFileSync(
+        ignoredVersionsToml,
+        `[test-tool]
+deny = ["[unclosed", "^nightly$"]
+`,
+      );
+
+      const input = [
+        '{"version":"nightly","created_at":"2024-01-02T00:00:00Z"}',
+        '{"version":"1.0.0","created_at":"2024-01-01T00:00:00Z"}',
+      ].join("\n");
+      const { stdout, stderr, code } = await runGenerateToml(
+        input,
+        ["test-tool"],
+        {
+          env: {
+            MISE_VERSIONS_IGNORED_VERSIONS_PATH: ignoredVersionsToml,
+          },
+        },
+      );
+      assert.strictEqual(code, 0);
+      assert.ok(
+        stderr.includes(
+          "Warning: Invalid ignored version pattern for test-tool: [unclosed",
+        ),
+      );
+
+      const parsed = parse(stdout);
+      assert.ok(parsed.versions["1.0.0"]);
+      assert.strictEqual(parsed.versions.nightly, undefined);
     });
   });
 
