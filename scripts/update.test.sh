@@ -148,7 +148,10 @@ echo "--- Skip List Tests ---"
 skip_list_contains() {
 	local tool="$1"
 	local skipped_tools
-	skipped_tools=$(sed -n '/case "\$tool" in/{n;p;}' scripts/update.sh |
+	skipped_tools=$(awk '
+		/^fetch\(\) \{/ { in_fetch = 1; next }
+		in_fetch && /case "\$tool" in/ { getline; print; exit }
+	' scripts/update.sh |
 		tr '|' '\n' |
 		sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/\)$//' |
 		grep -v '^$')
@@ -183,6 +186,11 @@ test_phase_2_keeps_unresolved_tools_skipped() {
 	done
 }
 test_phase_2_keeps_unresolved_tools_skipped
+
+test_skip_list_parser_ignores_other_case_blocks() {
+	assert_skip_list_membership "cargo-binstall" "false" "cargo-binstall post-processing is not treated as hard-skipped"
+}
+test_skip_list_parser_ignores_other_case_blocks
 
 echo ""
 
