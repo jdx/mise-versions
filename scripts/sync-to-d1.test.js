@@ -1,14 +1,33 @@
 #!/usr/bin/env node
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { describe, it } from "node:test";
 import {
   appendRegistryOnlyTools,
   buildToolMetadata,
+  excludedToolName,
   registryInfoFromEntries,
   summarizeTools,
 } from "./sync-to-d1.js";
 
+const REPO_ROOT = new URL("..", import.meta.url).pathname;
+
 describe("sync-to-d1.js", () => {
+  it("runs main when invoked by relative script path", () => {
+    const result = spawnSync(process.execPath, ["scripts/sync-to-d1.js"], {
+      cwd: REPO_ROOT,
+      encoding: "utf-8",
+      env: {
+        ...process.env,
+        API_SECRET: "",
+        SYNC_API_URL: "",
+      },
+    });
+
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /SYNC_API_URL/);
+  });
+
   it("indexes registry shorts and aliases while preserving primary tools", () => {
     const registry = registryInfoFromEntries([
       {
@@ -22,6 +41,7 @@ describe("sync-to-d1.js", () => {
 
     assert.equal(registry.tools.length, 1);
     assert.equal(registry.tools[0].name, "aws-cli");
+    assert.deepEqual(registry.tools[0].aliases, ["aws", "awscli"]);
     assert.equal(registry.lookup.get("aws"), registry.lookup.get("aws-cli"));
     assert.equal(registry.lookup.get("awscli"), registry.lookup.get("aws-cli"));
   });
@@ -103,6 +123,67 @@ describe("sync-to-d1.js", () => {
       github: "TomWright/dasel",
       repo_url: "https://github.com/TomWright/dasel",
     });
+  });
+
+  it("does not add registry-only rows for existing TOMLs or aliases", () => {
+    const tools = [];
+    const added = appendRegistryOnlyTools(
+      tools,
+      [
+        {
+          name: "aws-cli",
+          aliases: ["aws", "awscli"],
+          backends: ["aqua:aws/aws-cli"],
+          description: "AWS CLI",
+          security: [],
+        },
+        {
+          name: "broken-tool",
+          aliases: [],
+          backends: ["github:example/broken-tool"],
+          description: "Has a TOML, but it failed processing",
+          security: [],
+        },
+        {
+          name: "snyk",
+          aliases: [],
+          backends: ["aqua:snyk/cli"],
+          description: "Snyk CLI",
+          security: [],
+        },
+      ],
+      {},
+      new Set(["aws", "broken-tool"]),
+    );
+
+    assert.equal(added, 1);
+    assert.deepEqual(
+      tools.map((tool) => tool.name),
+      ["snyk"],
+    );
+  });
+
+  it("keeps excluded prefixes out of registry-only rows", () => {
+    assert.equal(excludedToolName("python-precompiled-linux-arm64"), true);
+    assert.equal(excludedToolName("python"), false);
+
+    const tools = [];
+    const added = appendRegistryOnlyTools(
+      tools,
+      [
+        {
+          name: "python-precompiled-linux-arm64",
+          aliases: [],
+          backends: ["github:astral-sh/python-build-standalone"],
+          description: "internal data file",
+          security: [],
+        },
+      ],
+      {},
+    );
+
+    assert.equal(added, 0);
+    assert.deepEqual(tools, []);
   });
 
   it("summarizes final manifest fields after registry-only rows are added", () => {

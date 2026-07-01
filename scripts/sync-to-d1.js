@@ -13,13 +13,15 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from "fs";
-import { join, basename } from "path";
+import { join, basename, resolve } from "path";
+import { fileURLToPath } from "url";
 import { parse } from "smol-toml";
 import { execSync } from "child_process";
 import { fetchWithRetry } from "./lib/fetch-with-retry.js";
 
 const DOCS_DIR = join(process.cwd(), "docs");
 const MANUAL_OVERRIDES_FILE = join(DOCS_DIR, "manual-overrides.json");
+const EXCLUDED_PREFIXES = ["python-precompiled"];
 
 // Fallback for tools that do not expose explicit prerelease metadata in TOML.
 // Prefer `prerelease = true` from mise where present; this catches older and
@@ -82,6 +84,7 @@ function registryInfoFromEntries(entries) {
     if (!entry.short) continue;
     const info = {
       name: entry.short,
+      aliases: Array.isArray(entry.aliases) ? entry.aliases : [],
       backends: entry.backends || [],
       description: entry.description || null,
       security: entry.security || [],
@@ -299,12 +302,27 @@ function buildToolMetadata(name, metadata, registryInfo, overrides) {
   return tool;
 }
 
-function appendRegistryOnlyTools(tools, registryTools, manualOverrides) {
+function excludedToolName(name, excludedPrefixes = EXCLUDED_PREFIXES) {
+  return excludedPrefixes.some((prefix) => name.startsWith(prefix));
+}
+
+function appendRegistryOnlyTools(
+  tools,
+  registryTools,
+  manualOverrides,
+  existingToolNames = new Set(),
+  excludedPrefixes = EXCLUDED_PREFIXES,
+) {
   const seen = new Set(tools.map((tool) => tool.name));
+  for (const name of existingToolNames) {
+    seen.add(name);
+  }
   let added = 0;
 
   for (const registryTool of registryTools) {
-    if (seen.has(registryTool.name)) continue;
+    if (excludedToolName(registryTool.name, excludedPrefixes)) continue;
+    const names = [registryTool.name, ...(registryTool.aliases || [])];
+    if (names.some((name) => seen.has(name))) continue;
     tools.push(
       buildToolMetadata(
         registryTool.name,
@@ -318,7 +336,9 @@ function appendRegistryOnlyTools(tools, registryTools, manualOverrides) {
         manualOverrides[registryTool.name],
       ),
     );
-    seen.add(registryTool.name);
+    for (const name of names) {
+      seen.add(name);
+    }
     added++;
   }
 
@@ -366,12 +386,12 @@ async function main() {
   }
 
   // Find all .toml files in docs/, excluding internal tools
-  const EXCLUDED_PREFIXES = ["python-precompiled"];
   const files = readdirSync(DOCS_DIR).filter((f) => {
     if (!f.endsWith(".toml")) return false;
     const toolName = basename(f, ".toml");
-    return !EXCLUDED_PREFIXES.some((prefix) => toolName.startsWith(prefix));
+    return !excludedToolName(toolName);
   });
+  const tomlToolNames = new Set(files.map((f) => basename(f, ".toml")));
   console.log(`Found ${files.length} TOML files`);
 
   const tools = [];
@@ -402,6 +422,7 @@ async function main() {
     tools,
     registryInfo.tools,
     manualOverrides,
+    tomlToolNames,
   );
 
   // Sort tools alphabetically
@@ -460,13 +481,17 @@ async function main() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (
+  process.argv[1] &&
+  fileURLToPath(import.meta.url) === resolve(process.argv[1])
+) {
   main();
 }
 
 export {
   appendRegistryOnlyTools,
   buildToolMetadata,
+  excludedToolName,
   registryInfoFromEntries,
   summarizeTools,
 };
