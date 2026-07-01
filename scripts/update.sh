@@ -542,8 +542,10 @@ fetch() {
 	local attempt="${2:-1}"
 	local status_file="$RESULTS_DIR/$tool.status"
 
+	# Keep only tools with unresolved sync blockers: fake/internal tools,
+	# unstable ordering, duplicate alias output, or mixed release channels.
 	case "$tool" in
-	awscli-local | jfrog-cli | minio | tiny | teleport-ent | flyctl | flyway | vim | awscli | aws | aws-cli | checkov | snyk | chromedriver | sui | rebar | dasel | cockroach)
+	tiny | vim | awscli | aws | aws-cli | chromedriver | sui)
 		echo "skipped" >"$status_file"
 		return
 		;;
