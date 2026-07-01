@@ -15,7 +15,7 @@ deny = ["^nightly$"]
 deny = ["^nightly$"]
 
 [goreleaser]
-deny = ["-nightly$"]
+deny = ["^nightly$", "-nightly$"]
 
 [infracost]
 deny = ["^preview$"]

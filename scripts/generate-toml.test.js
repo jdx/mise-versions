@@ -319,6 +319,7 @@ describe("generate-toml.js", () => {
       ["bottom", "nightly-b3694fc3-1782177088"],
       ["crush", "nightly"],
       ["expert", "nightly"],
+      ["goreleaser", "nightly"],
       ["goreleaser", "2.17.0-cd5f16b4-nightly"],
       ["infracost", "preview"],
       ["k0sctl", "dev"],
