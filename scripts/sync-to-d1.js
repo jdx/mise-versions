@@ -63,6 +63,45 @@ function runMiseRegistry(args) {
   });
 }
 
+function emptyRegistryInfo() {
+  return { lookup: new Map(), tools: [] };
+}
+
+function registryInfoFromEntries(entries) {
+  const lookup = new Map();
+  const tools = [];
+
+  // First pass: index every `short`. The previous per-tool
+  // `mise tool <name> --json` call resolved aliases automatically,
+  // so we second-pass each entry's `aliases` to preserve that
+  // behavior for any TOML file whose name is an alias rather than a
+  // short. Shorts win over aliases (so an explicitly-named tool
+  // never has its metadata clobbered by another tool that happens
+  // to alias the same string).
+  for (const entry of entries) {
+    if (!entry.short) continue;
+    const info = {
+      name: entry.short,
+      backends: entry.backends || [],
+      description: entry.description || null,
+      security: entry.security || [],
+    };
+    lookup.set(entry.short, info);
+    tools.push(info);
+  }
+  for (const entry of entries) {
+    if (!entry.short || !Array.isArray(entry.aliases)) continue;
+    const info = lookup.get(entry.short);
+    if (!info) continue;
+    for (const alias of entry.aliases) {
+      if (!alias || lookup.has(alias)) continue;
+      lookup.set(alias, info);
+    }
+  }
+
+  return { lookup, tools };
+}
+
 function getRegistryInfo() {
   let output;
   try {
@@ -82,41 +121,15 @@ function getRegistryInfo() {
       console.error(
         `Warning: Failed to get mise registry: ${fallbackErr.message}`,
       );
-      return new Map();
+      return emptyRegistryInfo();
     }
   }
 
   try {
-    const entries = JSON.parse(output);
-    const infoMap = new Map();
-    // First pass: index every `short`. The previous per-tool
-    // `mise tool <name> --json` call resolved aliases automatically,
-    // so we second-pass each entry's `aliases` to preserve that
-    // behavior for any TOML file whose name is an alias rather than a
-    // short. Shorts win over aliases (so an explicitly-named tool
-    // never has its metadata clobbered by another tool that happens
-    // to alias the same string).
-    for (const entry of entries) {
-      if (!entry.short) continue;
-      infoMap.set(entry.short, {
-        backends: entry.backends || [],
-        description: entry.description || null,
-        security: entry.security || [],
-      });
-    }
-    for (const entry of entries) {
-      if (!entry.short || !Array.isArray(entry.aliases)) continue;
-      const info = infoMap.get(entry.short);
-      if (!info) continue;
-      for (const alias of entry.aliases) {
-        if (!alias || infoMap.has(alias)) continue;
-        infoMap.set(alias, info);
-      }
-    }
-    return infoMap;
+    return registryInfoFromEntries(JSON.parse(output));
   } catch (e) {
     console.error(`Warning: Failed to parse mise registry: ${e.message}`);
-    return new Map();
+    return emptyRegistryInfo();
   }
 }
 
@@ -221,6 +234,108 @@ function processTomlFile(filePath) {
   }
 }
 
+function buildToolMetadata(name, metadata, registryInfo, overrides) {
+  const tool = {
+    name,
+    ...metadata,
+  };
+  const info = registryInfo || {
+    backends: [],
+    description: null,
+    security: [],
+  };
+
+  if (info.description) {
+    tool.description = info.description;
+  }
+
+  if (info.security && info.security.length > 0) {
+    tool.security = info.security;
+  }
+
+  const backends = info.backends || [];
+  tool.backends = backends;
+  if (backends.length > 0) {
+    const packageUrls = buildPackageUrls(backends);
+    if (packageUrls) {
+      tool.package_urls = packageUrls;
+    }
+
+    const aquaLink = buildAquaLink(backends);
+    if (aquaLink) {
+      tool.aqua_link = aquaLink;
+    }
+
+    for (const backend of backends) {
+      const slug = extractGithubSlug(backend);
+      if (slug) {
+        tool.github = slug;
+        tool.repo_url = buildRepoUrl(slug);
+        break;
+      }
+    }
+  }
+  if (!tool.github && name.includes("/")) {
+    tool.github = name;
+    tool.repo_url = buildRepoUrl(name);
+  }
+
+  if (overrides) {
+    if (overrides.github) {
+      tool.github = overrides.github;
+      tool.repo_url = buildRepoUrl(overrides.github);
+    }
+    if (overrides.description) {
+      tool.description = overrides.description;
+    }
+    if (overrides.homepage) {
+      tool.homepage = overrides.homepage;
+    }
+    if (overrides.license) {
+      tool.license = overrides.license;
+    }
+  }
+
+  return tool;
+}
+
+function appendRegistryOnlyTools(tools, registryTools, manualOverrides) {
+  const seen = new Set(tools.map((tool) => tool.name));
+  let added = 0;
+
+  for (const registryTool of registryTools) {
+    if (seen.has(registryTool.name)) continue;
+    tools.push(
+      buildToolMetadata(
+        registryTool.name,
+        {
+          latest_version: null,
+          latest_stable_version: null,
+          version_count: 0,
+          last_updated: null,
+        },
+        registryTool,
+        manualOverrides[registryTool.name],
+      ),
+    );
+    seen.add(registryTool.name);
+    added++;
+  }
+
+  return added;
+}
+
+function summarizeTools(tools) {
+  return {
+    withGithub: tools.filter((tool) => tool.github).length,
+    withDesc: tools.filter((tool) => tool.description).length,
+    withBackends: tools.filter((tool) => tool.backends?.length > 0).length,
+    withPackageUrls: tools.filter(
+      (tool) => tool.package_urls && Object.keys(tool.package_urls).length > 0,
+    ).length,
+  };
+}
+
 async function main() {
   const apiUrl = process.env.SYNC_API_URL;
   const apiSecret = process.env.API_SECRET;
@@ -239,8 +354,9 @@ async function main() {
 
   // Load backends + descriptions for every tool in one mise call.
   console.log("Loading registry info from mise...");
-  const registryMap = getRegistryInfo();
-  console.log(`Loaded registry info for ${registryMap.size} tools`);
+  const registryInfo = getRegistryInfo();
+  const registryMap = registryInfo.lookup;
+  console.log(`Loaded registry info for ${registryInfo.tools.length} tools`);
 
   // Load manual overrides
   const manualOverrides = loadManualOverrides();
@@ -259,10 +375,6 @@ async function main() {
   console.log(`Found ${files.length} TOML files`);
 
   const tools = [];
-  let withGithub = 0;
-  let withDesc = 0;
-  let withBackends = 0;
-  let withPackageUrls = 0;
 
   for (const file of files) {
     const toolName = basename(file, ".toml");
@@ -270,81 +382,14 @@ async function main() {
     const metadata = processTomlFile(filePath);
 
     if (metadata) {
-      const tool = {
-        name: toolName,
-        ...metadata,
-      };
-
-      const registryInfo = registryMap.get(toolName) || {
-        backends: [],
-        description: null,
-        security: [],
-      };
-
-      if (registryInfo.description) {
-        tool.description = registryInfo.description;
-        withDesc++;
-      }
-
-      if (registryInfo.security && registryInfo.security.length > 0) {
-        tool.security = registryInfo.security;
-      }
-
-      // Backends always set (default empty). github/repo_url/package urls
-      // derive from the backend list.
-      const backends = registryInfo.backends;
-      tool.backends = backends;
-      if (backends.length > 0) {
-        withBackends++;
-
-        const packageUrls = buildPackageUrls(backends);
-        if (packageUrls) {
-          tool.package_urls = packageUrls;
-          withPackageUrls++;
-        }
-
-        const aquaLink = buildAquaLink(backends);
-        if (aquaLink) {
-          tool.aqua_link = aquaLink;
-        }
-
-        for (const backend of backends) {
-          const slug = extractGithubSlug(backend);
-          if (slug) {
-            tool.github = slug;
-            tool.repo_url = buildRepoUrl(slug);
-            withGithub++;
-            break;
-          }
-        }
-      }
-      if (!tool.github && toolName.includes("/")) {
-        tool.github = toolName;
-        tool.repo_url = buildRepoUrl(toolName);
-        withGithub++;
-      }
-
-      // Apply manual overrides (highest priority)
-      const overrides = manualOverrides[toolName];
-      if (overrides) {
-        if (overrides.github) {
-          tool.github = overrides.github;
-          tool.repo_url = buildRepoUrl(overrides.github);
-          if (!tool.github) withGithub++;
-        }
-        if (overrides.description) {
-          if (!tool.description) withDesc++;
-          tool.description = overrides.description;
-        }
-        if (overrides.homepage) {
-          tool.homepage = overrides.homepage;
-        }
-        if (overrides.license) {
-          tool.license = overrides.license;
-        }
-      }
-
-      tools.push(tool);
+      tools.push(
+        buildToolMetadata(
+          toolName,
+          metadata,
+          registryMap.get(toolName),
+          manualOverrides[toolName],
+        ),
+      );
     }
 
     if (tools.length % 100 === 0) {
@@ -353,14 +398,22 @@ async function main() {
   }
   console.log(`\rProcessed ${tools.length} tools`);
 
+  const registryOnlyTools = appendRegistryOnlyTools(
+    tools,
+    registryInfo.tools,
+    manualOverrides,
+  );
+
   // Sort tools alphabetically
   tools.sort((a, b) => a.name.localeCompare(b.name));
 
+  const summary = summarizeTools(tools);
   console.log(`Built manifest with ${tools.length} tools:`);
-  console.log(`  - ${withGithub} with GitHub`);
-  console.log(`  - ${withDesc} with description`);
-  console.log(`  - ${withBackends} with backends`);
-  console.log(`  - ${withPackageUrls} with package URLs`);
+  console.log(`  - ${registryOnlyTools} registry-only`);
+  console.log(`  - ${summary.withGithub} with GitHub`);
+  console.log(`  - ${summary.withDesc} with description`);
+  console.log(`  - ${summary.withBackends} with backends`);
+  console.log(`  - ${summary.withPackageUrls} with package URLs`);
 
   // POST to sync endpoint
   const syncUrl = `${apiUrl}/api/admin/tools/sync`;
@@ -407,4 +460,13 @@ async function main() {
   }
 }
 
-main();
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}
+
+export {
+  appendRegistryOnlyTools,
+  buildToolMetadata,
+  registryInfoFromEntries,
+  summarizeTools,
+};
