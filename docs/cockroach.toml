@@ -753,6 +753,7 @@
 "23.2.28" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v23.2.28" }
 "23.2.29" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v23.2.29" }
 "23.2.30" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v23.2.30" }
+"23.2.31" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v23.2.31" }
 "24.1.0-alpha.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.0-alpha.1" }
 "24.1.0-alpha.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.0-alpha.2" }
 "24.1.0-alpha.3" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.0-alpha.3" }
@@ -794,6 +795,7 @@
 "24.1.28" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.28" }
 "24.1.29" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.29" }
 "24.1.30" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.30" }
+"24.1.31" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.1.31" }
 "24.2.0-alpha.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.2.0-alpha.1" }
 "24.2.0-alpha.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.2.0-alpha.2" }
 "24.2.0-beta.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.2.0-beta.1" }
@@ -851,6 +853,7 @@
 "24.3.31" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.3.31" }
 "24.3.32" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.3.32" }
 "24.3.33" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.3.33" }
+"24.3.34" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v24.3.34" }
 "25.1.0-alpha.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.1.0-alpha.1" }
 "25.1.0-alpha.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.1.0-alpha.2" }
 "25.1.0-alpha.3" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.1.0-alpha.3" }
@@ -896,6 +899,7 @@
 "25.2.17" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.2.17" }
 "25.2.18" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.2.18" }
 "25.2.19" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.2.19" }
+"25.2.20" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.2.20" }
 "25.3.0-alpha.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.3.0-alpha.1" }
 "25.3.0-alpha.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.3.0-alpha.2" }
 "25.3.0-alpha.3" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.3.0-alpha.3" }
@@ -929,6 +933,7 @@
 "25.4.9" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.4.9" }
 "25.4.10" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.4.10" }
 "25.4.11" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.4.11" }
+"25.4.12" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v25.4.12" }
 "26.1.0-alpha.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.0-alpha.1" }
 "26.1.0-alpha.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.0-alpha.2" }
 "26.1.0-beta.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.0-beta.1" }
@@ -941,6 +946,7 @@
 "26.1.3" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.3" }
 "26.1.4" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.4" }
 "26.1.5" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.5" }
+"26.1.6" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.1.6" }
 "26.2.0-alpha.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.0-alpha.1" }
 "26.2.0-alpha.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.0-alpha.2" }
 "26.2.0-beta.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.0-beta.1" }
@@ -950,3 +956,4 @@
 "26.2.0" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.0" }
 "26.2.1" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.1" }
 "26.2.2" = { created_at = 2026-07-01T22:38:17.028Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.2" }
+"26.2.3" = { created_at = 2026-07-03T21:24:40.457Z, release_url = "https://github.com/cockroachdb/cockroach/releases/tag/v26.2.3" }
