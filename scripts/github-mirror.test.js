@@ -149,7 +149,10 @@ test("GitHub release mirror trusts explicit upstream immutable releases", () => 
 test("GitHub release mirror trusts explicit upstream mutable releases", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
-    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+    import {
+      getCachedGitHubRelease,
+      releaseCacheHeaders,
+    } from "./web/src/lib/github/mirror.ts";
 
     const writes = [];
     globalThis.fetch = async () =>
@@ -179,6 +182,10 @@ test("GitHub release mirror trusts explicit upstream mutable releases", () => {
 
     assert.equal(release.immutable, false);
     assert.deepEqual(writes[0].options, { expirationTtl: 2592000 });
+    assert.equal(
+      releaseCacheHeaders("v1.0.0", release)["Cache-Control"],
+      "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+    );
   `);
 });
 
