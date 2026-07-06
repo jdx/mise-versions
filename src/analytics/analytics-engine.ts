@@ -11,8 +11,18 @@ export interface AnalyticsEngineQueryResult<T> {
   rows: T[];
 }
 
+const ANALYTICS_ENGINE_RETRY_ATTEMPTS = 3;
+
 function backendType(full: string | null): string {
   return full?.split(":")[0] || "unknown";
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableAnalyticsEngineFailure(status: number) {
+  return status === 429 || status >= 500;
 }
 
 export function writeDownloadEvent(
@@ -95,36 +105,54 @@ export async function queryAnalyticsEngine<T>(
     throw new Error("Analytics Engine SQL credentials are not configured");
   }
 
-  const response = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${config.accountId}/analytics_engine/sql`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${config.apiToken}`,
+  for (let attempt = 0; attempt <= ANALYTICS_ENGINE_RETRY_ATTEMPTS; attempt++) {
+    const response = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${config.accountId}/analytics_engine/sql`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${config.apiToken}`,
+        },
+        body: `${query}\nFORMAT JSON`,
       },
-      body: `${query}\nFORMAT JSON`,
-    },
-  );
+    );
 
-  const text = await response.text();
-  if (!response.ok) {
+    const text = await response.text();
+    if (!response.ok) {
+      if (
+        attempt < ANALYTICS_ENGINE_RETRY_ATTEMPTS &&
+        isRetryableAnalyticsEngineFailure(response.status)
+      ) {
+        const delay = 2 ** attempt * 1000;
+        console.warn(
+          `Analytics Engine query failed: ${response.status} ${text}; retrying in ${delay}ms`,
+        );
+        await sleep(delay);
+        continue;
+      }
+
+      throw new Error(
+        `Analytics Engine query failed: ${response.status} ${text}`,
+      );
+    }
+
+    try {
+      const parsed = JSON.parse(text) as { data?: T[]; errors?: unknown };
+      if (Array.isArray(parsed.data)) {
+        return { rows: parsed.data };
+      }
+    } catch {
+      // Fall through to a clearer error below.
+    }
+
     throw new Error(
-      `Analytics Engine query failed: ${response.status} ${text}`,
+      `Unexpected Analytics Engine response: ${text.slice(0, 200)}`,
     );
   }
 
-  try {
-    const parsed = JSON.parse(text) as { data?: T[]; errors?: unknown };
-    if (Array.isArray(parsed.data)) {
-      return { rows: parsed.data };
-    }
-  } catch {
-    // Fall through to a clearer error below.
-  }
-
-  throw new Error(
-    `Unexpected Analytics Engine response: ${text.slice(0, 200)}`,
-  );
+  // Unreachable in practice: the bounded loop returns, throws, or continues on
+  // every iteration. Keep this to satisfy TypeScript control-flow analysis.
+  throw new Error("Analytics Engine query failed after retries");
 }
 
 export function dateRangeSql(date: string) {

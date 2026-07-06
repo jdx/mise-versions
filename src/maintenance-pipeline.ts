@@ -15,6 +15,7 @@ import { runAnalyticsMigrations, setupAnalytics } from "./analytics/index.js";
 
 const ROLLUP_BACKFILL_DAYS = 31;
 const MAU_BACKFILL_GAP_LIMIT = 1;
+const TRANSIENT_RETRY_ATTEMPTS = 3;
 
 interface PipelineEnv {
   DB: D1Database;
@@ -85,9 +86,8 @@ export async function runMaintenancePipeline(
     const failures: string[] = [];
     for (const date of targets) {
       try {
-        const refreshed = await analytics.populateDailyMauStats(
-          date,
-          env.ANALYTICS_DB,
+        const refreshed = await withTransientRetry(`mau ${date}`, () =>
+          analytics.populateDailyMauStats(date, env.ANALYTICS_DB),
         );
         if (refreshed) {
           ok++;
@@ -130,6 +130,45 @@ function errMsg(e: unknown): string {
   return String(e);
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isTransientMaintenanceError(e: unknown): boolean {
+  const msg = errMsg(e).toLowerCase();
+  return (
+    msg.includes("d1 db is overloaded") ||
+    msg.includes("requests queued for too long") ||
+    msg.includes('code":7429')
+  );
+}
+
+async function withTransientRetry<T>(
+  label: string,
+  fn: () => Promise<T>,
+): Promise<T> {
+  for (let attempt = 0; attempt <= TRANSIENT_RETRY_ATTEMPTS; attempt++) {
+    try {
+      return await fn();
+    } catch (e) {
+      if (
+        attempt >= TRANSIENT_RETRY_ATTEMPTS ||
+        !isTransientMaintenanceError(e)
+      ) {
+        throw e;
+      }
+
+      const delay = 2 ** attempt * 1000;
+      console.warn(
+        `${label} failed transiently: ${errMsg(e)}; retrying in ${delay}ms`,
+      );
+      await sleep(delay);
+    }
+  }
+
+  throw new Error(`${label} failed after retries`);
+}
+
 async function runStep(
   out: StepResult[],
   name: string,
@@ -160,7 +199,7 @@ async function runDailyBackfill(
     for (let i = 0; i < days; i++) {
       const dateStr = dateStrAgo(now, i);
       try {
-        await fn(dateStr);
+        await withTransientRetry(`${name} ${dateStr}`, () => fn(dateStr));
         ok++;
       } catch (e) {
         failures.push(`${dateStr}: ${errMsg(e)}`);
