@@ -363,7 +363,6 @@ export function createRollupFunctions(
       const users = new Set([...d1UserSet, ...aeUserSet]);
 
       const total = (d1Stats?.total ?? 0) + aeNumber(aeStats.rows[0]?.total);
-      if (total <= 0) return null;
 
       if (d1) {
         await d1
@@ -399,7 +398,6 @@ export function createRollupFunctions(
     const stats = result.rows[0];
     const total = aeNumber(stats?.total);
     const uniqueUsers = aeNumber(stats?.unique_users);
-    if (total <= 0) return null;
 
     if (d1) {
       await d1
@@ -1127,7 +1125,7 @@ export function createRollupFunctions(
       )
       .get();
 
-    if (stats && stats.total > 0) {
+    if (stats) {
       if (d1) {
         await d1
           .prepare(
