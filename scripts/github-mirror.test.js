@@ -109,6 +109,79 @@ test("GitHub release mirror follows API redirects", () => {
   `);
 });
 
+test("GitHub release mirror trusts explicit upstream immutable releases", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+
+    const writes = [];
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify({
+        tag_name: "v1.0.0",
+        draft: false,
+        prerelease: false,
+        immutable: true,
+        created_at: "2026-01-01T00:00:00Z",
+        published_at: "2099-01-01T00:00:00Z",
+        assets: [{
+          name: "tool.tar.gz",
+          browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+          url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+        }],
+      }), { status: 200 });
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "v1.0.0");
+
+    assert.equal(release.immutable, true);
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].options, undefined);
+  `);
+});
+
+test("GitHub release mirror trusts explicit upstream mutable releases", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+
+    const writes = [];
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify({
+        tag_name: "v1.0.0",
+        draft: false,
+        prerelease: false,
+        immutable: false,
+        created_at: "2026-01-01T00:00:00Z",
+        published_at: "2026-01-01T00:00:00Z",
+        assets: [{
+          name: "tool.tar.gz",
+          browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+          url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+        }],
+      }), { status: 200 });
+
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "v1.0.0");
+
+    assert.equal(release.immutable, false);
+    assert.deepEqual(writes[0].options, { expirationTtl: 2592000 });
+  `);
+});
+
 test("GitHub release mirror rejects redirects outside the GitHub API", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
