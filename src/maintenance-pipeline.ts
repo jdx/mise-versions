@@ -139,10 +139,7 @@ function isTransientMaintenanceError(e: unknown): boolean {
   return (
     msg.includes("d1 db is overloaded") ||
     msg.includes("requests queued for too long") ||
-    msg.includes('code":7429') ||
-    msg.includes("429") ||
-    msg.includes("analytics engine query failed: 5") ||
-    msg.includes("analytics engine query failed: 429")
+    msg.includes('code":7429')
   );
 }
 

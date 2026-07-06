@@ -150,6 +150,8 @@ export async function queryAnalyticsEngine<T>(
     );
   }
 
+  // Unreachable in practice: the bounded loop returns, throws, or continues on
+  // every iteration. Keep this to satisfy TypeScript control-flow analysis.
   throw new Error("Analytics Engine query failed after retries");
 }
 
