@@ -138,7 +138,9 @@ function isTransientMaintenanceError(e: unknown): boolean {
   const msg = errMsg(e).toLowerCase();
   return (
     msg.includes("d1 db is overloaded") ||
+    msg.includes("d1 is overloaded") ||
     msg.includes("requests queued for too long") ||
+    msg.includes("too many requests queued") ||
     msg.includes('code":7429')
   );
 }
