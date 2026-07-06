@@ -11,7 +11,7 @@ const NEGATIVE_RELEASE_NOT_FOUND_FRESH_MS = 30 * 60 * 1000;
 const NEGATIVE_RELEASE_AUTH_FRESH_MS = 5 * 60 * 1000;
 const NEGATIVE_RELEASE_TRANSIENT_FRESH_MS = 60 * 1000;
 const NEGATIVE_ATTESTATION_FRESH_MS = 30 * 60 * 1000;
-const EDGE_SHORT_TTL_SECONDS = 10 * 60;
+const EDGE_SHORT_TTL_SECONDS = 60 * 60;
 const EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS = 30 * 60;
 const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
 
@@ -87,6 +87,7 @@ export function cacheHeaders({
 export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
   const immutable = tag !== "latest" && release.immutable === true;
   return cacheHeaders({
+    browserMaxAge: immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
     edgeMaxAge: immutable ? EDGE_IMMUTABLE_TTL_SECONDS : EDGE_SHORT_TTL_SECONDS,
     immutable,
   });
@@ -369,17 +370,14 @@ async function fetchGitHubRelease(
     `https://api.github.com/repos/${owner}/${repo}/${path}`,
     token,
   );
-  const publishedAt = data.published_at
-    ? new Date(data.published_at).getTime()
-    : NaN;
   const assets = data.assets ?? [];
   const immutable =
     assets.length > 0 &&
     tag !== "latest" &&
     !data.draft &&
     !data.prerelease &&
-    Number.isFinite(publishedAt) &&
-    Date.now() - publishedAt > RELEASE_IMMUTABLE_AFTER_MS;
+    (data.immutable === true ||
+      (data.immutable === undefined && releaseAgeImmutable(data.published_at)));
 
   return {
     tag_name: data.tag_name,
@@ -394,6 +392,14 @@ async function fetchGitHubRelease(
       digest: asset.digest ?? null,
     })),
   };
+}
+
+function releaseAgeImmutable(publishedAt: string | undefined): boolean {
+  const timestamp = publishedAt ? new Date(publishedAt).getTime() : NaN;
+  return (
+    Number.isFinite(timestamp) &&
+    Date.now() - timestamp > RELEASE_IMMUTABLE_AFTER_MS
+  );
 }
 
 async function fetchGitHubAttestations(
