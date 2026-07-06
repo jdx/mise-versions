@@ -7,6 +7,7 @@
  */
 
 const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
+const CLOUDFLARE_RETRY_ATTEMPTS = 3;
 
 function usage() {
   console.error(`Usage: node scripts/maintenance-status-direct.js
@@ -24,30 +25,56 @@ function requiredEnv(name) {
   return value;
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableCloudflareFailure(status, data) {
+  const codes = Array.isArray(data?.errors)
+    ? data.errors.map((error) => error?.code)
+    : [];
+  return status === 429 || status >= 500 || codes.includes(7429);
+}
+
 async function cfFetch(url, token, options = {}) {
-  const response = await fetch(url, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-  const text = await response.text();
-  let data;
-  try {
-    data = JSON.parse(text);
-  } catch {
-    data = text;
+  const { retries = CLOUDFLARE_RETRY_ATTEMPTS, ...fetchOptions } = options;
+
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const response = await fetch(url, {
+      ...fetchOptions,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        ...fetchOptions.headers,
+      },
+    });
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = text;
+    }
+
+    if (response.ok && data?.success !== false) {
+      return data;
+    }
+
+    const message = `Cloudflare API failed ${response.status}: ${JSON.stringify(data)}`;
+    if (
+      attempt < retries &&
+      isRetryableCloudflareFailure(response.status, data)
+    ) {
+      const delay = 2 ** attempt * 1000;
+      console.warn(`${message}; retrying in ${delay}ms`);
+      await sleep(delay);
+      continue;
+    }
+
+    throw new Error(message);
   }
 
-  if (!response.ok || data?.success === false) {
-    throw new Error(
-      `Cloudflare API failed ${response.status}: ${JSON.stringify(data)}`,
-    );
-  }
-
-  return data;
+  throw new Error("Cloudflare API failed after retries");
 }
 
 async function queryD1({ accountId, token, databaseId, sql, params = [] }) {
@@ -67,7 +94,9 @@ async function queryD1({ accountId, token, databaseId, sql, params = [] }) {
 }
 
 function isoFromTs(ts) {
-  return ts ? new Date(Number(ts) * 1000).toISOString() : null;
+  return ts === null || ts === undefined
+    ? null
+    : new Date(Number(ts) * 1000).toISOString();
 }
 
 async function main() {
@@ -86,10 +115,15 @@ async function main() {
     ...config,
     sql: `
       SELECT
+        (SELECT MAX(date) FROM daily_stats) AS daily_stats,
+        (SELECT MAX(date) FROM daily_tool_stats) AS daily_tool_stats,
+        (SELECT MAX(date) FROM daily_backend_stats) AS daily_backend_stats,
+        (SELECT MAX(date) FROM daily_tool_backend_stats) AS daily_tool_backend_stats,
+        (SELECT MAX(date) FROM daily_tool_version_stats) AS daily_tool_version_stats,
+        (SELECT MAX(date) FROM daily_tool_platform_stats) AS daily_tool_platform_stats,
         (SELECT MAX(date) FROM daily_mau_stats) AS daily_mau_stats,
         (SELECT MAX(date) FROM daily_combined_stats) AS daily_combined_stats,
-        (SELECT MAX(date) FROM daily_version_stats) AS daily_version_stats,
-        (SELECT MAX(date) FROM daily_tool_stats) AS daily_tool_stats
+        (SELECT MAX(date) FROM daily_version_stats) AS daily_version_stats
     `,
   });
 
