@@ -369,17 +369,14 @@ async function fetchGitHubRelease(
     `https://api.github.com/repos/${owner}/${repo}/${path}`,
     token,
   );
-  const publishedAt = data.published_at
-    ? new Date(data.published_at).getTime()
-    : NaN;
   const assets = data.assets ?? [];
   const immutable =
     assets.length > 0 &&
     tag !== "latest" &&
     !data.draft &&
     !data.prerelease &&
-    Number.isFinite(publishedAt) &&
-    Date.now() - publishedAt > RELEASE_IMMUTABLE_AFTER_MS;
+    (data.immutable === true ||
+      (data.immutable === undefined && releaseAgeImmutable(data.published_at)));
 
   return {
     tag_name: data.tag_name,
@@ -394,6 +391,14 @@ async function fetchGitHubRelease(
       digest: asset.digest ?? null,
     })),
   };
+}
+
+function releaseAgeImmutable(publishedAt: string | undefined): boolean {
+  const timestamp = publishedAt ? new Date(publishedAt).getTime() : NaN;
+  return (
+    Number.isFinite(timestamp) &&
+    Date.now() - timestamp > RELEASE_IMMUTABLE_AFTER_MS
+  );
 }
 
 async function fetchGitHubAttestations(
