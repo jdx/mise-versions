@@ -8,6 +8,7 @@ on:
         required: true
         type: choice
         options:
+          - status
           - refresh-mau
       date:
         description: "Base date in UTC (YYYY-MM-DD); defaults to today"
@@ -24,8 +25,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  refresh-mau:
-    if: github.event.inputs.task == 'refresh-mau'
+  maintenance:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -33,7 +33,15 @@ jobs:
 
       - uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4
 
+      - name: Maintenance status
+        if: github.event.inputs.task == 'status'
+        run: node scripts/maintenance-status-direct.js
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
       - name: Refresh MAU directly
+        if: github.event.inputs.task == 'refresh-mau'
         run: |
           args=(--days="${INPUT_DAYS:-2}")
           if [ -n "$INPUT_DATE" ]; then
