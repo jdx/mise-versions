@@ -12,7 +12,7 @@ import {
 } from "../../../../../../../lib/github/mirror";
 import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo } = params;
   // Cloudflare/Astro preserves percent-encoded characters (notably %2F) in
   // catch-all path params rather than decoding them, so tags such as
@@ -52,7 +52,7 @@ export const GET: APIRoute = async ({ params, request }) => {
       200,
       releaseCacheHeaders(tag, release),
     );
-    await putGitHubMirrorEdgeCache(request, response);
+    locals.cfContext.waitUntil(putGitHubMirrorEdgeCache(request, response));
     return response;
   } catch (error) {
     console.error(

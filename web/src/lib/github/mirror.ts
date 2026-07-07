@@ -14,6 +14,7 @@ const NEGATIVE_ATTESTATION_FRESH_MS = 30 * 60 * 1000;
 const EDGE_SHORT_TTL_SECONDS = 60 * 60;
 const EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS = 30 * 60;
 const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
+const EDGE_MIRROR_CACHE_TTL_SECONDS = 60 * 60;
 
 interface CacheEntry<T> {
   cached_at: number;
@@ -121,10 +122,26 @@ export async function putGitHubMirrorEdgeCache(
   if (response.status !== 200) return;
 
   try {
-    await defaultEdgeCache().put(edgeCacheRequest(request), response.clone());
+    await defaultEdgeCache().put(
+      edgeCacheRequest(request),
+      edgeCacheResponse(response),
+    );
   } catch (error) {
     console.warn("failed to write GitHub mirror edge cache:", error);
   }
+}
+
+function edgeCacheResponse(response: Response): Response {
+  const headers = new Headers(response.headers);
+  headers.set(
+    "Cache-Control",
+    `public, max-age=600, s-maxage=${EDGE_MIRROR_CACHE_TTL_SECONDS}, stale-while-revalidate=86400`,
+  );
+  return new Response(response.clone().body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
 
 function defaultEdgeCache(): Cache {
@@ -132,7 +149,13 @@ function defaultEdgeCache(): Cache {
 }
 
 function edgeCacheRequest(request: Request): Request {
-  return new Request(request.url, { method: "GET" });
+  // Query params are ignored by these mirror handlers, so strip them to avoid
+  // unbounded cache-key variants. Cache API cold misses are not coalesced, and
+  // cached allowlisted responses can outlive registry removals until this
+  // capped edge TTL expires.
+  const url = new URL(request.url);
+  url.search = "";
+  return new Request(url.toString(), { method: "GET" });
 }
 
 export function validRepoPart(value: string | undefined): value is string {

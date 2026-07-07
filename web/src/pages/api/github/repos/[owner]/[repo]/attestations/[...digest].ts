@@ -15,7 +15,7 @@ import {
   isRegisteredGitHubRepo,
 } from "../../../../../../../lib/github/registry";
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo, digest } = params;
   if (!validRepoPart(owner) || !validRepoPart(repo) || !validDigest(digest)) {
     return errorResponse("Invalid GitHub attestation path", 400);
@@ -47,7 +47,7 @@ export const GET: APIRoute = async ({ params, request }) => {
       200,
       attestationsCacheHeaders(attestations),
     );
-    await putGitHubMirrorEdgeCache(request, response);
+    locals.cfContext.waitUntil(putGitHubMirrorEdgeCache(request, response));
     return response;
   } catch (error) {
     console.error(
