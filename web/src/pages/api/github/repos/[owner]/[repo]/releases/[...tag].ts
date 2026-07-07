@@ -4,13 +4,15 @@ import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   getCachedGitHubRelease,
   githubStatus,
+  matchGitHubMirrorEdgeCache,
+  putGitHubMirrorEdgeCache,
   releaseCacheHeaders,
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
 import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
 
-export const GET: APIRoute = async ({ params }) => {
+export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo } = params;
   // Cloudflare/Astro preserves percent-encoded characters (notably %2F) in
   // catch-all path params rather than decoding them, so tags such as
@@ -19,13 +21,18 @@ export const GET: APIRoute = async ({ params }) => {
   let tag: string | undefined;
   try {
     tag =
-      typeof params.tag === "string" ? decodeURIComponent(params.tag) : undefined;
+      typeof params.tag === "string"
+        ? decodeURIComponent(params.tag)
+        : undefined;
   } catch {
     return errorResponse("Invalid GitHub release path", 400);
   }
   if (!validRepoPart(owner) || !validRepoPart(repo) || !validReleaseTag(tag)) {
     return errorResponse("Invalid GitHub release path", 400);
   }
+
+  const cached = await matchGitHubMirrorEdgeCache(request);
+  if (cached) return cached;
 
   let registered: boolean;
   try {
@@ -40,7 +47,13 @@ export const GET: APIRoute = async ({ params }) => {
 
   try {
     const release = await getCachedGitHubRelease(env, owner, repo, tag);
-    return jsonResponse(release, 200, releaseCacheHeaders(tag, release));
+    const response = jsonResponse(
+      release,
+      200,
+      releaseCacheHeaders(tag, release),
+    );
+    locals.cfContext.waitUntil(putGitHubMirrorEdgeCache(request, response));
+    return response;
   } catch (error) {
     console.error(
       `GitHub release mirror failed for ${owner}/${repo}@${tag}:`,
