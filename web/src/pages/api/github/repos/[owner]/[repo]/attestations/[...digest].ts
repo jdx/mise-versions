@@ -5,6 +5,8 @@ import {
   attestationsCacheHeaders,
   getCachedGitHubAttestations,
   githubStatus,
+  matchGitHubMirrorEdgeCache,
+  putGitHubMirrorEdgeCache,
   validDigest,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
@@ -13,11 +15,14 @@ import {
   isRegisteredGitHubRepo,
 } from "../../../../../../../lib/github/registry";
 
-export const GET: APIRoute = async ({ params }) => {
+export const GET: APIRoute = async ({ params, request }) => {
   const { owner, repo, digest } = params;
   if (!validRepoPart(owner) || !validRepoPart(repo) || !validDigest(digest)) {
     return errorResponse("Invalid GitHub attestation path", 400);
   }
+
+  const cached = await matchGitHubMirrorEdgeCache(request);
+  if (cached) return cached;
 
   let registered: boolean;
   try {
@@ -37,11 +42,13 @@ export const GET: APIRoute = async ({ params }) => {
       repo,
       digest,
     );
-    return jsonResponse(
+    const response = jsonResponse(
       attestations,
       200,
       attestationsCacheHeaders(attestations),
     );
+    await putGitHubMirrorEdgeCache(request, response);
+    return response;
   } catch (error) {
     console.error(
       `GitHub attestation mirror failed for ${owner}/${repo}@${digest}:`,

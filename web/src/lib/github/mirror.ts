@@ -103,6 +103,38 @@ export function attestationsCacheHeaders(response: GitHubAttestationsResponse) {
   });
 }
 
+export async function matchGitHubMirrorEdgeCache(
+  request: Request,
+): Promise<Response | null> {
+  try {
+    return (await defaultEdgeCache().match(edgeCacheRequest(request))) ?? null;
+  } catch (error) {
+    console.warn("failed to read GitHub mirror edge cache:", error);
+    return null;
+  }
+}
+
+export async function putGitHubMirrorEdgeCache(
+  request: Request,
+  response: Response,
+): Promise<void> {
+  if (response.status !== 200) return;
+
+  try {
+    await defaultEdgeCache().put(edgeCacheRequest(request), response.clone());
+  } catch (error) {
+    console.warn("failed to write GitHub mirror edge cache:", error);
+  }
+}
+
+function defaultEdgeCache(): Cache {
+  return (caches as unknown as { default: Cache }).default;
+}
+
+function edgeCacheRequest(request: Request): Request {
+  return new Request(request.url, { method: "GET" });
+}
+
 export function validRepoPart(value: string | undefined): value is string {
   return (
     !!value &&
