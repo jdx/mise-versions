@@ -25,7 +25,7 @@ on:
         type: string
 
 concurrency:
-  group: maintenance-${{ github.event_name == 'schedule' && 'scheduled' || github.event.inputs.task || 'refresh-all' }}
+  group: maintenance-${{ github.event.inputs.task || 'refresh-all' }}
   cancel-in-progress: false
 
 jobs:
