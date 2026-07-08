@@ -25,7 +25,7 @@ on:
         type: string
 
 concurrency:
-  group: maintenance-${{ github.event_name == 'schedule' && 'scheduled' || inputs.task }}
+  group: maintenance-${{ github.event_name == 'schedule' && 'scheduled' || github.event.inputs.task || 'refresh-all' }}
   cancel-in-progress: false
 
 jobs:
@@ -33,9 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      TASK: ${{ github.event_name == 'schedule' && 'refresh-all' || inputs.task }}
+      TASK: ${{ github.event_name == 'schedule' && 'refresh-all' || github.event.inputs.task || 'refresh-all' }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+        with:
+          persist-credentials: false
 
       - uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4
 
