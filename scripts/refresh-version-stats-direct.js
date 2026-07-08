@@ -10,6 +10,7 @@ const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
 const DEFAULT_DATASET = "mise_analytics_events";
 const DEFAULT_CUTOVER_DATE = "2026-06-12";
 const CLOUDFLARE_RETRY_ATTEMPTS = 3;
+const CLOUDFLARE_FETCH_TIMEOUT_MS = 30_000;
 
 function usage() {
   console.error(`Usage: node scripts/refresh-version-stats-direct.js [--date=YYYY-MM-DD] [--days=N]
@@ -87,14 +88,28 @@ async function cfFetch(url, token, options = {}) {
   const { retries = CLOUDFLARE_RETRY_ATTEMPTS, ...fetchOptions } = options;
 
   for (let attempt = 0; attempt <= retries; attempt++) {
-    const response = await fetch(url, {
-      ...fetchOptions,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        ...fetchOptions.headers,
-      },
-    });
+    let response;
+    try {
+      response = await fetch(url, {
+        ...fetchOptions,
+        signal: AbortSignal.timeout(CLOUDFLARE_FETCH_TIMEOUT_MS),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          ...fetchOptions.headers,
+        },
+      });
+    } catch (error) {
+      const message = `Cloudflare API request failed: ${error instanceof Error ? error.message : String(error)}`;
+      if (attempt < retries) {
+        const delay = 2 ** attempt * 1000;
+        console.warn(`${message}; retrying in ${delay}ms`);
+        await sleep(delay);
+        continue;
+      }
+      throw new Error(message);
+    }
+
     const text = await response.text();
     let data;
     try {
@@ -209,12 +224,72 @@ async function refreshVersionStatsFromD1(config, date) {
   };
 }
 
+async function refreshCutoverVersionStats(config, date) {
+  const d1Stats = await refreshVersionStatsFromD1(config, date);
+  const { start, end } = dateRange(date);
+  const dateStart = timestamp(`${date} 00:00:00`);
+  const dateEnd = dateStart + 86400;
+
+  const d1Users = await queryD1({
+    accountId: config.cloudflareAccountId,
+    token: config.cloudflareApiToken,
+    databaseId: config.analyticsDbId,
+    sql: `
+      SELECT DISTINCT ip_hash
+      FROM version_requests
+      WHERE created_at >= ? AND created_at < ?
+    `,
+    params: [dateStart, dateEnd],
+  });
+  const aeUsers = await queryAnalyticsEngine({
+    accountId: config.analyticsEngineAccountId,
+    token: config.analyticsEngineApiToken,
+    dataset: config.dataset,
+    sql: `
+      SELECT index1 AS ip_hash
+      FROM ${config.dataset}
+      WHERE
+        blob1 = 'version_request'
+        AND timestamp >= toDateTime('${start}')
+        AND timestamp <= toDateTime('${end}')
+      GROUP BY index1
+    `,
+  });
+  const aeStats = await queryAnalyticsEngine({
+    accountId: config.analyticsEngineAccountId,
+    token: config.analyticsEngineApiToken,
+    dataset: config.dataset,
+    sql: `
+      SELECT sum(_sample_interval) AS total_requests
+      FROM ${config.dataset}
+      WHERE
+        blob1 = 'version_request'
+        AND timestamp >= toDateTime('${start}')
+        AND timestamp <= toDateTime('${end}')
+    `,
+  });
+
+  const users = new Set();
+  for (const row of d1Users) users.add(row.ip_hash);
+  for (const row of aeUsers) users.add(row.ip_hash);
+
+  return {
+    totalRequests:
+      d1Stats.totalRequests + Number(aeStats[0]?.total_requests ?? 0),
+    uniqueUsers: users.size,
+  };
+}
+
 async function refreshVersionStatsForDate(config, date) {
   console.log(`Refreshing version stats for ${date}`);
-  const stats =
-    date >= config.cutoverDate
-      ? await refreshVersionStatsFromAnalyticsEngine(config, date)
-      : await refreshVersionStatsFromD1(config, date);
+  let stats;
+  if (date === config.cutoverDate) {
+    stats = await refreshCutoverVersionStats(config, date);
+  } else if (date > config.cutoverDate) {
+    stats = await refreshVersionStatsFromAnalyticsEngine(config, date);
+  } else {
+    stats = await refreshVersionStatsFromD1(config, date);
+  }
 
   if (
     !Number.isFinite(stats.totalRequests) ||
