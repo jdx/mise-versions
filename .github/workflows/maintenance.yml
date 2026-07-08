@@ -49,7 +49,9 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Refresh MAU directly
+        id: refresh_mau
         if: env.TASK == 'refresh-mau' || env.TASK == 'refresh-all'
+        continue-on-error: ${{ env.TASK == 'refresh-all' }}
         run: |
           args=(--days="${INPUT_DAYS:-2}")
           if [ -n "$INPUT_DATE" ]; then
@@ -83,3 +85,7 @@ jobs:
           ANALYTICS_ENGINE_API_TOKEN: ${{ secrets.ANALYTICS_ENGINE_API_TOKEN }}
           ANALYTICS_ENGINE_DATASET: mise_analytics_events
           ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
+
+      - name: Fail if MAU refresh failed
+        if: env.TASK == 'refresh-all' && steps.refresh_mau.outcome == 'failure'
+        run: exit 1
