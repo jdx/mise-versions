@@ -1,15 +1,20 @@
 name: maintenance
 
 on:
+  schedule:
+    - cron: "20 2 * * *"
   workflow_dispatch:
     inputs:
       task:
         description: "Maintenance task to run"
-        required: true
+        required: false
+        default: refresh-all
         type: choice
         options:
           - status
           - refresh-mau
+          - refresh-version-stats
+          - refresh-all
       date:
         description: "Base date in UTC (YYYY-MM-DD); defaults to today"
         required: false
@@ -17,37 +22,56 @@ on:
       days:
         description: "Number of days to refresh, counting backward from date"
         required: false
-        default: "2"
         type: string
 
 concurrency:
-  group: maintenance-${{ github.event.inputs.task }}
+  group: maintenance-${{ github.event_name == 'schedule' && 'scheduled' || inputs.task }}
   cancel-in-progress: false
 
 jobs:
   maintenance:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      TASK: ${{ github.event_name == 'schedule' && 'refresh-all' || inputs.task }}
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
 
       - uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4
 
       - name: Maintenance status
-        if: github.event.inputs.task == 'status'
+        if: env.TASK == 'status'
         run: node scripts/maintenance-status-direct.js
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Refresh MAU directly
-        if: github.event.inputs.task == 'refresh-mau'
+        if: env.TASK == 'refresh-mau' || env.TASK == 'refresh-all'
         run: |
           args=(--days="${INPUT_DAYS:-2}")
           if [ -n "$INPUT_DATE" ]; then
             args+=(--date="$INPUT_DATE")
           fi
           node scripts/refresh-mau-direct.js "${args[@]}"
+        env:
+          INPUT_DAYS: ${{ github.event.inputs.days }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ANALYTICS_ENGINE_ACCOUNT_ID: ${{ secrets.ANALYTICS_ENGINE_ACCOUNT_ID }}
+          ANALYTICS_ENGINE_API_TOKEN: ${{ secrets.ANALYTICS_ENGINE_API_TOKEN }}
+          ANALYTICS_ENGINE_DATASET: mise_analytics_events
+          ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
+
+      - name: Refresh version stats directly
+        if: env.TASK == 'refresh-version-stats' || env.TASK == 'refresh-all'
+        run: |
+          args=(--days="${INPUT_DAYS:-31}")
+          if [ -n "$INPUT_DATE" ]; then
+            args+=(--date="$INPUT_DATE")
+          fi
+          node scripts/refresh-version-stats-direct.js "${args[@]}"
         env:
           INPUT_DAYS: ${{ github.event.inputs.days }}
           INPUT_DATE: ${{ github.event.inputs.date }}
