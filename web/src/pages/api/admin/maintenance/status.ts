@@ -39,7 +39,6 @@ export const GET: APIRoute = async ({ request }) => {
       ]);
 
     return jsonResponse({
-      maintenance_schedule: "GitHub Actions maintenance workflow: 20 2 * * *",
       rollups: {
         daily_mau_stats: mau?.max_date ?? null,
         daily_combined_stats: combined?.max_date ?? null,
