@@ -135,11 +135,9 @@ async function cfFetch(url, token, options = {}) {
 
     throw new Error(message);
   }
-
-  throw new Error("Cloudflare API failed after retries");
 }
 
-async function queryAnalyticsEngine({ accountId, token, dataset, sql }) {
+async function queryAnalyticsEngine({ accountId, token, sql }) {
   console.log(`Analytics Engine SQL:\n${sql.trim()}\n`);
   const data = await cfFetch(
     `https://api.cloudflare.com/client/v4/accounts/${accountId}/analytics_engine/sql`,
@@ -182,7 +180,6 @@ async function refreshVersionStatsFromAnalyticsEngine(config, date) {
   const rows = await queryAnalyticsEngine({
     accountId: config.analyticsEngineAccountId,
     token: config.analyticsEngineApiToken,
-    dataset: config.dataset,
     sql: `
       SELECT
         sum(_sample_interval) AS total_requests,
@@ -244,7 +241,6 @@ async function refreshCutoverVersionStats(config, date) {
   const aeUsers = await queryAnalyticsEngine({
     accountId: config.analyticsEngineAccountId,
     token: config.analyticsEngineApiToken,
-    dataset: config.dataset,
     sql: `
       SELECT index1 AS ip_hash
       FROM ${config.dataset}
@@ -258,7 +254,6 @@ async function refreshCutoverVersionStats(config, date) {
   const aeStats = await queryAnalyticsEngine({
     accountId: config.analyticsEngineAccountId,
     token: config.analyticsEngineApiToken,
-    dataset: config.dataset,
     sql: `
       SELECT sum(_sample_interval) AS total_requests
       FROM ${config.dataset}
