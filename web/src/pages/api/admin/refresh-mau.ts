@@ -12,8 +12,8 @@ function dateStrAgo(daysAgo: number): string {
 }
 
 // POST /api/admin/refresh-mau - Refresh just the user-visible MAU rollups.
-// This is intentionally much narrower than /api/admin/scheduled so admins can
-// repair the stats page without running every daily maintenance task.
+// This is intentionally narrow so admins can repair the stats page without
+// running every maintenance task.
 export const POST: APIRoute = async ({ request }) => {
   const auth = await requireBearerOrAdmin(request, env.API_SECRET);
   if (auth instanceof Response) return auth;

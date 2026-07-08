@@ -5,7 +5,7 @@ import { env } from "cloudflare:workers";
 import { jsonResponse, errorResponse } from "../../../../lib/api";
 import { requireAdminAuth } from "../../../../lib/admin";
 
-// GET /api/admin/maintenance/status - Health snapshot for the daily cron.
+// GET /api/admin/maintenance/status - Health snapshot for GitHub Actions maintenance.
 // Surfaces whether each rollup table is fresh and whether aggregateOldData
 // is keeping the downloads table within its 90-day retention window.
 export const GET: APIRoute = async ({ request }) => {
@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ request }) => {
       ]);
 
     return jsonResponse({
-      cron_schedule: "0 1 * * *",
+      maintenance_schedule: "GitHub Actions maintenance workflow: 20 2 * * *",
       rollups: {
         daily_mau_stats: mau?.max_date ?? null,
         daily_combined_stats: combined?.max_date ?? null,

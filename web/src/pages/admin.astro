@@ -41,16 +41,6 @@ if (!auth || !isAdmin(auth.username)) {
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
           <button
-            id="run-scheduled-btn"
-            class="px-3 py-1.5 bg-neon-purple/20 hover:bg-neon-purple/30 border border-neon-purple/40 rounded-lg text-sm text-neon-purple hover:text-white transition-colors flex items-center gap-1"
-            title="Run the same maintenance pipeline as the daily cron"
-          >
-            <svg id="run-scheduled-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <span id="run-scheduled-text">Run Scheduled Tasks</span>
-          </button>
-          <button
             id="refresh-mau-btn"
             class="px-3 py-1.5 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400/40 rounded-lg text-sm text-cyan-300 hover:text-white transition-colors flex items-center gap-1"
             title="Refresh only today's and yesterday's MAU rollups"
@@ -62,8 +52,8 @@ if (!auth || !isAdmin(auth.username)) {
           </button>
         </div>
       </div>
-      <div id="run-scheduled-output" class="hidden border-t border-dark-600 px-4 py-3">
-        <pre id="run-scheduled-output-pre" class="text-xs text-gray-300 whitespace-pre-wrap break-words max-h-64 overflow-y-auto"></pre>
+      <div id="maintenance-action-output" class="hidden border-t border-dark-600 px-4 py-3">
+        <pre id="maintenance-action-output-pre" class="text-xs text-gray-300 whitespace-pre-wrap break-words max-h-64 overflow-y-auto"></pre>
       </div>
     </div>
 
@@ -790,7 +780,7 @@ if (!auth || !isAdmin(auth.username)) {
 
   // Maintenance card
   interface MaintenanceStatus {
-    cron_schedule: string;
+    maintenance_schedule: string;
     rollups: Record<string, string | null>;
     downloads: {
       oldest_iso: string | null;
@@ -857,57 +847,16 @@ if (!auth || !isAdmin(auth.username)) {
   }
 
   function setMaintenanceButtonsDisabled(disabled: boolean) {
-    const runBtn = document.getElementById('run-scheduled-btn') as HTMLButtonElement | null;
     const mauBtn = document.getElementById('refresh-mau-btn') as HTMLButtonElement | null;
-    if (runBtn) runBtn.disabled = disabled;
     if (mauBtn) mauBtn.disabled = disabled;
-  }
-
-  async function runScheduled() {
-    const btn = document.getElementById('run-scheduled-btn') as HTMLButtonElement;
-    const text = document.getElementById('run-scheduled-text');
-    const icon = document.getElementById('run-scheduled-icon');
-    const out = document.getElementById('run-scheduled-output');
-    const pre = document.getElementById('run-scheduled-output-pre');
-    if (!btn || !text || !icon || !out || !pre) return;
-    if (!confirm('Run the daily maintenance pipeline now? This may take 30+ seconds.')) {
-      return;
-    }
-    setMaintenanceButtonsDisabled(true);
-    text.textContent = 'Running...';
-    icon.classList.add('animate-spin');
-    out.classList.add('hidden');
-    try {
-      const started = Date.now();
-      const res = await fetch('/api/admin/scheduled', { method: 'POST' });
-      const elapsed = ((Date.now() - started) / 1000).toFixed(1);
-      const body = await res.text();
-      let formatted = body;
-      try {
-        formatted = JSON.stringify(JSON.parse(body), null, 2);
-      } catch {
-        // not JSON
-      }
-      pre.textContent = `HTTP ${res.status} in ${elapsed}s\n\n${formatted}`;
-      out.classList.remove('hidden');
-      // Refresh inline stats so the new "MAU last seen" is reflected
-      await loadMaintenanceStatus();
-    } catch (e) {
-      pre.textContent = `Error: ${e}`;
-      out.classList.remove('hidden');
-    } finally {
-      setMaintenanceButtonsDisabled(false);
-      text.textContent = 'Run Scheduled Tasks';
-      icon.classList.remove('animate-spin');
-    }
   }
 
   async function refreshMau() {
     const btn = document.getElementById('refresh-mau-btn') as HTMLButtonElement;
     const text = document.getElementById('refresh-mau-text');
     const icon = document.getElementById('refresh-mau-icon');
-    const out = document.getElementById('run-scheduled-output');
-    const pre = document.getElementById('run-scheduled-output-pre');
+    const out = document.getElementById('maintenance-action-output');
+    const pre = document.getElementById('maintenance-action-output-pre');
     if (!btn || !text || !icon || !out || !pre) return;
     if (!confirm("Refresh today's and yesterday's MAU rollups now?")) {
       return;
@@ -960,6 +909,5 @@ if (!auth || !isAdmin(auth.username)) {
   document.getElementById('asdf-expand-btn')?.addEventListener('click', toggleAsdfExpanded);
   document.getElementById('table-counts-expand-btn')?.addEventListener('click', toggleTableCountsExpanded);
   document.getElementById('refresh-btn')?.addEventListener('click', refreshAll);
-  document.getElementById('run-scheduled-btn')?.addEventListener('click', runScheduled);
   document.getElementById('refresh-mau-btn')?.addEventListener('click', refreshMau);
 </script>

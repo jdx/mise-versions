@@ -1,5 +1,4 @@
-// Shared maintenance pipeline run by both the daily cron (src/worker.ts)
-// and the admin "Run Scheduled Tasks" button (api/admin/scheduled.ts).
+// Legacy Worker maintenance pipeline.
 //
 // Each step is isolated with per-step error capture so a single failure
 // (e.g. D1 overload during MAU computation) does not cascade. The MAU step
