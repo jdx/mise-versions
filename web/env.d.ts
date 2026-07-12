@@ -1,5 +1,6 @@
 /// <reference path="./.astro/types.d.ts" />
 /// <reference path="../worker-configuration.d.ts" />
+/// <reference path="../src/optional-worker-env.d.ts" />
 /// <reference types="astro/client" />
 
 // Minimal runtime typing for Astro on Cloudflare.
