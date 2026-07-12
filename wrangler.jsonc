@@ -78,13 +78,21 @@
   },
   "secrets": {
     "required": [
+      // Cloudflare account id for Analytics Engine SQL API
       "ANALYTICS_ENGINE_ACCOUNT_ID",
+      // Token with Account Analytics Read permission
       "ANALYTICS_ENGINE_API_TOKEN",
+      // GitHub App id
       "GITHUB_APP_ID",
+      // GitHub App private key (PEM format)
       "GITHUB_PRIVATE_KEY",
+      // GitHub OAuth App client id
       "GITHUB_CLIENT_ID",
+      // GitHub OAuth App client secret
       "GITHUB_CLIENT_SECRET",
+      // Secret used to verify GitHub webhook signatures
       "GITHUB_WEBHOOK_SECRET",
+      // Shared secret for GitHub Actions authentication
       "API_SECRET",
     ],
   },

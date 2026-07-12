@@ -1,4 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
+import type { AuthStatusResponse } from "../lib/auth";
 
 interface AuthState {
   authenticated: boolean;
@@ -24,10 +25,7 @@ export function useAuth(): AuthState {
           setState({ authenticated: false, username: null, loading: false });
           return;
         }
-        const data = await response.json<{
-          authenticated: boolean;
-          username?: string | null;
-        }>();
+        const data = await response.json<AuthStatusResponse>();
         setState({
           authenticated: data.authenticated,
           username: data.username || null,
