@@ -76,16 +76,4 @@
     "ANALYTICS_ENGINE_DATASET": "mise_analytics_events",
     "ANALYTICS_ENGINE_CUTOVER_DATE": "2026-06-12",
   },
-  // Required secrets, set with `wrangler secret put`. Their names are mirrored
-  // in .env.example so `wrangler types` can generate deterministic bindings:
-  // GITHUB_APP_ID - GitHub App id
-  // GITHUB_PRIVATE_KEY - GitHub App private key (PEM format)
-  // GITHUB_CLIENT_ID - GitHub OAuth client id
-  // GITHUB_CLIENT_SECRET - GitHub OAuth client secret
-  // GITHUB_WEBHOOK_SECRET - Secret used to verify GitHub webhook signatures
-  // API_SECRET - Shared secret for GitHub Actions authentication
-  //
-  // Optional secrets. Analytics queries fall back to D1 when either is absent:
-  // ANALYTICS_ENGINE_ACCOUNT_ID - Cloudflare account id for Analytics Engine SQL
-  // ANALYTICS_ENGINE_API_TOKEN - Token with Account Analytics Read permission
 }
