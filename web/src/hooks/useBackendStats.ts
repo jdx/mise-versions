@@ -15,7 +15,7 @@ export function useBackendStats() {
     fetch("/api/stats/backends")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch backend stats");
-        return res.json();
+        return res.json<BackendStats>();
       })
       .then(setData)
       .catch((e) => setError(e.message))

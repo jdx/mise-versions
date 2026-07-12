@@ -5,7 +5,7 @@ export function useMAU() {
 
   useEffect(() => {
     fetch("/api/stats/mau")
-      .then((res) => res.json())
+      .then((res) => res.json<{ mau: number }>())
       .then((data) => setMAU(data.mau))
       .catch(() => {});
   }, []);

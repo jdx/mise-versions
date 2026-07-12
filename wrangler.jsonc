@@ -76,13 +76,16 @@
     "ANALYTICS_ENGINE_DATASET": "mise_analytics_events",
     "ANALYTICS_ENGINE_CUTOVER_DATE": "2026-06-12",
   },
-  // Environment variables that need to be set via wrangler secret:
-  // ANALYTICS_ENGINE_ACCOUNT_ID - Cloudflare account id for Analytics Engine SQL API
-  // ANALYTICS_ENGINE_API_TOKEN - Token with Account Analytics Read permission
-  // GITHUB_APP_ID - Your GitHub App ID
-  // GITHUB_PRIVATE_KEY - Your GitHub App private key (PEM format)
-  // GITHUB_CLIENT_ID - Your GitHub App client ID
-  // GITHUB_CLIENT_SECRET - Your GitHub App client secret
-  // GITHUB_WEBHOOK_SECRET - Your GitHub App webhook secret
-  // API_SECRET - Secret for GitHub Actions authentication
+  "secrets": {
+    "required": [
+      "ANALYTICS_ENGINE_ACCOUNT_ID",
+      "ANALYTICS_ENGINE_API_TOKEN",
+      "GITHUB_APP_ID",
+      "GITHUB_PRIVATE_KEY",
+      "GITHUB_CLIENT_ID",
+      "GITHUB_CLIENT_SECRET",
+      "GITHUB_WEBHOOK_SECRET",
+      "API_SECRET",
+    ],
+  },
 }

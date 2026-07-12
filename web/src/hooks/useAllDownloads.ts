@@ -10,7 +10,7 @@ export function useAllDownloads() {
     fetch("/api/downloads/30d")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch download stats");
-        return res.json();
+        return res.json<Record<string, number>>();
       })
       .then(setData)
       .catch((e) => setError(e.message))

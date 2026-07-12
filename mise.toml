@@ -3,6 +3,8 @@ tasks.build = "aube exec tsc"
 tasks.dev = "aube exec wrangler dev"
 tasks.lint = "aube exec eslint . --ext .ts && aube exec prettier --check ."
 tasks."lint:fix" = "aube exec eslint . --ext .ts --fix && aube exec prettier --write ."
+tasks.types = "aube exec wrangler types"
+tasks."types:check" = "aube exec wrangler types --check"
 
 tasks.gen.run = [
   "aube dlx supabase gen types typescript --project-id fjrwmlxwmhtzflckukna > ./src/database.types.ts",

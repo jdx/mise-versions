@@ -6,7 +6,7 @@ export function AdminButton() {
 
   useEffect(() => {
     fetch("/api/admin/check")
-      .then((res) => res.json())
+      .then((res) => res.json<{ isAdmin?: boolean }>())
       .then((data) => {
         setIsAdmin(data.isAdmin === true);
         setLoading(false);

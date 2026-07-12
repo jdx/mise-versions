@@ -31,6 +31,12 @@ interface GithubData {
   archived: boolean;
 }
 
+type GithubResponse =
+  | { error: string }
+  | (GithubData & {
+      stale?: boolean;
+    });
+
 const packageUrlLabels: Record<string, string> = {
   npm: "npm",
   cargo: "crates.io",
@@ -105,7 +111,7 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
   // Check auth status
   useEffect(() => {
     fetch("/api/auth/me")
-      .then((res) => res.json())
+      .then((res) => res.json<{ authenticated: boolean }>())
       .then((data) => setAuthenticated(data.authenticated))
       .catch(() => {});
   }, []);
@@ -118,9 +124,9 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
 
     setGhLoading(true);
     fetch(`/api/github/repo?owner=${parsed.owner}&repo=${parsed.repo}`)
-      .then((res) => res.json())
+      .then((res) => res.json<GithubResponse>())
       .then((data) => {
-        if (data.error) {
+        if ("error" in data) {
           setGhData(null);
         } else {
           setGhData(data);

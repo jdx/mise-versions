@@ -1,6 +1,6 @@
 // Custom worker wrapper for Astro's worker bundle.
 
-// @ts-expect-error - generated Astro worker bundle has no type declarations
+// @ts-ignore - the generated Astro bundle may not exist yet and has no declarations
 import astroWorker from "../web/dist/server/entry.mjs";
 
 // Re-export the Astro worker's fetch handler

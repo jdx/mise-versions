@@ -24,7 +24,10 @@ export function useAuth(): AuthState {
           setState({ authenticated: false, username: null, loading: false });
           return;
         }
-        const data = await response.json();
+        const data = await response.json<{
+          authenticated: boolean;
+          username?: string | null;
+        }>();
         setState({
           authenticated: data.authenticated,
           username: data.username || null,
