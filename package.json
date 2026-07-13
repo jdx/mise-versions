@@ -11,7 +11,7 @@
     "test:shell": "bash scripts/update.test.sh"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250723.0",
+    "@cloudflare/workers-types": "^5.0.0",
     "@types/node": "^24.1.0",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
