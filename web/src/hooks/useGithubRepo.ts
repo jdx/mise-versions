@@ -58,7 +58,7 @@ export function useGithubRepo(
           }
           throw new Error("Failed to fetch repo info");
         }
-        return res.json();
+        return res.json<GithubRepoInfo>();
       })
       .then(setData)
       .catch((e) => setError(e.message))

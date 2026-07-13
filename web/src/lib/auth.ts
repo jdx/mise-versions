@@ -3,6 +3,11 @@
 export const AUTH_COOKIE_NAME = "mise_auth";
 export const OAUTH_STATE_COOKIE_NAME = "mise_oauth_state";
 
+export interface AuthStatusResponse {
+  authenticated: boolean;
+  username?: string;
+}
+
 // HMAC signing for secure cookies
 async function signData(data: string, secret: string): Promise<string> {
   const encoder = new TextEncoder();

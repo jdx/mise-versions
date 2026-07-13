@@ -20,7 +20,7 @@ export function useDownloads(tool: string) {
     fetch(`/api/downloads/${encodeURIComponent(tool)}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch download stats");
-        return res.json();
+        return res.json<DownloadStats>();
       })
       .then(setData)
       .catch((e) => setError(e.message))

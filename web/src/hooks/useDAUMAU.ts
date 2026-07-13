@@ -14,7 +14,7 @@ export function useDAUMAU() {
     fetch("/api/stats/dau-mau")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch DAU/MAU stats");
-        return res.json();
+        return res.json<DAUMAUData>();
       })
       .then(setData)
       .catch((e) => setError(e.message))

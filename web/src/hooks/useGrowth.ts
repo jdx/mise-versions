@@ -35,7 +35,7 @@ export function useGrowth() {
         if (!response.ok) {
           throw new Error("Failed to fetch growth data");
         }
-        const growthData = await response.json();
+        const growthData = await response.json<GrowthData>();
         setData(growthData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");
@@ -74,7 +74,7 @@ export function useToolGrowth(tool: string) {
         if (!response.ok) {
           throw new Error("Failed to fetch tool growth data");
         }
-        const growthData = await response.json();
+        const growthData = await response.json<ToolGrowthData>();
         setData(growthData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");

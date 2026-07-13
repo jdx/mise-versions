@@ -27,7 +27,7 @@ export function useVersionTrends(tool: string, days: number = 30) {
         if (!response.ok) {
           throw new Error("Failed to fetch version trends");
         }
-        const trendsData = await response.json();
+        const trendsData = await response.json<VersionTrendData>();
         setData(trendsData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Unknown error");

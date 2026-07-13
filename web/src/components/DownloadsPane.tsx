@@ -406,7 +406,7 @@ export function DownloadsPane({
     ) {
       setVersionTrendsLoading(true);
       fetch(`/api/downloads/${tool}/version-trends?days=30`)
-        .then((res) => res.json())
+        .then((res) => res.json<VersionTrendData>())
         .then((data) => {
           setVersionTrendsData(data);
           setVersionTrendsLoading(false);
