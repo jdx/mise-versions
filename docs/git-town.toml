@@ -1,104 +1,104 @@
 [versions]
-"4.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"4.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"4.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"4.1.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"4.1.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"4.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"4.2.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"5.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"5.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"6.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"6.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"6.0.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.1.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.2.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.4.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.5.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.6.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.7.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.8.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"7.9.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"8.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"9.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"9.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"10.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"10.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"10.0.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"10.0.3" = { created_at = 2026-07-14T16:03:18.453Z }
-"11.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"11.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"12.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"12.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"12.0.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"12.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"13.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"13.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"13.0.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.2.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.2.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.2.3" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.3.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.4.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"14.4.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"15.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"15.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"15.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"15.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.1.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.2.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.4.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.4.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.5.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.6.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.6.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"16.7.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"17.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"17.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"17.1.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"17.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"17.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"18.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"18.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"18.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"18.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"18.3.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"18.3.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"19.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"20.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"20.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"20.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.4.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.4.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.4.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.4.3" = { created_at = 2026-07-14T16:03:18.453Z }
-"21.5.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.1.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.2.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.3.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.4.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.5.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.6.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.7.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"22.7.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"23.0.0" = { created_at = 2026-07-14T16:03:18.453Z }
-"23.0.1" = { created_at = 2026-07-14T16:03:18.453Z }
-"23.0.2" = { created_at = 2026-07-14T16:03:18.453Z }
-"23.0.3" = { created_at = 2026-07-14T16:03:18.453Z }
+"4.0.0" = { created_at = 2017-05-13T00:25:53.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.0.0" }
+"4.0.1" = { created_at = 2017-05-21T18:33:01.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.0.1" }
+"4.1.0" = { created_at = 2017-06-01T15:40:17.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.1.0" }
+"4.1.1" = { created_at = 2017-06-07T19:04:04.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.1.1" }
+"4.1.2" = { created_at = 2017-06-08T22:44:20.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.1.2" }
+"4.2.0" = { created_at = 2017-08-16T04:43:51.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.2.0" }
+"4.2.1" = { created_at = 2017-08-16T16:59:47.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v4.2.1" }
+"5.0.0" = { created_at = 2017-10-13T21:13:51.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v5.0.0" }
+"5.1.0" = { created_at = 2017-12-06T20:03:25.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v5.1.0" }
+"6.0.0" = { created_at = 2018-01-13T22:56:29.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v6.0.0" }
+"6.0.1" = { created_at = 2018-01-24T21:04:42.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v6.0.1" }
+"6.0.2" = { created_at = 2018-02-06T02:40:03.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v6.0.2" }
+"7.0.0" = { created_at = 2018-04-05T17:10:02.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.0.0" }
+"7.1.0" = { created_at = 2018-04-05T22:48:37.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.1.0" }
+"7.1.1" = { created_at = 2018-04-09T22:50:19.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.1.1" }
+"7.2.0" = { created_at = 2018-06-02T14:43:01.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.2.0" }
+"7.2.1" = { created_at = 2019-05-26T17:14:10.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.2.1" }
+"7.3.0" = { created_at = 2019-11-06T05:11:57.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.3.0" }
+"7.4.0" = { created_at = 2020-07-05T00:03:01.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.4.0" }
+"7.5.0" = { created_at = 2021-03-11T05:01:31.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.5.0" }
+"7.6.0" = { created_at = 2021-11-24T02:17:52.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.6.0" }
+"7.7.0" = { created_at = 2022-01-22T17:40:43.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.7.0" }
+"7.8.0" = { created_at = 2022-08-07T20:03:51.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.8.0" }
+"7.9.0" = { created_at = 2022-12-28T12:45:56.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v7.9.0" }
+"8.0.0" = { created_at = 2023-04-07T12:03:24.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v8.0.0" }
+"9.0.0" = { created_at = 2023-05-25T01:43:43.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v9.0.0" }
+"9.0.1" = { created_at = 2023-07-29T20:47:28.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v9.0.1" }
+"10.0.0" = { created_at = 2023-11-01T22:02:44.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v10.0.0" }
+"10.0.1" = { created_at = 2023-11-03T02:54:31.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v10.0.1" }
+"10.0.2" = { created_at = 2023-11-07T21:57:11.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v10.0.2" }
+"10.0.3" = { created_at = 2023-11-25T17:42:36.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v10.0.3" }
+"11.0.0" = { created_at = 2023-12-07T15:21:37.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v11.0.0" }
+"11.1.0" = { created_at = 2023-12-12T16:36:15.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v11.1.0" }
+"12.0.0" = { created_at = 2024-02-09T19:57:42.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v12.0.0" }
+"12.0.1" = { created_at = 2024-02-13T02:13:35.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v12.0.1" }
+"12.0.2" = { created_at = 2024-02-14T21:39:55.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v12.0.2" }
+"12.1.0" = { created_at = 2024-02-29T17:39:01.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v12.1.0" }
+"13.0.0" = { created_at = 2024-03-23T14:33:15.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v13.0.0" }
+"13.0.1" = { created_at = 2024-03-27T22:12:39.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v13.0.1" }
+"13.0.2" = { created_at = 2024-03-29T19:35:54.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v13.0.2" }
+"14.0.0" = { created_at = 2024-04-13T01:50:40.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.0.0" }
+"14.1.0" = { created_at = 2024-04-19T19:30:56.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.1.0" }
+"14.2.0" = { created_at = 2024-04-24T18:55:41.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.2.0" }
+"14.2.1" = { created_at = 2024-05-30T17:19:21.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.2.1" }
+"14.2.2" = { created_at = 2024-06-06T21:07:30.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.2.2" }
+"14.2.3" = { created_at = 2024-06-26T01:04:11.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.2.3" }
+"14.3.0" = { created_at = 2024-07-13T01:49:26.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.3.0" }
+"14.3.1" = { created_at = 2024-07-16T02:38:17.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.3.1" }
+"14.4.0" = { created_at = 2024-07-26T16:05:54.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.4.0" }
+"14.4.1" = { created_at = 2024-07-30T01:56:39.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v14.4.1" }
+"15.0.0" = { created_at = 2024-08-06T19:54:28.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v15.0.0" }
+"15.1.0" = { created_at = 2024-08-12T16:44:44.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v15.1.0" }
+"15.2.0" = { created_at = 2024-08-21T23:26:40.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v15.2.0" }
+"15.3.0" = { created_at = 2024-08-26T15:20:34.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v15.3.0" }
+"16.0.0" = { created_at = 2024-08-30T21:24:41.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.0.0" }
+"16.1.0" = { created_at = 2024-09-07T14:24:57.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.1.0" }
+"16.1.1" = { created_at = 2024-09-09T12:28:23.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.1.1" }
+"16.2.0" = { created_at = 2024-09-12T15:46:30.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.2.0" }
+"16.2.1" = { created_at = 2024-09-12T19:20:21.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.2.1" }
+"16.3.0" = { created_at = 2024-09-25T01:36:46.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.3.0" }
+"16.4.0" = { created_at = 2024-10-03T17:26:26.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.4.0" }
+"16.4.1" = { created_at = 2024-10-09T18:17:56.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.4.1" }
+"16.5.0" = { created_at = 2024-10-28T17:01:31.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.5.0" }
+"16.6.0" = { created_at = 2024-11-12T16:49:22.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.6.0" }
+"16.6.1" = { created_at = 2024-11-20T12:46:43.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.6.1" }
+"16.7.0" = { created_at = 2024-11-30T15:46:44.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v16.7.0" }
+"17.0.0" = { created_at = 2024-12-16T20:48:38.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v17.0.0" }
+"17.1.0" = { created_at = 2024-12-19T22:11:58.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v17.1.0" }
+"17.1.1" = { created_at = 2024-12-20T11:56:00.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v17.1.1" }
+"17.2.0" = { created_at = 2025-01-02T21:50:15.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v17.2.0" }
+"17.3.0" = { created_at = 2025-02-04T02:13:40.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v17.3.0" }
+"18.0.0" = { created_at = 2025-02-12T12:39:03.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v18.0.0" }
+"18.1.0" = { created_at = 2025-03-21T01:39:30.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v18.1.0" }
+"18.2.0" = { created_at = 2025-03-28T20:10:29.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v18.2.0" }
+"18.3.0" = { created_at = 2025-04-05T18:09:36.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v18.3.0" }
+"18.3.1" = { created_at = 2025-04-07T23:26:57.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v18.3.1" }
+"18.3.2" = { created_at = 2025-04-09T14:48:34.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v18.3.2" }
+"19.0.0" = { created_at = 2025-04-17T18:51:51.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v19.0.0" }
+"20.0.0" = { created_at = 2025-05-02T19:15:13.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v20.0.0" }
+"20.1.0" = { created_at = 2025-05-08T18:36:10.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v20.1.0" }
+"20.2.0" = { created_at = 2025-05-15T21:53:51.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v20.2.0" }
+"21.0.0" = { created_at = 2025-05-27T22:17:02.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.0.0" }
+"21.1.0" = { created_at = 2025-06-04T11:21:31.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.1.0" }
+"21.2.0" = { created_at = 2025-07-03T10:13:44.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.2.0" }
+"21.3.0" = { created_at = 2025-07-16T18:36:29.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.3.0" }
+"21.4.0" = { created_at = 2025-08-02T01:18:32.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.4.0" }
+"21.4.1" = { created_at = 2025-08-05T19:22:49.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.4.1" }
+"21.4.2" = { created_at = 2025-08-11T22:19:03.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.4.2" }
+"21.4.3" = { created_at = 2025-08-15T12:14:20.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.4.3" }
+"21.5.0" = { created_at = 2025-09-05T15:52:27.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v21.5.0" }
+"22.0.0" = { created_at = 2025-09-23T12:15:03.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.0.0" }
+"22.1.0" = { created_at = 2025-10-14T00:34:55.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.1.0" }
+"22.2.0" = { created_at = 2025-10-31T21:55:10.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.2.0" }
+"22.3.0" = { created_at = 2025-12-14T01:18:38.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.3.0" }
+"22.4.0" = { created_at = 2025-12-24T18:30:40.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.4.0" }
+"22.5.0" = { created_at = 2026-01-26T21:10:21.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.5.0" }
+"22.6.0" = { created_at = 2026-02-28T21:47:38.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.6.0" }
+"22.7.0" = { created_at = 2026-03-21T14:37:06.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.7.0" }
+"22.7.1" = { created_at = 2026-03-27T01:47:58.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v22.7.1" }
+"23.0.0" = { created_at = 2026-05-07T00:06:46.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v23.0.0" }
+"23.0.1" = { created_at = 2026-05-12T00:29:37.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v23.0.1" }
+"23.0.2" = { created_at = 2026-06-06T12:19:34.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v23.0.2" }
+"23.0.3" = { created_at = 2026-06-21T12:45:40.000Z, release_url = "https://github.com/git-town/git-town/releases/tag/v23.0.3" }
