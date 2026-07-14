@@ -125,7 +125,6 @@
 "2.6.18" = { created_at = 2019-07-03T17:48:24.000Z }
 "2.6.19" = { created_at = 2019-08-16T01:08:19.000Z }
 "2.6.20" = { created_at = 2019-10-17T17:11:24.000Z }
-"2.7.0.dev0" = { created_at = 2018-08-28T03:51:41.000Z, prerelease = true }
 "2.7.0" = { created_at = 2018-10-04T05:43:49.000Z }
 "2.7.0a1" = { created_at = 2018-08-28T06:03:04.000Z, prerelease = true }
 "2.7.0b1" = { created_at = 2018-09-01T01:18:57.000Z, prerelease = true }
@@ -133,6 +132,7 @@
 "2.7.0rc2" = { created_at = 2018-09-13T23:09:25.000Z, prerelease = true }
 "2.7.0rc3" = { created_at = 2018-09-21T02:33:49.000Z, prerelease = true }
 "2.7.0rc4" = { created_at = 2018-09-28T00:37:11.000Z, prerelease = true }
+"2.7.0.dev0" = { created_at = 2018-08-28T03:51:41.000Z, prerelease = true }
 "2.7.1" = { created_at = 2018-10-25T21:51:14.000Z }
 "2.7.2" = { created_at = 2018-11-15T22:52:20.000Z }
 "2.7.3" = { created_at = 2018-11-29T22:06:45.000Z }
@@ -427,3 +427,4 @@
 "14.0.0b1" = { created_at = 2026-05-22T04:23:08.000Z, prerelease = true }
 "14.0.0rc1" = { created_at = 2026-05-26T17:10:45.000Z, prerelease = true }
 "14.1.0" = { created_at = 2026-06-18T20:37:56.000Z }
+"14.2.0" = { created_at = 2026-07-14T15:47:28.000Z }
