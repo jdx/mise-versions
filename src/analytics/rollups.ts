@@ -451,10 +451,74 @@ export function createRollupFunctions(
       )
     `;
 
-    // Persist the two small, user-visible activity rollups before running the
-    // high-cardinality dimension queries. A timeout or response limit while
-    // grouping versions/platforms should not leave DAU and global growth at
-    // zero for an otherwise healthy day.
+    // Start the high-cardinality work immediately, but handle its rejection
+    // so it cannot become unhandled while the core activity queries finish.
+    // This keeps all Analytics Engine requests concurrent without allowing a
+    // dimension failure to prevent the user-visible totals from being saved.
+    const dimensionRowsPromise = Promise.all([
+      queryAnalyticsEngine<AeToolRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            tool,
+            sum(sample_weight) AS downloads,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM ${dedupedDownloads}
+          GROUP BY tool
+        `,
+      ),
+      queryAnalyticsEngine<AeBackendRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            backend_type,
+            sum(sample_weight) AS downloads,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM ${dedupedDownloads}
+          GROUP BY backend_type
+        `,
+      ),
+      queryAnalyticsEngine<AeToolBackendRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            tool,
+            backend_type,
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
+          GROUP BY tool, backend_type
+        `,
+      ),
+      queryAnalyticsEngine<AeVersionRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            tool,
+            version,
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
+          GROUP BY tool, version
+        `,
+      ),
+      queryAnalyticsEngine<AePlatformRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            tool,
+            os,
+            arch,
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
+          GROUP BY tool, os, arch
+        `,
+      ),
+    ]).then(
+      (rows) => ({ ok: true as const, rows }),
+      (error: unknown) => ({ ok: false as const, error }),
+    );
+
+    // Persist the two small, user-visible activity rollups as soon as they
+    // finish, before awaiting the concurrently running dimension queries.
     const [globalRows, combinedRows] = await Promise.all([
       queryAnalyticsEngine<AeCountRow>(
         analyticsEngine!,
@@ -512,65 +576,10 @@ export function createRollupFunctions(
       activityStatsPersisted = true;
     }
 
+    const dimensionResult = await dimensionRowsPromise;
+    if (!dimensionResult.ok) throw dimensionResult.error;
     const [toolRows, backendRows, toolBackendRows, versionRows, platformRows] =
-      await Promise.all([
-        queryAnalyticsEngine<AeToolRow>(
-          analyticsEngine!,
-          `
-          SELECT
-            tool,
-            sum(sample_weight) AS downloads,
-            count(DISTINCT ip_hash) AS unique_users
-          FROM ${dedupedDownloads}
-          GROUP BY tool
-        `,
-        ),
-        queryAnalyticsEngine<AeBackendRow>(
-          analyticsEngine!,
-          `
-          SELECT
-            backend_type,
-            sum(sample_weight) AS downloads,
-            count(DISTINCT ip_hash) AS unique_users
-          FROM ${dedupedDownloads}
-          GROUP BY backend_type
-        `,
-        ),
-        queryAnalyticsEngine<AeToolBackendRow>(
-          analyticsEngine!,
-          `
-          SELECT
-            tool,
-            backend_type,
-            sum(sample_weight) AS downloads
-          FROM ${dedupedDownloads}
-          GROUP BY tool, backend_type
-        `,
-        ),
-        queryAnalyticsEngine<AeVersionRow>(
-          analyticsEngine!,
-          `
-          SELECT
-            tool,
-            version,
-            sum(sample_weight) AS downloads
-          FROM ${dedupedDownloads}
-          GROUP BY tool, version
-        `,
-        ),
-        queryAnalyticsEngine<AePlatformRow>(
-          analyticsEngine!,
-          `
-          SELECT
-            tool,
-            os,
-            arch,
-            sum(sample_weight) AS downloads
-          FROM ${dedupedDownloads}
-          GROUP BY tool, os, arch
-        `,
-        ),
-      ]);
+      dimensionResult.rows;
 
     let toolStatsRows = toolRows.rows.map((row) => ({
       ...row,
