@@ -451,32 +451,11 @@ export function createRollupFunctions(
       )
     `;
 
-    const [
-      globalRows,
-      combinedRows,
-      toolRows,
-      backendRows,
-      toolBackendRows,
-      versionRows,
-      platformRows,
-    ] = await Promise.all([
-      queryAnalyticsEngine<AeCountRow>(
-        analyticsEngine!,
-        `
-          SELECT
-            sum(sample_weight) AS total,
-            count(DISTINCT ip_hash) AS unique_users
-          FROM ${dedupedDownloads}
-        `,
-      ),
-      queryAnalyticsEngine<{ unique_users: number }>(
-        analyticsEngine!,
-        `
-          SELECT count(DISTINCT index1) AS unique_users
-          FROM ${table}
-          WHERE blob1 IN ('download', 'version_request') AND ${range}
-        `,
-      ),
+    // Start the high-cardinality work immediately, but handle its rejection
+    // so it cannot become unhandled while the core activity queries finish.
+    // This keeps all Analytics Engine requests concurrent without allowing a
+    // dimension failure to prevent the user-visible totals from being saved.
+    const dimensionRowsPromise = Promise.all([
       queryAnalyticsEngine<AeToolRow>(
         analyticsEngine!,
         `
@@ -533,6 +512,31 @@ export function createRollupFunctions(
           GROUP BY tool, os, arch
         `,
       ),
+    ]).then(
+      (rows) => ({ ok: true as const, rows }),
+      (error: unknown) => ({ ok: false as const, error }),
+    );
+
+    // Persist the two small, user-visible activity rollups as soon as they
+    // finish, before awaiting the concurrently running dimension queries.
+    const [globalRows, combinedRows] = await Promise.all([
+      queryAnalyticsEngine<AeCountRow>(
+        analyticsEngine!,
+        `
+          SELECT
+            sum(sample_weight) AS total,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM ${dedupedDownloads}
+        `,
+      ),
+      queryAnalyticsEngine<{ unique_users: number }>(
+        analyticsEngine!,
+        `
+          SELECT count(DISTINCT index1) AS unique_users
+          FROM ${table}
+          WHERE blob1 IN ('download', 'version_request') AND ${range}
+        `,
+      ),
     ]);
 
     let globalStats = globalRows.rows[0]
@@ -542,6 +546,41 @@ export function createRollupFunctions(
         }
       : undefined;
     let combinedDau = aeNumber(combinedRows.rows[0]?.unique_users);
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+    let activityStatsPersisted = false;
+
+    if (date !== cutoverDate) {
+      if (globalStats) {
+        await runStatement(
+          sql`
+            INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
+            VALUES (${date}, ${globalStats.total}, ${globalStats.unique_users})
+          `,
+          d1,
+          "INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES (?, ?, ?)",
+          [date, globalStats.total, globalStats.unique_users],
+        );
+      }
+
+      if (combinedDau > 0) {
+        await runStatement(
+          sql`
+            INSERT OR REPLACE INTO daily_combined_stats (date, unique_users)
+            VALUES (${date}, ${combinedDau})
+          `,
+          d1,
+          "INSERT OR REPLACE INTO daily_combined_stats (date, unique_users) VALUES (?, ?)",
+          [date, combinedDau],
+        );
+      }
+      activityStatsPersisted = true;
+    }
+
+    const dimensionResult = await dimensionRowsPromise;
+    if (!dimensionResult.ok) throw dimensionResult.error;
+    const [toolRows, backendRows, toolBackendRows, versionRows, platformRows] =
+      dimensionResult.rows;
+
     let toolStatsRows = toolRows.rows.map((row) => ({
       ...row,
       downloads: aeNumber(row.downloads),
@@ -564,8 +603,6 @@ export function createRollupFunctions(
       ...row,
       downloads: aeNumber(row.downloads),
     }));
-    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
-
     if (cutoverDate && date === cutoverDate) {
       const d1Start = Math.floor(
         new Date(`${date}T00:00:00Z`).getTime() / 1000,
@@ -742,7 +779,7 @@ export function createRollupFunctions(
       return null;
     }
 
-    if (globalStats) {
+    if (!activityStatsPersisted && globalStats) {
       await runStatement(
         sql`
           INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
@@ -754,7 +791,7 @@ export function createRollupFunctions(
       );
     }
 
-    if (combinedDau > 0) {
+    if (!activityStatsPersisted && combinedDau > 0) {
       await runStatement(
         sql`
           INSERT OR REPLACE INTO daily_combined_stats (date, unique_users)
