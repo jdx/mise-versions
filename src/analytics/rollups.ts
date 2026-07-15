@@ -451,15 +451,11 @@ export function createRollupFunctions(
       )
     `;
 
-    const [
-      globalRows,
-      combinedRows,
-      toolRows,
-      backendRows,
-      toolBackendRows,
-      versionRows,
-      platformRows,
-    ] = await Promise.all([
+    // Persist the two small, user-visible activity rollups before running the
+    // high-cardinality dimension queries. A timeout or response limit while
+    // grouping versions/platforms should not leave DAU and global growth at
+    // zero for an otherwise healthy day.
+    const [globalRows, combinedRows] = await Promise.all([
       queryAnalyticsEngine<AeCountRow>(
         analyticsEngine!,
         `
@@ -477,62 +473,6 @@ export function createRollupFunctions(
           WHERE blob1 IN ('download', 'version_request') AND ${range}
         `,
       ),
-      queryAnalyticsEngine<AeToolRow>(
-        analyticsEngine!,
-        `
-          SELECT
-            tool,
-            sum(sample_weight) AS downloads,
-            count(DISTINCT ip_hash) AS unique_users
-          FROM ${dedupedDownloads}
-          GROUP BY tool
-        `,
-      ),
-      queryAnalyticsEngine<AeBackendRow>(
-        analyticsEngine!,
-        `
-          SELECT
-            backend_type,
-            sum(sample_weight) AS downloads,
-            count(DISTINCT ip_hash) AS unique_users
-          FROM ${dedupedDownloads}
-          GROUP BY backend_type
-        `,
-      ),
-      queryAnalyticsEngine<AeToolBackendRow>(
-        analyticsEngine!,
-        `
-          SELECT
-            tool,
-            backend_type,
-            sum(sample_weight) AS downloads
-          FROM ${dedupedDownloads}
-          GROUP BY tool, backend_type
-        `,
-      ),
-      queryAnalyticsEngine<AeVersionRow>(
-        analyticsEngine!,
-        `
-          SELECT
-            tool,
-            version,
-            sum(sample_weight) AS downloads
-          FROM ${dedupedDownloads}
-          GROUP BY tool, version
-        `,
-      ),
-      queryAnalyticsEngine<AePlatformRow>(
-        analyticsEngine!,
-        `
-          SELECT
-            tool,
-            os,
-            arch,
-            sum(sample_weight) AS downloads
-          FROM ${dedupedDownloads}
-          GROUP BY tool, os, arch
-        `,
-      ),
     ]);
 
     let globalStats = globalRows.rows[0]
@@ -542,6 +482,96 @@ export function createRollupFunctions(
         }
       : undefined;
     let combinedDau = aeNumber(combinedRows.rows[0]?.unique_users);
+    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+    let activityStatsPersisted = false;
+
+    if (date !== cutoverDate) {
+      if (globalStats) {
+        await runStatement(
+          sql`
+            INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
+            VALUES (${date}, ${globalStats.total}, ${globalStats.unique_users})
+          `,
+          d1,
+          "INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users) VALUES (?, ?, ?)",
+          [date, globalStats.total, globalStats.unique_users],
+        );
+      }
+
+      if (combinedDau > 0) {
+        await runStatement(
+          sql`
+            INSERT OR REPLACE INTO daily_combined_stats (date, unique_users)
+            VALUES (${date}, ${combinedDau})
+          `,
+          d1,
+          "INSERT OR REPLACE INTO daily_combined_stats (date, unique_users) VALUES (?, ?)",
+          [date, combinedDau],
+        );
+      }
+      activityStatsPersisted = true;
+    }
+
+    const [toolRows, backendRows, toolBackendRows, versionRows, platformRows] =
+      await Promise.all([
+        queryAnalyticsEngine<AeToolRow>(
+          analyticsEngine!,
+          `
+          SELECT
+            tool,
+            sum(sample_weight) AS downloads,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM ${dedupedDownloads}
+          GROUP BY tool
+        `,
+        ),
+        queryAnalyticsEngine<AeBackendRow>(
+          analyticsEngine!,
+          `
+          SELECT
+            backend_type,
+            sum(sample_weight) AS downloads,
+            count(DISTINCT ip_hash) AS unique_users
+          FROM ${dedupedDownloads}
+          GROUP BY backend_type
+        `,
+        ),
+        queryAnalyticsEngine<AeToolBackendRow>(
+          analyticsEngine!,
+          `
+          SELECT
+            tool,
+            backend_type,
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
+          GROUP BY tool, backend_type
+        `,
+        ),
+        queryAnalyticsEngine<AeVersionRow>(
+          analyticsEngine!,
+          `
+          SELECT
+            tool,
+            version,
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
+          GROUP BY tool, version
+        `,
+        ),
+        queryAnalyticsEngine<AePlatformRow>(
+          analyticsEngine!,
+          `
+          SELECT
+            tool,
+            os,
+            arch,
+            sum(sample_weight) AS downloads
+          FROM ${dedupedDownloads}
+          GROUP BY tool, os, arch
+        `,
+        ),
+      ]);
+
     let toolStatsRows = toolRows.rows.map((row) => ({
       ...row,
       downloads: aeNumber(row.downloads),
@@ -564,8 +594,6 @@ export function createRollupFunctions(
       ...row,
       downloads: aeNumber(row.downloads),
     }));
-    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
-
     if (cutoverDate && date === cutoverDate) {
       const d1Start = Math.floor(
         new Date(`${date}T00:00:00Z`).getTime() / 1000,
@@ -742,7 +770,7 @@ export function createRollupFunctions(
       return null;
     }
 
-    if (globalStats) {
+    if (!activityStatsPersisted && globalStats) {
       await runStatement(
         sql`
           INSERT OR REPLACE INTO daily_stats (date, total_downloads, unique_users)
@@ -754,7 +782,7 @@ export function createRollupFunctions(
       );
     }
 
-    if (combinedDau > 0) {
+    if (!activityStatsPersisted && combinedDau > 0) {
       await runStatement(
         sql`
           INSERT OR REPLACE INTO daily_combined_stats (date, unique_users)

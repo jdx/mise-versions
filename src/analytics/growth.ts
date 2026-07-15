@@ -8,6 +8,7 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
     // Get growth metrics (week-over-week and month-over-month)
     async getGrowthMetrics() {
       const now = Math.floor(Date.now() / 1000);
+      const today = new Date(now * 1000).toISOString().split("T")[0];
 
       // Calculate timestamps for each period
       const sevenDaysAgo = now - 7 * 86400;
@@ -35,7 +36,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
           total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
         })
         .from(dailyStats)
-        .where(sql`${dailyStats.date} >= ${thisWeekStart}`)
+        .where(
+          and(
+            sql`${dailyStats.date} >= ${thisWeekStart}`,
+            sql`${dailyStats.date} < ${today}`,
+          ),
+        )
         .get();
 
       // Global stats for last week
@@ -58,7 +64,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
           total: sql<number>`coalesce(sum(${dailyStats.total_downloads}), 0)`,
         })
         .from(dailyStats)
-        .where(sql`${dailyStats.date} >= ${thisMonthStart}`)
+        .where(
+          and(
+            sql`${dailyStats.date} >= ${thisMonthStart}`,
+            sql`${dailyStats.date} < ${today}`,
+          ),
+        )
         .get();
 
       // Global stats for last month
@@ -97,7 +108,12 @@ export function createGrowthFunctions(db: ReturnType<typeof drizzle>) {
           downloads: sql<number>`coalesce(sum(${dailyToolStats.downloads}), 0)`,
         })
         .from(dailyToolStats)
-        .where(sql`${dailyToolStats.date} >= ${thisWeekStart}`)
+        .where(
+          and(
+            sql`${dailyToolStats.date} >= ${thisWeekStart}`,
+            sql`${dailyToolStats.date} < ${today}`,
+          ),
+        )
         .groupBy(dailyToolStats.tool_id)
         .all();
 
