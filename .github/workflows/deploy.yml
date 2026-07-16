@@ -34,10 +34,24 @@ jobs:
         run: aube --dir web run build
 
       - name: Deploy to Cloudflare Workers
-        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          for attempt in 1 2 3; do
+            if aube exec wrangler deploy; then
+              exit 0
+            fi
+
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::Cloudflare deployment failed after $attempt attempts"
+              exit 1
+            fi
+
+            delay=$((attempt * 15))
+            echo "::warning::Cloudflare deployment attempt $attempt failed; retrying in ${delay}s"
+            sleep "$delay"
+          done
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Run database migrations
         run: node scripts/migrate.js run
