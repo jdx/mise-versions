@@ -71,7 +71,7 @@ const currentPath = Astro.url.pathname;
           mise versions
         </a>
         <nav class="flex items-center gap-6">
-          <NavSearch client:load />
+          <NavSearch initialQuery={Astro.url.searchParams.get("q") || ""} client:load />
           <a
             href="/stats"
             class={`text-sm transition-colors flex items-center gap-1.5 ${currentPath === '/stats' ? 'text-neon-purple' : 'text-gray-400 hover:text-neon-purple'}`}

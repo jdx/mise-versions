@@ -7,13 +7,8 @@ interface Suggestion {
   description?: string;
 }
 
-function getInitialQuery(): string {
-  if (typeof window === "undefined") return "";
-  return new URLSearchParams(window.location.search).get("q") || "";
-}
-
-export function NavSearch() {
-  const [query, setQuery] = useState(getInitialQuery);
+export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
+  const [query, setQuery] = useState(initialQuery);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -26,12 +21,21 @@ export function NavSearch() {
       return;
     }
     try {
-      const res = await fetch(`/api/tools?q=${encodeURIComponent(q.trim())}`);
-      if (!res.ok) return;
+      const res = await fetch(
+        `/api/tools?q=${encodeURIComponent(q.trim())}&limit=${MAX_SUGGESTIONS}`,
+      );
+      // Drop responses whose query no longer matches the input (out-of-order
+      // resolves or a superseded keystroke) so the dropdown never goes stale.
+      if (inputRef.current && inputRef.current.value.trim() !== q.trim()) return;
+      if (!res.ok) {
+        setSuggestions([]);
+        return;
+      }
       const data = await res.json();
       setSuggestions((data.tools || []).slice(0, MAX_SUGGESTIONS));
     } catch (e) {
       console.error("Failed to fetch search suggestions:", e);
+      setSuggestions([]);
     }
   };
 
@@ -42,10 +46,14 @@ export function NavSearch() {
     debounceRef.current = window.setTimeout(() => fetchSuggestions(value), 300);
   };
 
-  // Auto-select first suggestion when the list changes
+  // Reset the highlight when the list changes. -1 means "nothing selected", so
+  // Enter runs a full search (/?q=) instead of jumping to the first tool.
   useEffect(() => {
-    setSelectedIndex(suggestions.length > 0 ? 0 : -1);
+    setSelectedIndex(-1);
   }, [suggestions]);
+
+  // Cancel a pending debounce if we unmount before it fires.
+  useEffect(() => () => clearTimeout(debounceRef.current), []);
 
   const goToTool = (name: string) => {
     window.location.href = `/tools/${name}`;
@@ -53,8 +61,8 @@ export function NavSearch() {
 
   const goToResults = () => {
     const q = query.trim();
-    if (!q) return;
-    window.location.href = `/?q=${encodeURIComponent(q)}`;
+    // Empty query resets to the full, unfiltered list.
+    window.location.href = q ? `/?q=${encodeURIComponent(q)}` : "/";
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -81,12 +89,15 @@ export function NavSearch() {
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
-        setSelectedIndex((prev) => (prev + 1) % suggestions.length);
+        // Cycle forward, passing through -1 (no selection) after the last item.
+        setSelectedIndex((prev) =>
+          prev < suggestions.length - 1 ? prev + 1 : -1,
+        );
         break;
       case "ArrowUp":
         e.preventDefault();
-        setSelectedIndex(
-          (prev) => (prev - 1 + suggestions.length) % suggestions.length,
+        setSelectedIndex((prev) =>
+          prev > -1 ? prev - 1 : suggestions.length - 1,
         );
         break;
     }
