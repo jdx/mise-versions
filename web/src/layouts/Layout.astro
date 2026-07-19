@@ -2,6 +2,7 @@
 import { AuthButton } from '../components/AuthButton';
 import { AdminButton } from '../components/AdminButton';
 import { MAUCounter } from '../components/MAUCounter';
+import { NavSearch } from '../components/NavSearch';
 import '../index.css';
 
 interface Props {
@@ -70,6 +71,7 @@ const currentPath = Astro.url.pathname;
           mise versions
         </a>
         <nav class="flex items-center gap-6">
+          <NavSearch client:load />
           <a
             href="/stats"
             class={`text-sm transition-colors flex items-center gap-1.5 ${currentPath === '/stats' ? 'text-neon-purple' : 'text-gray-400 hover:text-neon-purple'}`}
