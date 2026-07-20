@@ -96,9 +96,9 @@ url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-
 url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717270"
 
 [tools."github:peak/s5cmd"."platforms.linux-x64"]
-checksum = "sha256:81d02a17a13797dc5949adb99734ad4217d005638a7827f36d435945527b2e69"
-url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_linux_amd64.deb"
-url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717284"
+checksum = "sha256:33e73005f183e5758161b32440ec65b15c934eb60c3b42795fb335418ca110ac"
+url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-32bit.tar.gz"
+url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717272"
 
 [tools."github:peak/s5cmd"."platforms.macos-arm64"]
 checksum = "sha256:ae007bc96276f498ae3c1fb017e57630cf93ef260cfe7e97b365522e240c973f"
@@ -325,9 +325,9 @@ url_api = "https://api.github.com/repos/mikefarah/yq/releases/assets/398368450"
 provenance = "cosign"
 
 [tools.yq."platforms.macos-arm64"]
-checksum = "sha256:616b0a0f6a5b79d746f05a169c2b9bb40dee00c605ef165b9a1c1681bba738ac"
-url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_darwin_amd64"
-url_api = "https://api.github.com/repos/mikefarah/yq/releases/assets/398368453"
+checksum = "sha256:541ba2287560df70f561955e2d7f7e1cd00cf2a15a884f6b5c87a4bfa887bc07"
+url = "https://github.com/mikefarah/yq/releases/download/v4.53.2/yq_darwin_arm64"
+url_api = "https://api.github.com/repos/mikefarah/yq/releases/assets/398368449"
 provenance = "cosign"
 
 [tools.yq."platforms.macos-x64"]
