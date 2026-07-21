@@ -6,7 +6,10 @@ const GITHUB_RELEASE_REPOS = new Set([
   "oneclick/rubyinstaller2",
 ]);
 
-const GITHUB_ATTESTATION_REPOS = new Set(["astral-sh/python-build-standalone"]);
+const GITHUB_ATTESTATION_REPOS = new Set([
+  "astral-sh/python-build-standalone",
+  "jdx/ruby",
+]);
 
 function normalizeRepo(owner: string, repo: string): string {
   return `${owner}/${repo}`.toLowerCase();
