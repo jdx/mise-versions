@@ -1,6 +1,10 @@
 const GITHUB_BACKEND_PREFIXES = ["aqua", "github", "ubi"] as const;
 
-const GITHUB_RELEASE_REPOS = new Set(["erlang/otp", "erlef/otp_builds"]);
+const GITHUB_RELEASE_REPOS = new Set([
+  "erlang/otp",
+  "erlef/otp_builds",
+  "oneclick/rubyinstaller2",
+]);
 
 const GITHUB_ATTESTATION_REPOS = new Set(["astral-sh/python-build-standalone"]);
 
