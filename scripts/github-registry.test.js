@@ -53,7 +53,7 @@ test("GitHub registry allowlist rejects unknown repos", async () => {
   assert.equal(allowed, false);
 });
 
-test("GitHub registry allowlist includes Erlang release repos", async () => {
+test("GitHub registry allowlist includes indirect release repos", async () => {
   const db = {
     prepare() {
       throw new Error("database should not be queried");
@@ -62,6 +62,10 @@ test("GitHub registry allowlist includes Erlang release repos", async () => {
 
   assert.equal(await isRegisteredGitHubRepo(db, "Erlang", "OTP"), true);
   assert.equal(await isRegisteredGitHubRepo(db, "Erlef", "OTP_Builds"), true);
+  assert.equal(
+    await isRegisteredGitHubRepo(db, "OneClick", "RubyInstaller2"),
+    true,
+  );
 });
 
 test("GitHub attestation allowlist includes python-build-standalone", () => {
