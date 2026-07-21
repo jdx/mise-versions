@@ -68,11 +68,12 @@ test("GitHub registry allowlist includes indirect release repos", async () => {
   );
 });
 
-test("GitHub attestation allowlist includes python-build-standalone", () => {
+test("GitHub attestation allowlist includes indirect attestation repos", () => {
   assert.equal(
     isKnownGitHubAttestationRepo("Astral-Sh", "Python-Build-Standalone"),
     true,
   );
+  assert.equal(isKnownGitHubAttestationRepo("JDX", "Ruby"), true);
 });
 
 test("GitHub attestation allowlist rejects unknown repos", () => {
