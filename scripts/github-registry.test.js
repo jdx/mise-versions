@@ -62,6 +62,7 @@ test("GitHub registry allowlist includes indirect release repos", async () => {
 
   assert.equal(await isRegisteredGitHubRepo(db, "Erlang", "OTP"), true);
   assert.equal(await isRegisteredGitHubRepo(db, "Erlef", "OTP_Builds"), true);
+  assert.equal(await isRegisteredGitHubRepo(db, "JDX", "Ruby"), true);
   assert.equal(
     await isRegisteredGitHubRepo(db, "OneClick", "RubyInstaller2"),
     true,
