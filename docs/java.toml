@@ -344,6 +344,7 @@
 "corretto-musl-8.482.08.1" = { created_at = 2026-01-20T22:06:20.206Z }
 "corretto-musl-8.492.09.1" = { created_at = 2026-04-22T22:20:31.320Z }
 "corretto-musl-8.492.09.2" = { created_at = 2026-05-08T22:23:40.876Z }
+"corretto-musl-8.502.07.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-musl-11.0.8.10.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-11.0.9.11.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-11.0.9.12.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -372,6 +373,7 @@
 "corretto-musl-11.0.29.7.1" = { created_at = 2025-10-21T22:05:49.718Z }
 "corretto-musl-11.0.30.7.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-musl-11.0.31.11.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-musl-11.0.32.9.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-musl-15.0.0.36.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-15.0.1.9.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-15.0.2.7.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -402,6 +404,7 @@
 "corretto-musl-17.0.18.8.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-musl-17.0.18.9.1" = { created_at = 2026-01-29T22:09:01.082Z }
 "corretto-musl-17.0.19.10.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-musl-17.0.20.8.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-musl-18.0.0.37.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-18.0.1.10.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-18.0.2.9.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -426,6 +429,7 @@
 "corretto-musl-21.0.9.11.1" = { created_at = 2025-11-04T22:02:51.825Z }
 "corretto-musl-21.0.10.7.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-musl-21.0.11.10.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-musl-21.0.12.8.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-musl-22.0.0.36.2" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-22.0.0.37.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-22.0.1.8.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -441,8 +445,10 @@
 "corretto-musl-25.0.1.9.1" = { created_at = 2025-11-04T22:02:51.825Z }
 "corretto-musl-25.0.2.10.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-musl-25.0.3.9.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-musl-25.0.4.7.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-musl-26.0.0.35.2" = { created_at = 2026-03-17T22:10:15.209Z }
 "corretto-musl-26.0.1.8.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-musl-26.0.2.10.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-8.222.10.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-8.232.09.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-8.242.07.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -480,6 +486,7 @@
 "corretto-8.482.08.1" = { created_at = 2026-01-20T22:06:20.206Z }
 "corretto-8.492.09.1" = { created_at = 2026-04-22T22:20:31.320Z }
 "corretto-8.492.09.2" = { created_at = 2026-05-08T22:23:40.876Z }
+"corretto-8.502.07.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-11.0.4.11.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-11.0.5.10.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-11.0.6.10.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -512,6 +519,7 @@
 "corretto-11.0.29.7.1" = { created_at = 2025-10-21T22:05:49.718Z }
 "corretto-11.0.30.7.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-11.0.31.11.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-11.0.32.9.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-15.0.0.36.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-15.0.1.9.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-15.0.2.7.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -542,6 +550,7 @@
 "corretto-17.0.18.8.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-17.0.18.9.1" = { created_at = 2026-01-29T22:09:01.082Z }
 "corretto-17.0.19.10.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-17.0.20.8.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-18.0.0.37.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-18.0.1.10.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-18.0.2.9.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -566,6 +575,7 @@
 "corretto-21.0.9.11.1" = { created_at = 2025-11-04T22:02:51.825Z }
 "corretto-21.0.10.7.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-21.0.11.10.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-21.0.12.8.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-22.0.0.36.2" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-22.0.0.37.1" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-22.0.1.8.1" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -582,8 +592,10 @@
 "corretto-25.0.1.9.1" = { created_at = 2025-11-04T22:02:51.825Z }
 "corretto-25.0.2.10.1" = { created_at = 2026-01-21T22:08:12.815Z }
 "corretto-25.0.3.9.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-25.0.4.7.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "corretto-26.0.0.35.2" = { created_at = 2026-03-17T22:10:15.209Z }
 "corretto-26.0.1.8.1" = { created_at = 2026-04-22T22:20:31.320Z }
+"corretto-26.0.2.10.1" = { created_at = 2026-07-22T22:25:22.055Z }
 "dragonwell-musl-11.0.20.17.8" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-musl-11.0.21.18.9" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-musl-11.0.22.19.7" = { created_at = 2025-03-28T22:04:35.425Z }
@@ -1967,6 +1979,7 @@
 "liberica-jre-javafx-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-jre-javafx-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-javafx-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-javafx-8u262+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-8u272+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-8u292+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2008,6 +2021,7 @@
 "liberica-jre-javafx-11.0.29+12" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-javafx-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-javafx-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-javafx-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-javafx-13.0.2+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-14.0.0+36" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-14.0.1+8" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2044,6 +2058,7 @@
 "liberica-jre-javafx-17.0.17+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-javafx-17.0.18+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-javafx-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-javafx-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-javafx-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-18.0.1.1+2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2069,6 +2084,7 @@
 "liberica-jre-javafx-21.0.9+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-javafx-21.0.10+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-javafx-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-javafx-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-javafx-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-javafx-22.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2084,8 +2100,10 @@
 "liberica-jre-javafx-25.0.1+13" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-javafx-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-javafx-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-javafx-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-javafx-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-jre-javafx-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-javafx-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-musl-8u265+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-8u275+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-8u345+1" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2108,6 +2126,7 @@
 "liberica-jre-musl-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-jre-musl-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-musl-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-musl-8u262+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-8u272+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-8u292+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2147,6 +2166,7 @@
 "liberica-jre-musl-11.0.29+12" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-musl-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-musl-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-musl-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-musl-14.0.2+13" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-15.0.0+36" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-15.0.1+9" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2180,6 +2200,7 @@
 "liberica-jre-musl-17.0.17+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-musl-17.0.18+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-musl-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-musl-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-musl-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-18.0.1.1+2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2205,6 +2226,7 @@
 "liberica-jre-musl-21.0.9+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-musl-21.0.10+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-musl-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-musl-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-musl-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-musl-22.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2220,8 +2242,10 @@
 "liberica-jre-musl-25.0.1+13" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-musl-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-musl-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-musl-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-musl-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-jre-musl-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-musl-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-1.8.0" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-8u202" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-8u212" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2251,6 +2275,7 @@
 "liberica-jre-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-jre-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-8u232+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-8u262+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-8u272+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2296,6 +2321,7 @@
 "liberica-jre-11.0.29+12" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-13.0.1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-13.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-13.0.2+9" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2334,6 +2360,7 @@
 "liberica-jre-17.0.17+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-17.0.18+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-18.0.1.1+2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2359,6 +2386,7 @@
 "liberica-jre-21.0.9+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-21.0.10+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-jre-22.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2374,8 +2402,10 @@
 "liberica-jre-25.0.1+13" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-jre-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-jre-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-jre-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-jre-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-jre-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-javafx-8u265+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-8u275+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-8u345+1" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2400,6 +2430,7 @@
 "liberica-javafx-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-javafx-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-javafx-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-javafx-8u262+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-8u272+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-8u292+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2441,6 +2472,7 @@
 "liberica-javafx-11.0.29+12" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-javafx-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-javafx-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-javafx-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-javafx-13.0.2+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-14.0.0+36" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-14.0.1+8" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2477,6 +2509,7 @@
 "liberica-javafx-17.0.17+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-javafx-17.0.18+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-javafx-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-javafx-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-javafx-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-18.0.1.1+2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2502,6 +2535,7 @@
 "liberica-javafx-21.0.9+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-javafx-21.0.10+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-javafx-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-javafx-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-javafx-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-javafx-22.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2517,8 +2551,10 @@
 "liberica-javafx-25.0.1+13" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-javafx-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-javafx-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-javafx-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-javafx-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-javafx-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-javafx-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-musl-8u345+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-8u333+2" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-8u322+6" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2538,6 +2574,7 @@
 "liberica-lite-musl-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-lite-musl-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-musl-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-musl-8u482+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-lite-musl-8u452+11" = { created_at = 2025-04-16T22:05:41.208Z }
 "liberica-lite-musl-8u462+11" = { created_at = 2025-07-16T22:03:30.799Z }
@@ -2581,6 +2618,7 @@
 "liberica-lite-musl-11.0.29+12" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-lite-musl-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-lite-musl-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-musl-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-musl-12.0.0" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-12.0.1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-12.0.2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2636,6 +2674,7 @@
 "liberica-crac-musl-17.0.18+11" = { created_at = 2026-02-03T22:09:25.274Z }
 "liberica-lite-musl-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-crac-musl-17.0.19+12" = { created_at = 2026-04-24T22:15:37.044Z }
+"liberica-lite-musl-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-musl-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-18.0.1.1+2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2674,6 +2713,7 @@
 "liberica-crac-musl-21.0.10+11" = { created_at = 2026-02-03T22:09:25.274Z }
 "liberica-lite-musl-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-crac-musl-21.0.11+12" = { created_at = 2026-04-24T22:15:37.044Z }
+"liberica-lite-musl-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-musl-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-musl-22.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2689,8 +2729,10 @@
 "liberica-lite-musl-25.0.1+13" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-lite-musl-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-lite-musl-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-musl-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-musl-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-lite-musl-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-musl-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-8u345+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u265+1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u275+1" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2726,12 +2768,14 @@
 "liberica-lite-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-lite-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-musl-8u332+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u362+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u392+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-musl-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-musl-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-8u482+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-musl-8u262+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-8u272+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2823,6 +2867,8 @@
 "liberica-musl-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-lite-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-musl-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
+"liberica-musl-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-12.0.0" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-12.0.0" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-12.0.1" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2921,6 +2967,8 @@
 "liberica-lite-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-musl-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-crac-17.0.19+12" = { created_at = 2026-04-24T22:15:37.044Z }
+"liberica-lite-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
+"liberica-musl-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -2985,6 +3033,8 @@
 "liberica-lite-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-musl-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-crac-21.0.11+12" = { created_at = 2026-04-24T22:15:37.044Z }
+"liberica-lite-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
+"liberica-musl-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-musl-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-lite-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -3015,10 +3065,14 @@
 "liberica-musl-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-lite-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-musl-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
+"liberica-musl-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-lite-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-musl-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-lite-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
 "liberica-musl-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-lite-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
+"liberica-musl-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-1.8.0" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-8u202" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-8u212" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -3048,6 +3102,7 @@
 "liberica-8u412+9" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-8u472+9" = { created_at = 2025-10-22T22:03:57.332Z }
 "liberica-8u492+9" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-8u502+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-8u232+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-8u262+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-8u272+10" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -3098,6 +3153,7 @@
 "liberica-11.0.29+12" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-11.0.30+9" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-11.0.31+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-11.0.32+11" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-12.0.0" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-12.0.1" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-12.0.2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -3140,6 +3196,7 @@
 "liberica-17.0.17+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-17.0.18+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-17.0.19+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-17.0.20+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-18.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-18.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-18.0.1.1+2" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -3165,6 +3222,7 @@
 "liberica-21.0.9+15" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-21.0.10+10" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-21.0.11+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-21.0.12+10" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-22.0.0+37" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-22.0.1+10" = { created_at = 2025-03-28T22:03:17.339Z }
 "liberica-22.0.1+12" = { created_at = 2025-03-28T22:03:17.339Z }
@@ -3180,8 +3238,10 @@
 "liberica-25.0.1+13" = { created_at = 2025-11-20T22:04:33.727Z }
 "liberica-25.0.2+12" = { created_at = 2026-01-21T22:05:59.671Z }
 "liberica-25.0.3+11" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-25.0.4+9" = { created_at = 2026-07-22T22:23:40.440Z }
 "liberica-26.0.0+37" = { created_at = 2026-03-19T22:07:13.524Z }
 "liberica-26.0.1+10" = { created_at = 2026-04-22T22:17:03.822Z }
+"liberica-26.0.2+13" = { created_at = 2026-07-22T22:23:40.440Z }
 "mandrel-20.1.0.1.Final+java11" = { created_at = 2025-03-28T22:04:32.216Z }
 "mandrel-20.1.0.2.Final+java11" = { created_at = 2025-03-28T22:04:32.216Z }
 "mandrel-20.1.0.3.Final+java11" = { created_at = 2025-03-28T22:04:32.216Z }
@@ -3282,6 +3342,7 @@
 "microsoft-musl-11.0.29" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-musl-11.0.30" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-musl-11.0.31" = { created_at = 2026-05-01T22:17:48.846Z }
+"microsoft-musl-11.0.32" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-musl-17.0.2.8.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-musl-17.0.3" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-musl-17.0.4" = { created_at = 2025-03-28T22:04:32.217Z }
@@ -3301,6 +3362,7 @@
 "microsoft-musl-17.0.17" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-musl-17.0.18" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-musl-17.0.19" = { created_at = 2026-05-01T22:17:48.846Z }
+"microsoft-musl-17.0.20" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-11.0.11.9.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-11.0.12.7.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-11.0.13.8.1" = { created_at = 2025-03-28T22:04:32.217Z }
@@ -3324,6 +3386,7 @@
 "microsoft-11.0.29" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-11.0.30" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-11.0.31" = { created_at = 2026-05-01T22:17:48.846Z }
+"microsoft-11.0.32" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-17.0.1.12.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-17.0.2.8.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-17.0.3" = { created_at = 2025-03-28T22:04:32.217Z }
@@ -3344,6 +3407,7 @@
 "microsoft-17.0.17" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-17.0.18" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-17.0.19" = { created_at = 2026-05-01T22:17:48.846Z }
+"microsoft-17.0.20" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-17.35.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-21.0.0" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-21.0.1" = { created_at = 2025-03-28T22:04:32.217Z }
@@ -3357,10 +3421,12 @@
 "microsoft-21.0.9" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-21.0.10" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-21.0.11" = { created_at = 2026-05-01T22:17:48.846Z }
+"microsoft-21.0.12" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-25.0.0" = { created_at = 2025-09-26T22:07:24.115Z }
 "microsoft-25.0.1" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-25.0.2" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-25.0.3" = { created_at = 2026-05-01T22:17:48.846Z }
+"microsoft-25.0.4" = { created_at = 2026-07-22T22:25:13.044Z }
 "openjdk-9.0.0" = { created_at = 2025-03-28T22:04:33.828Z }
 "openjdk-9.0.1" = { created_at = 2025-03-28T22:04:33.828Z }
 "openjdk-9.0.4" = { created_at = 2025-03-28T22:04:33.828Z }
@@ -3502,6 +3568,7 @@
 "sapmachine-jre-musl-17.0.17" = { created_at = 2025-10-21T22:05:45.207Z }
 "sapmachine-jre-musl-17.0.18" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-jre-musl-17.0.19" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-jre-musl-17.0.20" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-musl-18.0.1.1-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
 "sapmachine-jre-musl-18.0.2-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
 "sapmachine-jre-musl-18.0.2.1-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
@@ -3524,6 +3591,7 @@
 "sapmachine-jre-musl-21.0.10" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-jre-musl-21.0.10.0.1" = { created_at = 2026-02-17T22:09:13.911Z }
 "sapmachine-jre-musl-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-jre-musl-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-musl-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-musl-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-musl-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3619,6 +3687,7 @@
 "sapmachine-jre-17.0.17" = { created_at = 2025-10-21T22:05:45.207Z }
 "sapmachine-jre-17.0.18" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-jre-17.0.19" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-jre-17.0.20" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-18.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-18.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-18.0.1.1" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3643,6 +3712,7 @@
 "sapmachine-jre-21.0.10" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-jre-21.0.10.0.1" = { created_at = 2026-02-17T22:09:13.911Z }
 "sapmachine-jre-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-jre-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3680,6 +3750,7 @@
 "sapmachine-musl-17.0.17" = { created_at = 2025-10-21T22:05:45.207Z }
 "sapmachine-musl-17.0.18" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-musl-17.0.19" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-musl-17.0.20" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-musl-18.0.1.1-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
 "sapmachine-musl-18.0.2-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
 "sapmachine-musl-18.0.2.1-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
@@ -3702,6 +3773,7 @@
 "sapmachine-musl-21.0.10" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-musl-21.0.10.0.1" = { created_at = 2026-02-17T22:09:13.911Z }
 "sapmachine-musl-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-musl-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-musl-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-musl-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-musl-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3797,6 +3869,7 @@
 "sapmachine-17.0.17" = { created_at = 2025-10-21T22:05:45.207Z }
 "sapmachine-17.0.18" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-17.0.19" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-17.0.20" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-18.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-18.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-18.0.1.1" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3821,6 +3894,7 @@
 "sapmachine-21.0.10" = { created_at = 2026-01-20T22:05:15.587Z }
 "sapmachine-21.0.10.0.1" = { created_at = 2026-02-17T22:09:13.911Z }
 "sapmachine-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
+"sapmachine-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
