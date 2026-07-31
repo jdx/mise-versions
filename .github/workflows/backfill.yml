@@ -37,6 +37,8 @@ env:
   # Backfill must read from upstream, not from mise-versions itself —
   # the whole point is to repair entries the host has wrong/stale.
   MISE_USE_VERSIONS_HOST: "false"
+  # Preserve canonical backend order regardless of user-facing ordering policy.
+  MISE_LS_REMOTE_SOURCE_ORDER: "true"
 
 jobs:
   backfill:

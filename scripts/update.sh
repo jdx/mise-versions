@@ -4,6 +4,7 @@ set -euo pipefail
 
 export MISE_NODE_MIRROR_URL="https://nodejs.org/dist/"
 export MISE_USE_VERSIONS_HOST=0
+export MISE_LS_REMOTE_SOURCE_ORDER=true
 export MISE_LIST_ALL_VERSIONS=1
 export MISE_LOG_HTTP=1
 
@@ -586,7 +587,7 @@ fetch() {
 	local stderr_file
 	stderr_file=$(mktemp)
 
-	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
+	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LS_REMOTE_SOURCE_ORDER -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
 		jdxcode/mise -y ls-remote "$tool" >"docs/$tool" 2>"$stderr_file"; then
 		log_error "Failed to fetch versions" "tool=$tool"
 		cat "$stderr_file" >&2
