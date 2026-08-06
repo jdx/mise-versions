@@ -710,6 +710,9 @@
 "cpython-3.10.20+20260804-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T00:49:35.000Z }
 "cpython-3.10.20+20260804-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T00:49:35.000Z }
 "cpython-3.10.20+20260804-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T00:49:35.000Z }
+"cpython-3.10.20+20260805-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T00:49:35.000Z }
+"cpython-3.10.20+20260805-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T00:49:35.000Z }
+"cpython-3.10.20+20260805-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T00:49:35.000Z }
 "cpython-3.11.1+20230116-i686-pc-windows-msvc-shared-install_only.tar.gz" = { created_at = 2022-12-06T19:05:29.000Z }
 "cpython-3.11.1+20230116-i686-pc-windows-msvc-shared-pgo-full.tar.zst" = { created_at = 2022-12-06T19:05:29.000Z }
 "cpython-3.11.1+20230116-i686-pc-windows-msvc-static-install_only.tar.gz" = { created_at = 2022-12-06T19:05:29.000Z }
@@ -978,6 +981,9 @@
 "cpython-3.11.15+20260804-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
 "cpython-3.11.15+20260804-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
 "cpython-3.11.15+20260804-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T00:52:57.000Z }
+"cpython-3.11.15+20260805-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
+"cpython-3.11.15+20260805-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T00:52:57.000Z }
+"cpython-3.11.15+20260805-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T00:52:57.000Z }
 "cpython-3.12.0+20231002-i686-pc-windows-msvc-shared-install_only.tar.gz" = { created_at = 2023-10-02T11:48:43.000Z }
 "cpython-3.12.0+20231002-i686-pc-windows-msvc-shared-pgo-full.tar.zst" = { created_at = 2023-10-02T11:48:43.000Z }
 "cpython-3.12.0+20231002-i686-pc-windows-msvc-static-install_only.tar.gz" = { created_at = 2023-10-02T11:48:43.000Z }
@@ -1230,6 +1236,9 @@
 "cpython-3.12.13+20260804-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
 "cpython-3.12.13+20260804-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
 "cpython-3.12.13+20260804-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T12:39:30.000Z }
+"cpython-3.12.13+20260805-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
+"cpython-3.12.13+20260805-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-03-03T12:39:30.000Z }
+"cpython-3.12.13+20260805-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-03-03T12:39:30.000Z }
 "cpython-3.13.0rc2+20240909-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2024-10-07T05:02:14.000Z }
 "cpython-3.13.0rc2+20240909-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2024-10-07T05:02:14.000Z }
 "cpython-3.13.0rc2+20240909-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2024-10-07T05:02:14.000Z }
@@ -1542,6 +1551,12 @@
 "cpython-3.13.14+20260804-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-06-10T12:24:04.000Z }
 "cpython-3.13.14+20260804-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-06-10T12:24:04.000Z }
 "cpython-3.13.14+20260804-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-06-10T12:24:04.000Z }
+"cpython-3.13.14+20260805-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-06-10T12:24:04.000Z }
+"cpython-3.13.14+20260805-i686-pc-windows-msvc-freethreaded-install_only.tar.gz" = { created_at = 2026-06-10T12:24:04.000Z }
+"cpython-3.13.14+20260805-i686-pc-windows-msvc-freethreaded-install_only_stripped.tar.gz" = { created_at = 2026-06-10T12:24:04.000Z }
+"cpython-3.13.14+20260805-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-06-10T12:24:04.000Z }
+"cpython-3.13.14+20260805-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-06-10T12:24:04.000Z }
+"cpython-3.13.14+20260805-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-06-10T12:24:04.000Z }
 "cpython-3.14.0a4+20250115-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2025-10-07T09:34:52.000Z }
 "cpython-3.14.0a4+20250115-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2025-10-07T09:34:52.000Z }
 "cpython-3.14.0a4+20250115-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2025-10-07T09:34:52.000Z }
@@ -1794,6 +1809,12 @@
 "cpython-3.14.6+20260804-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-06-10T10:03:53.000Z }
 "cpython-3.14.6+20260804-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-06-10T10:03:53.000Z }
 "cpython-3.14.6+20260804-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-06-10T10:03:53.000Z }
+"cpython-3.14.7+20260805-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-08-05T10:29:49.000Z }
+"cpython-3.14.7+20260805-i686-pc-windows-msvc-freethreaded-install_only.tar.gz" = { created_at = 2026-08-05T10:29:49.000Z }
+"cpython-3.14.7+20260805-i686-pc-windows-msvc-freethreaded-install_only_stripped.tar.gz" = { created_at = 2026-08-05T10:29:49.000Z }
+"cpython-3.14.7+20260805-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-08-05T10:29:49.000Z }
+"cpython-3.14.7+20260805-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-08-05T10:29:49.000Z }
+"cpython-3.14.7+20260805-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-08-05T10:29:49.000Z }
 "cpython-3.15.0a1+20251014-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-01-08T01:00:47.290Z }
 "cpython-3.15.0a1+20251014-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-01-08T01:00:47.290Z }
 "cpython-3.15.0a1+20251014-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-01-08T01:00:47.290Z }
@@ -1930,3 +1951,9 @@
 "cpython-3.15.0rc1+20260804-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-08-05T00:25:56.539Z }
 "cpython-3.15.0rc1+20260804-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-08-05T00:25:56.539Z }
 "cpython-3.15.0rc1+20260804-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-08-05T00:25:56.539Z }
+"cpython-3.15.0rc1+20260805-i686-pc-windows-msvc-freethreaded+pgo-full.tar.zst" = { created_at = 2026-08-06T00:23:29.118Z }
+"cpython-3.15.0rc1+20260805-i686-pc-windows-msvc-freethreaded-install_only.tar.gz" = { created_at = 2026-08-06T00:23:29.118Z }
+"cpython-3.15.0rc1+20260805-i686-pc-windows-msvc-freethreaded-install_only_stripped.tar.gz" = { created_at = 2026-08-06T00:23:29.118Z }
+"cpython-3.15.0rc1+20260805-i686-pc-windows-msvc-install_only.tar.gz" = { created_at = 2026-08-06T00:23:29.118Z }
+"cpython-3.15.0rc1+20260805-i686-pc-windows-msvc-install_only_stripped.tar.gz" = { created_at = 2026-08-06T00:23:29.118Z }
+"cpython-3.15.0rc1+20260805-i686-pc-windows-msvc-pgo-full.tar.zst" = { created_at = 2026-08-06T00:23:29.118Z }
