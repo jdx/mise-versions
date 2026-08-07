@@ -1,41 +1,41 @@
 [versions]
-"0.1.0" = { created_at = 2020-12-29T20:44:58.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.1.0" }
-"0.2.0" = { created_at = 2020-12-31T23:30:56.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.2.0" }
-"0.3.0" = { created_at = 2021-01-21T21:39:23.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2021-01-27T14:50:29.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2021-02-09T13:44:42.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2021-03-11T22:29:18.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.3" }
-"0.3.4" = { created_at = 2021-04-24T13:51:50.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.4" }
-"0.3.5" = { created_at = 2021-06-06T15:12:29.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.5" }
-"0.4.0-alpha.3" = { created_at = 2021-07-22T22:03:29.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.4.0-alpha.3", prerelease = true }
-"0.3.6" = { created_at = 2021-10-12T15:47:29.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.6" }
-"0.3.7" = { created_at = 2021-12-05T16:42:49.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.7" }
-"0.3.8-beta0" = { created_at = 2022-03-10T18:25:56.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.8-beta0", prerelease = true }
-"0.3.8" = { created_at = 2022-03-10T18:25:56.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.8" }
-"0.3.9" = { created_at = 2022-07-25T19:16:26.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.9" }
-"0.3.10" = { created_at = 2023-08-08T15:31:59.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.10" }
-"0.3.11-beta1" = { created_at = 2023-08-08T16:39:41.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.11-beta1", prerelease = true }
-"0.3.11-beta2" = { created_at = 2023-08-08T17:33:08.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.11-beta2", prerelease = true }
-"0.3.11" = { created_at = 2023-08-08T17:40:43.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.11" }
-"0.3.12" = { created_at = 2023-10-20T00:29:04.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.12" }
-"0.3.13" = { created_at = 2023-10-24T14:51:17.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.13" }
-"0.5.0-beta1" = { created_at = 2025-07-19T21:14:33.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.0-beta1", prerelease = true }
-"0.5.0" = { created_at = 2025-09-30T22:41:33.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.0" }
-"0.5.1" = { created_at = 2025-10-13T19:05:48.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.1" }
-"0.5.2" = { created_at = 2025-10-14T22:16:56.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.2" }
-"0.5.3-beta3" = { created_at = 2025-12-08T23:19:41.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.3-beta3", prerelease = true }
-"0.5.3" = { created_at = 2025-12-11T16:13:24.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.3" }
-"0.5.4" = { created_at = 2025-12-17T17:06:16.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.4" }
-"0.5.5" = { created_at = 2025-12-18T01:04:35.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.5" }
-"0.5.6" = { created_at = 2026-01-08T19:50:44.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.6" }
-"0.5.7" = { created_at = 2026-01-30T22:27:22.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.7" }
-"0.5.8" = { created_at = 2026-02-12T15:34:37.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.8" }
-"0.5.9" = { created_at = 2026-02-23T14:52:49.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.9" }
-"0.5.10" = { created_at = 2026-03-12T22:45:42.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.10" }
-"0.3.14" = { created_at = 2026-03-26T14:59:30.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.14" }
-"0.5.11" = { created_at = 2026-04-08T22:24:01.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.11" }
-"0.5.12" = { created_at = 2026-05-29T12:06:56.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.12" }
-"0.5.13" = { created_at = 2026-06-24T15:10:08.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.13" }
-"0.5.14" = { created_at = 2026-07-02T00:20:40.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.14" }
-"0.5.15" = { created_at = 2026-07-17T17:24:41.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.15" }
-"0.5.16" = { created_at = 2026-08-04T15:55:39.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.16" }
+"0.1.0" = { created_at = 2020-12-29T20:51:16.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2020-12-31T23:38:59.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.2.0" }
+"0.3.0" = { created_at = 2021-01-21T21:53:01.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2021-01-27T14:53:44.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2021-02-09T13:46:42.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2021-03-13T20:00:53.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.3" }
+"0.3.4" = { created_at = 2021-04-28T13:59:42.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.4" }
+"0.3.5" = { created_at = 2021-06-06T15:31:33.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.5" }
+"0.4.0-alpha.3" = { created_at = 2021-07-22T22:04:08.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.4.0-alpha.3", prerelease = true }
+"0.3.6" = { created_at = 2021-10-12T20:16:22.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.6" }
+"0.3.7" = { created_at = 2021-12-05T16:53:10.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.7" }
+"0.3.8-beta0" = { created_at = 2022-03-10T18:27:59.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.8-beta0", prerelease = true }
+"0.3.8" = { created_at = 2022-03-11T15:44:39.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.8" }
+"0.3.9" = { created_at = 2022-07-25T19:17:35.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.9" }
+"0.3.10" = { created_at = 2023-08-08T15:32:38.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.10" }
+"0.3.11-beta1" = { created_at = 2023-08-08T16:40:31.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.11-beta1", prerelease = true }
+"0.3.11-beta2" = { created_at = 2023-08-08T17:33:31.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.11-beta2", prerelease = true }
+"0.3.11" = { created_at = 2023-08-08T17:43:28.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.11" }
+"0.3.12" = { created_at = 2023-10-21T22:14:56.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.12" }
+"0.3.13" = { created_at = 2023-10-24T20:30:22.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.13" }
+"0.5.0-beta1" = { created_at = 2025-07-21T15:35:04.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.0-beta1", prerelease = true }
+"0.5.0" = { created_at = 2025-09-30T22:44:45.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2025-10-13T22:53:12.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2025-10-14T22:20:13.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.2" }
+"0.5.3-beta3" = { created_at = 2025-12-08T23:26:22.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.3-beta3", prerelease = true }
+"0.5.3" = { created_at = 2025-12-11T17:50:31.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.3" }
+"0.5.4" = { created_at = 2025-12-17T17:17:25.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.4" }
+"0.5.5" = { created_at = 2025-12-18T01:08:54.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.5" }
+"0.5.6" = { created_at = 2026-01-09T17:15:18.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.6" }
+"0.5.7" = { created_at = 2026-02-02T19:17:44.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.7" }
+"0.5.8" = { created_at = 2026-02-12T15:35:17.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.8" }
+"0.5.9" = { created_at = 2026-02-23T15:28:23.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.9" }
+"0.5.10" = { created_at = 2026-03-19T03:50:08.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.10" }
+"0.3.14" = { created_at = 2026-03-26T15:00:08.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.3.14" }
+"0.5.11" = { created_at = 2026-04-08T22:41:51.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.11" }
+"0.5.12" = { created_at = 2026-06-08T15:59:34.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.12" }
+"0.5.13" = { created_at = 2026-06-30T16:43:52.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.13" }
+"0.5.14" = { created_at = 2026-07-06T18:11:46.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.14" }
+"0.5.15" = { created_at = 2026-07-21T21:31:33.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.15" }
+"0.5.16" = { created_at = 2026-08-05T13:07:32.000Z, release_url = "https://github.com/benbjohnson/litestream/releases/tag/v0.5.16" }

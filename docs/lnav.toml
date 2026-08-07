@@ -1,74 +1,74 @@
 [versions]
-"0.6.0" = { created_at = 2013-08-29T04:46:12.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.6.0" }
-"0.6.1" = { created_at = 2013-09-11T03:27:14.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2013-11-10T15:32:35.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.6.2" }
-"0.7.0" = { created_at = 2014-03-30T05:08:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.0" }
-"0.7.1" = { created_at = 2014-11-07T14:16:45.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.1" }
-"0.7.2" = { created_at = 2015-02-27T05:52:36.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.2" }
-"0.7.3" = { created_at = 2015-04-11T18:31:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.3" }
-"0.8.0" = { created_at = 2015-11-15T14:25:08.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.0" }
-"0.8.1" = { created_at = 2016-08-06T22:23:23.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.1" }
-"0.8.2-alpha" = { created_at = 2017-04-09T09:32:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.2-alpha" }
-"0.8.2" = { created_at = 2017-04-13T13:52:04.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.2" }
-"0.8.3-alpha" = { created_at = 2017-04-25T13:55:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3-alpha" }
-"0.8.3" = { created_at = 2018-02-12T06:11:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3" }
-"0.8.3a" = { created_at = 2018-03-29T14:32:57.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3a" }
-"0.8.3b" = { created_at = 2018-05-25T13:43:35.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3b" }
-"0.8.4" = { created_at = 2018-08-27T14:23:13.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.4" }
-"0.8.5-rc1" = { created_at = 2019-03-16T05:13:18.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.5-rc1", prerelease = true }
-"0.8.5" = { created_at = 2019-04-07T17:26:50.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.5" }
-"0.9.0-rc1" = { created_at = 2020-09-16T04:38:30.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.9.0-rc1" }
-"0.9.0" = { created_at = 2020-09-24T23:09:28.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.9.0" }
-"0.10.0-beta1" = { created_at = 2021-06-19T19:58:39.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.0-beta1", prerelease = true }
-"0.10.0" = { created_at = 2021-07-14T18:16:51.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.0" }
-"0.10.1-beta1" = { created_at = 2021-10-03T20:54:09.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.1-beta1", prerelease = true }
-"0.10.1" = { created_at = 2021-10-26T16:39:05.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.1" }
-"0.11.0-beta1" = { created_at = 2022-08-11T19:40:36.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.0-beta1", prerelease = true }
-"0.11.0-beta2" = { created_at = 2022-08-29T02:41:56.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.0-beta2", prerelease = true }
-"0.11.0" = { created_at = 2022-09-02T04:46:59.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.0" }
-"0.11.1-test1" = { created_at = 2022-09-20T04:15:28.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1-test1", prerelease = true }
-"0.11.1-beta1" = { created_at = 2022-09-23T13:12:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1-beta1", prerelease = true }
-"0.11.1-rc1" = { created_at = 2022-10-06T16:12:29.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1-rc1", prerelease = true }
-"0.11.1" = { created_at = 2022-10-11T03:12:58.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1" }
-"0.11.2-rc1" = { created_at = 2023-06-15T15:40:38.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc1", prerelease = true }
-"0.11.2-rc2" = { created_at = 2023-06-19T04:33:00.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc2", prerelease = true }
-"0.11.2-rc3" = { created_at = 2023-06-21T04:11:27.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc3", prerelease = true }
-"0.11.2-rc5" = { created_at = 2023-06-24T20:02:10.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc5", prerelease = true }
-"0.11.2-rc6" = { created_at = 2023-07-01T14:19:32.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc6", prerelease = true }
-"0.11.2" = { created_at = 2023-07-03T04:16:02.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2" }
-"0.12.0" = { created_at = 2024-02-23T04:05:17.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.0" }
-"0.12.1-beta1" = { created_at = 2024-03-29T05:14:18.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1-beta1", prerelease = true }
-"0.12.1" = { created_at = 2024-03-30T14:32:36.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1" }
-"0.12.1a-beta1" = { created_at = 2024-03-31T04:38:55.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1a-beta1", prerelease = true }
-"0.12.1a-beta2" = { created_at = 2024-03-31T13:40:21.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1a-beta2", prerelease = true }
-"0.12.2-beta1" = { created_at = 2024-04-19T04:44:38.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.2-beta1", prerelease = true }
-"0.12.2-beta2" = { created_at = 2024-04-21T14:30:47.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.2-beta2", prerelease = true }
-"0.12.2" = { created_at = 2024-04-23T20:55:49.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.2" }
-"0.12.3-beta5" = { created_at = 2024-11-16T18:12:03.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.3-beta5", prerelease = true }
-"0.12.3" = { created_at = 2024-11-20T05:11:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.3" }
-"0.12.4-beta2" = { created_at = 2025-01-30T23:47:54.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.4-beta2", prerelease = true }
-"0.12.4-rc1" = { created_at = 2025-02-11T05:13:34.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.4-rc1", prerelease = true }
-"0.12.4" = { created_at = 2025-02-12T19:25:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.4" }
-"0.13.0-beta1" = { created_at = 2025-03-21T18:52:43.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-beta1", prerelease = true }
-"0.13.0-beta3" = { created_at = 2025-03-29T05:50:54.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-beta3", prerelease = true }
-"0.13.0-beta4" = { created_at = 2025-04-07T16:20:32.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-beta4", prerelease = true }
-"0.13.0-rc1" = { created_at = 2025-04-17T14:10:19.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-rc1", prerelease = true }
-"0.13.0-rc2" = { created_at = 2025-04-19T17:33:06.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-rc2", prerelease = true }
-"0.13.0-rc5" = { created_at = 2025-06-09T20:59:46.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-rc5", prerelease = true }
-"0.13.0" = { created_at = 2025-07-24T04:18:40.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0" }
-"0.13.1-beta1" = { created_at = 2025-08-04T04:37:33.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta1", prerelease = true }
-"0.13.1-beta2" = { created_at = 2025-08-05T17:57:02.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta2", prerelease = true }
-"0.13.1-beta3" = { created_at = 2025-08-13T19:51:30.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta3", prerelease = true }
-"0.13.1-beta4" = { created_at = 2025-08-18T18:50:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta4", prerelease = true }
-"0.13.1-rc1" = { created_at = 2025-08-30T15:27:09.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-rc1", prerelease = true }
-"0.13.1-rc2" = { created_at = 2025-09-04T18:05:03.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-rc2", prerelease = true }
-"0.13.1-rc3" = { created_at = 2025-09-05T13:30:17.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-rc3", prerelease = true }
-"0.13.1" = { created_at = 2025-09-08T16:48:29.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1" }
-"0.13.2-rc1" = { created_at = 2025-09-15T20:37:43.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.2-rc1", prerelease = true }
-"0.13.2" = { created_at = 2025-09-18T21:05:38.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.2" }
-"0.14.0-beta2" = { created_at = 2026-01-23T22:20:14.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-beta2", prerelease = true }
-"0.14.0-beta3" = { created_at = 2026-03-18T04:21:28.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-beta3", prerelease = true }
-"0.14.0-rc1" = { created_at = 2026-04-05T16:31:28.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-rc1", prerelease = true }
-"0.14.0-rc2" = { created_at = 2026-04-12T16:44:52.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-rc2", prerelease = true }
-"0.14.0" = { created_at = 2026-04-12T16:44:52.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0" }
-"0.14.1-rc1" = { created_at = 2026-05-10T02:53:46.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.1-rc1", prerelease = true }
+"0.6.0" = { created_at = 2013-08-29T04:53:29.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2013-09-11T05:09:44.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2013-11-10T16:51:38.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.6.2" }
+"0.7.0" = { created_at = 2014-03-30T06:01:22.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2014-11-07T14:39:07.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.1" }
+"0.7.2" = { created_at = 2015-03-02T06:30:26.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.2" }
+"0.7.3" = { created_at = 2015-04-11T19:00:35.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.7.3" }
+"0.8.0" = { created_at = 2015-11-15T20:31:29.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2016-08-07T22:29:10.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.1" }
+"0.8.2-alpha" = { created_at = 2017-04-25T20:07:23.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.2-alpha" }
+"0.8.2" = { created_at = 2017-04-13T13:56:37.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.2" }
+"0.8.3-alpha" = { created_at = 2017-04-25T20:06:54.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3-alpha" }
+"0.8.3" = { created_at = 2018-02-12T06:18:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3" }
+"0.8.3a" = { created_at = 2018-03-29T14:42:57.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3a" }
+"0.8.3b" = { created_at = 2018-05-26T16:08:31.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.3b" }
+"0.8.4" = { created_at = 2018-08-27T14:31:32.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.4" }
+"0.8.5-rc1" = { created_at = 2019-03-16T05:18:12.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.5-rc1", prerelease = true }
+"0.8.5" = { created_at = 2019-04-07T17:28:06.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.8.5" }
+"0.9.0-rc1" = { created_at = 2020-09-16T16:52:40.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.9.0-rc1" }
+"0.9.0" = { created_at = 2020-09-25T04:58:30.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.9.0" }
+"0.10.0-beta1" = { created_at = 2021-06-19T20:04:31.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.0-beta1", prerelease = true }
+"0.10.0" = { created_at = 2021-08-06T04:34:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.0" }
+"0.10.1-beta1" = { created_at = 2021-10-03T21:16:06.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.1-beta1", prerelease = true }
+"0.10.1" = { created_at = 2021-10-28T04:56:28.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.10.1" }
+"0.11.0-beta1" = { created_at = 2022-08-11T20:55:22.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.0-beta1", prerelease = true }
+"0.11.0-beta2" = { created_at = 2022-08-29T03:10:48.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.0-beta2", prerelease = true }
+"0.11.0" = { created_at = 2022-09-02T06:33:49.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.0" }
+"0.11.1-test1" = { created_at = 2022-09-20T04:29:20.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1-test1", prerelease = true }
+"0.11.1-beta1" = { created_at = 2022-09-23T13:15:22.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1-beta1", prerelease = true }
+"0.11.1-rc1" = { created_at = 2022-10-06T17:10:05.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1-rc1", prerelease = true }
+"0.11.1" = { created_at = 2022-10-11T03:13:22.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.1" }
+"0.11.2-rc1" = { created_at = 2023-06-15T17:26:09.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc1", prerelease = true }
+"0.11.2-rc2" = { created_at = 2023-06-19T05:07:31.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc2", prerelease = true }
+"0.11.2-rc3" = { created_at = 2023-06-21T05:37:36.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc3", prerelease = true }
+"0.11.2-rc5" = { created_at = 2023-06-25T00:48:24.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc5", prerelease = true }
+"0.11.2-rc6" = { created_at = 2023-07-01T15:57:30.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2-rc6", prerelease = true }
+"0.11.2" = { created_at = 2023-07-03T05:24:37.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.11.2" }
+"0.12.0" = { created_at = 2024-02-23T16:20:49.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.0" }
+"0.12.1-beta1" = { created_at = 2024-03-29T15:29:59.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1-beta1", prerelease = true }
+"0.12.1" = { created_at = 2024-03-30T16:27:55.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1" }
+"0.12.1a-beta1" = { created_at = 2024-03-31T05:43:39.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1a-beta1", prerelease = true }
+"0.12.1a-beta2" = { created_at = 2024-04-01T02:35:15.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.1a-beta2", prerelease = true }
+"0.12.2-beta1" = { created_at = 2024-04-19T15:16:53.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.2-beta1", prerelease = true }
+"0.12.2-beta2" = { created_at = 2024-04-21T16:57:12.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.2-beta2", prerelease = true }
+"0.12.2" = { created_at = 2024-04-24T05:08:56.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.2" }
+"0.12.3-beta5" = { created_at = 2024-11-17T16:34:21.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.3-beta5", prerelease = true }
+"0.12.3" = { created_at = 2024-11-20T17:22:36.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.3" }
+"0.12.4-beta2" = { created_at = 2025-02-02T23:15:09.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.4-beta2", prerelease = true }
+"0.12.4-rc1" = { created_at = 2025-02-11T15:16:53.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.4-rc1", prerelease = true }
+"0.12.4" = { created_at = 2025-02-12T20:40:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.12.4" }
+"0.13.0-beta1" = { created_at = 2025-03-21T19:32:27.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-beta1", prerelease = true }
+"0.13.0-beta3" = { created_at = 2025-03-29T16:54:41.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-beta3", prerelease = true }
+"0.13.0-beta4" = { created_at = 2025-04-07T17:23:09.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-beta4", prerelease = true }
+"0.13.0-rc1" = { created_at = 2025-04-19T05:18:04.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-rc1", prerelease = true }
+"0.13.0-rc2" = { created_at = 2025-04-19T18:46:17.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-rc2", prerelease = true }
+"0.13.0-rc5" = { created_at = 2025-06-10T20:21:02.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0-rc5", prerelease = true }
+"0.13.0" = { created_at = 2025-07-24T16:11:44.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.0" }
+"0.13.1-beta1" = { created_at = 2025-08-04T17:43:22.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta1", prerelease = true }
+"0.13.1-beta2" = { created_at = 2025-08-05T18:57:38.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta2", prerelease = true }
+"0.13.1-beta3" = { created_at = 2025-08-13T20:52:00.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta3", prerelease = true }
+"0.13.1-beta4" = { created_at = 2025-08-19T01:02:45.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-beta4", prerelease = true }
+"0.13.1-rc1" = { created_at = 2025-08-30T18:33:31.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-rc1", prerelease = true }
+"0.13.1-rc2" = { created_at = 2025-09-04T21:20:33.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-rc2", prerelease = true }
+"0.13.1-rc3" = { created_at = 2025-09-05T16:39:36.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1-rc3", prerelease = true }
+"0.13.1" = { created_at = 2025-09-08T21:06:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.1" }
+"0.13.2-rc1" = { created_at = 2025-09-15T22:00:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.2-rc1", prerelease = true }
+"0.13.2" = { created_at = 2025-09-18T21:38:02.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.13.2" }
+"0.14.0-beta2" = { created_at = 2026-01-26T17:55:37.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-beta2", prerelease = true }
+"0.14.0-beta3" = { created_at = 2026-03-19T13:40:03.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-beta3", prerelease = true }
+"0.14.0-rc1" = { created_at = 2026-04-07T21:28:01.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-rc1", prerelease = true }
+"0.14.0-rc2" = { created_at = 2026-04-12T18:22:22.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0-rc2", prerelease = true }
+"0.14.0" = { created_at = 2026-04-12T19:48:20.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.0" }
+"0.14.1-rc1" = { created_at = 2026-05-10T17:52:52.000Z, release_url = "https://github.com/tstack/lnav/releases/tag/v0.14.1-rc1", prerelease = true }

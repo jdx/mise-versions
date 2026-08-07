@@ -1,46 +1,46 @@
 [versions]
-"0.3.0" = { created_at = 2017-07-28T00:03:14.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2017-07-28T17:13:49.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.1" }
-"0.3.0d2" = { created_at = 2017-07-28T12:18:54.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.0d2", prerelease = true }
-"0.3.2" = { created_at = 2017-08-05T16:37:25.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2017-08-06T02:35:16.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.3" }
-"0.3.4" = { created_at = 2017-12-31T12:50:16.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.4" }
-"0.4.0" = { created_at = 2018-01-20T09:22:06.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.4.0" }
-"0.4.1-rc1.1" = { created_at = 2018-01-27T00:51:11.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.4.1-rc1.1", prerelease = true }
-"0.4.1" = { created_at = 2018-01-28T17:44:07.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.4.1" }
-"0.5.0" = { created_at = 2019-01-13T15:08:14.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.5.0" }
-"0.6.1" = { created_at = 2019-06-23T02:58:40.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2019-08-02T08:05:55.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.6.2" }
-"0.6.3" = { created_at = 2019-08-08T05:01:28.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.6.3" }
-"0.7.0" = { created_at = 2019-09-22T00:53:19.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.0" }
-"0.7.1" = { created_at = 2019-09-22T02:44:49.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.1" }
-"0.7.2" = { created_at = 2019-10-21T22:14:10.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.2" }
-"0.7.3" = { created_at = 2019-12-27T06:46:21.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.3" }
-"0.7.3.5" = { created_at = 2020-01-31T06:21:46.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.3.5", prerelease = true }
-"0.7.4" = { created_at = 2020-02-04T02:55:52.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.4" }
-"0.7.5" = { created_at = 2020-03-06T23:25:02.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.5" }
-"0.7.6" = { created_at = 2020-05-21T01:39:23.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.6" }
-"0.7.9" = { created_at = 2021-01-26T12:12:32.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.9", prerelease = true }
-"0.7.10" = { created_at = 2021-01-26T12:25:26.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.10", prerelease = true }
-"0.8.0" = { created_at = 2021-01-26T12:50:56.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.8.0" }
-"0.9.0" = { created_at = 2021-05-24T05:17:30.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.9.0" }
-"0.9.1" = { created_at = 2022-01-06T05:39:03.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.9.1" }
-"0.10.0" = { created_at = 2022-05-02T23:18:40.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.0" }
-"0.10.1-rc1" = { created_at = 2022-10-29T01:05:10.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.1-rc1", prerelease = true }
-"0.10.1-rc2" = { created_at = 2022-10-29T02:57:14.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.1-rc2", prerelease = true }
-"0.10.1" = { created_at = 2022-10-29T02:57:14.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.1" }
-"0.11.0" = { created_at = 2023-03-18T21:04:36.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.11.0" }
-"0.11.1" = { created_at = 2023-03-18T22:19:08.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.11.1" }
-"0.12.0" = { created_at = 2023-09-28T09:30:19.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.12.0" }
-"0.12.1-rc1" = { created_at = 2023-10-16T15:17:40.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.12.1-rc1", prerelease = true }
-"0.12.1" = { created_at = 2023-10-16T15:17:40.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.12.1" }
-"0.13.0-rc11" = { created_at = 2023-11-09T08:00:35.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.13.0-rc11", prerelease = true }
-"0.13.0" = { created_at = 2023-11-10T00:02:05.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.13.0" }
-"0.20.0" = { created_at = 2023-12-14T23:58:01.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.20.0" }
-"1.0.0" = { created_at = 2024-04-05T00:26:45.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.0.0" }
-"1.0.1" = { created_at = 2024-07-10T22:41:57.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.0.1" }
-"1.1.0" = { created_at = 2024-10-28T02:54:20.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.1.0" }
-"1.2.0" = { created_at = 2026-05-12T02:43:33.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.0" }
-"1.2.1" = { created_at = 2026-05-12T05:20:50.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.1" }
-"1.2.2" = { created_at = 2026-05-29T05:19:54.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.2" }
-"1.2.3" = { created_at = 2026-05-29T05:29:41.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.3" }
+"0.3.0" = { created_at = 2017-07-28T00:25:45.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2017-07-28T17:19:50.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.1" }
+"0.3.0d2" = { created_at = 2017-07-28T12:37:05.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.0d2", prerelease = true }
+"0.3.2" = { created_at = 2017-08-06T01:09:06.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2017-08-06T02:48:07.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.3" }
+"0.3.4" = { created_at = 2017-12-31T13:27:50.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.3.4" }
+"0.4.0" = { created_at = 2018-01-20T18:29:40.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.4.0" }
+"0.4.1-rc1.1" = { created_at = 2018-01-27T00:56:23.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.4.1-rc1.1", prerelease = true }
+"0.4.1" = { created_at = 2018-01-30T10:23:53.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.4.1" }
+"0.5.0" = { created_at = 2019-01-14T02:50:20.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.5.0" }
+"0.6.1" = { created_at = 2019-06-23T03:08:27.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2019-08-02T12:49:52.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.6.2" }
+"0.6.3" = { created_at = 2019-08-08T06:16:15.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.6.3" }
+"0.7.0" = { created_at = 2019-09-22T02:04:19.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2019-09-22T03:07:22.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.1" }
+"0.7.2" = { created_at = 2019-12-27T11:08:45.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.2" }
+"0.7.3" = { created_at = 2019-12-27T11:07:11.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.3" }
+"0.7.3.5" = { created_at = 2020-01-31T06:25:55.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.3.5", prerelease = true }
+"0.7.4" = { created_at = 2020-02-04T03:31:57.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.4" }
+"0.7.5" = { created_at = 2020-03-06T23:57:08.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.5" }
+"0.7.6" = { created_at = 2020-05-21T02:03:26.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.6" }
+"0.7.9" = { created_at = 2021-01-26T12:21:11.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.9", prerelease = true }
+"0.7.10" = { created_at = 2021-01-26T12:31:58.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.7.10", prerelease = true }
+"0.8.0" = { created_at = 2021-01-26T13:15:35.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.8.0" }
+"0.9.0" = { created_at = 2021-05-24T05:39:09.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2022-01-06T05:47:47.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.9.1" }
+"0.10.0" = { created_at = 2022-05-02T23:21:25.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.0" }
+"0.10.1-rc1" = { created_at = 2022-10-29T01:29:26.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.1-rc1", prerelease = true }
+"0.10.1-rc2" = { created_at = 2022-10-29T03:07:50.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.1-rc2", prerelease = true }
+"0.10.1" = { created_at = 2022-10-29T22:29:26.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.10.1" }
+"0.11.0" = { created_at = 2023-03-18T21:21:59.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2023-03-18T22:24:57.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.11.1" }
+"0.12.0" = { created_at = 2023-09-29T02:20:21.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.12.0" }
+"0.12.1-rc1" = { created_at = 2023-10-16T22:18:11.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.12.1-rc1", prerelease = true }
+"0.12.1" = { created_at = 2023-10-16T23:36:03.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.12.1" }
+"0.13.0-rc11" = { created_at = 2023-11-09T08:17:20.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.13.0-rc11", prerelease = true }
+"0.13.0" = { created_at = 2023-11-10T01:04:22.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.13.0" }
+"0.20.0" = { created_at = 2023-12-15T00:17:50.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v0.20.0" }
+"1.0.0" = { created_at = 2024-04-07T21:23:47.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2024-07-11T06:12:00.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.0.1" }
+"1.1.0" = { created_at = 2024-10-28T03:46:56.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.1.0" }
+"1.2.0" = { created_at = 2026-05-12T03:39:56.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2026-05-12T05:25:54.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2026-05-29T05:24:15.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2026-05-29T05:31:23.000Z, release_url = "https://github.com/noborus/trdsql/releases/tag/v1.2.3" }

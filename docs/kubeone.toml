@@ -1,153 +1,153 @@
 [versions]
-"0.1.0-beta0" = { created_at = 2019-01-06T13:07:34.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.1.0-beta0" }
-"0.2.0" = { created_at = 2019-02-15T13:16:15.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.2.0" }
-"0.3.0-beta1" = { created_at = 2019-03-05T12:19:10.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.3.0-beta1", prerelease = true }
-"0.3.0" = { created_at = 2019-03-08T13:42:31.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.3.0" }
-"0.4.0" = { created_at = 2019-03-21T11:37:52.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2019-03-26T19:52:47.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.4.1" }
-"0.5.0" = { created_at = 2019-04-02T22:36:09.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.5.0" }
-"0.6.0" = { created_at = 2019-05-08T19:56:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.6.0" }
-"0.6.1" = { created_at = 2019-05-09T19:10:00.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2019-05-13T16:49:15.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.6.2" }
-"0.7.0" = { created_at = 2019-05-28T10:36:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.7.0" }
-"0.8.0" = { created_at = 2019-05-30T12:52:45.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.8.0" }
-"0.9.0" = { created_at = 2019-07-02T08:29:58.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.9.0" }
-"0.9.1" = { created_at = 2019-07-03T15:49:50.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.9.1" }
-"0.9.2" = { created_at = 2019-07-04T16:56:28.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.9.2" }
-"0.10.0-alpha.0" = { created_at = 2019-07-17T13:46:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.0", prerelease = true }
-"0.10.0-alpha.1" = { created_at = 2019-08-16T10:20:25.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.1", prerelease = true }
-"0.10.0-alpha.2" = { created_at = 2019-08-21T12:07:50.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.2", prerelease = true }
-"0.10.0-alpha.3" = { created_at = 2019-08-22T12:12:10.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.3", prerelease = true }
-"0.10.0" = { created_at = 2019-10-09T11:16:08.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0" }
-"0.11.0-beta.0" = { created_at = 2019-11-28T12:20:16.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.0-beta.0", prerelease = true }
-"0.11.0-beta.3" = { created_at = 2019-12-20T13:00:18.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.0-beta.3", prerelease = true }
-"0.11.0" = { created_at = 2020-03-05T12:29:52.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.0" }
-"0.11.1" = { created_at = 2020-04-08T09:25:44.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.1" }
-"1.0.0-alpha.0" = { created_at = 2020-04-22T14:43:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.0", prerelease = true }
-"1.0.0-alpha.1" = { created_at = 2020-05-11T12:46:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.1", prerelease = true }
-"1.0.0-alpha.2" = { created_at = 2020-05-20T10:32:07.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.2", prerelease = true }
-"0.11.2" = { created_at = 2020-05-21T16:19:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.2" }
-"1.0.0-alpha.3" = { created_at = 2020-05-21T10:05:39.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.3", prerelease = true }
-"1.0.0-alpha.4" = { created_at = 2020-05-21T18:01:53.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.4", prerelease = true }
-"1.0.0-alpha.5" = { created_at = 2020-06-18T14:40:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.5", prerelease = true }
-"1.0.0-alpha.6" = { created_at = 2020-06-19T14:50:38.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.6", prerelease = true }
-"1.0.0-beta.0" = { created_at = 2020-07-01T10:19:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.0" }
-"1.0.0-beta.1" = { created_at = 2020-07-02T12:49:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.1" }
-"1.0.0-beta.2" = { created_at = 2020-07-03T09:00:21.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.2" }
-"1.0.0-beta.3" = { created_at = 2020-07-22T14:58:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.3" }
-"1.0.0-rc.0" = { created_at = 2020-07-27T16:26:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-rc.0" }
-"1.0.0-rc.1" = { created_at = 2020-08-06T14:17:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-rc.1" }
-"1.0.0" = { created_at = 2020-08-18T08:48:44.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0" }
-"1.0.1" = { created_at = 2020-08-31T10:42:54.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.1" }
-"1.0.2" = { created_at = 2020-09-02T10:28:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.2" }
-"1.0.3" = { created_at = 2020-09-28T10:28:07.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.3" }
-"1.0.4" = { created_at = 2020-10-16T12:47:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.4" }
-"1.0.5" = { created_at = 2020-10-19T15:12:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.5" }
-"1.1.0-rc.0" = { created_at = 2020-10-27T16:29:40.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.1.0-rc.0" }
-"1.1.0" = { created_at = 2020-11-13T14:27:03.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.1.0" }
-"1.2.0-alpha.0" = { created_at = 2020-11-27T14:18:37.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-alpha.0" }
-"1.2.0-beta.0" = { created_at = 2021-01-27T13:40:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-beta.0" }
-"1.2.0-beta.1" = { created_at = 2021-02-17T13:49:00.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-beta.1" }
-"1.2.0-rc.0" = { created_at = 2021-03-08T10:59:38.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-rc.0" }
-"1.2.0-rc.1" = { created_at = 2021-03-12T10:24:21.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-rc.1" }
-"1.2.0" = { created_at = 2021-03-18T10:32:17.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0" }
-"1.2.1" = { created_at = 2021-03-23T09:36:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.1" }
-"1.2.2" = { created_at = 2021-06-11T16:24:49.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.2" }
-"1.2.3" = { created_at = 2021-06-14T13:27:39.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.3" }
-"1.3.0-alpha.0" = { created_at = 2021-07-21T14:52:49.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0-alpha.0" }
-"1.3.0-alpha.1" = { created_at = 2021-08-18T14:12:20.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0-alpha.1" }
-"1.3.0-rc.0" = { created_at = 2021-09-07T12:42:55.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0-rc.0" }
-"1.3.0" = { created_at = 2021-09-15T06:01:47.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0" }
-"1.3.2" = { created_at = 2021-11-18T12:50:42.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.2" }
-"1.4.0-alpha.0" = { created_at = 2021-11-29T16:09:17.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-alpha.0", prerelease = true }
-"1.3.3" = { created_at = 2021-12-16T14:54:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.3" }
-"1.4.0-beta.0" = { created_at = 2022-01-04T12:47:17.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-beta.0", prerelease = true }
-"1.4.0-beta.1" = { created_at = 2022-01-14T15:25:30.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-beta.1", prerelease = true }
-"1.4.0-rc.0" = { created_at = 2022-02-03T15:28:06.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-rc.0", prerelease = true }
-"1.4.0-rc.1" = { created_at = 2022-02-11T19:25:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-rc.1", prerelease = true }
-"1.4.0" = { created_at = 2022-02-16T11:04:16.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0" }
-"1.4.1" = { created_at = 2022-04-04T08:48:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.1" }
-"1.3.4" = { created_at = 2022-04-05T15:57:43.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.4" }
-"1.3.5" = { created_at = 2022-04-26T10:58:45.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.5" }
-"1.4.2" = { created_at = 2022-04-26T11:05:09.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.2" }
-"1.4.3" = { created_at = 2022-05-11T14:16:37.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.3" }
-"1.4.4" = { created_at = 2022-06-02T13:22:54.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.4" }
-"1.4.5" = { created_at = 2022-07-12T09:28:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.5" }
-"1.4.6" = { created_at = 2022-08-03T16:18:49.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.6" }
-"1.5.0-beta.0" = { created_at = 2022-08-04T14:01:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.0-beta.0", prerelease = true }
-"1.4.7" = { created_at = 2022-08-16T17:25:44.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.7" }
-"1.5.0-rc.0" = { created_at = 2022-08-25T13:16:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.0-rc.0", prerelease = true }
-"1.4.8" = { created_at = 2022-08-29T18:56:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.8" }
-"1.5.0" = { created_at = 2022-08-30T10:59:09.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.0" }
-"1.4.9" = { created_at = 2022-09-26T12:48:06.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.9" }
-"1.5.1" = { created_at = 2022-09-26T12:48:26.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.1" }
-"1.4.10" = { created_at = 2022-10-20T15:52:54.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.10" }
-"1.5.2" = { created_at = 2022-10-20T15:53:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.2" }
-"1.4.11" = { created_at = 2022-11-11T15:02:53.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.11" }
-"1.5.3" = { created_at = 2022-11-11T15:15:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.3" }
-"1.4.12" = { created_at = 2022-12-12T09:39:41.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.12" }
-"1.5.4" = { created_at = 2022-12-12T09:36:54.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.4" }
-"1.4.13" = { created_at = 2023-01-17T10:09:42.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.13" }
-"1.5.5" = { created_at = 2023-01-17T10:27:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.5" }
-"1.5.6" = { created_at = 2023-01-27T12:34:02.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.6" }
-"1.6.0-rc.1" = { created_at = 2023-02-20T16:50:31.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.0-rc.1", prerelease = true }
-"1.6.0-rc.3" = { created_at = 2023-02-23T18:10:57.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.0-rc.3", prerelease = true }
-"1.6.0" = { created_at = 2023-02-23T19:25:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.0" }
-"1.5.7" = { created_at = 2023-03-23T14:18:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.7" }
-"1.6.1" = { created_at = 2023-03-23T14:18:08.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.1" }
-"1.5.8" = { created_at = 2023-04-14T11:19:17.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.8" }
-"1.6.2" = { created_at = 2023-04-14T11:18:49.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.2" }
-"1.4.14" = { created_at = 2023-05-08T14:03:30.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.14" }
-"1.6.3" = { created_at = 2023-09-07T13:59:39.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.3" }
-"1.7.0-rc.0" = { created_at = 2023-09-08T13:11:03.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.0-rc.0", prerelease = true }
-"1.7.0" = { created_at = 2023-09-08T13:59:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.0" }
-"1.6.4" = { created_at = 2023-11-10T10:41:15.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.4" }
-"1.7.1" = { created_at = 2023-11-10T11:21:39.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.1" }
-"1.7.2" = { created_at = 2024-01-05T15:29:42.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.2" }
-"1.6.5" = { created_at = 2024-03-01T15:26:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.5" }
-"1.7.3" = { created_at = 2024-03-01T18:55:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.3" }
-"1.6.6" = { created_at = 2024-05-02T12:52:21.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.6" }
-"1.7.4" = { created_at = 2024-05-02T12:52:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.4" }
-"1.8.0-beta.0" = { created_at = 2024-05-10T18:42:12.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.0-beta.0", prerelease = true }
-"1.8.0-rc.0" = { created_at = 2024-05-12T20:42:28.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.0-rc.0", prerelease = true }
-"1.8.0" = { created_at = 2024-05-14T15:40:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.0" }
-"1.8.1" = { created_at = 2024-07-01T14:23:57.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.1" }
-"1.7.5" = { created_at = 2024-08-08T14:47:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.5" }
-"1.8.2" = { created_at = 2024-08-08T15:09:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.2" }
-"1.7.6" = { created_at = 2024-09-17T20:30:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.6" }
-"1.8.3" = { created_at = 2024-09-17T18:58:32.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.3" }
-"1.9.0-rc.1" = { created_at = 2024-11-21T23:16:36.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.0-rc.1", prerelease = true }
-"1.9.0" = { created_at = 2024-11-22T11:08:55.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.0" }
-"1.8.5" = { created_at = 2024-12-23T16:34:40.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.5" }
-"1.9.1" = { created_at = 2024-12-23T13:33:53.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.1" }
-"1.9.2-rc.0" = { created_at = 2025-01-30T19:14:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.2-rc.0", prerelease = true }
-"1.9.2-rc.1" = { created_at = 2025-01-31T12:08:25.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.2-rc.1", prerelease = true }
-"1.9.2" = { created_at = 2025-02-05T12:02:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.2" }
-"1.8.6" = { created_at = 2025-02-06T11:33:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.6" }
-"1.10.0-rc.0" = { created_at = 2025-04-07T22:07:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.0-rc.0", prerelease = true }
-"1.10.0" = { created_at = 2025-04-15T14:00:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.0" }
-"1.10.1" = { created_at = 2025-06-13T09:29:14.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.1" }
-"1.11.0" = { created_at = 2025-07-10T13:10:08.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.0" }
-"1.10.2" = { created_at = 2025-07-21T12:38:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.2" }
-"1.10.3" = { created_at = 2025-07-24T13:22:31.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.3" }
-"1.11.1" = { created_at = 2025-07-24T13:22:50.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.1" }
-"1.11.2" = { created_at = 2025-09-04T11:30:34.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.2" }
-"1.10.4" = { created_at = 2025-09-19T13:12:15.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.4" }
-"1.11.3" = { created_at = 2025-09-19T13:26:41.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.3" }
-"1.12.0" = { created_at = 2025-11-21T14:56:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.0" }
-"1.12.1" = { created_at = 2025-11-21T18:57:20.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.1" }
-"1.11.4" = { created_at = 2025-12-04T10:14:36.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.4" }
-"1.12.2" = { created_at = 2025-12-04T10:14:02.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.2" }
-"1.12.3" = { created_at = 2026-01-22T16:20:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.3" }
-"1.13.0" = { created_at = 2026-04-09T18:18:26.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.0" }
-"1.13.1" = { created_at = 2026-04-13T11:34:53.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.1" }
-"1.13.2" = { created_at = 2026-04-13T15:44:33.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.2" }
-"1.13.3" = { created_at = 2026-04-14T14:57:16.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.3" }
-"1.13.4" = { created_at = 2026-04-17T10:18:22.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.4" }
-"1.13.5" = { created_at = 2026-05-13T09:24:26.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.5" }
-"1.12.4" = { created_at = 2026-05-18T13:35:01.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.4" }
-"1.14.0-alpha.0" = { created_at = 2026-06-15T13:58:00.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.0-alpha.0", prerelease = true }
-"1.14.0-alpha.1" = { created_at = 2026-06-17T14:46:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.0-alpha.1" }
-"1.14.0" = { created_at = 2026-07-27T16:19:02.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.0" }
-"1.13.6" = { created_at = 2026-08-05T13:04:41.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.6" }
-"1.14.1" = { created_at = 2026-08-05T14:03:18.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.1" }
+"0.1.0-beta0" = { created_at = 2019-01-07T08:55:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.1.0-beta0" }
+"0.2.0" = { created_at = 2019-02-15T13:22:38.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.2.0" }
+"0.3.0-beta1" = { created_at = 2019-03-05T13:23:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.3.0-beta1", prerelease = true }
+"0.3.0" = { created_at = 2019-03-08T13:44:30.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.3.0" }
+"0.4.0" = { created_at = 2019-03-21T11:39:27.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2019-03-26T19:55:35.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.4.1" }
+"0.5.0" = { created_at = 2019-04-02T22:38:30.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.5.0" }
+"0.6.0" = { created_at = 2019-05-08T20:14:56.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2019-05-09T19:10:52.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2019-05-13T16:49:57.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.6.2" }
+"0.7.0" = { created_at = 2019-05-28T10:38:41.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2019-05-30T12:53:25.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.8.0" }
+"0.9.0" = { created_at = 2019-07-02T08:31:54.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2019-07-03T15:50:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.9.1" }
+"0.9.2" = { created_at = 2019-07-04T16:57:34.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.9.2" }
+"0.10.0-alpha.0" = { created_at = 2019-07-17T14:01:15.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.0", prerelease = true }
+"0.10.0-alpha.1" = { created_at = 2019-08-16T10:29:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.1", prerelease = true }
+"0.10.0-alpha.2" = { created_at = 2019-08-21T12:12:12.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.2", prerelease = true }
+"0.10.0-alpha.3" = { created_at = 2019-08-22T12:15:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0-alpha.3", prerelease = true }
+"0.10.0" = { created_at = 2019-10-09T11:33:06.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.10.0" }
+"0.11.0-beta.0" = { created_at = 2019-11-28T12:27:35.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.0-beta.0", prerelease = true }
+"0.11.0-beta.3" = { created_at = 2019-12-20T13:10:20.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.0-beta.3", prerelease = true }
+"0.11.0" = { created_at = 2020-03-05T12:36:29.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2020-04-08T09:34:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.1" }
+"1.0.0-alpha.0" = { created_at = 2020-04-22T14:50:36.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.0", prerelease = true }
+"1.0.0-alpha.1" = { created_at = 2020-05-11T12:54:41.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.1", prerelease = true }
+"1.0.0-alpha.2" = { created_at = 2020-05-20T10:34:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.2", prerelease = true }
+"0.11.2" = { created_at = 2020-05-21T16:22:20.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v0.11.2" }
+"1.0.0-alpha.3" = { created_at = 2020-05-21T10:11:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.3", prerelease = true }
+"1.0.0-alpha.4" = { created_at = 2020-05-21T18:04:50.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.4", prerelease = true }
+"1.0.0-alpha.5" = { created_at = 2020-06-18T14:43:42.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.5", prerelease = true }
+"1.0.0-alpha.6" = { created_at = 2020-06-19T14:57:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-alpha.6", prerelease = true }
+"1.0.0-beta.0" = { created_at = 2020-07-01T10:24:38.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.0" }
+"1.0.0-beta.1" = { created_at = 2020-07-02T12:51:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.1" }
+"1.0.0-beta.2" = { created_at = 2020-07-03T09:03:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.2" }
+"1.0.0-beta.3" = { created_at = 2020-07-22T15:00:36.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-beta.3" }
+"1.0.0-rc.0" = { created_at = 2020-07-27T16:39:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-rc.0" }
+"1.0.0-rc.1" = { created_at = 2020-08-06T14:24:27.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0-rc.1" }
+"1.0.0" = { created_at = 2020-08-18T08:55:02.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2020-08-31T12:12:08.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2020-09-02T10:32:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.2" }
+"1.0.3" = { created_at = 2020-09-28T10:35:10.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.3" }
+"1.0.4" = { created_at = 2020-10-16T12:52:08.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.4" }
+"1.0.5" = { created_at = 2020-10-19T15:16:27.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.0.5" }
+"1.1.0-rc.0" = { created_at = 2020-10-27T17:04:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.1.0-rc.0" }
+"1.1.0" = { created_at = 2020-11-13T14:32:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.1.0" }
+"1.2.0-alpha.0" = { created_at = 2020-11-27T14:22:45.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-alpha.0" }
+"1.2.0-beta.0" = { created_at = 2021-01-27T13:44:40.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-beta.0" }
+"1.2.0-beta.1" = { created_at = 2021-02-17T13:53:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-beta.1" }
+"1.2.0-rc.0" = { created_at = 2021-03-08T11:04:28.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-rc.0" }
+"1.2.0-rc.1" = { created_at = 2021-03-12T10:30:26.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0-rc.1" }
+"1.2.0" = { created_at = 2021-03-18T10:36:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2021-03-23T10:00:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.1" }
+"1.2.2" = { created_at = 2021-06-11T16:28:52.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.2" }
+"1.2.3" = { created_at = 2021-06-14T13:32:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.2.3" }
+"1.3.0-alpha.0" = { created_at = 2021-07-21T16:31:18.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0-alpha.0" }
+"1.3.0-alpha.1" = { created_at = 2021-08-18T14:16:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0-alpha.1" }
+"1.3.0-rc.0" = { created_at = 2021-09-07T12:46:44.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0-rc.0" }
+"1.3.0" = { created_at = 2021-09-15T06:08:43.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.0" }
+"1.3.2" = { created_at = 2021-11-18T12:56:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.2" }
+"1.4.0-alpha.0" = { created_at = 2021-11-29T16:15:29.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-alpha.0", prerelease = true }
+"1.3.3" = { created_at = 2021-12-16T14:57:58.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.3" }
+"1.4.0-beta.0" = { created_at = 2022-01-04T12:51:16.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-beta.0", prerelease = true }
+"1.4.0-beta.1" = { created_at = 2022-01-14T15:28:29.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-beta.1", prerelease = true }
+"1.4.0-rc.0" = { created_at = 2022-02-03T15:31:09.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-rc.0", prerelease = true }
+"1.4.0-rc.1" = { created_at = 2022-02-11T19:31:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0-rc.1", prerelease = true }
+"1.4.0" = { created_at = 2022-02-16T11:10:03.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2022-04-04T09:00:09.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.1" }
+"1.3.4" = { created_at = 2022-04-05T16:03:01.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.4" }
+"1.3.5" = { created_at = 2022-04-26T11:02:40.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.3.5" }
+"1.4.2" = { created_at = 2022-04-26T11:11:09.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.2" }
+"1.4.3" = { created_at = 2022-05-11T14:24:01.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.3" }
+"1.4.4" = { created_at = 2022-06-02T13:30:22.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.4" }
+"1.4.5" = { created_at = 2022-07-12T09:35:32.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.5" }
+"1.4.6" = { created_at = 2022-08-03T16:32:24.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.6" }
+"1.5.0-beta.0" = { created_at = 2022-08-04T14:17:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.0-beta.0", prerelease = true }
+"1.4.7" = { created_at = 2022-08-16T17:32:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.7" }
+"1.5.0-rc.0" = { created_at = 2022-08-25T13:24:45.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.0-rc.0", prerelease = true }
+"1.4.8" = { created_at = 2022-08-29T19:03:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.8" }
+"1.5.0" = { created_at = 2022-08-30T11:20:42.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.0" }
+"1.4.9" = { created_at = 2022-09-26T13:03:29.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.9" }
+"1.5.1" = { created_at = 2022-09-26T13:01:40.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.1" }
+"1.4.10" = { created_at = 2022-10-20T16:05:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.10" }
+"1.5.2" = { created_at = 2022-10-20T16:06:50.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.2" }
+"1.4.11" = { created_at = 2022-11-11T15:10:31.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.11" }
+"1.5.3" = { created_at = 2022-11-11T15:23:12.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.3" }
+"1.4.12" = { created_at = 2022-12-12T09:47:38.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.12" }
+"1.5.4" = { created_at = 2022-12-12T09:44:57.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.4" }
+"1.4.13" = { created_at = 2023-01-17T10:22:50.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.13" }
+"1.5.5" = { created_at = 2023-01-17T10:34:35.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.5" }
+"1.5.6" = { created_at = 2023-01-27T13:05:37.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.6" }
+"1.6.0-rc.1" = { created_at = 2023-02-20T16:59:35.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.0-rc.1", prerelease = true }
+"1.6.0-rc.3" = { created_at = 2023-02-23T18:19:57.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.0-rc.3", prerelease = true }
+"1.6.0" = { created_at = 2023-02-23T19:34:06.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.0" }
+"1.5.7" = { created_at = 2023-03-23T14:27:16.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.7" }
+"1.6.1" = { created_at = 2023-03-23T14:36:32.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.1" }
+"1.5.8" = { created_at = 2023-04-14T11:36:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.5.8" }
+"1.6.2" = { created_at = 2023-04-14T11:28:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.2" }
+"1.4.14" = { created_at = 2023-05-08T14:11:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.4.14" }
+"1.6.3" = { created_at = 2023-09-07T14:09:46.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.3" }
+"1.7.0-rc.0" = { created_at = 2023-09-08T13:20:12.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.0-rc.0", prerelease = true }
+"1.7.0" = { created_at = 2023-09-08T14:10:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.0" }
+"1.6.4" = { created_at = 2023-11-10T10:50:00.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.4" }
+"1.7.1" = { created_at = 2023-11-10T11:29:34.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.1" }
+"1.7.2" = { created_at = 2024-01-05T15:38:04.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.2" }
+"1.6.5" = { created_at = 2024-03-01T15:55:43.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.5" }
+"1.7.3" = { created_at = 2024-03-01T19:00:44.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.3" }
+"1.6.6" = { created_at = 2024-05-02T14:02:42.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.6.6" }
+"1.7.4" = { created_at = 2024-05-02T13:48:51.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.4" }
+"1.8.0-beta.0" = { created_at = 2024-05-10T18:51:12.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.0-beta.0", prerelease = true }
+"1.8.0-rc.0" = { created_at = 2024-05-12T20:51:08.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.0-rc.0", prerelease = true }
+"1.8.0" = { created_at = 2024-05-14T15:49:38.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.0" }
+"1.8.1" = { created_at = 2024-07-01T14:47:21.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.1" }
+"1.7.5" = { created_at = 2024-08-08T14:57:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.5" }
+"1.8.2" = { created_at = 2024-08-08T15:20:12.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.2" }
+"1.7.6" = { created_at = 2024-09-17T20:57:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.7.6" }
+"1.8.3" = { created_at = 2024-09-17T20:42:35.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.3" }
+"1.9.0-rc.1" = { created_at = 2024-11-21T23:26:00.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.0-rc.1", prerelease = true }
+"1.9.0" = { created_at = 2024-11-22T11:18:17.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.0" }
+"1.8.5" = { created_at = 2024-12-23T16:42:59.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.5" }
+"1.9.1" = { created_at = 2024-12-23T13:44:06.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.1" }
+"1.9.2-rc.0" = { created_at = 2025-01-30T19:47:26.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.2-rc.0", prerelease = true }
+"1.9.2-rc.1" = { created_at = 2025-01-31T12:22:02.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.2-rc.1", prerelease = true }
+"1.9.2" = { created_at = 2025-02-05T12:12:58.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.9.2" }
+"1.8.6" = { created_at = 2025-02-06T11:45:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.8.6" }
+"1.10.0-rc.0" = { created_at = 2025-04-08T20:01:05.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.0-rc.0", prerelease = true }
+"1.10.0" = { created_at = 2025-04-15T14:45:37.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2025-06-13T09:45:36.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.1" }
+"1.11.0" = { created_at = 2025-07-10T13:56:14.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.0" }
+"1.10.2" = { created_at = 2025-07-21T13:00:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.2" }
+"1.10.3" = { created_at = 2025-07-24T13:43:07.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.3" }
+"1.11.1" = { created_at = 2025-07-24T14:04:20.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.1" }
+"1.11.2" = { created_at = 2025-09-04T11:45:11.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.2" }
+"1.10.4" = { created_at = 2025-09-19T13:27:27.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.10.4" }
+"1.11.3" = { created_at = 2025-09-19T13:40:23.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.3" }
+"1.12.0" = { created_at = 2025-11-21T15:19:18.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2025-11-21T19:08:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.1" }
+"1.11.4" = { created_at = 2025-12-04T10:36:15.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.11.4" }
+"1.12.2" = { created_at = 2025-12-04T10:25:45.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.2" }
+"1.12.3" = { created_at = 2026-01-22T16:34:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.3" }
+"1.13.0" = { created_at = 2026-04-10T09:27:18.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.0" }
+"1.13.1" = { created_at = 2026-04-13T12:45:48.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.1" }
+"1.13.2" = { created_at = 2026-04-13T20:35:10.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.2" }
+"1.13.3" = { created_at = 2026-04-14T15:10:13.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.3" }
+"1.13.4" = { created_at = 2026-04-17T10:31:36.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.4" }
+"1.13.5" = { created_at = 2026-05-13T09:35:56.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.5" }
+"1.12.4" = { created_at = 2026-05-18T15:21:18.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.12.4" }
+"1.14.0-alpha.0" = { created_at = 2026-06-17T14:10:43.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.0-alpha.0", prerelease = true }
+"1.14.0-alpha.1" = { created_at = 2026-06-17T20:38:06.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.0-alpha.1" }
+"1.14.0" = { created_at = 2026-07-27T16:34:27.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.0" }
+"1.13.6" = { created_at = 2026-08-05T13:21:19.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.13.6" }
+"1.14.1" = { created_at = 2026-08-05T14:17:22.000Z, release_url = "https://github.com/kubermatic/kubeone/releases/tag/v1.14.1" }

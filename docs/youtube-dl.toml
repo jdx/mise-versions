@@ -1,56 +1,56 @@
 [versions]
-"2023.07.03.19419" = { created_at = 2023-07-03T02:33:09.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.03.19419", prerelease = true }
-"2023.07.04.114514" = { created_at = 2023-07-03T22:30:55.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.04.114514", prerelease = true }
-"2023.07.05.19419" = { created_at = 2023-07-04T11:44:48.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.05.19419", prerelease = true }
-"2023.07.06.43044" = { created_at = 2023-07-06T01:44:27.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.06.43044", prerelease = true }
-"2023.07.14" = { created_at = 2023-07-14T22:41:39.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.14", prerelease = true }
-"2023.07.15" = { created_at = 2023-07-15T12:58:55.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.15", prerelease = true }
-"2023.07.17" = { created_at = 2023-07-16T04:32:41.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.17", prerelease = true }
-"2023.07.18" = { created_at = 2023-07-18T12:36:56.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.18", prerelease = true }
-"2023.07.20" = { created_at = 2023-07-18T12:36:56.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.20", prerelease = true }
-"2023.07.21" = { created_at = 2023-07-20T01:57:49.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.21", prerelease = true }
-"2023.07.30" = { created_at = 2023-07-26T18:51:53.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.30" }
-"2023.08.01" = { created_at = 2023-07-30T01:51:00.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.08.01", prerelease = true }
-"2023.08.07" = { created_at = 2023-08-01T02:01:36.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.08.07", prerelease = true }
-"2023.09.06" = { created_at = 2023-09-06T01:37:35.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.09.06", prerelease = true }
-"2023.09.07" = { created_at = 2023-09-07T01:37:48.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.09.07", prerelease = true }
-"2023.09.25" = { created_at = 2023-09-24T01:40:59.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.09.25" }
-"2023.11.23" = { created_at = 2023-11-23T01:43:37.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.11.23" }
-"2023.11.30" = { created_at = 2023-11-30T01:44:11.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.11.30" }
-"2023.12.03" = { created_at = 2023-12-03T01:46:17.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.12.03" }
-"2023.12.06" = { created_at = 2023-12-06T01:44:56.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.12.06" }
-"2023.12.07" = { created_at = 2023-12-07T01:44:14.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.12.07" }
-"2024.01.23" = { created_at = 2024-01-23T01:46:58.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.01.23" }
-"2024.02.03" = { created_at = 2024-02-03T01:34:23.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.02.03" }
-"2024.03.28" = { created_at = 2024-03-28T01:37:59.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.03.28", prerelease = true }
-"2024.04.06" = { created_at = 2024-04-06T01:36:21.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.04.06" }
-"2024.04.08" = { created_at = 2024-04-08T01:39:50.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.04.08" }
-"2024.04.22" = { created_at = 2024-04-22T01:42:45.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.04.22" }
-"2024.05.16.1" = { created_at = 2024-05-16T18:18:31.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.05.16.1" }
-"2024.05.31" = { created_at = 2024-05-31T01:46:23.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.05.31" }
-"2024.06.12" = { created_at = 2024-06-12T01:48:25.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.06.12" }
-"2024.06.21" = { created_at = 2024-06-21T01:46:59.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.06.21" }
-"2024.07.03" = { created_at = 2024-07-03T01:48:31.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.03", prerelease = true }
-"2024.07.07" = { created_at = 2024-07-07T01:58:57.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.07", prerelease = true }
-"2024.07.08" = { created_at = 2024-07-08T01:55:30.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.08" }
-"2024.07.11" = { created_at = 2024-07-11T01:54:43.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.11" }
-"2024.07.25" = { created_at = 2024-07-25T01:55:24.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.25" }
-"2024.08.02" = { created_at = 2024-08-02T01:55:40.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.08.02" }
-"2024.08.07" = { created_at = 2024-08-07T01:58:04.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.08.07" }
-"2024.12.17" = { created_at = 2024-12-17T02:18:40.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.12.17" }
-"2025.01.01" = { created_at = 2025-01-01T02:15:41.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.01" }
-"2025.01.06" = { created_at = 2025-01-06T02:12:44.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.06" }
-"2025.01.16" = { created_at = 2025-01-16T02:04:29.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.16" }
-"2025.01.23" = { created_at = 2025-01-23T02:05:17.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.23" }
-"2025.02.07" = { created_at = 2025-02-07T02:08:00.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.02.07" }
-"2025.02.28" = { created_at = 2025-02-28T02:11:33.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.02.28" }
-"2025.03.11" = { created_at = 2025-03-11T02:14:02.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.03.11" }
-"2025.03.22" = { created_at = 2025-03-22T02:12:34.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.03.22" }
-"2025.03.27" = { created_at = 2025-03-27T02:16:22.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.03.27" }
-"2025.04.01" = { created_at = 2025-04-01T02:28:58.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.04.01" }
-"2025.04.08" = { created_at = 2025-04-08T05:02:16.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.04.08" }
-"2025.05.04" = { created_at = 2025-05-04T02:31:31.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.05.04", prerelease = true }
-"2025.05.05" = { created_at = 2025-05-05T02:26:42.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.05.05" }
-"2025.09.29" = { created_at = 2025-09-29T02:18:56.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.09.29" }
-"2025.11.21" = { created_at = 2025-11-21T02:22:03.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.11.21", prerelease = true }
-"2025.11.26" = { created_at = 2025-11-26T03:05:15.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.11.26" }
+"2023.07.03.19419" = { created_at = 2023-07-03T02:34:36.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.03.19419", prerelease = true }
+"2023.07.04.114514" = { created_at = 2023-07-04T03:00:20.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.04.114514", prerelease = true }
+"2023.07.05.19419" = { created_at = 2023-07-05T02:59:57.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.05.19419", prerelease = true }
+"2023.07.06.43044" = { created_at = 2023-07-06T03:01:32.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.06.43044", prerelease = true }
+"2023.07.14" = { created_at = 2023-07-14T22:43:39.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.14", prerelease = true }
+"2023.07.15" = { created_at = 2023-07-15T13:06:01.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.15", prerelease = true }
+"2023.07.17" = { created_at = 2023-07-17T01:04:47.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.17", prerelease = true }
+"2023.07.18" = { created_at = 2023-07-18T13:21:39.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.18", prerelease = true }
+"2023.07.20" = { created_at = 2023-07-20T01:58:24.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.20", prerelease = true }
+"2023.07.21" = { created_at = 2023-07-21T02:00:29.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.21", prerelease = true }
+"2023.07.30" = { created_at = 2023-07-30T01:51:40.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.07.30" }
+"2023.08.01" = { created_at = 2023-08-01T02:02:21.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.08.01", prerelease = true }
+"2023.08.07" = { created_at = 2023-08-07T01:54:48.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.08.07", prerelease = true }
+"2023.09.06" = { created_at = 2023-09-06T01:37:42.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.09.06", prerelease = true }
+"2023.09.07" = { created_at = 2023-09-07T01:37:57.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.09.07", prerelease = true }
+"2023.09.25" = { created_at = 2023-09-25T01:39:43.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.09.25" }
+"2023.11.23" = { created_at = 2023-11-23T01:43:43.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.11.23" }
+"2023.11.30" = { created_at = 2023-11-30T01:44:18.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.11.30" }
+"2023.12.03" = { created_at = 2023-12-03T01:46:22.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.12.03" }
+"2023.12.06" = { created_at = 2023-12-06T01:45:01.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.12.06" }
+"2023.12.07" = { created_at = 2023-12-07T01:44:20.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2023.12.07" }
+"2024.01.23" = { created_at = 2024-01-23T01:47:04.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.01.23" }
+"2024.02.03" = { created_at = 2024-02-03T01:34:28.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.02.03" }
+"2024.03.28" = { created_at = 2024-03-28T01:38:04.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.03.28", prerelease = true }
+"2024.04.06" = { created_at = 2024-04-06T01:36:27.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.04.06" }
+"2024.04.08" = { created_at = 2024-04-08T01:39:55.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.04.08" }
+"2024.04.22" = { created_at = 2024-04-22T01:42:50.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.04.22" }
+"2024.05.16.1" = { created_at = 2024-05-16T18:18:36.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.05.16.1" }
+"2024.05.31" = { created_at = 2024-05-31T01:46:29.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.05.31" }
+"2024.06.12" = { created_at = 2024-06-12T01:48:30.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.06.12" }
+"2024.06.21" = { created_at = 2024-06-21T01:47:05.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.06.21" }
+"2024.07.03" = { created_at = 2024-07-03T01:48:36.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.03", prerelease = true }
+"2024.07.07" = { created_at = 2024-07-07T01:59:02.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.07", prerelease = true }
+"2024.07.08" = { created_at = 2024-07-08T01:55:35.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.08" }
+"2024.07.11" = { created_at = 2024-07-11T01:54:49.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.11" }
+"2024.07.25" = { created_at = 2024-07-25T01:55:29.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.07.25" }
+"2024.08.02" = { created_at = 2024-08-02T01:55:46.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.08.02" }
+"2024.08.07" = { created_at = 2024-08-07T01:58:10.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.08.07" }
+"2024.12.17" = { created_at = 2024-12-17T02:18:45.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2024.12.17" }
+"2025.01.01" = { created_at = 2025-01-01T02:15:45.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.01" }
+"2025.01.06" = { created_at = 2025-01-06T02:12:49.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.06" }
+"2025.01.16" = { created_at = 2025-01-16T02:04:34.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.16" }
+"2025.01.23" = { created_at = 2025-01-23T02:05:22.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.01.23" }
+"2025.02.07" = { created_at = 2025-02-07T02:08:06.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.02.07" }
+"2025.02.28" = { created_at = 2025-02-28T02:11:39.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.02.28" }
+"2025.03.11" = { created_at = 2025-03-11T02:14:07.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.03.11" }
+"2025.03.22" = { created_at = 2025-03-22T02:12:39.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.03.22" }
+"2025.03.27" = { created_at = 2025-03-27T02:16:27.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.03.27" }
+"2025.04.01" = { created_at = 2025-04-01T02:29:04.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.04.01" }
+"2025.04.08" = { created_at = 2025-04-08T05:02:21.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.04.08" }
+"2025.05.04" = { created_at = 2025-05-04T02:31:36.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.05.04", prerelease = true }
+"2025.05.05" = { created_at = 2025-05-05T02:26:47.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.05.05" }
+"2025.09.29" = { created_at = 2025-09-29T02:19:01.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.09.29" }
+"2025.11.21" = { created_at = 2025-11-21T02:22:08.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.11.21", prerelease = true }
+"2025.11.26" = { created_at = 2025-11-26T03:05:21.000Z, release_url = "https://github.com/ytdl-org/ytdl-nightly/releases/tag/2025.11.26" }

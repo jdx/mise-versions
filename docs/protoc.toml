@@ -1,219 +1,219 @@
 [versions]
-"2.4.1" = { created_at = 2011-04-30T15:29:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.4.1" }
-"2.5.0" = { created_at = 2013-02-27T18:49:03.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0" }
-"2.6.0" = { created_at = 2014-08-25T23:26:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.6.0" }
-"2.6.1" = { created_at = 2014-10-21T00:06:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.6.1" }
-"3.0.0-alpha-1" = { created_at = 2014-12-11T02:38:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-alpha-1", prerelease = true }
-"3.0.0-alpha-2" = { created_at = 2015-02-26T07:47:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-alpha-2", prerelease = true }
-"3.0.0-alpha-3" = { created_at = 2015-05-28T21:52:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-alpha-3", prerelease = true }
-"3.0.0-beta-1" = { created_at = 2015-08-27T07:02:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-1", prerelease = true }
-"3.0.0-beta-2" = { created_at = 2015-12-30T21:35:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-2", prerelease = true }
-"3.0.0-beta-3" = { created_at = 2016-05-16T18:34:04.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-3", prerelease = true }
-"3.0.0-beta-3.1" = { created_at = 2016-06-14T00:02:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-3.1", prerelease = true }
-"3.0.0-beta-4" = { created_at = 2016-07-18T21:46:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-4", prerelease = true }
-"3.0.0" = { created_at = 2016-07-27T21:40:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0" }
-"3.0.2" = { created_at = 2016-09-06T22:40:51.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.2" }
-"3.1.0" = { created_at = 2016-09-24T02:12:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.1.0" }
-"3.2.0rc2" = { created_at = 2017-01-18T23:14:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.2.0rc2", prerelease = true }
-"3.2.0" = { created_at = 2017-01-27T23:03:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.2.0" }
-"3.3.0" = { created_at = 2017-04-29T00:23:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.3.0" }
-"3.4.0" = { created_at = 2017-08-15T23:39:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.4.0" }
-"3.4.1" = { created_at = 2017-09-14T19:24:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.4.1" }
-"3.5.0" = { created_at = 2017-11-13T18:47:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.5.0" }
-"3.5.1" = { created_at = 2017-12-20T23:07:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.5.1" }
-"3.6.0" = { created_at = 2018-06-06T23:47:37.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.6.0" }
-"3.6.1" = { created_at = 2018-07-27T20:30:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.6.1" }
-"3.7.0rc1" = { created_at = 2019-01-28T23:15:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0rc1", prerelease = true }
-"3.7.0rc2" = { created_at = 2019-02-01T19:27:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0rc2", prerelease = true }
-"3.7.0-rc.3" = { created_at = 2019-02-22T22:53:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0-rc.3", prerelease = true }
-"3.7.0" = { created_at = 2019-02-28T20:55:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0" }
-"3.7.1" = { created_at = 2019-03-26T16:30:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.1" }
-"3.8.0-rc1" = { created_at = 2019-04-30T17:10:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.8.0-rc1", prerelease = true }
-"3.8.0" = { created_at = 2019-05-24T18:06:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.8.0" }
-"3.9.0-rc1" = { created_at = 2019-06-24T17:15:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.0-rc1", prerelease = true }
-"3.9.0" = { created_at = 2019-07-11T14:52:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.0" }
-"3.9.1" = { created_at = 2019-08-05T17:07:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.1" }
-"3.10.0-rc1" = { created_at = 2019-09-05T17:18:54.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.10.0-rc1", prerelease = true }
-"3.9.2" = { created_at = 2019-09-20T21:50:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.2" }
-"3.10.0" = { created_at = 2019-10-03T00:17:27.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.10.0" }
-"3.10.1" = { created_at = 2019-10-24T19:06:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.10.1" }
-"3.11.0-rc1" = { created_at = 2019-11-20T18:45:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.0-rc1", prerelease = true }
-"3.11.0-rc2" = { created_at = 2019-11-22T19:40:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.0-rc2", prerelease = true }
-"3.11.0" = { created_at = 2019-11-25T23:15:21.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.0" }
-"3.11.1" = { created_at = 2019-12-03T00:05:55.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.1" }
-"3.11.2" = { created_at = 2019-12-12T21:59:51.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.2" }
-"3.11.3" = { created_at = 2020-02-02T22:04:32.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.3" }
-"3.11.4" = { created_at = 2020-02-14T20:13:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.4" }
-"3.12.0-rc1" = { created_at = 2020-05-01T20:10:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.0-rc1", prerelease = true }
-"3.12.0-rc2" = { created_at = 2020-05-12T21:39:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.0-rc2", prerelease = true }
-"3.12.0" = { created_at = 2020-05-15T22:11:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.0" }
-"3.12.1" = { created_at = 2020-05-20T19:06:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.1" }
-"3.12.2" = { created_at = 2020-05-26T22:55:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.2" }
-"3.12.3" = { created_at = 2020-06-02T22:12:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.3" }
-"3.12.4" = { created_at = 2020-07-10T01:09:34.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.4" }
-"3.13.0-rc3" = { created_at = 2020-08-12T21:49:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.13.0-rc3", prerelease = true }
-"3.13.0" = { created_at = 2020-08-14T22:20:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.13.0" }
-"3.14.0-rc1" = { created_at = 2020-11-05T22:30:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0-rc1", prerelease = true }
-"3.14.0-rc2" = { created_at = 2020-11-11T01:15:32.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0-rc2", prerelease = true }
-"3.14.0-rc3" = { created_at = 2020-11-12T20:44:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0-rc3", prerelease = true }
-"3.14.0" = { created_at = 2020-11-13T20:53:39.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0" }
-"3.15.0-rc1" = { created_at = 2021-02-09T22:20:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.0-rc1", prerelease = true }
-"3.15.0-rc2" = { created_at = 2021-02-17T18:51:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.0-rc2", prerelease = true }
-"3.15.0" = { created_at = 2021-02-18T19:50:15.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.0" }
-"3.15.1" = { created_at = 2021-02-19T23:12:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.1" }
-"3.15.2" = { created_at = 2021-02-23T21:21:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.2" }
-"3.15.3" = { created_at = 2021-02-25T17:20:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.3" }
-"3.15.4" = { created_at = 2021-03-03T19:37:48.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.4" }
-"3.15.5" = { created_at = 2021-03-04T21:35:04.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.5" }
-"3.15.6" = { created_at = 2021-03-10T22:53:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.6" }
-"3.15.7" = { created_at = 2021-04-02T18:06:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.7" }
-"3.16.0-rc1" = { created_at = 2021-04-06T21:26:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.0-rc1", prerelease = true }
-"3.15.8" = { created_at = 2021-04-07T22:38:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.8" }
-"3.16.0-rc2" = { created_at = 2021-05-05T20:25:54.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.0-rc2", prerelease = true }
-"3.16.0" = { created_at = 2021-05-06T19:50:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.0" }
-"3.17.0-rc1" = { created_at = 2021-05-07T18:34:04.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.0-rc1", prerelease = true }
-"3.17.0-rc2" = { created_at = 2021-05-10T22:31:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.0-rc2", prerelease = true }
-"3.17.0" = { created_at = 2021-05-12T23:20:18.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.0" }
-"3.17.1" = { created_at = 2021-05-22T06:04:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.1" }
-"3.17.2" = { created_at = 2021-06-02T16:41:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.2" }
-"3.17.3" = { created_at = 2021-06-04T21:47:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.3" }
-"3.18.0-rc1" = { created_at = 2021-08-19T16:35:07.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0-rc1", prerelease = true }
-"3.18.0-rc2" = { created_at = 2021-09-01T01:13:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0-rc2", prerelease = true }
-"3.18.0" = { created_at = 2021-09-14T16:48:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0" }
-"3.18.1" = { created_at = 2021-10-05T00:43:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.1" }
-"3.19.0-rc1" = { created_at = 2021-10-15T22:35:27.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.0-rc1", prerelease = true }
-"3.19.0-rc2" = { created_at = 2021-10-19T16:01:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.0-rc2", prerelease = true }
-"3.19.0" = { created_at = 2021-10-20T17:14:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.0" }
-"3.19.1" = { created_at = 2021-10-28T21:07:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.1" }
-"3.16.1" = { created_at = 2022-01-05T20:11:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.1" }
-"3.18.2" = { created_at = 2022-01-05T18:49:17.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.2" }
-"3.19.2" = { created_at = 2022-01-05T18:05:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.2" }
-"3.19.3" = { created_at = 2022-01-11T02:08:15.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.3" }
-"3.19.4" = { created_at = 2022-01-28T03:35:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.4" }
-"3.20.0-rc1" = { created_at = 2022-03-04T17:52:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.0-rc1", prerelease = true }
-"3.20.0-rc2" = { created_at = 2022-03-17T15:28:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.0-rc2", prerelease = true }
-"3.20.0" = { created_at = 2022-03-24T18:51:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.0" }
-"3.20.1-rc1" = { created_at = 2022-04-06T00:18:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.1-rc1", prerelease = true }
-"3.20.1" = { created_at = 2022-04-22T01:00:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.1" }
-"21.0-rc1" = { created_at = 2022-05-10T23:41:41.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.0-rc1", prerelease = true }
-"21.0-rc2" = { created_at = 2022-05-19T20:42:46.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.0-rc2", prerelease = true }
-"21.0" = { created_at = 2022-05-25T21:50:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.0" }
-"21.1" = { created_at = 2022-05-27T22:18:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.1" }
-"21.2" = { created_at = 2022-06-23T22:00:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.2" }
-"21.3" = { created_at = 2022-07-20T21:01:37.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.3" }
-"21.4" = { created_at = 2022-07-25T21:57:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.4" }
-"21.5" = { created_at = 2022-08-09T18:23:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.5" }
-"3.18.3" = { created_at = 2022-09-13T19:07:27.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.3" }
-"3.19.5" = { created_at = 2022-09-13T18:37:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.5" }
-"3.20.2" = { created_at = 2022-09-13T18:34:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.2" }
-"21.6" = { created_at = 2022-09-14T17:22:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.6" }
-"3.16.3" = { created_at = 2022-09-29T18:41:17.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.3" }
-"3.19.6" = { created_at = 2022-09-29T17:45:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.6" }
-"3.20.3" = { created_at = 2022-09-29T18:04:51.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.3" }
-"21.7" = { created_at = 2022-09-29T19:01:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.7" }
-"21.8" = { created_at = 2022-10-18T15:46:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.8" }
-"21.9" = { created_at = 2022-10-26T18:35:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.9" }
-"21.10" = { created_at = 2022-11-29T22:51:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.10" }
-"21.11" = { created_at = 2022-12-08T02:41:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.11" }
-"21.12" = { created_at = 2022-12-13T00:03:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.12" }
-"22.0-rc1" = { created_at = 2023-01-27T05:37:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0-rc1", prerelease = true }
-"22.0-rc2" = { created_at = 2023-02-02T19:44:51.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0-rc2", prerelease = true }
-"22.0-rc3" = { created_at = 2023-02-10T19:01:55.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0-rc3", prerelease = true }
-"22.0" = { created_at = 2023-02-16T17:13:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0" }
-"22.1" = { created_at = 2023-03-07T20:51:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.1" }
-"22.2" = { created_at = 2023-03-10T15:57:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.2" }
-"22.3" = { created_at = 2023-04-12T22:43:07.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.3" }
-"23.0-rc1" = { created_at = 2023-04-25T20:47:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0-rc1", prerelease = true }
-"23.0-rc2" = { created_at = 2023-04-28T17:25:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0-rc2", prerelease = true }
-"22.4" = { created_at = 2023-05-03T17:23:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.4" }
-"23.0-rc3" = { created_at = 2023-05-05T16:17:00.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0-rc3", prerelease = true }
-"23.0" = { created_at = 2023-05-08T16:48:50.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0" }
-"22.5" = { created_at = 2023-05-09T21:33:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.5" }
-"23.1" = { created_at = 2023-05-16T23:13:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.1" }
-"23.2" = { created_at = 2023-05-25T20:56:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.2" }
-"23.3" = { created_at = 2023-06-14T14:28:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.3" }
-"23.4" = { created_at = 2023-07-05T21:53:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.4" }
-"24.0-rc1" = { created_at = 2023-07-11T21:54:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0-rc1", prerelease = true }
-"24.0-rc2" = { created_at = 2023-07-18T18:50:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0-rc2", prerelease = true }
-"24.0-rc3" = { created_at = 2023-08-01T17:27:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0-rc3", prerelease = true }
-"24.0" = { created_at = 2023-08-08T17:26:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0" }
-"24.1" = { created_at = 2023-08-18T17:50:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.1" }
-"24.2" = { created_at = 2023-08-24T21:11:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.2" }
-"24.3" = { created_at = 2023-09-06T21:35:39.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.3" }
-"24.4" = { created_at = 2023-10-03T22:27:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.4" }
-"25.0-rc1" = { created_at = 2023-10-16T19:36:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.0-rc1", prerelease = true }
-"25.0-rc2" = { created_at = 2023-10-18T16:57:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.0-rc2", prerelease = true }
-"25.0" = { created_at = 2023-11-01T20:03:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.0" }
-"25.1" = { created_at = 2023-11-15T18:52:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.1" }
-"25.2" = { created_at = 2024-01-08T21:55:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.2" }
-"26.0-rc1" = { created_at = 2024-01-24T22:00:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0-rc1", prerelease = true }
-"26.0-rc2" = { created_at = 2024-02-06T15:51:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0-rc2", prerelease = true }
-"25.3" = { created_at = 2024-02-15T18:57:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.3" }
-"26.0-rc3" = { created_at = 2024-02-27T21:42:23.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0-rc3", prerelease = true }
-"26.0" = { created_at = 2024-03-12T18:01:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0" }
-"26.1" = { created_at = 2024-03-27T17:31:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.1" }
-"27.0-rc1" = { created_at = 2024-04-17T23:44:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0-rc1", prerelease = true }
-"27.0-rc2" = { created_at = 2024-05-08T15:39:46.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0-rc2", prerelease = true }
-"27.0-rc3" = { created_at = 2024-05-14T16:19:46.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0-rc3", prerelease = true }
-"27.0" = { created_at = 2024-05-22T18:02:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0" }
-"27.1" = { created_at = 2024-06-05T14:55:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.1" }
-"27.2" = { created_at = 2024-06-25T17:53:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.2" }
-"28.0-rc1" = { created_at = 2024-07-11T22:14:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0-rc1", prerelease = true }
-"25.4" = { created_at = 2024-07-24T15:17:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.4" }
-"27.3" = { created_at = 2024-07-31T12:20:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.3" }
-"28.0-rc2" = { created_at = 2024-08-07T21:30:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0-rc2", prerelease = true }
-"28.0-rc3" = { created_at = 2024-08-22T16:09:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0-rc3", prerelease = true }
-"27.4" = { created_at = 2024-08-27T17:52:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.4" }
-"28.0" = { created_at = 2024-08-28T16:12:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0" }
-"28.1" = { created_at = 2024-09-10T20:36:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.1" }
-"25.5" = { created_at = 2024-09-18T19:47:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.5" }
-"27.5" = { created_at = 2024-09-18T21:00:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.5" }
-"28.2" = { created_at = 2024-09-18T19:49:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.2" }
-"29.0-rc1" = { created_at = 2024-09-30T21:08:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0-rc1", prerelease = true }
-"28.3" = { created_at = 2024-10-22T20:02:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.3" }
-"29.0-rc2" = { created_at = 2024-10-23T18:07:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0-rc2", prerelease = true }
-"29.0-rc3" = { created_at = 2024-11-18T20:26:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0-rc3", prerelease = true }
-"29.0" = { created_at = 2024-11-27T16:50:41.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0" }
-"29.1" = { created_at = 2024-12-03T19:41:48.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.1" }
-"29.2" = { created_at = 2024-12-17T20:18:27.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.2" }
-"29.3" = { created_at = 2025-01-08T19:38:46.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.3" }
-"25.6" = { created_at = 2025-01-24T19:04:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.6" }
-"30.0-rc1" = { created_at = 2025-02-04T21:08:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc1", prerelease = true }
-"30.0-rc2" = { created_at = 2025-02-26T17:58:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc2", prerelease = true }
-"30.0" = { created_at = 2025-03-04T21:37:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.0" }
-"30.1" = { created_at = 2025-03-13T19:50:36.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.1" }
-"29.4" = { created_at = 2025-03-19T20:02:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.4" }
-"30.2" = { created_at = 2025-03-26T15:20:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.2" }
-"31.0-rc1" = { created_at = 2025-04-17T19:01:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.0-rc1", prerelease = true }
-"25.7" = { created_at = 2025-04-22T23:38:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.7" }
-"31.0-rc2" = { created_at = 2025-04-30T15:49:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.0-rc2", prerelease = true }
-"31.0" = { created_at = 2025-05-14T15:37:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.0" }
-"25.8" = { created_at = 2025-05-27T18:57:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.8" }
-"29.5" = { created_at = 2025-05-28T06:46:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.5" }
-"31.1" = { created_at = 2025-05-28T16:52:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.1" }
-"32.0-rc1" = { created_at = 2025-07-21T18:36:07.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.0-rc1", prerelease = true }
-"32.0-rc2" = { created_at = 2025-08-04T22:15:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.0-rc2", prerelease = true }
-"32.0" = { created_at = 2025-08-14T16:20:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.0" }
-"32.1" = { created_at = 2025-09-11T17:24:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.1" }
-"33.0-rc1" = { created_at = 2025-10-01T02:23:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.0-rc1", prerelease = true }
-"33.0-rc2" = { created_at = 2025-10-09T18:50:54.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.0-rc2", prerelease = true }
-"33.0" = { created_at = 2025-10-15T18:33:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.0" }
-"33.1" = { created_at = 2025-11-12T21:10:54.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.1" }
-"33.2" = { created_at = 2025-12-05T19:14:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.2" }
-"33.3" = { created_at = 2026-01-09T19:42:21.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.3" }
-"33.4" = { created_at = 2026-01-12T16:32:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.4" }
-"34.0-rc1.1" = { created_at = 2026-01-22T21:26:32.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.0-rc1.1", prerelease = true }
-"33.5" = { created_at = 2026-01-29T19:43:18.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.5" }
-"29.6" = { created_at = 2026-02-04T20:07:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.6" }
-"34.0-rc2" = { created_at = 2026-02-05T20:40:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.0-rc2", prerelease = true }
-"34.0" = { created_at = 2026-02-25T18:01:37.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.0" }
-"33.6" = { created_at = 2026-03-18T16:21:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.6" }
-"34.1" = { created_at = 2026-03-19T19:43:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.1" }
-"25.9" = { created_at = 2026-03-25T19:11:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.9" }
-"35.0-rc1" = { created_at = 2026-04-15T20:03:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.0-rc1", prerelease = true }
-"35.0-rc2" = { created_at = 2026-05-06T15:58:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.0-rc2", prerelease = true }
-"34.2" = { created_at = 2026-05-19T18:48:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.2" }
-"35.0" = { created_at = 2026-05-19T19:53:03.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.0" }
-"35.1" = { created_at = 2026-06-11T16:26:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.1" }
-"36.0-rc1" = { created_at = 2026-07-09T20:44:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v36.0-rc1", prerelease = true }
-"36.0-rc2" = { created_at = 2026-08-03T19:33:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v36.0-rc2", prerelease = true }
+"2.4.1" = { created_at = 2015-03-25T00:49:41.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.4.1" }
+"2.5.0" = { created_at = 2015-03-25T00:49:00.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0" }
+"2.6.0" = { created_at = 2014-08-28T00:03:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2014-10-21T23:20:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v2.6.1" }
+"3.0.0-alpha-1" = { created_at = 2014-12-11T02:39:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-alpha-1", prerelease = true }
+"3.0.0-alpha-2" = { created_at = 2015-02-26T09:49:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-alpha-2", prerelease = true }
+"3.0.0-alpha-3" = { created_at = 2015-05-29T17:43:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-alpha-3", prerelease = true }
+"3.0.0-beta-1" = { created_at = 2015-08-27T07:09:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-1", prerelease = true }
+"3.0.0-beta-2" = { created_at = 2015-12-30T21:36:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-2", prerelease = true }
+"3.0.0-beta-3" = { created_at = 2016-05-16T20:32:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-3", prerelease = true }
+"3.0.0-beta-3.1" = { created_at = 2016-06-14T18:42:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-3.1", prerelease = true }
+"3.0.0-beta-4" = { created_at = 2016-07-20T00:40:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0-beta-4", prerelease = true }
+"3.0.0" = { created_at = 2016-07-28T05:03:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.0" }
+"3.0.2" = { created_at = 2016-09-06T22:54:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.0.2" }
+"3.1.0" = { created_at = 2016-09-24T02:39:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.1.0" }
+"3.2.0rc2" = { created_at = 2017-01-19T01:25:37.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.2.0rc2", prerelease = true }
+"3.2.0" = { created_at = 2017-02-17T19:53:08.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.2.0" }
+"3.3.0" = { created_at = 2017-05-04T22:49:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.3.0" }
+"3.4.0" = { created_at = 2017-08-15T23:57:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.4.0" }
+"3.4.1" = { created_at = 2017-09-15T22:32:03.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.4.1" }
+"3.5.0" = { created_at = 2017-11-13T19:59:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.5.0" }
+"3.5.1" = { created_at = 2017-12-20T23:16:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.5.1" }
+"3.6.0" = { created_at = 2018-06-19T17:57:08.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.6.0" }
+"3.6.1" = { created_at = 2018-07-31T19:02:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.6.1" }
+"3.7.0rc1" = { created_at = 2019-01-30T19:48:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0rc1", prerelease = true }
+"3.7.0rc2" = { created_at = 2019-02-01T20:04:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0rc2", prerelease = true }
+"3.7.0-rc.3" = { created_at = 2019-02-22T23:11:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0-rc.3", prerelease = true }
+"3.7.0" = { created_at = 2019-02-28T21:33:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.0" }
+"3.7.1" = { created_at = 2019-03-26T16:40:34.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.7.1" }
+"3.8.0-rc1" = { created_at = 2019-05-01T17:24:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.8.0-rc1", prerelease = true }
+"3.8.0" = { created_at = 2019-05-28T23:00:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.8.0" }
+"3.9.0-rc1" = { created_at = 2019-06-26T18:29:50.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.0-rc1", prerelease = true }
+"3.9.0" = { created_at = 2019-07-12T16:32:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.0" }
+"3.9.1" = { created_at = 2019-08-06T21:06:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.1" }
+"3.10.0-rc1" = { created_at = 2019-09-05T19:14:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.10.0-rc1", prerelease = true }
+"3.9.2" = { created_at = 2019-09-23T21:21:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.9.2" }
+"3.10.0" = { created_at = 2019-10-03T01:20:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.10.0" }
+"3.10.1" = { created_at = 2019-10-29T18:30:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.10.1" }
+"3.11.0-rc1" = { created_at = 2019-11-20T18:57:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.0-rc1", prerelease = true }
+"3.11.0-rc2" = { created_at = 2019-11-22T23:51:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.0-rc2", prerelease = true }
+"3.11.0" = { created_at = 2019-11-26T01:27:07.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.0" }
+"3.11.1" = { created_at = 2019-12-03T01:52:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.1" }
+"3.11.2" = { created_at = 2019-12-13T19:22:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.2" }
+"3.11.3" = { created_at = 2020-02-02T22:26:31.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.3" }
+"3.11.4" = { created_at = 2020-02-14T20:19:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.11.4" }
+"3.12.0-rc1" = { created_at = 2020-05-04T17:45:37.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.0-rc1", prerelease = true }
+"3.12.0-rc2" = { created_at = 2020-05-12T22:30:22.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.0-rc2", prerelease = true }
+"3.12.0" = { created_at = 2020-05-15T23:13:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.0" }
+"3.12.1" = { created_at = 2020-05-20T22:32:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.1" }
+"3.12.2" = { created_at = 2020-05-26T23:36:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.2" }
+"3.12.3" = { created_at = 2020-06-03T01:17:07.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.3" }
+"3.12.4" = { created_at = 2020-07-29T00:03:07.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.12.4" }
+"3.13.0-rc3" = { created_at = 2020-08-13T18:17:17.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.13.0-rc3", prerelease = true }
+"3.13.0" = { created_at = 2020-08-15T00:40:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.13.0" }
+"3.14.0-rc1" = { created_at = 2020-11-06T00:31:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0-rc1", prerelease = true }
+"3.14.0-rc2" = { created_at = 2020-11-11T04:45:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0-rc2", prerelease = true }
+"3.14.0-rc3" = { created_at = 2020-11-12T22:43:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0-rc3", prerelease = true }
+"3.14.0" = { created_at = 2020-11-13T23:48:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.14.0" }
+"3.15.0-rc1" = { created_at = 2021-02-10T19:17:31.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.0-rc1", prerelease = true }
+"3.15.0-rc2" = { created_at = 2021-02-17T21:35:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.0-rc2", prerelease = true }
+"3.15.0" = { created_at = 2021-02-18T21:30:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.0" }
+"3.15.1" = { created_at = 2021-02-20T01:13:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.1" }
+"3.15.2" = { created_at = 2021-02-23T23:03:22.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.2" }
+"3.15.3" = { created_at = 2021-02-25T23:18:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.3" }
+"3.15.4" = { created_at = 2021-03-03T21:50:32.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.4" }
+"3.15.5" = { created_at = 2021-03-05T01:15:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.5" }
+"3.15.6" = { created_at = 2021-03-11T19:57:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.6" }
+"3.15.7" = { created_at = 2021-04-02T20:53:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.7" }
+"3.16.0-rc1" = { created_at = 2021-04-06T23:12:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.0-rc1", prerelease = true }
+"3.15.8" = { created_at = 2021-04-08T16:52:17.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.15.8" }
+"3.16.0-rc2" = { created_at = 2021-05-05T22:22:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.0-rc2", prerelease = true }
+"3.16.0" = { created_at = 2021-05-07T00:13:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.0" }
+"3.17.0-rc1" = { created_at = 2021-05-07T20:40:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.0-rc1", prerelease = true }
+"3.17.0-rc2" = { created_at = 2021-05-11T00:12:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.0-rc2", prerelease = true }
+"3.17.0" = { created_at = 2021-05-13T01:10:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.0" }
+"3.17.1" = { created_at = 2021-05-24T17:24:00.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.1" }
+"3.17.2" = { created_at = 2021-06-02T21:20:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.2" }
+"3.17.3" = { created_at = 2021-06-08T14:24:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.17.3" }
+"3.18.0-rc1" = { created_at = 2021-08-19T22:26:54.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0-rc1", prerelease = true }
+"3.18.0-rc2" = { created_at = 2021-09-01T17:07:23.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0-rc2", prerelease = true }
+"3.18.0" = { created_at = 2021-09-15T17:08:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.0" }
+"3.18.1" = { created_at = 2021-10-05T18:46:23.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.1" }
+"3.19.0-rc1" = { created_at = 2021-10-16T20:35:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.0-rc1", prerelease = true }
+"3.19.0-rc2" = { created_at = 2021-10-19T16:08:32.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.0-rc2", prerelease = true }
+"3.19.0" = { created_at = 2021-10-20T20:47:18.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.0" }
+"3.19.1" = { created_at = 2021-10-29T00:04:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.1" }
+"3.16.1" = { created_at = 2022-01-05T21:59:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.1" }
+"3.18.2" = { created_at = 2022-01-05T22:00:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.2" }
+"3.19.2" = { created_at = 2022-01-05T22:00:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.2" }
+"3.19.3" = { created_at = 2022-01-11T17:17:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.3" }
+"3.19.4" = { created_at = 2022-01-28T16:55:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.4" }
+"3.20.0-rc1" = { created_at = 2022-03-04T20:02:23.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.0-rc1", prerelease = true }
+"3.20.0-rc2" = { created_at = 2022-03-17T15:59:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.0-rc2", prerelease = true }
+"3.20.0" = { created_at = 2022-03-25T16:08:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.0" }
+"3.20.1-rc1" = { created_at = 2022-04-06T18:23:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.1-rc1", prerelease = true }
+"3.20.1" = { created_at = 2022-04-22T02:27:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.1" }
+"21.0-rc1" = { created_at = 2022-05-11T21:43:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.0-rc1", prerelease = true }
+"21.0-rc2" = { created_at = 2022-05-19T23:13:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.0-rc2", prerelease = true }
+"21.0" = { created_at = 2022-05-26T00:01:18.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.0" }
+"21.1" = { created_at = 2022-05-27T22:18:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.1" }
+"21.2" = { created_at = 2022-06-24T18:00:09.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.2" }
+"21.3" = { created_at = 2022-07-20T23:12:46.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.3" }
+"21.4" = { created_at = 2022-07-25T23:09:37.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.4" }
+"21.5" = { created_at = 2022-08-09T19:53:44.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.5" }
+"3.18.3" = { created_at = 2022-09-14T21:02:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.18.3" }
+"3.19.5" = { created_at = 2022-09-14T21:36:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.5" }
+"3.20.2" = { created_at = 2022-09-14T18:05:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.2" }
+"21.6" = { created_at = 2022-09-14T21:37:03.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.6" }
+"3.16.3" = { created_at = 2022-09-29T22:17:28.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.16.3" }
+"3.19.6" = { created_at = 2022-09-29T20:46:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.19.6" }
+"3.20.3" = { created_at = 2022-09-29T21:22:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v3.20.3" }
+"21.7" = { created_at = 2022-09-29T22:22:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.7" }
+"21.8" = { created_at = 2022-10-18T18:18:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.8" }
+"21.9" = { created_at = 2022-10-26T20:28:55.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.9" }
+"21.10" = { created_at = 2022-11-30T19:15:02.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.10" }
+"21.11" = { created_at = 2022-12-08T06:34:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.11" }
+"21.12" = { created_at = 2022-12-14T14:45:50.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v21.12" }
+"22.0-rc1" = { created_at = 2023-01-31T18:24:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0-rc1", prerelease = true }
+"22.0-rc2" = { created_at = 2023-02-02T21:18:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0-rc2", prerelease = true }
+"22.0-rc3" = { created_at = 2023-02-10T20:17:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0-rc3", prerelease = true }
+"22.0" = { created_at = 2023-02-16T18:17:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.0" }
+"22.1" = { created_at = 2023-03-07T22:31:27.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.1" }
+"22.2" = { created_at = 2023-03-10T18:35:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.2" }
+"22.3" = { created_at = 2023-04-12T23:47:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.3" }
+"23.0-rc1" = { created_at = 2023-04-26T23:16:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0-rc1", prerelease = true }
+"23.0-rc2" = { created_at = 2023-04-28T18:59:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0-rc2", prerelease = true }
+"22.4" = { created_at = 2023-05-04T20:35:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.4" }
+"23.0-rc3" = { created_at = 2023-05-05T17:20:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0-rc3", prerelease = true }
+"23.0" = { created_at = 2023-05-08T18:31:51.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.0" }
+"22.5" = { created_at = 2023-05-10T03:56:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v22.5" }
+"23.1" = { created_at = 2023-05-17T17:28:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.1" }
+"23.2" = { created_at = 2023-05-26T16:43:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.2" }
+"23.3" = { created_at = 2023-06-14T19:22:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.3" }
+"23.4" = { created_at = 2023-07-06T21:25:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v23.4" }
+"24.0-rc1" = { created_at = 2023-07-11T23:41:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0-rc1", prerelease = true }
+"24.0-rc2" = { created_at = 2023-07-18T20:50:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0-rc2", prerelease = true }
+"24.0-rc3" = { created_at = 2023-08-01T18:45:35.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0-rc3", prerelease = true }
+"24.0" = { created_at = 2023-08-08T22:15:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.0" }
+"24.1" = { created_at = 2023-08-18T19:55:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.1" }
+"24.2" = { created_at = 2023-08-25T21:24:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.2" }
+"24.3" = { created_at = 2023-09-07T18:26:57.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.3" }
+"24.4" = { created_at = 2023-10-04T16:55:21.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v24.4" }
+"25.0-rc1" = { created_at = 2023-10-16T21:40:25.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.0-rc1", prerelease = true }
+"25.0-rc2" = { created_at = 2023-10-18T19:13:56.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.0-rc2", prerelease = true }
+"25.0" = { created_at = 2023-11-01T22:50:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.0" }
+"25.1" = { created_at = 2023-11-15T22:34:48.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.1" }
+"25.2" = { created_at = 2024-01-09T23:52:55.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.2" }
+"26.0-rc1" = { created_at = 2024-01-25T18:55:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0-rc1", prerelease = true }
+"26.0-rc2" = { created_at = 2024-02-06T19:04:48.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0-rc2", prerelease = true }
+"25.3" = { created_at = 2024-02-15T23:20:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.3" }
+"26.0-rc3" = { created_at = 2024-02-28T23:49:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0-rc3", prerelease = true }
+"26.0" = { created_at = 2024-03-13T17:09:52.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.0" }
+"26.1" = { created_at = 2024-03-27T20:28:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v26.1" }
+"27.0-rc1" = { created_at = 2024-04-18T18:31:17.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0-rc1", prerelease = true }
+"27.0-rc2" = { created_at = 2024-05-08T22:58:19.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0-rc2", prerelease = true }
+"27.0-rc3" = { created_at = 2024-05-14T18:44:22.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0-rc3", prerelease = true }
+"27.0" = { created_at = 2024-05-23T14:41:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.0" }
+"27.1" = { created_at = 2024-06-05T18:58:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.1" }
+"27.2" = { created_at = 2024-06-25T19:57:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.2" }
+"28.0-rc1" = { created_at = 2024-07-11T23:47:41.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0-rc1", prerelease = true }
+"25.4" = { created_at = 2024-07-24T18:41:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.4" }
+"27.3" = { created_at = 2024-07-31T16:09:36.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.3" }
+"28.0-rc2" = { created_at = 2024-08-08T20:17:23.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0-rc2", prerelease = true }
+"28.0-rc3" = { created_at = 2024-08-22T18:05:04.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0-rc3", prerelease = true }
+"27.4" = { created_at = 2024-08-27T20:57:27.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.4" }
+"28.0" = { created_at = 2024-08-28T19:53:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.0" }
+"28.1" = { created_at = 2024-09-11T17:21:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.1" }
+"25.5" = { created_at = 2024-09-18T22:07:00.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.5" }
+"27.5" = { created_at = 2024-09-18T22:38:20.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v27.5" }
+"28.2" = { created_at = 2024-09-18T21:10:42.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.2" }
+"29.0-rc1" = { created_at = 2024-09-30T22:55:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0-rc1", prerelease = true }
+"28.3" = { created_at = 2024-10-22T23:36:33.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v28.3" }
+"29.0-rc2" = { created_at = 2024-10-23T20:40:21.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0-rc2", prerelease = true }
+"29.0-rc3" = { created_at = 2024-11-18T22:27:43.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0-rc3", prerelease = true }
+"29.0" = { created_at = 2024-11-27T18:47:15.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.0" }
+"29.1" = { created_at = 2024-12-04T16:42:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.1" }
+"29.2" = { created_at = 2024-12-18T14:54:08.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.2" }
+"29.3" = { created_at = 2025-01-08T21:06:48.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.3" }
+"25.6" = { created_at = 2025-01-24T20:21:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.6" }
+"30.0-rc1" = { created_at = 2025-02-04T22:59:11.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc1", prerelease = true }
+"30.0-rc2" = { created_at = 2025-02-27T01:44:24.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc2", prerelease = true }
+"30.0" = { created_at = 2025-03-04T23:42:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.0" }
+"30.1" = { created_at = 2025-03-13T21:17:38.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.1" }
+"29.4" = { created_at = 2025-03-19T21:36:45.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.4" }
+"30.2" = { created_at = 2025-03-26T18:45:13.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v30.2" }
+"31.0-rc1" = { created_at = 2025-04-18T16:16:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.0-rc1", prerelease = true }
+"25.7" = { created_at = 2025-04-23T23:02:05.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.7" }
+"31.0-rc2" = { created_at = 2025-04-30T18:12:41.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.0-rc2", prerelease = true }
+"31.0" = { created_at = 2025-05-14T17:32:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.0" }
+"25.8" = { created_at = 2025-05-27T21:49:12.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.8" }
+"29.5" = { created_at = 2025-05-28T21:39:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.5" }
+"31.1" = { created_at = 2025-05-28T18:57:58.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v31.1" }
+"32.0-rc1" = { created_at = 2025-07-22T01:11:21.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.0-rc1", prerelease = true }
+"32.0-rc2" = { created_at = 2025-08-05T19:04:06.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.0-rc2", prerelease = true }
+"32.0" = { created_at = 2025-08-14T20:35:18.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.0" }
+"32.1" = { created_at = 2025-09-11T20:40:14.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v32.1" }
+"33.0-rc1" = { created_at = 2025-10-01T15:47:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.0-rc1", prerelease = true }
+"33.0-rc2" = { created_at = 2025-10-09T20:20:50.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.0-rc2", prerelease = true }
+"33.0" = { created_at = 2025-10-15T20:16:32.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.0" }
+"33.1" = { created_at = 2025-11-12T22:00:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.1" }
+"33.2" = { created_at = 2025-12-05T23:01:59.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.2" }
+"33.3" = { created_at = 2026-01-09T22:10:53.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.3" }
+"33.4" = { created_at = 2026-01-12T18:02:23.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.4" }
+"34.0-rc1.1" = { created_at = 2026-01-22T21:33:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.0-rc1.1", prerelease = true }
+"33.5" = { created_at = 2026-01-29T21:04:10.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.5" }
+"29.6" = { created_at = 2026-02-04T22:00:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v29.6" }
+"34.0-rc2" = { created_at = 2026-02-06T18:41:40.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.0-rc2", prerelease = true }
+"34.0" = { created_at = 2026-02-25T21:52:29.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.0" }
+"33.6" = { created_at = 2026-03-18T17:37:01.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v33.6" }
+"34.1" = { created_at = 2026-03-19T22:21:30.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.1" }
+"25.9" = { created_at = 2026-03-25T22:25:49.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v25.9" }
+"35.0-rc1" = { created_at = 2026-04-20T20:25:21.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.0-rc1", prerelease = true }
+"35.0-rc2" = { created_at = 2026-05-07T19:57:26.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.0-rc2", prerelease = true }
+"34.2" = { created_at = 2026-05-20T19:38:17.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v34.2" }
+"35.0" = { created_at = 2026-05-19T22:23:36.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.0" }
+"35.1" = { created_at = 2026-06-11T21:28:47.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v35.1" }
+"36.0-rc1" = { created_at = 2026-07-09T21:01:04.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v36.0-rc1", prerelease = true }
+"36.0-rc2" = { created_at = 2026-08-03T20:02:16.000Z, release_url = "https://github.com/protocolbuffers/protobuf/releases/tag/v36.0-rc2", prerelease = true }

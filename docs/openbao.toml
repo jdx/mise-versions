@@ -1,31 +1,31 @@
 [versions]
-"2.0.0-alpha20240329" = { created_at = 2024-04-01T13:19:40.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.0-alpha20240329", prerelease = true }
-"2.0.0-beta20240618" = { created_at = 2024-06-18T13:52:29.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.0-beta20240618", prerelease = true }
-"2.0.0" = { created_at = 2024-07-17T21:57:30.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.0" }
-"2.0.1" = { created_at = 2024-09-03T19:19:36.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.1" }
-"2.0.2" = { created_at = 2024-10-05T19:23:10.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.2" }
-"2.1.0-beta20241114.3" = { created_at = 2024-11-14T15:27:39.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.1.0-beta20241114.3", prerelease = true }
-"2.0.3" = { created_at = 2024-11-15T16:51:52.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.3" }
-"2.1.0" = { created_at = 2024-11-29T15:31:46.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.1.0" }
-"2.1.1" = { created_at = 2025-01-21T21:22:32.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.1.1" }
-"2.2.0-beta20250213" = { created_at = 2025-02-13T21:30:33.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.0-beta20250213" }
-"2.2.0" = { created_at = 2025-03-05T12:55:29.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.0" }
-"2.2.1" = { created_at = 2025-04-22T20:03:26.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.1" }
-"2.3.0-beta20250528" = { created_at = 2025-05-28T20:49:05.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.3.0-beta20250528", prerelease = true }
-"2.2.2" = { created_at = 2025-05-29T19:32:27.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.2" }
-"2.3.1" = { created_at = 2025-06-25T19:11:43.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.3.1" }
-"2.3.2" = { created_at = 2025-08-08T03:46:24.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.3.2" }
-"2.4.0" = { created_at = 2025-08-28T20:23:15.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.0" }
-"2.4.1" = { created_at = 2025-09-11T20:13:29.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.1" }
-"2.4.3" = { created_at = 2025-10-22T20:10:05.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.3" }
-"2.4.4" = { created_at = 2025-11-24T19:37:04.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.4" }
-"2.5.0-beta20251125" = { created_at = 2025-11-25T19:10:31.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.0-beta20251125", prerelease = true }
-"2.5.0" = { created_at = 2026-02-04T15:57:17.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.0" }
-"2.5.1" = { created_at = 2026-02-23T17:02:34.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.1" }
-"2.5.2" = { created_at = 2026-03-25T16:02:36.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.2" }
-"2.5.3" = { created_at = 2026-04-20T19:13:32.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.3" }
-"2.5.4" = { created_at = 2026-05-20T15:53:48.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.4" }
-"2.5.5" = { created_at = 2026-06-17T11:03:31.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.5" }
-"2.6.0-beta20260622" = { created_at = 2026-06-22T19:33:07.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.6.0-beta20260622", prerelease = true }
-"2.6.0" = { created_at = 2026-07-14T16:34:01.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.6.0" }
-"2.6.1" = { created_at = 2026-07-22T14:17:19.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.6.1" }
+"2.0.0-alpha20240329" = { created_at = 2024-04-01T14:51:27.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.0-alpha20240329", prerelease = true }
+"2.0.0-beta20240618" = { created_at = 2024-06-18T14:37:41.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.0-beta20240618", prerelease = true }
+"2.0.0" = { created_at = 2024-07-17T22:08:30.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2024-09-03T19:59:54.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2024-10-05T19:28:58.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.2" }
+"2.1.0-beta20241114.3" = { created_at = 2024-11-14T15:47:30.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.1.0-beta20241114.3", prerelease = true }
+"2.0.3" = { created_at = 2024-11-15T16:56:53.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.0.3" }
+"2.1.0" = { created_at = 2024-11-29T15:37:48.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.1.0" }
+"2.1.1" = { created_at = 2025-01-21T21:28:27.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.1.1" }
+"2.2.0-beta20250213" = { created_at = 2025-02-13T21:43:35.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.0-beta20250213" }
+"2.2.0" = { created_at = 2025-03-05T13:10:23.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.0" }
+"2.2.1" = { created_at = 2025-04-22T20:39:12.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.1" }
+"2.3.0-beta20250528" = { created_at = 2025-05-28T21:56:16.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.3.0-beta20250528", prerelease = true }
+"2.2.2" = { created_at = 2025-05-29T19:43:18.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.2.2" }
+"2.3.1" = { created_at = 2025-06-25T19:26:24.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.3.1" }
+"2.3.2" = { created_at = 2025-08-08T04:11:06.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.3.2" }
+"2.4.0" = { created_at = 2025-08-28T20:39:37.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.0" }
+"2.4.1" = { created_at = 2025-09-11T20:32:45.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.1" }
+"2.4.3" = { created_at = 2025-10-22T20:27:25.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.3" }
+"2.4.4" = { created_at = 2025-11-24T20:01:19.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.4.4" }
+"2.5.0-beta20251125" = { created_at = 2025-11-25T19:36:21.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.0-beta20251125", prerelease = true }
+"2.5.0" = { created_at = 2026-02-04T16:26:04.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2026-02-23T17:34:23.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.1" }
+"2.5.2" = { created_at = 2026-03-25T16:23:32.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.2" }
+"2.5.3" = { created_at = 2026-04-20T19:35:06.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.3" }
+"2.5.4" = { created_at = 2026-05-20T16:15:07.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.4" }
+"2.5.5" = { created_at = 2026-06-17T11:27:10.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.5.5" }
+"2.6.0-beta20260622" = { created_at = 2026-06-22T19:58:29.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.6.0-beta20260622", prerelease = true }
+"2.6.0" = { created_at = 2026-07-14T17:06:32.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2026-07-22T14:37:36.000Z, release_url = "https://github.com/openbao/openbao/releases/tag/v2.6.1" }

@@ -1,45 +1,45 @@
 [versions]
-"2.0.0" = { created_at = 2020-03-07T21:39:44.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.0", prerelease = true }
-"2.0.2" = { created_at = 2020-03-10T17:15:08.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.2", prerelease = true }
-"2.0.3" = { created_at = 2020-03-11T14:32:58.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.3", prerelease = true }
-"2.0.4" = { created_at = 2020-03-11T23:26:42.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.4", prerelease = true }
-"2.0.5" = { created_at = 2020-03-12T16:06:44.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.5", prerelease = true }
-"2.0.6" = { created_at = 2020-03-12T17:57:18.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.6", prerelease = true }
-"2.0.8" = { created_at = 2020-03-12T22:09:36.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.8", prerelease = true }
-"2.0.11" = { created_at = 2020-03-13T12:17:42.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.11", prerelease = true }
-"2.1.0" = { created_at = 2020-03-15T17:06:59.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.1.0", prerelease = true }
-"2.1.1" = { created_at = 2020-03-16T01:13:33.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.1.1", prerelease = true }
-"2.1.3" = { created_at = 2020-03-16T13:35:17.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.1.3" }
-"2.2.0" = { created_at = 2020-03-19T17:11:57.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.2.0", prerelease = true }
-"2.3.0" = { created_at = 2020-03-20T01:03:05.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.3.0", prerelease = true }
-"2.3.1" = { created_at = 2020-03-22T13:25:35.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.3.1" }
-"2.4.0" = { created_at = 2020-03-24T13:54:05.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.4.0", prerelease = true }
-"2.4.1" = { created_at = 2020-03-24T14:42:32.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.4.1" }
-"2.5.0" = { created_at = 2020-04-11T16:25:38.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.5.0" }
-"2.5.1" = { created_at = 2020-04-13T17:29:38.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.5.1" }
-"2.6.0" = { created_at = 2020-04-19T19:03:18.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.6.0" }
-"2.6.1" = { created_at = 2020-04-26T01:27:49.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.6.1" }
-"2.7.0" = { created_at = 2020-06-02T20:00:20.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.7.0" }
-"2.7.1" = { created_at = 2020-07-10T13:11:29.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.7.1" }
-"2.7.2" = { created_at = 2020-08-13T18:39:58.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.7.2" }
-"2.8.0" = { created_at = 2020-08-14T16:53:56.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.8.0" }
-"2.9.0" = { created_at = 2020-08-23T23:09:42.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.9.0" }
-"2.10.0" = { created_at = 2020-08-29T21:59:18.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.10.0" }
-"2.11.0" = { created_at = 2020-09-11T15:00:22.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.11.0" }
-"2.12.0" = { created_at = 2020-09-15T20:12:45.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.12.0" }
-"2.12.1" = { created_at = 2020-10-08T20:47:43.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.12.1" }
-"2.13.0" = { created_at = 2020-11-27T13:18:48.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.13.0" }
-"2.13.1" = { created_at = 2020-12-22T15:07:21.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.13.1" }
-"2.14.0" = { created_at = 2021-01-18T16:04:28.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.14.0" }
-"2.15.0" = { created_at = 2021-04-09T14:56:20.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.15.0" }
-"2.15.1" = { created_at = 2021-04-11T15:04:28.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.15.1" }
-"2.16.0" = { created_at = 2021-04-19T13:52:04.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.16.0" }
-"2.17.0" = { created_at = 2021-08-09T13:51:22.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.17.0" }
-"2.18.0" = { created_at = 2021-11-16T15:51:15.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.18.0" }
-"2.19.0" = { created_at = 2022-01-18T12:01:43.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.19.0" }
-"2.20.0" = { created_at = 2022-05-15T15:22:48.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.20.0" }
-"2.20.1" = { created_at = 2022-05-18T12:02:35.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.20.1" }
-"2.22.1" = { created_at = 2023-04-09T14:21:36.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.22.1" }
-"2.23.0" = { created_at = 2023-12-10T09:37:30.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.23.0" }
-"2.24.0" = { created_at = 2025-01-29T23:18:21.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.24.0" }
-"2.25.0-beta1" = { created_at = 2025-04-09T18:16:14.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.25.0-beta1", prerelease = true }
+"2.0.0" = { created_at = 2020-03-15T16:49:47.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.0", prerelease = true }
+"2.0.2" = { created_at = 2020-03-10T17:17:58.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.2", prerelease = true }
+"2.0.3" = { created_at = 2020-03-11T14:35:27.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.3", prerelease = true }
+"2.0.4" = { created_at = 2020-03-11T23:34:02.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.4", prerelease = true }
+"2.0.5" = { created_at = 2020-03-12T16:09:38.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.5", prerelease = true }
+"2.0.6" = { created_at = 2020-03-12T18:01:02.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.6", prerelease = true }
+"2.0.8" = { created_at = 2020-03-12T22:11:37.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.8", prerelease = true }
+"2.0.11" = { created_at = 2020-03-13T12:20:38.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.0.11", prerelease = true }
+"2.1.0" = { created_at = 2020-03-15T17:10:48.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.1.0", prerelease = true }
+"2.1.1" = { created_at = 2020-03-16T01:17:08.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.1.1", prerelease = true }
+"2.1.3" = { created_at = 2020-03-16T13:40:31.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.1.3" }
+"2.2.0" = { created_at = 2020-03-19T17:16:32.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.2.0", prerelease = true }
+"2.3.0" = { created_at = 2020-03-20T01:07:38.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.3.0", prerelease = true }
+"2.3.1" = { created_at = 2020-03-22T13:31:16.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.3.1" }
+"2.4.0" = { created_at = 2020-03-24T13:55:41.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.4.0", prerelease = true }
+"2.4.1" = { created_at = 2020-03-24T14:43:27.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.4.1" }
+"2.5.0" = { created_at = 2020-04-11T16:28:44.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.5.0" }
+"2.5.1" = { created_at = 2020-04-13T17:31:30.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.5.1" }
+"2.6.0" = { created_at = 2020-04-19T19:03:49.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.6.0" }
+"2.6.1" = { created_at = 2020-04-26T01:28:16.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.6.1" }
+"2.7.0" = { created_at = 2020-06-02T20:00:47.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.7.0" }
+"2.7.1" = { created_at = 2020-07-10T13:11:57.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.7.1" }
+"2.7.2" = { created_at = 2020-08-13T18:40:23.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.7.2" }
+"2.8.0" = { created_at = 2020-08-14T17:07:42.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.8.0" }
+"2.9.0" = { created_at = 2020-08-23T23:10:16.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.9.0" }
+"2.10.0" = { created_at = 2020-08-29T21:59:50.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.10.0" }
+"2.11.0" = { created_at = 2020-09-11T15:00:50.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.11.0" }
+"2.12.0" = { created_at = 2020-09-15T20:13:26.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.12.0" }
+"2.12.1" = { created_at = 2020-10-08T20:49:31.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.12.1" }
+"2.13.0" = { created_at = 2020-11-27T13:19:18.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.13.0" }
+"2.13.1" = { created_at = 2020-12-22T15:07:48.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.13.1" }
+"2.14.0" = { created_at = 2021-01-18T16:04:56.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.14.0" }
+"2.15.0" = { created_at = 2021-04-09T14:56:44.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.15.0" }
+"2.15.1" = { created_at = 2021-04-11T15:04:53.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.15.1" }
+"2.16.0" = { created_at = 2021-04-19T13:55:34.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.16.0" }
+"2.17.0" = { created_at = 2021-08-09T13:54:21.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.17.0" }
+"2.18.0" = { created_at = 2021-11-16T15:51:47.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.18.0" }
+"2.19.0" = { created_at = 2022-01-18T12:05:05.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.19.0" }
+"2.20.0" = { created_at = 2022-05-15T15:52:20.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.20.0" }
+"2.20.1" = { created_at = 2022-05-18T12:09:08.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.20.1" }
+"2.22.1" = { created_at = 2023-04-09T14:22:27.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.22.1" }
+"2.23.0" = { created_at = 2023-12-10T09:46:00.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.23.0" }
+"2.24.0" = { created_at = 2025-01-29T23:18:52.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.24.0" }
+"2.25.0-beta1" = { created_at = 2025-04-09T18:30:30.000Z, release_url = "https://github.com/denisidoro/navi/releases/tag/v2.25.0-beta1", prerelease = true }

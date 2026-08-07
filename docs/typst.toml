@@ -1,31 +1,31 @@
 [versions]
-"23-03-21" = { created_at = 2023-03-21T17:20:15.000Z, release_url = "https://github.com/typst/typst/releases/tag/v23-03-21", prerelease = true }
-"23-03-21-2" = { created_at = 2023-03-21T22:18:56.000Z, release_url = "https://github.com/typst/typst/releases/tag/v23-03-21-2", prerelease = true }
-"23-03-28" = { created_at = 2023-03-28T07:42:23.000Z, release_url = "https://github.com/typst/typst/releases/tag/v23-03-28", prerelease = true }
-"0.1.0" = { created_at = 2023-04-04T23:41:15.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.1.0" }
-"0.2.0" = { created_at = 2023-04-11T20:34:25.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.2.0" }
-"0.3.0" = { created_at = 2023-04-26T13:54:05.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.3.0" }
-"0.4.0" = { created_at = 2023-05-20T20:05:55.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.4.0" }
-"0.5.0" = { created_at = 2023-06-09T14:24:34.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.5.0" }
-"0.6.0" = { created_at = 2023-06-30T14:21:57.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.6.0" }
-"0.7.0" = { created_at = 2023-08-07T15:19:41.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.7.0" }
-"0.8.0" = { created_at = 2023-09-13T14:57:27.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.8.0" }
-"0.9.0" = { created_at = 2023-10-31T00:36:21.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.9.0" }
-"0.10.0" = { created_at = 2023-12-04T14:09:47.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.10.0" }
-"0.11.0-rc1" = { created_at = 2024-03-09T17:04:24.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.11.0-rc1", prerelease = true }
-"0.11.0" = { created_at = 2024-03-15T15:03:45.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.11.0" }
-"0.11.1" = { created_at = 2024-05-17T13:49:14.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.11.1" }
-"0.12.0-rc1" = { created_at = 2024-10-03T19:54:15.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.12.0-rc1", prerelease = true }
-"0.12.0-rc2" = { created_at = 2024-10-15T14:02:18.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.12.0-rc2", prerelease = true }
-"0.12.0" = { created_at = 2024-10-18T14:36:55.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.12.0" }
-"0.13.0-rc1" = { created_at = 2025-02-05T14:49:19.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.13.0-rc1", prerelease = true }
-"0.13.0" = { created_at = 2025-02-19T10:13:25.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.13.0" }
-"0.13.1" = { created_at = 2025-03-07T10:13:08.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.13.1" }
-"0.14.0-rc.1" = { created_at = 2025-10-10T07:16:25.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.0-rc.1", prerelease = true }
-"0.14.0-rc.2" = { created_at = 2025-10-17T15:06:36.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.0-rc.2", prerelease = true }
-"0.14.0" = { created_at = 2025-10-24T08:58:25.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.0" }
-"0.14.1" = { created_at = 2025-12-03T14:18:11.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.1" }
-"0.14.2" = { created_at = 2025-12-12T10:30:32.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.2" }
-"0.15.0-rc.1" = { created_at = 2026-06-09T16:02:17.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.15.0-rc.1", prerelease = true }
-"0.15.0" = { created_at = 2026-06-15T09:26:46.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.15.0" }
-"0.15.1" = { created_at = 2026-07-17T08:15:23.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.15.1" }
+"23-03-21" = { created_at = 2023-03-21T17:23:21.000Z, release_url = "https://github.com/typst/typst/releases/tag/v23-03-21", prerelease = true }
+"23-03-21-2" = { created_at = 2023-03-21T22:21:52.000Z, release_url = "https://github.com/typst/typst/releases/tag/v23-03-21-2", prerelease = true }
+"23-03-28" = { created_at = 2023-03-28T07:46:54.000Z, release_url = "https://github.com/typst/typst/releases/tag/v23-03-28", prerelease = true }
+"0.1.0" = { created_at = 2023-04-04T23:46:28.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2023-04-11T20:39:55.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.2.0" }
+"0.3.0" = { created_at = 2023-04-26T14:20:47.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.3.0" }
+"0.4.0" = { created_at = 2023-05-20T20:40:20.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.4.0" }
+"0.5.0" = { created_at = 2023-06-09T14:55:29.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.5.0" }
+"0.6.0" = { created_at = 2023-06-30T15:04:25.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2023-08-07T16:20:37.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2023-09-13T15:45:00.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.8.0" }
+"0.9.0" = { created_at = 2023-10-31T01:32:16.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.9.0" }
+"0.10.0" = { created_at = 2023-12-04T15:51:31.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.10.0" }
+"0.11.0-rc1" = { created_at = 2024-03-09T18:29:10.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.11.0-rc1", prerelease = true }
+"0.11.0" = { created_at = 2024-03-15T18:05:50.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2024-05-17T15:33:15.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.11.1" }
+"0.12.0-rc1" = { created_at = 2024-10-03T21:52:10.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.12.0-rc1", prerelease = true }
+"0.12.0-rc2" = { created_at = 2024-10-15T14:28:05.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.12.0-rc2", prerelease = true }
+"0.12.0" = { created_at = 2024-10-18T21:41:48.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.12.0" }
+"0.13.0-rc1" = { created_at = 2025-02-05T17:31:03.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.13.0-rc1", prerelease = true }
+"0.13.0" = { created_at = 2025-02-19T16:25:41.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.13.0" }
+"0.13.1" = { created_at = 2025-03-07T12:50:41.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.13.1" }
+"0.14.0-rc.1" = { created_at = 2025-10-10T12:54:29.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.0-rc.1", prerelease = true }
+"0.14.0-rc.2" = { created_at = 2025-10-17T16:54:42.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.0-rc.2", prerelease = true }
+"0.14.0" = { created_at = 2025-10-24T12:27:35.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.0" }
+"0.14.1" = { created_at = 2025-12-03T17:10:21.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.1" }
+"0.14.2" = { created_at = 2025-12-12T17:49:37.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.14.2" }
+"0.15.0-rc.1" = { created_at = 2026-06-09T17:56:55.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.15.0-rc.1", prerelease = true }
+"0.15.0" = { created_at = 2026-06-15T17:07:58.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.15.0" }
+"0.15.1" = { created_at = 2026-07-17T11:12:06.000Z, release_url = "https://github.com/typst/typst/releases/tag/v0.15.1" }

@@ -1,83 +1,83 @@
 [versions]
-"4.0.0-beta.3" = { created_at = 2019-07-05T11:18:41.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.3" }
-"4.0.0-beta.4" = { created_at = 2019-07-05T15:29:38.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.4" }
-"4.0.0-beta.6" = { created_at = 2019-07-05T16:18:32.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.6" }
-"4.0.0-beta.7" = { created_at = 2019-07-08T10:40:06.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.7" }
-"4.0.0-beta.10" = { created_at = 2019-07-09T19:48:03.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.10" }
-"4.0.0-beta.8" = { created_at = 2019-07-09T10:02:53.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.8" }
-"4.0.0-beta.9" = { created_at = 2019-07-09T16:15:50.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.9" }
-"4.0.0" = { created_at = 2019-07-10T11:34:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0" }
-"4.0.1" = { created_at = 2019-07-16T14:29:12.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.1" }
-"4.0.2" = { created_at = 2019-07-31T17:50:56.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.2" }
-"4.0.3" = { created_at = 2019-08-26T17:32:46.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.3" }
-"4.1.0-beta1" = { created_at = 2019-08-27T21:29:35.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0-beta1", prerelease = true }
-"4.1.0-beta2" = { created_at = 2019-08-29T09:31:55.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0-beta2", prerelease = true }
-"4.1.0-beta3" = { created_at = 2019-08-31T09:18:47.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0-beta3", prerelease = true }
-"4.1.0" = { created_at = 2019-09-04T08:44:28.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0" }
-"4.1.1" = { created_at = 2019-09-05T11:01:44.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.1" }
-"4.2.0-beta1" = { created_at = 2019-09-18T01:02:57.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta1", prerelease = true }
-"4.2.0-beta2" = { created_at = 2019-09-20T17:50:35.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta2", prerelease = true }
-"4.2.0-beta3" = { created_at = 2019-09-24T22:53:58.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta3", prerelease = true }
-"4.2.0-beta4" = { created_at = 2019-09-26T15:20:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta4", prerelease = true }
-"4.2.0-beta5" = { created_at = 2019-10-07T21:12:27.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta5", prerelease = true }
-"4.2.0" = { created_at = 2019-10-08T11:32:35.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0" }
-"5.0.0-beta1" = { created_at = 2019-10-29T13:23:52.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta1", prerelease = true }
-"5.0.0-beta2" = { created_at = 2019-12-11T19:11:00.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta2", prerelease = true }
-"5.0.0-beta3" = { created_at = 2019-12-23T23:58:37.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta3", prerelease = true }
-"5.0.0-beta4" = { created_at = 2019-12-24T01:02:51.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta4", prerelease = true }
-"5.0.0" = { created_at = 2019-12-24T01:15:17.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0" }
-"5.1.0" = { created_at = 2020-02-26T17:53:35.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.1.0" }
-"5.2.0" = { created_at = 2020-03-18T08:51:29.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.2.0" }
-"5.3.0" = { created_at = 2020-04-02T12:52:01.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.3.0" }
-"5.4.0-beta1" = { created_at = 2020-04-20T11:51:19.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.4.0-beta1", prerelease = true }
-"5.4.0" = { created_at = 2020-05-27T11:36:44.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.4.0" }
-"5.5.0-beta1" = { created_at = 2020-06-01T11:54:52.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta1", prerelease = true }
-"5.5.0-beta2" = { created_at = 2020-06-03T22:06:32.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta2", prerelease = true }
-"5.5.0-beta3" = { created_at = 2020-06-08T14:39:19.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta3", prerelease = true }
-"5.5.0-beta4" = { created_at = 2020-06-18T23:34:18.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta4", prerelease = true }
-"5.5.0-beta5" = { created_at = 2020-06-18T23:42:21.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta5", prerelease = true }
-"5.5.0-beta6" = { created_at = 2020-06-24T13:33:12.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta6", prerelease = true }
-"5.5.0-beta7" = { created_at = 2020-06-30T08:11:18.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta7", prerelease = true }
-"5.5.0-beta8" = { created_at = 2020-07-10T10:34:41.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta8", prerelease = true }
-"5.5.0-beta9" = { created_at = 2020-07-23T21:25:03.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta9", prerelease = true }
-"5.5.0-beta10" = { created_at = 2020-08-19T13:48:26.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta10", prerelease = true }
-"5.5.0" = { created_at = 2020-08-25T16:40:47.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0" }
-"5.6.0" = { created_at = 2020-09-28T14:52:24.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.6.0" }
-"5.7.0" = { created_at = 2020-11-01T15:22:08.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.7.0" }
-"5.7.1" = { created_at = 2020-11-02T06:58:54.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.7.1" }
-"5.7.2" = { created_at = 2020-12-10T12:52:45.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.7.2" }
-"5.8.0" = { created_at = 2021-01-04T16:03:49.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.8.0" }
-"5.8.1" = { created_at = 2021-02-10T22:55:30.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.8.1" }
-"5.9.0" = { created_at = 2021-03-08T15:45:11.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.9.0" }
-"5.9.1" = { created_at = 2021-04-08T20:20:31.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.9.1" }
-"6.0.0-alpha1" = { created_at = 2021-05-05T23:26:57.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.0-alpha1", prerelease = true }
-"6.0.0-alpha2" = { created_at = 2021-05-06T16:09:25.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.0-alpha2", prerelease = true }
-"5.9.2" = { created_at = 2021-07-29T11:04:21.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.9.2" }
-"6.0.0" = { created_at = 2021-08-28T23:00:54.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.0" }
-"6.0.1" = { created_at = 2021-10-05T13:02:17.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.1" }
-"6.1.0" = { created_at = 2021-10-07T12:17:23.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.1.0" }
-"6.1.1" = { created_at = 2022-02-10T14:20:38.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.1.1" }
-"6.2.0" = { created_at = 2022-02-10T14:28:06.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.2.0" }
-"6.2.1" = { created_at = 2022-02-10T14:39:24.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.2.1" }
-"6.3.0" = { created_at = 2022-04-26T12:52:38.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.3.0" }
-"6.4.0" = { created_at = 2022-05-13T11:46:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.4.0" }
-"6.4.1" = { created_at = 2022-06-01T15:07:12.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.4.1" }
-"6.4.2" = { created_at = 2022-08-29T08:28:44.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.4.2" }
-"6.5.0" = { created_at = 2022-08-29T08:29:16.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.5.0" }
-"6.5.1" = { created_at = 2022-08-29T09:06:33.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.5.1" }
-"6.6.0" = { created_at = 2022-10-25T14:20:53.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.6.0" }
-"6.7.0" = { created_at = 2023-05-23T22:12:18.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.7.0" }
-"6.9.0" = { created_at = 2023-07-25T16:18:03.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.9.0" }
-"6.10.0" = { created_at = 2023-07-26T13:38:44.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.10.0" }
-"6.10.1" = { created_at = 2023-08-04T11:44:42.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.10.1" }
-"6.11.0" = { created_at = 2023-09-18T10:10:20.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.11.0" }
-"6.11.1" = { created_at = 2024-04-05T10:46:27.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.11.1" }
-"6.13.1" = { created_at = 2024-09-21T08:12:13.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.13.1" }
-"6.14.0" = { created_at = 2024-11-12T12:00:59.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.0" }
-"6.14.1" = { created_at = 2024-11-13T20:48:01.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.1" }
-"6.14.2" = { created_at = 2024-11-19T12:34:12.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.2" }
-"6.14.3" = { created_at = 2025-03-04T14:45:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.3" }
-"6.15.0" = { created_at = 2025-04-22T09:36:18.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.15.0" }
-"6.16.1" = { created_at = 2026-06-30T10:30:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.16.1" }
-"6.16.2" = { created_at = 2026-07-20T05:23:22.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.16.2" }
-"6.16.3" = { created_at = 2026-08-03T09:47:02.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.16.3" }
+"4.0.0-beta.3" = { created_at = 2019-07-05T11:23:29.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.3" }
+"4.0.0-beta.4" = { created_at = 2019-07-05T15:31:50.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.4" }
+"4.0.0-beta.6" = { created_at = 2019-07-05T16:23:28.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.6" }
+"4.0.0-beta.7" = { created_at = 2019-07-08T10:46:52.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.7" }
+"4.0.0-beta.10" = { created_at = 2019-07-09T19:50:02.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.10" }
+"4.0.0-beta.8" = { created_at = 2019-07-09T10:06:05.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.8" }
+"4.0.0-beta.9" = { created_at = 2019-07-09T16:16:41.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0-beta.9" }
+"4.0.0" = { created_at = 2019-07-10T11:37:59.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.0" }
+"4.0.1" = { created_at = 2019-07-16T14:31:44.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.1" }
+"4.0.2" = { created_at = 2019-07-31T17:53:08.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.2" }
+"4.0.3" = { created_at = 2019-08-26T17:36:46.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.0.3" }
+"4.1.0-beta1" = { created_at = 2019-08-27T21:31:49.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0-beta1", prerelease = true }
+"4.1.0-beta2" = { created_at = 2019-08-29T09:41:21.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0-beta2", prerelease = true }
+"4.1.0-beta3" = { created_at = 2019-08-31T09:25:17.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0-beta3", prerelease = true }
+"4.1.0" = { created_at = 2019-09-04T08:46:39.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.0" }
+"4.1.1" = { created_at = 2019-09-05T11:04:21.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.1.1" }
+"4.2.0-beta1" = { created_at = 2019-10-07T21:13:29.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta1", prerelease = true }
+"4.2.0-beta2" = { created_at = 2019-09-20T17:53:00.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta2", prerelease = true }
+"4.2.0-beta3" = { created_at = 2019-09-24T22:56:32.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta3", prerelease = true }
+"4.2.0-beta4" = { created_at = 2019-09-26T15:28:40.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta4", prerelease = true }
+"4.2.0-beta5" = { created_at = 2019-10-07T21:15:02.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0-beta5", prerelease = true }
+"4.2.0" = { created_at = 2019-10-08T11:35:38.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v4.2.0" }
+"5.0.0-beta1" = { created_at = 2019-10-29T13:30:28.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta1", prerelease = true }
+"5.0.0-beta2" = { created_at = 2019-12-11T19:19:18.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta2", prerelease = true }
+"5.0.0-beta3" = { created_at = 2019-12-24T00:05:19.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta3", prerelease = true }
+"5.0.0-beta4" = { created_at = 2019-12-24T01:05:44.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0-beta4", prerelease = true }
+"5.0.0" = { created_at = 2019-12-24T01:17:29.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.0.0" }
+"5.1.0" = { created_at = 2020-02-26T18:00:14.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.1.0" }
+"5.2.0" = { created_at = 2020-03-18T09:01:46.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.2.0" }
+"5.3.0" = { created_at = 2020-04-02T12:54:43.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.3.0" }
+"5.4.0-beta1" = { created_at = 2020-04-20T11:54:08.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.4.0-beta1", prerelease = true }
+"5.4.0" = { created_at = 2020-05-27T11:54:28.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.4.0" }
+"5.5.0-beta1" = { created_at = 2020-06-01T11:57:45.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta1", prerelease = true }
+"5.5.0-beta2" = { created_at = 2020-06-03T22:08:56.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta2", prerelease = true }
+"5.5.0-beta3" = { created_at = 2020-06-08T14:41:28.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta3", prerelease = true }
+"5.5.0-beta4" = { created_at = 2020-06-18T23:36:52.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta4", prerelease = true }
+"5.5.0-beta5" = { created_at = 2020-06-18T23:59:14.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta5", prerelease = true }
+"5.5.0-beta6" = { created_at = 2020-06-24T13:35:59.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta6", prerelease = true }
+"5.5.0-beta7" = { created_at = 2020-06-30T08:13:34.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta7", prerelease = true }
+"5.5.0-beta8" = { created_at = 2020-07-10T10:37:36.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta8", prerelease = true }
+"5.5.0-beta9" = { created_at = 2020-07-23T21:29:06.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta9", prerelease = true }
+"5.5.0-beta10" = { created_at = 2020-08-19T13:50:53.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0-beta10", prerelease = true }
+"5.5.0" = { created_at = 2020-08-25T16:47:52.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.5.0" }
+"5.6.0" = { created_at = 2020-09-28T14:55:03.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.6.0" }
+"5.7.0" = { created_at = 2020-11-01T15:34:39.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.7.0" }
+"5.7.1" = { created_at = 2020-11-02T07:05:42.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.7.1" }
+"5.7.2" = { created_at = 2020-12-10T12:55:14.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.7.2" }
+"5.8.0" = { created_at = 2021-01-04T16:07:16.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.8.0" }
+"5.8.1" = { created_at = 2021-02-10T23:06:46.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.8.1" }
+"5.9.0" = { created_at = 2021-03-08T15:47:40.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.9.0" }
+"5.9.1" = { created_at = 2021-04-08T20:22:28.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.9.1" }
+"6.0.0-alpha1" = { created_at = 2021-05-05T23:29:16.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.0-alpha1", prerelease = true }
+"6.0.0-alpha2" = { created_at = 2021-05-06T16:11:53.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.0-alpha2", prerelease = true }
+"5.9.2" = { created_at = 2021-07-29T11:06:45.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v5.9.2" }
+"6.0.0" = { created_at = 2021-08-28T23:02:24.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.0" }
+"6.0.1" = { created_at = 2021-10-05T13:05:35.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.0.1" }
+"6.1.0" = { created_at = 2021-10-07T12:20:29.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.1.0" }
+"6.1.1" = { created_at = 2022-02-10T14:24:31.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.1.1" }
+"6.2.0" = { created_at = 2022-02-10T14:35:06.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.2.0" }
+"6.2.1" = { created_at = 2022-02-10T14:43:15.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.2.1" }
+"6.3.0" = { created_at = 2022-04-26T12:56:56.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.3.0" }
+"6.4.0" = { created_at = 2022-05-13T11:51:07.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.4.0" }
+"6.4.1" = { created_at = 2022-06-01T15:11:41.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.4.1" }
+"6.4.2" = { created_at = 2022-08-29T08:32:40.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.4.2" }
+"6.5.0" = { created_at = 2022-08-29T08:42:30.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.5.0" }
+"6.5.1" = { created_at = 2022-08-29T09:18:30.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.5.1" }
+"6.6.0" = { created_at = 2022-10-25T14:25:49.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.6.0" }
+"6.7.0" = { created_at = 2023-05-23T22:12:27.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.7.0" }
+"6.9.0" = { created_at = 2023-07-25T16:22:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.9.0" }
+"6.10.0" = { created_at = 2023-07-26T13:43:51.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.10.0" }
+"6.10.1" = { created_at = 2023-08-04T11:50:08.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.10.1" }
+"6.11.0" = { created_at = 2023-09-18T10:15:43.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.11.0" }
+"6.11.1" = { created_at = 2024-04-05T10:49:09.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.11.1" }
+"6.13.1" = { created_at = 2024-09-21T08:32:24.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.13.1" }
+"6.14.0" = { created_at = 2024-11-12T12:05:25.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.0" }
+"6.14.1" = { created_at = 2024-11-13T20:58:32.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.1" }
+"6.14.2" = { created_at = 2024-11-20T12:12:43.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.2" }
+"6.14.3" = { created_at = 2025-03-04T14:50:12.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.14.3" }
+"6.15.0" = { created_at = 2025-04-22T09:42:11.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.15.0" }
+"6.16.1" = { created_at = 2026-06-30T10:33:10.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.16.1" }
+"6.16.2" = { created_at = 2026-07-20T05:28:59.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.16.2" }
+"6.16.3" = { created_at = 2026-08-03T09:51:48.000Z, release_url = "https://github.com/stoplightio/spectral/releases/tag/v6.16.3" }

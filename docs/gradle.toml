@@ -1,521 +1,521 @@
 [versions]
-"0.7.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.7.0" }
-"0.8.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.8.0" }
-"0.9.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0-RC1", prerelease = true }
-"0.9.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0-RC2", prerelease = true }
-"0.9.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0-RC3", prerelease = true }
-"0.9.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0" }
-"0.9.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.1" }
-"0.9.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.2" }
-"1.0.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M1", prerelease = true }
-"1.0.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M2", prerelease = true }
-"1.0.0-M3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M3", prerelease = true }
-"1.0.0-M4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M4", prerelease = true }
-"1.0.0-M5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M5", prerelease = true }
-"1.0.0-M6" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M6", prerelease = true }
-"1.0.0-M7" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M7", prerelease = true }
-"1.0.0-M8" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M8", prerelease = true }
-"1.0.0-M8a" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M8a", prerelease = true }
-"1.0.0-M9" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M9", prerelease = true }
-"1.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-RC1", prerelease = true }
-"1.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-RC2", prerelease = true }
-"1.0.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-RC3", prerelease = true }
-"1.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0" }
-"1.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.1.0-RC1", prerelease = true }
-"1.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.1.0-RC2", prerelease = true }
-"1.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.1.0" }
-"1.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.2.0-RC1", prerelease = true }
-"1.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.2.0" }
-"1.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.3.0-RC1", prerelease = true }
-"1.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.3.0-RC2", prerelease = true }
-"1.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.3.0" }
-"1.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0-RC1", prerelease = true }
-"1.4.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0-RC2", prerelease = true }
-"1.4.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0-RC3", prerelease = true }
-"1.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0" }
-"1.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0-RC1", prerelease = true }
-"1.5.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0-RC2", prerelease = true }
-"1.5.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0-RC3", prerelease = true }
-"1.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0" }
-"1.6.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.6.0-RC1", prerelease = true }
-"1.6.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.6.0" }
-"1.7.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.7.0-RC1", prerelease = true }
-"1.7.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.7.0-RC2", prerelease = true }
-"1.7.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.7.0" }
-"1.8.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.8.0-RC1", prerelease = true }
-"1.8.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.8.0-RC2", prerelease = true }
-"1.8.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.8.0" }
-"1.9.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC1", prerelease = true }
-"1.9.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC2", prerelease = true }
-"1.9.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC3", prerelease = true }
-"1.9.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC4", prerelease = true }
-"1.9.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0" }
-"1.10.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.10.0-RC1", prerelease = true }
-"1.10.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.10.0-RC2", prerelease = true }
-"1.10.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.10.0" }
-"1.11.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.11.0-RC1", prerelease = true }
-"1.11.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.11.0" }
-"1.12.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.12.0-RC1", prerelease = true }
-"1.12.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.12.0-RC2", prerelease = true }
-"1.12.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.12.0" }
-"2.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.0.0-RC1", prerelease = true }
-"2.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.0.0-RC2", prerelease = true }
-"2.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.0.0" }
-"2.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC1", prerelease = true }
-"2.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC2", prerelease = true }
-"2.1.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC3", prerelease = true }
-"2.1.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC4", prerelease = true }
-"2.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0" }
-"2.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.0-RC1", prerelease = true }
-"2.2.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.0-RC2", prerelease = true }
-"2.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.0" }
-"2.2.1-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.1-RC1", prerelease = true }
-"2.2.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.1" }
-"2.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC1", prerelease = true }
-"2.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC2", prerelease = true }
-"2.3.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC3", prerelease = true }
-"2.3.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC4", prerelease = true }
-"2.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0" }
-"2.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.4.0-RC1", prerelease = true }
-"2.4.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.4.0-RC2", prerelease = true }
-"2.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.4.0" }
-"2.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.5.0-RC1", prerelease = true }
-"2.5.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.5.0-RC2", prerelease = true }
-"2.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.5.0" }
-"2.6.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.6.0-RC1", prerelease = true }
-"2.6.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.6.0-RC2", prerelease = true }
-"2.6.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.6.0" }
-"2.7.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.7.0-RC1", prerelease = true }
-"2.7.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.7.0-RC2", prerelease = true }
-"2.7.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.7.0" }
-"2.8.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.8.0-RC1", prerelease = true }
-"2.8.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.8.0-RC2", prerelease = true }
-"2.8.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.8.0" }
-"2.9.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.9.0-RC1", prerelease = true }
-"2.9.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.9.0" }
-"2.10.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.10.0-RC1", prerelease = true }
-"2.10.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.10.0-RC2", prerelease = true }
-"2.10.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.10.0" }
-"2.11.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0-RC1", prerelease = true }
-"2.11.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0-RC2", prerelease = true }
-"2.11.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0-RC3", prerelease = true }
-"2.11.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0" }
-"2.12.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.12.0-RC1", prerelease = true }
-"2.12.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.12.0" }
-"2.13.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.13.0-RC1", prerelease = true }
-"2.13.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.13.0-RC2", prerelease = true }
-"2.13.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.13.0" }
-"2.14.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC1", prerelease = true }
-"2.14.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC2", prerelease = true }
-"2.14.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC3", prerelease = true }
-"2.14.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC4", prerelease = true }
-"2.14.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC5", prerelease = true }
-"2.14.0-RC6" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC6", prerelease = true }
-"2.14.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0" }
-"2.14.1-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.1-RC1", prerelease = true }
-"2.14.1-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.1-RC2", prerelease = true }
-"2.14.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.1" }
-"3.0.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-M1", prerelease = true }
-"3.0.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-M2", prerelease = true }
-"3.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-RC1", prerelease = true }
-"3.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-RC2", prerelease = true }
-"3.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0" }
-"3.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.1.0-RC1", prerelease = true }
-"3.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.1.0" }
-"3.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0-RC1", prerelease = true }
-"3.2.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0-RC2", prerelease = true }
-"3.2.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0-RC3", prerelease = true }
-"3.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0" }
-"3.2.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.1" }
-"3.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.3.0-RC1", prerelease = true }
-"3.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.3.0" }
-"3.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0-RC1", prerelease = true }
-"3.4.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0-RC2", prerelease = true }
-"3.4.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0-RC3", prerelease = true }
-"3.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0" }
-"3.4.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.1" }
-"3.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0-RC1", prerelease = true }
-"3.5.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0-RC2", prerelease = true }
-"3.5.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0-RC3", prerelease = true }
-"3.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0" }
-"3.5.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.1" }
-"4.0.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-M1", prerelease = true }
-"4.0.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-M2", prerelease = true }
-"4.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-RC1", prerelease = true }
-"4.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-RC2", prerelease = true }
-"4.0.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-RC3", prerelease = true }
-"4.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0" }
-"4.0.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.1" }
-"4.0.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.2" }
-"4.1.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0-M1", prerelease = true }
-"4.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0-RC1", prerelease = true }
-"4.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0-RC2", prerelease = true }
-"4.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0" }
-"4.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.0-RC1", prerelease = true }
-"4.2.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.0-RC2", prerelease = true }
-"4.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.0" }
-"4.2.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.1" }
-"4.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC1", prerelease = true }
-"4.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC2", prerelease = true }
-"4.3.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC3", prerelease = true }
-"4.3.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC4", prerelease = true }
-"4.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0" }
-"4.3.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.1" }
-"4.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC1", prerelease = true }
-"4.4.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC2", prerelease = true }
-"4.4.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC3", prerelease = true }
-"4.4.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC4", prerelease = true }
-"4.4.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC5", prerelease = true }
-"4.4.0-RC6" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC6", prerelease = true }
-"4.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0" }
-"4.4.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.1" }
-"4.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.0-RC1", prerelease = true }
-"4.5.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.0-RC2", prerelease = true }
-"4.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.0" }
-"4.5.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.1" }
-"4.6.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.6.0-RC1", prerelease = true }
-"4.6.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.6.0-RC2", prerelease = true }
-"4.6.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.6.0" }
-"4.7.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.7.0-RC1", prerelease = true }
-"4.7.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.7.0-RC2", prerelease = true }
-"4.7.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.7.0" }
-"4.8.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0-RC1", prerelease = true }
-"4.8.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0-RC2", prerelease = true }
-"4.8.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0-RC3", prerelease = true }
-"4.8.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0" }
-"4.8.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.1" }
-"4.9.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.9.0-RC1", prerelease = true }
-"4.9.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.9.0-RC2", prerelease = true }
-"4.9.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.9.0" }
-"4.10.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0-RC1", prerelease = true }
-"4.10.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0-RC2", prerelease = true }
-"4.10.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0-RC3", prerelease = true }
-"4.10.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0" }
-"4.10.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.1" }
-"4.10.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.2" }
-"4.10.3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.3" }
-"5.0.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-M1", prerelease = true }
-"5.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC1", prerelease = true }
-"5.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC2", prerelease = true }
-"5.0.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC3", prerelease = true }
-"5.0.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC4", prerelease = true }
-"5.0.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC5", prerelease = true }
-"5.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0" }
-"5.1.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-M1", prerelease = true }
-"5.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-RC1", prerelease = true }
-"5.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-RC2", prerelease = true }
-"5.1.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-RC3", prerelease = true }
-"5.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0" }
-"5.1.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.1" }
-"5.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.2.0-RC1", prerelease = true }
-"5.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.2.0" }
-"5.2.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.2.1" }
-"5.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0-RC1", prerelease = true }
-"5.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0-RC2", prerelease = true }
-"5.3.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0-RC3", prerelease = true }
-"5.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0" }
-"5.3.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.1" }
-"5.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.4.0-RC1", prerelease = true }
-"5.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.4.0" }
-"5.4.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.4.1" }
-"5.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC1", prerelease = true }
-"5.5.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC2", prerelease = true }
-"5.5.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC3", prerelease = true }
-"5.5.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC4", prerelease = true }
-"5.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0" }
-"5.5.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.1" }
-"5.6.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.0-RC1", prerelease = true }
-"5.6.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.0-RC2", prerelease = true }
-"5.6.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.0" }
-"5.6.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.1" }
-"5.6.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.2" }
-"5.6.3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.3" }
-"5.6.4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.4" }
-"6.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0-RC1", prerelease = true }
-"6.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0-RC2", prerelease = true }
-"6.0.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0-RC3", prerelease = true }
-"6.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0" }
-"6.0.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.1" }
-"6.1.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-M1", prerelease = true }
-"6.1.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-M2", prerelease = true }
-"6.1.0-M3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-M3", prerelease = true }
-"6.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-RC1", prerelease = true }
-"6.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-RC2", prerelease = true }
-"6.1.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-RC3", prerelease = true }
-"6.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0" }
-"6.1.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.1" }
-"6.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0-RC1", prerelease = true }
-"6.2.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0-RC2", prerelease = true }
-"6.2.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0-RC3", prerelease = true }
-"6.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0" }
-"6.2.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.1" }
-"6.2.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.2" }
-"6.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC1", prerelease = true }
-"6.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC2", prerelease = true }
-"6.3.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC3", prerelease = true }
-"6.3.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC4", prerelease = true }
-"6.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0" }
-"6.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC1", prerelease = true }
-"6.4.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC2", prerelease = true }
-"6.4.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC3", prerelease = true }
-"6.4.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC4", prerelease = true }
-"6.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0" }
-"6.4.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.1" }
-"6.5.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0-M1", prerelease = true }
-"6.5.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0-M2", prerelease = true }
-"6.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0-RC1", prerelease = true }
-"6.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0" }
-"6.5.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.1" }
-"6.6.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-M1", prerelease = true }
-"6.6.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-M2", prerelease = true }
-"6.6.0-M3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-M3", prerelease = true }
-"6.6.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC1", prerelease = true }
-"6.6.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC2", prerelease = true }
-"6.6.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC3", prerelease = true }
-"6.6.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC4", prerelease = true }
-"6.6.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC5", prerelease = true }
-"6.6.0-RC6" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC6", prerelease = true }
-"6.6.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0" }
-"6.6.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.1" }
-"6.7.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC1", prerelease = true }
-"6.7.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC2", prerelease = true }
-"6.7.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC3", prerelease = true }
-"6.7.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC4", prerelease = true }
-"6.7.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC5", prerelease = true }
-"6.7.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0" }
-"6.7.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.1" }
-"6.8.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-M1", prerelease = true }
-"6.8.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-M2", prerelease = true }
-"6.8.0-M3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-M3", prerelease = true }
-"6.8.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC1", prerelease = true }
-"6.8.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC3", prerelease = true }
-"6.8.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC4", prerelease = true }
-"6.8.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC5", prerelease = true }
-"6.8.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0" }
-"6.8.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.1" }
-"6.8.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.2" }
-"6.8.3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.3" }
-"6.9.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.0-RC1", prerelease = true }
-"6.9.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.0-RC2", prerelease = true }
-"6.9.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.0" }
-"6.9.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.1" }
-"6.9.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.2" }
-"6.9.3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.3" }
-"6.9.4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.4" }
-"7.0.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-M1", prerelease = true }
-"7.0.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-M2", prerelease = true }
-"7.0.0-M3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-M3", prerelease = true }
-"7.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-RC1", prerelease = true }
-"7.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-RC2", prerelease = true }
-"7.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0" }
-"7.0.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.1" }
-"7.0.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.2" }
-"7.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.0-RC1", prerelease = true }
-"7.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.0-RC2", prerelease = true }
-"7.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.0" }
-"7.1.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.1" }
-"7.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0-RC1", prerelease = true }
-"7.2.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0-RC2", prerelease = true }
-"7.2.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0-RC3", prerelease = true }
-"7.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0" }
-"7.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC1", prerelease = true }
-"7.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC2", prerelease = true }
-"7.3.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC3", prerelease = true }
-"7.3.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC4", prerelease = true }
-"7.3.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC5", prerelease = true }
-"7.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0" }
-"7.3.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.1" }
-"7.3.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.2" }
-"7.3.3-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.3-RC1", prerelease = true }
-"7.3.3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.3" }
-"7.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.0-RC1", prerelease = true }
-"7.4.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.0-RC2", prerelease = true }
-"7.4.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.0" }
-"7.4.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.1" }
-"7.4.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.2" }
-"7.5.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC1", prerelease = true }
-"7.5.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC2", prerelease = true }
-"7.5.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC3", prerelease = true }
-"7.5.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC4", prerelease = true }
-"7.5.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC5", prerelease = true }
-"7.5.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0" }
-"7.5.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.1" }
-"7.6.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-M1", prerelease = true }
-"7.6.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC1", prerelease = true }
-"7.6.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC2", prerelease = true }
-"7.6.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC3", prerelease = true }
-"7.6.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC4", prerelease = true }
-"7.6.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0" }
-"7.6.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.1" }
-"7.6.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.2" }
-"8.0.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M1", prerelease = true }
-"8.0.0-M2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M2", prerelease = true }
-"8.0.0-M3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M3", prerelease = true }
-"8.0.0-M4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M4", prerelease = true }
-"8.0.0-M5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M5", prerelease = true }
-"8.0.0-M6" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M6", prerelease = true }
-"8.0.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC1", prerelease = true }
-"8.0.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC2", prerelease = true }
-"8.0.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC3", prerelease = true }
-"8.0.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC4", prerelease = true }
-"8.0.0-RC5" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC5", prerelease = true }
-"8.0.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0" }
-"8.0.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.1" }
-"8.0.2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.2" }
-"8.1.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC1", prerelease = true }
-"8.1.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC2", prerelease = true }
-"8.1.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC3", prerelease = true }
-"8.1.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC4", prerelease = true }
-"8.1.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0" }
-"8.1.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.1" }
-"8.2.0-M1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-M1", prerelease = true }
-"8.2.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-RC1", prerelease = true }
-"8.2.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-RC2", prerelease = true }
-"8.2.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-RC3", prerelease = true }
-"8.2.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0" }
-"8.2.1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.1" }
-"8.3.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC1", prerelease = true }
-"8.3.0-RC2" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC2", prerelease = true }
-"8.3.0-RC3" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC3", prerelease = true }
-"8.3.0-RC4" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC4", prerelease = true }
-"8.3.0" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0" }
-"8.4.0-RC1" = { created_at = 2023-09-25T09:20:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0-RC1", prerelease = true }
-"7.6.3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.3" }
-"7.6.4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.4" }
-"7.6.5" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.5" }
-"7.6.6" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.6" }
-"8.4.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0-RC2", prerelease = true }
-"8.4.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0-RC3", prerelease = true }
-"8.4.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0" }
-"8.5.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC1", prerelease = true }
-"8.5.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC2", prerelease = true }
-"8.5.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC3", prerelease = true }
-"8.5.0-RC4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC4", prerelease = true }
-"8.5.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0" }
-"8.6.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-M1", prerelease = true }
-"8.6.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC1", prerelease = true }
-"8.6.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC2", prerelease = true }
-"8.6.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC3", prerelease = true }
-"8.6.0-RC4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC4", prerelease = true }
-"8.6.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0" }
-"8.7.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC1", prerelease = true }
-"8.7.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC2", prerelease = true }
-"8.7.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC3", prerelease = true }
-"8.7.0-RC4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC4", prerelease = true }
-"8.7.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0" }
-"8.8.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.8.0-RC1", prerelease = true }
-"8.8.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.8.0-RC2", prerelease = true }
-"8.8.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.8.0" }
-"8.9.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.9.0-RC1", prerelease = true }
-"8.9.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.9.0-RC2", prerelease = true }
-"8.9.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.9.0" }
-"8.10.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.0-RC1", prerelease = true }
-"8.10.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.0" }
-"8.10.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.1" }
-"8.10.2-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.2-M1", prerelease = true }
-"8.10.2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.2" }
-"8.11.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-M1", prerelease = true }
-"8.11.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-RC1", prerelease = true }
-"8.11.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-RC2", prerelease = true }
-"8.11.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-RC3", prerelease = true }
-"8.11.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0" }
-"8.11.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.1" }
-"8.12.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.0-RC1", prerelease = true }
-"8.12.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.0-RC2", prerelease = true }
-"8.12.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.0" }
-"8.12.1-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.1-M1", prerelease = true }
-"8.12.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.1" }
-"8.13.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-M1", prerelease = true }
-"8.13.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-M2", prerelease = true }
-"8.13.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-M3", prerelease = true }
-"8.13.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-RC1", prerelease = true }
-"8.13.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-RC2", prerelease = true }
-"8.13.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0" }
-"8.14.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M1", prerelease = true }
-"8.14.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M2", prerelease = true }
-"8.14.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M3", prerelease = true }
-"8.14.0-M4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M4", prerelease = true }
-"8.14.0-M5" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M5", prerelease = true }
-"8.14.0-M6" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M6", prerelease = true }
-"8.14.0-M7" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M7", prerelease = true }
-"8.14.0-M8" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M8", prerelease = true }
-"8.14.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-RC1", prerelease = true }
-"8.14.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-RC2", prerelease = true }
-"8.14.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-RC3", prerelease = true }
-"8.14.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0" }
-"8.14.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.1" }
-"8.14.2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.2" }
-"8.14.3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.3" }
-"8.14.4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.4" }
-"8.14.5" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.5" }
-"9.0.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M1", prerelease = true }
-"9.0.0-M10" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M10", prerelease = true }
-"9.0.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M2", prerelease = true }
-"9.0.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M3", prerelease = true }
-"9.0.0-M4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M4", prerelease = true }
-"9.0.0-M5" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M5", prerelease = true }
-"9.0.0-M6" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M6", prerelease = true }
-"9.0.0-M7" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M7", prerelease = true }
-"9.0.0-M8" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M8", prerelease = true }
-"9.0.0-M9" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M9", prerelease = true }
-"9.0.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC1", prerelease = true }
-"9.0.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC2", prerelease = true }
-"9.0.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC3", prerelease = true }
-"9.0.0-RC4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC4", prerelease = true }
-"9.0.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0" }
-"9.1.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC1", prerelease = true }
-"9.1.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC2", prerelease = true }
-"9.1.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC3", prerelease = true }
-"9.1.0-RC4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC4", prerelease = true }
-"9.1.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0" }
-"9.2.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-M1", prerelease = true }
-"9.2.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-M2", prerelease = true }
-"9.2.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-RC1", prerelease = true }
-"9.2.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-RC2", prerelease = true }
-"9.2.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-RC3", prerelease = true }
-"9.2.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0" }
-"9.2.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.1" }
-"9.3.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-M1", prerelease = true }
-"9.3.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-M2", prerelease = true }
-"9.3.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-RC1", prerelease = true }
-"9.3.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-RC2", prerelease = true }
-"9.3.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-RC3", prerelease = true }
-"9.3.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0" }
-"9.3.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.1" }
-"9.4.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M1", prerelease = true }
-"9.4.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M2", prerelease = true }
-"9.4.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M3", prerelease = true }
-"9.4.0-M4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M4", prerelease = true }
-"9.4.0-M5" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M5", prerelease = true }
-"9.4.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-RC1", prerelease = true }
-"9.4.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-RC2", prerelease = true }
-"9.4.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0" }
-"9.4.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.1" }
-"9.5.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M1", prerelease = true }
-"9.5.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M2", prerelease = true }
-"9.5.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M3", prerelease = true }
-"9.5.0-M4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M4", prerelease = true }
-"9.5.0-M5" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M5", prerelease = true }
-"9.5.0-M6" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M6", prerelease = true }
-"9.5.0-M7" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M7", prerelease = true }
-"9.5.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC1", prerelease = true }
-"9.5.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC2", prerelease = true }
-"9.5.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC3", prerelease = true }
-"9.5.0-RC4" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC4", prerelease = true }
-"9.5.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0" }
-"9.5.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.1" }
-"9.6.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-M1", prerelease = true }
-"9.6.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-M2", prerelease = true }
-"9.6.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-M3", prerelease = true }
-"9.6.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-RC1", prerelease = true }
-"9.6.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-RC2", prerelease = true }
-"9.6.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-RC3", prerelease = true }
-"9.6.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0" }
-"9.6.1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.1" }
-"9.7.0-M1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-M1", prerelease = true }
-"9.7.0-M2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-M2", prerelease = true }
-"9.7.0-M3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-M3", prerelease = true }
-"9.7.0-RC1" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-RC1", prerelease = true }
-"9.7.0-RC2" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-RC2", prerelease = true }
-"9.7.0-RC3" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-RC3", prerelease = true }
-"9.7.0" = { created_at = 2023-09-26T07:52:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0" }
+"0.7.0" = { created_at = 2023-09-25T13:29:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2023-09-25T13:45:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.8.0" }
+"0.9.0-RC1" = { created_at = 2023-09-25T13:46:34.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0-RC1", prerelease = true }
+"0.9.0-RC2" = { created_at = 2023-09-25T13:47:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0-RC2", prerelease = true }
+"0.9.0-RC3" = { created_at = 2023-09-25T13:48:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0-RC3", prerelease = true }
+"0.9.0" = { created_at = 2023-09-25T13:45:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2023-09-25T13:48:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.1" }
+"0.9.2" = { created_at = 2023-09-25T13:49:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v0.9.2" }
+"1.0.0-M1" = { created_at = 2023-09-25T13:50:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M1", prerelease = true }
+"1.0.0-M2" = { created_at = 2023-09-25T14:02:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M2", prerelease = true }
+"1.0.0-M3" = { created_at = 2023-09-25T14:03:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M3", prerelease = true }
+"1.0.0-M4" = { created_at = 2023-09-25T14:03:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M4", prerelease = true }
+"1.0.0-M5" = { created_at = 2023-09-25T14:04:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M5", prerelease = true }
+"1.0.0-M6" = { created_at = 2023-09-25T14:05:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M6", prerelease = true }
+"1.0.0-M7" = { created_at = 2023-09-25T14:06:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M7", prerelease = true }
+"1.0.0-M8" = { created_at = 2023-09-25T14:07:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M8", prerelease = true }
+"1.0.0-M8a" = { created_at = 2023-09-25T14:08:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M8a", prerelease = true }
+"1.0.0-M9" = { created_at = 2023-09-25T14:08:51.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-M9", prerelease = true }
+"1.0.0-RC1" = { created_at = 2023-09-25T14:09:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-RC1", prerelease = true }
+"1.0.0-RC2" = { created_at = 2023-09-25T14:10:18.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-RC2", prerelease = true }
+"1.0.0-RC3" = { created_at = 2023-09-25T14:10:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0-RC3", prerelease = true }
+"1.0.0" = { created_at = 2023-09-25T14:11:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.0.0" }
+"1.1.0-RC1" = { created_at = 2023-09-25T14:12:21.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.1.0-RC1", prerelease = true }
+"1.1.0-RC2" = { created_at = 2023-09-25T14:13:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.1.0-RC2", prerelease = true }
+"1.1.0" = { created_at = 2023-09-25T14:13:53.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.1.0" }
+"1.2.0-RC1" = { created_at = 2023-09-25T14:14:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.2.0-RC1", prerelease = true }
+"1.2.0" = { created_at = 2023-09-25T14:15:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.2.0" }
+"1.3.0-RC1" = { created_at = 2023-09-25T14:16:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.3.0-RC1", prerelease = true }
+"1.3.0-RC2" = { created_at = 2023-09-25T14:17:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.3.0-RC2", prerelease = true }
+"1.3.0" = { created_at = 2023-09-25T14:23:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.3.0" }
+"1.4.0-RC1" = { created_at = 2023-09-25T14:24:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0-RC1", prerelease = true }
+"1.4.0-RC2" = { created_at = 2023-09-25T14:25:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0-RC2", prerelease = true }
+"1.4.0-RC3" = { created_at = 2023-09-25T14:26:19.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0-RC3", prerelease = true }
+"1.4.0" = { created_at = 2023-09-25T14:27:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.4.0" }
+"1.5.0-RC1" = { created_at = 2023-09-25T14:28:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0-RC1", prerelease = true }
+"1.5.0-RC2" = { created_at = 2023-09-25T14:28:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0-RC2", prerelease = true }
+"1.5.0-RC3" = { created_at = 2023-09-25T14:29:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0-RC3", prerelease = true }
+"1.5.0" = { created_at = 2023-09-25T14:30:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.5.0" }
+"1.6.0-RC1" = { created_at = 2023-09-25T14:31:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.6.0-RC1", prerelease = true }
+"1.6.0" = { created_at = 2023-09-25T14:32:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.6.0" }
+"1.7.0-RC1" = { created_at = 2023-09-25T14:33:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.7.0-RC1", prerelease = true }
+"1.7.0-RC2" = { created_at = 2023-09-25T14:34:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.7.0-RC2", prerelease = true }
+"1.7.0" = { created_at = 2023-09-25T14:35:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.7.0" }
+"1.8.0-RC1" = { created_at = 2023-09-25T14:36:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.8.0-RC1", prerelease = true }
+"1.8.0-RC2" = { created_at = 2023-09-25T14:37:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.8.0-RC2", prerelease = true }
+"1.8.0" = { created_at = 2023-09-25T14:38:19.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.8.0" }
+"1.9.0-RC1" = { created_at = 2023-09-25T14:39:23.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC1", prerelease = true }
+"1.9.0-RC2" = { created_at = 2023-09-25T14:40:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC2", prerelease = true }
+"1.9.0-RC3" = { created_at = 2023-09-25T14:41:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC3", prerelease = true }
+"1.9.0-RC4" = { created_at = 2023-09-25T14:43:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0-RC4", prerelease = true }
+"1.9.0" = { created_at = 2023-09-25T14:44:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.9.0" }
+"1.10.0-RC1" = { created_at = 2023-09-25T14:45:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.10.0-RC1", prerelease = true }
+"1.10.0-RC2" = { created_at = 2023-09-25T14:46:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.10.0-RC2", prerelease = true }
+"1.10.0" = { created_at = 2023-09-25T14:48:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.10.0" }
+"1.11.0-RC1" = { created_at = 2023-09-25T14:49:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.11.0-RC1", prerelease = true }
+"1.11.0" = { created_at = 2023-09-25T14:51:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.11.0" }
+"1.12.0-RC1" = { created_at = 2023-09-25T14:52:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.12.0-RC1", prerelease = true }
+"1.12.0-RC2" = { created_at = 2023-09-25T14:53:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.12.0-RC2", prerelease = true }
+"1.12.0" = { created_at = 2023-09-25T14:55:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v1.12.0" }
+"2.0.0-RC1" = { created_at = 2023-09-25T14:56:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.0.0-RC1", prerelease = true }
+"2.0.0-RC2" = { created_at = 2023-09-25T14:58:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.0.0-RC2", prerelease = true }
+"2.0.0" = { created_at = 2023-09-25T14:59:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.0.0" }
+"2.1.0-RC1" = { created_at = 2023-09-25T15:00:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC1", prerelease = true }
+"2.1.0-RC2" = { created_at = 2023-09-25T15:01:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC2", prerelease = true }
+"2.1.0-RC3" = { created_at = 2023-09-25T15:03:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC3", prerelease = true }
+"2.1.0-RC4" = { created_at = 2023-09-25T15:04:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0-RC4", prerelease = true }
+"2.1.0" = { created_at = 2023-09-25T15:05:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.1.0" }
+"2.2.0-RC1" = { created_at = 2023-09-25T15:07:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.0-RC1", prerelease = true }
+"2.2.0-RC2" = { created_at = 2023-09-25T15:08:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.0-RC2", prerelease = true }
+"2.2.0" = { created_at = 2023-09-25T15:09:53.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.0" }
+"2.2.1-RC1" = { created_at = 2023-09-25T15:11:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.1-RC1", prerelease = true }
+"2.2.1" = { created_at = 2023-09-25T15:12:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.2.1" }
+"2.3.0-RC1" = { created_at = 2023-09-25T15:13:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC1", prerelease = true }
+"2.3.0-RC2" = { created_at = 2023-09-25T15:14:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC2", prerelease = true }
+"2.3.0-RC3" = { created_at = 2023-09-25T15:16:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC3", prerelease = true }
+"2.3.0-RC4" = { created_at = 2023-09-25T15:17:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0-RC4", prerelease = true }
+"2.3.0" = { created_at = 2023-09-25T15:18:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.3.0" }
+"2.4.0-RC1" = { created_at = 2023-09-25T15:20:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.4.0-RC1", prerelease = true }
+"2.4.0-RC2" = { created_at = 2023-09-25T15:21:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.4.0-RC2", prerelease = true }
+"2.4.0" = { created_at = 2023-09-25T15:22:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.4.0" }
+"2.5.0-RC1" = { created_at = 2023-09-25T15:24:18.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.5.0-RC1", prerelease = true }
+"2.5.0-RC2" = { created_at = 2023-09-25T15:25:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.5.0-RC2", prerelease = true }
+"2.5.0" = { created_at = 2023-09-25T15:27:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.5.0" }
+"2.6.0-RC1" = { created_at = 2023-09-25T15:28:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.6.0-RC1", prerelease = true }
+"2.6.0-RC2" = { created_at = 2023-09-25T15:29:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.6.0-RC2", prerelease = true }
+"2.6.0" = { created_at = 2023-09-25T15:30:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.6.0" }
+"2.7.0-RC1" = { created_at = 2023-09-25T15:32:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.7.0-RC1", prerelease = true }
+"2.7.0-RC2" = { created_at = 2023-09-25T15:33:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.7.0-RC2", prerelease = true }
+"2.7.0" = { created_at = 2023-09-25T15:35:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.7.0" }
+"2.8.0-RC1" = { created_at = 2023-09-25T15:36:21.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.8.0-RC1", prerelease = true }
+"2.8.0-RC2" = { created_at = 2023-09-25T15:37:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.8.0-RC2", prerelease = true }
+"2.8.0" = { created_at = 2023-09-25T15:39:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.8.0" }
+"2.9.0-RC1" = { created_at = 2023-09-25T15:40:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.9.0-RC1", prerelease = true }
+"2.9.0" = { created_at = 2023-09-25T15:42:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.9.0" }
+"2.10.0-RC1" = { created_at = 2023-09-25T15:44:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.10.0-RC1", prerelease = true }
+"2.10.0-RC2" = { created_at = 2023-09-25T15:45:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.10.0-RC2", prerelease = true }
+"2.10.0" = { created_at = 2023-09-25T15:47:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.10.0" }
+"2.11.0-RC1" = { created_at = 2023-09-25T15:48:53.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0-RC1", prerelease = true }
+"2.11.0-RC2" = { created_at = 2023-09-25T15:50:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0-RC2", prerelease = true }
+"2.11.0-RC3" = { created_at = 2023-09-25T15:51:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0-RC3", prerelease = true }
+"2.11.0" = { created_at = 2023-09-25T15:53:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.11.0" }
+"2.12.0-RC1" = { created_at = 2023-09-25T15:54:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.12.0-RC1", prerelease = true }
+"2.12.0" = { created_at = 2023-09-25T15:55:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.12.0" }
+"2.13.0-RC1" = { created_at = 2023-09-25T15:56:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.13.0-RC1", prerelease = true }
+"2.13.0-RC2" = { created_at = 2023-09-25T15:58:18.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.13.0-RC2", prerelease = true }
+"2.13.0" = { created_at = 2023-09-25T16:00:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.13.0" }
+"2.14.0-RC1" = { created_at = 2023-09-25T16:01:23.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC1", prerelease = true }
+"2.14.0-RC2" = { created_at = 2023-09-25T16:02:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC2", prerelease = true }
+"2.14.0-RC3" = { created_at = 2023-09-25T16:04:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC3", prerelease = true }
+"2.14.0-RC4" = { created_at = 2023-09-25T16:05:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC4", prerelease = true }
+"2.14.0-RC5" = { created_at = 2023-09-25T16:06:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC5", prerelease = true }
+"2.14.0-RC6" = { created_at = 2023-09-25T16:22:19.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0-RC6", prerelease = true }
+"2.14.0" = { created_at = 2023-09-25T16:23:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.0" }
+"2.14.1-RC1" = { created_at = 2023-09-25T16:26:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.1-RC1", prerelease = true }
+"2.14.1-RC2" = { created_at = 2023-09-25T16:27:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.1-RC2", prerelease = true }
+"2.14.1" = { created_at = 2023-09-25T16:29:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v2.14.1" }
+"3.0.0-M1" = { created_at = 2023-09-25T16:20:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-M1", prerelease = true }
+"3.0.0-M2" = { created_at = 2023-09-25T16:24:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-M2", prerelease = true }
+"3.0.0-RC1" = { created_at = 2023-09-25T16:30:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-RC1", prerelease = true }
+"3.0.0-RC2" = { created_at = 2023-09-25T16:31:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0-RC2", prerelease = true }
+"3.0.0" = { created_at = 2023-09-25T16:33:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.0.0" }
+"3.1.0-RC1" = { created_at = 2023-09-25T16:34:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.1.0-RC1", prerelease = true }
+"3.1.0" = { created_at = 2023-09-25T16:36:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.1.0" }
+"3.2.0-RC1" = { created_at = 2023-09-25T16:37:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0-RC1", prerelease = true }
+"3.2.0-RC2" = { created_at = 2023-09-25T16:39:34.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0-RC2", prerelease = true }
+"3.2.0-RC3" = { created_at = 2023-09-25T16:41:18.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0-RC3", prerelease = true }
+"3.2.0" = { created_at = 2023-09-25T16:42:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.0" }
+"3.2.1" = { created_at = 2023-09-25T16:44:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.2.1" }
+"3.3.0-RC1" = { created_at = 2023-09-25T16:45:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.3.0-RC1", prerelease = true }
+"3.3.0" = { created_at = 2023-09-25T16:47:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.3.0" }
+"3.4.0-RC1" = { created_at = 2023-09-25T16:48:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0-RC1", prerelease = true }
+"3.4.0-RC2" = { created_at = 2023-09-25T16:50:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0-RC2", prerelease = true }
+"3.4.0-RC3" = { created_at = 2023-09-25T16:51:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0-RC3", prerelease = true }
+"3.4.0" = { created_at = 2023-09-25T16:53:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.0" }
+"3.4.1" = { created_at = 2023-09-25T16:54:30.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.4.1" }
+"3.5.0-RC1" = { created_at = 2023-09-25T16:56:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0-RC1", prerelease = true }
+"3.5.0-RC2" = { created_at = 2023-09-25T17:00:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0-RC2", prerelease = true }
+"3.5.0-RC3" = { created_at = 2023-09-25T17:01:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0-RC3", prerelease = true }
+"3.5.0" = { created_at = 2023-09-25T17:03:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.0" }
+"3.5.1" = { created_at = 2023-09-25T17:13:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v3.5.1" }
+"4.0.0-M1" = { created_at = 2023-09-25T17:05:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-M1", prerelease = true }
+"4.0.0-M2" = { created_at = 2023-09-25T17:06:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-M2", prerelease = true }
+"4.0.0-RC1" = { created_at = 2023-09-25T17:08:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-RC1", prerelease = true }
+"4.0.0-RC2" = { created_at = 2023-09-25T17:09:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-RC2", prerelease = true }
+"4.0.0-RC3" = { created_at = 2023-09-25T17:11:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0-RC3", prerelease = true }
+"4.0.0" = { created_at = 2023-09-25T17:12:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.0" }
+"4.0.1" = { created_at = 2023-09-25T17:16:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.1" }
+"4.0.2" = { created_at = 2023-09-25T17:19:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.0.2" }
+"4.1.0-M1" = { created_at = 2023-09-25T17:15:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0-M1", prerelease = true }
+"4.1.0-RC1" = { created_at = 2023-09-25T17:18:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0-RC1", prerelease = true }
+"4.1.0-RC2" = { created_at = 2023-09-25T17:21:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0-RC2", prerelease = true }
+"4.1.0" = { created_at = 2023-09-25T17:22:30.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.1.0" }
+"4.2.0-RC1" = { created_at = 2023-09-25T17:23:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.0-RC1", prerelease = true }
+"4.2.0-RC2" = { created_at = 2023-09-25T17:25:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.0-RC2", prerelease = true }
+"4.2.0" = { created_at = 2023-09-25T17:26:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.0" }
+"4.2.1" = { created_at = 2023-09-25T17:28:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.2.1" }
+"4.3.0-RC1" = { created_at = 2023-09-25T17:29:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC1", prerelease = true }
+"4.3.0-RC2" = { created_at = 2023-09-25T17:31:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC2", prerelease = true }
+"4.3.0-RC3" = { created_at = 2023-09-25T17:33:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC3", prerelease = true }
+"4.3.0-RC4" = { created_at = 2023-09-25T17:34:51.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0-RC4", prerelease = true }
+"4.3.0" = { created_at = 2023-09-25T17:37:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.0" }
+"4.3.1" = { created_at = 2023-09-25T17:39:05.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.3.1" }
+"4.4.0-RC1" = { created_at = 2023-09-25T17:40:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC1", prerelease = true }
+"4.4.0-RC2" = { created_at = 2023-09-25T17:41:59.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC2", prerelease = true }
+"4.4.0-RC3" = { created_at = 2023-09-25T17:43:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC3", prerelease = true }
+"4.4.0-RC4" = { created_at = 2023-09-25T17:44:59.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC4", prerelease = true }
+"4.4.0-RC5" = { created_at = 2023-09-25T17:46:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC5", prerelease = true }
+"4.4.0-RC6" = { created_at = 2023-09-25T17:47:52.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0-RC6", prerelease = true }
+"4.4.0" = { created_at = 2023-09-25T17:49:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.0" }
+"4.4.1" = { created_at = 2023-09-25T17:50:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.4.1" }
+"4.5.0-RC1" = { created_at = 2023-09-25T17:52:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.0-RC1", prerelease = true }
+"4.5.0-RC2" = { created_at = 2023-09-25T17:53:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.0-RC2", prerelease = true }
+"4.5.0" = { created_at = 2023-09-25T17:55:19.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.0" }
+"4.5.1" = { created_at = 2023-09-25T17:56:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.5.1" }
+"4.6.0-RC1" = { created_at = 2023-09-25T17:58:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.6.0-RC1", prerelease = true }
+"4.6.0-RC2" = { created_at = 2023-09-25T18:00:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.6.0-RC2", prerelease = true }
+"4.6.0" = { created_at = 2023-09-25T18:01:34.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.6.0" }
+"4.7.0-RC1" = { created_at = 2023-09-25T18:03:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.7.0-RC1", prerelease = true }
+"4.7.0-RC2" = { created_at = 2023-09-25T18:04:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.7.0-RC2", prerelease = true }
+"4.7.0" = { created_at = 2023-09-25T18:06:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.7.0" }
+"4.8.0-RC1" = { created_at = 2023-09-25T18:08:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0-RC1", prerelease = true }
+"4.8.0-RC2" = { created_at = 2023-09-25T18:09:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0-RC2", prerelease = true }
+"4.8.0-RC3" = { created_at = 2023-09-25T18:11:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0-RC3", prerelease = true }
+"4.8.0" = { created_at = 2023-09-25T18:13:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.0" }
+"4.8.1" = { created_at = 2023-09-25T18:15:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.8.1" }
+"4.9.0-RC1" = { created_at = 2023-09-25T18:16:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.9.0-RC1", prerelease = true }
+"4.9.0-RC2" = { created_at = 2023-09-25T18:18:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.9.0-RC2", prerelease = true }
+"4.9.0" = { created_at = 2023-09-25T18:20:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.9.0" }
+"4.10.0-RC1" = { created_at = 2023-09-25T18:21:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0-RC1", prerelease = true }
+"4.10.0-RC2" = { created_at = 2023-09-25T18:23:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0-RC2", prerelease = true }
+"4.10.0-RC3" = { created_at = 2023-09-25T18:25:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0-RC3", prerelease = true }
+"4.10.0" = { created_at = 2023-09-25T18:27:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.0" }
+"4.10.1" = { created_at = 2023-09-25T18:29:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.1" }
+"4.10.2" = { created_at = 2023-09-25T18:30:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.2" }
+"4.10.3" = { created_at = 2023-09-25T18:50:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v4.10.3" }
+"5.0.0-M1" = { created_at = 2023-09-25T18:32:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-M1", prerelease = true }
+"5.0.0-RC1" = { created_at = 2023-09-25T18:34:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC1", prerelease = true }
+"5.0.0-RC2" = { created_at = 2023-09-25T18:36:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC2", prerelease = true }
+"5.0.0-RC3" = { created_at = 2023-09-25T18:38:46.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC3", prerelease = true }
+"5.0.0-RC4" = { created_at = 2023-09-25T18:41:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC4", prerelease = true }
+"5.0.0-RC5" = { created_at = 2023-09-25T18:43:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0-RC5", prerelease = true }
+"5.0.0" = { created_at = 2023-09-25T18:45:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.0.0" }
+"5.1.0-M1" = { created_at = 2023-09-25T18:47:51.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-M1", prerelease = true }
+"5.1.0-RC1" = { created_at = 2023-09-25T18:51:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-RC1", prerelease = true }
+"5.1.0-RC2" = { created_at = 2023-09-25T18:53:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-RC2", prerelease = true }
+"5.1.0-RC3" = { created_at = 2023-09-25T18:56:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0-RC3", prerelease = true }
+"5.1.0" = { created_at = 2023-09-25T18:58:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.0" }
+"5.1.1" = { created_at = 2023-09-25T19:00:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.1.1" }
+"5.2.0-RC1" = { created_at = 2023-09-25T19:02:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.2.0-RC1", prerelease = true }
+"5.2.0" = { created_at = 2023-09-25T19:04:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.2.0" }
+"5.2.1" = { created_at = 2023-09-25T19:07:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.2.1" }
+"5.3.0-RC1" = { created_at = 2023-09-25T19:08:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0-RC1", prerelease = true }
+"5.3.0-RC2" = { created_at = 2023-09-25T19:10:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0-RC2", prerelease = true }
+"5.3.0-RC3" = { created_at = 2023-09-25T19:13:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0-RC3", prerelease = true }
+"5.3.0" = { created_at = 2023-09-25T19:15:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.0" }
+"5.3.1" = { created_at = 2023-09-25T19:19:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.3.1" }
+"5.4.0-RC1" = { created_at = 2023-09-25T19:22:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.4.0-RC1", prerelease = true }
+"5.4.0" = { created_at = 2023-09-25T19:24:30.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.4.0" }
+"5.4.1" = { created_at = 2023-09-25T19:26:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.4.1" }
+"5.5.0-RC1" = { created_at = 2023-09-25T19:28:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC1", prerelease = true }
+"5.5.0-RC2" = { created_at = 2023-09-25T19:30:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC2", prerelease = true }
+"5.5.0-RC3" = { created_at = 2023-09-25T19:33:07.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC3", prerelease = true }
+"5.5.0-RC4" = { created_at = 2023-09-25T19:35:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0-RC4", prerelease = true }
+"5.5.0" = { created_at = 2023-09-25T19:37:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.0" }
+"5.5.1" = { created_at = 2023-09-25T19:39:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.5.1" }
+"5.6.0-RC1" = { created_at = 2023-09-25T19:42:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.0-RC1", prerelease = true }
+"5.6.0-RC2" = { created_at = 2023-09-25T19:44:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.0-RC2", prerelease = true }
+"5.6.0" = { created_at = 2023-09-25T19:46:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.0" }
+"5.6.1" = { created_at = 2023-09-25T19:48:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.1" }
+"5.6.2" = { created_at = 2023-09-25T19:50:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.2" }
+"5.6.3" = { created_at = 2023-09-25T19:52:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.3" }
+"5.6.4" = { created_at = 2023-09-25T19:59:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v5.6.4" }
+"6.0.0-RC1" = { created_at = 2023-09-25T19:54:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0-RC1", prerelease = true }
+"6.0.0-RC2" = { created_at = 2023-09-25T19:57:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0-RC2", prerelease = true }
+"6.0.0-RC3" = { created_at = 2023-09-25T20:01:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0-RC3", prerelease = true }
+"6.0.0" = { created_at = 2023-09-25T20:03:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.0" }
+"6.0.1" = { created_at = 2023-09-25T20:05:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.0.1" }
+"6.1.0-M1" = { created_at = 2023-09-25T20:08:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-M1", prerelease = true }
+"6.1.0-M2" = { created_at = 2023-09-25T20:10:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-M2", prerelease = true }
+"6.1.0-M3" = { created_at = 2023-09-25T20:12:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-M3", prerelease = true }
+"6.1.0-RC1" = { created_at = 2023-09-25T20:14:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-RC1", prerelease = true }
+"6.1.0-RC2" = { created_at = 2023-09-25T20:16:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-RC2", prerelease = true }
+"6.1.0-RC3" = { created_at = 2023-09-25T20:19:05.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0-RC3", prerelease = true }
+"6.1.0" = { created_at = 2023-09-25T20:21:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.0" }
+"6.1.1" = { created_at = 2023-09-25T20:23:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.1.1" }
+"6.2.0-RC1" = { created_at = 2023-09-25T20:25:59.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0-RC1", prerelease = true }
+"6.2.0-RC2" = { created_at = 2023-09-25T20:28:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0-RC2", prerelease = true }
+"6.2.0-RC3" = { created_at = 2023-09-25T20:30:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0-RC3", prerelease = true }
+"6.2.0" = { created_at = 2023-09-25T20:32:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.0" }
+"6.2.1" = { created_at = 2023-09-25T20:34:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.1" }
+"6.2.2" = { created_at = 2023-09-25T20:37:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.2.2" }
+"6.3.0-RC1" = { created_at = 2023-09-25T20:39:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC1", prerelease = true }
+"6.3.0-RC2" = { created_at = 2023-09-25T20:41:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC2", prerelease = true }
+"6.3.0-RC3" = { created_at = 2023-09-25T20:44:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC3", prerelease = true }
+"6.3.0-RC4" = { created_at = 2023-09-25T20:46:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0-RC4", prerelease = true }
+"6.3.0" = { created_at = 2023-09-25T20:48:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.3.0" }
+"6.4.0-RC1" = { created_at = 2023-09-25T20:51:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC1", prerelease = true }
+"6.4.0-RC2" = { created_at = 2023-09-25T20:53:59.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC2", prerelease = true }
+"6.4.0-RC3" = { created_at = 2023-09-25T20:56:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC3", prerelease = true }
+"6.4.0-RC4" = { created_at = 2023-09-25T20:58:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0-RC4", prerelease = true }
+"6.4.0" = { created_at = 2023-09-25T21:01:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.0" }
+"6.4.1" = { created_at = 2023-09-25T21:08:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.4.1" }
+"6.5.0-M1" = { created_at = 2023-09-25T21:03:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0-M1", prerelease = true }
+"6.5.0-M2" = { created_at = 2023-09-25T21:06:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0-M2", prerelease = true }
+"6.5.0-RC1" = { created_at = 2023-09-25T21:11:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0-RC1", prerelease = true }
+"6.5.0" = { created_at = 2023-09-25T21:13:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.0" }
+"6.5.1" = { created_at = 2023-09-25T21:20:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.5.1" }
+"6.6.0-M1" = { created_at = 2023-09-25T21:16:05.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-M1", prerelease = true }
+"6.6.0-M2" = { created_at = 2023-09-25T21:18:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-M2", prerelease = true }
+"6.6.0-M3" = { created_at = 2023-09-25T21:23:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-M3", prerelease = true }
+"6.6.0-RC1" = { created_at = 2023-09-25T21:25:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC1", prerelease = true }
+"6.6.0-RC2" = { created_at = 2023-09-25T21:28:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC2", prerelease = true }
+"6.6.0-RC3" = { created_at = 2023-09-25T21:30:34.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC3", prerelease = true }
+"6.6.0-RC4" = { created_at = 2023-09-25T21:32:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC4", prerelease = true }
+"6.6.0-RC5" = { created_at = 2023-09-25T21:35:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC5", prerelease = true }
+"6.6.0-RC6" = { created_at = 2023-09-25T21:37:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0-RC6", prerelease = true }
+"6.6.0" = { created_at = 2023-09-25T21:40:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.0" }
+"6.6.1" = { created_at = 2023-09-25T21:42:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.6.1" }
+"6.7.0-RC1" = { created_at = 2023-09-25T21:45:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC1", prerelease = true }
+"6.7.0-RC2" = { created_at = 2023-09-25T21:47:52.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC2", prerelease = true }
+"6.7.0-RC3" = { created_at = 2023-09-25T21:50:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC3", prerelease = true }
+"6.7.0-RC4" = { created_at = 2023-09-25T21:52:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC4", prerelease = true }
+"6.7.0-RC5" = { created_at = 2023-09-25T21:55:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0-RC5", prerelease = true }
+"6.7.0" = { created_at = 2023-09-25T22:00:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.0" }
+"6.7.1" = { created_at = 2023-09-25T22:08:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.7.1" }
+"6.8.0-M1" = { created_at = 2023-09-25T21:57:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-M1", prerelease = true }
+"6.8.0-M2" = { created_at = 2023-09-25T22:03:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-M2", prerelease = true }
+"6.8.0-M3" = { created_at = 2023-09-25T22:05:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-M3", prerelease = true }
+"6.8.0-RC1" = { created_at = 2023-09-25T22:10:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC1", prerelease = true }
+"6.8.0-RC3" = { created_at = 2023-09-25T22:13:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC3", prerelease = true }
+"6.8.0-RC4" = { created_at = 2023-09-25T22:16:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC4", prerelease = true }
+"6.8.0-RC5" = { created_at = 2023-09-25T22:18:52.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0-RC5", prerelease = true }
+"6.8.0" = { created_at = 2023-09-25T22:21:27.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.0" }
+"6.8.1" = { created_at = 2023-09-25T22:24:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.1" }
+"6.8.2" = { created_at = 2023-09-25T22:29:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.2" }
+"6.8.3" = { created_at = 2023-09-25T22:31:51.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.8.3" }
+"6.9.0-RC1" = { created_at = 2023-09-25T22:47:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.0-RC1", prerelease = true }
+"6.9.0-RC2" = { created_at = 2023-09-25T22:50:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.0-RC2", prerelease = true }
+"6.9.0" = { created_at = 2023-09-25T22:52:30.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.0" }
+"6.9.1" = { created_at = 2023-09-25T23:22:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.1" }
+"6.9.2" = { created_at = 2023-09-25T23:45:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.2" }
+"6.9.3" = { created_at = 2023-09-26T00:35:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.3" }
+"6.9.4" = { created_at = 2023-09-26T01:22:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v6.9.4" }
+"7.0.0-M1" = { created_at = 2023-09-25T22:26:42.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-M1", prerelease = true }
+"7.0.0-M2" = { created_at = 2023-09-25T22:34:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-M2", prerelease = true }
+"7.0.0-M3" = { created_at = 2023-09-25T22:37:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-M3", prerelease = true }
+"7.0.0-RC1" = { created_at = 2023-09-25T22:39:59.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-RC1", prerelease = true }
+"7.0.0-RC2" = { created_at = 2023-09-25T22:42:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0-RC2", prerelease = true }
+"7.0.0" = { created_at = 2023-09-25T22:45:05.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.0" }
+"7.0.1" = { created_at = 2023-09-25T22:54:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.1" }
+"7.0.2" = { created_at = 2023-09-25T22:57:23.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.0.2" }
+"7.1.0-RC1" = { created_at = 2023-09-25T22:59:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.0-RC1", prerelease = true }
+"7.1.0-RC2" = { created_at = 2023-09-25T23:02:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.0-RC2", prerelease = true }
+"7.1.0" = { created_at = 2023-09-25T23:05:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.0" }
+"7.1.1" = { created_at = 2023-09-25T23:07:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.1.1" }
+"7.2.0-RC1" = { created_at = 2023-09-25T23:10:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0-RC1", prerelease = true }
+"7.2.0-RC2" = { created_at = 2023-09-25T23:12:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0-RC2", prerelease = true }
+"7.2.0-RC3" = { created_at = 2023-09-25T23:15:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0-RC3", prerelease = true }
+"7.2.0" = { created_at = 2023-09-25T23:19:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.2.0" }
+"7.3.0-RC1" = { created_at = 2023-09-25T23:25:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC1", prerelease = true }
+"7.3.0-RC2" = { created_at = 2023-09-25T23:27:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC2", prerelease = true }
+"7.3.0-RC3" = { created_at = 2023-09-25T23:30:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC3", prerelease = true }
+"7.3.0-RC4" = { created_at = 2023-09-25T23:32:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC4", prerelease = true }
+"7.3.0-RC5" = { created_at = 2023-09-25T23:35:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0-RC5", prerelease = true }
+"7.3.0" = { created_at = 2023-09-25T23:38:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.0" }
+"7.3.1" = { created_at = 2023-09-25T23:40:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.1" }
+"7.3.2" = { created_at = 2023-09-25T23:43:19.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.2" }
+"7.3.3-RC1" = { created_at = 2023-09-25T23:48:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.3-RC1", prerelease = true }
+"7.3.3" = { created_at = 2023-09-25T23:51:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.3.3" }
+"7.4.0-RC1" = { created_at = 2023-09-25T23:53:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.0-RC1", prerelease = true }
+"7.4.0-RC2" = { created_at = 2023-09-25T23:56:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.0-RC2", prerelease = true }
+"7.4.0" = { created_at = 2023-09-25T23:59:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.0" }
+"7.4.1" = { created_at = 2023-09-26T00:01:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.1" }
+"7.4.2" = { created_at = 2023-09-26T00:04:21.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.4.2" }
+"7.5.0-RC1" = { created_at = 2023-09-26T00:07:05.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC1", prerelease = true }
+"7.5.0-RC2" = { created_at = 2023-09-26T00:10:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC2", prerelease = true }
+"7.5.0-RC3" = { created_at = 2023-09-26T00:12:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC3", prerelease = true }
+"7.5.0-RC4" = { created_at = 2023-09-26T00:15:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC4", prerelease = true }
+"7.5.0-RC5" = { created_at = 2023-09-26T00:18:48.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0-RC5", prerelease = true }
+"7.5.0" = { created_at = 2023-09-26T00:21:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.0" }
+"7.5.1" = { created_at = 2023-09-26T00:24:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.5.1" }
+"7.6.0-M1" = { created_at = 2023-09-26T00:27:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-M1", prerelease = true }
+"7.6.0-RC1" = { created_at = 2023-09-26T00:38:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC1", prerelease = true }
+"7.6.0-RC2" = { created_at = 2023-09-26T00:43:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC2", prerelease = true }
+"7.6.0-RC3" = { created_at = 2023-09-26T00:46:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC3", prerelease = true }
+"7.6.0-RC4" = { created_at = 2023-09-26T00:49:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0-RC4", prerelease = true }
+"7.6.0" = { created_at = 2023-09-26T00:51:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.0" }
+"7.6.1" = { created_at = 2023-09-26T01:24:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.1" }
+"7.6.2" = { created_at = 2023-09-26T01:59:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.2" }
+"8.0.0-M1" = { created_at = 2023-09-26T00:29:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M1", prerelease = true }
+"8.0.0-M2" = { created_at = 2023-09-26T00:32:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M2", prerelease = true }
+"8.0.0-M3" = { created_at = 2023-09-26T00:40:46.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M3", prerelease = true }
+"8.0.0-M4" = { created_at = 2023-09-26T00:54:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M4", prerelease = true }
+"8.0.0-M5" = { created_at = 2023-09-26T00:57:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M5", prerelease = true }
+"8.0.0-M6" = { created_at = 2023-09-26T00:59:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-M6", prerelease = true }
+"8.0.0-RC1" = { created_at = 2023-09-26T01:02:51.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC1", prerelease = true }
+"8.0.0-RC2" = { created_at = 2023-09-26T01:05:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC2", prerelease = true }
+"8.0.0-RC3" = { created_at = 2023-09-26T01:08:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC3", prerelease = true }
+"8.0.0-RC4" = { created_at = 2023-09-26T01:11:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC4", prerelease = true }
+"8.0.0-RC5" = { created_at = 2023-09-26T01:14:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0-RC5", prerelease = true }
+"8.0.0" = { created_at = 2023-09-26T01:16:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.0" }
+"8.0.1" = { created_at = 2023-09-26T01:19:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.1" }
+"8.0.2" = { created_at = 2023-09-26T01:27:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.0.2" }
+"8.1.0-RC1" = { created_at = 2023-09-26T01:30:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC1", prerelease = true }
+"8.1.0-RC2" = { created_at = 2023-09-26T01:33:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC2", prerelease = true }
+"8.1.0-RC3" = { created_at = 2023-09-26T01:36:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC3", prerelease = true }
+"8.1.0-RC4" = { created_at = 2023-09-26T01:38:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0-RC4", prerelease = true }
+"8.1.0" = { created_at = 2023-09-26T01:41:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.0" }
+"8.1.1" = { created_at = 2023-09-26T01:44:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.1.1" }
+"8.2.0-M1" = { created_at = 2023-09-26T01:47:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-M1", prerelease = true }
+"8.2.0-RC1" = { created_at = 2023-09-26T01:50:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-RC1", prerelease = true }
+"8.2.0-RC2" = { created_at = 2023-09-26T01:53:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-RC2", prerelease = true }
+"8.2.0-RC3" = { created_at = 2023-09-26T01:56:21.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0-RC3", prerelease = true }
+"8.2.0" = { created_at = 2023-09-26T02:02:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.0" }
+"8.2.1" = { created_at = 2023-09-26T02:26:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.2.1" }
+"8.3.0-RC1" = { created_at = 2023-09-26T02:29:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC1", prerelease = true }
+"8.3.0-RC2" = { created_at = 2023-09-26T02:32:44.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC2", prerelease = true }
+"8.3.0-RC3" = { created_at = 2023-09-26T02:35:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC3", prerelease = true }
+"8.3.0-RC4" = { created_at = 2023-09-26T02:39:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0-RC4", prerelease = true }
+"8.3.0" = { created_at = 2023-09-26T02:42:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.3.0" }
+"8.4.0-RC1" = { created_at = 2023-09-26T02:45:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0-RC1", prerelease = true }
+"7.6.3" = { created_at = 2023-10-05T06:26:19.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.3" }
+"7.6.4" = { created_at = 2024-02-05T14:37:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.4" }
+"7.6.5" = { created_at = 2025-06-04T13:11:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.5" }
+"7.6.6" = { created_at = 2025-07-04T10:43:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v7.6.6" }
+"8.4.0-RC2" = { created_at = 2023-09-26T12:21:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0-RC2", prerelease = true }
+"8.4.0-RC3" = { created_at = 2023-09-29T14:09:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0-RC3", prerelease = true }
+"8.4.0" = { created_at = 2023-10-05T06:29:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.4.0" }
+"8.5.0-RC1" = { created_at = 2023-11-07T16:22:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC1", prerelease = true }
+"8.5.0-RC2" = { created_at = 2023-11-14T14:26:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC2", prerelease = true }
+"8.5.0-RC3" = { created_at = 2023-11-17T13:52:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC3", prerelease = true }
+"8.5.0-RC4" = { created_at = 2023-11-24T09:25:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0-RC4", prerelease = true }
+"8.5.0" = { created_at = 2023-11-29T14:18:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.5.0" }
+"8.6.0-M1" = { created_at = 2023-12-08T09:49:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-M1", prerelease = true }
+"8.6.0-RC1" = { created_at = 2023-12-28T06:51:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC1", prerelease = true }
+"8.6.0-RC2" = { created_at = 2024-01-12T14:58:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC2", prerelease = true }
+"8.6.0-RC3" = { created_at = 2024-01-23T15:23:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC3", prerelease = true }
+"8.6.0-RC4" = { created_at = 2024-01-31T13:17:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0-RC4", prerelease = true }
+"8.6.0" = { created_at = 2024-02-02T16:58:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.6.0" }
+"8.7.0-RC1" = { created_at = 2024-02-22T21:50:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC1", prerelease = true }
+"8.7.0-RC2" = { created_at = 2024-02-29T13:03:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC2", prerelease = true }
+"8.7.0-RC3" = { created_at = 2024-03-11T17:23:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC3", prerelease = true }
+"8.7.0-RC4" = { created_at = 2024-03-20T14:05:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0-RC4", prerelease = true }
+"8.7.0" = { created_at = 2024-03-22T16:05:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.7.0" }
+"8.8.0-RC1" = { created_at = 2024-04-26T15:30:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.8.0-RC1", prerelease = true }
+"8.8.0-RC2" = { created_at = 2024-05-27T07:24:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.8.0-RC2", prerelease = true }
+"8.8.0" = { created_at = 2024-05-31T21:58:03.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.8.0" }
+"8.9.0-RC1" = { created_at = 2024-06-21T13:26:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.9.0-RC1", prerelease = true }
+"8.9.0-RC2" = { created_at = 2024-07-05T15:51:52.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.9.0-RC2", prerelease = true }
+"8.9.0" = { created_at = 2024-07-11T14:51:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.9.0" }
+"8.10.0-RC1" = { created_at = 2024-08-08T06:19:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.0-RC1", prerelease = true }
+"8.10.0" = { created_at = 2024-08-14T11:18:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.0" }
+"8.10.1" = { created_at = 2024-09-09T07:54:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.1" }
+"8.10.2-M1" = { created_at = 2024-09-20T00:00:12.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.2-M1", prerelease = true }
+"8.10.2" = { created_at = 2024-09-23T21:44:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.10.2" }
+"8.11.0-M1" = { created_at = 2024-10-06T08:47:18.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-M1", prerelease = true }
+"8.11.0-RC1" = { created_at = 2024-10-17T10:53:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-RC1", prerelease = true }
+"8.11.0-RC2" = { created_at = 2024-10-31T15:15:51.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-RC2", prerelease = true }
+"8.11.0-RC3" = { created_at = 2024-11-07T13:58:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0-RC3", prerelease = true }
+"8.11.0" = { created_at = 2024-11-11T14:10:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.0" }
+"8.11.1" = { created_at = 2024-11-20T17:09:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.11.1" }
+"8.12.0-RC1" = { created_at = 2024-12-12T15:35:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.0-RC1", prerelease = true }
+"8.12.0-RC2" = { created_at = 2024-12-17T16:39:05.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.0-RC2", prerelease = true }
+"8.12.0" = { created_at = 2024-12-20T15:57:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.0" }
+"8.12.1-M1" = { created_at = 2025-01-21T11:11:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.1-M1", prerelease = true }
+"8.12.1" = { created_at = 2025-01-24T13:06:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.12.1" }
+"8.13.0-M1" = { created_at = 2025-01-09T20:26:55.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-M1", prerelease = true }
+"8.13.0-M2" = { created_at = 2025-01-10T09:05:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-M2", prerelease = true }
+"8.13.0-M3" = { created_at = 2025-01-21T16:57:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-M3", prerelease = true }
+"8.13.0-RC1" = { created_at = 2025-02-12T09:59:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-RC1", prerelease = true }
+"8.13.0-RC2" = { created_at = 2025-02-20T14:37:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0-RC2", prerelease = true }
+"8.13.0" = { created_at = 2025-02-25T09:33:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.13.0" }
+"8.14.0-M1" = { created_at = 2025-02-14T13:42:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M1", prerelease = true }
+"8.14.0-M2" = { created_at = 2025-02-20T12:52:21.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M2", prerelease = true }
+"8.14.0-M3" = { created_at = 2025-02-21T14:24:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M3", prerelease = true }
+"8.14.0-M4" = { created_at = 2025-03-06T07:48:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M4", prerelease = true }
+"8.14.0-M5" = { created_at = 2025-03-20T08:32:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M5", prerelease = true }
+"8.14.0-M6" = { created_at = 2025-03-22T10:50:45.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M6", prerelease = true }
+"8.14.0-M7" = { created_at = 2025-03-24T07:47:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M7", prerelease = true }
+"8.14.0-M8" = { created_at = 2025-04-08T01:22:02.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-M8", prerelease = true }
+"8.14.0-RC1" = { created_at = 2025-04-09T08:56:09.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-RC1", prerelease = true }
+"8.14.0-RC2" = { created_at = 2025-04-17T12:57:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-RC2", prerelease = true }
+"8.14.0-RC3" = { created_at = 2025-04-23T12:10:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0-RC3", prerelease = true }
+"8.14.0" = { created_at = 2025-04-25T09:38:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.0" }
+"8.14.1" = { created_at = 2025-05-22T13:53:46.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.1" }
+"8.14.2" = { created_at = 2025-06-05T13:42:34.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.2" }
+"8.14.3" = { created_at = 2025-07-04T13:25:58.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.3" }
+"8.14.4" = { created_at = 2026-01-23T16:42:52.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.4" }
+"8.14.5" = { created_at = 2026-05-07T11:16:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v8.14.5" }
+"9.0.0-M1" = { created_at = 2025-04-10T12:02:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M1", prerelease = true }
+"9.0.0-M10" = { created_at = 2025-07-08T05:36:36.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M10", prerelease = true }
+"9.0.0-M2" = { created_at = 2025-04-14T08:51:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M2", prerelease = true }
+"9.0.0-M3" = { created_at = 2025-04-22T03:15:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M3", prerelease = true }
+"9.0.0-M4" = { created_at = 2025-04-28T14:59:30.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M4", prerelease = true }
+"9.0.0-M5" = { created_at = 2025-04-29T09:47:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M5", prerelease = true }
+"9.0.0-M6" = { created_at = 2025-05-08T06:34:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M6", prerelease = true }
+"9.0.0-M7" = { created_at = 2025-05-13T07:06:04.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M7", prerelease = true }
+"9.0.0-M8" = { created_at = 2025-05-16T07:40:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M8", prerelease = true }
+"9.0.0-M9" = { created_at = 2025-05-26T08:41:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-M9", prerelease = true }
+"9.0.0-RC1" = { created_at = 2025-06-18T08:03:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC1", prerelease = true }
+"9.0.0-RC2" = { created_at = 2025-07-11T15:31:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC2", prerelease = true }
+"9.0.0-RC3" = { created_at = 2025-07-17T12:57:59.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC3", prerelease = true }
+"9.0.0-RC4" = { created_at = 2025-07-28T15:20:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0-RC4", prerelease = true }
+"9.0.0" = { created_at = 2025-07-31T16:44:57.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.0.0" }
+"9.1.0-RC1" = { created_at = 2025-08-13T12:48:22.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC1", prerelease = true }
+"9.1.0-RC2" = { created_at = 2025-09-02T14:48:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC2", prerelease = true }
+"9.1.0-RC3" = { created_at = 2025-09-08T08:48:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC3", prerelease = true }
+"9.1.0-RC4" = { created_at = 2025-09-15T15:47:18.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0-RC4", prerelease = true }
+"9.1.0" = { created_at = 2025-09-18T13:16:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.1.0" }
+"9.2.0-M1" = { created_at = 2025-09-16T09:50:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-M1", prerelease = true }
+"9.2.0-M2" = { created_at = 2025-09-18T08:26:47.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-M2", prerelease = true }
+"9.2.0-RC1" = { created_at = 2025-10-03T13:07:50.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-RC1", prerelease = true }
+"9.2.0-RC2" = { created_at = 2025-10-17T10:49:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-RC2", prerelease = true }
+"9.2.0-RC3" = { created_at = 2025-10-24T10:31:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0-RC3", prerelease = true }
+"9.2.0" = { created_at = 2025-10-29T14:06:01.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.0" }
+"9.2.1" = { created_at = 2025-11-17T13:53:40.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.2.1" }
+"9.3.0-M1" = { created_at = 2025-11-04T13:30:13.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-M1", prerelease = true }
+"9.3.0-M2" = { created_at = 2025-11-26T10:18:06.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-M2", prerelease = true }
+"9.3.0-RC1" = { created_at = 2025-11-28T16:51:49.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-RC1", prerelease = true }
+"9.3.0-RC2" = { created_at = 2025-12-24T09:18:31.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-RC2", prerelease = true }
+"9.3.0-RC3" = { created_at = 2026-01-12T11:13:43.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0-RC3", prerelease = true }
+"9.3.0" = { created_at = 2026-01-16T11:29:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.0" }
+"9.3.1" = { created_at = 2026-01-29T14:29:25.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.3.1" }
+"9.4.0-M1" = { created_at = 2025-11-19T22:27:00.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M1", prerelease = true }
+"9.4.0-M2" = { created_at = 2025-11-21T21:53:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M2", prerelease = true }
+"9.4.0-M3" = { created_at = 2025-12-02T08:08:10.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M3", prerelease = true }
+"9.4.0-M4" = { created_at = 2025-12-26T09:13:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M4", prerelease = true }
+"9.4.0-M5" = { created_at = 2026-01-23T12:46:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-M5", prerelease = true }
+"9.4.0-RC1" = { created_at = 2026-02-08T03:10:28.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-RC1", prerelease = true }
+"9.4.0-RC2" = { created_at = 2026-02-27T09:37:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0-RC2", prerelease = true }
+"9.4.0" = { created_at = 2026-03-04T10:48:54.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.0" }
+"9.4.1" = { created_at = 2026-03-19T09:00:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.4.1" }
+"9.5.0-M1" = { created_at = 2026-01-29T13:42:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M1", prerelease = true }
+"9.5.0-M2" = { created_at = 2026-02-11T14:21:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M2", prerelease = true }
+"9.5.0-M3" = { created_at = 2026-02-16T08:19:56.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M3", prerelease = true }
+"9.5.0-M4" = { created_at = 2026-02-26T09:40:24.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M4", prerelease = true }
+"9.5.0-M5" = { created_at = 2026-02-27T09:13:08.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M5", prerelease = true }
+"9.5.0-M6" = { created_at = 2026-03-06T15:17:29.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M6", prerelease = true }
+"9.5.0-M7" = { created_at = 2026-03-15T08:52:15.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-M7", prerelease = true }
+"9.5.0-RC1" = { created_at = 2026-03-30T12:18:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC1", prerelease = true }
+"9.5.0-RC2" = { created_at = 2026-04-09T13:45:37.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC2", prerelease = true }
+"9.5.0-RC3" = { created_at = 2026-04-17T12:34:14.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC3", prerelease = true }
+"9.5.0-RC4" = { created_at = 2026-04-23T13:51:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0-RC4", prerelease = true }
+"9.5.0" = { created_at = 2026-04-28T12:17:34.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.0" }
+"9.5.1" = { created_at = 2026-05-12T13:30:11.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.5.1" }
+"9.6.0-M1" = { created_at = 2026-04-21T09:33:39.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-M1", prerelease = true }
+"9.6.0-M2" = { created_at = 2026-05-10T11:17:20.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-M2", prerelease = true }
+"9.6.0-M3" = { created_at = 2026-05-27T03:54:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-M3", prerelease = true }
+"9.6.0-RC1" = { created_at = 2026-05-28T12:16:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-RC1", prerelease = true }
+"9.6.0-RC2" = { created_at = 2026-06-11T12:11:41.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-RC2", prerelease = true }
+"9.6.0-RC3" = { created_at = 2026-06-16T15:38:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0-RC3", prerelease = true }
+"9.6.0" = { created_at = 2026-06-18T23:31:32.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.0" }
+"9.6.1" = { created_at = 2026-06-26T14:35:35.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.6.1" }
+"9.7.0-M1" = { created_at = 2026-06-17T10:48:38.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-M1", prerelease = true }
+"9.7.0-M2" = { created_at = 2026-07-03T08:28:17.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-M2", prerelease = true }
+"9.7.0-M3" = { created_at = 2026-07-10T17:14:16.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-M3", prerelease = true }
+"9.7.0-RC1" = { created_at = 2026-07-17T15:10:26.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-RC1", prerelease = true }
+"9.7.0-RC2" = { created_at = 2026-07-31T08:08:52.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-RC2", prerelease = true }
+"9.7.0-RC3" = { created_at = 2026-08-04T16:03:53.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0-RC3", prerelease = true }
+"9.7.0" = { created_at = 2026-08-06T14:15:33.000Z, release_url = "https://github.com/gradle/gradle-distributions/releases/tag/v9.7.0" }

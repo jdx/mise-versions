@@ -1,47 +1,47 @@
 [versions]
-"0.2.14" = { created_at = 2020-12-22T01:50:50.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/0.2.14" }
-"0.2.15" = { created_at = 2021-01-12T22:26:43.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.2.15" }
-"0.3.0" = { created_at = 2022-05-04T18:52:32.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2022-11-13T09:01:12.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.3.1" }
-"0.3.3" = { created_at = 2022-12-08T14:06:52.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.3.3" }
-"0.4.0-pre.1" = { created_at = 2022-12-16T21:18:58.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.1", prerelease = true }
-"0.4.0-pre.2" = { created_at = 2022-12-23T10:07:01.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.2", prerelease = true }
-"0.4.0-pre.3" = { created_at = 2022-12-30T12:45:18.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.3", prerelease = true }
-"0.4.0-pre.4" = { created_at = 2023-01-02T20:41:10.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.4", prerelease = true }
-"0.4.0-pre.5" = { created_at = 2023-01-08T15:19:11.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.5", prerelease = true }
-"0.4.0-pre.6" = { created_at = 2023-01-14T10:05:10.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.6", prerelease = true }
-"0.4.0-pre.7" = { created_at = 2023-02-12T07:15:19.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.7", prerelease = true }
-"0.4.0-pre.8" = { created_at = 2023-02-23T08:50:51.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.8", prerelease = true }
-"0.4.0-pre.9" = { created_at = 2023-03-06T08:12:43.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.9", prerelease = true }
-"0.4.0-pre.10" = { created_at = 2023-03-10T08:08:35.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.10", prerelease = true }
-"0.4.0-pre.11" = { created_at = 2023-03-17T12:36:58.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.11", prerelease = true }
-"0.4.0" = { created_at = 2023-03-21T09:49:02.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2023-03-27T10:09:39.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.1" }
-"0.4.2" = { created_at = 2023-04-24T10:11:43.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.2" }
-"0.5.0" = { created_at = 2023-05-23T07:08:06.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.0" }
-"0.5.1" = { created_at = 2023-06-01T09:49:32.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.1" }
-"0.5.2" = { created_at = 2023-06-03T08:54:39.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.2" }
-"0.5.3" = { created_at = 2023-06-04T10:44:40.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.3" }
-"0.5.4" = { created_at = 2023-06-27T08:23:13.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.4" }
-"0.6.0" = { created_at = 2023-10-27T14:57:10.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.6.0" }
-"0.7.0" = { created_at = 2023-11-04T20:22:14.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.0" }
-"0.7.1" = { created_at = 2023-11-07T13:10:05.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.1" }
-"0.7.2" = { created_at = 2023-11-14T20:29:58.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.2" }
-"0.7.3" = { created_at = 2023-11-20T08:20:52.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.3" }
-"0.7.4" = { created_at = 2023-11-27T09:15:33.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.4" }
-"0.7.5" = { created_at = 2024-01-10T17:59:01.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.5" }
-"0.7.6" = { created_at = 2024-01-22T11:10:13.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.6" }
-"0.7.7" = { created_at = 2024-02-07T10:41:22.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.7" }
-"0.8.0" = { created_at = 2024-04-21T12:39:06.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.8.0" }
-"0.8.1" = { created_at = 2024-05-24T22:28:36.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.8.1" }
-"0.8.2" = { created_at = 2024-09-28T08:47:15.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.8.2" }
-"0.9.0" = { created_at = 2024-12-09T20:48:45.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.9.0" }
-"0.9.1" = { created_at = 2025-01-07T08:27:42.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.9.1" }
-"0.10.0" = { created_at = 2025-02-24T18:11:14.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.10.0" }
-"0.11.0" = { created_at = 2025-10-10T18:53:34.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.11.0" }
-"0.12.0" = { created_at = 2025-10-20T22:16:21.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.12.0" }
-"0.13.0" = { created_at = 2026-01-13T18:52:33.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.13.0" }
-"0.14.0" = { created_at = 2026-02-09T14:54:07.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.14.0" }
-"0.15.0" = { created_at = 2026-04-29T15:08:11.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.15.0" }
-"0.16.0" = { created_at = 2026-06-19T11:40:27.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.16.0" }
-"0.17.0" = { created_at = 2026-07-29T05:57:35.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.17.0" }
+"0.2.14" = { created_at = 2020-12-22T02:06:43.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/0.2.14" }
+"0.2.15" = { created_at = 2021-01-12T22:46:20.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.2.15" }
+"0.3.0" = { created_at = 2022-05-05T16:32:46.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2022-11-13T19:55:32.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.3.1" }
+"0.3.3" = { created_at = 2022-12-08T17:49:30.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.3.3" }
+"0.4.0-pre.1" = { created_at = 2022-12-16T21:39:54.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.1", prerelease = true }
+"0.4.0-pre.2" = { created_at = 2022-12-23T10:18:16.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.2", prerelease = true }
+"0.4.0-pre.3" = { created_at = 2022-12-30T12:57:42.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.3", prerelease = true }
+"0.4.0-pre.4" = { created_at = 2023-01-02T21:12:02.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.4", prerelease = true }
+"0.4.0-pre.5" = { created_at = 2023-01-08T15:52:17.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.5", prerelease = true }
+"0.4.0-pre.6" = { created_at = 2023-01-14T14:42:31.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.6", prerelease = true }
+"0.4.0-pre.7" = { created_at = 2023-02-12T08:02:47.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.7", prerelease = true }
+"0.4.0-pre.8" = { created_at = 2023-02-23T09:07:05.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.8", prerelease = true }
+"0.4.0-pre.9" = { created_at = 2023-03-06T08:31:05.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.9", prerelease = true }
+"0.4.0-pre.10" = { created_at = 2023-03-10T08:23:36.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.10", prerelease = true }
+"0.4.0-pre.11" = { created_at = 2023-03-18T15:28:13.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0-pre.11", prerelease = true }
+"0.4.0" = { created_at = 2023-03-21T10:09:31.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2023-03-27T10:30:36.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2023-04-24T10:41:24.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.4.2" }
+"0.5.0" = { created_at = 2023-05-23T07:39:01.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2023-06-01T10:06:52.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2023-06-03T09:18:49.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.2" }
+"0.5.3" = { created_at = 2023-06-04T11:00:55.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.3" }
+"0.5.4" = { created_at = 2023-06-27T09:44:51.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.5.4" }
+"0.6.0" = { created_at = 2023-10-27T15:21:27.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2023-11-04T20:44:17.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2023-11-07T13:44:36.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.1" }
+"0.7.2" = { created_at = 2023-11-15T09:55:38.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.2" }
+"0.7.3" = { created_at = 2023-11-20T08:36:11.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.3" }
+"0.7.4" = { created_at = 2023-11-27T10:04:25.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.4" }
+"0.7.5" = { created_at = 2024-01-10T18:15:09.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.5" }
+"0.7.6" = { created_at = 2024-01-22T12:58:12.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.6" }
+"0.7.7" = { created_at = 2024-02-07T10:59:00.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.7.7" }
+"0.8.0" = { created_at = 2024-04-21T12:56:48.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2024-05-24T22:44:16.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2024-09-28T09:04:25.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.8.2" }
+"0.9.0" = { created_at = 2024-12-09T21:05:12.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2025-01-07T09:01:27.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.9.1" }
+"0.10.0" = { created_at = 2025-02-24T18:29:05.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.10.0" }
+"0.11.0" = { created_at = 2025-10-10T19:12:27.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.11.0" }
+"0.12.0" = { created_at = 2025-10-20T22:38:10.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.12.0" }
+"0.13.0" = { created_at = 2026-01-13T19:16:21.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.13.0" }
+"0.14.0" = { created_at = 2026-02-09T15:22:39.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.14.0" }
+"0.15.0" = { created_at = 2026-04-29T15:49:09.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.15.0" }
+"0.16.0" = { created_at = 2026-06-19T11:53:00.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.16.0" }
+"0.17.0" = { created_at = 2026-07-29T06:21:13.000Z, release_url = "https://github.com/mozilla/sccache/releases/tag/v0.17.0" }

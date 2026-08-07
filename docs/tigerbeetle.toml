@@ -1,287 +1,287 @@
 [versions]
-"2022-11-16-weekly" = { created_at = 2022-11-16T15:05:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-11-16-weekly", prerelease = true }
-"2022-12-05-weekly" = { created_at = 2022-12-03T17:56:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-05-weekly", prerelease = true }
-"2022-12-12-weekly" = { created_at = 2022-12-10T13:56:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-12-weekly", prerelease = true }
-"2022-12-19-weekly" = { created_at = 2022-12-17T15:18:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-19-weekly", prerelease = true }
-"2022-12-26-weekly" = { created_at = 2022-12-20T20:29:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-26-weekly", prerelease = true }
-"2023-01-02-weekly" = { created_at = 2022-12-20T20:29:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-02-weekly", prerelease = true }
-"2023-01-09-weekly" = { created_at = 2022-12-20T20:29:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-09-weekly", prerelease = true }
-"2023-01-16-weekly" = { created_at = 2023-01-13T16:49:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-16-weekly", prerelease = true }
-"2023-01-23-weekly" = { created_at = 2023-01-20T22:56:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-23-weekly", prerelease = true }
-"2023-01-30-weekly" = { created_at = 2023-01-27T23:50:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-30-weekly", prerelease = true }
-"2023-02-06-weekly" = { created_at = 2023-02-03T21:22:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-06-weekly", prerelease = true }
-"2023-02-13-weekly" = { created_at = 2023-02-09T18:04:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-13-weekly", prerelease = true }
-"2023-02-20-weekly" = { created_at = 2023-02-18T11:08:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-20-weekly", prerelease = true }
-"2023-02-27-weekly" = { created_at = 2023-02-27T13:05:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-27-weekly", prerelease = true }
-"2023-03-01-weekly" = { created_at = 2023-03-01T21:51:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-01-weekly", prerelease = true }
-"2023-03-06-weekly" = { created_at = 2023-03-03T22:08:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-06-weekly", prerelease = true }
-"2023-03-13-weekly" = { created_at = 2023-03-10T18:12:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-13-weekly", prerelease = true }
-"2023-03-20-weekly" = { created_at = 2023-03-17T18:03:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-20-weekly", prerelease = true }
-"2023-03-27-weekly" = { created_at = 2023-03-26T14:12:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-27-weekly", prerelease = true }
-"2023-04-03-weekly" = { created_at = 2023-04-01T16:33:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-03-weekly", prerelease = true }
-"2023-04-10-weekly" = { created_at = 2023-04-07T17:19:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-10-weekly", prerelease = true }
-"2023-04-17-weekly" = { created_at = 2023-04-14T21:20:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-17-weekly", prerelease = true }
-"2023-04-24-weekly" = { created_at = 2023-04-24T11:52:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-24-weekly", prerelease = true }
-"test" = { created_at = 2023-04-27T16:45:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/test", prerelease = true }
-"release-20230428.2204" = { created_at = 2023-04-28T21:00:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230428.2204", prerelease = true }
-"release-20230429.0035" = { created_at = 2023-04-29T00:16:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230429.0035", prerelease = true }
-"release-20230429.2314" = { created_at = 2023-04-29T22:55:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230429.2314", prerelease = true }
-"release-20230501.1405" = { created_at = 2023-05-01T13:47:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230501.1405", prerelease = true }
-"release-20230501.1831" = { created_at = 2023-05-01T17:40:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230501.1831", prerelease = true }
-"release-20230502.1657" = { created_at = 2023-05-02T15:58:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230502.1657", prerelease = true }
-"release-20230503.1428" = { created_at = 2023-05-03T14:05:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230503.1428", prerelease = true }
-"release-20230504.1250" = { created_at = 2023-05-04T12:29:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230504.1250", prerelease = true }
-"release-20230504.1255" = { created_at = 2023-05-04T12:34:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230504.1255", prerelease = true }
-"release-20230504.1639" = { created_at = 2023-05-04T16:15:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230504.1639", prerelease = true }
-"0.13.0" = { created_at = 2023-05-04T12:34:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.0", prerelease = true }
-"release-20230508.1432" = { created_at = 2023-05-08T14:14:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.1432", prerelease = true }
-"release-20230508.1820" = { created_at = 2023-05-08T17:59:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.1820", prerelease = true }
-"release-20230508.1942" = { created_at = 2023-05-08T19:21:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.1942", prerelease = true }
-"release-20230508.2134" = { created_at = 2023-05-08T21:12:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.2134", prerelease = true }
-"release-20230509.1416" = { created_at = 2023-05-09T13:56:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1416", prerelease = true }
-"release-20230509.1524" = { created_at = 2023-05-09T14:51:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1524", prerelease = true }
-"release-20230509.1531" = { created_at = 2023-05-09T14:59:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1531", prerelease = true }
-"release-20230509.1619" = { created_at = 2023-05-09T15:52:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1619", prerelease = true }
-"release-20230509.2051" = { created_at = 2023-05-09T20:18:20.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.2051", prerelease = true }
-"release-20230509.2059" = { created_at = 2023-05-09T20:18:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.2059", prerelease = true }
-"release-20230510.1225" = { created_at = 2023-05-10T11:47:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230510.1225", prerelease = true }
-"release-20230510.1905" = { created_at = 2023-05-10T18:44:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230510.1905", prerelease = true }
-"0.13.1" = { created_at = 2023-05-11T08:35:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.1", prerelease = true }
-"0.13.2" = { created_at = 2023-05-11T18:41:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.2", prerelease = true }
-"0.13.3" = { created_at = 2023-05-11T18:41:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.3", prerelease = true }
-"0.13.4" = { created_at = 2023-05-12T16:25:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.4", prerelease = true }
-"0.13.5" = { created_at = 2023-05-12T19:20:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.5", prerelease = true }
-"0.13.6" = { created_at = 2023-05-12T20:57:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.6", prerelease = true }
-"0.13.7" = { created_at = 2023-05-15T17:03:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.7", prerelease = true }
-"0.13.8" = { created_at = 2023-05-16T13:31:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.8", prerelease = true }
-"0.13.9" = { created_at = 2023-05-16T13:51:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.9", prerelease = true }
-"0.13.10" = { created_at = 2023-05-24T12:42:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.10", prerelease = true }
-"0.13.11" = { created_at = 2023-05-26T23:05:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.11", prerelease = true }
-"0.13.12" = { created_at = 2023-05-27T11:16:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.12", prerelease = true }
-"0.13.13" = { created_at = 2023-05-30T17:19:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.13", prerelease = true }
-"0.13.14" = { created_at = 2023-06-01T17:08:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.14", prerelease = true }
-"0.13.15" = { created_at = 2023-06-03T01:06:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.15", prerelease = true }
-"0.13.16" = { created_at = 2023-06-03T01:45:57.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.16", prerelease = true }
-"0.13.17" = { created_at = 2023-06-03T02:17:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.17", prerelease = true }
-"0.13.18" = { created_at = 2023-06-03T06:33:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.18", prerelease = true }
-"0.13.19" = { created_at = 2023-06-03T06:58:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.19", prerelease = true }
-"0.13.20" = { created_at = 2023-06-05T09:44:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.20", prerelease = true }
-"0.13.21" = { created_at = 2023-06-05T13:26:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.21", prerelease = true }
-"0.13.22" = { created_at = 2023-06-05T13:41:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.22", prerelease = true }
-"0.13.23" = { created_at = 2023-06-05T14:51:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.23", prerelease = true }
-"0.13.24" = { created_at = 2023-06-05T15:57:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.24", prerelease = true }
-"0.13.25" = { created_at = 2023-06-05T18:01:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.25", prerelease = true }
-"0.13.26" = { created_at = 2023-06-05T18:52:57.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.26", prerelease = true }
-"0.13.27" = { created_at = 2023-06-05T19:47:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.27", prerelease = true }
-"0.13.28" = { created_at = 2023-06-05T21:46:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.28", prerelease = true }
-"0.13.29" = { created_at = 2023-06-05T23:08:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.29", prerelease = true }
-"0.13.30" = { created_at = 2023-06-06T14:38:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.30", prerelease = true }
-"0.13.31" = { created_at = 2023-06-06T17:56:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.31", prerelease = true }
-"0.13.32" = { created_at = 2023-06-06T20:10:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.32", prerelease = true }
-"0.13.33" = { created_at = 2023-06-06T20:55:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.33", prerelease = true }
-"0.13.34" = { created_at = 2023-06-06T22:03:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.34", prerelease = true }
-"0.13.35" = { created_at = 2023-06-07T15:11:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.35", prerelease = true }
-"0.13.36" = { created_at = 2023-06-14T09:49:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.36", prerelease = true }
-"0.13.37" = { created_at = 2023-07-03T18:22:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.37", prerelease = true }
-"0.13.38" = { created_at = 2023-07-04T12:49:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.38", prerelease = true }
-"0.13.39" = { created_at = 2023-07-04T20:06:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.39", prerelease = true }
-"0.13.40" = { created_at = 2023-07-05T13:30:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.40", prerelease = true }
-"0.13.41" = { created_at = 2023-07-05T14:36:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.41", prerelease = true }
-"0.13.42" = { created_at = 2023-07-05T17:45:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.42", prerelease = true }
-"0.13.43" = { created_at = 2023-07-06T12:29:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.43", prerelease = true }
-"0.13.44" = { created_at = 2023-07-06T15:42:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.44", prerelease = true }
-"0.13.45" = { created_at = 2023-07-06T19:57:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.45", prerelease = true }
-"0.13.46" = { created_at = 2023-07-06T20:39:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.46", prerelease = true }
-"0.13.47" = { created_at = 2023-07-07T08:19:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.47", prerelease = true }
-"0.13.48" = { created_at = 2023-07-07T11:26:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.48", prerelease = true }
-"0.13.49" = { created_at = 2023-07-07T17:46:20.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.49", prerelease = true }
-"0.13.50" = { created_at = 2023-07-09T10:49:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.50", prerelease = true }
-"0.13.51" = { created_at = 2023-07-10T11:15:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.51", prerelease = true }
-"0.13.52" = { created_at = 2023-07-10T12:05:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.52", prerelease = true }
-"0.13.53" = { created_at = 2023-07-10T13:10:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.53", prerelease = true }
-"0.13.54" = { created_at = 2023-07-10T14:54:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.54", prerelease = true }
-"0.13.55" = { created_at = 2023-07-10T17:50:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.55", prerelease = true }
-"0.13.56" = { created_at = 2023-07-10T20:00:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.56", prerelease = true }
-"0.13.57" = { created_at = 2023-07-10T22:29:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.57", prerelease = true }
-"0.13.58" = { created_at = 2023-07-12T06:49:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.58", prerelease = true }
-"0.13.59" = { created_at = 2023-07-12T07:54:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.59", prerelease = true }
-"0.13.60" = { created_at = 2023-07-12T11:33:24.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.60", prerelease = true }
-"0.13.61" = { created_at = 2023-07-12T11:59:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.61", prerelease = true }
-"0.13.63" = { created_at = 2023-07-13T17:51:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.63", prerelease = true }
-"0.13.65" = { created_at = 2023-07-14T09:31:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.65", prerelease = true }
-"0.13.69" = { created_at = 2023-07-17T11:21:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.69", prerelease = true }
-"0.13.70" = { created_at = 2023-07-17T13:10:24.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.70", prerelease = true }
-"0.13.71" = { created_at = 2023-07-17T18:41:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.71", prerelease = true }
-"0.13.72" = { created_at = 2023-07-20T15:08:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.72", prerelease = true }
-"0.13.73" = { created_at = 2023-07-20T20:32:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.73", prerelease = true }
-"0.13.75" = { created_at = 2023-07-22T15:22:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.75", prerelease = true }
-"0.13.76" = { created_at = 2023-07-26T15:48:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.76", prerelease = true }
-"0.13.77" = { created_at = 2023-07-26T17:50:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.77", prerelease = true }
-"0.13.78" = { created_at = 2023-07-27T12:58:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.78", prerelease = true }
-"0.13.80" = { created_at = 2023-07-28T14:04:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.80", prerelease = true }
-"0.13.81" = { created_at = 2023-07-28T18:56:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.81", prerelease = true }
-"0.13.82" = { created_at = 2023-07-28T21:15:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.82", prerelease = true }
-"0.13.83" = { created_at = 2023-07-28T22:21:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.83", prerelease = true }
-"0.13.84" = { created_at = 2023-07-31T11:49:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.84", prerelease = true }
-"0.13.85" = { created_at = 2023-07-31T19:12:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.85", prerelease = true }
-"0.13.86" = { created_at = 2023-08-02T09:41:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.86", prerelease = true }
-"0.13.87" = { created_at = 2023-08-07T14:29:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.87", prerelease = true }
-"0.13.88" = { created_at = 2023-08-08T12:48:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.88", prerelease = true }
-"0.13.89" = { created_at = 2023-08-09T20:44:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.89", prerelease = true }
-"0.13.90" = { created_at = 2023-08-10T13:23:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.90", prerelease = true }
-"0.13.91" = { created_at = 2023-08-10T17:52:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.91", prerelease = true }
-"0.13.92" = { created_at = 2023-08-10T22:31:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.92", prerelease = true }
-"0.13.93" = { created_at = 2023-08-11T10:48:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.93", prerelease = true }
-"0.13.94" = { created_at = 2023-08-11T14:01:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.94", prerelease = true }
-"0.13.95" = { created_at = 2023-08-11T16:14:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.95", prerelease = true }
-"0.13.96" = { created_at = 2023-08-12T13:21:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.96", prerelease = true }
-"0.13.97" = { created_at = 2023-08-13T12:42:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.97", prerelease = true }
-"0.13.98" = { created_at = 2023-08-14T17:00:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.98", prerelease = true }
-"0.13.99" = { created_at = 2023-08-18T16:10:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.99", prerelease = true }
-"0.13.108" = { created_at = 2023-08-23T08:57:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.108", prerelease = true }
-"0.13.109" = { created_at = 2023-08-23T14:50:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.109", prerelease = true }
-"0.13.110" = { created_at = 2023-08-24T13:05:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.110", prerelease = true }
-"0.13.111" = { created_at = 2023-08-24T22:33:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.111", prerelease = true }
-"0.13.112" = { created_at = 2023-08-25T17:19:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.112", prerelease = true }
-"0.13.113" = { created_at = 2023-08-27T12:25:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.113", prerelease = true }
-"0.13.114" = { created_at = 2023-08-28T11:44:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.114", prerelease = true }
-"0.13.115" = { created_at = 2023-08-28T14:31:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.115", prerelease = true }
-"0.13.116" = { created_at = 2023-08-28T17:24:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.116", prerelease = true }
-"0.13.117" = { created_at = 2023-08-29T00:12:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.117", prerelease = true }
-"0.13.118" = { created_at = 2023-08-29T14:08:24.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.118", prerelease = true }
-"0.13.119" = { created_at = 2023-08-29T20:22:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.119", prerelease = true }
-"0.13.120" = { created_at = 2023-08-30T21:29:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.120", prerelease = true }
-"0.13.121" = { created_at = 2023-08-31T15:48:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.121", prerelease = true }
-"0.13.122" = { created_at = 2023-08-31T21:00:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.122", prerelease = true }
-"0.13.123" = { created_at = 2023-09-01T15:19:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.123", prerelease = true }
-"0.13.124" = { created_at = 2023-09-11T13:21:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.124", prerelease = true }
-"0.13.125" = { created_at = 2023-09-12T14:47:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.125", prerelease = true }
-"0.13.126" = { created_at = 2023-09-13T13:20:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.126", prerelease = true }
-"0.13.127" = { created_at = 2023-09-15T21:43:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.127", prerelease = true }
-"0.13.128" = { created_at = 2023-09-18T13:33:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.128", prerelease = true }
-"0.13.129" = { created_at = 2023-09-18T18:22:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.129", prerelease = true }
-"0.13.130" = { created_at = 2023-09-19T16:23:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.130", prerelease = true }
-"0.9.2" = { created_at = 2023-09-22T19:12:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.9.2", prerelease = true }
-"0.13.131" = { created_at = 2023-09-22T03:54:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.131", prerelease = true }
-"0.13.132" = { created_at = 2023-09-22T14:02:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.132", prerelease = true }
-"0.13.133" = { created_at = 2023-09-22T19:12:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.133", prerelease = true }
-"0.13.134" = { created_at = 2023-09-29T14:20:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.134", prerelease = true }
-"0.13.135" = { created_at = 2023-10-02T14:02:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.135", prerelease = true }
-"0.13.136" = { created_at = 2023-10-02T21:13:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.136", prerelease = true }
-"0.13.137" = { created_at = 2023-10-03T06:33:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.137", prerelease = true }
-"0.13.138" = { created_at = 2023-10-03T20:17:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.138", prerelease = true }
-"0.9.151" = { created_at = 2023-10-20T13:54:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.9.151", prerelease = true }
-"0.14.152" = { created_at = 2023-10-20T18:48:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.152", prerelease = true }
-"0.14.157" = { created_at = 2023-10-25T18:27:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.157", prerelease = true }
-"0.14.158" = { created_at = 2023-10-30T17:57:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.158", prerelease = true }
-"0.14.160" = { created_at = 2023-11-06T18:45:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.160", prerelease = true }
-"0.14.164" = { created_at = 2023-11-13T17:09:42.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.164", prerelease = true }
-"0.14.165" = { created_at = 2023-11-20T13:05:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.165", prerelease = true }
-"0.14.166" = { created_at = 2023-11-20T13:05:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.166" }
-"0.14.167" = { created_at = 2023-11-27T12:31:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.167", prerelease = true }
-"0.14.168" = { created_at = 2023-12-04T14:26:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.168" }
-"0.14.169" = { created_at = 2023-12-11T16:46:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.169" }
-"0.14.171" = { created_at = 2023-12-19T12:55:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.171" }
-"0.14.174" = { created_at = 2023-12-20T22:56:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.174" }
-"0.14.175" = { created_at = 2024-01-15T14:22:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.175" }
-"0.14.176" = { created_at = 2024-01-22T16:36:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.176" }
-"0.14.177" = { created_at = 2024-01-29T11:21:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.177" }
-"0.14.178" = { created_at = 2024-02-05T18:58:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.178" }
-"0.14.179" = { created_at = 2024-02-12T13:34:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.179" }
-"0.14.180" = { created_at = 2024-02-19T15:44:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.180" }
-"0.14.181" = { created_at = 2024-02-26T11:11:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.181" }
-"0.14.183" = { created_at = 2024-03-04T18:32:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.183" }
-"0.14.184" = { created_at = 2024-03-11T21:25:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.184" }
-"0.15.0" = { created_at = 2024-03-18T21:55:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.0" }
-"0.15.2" = { created_at = 2024-03-19T00:18:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.2" }
-"0.15.3" = { created_at = 2024-03-19T09:13:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.3" }
-"0.15.4" = { created_at = 2024-07-29T12:21:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.4" }
-"0.15.5" = { created_at = 2024-08-12T14:23:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.5" }
-"0.15.6" = { created_at = 2024-08-19T14:49:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.6" }
-"0.16.0" = { created_at = 2024-09-02T19:57:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.0" }
-"0.16.1" = { created_at = 2024-09-09T18:24:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.1" }
-"0.16.2" = { created_at = 2024-09-16T12:57:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.2" }
-"0.16.3" = { created_at = 2024-09-23T16:17:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.3" }
-"0.16.4" = { created_at = 2024-09-30T14:34:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.4" }
-"0.16.5" = { created_at = 2024-10-03T19:23:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.5", prerelease = true }
-"0.16.6" = { created_at = 2024-10-04T11:04:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.6", prerelease = true }
-"0.16.7" = { created_at = 2024-10-04T13:21:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.7" }
-"0.16.8" = { created_at = 2024-10-07T13:58:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.8" }
-"0.16.9" = { created_at = 2024-10-15T11:16:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.9" }
-"0.16.10" = { created_at = 2024-10-21T12:51:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.10" }
-"0.16.11" = { created_at = 2024-10-28T15:06:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.11" }
-"0.16.12" = { created_at = 2024-11-11T20:05:02.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.12" }
-"0.16.13" = { created_at = 2024-11-18T16:32:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.13" }
-"0.16.14" = { created_at = 2024-11-25T19:11:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.14" }
-"0.16.16" = { created_at = 2024-12-02T18:26:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.16" }
-"0.16.17" = { created_at = 2024-12-09T16:45:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.17" }
-"0.16.18" = { created_at = 2024-12-19T18:56:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.18" }
-"0.16.19" = { created_at = 2024-12-22T20:39:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.19" }
-"0.16.20" = { created_at = 2024-12-27T20:49:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.20" }
-"0.16.21" = { created_at = 2025-01-13T18:06:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.21" }
-"0.16.23" = { created_at = 2025-01-20T16:47:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.23" }
-"0.16.25" = { created_at = 2025-01-27T16:16:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.25" }
-"0.16.26" = { created_at = 2025-02-03T19:53:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.26" }
-"0.16.27" = { created_at = 2025-02-10T16:29:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.27" }
-"0.16.28" = { created_at = 2025-02-17T15:05:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.28" }
-"0.16.29" = { created_at = 2025-02-24T15:37:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.29" }
-"0.16.30" = { created_at = 2025-03-03T17:33:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.30" }
-"0.16.31" = { created_at = 2025-03-10T14:32:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.31" }
-"0.16.32" = { created_at = 2025-03-17T15:06:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.32" }
-"0.16.33" = { created_at = 2025-03-24T18:27:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.33" }
-"0.16.34" = { created_at = 2025-03-31T11:58:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.34" }
-"0.16.35" = { created_at = 2025-04-07T14:59:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.35" }
-"0.16.36" = { created_at = 2025-04-14T14:36:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.36" }
-"0.16.37" = { created_at = 2025-04-21T12:50:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.37" }
-"0.16.38" = { created_at = 2025-04-28T21:11:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.38" }
-"0.16.39" = { created_at = 2025-05-02T12:13:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.39" }
-"0.16.40" = { created_at = 2025-05-10T20:47:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.40" }
-"0.16.41" = { created_at = 2025-05-19T14:06:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.41" }
-"0.16.42" = { created_at = 2025-05-23T18:19:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.42" }
-"0.16.43" = { created_at = 2025-05-30T21:55:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.43" }
-"0.16.44" = { created_at = 2025-06-06T14:58:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.44" }
-"0.16.45" = { created_at = 2025-06-14T15:42:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.45" }
-"0.16.46" = { created_at = 2025-06-19T23:22:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.46" }
-"0.16.47" = { created_at = 2025-06-30T17:47:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.47" }
-"0.16.48" = { created_at = 2025-07-01T21:09:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.48" }
-"0.16.49" = { created_at = 2025-07-06T22:07:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.49" }
-"0.16.50" = { created_at = 2025-07-13T18:48:24.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.50" }
-"0.16.51" = { created_at = 2025-07-18T22:45:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.51" }
-"0.16.52" = { created_at = 2025-07-25T14:41:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.52" }
-"0.16.53" = { created_at = 2025-08-01T20:49:24.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.53" }
-"0.16.54" = { created_at = 2025-08-11T14:53:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.54" }
-"0.16.55" = { created_at = 2025-08-18T12:54:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.55" }
-"0.16.56" = { created_at = 2025-08-22T16:39:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.56" }
-"0.16.57" = { created_at = 2025-09-01T12:18:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.57" }
-"0.16.58" = { created_at = 2025-09-12T18:49:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.58" }
-"0.16.59" = { created_at = 2025-09-19T14:50:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.59" }
-"0.16.60" = { created_at = 2025-09-26T14:35:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.60" }
-"0.16.61" = { created_at = 2025-10-03T17:00:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.61" }
-"0.16.62" = { created_at = 2025-10-17T16:13:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.62" }
-"0.16.63" = { created_at = 2025-10-31T13:40:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.63" }
-"0.16.64" = { created_at = 2025-11-07T15:26:42.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.64" }
-"0.16.65" = { created_at = 2025-11-14T18:30:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.65" }
-"0.16.66" = { created_at = 2025-11-21T13:23:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.66" }
-"0.16.67" = { created_at = 2025-12-15T17:55:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.67" }
-"0.16.68" = { created_at = 2026-01-09T16:59:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.68" }
-"0.16.69" = { created_at = 2026-01-26T12:05:20.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.69" }
-"0.16.70" = { created_at = 2026-01-31T16:39:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.70" }
-"0.16.72" = { created_at = 2026-02-10T11:50:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.72" }
-"0.16.73" = { created_at = 2026-02-13T19:29:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.73" }
-"0.16.74" = { created_at = 2026-02-20T21:11:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.74" }
-"0.16.75" = { created_at = 2026-02-27T15:27:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.75" }
-"0.16.76" = { created_at = 2026-03-06T20:47:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.76" }
-"0.16.77" = { created_at = 2026-03-13T17:43:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.77" }
-"0.16.78" = { created_at = 2026-03-20T15:12:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.78" }
-"0.17.0" = { created_at = 2026-04-13T17:06:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.0" }
-"0.17.1" = { created_at = 2026-04-17T12:14:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.1" }
-"0.17.2" = { created_at = 2026-04-24T14:22:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.2" }
-"0.17.3" = { created_at = 2026-05-01T19:07:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.3" }
-"0.17.4" = { created_at = 2026-05-08T20:27:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.4" }
-"0.17.5" = { created_at = 2026-05-29T19:25:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.5", prerelease = true }
-"0.17.6" = { created_at = 2026-06-05T19:32:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.6", prerelease = true }
-"0.17.7" = { created_at = 2026-06-12T12:29:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.7", prerelease = true }
-"0.17.6-1" = { created_at = 2026-06-21T14:20:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.6-1", prerelease = true }
-"0.17.7-1" = { created_at = 2026-06-21T14:41:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.7-1", prerelease = true }
-"0.17.8" = { created_at = 2026-06-22T18:34:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.8" }
-"0.17.9" = { created_at = 2026-07-03T21:58:57.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.9" }
+"2022-11-16-weekly" = { created_at = 2022-11-16T17:22:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-11-16-weekly", prerelease = true }
+"2022-12-05-weekly" = { created_at = 2022-12-05T15:54:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-05-weekly", prerelease = true }
+"2022-12-12-weekly" = { created_at = 2022-12-12T00:00:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-12-weekly", prerelease = true }
+"2022-12-19-weekly" = { created_at = 2022-12-19T14:06:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-19-weekly", prerelease = true }
+"2022-12-26-weekly" = { created_at = 2022-12-26T14:05:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2022-12-26-weekly", prerelease = true }
+"2023-01-02-weekly" = { created_at = 2023-01-02T14:05:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-02-weekly", prerelease = true }
+"2023-01-09-weekly" = { created_at = 2023-01-09T14:06:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-09-weekly", prerelease = true }
+"2023-01-16-weekly" = { created_at = 2023-01-16T14:06:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-16-weekly", prerelease = true }
+"2023-01-23-weekly" = { created_at = 2023-01-23T14:06:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-23-weekly", prerelease = true }
+"2023-01-30-weekly" = { created_at = 2023-01-30T14:05:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-01-30-weekly", prerelease = true }
+"2023-02-06-weekly" = { created_at = 2023-02-06T14:05:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-06-weekly", prerelease = true }
+"2023-02-13-weekly" = { created_at = 2023-02-13T14:06:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-13-weekly", prerelease = true }
+"2023-02-20-weekly" = { created_at = 2023-02-20T14:05:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-20-weekly", prerelease = true }
+"2023-02-27-weekly" = { created_at = 2023-02-27T14:01:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-02-27-weekly", prerelease = true }
+"2023-03-01-weekly" = { created_at = 2023-03-01T22:11:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-01-weekly", prerelease = true }
+"2023-03-06-weekly" = { created_at = 2023-03-06T14:01:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-06-weekly", prerelease = true }
+"2023-03-13-weekly" = { created_at = 2023-03-13T14:01:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-13-weekly", prerelease = true }
+"2023-03-20-weekly" = { created_at = 2023-03-20T14:01:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-20-weekly", prerelease = true }
+"2023-03-27-weekly" = { created_at = 2023-03-27T14:11:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-03-27-weekly", prerelease = true }
+"2023-04-03-weekly" = { created_at = 2023-04-03T14:01:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-03-weekly", prerelease = true }
+"2023-04-10-weekly" = { created_at = 2023-04-10T14:01:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-10-weekly", prerelease = true }
+"2023-04-17-weekly" = { created_at = 2023-04-17T13:43:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-17-weekly", prerelease = true }
+"2023-04-24-weekly" = { created_at = 2023-04-24T14:01:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/2023-04-24-weekly", prerelease = true }
+"test" = { created_at = 2023-04-27T16:47:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/test", prerelease = true }
+"release-20230428.2204" = { created_at = 2023-04-28T22:04:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230428.2204", prerelease = true }
+"release-20230429.0035" = { created_at = 2023-04-29T00:35:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230429.0035", prerelease = true }
+"release-20230429.2314" = { created_at = 2023-04-29T23:14:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230429.2314", prerelease = true }
+"release-20230501.1405" = { created_at = 2023-05-01T14:05:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230501.1405", prerelease = true }
+"release-20230501.1831" = { created_at = 2023-05-01T18:31:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230501.1831", prerelease = true }
+"release-20230502.1657" = { created_at = 2023-05-02T16:57:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230502.1657", prerelease = true }
+"release-20230503.1428" = { created_at = 2023-05-03T14:28:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230503.1428", prerelease = true }
+"release-20230504.1250" = { created_at = 2023-05-04T12:50:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230504.1250", prerelease = true }
+"release-20230504.1255" = { created_at = 2023-05-04T12:55:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230504.1255", prerelease = true }
+"release-20230504.1639" = { created_at = 2023-05-04T16:39:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230504.1639", prerelease = true }
+"0.13.0" = { created_at = 2023-05-04T13:26:02.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.0", prerelease = true }
+"release-20230508.1432" = { created_at = 2023-05-08T14:32:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.1432", prerelease = true }
+"release-20230508.1820" = { created_at = 2023-05-08T18:20:18.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.1820", prerelease = true }
+"release-20230508.1942" = { created_at = 2023-05-08T19:42:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.1942", prerelease = true }
+"release-20230508.2134" = { created_at = 2023-05-08T21:34:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230508.2134", prerelease = true }
+"release-20230509.1416" = { created_at = 2023-05-09T14:16:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1416", prerelease = true }
+"release-20230509.1524" = { created_at = 2023-05-09T15:24:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1524", prerelease = true }
+"release-20230509.1531" = { created_at = 2023-05-09T15:31:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1531", prerelease = true }
+"release-20230509.1619" = { created_at = 2023-05-09T16:19:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.1619", prerelease = true }
+"release-20230509.2051" = { created_at = 2023-05-09T20:51:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.2051", prerelease = true }
+"release-20230509.2059" = { created_at = 2023-05-09T20:59:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230509.2059", prerelease = true }
+"release-20230510.1225" = { created_at = 2023-05-10T12:25:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230510.1225", prerelease = true }
+"release-20230510.1905" = { created_at = 2023-05-10T19:06:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/release-20230510.1905", prerelease = true }
+"0.13.1" = { created_at = 2023-05-11T09:04:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.1", prerelease = true }
+"0.13.2" = { created_at = 2023-05-11T19:34:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.2", prerelease = true }
+"0.13.3" = { created_at = 2023-05-11T19:41:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.3", prerelease = true }
+"0.13.4" = { created_at = 2023-05-12T16:52:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.4", prerelease = true }
+"0.13.5" = { created_at = 2023-05-12T19:47:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.5", prerelease = true }
+"0.13.6" = { created_at = 2023-05-12T21:26:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.6", prerelease = true }
+"0.13.7" = { created_at = 2023-05-15T17:42:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.7", prerelease = true }
+"0.13.8" = { created_at = 2023-05-16T13:49:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.8", prerelease = true }
+"0.13.9" = { created_at = 2023-05-16T14:30:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.9", prerelease = true }
+"0.13.10" = { created_at = 2023-05-24T13:03:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.10", prerelease = true }
+"0.13.11" = { created_at = 2023-05-26T23:25:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.11", prerelease = true }
+"0.13.12" = { created_at = 2023-05-27T11:35:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.12", prerelease = true }
+"0.13.13" = { created_at = 2023-05-30T17:38:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.13", prerelease = true }
+"0.13.14" = { created_at = 2023-06-01T17:28:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.14", prerelease = true }
+"0.13.15" = { created_at = 2023-06-03T01:38:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.15", prerelease = true }
+"0.13.16" = { created_at = 2023-06-03T02:15:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.16", prerelease = true }
+"0.13.17" = { created_at = 2023-06-03T02:52:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.17", prerelease = true }
+"0.13.18" = { created_at = 2023-06-03T06:51:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.18", prerelease = true }
+"0.13.19" = { created_at = 2023-06-03T07:29:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.19", prerelease = true }
+"0.13.20" = { created_at = 2023-06-05T10:07:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.20", prerelease = true }
+"0.13.21" = { created_at = 2023-06-05T13:48:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.21", prerelease = true }
+"0.13.22" = { created_at = 2023-06-05T14:20:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.22", prerelease = true }
+"0.13.23" = { created_at = 2023-06-05T16:30:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.23", prerelease = true }
+"0.13.24" = { created_at = 2023-06-05T16:44:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.24", prerelease = true }
+"0.13.25" = { created_at = 2023-06-05T19:01:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.25", prerelease = true }
+"0.13.26" = { created_at = 2023-06-05T20:47:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.26", prerelease = true }
+"0.13.27" = { created_at = 2023-06-05T20:52:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.27", prerelease = true }
+"0.13.28" = { created_at = 2023-06-05T22:05:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.28", prerelease = true }
+"0.13.29" = { created_at = 2023-06-05T23:27:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.29", prerelease = true }
+"0.13.30" = { created_at = 2023-06-06T15:05:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.30", prerelease = true }
+"0.13.31" = { created_at = 2023-06-06T18:50:31.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.31", prerelease = true }
+"0.13.32" = { created_at = 2023-06-06T20:57:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.32", prerelease = true }
+"0.13.33" = { created_at = 2023-06-06T21:31:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.33", prerelease = true }
+"0.13.34" = { created_at = 2023-06-06T22:29:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.34", prerelease = true }
+"0.13.35" = { created_at = 2023-06-07T15:36:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.35", prerelease = true }
+"0.13.36" = { created_at = 2023-06-14T10:13:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.36", prerelease = true }
+"0.13.37" = { created_at = 2023-07-03T18:49:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.37", prerelease = true }
+"0.13.38" = { created_at = 2023-07-04T13:46:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.38", prerelease = true }
+"0.13.39" = { created_at = 2023-07-04T20:30:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.39", prerelease = true }
+"0.13.40" = { created_at = 2023-07-05T14:12:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.40", prerelease = true }
+"0.13.41" = { created_at = 2023-07-05T15:33:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.41", prerelease = true }
+"0.13.42" = { created_at = 2023-07-05T18:12:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.42", prerelease = true }
+"0.13.43" = { created_at = 2023-07-06T13:03:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.43", prerelease = true }
+"0.13.44" = { created_at = 2023-07-06T16:16:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.44", prerelease = true }
+"0.13.45" = { created_at = 2023-07-06T20:28:02.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.45", prerelease = true }
+"0.13.46" = { created_at = 2023-07-06T21:06:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.46", prerelease = true }
+"0.13.47" = { created_at = 2023-07-07T08:49:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.47", prerelease = true }
+"0.13.48" = { created_at = 2023-07-07T11:53:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.48", prerelease = true }
+"0.13.49" = { created_at = 2023-07-07T18:40:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.49", prerelease = true }
+"0.13.50" = { created_at = 2023-07-09T11:19:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.50", prerelease = true }
+"0.13.51" = { created_at = 2023-07-10T11:46:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.51", prerelease = true }
+"0.13.52" = { created_at = 2023-07-10T13:00:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.52", prerelease = true }
+"0.13.53" = { created_at = 2023-07-10T14:16:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.53", prerelease = true }
+"0.13.54" = { created_at = 2023-07-10T16:14:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.54", prerelease = true }
+"0.13.55" = { created_at = 2023-07-10T19:18:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.55", prerelease = true }
+"0.13.56" = { created_at = 2023-07-10T20:58:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.56", prerelease = true }
+"0.13.57" = { created_at = 2023-07-10T23:02:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.57", prerelease = true }
+"0.13.58" = { created_at = 2023-07-12T07:18:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.58", prerelease = true }
+"0.13.59" = { created_at = 2023-07-12T08:29:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.59", prerelease = true }
+"0.13.60" = { created_at = 2023-07-12T12:01:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.60", prerelease = true }
+"0.13.61" = { created_at = 2023-07-12T12:43:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.61", prerelease = true }
+"0.13.63" = { created_at = 2023-07-13T19:25:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.63", prerelease = true }
+"0.13.65" = { created_at = 2023-07-14T10:31:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.65", prerelease = true }
+"0.13.69" = { created_at = 2023-07-17T12:31:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.69", prerelease = true }
+"0.13.70" = { created_at = 2023-07-17T14:22:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.70", prerelease = true }
+"0.13.71" = { created_at = 2023-07-17T21:16:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.71", prerelease = true }
+"0.13.72" = { created_at = 2023-07-20T17:42:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.72", prerelease = true }
+"0.13.73" = { created_at = 2023-07-21T01:55:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.73", prerelease = true }
+"0.13.75" = { created_at = 2023-07-22T16:37:42.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.75", prerelease = true }
+"0.13.76" = { created_at = 2023-07-26T17:26:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.76", prerelease = true }
+"0.13.77" = { created_at = 2023-07-26T19:46:20.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.77", prerelease = true }
+"0.13.78" = { created_at = 2023-07-27T14:18:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.78", prerelease = true }
+"0.13.80" = { created_at = 2023-07-28T15:49:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.80", prerelease = true }
+"0.13.81" = { created_at = 2023-07-28T19:53:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.81", prerelease = true }
+"0.13.82" = { created_at = 2023-07-28T22:15:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.82", prerelease = true }
+"0.13.83" = { created_at = 2023-07-28T23:42:47.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.83", prerelease = true }
+"0.13.84" = { created_at = 2023-07-31T13:04:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.84", prerelease = true }
+"0.13.85" = { created_at = 2023-07-31T20:10:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.85", prerelease = true }
+"0.13.86" = { created_at = 2023-08-02T10:44:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.86", prerelease = true }
+"0.13.87" = { created_at = 2023-08-07T16:59:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.87", prerelease = true }
+"0.13.88" = { created_at = 2023-08-08T14:57:20.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.88", prerelease = true }
+"0.13.89" = { created_at = 2023-08-10T08:54:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.89", prerelease = true }
+"0.13.90" = { created_at = 2023-08-10T14:37:32.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.90", prerelease = true }
+"0.13.91" = { created_at = 2023-08-10T18:58:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.91", prerelease = true }
+"0.13.92" = { created_at = 2023-08-10T23:22:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.92", prerelease = true }
+"0.13.93" = { created_at = 2023-08-11T11:57:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.93", prerelease = true }
+"0.13.94" = { created_at = 2023-08-11T15:00:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.94", prerelease = true }
+"0.13.95" = { created_at = 2023-08-11T17:24:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.95", prerelease = true }
+"0.13.96" = { created_at = 2023-08-12T14:12:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.96", prerelease = true }
+"0.13.97" = { created_at = 2023-08-13T13:39:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.97", prerelease = true }
+"0.13.98" = { created_at = 2023-08-14T18:03:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.98", prerelease = true }
+"0.13.99" = { created_at = 2023-08-18T17:54:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.99", prerelease = true }
+"0.13.108" = { created_at = 2023-08-23T10:02:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.108", prerelease = true }
+"0.13.109" = { created_at = 2023-08-23T21:04:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.109", prerelease = true }
+"0.13.110" = { created_at = 2023-08-24T14:07:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.110", prerelease = true }
+"0.13.111" = { created_at = 2023-08-24T23:36:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.111", prerelease = true }
+"0.13.112" = { created_at = 2023-08-25T18:27:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.112", prerelease = true }
+"0.13.113" = { created_at = 2023-08-27T13:38:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.113", prerelease = true }
+"0.13.114" = { created_at = 2023-08-28T12:49:24.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.114", prerelease = true }
+"0.13.115" = { created_at = 2023-08-28T15:50:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.115", prerelease = true }
+"0.13.116" = { created_at = 2023-08-28T18:39:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.116", prerelease = true }
+"0.13.117" = { created_at = 2023-08-29T06:30:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.117", prerelease = true }
+"0.13.118" = { created_at = 2023-08-29T15:46:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.118", prerelease = true }
+"0.13.119" = { created_at = 2023-08-29T21:35:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.119", prerelease = true }
+"0.13.120" = { created_at = 2023-08-30T22:40:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.120", prerelease = true }
+"0.13.121" = { created_at = 2023-08-31T17:34:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.121", prerelease = true }
+"0.13.122" = { created_at = 2023-09-01T00:44:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.122", prerelease = true }
+"0.13.123" = { created_at = 2023-09-01T16:36:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.123", prerelease = true }
+"0.13.124" = { created_at = 2023-09-11T14:17:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.124", prerelease = true }
+"0.13.125" = { created_at = 2023-09-12T16:03:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.125", prerelease = true }
+"0.13.126" = { created_at = 2023-09-13T14:40:01.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.126", prerelease = true }
+"0.13.127" = { created_at = 2023-09-18T10:31:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.127", prerelease = true }
+"0.13.128" = { created_at = 2023-09-18T15:00:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.128", prerelease = true }
+"0.13.129" = { created_at = 2023-09-18T19:52:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.129", prerelease = true }
+"0.13.130" = { created_at = 2023-09-19T18:13:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.130", prerelease = true }
+"0.9.2" = { created_at = 2023-09-25T17:38:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.9.2", prerelease = true }
+"0.13.131" = { created_at = 2023-09-22T04:59:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.131", prerelease = true }
+"0.13.132" = { created_at = 2023-09-22T15:21:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.132", prerelease = true }
+"0.13.133" = { created_at = 2023-09-22T20:37:57.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.133", prerelease = true }
+"0.13.134" = { created_at = 2023-09-29T15:39:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.134", prerelease = true }
+"0.13.135" = { created_at = 2023-10-02T15:14:38.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.135", prerelease = true }
+"0.13.136" = { created_at = 2023-10-02T22:32:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.136", prerelease = true }
+"0.13.137" = { created_at = 2023-10-03T07:48:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.137", prerelease = true }
+"0.13.138" = { created_at = 2023-10-03T21:32:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.13.138", prerelease = true }
+"0.9.151" = { created_at = 2023-10-20T17:53:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.9.151", prerelease = true }
+"0.14.152" = { created_at = 2023-10-20T20:03:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.152", prerelease = true }
+"0.14.157" = { created_at = 2023-10-25T19:16:02.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.157", prerelease = true }
+"0.14.158" = { created_at = 2023-10-30T18:57:40.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.158", prerelease = true }
+"0.14.160" = { created_at = 2023-11-06T19:37:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.160", prerelease = true }
+"0.14.164" = { created_at = 2023-11-13T17:46:51.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.164", prerelease = true }
+"0.14.165" = { created_at = 2023-11-20T13:40:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.165", prerelease = true }
+"0.14.166" = { created_at = 2023-11-20T14:09:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.166" }
+"0.14.167" = { created_at = 2023-11-27T13:09:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.167", prerelease = true }
+"0.14.168" = { created_at = 2023-12-04T15:01:36.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.168" }
+"0.14.169" = { created_at = 2023-12-11T17:24:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.169" }
+"0.14.171" = { created_at = 2023-12-19T13:42:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.171" }
+"0.14.174" = { created_at = 2023-12-20T23:37:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.174" }
+"0.14.175" = { created_at = 2024-01-15T15:15:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.175" }
+"0.14.176" = { created_at = 2024-01-22T17:26:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.176" }
+"0.14.177" = { created_at = 2024-01-29T11:42:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.177" }
+"0.14.178" = { created_at = 2024-02-05T21:40:30.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.178" }
+"0.14.179" = { created_at = 2024-02-12T14:06:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.179" }
+"0.14.180" = { created_at = 2024-02-19T16:24:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.180" }
+"0.14.181" = { created_at = 2024-02-26T11:46:16.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.181" }
+"0.14.183" = { created_at = 2024-03-04T21:10:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.183" }
+"0.14.184" = { created_at = 2024-03-11T22:21:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.14.184" }
+"0.15.0" = { created_at = 2024-03-18T22:31:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.0" }
+"0.15.2" = { created_at = 2024-03-19T00:54:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.2" }
+"0.15.3" = { created_at = 2024-03-19T09:51:08.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.3" }
+"0.15.4" = { created_at = 2024-07-29T13:14:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.4" }
+"0.15.5" = { created_at = 2024-08-12T14:54:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.5" }
+"0.15.6" = { created_at = 2024-08-19T15:31:21.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.15.6" }
+"0.16.0" = { created_at = 2024-09-02T20:34:45.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.0" }
+"0.16.1" = { created_at = 2024-09-09T18:56:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.1" }
+"0.16.2" = { created_at = 2024-09-16T13:46:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.2" }
+"0.16.3" = { created_at = 2024-09-23T16:49:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.3" }
+"0.16.4" = { created_at = 2024-09-30T15:45:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.4" }
+"0.16.5" = { created_at = 2024-10-03T19:50:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.5", prerelease = true }
+"0.16.6" = { created_at = 2024-10-07T13:29:02.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.6", prerelease = true }
+"0.16.7" = { created_at = 2024-10-04T13:43:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.7" }
+"0.16.8" = { created_at = 2024-10-07T14:28:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.8" }
+"0.16.9" = { created_at = 2024-10-15T12:26:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.9" }
+"0.16.10" = { created_at = 2024-10-21T15:28:42.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.10" }
+"0.16.11" = { created_at = 2024-10-28T15:38:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.11" }
+"0.16.12" = { created_at = 2024-11-11T22:00:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.12" }
+"0.16.13" = { created_at = 2024-11-18T17:15:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.13" }
+"0.16.14" = { created_at = 2024-11-25T20:18:06.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.14" }
+"0.16.16" = { created_at = 2024-12-02T18:54:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.16" }
+"0.16.17" = { created_at = 2024-12-09T17:22:43.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.17" }
+"0.16.18" = { created_at = 2024-12-19T19:45:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.18" }
+"0.16.19" = { created_at = 2024-12-22T21:09:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.19" }
+"0.16.20" = { created_at = 2024-12-27T21:33:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.20" }
+"0.16.21" = { created_at = 2025-01-13T18:54:26.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.21" }
+"0.16.23" = { created_at = 2025-01-20T17:39:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.23" }
+"0.16.25" = { created_at = 2025-01-27T17:06:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.25" }
+"0.16.26" = { created_at = 2025-02-03T20:36:28.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.26" }
+"0.16.27" = { created_at = 2025-02-10T17:14:44.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.27" }
+"0.16.28" = { created_at = 2025-02-17T15:44:23.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.28" }
+"0.16.29" = { created_at = 2025-02-24T16:41:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.29" }
+"0.16.30" = { created_at = 2025-03-03T18:13:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.30" }
+"0.16.31" = { created_at = 2025-03-10T16:38:53.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.31" }
+"0.16.32" = { created_at = 2025-03-17T17:23:11.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.32" }
+"0.16.33" = { created_at = 2025-03-24T18:59:39.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.33" }
+"0.16.34" = { created_at = 2025-03-31T12:49:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.34" }
+"0.16.35" = { created_at = 2025-04-07T16:28:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.35" }
+"0.16.36" = { created_at = 2025-04-14T15:23:27.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.36" }
+"0.16.37" = { created_at = 2025-04-21T13:25:13.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.37" }
+"0.16.38" = { created_at = 2025-04-28T21:45:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.38" }
+"0.16.39" = { created_at = 2025-05-05T17:03:15.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.39" }
+"0.16.40" = { created_at = 2025-05-12T17:28:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.40" }
+"0.16.41" = { created_at = 2025-05-19T15:35:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.41" }
+"0.16.42" = { created_at = 2025-05-26T13:39:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.42" }
+"0.16.43" = { created_at = 2025-06-02T14:13:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.43" }
+"0.16.44" = { created_at = 2025-06-09T14:30:00.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.44" }
+"0.16.45" = { created_at = 2025-06-16T18:00:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.45" }
+"0.16.46" = { created_at = 2025-06-23T14:05:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.46" }
+"0.16.47" = { created_at = 2025-06-30T19:11:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.47" }
+"0.16.48" = { created_at = 2025-07-01T21:39:25.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.48" }
+"0.16.49" = { created_at = 2025-07-07T17:21:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.49" }
+"0.16.50" = { created_at = 2025-07-15T19:06:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.50" }
+"0.16.51" = { created_at = 2025-07-21T13:21:12.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.51" }
+"0.16.52" = { created_at = 2025-07-28T16:26:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.52" }
+"0.16.53" = { created_at = 2025-08-04T15:07:57.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.53" }
+"0.16.54" = { created_at = 2025-08-11T15:47:49.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.54" }
+"0.16.55" = { created_at = 2025-08-18T14:53:19.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.55" }
+"0.16.56" = { created_at = 2025-08-25T12:59:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.56" }
+"0.16.57" = { created_at = 2025-09-01T12:55:52.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.57" }
+"0.16.58" = { created_at = 2025-09-15T12:06:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.58" }
+"0.16.59" = { created_at = 2025-09-22T18:18:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.59" }
+"0.16.60" = { created_at = 2025-09-29T14:21:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.60" }
+"0.16.61" = { created_at = 2025-10-06T14:21:59.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.61" }
+"0.16.62" = { created_at = 2025-10-20T11:34:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.62" }
+"0.16.63" = { created_at = 2025-11-03T12:50:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.63" }
+"0.16.64" = { created_at = 2025-11-10T15:23:34.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.64" }
+"0.16.65" = { created_at = 2025-11-17T13:01:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.65" }
+"0.16.66" = { created_at = 2025-11-24T15:22:35.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.66" }
+"0.16.67" = { created_at = 2025-12-15T18:54:29.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.67" }
+"0.16.68" = { created_at = 2026-01-12T11:58:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.68" }
+"0.16.69" = { created_at = 2026-01-26T12:43:09.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.69" }
+"0.16.70" = { created_at = 2026-02-02T15:31:41.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.70" }
+"0.16.72" = { created_at = 2026-02-10T13:02:04.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.72" }
+"0.16.73" = { created_at = 2026-02-16T12:35:46.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.73" }
+"0.16.74" = { created_at = 2026-02-23T13:13:07.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.74" }
+"0.16.75" = { created_at = 2026-03-02T16:22:14.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.75" }
+"0.16.76" = { created_at = 2026-03-09T09:39:17.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.76" }
+"0.16.77" = { created_at = 2026-03-16T10:09:22.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.77" }
+"0.16.78" = { created_at = 2026-03-23T13:59:58.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.16.78" }
+"0.17.0" = { created_at = 2026-04-13T17:53:37.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.0" }
+"0.17.1" = { created_at = 2026-04-20T13:18:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.1" }
+"0.17.2" = { created_at = 2026-04-27T17:38:03.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.2" }
+"0.17.3" = { created_at = 2026-05-04T11:35:56.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.3" }
+"0.17.4" = { created_at = 2026-05-11T09:25:02.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.4" }
+"0.17.5" = { created_at = 2026-06-01T16:22:33.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.5", prerelease = true }
+"0.17.6" = { created_at = 2026-06-08T13:22:55.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.6", prerelease = true }
+"0.17.7" = { created_at = 2026-06-15T13:49:05.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.7", prerelease = true }
+"0.17.6-1" = { created_at = 2026-06-21T14:36:10.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.6-1", prerelease = true }
+"0.17.7-1" = { created_at = 2026-06-21T14:56:48.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.7-1", prerelease = true }
+"0.17.8" = { created_at = 2026-06-22T19:06:54.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.8" }
+"0.17.9" = { created_at = 2026-07-06T17:24:50.000Z, release_url = "https://github.com/tigerbeetle/tigerbeetle/releases/tag/0.17.9" }

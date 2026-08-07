@@ -1,219 +1,219 @@
 [versions]
-"0.0.1" = { created_at = 2019-08-09T13:55:09.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.1", prerelease = true }
-"0.0.2" = { created_at = 2019-08-09T16:25:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.2", prerelease = true }
-"0.0.3" = { created_at = 2019-08-09T21:14:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.3", prerelease = true }
-"0.0.4" = { created_at = 2019-08-10T16:48:09.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.4", prerelease = true }
-"0.0.5" = { created_at = 2019-08-11T20:36:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.5", prerelease = true }
-"0.0.6" = { created_at = 2019-08-12T21:34:25.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.6", prerelease = true }
-"0.0.7" = { created_at = 2019-08-13T22:19:15.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.7", prerelease = true }
-"0.0.8" = { created_at = 2019-08-15T07:33:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.8", prerelease = true }
-"0.0.9" = { created_at = 2019-08-18T10:48:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.9", prerelease = true }
-"0.0.9-2" = { created_at = 2019-08-18T15:33:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.9-2", prerelease = true }
-"0.0.10" = { created_at = 2019-08-24T07:07:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.10", prerelease = true }
-"0.0.11" = { created_at = 2019-08-27T21:00:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.11", prerelease = true }
-"0.0.12" = { created_at = 2019-08-28T21:43:33.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.12", prerelease = true }
-"0.0.13" = { created_at = 2019-08-29T12:02:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.13", prerelease = true }
-"0.0.14" = { created_at = 2019-08-31T19:09:09.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.14", prerelease = true }
-"0.0.15" = { created_at = 2019-09-01T19:19:58.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.15", prerelease = true }
-"0.0.16" = { created_at = 2019-09-04T12:48:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.16", prerelease = true }
-"0.0.17" = { created_at = 2019-09-07T08:49:31.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.17", prerelease = true }
-"0.0.18" = { created_at = 2019-09-11T21:39:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.18", prerelease = true }
-"0.0.19" = { created_at = 2019-10-03T09:21:32.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.19", prerelease = true }
-"0.0.20" = { created_at = 2019-10-06T11:14:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.20", prerelease = true }
-"0.0.21" = { created_at = 2019-10-10T08:20:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.21", prerelease = true }
-"0.0.22" = { created_at = 2019-10-26T21:53:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.22", prerelease = true }
-"0.0.23" = { created_at = 2019-10-28T10:23:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.23", prerelease = true }
-"0.0.24" = { created_at = 2019-10-29T11:50:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.24", prerelease = true }
-"0.0.25" = { created_at = 2019-11-01T14:46:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.25", prerelease = true }
-"0.0.26" = { created_at = 2019-11-11T21:10:37.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.26", prerelease = true }
-"0.0.27" = { created_at = 2019-11-13T22:49:25.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.27", prerelease = true }
-"0.0.28" = { created_at = 2019-11-16T10:44:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.28", prerelease = true }
-"0.0.29" = { created_at = 2019-11-16T22:15:00.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.29", prerelease = true }
-"0.0.30" = { created_at = 2019-11-17T21:44:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.30", prerelease = true }
-"0.0.31" = { created_at = 2019-11-18T22:33:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.31", prerelease = true }
-"0.0.32" = { created_at = 2019-11-19T09:47:00.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.32", prerelease = true }
-"0.0.33" = { created_at = 2019-11-20T21:15:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.33", prerelease = true }
-"0.0.34" = { created_at = 2019-11-21T21:04:59.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.34", prerelease = true }
-"0.0.35" = { created_at = 2019-11-27T13:19:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.35", prerelease = true }
-"0.0.36" = { created_at = 2019-11-27T16:17:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.36", prerelease = true }
-"0.0.37" = { created_at = 2019-11-27T17:13:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.37", prerelease = true }
-"0.0.38" = { created_at = 2019-12-07T22:10:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.38", prerelease = true }
-"0.0.39" = { created_at = 2019-12-08T11:51:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.39", prerelease = true }
-"0.0.40" = { created_at = 2019-12-10T08:45:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.40", prerelease = true }
-"0.0.41" = { created_at = 2019-12-13T17:31:28.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.41", prerelease = true }
-"0.0.42" = { created_at = 2019-12-15T19:55:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.42", prerelease = true }
-"0.0.43" = { created_at = 2019-12-18T16:10:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.43", prerelease = true }
-"0.0.44" = { created_at = 2019-12-20T09:17:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.44", prerelease = true }
-"0.0.45" = { created_at = 2019-12-20T22:55:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.45", prerelease = true }
-"0.0.46" = { created_at = 2019-12-21T10:50:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.46", prerelease = true }
-"0.0.47" = { created_at = 2019-12-22T19:30:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.47", prerelease = true }
-"0.0.48" = { created_at = 2019-12-22T21:46:37.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.48", prerelease = true }
-"0.0.49" = { created_at = 2019-12-24T09:25:00.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.49", prerelease = true }
-"0.0.50" = { created_at = 2019-12-25T15:21:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.50", prerelease = true }
-"0.0.51" = { created_at = 2019-12-28T21:55:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.51", prerelease = true }
-"0.0.52" = { created_at = 2019-12-29T11:15:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.52", prerelease = true }
-"0.0.53" = { created_at = 2019-12-29T12:32:50.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.53", prerelease = true }
-"0.0.54" = { created_at = 2019-12-29T23:12:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.54", prerelease = true }
-"0.0.55" = { created_at = 2019-12-30T10:39:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.55", prerelease = true }
-"0.0.56" = { created_at = 2019-12-31T13:23:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.56", prerelease = true }
-"0.0.57" = { created_at = 2020-01-01T20:57:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.57", prerelease = true }
-"0.0.58" = { created_at = 2020-01-02T12:53:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.58", prerelease = true }
-"0.0.59" = { created_at = 2020-01-02T15:02:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.59", prerelease = true }
-"0.0.60" = { created_at = 2020-01-04T19:30:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.60", prerelease = true }
-"0.0.61" = { created_at = 2020-01-09T13:19:09.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.61", prerelease = true }
-"0.0.62" = { created_at = 2020-01-12T19:50:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.62", prerelease = true }
-"0.0.63" = { created_at = 2020-01-16T09:29:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.63", prerelease = true }
-"0.0.64" = { created_at = 2020-01-17T09:12:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.64", prerelease = true }
-"0.0.65" = { created_at = 2020-01-18T10:44:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.65", prerelease = true }
-"0.0.66" = { created_at = 2020-01-20T10:07:58.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.66", prerelease = true }
-"0.0.67" = { created_at = 2020-01-29T23:07:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.67", prerelease = true }
-"0.0.68" = { created_at = 2020-01-31T20:01:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.68", prerelease = true }
-"0.0.69" = { created_at = 2020-02-04T10:29:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.69", prerelease = true }
-"0.0.70" = { created_at = 2020-02-10T21:58:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.70", prerelease = true }
-"0.0.71" = { created_at = 2020-02-19T23:29:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.71", prerelease = true }
-"0.0.72" = { created_at = 2020-02-23T11:05:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.72", prerelease = true }
-"0.0.73" = { created_at = 2020-02-23T21:16:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.73", prerelease = true }
-"0.0.74" = { created_at = 2020-03-01T18:43:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.74", prerelease = true }
-"0.0.75" = { created_at = 2020-03-07T13:13:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.75", prerelease = true }
-"0.0.77" = { created_at = 2020-03-20T22:57:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.77", prerelease = true }
-"0.0.78" = { created_at = 2020-03-21T22:18:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.78", prerelease = true }
-"0.0.79" = { created_at = 2020-04-04T14:12:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.79", prerelease = true }
-"0.0.80" = { created_at = 2020-04-06T07:59:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.80", prerelease = true }
-"0.0.81" = { created_at = 2020-04-08T20:17:12.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.81", prerelease = true }
-"0.0.82" = { created_at = 2020-04-11T10:25:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.82", prerelease = true }
-"0.0.83" = { created_at = 2020-04-12T14:49:44.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.83", prerelease = true }
-"0.0.84" = { created_at = 2020-04-13T18:37:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.84", prerelease = true }
-"0.0.85" = { created_at = 2020-04-15T10:52:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.85", prerelease = true }
-"0.0.86" = { created_at = 2020-04-17T18:10:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.86", prerelease = true }
-"0.0.88" = { created_at = 2020-04-19T10:15:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.88", prerelease = true }
-"0.0.88-2" = { created_at = 2020-04-21T09:48:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.88-2", prerelease = true }
-"0.0.89" = { created_at = 2020-04-24T14:10:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.89", prerelease = true }
-"0.0.90" = { created_at = 2020-05-01T11:17:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.90", prerelease = true }
-"0.0.91" = { created_at = 2020-05-02T19:28:02.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.91", prerelease = true }
-"0.0.92" = { created_at = 2020-05-07T10:20:00.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.92", prerelease = true }
-"0.0.93" = { created_at = 2020-05-08T08:52:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.93", prerelease = true }
-"0.0.94" = { created_at = 2020-05-09T18:58:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.94", prerelease = true }
-"0.0.95" = { created_at = 2020-05-16T09:27:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.95", prerelease = true }
-"0.0.96" = { created_at = 2020-05-17T15:22:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.96", prerelease = true }
-"0.0.97" = { created_at = 2020-05-20T20:11:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.97", prerelease = true }
-"0.0.98" = { created_at = 2020-05-24T07:44:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.98", prerelease = true }
-"0.0.99" = { created_at = 2020-05-26T17:16:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.99", prerelease = true }
-"0.1.0" = { created_at = 2020-06-01T08:01:48.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.0" }
-"0.1.1" = { created_at = 2020-06-10T21:59:31.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.1" }
-"0.1.2" = { created_at = 2020-06-14T10:29:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.2" }
-"0.1.3" = { created_at = 2020-06-27T11:32:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.3" }
-"0.2.0" = { created_at = 2020-08-28T18:40:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.0" }
-"0.2.1" = { created_at = 2020-09-25T13:12:08.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.1" }
-"0.2.2" = { created_at = 2020-09-30T18:36:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.2" }
-"0.2.3" = { created_at = 2020-10-21T19:28:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.3" }
-"0.2.4" = { created_at = 2020-11-27T08:54:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.4" }
-"0.2.5" = { created_at = 2020-12-13T19:52:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.5" }
-"0.2.6" = { created_at = 2020-12-29T11:57:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.6" }
-"0.2.7" = { created_at = 2021-01-20T20:27:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.7" }
-"0.2.8" = { created_at = 2021-01-24T20:16:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.8" }
-"0.2.9" = { created_at = 2021-02-07T13:09:44.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.9" }
-"0.2.10" = { created_at = 2021-02-09T19:36:55.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.10" }
-"0.2.11" = { created_at = 2021-02-28T17:28:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.11" }
-"0.2.12" = { created_at = 2021-03-01T11:18:38.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.12" }
-"0.2.13" = { created_at = 2021-03-09T08:33:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.13" }
-"0.3.0" = { created_at = 2021-03-15T22:03:38.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.0" }
-"0.3.1" = { created_at = 2021-03-30T16:12:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.1" }
-"0.3.2" = { created_at = 2021-04-04T17:49:16.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.2" }
-"0.3.3" = { created_at = 2021-04-10T15:08:03.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.3" }
-"0.3.4" = { created_at = 2021-04-12T08:35:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.4" }
-"0.3.5" = { created_at = 2021-04-15T10:28:09.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.5" }
-"0.3.6" = { created_at = 2021-04-25T11:47:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.6" }
-"0.3.7" = { created_at = 2021-04-30T10:01:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.7" }
-"0.3.8" = { created_at = 2021-05-06T11:58:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.8" }
-"0.4.0" = { created_at = 2021-05-08T16:09:15.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.0" }
-"0.4.1" = { created_at = 2021-05-13T11:26:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.1" }
-"0.4.2" = { created_at = 2021-05-20T10:09:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.2" }
-"0.4.3" = { created_at = 2021-05-20T10:52:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.3" }
-"0.4.4" = { created_at = 2021-06-01T09:47:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.4" }
-"0.4.5" = { created_at = 2021-06-10T10:21:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.5" }
-"0.4.6" = { created_at = 2021-06-13T19:55:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.6" }
-"0.5.0" = { created_at = 2021-07-14T21:16:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.5.0" }
-"0.5.1" = { created_at = 2021-08-03T07:36:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.5.1" }
-"0.6.0" = { created_at = 2021-09-01T15:34:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.0" }
-"0.6.1" = { created_at = 2021-09-12T12:22:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.1" }
-"0.6.2" = { created_at = 2021-10-08T12:43:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.2" }
-"0.6.3" = { created_at = 2021-10-29T09:44:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.3" }
-"0.6.4" = { created_at = 2021-10-29T12:27:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.4" }
-"0.6.5" = { created_at = 2021-11-13T13:50:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.5" }
-"0.6.6" = { created_at = 2021-11-29T11:03:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.6" }
-"0.6.7" = { created_at = 2021-11-29T22:42:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.7" }
-"0.6.8" = { created_at = 2021-12-02T19:49:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.8" }
-"0.7.0" = { created_at = 2021-12-10T10:19:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.0" }
-"0.7.2" = { created_at = 2021-12-29T17:11:09.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.2" }
-"0.7.3" = { created_at = 2021-12-30T15:32:22.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.3" }
-"0.7.4" = { created_at = 2022-01-25T14:23:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.4" }
-"0.7.5" = { created_at = 2022-02-16T09:48:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.5" }
-"0.7.6" = { created_at = 2022-02-24T11:39:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.6" }
-"0.7.7" = { created_at = 2022-03-04T13:50:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.7" }
-"0.7.8" = { created_at = 2022-03-13T19:03:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.8" }
-"0.8.0" = { created_at = 2022-04-04T14:18:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.0" }
-"0.8.1" = { created_at = 2022-04-15T19:15:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.1" }
-"0.8.2" = { created_at = 2022-05-06T12:57:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.2" }
-"0.8.156" = { created_at = 2022-06-08T17:40:56.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.156" }
-"0.8.157" = { created_at = 2022-07-01T10:46:22.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.157" }
-"0.9.159" = { created_at = 2022-07-29T11:10:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.159" }
-"0.9.160" = { created_at = 2022-07-29T19:03:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.160" }
-"0.9.161" = { created_at = 2022-07-31T11:57:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.161" }
-"0.9.162" = { created_at = 2022-09-04T20:56:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.162" }
-"0.10.163" = { created_at = 2022-09-24T11:27:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.10.163" }
-"1.0.164" = { created_at = 2022-10-18T16:05:59.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.164" }
-"1.0.165" = { created_at = 2022-11-01T11:46:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.165" }
-"1.0.166" = { created_at = 2022-11-24T12:15:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.166" }
-"1.0.167" = { created_at = 2022-11-30T13:23:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.167" }
-"1.0.168" = { created_at = 2022-12-07T10:16:22.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.168" }
-"1.0.169" = { created_at = 2023-01-03T21:04:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.169" }
-"1.0.170" = { created_at = 2023-01-19T11:40:55.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.170" }
-"1.1.171" = { created_at = 2023-01-23T13:28:33.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.1.171" }
-"1.1.172" = { created_at = 2023-01-23T18:58:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.1.172" }
-"1.1.173" = { created_at = 2023-02-04T09:42:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.1.173" }
-"1.2.174" = { created_at = 2023-02-28T22:51:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.2.174" }
-"1.3.175" = { created_at = 2023-03-18T13:12:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.175" }
-"1.3.176" = { created_at = 2023-03-18T15:42:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.176" }
-"1.3.177" = { created_at = 2023-04-21T11:59:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.177" }
-"1.3.178" = { created_at = 2023-04-21T13:55:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.178" }
-"1.3.179" = { created_at = 2023-04-26T14:24:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.179" }
-"1.3.180" = { created_at = 2023-05-28T09:29:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.180" }
-"1.3.181" = { created_at = 2023-06-13T09:34:48.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.181" }
-"1.3.182" = { created_at = 2023-07-20T09:32:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.182" }
-"1.3.183" = { created_at = 2023-08-22T11:37:28.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.183" }
-"1.3.184" = { created_at = 2023-08-22T13:01:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.184" }
-"1.3.185" = { created_at = 2023-09-28T13:57:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.185" }
-"1.3.186" = { created_at = 2023-11-02T12:31:58.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.186" }
-"1.3.187" = { created_at = 2024-01-09T16:31:21.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.187" }
-"1.3.188" = { created_at = 2024-01-12T19:30:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.188" }
-"1.3.189" = { created_at = 2024-02-22T13:18:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.189" }
-"1.3.190" = { created_at = 2024-04-17T09:09:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.190" }
-"1.3.191" = { created_at = 2024-06-19T12:13:31.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.191" }
-"1.4.192" = { created_at = 2024-09-12T16:46:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.4.192" }
-"1.12.193" = { created_at = 2024-10-11T12:50:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.193" }
-"1.12.194" = { created_at = 2024-10-12T09:30:21.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.194" }
-"1.12.195" = { created_at = 2024-11-12T08:52:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.195" }
-"1.12.196" = { created_at = 2024-12-24T09:23:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.196" }
-"1.12.197" = { created_at = 2025-02-28T10:13:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.197" }
-"1.12.198" = { created_at = 2025-04-17T11:00:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.198" }
-"1.12.199" = { created_at = 2025-04-18T09:25:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.199" }
-"1.12.200" = { created_at = 2025-04-26T14:25:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.200" }
-"1.12.201" = { created_at = 2025-06-12T15:03:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.201" }
-"1.12.202" = { created_at = 2025-06-15T14:28:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.202" }
-"1.12.203" = { created_at = 2025-06-18T12:06:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.203" }
-"1.12.204" = { created_at = 2025-06-24T13:31:33.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.204" }
-"1.12.205" = { created_at = 2025-07-07T13:51:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.205" }
-"1.12.206" = { created_at = 2025-07-16T09:37:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.206" }
-"1.12.207" = { created_at = 2025-08-02T21:09:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.207" }
-"1.12.208" = { created_at = 2025-09-04T14:01:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.208" }
-"1.12.209" = { created_at = 2025-10-02T13:10:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.209" }
-"1.12.210" = { created_at = 2025-11-24T19:20:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.210" }
-"1.12.211" = { created_at = 2025-11-25T14:36:56.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.211" }
-"1.12.212" = { created_at = 2025-11-25T15:06:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.212" }
-"1.12.213" = { created_at = 2025-12-06T10:01:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.213" }
-"1.12.214" = { created_at = 2026-01-13T21:22:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.214" }
-"1.12.215" = { created_at = 2026-02-17T10:57:28.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.215" }
-"1.12.216" = { created_at = 2026-03-02T19:33:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.216" }
-"1.12.217" = { created_at = 2026-03-16T16:49:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.217" }
-"1.12.218" = { created_at = 2026-04-20T13:23:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.218" }
-"1.13.219" = { created_at = 2026-07-27T14:24:48.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.13.219" }
+"0.0.1" = { created_at = 2019-08-09T13:59:33.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.1", prerelease = true }
+"0.0.2" = { created_at = 2019-08-09T16:29:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.2", prerelease = true }
+"0.0.3" = { created_at = 2019-08-09T21:18:44.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.3", prerelease = true }
+"0.0.4" = { created_at = 2019-08-10T16:55:37.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.4", prerelease = true }
+"0.0.5" = { created_at = 2019-08-11T20:46:33.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.5", prerelease = true }
+"0.0.6" = { created_at = 2019-08-12T21:39:08.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.6", prerelease = true }
+"0.0.7" = { created_at = 2019-08-13T22:19:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.7", prerelease = true }
+"0.0.8" = { created_at = 2019-08-15T07:33:55.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.8", prerelease = true }
+"0.0.9" = { created_at = 2019-08-18T10:55:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.9", prerelease = true }
+"0.0.9-2" = { created_at = 2019-08-18T15:39:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.9-2", prerelease = true }
+"0.0.10" = { created_at = 2019-08-24T07:14:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.10", prerelease = true }
+"0.0.11" = { created_at = 2019-08-27T21:04:08.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.11", prerelease = true }
+"0.0.12" = { created_at = 2019-08-28T21:53:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.12", prerelease = true }
+"0.0.13" = { created_at = 2019-08-29T12:11:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.13", prerelease = true }
+"0.0.14" = { created_at = 2019-08-31T19:19:48.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.14", prerelease = true }
+"0.0.15" = { created_at = 2019-09-01T19:26:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.15", prerelease = true }
+"0.0.16" = { created_at = 2019-09-04T12:54:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.16", prerelease = true }
+"0.0.17" = { created_at = 2019-09-07T08:54:21.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.17", prerelease = true }
+"0.0.18" = { created_at = 2019-09-11T21:47:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.18", prerelease = true }
+"0.0.19" = { created_at = 2019-10-03T09:27:58.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.19", prerelease = true }
+"0.0.20" = { created_at = 2019-10-06T11:20:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.20", prerelease = true }
+"0.0.21" = { created_at = 2019-10-10T08:29:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.21", prerelease = true }
+"0.0.22" = { created_at = 2019-10-26T21:54:55.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.22", prerelease = true }
+"0.0.23" = { created_at = 2019-10-28T10:32:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.23", prerelease = true }
+"0.0.24" = { created_at = 2019-10-29T11:56:48.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.24", prerelease = true }
+"0.0.25" = { created_at = 2019-11-01T14:50:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.25", prerelease = true }
+"0.0.26" = { created_at = 2019-11-11T21:14:56.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.26", prerelease = true }
+"0.0.27" = { created_at = 2019-11-13T22:54:03.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.27", prerelease = true }
+"0.0.28" = { created_at = 2019-11-16T10:53:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.28", prerelease = true }
+"0.0.29" = { created_at = 2019-11-16T22:22:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.29", prerelease = true }
+"0.0.30" = { created_at = 2019-11-17T21:49:59.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.30", prerelease = true }
+"0.0.31" = { created_at = 2019-11-18T22:40:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.31", prerelease = true }
+"0.0.32" = { created_at = 2019-11-19T09:54:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.32", prerelease = true }
+"0.0.33" = { created_at = 2019-11-20T21:51:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.33", prerelease = true }
+"0.0.34" = { created_at = 2019-11-22T10:16:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.34", prerelease = true }
+"0.0.35" = { created_at = 2019-11-27T13:36:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.35", prerelease = true }
+"0.0.36" = { created_at = 2019-11-27T16:23:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.36", prerelease = true }
+"0.0.37" = { created_at = 2019-11-27T17:18:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.37", prerelease = true }
+"0.0.38" = { created_at = 2019-12-07T22:16:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.38", prerelease = true }
+"0.0.39" = { created_at = 2019-12-08T11:55:32.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.39", prerelease = true }
+"0.0.40" = { created_at = 2019-12-10T08:57:37.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.40", prerelease = true }
+"0.0.41" = { created_at = 2019-12-13T17:36:59.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.41", prerelease = true }
+"0.0.42" = { created_at = 2019-12-15T20:03:58.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.42", prerelease = true }
+"0.0.43" = { created_at = 2019-12-18T16:15:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.43", prerelease = true }
+"0.0.44" = { created_at = 2019-12-20T09:23:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.44", prerelease = true }
+"0.0.45" = { created_at = 2019-12-20T23:01:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.45", prerelease = true }
+"0.0.46" = { created_at = 2019-12-21T10:55:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.46", prerelease = true }
+"0.0.47" = { created_at = 2019-12-22T19:51:21.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.47", prerelease = true }
+"0.0.48" = { created_at = 2019-12-22T21:58:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.48", prerelease = true }
+"0.0.49" = { created_at = 2019-12-24T09:45:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.49", prerelease = true }
+"0.0.50" = { created_at = 2019-12-25T15:28:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.50", prerelease = true }
+"0.0.51" = { created_at = 2019-12-28T22:02:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.51", prerelease = true }
+"0.0.52" = { created_at = 2019-12-29T11:37:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.52", prerelease = true }
+"0.0.53" = { created_at = 2019-12-29T13:19:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.53", prerelease = true }
+"0.0.54" = { created_at = 2019-12-29T23:16:44.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.54", prerelease = true }
+"0.0.55" = { created_at = 2019-12-30T10:47:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.55", prerelease = true }
+"0.0.56" = { created_at = 2019-12-31T13:29:03.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.56", prerelease = true }
+"0.0.57" = { created_at = 2020-01-01T21:03:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.57", prerelease = true }
+"0.0.58" = { created_at = 2020-01-02T12:55:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.58", prerelease = true }
+"0.0.59" = { created_at = 2020-01-02T16:02:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.59", prerelease = true }
+"0.0.60" = { created_at = 2020-01-04T19:37:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.60", prerelease = true }
+"0.0.61" = { created_at = 2020-01-09T13:29:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.61", prerelease = true }
+"0.0.62" = { created_at = 2020-01-12T19:59:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.62", prerelease = true }
+"0.0.63" = { created_at = 2020-01-16T09:52:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.63", prerelease = true }
+"0.0.64" = { created_at = 2020-01-17T09:57:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.64", prerelease = true }
+"0.0.65" = { created_at = 2020-01-18T10:52:25.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.65", prerelease = true }
+"0.0.66" = { created_at = 2020-01-20T10:18:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.66", prerelease = true }
+"0.0.67" = { created_at = 2020-01-29T23:19:38.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.67", prerelease = true }
+"0.0.68" = { created_at = 2020-01-31T20:07:56.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.68", prerelease = true }
+"0.0.69" = { created_at = 2020-02-04T10:41:38.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.69", prerelease = true }
+"0.0.70" = { created_at = 2020-02-10T22:14:50.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.70", prerelease = true }
+"0.0.71" = { created_at = 2020-02-19T23:44:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.71", prerelease = true }
+"0.0.72" = { created_at = 2020-02-23T11:21:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.72", prerelease = true }
+"0.0.73" = { created_at = 2020-02-23T21:50:31.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.73", prerelease = true }
+"0.0.74" = { created_at = 2020-03-01T18:56:19.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.74", prerelease = true }
+"0.0.75" = { created_at = 2020-03-07T13:23:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.75", prerelease = true }
+"0.0.77" = { created_at = 2020-03-20T23:10:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.77", prerelease = true }
+"0.0.78" = { created_at = 2020-03-21T22:41:03.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.78", prerelease = true }
+"0.0.79" = { created_at = 2020-04-04T14:36:37.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.79", prerelease = true }
+"0.0.80" = { created_at = 2020-04-06T08:58:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.80", prerelease = true }
+"0.0.81" = { created_at = 2020-04-08T20:48:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.81", prerelease = true }
+"0.0.82" = { created_at = 2020-04-11T10:34:25.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.82", prerelease = true }
+"0.0.83" = { created_at = 2020-04-12T14:58:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.83", prerelease = true }
+"0.0.84" = { created_at = 2020-04-13T18:49:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.84", prerelease = true }
+"0.0.85" = { created_at = 2020-04-15T11:02:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.85", prerelease = true }
+"0.0.86" = { created_at = 2020-04-17T18:20:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.86", prerelease = true }
+"0.0.88" = { created_at = 2020-04-19T10:23:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.88", prerelease = true }
+"0.0.88-2" = { created_at = 2020-04-21T09:57:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.88-2", prerelease = true }
+"0.0.89" = { created_at = 2020-04-24T14:22:50.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.89", prerelease = true }
+"0.0.90" = { created_at = 2020-05-01T11:31:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.90", prerelease = true }
+"0.0.91" = { created_at = 2020-05-02T19:56:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.91", prerelease = true }
+"0.0.92" = { created_at = 2020-05-07T10:29:31.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.92", prerelease = true }
+"0.0.93" = { created_at = 2020-05-08T08:59:31.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.93", prerelease = true }
+"0.0.94" = { created_at = 2020-05-09T19:13:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.94", prerelease = true }
+"0.0.95" = { created_at = 2020-05-16T09:35:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.95", prerelease = true }
+"0.0.96" = { created_at = 2020-05-17T15:26:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.96", prerelease = true }
+"0.0.97" = { created_at = 2020-05-20T20:21:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.97", prerelease = true }
+"0.0.98" = { created_at = 2020-05-24T08:36:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.98", prerelease = true }
+"0.0.99" = { created_at = 2020-05-26T17:27:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.0.99", prerelease = true }
+"0.1.0" = { created_at = 2020-06-01T08:50:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2020-06-10T22:09:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2020-06-14T10:48:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.2" }
+"0.1.3" = { created_at = 2020-06-27T11:48:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.1.3" }
+"0.2.0" = { created_at = 2020-08-28T18:58:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2020-09-25T13:21:00.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2020-09-30T18:54:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2020-10-21T19:36:48.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2020-11-27T08:55:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.4" }
+"0.2.5" = { created_at = 2020-12-13T19:57:32.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.5" }
+"0.2.6" = { created_at = 2020-12-29T12:05:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.6" }
+"0.2.7" = { created_at = 2021-01-20T20:37:36.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.7" }
+"0.2.8" = { created_at = 2021-01-24T21:02:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.8" }
+"0.2.9" = { created_at = 2021-02-07T13:29:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.9" }
+"0.2.10" = { created_at = 2021-02-09T19:45:02.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.10" }
+"0.2.11" = { created_at = 2021-02-28T17:40:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.11" }
+"0.2.12" = { created_at = 2021-03-01T11:27:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.12" }
+"0.2.13" = { created_at = 2021-03-09T08:45:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.2.13" }
+"0.3.0" = { created_at = 2021-03-15T22:14:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2021-03-30T16:17:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.1" }
+"0.3.2" = { created_at = 2021-04-04T18:06:12.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.2" }
+"0.3.3" = { created_at = 2021-04-10T15:20:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.3" }
+"0.3.4" = { created_at = 2021-04-12T08:50:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.4" }
+"0.3.5" = { created_at = 2021-04-15T10:46:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.5" }
+"0.3.6" = { created_at = 2021-04-25T12:02:32.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.6" }
+"0.3.7" = { created_at = 2021-04-30T10:14:04.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.7" }
+"0.3.8" = { created_at = 2021-05-06T12:13:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.3.8" }
+"0.4.0" = { created_at = 2021-05-08T16:42:01.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2021-05-13T11:45:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2021-05-20T10:42:28.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2021-05-20T11:09:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2021-06-01T10:07:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.4" }
+"0.4.5" = { created_at = 2021-06-10T10:36:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.5" }
+"0.4.6" = { created_at = 2021-06-13T20:26:02.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.4.6" }
+"0.5.0" = { created_at = 2021-07-14T21:46:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2021-08-03T08:56:08.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.5.1" }
+"0.6.0" = { created_at = 2021-09-01T15:49:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2021-09-12T12:43:32.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2021-10-08T13:07:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.2" }
+"0.6.3" = { created_at = 2021-10-29T10:04:14.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.3" }
+"0.6.4" = { created_at = 2021-10-29T12:48:55.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.4" }
+"0.6.5" = { created_at = 2021-11-13T14:24:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.5" }
+"0.6.6" = { created_at = 2021-11-29T11:21:15.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.6" }
+"0.6.7" = { created_at = 2021-11-29T22:59:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.7" }
+"0.6.8" = { created_at = 2021-12-02T20:06:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.6.8" }
+"0.7.0" = { created_at = 2021-12-10T10:36:10.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.0" }
+"0.7.2" = { created_at = 2021-12-29T17:23:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.2" }
+"0.7.3" = { created_at = 2021-12-30T15:49:57.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.3" }
+"0.7.4" = { created_at = 2022-01-25T15:02:54.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.4" }
+"0.7.5" = { created_at = 2022-02-16T10:15:55.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.5" }
+"0.7.6" = { created_at = 2022-02-24T11:58:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.6" }
+"0.7.7" = { created_at = 2022-03-04T14:24:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.7" }
+"0.7.8" = { created_at = 2022-03-13T19:23:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.7.8" }
+"0.8.0" = { created_at = 2022-04-04T14:38:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2022-04-15T19:41:25.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2022-05-06T13:49:39.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.2" }
+"0.8.156" = { created_at = 2022-06-08T17:58:18.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.156" }
+"0.8.157" = { created_at = 2022-07-01T11:10:22.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.8.157" }
+"0.9.159" = { created_at = 2022-07-29T11:26:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.159" }
+"0.9.160" = { created_at = 2022-07-29T19:28:28.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.160" }
+"0.9.161" = { created_at = 2022-07-31T12:19:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.161" }
+"0.9.162" = { created_at = 2022-09-04T21:21:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.9.162" }
+"0.10.163" = { created_at = 2022-09-24T11:51:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v0.10.163" }
+"1.0.164" = { created_at = 2022-10-18T16:18:43.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.164" }
+"1.0.165" = { created_at = 2022-11-01T12:02:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.165" }
+"1.0.166" = { created_at = 2022-11-24T12:59:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.166" }
+"1.0.167" = { created_at = 2022-11-30T13:35:34.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.167" }
+"1.0.168" = { created_at = 2022-12-07T10:31:46.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.168" }
+"1.0.169" = { created_at = 2023-01-03T21:17:07.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.169" }
+"1.0.170" = { created_at = 2023-01-19T11:54:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.0.170" }
+"1.1.171" = { created_at = 2023-01-23T13:50:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.1.171" }
+"1.1.172" = { created_at = 2023-01-23T19:12:59.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.1.172" }
+"1.1.173" = { created_at = 2023-02-04T09:53:56.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.1.173" }
+"1.2.174" = { created_at = 2023-02-28T23:22:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.2.174" }
+"1.3.175" = { created_at = 2023-03-18T14:06:15.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.175" }
+"1.3.176" = { created_at = 2023-03-18T15:59:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.176" }
+"1.3.177" = { created_at = 2023-04-21T12:18:00.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.177" }
+"1.3.178" = { created_at = 2023-04-21T14:13:27.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.178" }
+"1.3.179" = { created_at = 2023-04-26T15:41:53.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.179" }
+"1.3.180" = { created_at = 2023-05-28T09:52:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.180" }
+"1.3.181" = { created_at = 2023-06-13T10:33:13.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.181" }
+"1.3.182" = { created_at = 2023-07-20T09:54:42.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.182" }
+"1.3.183" = { created_at = 2023-08-22T12:26:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.183" }
+"1.3.184" = { created_at = 2023-08-22T13:24:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.184" }
+"1.3.185" = { created_at = 2023-09-28T14:15:25.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.185" }
+"1.3.186" = { created_at = 2023-11-02T13:18:03.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.186" }
+"1.3.187" = { created_at = 2024-01-09T16:49:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.187" }
+"1.3.188" = { created_at = 2024-01-12T19:49:17.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.188" }
+"1.3.189" = { created_at = 2024-02-22T14:40:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.189" }
+"1.3.190" = { created_at = 2024-04-17T09:29:15.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.190" }
+"1.3.191" = { created_at = 2024-06-19T12:52:21.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.3.191" }
+"1.4.192" = { created_at = 2024-09-12T18:20:40.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.4.192" }
+"1.12.193" = { created_at = 2024-10-11T13:16:51.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.193" }
+"1.12.194" = { created_at = 2024-10-12T09:48:32.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.194" }
+"1.12.195" = { created_at = 2024-11-12T09:17:41.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.195" }
+"1.12.196" = { created_at = 2024-12-24T09:39:06.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.196" }
+"1.12.197" = { created_at = 2025-02-28T11:20:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.197" }
+"1.12.198" = { created_at = 2025-04-17T13:05:37.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.198" }
+"1.12.199" = { created_at = 2025-04-18T09:45:38.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.199" }
+"1.12.200" = { created_at = 2025-04-26T15:23:24.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.200" }
+"1.12.201" = { created_at = 2025-06-12T15:32:49.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.201" }
+"1.12.202" = { created_at = 2025-06-15T18:00:52.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.202" }
+"1.12.203" = { created_at = 2025-06-18T12:30:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.203" }
+"1.12.204" = { created_at = 2025-06-24T13:51:30.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.204" }
+"1.12.205" = { created_at = 2025-07-07T15:42:05.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.205" }
+"1.12.206" = { created_at = 2025-07-16T09:55:33.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.206" }
+"1.12.207" = { created_at = 2025-08-02T21:23:29.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.207" }
+"1.12.208" = { created_at = 2025-09-04T14:21:45.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.208" }
+"1.12.209" = { created_at = 2025-10-02T13:36:20.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.209" }
+"1.12.210" = { created_at = 2025-11-24T19:40:47.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.210" }
+"1.12.211" = { created_at = 2025-11-25T15:09:35.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.211" }
+"1.12.212" = { created_at = 2025-11-25T15:38:11.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.212" }
+"1.12.213" = { created_at = 2025-12-06T10:58:26.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.213" }
+"1.12.214" = { created_at = 2026-01-13T21:54:44.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.214" }
+"1.12.215" = { created_at = 2026-02-17T11:14:21.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.215" }
+"1.12.216" = { created_at = 2026-03-02T20:06:02.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.216" }
+"1.12.217" = { created_at = 2026-03-16T17:10:28.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.217" }
+"1.12.218" = { created_at = 2026-04-20T13:42:08.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.12.218" }
+"1.13.219" = { created_at = 2026-07-27T14:44:23.000Z, release_url = "https://github.com/babashka/babashka/releases/tag/v1.13.219" }

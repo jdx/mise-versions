@@ -1,331 +1,331 @@
 [versions]
-"0.0.366-5" = { created_at = 2025-11-25T20:15:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-5", prerelease = true }
-"0.0.366-6" = { created_at = 2025-11-25T20:15:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-6", prerelease = true }
-"0.0.366-7" = { created_at = 2025-11-25T20:15:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-7", prerelease = true }
-"0.0.366-8" = { created_at = 2025-11-25T20:15:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-8", prerelease = true }
-"0.0.366-9" = { created_at = 2025-11-25T20:15:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-9", prerelease = true }
-"0.0.366" = { created_at = 2025-11-25T20:15:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366" }
-"0.0.367-0" = { created_at = 2025-12-03T22:56:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.367-0", prerelease = true }
-"0.0.367" = { created_at = 2025-12-03T22:56:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.367" }
-"0.0.368-0" = { created_at = 2025-12-05T04:43:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-0", prerelease = true }
-"0.0.368-1" = { created_at = 2025-12-05T04:43:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-1", prerelease = true }
-"0.0.368-2" = { created_at = 2025-12-09T03:28:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-2", prerelease = true }
-"0.0.368-3" = { created_at = 2025-12-09T03:28:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-3", prerelease = true }
-"0.0.368-4" = { created_at = 2025-12-09T03:28:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-4", prerelease = true }
-"0.0.368" = { created_at = 2025-12-09T03:28:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368" }
-"0.0.369-0" = { created_at = 2025-12-10T21:09:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.369-0", prerelease = true }
-"0.0.369" = { created_at = 2025-12-10T21:09:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.369" }
-"0.0.370-0" = { created_at = 2025-12-12T02:51:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-0", prerelease = true }
-"0.0.370-1" = { created_at = 2025-12-13T17:23:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-1", prerelease = true }
-"0.0.370-5" = { created_at = 2025-12-13T17:23:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-5", prerelease = true }
-"0.0.370-6" = { created_at = 2025-12-17T15:42:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-6", prerelease = true }
-"0.0.370-7" = { created_at = 2025-12-18T04:49:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-7", prerelease = true }
-"0.0.370" = { created_at = 2025-12-18T04:49:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370" }
-"0.0.371-0" = { created_at = 2025-12-18T15:41:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.371-0", prerelease = true }
-"0.0.371" = { created_at = 2025-12-18T15:41:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.371" }
-"0.0.372" = { created_at = 2025-12-18T23:51:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.372" }
-"0.0.373-2" = { created_at = 2025-12-19T23:04:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.373-2", prerelease = true }
-"0.0.373-3" = { created_at = 2025-12-19T23:04:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.373-3", prerelease = true }
-"0.0.373" = { created_at = 2025-12-19T23:04:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.373" }
-"0.0.374" = { created_at = 2026-01-02T19:53:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.374" }
-"0.0.375-0" = { created_at = 2026-01-02T20:06:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375-0", prerelease = true }
-"0.0.375-1" = { created_at = 2026-01-02T20:06:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375-1", prerelease = true }
-"0.0.375-2" = { created_at = 2026-01-02T20:06:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375-2", prerelease = true }
-"0.0.375" = { created_at = 2026-01-02T20:06:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375" }
-"0.0.376" = { created_at = 2026-01-07T16:11:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.376" }
-"0.0.377" = { created_at = 2026-01-08T15:06:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.377" }
-"0.0.378-0" = { created_at = 2026-01-08T23:01:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.378-0", prerelease = true }
-"0.0.378-1" = { created_at = 2026-01-08T23:01:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.378-1", prerelease = true }
-"0.0.378-2" = { created_at = 2026-01-08T23:01:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.378-2", prerelease = true }
-"0.0.380" = { created_at = 2026-01-08T23:01:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.380" }
-"0.0.381" = { created_at = 2026-01-13T02:45:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.381" }
-"0.0.382-0" = { created_at = 2026-01-13T18:58:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.382-0", prerelease = true }
-"0.0.382" = { created_at = 2026-01-13T18:58:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.382" }
-"0.0.384" = { created_at = 2026-01-14T21:06:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.384" }
-"0.0.385" = { created_at = 2026-01-16T06:41:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.385" }
-"0.0.386" = { created_at = 2026-01-19T18:54:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.386" }
-"0.0.387" = { created_at = 2026-01-19T21:33:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.387" }
-"0.0.388-0" = { created_at = 2026-01-20T01:27:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.388-0", prerelease = true }
-"0.0.388-1" = { created_at = 2026-01-20T01:27:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.388-1", prerelease = true }
-"0.0.388" = { created_at = 2026-01-20T01:27:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.388" }
-"0.0.389-0" = { created_at = 2026-01-20T20:30:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.389-0", prerelease = true }
-"0.0.389-1" = { created_at = 2026-01-21T01:06:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.389-1", prerelease = true }
-"0.0.389" = { created_at = 2026-01-22T01:33:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.389" }
-"0.0.390" = { created_at = 2026-01-22T05:52:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.390" }
-"0.0.392" = { created_at = 2026-01-22T21:27:55.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.392" }
-"0.0.393" = { created_at = 2026-01-22T23:09:00.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.393" }
-"0.0.394" = { created_at = 2026-01-23T15:32:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.394" }
-"0.0.395" = { created_at = 2026-01-24T03:48:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.395" }
-"0.0.396-0" = { created_at = 2026-01-26T18:09:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.396-0", prerelease = true }
-"0.0.396" = { created_at = 2026-01-26T18:09:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.396" }
-"0.0.397" = { created_at = 2026-01-27T20:27:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.397" }
-"0.0.398" = { created_at = 2026-01-28T17:19:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.398" }
-"0.0.399-0" = { created_at = 2026-01-28T19:53:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.399-0", prerelease = true }
-"0.0.399" = { created_at = 2026-01-28T19:53:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.399" }
-"0.0.400-0" = { created_at = 2026-01-29T19:13:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.400-0", prerelease = true }
-"0.0.400" = { created_at = 2026-01-29T19:13:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.400" }
-"0.0.401-0" = { created_at = 2026-01-30T22:28:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.401-0", prerelease = true }
-"0.0.401-1" = { created_at = 2026-01-30T22:28:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.401-1", prerelease = true }
-"0.0.401" = { created_at = 2026-02-02T19:43:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.401" }
-"0.0.402-0" = { created_at = 2026-02-03T15:12:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.402-0", prerelease = true }
-"0.0.402" = { created_at = 2026-02-03T15:12:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.402" }
-"0.0.403" = { created_at = 2026-02-03T21:35:16.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.403" }
-"0.0.404-0" = { created_at = 2026-02-05T08:43:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.404-0", prerelease = true }
-"0.0.404" = { created_at = 2026-02-05T08:43:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.404" }
-"0.0.405" = { created_at = 2026-02-05T19:08:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.405" }
-"0.0.406-0" = { created_at = 2026-02-05T22:47:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.406-0", prerelease = true }
-"0.0.406-1" = { created_at = 2026-02-05T22:47:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.406-1", prerelease = true }
-"0.0.406" = { created_at = 2026-02-05T22:47:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.406" }
-"0.0.407-0" = { created_at = 2026-02-07T19:10:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.407-0", prerelease = true }
-"0.0.407-1" = { created_at = 2026-02-07T19:10:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.407-1", prerelease = true }
-"0.0.407" = { created_at = 2026-02-07T19:10:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.407" }
-"0.0.408" = { created_at = 2026-02-11T20:16:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.408" }
-"0.0.409" = { created_at = 2026-02-12T12:28:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.409" }
-"0.0.410-0" = { created_at = 2026-02-12T22:09:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.410-0", prerelease = true }
-"0.0.410-1" = { created_at = 2026-02-12T22:09:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.410-1", prerelease = true }
-"0.0.410" = { created_at = 2026-02-12T22:09:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.410" }
-"0.0.411-0" = { created_at = 2026-02-14T00:52:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.411-0", prerelease = true }
-"0.0.411-1" = { created_at = 2026-02-17T14:20:59.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.411-1", prerelease = true }
-"0.0.411" = { created_at = 2026-02-17T14:20:59.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.411" }
-"0.0.412-0" = { created_at = 2026-02-17T20:53:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412-0", prerelease = true }
-"0.0.412-1" = { created_at = 2026-02-17T20:53:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412-1", prerelease = true }
-"0.0.412-2" = { created_at = 2026-02-17T20:53:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412-2", prerelease = true }
-"0.0.412" = { created_at = 2026-02-19T22:41:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412" }
-"0.0.413-0" = { created_at = 2026-02-20T09:44:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.413-0", prerelease = true }
-"0.0.413" = { created_at = 2026-02-20T14:58:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.413" }
-"0.0.414" = { created_at = 2026-02-20T23:32:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.414" }
-"0.0.415-0" = { created_at = 2026-02-21T00:53:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.415-0", prerelease = true }
-"0.0.415-1" = { created_at = 2026-02-21T00:53:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.415-1", prerelease = true }
-"0.0.415" = { created_at = 2026-02-21T00:53:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.415" }
-"0.0.416" = { created_at = 2026-02-23T21:46:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.416" }
-"0.0.417" = { created_at = 2026-02-24T20:00:00.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.417" }
-"0.0.418-0" = { created_at = 2026-02-25T00:19:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.418-0", prerelease = true }
-"0.0.418" = { created_at = 2026-02-25T17:12:56.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.418" }
-"0.0.419-0" = { created_at = 2026-02-25T17:32:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.419-0", prerelease = true }
-"0.0.419-1" = { created_at = 2026-02-25T17:32:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.419-1", prerelease = true }
-"0.0.419" = { created_at = 2026-02-25T17:32:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.419" }
-"0.0.420-0" = { created_at = 2026-02-27T01:58:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.420-0", prerelease = true }
-"0.0.420" = { created_at = 2026-02-27T01:58:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.420" }
-"0.0.421-0" = { created_at = 2026-02-27T18:47:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421-0", prerelease = true }
-"0.0.421-1" = { created_at = 2026-03-02T17:31:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421-1", prerelease = true }
-"0.0.421-2" = { created_at = 2026-03-02T17:31:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421-2", prerelease = true }
-"0.0.421" = { created_at = 2026-03-02T17:31:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421" }
-"0.0.422-0" = { created_at = 2026-03-03T18:12:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.422-0", prerelease = true }
-"0.0.422-1" = { created_at = 2026-03-03T18:12:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.422-1", prerelease = true }
-"0.0.422" = { created_at = 2026-03-03T18:12:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.422" }
-"0.0.423" = { created_at = 2026-03-05T23:51:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.423" }
-"1.0.2" = { created_at = 2026-03-06T16:39:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.2" }
-"1.0.3-0" = { created_at = 2026-03-06T21:33:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3-0", prerelease = true }
-"1.0.3-1" = { created_at = 2026-03-06T21:33:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3-1", prerelease = true }
-"1.0.3-2" = { created_at = 2026-03-06T21:33:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3-2", prerelease = true }
-"1.0.3" = { created_at = 2026-03-06T21:33:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3" }
-"1.0.4-0" = { created_at = 2026-03-09T23:28:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-0", prerelease = true }
-"1.0.4-1" = { created_at = 2026-03-10T21:37:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-1", prerelease = true }
-"1.0.4-2" = { created_at = 2026-03-10T21:37:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-2", prerelease = true }
-"1.0.4-3" = { created_at = 2026-03-10T21:37:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-3", prerelease = true }
-"1.0.4" = { created_at = 2026-03-10T21:37:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4" }
-"1.0.5-0" = { created_at = 2026-03-11T19:52:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.5-0", prerelease = true }
-"1.0.5" = { created_at = 2026-03-12T18:49:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.5" }
-"1.0.6-0" = { created_at = 2026-03-13T09:56:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6-0", prerelease = true }
-"1.0.6-1" = { created_at = 2026-03-13T09:56:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6-1", prerelease = true }
-"1.0.6-2" = { created_at = 2026-03-13T09:56:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6-2", prerelease = true }
-"1.0.6" = { created_at = 2026-03-13T09:56:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6" }
-"1.0.7-0" = { created_at = 2026-03-16T22:44:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.7-0", prerelease = true }
-"1.0.7" = { created_at = 2026-03-16T22:44:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.7" }
-"1.0.8-0" = { created_at = 2026-03-17T17:52:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.8-0", prerelease = true }
-"1.0.8" = { created_at = 2026-03-17T17:52:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.8" }
-"1.0.9" = { created_at = 2026-03-18T19:38:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.9" }
-"1.0.10-0" = { created_at = 2026-03-19T03:52:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.10-0", prerelease = true }
-"1.0.10-1" = { created_at = 2026-03-19T03:52:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.10-1", prerelease = true }
-"1.0.10" = { created_at = 2026-03-19T03:52:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.10" }
-"1.0.11-0" = { created_at = 2026-03-20T16:57:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.11-0", prerelease = true }
-"1.0.11-1" = { created_at = 2026-03-20T16:57:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.11-1", prerelease = true }
-"1.0.11" = { created_at = 2026-03-20T16:57:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.11" }
-"1.0.12-0" = { created_at = 2026-03-23T20:22:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12-0", prerelease = true }
-"1.0.12-1" = { created_at = 2026-03-23T20:22:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12-1", prerelease = true }
-"1.0.12-2" = { created_at = 2026-03-23T20:22:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12-2", prerelease = true }
-"1.0.12" = { created_at = 2026-03-23T20:22:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12" }
-"1.0.13-0" = { created_at = 2026-03-26T23:31:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13-0", prerelease = true }
-"1.0.13-1" = { created_at = 2026-03-26T23:31:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13-1", prerelease = true }
-"1.0.13-2" = { created_at = 2026-03-29T13:28:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13-2", prerelease = true }
-"1.0.13" = { created_at = 2026-03-29T13:28:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13" }
-"1.0.14-0" = { created_at = 2026-03-30T17:29:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.14-0", prerelease = true }
-"1.0.14" = { created_at = 2026-03-30T17:29:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.14" }
-"1.0.15-0" = { created_at = 2026-03-31T02:57:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15-0", prerelease = true }
-"1.0.15-1" = { created_at = 2026-03-31T02:57:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15-1", prerelease = true }
-"1.0.15-2" = { created_at = 2026-03-31T02:57:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15-2", prerelease = true }
-"1.0.15" = { created_at = 2026-03-31T02:57:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15" }
-"1.0.16-0" = { created_at = 2026-04-01T17:12:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.16-0", prerelease = true }
-"1.0.16-1" = { created_at = 2026-04-01T17:12:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.16-1", prerelease = true }
-"1.0.16" = { created_at = 2026-04-01T17:12:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.16" }
-"1.0.17" = { created_at = 2026-04-02T16:52:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.17" }
-"1.0.18" = { created_at = 2026-04-03T00:33:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.18" }
-"1.0.19-0" = { created_at = 2026-04-04T04:01:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.19-0", prerelease = true }
-"1.0.19" = { created_at = 2026-04-04T04:01:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.19" }
-"1.0.20-0" = { created_at = 2026-04-06T21:43:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.20-0", prerelease = true }
-"1.0.20-1" = { created_at = 2026-04-06T21:43:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.20-1", prerelease = true }
-"1.0.20" = { created_at = 2026-04-06T21:43:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.20" }
-"1.0.21" = { created_at = 2026-04-07T12:20:49.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.21" }
-"1.0.22-0" = { created_at = 2026-04-07T21:34:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.22-0", prerelease = true }
-"1.0.22" = { created_at = 2026-04-07T21:34:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.22" }
-"1.0.23" = { created_at = 2026-04-09T19:36:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.23" }
-"1.0.24-0" = { created_at = 2026-04-10T13:59:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.24-0", prerelease = true }
-"1.0.24" = { created_at = 2026-04-10T13:59:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.24" }
-"1.0.25" = { created_at = 2026-04-10T23:30:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.25" }
-"1.0.26-0" = { created_at = 2026-04-13T13:47:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.26-0", prerelease = true }
-"1.0.26" = { created_at = 2026-04-13T13:47:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.26" }
-"1.0.27" = { created_at = 2026-04-14T18:45:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.27" }
-"1.0.28" = { created_at = 2026-04-15T01:23:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.28" }
-"1.0.29" = { created_at = 2026-04-16T00:06:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.29" }
-"1.0.30" = { created_at = 2026-04-16T15:03:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.30" }
-"1.0.31" = { created_at = 2026-04-16T19:10:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.31" }
-"1.0.32-0" = { created_at = 2026-04-16T21:21:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.32-0", prerelease = true }
-"1.0.32-1" = { created_at = 2026-04-16T21:21:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.32-1", prerelease = true }
-"1.0.32" = { created_at = 2026-04-16T21:21:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.32" }
-"1.0.33-0" = { created_at = 2026-04-17T21:51:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.33-0", prerelease = true }
-"1.0.33" = { created_at = 2026-04-17T21:51:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.33" }
-"1.0.34-0" = { created_at = 2026-04-20T17:05:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.34-0", prerelease = true }
-"1.0.34" = { created_at = 2026-04-20T17:05:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.34" }
-"1.0.35-0" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-0", prerelease = true }
-"1.0.35-1" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-1", prerelease = true }
-"1.0.35-2" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-2", prerelease = true }
-"1.0.35-3" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-3", prerelease = true }
-"1.0.35-4" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-4", prerelease = true }
-"1.0.35-5" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-5", prerelease = true }
-"1.0.35-6" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-6", prerelease = true }
-"1.0.35" = { created_at = 2026-04-20T18:39:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35" }
-"1.0.36-0" = { created_at = 2026-04-23T23:24:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.36-0", prerelease = true }
-"1.0.36-1" = { created_at = 2026-04-23T23:24:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.36-1", prerelease = true }
-"1.0.36" = { created_at = 2026-04-23T23:24:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.36" }
-"1.0.37" = { created_at = 2026-04-24T18:39:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.37" }
-"1.0.39-0" = { created_at = 2026-04-27T23:07:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.39-0", prerelease = true }
-"1.0.39" = { created_at = 2026-04-27T23:07:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.39" }
-"1.0.40-0" = { created_at = 2026-04-28T23:25:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-0", prerelease = true }
-"1.0.40-1" = { created_at = 2026-04-28T23:25:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-1", prerelease = true }
-"1.0.40-2" = { created_at = 2026-04-28T23:25:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-2", prerelease = true }
-"1.0.40-3" = { created_at = 2026-04-28T23:25:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-3", prerelease = true }
-"1.0.40" = { created_at = 2026-04-28T23:25:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40" }
-"1.0.41-0" = { created_at = 2026-05-01T13:10:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.41-0", prerelease = true }
-"1.0.41-1" = { created_at = 2026-05-01T13:10:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.41-1", prerelease = true }
-"1.0.41" = { created_at = 2026-05-01T13:10:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.41" }
-"1.0.42-0" = { created_at = 2026-05-05T20:45:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.42-0", prerelease = true }
-"1.0.42" = { created_at = 2026-05-05T20:45:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.42" }
-"1.0.43-0" = { created_at = 2026-05-06T14:57:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.43-0", prerelease = true }
-"1.0.43" = { created_at = 2026-05-06T14:57:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.43" }
-"1.0.44-0" = { created_at = 2026-05-06T22:00:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-0", prerelease = true }
-"1.0.44-1" = { created_at = 2026-05-06T22:00:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-1", prerelease = true }
-"1.0.44-2" = { created_at = 2026-05-06T22:00:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-2", prerelease = true }
-"1.0.44-3" = { created_at = 2026-05-06T22:00:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-3", prerelease = true }
-"1.0.44" = { created_at = 2026-05-06T22:00:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44" }
-"1.0.45" = { created_at = 2026-05-08T19:39:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.45" }
-"1.0.46" = { created_at = 2026-05-11T17:43:12.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.46" }
-"1.0.47-0" = { created_at = 2026-05-12T20:53:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.47-0", prerelease = true }
-"1.0.47" = { created_at = 2026-05-12T20:53:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.47" }
-"1.0.48-0" = { created_at = 2026-05-13T14:43:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48-0", prerelease = true }
-"1.0.48-1" = { created_at = 2026-05-13T14:43:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48-1", prerelease = true }
-"1.0.48-2" = { created_at = 2026-05-13T14:43:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48-2", prerelease = true }
-"1.0.48" = { created_at = 2026-05-13T14:43:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48" }
-"1.0.49-0" = { created_at = 2026-05-14T13:53:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49-0", prerelease = true }
-"1.0.49-1" = { created_at = 2026-05-14T13:53:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49-1", prerelease = true }
-"1.0.49-6" = { created_at = 2026-05-14T13:53:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49-6", prerelease = true }
-"1.0.49" = { created_at = 2026-05-14T13:53:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49" }
-"1.0.51-1" = { created_at = 2026-05-19T00:02:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51-1", prerelease = true }
-"1.0.51-2" = { created_at = 2026-05-19T00:02:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51-2", prerelease = true }
-"1.0.51-3" = { created_at = 2026-05-19T00:02:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51-3", prerelease = true }
-"1.0.51" = { created_at = 2026-05-19T00:02:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51" }
-"1.0.52-0" = { created_at = 2026-05-20T21:44:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-0", prerelease = true }
-"1.0.52-1" = { created_at = 2026-05-20T21:44:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-1", prerelease = true }
-"1.0.52-2" = { created_at = 2026-05-20T21:44:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-2", prerelease = true }
-"1.0.52-4" = { created_at = 2026-05-20T21:44:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-4", prerelease = true }
-"1.0.52" = { created_at = 2026-05-20T21:44:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52" }
-"1.0.53-0" = { created_at = 2026-05-23T22:44:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53-0", prerelease = true }
-"1.0.53-1" = { created_at = 2026-05-23T22:44:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53-1", prerelease = true }
-"1.0.53-2" = { created_at = 2026-05-23T22:44:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53-2", prerelease = true }
-"1.0.53" = { created_at = 2026-05-23T22:44:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53" }
-"1.0.54" = { created_at = 2026-05-24T20:19:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.54" }
-"1.0.55-0" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-0", prerelease = true }
-"1.0.55-1" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-1", prerelease = true }
-"1.0.55-2" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-2", prerelease = true }
-"1.0.55-3" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-3", prerelease = true }
-"1.0.55-4" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-4", prerelease = true }
-"1.0.55-5" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-5", prerelease = true }
-"1.0.55-6" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-6", prerelease = true }
-"1.0.55-7" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-7", prerelease = true }
-"1.0.55" = { created_at = 2026-05-24T21:30:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55" }
-"1.0.56-0" = { created_at = 2026-05-28T19:56:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56-0", prerelease = true }
-"1.0.56-1" = { created_at = 2026-05-28T19:56:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56-1", prerelease = true }
-"1.0.56-2" = { created_at = 2026-05-28T19:56:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56-2", prerelease = true }
-"1.0.56" = { created_at = 2026-05-28T19:56:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56" }
-"1.0.57-0" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-0", prerelease = true }
-"1.0.57-1" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-1", prerelease = true }
-"1.0.57-2" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-2", prerelease = true }
-"1.0.57-3" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-3", prerelease = true }
-"1.0.57-4" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-4", prerelease = true }
-"1.0.57-5" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-5", prerelease = true }
-"1.0.57" = { created_at = 2026-05-29T20:06:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57" }
-"1.0.58" = { created_at = 2026-06-01T18:40:12.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.58" }
-"1.0.59" = { created_at = 2026-06-02T16:01:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.59" }
-"1.0.60-0" = { created_at = 2026-06-02T21:01:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.60-0", prerelease = true }
-"1.0.60" = { created_at = 2026-06-02T21:01:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.60" }
-"1.0.61" = { created_at = 2026-06-05T16:46:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.61" }
-"1.0.62-1" = { created_at = 2026-06-09T22:02:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.62-1", prerelease = true }
-"1.0.62-2" = { created_at = 2026-06-09T22:02:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.62-2", prerelease = true }
-"1.0.62" = { created_at = 2026-06-09T22:02:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.62" }
-"1.0.63-0" = { created_at = 2026-06-13T19:58:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.63-0", prerelease = true }
-"1.0.63" = { created_at = 2026-06-13T19:58:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.63" }
-"1.0.64-0" = { created_at = 2026-06-16T00:47:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-0", prerelease = true }
-"1.0.64-1" = { created_at = 2026-06-16T00:47:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-1", prerelease = true }
-"1.0.64-2" = { created_at = 2026-06-16T00:47:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-2", prerelease = true }
-"1.0.64-3" = { created_at = 2026-06-16T00:47:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-3", prerelease = true }
-"1.0.64" = { created_at = 2026-06-16T00:47:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64" }
-"1.0.65" = { created_at = 2026-06-23T17:21:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.65" }
-"1.0.66-0" = { created_at = 2026-06-24T21:41:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66-0", prerelease = true }
-"1.0.66-1" = { created_at = 2026-06-24T21:41:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66-1", prerelease = true }
-"1.0.66-2" = { created_at = 2026-06-24T21:41:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66-2", prerelease = true }
-"1.0.66" = { created_at = 2026-06-24T21:41:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66" }
-"1.0.67" = { created_at = 2026-06-30T13:17:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.67" }
-"1.0.68" = { created_at = 2026-06-30T22:18:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.68" }
-"1.0.69-0" = { created_at = 2026-07-01T21:17:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-0", prerelease = true }
-"1.0.69-1" = { created_at = 2026-07-01T21:17:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-1", prerelease = true }
-"1.0.69-2" = { created_at = 2026-07-01T21:17:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-2", prerelease = true }
-"1.0.69-3" = { created_at = 2026-07-01T21:17:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-3", prerelease = true }
-"1.0.69" = { created_at = 2026-07-01T21:17:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69" }
-"1.0.70-0" = { created_at = 2026-07-07T21:19:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.70-0", prerelease = true }
-"1.0.70" = { created_at = 2026-07-07T21:19:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.70" }
-"1.0.71-0" = { created_at = 2026-07-10T01:28:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-0", prerelease = true }
-"1.0.71-1" = { created_at = 2026-07-10T01:28:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-1", prerelease = true }
-"1.0.71-2" = { created_at = 2026-07-10T01:28:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-2", prerelease = true }
-"1.0.71-3" = { created_at = 2026-07-10T01:28:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-3", prerelease = true }
-"1.0.71" = { created_at = 2026-07-10T01:28:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71" }
-"1.0.72-0" = { created_at = 2026-07-16T01:54:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.72-0", prerelease = true }
-"1.0.72-1" = { created_at = 2026-07-16T01:54:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.72-1", prerelease = true }
-"1.0.72" = { created_at = 2026-07-16T01:54:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.72" }
-"1.0.73" = { created_at = 2026-07-20T17:51:16.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.73" }
-"1.0.74-0" = { created_at = 2026-07-21T00:11:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-0", prerelease = true }
-"1.0.74-1" = { created_at = 2026-07-21T00:11:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-1", prerelease = true }
-"1.0.74-2" = { created_at = 2026-07-21T00:11:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-2", prerelease = true }
-"1.0.74-3" = { created_at = 2026-07-21T00:11:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-3", prerelease = true }
-"1.0.74-4" = { created_at = 2026-07-21T00:11:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-4", prerelease = true }
-"1.0.74" = { created_at = 2026-07-21T00:11:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74" }
-"1.0.75" = { created_at = 2026-07-23T22:05:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.75" }
-"1.0.76-0" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-0", prerelease = true }
-"1.0.76-1" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-1", prerelease = true }
-"1.0.76-2" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-2", prerelease = true }
-"1.0.76-3" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-3", prerelease = true }
-"1.0.76-4" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-4", prerelease = true }
-"1.0.76-5" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-5", prerelease = true }
-"1.0.76" = { created_at = 2026-07-24T19:54:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76" }
-"1.0.77-0" = { created_at = 2026-07-30T01:09:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.77-0", prerelease = true }
-"1.0.77" = { created_at = 2026-07-30T01:09:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.77" }
-"1.0.78-0" = { created_at = 2026-07-30T23:36:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78-0", prerelease = true }
-"1.0.78-2" = { created_at = 2026-07-30T23:36:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78-2", prerelease = true }
-"1.0.78-3" = { created_at = 2026-07-30T23:36:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78-3", prerelease = true }
-"1.0.78" = { created_at = 2026-07-30T23:36:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78" }
-"1.0.79-1" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-1", prerelease = true }
-"1.0.79-2" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-2", prerelease = true }
-"1.0.79-3" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-3", prerelease = true }
-"1.0.79-4" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-4", prerelease = true }
-"1.0.79-5" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-5", prerelease = true }
-"1.0.79-6" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-6", prerelease = true }
-"1.0.79-7" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-7", prerelease = true }
-"1.0.79-8" = { created_at = 2026-08-03T23:30:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-8", prerelease = true }
+"0.0.366-5" = { created_at = 2025-12-01T20:23:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-5", prerelease = true }
+"0.0.366-6" = { created_at = 2025-12-02T14:50:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-6", prerelease = true }
+"0.0.366-7" = { created_at = 2025-12-02T15:36:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-7", prerelease = true }
+"0.0.366-8" = { created_at = 2025-12-02T17:36:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-8", prerelease = true }
+"0.0.366-9" = { created_at = 2025-12-03T14:48:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366-9", prerelease = true }
+"0.0.366" = { created_at = 2025-12-03T22:56:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.366" }
+"0.0.367-0" = { created_at = 2025-12-04T15:05:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.367-0", prerelease = true }
+"0.0.367" = { created_at = 2025-12-05T00:56:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.367" }
+"0.0.368-0" = { created_at = 2025-12-05T15:13:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-0", prerelease = true }
+"0.0.368-1" = { created_at = 2025-12-08T15:30:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-1", prerelease = true }
+"0.0.368-2" = { created_at = 2025-12-09T15:13:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-2", prerelease = true }
+"0.0.368-3" = { created_at = 2025-12-09T22:16:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-3", prerelease = true }
+"0.0.368-4" = { created_at = 2025-12-10T15:07:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368-4", prerelease = true }
+"0.0.368" = { created_at = 2025-12-10T21:09:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.368" }
+"0.0.369-0" = { created_at = 2025-12-11T14:47:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.369-0", prerelease = true }
+"0.0.369" = { created_at = 2025-12-11T20:00:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.369" }
+"0.0.370-0" = { created_at = 2025-12-12T15:35:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-0", prerelease = true }
+"0.0.370-1" = { created_at = 2025-12-15T15:11:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-1", prerelease = true }
+"0.0.370-5" = { created_at = 2025-12-17T00:30:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-5", prerelease = true }
+"0.0.370-6" = { created_at = 2025-12-17T16:17:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-6", prerelease = true }
+"0.0.370-7" = { created_at = 2025-12-18T14:33:16.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370-7", prerelease = true }
+"0.0.370" = { created_at = 2025-12-18T15:41:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.370" }
+"0.0.371-0" = { created_at = 2025-12-18T22:25:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.371-0", prerelease = true }
+"0.0.371" = { created_at = 2025-12-18T23:51:56.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.371" }
+"0.0.372" = { created_at = 2025-12-19T23:04:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.372" }
+"0.0.373-2" = { created_at = 2025-12-29T23:16:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.373-2", prerelease = true }
+"0.0.373-3" = { created_at = 2025-12-30T14:20:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.373-3", prerelease = true }
+"0.0.373" = { created_at = 2025-12-30T15:19:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.373" }
+"0.0.374" = { created_at = 2026-01-02T20:06:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.374" }
+"0.0.375-0" = { created_at = 2026-01-05T15:10:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375-0", prerelease = true }
+"0.0.375-1" = { created_at = 2026-01-06T15:31:12.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375-1", prerelease = true }
+"0.0.375-2" = { created_at = 2026-01-07T00:32:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375-2", prerelease = true }
+"0.0.375" = { created_at = 2026-01-07T16:11:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.375" }
+"0.0.376" = { created_at = 2026-01-08T15:06:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.376" }
+"0.0.377" = { created_at = 2026-01-08T23:01:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.377" }
+"0.0.378-0" = { created_at = 2026-01-09T17:30:00.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.378-0", prerelease = true }
+"0.0.378-1" = { created_at = 2026-01-12T18:13:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.378-1", prerelease = true }
+"0.0.378-2" = { created_at = 2026-01-13T00:03:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.378-2", prerelease = true }
+"0.0.380" = { created_at = 2026-01-13T02:45:16.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.380" }
+"0.0.381" = { created_at = 2026-01-13T18:58:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.381" }
+"0.0.382-0" = { created_at = 2026-01-13T22:37:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.382-0", prerelease = true }
+"0.0.382" = { created_at = 2026-01-14T19:27:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.382" }
+"0.0.384" = { created_at = 2026-01-16T06:41:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.384" }
+"0.0.385" = { created_at = 2026-01-19T18:54:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.385" }
+"0.0.386" = { created_at = 2026-01-19T21:33:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.386" }
+"0.0.387" = { created_at = 2026-01-20T01:27:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.387" }
+"0.0.388-0" = { created_at = 2026-01-20T14:26:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.388-0", prerelease = true }
+"0.0.388-1" = { created_at = 2026-01-20T18:24:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.388-1", prerelease = true }
+"0.0.388" = { created_at = 2026-01-20T20:30:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.388" }
+"0.0.389-0" = { created_at = 2026-01-20T22:39:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.389-0", prerelease = true }
+"0.0.389-1" = { created_at = 2026-01-21T14:36:12.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.389-1", prerelease = true }
+"0.0.389" = { created_at = 2026-01-22T02:31:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.389" }
+"0.0.390" = { created_at = 2026-01-22T20:15:48.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.390" }
+"0.0.392" = { created_at = 2026-01-22T23:08:59.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.392" }
+"0.0.393" = { created_at = 2026-01-23T15:32:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.393" }
+"0.0.394" = { created_at = 2026-01-24T03:48:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.394" }
+"0.0.395" = { created_at = 2026-01-26T18:09:55.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.395" }
+"0.0.396-0" = { created_at = 2026-01-27T14:25:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.396-0", prerelease = true }
+"0.0.396" = { created_at = 2026-01-27T20:27:52.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.396" }
+"0.0.397" = { created_at = 2026-01-28T17:19:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.397" }
+"0.0.398" = { created_at = 2026-01-28T19:53:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.398" }
+"0.0.399-0" = { created_at = 2026-01-29T17:51:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.399-0", prerelease = true }
+"0.0.399" = { created_at = 2026-01-29T19:13:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.399" }
+"0.0.400-0" = { created_at = 2026-01-30T14:32:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.400-0", prerelease = true }
+"0.0.400" = { created_at = 2026-01-30T22:28:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.400" }
+"0.0.401-0" = { created_at = 2026-02-02T15:37:52.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.401-0", prerelease = true }
+"0.0.401-1" = { created_at = 2026-02-02T18:19:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.401-1", prerelease = true }
+"0.0.401" = { created_at = 2026-02-03T15:12:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.401" }
+"0.0.402-0" = { created_at = 2026-02-03T20:35:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.402-0", prerelease = true }
+"0.0.402" = { created_at = 2026-02-03T21:35:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.402" }
+"0.0.403" = { created_at = 2026-02-05T08:43:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.403" }
+"0.0.404-0" = { created_at = 2026-02-05T14:36:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.404-0", prerelease = true }
+"0.0.404" = { created_at = 2026-02-05T19:08:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.404" }
+"0.0.405" = { created_at = 2026-02-05T22:47:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.405" }
+"0.0.406-0" = { created_at = 2026-02-06T14:39:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.406-0", prerelease = true }
+"0.0.406-1" = { created_at = 2026-02-06T23:39:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.406-1", prerelease = true }
+"0.0.406" = { created_at = 2026-02-07T19:10:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.406" }
+"0.0.407-0" = { created_at = 2026-02-10T16:21:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.407-0", prerelease = true }
+"0.0.407-1" = { created_at = 2026-02-10T19:46:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.407-1", prerelease = true }
+"0.0.407" = { created_at = 2026-02-11T20:16:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.407" }
+"0.0.408" = { created_at = 2026-02-12T12:28:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.408" }
+"0.0.409" = { created_at = 2026-02-12T22:09:48.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.409" }
+"0.0.410-0" = { created_at = 2026-02-13T16:28:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.410-0", prerelease = true }
+"0.0.410-1" = { created_at = 2026-02-13T17:01:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.410-1", prerelease = true }
+"0.0.410" = { created_at = 2026-02-14T00:52:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.410" }
+"0.0.411-0" = { created_at = 2026-02-16T17:07:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.411-0", prerelease = true }
+"0.0.411-1" = { created_at = 2026-02-17T14:41:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.411-1", prerelease = true }
+"0.0.411" = { created_at = 2026-02-17T20:53:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.411" }
+"0.0.412-0" = { created_at = 2026-02-18T06:08:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412-0", prerelease = true }
+"0.0.412-1" = { created_at = 2026-02-18T16:07:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412-1", prerelease = true }
+"0.0.412-2" = { created_at = 2026-02-19T14:38:00.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412-2", prerelease = true }
+"0.0.412" = { created_at = 2026-02-19T22:58:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.412" }
+"0.0.413-0" = { created_at = 2026-02-20T14:40:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.413-0", prerelease = true }
+"0.0.413" = { created_at = 2026-02-20T23:32:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.413" }
+"0.0.414" = { created_at = 2026-02-21T00:53:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.414" }
+"0.0.415-0" = { created_at = 2026-02-23T14:39:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.415-0", prerelease = true }
+"0.0.415-1" = { created_at = 2026-02-23T18:04:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.415-1", prerelease = true }
+"0.0.415" = { created_at = 2026-02-23T21:46:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.415" }
+"0.0.416" = { created_at = 2026-02-24T19:59:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.416" }
+"0.0.417" = { created_at = 2026-02-25T00:19:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.417" }
+"0.0.418-0" = { created_at = 2026-02-25T14:38:16.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.418-0", prerelease = true }
+"0.0.418" = { created_at = 2026-02-25T17:32:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.418" }
+"0.0.419-0" = { created_at = 2026-02-25T18:11:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.419-0", prerelease = true }
+"0.0.419-1" = { created_at = 2026-02-26T23:03:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.419-1", prerelease = true }
+"0.0.419" = { created_at = 2026-02-27T01:57:59.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.419" }
+"0.0.420-0" = { created_at = 2026-02-27T14:30:55.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.420-0", prerelease = true }
+"0.0.420" = { created_at = 2026-02-27T18:47:56.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.420" }
+"0.0.421-0" = { created_at = 2026-03-02T10:55:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421-0", prerelease = true }
+"0.0.421-1" = { created_at = 2026-03-02T18:05:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421-1", prerelease = true }
+"0.0.421-2" = { created_at = 2026-03-03T15:58:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421-2", prerelease = true }
+"0.0.421" = { created_at = 2026-03-03T18:12:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.421" }
+"0.0.422-0" = { created_at = 2026-03-04T14:34:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.422-0", prerelease = true }
+"0.0.422-1" = { created_at = 2026-03-05T16:24:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.422-1", prerelease = true }
+"0.0.422" = { created_at = 2026-03-05T23:51:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.422" }
+"0.0.423" = { created_at = 2026-03-06T16:39:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v0.0.423" }
+"1.0.2" = { created_at = 2026-03-06T21:33:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.2" }
+"1.0.3-0" = { created_at = 2026-03-09T14:39:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3-0", prerelease = true }
+"1.0.3-1" = { created_at = 2026-03-09T18:57:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3-1", prerelease = true }
+"1.0.3-2" = { created_at = 2026-03-09T21:22:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3-2", prerelease = true }
+"1.0.3" = { created_at = 2026-03-09T23:28:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.3" }
+"1.0.4-0" = { created_at = 2026-03-10T15:20:49.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-0", prerelease = true }
+"1.0.4-1" = { created_at = 2026-03-11T14:35:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-1", prerelease = true }
+"1.0.4-2" = { created_at = 2026-03-11T17:35:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-2", prerelease = true }
+"1.0.4-3" = { created_at = 2026-03-11T19:09:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4-3", prerelease = true }
+"1.0.4" = { created_at = 2026-03-11T19:52:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.4" }
+"1.0.5-0" = { created_at = 2026-03-12T14:34:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.5-0", prerelease = true }
+"1.0.5" = { created_at = 2026-03-13T09:56:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.5" }
+"1.0.6-0" = { created_at = 2026-03-16T11:10:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6-0", prerelease = true }
+"1.0.6-1" = { created_at = 2026-03-16T16:05:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6-1", prerelease = true }
+"1.0.6-2" = { created_at = 2026-03-16T20:37:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6-2", prerelease = true }
+"1.0.6" = { created_at = 2026-03-16T22:44:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.6" }
+"1.0.7-0" = { created_at = 2026-03-17T15:22:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.7-0", prerelease = true }
+"1.0.7" = { created_at = 2026-03-17T17:52:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.7" }
+"1.0.8-0" = { created_at = 2026-03-18T15:02:56.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.8-0", prerelease = true }
+"1.0.8" = { created_at = 2026-03-18T19:38:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.8" }
+"1.0.9" = { created_at = 2026-03-19T03:52:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.9" }
+"1.0.10-0" = { created_at = 2026-03-20T12:37:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.10-0", prerelease = true }
+"1.0.10-1" = { created_at = 2026-03-20T15:15:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.10-1", prerelease = true }
+"1.0.10" = { created_at = 2026-03-20T16:57:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.10" }
+"1.0.11-0" = { created_at = 2026-03-23T15:37:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.11-0", prerelease = true }
+"1.0.11-1" = { created_at = 2026-03-23T16:16:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.11-1", prerelease = true }
+"1.0.11" = { created_at = 2026-03-23T20:22:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.11" }
+"1.0.12-0" = { created_at = 2026-03-25T16:16:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12-0", prerelease = true }
+"1.0.12-1" = { created_at = 2026-03-25T23:14:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12-1", prerelease = true }
+"1.0.12-2" = { created_at = 2026-03-26T14:51:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12-2", prerelease = true }
+"1.0.12" = { created_at = 2026-03-26T22:19:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.12" }
+"1.0.13-0" = { created_at = 2026-03-27T15:09:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13-0", prerelease = true }
+"1.0.13-1" = { created_at = 2026-03-27T20:37:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13-1", prerelease = true }
+"1.0.13-2" = { created_at = 2026-03-30T14:50:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13-2", prerelease = true }
+"1.0.13" = { created_at = 2026-03-30T17:29:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.13" }
+"1.0.14-0" = { created_at = 2026-03-30T17:37:26.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.14-0", prerelease = true }
+"1.0.14" = { created_at = 2026-03-31T02:57:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.14" }
+"1.0.15-0" = { created_at = 2026-03-31T13:27:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15-0", prerelease = true }
+"1.0.15-1" = { created_at = 2026-04-01T12:55:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15-1", prerelease = true }
+"1.0.15-2" = { created_at = 2026-04-01T14:48:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15-2", prerelease = true }
+"1.0.15" = { created_at = 2026-04-01T17:12:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.15" }
+"1.0.16-0" = { created_at = 2026-04-01T21:15:55.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.16-0", prerelease = true }
+"1.0.16-1" = { created_at = 2026-04-02T01:36:00.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.16-1", prerelease = true }
+"1.0.16" = { created_at = 2026-04-02T16:52:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.16" }
+"1.0.17" = { created_at = 2026-04-03T00:33:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.17" }
+"1.0.18" = { created_at = 2026-04-04T04:01:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.18" }
+"1.0.19-0" = { created_at = 2026-04-06T14:56:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.19-0", prerelease = true }
+"1.0.19" = { created_at = 2026-04-06T21:43:52.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.19" }
+"1.0.20-0" = { created_at = 2026-04-07T03:57:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.20-0", prerelease = true }
+"1.0.20-1" = { created_at = 2026-04-07T08:57:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.20-1", prerelease = true }
+"1.0.20" = { created_at = 2026-04-07T12:20:48.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.20" }
+"1.0.21" = { created_at = 2026-04-07T21:34:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.21" }
+"1.0.22-0" = { created_at = 2026-04-08T17:27:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.22-0", prerelease = true }
+"1.0.22" = { created_at = 2026-04-09T19:36:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.22" }
+"1.0.23" = { created_at = 2026-04-10T13:59:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.23" }
+"1.0.24-0" = { created_at = 2026-04-10T19:37:52.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.24-0", prerelease = true }
+"1.0.24" = { created_at = 2026-04-10T23:30:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.24" }
+"1.0.25" = { created_at = 2026-04-13T13:47:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.25" }
+"1.0.26-0" = { created_at = 2026-04-14T09:50:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.26-0", prerelease = true }
+"1.0.26" = { created_at = 2026-04-14T18:45:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.26" }
+"1.0.27" = { created_at = 2026-04-15T01:23:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.27" }
+"1.0.28" = { created_at = 2026-04-16T00:06:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.28" }
+"1.0.29" = { created_at = 2026-04-16T15:03:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.29" }
+"1.0.30" = { created_at = 2026-04-16T19:10:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.30" }
+"1.0.31" = { created_at = 2026-04-16T21:21:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.31" }
+"1.0.32-0" = { created_at = 2026-04-17T15:00:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.32-0", prerelease = true }
+"1.0.32-1" = { created_at = 2026-04-17T18:59:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.32-1", prerelease = true }
+"1.0.32" = { created_at = 2026-04-17T21:51:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.32" }
+"1.0.33-0" = { created_at = 2026-04-20T10:05:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.33-0", prerelease = true }
+"1.0.33" = { created_at = 2026-04-20T17:05:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.33" }
+"1.0.34-0" = { created_at = 2026-04-20T18:01:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.34-0", prerelease = true }
+"1.0.34" = { created_at = 2026-04-20T18:39:40.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.34" }
+"1.0.35-0" = { created_at = 2026-04-21T13:44:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-0", prerelease = true }
+"1.0.35-1" = { created_at = 2026-04-21T15:10:56.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-1", prerelease = true }
+"1.0.35-2" = { created_at = 2026-04-21T20:55:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-2", prerelease = true }
+"1.0.35-3" = { created_at = 2026-04-22T15:20:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-3", prerelease = true }
+"1.0.35-4" = { created_at = 2026-04-22T18:06:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-4", prerelease = true }
+"1.0.35-5" = { created_at = 2026-04-23T12:19:49.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-5", prerelease = true }
+"1.0.35-6" = { created_at = 2026-04-23T15:05:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35-6", prerelease = true }
+"1.0.35" = { created_at = 2026-04-23T23:24:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.35" }
+"1.0.36-0" = { created_at = 2026-04-24T13:10:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.36-0", prerelease = true }
+"1.0.36-1" = { created_at = 2026-04-24T14:51:05.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.36-1", prerelease = true }
+"1.0.36" = { created_at = 2026-04-24T18:39:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.36" }
+"1.0.37" = { created_at = 2026-04-27T23:07:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.37" }
+"1.0.39-0" = { created_at = 2026-04-28T21:50:43.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.39-0", prerelease = true }
+"1.0.39" = { created_at = 2026-04-28T23:25:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.39" }
+"1.0.40-0" = { created_at = 2026-04-29T16:02:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-0", prerelease = true }
+"1.0.40-1" = { created_at = 2026-04-30T14:44:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-1", prerelease = true }
+"1.0.40-2" = { created_at = 2026-04-30T15:25:55.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-2", prerelease = true }
+"1.0.40-3" = { created_at = 2026-04-30T23:20:27.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40-3", prerelease = true }
+"1.0.40" = { created_at = 2026-05-01T13:10:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.40" }
+"1.0.41-0" = { created_at = 2026-05-04T09:54:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.41-0", prerelease = true }
+"1.0.41-1" = { created_at = 2026-05-05T11:55:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.41-1", prerelease = true }
+"1.0.41" = { created_at = 2026-05-05T20:45:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.41" }
+"1.0.42-0" = { created_at = 2026-05-05T21:12:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.42-0", prerelease = true }
+"1.0.42" = { created_at = 2026-05-06T14:57:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.42" }
+"1.0.43-0" = { created_at = 2026-05-06T19:24:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.43-0", prerelease = true }
+"1.0.43" = { created_at = 2026-05-06T22:00:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.43" }
+"1.0.44-0" = { created_at = 2026-05-07T15:23:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-0", prerelease = true }
+"1.0.44-1" = { created_at = 2026-05-07T18:39:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-1", prerelease = true }
+"1.0.44-2" = { created_at = 2026-05-07T21:03:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-2", prerelease = true }
+"1.0.44-3" = { created_at = 2026-05-08T16:35:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44-3", prerelease = true }
+"1.0.44" = { created_at = 2026-05-08T19:39:07.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.44" }
+"1.0.45" = { created_at = 2026-05-11T17:43:12.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.45" }
+"1.0.46" = { created_at = 2026-05-12T20:53:50.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.46" }
+"1.0.47-0" = { created_at = 2026-05-13T02:18:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.47-0", prerelease = true }
+"1.0.47" = { created_at = 2026-05-13T14:43:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.47" }
+"1.0.48-0" = { created_at = 2026-05-13T21:47:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48-0", prerelease = true }
+"1.0.48-1" = { created_at = 2026-05-14T01:20:59.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48-1", prerelease = true }
+"1.0.48-2" = { created_at = 2026-05-14T11:28:39.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48-2", prerelease = true }
+"1.0.48" = { created_at = 2026-05-14T13:53:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.48" }
+"1.0.49-0" = { created_at = 2026-05-15T15:33:12.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49-0", prerelease = true }
+"1.0.49-1" = { created_at = 2026-05-15T18:01:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49-1", prerelease = true }
+"1.0.49-6" = { created_at = 2026-05-18T20:27:55.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49-6", prerelease = true }
+"1.0.49" = { created_at = 2026-05-19T00:02:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.49" }
+"1.0.51-1" = { created_at = 2026-05-19T21:31:49.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51-1", prerelease = true }
+"1.0.51-2" = { created_at = 2026-05-20T03:41:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51-2", prerelease = true }
+"1.0.51-3" = { created_at = 2026-05-20T21:20:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51-3", prerelease = true }
+"1.0.51" = { created_at = 2026-05-20T21:44:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.51" }
+"1.0.52-0" = { created_at = 2026-05-21T16:11:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-0", prerelease = true }
+"1.0.52-1" = { created_at = 2026-05-22T01:49:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-1", prerelease = true }
+"1.0.52-2" = { created_at = 2026-05-22T16:55:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-2", prerelease = true }
+"1.0.52-4" = { created_at = 2026-05-22T23:08:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52-4", prerelease = true }
+"1.0.52" = { created_at = 2026-05-23T22:44:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.52" }
+"1.0.53-0" = { created_at = 2026-05-24T03:01:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53-0", prerelease = true }
+"1.0.53-1" = { created_at = 2026-05-24T04:38:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53-1", prerelease = true }
+"1.0.53-2" = { created_at = 2026-05-24T06:47:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53-2", prerelease = true }
+"1.0.53" = { created_at = 2026-05-24T20:19:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.53" }
+"1.0.54" = { created_at = 2026-05-24T21:30:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.54" }
+"1.0.55-0" = { created_at = 2026-05-25T01:23:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-0", prerelease = true }
+"1.0.55-1" = { created_at = 2026-05-26T14:52:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-1", prerelease = true }
+"1.0.55-2" = { created_at = 2026-05-27T03:33:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-2", prerelease = true }
+"1.0.55-3" = { created_at = 2026-05-27T04:12:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-3", prerelease = true }
+"1.0.55-4" = { created_at = 2026-05-27T12:23:49.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-4", prerelease = true }
+"1.0.55-5" = { created_at = 2026-05-27T15:30:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-5", prerelease = true }
+"1.0.55-6" = { created_at = 2026-05-27T21:37:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-6", prerelease = true }
+"1.0.55-7" = { created_at = 2026-05-27T23:55:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55-7", prerelease = true }
+"1.0.55" = { created_at = 2026-05-28T19:56:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.55" }
+"1.0.56-0" = { created_at = 2026-05-28T20:58:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56-0", prerelease = true }
+"1.0.56-1" = { created_at = 2026-05-29T02:15:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56-1", prerelease = true }
+"1.0.56-2" = { created_at = 2026-05-29T17:18:08.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56-2", prerelease = true }
+"1.0.56" = { created_at = 2026-05-29T20:06:37.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.56" }
+"1.0.57-0" = { created_at = 2026-05-29T22:05:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-0", prerelease = true }
+"1.0.57-1" = { created_at = 2026-05-30T00:51:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-1", prerelease = true }
+"1.0.57-2" = { created_at = 2026-05-30T03:58:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-2", prerelease = true }
+"1.0.57-3" = { created_at = 2026-05-30T15:04:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-3", prerelease = true }
+"1.0.57-4" = { created_at = 2026-05-31T16:49:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-4", prerelease = true }
+"1.0.57-5" = { created_at = 2026-06-01T04:02:58.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57-5", prerelease = true }
+"1.0.57" = { created_at = 2026-06-01T18:40:11.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.57" }
+"1.0.58" = { created_at = 2026-06-02T16:01:14.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.58" }
+"1.0.59" = { created_at = 2026-06-02T21:01:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.59" }
+"1.0.60-0" = { created_at = 2026-06-04T16:59:10.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.60-0", prerelease = true }
+"1.0.60" = { created_at = 2026-06-05T16:46:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.60" }
+"1.0.61" = { created_at = 2026-06-09T22:02:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.61" }
+"1.0.62-1" = { created_at = 2026-06-12T19:58:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.62-1", prerelease = true }
+"1.0.62-2" = { created_at = 2026-06-13T09:56:24.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.62-2", prerelease = true }
+"1.0.62" = { created_at = 2026-06-13T19:58:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.62" }
+"1.0.63-0" = { created_at = 2026-06-15T22:45:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.63-0", prerelease = true }
+"1.0.63" = { created_at = 2026-06-16T00:47:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.63" }
+"1.0.64-0" = { created_at = 2026-06-17T01:05:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-0", prerelease = true }
+"1.0.64-1" = { created_at = 2026-06-19T21:04:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-1", prerelease = true }
+"1.0.64-2" = { created_at = 2026-06-22T19:09:53.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-2", prerelease = true }
+"1.0.64-3" = { created_at = 2026-06-22T20:36:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64-3", prerelease = true }
+"1.0.64" = { created_at = 2026-06-23T17:21:01.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.64" }
+"1.0.65" = { created_at = 2026-06-24T21:41:13.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.65" }
+"1.0.66-0" = { created_at = 2026-06-26T01:25:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66-0", prerelease = true }
+"1.0.66-1" = { created_at = 2026-06-26T21:52:48.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66-1", prerelease = true }
+"1.0.66-2" = { created_at = 2026-06-29T14:32:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66-2", prerelease = true }
+"1.0.66" = { created_at = 2026-06-30T13:17:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.66" }
+"1.0.67" = { created_at = 2026-06-30T22:18:23.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.67" }
+"1.0.68" = { created_at = 2026-07-01T21:17:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.68" }
+"1.0.69-0" = { created_at = 2026-07-02T01:34:44.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-0", prerelease = true }
+"1.0.69-1" = { created_at = 2026-07-04T23:38:06.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-1", prerelease = true }
+"1.0.69-2" = { created_at = 2026-07-06T12:00:59.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-2", prerelease = true }
+"1.0.69-3" = { created_at = 2026-07-07T17:45:49.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69-3", prerelease = true }
+"1.0.69" = { created_at = 2026-07-07T21:19:09.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.69" }
+"1.0.70-0" = { created_at = 2026-07-09T11:10:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.70-0", prerelease = true }
+"1.0.70" = { created_at = 2026-07-10T01:28:35.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.70" }
+"1.0.71-0" = { created_at = 2026-07-10T22:00:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-0", prerelease = true }
+"1.0.71-1" = { created_at = 2026-07-14T17:26:54.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-1", prerelease = true }
+"1.0.71-2" = { created_at = 2026-07-15T00:18:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-2", prerelease = true }
+"1.0.71-3" = { created_at = 2026-07-15T16:17:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71-3", prerelease = true }
+"1.0.71" = { created_at = 2026-07-16T01:54:36.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.71" }
+"1.0.72-0" = { created_at = 2026-07-16T16:57:19.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.72-0", prerelease = true }
+"1.0.72-1" = { created_at = 2026-07-17T17:33:31.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.72-1", prerelease = true }
+"1.0.72" = { created_at = 2026-07-20T17:51:15.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.72" }
+"1.0.73" = { created_at = 2026-07-21T00:11:42.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.73" }
+"1.0.74-0" = { created_at = 2026-07-21T15:56:21.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-0", prerelease = true }
+"1.0.74-1" = { created_at = 2026-07-22T16:05:33.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-1", prerelease = true }
+"1.0.74-2" = { created_at = 2026-07-22T19:52:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-2", prerelease = true }
+"1.0.74-3" = { created_at = 2026-07-22T22:41:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-3", prerelease = true }
+"1.0.74-4" = { created_at = 2026-07-23T17:29:18.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74-4", prerelease = true }
+"1.0.74" = { created_at = 2026-07-23T22:05:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.74" }
+"1.0.75" = { created_at = 2026-07-24T19:54:03.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.75" }
+"1.0.76-0" = { created_at = 2026-07-27T19:08:41.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-0", prerelease = true }
+"1.0.76-1" = { created_at = 2026-07-28T19:27:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-1", prerelease = true }
+"1.0.76-2" = { created_at = 2026-07-29T04:23:32.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-2", prerelease = true }
+"1.0.76-3" = { created_at = 2026-07-29T16:46:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-3", prerelease = true }
+"1.0.76-4" = { created_at = 2026-07-29T19:36:51.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-4", prerelease = true }
+"1.0.76-5" = { created_at = 2026-07-29T21:39:47.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76-5", prerelease = true }
+"1.0.76" = { created_at = 2026-07-30T01:09:30.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.76" }
+"1.0.77-0" = { created_at = 2026-07-30T15:59:28.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.77-0", prerelease = true }
+"1.0.77" = { created_at = 2026-07-30T23:36:02.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.77" }
+"1.0.78-0" = { created_at = 2026-07-31T16:01:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78-0", prerelease = true }
+"1.0.78-2" = { created_at = 2026-08-01T04:18:20.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78-2", prerelease = true }
+"1.0.78-3" = { created_at = 2026-08-03T16:35:38.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78-3", prerelease = true }
+"1.0.78" = { created_at = 2026-08-03T23:30:25.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.78" }
+"1.0.79-1" = { created_at = 2026-08-04T21:16:22.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-1", prerelease = true }
+"1.0.79-2" = { created_at = 2026-08-05T03:30:17.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-2", prerelease = true }
+"1.0.79-3" = { created_at = 2026-08-05T16:41:57.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-3", prerelease = true }
+"1.0.79-4" = { created_at = 2026-08-05T19:08:45.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-4", prerelease = true }
+"1.0.79-5" = { created_at = 2026-08-06T01:35:34.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-5", prerelease = true }
+"1.0.79-6" = { created_at = 2026-08-06T23:23:46.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-6", prerelease = true }
+"1.0.79-7" = { created_at = 2026-08-07T15:59:04.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-7", prerelease = true }
+"1.0.79-8" = { created_at = 2026-08-07T21:29:29.000Z, release_url = "https://github.com/github/copilot-cli/releases/tag/v1.0.79-8", prerelease = true }

@@ -1,17 +1,17 @@
 [versions]
-"0.1.0-beta" = { created_at = 2023-05-01T23:29:45.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.0-beta" }
-"0.1.1-beta" = { created_at = 2023-05-15T16:10:15.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.1-beta" }
-"0.1.1a-beta" = { created_at = 2023-05-15T18:30:06.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.1a-beta" }
-"0.1.2-beta" = { created_at = 2023-05-31T00:32:08.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.2-beta" }
-"0.1.3-beta" = { created_at = 2023-06-20T00:46:59.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.3-beta" }
-"0.1.4-beta" = { created_at = 2023-06-23T03:29:05.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.4-beta" }
-"0.1.5-beta" = { created_at = 2023-07-19T02:07:33.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.5-beta" }
-"0.1.6-beta" = { created_at = 2023-09-24T22:03:15.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.6-beta" }
-"0.1.7-beta" = { created_at = 2023-10-27T15:04:17.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.7-beta" }
-"0.1.8-beta" = { created_at = 2023-11-29T01:50:19.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.8-beta" }
-"0.1.9-beta" = { created_at = 2024-02-20T00:43:33.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.9-beta" }
-"0.1.10-beta" = { created_at = 2024-03-30T21:02:06.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.10-beta" }
-"0.1.11-beta" = { created_at = 2024-04-22T02:51:15.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.11-beta" }
-"0.1.12-beta" = { created_at = 2024-05-19T03:34:53.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.12-beta" }
-"0.1.13-beta" = { created_at = 2024-11-09T05:21:04.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.13-beta" }
-"nightly" = { created_at = 2026-02-21T15:34:11.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/nightly", prerelease = true }
+"0.1.0-beta" = { created_at = 2023-05-01T23:40:55.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.0-beta" }
+"0.1.1-beta" = { created_at = 2023-05-15T16:11:27.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.1-beta" }
+"0.1.1a-beta" = { created_at = 2023-05-15T18:31:46.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.1a-beta" }
+"0.1.2-beta" = { created_at = 2023-05-31T00:33:44.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.2-beta" }
+"0.1.3-beta" = { created_at = 2023-06-20T00:57:25.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.3-beta" }
+"0.1.4-beta" = { created_at = 2023-06-23T03:33:28.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.4-beta" }
+"0.1.5-beta" = { created_at = 2023-07-19T02:09:33.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.5-beta" }
+"0.1.6-beta" = { created_at = 2023-09-24T22:10:12.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.6-beta" }
+"0.1.7-beta" = { created_at = 2023-10-27T15:05:21.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.7-beta" }
+"0.1.8-beta" = { created_at = 2023-11-29T02:12:18.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.8-beta" }
+"0.1.9-beta" = { created_at = 2024-02-20T01:01:33.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.9-beta" }
+"0.1.10-beta" = { created_at = 2024-03-31T00:21:12.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.10-beta" }
+"0.1.11-beta" = { created_at = 2024-04-22T03:13:30.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.11-beta" }
+"0.1.12-beta" = { created_at = 2024-05-20T01:59:23.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.12-beta" }
+"0.1.13-beta" = { created_at = 2024-11-09T05:26:59.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/v0.1.13-beta" }
+"nightly" = { created_at = 2026-02-21T15:36:15.000Z, release_url = "https://github.com/onyx-lang/onyx/releases/tag/nightly", prerelease = true }

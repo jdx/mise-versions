@@ -1,52 +1,52 @@
 [versions]
-"0.0.0" = { created_at = 2018-03-18T14:55:40.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.0", prerelease = true }
-"0.0.1" = { created_at = 2018-05-26T04:13:56.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.1", prerelease = true }
-"0.0.2" = { created_at = 2018-06-03T09:19:33.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.2", prerelease = true }
-"0.0.3" = { created_at = 2018-06-06T09:12:06.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.3", prerelease = true }
-"0.0.4" = { created_at = 2018-06-17T04:29:21.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.4", prerelease = true }
-"0.1.0" = { created_at = 2018-07-05T12:41:29.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.1.0", prerelease = true }
-"0.2.0" = { created_at = 2018-07-30T11:41:49.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.2.0", prerelease = true }
-"0.2.1" = { created_at = 2018-08-17T16:04:34.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.2.1", prerelease = true }
-"0.3.0" = { created_at = 2018-09-09T08:52:11.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.3.0", prerelease = true }
-"0.3.1" = { created_at = 2018-09-10T08:06:25.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.3.1", prerelease = true }
-"0.4.0" = { created_at = 2019-02-23T11:22:09.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.4.0", prerelease = true }
-"0.5.0" = { created_at = 2019-04-15T06:41:33.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.5.0", prerelease = true }
-"0.6.0" = { created_at = 2019-10-30T11:42:03.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.6.0" }
-"0.7.0" = { created_at = 2019-12-09T04:57:59.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.7.0" }
-"0.7.1" = { created_at = 2019-12-13T12:41:56.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.7.1" }
-"0.8.0" = { created_at = 2020-03-13T08:13:22.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.8.0" }
-"0.9.0" = { created_at = 2020-04-06T05:59:51.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.9.0" }
-"0.10.0" = { created_at = 2020-09-13T09:44:01.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.10.0" }
-"0.11.0" = { created_at = 2021-01-07T12:43:48.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.11.0" }
-"0.12.0" = { created_at = 2021-04-13T08:15:57.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.12.0" }
-"0.13.0" = { created_at = 2021-06-17T14:38:38.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.13.0" }
-"0.13.1" = { created_at = 2021-06-18T06:55:29.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.13.1" }
-"0.14.0" = { created_at = 2021-07-03T15:33:57.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.14.0" }
-"0.15.0" = { created_at = 2021-12-13T15:09:57.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.0" }
-"0.15.1" = { created_at = 2021-12-14T16:31:26.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.1" }
-"0.15.2" = { created_at = 2022-01-26T14:20:57.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.2" }
-"0.15.3" = { created_at = 2022-02-18T14:12:53.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.3" }
-"0.16.0" = { created_at = 2022-04-05T18:09:13.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.16.0" }
-"0.16.1" = { created_at = 2022-06-28T15:01:26.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.16.1" }
-"0.17.0" = { created_at = 2023-04-20T15:57:05.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.17.0" }
-"0.18.0" = { created_at = 2023-05-24T05:57:10.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.18.0" }
-"0.19.0" = { created_at = 2023-09-18T08:03:04.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.19.0" }
-"0.20.0-alpha.1" = { created_at = 2024-05-08T14:55:38.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-alpha.1", prerelease = true }
-"0.20.0-alpha.2" = { created_at = 2024-10-18T09:41:13.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-alpha.2", prerelease = true }
-"0.20.0-alpha.3" = { created_at = 2024-10-21T07:33:58.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-alpha.3", prerelease = true }
-"0.20.0-rc.1" = { created_at = 2024-10-29T16:09:26.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-rc.1", prerelease = true }
-"0.20.0" = { created_at = 2024-11-06T05:31:36.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0" }
-"0.20.1" = { created_at = 2024-11-23T08:43:43.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.1" }
-"0.21.0" = { created_at = 2024-12-03T10:31:21.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.21.0" }
-"0.22.0" = { created_at = 2025-01-27T13:54:12.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.22.0" }
-"0.23.0" = { created_at = 2025-03-19T14:52:16.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.23.0" }
-"0.23.1" = { created_at = 2025-03-20T04:36:43.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.23.1" }
-"0.23.2" = { created_at = 2025-03-20T13:31:32.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.23.2" }
-"0.24.0" = { created_at = 2025-05-05T07:25:13.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.24.0" }
-"0.24.1" = { created_at = 2025-05-05T15:13:53.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.24.1" }
-"0.25.0" = { created_at = 2025-06-20T11:01:59.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.25.0" }
-"0.26.0" = { created_at = 2025-07-09T16:19:28.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.26.0" }
-"0.27.0" = { created_at = 2025-08-14T11:34:15.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.27.0" }
-"0.28.0" = { created_at = 2025-12-01T13:11:57.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.28.0" }
-"0.28.1" = { created_at = 2025-12-02T15:16:34.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.28.1" }
-"0.29.0" = { created_at = 2026-06-17T17:05:23.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.29.0" }
+"0.0.0" = { created_at = 2018-03-18T15:19:10.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.0", prerelease = true }
+"0.0.1" = { created_at = 2018-05-27T05:09:47.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.1", prerelease = true }
+"0.0.2" = { created_at = 2018-06-03T09:25:59.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.2", prerelease = true }
+"0.0.3" = { created_at = 2018-06-06T09:15:45.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.3", prerelease = true }
+"0.0.4" = { created_at = 2018-06-17T04:34:43.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.0.4", prerelease = true }
+"0.1.0" = { created_at = 2018-07-05T12:48:44.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.1.0", prerelease = true }
+"0.2.0" = { created_at = 2018-07-30T11:42:46.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.2.0", prerelease = true }
+"0.2.1" = { created_at = 2018-08-17T16:27:47.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.2.1", prerelease = true }
+"0.3.0" = { created_at = 2018-09-09T09:05:43.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.3.0", prerelease = true }
+"0.3.1" = { created_at = 2018-09-10T08:21:29.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.3.1", prerelease = true }
+"0.4.0" = { created_at = 2019-02-23T11:27:51.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.4.0", prerelease = true }
+"0.5.0" = { created_at = 2019-04-15T06:44:17.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.5.0", prerelease = true }
+"0.6.0" = { created_at = 2019-10-30T11:42:30.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.6.0" }
+"0.7.0" = { created_at = 2019-12-09T08:15:28.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.7.0" }
+"0.7.1" = { created_at = 2019-12-13T12:43:08.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.7.1" }
+"0.8.0" = { created_at = 2020-03-13T08:21:21.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.8.0" }
+"0.9.0" = { created_at = 2020-04-06T06:01:37.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.9.0" }
+"0.10.0" = { created_at = 2020-09-13T09:47:51.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.10.0" }
+"0.11.0" = { created_at = 2021-01-07T13:51:50.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.11.0" }
+"0.12.0" = { created_at = 2021-04-13T08:23:35.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.12.0" }
+"0.13.0" = { created_at = 2021-06-17T14:39:38.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.13.0" }
+"0.13.1" = { created_at = 2021-06-18T07:08:56.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.13.1" }
+"0.14.0" = { created_at = 2021-07-03T15:37:59.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.14.0" }
+"0.15.0" = { created_at = 2021-12-13T15:12:28.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.0" }
+"0.15.1" = { created_at = 2021-12-14T16:36:06.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.1" }
+"0.15.2" = { created_at = 2022-01-26T14:23:02.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.2" }
+"0.15.3" = { created_at = 2022-02-18T14:30:19.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.15.3" }
+"0.16.0" = { created_at = 2022-04-05T18:16:43.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.16.0" }
+"0.16.1" = { created_at = 2022-06-28T15:14:44.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.16.1" }
+"0.17.0" = { created_at = 2023-04-20T16:00:50.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.17.0" }
+"0.18.0" = { created_at = 2023-05-24T06:01:21.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.18.0" }
+"0.19.0" = { created_at = 2023-09-18T08:10:11.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.19.0" }
+"0.20.0-alpha.1" = { created_at = 2024-05-08T15:00:12.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-alpha.1", prerelease = true }
+"0.20.0-alpha.2" = { created_at = 2024-10-18T09:54:33.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-alpha.2", prerelease = true }
+"0.20.0-alpha.3" = { created_at = 2024-10-21T07:51:01.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-alpha.3", prerelease = true }
+"0.20.0-rc.1" = { created_at = 2024-10-29T16:17:38.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0-rc.1", prerelease = true }
+"0.20.0" = { created_at = 2024-11-06T05:34:53.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.0" }
+"0.20.1" = { created_at = 2024-11-23T08:45:29.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.20.1" }
+"0.21.0" = { created_at = 2024-12-03T10:41:12.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.21.0" }
+"0.22.0" = { created_at = 2025-01-27T13:58:51.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.22.0" }
+"0.23.0" = { created_at = 2025-03-19T15:09:41.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.23.0" }
+"0.23.1" = { created_at = 2025-03-20T04:41:26.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.23.1" }
+"0.23.2" = { created_at = 2025-03-20T13:36:32.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.23.2" }
+"0.24.0" = { created_at = 2025-05-05T07:33:07.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.24.0" }
+"0.24.1" = { created_at = 2025-05-05T15:15:07.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.24.1" }
+"0.25.0" = { created_at = 2025-06-20T11:10:16.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.25.0" }
+"0.26.0" = { created_at = 2025-07-09T16:23:35.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.26.0" }
+"0.27.0" = { created_at = 2025-08-14T11:56:14.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.27.0" }
+"0.28.0" = { created_at = 2025-12-01T13:39:07.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.28.0" }
+"0.28.1" = { created_at = 2025-12-02T15:22:26.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.28.1" }
+"0.29.0" = { created_at = 2026-06-17T17:06:15.000Z, release_url = "https://github.com/mint-lang/mint/releases/tag/0.29.0" }

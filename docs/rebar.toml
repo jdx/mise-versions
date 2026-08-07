@@ -1,78 +1,78 @@
 [versions]
-"alpha-3" = { created_at = 2015-04-05T19:00:26.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-3", prerelease = true }
-"alpha-5" = { created_at = 2015-05-05T12:07:32.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-5", prerelease = true }
-"alpha-6" = { created_at = 2015-05-31T22:28:57.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-6", prerelease = true }
-"beta-1" = { created_at = 2015-06-29T12:47:25.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-1" }
-"beta-2" = { created_at = 2015-08-27T05:43:59.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-2" }
-"3.0.0-beta.3" = { created_at = 2015-10-01T12:28:31.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.0.0-beta.3" }
-"beta-4" = { created_at = 2015-11-14T20:16:50.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-4" }
-"3.0.0" = { created_at = 2016-03-09T17:42:01.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.0.0" }
-"3.1.0" = { created_at = 2016-04-04T18:41:14.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.1.0" }
-"3.1.1" = { created_at = 2016-05-17T12:31:43.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.1.1" }
-"3.2.0" = { created_at = 2016-06-18T20:59:13.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.2.0" }
-"3.3.0" = { created_at = 2016-08-26T17:01:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.0" }
-"3.3.1" = { created_at = 2016-09-03T00:33:44.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.1" }
-"3.3.2" = { created_at = 2016-10-14T23:12:43.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.2" }
-"3.3.3" = { created_at = 2016-12-08T17:41:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.3" }
-"3.3.4" = { created_at = 2016-12-23T20:31:33.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.4" }
-"3.3.5" = { created_at = 2017-02-03T21:13:21.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.5" }
-"3.3.6" = { created_at = 2017-03-23T11:20:17.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.6" }
-"3.4.0" = { created_at = 2017-05-22T14:17:09.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.0" }
-"3.4.1" = { created_at = 2017-05-24T18:14:59.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.1" }
-"3.4.2" = { created_at = 2017-07-14T22:26:30.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.2" }
-"3.4.3" = { created_at = 2017-08-21T21:25:03.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.3" }
-"3.4.4" = { created_at = 2017-09-11T01:45:05.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.4" }
-"3.4.5" = { created_at = 2017-11-17T17:04:11.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.5" }
-"3.4.6" = { created_at = 2017-11-17T22:24:27.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.6" }
-"3.4.7" = { created_at = 2017-11-22T19:55:36.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.7" }
-"3.5.0" = { created_at = 2017-12-22T20:39:34.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.0" }
-"3.5.1" = { created_at = 2018-05-03T22:17:27.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.1" }
-"3.5.2" = { created_at = 2018-05-03T23:35:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.2" }
-"3.5.3" = { created_at = 2018-05-10T01:53:20.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.3" }
-"3.6.0" = { created_at = 2018-06-19T20:39:24.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.0" }
-"3.6.1" = { created_at = 2018-06-25T20:50:59.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.1" }
-"3.6.2" = { created_at = 2018-09-13T22:16:21.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.2" }
-"3.7.0-rc1" = { created_at = 2018-09-14T02:25:26.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.0-rc1", prerelease = true }
-"3.7.0-rc2" = { created_at = 2018-10-05T15:02:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.0-rc2", prerelease = true }
-"3.7.0" = { created_at = 2018-11-23T18:00:02.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.0" }
-"3.7.1" = { created_at = 2018-11-23T21:57:34.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.1" }
-"3.7.2" = { created_at = 2018-11-24T01:00:34.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.2" }
-"3.7.3" = { created_at = 2018-11-24T16:36:54.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.3" }
-"3.7.4" = { created_at = 2018-11-24T22:22:38.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.4" }
-"3.7.5" = { created_at = 2018-11-27T23:22:09.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.5" }
-"3.8.0" = { created_at = 2019-01-05T21:54:18.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.8.0" }
-"3.9.0" = { created_at = 2019-02-06T00:34:06.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.9.0" }
-"3.9.1" = { created_at = 2019-03-14T15:33:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.9.1" }
-"3.10.0" = { created_at = 2019-04-16T14:05:28.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.10.0" }
-"3.11.0" = { created_at = 2019-05-30T14:03:12.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.11.0" }
-"3.11.1" = { created_at = 2019-06-01T15:42:00.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.11.1" }
-"3.12.0" = { created_at = 2019-08-21T15:33:53.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.12.0" }
-"3.13.0" = { created_at = 2019-12-22T22:38:11.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.0" }
-"3.13.1" = { created_at = 2020-02-28T01:15:17.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.1" }
-"3.14.0-rc1" = { created_at = 2020-04-18T17:43:06.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.0-rc1", prerelease = true }
-"3.13.2" = { created_at = 2020-04-23T15:56:48.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.2" }
-"3.14.0-rc2" = { created_at = 2020-05-28T15:28:51.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.0-rc2", prerelease = true }
-"3.14.0" = { created_at = 2020-08-31T21:59:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.0" }
-"3.14.1" = { created_at = 2020-09-03T21:55:52.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.1" }
-"3.14.2" = { created_at = 2020-11-19T18:30:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.2" }
-"3.14.3" = { created_at = 2020-12-02T14:06:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.3" }
-"3.14.4" = { created_at = 2021-02-25T00:33:33.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.4" }
-"3.15.0" = { created_at = 2021-04-18T19:58:15.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.15.0" }
-"3.15.1" = { created_at = 2021-04-19T21:03:27.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.15.1" }
-"3.16.0" = { created_at = 2021-05-19T01:38:33.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.16.0" }
-"3.15.2" = { created_at = 2021-05-24T13:12:51.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.15.2" }
-"3.16.1" = { created_at = 2021-05-24T13:23:30.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.16.1" }
-"3.13.3" = { created_at = 2021-05-26T23:44:42.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.3" }
-"3.17.0" = { created_at = 2021-09-03T01:20:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.17.0" }
-"3.18.0" = { created_at = 2022-01-02T12:56:31.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.18.0" }
-"3.19.0" = { created_at = 2022-06-18T22:29:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.19.0" }
-"3.20.0" = { created_at = 2022-10-15T12:48:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.20.0" }
-"3.21.0" = { created_at = 2023-05-18T00:56:46.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.21.0" }
-"3.22.0" = { created_at = 2023-05-24T23:05:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.22.0" }
-"3.22.1" = { created_at = 2023-07-31T23:07:31.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.22.1" }
-"3.23.0" = { created_at = 2024-04-10T16:56:48.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.23.0" }
-"3.24.0" = { created_at = 2024-08-29T12:10:10.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.24.0" }
-"3.25.0" = { created_at = 2025-05-23T17:22:43.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.25.0" }
-"3.25.1" = { created_at = 2025-07-25T12:19:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.25.1" }
-"3.26.0" = { created_at = 2026-01-08T00:29:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.26.0" }
-"3.27.0" = { created_at = 2026-02-27T17:38:58.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.27.0" }
+"alpha-3" = { created_at = 2015-04-05T19:02:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-3", prerelease = true }
+"alpha-5" = { created_at = 2015-05-05T12:16:13.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-5", prerelease = true }
+"alpha-6" = { created_at = 2015-05-31T22:32:19.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-6", prerelease = true }
+"beta-1" = { created_at = 2015-06-29T13:08:52.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-1" }
+"beta-2" = { created_at = 2015-08-27T05:47:45.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-2" }
+"3.0.0-beta.3" = { created_at = 2015-10-01T12:30:53.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.0.0-beta.3" }
+"beta-4" = { created_at = 2015-11-14T20:21:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-4" }
+"3.0.0" = { created_at = 2016-03-09T18:09:45.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.0.0" }
+"3.1.0" = { created_at = 2016-04-04T18:42:16.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.1.0" }
+"3.1.1" = { created_at = 2016-05-17T12:34:02.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.1.1" }
+"3.2.0" = { created_at = 2016-06-18T21:01:29.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.2.0" }
+"3.3.0" = { created_at = 2016-12-08T17:40:19.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.0" }
+"3.3.1" = { created_at = 2016-09-03T00:38:33.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.1" }
+"3.3.2" = { created_at = 2016-10-14T23:19:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.2" }
+"3.3.3" = { created_at = 2016-12-08T17:43:38.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.3" }
+"3.3.4" = { created_at = 2016-12-23T20:35:45.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.4" }
+"3.3.5" = { created_at = 2017-02-03T21:15:41.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.5" }
+"3.3.6" = { created_at = 2017-03-23T11:23:36.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.3.6" }
+"3.4.0" = { created_at = 2017-05-22T14:22:57.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.0" }
+"3.4.1" = { created_at = 2017-05-24T18:19:05.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.1" }
+"3.4.2" = { created_at = 2017-07-14T22:31:28.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.2" }
+"3.4.3" = { created_at = 2017-08-21T21:26:50.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.3" }
+"3.4.4" = { created_at = 2017-09-11T01:46:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.4" }
+"3.4.5" = { created_at = 2017-11-17T17:05:52.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.5" }
+"3.4.6" = { created_at = 2017-11-17T22:26:54.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.6" }
+"3.4.7" = { created_at = 2017-11-22T19:58:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.7" }
+"3.5.0" = { created_at = 2017-12-22T20:41:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.0" }
+"3.5.1" = { created_at = 2018-05-03T22:19:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.1" }
+"3.5.2" = { created_at = 2018-05-03T23:37:09.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.2" }
+"3.5.3" = { created_at = 2018-05-10T02:01:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.3" }
+"3.6.0" = { created_at = 2018-06-19T20:50:10.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.0" }
+"3.6.1" = { created_at = 2018-06-25T20:52:40.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.1" }
+"3.6.2" = { created_at = 2018-09-13T22:19:05.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.2" }
+"3.7.0-rc1" = { created_at = 2018-09-14T02:33:49.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.0-rc1", prerelease = true }
+"3.7.0-rc2" = { created_at = 2018-10-05T15:10:55.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.0-rc2", prerelease = true }
+"3.7.0" = { created_at = 2018-11-23T18:03:26.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.0" }
+"3.7.1" = { created_at = 2018-11-23T22:00:10.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.1" }
+"3.7.2" = { created_at = 2018-11-24T01:04:29.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.2" }
+"3.7.3" = { created_at = 2018-11-24T16:38:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.3" }
+"3.7.4" = { created_at = 2018-11-24T22:25:28.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.4" }
+"3.7.5" = { created_at = 2018-11-27T23:24:32.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.7.5" }
+"3.8.0" = { created_at = 2019-01-05T22:01:40.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.8.0" }
+"3.9.0" = { created_at = 2019-02-06T00:38:12.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.9.0" }
+"3.9.1" = { created_at = 2019-03-14T15:36:17.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.9.1" }
+"3.10.0" = { created_at = 2019-04-16T14:19:34.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.10.0" }
+"3.11.0" = { created_at = 2019-05-30T21:44:16.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.11.0" }
+"3.11.1" = { created_at = 2019-06-01T15:43:41.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.11.1" }
+"3.12.0" = { created_at = 2019-08-21T15:49:13.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.12.0" }
+"3.13.0" = { created_at = 2019-12-22T22:42:11.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.0" }
+"3.13.1" = { created_at = 2020-02-28T01:16:00.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.1" }
+"3.14.0-rc1" = { created_at = 2020-04-18T17:50:32.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.0-rc1", prerelease = true }
+"3.13.2" = { created_at = 2020-04-23T16:03:05.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.2" }
+"3.14.0-rc2" = { created_at = 2020-05-28T15:30:21.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.0-rc2", prerelease = true }
+"3.14.0" = { created_at = 2020-08-31T22:11:43.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.0" }
+"3.14.1" = { created_at = 2020-09-03T21:58:00.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.1" }
+"3.14.2" = { created_at = 2020-11-19T18:33:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.2" }
+"3.14.3" = { created_at = 2020-12-02T14:33:38.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.3" }
+"3.14.4" = { created_at = 2021-02-25T01:05:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.14.4" }
+"3.15.0" = { created_at = 2021-04-18T20:04:16.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.15.0" }
+"3.15.1" = { created_at = 2021-04-19T21:10:41.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.15.1" }
+"3.16.0" = { created_at = 2021-05-19T01:51:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.16.0" }
+"3.15.2" = { created_at = 2021-05-24T13:20:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.15.2" }
+"3.16.1" = { created_at = 2021-05-24T13:28:54.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.16.1" }
+"3.13.3" = { created_at = 2021-05-26T23:45:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.13.3" }
+"3.17.0" = { created_at = 2021-09-03T01:27:05.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.17.0" }
+"3.18.0" = { created_at = 2022-01-02T13:03:16.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.18.0" }
+"3.19.0" = { created_at = 2022-06-18T22:39:21.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.19.0" }
+"3.20.0" = { created_at = 2022-10-15T12:57:36.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.20.0" }
+"3.21.0" = { created_at = 2023-05-18T01:05:05.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.21.0" }
+"3.22.0" = { created_at = 2023-05-24T23:15:20.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.22.0" }
+"3.22.1" = { created_at = 2023-07-31T23:17:24.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.22.1" }
+"3.23.0" = { created_at = 2024-04-10T17:03:13.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.23.0" }
+"3.24.0" = { created_at = 2024-08-29T12:18:26.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.24.0" }
+"3.25.0" = { created_at = 2025-05-23T17:30:17.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.25.0" }
+"3.25.1" = { created_at = 2025-07-25T12:27:00.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.25.1" }
+"3.26.0" = { created_at = 2026-01-08T00:36:14.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.26.0" }
+"3.27.0" = { created_at = 2026-02-27T17:45:48.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.27.0" }
