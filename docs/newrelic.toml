@@ -1,101 +1,101 @@
 [versions]
-"0.16.0" = { created_at = 2020-11-05T02:32:49.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.16.0" }
-"0.17.0" = { created_at = 2020-11-23T22:29:43.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.17.0" }
-"0.17.1" = { created_at = 2020-11-24T17:42:53.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.17.1" }
-"0.18.0" = { created_at = 2020-12-08T17:16:37.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.0" }
-"0.18.1" = { created_at = 2020-12-08T23:03:30.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.1" }
-"0.18.2" = { created_at = 2020-12-09T16:47:50.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.2" }
-"0.18.3" = { created_at = 2020-12-11T18:58:20.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.3" }
-"0.18.4" = { created_at = 2020-12-17T18:56:29.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.4" }
-"0.18.5" = { created_at = 2020-12-17T23:41:22.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.5" }
-"0.18.6" = { created_at = 2020-12-18T18:45:19.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.6" }
-"0.18.7" = { created_at = 2020-12-18T19:36:28.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.7" }
-"0.18.8" = { created_at = 2020-12-23T18:06:57.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.8" }
-"0.18.9" = { created_at = 2020-12-29T18:48:14.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.9" }
-"0.18.10" = { created_at = 2021-01-06T17:31:13.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.10" }
-"0.8.11" = { created_at = 2021-01-08T18:11:11.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.8.11" }
-"0.8.12" = { created_at = 2021-01-12T20:52:34.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.8.12" }
-"0.18.11" = { created_at = 2021-01-14T18:39:23.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.11" }
-"0.18.12" = { created_at = 2021-01-14T23:29:04.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.12" }
-"0.18.13" = { created_at = 2021-01-20T17:47:28.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.13" }
-"0.18.14" = { created_at = 2021-01-20T18:23:39.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.14" }
-"0.18.15" = { created_at = 2021-01-20T21:52:06.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.15" }
-"0.18.16" = { created_at = 2021-01-21T01:34:13.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.16" }
-"0.18.17" = { created_at = 2021-01-22T22:30:36.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.17" }
-"0.18.18" = { created_at = 2021-01-25T22:53:54.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.18" }
-"0.18.19" = { created_at = 2021-01-27T18:53:57.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.19" }
-"0.18.20" = { created_at = 2021-01-27T23:13:47.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.20" }
-"0.18.21" = { created_at = 2021-02-05T21:05:02.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.21" }
-"0.18.22" = { created_at = 2021-02-06T00:39:14.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.22" }
-"0.18.23" = { created_at = 2021-02-11T19:23:56.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.23" }
-"0.18.24" = { created_at = 2021-02-12T14:41:06.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.24" }
-"0.18.25" = { created_at = 2021-02-17T17:08:27.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.25" }
-"0.18.26" = { created_at = 2021-02-18T23:29:26.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.26" }
-"0.18.27" = { created_at = 2021-02-19T18:32:11.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.27" }
-"0.18.28" = { created_at = 2021-02-19T20:43:05.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.28" }
-"0.18.29" = { created_at = 2021-02-23T21:04:17.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.29" }
-"0.18.30" = { created_at = 2021-02-24T22:59:39.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.30" }
-"0.18.31" = { created_at = 2021-02-25T18:25:43.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.31" }
-"0.18.32" = { created_at = 2021-02-26T16:20:37.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.18.32" }
-"0.19.0" = { created_at = 2021-03-02T18:11:09.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.19.0" }
-"0.19.1" = { created_at = 2021-03-05T18:34:20.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.19.1" }
-"0.19.2" = { created_at = 2021-03-15T15:46:08.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.19.2" }
-"0.20.0" = { created_at = 2021-03-17T20:32:21.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.0" }
-"0.20.1" = { created_at = 2021-03-18T16:42:01.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.1" }
-"0.20.2" = { created_at = 2021-03-19T00:00:27.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.2" }
-"0.20.3" = { created_at = 2021-03-23T20:08:03.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.3" }
-"0.20.4" = { created_at = 2021-03-24T20:50:15.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.4" }
-"0.20.5" = { created_at = 2021-03-29T15:49:12.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.5" }
-"0.20.6" = { created_at = 2021-03-31T16:00:06.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.6" }
-"0.20.7" = { created_at = 2021-03-31T20:05:33.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.7" }
-"0.20.28" = { created_at = 2021-04-01T17:08:59.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.20.28" }
-"0.21.0" = { created_at = 2021-04-01T20:09:57.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.21.0" }
-"0.21.1" = { created_at = 2021-04-08T18:02:48.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.21.1" }
-"0.22.0" = { created_at = 2021-04-15T17:19:20.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.22.0" }
-"0.23.0" = { created_at = 2021-04-27T21:21:33.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.23.0" }
-"0.23.1" = { created_at = 2021-04-28T19:51:03.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.23.1" }
-"0.23.2" = { created_at = 2021-04-29T17:46:54.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.23.2" }
-"0.24.1" = { created_at = 2021-05-04T21:55:18.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.24.1" }
-"0.25.0" = { created_at = 2021-05-07T20:19:11.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.25.0" }
-"0.26.0" = { created_at = 2021-05-13T22:09:21.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.26.0" }
-"0.26.1" = { created_at = 2021-05-14T16:34:15.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.26.1" }
-"0.26.2" = { created_at = 2021-05-18T22:58:48.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.26.2" }
-"0.27.0" = { created_at = 2021-05-19T22:36:24.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.27.0" }
-"0.27.1" = { created_at = 2021-05-20T18:03:23.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.27.1" }
-"0.27.2" = { created_at = 2021-05-20T21:45:53.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.27.2" }
-"0.27.3" = { created_at = 2021-05-21T22:13:19.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.27.3" }
-"0.27.4" = { created_at = 2021-05-24T17:38:32.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.27.4" }
-"0.27.5" = { created_at = 2021-06-01T22:36:10.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.27.5" }
-"0.28.0" = { created_at = 2021-06-09T13:16:09.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.0" }
-"0.28.2" = { created_at = 2021-06-09T16:43:42.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.2" }
-"0.28.3" = { created_at = 2021-06-09T22:41:22.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.3" }
-"0.28.4" = { created_at = 2021-06-11T19:45:32.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.4" }
-"0.28.5" = { created_at = 2021-06-15T01:04:41.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.5" }
-"0.28.6" = { created_at = 2021-06-15T19:53:06.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.6" }
-"0.28.7" = { created_at = 2021-06-15T22:40:53.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.7" }
-"0.28.8" = { created_at = 2021-06-16T17:06:32.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.8" }
-"0.28.9" = { created_at = 2021-06-17T15:27:20.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.9" }
-"0.28.10" = { created_at = 2021-06-17T16:51:54.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.10" }
-"0.28.11" = { created_at = 2021-06-17T21:34:04.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.11" }
-"0.28.12" = { created_at = 2021-06-23T22:33:47.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.12" }
-"0.28.13" = { created_at = 2021-06-24T22:12:23.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.13" }
-"0.28.14" = { created_at = 2021-06-25T20:52:58.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.28.14" }
-"0.29.0" = { created_at = 2021-06-28T15:47:52.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.29.0" }
-"0.29.1" = { created_at = 2021-06-28T22:34:08.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.29.1" }
-"0.29.2" = { created_at = 2021-06-30T21:43:16.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.29.2" }
-"0.29.3" = { created_at = 2021-07-01T15:01:33.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.29.3" }
-"0.29.4" = { created_at = 2021-07-08T23:16:09.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.29.4" }
-"0.29.5" = { created_at = 2021-07-09T16:06:43.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.29.5" }
-"0.30.0" = { created_at = 2021-07-12T18:51:24.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.30.0" }
-"0.30.1" = { created_at = 2021-07-13T00:06:48.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.30.1" }
-"0.30.2" = { created_at = 2021-07-13T20:43:13.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.30.2" }
-"0.30.5" = { created_at = 2021-07-14T22:39:48.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.30.5" }
-"0.31.0" = { created_at = 2021-07-21T13:54:33.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.31.0" }
-"0.31.1" = { created_at = 2021-07-22T00:00:02.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.31.1" }
-"0.31.2" = { created_at = 2021-07-22T20:52:23.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.31.2" }
-"0.31.3" = { created_at = 2021-07-23T21:48:09.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.31.3" }
-"0.31.4" = { created_at = 2021-07-26T16:39:17.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.31.4" }
-"0.32.0" = { created_at = 2021-07-29T22:23:09.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.32.0" }
-"0.32.1" = { created_at = 2021-07-30T18:33:29.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.32.1" }
-"0.32.2" = { created_at = 2021-08-02T23:32:08.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.32.2" }
-"0.32.3" = { created_at = 2021-08-05T16:41:28.000Z, release_url = "https://github.com/newrelic/newrelic-cli/releases/tag/v0.32.3" }
+"0.72.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.72.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.4" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.5" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.73.6" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.74.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.75.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.75.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.75.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.76.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.76.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.76.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.76.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.76.4" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.77.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.4" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.5" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.6" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.7" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.8" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.9" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.13" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.15" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.16" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.78.17" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.79.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.80.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.80.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.80.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.80.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.81.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.82.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.82.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.83.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.84.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.84.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.84.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.85.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.86.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.86.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.86.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.87.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.87.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.88.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.88.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.88.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.89.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.89.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.90.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.91.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.91.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.92.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.92.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.4" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.5" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.6" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.7" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.93.8" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.94.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.94.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.94.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.94.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.95.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.96.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.96.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.96.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.96.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.1" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.2" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.3" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.4" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.5" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.6" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.7" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.8" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.9" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.10" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.11" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.12" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.13" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.14" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.15" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.16" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.17" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.97.18" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.98.0" = { created_at = 2026-08-17T14:47:22.169Z }
+"0.98.1" = { created_at = 2026-08-17T14:47:22.169Z }
