@@ -1,4 +1,77 @@
 [versions]
+"0.2.0" = { created_at = 2026-01-23T13:39:32.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2026-01-28T22:11:52.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.2.1" }
+"0.3.0" = { created_at = 2026-01-29T16:23:17.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2026-01-29T16:54:55.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.3.1" }
+"0.5.0" = { created_at = 2026-01-30T13:24:55.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.5.0" }
+"0.5.1" = { created_at = 2026-01-30T14:40:28.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.5.1" }
+"0.5.2" = { created_at = 2026-01-30T15:52:31.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.5.2" }
+"0.7.0" = { created_at = 2026-02-01T19:08:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2026-02-02T08:55:27.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.7.1" }
+"0.8.1" = { created_at = 2026-02-02T15:50:32.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.8.1" }
+"0.9.0" = { created_at = 2026-02-03T16:16:20.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2026-02-04T19:29:57.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.9.1" }
+"0.9.2" = { created_at = 2026-02-05T16:31:35.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.9.2" }
+"0.9.3" = { created_at = 2026-02-06T13:37:31.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.9.3" }
+"0.9.4" = { created_at = 2026-02-06T19:20:44.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.9.4" }
+"0.12.0" = { created_at = 2026-02-09T02:07:42.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.12.0" }
+"0.13.1" = { created_at = 2026-02-12T11:02:59.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.13.1" }
+"0.14.0" = { created_at = 2026-02-12T11:29:27.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.14.0" }
+"0.15.0" = { created_at = 2026-02-12T21:12:33.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.15.0" }
+"0.15.1" = { created_at = 2026-02-12T23:40:40.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.15.1" }
+"0.15.2" = { created_at = 2026-02-13T15:06:16.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.15.2" }
+"0.15.3" = { created_at = 2026-02-13T17:08:41.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.15.3" }
+"0.15.4" = { created_at = 2026-02-14T12:15:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.15.4" }
+"0.16.0" = { created_at = 2026-02-14T13:48:40.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.16.0" }
+"0.17.0" = { created_at = 2026-02-15T14:29:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.17.0" }
+"0.18.0" = { created_at = 2026-02-15T15:01:09.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.18.0" }
+"0.18.1" = { created_at = 2026-02-16T07:22:27.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.18.1" }
+"0.19.0" = { created_at = 2026-02-16T19:16:28.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.19.0" }
+"0.20.0" = { created_at = 2026-02-17T06:29:30.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.20.0" }
+"0.20.1" = { created_at = 2026-02-17T09:33:39.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.20.1" }
+"0.21.0" = { created_at = 2026-02-17T21:50:03.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.21.0" }
+"0.21.1" = { created_at = 2026-02-17T22:06:21.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.21.1" }
+"0.22.0" = { created_at = 2026-02-18T15:06:24.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.22.0" }
+"0.22.1" = { created_at = 2026-02-19T19:07:36.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.22.1" }
+"0.22.2" = { created_at = 2026-02-20T17:21:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.22.2" }
+"0.23.0" = { created_at = 2026-02-28T21:10:20.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.23.0" }
+"0.24.0" = { created_at = 2026-03-04T11:48:31.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.24.0" }
+"0.25.0" = { created_at = 2026-03-05T13:32:36.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.25.0" }
+"0.26.0" = { created_at = 2026-03-05T20:02:51.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.26.0" }
+"0.27.0" = { created_at = 2026-03-05T22:17:53.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.27.0" }
+"0.27.1" = { created_at = 2026-03-06T08:46:45.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.27.1" }
+"0.27.2" = { created_at = 2026-03-06T11:54:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.27.2" }
+"0.28.0" = { created_at = 2026-03-10T10:46:26.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.28.0" }
+"0.28.1" = { created_at = 2026-03-10T17:13:35.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.28.1" }
+"0.28.2" = { created_at = 2026-03-10T19:26:55.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.28.2" }
+"0.29.0" = { created_at = 2026-03-12T15:18:20.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.29.0" }
+"0.30.0" = { created_at = 2026-03-16T12:45:48.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.30.0" }
+"0.30.1" = { created_at = 2026-03-18T13:29:09.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.30.1" }
+"0.31.0" = { created_at = 2026-03-19T11:14:34.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.31.0" }
+"0.33.0" = { created_at = 2026-03-25T08:39:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.33.0" }
+"dev-0.33.1-rc.62" = { created_at = 2026-03-25T12:06:26.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.33.1-rc.62", prerelease = true }
+"dev-0.34.0-rc.65" = { created_at = 2026-03-26T07:56:04.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.0-rc.65", prerelease = true }
+"dev-0.34.0-rc.66" = { created_at = 2026-03-26T08:28:05.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.0-rc.66", prerelease = true }
+"dev-0.34.0-rc.67" = { created_at = 2026-03-26T09:26:14.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.0-rc.67", prerelease = true }
+"dev-0.34.0-rc.68" = { created_at = 2026-03-26T17:34:23.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.0-rc.68", prerelease = true }
+"0.33.1" = { created_at = 2026-03-25T12:12:45.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.33.1" }
+"dev-0.34.1-rc.71" = { created_at = 2026-03-26T18:42:53.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.1-rc.71", prerelease = true }
+"dev-0.34.1-rc.72" = { created_at = 2026-03-28T00:21:21.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.1-rc.72", prerelease = true }
+"dev-0.34.1-rc.79" = { created_at = 2026-03-28T01:04:02.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.1-rc.79", prerelease = true }
+"dev-0.34.1-rc.80" = { created_at = 2026-03-28T01:13:10.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.1-rc.80", prerelease = true }
+"dev-0.35.0-rc.81" = { created_at = 2026-03-28T10:54:09.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.35.0-rc.81", prerelease = true }
+"dev-0.35.0-rc.82" = { created_at = 2026-03-28T13:06:36.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.35.0-rc.82", prerelease = true }
+"0.34.0" = { created_at = 2026-03-26T18:13:42.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.34.0" }
+"dev-0.35.0-rc.85" = { created_at = 2026-03-30T08:29:07.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.35.0-rc.85", prerelease = true }
+"dev-0.35.0-rc.86" = { created_at = 2026-03-30T11:08:33.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.35.0-rc.86", prerelease = true }
+"dev-0.35.0-rc.87" = { created_at = 2026-03-30T12:47:16.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.35.0-rc.87", prerelease = true }
+"dev-0.35.0-rc.88" = { created_at = 2026-03-30T13:09:37.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.35.0-rc.88", prerelease = true }
+"0.34.1" = { created_at = 2026-03-28T21:28:16.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.34.1" }
+"dev-0.34.3-rc.91" = { created_at = 2026-03-30T16:32:07.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.91", prerelease = true }
+"dev-0.34.3-rc.92" = { created_at = 2026-03-30T16:49:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.92", prerelease = true }
+"dev-0.34.3-rc.93" = { created_at = 2026-03-30T17:43:49.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.93", prerelease = true }
+"dev-0.34.3-rc.94" = { created_at = 2026-03-30T18:02:32.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.94", prerelease = true }
+"dev-0.34.3-rc.95" = { created_at = 2026-03-31T09:43:24.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.95", prerelease = true }
 "dev-0.34.3-rc.96" = { created_at = 2026-03-31T10:08:46.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.96", prerelease = true }
 "dev-0.34.3-rc.97" = { created_at = 2026-03-31T18:52:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.34.3-rc.97", prerelease = true }
 "0.34.2" = { created_at = 2026-03-30T13:30:41.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.34.2" }
@@ -99,3 +172,103 @@
 "dev-0.42.0-rc.237" = { created_at = 2026-05-23T08:52:45.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.42.0-rc.237", prerelease = true }
 "0.41.0" = { created_at = 2026-05-23T07:43:46.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.41.0" }
 "0.42.0" = { created_at = 2026-05-24T15:42:11.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.42.0" }
+"dev-0.42.1-rc.240" = { created_at = 2026-05-25T08:21:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.42.1-rc.240", prerelease = true }
+"dev-0.42.1-rc.241" = { created_at = 2026-05-25T11:44:29.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.42.1-rc.241", prerelease = true }
+"dev-0.43.0-rc.242" = { created_at = 2026-05-25T12:44:15.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.242", prerelease = true }
+"dev-0.43.0-rc.243" = { created_at = 2026-05-25T13:24:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.243", prerelease = true }
+"dev-0.43.0-rc.244" = { created_at = 2026-05-25T13:40:24.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.244", prerelease = true }
+"dev-0.43.0-rc.245" = { created_at = 2026-05-25T19:53:43.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.245", prerelease = true }
+"dev-0.43.0-rc.246" = { created_at = 2026-05-28T07:06:34.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.246", prerelease = true }
+"dev-0.43.0-rc.247" = { created_at = 2026-05-29T11:28:53.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.247", prerelease = true }
+"dev-0.43.0-rc.248" = { created_at = 2026-05-29T15:00:22.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.248", prerelease = true }
+"dev-0.43.0-rc.249" = { created_at = 2026-05-29T16:10:51.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.249", prerelease = true }
+"dev-0.43.0-rc.251" = { created_at = 2026-05-31T14:37:48.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.251", prerelease = true }
+"dev-0.43.0-rc.252" = { created_at = 2026-05-31T15:12:52.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.252", prerelease = true }
+"dev-0.43.0-rc.253" = { created_at = 2026-05-31T15:24:33.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.253", prerelease = true }
+"dev-0.43.0-rc.254" = { created_at = 2026-05-31T15:40:55.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.254", prerelease = true }
+"dev-0.43.0-rc.255" = { created_at = 2026-06-01T13:23:27.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.255", prerelease = true }
+"dev-0.43.0-rc.256" = { created_at = 2026-06-01T16:51:19.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.256", prerelease = true }
+"dev-0.43.0-rc.259" = { created_at = 2026-06-03T14:02:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.259", prerelease = true }
+"dev-0.43.0-rc.260" = { created_at = 2026-06-03T15:27:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.260", prerelease = true }
+"0.42.1" = { created_at = 2026-06-03T12:43:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.42.1" }
+"dev-0.42.4-rc.267" = { created_at = 2026-06-05T16:38:01.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.42.4-rc.267", prerelease = true }
+"dev-0.43.0-rc.263" = { created_at = 2026-06-05T15:14:17.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.263", prerelease = true }
+"dev-0.43.0-rc.264" = { created_at = 2026-06-05T15:21:24.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.264", prerelease = true }
+"0.42.2" = { created_at = 2026-06-05T10:57:52.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.42.2" }
+"0.42.3" = { created_at = 2026-06-05T16:23:07.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.42.3" }
+"dev-0.42.4-rc.268" = { created_at = 2026-06-07T13:26:24.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.42.4-rc.268", prerelease = true }
+"dev-0.42.4-rc.270" = { created_at = 2026-06-07T13:43:10.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.42.4-rc.270", prerelease = true }
+"dev-0.43.0-rc.271" = { created_at = 2026-06-08T11:47:49.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.271", prerelease = true }
+"dev-0.43.0-rc.272" = { created_at = 2026-06-09T19:57:52.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.272", prerelease = true }
+"0.42.4" = { created_at = 2026-06-12T16:06:31.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.42.4" }
+"dev-0.43.0-rc.276" = { created_at = 2026-06-14T16:30:02.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.276", prerelease = true }
+"dev-0.43.0-rc.277" = { created_at = 2026-06-16T18:36:17.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.277", prerelease = true }
+"dev-0.43.0-rc.278" = { created_at = 2026-06-16T21:48:00.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.278", prerelease = true }
+"dev-0.43.0-rc.279" = { created_at = 2026-06-18T14:19:59.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.279", prerelease = true }
+"dev-0.43.0-rc.280" = { created_at = 2026-06-18T15:12:59.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.280", prerelease = true }
+"dev-0.43.0-rc.282" = { created_at = 2026-06-19T15:31:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.282", prerelease = true }
+"dev-0.43.0-rc.283" = { created_at = 2026-06-20T15:24:25.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.283", prerelease = true }
+"dev-0.43.0-rc.284" = { created_at = 2026-06-22T13:56:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.284", prerelease = true }
+"dev-0.43.0-rc.285" = { created_at = 2026-06-23T19:44:40.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.285", prerelease = true }
+"dev-0.43.0-rc.286" = { created_at = 2026-06-23T20:01:19.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.286", prerelease = true }
+"dev-0.43.0-rc.287" = { created_at = 2026-06-25T07:08:44.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.287", prerelease = true }
+"dev-0.43.0-rc.288" = { created_at = 2026-06-26T09:55:48.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.288", prerelease = true }
+"dev-0.43.0-rc.289" = { created_at = 2026-06-26T10:49:57.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.289", prerelease = true }
+"dev-0.43.0-rc.290" = { created_at = 2026-06-26T11:30:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.290", prerelease = true }
+"dev-0.43.0-rc.291" = { created_at = 2026-06-26T12:04:45.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.291", prerelease = true }
+"dev-0.43.0-rc.292" = { created_at = 2026-06-26T18:06:49.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.0-rc.292", prerelease = true }
+"0.43.0" = { created_at = 2026-06-28T08:55:20.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.43.0" }
+"dev-0.43.1-rc.296" = { created_at = 2026-06-29T12:24:35.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.1-rc.296", prerelease = true }
+"dev-0.43.1-rc.297" = { created_at = 2026-06-30T11:17:02.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.43.1-rc.297", prerelease = true }
+"dev-0.44.0-rc.300" = { created_at = 2026-07-01T08:59:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.300", prerelease = true }
+"dev-0.44.0-rc.302" = { created_at = 2026-07-01T11:24:26.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.302", prerelease = true }
+"dev-0.44.0-rc.304" = { created_at = 2026-07-01T11:41:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.304", prerelease = true }
+"dev-0.44.0-rc.305" = { created_at = 2026-07-03T09:15:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.305", prerelease = true }
+"dev-0.44.0-rc.306" = { created_at = 2026-07-03T10:31:57.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.306", prerelease = true }
+"dev-0.44.0-rc.307" = { created_at = 2026-07-03T13:28:59.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.307", prerelease = true }
+"dev-0.44.0-rc.308" = { created_at = 2026-07-03T14:57:43.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.308", prerelease = true }
+"dev-0.44.0-rc.309" = { created_at = 2026-07-06T08:03:52.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.309", prerelease = true }
+"dev-0.44.0-rc.310" = { created_at = 2026-07-06T19:09:33.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.310", prerelease = true }
+"dev-0.44.0-rc.311" = { created_at = 2026-07-07T08:04:06.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.311", prerelease = true }
+"dev-0.44.0-rc.312" = { created_at = 2026-07-07T08:26:58.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.312", prerelease = true }
+"dev-0.44.0-rc.313" = { created_at = 2026-07-08T12:13:31.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.313", prerelease = true }
+"dev-0.44.0-rc.314" = { created_at = 2026-07-08T19:51:27.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.314", prerelease = true }
+"dev-0.44.0-rc.315" = { created_at = 2026-07-09T07:29:46.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.315", prerelease = true }
+"dev-0.44.0-rc.316" = { created_at = 2026-07-09T07:49:57.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.316", prerelease = true }
+"dev-0.44.0-rc.317" = { created_at = 2026-07-18T11:33:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.317", prerelease = true }
+"dev-0.44.0-rc.318" = { created_at = 2026-07-18T17:46:34.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.318", prerelease = true }
+"dev-0.44.0-rc.319" = { created_at = 2026-07-20T15:20:10.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.319", prerelease = true }
+"dev-0.44.0-rc.320" = { created_at = 2026-07-20T16:35:05.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.320", prerelease = true }
+"dev-0.44.0-rc.322" = { created_at = 2026-07-20T16:58:13.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.322", prerelease = true }
+"dev-0.44.0-rc.323" = { created_at = 2026-07-20T22:59:20.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.323", prerelease = true }
+"dev-0.44.0-rc.324" = { created_at = 2026-07-21T18:55:44.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.324", prerelease = true }
+"dev-0.44.0-rc.325" = { created_at = 2026-07-22T10:44:13.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.325", prerelease = true }
+"dev-0.44.0-rc.326" = { created_at = 2026-07-23T08:06:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.326", prerelease = true }
+"dev-0.44.0-rc.327" = { created_at = 2026-07-23T11:23:21.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.327", prerelease = true }
+"dev-0.44.0-rc.328" = { created_at = 2026-07-23T14:38:48.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.328", prerelease = true }
+"dev-0.44.0-rc.329" = { created_at = 2026-07-24T09:55:13.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.329", prerelease = true }
+"dev-0.44.0-rc.330" = { created_at = 2026-07-24T18:20:36.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.330", prerelease = true }
+"dev-0.44.0-rc.331" = { created_at = 2026-07-25T13:40:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.331", prerelease = true }
+"dev-0.44.0-rc.332" = { created_at = 2026-07-26T10:27:12.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.332", prerelease = true }
+"dev-0.44.0-rc.333" = { created_at = 2026-07-26T10:48:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.0-rc.333", prerelease = true }
+"0.44.0" = { created_at = 2026-07-26T12:39:04.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.44.0" }
+"dev-0.44.1-rc.336" = { created_at = 2026-07-27T11:55:49.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.1-rc.336", prerelease = true }
+"dev-0.44.1-rc.337" = { created_at = 2026-07-27T16:42:04.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.1-rc.337", prerelease = true }
+"dev-0.44.1-rc.339" = { created_at = 2026-07-27T17:33:12.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.1-rc.339", prerelease = true }
+"dev-0.44.1-rc.340" = { created_at = 2026-07-27T19:29:14.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.1-rc.340", prerelease = true }
+"dev-0.44.1-rc.341" = { created_at = 2026-07-28T11:28:26.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.1-rc.341", prerelease = true }
+"dev-0.44.2-rc.344" = { created_at = 2026-07-28T17:36:50.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.2-rc.344", prerelease = true }
+"0.44.1" = { created_at = 2026-07-28T13:51:32.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.44.1" }
+"dev-0.44.2-rc.345" = { created_at = 2026-08-01T10:26:34.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.2-rc.345", prerelease = true }
+"dev-0.44.2-rc.346" = { created_at = 2026-08-01T11:51:19.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.2-rc.346", prerelease = true }
+"0.44.2" = { created_at = 2026-08-01T16:47:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.44.2" }
+"dev-0.44.3-rc.349" = { created_at = 2026-08-02T18:02:07.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.44.3-rc.349", prerelease = true }
+"dev-0.45.0-rc.350" = { created_at = 2026-08-03T08:48:21.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.0-rc.350", prerelease = true }
+"dev-0.45.0-rc.351" = { created_at = 2026-08-06T15:36:01.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.0-rc.351", prerelease = true }
+"0.45.0" = { created_at = 2026-08-07T09:41:43.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/v0.45.0" }
+"dev-0.45.1-rc.354" = { created_at = 2026-08-12T00:10:53.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.1-rc.354", prerelease = true }
+"dev-0.45.1-rc.355" = { created_at = 2026-08-13T00:14:17.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.1-rc.355", prerelease = true }
+"dev-0.45.1-rc.356" = { created_at = 2026-08-14T23:56:26.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.1-rc.356", prerelease = true }
+"dev-0.45.1-rc.357" = { created_at = 2026-08-16T22:15:01.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.1-rc.357", prerelease = true }
+"dev-0.45.1-rc.358" = { created_at = 2026-08-16T22:40:56.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.1-rc.358", prerelease = true }
+"dev-0.45.1-rc.359" = { created_at = 2026-08-17T01:10:18.000Z, release_url = "https://github.com/rtk-ai/rtk/releases/tag/dev-0.45.1-rc.359", prerelease = true }

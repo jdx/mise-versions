@@ -1,4 +1,113 @@
 [versions]
+"1.0.0-M10" = { created_at = 2016-05-14T16:29:07.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M10", prerelease = true }
+"1.0.0-M11" = { created_at = 2016-05-14T16:28:48.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M11", prerelease = true }
+"1.0.0-M11-1" = { created_at = 2016-05-14T16:27:48.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M11-1", prerelease = true }
+"1.0.0-M12" = { created_at = 2016-05-20T12:02:23.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M12", prerelease = true }
+"1.0.0-M12-1" = { created_at = 2016-06-01T21:40:34.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M12-1", prerelease = true }
+"1.0.0-M13" = { created_at = 2016-09-09T10:25:28.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M13", prerelease = true }
+"1.0.0-M14" = { created_at = 2016-09-09T10:25:56.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M14", prerelease = true }
+"1.0.0-M14-1" = { created_at = 2016-09-09T10:26:20.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M14-1", prerelease = true }
+"1.0.0-M14-2" = { created_at = 2016-09-09T15:57:03.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M14-2", prerelease = true }
+"1.0.0-M15" = { created_at = 2016-11-27T18:00:41.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M15", prerelease = true }
+"1.0.0-M15-3" = { created_at = 2017-03-05T16:08:54.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-M15-3", prerelease = true }
+"1.0.0-RC1" = { created_at = 2017-04-08T16:25:19.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC1", prerelease = true }
+"1.0.0-RC2" = { created_at = 2017-05-06T15:23:32.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC2", prerelease = true }
+"1.0.0-RC3" = { created_at = 2017-05-12T11:28:41.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC3", prerelease = true }
+"1.0.0-RC4" = { created_at = 2017-06-18T18:41:17.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC4", prerelease = true }
+"1.0.0-RC5" = { created_at = 2017-06-21T07:48:50.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC5", prerelease = true }
+"1.0.0-RC6" = { created_at = 2017-06-25T13:23:51.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC6", prerelease = true }
+"1.0.0-RC7" = { created_at = 2017-07-18T23:25:23.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC7", prerelease = true }
+"1.0.0-RC8" = { created_at = 2017-07-19T22:39:56.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC8", prerelease = true }
+"1.0.0-RC9" = { created_at = 2017-08-06T13:57:25.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC9", prerelease = true }
+"1.0.0-RC10" = { created_at = 2017-08-09T13:49:30.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC10", prerelease = true }
+"1.0.0-RC11" = { created_at = 2017-08-31T10:14:11.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC11", prerelease = true }
+"1.0.0-RC12" = { created_at = 2017-10-31T22:07:31.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC12", prerelease = true }
+"1.0.0-RC12-1" = { created_at = 2017-10-31T22:07:54.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC12-1", prerelease = true }
+"1.0.0-RC13" = { created_at = 2017-10-31T22:08:25.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC13", prerelease = true }
+"1.0.0-RC14" = { created_at = 2017-12-14T22:57:07.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0-RC14", prerelease = true }
+"1.0.0" = { created_at = 2017-12-14T22:58:09.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.0" }
+"1.0.1-M1" = { created_at = 2018-03-15T13:32:39.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.1-M1", prerelease = true }
+"1.0.1" = { created_at = 2018-02-22T10:09:30.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2018-02-22T10:17:00.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.0.2" }
+"pants_release_1.5.x" = { created_at = 2018-12-02T00:50:19.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/pants_release_1.5.x", prerelease = true }
+"1.1.0-M1" = { created_at = 2018-03-15T13:32:23.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M1", prerelease = true }
+"1.1.0-M2" = { created_at = 2018-05-22T07:17:51.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M2", prerelease = true }
+"1.1.0-M3" = { created_at = 2018-05-22T07:18:26.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M3", prerelease = true }
+"1.1.0-M4" = { created_at = 2018-05-22T07:18:58.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M4", prerelease = true }
+"1.1.0-M5" = { created_at = 2018-12-03T10:18:45.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M5", prerelease = true }
+"1.1.0-M6" = { created_at = 2018-12-03T10:22:55.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M6", prerelease = true }
+"1.1.0-M7" = { created_at = 2018-12-03T10:28:16.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M7", prerelease = true }
+"1.1.0-M8" = { created_at = 2018-12-03T10:48:54.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M8", prerelease = true }
+"1.1.0-M9" = { created_at = 2019-01-10T15:59:30.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M9", prerelease = true }
+"1.1.0-M10" = { created_at = 2019-01-13T23:04:08.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M10", prerelease = true }
+"1.1.0-M11" = { created_at = 2019-02-05T18:06:42.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M11", prerelease = true }
+"1.1.0-M11-1" = { created_at = 2019-02-06T18:05:46.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M11-1", prerelease = true }
+"1.1.0-M11-2" = { created_at = 2019-02-22T09:55:22.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M11-2", prerelease = true }
+"1.1.0-M12" = { created_at = 2019-02-26T11:43:12.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M12", prerelease = true }
+"1.1.0-M13" = { created_at = 2019-03-05T12:53:00.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M13", prerelease = true }
+"1.1.0-M13-1" = { created_at = 2019-03-07T10:28:33.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M13-1", prerelease = true }
+"1.1.0-M13-2" = { created_at = 2019-03-25T16:52:56.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M13-2", prerelease = true }
+"1.1.0-M14" = { created_at = 2019-04-03T15:27:42.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14", prerelease = true }
+"1.1.0-M14-1" = { created_at = 2019-04-04T15:43:26.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-1", prerelease = true }
+"1.1.0-M14-2" = { created_at = 2019-04-24T10:07:59.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-2", prerelease = true }
+"1.1.0-M14-3" = { created_at = 2019-05-01T14:00:11.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-3", prerelease = true }
+"1.1.0-M14-4" = { created_at = 2019-05-03T13:53:26.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-4", prerelease = true }
+"1.1.0-M14-5" = { created_at = 2019-05-24T13:31:39.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-5", prerelease = true }
+"1.1.0-M14-6" = { created_at = 2019-05-28T13:19:37.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-6", prerelease = true }
+"1.1.0-M14-7" = { created_at = 2019-06-04T14:40:09.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v1.1.0-M14-7", prerelease = true }
+"2.0.0-RC1" = { created_at = 2019-06-07T17:08:15.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC1", prerelease = true }
+"2.0.0-RC2" = { created_at = 2019-06-09T15:10:20.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2", prerelease = true }
+"2.0.0-RC2-1" = { created_at = 2019-06-11T13:58:19.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2-1", prerelease = true }
+"2.0.0-RC2-2" = { created_at = 2019-06-13T12:03:06.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2-2", prerelease = true }
+"2.0.0-RC2-3" = { created_at = 2019-06-20T08:43:27.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2-3", prerelease = true }
+"2.0.0-RC2-4" = { created_at = 2019-06-26T09:41:09.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2-4", prerelease = true }
+"2.0.0-RC2-5" = { created_at = 2019-06-28T15:21:08.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2-5", prerelease = true }
+"2.0.0-RC2-6" = { created_at = 2019-07-02T12:44:42.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC2-6", prerelease = true }
+"2.0.0-RC3" = { created_at = 2019-08-02T12:36:32.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC3", prerelease = true }
+"2.0.0-RC3-1" = { created_at = 2019-08-02T15:50:13.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC3-1", prerelease = true }
+"2.0.0-RC3-2" = { created_at = 2019-08-05T15:29:36.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC3-2", prerelease = true }
+"2.0.0-RC3-3" = { created_at = 2019-08-15T09:03:43.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC3-3", prerelease = true }
+"2.0.0-RC3-4" = { created_at = 2019-09-10T21:04:19.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC3-4", prerelease = true }
+"2.0.0-RC4" = { created_at = 2019-10-13T20:02:49.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC4", prerelease = true }
+"2.0.0-RC4-1" = { created_at = 2019-10-17T23:30:45.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC4-1", prerelease = true }
+"2.0.0-RC5" = { created_at = 2019-11-11T19:45:46.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5", prerelease = true }
+"2.0.0-RC5-1" = { created_at = 2019-11-12T01:33:14.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5-1", prerelease = true }
+"2.0.0-RC5-2" = { created_at = 2019-11-14T13:45:32.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5-2", prerelease = true }
+"2.0.0-RC5-3" = { created_at = 2019-12-04T18:39:10.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5-3", prerelease = true }
+"2.0.0-RC5-4" = { created_at = 2019-12-20T13:06:06.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5-4", prerelease = true }
+"2.0.0-RC5-5" = { created_at = 2020-01-06T00:07:42.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5-5", prerelease = true }
+"2.0.0-RC5-6" = { created_at = 2020-01-07T19:34:50.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC5-6", prerelease = true }
+"2.0.0-RC6" = { created_at = 2020-02-02T19:36:29.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6", prerelease = true }
+"2.0.0-RC6-1" = { created_at = 2020-02-03T17:11:30.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-1", prerelease = true }
+"2.0.0-RC6-2" = { created_at = 2020-02-08T15:50:03.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-2", prerelease = true }
+"2.0.0-RC6-3" = { created_at = 2020-02-09T20:24:10.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-3", prerelease = true }
+"2.0.0-RC6-4" = { created_at = 2020-02-10T00:18:02.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-4", prerelease = true }
+"2.0.0-RC6-5" = { created_at = 2020-02-12T14:05:32.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-5", prerelease = true }
+"2.0.0-RC6-6" = { created_at = 2020-02-13T01:32:54.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-6", prerelease = true }
+"2.0.0-RC6-7" = { created_at = 2020-02-13T17:12:12.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-7", prerelease = true }
+"2.0.0-RC6-8" = { created_at = 2020-02-16T21:49:12.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-8", prerelease = true }
+"2.0.0-RC6-9" = { created_at = 2020-02-17T12:42:26.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-9", prerelease = true }
+"2.0.0-RC6-10" = { created_at = 2020-02-19T11:35:52.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-10", prerelease = true }
+"2.0.0-RC6-11" = { created_at = 2020-03-20T15:19:42.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-11", prerelease = true }
+"2.0.0-RC6-12" = { created_at = 2020-04-15T16:59:48.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-12", prerelease = true }
+"2.0.0-RC6-13" = { created_at = 2020-04-23T10:31:16.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-13", prerelease = true }
+"2.0.0-RC6-14" = { created_at = 2020-05-03T15:53:13.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-14", prerelease = true }
+"2.0.0-RC6-15" = { created_at = 2020-05-07T17:24:12.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-15", prerelease = true }
+"2.0.0-RC6-16" = { created_at = 2020-05-14T14:17:45.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-16", prerelease = true }
+"2.0.0-RC6-17" = { created_at = 2020-05-18T11:12:15.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-17", prerelease = true }
+"2.0.0-RC6-18" = { created_at = 2020-05-19T09:52:31.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-18", prerelease = true }
+"2.0.0-RC6-19" = { created_at = 2020-05-25T15:20:57.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-19", prerelease = true }
+"2.0.0-RC6-20" = { created_at = 2020-06-02T08:43:57.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-20", prerelease = true }
+"2.0.0-RC6-21" = { created_at = 2020-06-04T00:48:41.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-21", prerelease = true }
+"2.0.0-RC6-22" = { created_at = 2020-07-07T15:45:17.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-22", prerelease = true }
+"2.0.0-RC6-23" = { created_at = 2020-07-08T20:50:45.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-23", prerelease = true }
+"2.0.0-RC6-24" = { created_at = 2020-07-31T00:25:17.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-24", prerelease = true }
+"2.0.0-RC6-25" = { created_at = 2020-08-21T12:50:14.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-25", prerelease = true }
+"2.0.0-RC6-26" = { created_at = 2020-09-11T10:22:21.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-26", prerelease = true }
+"2.0.0-RC6-27" = { created_at = 2020-10-01T09:22:49.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0-RC6-27", prerelease = true }
+"2.0.0" = { created_at = 2020-10-02T13:38:02.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2020-10-08T14:07:08.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2020-10-09T16:13:19.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.2" }
 "2.0.3" = { created_at = 2020-10-12T17:16:04.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.3" }
 "2.0.4" = { created_at = 2020-10-21T15:37:49.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.4" }
 "2.0.5" = { created_at = 2020-10-23T11:54:36.000Z, release_url = "https://github.com/coursier/coursier/releases/tag/v2.0.5" }

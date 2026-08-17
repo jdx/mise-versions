@@ -1,4 +1,433 @@
 [versions]
+"0.1.0" = { created_at = 2019-08-21T21:43:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2019-08-26T22:11:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.2.0" }
+"0.3.0" = { created_at = 2019-08-28T23:47:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.3.0" }
+"0.4.0" = { created_at = 2019-08-30T21:52:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.4.0" }
+"0.5.0" = { created_at = 2019-09-03T15:50:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.5.0" }
+"0.6.0" = { created_at = 2019-09-05T23:22:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2019-09-08T15:54:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2019-09-08T20:59:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.8.0" }
+"0.9.0" = { created_at = 2019-09-09T21:56:10.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.0" }
+"0.9.1" = { created_at = 2019-09-11T20:20:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.1" }
+"0.9.3" = { created_at = 2019-09-19T00:49:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.3" }
+"0.9.4" = { created_at = 2019-09-19T23:11:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.4" }
+"0.9.5" = { created_at = 2019-09-27T00:09:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.5" }
+"0.9.6" = { created_at = 2019-09-27T17:38:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.6" }
+"0.9.7" = { created_at = 2019-10-01T18:02:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.7" }
+"0.9.8" = { created_at = 2019-10-03T17:28:11.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.8" }
+"0.9.9" = { created_at = 2019-10-07T15:43:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.9" }
+"0.9.10" = { created_at = 2019-10-16T13:01:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.10" }
+"0.9.11" = { created_at = 2019-10-22T19:56:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.11" }
+"0.9.12" = { created_at = 2019-10-24T20:45:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.12" }
+"0.9.13" = { created_at = 2019-10-28T19:47:59.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.13" }
+"0.9.14" = { created_at = 2019-10-31T00:56:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.14" }
+"0.9.15" = { created_at = 2019-11-01T19:35:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.9.15" }
+"1.0.0" = { created_at = 2019-11-02T14:27:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2019-11-04T22:57:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.0.1" }
+"1.1.0" = { created_at = 2019-11-11T22:38:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.1.0" }
+"1.2.0" = { created_at = 2019-11-16T01:08:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.2.0" }
+"1.2.0-beta.1" = { created_at = 2019-11-15T23:06:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.2.0-beta.1" }
+"1.3.0" = { created_at = 2019-11-23T02:12:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.3.0" }
+"1.4.0-beta.1" = { created_at = 2019-11-28T00:17:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.4.0-beta.1" }
+"1.4.0" = { created_at = 2019-11-28T01:15:06.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.4.0" }
+"1.4.0-beta.2" = { created_at = 2019-11-28T00:55:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.4.0-beta.2" }
+"1.4.1" = { created_at = 2019-12-02T22:21:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.4.1" }
+"1.5.0-beta.1" = { created_at = 2019-12-06T23:51:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.5.0-beta.1" }
+"1.5.0" = { created_at = 2019-12-09T23:48:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.5.0" }
+"1.5.0-beta.2" = { created_at = 2019-12-09T22:42:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.5.0-beta.2" }
+"1.6.0" = { created_at = 2019-12-11T19:22:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.6.0" }
+"1.7.0-beta.1" = { created_at = 2019-12-18T22:20:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.7.0-beta.1" }
+"1.7.0" = { created_at = 2019-12-19T23:59:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.7.0" }
+"1.7.0-beta.2" = { created_at = 2019-12-19T20:42:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.7.0-beta.2" }
+"1.7.0-beta.3" = { created_at = 2019-12-19T22:18:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.7.0-beta.3" }
+"1.7.1" = { created_at = 2019-12-20T03:12:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.7.1" }
+"1.8.0" = { created_at = 2019-12-31T19:01:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.8.0" }
+"1.9.0" = { created_at = 2020-01-08T21:43:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.9.0" }
+"1.9.1" = { created_at = 2020-01-09T22:50:32.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.9.1" }
+"1.10.0" = { created_at = 2020-01-13T03:46:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2020-01-14T19:56:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.10.1" }
+"1.10.2" = { created_at = 2020-01-16T02:42:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.10.2" }
+"1.10.3" = { created_at = 2020-01-17T01:25:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.10.3" }
+"1.11.0" = { created_at = 2020-01-23T02:48:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2020-01-24T01:23:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.11.1" }
+"1.11.2" = { created_at = 2020-01-24T20:01:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.11.2" }
+"1.11.3" = { created_at = 2020-01-24T23:35:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.11.3" }
+"1.11.4" = { created_at = 2020-01-29T00:37:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.11.4" }
+"1.12.0" = { created_at = 2020-02-04T21:04:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2020-02-05T19:08:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.12.1" }
+"1.12.2" = { created_at = 2020-02-13T16:02:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.12.2" }
+"1.13.0" = { created_at = 2020-02-27T01:20:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.0" }
+"1.13.1" = { created_at = 2020-02-28T00:36:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.1" }
+"1.13.2" = { created_at = 2020-02-29T00:02:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.2" }
+"1.13.3" = { created_at = 2020-03-04T18:33:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.3" }
+"1.13.4" = { created_at = 2020-03-06T22:41:11.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.4" }
+"1.13.5" = { created_at = 2020-03-09T20:36:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.5" }
+"1.13.6" = { created_at = 2020-03-10T23:30:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.6" }
+"1.13.7" = { created_at = 2020-03-12T20:42:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.7", prerelease = true }
+"1.13.8" = { created_at = 2020-03-14T04:06:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.8" }
+"1.13.9" = { created_at = 2020-03-17T15:36:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.13.9" }
+"1.14.0" = { created_at = 2020-03-30T20:06:42.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.14.0" }
+"1.14.1" = { created_at = 2020-04-01T17:32:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.14.1" }
+"1.14.2" = { created_at = 2020-04-02T18:42:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.14.2" }
+"1.15.0-beta.1" = { created_at = 2020-04-11T00:31:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.0-beta.1", prerelease = true }
+"1.15.0-beta.2" = { created_at = 2020-04-23T22:07:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.0-beta.2", prerelease = true }
+"1.15.0-beta.3" = { created_at = 2020-04-27T16:49:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.0-beta.3", prerelease = true }
+"1.15.0-beta.4" = { created_at = 2020-04-28T15:32:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.0-beta.4", prerelease = true }
+"1.15.0-beta.5" = { created_at = 2020-04-29T02:22:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.0-beta.5", prerelease = true }
+"1.15.0" = { created_at = 2020-04-30T17:07:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.0" }
+"1.15.1" = { created_at = 2020-05-02T00:49:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.1" }
+"1.15.2" = { created_at = 2020-05-05T20:57:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.2" }
+"1.15.3" = { created_at = 2020-05-11T19:52:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.3" }
+"1.15.4" = { created_at = 2020-05-14T22:25:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.4" }
+"1.15.5" = { created_at = 2020-05-26T19:40:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.15.5" }
+"1.16.0-beta.1" = { created_at = 2020-05-28T20:08:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.16.0-beta.1", prerelease = true }
+"1.16.0-beta.2" = { created_at = 2020-05-29T17:54:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.16.0-beta.2", prerelease = true }
+"1.16.0" = { created_at = 2020-06-01T19:14:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.16.0" }
+"1.16.1" = { created_at = 2020-06-10T17:05:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.16.1" }
+"1.16.2" = { created_at = 2020-07-07T17:54:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.16.2" }
+"1.17.0" = { created_at = 2020-07-14T19:26:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.17.0" }
+"1.17.1" = { created_at = 2020-07-21T16:47:10.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.17.1" }
+"1.17.2" = { created_at = 2020-07-23T22:55:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.17.2" }
+"1.18.0-beta.1" = { created_at = 2020-08-05T19:23:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.18.0-beta.1", prerelease = true }
+"1.18.0-beta.2" = { created_at = 2020-08-07T21:18:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.18.0-beta.2", prerelease = true }
+"1.18.0" = { created_at = 2020-08-11T22:40:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.18.0" }
+"1.18.1" = { created_at = 2020-08-14T18:51:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.18.1" }
+"1.19.0-beta.0" = { created_at = 2020-08-27T18:52:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.0-beta.0", prerelease = true }
+"1.19.0-beta.1" = { created_at = 2020-08-28T17:54:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.0-beta.1", prerelease = true }
+"1.19.0-beta.2" = { created_at = 2020-09-08T20:14:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.0-beta.2", prerelease = true }
+"1.19.0" = { created_at = 2020-09-11T23:12:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.0" }
+"1.19.1" = { created_at = 2020-09-15T15:40:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.1" }
+"1.19.2" = { created_at = 2020-09-17T20:30:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.2" }
+"1.19.3" = { created_at = 2020-09-18T22:22:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.3" }
+"1.19.4" = { created_at = 2020-09-21T18:35:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.4" }
+"1.20.0-beta.0" = { created_at = 2020-09-22T18:08:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.0-beta.0", prerelease = true }
+"1.20.0-beta.1" = { created_at = 2020-09-24T19:50:32.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.0-beta.1", prerelease = true }
+"1.19.5" = { created_at = 2020-09-28T19:12:34.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.5" }
+"1.19.6" = { created_at = 2020-10-02T18:17:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.19.6" }
+"1.20.0-beta.2" = { created_at = 2020-10-03T01:36:59.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.0-beta.2", prerelease = true }
+"1.20.0" = { created_at = 2020-10-10T00:34:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.0" }
+"1.20.1" = { created_at = 2020-10-14T17:53:15.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.1" }
+"1.20.2" = { created_at = 2020-10-14T22:43:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.2" }
+"1.20.3" = { created_at = 2020-10-16T17:39:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.20.3" }
+"1.21.0" = { created_at = 2020-10-23T19:20:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.21.0" }
+"1.21.1" = { created_at = 2020-10-29T04:41:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.21.1" }
+"1.21.2" = { created_at = 2020-10-29T22:15:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.21.2" }
+"1.22.0-beta.0" = { created_at = 2020-10-30T21:30:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0-beta.0", prerelease = true }
+"1.22.0-beta.1" = { created_at = 2020-10-30T23:43:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0-beta.1", prerelease = true }
+"1.22.0-beta.2" = { created_at = 2020-11-02T16:14:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0-beta.2", prerelease = true }
+"1.22.0-beta.3" = { created_at = 2020-11-02T23:48:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0-beta.3", prerelease = true }
+"1.22.0-beta.4" = { created_at = 2020-11-04T18:59:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0-beta.4", prerelease = true }
+"1.22.0-beta.5" = { created_at = 2020-11-05T21:57:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0-beta.5", prerelease = true }
+"1.21.3" = { created_at = 2020-11-06T20:37:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.21.3" }
+"1.22.0" = { created_at = 2020-11-07T01:42:06.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.0" }
+"1.22.1" = { created_at = 2020-11-11T00:26:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.1" }
+"1.22.2" = { created_at = 2020-11-12T16:56:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.2" }
+"1.22.3" = { created_at = 2020-11-12T22:58:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.3" }
+"1.22.4" = { created_at = 2020-11-13T15:31:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.22.4" }
+"1.23.0" = { created_at = 2020-11-17T01:05:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.23.0" }
+"1.23.1" = { created_at = 2020-11-19T21:25:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.23.1" }
+"1.24.0" = { created_at = 2020-11-21T00:04:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.24.0" }
+"1.24.1" = { created_at = 2020-11-25T22:41:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.24.1" }
+"1.24.2" = { created_at = 2020-12-03T19:21:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.24.2" }
+"1.25.0-beta.0" = { created_at = 2020-12-07T23:53:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.25.0-beta.0", prerelease = true }
+"1.25.0" = { created_at = 2020-12-09T21:02:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.25.0" }
+"1.25.1" = { created_at = 2020-12-10T23:00:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.25.1" }
+"1.25.2" = { created_at = 2020-12-12T01:46:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.25.2" }
+"1.26.0-beta.0" = { created_at = 2020-12-17T23:36:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.26.0-beta.0", prerelease = true }
+"1.26.0-beta.1" = { created_at = 2020-12-21T19:01:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.26.0-beta.1", prerelease = true }
+"1.26.0-beta.2" = { created_at = 2020-12-22T00:34:34.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.26.0-beta.2", prerelease = true }
+"1.26.0" = { created_at = 2020-12-23T22:02:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.26.0" }
+"1.27.0-beta.0" = { created_at = 2020-12-29T18:24:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.27.0-beta.0", prerelease = true }
+"1.27.0" = { created_at = 2020-12-29T23:42:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.27.0" }
+"1.27.1" = { created_at = 2021-01-06T00:45:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.27.1" }
+"1.28.0-beta.0" = { created_at = 2021-01-08T21:33:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.28.0-beta.0", prerelease = true }
+"1.28.0" = { created_at = 2021-01-08T23:10:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.28.0" }
+"1.29.0" = { created_at = 2021-01-15T20:11:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.29.0" }
+"1.29.1" = { created_at = 2021-01-22T20:37:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.29.1" }
+"1.29.2" = { created_at = 2021-01-29T20:32:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.29.2" }
+"1.29.3" = { created_at = 2021-02-05T20:43:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.29.3" }
+"1.30.0" = { created_at = 2021-02-12T23:18:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.30.0" }
+"1.31.0-beta.0" = { created_at = 2021-02-18T00:33:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.31.0-beta.0", prerelease = true }
+"1.31.0" = { created_at = 2021-02-22T22:13:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.31.0" }
+"1.31.1" = { created_at = 2021-02-23T22:51:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.31.1" }
+"1.32.0" = { created_at = 2021-02-27T00:32:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.32.0" }
+"1.33.0-beta.0" = { created_at = 2021-03-05T18:27:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.33.0-beta.0", prerelease = true }
+"1.33.0" = { created_at = 2021-03-08T21:21:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.33.0" }
+"1.33.1" = { created_at = 2021-03-10T02:59:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.33.1" }
+"1.33.2" = { created_at = 2021-03-11T18:47:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.33.2" }
+"1.34.0" = { created_at = 2021-03-15T17:41:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.34.0" }
+"1.35.0" = { created_at = 2021-03-19T20:34:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.35.0" }
+"1.36.0-beta.0" = { created_at = 2021-03-24T19:56:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.36.0-beta.0", prerelease = true }
+"1.36.0" = { created_at = 2021-03-27T03:29:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.36.0" }
+"1.36.1" = { created_at = 2021-03-30T01:11:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.36.1" }
+"1.37.0-beta.0" = { created_at = 2021-03-31T23:12:06.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.37.0-beta.0", prerelease = true }
+"1.37.0" = { created_at = 2021-04-02T20:09:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.37.0" }
+"1.38.0-beta.0" = { created_at = 2021-04-09T14:04:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.38.0-beta.0", prerelease = true }
+"1.38.0" = { created_at = 2021-04-12T19:40:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.38.0" }
+"1.39.0-beta.0" = { created_at = 2021-04-16T17:55:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.39.0-beta.0", prerelease = true }
+"1.38.1" = { created_at = 2021-04-16T22:39:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.38.1" }
+"1.39.0" = { created_at = 2021-04-19T19:33:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.39.0" }
+"1.39.1" = { created_at = 2021-04-23T16:34:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.39.1" }
+"1.40.0" = { created_at = 2021-04-30T20:13:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.40.0" }
+"1.41.0" = { created_at = 2021-05-07T23:00:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.41.0" }
+"1.41.1" = { created_at = 2021-05-14T22:33:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.41.1" }
+"1.42.0-beta.0" = { created_at = 2021-05-20T21:18:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.42.0-beta.0", prerelease = true }
+"1.42.0" = { created_at = 2021-05-22T00:03:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.42.0" }
+"1.42.1" = { created_at = 2021-05-24T18:45:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.42.1" }
+"1.43.0" = { created_at = 2021-05-28T17:45:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.43.0" }
+"1.44.0-beta.0" = { created_at = 2021-06-02T20:26:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.44.0-beta.0", prerelease = true }
+"1.43.1" = { created_at = 2021-06-04T15:12:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.43.1" }
+"1.43.2" = { created_at = 2021-06-09T01:29:06.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.43.2" }
+"1.44.0" = { created_at = 2021-06-11T16:46:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.44.0" }
+"1.44.1" = { created_at = 2021-06-15T17:37:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.44.1" }
+"1.45.0" = { created_at = 2021-06-25T17:37:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.45.0" }
+"1.46.0-beta.0" = { created_at = 2021-06-29T16:52:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.46.0-beta.0", prerelease = true }
+"1.46.0-beta.1" = { created_at = 2021-06-29T20:10:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.46.0-beta.1", prerelease = true }
+"1.46.0" = { created_at = 2021-07-03T00:29:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.46.0" }
+"1.47.0-beta.0" = { created_at = 2021-07-08T18:26:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.47.0-beta.0", prerelease = true }
+"1.47.0-beta.1" = { created_at = 2021-07-08T22:25:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.47.0-beta.1", prerelease = true }
+"1.47.0" = { created_at = 2021-07-13T01:07:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.47.0" }
+"1.47.1" = { created_at = 2021-07-16T21:40:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.47.1" }
+"1.47.2" = { created_at = 2021-07-19T21:42:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.47.2" }
+"1.47.3" = { created_at = 2021-07-23T21:15:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.47.3" }
+"1.48.0" = { created_at = 2021-07-30T17:11:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.48.0" }
+"1.48.1" = { created_at = 2021-08-03T20:55:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.48.1" }
+"1.49.0-beta.0" = { created_at = 2021-08-05T19:43:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.49.0-beta.0", prerelease = true }
+"1.49.0" = { created_at = 2021-08-06T21:37:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.49.0" }
+"1.50.0-beta.0" = { created_at = 2021-08-12T16:07:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.50.0-beta.0", prerelease = true }
+"1.50.0-beta.1" = { created_at = 2021-08-13T02:54:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.50.0-beta.1", prerelease = true }
+"1.50.0" = { created_at = 2021-08-13T22:17:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.50.0" }
+"1.50.1" = { created_at = 2021-08-20T19:53:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.50.1" }
+"1.50.2" = { created_at = 2021-09-07T19:37:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.50.2" }
+"0.0.0-nightly" = { created_at = 2021-09-15T17:50:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v0.0.0-nightly", prerelease = true }
+"2021.9.14-nightly" = { created_at = 2021-09-14T16:48:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.14-nightly", prerelease = true }
+"2021.9.15-nightly" = { created_at = 2021-09-15T15:17:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.15-nightly", prerelease = true }
+"2021.9.16-nightly" = { created_at = 2021-09-16T06:01:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.16-nightly", prerelease = true }
+"2021.9.17-nightly" = { created_at = 2021-09-18T01:06:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.17-nightly", prerelease = true }
+"2021.9.18-nightly" = { created_at = 2021-09-18T19:45:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.18-nightly", prerelease = true }
+"2021.9.19-nightly" = { created_at = 2021-09-19T23:17:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.19-nightly", prerelease = true }
+"1.51.0" = { created_at = 2021-09-22T18:35:59.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.51.0" }
+"2021.9.20-nightly" = { created_at = 2021-09-21T05:07:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.20-nightly", prerelease = true }
+"2021.9.21-nightly" = { created_at = 2021-09-22T01:03:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.21-nightly", prerelease = true }
+"2021.9.22-nightly" = { created_at = 2021-09-23T00:33:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.22-nightly", prerelease = true }
+"1.51.1-beta.0" = { created_at = 2021-09-22T21:14:32.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.51.1-beta.0", prerelease = true }
+"2021.9.23-nightly" = { created_at = 2021-09-23T19:19:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.23-nightly", prerelease = true }
+"1.52.0" = { created_at = 2021-09-24T19:33:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.52.0" }
+"2021.9.24-1-nightly" = { created_at = 2021-09-24T19:49:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.24-1-nightly", prerelease = true }
+"2021.9.24-nightly" = { created_at = 2021-09-24T17:58:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.24-nightly", prerelease = true }
+"2021.9.25-nightly" = { created_at = 2021-09-25T06:00:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.25-nightly", prerelease = true }
+"2021.9.26-nightly" = { created_at = 2021-09-26T06:02:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.26-nightly", prerelease = true }
+"2021.9.27-nightly" = { created_at = 2021-09-27T06:01:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.27-nightly", prerelease = true }
+"2021.9.28-nightly" = { created_at = 2021-09-28T06:02:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.28-nightly", prerelease = true }
+"2021.9.29-nightly" = { created_at = 2021-09-29T06:00:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.29-nightly", prerelease = true }
+"2021.9.30-nightly" = { created_at = 2021-09-30T06:01:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.9.30-nightly", prerelease = true }
+"2021.10.1-nightly" = { created_at = 2021-10-01T05:59:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.1-nightly", prerelease = true }
+"1.52.1" = { created_at = 2021-10-02T03:18:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.52.1" }
+"2021.10.1-1-nightly" = { created_at = 2021-10-02T00:14:42.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.1-1-nightly", prerelease = true }
+"2021.10.2-nightly" = { created_at = 2021-10-02T06:02:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.2-nightly", prerelease = true }
+"2021.10.3-nightly" = { created_at = 2021-10-03T06:02:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.3-nightly", prerelease = true }
+"2021.10.4-nightly" = { created_at = 2021-10-04T06:02:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.4-nightly", prerelease = true }
+"2021.10.4-0-nightly" = { created_at = 2021-10-04T20:56:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.4-0-nightly", prerelease = true }
+"2021.10.5-nightly" = { created_at = 2021-10-05T16:11:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.5-nightly", prerelease = true }
+"2021.10.6-nightly" = { created_at = 2021-10-06T06:01:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.6-nightly", prerelease = true }
+"2021.10.7-nightly" = { created_at = 2021-10-07T06:01:34.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.7-nightly", prerelease = true }
+"2021.10.8-1-nightly" = { created_at = 2021-10-08T16:21:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.8-1-nightly", prerelease = true }
+"2021.10.8-nightly" = { created_at = 2021-10-08T05:59:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.8-nightly", prerelease = true }
+"1.53.0" = { created_at = 2021-10-08T22:05:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.53.0" }
+"2021.10.8-2-nightly" = { created_at = 2021-10-08T22:41:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.8-2-nightly", prerelease = true }
+"2021.10.8-3-nightly" = { created_at = 2021-10-09T00:57:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.8-3-nightly", prerelease = true }
+"2021.10.9-nightly" = { created_at = 2021-10-09T06:02:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.9-nightly", prerelease = true }
+"2021.10.10-nightly" = { created_at = 2021-10-10T06:00:11.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.10-nightly", prerelease = true }
+"2021.10.11-nightly" = { created_at = 2021-10-11T06:01:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.11-nightly", prerelease = true }
+"2021.10.12-nightly" = { created_at = 2021-10-12T06:03:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.12-nightly", prerelease = true }
+"2021.10.13-nightly" = { created_at = 2021-10-13T05:59:34.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.13-nightly", prerelease = true }
+"2021.10.14-nightly" = { created_at = 2021-10-14T06:01:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.14-nightly", prerelease = true }
+"2021.10.14-1-nightly" = { created_at = 2021-10-14T21:59:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.14-1-nightly", prerelease = true }
+"2021.10.14-2-nightly" = { created_at = 2021-10-14T23:04:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.14-2-nightly", prerelease = true }
+"2021.10.15-1-nightly" = { created_at = 2021-10-15T16:29:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.15-1-nightly", prerelease = true }
+"2021.10.15-2-nightly" = { created_at = 2021-10-15T17:33:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.15-2-nightly", prerelease = true }
+"2021.10.15-nightly" = { created_at = 2021-10-15T06:01:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.15-nightly", prerelease = true }
+"2021.10.16-nightly" = { created_at = 2021-10-16T06:02:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.16-nightly", prerelease = true }
+"2021.10.17-nightly" = { created_at = 2021-10-17T06:01:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.17-nightly", prerelease = true }
+"2021.10.18-nightly" = { created_at = 2021-10-18T06:00:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.18-nightly", prerelease = true }
+"1.54.0" = { created_at = 2021-10-19T14:46:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.54.0" }
+"2021.10.19-nightly" = { created_at = 2021-10-19T06:01:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.19-nightly", prerelease = true }
+"2021.10.20-1-nightly" = { created_at = 2021-10-20T19:41:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.20-1-nightly", prerelease = true }
+"2021.10.20-nightly" = { created_at = 2021-10-20T05:59:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.20-nightly", prerelease = true }
+"2021.10.21-nightly" = { created_at = 2021-10-21T06:03:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.21-nightly", prerelease = true }
+"1.55.0" = { created_at = 2021-10-22T18:17:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.55.0" }
+"2021.10.22-1-nightly" = { created_at = 2021-10-22T16:30:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.22-1-nightly", prerelease = true }
+"2021.10.22-nightly" = { created_at = 2021-10-22T06:00:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.22-nightly", prerelease = true }
+"2021.10.23-nightly" = { created_at = 2021-10-23T05:59:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.23-nightly", prerelease = true }
+"2021.10.24-nightly" = { created_at = 2021-10-24T06:00:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.24-nightly", prerelease = true }
+"2021.10.25-nightly" = { created_at = 2021-10-25T06:03:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.25-nightly", prerelease = true }
+"2021.10.26-nightly" = { created_at = 2021-10-26T06:00:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.26-nightly", prerelease = true }
+"2021.10.27-nightly" = { created_at = 2021-10-27T05:59:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.27-nightly", prerelease = true }
+"2021.10.28-nightly" = { created_at = 2021-10-28T06:01:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.28-nightly", prerelease = true }
+"2021.10.29-1-nightly" = { created_at = 2021-10-29T16:40:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.29-1-nightly", prerelease = true }
+"2021.10.29-2-nightly" = { created_at = 2021-10-29T22:14:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.29-2-nightly", prerelease = true }
+"2021.10.29-3-nightly" = { created_at = 2021-10-30T00:16:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.29-3-nightly", prerelease = true }
+"2021.10.29-nightly" = { created_at = 2021-10-29T06:01:32.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.29-nightly", prerelease = true }
+"2021.10.30-nightly" = { created_at = 2021-10-30T06:00:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.30-nightly", prerelease = true }
+"2021.10.31-nightly" = { created_at = 2021-10-31T06:02:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.10.31-nightly", prerelease = true }
+"2021.11.1-nightly" = { created_at = 2021-11-01T06:02:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.1-nightly", prerelease = true }
+"2021.11.2-nightly" = { created_at = 2021-11-02T06:03:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.2-nightly", prerelease = true }
+"2021.11.2-1-nightly" = { created_at = 2021-11-02T17:42:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.2-1-nightly", prerelease = true }
+"2021.11.2-2-nightly" = { created_at = 2021-11-02T20:08:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.2-2-nightly", prerelease = true }
+"2021.11.2-3-nightly" = { created_at = 2021-11-02T22:39:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.2-3-nightly", prerelease = true }
+"2021.11.3-nightly" = { created_at = 2021-11-03T06:00:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.3-nightly", prerelease = true }
+"1.56.0" = { created_at = 2021-11-05T18:33:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.56.0" }
+"2021.11.3-1-nightly" = { created_at = 2021-11-03T20:34:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.3-1-nightly", prerelease = true }
+"2021.11.3-2-nightly" = { created_at = 2021-11-04T00:01:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.3-2-nightly", prerelease = true }
+"2021.11.4-1-nightly" = { created_at = 2021-11-04T18:59:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.4-1-nightly", prerelease = true }
+"2021.11.4-2-nightly" = { created_at = 2021-11-04T22:10:59.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.4-2-nightly", prerelease = true }
+"2021.11.4-nightly" = { created_at = 2021-11-04T06:02:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.4-nightly", prerelease = true }
+"2021.11.5-1-nightly" = { created_at = 2021-11-05T13:57:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.5-1-nightly", prerelease = true }
+"2021.11.5-2-nightly" = { created_at = 2021-11-05T16:43:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.5-2-nightly", prerelease = true }
+"2021.11.5-nightly" = { created_at = 2021-11-05T06:02:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.5-nightly", prerelease = true }
+"2021.11.6-nightly" = { created_at = 2021-11-06T06:00:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.6-nightly", prerelease = true }
+"2021.11.7-nightly" = { created_at = 2021-11-07T06:02:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.7-nightly", prerelease = true }
+"2021.11.8-nightly" = { created_at = 2021-11-08T06:00:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.8-nightly", prerelease = true }
+"2021.11.9-nightly" = { created_at = 2021-11-09T05:59:59.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.9-nightly", prerelease = true }
+"2021.11.10-nightly" = { created_at = 2021-11-10T06:03:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.10-nightly", prerelease = true }
+"2021.11.11-nightly" = { created_at = 2021-11-11T06:00:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.11-nightly", prerelease = true }
+"2021.11.12-nightly" = { created_at = 2021-11-12T06:02:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.12-nightly", prerelease = true }
+"2021.11.13-nightly" = { created_at = 2021-11-13T05:59:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.13-nightly", prerelease = true }
+"2021.11.14-nightly" = { created_at = 2021-11-14T06:00:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.14-nightly", prerelease = true }
+"2021.11.16-nightly" = { created_at = 2021-11-16T06:02:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.16-nightly", prerelease = true }
+"2021.11.12-1-nightly" = { created_at = 2021-11-12T22:51:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.12-1-nightly", prerelease = true }
+"2021.11.17-nightly" = { created_at = 2021-11-17T06:02:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.17-nightly", prerelease = true }
+"2021.11.18-nightly" = { created_at = 2021-11-18T06:01:59.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.18-nightly", prerelease = true }
+"2021.11.19-nightly" = { created_at = 2021-11-19T06:01:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.19-nightly", prerelease = true }
+"2021.11.19-1-nightly" = { created_at = 2021-11-19T15:55:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.19-1-nightly", prerelease = true }
+"2021.11.19-2-nightly" = { created_at = 2021-11-19T23:15:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.19-2-nightly", prerelease = true }
+"2021.11.20-nightly" = { created_at = 2021-11-20T06:03:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.20-nightly", prerelease = true }
+"2021.11.21-nightly" = { created_at = 2021-11-21T06:00:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.21-nightly", prerelease = true }
+"2021.11.22-nightly" = { created_at = 2021-11-22T06:02:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.22-nightly", prerelease = true }
+"1.57.0" = { created_at = 2021-11-22T23:29:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.57.0" }
+"2021.11.22-1-nightly" = { created_at = 2021-11-22T17:47:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.22-1-nightly", prerelease = true }
+"2021.11.22-2-nightly" = { created_at = 2021-11-22T20:13:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.22-2-nightly", prerelease = true }
+"2021.11.22-4-nightly" = { created_at = 2021-11-22T21:32:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.22-4-nightly", prerelease = true }
+"2021.11.23-nightly" = { created_at = 2021-11-23T06:02:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.23-nightly", prerelease = true }
+"2021.11.22-5-nightly" = { created_at = 2021-11-23T00:07:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.22-5-nightly", prerelease = true }
+"2021.11.23-1-nightly" = { created_at = 2021-11-23T19:18:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.23-1-nightly", prerelease = true }
+"2021.11.23-2-nightly" = { created_at = 2021-11-24T00:40:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.23-2-nightly", prerelease = true }
+"2021.11.23-3-nightly" = { created_at = 2021-11-24T01:28:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.23-3-nightly", prerelease = true }
+"2021.11.23-4-nightly" = { created_at = 2021-11-24T03:05:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.23-4-nightly", prerelease = true }
+"2021.11.24-1-nightly" = { created_at = 2021-11-24T19:54:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-1-nightly", prerelease = true }
+"2021.11.24-2-nightly" = { created_at = 2021-11-24T22:13:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-2-nightly", prerelease = true }
+"2021.11.24-3-nightly" = { created_at = 2021-11-24T23:07:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-3-nightly", prerelease = true }
+"2021.11.24-4-nightly" = { created_at = 2021-11-24T23:37:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-4-nightly", prerelease = true }
+"2021.11.24-5-nightly" = { created_at = 2021-11-25T00:33:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-5-nightly", prerelease = true }
+"2021.11.24-nightly" = { created_at = 2021-11-24T06:01:10.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-nightly", prerelease = true }
+"2021.11.24-6-nightly" = { created_at = 2021-11-25T00:53:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-6-nightly", prerelease = true }
+"2021.11.24-7-nightly" = { created_at = 2021-11-25T01:57:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.24-7-nightly", prerelease = true }
+"2021.11.25-nightly" = { created_at = 2021-11-25T06:00:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.25-nightly", prerelease = true }
+"2021.11.26-nightly" = { created_at = 2021-11-26T06:04:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.26-nightly", prerelease = true }
+"2021.11.27-nightly" = { created_at = 2021-11-27T05:59:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.27-nightly", prerelease = true }
+"2021.11.28-nightly" = { created_at = 2021-11-28T06:00:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.28-nightly", prerelease = true }
+"2021.11.29-nightly" = { created_at = 2021-11-29T06:01:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.29-nightly", prerelease = true }
+"2021.11.30-nightly" = { created_at = 2021-11-30T06:01:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.30-nightly", prerelease = true }
+"1.58.0" = { created_at = 2021-12-01T17:38:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.58.0" }
+"2021.11.30-1-nightly" = { created_at = 2021-11-30T17:25:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.11.30-1-nightly", prerelease = true }
+"2021.12.1-nightly" = { created_at = 2021-12-01T06:01:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.1-nightly", prerelease = true }
+"1.58.1" = { created_at = 2021-12-01T22:27:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.58.1" }
+"2021.12.1-2-nightly" = { created_at = 2021-12-01T18:59:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.1-2-nightly", prerelease = true }
+"2021.12.2-nightly" = { created_at = 2021-12-02T06:00:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.2-nightly", prerelease = true }
+"2021.12.3-nightly" = { created_at = 2021-12-03T06:02:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.3-nightly", prerelease = true }
+"2021.12.4-nightly" = { created_at = 2021-12-04T06:01:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.4-nightly", prerelease = true }
+"2021.12.5-nightly" = { created_at = 2021-12-05T06:03:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.5-nightly", prerelease = true }
+"2021.12.6-nightly" = { created_at = 2021-12-06T06:00:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.6-nightly", prerelease = true }
+"2021.12.7-nightly" = { created_at = 2021-12-07T06:00:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.7-nightly", prerelease = true }
+"2021.12.8-nightly" = { created_at = 2021-12-08T06:00:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.8-nightly", prerelease = true }
+"2021.12.9-nightly" = { created_at = 2021-12-09T06:01:06.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.9-nightly", prerelease = true }
+"2021.12.14-nightly" = { created_at = 2021-12-14T06:01:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.14-nightly", prerelease = true }
+"1.58.2" = { created_at = 2021-12-15T01:24:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.58.2" }
+"2021.12.14-1-nightly" = { created_at = 2021-12-14T20:28:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.14-1-nightly", prerelease = true }
+"2021.12.14-3-nightly" = { created_at = 2021-12-14T22:57:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.14-3-nightly", prerelease = true }
+"2021.12.15-nightly" = { created_at = 2021-12-15T06:00:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.15-nightly", prerelease = true }
+"2021.12.16-nightly" = { created_at = 2021-12-16T06:01:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.16-nightly", prerelease = true }
+"2021.12.17-nightly" = { created_at = 2021-12-17T06:02:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.17-nightly", prerelease = true }
+"2021.12.18-nightly" = { created_at = 2021-12-18T06:02:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.18-nightly", prerelease = true }
+"2021.12.19-nightly" = { created_at = 2021-12-19T06:01:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.19-nightly", prerelease = true }
+"2021.12.20-nightly" = { created_at = 2021-12-20T06:00:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.20-nightly", prerelease = true }
+"2021.12.21-nightly" = { created_at = 2021-12-21T06:04:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.21-nightly", prerelease = true }
+"2021.12.22-nightly" = { created_at = 2021-12-22T06:01:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.22-nightly", prerelease = true }
+"2021.12.23-nightly" = { created_at = 2021-12-22T18:09:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.23-nightly", prerelease = true }
+"1.59.0" = { created_at = 2021-12-23T20:26:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.59.0" }
+"2021.12.23-1-nightly" = { created_at = 2021-12-23T17:28:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.23-1-nightly", prerelease = true }
+"2021.12.23-2-nightly" = { created_at = 2021-12-23T20:28:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.23-2-nightly", prerelease = true }
+"2021.12.24-nightly" = { created_at = 2021-12-24T06:01:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.24-nightly", prerelease = true }
+"2021.12.25-nightly" = { created_at = 2021-12-25T06:05:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.25-nightly", prerelease = true }
+"2021.12.26-nightly" = { created_at = 2021-12-26T06:02:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.26-nightly", prerelease = true }
+"2021.12.27-nightly" = { created_at = 2021-12-27T06:04:10.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.27-nightly", prerelease = true }
+"2021.12.28-nightly" = { created_at = 2021-12-28T06:03:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.28-nightly", prerelease = true }
+"2021.12.29-1-nightly" = { created_at = 2021-12-29T20:56:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.29-1-nightly", prerelease = true }
+"2021.12.29-nightly" = { created_at = 2021-12-29T06:04:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.29-nightly", prerelease = true }
+"1.59.1" = { created_at = 2021-12-29T23:41:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.59.1" }
+"2021.12.30-nightly" = { created_at = 2021-12-30T06:01:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.30-nightly", prerelease = true }
+"2021.12.31-nightly" = { created_at = 2021-12-31T06:03:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2021.12.31-nightly", prerelease = true }
+"2022.1.1-nightly" = { created_at = 2022-01-01T06:05:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.1-nightly", prerelease = true }
+"2022.1.2-nightly" = { created_at = 2022-01-02T06:05:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.2-nightly", prerelease = true }
+"2022.1.3-nightly" = { created_at = 2022-01-03T06:05:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.3-nightly", prerelease = true }
+"2022.1.4-nightly" = { created_at = 2022-01-04T06:01:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.4-nightly", prerelease = true }
+"2022.1.5-1-nightly" = { created_at = 2022-01-05T18:44:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.5-1-nightly", prerelease = true }
+"2022.1.5-nightly" = { created_at = 2022-01-05T06:03:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.5-nightly", prerelease = true }
+"2022.1.6-nightly" = { created_at = 2022-01-06T06:01:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.6-nightly", prerelease = true }
+"2022.1.7-nightly" = { created_at = 2022-01-07T06:01:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.7-nightly", prerelease = true }
+"2022.1.7-1-nightly" = { created_at = 2022-01-07T20:23:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.7-1-nightly", prerelease = true }
+"2022.1.8-nightly" = { created_at = 2022-01-08T06:07:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.8-nightly", prerelease = true }
+"2022.1.9-nightly" = { created_at = 2022-01-09T06:09:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.9-nightly", prerelease = true }
+"2022.1.10-nightly" = { created_at = 2022-01-10T06:10:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.10-nightly", prerelease = true }
+"2022.1.11-nightly" = { created_at = 2022-01-11T06:07:11.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.11-nightly", prerelease = true }
+"2022.1.12-nightly" = { created_at = 2022-01-12T06:06:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.12-nightly", prerelease = true }
+"2022.1.13-1-nightly" = { created_at = 2022-01-13T16:14:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.13-1-nightly", prerelease = true }
+"2022.1.13-nightly" = { created_at = 2022-01-13T06:10:06.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.13-nightly", prerelease = true }
+"1.59.2" = { created_at = 2022-01-18T22:40:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.59.2" }
+"2022.1.13-2-nightly" = { created_at = 2022-01-13T17:48:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.13-2-nightly", prerelease = true }
+"2022.1.13-3-nightly" = { created_at = 2022-01-13T23:28:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.13-3-nightly", prerelease = true }
+"2022.1.14-nightly" = { created_at = 2022-01-14T06:07:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.14-nightly", prerelease = true }
+"2022.1.15-nightly" = { created_at = 2022-01-15T06:11:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.1.15-nightly", prerelease = true }
+"1.59.3" = { created_at = 2022-01-21T21:46:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.59.3" }
+"1.60.0" = { created_at = 2022-01-25T16:25:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.60.0" }
+"1.61.0" = { created_at = 2022-02-01T21:16:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.61.0" }
+"1.62.0" = { created_at = 2022-02-04T21:29:42.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.62.0" }
+"1.63.0" = { created_at = 2022-02-11T17:58:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.63.0" }
+"1.64.0" = { created_at = 2022-02-18T17:33:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.64.0" }
+"1.65.0" = { created_at = 2022-02-25T20:04:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.65.0" }
+"1.65.1" = { created_at = 2022-03-10T20:43:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.65.1", prerelease = true }
+"1.66.0" = { created_at = 2022-03-07T23:29:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.66.0" }
+"1.67.0" = { created_at = 2022-03-21T20:22:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.67.0" }
+"1.68.0" = { created_at = 2022-04-04T21:12:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.68.0" }
+"2022.4.4-14-nightly" = { created_at = 2022-04-04T21:00:11.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.4-14-nightly", prerelease = true }
+"2022.4.4-15-nightly" = { created_at = 2022-04-05T03:36:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.4-15-nightly", prerelease = true }
+"2022.4.5-5-nightly" = { created_at = 2022-04-05T06:19:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.5-5-nightly", prerelease = true }
+"2022.4.5-8-nightly" = { created_at = 2022-04-05T09:13:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.5-8-nightly", prerelease = true }
+"2022.4.6-10-nightly" = { created_at = 2022-04-06T15:30:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.6-10-nightly", prerelease = true }
+"2022.4.6-5-nightly" = { created_at = 2022-04-06T06:16:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.6-5-nightly", prerelease = true }
+"2022.4.6-8-nightly" = { created_at = 2022-04-06T09:16:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.6-8-nightly", prerelease = true }
+"2022.4.6-9-nightly" = { created_at = 2022-04-06T13:28:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.6-9-nightly", prerelease = true }
+"2022.4.7-5-nightly" = { created_at = 2022-04-07T06:18:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.7-5-nightly", prerelease = true }
+"2022.4.7-8-nightly" = { created_at = 2022-04-07T09:15:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.7-8-nightly", prerelease = true }
+"1.69.0" = { created_at = 2022-04-08T16:41:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.69.0" }
+"2022.4.8-5-nightly" = { created_at = 2022-04-08T06:17:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.8-5-nightly", prerelease = true }
+"2022.4.8-8-nightly" = { created_at = 2022-04-08T09:13:10.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.8-8-nightly", prerelease = true }
+"2022.4.9-5-nightly" = { created_at = 2022-04-09T06:13:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.9-5-nightly", prerelease = true }
+"2022.4.9-8-nightly" = { created_at = 2022-04-09T09:11:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.9-8-nightly", prerelease = true }
+"2022.4.10-5-nightly" = { created_at = 2022-04-10T06:13:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.10-5-nightly", prerelease = true }
+"2022.4.10-8-nightly" = { created_at = 2022-04-10T09:15:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.10-8-nightly", prerelease = true }
+"2022.4.11-5-nightly" = { created_at = 2022-04-11T06:13:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.11-5-nightly", prerelease = true }
+"2022.4.11-8-nightly" = { created_at = 2022-04-11T09:15:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.11-8-nightly", prerelease = true }
+"2022.4.12-5-nightly" = { created_at = 2022-04-12T06:20:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.12-5-nightly", prerelease = true }
+"2022.4.12-8-nightly" = { created_at = 2022-04-12T09:18:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.12-8-nightly", prerelease = true }
+"2022.4.12-9-nightly" = { created_at = 2022-04-12T16:04:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.12-9-nightly", prerelease = true }
+"2022.4.13-5-nightly" = { created_at = 2022-04-13T06:16:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.13-5-nightly", prerelease = true }
+"2022.4.13-8-nightly" = { created_at = 2022-04-13T09:17:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.13-8-nightly", prerelease = true }
+"2022.4.14-5-nightly" = { created_at = 2022-04-14T06:13:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.14-5-nightly", prerelease = true }
+"2022.4.14-8-nightly" = { created_at = 2022-04-14T09:16:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.14-8-nightly", prerelease = true }
+"2022.4.15-5-nightly" = { created_at = 2022-04-15T06:17:57.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.15-5-nightly", prerelease = true }
+"2022.4.15-8-nightly" = { created_at = 2022-04-15T09:16:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.15-8-nightly", prerelease = true }
+"2022.4.16-5-nightly" = { created_at = 2022-04-16T06:15:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.16-5-nightly", prerelease = true }
 "2022.4.16-8-nightly" = { created_at = 2022-04-16T09:14:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.16-8-nightly", prerelease = true }
 "2022.4.17-5-nightly" = { created_at = 2022-04-17T06:13:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.17-5-nightly", prerelease = true }
 "2022.4.17-8-nightly" = { created_at = 2022-04-17T09:15:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.4.17-8-nightly", prerelease = true }
@@ -99,3 +528,203 @@
 "2022.6.16-24955b-nightly" = { created_at = 2022-06-16T21:28:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.6.16-24955b-nightly", prerelease = true }
 "2022.6.16-7714d8-nightly" = { created_at = 2022-06-16T13:03:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.6.16-7714d8-nightly", prerelease = true }
 "2022.6.17-5f7077-nightly" = { created_at = 2022-06-17T14:35:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.6.17-5f7077-nightly", prerelease = true }
+"2022.6.17-96402b-nightly" = { created_at = 2022-06-17T00:53:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2022.6.17-96402b-nightly", prerelease = true }
+"1.72.2" = { created_at = 2022-06-22T17:54:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.72.2" }
+"1.73.0" = { created_at = 2022-06-24T19:38:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.73.0" }
+"1.74.0" = { created_at = 2022-07-01T19:42:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.74.0" }
+"1.75.0" = { created_at = 2022-07-05T22:14:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.75.0" }
+"1.76.0" = { created_at = 2022-07-11T16:59:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.76.0" }
+"1.76.1" = { created_at = 2022-07-15T16:00:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.76.1" }
+"1.77.0" = { created_at = 2022-07-22T19:37:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.77.0" }
+"1.78.0" = { created_at = 2022-07-28T00:34:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.78.0" }
+"1.79.0" = { created_at = 2022-08-04T20:13:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.79.0" }
+"1.80.0" = { created_at = 2022-08-08T19:27:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.80.0" }
+"1.81.0" = { created_at = 2022-08-12T18:07:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.81.0" }
+"1.81.1" = { created_at = 2022-08-19T19:40:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.81.1" }
+"1.82.0" = { created_at = 2022-08-24T23:24:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.82.0" }
+"1.83.0" = { created_at = 2022-09-01T18:10:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.83.0" }
+"1.84.0" = { created_at = 2022-09-12T16:40:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.84.0" }
+"1.85.0" = { created_at = 2022-09-19T17:49:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.85.0" }
+"1.86.0" = { created_at = 2022-09-27T01:08:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.86.0" }
+"1.86.1" = { created_at = 2022-09-30T18:33:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.86.1" }
+"1.86.2" = { created_at = 2022-10-07T18:53:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.86.2" }
+"1.87.0" = { created_at = 2022-10-12T20:09:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.87.0" }
+"1.87.1" = { created_at = 2022-10-18T20:59:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.87.1", prerelease = true }
+"1.88.0" = { created_at = 2022-10-19T20:45:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.88.0" }
+"1.89.0" = { created_at = 2022-10-28T19:43:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.89.0" }
+"1.90.0" = { created_at = 2022-11-04T17:56:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.90.0" }
+"1.91.0" = { created_at = 2022-11-14T20:32:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.91.0" }
+"1.91.1" = { created_at = 2022-11-18T18:13:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.91.1" }
+"1.91.2" = { created_at = 2022-12-08T17:36:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.91.2" }
+"1.91.3" = { created_at = 2022-12-10T21:16:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.91.3" }
+"1.92.0" = { created_at = 2022-12-16T21:04:11.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.92.0" }
+"1.92.1" = { created_at = 2022-12-29T21:12:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.92.1" }
+"1.93.0" = { created_at = 2023-01-19T23:35:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.93.0" }
+"1.93.1" = { created_at = 2023-01-29T15:08:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.93.1" }
+"1.94.0" = { created_at = 2023-02-07T17:25:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.94.0" }
+"1.94.1" = { created_at = 2023-02-14T00:13:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.94.1" }
+"1.94.2" = { created_at = 2023-02-17T21:53:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.94.2" }
+"1.95.0" = { created_at = 2023-03-01T18:57:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.95.0" }
+"1.96.0" = { created_at = 2023-03-09T22:02:34.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.96.0" }
+"1.96.1" = { created_at = 2023-03-16T18:42:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.96.1" }
+"1.96.2" = { created_at = 2023-03-24T22:07:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.96.2" }
+"1.96.3" = { created_at = 2023-03-29T15:33:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.96.3" }
+"1.97.0" = { created_at = 2023-04-07T18:24:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.97.0" }
+"1.98.0" = { created_at = 2023-04-19T20:08:55.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.98.0" }
+"1.98.1" = { created_at = 2023-04-21T23:12:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.98.1" }
+"1.98.2" = { created_at = 2023-04-26T23:21:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.98.2" }
+"1.98.3" = { created_at = 2023-05-05T13:55:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.98.3" }
+"1.99.0" = { created_at = 2023-05-18T20:58:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.99.0" }
+"1.100.0" = { created_at = 2023-05-26T21:17:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.100.0" }
+"1.100.1" = { created_at = 2023-06-02T19:05:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.100.1" }
+"1.100.2" = { created_at = 2023-06-07T15:44:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.100.2" }
+"1.100.3" = { created_at = 2023-06-20T18:57:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.100.3" }
+"1.101.0" = { created_at = 2023-07-19T14:39:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.101.0" }
+"1.101.1" = { created_at = 2023-07-31T16:23:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.101.1" }
+"1.101.2" = { created_at = 2023-08-04T19:53:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.101.2" }
+"1.101.3" = { created_at = 2023-08-18T20:29:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.101.3" }
+"1.102.0" = { created_at = 2023-09-06T15:55:37.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.102.0" }
+"1.102.1" = { created_at = 2023-09-08T16:24:00.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.102.1" }
+"1.102.2" = { created_at = 2023-09-15T14:34:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.102.2" }
+"1.103.0" = { created_at = 2023-09-20T16:31:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.103.0" }
+"1.103.1" = { created_at = 2023-09-29T18:57:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.103.1" }
+"1.103.2" = { created_at = 2023-10-09T23:01:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.103.2" }
+"1.103.3" = { created_at = 2023-10-25T19:58:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.103.3" }
+"1.104.0" = { created_at = 2023-11-06T14:33:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.0" }
+"1.104.1" = { created_at = 2023-11-10T15:58:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.1" }
+"1.104.2" = { created_at = 2023-11-17T16:56:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.2" }
+"1.104.3" = { created_at = 2023-11-29T17:58:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.3" }
+"1.104.4" = { created_at = 2023-12-01T14:58:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.4" }
+"1.104.5" = { created_at = 2023-12-08T16:07:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.5" }
+"1.104.6" = { created_at = 2023-12-13T14:59:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.6" }
+"1.104.7" = { created_at = 2023-12-14T14:47:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.104.7" }
+"1.105.0" = { created_at = 2023-12-28T18:56:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.105.0" }
+"1.105.1" = { created_at = 2023-12-29T19:45:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.105.1" }
+"1.105.2" = { created_at = 2024-01-09T15:16:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.105.2" }
+"1.105.3" = { created_at = 2024-01-10T17:24:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.105.3" }
+"1.105.4" = { created_at = 2024-01-16T18:38:12.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.105.4" }
+"1.105.5" = { created_at = 2024-01-18T20:20:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.105.5" }
+"1.106.0" = { created_at = 2024-01-23T17:36:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.106.0" }
+"1.107.0" = { created_at = 2024-01-30T15:49:32.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.0" }
+"1.107.1" = { created_at = 2024-02-01T17:33:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.1" }
+"1.107.2" = { created_at = 2024-02-02T14:33:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.2" }
+"1.107.3" = { created_at = 2024-02-12T15:57:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.3" }
+"1.107.4" = { created_at = 2024-02-16T23:08:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.4" }
+"1.107.5" = { created_at = 2024-02-20T15:01:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.5" }
+"1.107.6" = { created_at = 2024-02-22T22:15:02.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.6" }
+"1.107.7" = { created_at = 2024-02-23T20:59:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.7" }
+"1.107.8" = { created_at = 2024-02-27T15:12:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.107.8" }
+"1.108.0" = { created_at = 2024-03-05T14:41:35.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.0" }
+"1.108.1" = { created_at = 2024-03-19T19:48:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.1" }
+"1.108.2" = { created_at = 2024-03-25T13:45:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.2" }
+"1.108.3" = { created_at = 2024-03-26T16:57:22.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.3" }
+"1.108.4" = { created_at = 2024-04-03T21:14:04.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.4" }
+"1.108.5" = { created_at = 2024-04-08T14:55:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.5" }
+"1.108.6" = { created_at = 2024-04-11T19:37:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.6" }
+"1.108.7" = { created_at = 2024-04-16T20:45:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.7" }
+"1.108.8" = { created_at = 2024-04-18T21:00:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.8" }
+"1.108.9" = { created_at = 2024-04-24T13:50:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.9" }
+"1.108.10" = { created_at = 2024-04-26T17:37:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.10" }
+"1.108.11" = { created_at = 2024-05-01T15:09:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.11" }
+"1.108.12" = { created_at = 2024-05-03T13:43:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.12" }
+"1.108.13" = { created_at = 2024-05-06T17:24:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.108.13" }
+"1.109.0" = { created_at = 2024-05-09T17:23:26.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.0" }
+"1.109.1" = { created_at = 2024-05-15T14:28:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.1" }
+"1.109.2" = { created_at = 2024-05-15T18:31:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.2" }
+"1.109.3" = { created_at = 2024-05-15T20:19:07.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.3" }
+"1.109.4" = { created_at = 2024-05-21T20:40:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.4" }
+"1.109.5" = { created_at = 2024-05-23T21:32:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.5" }
+"1.109.6" = { created_at = 2024-05-24T19:49:48.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.6" }
+"1.109.7" = { created_at = 2024-05-29T14:58:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.7" }
+"1.109.8" = { created_at = 2024-05-30T17:13:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.8" }
+"1.109.9" = { created_at = 2024-05-31T20:25:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.9" }
+"1.109.10" = { created_at = 2024-06-06T13:49:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.10" }
+"1.109.11" = { created_at = 2024-06-07T13:39:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.11" }
+"1.109.12" = { created_at = 2024-06-10T12:46:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.12" }
+"1.109.13" = { created_at = 2024-06-20T17:51:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.13" }
+"1.109.14" = { created_at = 2024-06-21T14:58:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.109.14" }
+"1.110.0" = { created_at = 2024-06-27T21:18:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.110.0" }
+"2024.7.8-ec7-nightly" = { created_at = 2024-07-08T23:37:32.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2024.7.8-ec7-nightly", prerelease = true }
+"2024.7.8-ec8-nightly" = { created_at = 2024-07-08T23:37:28.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v2024.7.8-ec8-nightly", prerelease = true }
+"1.111.0" = { created_at = 2024-07-09T17:21:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.111.0" }
+"1.112.0" = { created_at = 2024-07-16T15:13:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.112.0" }
+"1.112.1" = { created_at = 2024-07-16T20:39:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.112.1" }
+"1.112.2" = { created_at = 2024-07-26T22:45:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.112.2" }
+"1.112.3" = { created_at = 2024-07-30T19:39:34.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.112.3" }
+"1.112.4" = { created_at = 2024-07-31T23:54:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.112.4" }
+"1.113.0" = { created_at = 2024-08-09T13:59:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.113.0" }
+"1.114.0" = { created_at = 2024-08-12T16:59:09.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.114.0" }
+"1.115.0" = { created_at = 2024-08-20T17:47:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.115.0" }
+"1.115.1" = { created_at = 2024-08-22T13:51:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.115.1" }
+"1.115.2" = { created_at = 2024-09-05T19:44:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.115.2" }
+"1.116.0" = { created_at = 2024-09-09T15:17:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.116.0" }
+"1.116.1" = { created_at = 2024-09-12T13:33:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.116.1" }
+"1.117.0" = { created_at = 2024-09-13T22:29:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.117.0" }
+"1.117.1" = { created_at = 2024-09-17T20:46:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.117.1" }
+"1.117.2" = { created_at = 2024-09-20T16:02:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.117.2" }
+"1.117.3" = { created_at = 2024-09-23T18:25:19.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.117.3" }
+"1.117.4" = { created_at = 2024-10-08T14:36:46.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.117.4" }
+"1.117.5" = { created_at = 2024-10-08T19:21:42.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.117.5" }
+"1.118.0" = { created_at = 2024-10-15T18:36:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.118.0" }
+"1.119.0" = { created_at = 2024-10-18T14:57:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.119.0" }
+"1.119.1" = { created_at = 2024-10-22T23:02:05.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.119.1" }
+"1.120.0" = { created_at = 2024-10-30T18:17:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.120.0" }
+"1.120.1" = { created_at = 2024-11-04T15:23:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.120.1" }
+"1.120.2" = { created_at = 2024-11-05T16:29:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.120.2" }
+"1.120.3" = { created_at = 2024-11-07T19:42:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.120.3" }
+"1.121.0" = { created_at = 2024-11-12T19:18:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.121.0" }
+"1.121.1" = { created_at = 2024-11-26T14:27:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.121.1" }
+"1.121.2" = { created_at = 2024-11-27T14:36:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.121.2" }
+"1.122.0" = { created_at = 2024-12-12T17:09:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.122.0" }
+"1.122.1" = { created_at = 2024-12-20T15:49:44.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.122.1" }
+"1.123.0" = { created_at = 2025-01-02T22:57:53.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.123.0" }
+"1.123.1" = { created_at = 2025-01-13T15:03:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.123.1" }
+"1.124.0" = { created_at = 2025-01-24T14:26:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.0" }
+"1.124.1" = { created_at = 2025-01-29T23:13:08.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.1" }
+"1.124.2" = { created_at = 2025-02-04T18:55:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.2" }
+"1.124.3" = { created_at = 2025-02-06T00:19:39.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.3" }
+"1.124.4" = { created_at = 2025-02-14T01:17:50.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.4" }
+"1.124.5" = { created_at = 2025-03-11T22:18:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.5" }
+"1.124.6" = { created_at = 2025-03-13T22:01:36.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.6" }
+"1.124.7" = { created_at = 2025-03-17T21:39:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.7" }
+"1.124.8" = { created_at = 2025-03-20T22:44:03.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.8" }
+"1.124.9" = { created_at = 2025-03-24T19:30:15.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.9" }
+"1.124.10" = { created_at = 2025-03-27T16:22:24.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.10" }
+"1.124.11" = { created_at = 2025-03-28T21:06:42.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.11" }
+"1.124.12" = { created_at = 2025-04-02T18:32:25.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.12" }
+"1.124.13" = { created_at = 2025-04-08T20:22:17.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.13" }
+"1.124.14" = { created_at = 2025-04-09T20:05:23.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.14" }
+"1.124.15" = { created_at = 2025-04-14T14:44:33.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.15" }
+"1.124.16" = { created_at = 2025-04-28T17:09:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.16" }
+"1.124.17" = { created_at = 2025-06-02T21:34:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.17" }
+"1.124.18" = { created_at = 2025-06-11T17:56:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.124.18" }
+"1.125.0" = { created_at = 2025-07-23T13:53:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.125.0" }
+"1.125.1" = { created_at = 2025-07-31T15:56:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.125.1" }
+"1.125.2" = { created_at = 2025-08-05T16:57:31.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.125.2" }
+"1.126.0" = { created_at = 2025-08-15T20:20:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.126.0" }
+"1.126.1" = { created_at = 2025-08-25T14:41:29.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.126.1", prerelease = true }
+"1.127.0" = { created_at = 2025-08-25T16:04:20.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.127.0", prerelease = true }
+"1.127.1" = { created_at = 2025-08-25T23:36:30.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.127.1" }
+"1.127.2" = { created_at = 2025-08-27T23:15:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.127.2" }
+"1.128.0" = { created_at = 2025-09-01T14:06:43.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.128.0" }
+"1.128.1" = { created_at = 2025-09-12T00:17:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.128.1" }
+"1.128.2" = { created_at = 2025-09-29T19:08:38.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.128.2" }
+"1.128.3" = { created_at = 2025-10-28T14:33:54.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.128.3" }
+"1.129.0" = { created_at = 2025-11-17T14:33:21.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.129.0", prerelease = true }
+"1.129.1" = { created_at = 2025-12-05T21:43:51.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.129.1" }
+"1.129.2" = { created_at = 2026-01-13T22:50:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.129.2" }
+"1.129.3" = { created_at = 2026-01-20T20:29:16.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.129.3" }
+"1.129.4" = { created_at = 2026-02-24T22:25:56.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.129.4" }
+"1.130.0" = { created_at = 2026-04-07T16:55:13.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.0" }
+"1.130.1" = { created_at = 2026-04-28T14:04:47.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.1" }
+"1.130.2" = { created_at = 2026-05-01T23:28:40.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.2" }
+"1.130.3" = { created_at = 2026-05-13T20:06:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.3" }
+"1.130.4" = { created_at = 2026-05-15T19:12:49.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.4" }
+"1.130.5" = { created_at = 2026-06-25T09:03:18.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.5" }
+"1.130.6" = { created_at = 2026-06-26T10:03:41.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.6" }
+"1.130.7" = { created_at = 2026-07-03T01:48:01.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.7" }
+"1.130.8" = { created_at = 2026-07-16T00:16:14.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.8" }
+"1.130.9" = { created_at = 2026-07-23T00:49:45.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.130.9" }
+"1.131.0" = { created_at = 2026-08-06T15:13:52.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.131.0" }
+"1.131.1" = { created_at = 2026-08-07T01:12:58.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.131.1" }
+"1.131.2" = { created_at = 2026-08-13T18:26:27.000Z, release_url = "https://github.com/replicatedhq/kots/releases/tag/v1.131.2" }

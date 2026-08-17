@@ -1,101 +1,443 @@
 [versions]
-"7.09.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.09.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.09.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.09.05" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.09.06" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.09.07" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.05" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.06" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.07" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.08" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.09" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.10.10" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.11.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.12.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.12.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.12.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.13.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.13.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.13.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.13.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.14.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.14.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.14.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.14.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.14.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.15.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.15.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.16.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.16.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.17.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.17.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.17.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.17.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.05" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.06" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.18.07" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.19.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.19.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.19.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.19.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.20.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.20.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.20.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.20.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.20.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.21.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.21.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.21.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.05" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.06" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.22.07" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.05" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.06" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.23.07" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.24.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.24.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.25.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.25.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.27.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.27.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.27.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.27.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.27.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.27.05" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.04" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.06" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.07" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.08" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.09" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.10" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.11" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.12" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.28.13" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.29.00" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.29.01" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.29.02" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.29.03" = { created_at = 2026-08-17T15:51:26.520Z }
-"7.29.04" = { created_at = 2026-08-17T15:51:26.520Z }
+"3.3" = { created_at = 2014-07-04T11:02:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.3", prerelease = true }
+"3.31" = { created_at = 2014-07-09T16:59:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.31", prerelease = true }
+"3.32" = { created_at = 2014-09-11T19:20:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.32" }
+"3.4" = { created_at = 2014-09-24T11:58:38.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.4" }
+"3.41" = { created_at = 2014-10-02T11:47:20.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.41" }
+"3.43" = { created_at = 2015-03-18T18:32:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.43" }
+"3.42" = { created_at = 2014-11-19T20:04:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.42" }
+"3.43a" = { created_at = 2015-03-18T18:35:54.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.43a" }
+"3.44" = { created_at = 2015-04-15T19:09:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.44" }
+"3.45" = { created_at = 2015-05-01T09:07:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.45" }
+"3.5" = { created_at = 2015-07-02T09:53:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.5" }
+"3.51" = { created_at = 2015-07-12T00:42:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.51" }
+"3.6" = { created_at = 2015-09-29T21:13:48.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.6" }
+"3.61" = { created_at = 2015-09-30T10:54:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.61" }
+"3.62" = { created_at = 2015-12-23T15:36:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.62" }
+"3.63" = { created_at = 2016-02-05T15:55:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.63" }
+"3.65" = { created_at = 2016-03-16T17:35:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.65" }
+"3.7" = { created_at = 2016-08-18T13:52:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.7" }
+"3.71" = { created_at = 2016-08-25T16:24:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.71" }
+"3.72" = { created_at = 2016-10-12T18:27:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.72" }
+"3.8" = { created_at = 2016-10-28T14:09:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v3.8" }
+"4.01" = { created_at = 2016-11-02T19:28:46.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.01", prerelease = true }
+"4.0" = { created_at = 2016-11-02T17:34:01.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.0", prerelease = true }
+"4.02" = { created_at = 2016-11-04T18:45:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.02", prerelease = true }
+"4.03" = { created_at = 2016-11-11T14:58:19.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.03" }
+"4.1" = { created_at = 2017-01-24T20:04:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.1" }
+"4.11" = { created_at = 2017-01-25T19:32:41.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.11" }
+"4.12" = { created_at = 2017-02-20T20:03:36.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.12" }
+"4.2" = { created_at = 2017-03-23T22:55:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.2" }
+"4.21" = { created_at = 2017-04-01T18:06:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.21" }
+"4.22" = { created_at = 2017-05-23T00:16:19.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.22" }
+"4.23" = { created_at = 2017-06-24T17:56:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.23" }
+"4.30" = { created_at = 2017-08-14T01:40:25.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.30" }
+"4.31" = { created_at = 2017-09-26T19:58:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.31" }
+"4.32" = { created_at = 2017-10-05T19:01:42.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.32" }
+"4.40" = { created_at = 2017-12-21T16:53:54.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.40" }
+"4.50" = { created_at = 2018-07-05T20:48:41.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.50" }
+"4.60" = { created_at = 2018-08-03T21:05:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.60" }
+"4.61" = { created_at = 2018-08-28T14:15:07.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.61" }
+"4.65" = { created_at = 2018-10-29T16:50:30.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.65" }
+"4.70" = { created_at = 2019-04-13T14:57:43.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.70" }
+"4.71" = { created_at = 2019-04-16T12:52:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.71" }
+"4.72" = { created_at = 2019-04-18T21:21:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.72" }
+"4.80" = { created_at = 2019-04-22T01:30:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.80", prerelease = true }
+"4.81" = { created_at = 2019-04-29T15:37:14.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.81" }
+"4.82" = { created_at = 2019-04-29T20:00:30.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.82" }
+"4.83" = { created_at = 2019-05-10T19:39:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.83" }
+"4.84" = { created_at = 2019-05-16T01:17:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.84" }
+"4.85" = { created_at = 2019-05-16T17:24:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.85" }
+"4.86" = { created_at = 2019-06-07T23:53:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.86" }
+"4.87" = { created_at = 2019-06-12T19:29:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.87" }
+"4.88" = { created_at = 2019-06-24T15:21:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.88" }
+"4.89" = { created_at = 2019-07-11T14:33:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.89" }
+"4.90" = { created_at = 2019-08-01T16:28:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.90" }
+"4.91" = { created_at = 2019-08-10T20:07:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.91" }
+"4.92" = { created_at = 2019-08-13T13:27:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.92" }
+"4.93" = { created_at = 2019-08-15T18:05:51.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.93" }
+"4.94" = { created_at = 2019-08-30T16:22:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.94" }
+"4.95" = { created_at = 2019-10-01T19:45:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.95" }
+"4.96" = { created_at = 2019-10-22T16:17:42.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.96" }
+"4.97" = { created_at = 2020-01-02T18:10:43.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.97" }
+"4.98" = { created_at = 2020-02-15T14:27:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.98" }
+"4.99" = { created_at = 2020-02-28T01:47:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v4.99" }
+"5.01" = { created_at = 2020-03-26T23:15:36.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.01" }
+"5.0" = { created_at = 2020-03-26T21:06:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.0" }
+"5.02" = { created_at = 2020-03-27T01:44:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.02" }
+"5.03" = { created_at = 2020-03-31T18:04:30.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.03" }
+"5.04" = { created_at = 2020-04-07T13:27:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.04" }
+"5.05" = { created_at = 2020-04-15T13:29:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.05" }
+"5.06" = { created_at = 2020-04-21T18:55:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.06" }
+"5.07" = { created_at = 2020-04-26T21:54:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.07" }
+"5.08" = { created_at = 2020-05-07T19:37:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.08" }
+"5.09" = { created_at = 2020-05-12T18:51:55.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.09" }
+"5.10" = { created_at = 2020-05-15T12:15:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.10" }
+"5.11" = { created_at = 2020-06-17T20:01:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.11" }
+"5.20" = { created_at = 2020-09-18T13:49:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.20" }
+"5.21" = { created_at = 2020-09-30T12:47:46.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.21" }
+"5.22" = { created_at = 2020-10-01T18:02:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.22" }
+"5.23" = { created_at = 2020-10-09T15:25:19.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.23" }
+"5.24" = { created_at = 2020-10-15T12:34:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.24" }
+"5.30" = { created_at = 2020-12-08T17:18:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.30" }
+"5.31" = { created_at = 2021-01-04T15:16:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.31" }
+"5.32" = { created_at = 2021-02-03T18:52:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.32" }
+"5.33" = { created_at = 2021-02-04T01:14:30.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v5.33" }
+"6.00" = { created_at = 2021-03-25T12:20:26.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.00" }
+"6.01" = { created_at = 2021-04-09T14:26:42.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.01" }
+"6.02" = { created_at = 2021-05-04T14:43:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.02" }
+"6.03" = { created_at = 2021-05-25T17:42:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.03", prerelease = true }
+"6.04" = { created_at = 2021-05-26T17:43:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.04" }
+"6.05" = { created_at = 2021-06-11T14:16:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.05" }
+"6.06" = { created_at = 2021-06-17T19:22:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.06" }
+"6.07" = { created_at = 2021-07-28T20:00:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.07" }
+"6.08" = { created_at = 2021-10-06T00:17:18.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.08" }
+"6.09" = { created_at = 2021-10-20T18:24:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.09" }
+"6.10" = { created_at = 2021-10-26T19:15:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.10" }
+"6.11" = { created_at = 2021-11-22T13:57:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.11" }
+"6.12" = { created_at = 2021-12-28T17:42:26.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.12" }
+"6.13" = { created_at = 2022-01-12T17:16:38.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.13" }
+"6.14" = { created_at = 2022-02-02T16:37:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.14" }
+"6.15" = { created_at = 2022-02-04T19:33:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.15" }
+"6.16" = { created_at = 2022-02-27T19:34:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.16" }
+"6.17" = { created_at = 2022-03-08T19:26:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.17" }
+"6.18" = { created_at = 2022-03-30T15:20:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.18" }
+"6.20" = { created_at = 2022-04-11T14:39:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.20" }
+"6.21" = { created_at = 2022-04-23T18:59:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.21" }
+"6.22" = { created_at = 2022-06-30T18:55:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.22" }
+"6.23" = { created_at = 2022-08-23T13:37:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.23" }
+"6.24" = { created_at = 2022-08-30T12:25:25.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.24" }
+"6.25" = { created_at = 2022-09-02T17:49:07.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.25" }
+"20221101.195551" = { created_at = 2022-11-01T20:16:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/20221101.195551" }
+"6.31" = { created_at = 2022-11-22T14:41:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.31" }
+"6.40" = { created_at = 2023-02-09T18:28:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.40" }
+"6.41" = { created_at = 2023-02-11T14:47:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.41" }
+"6.42" = { created_at = 2023-02-13T22:36:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.42" }
+"6.5" = { created_at = 2023-02-23T21:29:20.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.5", prerelease = true }
+"6.50" = { created_at = 2023-02-24T15:31:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.50" }
+"6.51" = { created_at = 2023-03-16T00:16:51.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.51" }
+"6.52" = { created_at = 2023-03-16T20:34:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.52" }
+"6.53" = { created_at = 2023-03-31T13:55:14.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.53" }
+"6.56" = { created_at = 2023-04-11T15:41:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.56" }
+"6.57" = { created_at = 2023-04-17T14:03:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.57" }
+"6.58" = { created_at = 2023-04-26T13:25:36.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v6.58" }
+"7.0.0" = { created_at = 2024-09-13T19:14:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.0.0" }
+"7.00.02" = { created_at = 2024-09-17T03:22:01.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.02" }
+"7.00.03" = { created_at = 2024-09-18T21:59:37.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.03" }
+"20240924.214312" = { created_at = 2024-09-24T21:48:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/20240924.214312" }
+"7.00.08" = { created_at = 2024-09-27T23:54:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.08" }
+"7.00.10" = { created_at = 2024-10-01T13:57:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.10" }
+"7.00.13" = { created_at = 2024-10-03T14:06:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.13" }
+"7.00.15" = { created_at = 2024-10-10T01:23:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.15" }
+"7.00.16" = { created_at = 2024-10-10T14:27:38.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.16" }
+"7.00.17" = { created_at = 2024-10-11T15:01:14.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.17" }
+"7.00.18" = { created_at = 2024-10-11T21:51:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.18" }
+"7.00.19" = { created_at = 2024-10-15T00:23:53.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.19" }
+"7.00.23" = { created_at = 2024-10-19T15:22:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.23" }
+"7.00.24" = { created_at = 2024-10-20T19:24:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.24" }
+"7.00.25" = { created_at = 2024-10-21T18:23:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.25" }
+"7.00.26" = { created_at = 2024-10-23T03:20:30.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.26" }
+"7.00.27" = { created_at = 2024-10-23T06:08:38.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.27" }
+"7.00.28" = { created_at = 2024-10-23T11:22:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.28" }
+"7.00.29" = { created_at = 2024-10-24T23:04:08.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.29" }
+"7.00.30" = { created_at = 2024-10-26T02:49:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.30" }
+"7.00.31" = { created_at = 2024-10-27T02:57:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.31" }
+"7.00.32" = { created_at = 2024-10-27T17:18:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.32" }
+"7.00.33" = { created_at = 2024-10-31T02:19:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.33" }
+"7.00.34" = { created_at = 2024-10-31T20:11:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.34" }
+"7.00.35" = { created_at = 2024-11-02T21:39:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.35" }
+"7.00.36" = { created_at = 2024-11-05T23:09:27.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.36" }
+"7.00.37" = { created_at = 2024-11-10T17:43:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.37" }
+"7.00.38" = { created_at = 2024-11-11T04:31:20.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.38" }
+"7.00.39" = { created_at = 2024-11-18T12:20:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.39" }
+"7.00.40" = { created_at = 2024-11-21T01:18:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.00.40" }
+"7.01.00" = { created_at = 2024-11-22T18:40:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.01.00" }
+"7.01.01" = { created_at = 2024-11-24T00:23:18.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.01.01" }
+"7.01.02" = { created_at = 2024-11-27T00:02:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.01.02" }
+"7.01.03" = { created_at = 2024-11-27T06:52:01.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.01.03" }
+"7.01.04" = { created_at = 2024-12-05T00:11:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.01.04" }
+"7.02.00" = { created_at = 2024-12-07T01:19:25.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.00" }
+"7.02.02" = { created_at = 2024-12-17T19:11:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.02" }
+"7.02.03" = { created_at = 2024-12-18T17:11:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.03" }
+"7.02.04" = { created_at = 2024-12-26T18:06:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.04" }
+"7.02.05" = { created_at = 2024-12-28T04:06:48.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.05" }
+"7.02.06" = { created_at = 2025-01-04T19:49:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.06" }
+"7.02.07" = { created_at = 2025-01-07T01:45:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.07" }
+"7.02.08" = { created_at = 2025-01-13T20:38:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.08" }
+"7.02.09" = { created_at = 2025-01-18T19:38:42.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.09" }
+"7.02.11" = { created_at = 2025-01-24T00:05:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.02.11" }
+"7.03.00" = { created_at = 2025-01-27T00:15:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.00" }
+"7.03.01" = { created_at = 2025-01-27T17:08:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.01" }
+"7.03.02" = { created_at = 2025-02-01T21:41:08.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.02" }
+"7.03.03" = { created_at = 2025-02-02T17:17:54.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.03" }
+"7.03.04" = { created_at = 2025-02-05T00:37:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.04" }
+"7.03.05" = { created_at = 2025-02-06T23:53:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.05" }
+"7.03.06" = { created_at = 2025-02-07T22:42:18.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.06" }
+"7.03.07" = { created_at = 2025-02-08T18:24:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.07" }
+"7.03.08" = { created_at = 2025-02-08T21:25:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.08" }
+"7.03.09" = { created_at = 2025-02-12T15:11:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.03.09" }
+"7.04.00" = { created_at = 2025-02-12T19:58:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.04.00" }
+"7.04.01" = { created_at = 2025-02-13T16:11:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.04.01" }
+"7.04.02" = { created_at = 2025-02-14T04:59:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.04.02" }
+"7.04.03" = { created_at = 2025-02-15T19:35:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.04.03" }
+"7.04.04" = { created_at = 2025-02-16T19:20:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.04.04" }
+"7.05.00" = { created_at = 2025-02-21T05:21:39.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.00" }
+"7.05.01" = { created_at = 2025-02-21T16:29:18.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.01" }
+"7.05.02" = { created_at = 2025-02-22T16:41:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.02" }
+"7.05.03" = { created_at = 2025-02-24T23:20:46.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.03" }
+"7.05.04" = { created_at = 2025-02-25T17:55:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.04" }
+"7.05.05" = { created_at = 2025-02-28T07:14:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.05" }
+"7.05.06" = { created_at = 2025-03-04T01:05:43.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.06" }
+"7.05.07" = { created_at = 2025-03-04T02:58:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.07" }
+"7.05.08" = { created_at = 2025-03-05T19:38:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.08" }
+"7.05.09" = { created_at = 2025-03-17T21:28:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.09" }
+"7.05.10" = { created_at = 2025-03-18T19:12:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.10" }
+"7.05.11" = { created_at = 2025-03-18T22:58:07.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.11" }
+"7.05.12" = { created_at = 2025-03-19T12:53:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.12" }
+"7.05.13" = { created_at = 2025-03-22T17:38:19.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.13" }
+"7.05.14" = { created_at = 2025-03-25T04:29:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.14" }
+"7.05.15" = { created_at = 2025-03-26T03:57:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.15" }
+"7.05.16" = { created_at = 2025-03-28T04:52:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.16" }
+"7.05.17" = { created_at = 2025-03-28T19:32:38.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.17" }
+"7.05.18" = { created_at = 2025-03-30T16:29:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.18" }
+"7.05.19" = { created_at = 2025-03-31T21:33:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.19" }
+"7.05.20" = { created_at = 2025-04-01T22:50:46.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.20" }
+"7.05.21" = { created_at = 2025-04-04T01:21:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.21" }
+"7.05.22" = { created_at = 2025-04-08T03:49:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.05.22" }
+"7.06.00" = { created_at = 2025-04-08T18:03:41.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.00" }
+"7.06.01" = { created_at = 2025-04-09T20:40:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.01" }
+"7.06.02" = { created_at = 2025-04-11T20:10:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.02" }
+"7.06.03" = { created_at = 2025-04-13T21:10:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.03" }
+"7.06.04" = { created_at = 2025-04-15T18:06:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.04" }
+"7.06.05" = { created_at = 2025-04-17T23:52:37.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.05" }
+"7.06.06" = { created_at = 2025-04-22T19:56:55.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.06" }
+"7.06.08" = { created_at = 2025-04-23T00:17:01.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.08" }
+"7.06.09" = { created_at = 2025-04-23T16:23:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.09" }
+"7.06.10" = { created_at = 2025-04-23T23:20:26.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.10" }
+"7.06.11" = { created_at = 2025-04-25T20:07:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.11" }
+"7.06.12" = { created_at = 2025-04-25T22:58:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.12" }
+"7.06.13" = { created_at = 2025-04-27T18:08:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.13" }
+"7.06.14" = { created_at = 2025-05-06T04:31:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.06.14" }
+"7.07.00" = { created_at = 2025-05-07T15:53:26.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.00" }
+"7.07.01" = { created_at = 2025-05-09T22:07:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.01" }
+"7.07.02" = { created_at = 2025-05-12T22:31:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.02" }
+"7.07.03" = { created_at = 2025-05-15T05:22:14.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.03" }
+"7.07.04" = { created_at = 2025-05-15T21:17:50.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.04" }
+"7.07.05" = { created_at = 2025-05-16T17:45:18.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.05" }
+"7.07.06" = { created_at = 2025-05-22T03:58:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.06" }
+"7.07.07" = { created_at = 2025-05-22T14:47:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.07" }
+"7.07.08" = { created_at = 2025-05-22T17:33:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.08" }
+"7.07.09" = { created_at = 2025-05-23T17:30:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.09" }
+"7.07.10" = { created_at = 2025-05-23T20:38:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.10" }
+"7.07.11" = { created_at = 2025-05-24T04:08:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.11" }
+"7.07.12" = { created_at = 2025-05-26T20:15:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.12" }
+"7.07.13" = { created_at = 2025-05-28T02:30:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.13" }
+"7.07.14" = { created_at = 2025-05-28T16:29:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.14" }
+"7.07.15" = { created_at = 2025-05-28T22:19:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.15" }
+"7.07.16" = { created_at = 2025-05-30T01:17:41.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.16" }
+"7.07.17" = { created_at = 2025-05-30T13:56:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.07.17" }
+"7.08.00" = { created_at = 2025-06-01T01:12:08.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.08.00" }
+"7.08.01" = { created_at = 2025-06-01T16:34:33.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.08.01" }
+"7.08.02" = { created_at = 2025-06-02T20:57:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.08.02" }
+"7.09.00" = { created_at = 2025-06-05T20:22:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.00" }
+"7.09.01" = { created_at = 2025-06-06T06:17:25.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.01" }
+"7.09.02" = { created_at = 2025-06-07T02:30:42.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.02" }
+"7.09.03" = { created_at = 2025-06-10T16:43:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.03" }
+"7.09.04" = { created_at = 2025-06-12T05:18:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.04" }
+"7.09.05" = { created_at = 2025-06-12T21:15:55.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.05" }
+"7.09.06" = { created_at = 2025-06-16T16:31:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.06" }
+"7.09.07" = { created_at = 2025-06-16T18:26:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.09.07" }
+"7.10.00" = { created_at = 2025-06-18T16:57:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.00" }
+"7.10.01" = { created_at = 2025-06-19T16:41:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.01" }
+"7.10.02" = { created_at = 2025-06-20T20:26:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.02" }
+"7.10.03" = { created_at = 2025-06-22T01:55:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.03" }
+"7.10.04" = { created_at = 2025-06-22T20:33:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.04" }
+"7.10.05" = { created_at = 2025-06-24T23:59:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.05" }
+"7.10.06" = { created_at = 2025-06-26T16:52:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.06" }
+"7.10.07" = { created_at = 2025-06-26T22:12:53.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.07" }
+"7.10.08" = { created_at = 2025-06-30T14:46:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.08" }
+"7.10.09" = { created_at = 2025-06-30T17:10:42.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.09" }
+"7.10.10" = { created_at = 2025-06-30T20:03:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.10.10" }
+"7.11.00" = { created_at = 2025-07-02T06:25:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.11.00" }
+"7.12.00" = { created_at = 2025-07-07T03:31:20.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.12.00" }
+"7.12.01" = { created_at = 2025-07-08T17:19:53.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.12.01" }
+"7.12.02" = { created_at = 2025-07-10T15:13:37.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.12.02" }
+"7.13.00" = { created_at = 2025-07-11T23:57:43.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.13.00" }
+"7.13.01" = { created_at = 2025-07-13T04:43:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.13.01" }
+"7.13.02" = { created_at = 2025-07-14T16:03:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.13.02" }
+"7.13.03" = { created_at = 2025-07-14T23:38:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.13.03" }
+"7.14.00" = { created_at = 2025-07-17T16:21:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.14.00" }
+"7.14.01" = { created_at = 2025-07-18T17:50:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.14.01" }
+"7.14.02" = { created_at = 2025-07-18T20:05:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.14.02" }
+"7.14.03" = { created_at = 2025-07-18T23:16:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.14.03" }
+"7.14.04" = { created_at = 2025-07-21T23:20:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.14.04" }
+"7.15.00" = { created_at = 2025-07-25T00:06:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.15.00" }
+"7.15.01" = { created_at = 2025-07-25T20:25:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.15.01" }
+"7.16.00" = { created_at = 2025-07-28T04:15:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.16.00" }
+"7.16.01" = { created_at = 2025-07-29T00:09:31.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.16.01" }
+"7.17.00" = { created_at = 2025-07-30T00:25:19.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.17.00" }
+"7.17.01" = { created_at = 2025-07-30T01:35:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.17.01" }
+"7.17.02" = { created_at = 2025-07-31T03:48:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.17.02" }
+"7.17.03" = { created_at = 2025-07-31T18:42:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.17.03" }
+"7.18.00" = { created_at = 2025-08-01T01:34:53.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.00" }
+"7.18.01" = { created_at = 2025-08-04T22:26:54.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.01" }
+"7.18.02" = { created_at = 2025-08-06T19:35:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.02" }
+"7.18.03" = { created_at = 2025-08-09T00:29:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.03" }
+"7.18.04" = { created_at = 2025-08-12T17:43:08.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.04" }
+"7.18.05" = { created_at = 2025-08-15T02:22:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.05" }
+"7.18.06" = { created_at = 2025-08-16T00:13:27.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.06" }
+"7.18.07" = { created_at = 2025-08-18T20:03:46.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.18.07" }
+"7.19.00" = { created_at = 2025-08-21T23:41:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.19.00" }
+"7.19.01" = { created_at = 2025-08-26T14:56:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.19.01" }
+"7.19.02" = { created_at = 2025-08-28T03:27:57.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.19.02" }
+"7.19.03" = { created_at = 2025-08-31T00:01:37.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.19.03" }
+"7.20.00" = { created_at = 2025-09-01T04:19:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.20.00" }
+"7.20.01" = { created_at = 2025-09-01T20:17:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.20.01" }
+"7.20.02" = { created_at = 2025-09-01T23:37:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.20.02" }
+"7.20.03" = { created_at = 2025-09-03T21:04:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.20.03" }
+"7.20.04" = { created_at = 2025-09-06T16:01:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.20.04" }
+"7.21.01" = { created_at = 2025-09-13T23:25:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.21.01" }
+"7.21.02" = { created_at = 2025-09-17T20:20:36.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.21.02" }
+"7.21.03" = { created_at = 2025-09-18T03:36:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.21.03" }
+"7.22.00" = { created_at = 2025-09-21T22:18:20.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.00" }
+"7.22.02" = { created_at = 2025-09-23T01:21:39.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.02" }
+"7.22.03" = { created_at = 2025-09-25T16:53:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.03" }
+"7.22.04" = { created_at = 2025-09-27T05:18:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.04" }
+"7.22.05" = { created_at = 2025-09-27T21:38:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.05" }
+"7.22.06" = { created_at = 2025-09-28T21:21:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.06" }
+"7.22.07" = { created_at = 2025-09-29T03:26:23.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.22.07" }
+"7.23.00" = { created_at = 2025-09-29T20:32:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.00" }
+"7.23.02" = { created_at = 2025-09-30T03:51:14.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.02" }
+"7.23.03" = { created_at = 2025-10-01T01:55:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.03" }
+"7.23.04" = { created_at = 2025-10-02T01:35:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.04" }
+"7.23.05" = { created_at = 2025-10-02T20:23:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.05" }
+"7.23.06" = { created_at = 2025-10-03T00:36:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.06" }
+"7.23.07" = { created_at = 2025-10-03T15:50:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.23.07" }
+"7.24.00" = { created_at = 2025-10-04T01:06:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.24.00" }
+"7.24.01" = { created_at = 2025-10-06T19:58:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.24.01" }
+"7.25.00" = { created_at = 2025-10-09T02:09:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.25.00" }
+"7.25.01" = { created_at = 2025-10-10T01:10:00.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.25.01" }
+"7.27.00" = { created_at = 2025-10-18T01:03:48.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.27.00" }
+"7.27.01" = { created_at = 2025-10-21T20:29:27.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.27.01" }
+"7.27.02" = { created_at = 2025-10-24T00:57:50.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.27.02" }
+"7.27.03" = { created_at = 2025-10-24T19:52:26.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.27.03" }
+"7.27.04" = { created_at = 2025-10-26T17:49:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.27.04" }
+"7.27.05" = { created_at = 2025-10-30T17:19:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.27.05" }
+"7.28.00" = { created_at = 2025-10-31T14:30:47.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.00" }
+"7.28.01" = { created_at = 2025-11-06T22:25:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.01" }
+"7.28.02" = { created_at = 2025-11-07T18:06:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.02" }
+"7.28.03" = { created_at = 2025-11-08T03:30:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.03" }
+"7.28.04" = { created_at = 2025-11-10T17:16:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.04" }
+"7.28.06" = { created_at = 2025-11-12T19:21:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.06" }
+"7.28.07" = { created_at = 2025-11-15T17:55:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.07" }
+"7.28.08" = { created_at = 2025-11-18T23:23:54.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.08" }
+"7.28.09" = { created_at = 2025-11-19T17:57:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.09" }
+"7.28.10" = { created_at = 2025-11-19T21:52:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.10" }
+"7.28.11" = { created_at = 2025-11-20T01:49:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.11" }
+"7.28.12" = { created_at = 2025-11-22T01:22:20.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.12" }
+"7.28.13" = { created_at = 2025-11-24T19:03:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.28.13" }
+"7.29.00" = { created_at = 2025-11-25T18:44:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.29.00" }
+"7.29.01" = { created_at = 2025-11-26T20:15:33.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.29.01" }
+"7.29.02" = { created_at = 2025-12-03T01:15:33.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.29.02" }
+"7.29.03" = { created_at = 2025-12-03T15:56:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.29.03" }
+"7.29.04" = { created_at = 2025-12-04T21:16:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.29.04" }
+"7.30.01" = { created_at = 2025-12-18T01:08:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.30.01" }
+"7.30.02" = { created_at = 2025-12-18T18:26:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.30.02" }
+"7.30.03" = { created_at = 2025-12-20T20:00:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.30.03" }
+"7.30.04" = { created_at = 2025-12-23T23:18:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.30.04" }
+"7.30.05" = { created_at = 2025-12-24T20:12:50.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.30.05" }
+"7.31.00" = { created_at = 2025-12-29T04:49:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.00" }
+"7.31.01" = { created_at = 2025-12-30T23:54:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.01" }
+"7.31.02" = { created_at = 2026-01-08T02:05:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.02" }
+"7.31.03" = { created_at = 2026-01-08T20:50:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.03" }
+"7.31.04" = { created_at = 2026-01-09T17:34:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.04" }
+"7.31.05" = { created_at = 2026-01-13T00:16:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.05" }
+"7.31.06" = { created_at = 2026-01-15T01:19:01.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.31.06" }
+"7.32.00" = { created_at = 2026-01-18T18:05:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.00" }
+"7.32.01" = { created_at = 2026-01-19T05:47:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.01" }
+"7.32.02" = { created_at = 2026-01-21T19:07:11.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.02" }
+"7.32.03" = { created_at = 2026-01-26T04:33:25.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.03" }
+"7.32.04" = { created_at = 2026-01-28T02:03:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.04" }
+"7.32.05" = { created_at = 2026-01-29T22:37:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.05" }
+"7.32.06" = { created_at = 2026-01-30T04:06:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.06" }
+"7.32.07" = { created_at = 2026-01-31T18:37:12.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.32.07" }
+"7.33.00" = { created_at = 2026-02-03T19:07:43.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.33.00" }
+"7.33.01" = { created_at = 2026-02-05T20:13:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.33.01" }
+"7.33.02" = { created_at = 2026-02-07T19:51:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.33.02" }
+"7.33.03" = { created_at = 2026-02-10T22:00:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.33.03" }
+"7.34.00" = { created_at = 2026-02-12T01:58:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.00" }
+"7.34.01" = { created_at = 2026-02-12T19:37:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.01" }
+"7.34.02" = { created_at = 2026-02-13T17:17:07.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.02" }
+"7.34.03" = { created_at = 2026-02-16T19:01:51.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.03" }
+"7.34.04" = { created_at = 2026-02-18T00:46:51.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.04" }
+"7.34.05" = { created_at = 2026-02-18T18:27:40.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.05" }
+"7.34.06" = { created_at = 2026-02-20T22:31:05.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.06" }
+"7.34.08" = { created_at = 2026-02-25T02:24:03.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.08" }
+"7.34.09" = { created_at = 2026-02-26T21:37:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.09" }
+"7.34.10" = { created_at = 2026-02-28T00:51:39.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.10" }
+"7.34.11" = { created_at = 2026-02-28T21:03:55.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.11" }
+"7.34.12" = { created_at = 2026-03-02T04:54:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.12" }
+"7.34.13" = { created_at = 2026-03-02T19:51:50.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.34.13" }
+"7.35.00" = { created_at = 2026-03-04T04:11:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.35.00" }
+"7.35.01" = { created_at = 2026-03-07T02:46:37.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.35.01" }
+"7.35.02" = { created_at = 2026-03-10T02:30:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.35.02" }
+"7.35.03" = { created_at = 2026-03-10T17:21:48.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.35.03" }
+"7.36.00" = { created_at = 2026-03-11T23:00:33.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.36.00" }
+"7.36.01" = { created_at = 2026-03-13T03:12:33.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.36.01" }
+"7.36.02" = { created_at = 2026-03-18T00:55:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.36.02" }
+"7.36.03" = { created_at = 2026-03-18T20:19:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.36.03" }
+"7.37.00" = { created_at = 2026-03-19T15:15:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.37.00" }
+"7.38.00" = { created_at = 2026-03-21T00:45:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.38.00" }
+"7.38.01" = { created_at = 2026-03-25T19:48:39.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.38.01" }
+"7.38.02" = { created_at = 2026-03-26T04:39:54.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.38.02" }
+"7.39.00" = { created_at = 2026-03-26T19:41:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.00" }
+"7.39.01" = { created_at = 2026-03-27T23:18:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.01" }
+"7.39.02" = { created_at = 2026-03-31T15:17:14.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.02" }
+"7.39.03" = { created_at = 2026-04-02T00:13:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.03" }
+"7.39.04" = { created_at = 2026-04-03T02:32:48.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.04" }
+"7.39.06" = { created_at = 2026-04-06T15:28:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.06" }
+"7.39.07" = { created_at = 2026-04-07T15:59:50.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.07" }
+"7.39.08" = { created_at = 2026-04-09T01:54:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.39.08" }
+"7.40.00" = { created_at = 2026-04-09T04:38:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.40.00" }
+"7.40.01" = { created_at = 2026-04-11T17:42:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.40.01" }
+"7.40.02" = { created_at = 2026-04-12T01:27:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.40.02" }
+"7.40.03" = { created_at = 2026-04-14T02:49:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.40.03" }
+"7.41.00" = { created_at = 2026-04-16T17:46:41.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.41.00" }
+"7.41.01" = { created_at = 2026-04-21T00:09:30.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.41.01" }
+"7.41.02" = { created_at = 2026-04-26T20:42:56.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.41.02" }
+"7.41.03" = { created_at = 2026-04-27T03:23:28.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.41.03" }
+"7.42.00" = { created_at = 2026-04-27T18:13:25.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.42.00" }
+"7.43.01" = { created_at = 2026-04-29T01:38:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.01" }
+"7.43.02" = { created_at = 2026-05-01T02:29:49.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.02" }
+"7.43.03" = { created_at = 2026-05-04T18:40:21.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.03" }
+"7.43.04" = { created_at = 2026-05-06T16:40:24.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.04" }
+"7.43.05" = { created_at = 2026-05-16T05:58:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.05" }
+"7.43.06" = { created_at = 2026-05-19T00:00:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.06" }
+"7.43.07" = { created_at = 2026-05-19T02:02:41.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.07" }
+"7.43.08" = { created_at = 2026-05-20T18:55:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.08" }
+"7.43.09" = { created_at = 2026-05-22T17:30:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.09" }
+"7.43.10" = { created_at = 2026-05-23T00:53:17.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.43.10" }
+"7.44.00" = { created_at = 2026-05-27T21:24:10.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.44.00" }
+"7.44.01" = { created_at = 2026-05-30T02:44:22.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.44.01" }
+"7.44.02" = { created_at = 2026-06-01T18:59:58.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.44.02" }
+"7.44.03" = { created_at = 2026-06-01T23:08:44.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.44.03" }
+"7.45.00" = { created_at = 2026-06-10T05:45:52.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.45.00" }
+"7.46.00" = { created_at = 2026-06-11T00:46:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.00" }
+"7.46.01" = { created_at = 2026-06-11T21:45:34.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.01" }
+"7.46.02" = { created_at = 2026-06-19T15:00:02.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.02" }
+"7.46.03" = { created_at = 2026-06-27T21:25:13.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.03" }
+"7.46.04" = { created_at = 2026-07-01T15:58:46.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.04" }
+"7.46.05" = { created_at = 2026-07-02T14:56:15.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.05" }
+"7.46.06" = { created_at = 2026-07-02T20:17:32.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.06" }
+"7.46.07" = { created_at = 2026-07-04T16:52:06.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.07" }
+"7.46.08" = { created_at = 2026-07-08T21:38:33.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.08" }
+"7.46.09" = { created_at = 2026-07-11T18:35:16.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.09" }
+"7.46.10" = { created_at = 2026-07-20T17:11:35.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.10" }
+"7.46.11" = { created_at = 2026-07-21T00:40:04.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.46.11" }
+"7.47.00" = { created_at = 2026-07-24T21:04:09.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.00" }
+"7.47.01" = { created_at = 2026-08-01T00:58:51.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.01" }
+"7.47.02" = { created_at = 2026-08-01T17:24:29.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.02" }
+"7.47.03" = { created_at = 2026-08-08T18:10:45.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.03" }
+"7.47.04" = { created_at = 2026-08-09T18:07:07.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.04" }
+"7.47.05" = { created_at = 2026-08-11T22:24:59.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.05" }
+"7.47.06" = { created_at = 2026-08-12T19:53:38.000Z, release_url = "https://github.com/GAM-team/GAM/releases/tag/v7.47.06" }

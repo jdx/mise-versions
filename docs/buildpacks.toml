@@ -1,4 +1,26 @@
 [versions]
+"0.0.1" = { created_at = 2018-08-20T22:10:21.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.1" }
+"0.0.3" = { created_at = 2018-09-24T15:58:33.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.3" }
+"0.0.4" = { created_at = 2018-10-10T00:03:09.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.4" }
+"0.0.5" = { created_at = 2018-10-25T16:46:21.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.5" }
+"0.0.6" = { created_at = 2018-11-26T22:00:42.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.6" }
+"0.0.7" = { created_at = 2018-12-04T21:17:57.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.7" }
+"0.0.8" = { created_at = 2018-12-11T21:27:59.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.8" }
+"0.0.9" = { created_at = 2019-01-08T22:21:39.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.0.9" }
+"0.1.0" = { created_at = 2019-04-03T02:33:20.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2019-05-17T14:23:19.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2019-06-03T02:29:19.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.2.1" }
+"0.3.0" = { created_at = 2019-07-17T20:50:42.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.3.0" }
+"0.4.1" = { created_at = 2019-09-16T22:51:50.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.4.1" }
+"0.5.0" = { created_at = 2019-10-22T21:31:02.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.5.0" }
+"0.6.0" = { created_at = 2019-12-19T21:16:29.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2020-01-21T22:16:33.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2020-01-27T22:52:03.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2020-01-30T20:49:43.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.8.1" }
+"0.9.0" = { created_at = 2020-03-02T22:28:47.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.9.0" }
+"0.10.0" = { created_at = 2020-04-15T14:51:31.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.10.0" }
+"0.11.0" = { created_at = 2020-05-27T20:32:39.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.11.0" }
+"0.11.1" = { created_at = 2020-06-08T20:00:01.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.11.1" }
 "0.11.2" = { created_at = 2020-06-11T20:39:24.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.11.2" }
 "0.12.0" = { created_at = 2020-07-07T19:09:32.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.12.0" }
 "0.13.0" = { created_at = 2020-08-18T19:34:02.000Z, release_url = "https://github.com/buildpacks/pack/releases/tag/v0.13.0" }
