@@ -1,17 +1,17 @@
 [versions]
 "0.1.0" = { created_at = 2019-10-16T02:35:39.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.1.0", prerelease = true }
 "0.2.0-rc.0" = { created_at = 2019-11-14T22:44:51.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.2.0-rc.0", prerelease = true }
-"0.2.0" = { created_at = 2019-11-15T16:35:21.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.2.0", prerelease = true }
 "0.2.0-rc.1" = { created_at = 2019-11-15T06:14:51.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.2.0-rc.1", prerelease = true }
-"0.3.0" = { created_at = 2019-12-04T20:56:10.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.3.0", prerelease = true }
+"0.2.0" = { created_at = 2019-11-15T16:35:21.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.2.0", prerelease = true }
 "0.3.0-rc.0" = { created_at = 2019-12-04T18:38:40.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.3.0-rc.0", prerelease = true }
+"0.3.0" = { created_at = 2019-12-04T20:56:10.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.3.0", prerelease = true }
 "0.4.0-rc.0" = { created_at = 2020-02-10T23:46:58.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.4.0-rc.0", prerelease = true }
-"0.4.0" = { created_at = 2020-02-13T17:27:34.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.4.0", prerelease = true }
 "0.4.0-rc.1" = { created_at = 2020-02-11T17:03:53.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.4.0-rc.1", prerelease = true }
+"0.4.0" = { created_at = 2020-02-13T17:27:34.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.4.0", prerelease = true }
 "0.4.1" = { created_at = 2020-02-14T06:41:13.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.4.1", prerelease = true }
 "0.5.0-rc.0" = { created_at = 2020-03-10T21:48:00.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.5.0-rc.0", prerelease = true }
-"0.5.0" = { created_at = 2020-03-12T17:55:26.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.5.0", prerelease = true }
 "0.5.0-rc.1" = { created_at = 2020-03-11T03:58:00.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.5.0-rc.1", prerelease = true }
+"0.5.0" = { created_at = 2020-03-12T17:55:26.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.5.0", prerelease = true }
 "0.6.0-rc.0" = { created_at = 2020-03-31T21:21:36.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.6.0-rc.0", prerelease = true }
 "0.6.0" = { created_at = 2020-04-02T17:43:25.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.6.0", prerelease = true }
 "0.7.0-rc.0" = { created_at = 2020-05-01T16:51:50.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.7.0-rc.0", prerelease = true }
@@ -19,19 +19,19 @@
 "0.8.0-rc.0" = { created_at = 2020-06-05T20:40:35.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.8.0-rc.0", prerelease = true }
 "0.8.0-rc.1" = { created_at = 2020-06-06T01:21:06.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.8.0-rc.1", prerelease = true }
 "0.8.0-rc.2" = { created_at = 2020-06-06T05:25:50.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.8.0-rc.2", prerelease = true }
-"0.8.0" = { created_at = 2020-06-09T21:24:59.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.8.0", prerelease = true }
 "0.8.0-rc.3" = { created_at = 2020-06-09T00:59:55.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.8.0-rc.3", prerelease = true }
+"0.8.0" = { created_at = 2020-06-09T21:24:59.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.8.0", prerelease = true }
 "0.9.0-rc.0" = { created_at = 2020-07-13T23:56:36.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.9.0-rc.0", prerelease = true }
-"0.9.0" = { created_at = 2020-07-16T18:42:24.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.9.0", prerelease = true }
 "0.9.0-rc.1" = { created_at = 2020-07-14T03:29:19.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.9.0-rc.1", prerelease = true }
 "0.9.0-rc.2" = { created_at = 2020-07-14T20:55:38.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.9.0-rc.2", prerelease = true }
+"0.9.0" = { created_at = 2020-07-16T18:42:24.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.9.0", prerelease = true }
 "0.10.0-rc.0" = { created_at = 2020-08-18T20:33:14.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.10.0-rc.0", prerelease = true }
 "0.10.0-rc.1" = { created_at = 2020-08-18T22:17:48.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.10.0-rc.1", prerelease = true }
 "0.10.0" = { created_at = 2020-08-20T16:54:29.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.10.0", prerelease = true }
 "0.11.0-rc.0" = { created_at = 2020-09-25T01:47:21.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.11.0-rc.0", prerelease = true }
 "0.11.0-rc.1" = { created_at = 2020-09-28T19:15:00.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.11.0-rc.1", prerelease = true }
-"0.11.0" = { created_at = 2020-09-30T21:43:26.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.11.0", prerelease = true }
 "0.11.0-rc.2" = { created_at = 2020-09-30T17:58:01.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.11.0-rc.2", prerelease = true }
+"0.11.0" = { created_at = 2020-09-30T21:43:26.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v0.11.0", prerelease = true }
 "1.0.0-rc.1" = { created_at = 2020-11-12T00:19:11.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.0.0-rc.1", prerelease = true }
 "1.0.0-rc.2" = { created_at = 2020-11-17T01:02:51.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.0.0-rc.2", prerelease = true }
 "1.0.0-rc.3" = { created_at = 2020-12-16T01:26:30.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.0.0-rc.3", prerelease = true }
@@ -41,8 +41,8 @@
 "1.0.0-rc.7" = { created_at = 2021-02-15T23:07:05.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.0.0-rc.7", prerelease = true }
 "1.0.0" = { created_at = 2021-02-17T01:19:46.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.0.0" }
 "1.0.1" = { created_at = 2021-03-12T00:37:56.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.0.1" }
-"1.1.0" = { created_at = 2021-04-01T22:33:14.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.1.0" }
 "1.1.0-rc.1" = { created_at = 2021-03-25T17:37:26.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.1.0-rc.1", prerelease = true }
+"1.1.0" = { created_at = 2021-04-01T22:33:14.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.1.0" }
 "1.2.0-rc.1" = { created_at = 2021-05-19T18:14:38.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.2.0-rc.1", prerelease = true }
 "1.2.0-rc.2" = { created_at = 2021-05-19T20:14:34.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.2.0-rc.2", prerelease = true }
 "1.2.0" = { created_at = 2021-05-26T17:35:39.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.2.0" }
@@ -114,8 +114,8 @@
 "1.15.0-rc.6" = { created_at = 2025-02-21T17:27:27.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.15.0-rc.6", prerelease = true }
 "1.15.0" = { created_at = 2025-02-27T18:34:08.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.15.0" }
 "1.15.1" = { created_at = 2025-04-15T16:15:34.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.15.1" }
-"1.16.0-rc.1" = { created_at = 2025-07-17T14:02:25.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.16.0-rc.1", prerelease = true }
 "1.15.2" = { created_at = 2025-08-04T20:08:10.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.15.2" }
+"1.16.0-rc.1" = { created_at = 2025-07-17T14:02:25.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.16.0-rc.1", prerelease = true }
 "1.16.0" = { created_at = 2025-09-16T15:45:01.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.16.0" }
 "1.16.1" = { created_at = 2025-09-18T15:41:21.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.16.1" }
 "1.16.2" = { created_at = 2025-10-29T14:59:09.000Z, release_url = "https://github.com/dapr/cli/releases/tag/v1.16.2" }

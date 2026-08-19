@@ -67,28 +67,41 @@
 "2.14.0-rc.1" = { created_at = 2019-05-09T17:29:10.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.14.0-rc.1", prerelease = true }
 "2.14.0-rc.2" = { created_at = 2019-05-10T16:15:34.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.14.0-rc.2", prerelease = true }
 "2.14.0" = { created_at = 2019-05-15T21:29:02.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.14.0" }
-"3.0.0-alpha.1" = { created_at = 2019-05-15T22:16:04.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1", prerelease = true }
 "2.14.1" = { created_at = 2019-06-05T21:59:14.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.14.1" }
 "2.14.2" = { created_at = 2019-07-11T21:32:28.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.14.2" }
-"3.0.0-alpha.2" = { created_at = 2019-07-23T22:53:27.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-alpha.2", prerelease = true }
 "2.14.3" = { created_at = 2019-07-30T16:30:58.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.14.3" }
+"2.15.0-rc.1" = { created_at = 2019-10-10T20:58:22.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.0-rc.1", prerelease = true }
+"2.15.0-rc.2" = { created_at = 2019-10-16T15:24:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.0-rc.2", prerelease = true }
+"2.15.0" = { created_at = 2019-10-18T18:12:53.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.0" }
+"2.15.1" = { created_at = 2019-10-23T08:29:43.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.1" }
+"2.15.2" = { created_at = 2019-10-29T21:00:47.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.2" }
+"2.16.0-rc.1" = { created_at = 2019-10-30T20:21:36.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.0-rc.1", prerelease = true }
+"2.16.0-rc.2" = { created_at = 2019-10-31T15:54:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.0-rc.2", prerelease = true }
+"2.16.0" = { created_at = 2019-11-06T15:46:08.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.0" }
+"2.16.1" = { created_at = 2019-11-12T18:41:44.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.1" }
+"2.16.2" = { created_at = 2020-02-13T23:01:40.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.2" }
+"2.16.3" = { created_at = 2020-02-13T23:49:42.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.3" }
+"2.16.4" = { created_at = 2020-03-23T17:11:11.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.4" }
+"2.16.5" = { created_at = 2020-03-26T16:12:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.5" }
+"2.16.6" = { created_at = 2020-04-14T19:52:23.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.6" }
+"2.16.7" = { created_at = 2020-05-05T18:27:30.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.7" }
+"2.16.8" = { created_at = 2020-06-10T19:36:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.8" }
+"2.16.9" = { created_at = 2020-06-16T19:38:05.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.9" }
+"2.16.10" = { created_at = 2020-08-12T20:56:24.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.10" }
+"2.16.11" = { created_at = 2020-09-17T20:14:20.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.11" }
+"2.16.12" = { created_at = 2020-09-18T17:28:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.12" }
+"2.17.0-rc.1" = { created_at = 2020-10-19T21:17:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.17.0-rc.1", prerelease = true }
+"2.17.0" = { created_at = 2020-10-26T15:29:31.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.17.0" }
+"3.0.0-alpha.1" = { created_at = 2019-05-15T22:16:04.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-alpha.1", prerelease = true }
+"3.0.0-alpha.2" = { created_at = 2019-07-23T22:53:27.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-alpha.2", prerelease = true }
 "3.0.0-beta.1" = { created_at = 2019-08-26T17:50:08.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-beta.1", prerelease = true }
 "3.0.0-beta.2" = { created_at = 2019-08-28T23:27:24.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-beta.2", prerelease = true }
 "3.0.0-beta.3" = { created_at = 2019-09-05T20:59:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-beta.3", prerelease = true }
 "3.0.0-beta.4" = { created_at = 2019-10-08T19:35:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-beta.4", prerelease = true }
-"2.15.0-rc.1" = { created_at = 2019-10-10T20:58:22.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.0-rc.1", prerelease = true }
-"2.15.0-rc.2" = { created_at = 2019-10-16T15:24:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.0-rc.2", prerelease = true }
-"2.15.0" = { created_at = 2019-10-18T18:12:53.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.0" }
 "3.0.0-beta.5" = { created_at = 2019-10-22T22:06:34.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-beta.5", prerelease = true }
-"2.15.1" = { created_at = 2019-10-23T08:29:43.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.1" }
-"2.15.2" = { created_at = 2019-10-29T21:00:47.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.15.2" }
 "3.0.0-rc.1" = { created_at = 2019-10-29T21:07:54.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-rc.1", prerelease = true }
-"2.16.0-rc.1" = { created_at = 2019-10-30T20:21:36.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.0-rc.1", prerelease = true }
-"2.16.0-rc.2" = { created_at = 2019-10-31T15:54:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.0-rc.2", prerelease = true }
 "3.0.0-rc.2" = { created_at = 2019-11-01T21:25:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-rc.2", prerelease = true }
-"2.16.0" = { created_at = 2019-11-06T15:46:08.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.0" }
 "3.0.0-rc.3" = { created_at = 2019-11-06T17:05:29.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-rc.3", prerelease = true }
-"2.16.1" = { created_at = 2019-11-12T18:41:44.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.1" }
 "3.0.0-rc.4" = { created_at = 2019-11-12T18:26:35.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0-rc.4", prerelease = true }
 "3.0.0" = { created_at = 2019-11-13T14:21:28.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.0" }
 "3.0.1" = { created_at = 2019-12-05T20:37:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.0.1" }
@@ -97,37 +110,24 @@
 "3.1.0-rc.1" = { created_at = 2020-02-07T18:54:17.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.0-rc.1", prerelease = true }
 "3.1.0-rc.2" = { created_at = 2020-02-11T00:15:39.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.0-rc.2", prerelease = true }
 "3.1.0-rc.3" = { created_at = 2020-02-11T20:24:25.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.0-rc.3", prerelease = true }
-"2.16.2" = { created_at = 2020-02-13T23:01:40.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.2" }
-"2.16.3" = { created_at = 2020-02-13T23:49:42.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.3" }
 "3.1.0" = { created_at = 2020-02-13T16:58:01.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.0" }
 "3.1.1" = { created_at = 2020-02-20T20:05:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.1" }
 "3.1.2" = { created_at = 2020-03-12T18:52:46.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.2" }
-"2.16.4" = { created_at = 2020-03-23T17:11:11.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.4" }
-"2.16.5" = { created_at = 2020-03-26T16:12:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.5" }
-"2.16.6" = { created_at = 2020-04-14T19:52:23.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.6" }
-"3.2.0-rc.1" = { created_at = 2020-04-16T22:14:19.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.0-rc.1", prerelease = true }
 "3.1.3" = { created_at = 2020-04-22T23:46:48.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.1.3" }
+"3.2.0-rc.1" = { created_at = 2020-04-16T22:14:19.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.0-rc.1", prerelease = true }
 "3.2.0" = { created_at = 2020-04-22T16:29:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.0" }
-"2.16.7" = { created_at = 2020-05-05T18:27:30.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.7" }
 "3.2.1" = { created_at = 2020-05-07T22:14:25.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.1" }
 "3.2.2" = { created_at = 2020-06-04T21:32:14.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.2" }
 "3.2.3" = { created_at = 2020-06-08T15:59:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.3" }
-"2.16.8" = { created_at = 2020-06-10T19:36:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.8" }
 "3.2.4" = { created_at = 2020-06-15T23:00:52.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.2.4" }
-"2.16.9" = { created_at = 2020-06-16T19:38:05.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.9" }
 "3.3.0-rc.1" = { created_at = 2020-07-07T18:16:08.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.0-rc.1", prerelease = true }
 "3.3.0-rc.2" = { created_at = 2020-07-29T15:40:28.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.0-rc.2", prerelease = true }
 "3.3.0" = { created_at = 2020-08-11T22:04:17.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.0" }
-"2.16.10" = { created_at = 2020-08-12T20:56:24.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.10" }
 "3.3.1" = { created_at = 2020-08-31T18:44:54.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.1" }
-"2.16.11" = { created_at = 2020-09-17T20:14:20.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.11" }
 "3.3.2" = { created_at = 2020-09-17T19:43:34.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.2" }
-"2.16.12" = { created_at = 2020-09-18T17:28:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.16.12" }
 "3.3.3" = { created_at = 2020-09-18T17:28:53.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.3" }
 "3.3.4" = { created_at = 2020-09-22T22:23:23.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.3.4" }
-"2.17.0-rc.1" = { created_at = 2020-10-19T21:17:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.17.0-rc.1", prerelease = true }
 "3.4.0-rc.1" = { created_at = 2020-10-19T21:55:24.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.4.0-rc.1", prerelease = true }
-"2.17.0" = { created_at = 2020-10-26T15:29:31.000Z, release_url = "https://github.com/helm/helm/releases/tag/v2.17.0" }
 "3.4.0" = { created_at = 2020-10-26T15:50:39.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.4.0" }
 "3.4.1" = { created_at = 2020-11-11T19:59:09.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.4.1" }
 "3.4.2" = { created_at = 2020-12-09T15:30:03.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.4.2" }
@@ -205,6 +205,7 @@
 "3.17.1" = { created_at = 2025-02-12T21:01:05.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.17.1" }
 "3.17.2" = { created_at = 2025-03-13T16:30:33.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.17.2" }
 "3.17.3" = { created_at = 2025-04-09T18:01:56.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.17.3" }
+"3.17.4" = { created_at = 2025-07-16T19:30:02.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.17.4" }
 "3.18.0-rc.1" = { created_at = 2025-05-05T20:30:07.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.0-rc.1", prerelease = true }
 "3.18.0-rc.2" = { created_at = 2025-05-14T22:20:40.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.0-rc.2", prerelease = true }
 "3.18.0" = { created_at = 2025-05-19T17:54:54.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.0" }
@@ -212,41 +213,40 @@
 "3.18.2" = { created_at = 2025-06-02T13:41:33.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.2" }
 "3.18.3" = { created_at = 2025-06-16T19:31:04.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.3" }
 "3.18.4" = { created_at = 2025-07-08T20:49:25.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.4" }
-"3.17.4" = { created_at = 2025-07-16T19:30:02.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.17.4" }
 "3.18.5" = { created_at = 2025-08-13T19:48:31.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.5" }
 "3.18.6" = { created_at = 2025-08-19T20:33:29.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.18.6" }
-"4.0.0-alpha.1" = { created_at = 2025-09-02T19:58:52.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.0-alpha.1", prerelease = true }
 "3.19.0-rc.1" = { created_at = 2025-09-05T04:46:24.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.0-rc.1", prerelease = true }
 "3.19.0" = { created_at = 2025-09-11T21:06:02.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.0" }
+"3.19.1" = { created_at = 2025-11-11T02:57:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.1" }
+"3.19.2" = { created_at = 2025-11-12T14:17:59.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.2" }
+"3.19.3" = { created_at = 2025-12-10T21:01:54.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.3" }
+"3.19.4" = { created_at = 2025-12-12T21:57:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.4" }
+"3.19.5" = { created_at = 2026-01-15T00:30:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.5" }
+"3.20.0-rc.1" = { created_at = 2026-01-12T20:34:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.0-rc.1", prerelease = true }
+"3.20.0" = { created_at = 2026-01-21T23:27:45.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.0" }
+"3.20.1" = { created_at = 2026-03-12T00:26:02.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.1" }
+"3.20.2" = { created_at = 2026-04-09T21:17:14.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.2" }
+"3.21.0" = { created_at = 2026-05-14T01:22:37.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.0" }
+"3.21.1" = { created_at = 2026-06-12T14:51:31.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.1" }
+"3.21.2" = { created_at = 2026-06-20T04:36:23.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.2" }
+"3.21.3" = { created_at = 2026-07-09T21:20:27.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.3" }
+"3.21.4" = { created_at = 2026-08-14T14:55:42.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.4" }
+"4.0.0-alpha.1" = { created_at = 2025-09-02T19:58:52.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.0-alpha.1", prerelease = true }
 "4.0.0-beta.1" = { created_at = 2025-10-13T20:44:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.0-beta.1", prerelease = true }
 "4.0.0-beta.2" = { created_at = 2025-10-27T19:55:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.0-beta.2", prerelease = true }
 "4.0.0-rc.1" = { created_at = 2025-11-04T02:31:19.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.0-rc.1", prerelease = true }
-"3.19.1" = { created_at = 2025-11-11T02:57:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.1" }
-"3.19.2" = { created_at = 2025-11-12T14:17:59.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.2" }
 "4.0.0" = { created_at = 2025-11-12T16:04:51.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.0" }
 "4.0.1" = { created_at = 2025-11-24T20:31:57.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.1" }
-"3.19.3" = { created_at = 2025-12-10T21:01:54.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.3" }
 "4.0.2" = { created_at = 2025-12-10T21:02:30.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.2" }
-"3.19.4" = { created_at = 2025-12-12T21:57:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.4" }
 "4.0.4" = { created_at = 2025-12-13T01:22:50.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.4" }
-"3.20.0-rc.1" = { created_at = 2026-01-12T20:34:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.0-rc.1", prerelease = true }
-"4.1.0-rc.1" = { created_at = 2026-01-12T19:54:05.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.1.0-rc.1", prerelease = true }
-"3.19.5" = { created_at = 2026-01-15T00:30:06.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.19.5" }
 "4.0.5" = { created_at = 2026-01-14T23:46:31.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.0.5" }
-"3.20.0" = { created_at = 2026-01-21T23:27:45.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.0" }
+"4.1.0-rc.1" = { created_at = 2026-01-12T19:54:05.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.1.0-rc.1", prerelease = true }
 "4.1.0" = { created_at = 2026-01-21T22:31:55.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.1.0" }
 "4.1.1" = { created_at = 2026-02-09T18:33:58.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.1.1" }
-"3.20.1" = { created_at = 2026-03-12T00:26:02.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.1" }
 "4.1.3" = { created_at = 2026-03-11T23:01:58.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.1.3" }
-"3.20.2" = { created_at = 2026-04-09T21:17:14.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.20.2" }
 "4.1.4" = { created_at = 2026-04-09T06:01:47.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.1.4" }
-"3.21.0" = { created_at = 2026-05-14T01:22:37.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.0" }
 "4.2.0" = { created_at = 2026-05-14T01:13:00.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.2.0" }
-"3.21.1" = { created_at = 2026-06-12T14:51:31.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.1" }
 "4.2.1" = { created_at = 2026-06-12T15:06:26.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.2.1" }
 "4.2.2" = { created_at = 2026-06-17T20:50:16.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.2.2" }
-"3.21.2" = { created_at = 2026-06-20T04:36:23.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.2" }
-"3.21.3" = { created_at = 2026-07-09T21:20:27.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.3" }
 "4.2.3" = { created_at = 2026-07-09T20:56:43.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.2.3" }
-"3.21.4" = { created_at = 2026-08-14T14:55:42.000Z, release_url = "https://github.com/helm/helm/releases/tag/v3.21.4" }
 "4.2.4" = { created_at = 2026-08-13T15:33:04.000Z, release_url = "https://github.com/helm/helm/releases/tag/v4.2.4" }

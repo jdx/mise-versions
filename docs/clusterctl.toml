@@ -10,8 +10,9 @@
 "0.2.7" = { created_at = 2019-10-31T18:10:33.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.7", prerelease = true }
 "0.2.8" = { created_at = 2019-12-11T20:34:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.8" }
 "0.2.9" = { created_at = 2020-01-10T20:26:33.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.9" }
-"0.3.0-rc.0" = { created_at = 2020-02-15T00:08:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.0-rc.0", prerelease = true }
 "0.2.10" = { created_at = 2020-02-19T19:40:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.10" }
+"0.2.11" = { created_at = 2020-05-14T16:00:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.11" }
+"0.3.0-rc.0" = { created_at = 2020-02-15T00:08:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.0-rc.0", prerelease = true }
 "0.3.0-rc.1" = { created_at = 2020-02-20T04:44:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.0-rc.1", prerelease = true }
 "0.3.0-rc.2" = { created_at = 2020-02-27T00:10:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.0-rc.2", prerelease = true }
 "0.3.0-rc.3" = { created_at = 2020-03-05T01:01:47.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.0-rc.3", prerelease = true }
@@ -21,7 +22,6 @@
 "0.3.3" = { created_at = 2020-03-27T22:50:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.3" }
 "0.3.4" = { created_at = 2020-04-28T23:25:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.4" }
 "0.3.5" = { created_at = 2020-04-30T15:53:33.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.5" }
-"0.2.11" = { created_at = 2020-05-14T16:00:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.2.11" }
 "0.3.6" = { created_at = 2020-05-15T16:10:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.6" }
 "0.3.7-alpha.0" = { created_at = 2020-06-19T18:45:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.7-alpha.0", prerelease = true }
 "0.3.7-beta.0" = { created_at = 2020-07-01T22:40:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.7-beta.0", prerelease = true }
@@ -42,224 +42,224 @@
 "0.3.16" = { created_at = 2021-04-16T14:26:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.16" }
 "0.3.17" = { created_at = 2021-05-27T19:55:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.17" }
 "0.3.18" = { created_at = 2021-06-08T21:43:14.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.18" }
-"0.4.0-beta.0" = { created_at = 2021-06-08T23:32:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0-beta.0", prerelease = true }
 "0.3.19" = { created_at = 2021-06-09T18:35:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.19" }
-"0.4.0-beta.1" = { created_at = 2021-06-16T17:40:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0-beta.1", prerelease = true }
-"0.4.0-rc.0" = { created_at = 2021-06-22T19:58:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0-rc.0", prerelease = true }
-"0.4.0" = { created_at = 2021-06-24T21:57:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0" }
 "0.3.20" = { created_at = 2021-06-30T23:01:47.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.20" }
 "0.3.21" = { created_at = 2021-07-15T22:48:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.21" }
 "0.3.22" = { created_at = 2021-07-21T18:07:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.22" }
-"0.4.1" = { created_at = 2021-08-12T23:40:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.1" }
 "0.3.23" = { created_at = 2021-08-23T21:31:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.23" }
+"0.3.24" = { created_at = 2021-12-07T15:26:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.24" }
+"0.3.25" = { created_at = 2022-02-01T20:11:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.25" }
+"0.4.0-beta.0" = { created_at = 2021-06-08T23:32:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0-beta.0", prerelease = true }
+"0.4.0-beta.1" = { created_at = 2021-06-16T17:40:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0-beta.1", prerelease = true }
+"0.4.0-rc.0" = { created_at = 2021-06-22T19:58:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0-rc.0", prerelease = true }
+"0.4.0" = { created_at = 2021-06-24T21:57:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2021-08-12T23:40:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.1" }
 "0.4.2" = { created_at = 2021-08-24T21:07:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.2" }
 "0.4.3" = { created_at = 2021-09-20T18:50:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.3" }
-"1.0.0-rc.0" = { created_at = 2021-09-29T02:24:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.0-rc.0", prerelease = true }
 "0.4.4" = { created_at = 2021-10-06T15:39:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.4" }
+"0.4.5" = { created_at = 2021-12-07T15:26:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.5" }
+"0.4.6" = { created_at = 2022-02-01T20:11:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.6" }
+"0.4.7" = { created_at = 2022-02-02T16:26:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.7" }
+"0.4.8" = { created_at = 2022-03-08T20:12:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.8" }
+"1.0.0-rc.0" = { created_at = 2021-09-29T02:24:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.0-rc.0", prerelease = true }
 "1.0.0" = { created_at = 2021-10-06T17:05:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.0" }
 "1.0.1" = { created_at = 2021-11-12T18:27:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.1" }
-"0.3.24" = { created_at = 2021-12-07T15:26:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.24" }
-"0.4.5" = { created_at = 2021-12-07T15:26:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.5" }
 "1.0.2" = { created_at = 2021-12-07T15:26:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.2" }
+"1.0.3" = { created_at = 2022-02-01T20:11:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.3" }
+"1.0.4" = { created_at = 2022-02-02T16:26:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.4" }
+"1.0.5" = { created_at = 2022-03-08T20:12:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.5" }
 "1.1.0-beta.1" = { created_at = 2021-12-15T21:24:19.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.0-beta.1", prerelease = true }
 "1.1.0-beta.2" = { created_at = 2022-01-18T21:12:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.0-beta.2", prerelease = true }
 "1.1.0-rc.0" = { created_at = 2022-01-26T19:47:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.0-rc.0", prerelease = true }
-"0.3.25" = { created_at = 2022-02-01T20:11:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.3.25" }
-"0.4.6" = { created_at = 2022-02-01T20:11:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.6" }
-"1.0.3" = { created_at = 2022-02-01T20:11:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.3" }
-"0.4.7" = { created_at = 2022-02-02T16:26:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.7" }
-"1.0.4" = { created_at = 2022-02-02T16:26:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.4" }
 "1.1.0" = { created_at = 2022-02-02T19:35:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.0" }
 "1.1.1" = { created_at = 2022-02-10T19:00:58.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.1" }
 "1.1.2" = { created_at = 2022-02-17T19:43:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.2" }
-"0.4.8" = { created_at = 2022-03-08T20:12:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v0.4.8" }
-"1.0.5" = { created_at = 2022-03-08T20:12:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.0.5" }
 "1.1.3" = { created_at = 2022-03-08T20:12:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.3" }
 "1.1.4" = { created_at = 2022-06-03T18:14:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.4" }
+"1.1.5" = { created_at = 2022-07-04T14:49:55.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.5" }
+"1.1.6" = { created_at = 2022-09-14T11:53:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.6" }
 "1.2.0-beta.0" = { created_at = 2022-06-20T13:31:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.0-beta.0", prerelease = true }
 "1.2.0-beta.1" = { created_at = 2022-06-27T12:51:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.0-beta.1", prerelease = true }
-"1.1.5" = { created_at = 2022-07-04T14:49:55.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.5" }
 "1.2.0-beta.2" = { created_at = 2022-07-04T14:49:17.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.0-beta.2", prerelease = true }
 "1.2.0-rc.0" = { created_at = 2022-07-11T11:25:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.0-rc.0", prerelease = true }
 "1.2.0" = { created_at = 2022-07-18T15:11:07.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.0" }
 "1.2.1" = { created_at = 2022-08-15T17:40:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.1" }
-"1.1.6" = { created_at = 2022-09-14T11:53:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.1.6" }
 "1.2.2" = { created_at = 2022-09-14T11:53:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.2" }
 "1.2.3" = { created_at = 2022-10-10T14:21:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.3" }
 "1.2.4" = { created_at = 2022-10-17T16:44:14.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.4" }
-"1.3.0-beta.0" = { created_at = 2022-11-02T18:44:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0-beta.0", prerelease = true }
 "1.2.5" = { created_at = 2022-11-08T16:36:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.5" }
+"1.2.6" = { created_at = 2022-11-21T09:49:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.6" }
+"1.2.7" = { created_at = 2022-11-30T12:52:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.7" }
+"1.2.8" = { created_at = 2022-12-14T19:53:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.8" }
+"1.2.9" = { created_at = 2023-01-10T17:36:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.9" }
+"1.2.10" = { created_at = 2023-01-31T18:20:16.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.10" }
+"1.2.11" = { created_at = 2023-02-28T21:31:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.11" }
+"1.2.12" = { created_at = 2023-03-28T17:24:46.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.12" }
+"1.3.0-beta.0" = { created_at = 2022-11-02T18:44:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0-beta.0", prerelease = true }
 "1.3.0-beta.1" = { created_at = 2022-11-08T19:06:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0-beta.1", prerelease = true }
 "1.3.0-rc.0" = { created_at = 2022-11-15T17:51:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0-rc.0", prerelease = true }
-"1.2.6" = { created_at = 2022-11-21T09:49:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.6" }
 "1.3.0-rc.1" = { created_at = 2022-11-22T04:36:46.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0-rc.1", prerelease = true }
-"1.2.7" = { created_at = 2022-11-30T12:52:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.7" }
 "1.3.0" = { created_at = 2022-12-01T12:06:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.0" }
-"1.2.8" = { created_at = 2022-12-14T19:53:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.8" }
 "1.3.1" = { created_at = 2022-12-14T19:53:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.1" }
-"1.2.9" = { created_at = 2023-01-10T17:36:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.9" }
 "1.3.2" = { created_at = 2023-01-10T17:36:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.2" }
-"1.2.10" = { created_at = 2023-01-31T18:20:16.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.10" }
 "1.3.3" = { created_at = 2023-01-31T18:19:38.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.3" }
-"1.2.11" = { created_at = 2023-02-28T21:31:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.11" }
 "1.3.4" = { created_at = 2023-02-28T21:30:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.4" }
-"1.4.0-beta.0" = { created_at = 2023-02-28T22:25:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0-beta.0", prerelease = true }
 "1.3.5" = { created_at = 2023-03-02T17:58:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.5" }
+"1.3.6" = { created_at = 2023-03-28T17:54:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.6" }
+"1.3.7" = { created_at = 2023-05-02T17:29:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.7" }
+"1.3.8" = { created_at = 2023-06-06T17:06:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.8" }
+"1.3.9" = { created_at = 2023-06-27T17:32:16.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.9" }
+"1.3.10" = { created_at = 2023-07-25T17:08:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.10" }
+"1.4.0-beta.0" = { created_at = 2023-02-28T22:25:20.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0-beta.0", prerelease = true }
 "1.4.0-beta.1" = { created_at = 2023-03-02T18:04:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0-beta.1", prerelease = true }
 "1.4.0-beta.2" = { created_at = 2023-03-07T18:34:55.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0-beta.2", prerelease = true }
 "1.4.0-rc.0" = { created_at = 2023-03-14T17:14:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0-rc.0", prerelease = true }
 "1.4.0-rc.1" = { created_at = 2023-03-21T18:45:01.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0-rc.1", prerelease = true }
-"1.2.12" = { created_at = 2023-03-28T17:24:46.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.2.12" }
-"1.3.6" = { created_at = 2023-03-28T17:54:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.6" }
 "1.4.0" = { created_at = 2023-03-28T17:20:47.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.0" }
 "1.4.1" = { created_at = 2023-04-04T18:34:19.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.1" }
-"1.3.7" = { created_at = 2023-05-02T17:29:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.7" }
 "1.4.2" = { created_at = 2023-05-02T17:30:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.2" }
-"1.3.8" = { created_at = 2023-06-06T17:06:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.8" }
 "1.4.3" = { created_at = 2023-06-06T17:06:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.3" }
-"1.3.9" = { created_at = 2023-06-27T17:32:16.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.9" }
 "1.4.4" = { created_at = 2023-06-27T17:32:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.4" }
+"1.4.5" = { created_at = 2023-07-25T17:10:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.5" }
+"1.4.6" = { created_at = 2023-08-29T16:16:01.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.6" }
+"1.4.7" = { created_at = 2023-09-26T16:14:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.7" }
+"1.4.8" = { created_at = 2023-10-24T16:39:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.8" }
+"1.4.9" = { created_at = 2023-12-05T18:25:29.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.9" }
 "1.5.0-beta.0" = { created_at = 2023-06-27T18:19:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.0-beta.0", prerelease = true }
 "1.5.0-beta.1" = { created_at = 2023-07-05T17:17:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.0-beta.1", prerelease = true }
 "1.5.0-rc.0" = { created_at = 2023-07-11T17:18:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.0-rc.0", prerelease = true }
 "1.5.0-rc.1" = { created_at = 2023-07-18T16:27:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.0-rc.1", prerelease = true }
-"1.3.10" = { created_at = 2023-07-25T17:08:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.3.10" }
-"1.4.5" = { created_at = 2023-07-25T17:10:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.5" }
 "1.5.0" = { created_at = 2023-07-25T17:29:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.0" }
-"1.4.6" = { created_at = 2023-08-29T16:16:01.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.6" }
 "1.5.1" = { created_at = 2023-08-29T16:36:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.1" }
-"1.4.7" = { created_at = 2023-09-26T16:14:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.7" }
 "1.5.2" = { created_at = 2023-09-26T16:47:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.2" }
-"1.4.8" = { created_at = 2023-10-24T16:39:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.8" }
 "1.5.3" = { created_at = 2023-10-24T17:12:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.3" }
+"1.5.4" = { created_at = 2023-12-05T18:39:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.4" }
+"1.5.5" = { created_at = 2024-01-16T19:11:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.5" }
+"1.5.6" = { created_at = 2024-02-21T19:05:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.6" }
+"1.5.7" = { created_at = 2024-03-12T18:05:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.7" }
+"1.5.8" = { created_at = 2024-04-16T18:24:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.8" }
 "1.6.0-beta.0" = { created_at = 2023-10-24T17:51:09.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.0-beta.0", prerelease = true }
 "1.6.0-beta.1" = { created_at = 2023-10-31T19:06:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.0-beta.1", prerelease = true }
 "1.6.0-rc.0" = { created_at = 2023-11-21T20:12:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.0-rc.0", prerelease = true }
 "1.6.0-rc.1" = { created_at = 2023-11-28T18:57:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.0-rc.1", prerelease = true }
-"1.4.9" = { created_at = 2023-12-05T18:25:29.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.4.9" }
-"1.5.4" = { created_at = 2023-12-05T18:39:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.4" }
 "1.6.0" = { created_at = 2023-12-05T18:53:39.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.0" }
-"1.5.5" = { created_at = 2024-01-16T19:11:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.5" }
 "1.6.1" = { created_at = 2024-01-16T18:48:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.1" }
-"1.5.6" = { created_at = 2024-02-21T19:05:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.6" }
 "1.6.2" = { created_at = 2024-02-21T19:13:46.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.2" }
-"1.5.7" = { created_at = 2024-03-12T18:05:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.7" }
 "1.6.3" = { created_at = 2024-03-12T18:09:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.3" }
+"1.6.4" = { created_at = 2024-04-16T18:24:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.4" }
+"1.6.5" = { created_at = 2024-05-14T18:25:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.5" }
+"1.6.6" = { created_at = 2024-06-11T18:05:47.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.6" }
+"1.6.7" = { created_at = 2024-07-09T17:57:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.7" }
+"1.6.8" = { created_at = 2024-08-12T18:04:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.8" }
 "1.7.0-beta.0" = { created_at = 2024-03-12T18:33:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.0-beta.0", prerelease = true }
 "1.7.0-beta.1" = { created_at = 2024-03-26T18:32:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.0-beta.1", prerelease = true }
 "1.7.0-rc.0" = { created_at = 2024-04-02T18:34:50.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.0-rc.0", prerelease = true }
 "1.7.0-rc.1" = { created_at = 2024-04-09T18:28:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.0-rc.1", prerelease = true }
-"1.5.8" = { created_at = 2024-04-16T18:24:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.5.8" }
-"1.6.4" = { created_at = 2024-04-16T18:24:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.4" }
 "1.7.0" = { created_at = 2024-04-16T18:53:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.0" }
 "1.7.1" = { created_at = 2024-04-23T18:01:32.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.1" }
-"1.6.5" = { created_at = 2024-05-14T18:25:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.5" }
 "1.7.2" = { created_at = 2024-05-14T18:26:02.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.2" }
-"1.6.6" = { created_at = 2024-06-11T18:05:47.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.6" }
 "1.7.3" = { created_at = 2024-06-11T18:05:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.3" }
-"1.6.7" = { created_at = 2024-07-09T17:57:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.7" }
 "1.7.4" = { created_at = 2024-07-09T17:57:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.4" }
+"1.7.5" = { created_at = 2024-08-12T18:04:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.5" }
+"1.7.6" = { created_at = 2024-09-10T17:31:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.6" }
+"1.7.7" = { created_at = 2024-10-08T17:36:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.7" }
+"1.7.8" = { created_at = 2024-11-05T19:29:08.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.8" }
+"1.7.9" = { created_at = 2024-12-10T18:51:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.9" }
 "1.8.0-beta.0" = { created_at = 2024-07-16T17:52:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.0-beta.0", prerelease = true }
 "1.8.0-beta.1" = { created_at = 2024-07-23T18:22:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.0-beta.1", prerelease = true }
 "1.8.0-rc.0" = { created_at = 2024-07-30T18:01:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.0-rc.0", prerelease = true }
 "1.8.0-rc.1" = { created_at = 2024-08-06T18:01:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.0-rc.1", prerelease = true }
-"1.6.8" = { created_at = 2024-08-12T18:04:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.6.8" }
-"1.7.5" = { created_at = 2024-08-12T18:04:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.5" }
 "1.8.0" = { created_at = 2024-08-12T18:04:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.0" }
 "1.8.1" = { created_at = 2024-08-14T06:55:16.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.1" }
 "1.8.2" = { created_at = 2024-09-05T17:12:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.2" }
-"1.7.6" = { created_at = 2024-09-10T17:31:56.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.6" }
 "1.8.3" = { created_at = 2024-09-10T17:32:08.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.3" }
-"1.7.7" = { created_at = 2024-10-08T17:36:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.7" }
 "1.8.4" = { created_at = 2024-10-08T17:37:08.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.4" }
-"1.7.8" = { created_at = 2024-11-05T19:29:08.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.8" }
 "1.8.5" = { created_at = 2024-11-05T19:29:19.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.5" }
+"1.8.6" = { created_at = 2024-12-10T18:51:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.6" }
+"1.8.7" = { created_at = 2024-12-20T16:39:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.7" }
+"1.8.8" = { created_at = 2024-12-23T19:07:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.8" }
+"1.8.9" = { created_at = 2025-01-21T19:06:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.9" }
+"1.8.10" = { created_at = 2025-02-18T19:43:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.10" }
+"1.8.11" = { created_at = 2025-03-18T16:39:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.11" }
+"1.8.12" = { created_at = 2025-04-22T17:05:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.12" }
 "1.9.0-beta.0" = { created_at = 2024-11-05T19:29:29.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0-beta.0", prerelease = true }
 "1.9.0-beta.1" = { created_at = 2024-11-19T20:43:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0-beta.1", prerelease = true }
 "1.9.0-rc.0" = { created_at = 2024-11-26T18:23:47.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0-rc.0", prerelease = true }
 "1.9.0-rc.1" = { created_at = 2024-12-03T18:10:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0-rc.1", prerelease = true }
-"1.7.9" = { created_at = 2024-12-10T18:51:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.7.9" }
-"1.8.6" = { created_at = 2024-12-10T18:51:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.6" }
 "1.9.0" = { created_at = 2024-12-10T18:50:46.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.0" }
 "1.9.1" = { created_at = 2024-12-17T17:44:04.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.1" }
-"1.8.7" = { created_at = 2024-12-20T16:39:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.7" }
 "1.9.2" = { created_at = 2024-12-20T16:39:54.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.2" }
-"1.8.8" = { created_at = 2024-12-23T19:07:36.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.8" }
 "1.9.3" = { created_at = 2024-12-23T14:19:21.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.3" }
-"1.8.9" = { created_at = 2025-01-21T19:06:00.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.9" }
 "1.9.4" = { created_at = 2025-01-21T19:06:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.4" }
-"1.8.10" = { created_at = 2025-02-18T19:43:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.10" }
 "1.9.5" = { created_at = 2025-02-18T19:44:09.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.5" }
-"1.8.11" = { created_at = 2025-03-18T16:39:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.11" }
 "1.9.6" = { created_at = 2025-03-18T16:39:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.6" }
+"1.9.7" = { created_at = 2025-04-22T17:06:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.7" }
+"1.9.8" = { created_at = 2025-05-20T18:08:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.8" }
+"1.9.9" = { created_at = 2025-06-17T18:19:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.9" }
+"1.9.10" = { created_at = 2025-07-15T17:13:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.10" }
+"1.9.11" = { created_at = 2025-08-19T16:36:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.11" }
 "1.10.0-beta.0" = { created_at = 2025-03-18T17:39:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.0-beta.0", prerelease = true }
 "1.10.0-beta.1" = { created_at = 2025-03-25T19:36:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.0-beta.1", prerelease = true }
 "1.10.0-rc.0" = { created_at = 2025-04-08T17:00:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.0-rc.0", prerelease = true }
 "1.10.0-rc.1" = { created_at = 2025-04-15T16:56:23.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.0-rc.1", prerelease = true }
-"1.8.12" = { created_at = 2025-04-22T17:05:43.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.8.12" }
-"1.9.7" = { created_at = 2025-04-22T17:06:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.7" }
 "1.10.0" = { created_at = 2025-04-22T17:06:41.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.0" }
 "1.10.1" = { created_at = 2025-04-29T17:24:23.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.1" }
-"1.9.8" = { created_at = 2025-05-20T18:08:10.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.8" }
 "1.10.2" = { created_at = 2025-05-20T18:08:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.2" }
-"1.11.0-alpha.0" = { created_at = 2025-05-27T17:08:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-alpha.0", prerelease = true }
-"1.9.9" = { created_at = 2025-06-17T18:19:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.9" }
 "1.10.3" = { created_at = 2025-06-17T18:20:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.3" }
+"1.10.4" = { created_at = 2025-07-15T17:14:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.4" }
+"1.10.5" = { created_at = 2025-08-19T16:36:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.5" }
+"1.10.6" = { created_at = 2025-09-02T16:44:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.6" }
+"1.10.7" = { created_at = 2025-10-07T17:01:14.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.7" }
+"1.10.8" = { created_at = 2025-11-04T17:46:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.8" }
+"1.10.9" = { created_at = 2025-12-09T20:07:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.9" }
+"1.10.10" = { created_at = 2026-01-08T16:46:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.10" }
+"1.11.0-alpha.0" = { created_at = 2025-05-27T17:08:49.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-alpha.0", prerelease = true }
 "1.11.0-alpha.1" = { created_at = 2025-06-17T18:19:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-alpha.1", prerelease = true }
 "1.11.0-alpha.2" = { created_at = 2025-07-01T16:02:57.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-alpha.2", prerelease = true }
-"1.9.10" = { created_at = 2025-07-15T17:13:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.10" }
-"1.10.4" = { created_at = 2025-07-15T17:14:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.4" }
 "1.11.0-beta.0" = { created_at = 2025-07-15T17:14:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-beta.0", prerelease = true }
 "1.11.0-beta.1" = { created_at = 2025-07-22T16:27:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-beta.1", prerelease = true }
 "1.11.0-beta.2" = { created_at = 2025-07-29T18:01:23.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-beta.2", prerelease = true }
 "1.11.0-rc.0" = { created_at = 2025-08-05T18:03:09.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-rc.0", prerelease = true }
 "1.11.0-rc.1" = { created_at = 2025-08-12T18:12:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0-rc.1", prerelease = true }
-"1.9.11" = { created_at = 2025-08-19T16:36:42.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.9.11" }
-"1.10.5" = { created_at = 2025-08-19T16:36:51.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.5" }
 "1.11.0" = { created_at = 2025-08-19T16:37:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.0" }
-"1.10.6" = { created_at = 2025-09-02T16:44:28.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.6" }
 "1.11.1" = { created_at = 2025-09-02T16:34:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.1" }
-"1.10.7" = { created_at = 2025-10-07T17:01:14.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.7" }
 "1.11.2" = { created_at = 2025-10-07T17:01:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.2" }
-"1.10.8" = { created_at = 2025-11-04T17:46:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.8" }
 "1.11.3" = { created_at = 2025-11-04T17:47:06.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.3" }
+"1.11.4" = { created_at = 2025-12-09T20:08:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.4" }
+"1.11.5" = { created_at = 2026-01-20T18:15:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.5" }
+"1.11.6" = { created_at = 2026-02-17T20:13:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.6" }
+"1.11.7" = { created_at = 2026-03-17T18:39:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.7" }
+"1.11.8" = { created_at = 2026-04-08T14:39:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.8" }
+"1.11.10" = { created_at = 2026-04-21T20:26:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.10" }
+"1.11.11" = { created_at = 2026-05-13T14:40:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.11" }
 "1.12.0-beta.0" = { created_at = 2025-11-04T17:47:22.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0-beta.0" }
 "1.12.0-beta.1" = { created_at = 2025-11-18T18:59:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0-beta.1", prerelease = true }
 "1.12.0-rc.0" = { created_at = 2025-11-25T19:09:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0-rc.0", prerelease = true }
 "1.12.0-rc.1" = { created_at = 2025-12-02T19:27:30.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0-rc.1", prerelease = true }
-"1.10.9" = { created_at = 2025-12-09T20:07:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.9" }
-"1.11.4" = { created_at = 2025-12-09T20:08:35.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.4" }
 "1.12.0" = { created_at = 2025-12-09T20:08:59.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.0" }
 "1.12.1" = { created_at = 2025-12-18T13:55:40.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.1" }
-"1.10.10" = { created_at = 2026-01-08T16:46:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.10.10" }
-"1.11.5" = { created_at = 2026-01-20T18:15:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.5" }
 "1.12.2" = { created_at = 2026-01-20T18:15:52.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.2" }
-"1.11.6" = { created_at = 2026-02-17T20:13:18.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.6" }
 "1.12.3" = { created_at = 2026-02-17T20:13:25.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.3" }
-"1.11.7" = { created_at = 2026-03-17T18:39:31.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.7" }
 "1.12.4" = { created_at = 2026-03-17T18:38:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.4" }
+"1.12.5" = { created_at = 2026-04-08T14:40:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.5" }
+"1.12.7" = { created_at = 2026-04-21T20:26:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.7" }
+"1.12.8" = { created_at = 2026-05-13T14:40:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.8" }
+"1.12.9" = { created_at = 2026-06-23T18:47:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.9" }
+"1.12.10" = { created_at = 2026-07-15T15:16:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.10" }
+"1.12.11" = { created_at = 2026-08-11T11:03:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.11" }
 "1.13.0-beta.0" = { created_at = 2026-03-17T18:41:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.0-beta.0", prerelease = true }
 "1.13.0-beta.1" = { created_at = 2026-03-31T17:48:04.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.0-beta.1", prerelease = true }
-"1.11.8" = { created_at = 2026-04-08T14:39:53.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.8" }
-"1.12.5" = { created_at = 2026-04-08T14:40:37.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.5" }
 "1.13.0-rc.0" = { created_at = 2026-04-08T14:41:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.0-rc.0", prerelease = true }
 "1.13.0-rc.1" = { created_at = 2026-04-14T17:07:17.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.0-rc.1", prerelease = true }
-"1.11.10" = { created_at = 2026-04-21T20:26:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.10" }
-"1.12.7" = { created_at = 2026-04-21T20:26:44.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.7" }
 "1.13.0" = { created_at = 2026-04-21T17:55:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.0" }
 "1.13.1" = { created_at = 2026-04-28T11:16:04.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.1" }
-"1.11.11" = { created_at = 2026-05-13T14:40:03.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.11.11" }
-"1.12.8" = { created_at = 2026-05-13T14:40:15.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.8" }
 "1.13.2" = { created_at = 2026-05-13T14:40:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.2" }
-"1.12.9" = { created_at = 2026-06-23T18:47:11.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.9" }
 "1.13.3" = { created_at = 2026-06-23T18:47:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.3" }
-"1.14.0-alpha.0" = { created_at = 2026-06-23T18:47:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0-alpha.0", prerelease = true }
-"1.12.10" = { created_at = 2026-07-15T15:16:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.10" }
 "1.13.4" = { created_at = 2026-07-15T15:16:24.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.4" }
+"1.13.5" = { created_at = 2026-08-11T11:03:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.5" }
+"1.14.0-alpha.0" = { created_at = 2026-06-23T18:47:48.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0-alpha.0", prerelease = true }
 "1.14.0-beta.0" = { created_at = 2026-07-15T15:16:34.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0-beta.0", prerelease = true }
 "1.14.0-beta.1" = { created_at = 2026-07-21T17:26:13.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0-beta.1", prerelease = true }
 "1.14.0-rc.0" = { created_at = 2026-07-28T17:25:12.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0-rc.0", prerelease = true }
 "1.14.0-rc.1" = { created_at = 2026-08-04T17:01:26.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0-rc.1", prerelease = true }
-"1.12.11" = { created_at = 2026-08-11T11:03:27.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.12.11" }
-"1.13.5" = { created_at = 2026-08-11T11:03:45.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.13.5" }
 "1.14.0" = { created_at = 2026-08-11T11:04:01.000Z, release_url = "https://github.com/kubernetes-sigs/cluster-api/releases/tag/v1.14.0" }

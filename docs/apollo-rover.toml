@@ -24,8 +24,8 @@
 "0.1.7" = { created_at = 2021-06-29T16:35:08.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.1.7" }
 "0.1.8" = { created_at = 2021-07-08T00:41:48.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.1.8" }
 "0.1.9" = { created_at = 2021-07-22T21:09:59.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.1.9" }
-"0.2.0-beta.0" = { created_at = 2021-07-26T21:07:11.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.2.0-beta.0", prerelease = true }
 "0.1.10" = { created_at = 2021-08-05T22:05:46.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.1.10" }
+"0.2.0-beta.0" = { created_at = 2021-07-26T21:07:11.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.2.0-beta.0", prerelease = true }
 "0.2.0-beta.1" = { created_at = 2021-08-05T21:54:12.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.2.0-beta.1", prerelease = true }
 "0.2.0" = { created_at = 2021-08-23T17:56:35.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.2.0" }
 "0.2.1" = { created_at = 2021-09-20T19:12:57.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.2.1" }
@@ -51,6 +51,7 @@
 "0.7.0" = { created_at = 2022-06-09T20:24:19.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.7.0" }
 "0.8.0" = { created_at = 2022-07-27T20:19:54.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.8.0" }
 "0.8.1" = { created_at = 2022-07-28T15:34:23.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2022-09-06T18:04:14.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.8.2" }
 "0.9.0-alpha.0" = { created_at = 2022-08-12T18:01:56.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.0", prerelease = true }
 "0.9.0-alpha.1" = { created_at = 2022-08-12T19:03:52.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.1", prerelease = true }
 "0.9.0-alpha.2" = { created_at = 2022-08-12T21:23:08.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.2", prerelease = true }
@@ -58,7 +59,6 @@
 "0.9.0-alpha.5" = { created_at = 2022-08-26T21:19:49.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.5", prerelease = true }
 "0.9.0-alpha.6" = { created_at = 2022-08-30T23:21:53.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.6", prerelease = true }
 "0.9.0-alpha.7" = { created_at = 2022-09-01T21:23:16.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.7", prerelease = true }
-"0.8.2" = { created_at = 2022-09-06T18:04:14.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.8.2" }
 "0.9.0-alpha.8" = { created_at = 2022-09-08T16:26:03.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.8", prerelease = true }
 "0.9.0-alpha.9" = { created_at = 2022-09-08T22:27:28.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.9", prerelease = true }
 "0.9.0-alpha.10" = { created_at = 2022-09-12T20:29:15.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.9.0-alpha.10", prerelease = true }
@@ -81,8 +81,8 @@
 "0.13.0" = { created_at = 2023-03-10T22:56:34.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.13.0" }
 "0.14.0" = { created_at = 2023-04-19T21:15:44.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.14.0" }
 "0.14.1" = { created_at = 2023-05-15T19:53:03.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.14.1" }
-"0.15.0-alpha.0" = { created_at = 2023-05-25T22:15:49.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.15.0-alpha.0", prerelease = true }
 "0.14.2" = { created_at = 2023-05-31T21:49:52.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.14.2" }
+"0.15.0-alpha.0" = { created_at = 2023-05-25T22:15:49.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.15.0-alpha.0", prerelease = true }
 "0.15.0-alpha.1" = { created_at = 2023-05-31T17:47:45.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.15.0-alpha.1", prerelease = true }
 "0.15.0" = { created_at = 2023-06-08T19:09:17.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.15.0" }
 "0.16.0-alpha.0" = { created_at = 2023-06-14T22:48:02.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.16.0-alpha.0", prerelease = true }
@@ -116,10 +116,10 @@
 "0.26.1" = { created_at = 2024-09-04T15:26:42.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.26.1" }
 "0.26.2-compose-beta.0" = { created_at = 2024-09-08T16:48:38.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.26.2-compose-beta.0", prerelease = true }
 "0.26.2" = { created_at = 2024-09-10T10:33:04.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.26.2" }
-"0.27.0-alpha.0" = { created_at = 2024-09-17T00:30:55.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-alpha.0", prerelease = true }
-"0.27.0-preview.0" = { created_at = 2024-10-01T18:24:13.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-preview.0", prerelease = true }
 "0.26.3-rc.0" = { created_at = 2024-12-12T21:48:38.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.26.3-rc.0", prerelease = true }
 "0.26.3" = { created_at = 2024-12-17T00:12:15.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.26.3" }
+"0.27.0-alpha.0" = { created_at = 2024-09-17T00:30:55.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-alpha.0", prerelease = true }
+"0.27.0-preview.0" = { created_at = 2024-10-01T18:24:13.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-preview.0", prerelease = true }
 "0.27.0-rc.0" = { created_at = 2025-01-22T13:37:54.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-rc.0", prerelease = true }
 "0.27.0-rc.1" = { created_at = 2025-01-27T12:18:33.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-rc.1", prerelease = true }
 "0.27.0-rc.2" = { created_at = 2025-01-29T13:52:16.000Z, release_url = "https://github.com/apollographql/rover/releases/tag/v0.27.0-rc.2", prerelease = true }

@@ -119,6 +119,7 @@
 "0.0.136-beta-7" = { created_at = 2020-07-09T20:56:54.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.136-beta-7", prerelease = true }
 "0.0.137" = { created_at = 2020-07-10T09:25:55.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.137" }
 "0.0.138-beta-1" = { created_at = 2020-07-23T13:15:25.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-1", prerelease = true }
+"0.0.138-beta-10" = { created_at = 2020-08-24T14:15:44.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-10", prerelease = true }
 "0.0.138-beta-2" = { created_at = 2020-07-28T17:19:20.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-2", prerelease = true }
 "0.0.138-beta-3" = { created_at = 2020-07-30T11:07:48.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-3", prerelease = true }
 "0.0.138-beta-4" = { created_at = 2020-07-30T18:42:00.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-4", prerelease = true }
@@ -126,7 +127,6 @@
 "0.0.138-beta-6" = { created_at = 2020-08-10T17:26:22.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-6", prerelease = true }
 "0.0.138-beta-7" = { created_at = 2020-08-11T16:38:54.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-7", prerelease = true }
 "0.0.138-beta-8" = { created_at = 2020-08-14T13:51:30.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-8", prerelease = true }
-"0.0.138-beta-10" = { created_at = 2020-08-24T14:15:44.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-10", prerelease = true }
 "0.0.138-beta-9" = { created_at = 2020-08-24T10:03:46.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138-beta-9", prerelease = true }
 "0.0.138" = { created_at = 2020-08-24T17:38:00.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.138" }
 "0.0.139" = { created_at = 2020-08-24T19:05:00.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.139" }
@@ -217,6 +217,7 @@
 "0.0.217-pre-8" = { created_at = 2021-05-10T23:57:53.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.217-pre-8", prerelease = true }
 "0.0.217" = { created_at = 2021-05-11T00:04:55.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.217" }
 "0.0.218-pre-1" = { created_at = 2021-05-11T20:09:49.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-1", prerelease = true }
+"0.0.218-pre-15" = { created_at = 2021-05-12T20:07:24.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-15", prerelease = true }
 "0.0.218-pre-2" = { created_at = 2021-05-11T20:36:27.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-2", prerelease = true }
 "0.0.218-pre-3" = { created_at = 2021-05-11T21:37:49.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-3", prerelease = true }
 "0.0.218-pre-4" = { created_at = 2021-05-11T21:45:03.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-4", prerelease = true }
@@ -224,7 +225,6 @@
 "0.0.218-pre-6" = { created_at = 2021-05-11T22:51:09.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-6", prerelease = true }
 "0.0.218-pre-7" = { created_at = 2021-05-11T23:24:11.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-7", prerelease = true }
 "0.0.218-pre-8" = { created_at = 2021-05-11T23:30:16.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-8", prerelease = true }
-"0.0.218-pre-15" = { created_at = 2021-05-12T20:07:24.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218-pre-15", prerelease = true }
 "0.0.218" = { created_at = 2021-05-12T20:31:39.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.218" }
 "0.0.219" = { created_at = 2021-05-12T20:54:31.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.219" }
 "0.0.220-pre-1" = { created_at = 2021-05-13T17:06:29.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.220-pre-1", prerelease = true }
@@ -498,8 +498,8 @@
 "0.0.367-pre-1" = { created_at = 2022-08-05T16:42:05.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.367-pre-1", prerelease = true }
 "0.0.367" = { created_at = 2022-08-07T20:22:45.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.367" }
 "0.0.368" = { created_at = 2022-08-08T05:57:04.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.368" }
-"0.0.369" = { created_at = 2022-08-09T10:34:44.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.369" }
 "0.0.369-pre-1" = { created_at = 2022-08-11T15:42:06.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.369-pre-1", prerelease = true }
+"0.0.369" = { created_at = 2022-08-09T10:34:44.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.369" }
 "0.0.370" = { created_at = 2022-08-11T15:24:39.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.370" }
 "0.0.371-pre-1" = { created_at = 2022-08-11T21:49:35.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.371-pre-1", prerelease = true }
 "0.0.371-pre-2" = { created_at = 2022-08-12T00:21:38.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.371-pre-2", prerelease = true }
@@ -564,10 +564,10 @@
 "0.0.418" = { created_at = 2022-10-24T22:08:39.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.418" }
 "0.0.419" = { created_at = 2022-10-25T00:49:04.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.419" }
 "0.0.420" = { created_at = 2022-10-25T14:45:51.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.420" }
-"0.0.421" = { created_at = 2022-10-26T22:24:51.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.421", prerelease = true }
 "0.0.421-pre-1" = { created_at = 2022-10-26T20:48:06.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.421-pre-1", prerelease = true }
 "0.0.421-pre-2" = { created_at = 2022-10-26T21:23:18.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.421-pre-2", prerelease = true }
 "0.0.421-pre-3" = { created_at = 2022-10-26T22:00:26.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.421-pre-3", prerelease = true }
+"0.0.421" = { created_at = 2022-10-26T22:24:51.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.421", prerelease = true }
 "0.0.422" = { created_at = 2022-10-27T10:21:07.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.422" }
 "0.0.423-pre-1" = { created_at = 2022-10-27T11:50:01.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.423-pre-1", prerelease = true }
 "0.0.423" = { created_at = 2022-10-27T15:44:50.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.423" }
@@ -646,6 +646,7 @@
 "0.0.471" = { created_at = 2023-02-27T17:55:29.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.471" }
 "0.0.472" = { created_at = 2023-02-27T18:48:40.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.472" }
 "0.0.473" = { created_at = 2023-03-01T08:29:30.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.473" }
+"0.0.474-pre-1" = { created_at = 2023-03-18T00:29:46.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.474-pre-1", prerelease = true }
 "0.0.474" = { created_at = 2023-03-01T23:35:53.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.474" }
 "0.0.475-pre-1" = { created_at = 2023-03-03T15:17:26.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.475-pre-1", prerelease = true }
 "0.0.475-pre-2" = { created_at = 2023-03-03T16:47:33.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.475-pre-2", prerelease = true }
@@ -680,7 +681,6 @@
 "0.0.490" = { created_at = 2023-03-16T19:14:29.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.490" }
 "0.0.491" = { created_at = 2023-03-16T19:24:01.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.491" }
 "0.0.492" = { created_at = 2023-03-16T19:24:45.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.492" }
-"0.0.474-pre-1" = { created_at = 2023-03-18T00:29:46.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.474-pre-1", prerelease = true }
 "0.0.493-pre-1" = { created_at = 2023-03-18T00:45:21.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.493-pre-1", prerelease = true }
 "0.0.493" = { created_at = 2023-03-20T13:34:09.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.493" }
 "0.0.494-pre-1" = { created_at = 2023-03-20T16:46:40.000Z, release_url = "https://github.com/superfly/flyctl/releases/tag/v0.0.494-pre-1", prerelease = true }

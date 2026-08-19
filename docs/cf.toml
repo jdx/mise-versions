@@ -84,71 +84,71 @@
 "6.44.1" = { created_at = 2019-05-08T22:53:23.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.44.1" }
 "6.45.0" = { created_at = 2019-06-04T23:29:03.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.45.0" }
 "6.46.0" = { created_at = 2019-07-09T23:57:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.46.0" }
-"7.0.0-beta.24" = { created_at = 2019-09-12T11:37:46.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.24", prerelease = true }
 "6.46.1" = { created_at = 2019-08-26T20:42:56.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.46.1" }
-"7.0.0-beta.25" = { created_at = 2019-09-12T18:06:32.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.25", prerelease = true }
-"7.0.0-beta.26" = { created_at = 2019-10-11T00:16:06.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.26", prerelease = true }
 "6.47.0" = { created_at = 2019-10-17T17:09:55.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.47.0", prerelease = true }
 "6.47.1" = { created_at = 2019-10-21T22:05:44.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.47.1" }
-"7.0.0-beta.27" = { created_at = 2019-11-07T01:01:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.27", prerelease = true }
 "6.47.2" = { created_at = 2019-11-05T19:58:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.47.2" }
 "6.48.0" = { created_at = 2019-12-05T22:49:32.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.48.0" }
-"7.0.0-beta.28" = { created_at = 2020-01-08T22:43:43.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.28", prerelease = true }
 "6.49.0" = { created_at = 2020-01-08T00:50:24.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.49.0" }
-"7.0.0-beta.29" = { created_at = 2020-02-06T22:35:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.29", prerelease = true }
-"7.0.0-beta.30" = { created_at = 2020-02-24T22:46:25.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.30", prerelease = true }
 "6.50.0" = { created_at = 2020-03-04T00:03:37.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.50.0" }
 "6.51.0" = { created_at = 2020-04-08T23:05:37.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.51.0" }
+"6.52.0" = { created_at = 2020-08-26T23:30:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.52.0" }
+"6.53.0" = { created_at = 2020-10-02T00:35:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.53.0" }
+"7.0.0-beta.24" = { created_at = 2019-09-12T11:37:46.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.24", prerelease = true }
+"7.0.0-beta.25" = { created_at = 2019-09-12T18:06:32.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.25", prerelease = true }
+"7.0.0-beta.26" = { created_at = 2019-10-11T00:16:06.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.26", prerelease = true }
+"7.0.0-beta.27" = { created_at = 2019-11-07T01:01:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.27", prerelease = true }
+"7.0.0-beta.28" = { created_at = 2020-01-08T22:43:43.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.28", prerelease = true }
+"7.0.0-beta.29" = { created_at = 2020-02-06T22:35:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.29", prerelease = true }
+"7.0.0-beta.30" = { created_at = 2020-02-24T22:46:25.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0-beta.30", prerelease = true }
 "7.0.0" = { created_at = 2020-06-25T23:54:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.0" }
 "7.0.1" = { created_at = 2020-06-25T23:53:19.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.1" }
 "7.0.2" = { created_at = 2020-07-28T21:32:45.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.0.2" }
-"6.52.0" = { created_at = 2020-08-26T23:30:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.52.0" }
 "7.1.0" = { created_at = 2020-09-09T23:25:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.1.0" }
-"6.53.0" = { created_at = 2020-10-02T00:35:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v6.53.0" }
 "7.2.0" = { created_at = 2020-12-11T00:12:15.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.2.0" }
 "7.3.0" = { created_at = 2021-08-19T23:55:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.3.0" }
-"8.0.0" = { created_at = 2021-09-28T17:58:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.0.0" }
 "7.4.0" = { created_at = 2021-11-17T00:40:24.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.4.0" }
+"7.5.0" = { created_at = 2022-06-04T00:50:53.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.5.0" }
+"7.6.0" = { created_at = 2023-02-27T22:21:47.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.6.0" }
+"7.7.1" = { created_at = 2023-06-17T02:32:01.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.1" }
+"7.7.2" = { created_at = 2023-08-31T17:53:23.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.2" }
+"7.7.3" = { created_at = 2023-09-13T00:56:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.3" }
+"7.7.4" = { created_at = 2023-10-20T20:13:41.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.4" }
+"7.7.5" = { created_at = 2023-11-20T23:20:55.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.5" }
+"7.7.6" = { created_at = 2023-12-14T23:24:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.6" }
+"7.7.7" = { created_at = 2023-12-27T15:48:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.7" }
+"7.7.8" = { created_at = 2024-02-09T18:31:56.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.8" }
+"7.7.9" = { created_at = 2024-03-09T02:04:11.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.9" }
+"7.7.10" = { created_at = 2024-04-04T02:51:37.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.10" }
+"7.7.11" = { created_at = 2024-07-09T20:44:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.11" }
+"7.7.12" = { created_at = 2024-08-21T15:30:56.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.12" }
+"7.7.13" = { created_at = 2024-09-13T13:35:39.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.13" }
+"7.7.14" = { created_at = 2024-09-20T15:17:15.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.14" }
+"7.7.15" = { created_at = 2024-10-29T14:51:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.15" }
+"7.8.0" = { created_at = 2024-12-04T19:43:20.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.8.0" }
+"8.0.0" = { created_at = 2021-09-28T17:58:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.0.0" }
 "8.1.0" = { created_at = 2022-01-05T18:18:19.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.1.0" }
 "8.2.0" = { created_at = 2022-02-11T20:25:25.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.2.0" }
 "8.3.0" = { created_at = 2022-03-11T08:40:12.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.3.0" }
 "8.4.0" = { created_at = 2022-06-02T22:38:01.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.4.0" }
-"7.5.0" = { created_at = 2022-06-04T00:50:53.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.5.0" }
 "8.5.0" = { created_at = 2022-09-12T22:00:10.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.5.0" }
 "8.6.0" = { created_at = 2023-02-16T22:50:01.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.6.0" }
-"7.6.0" = { created_at = 2023-02-27T22:21:47.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.6.0" }
 "8.6.1" = { created_at = 2023-02-27T20:44:00.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.6.1" }
-"7.7.1" = { created_at = 2023-06-17T02:32:01.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.1" }
 "8.7.1" = { created_at = 2023-06-16T22:01:13.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.1" }
-"7.7.2" = { created_at = 2023-08-31T17:53:23.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.2" }
 "8.7.2" = { created_at = 2023-08-30T21:58:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.2" }
-"7.7.3" = { created_at = 2023-09-13T00:56:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.3" }
 "8.7.3" = { created_at = 2023-09-13T01:01:57.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.3" }
-"7.7.4" = { created_at = 2023-10-20T20:13:41.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.4" }
 "8.7.4" = { created_at = 2023-10-20T20:12:06.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.4" }
-"7.7.5" = { created_at = 2023-11-20T23:20:55.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.5" }
 "8.7.5" = { created_at = 2023-11-20T23:20:51.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.5" }
-"7.7.6" = { created_at = 2023-12-14T23:24:22.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.6" }
 "8.7.6" = { created_at = 2023-12-14T23:23:15.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.6" }
-"7.7.7" = { created_at = 2023-12-27T15:48:52.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.7" }
 "8.7.7" = { created_at = 2023-12-27T15:47:23.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.7" }
-"7.7.8" = { created_at = 2024-02-09T18:31:56.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.8" }
 "8.7.8" = { created_at = 2024-02-09T18:33:04.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.8" }
-"7.7.9" = { created_at = 2024-03-09T02:04:11.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.9" }
 "8.7.9" = { created_at = 2024-03-09T02:04:36.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.9" }
-"7.7.10" = { created_at = 2024-04-04T02:51:37.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.10" }
 "8.7.10" = { created_at = 2024-04-04T02:52:17.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.10" }
-"7.7.11" = { created_at = 2024-07-09T20:44:07.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.11" }
 "8.7.11" = { created_at = 2024-07-09T20:44:59.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.7.11" }
-"7.7.12" = { created_at = 2024-08-21T15:30:56.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.12" }
 "8.8.0" = { created_at = 2024-08-21T15:31:38.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.0" }
-"7.7.13" = { created_at = 2024-09-13T13:35:39.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.13" }
 "8.8.1" = { created_at = 2024-09-13T13:36:05.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.1" }
-"7.7.14" = { created_at = 2024-09-20T15:17:15.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.14" }
 "8.8.2" = { created_at = 2024-09-20T15:16:59.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.2" }
-"7.7.15" = { created_at = 2024-10-29T14:51:33.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.7.15" }
 "8.8.3" = { created_at = 2024-10-29T15:07:08.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.8.3" }
-"7.8.0" = { created_at = 2024-12-04T19:43:20.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v7.8.0" }
 "8.9.0" = { created_at = 2024-12-04T19:42:58.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.9.0" }
 "8.10.0" = { created_at = 2025-02-25T17:45:24.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.10.0" }
 "8.11.0" = { created_at = 2025-03-11T19:52:08.000Z, release_url = "https://github.com/cloudfoundry/cli/releases/tag/v8.11.0" }

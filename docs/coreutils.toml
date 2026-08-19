@@ -1,6 +1,7 @@
 [versions]
-"0.0.1" = { created_at = 2020-04-14T00:15:05.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.0.1" }
 "0.0.1.1" = { created_at = 2020-05-31T22:26:51.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.0.1.1" }
+"latest-commit" = { created_at = 2026-01-17T10:58:34.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/latest-commit", prerelease = true }
+"0.0.1" = { created_at = 2020-04-14T00:15:05.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.0.1" }
 "0.0.2" = { created_at = 2021-01-11T14:23:36.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.0.2" }
 "0.0.3" = { created_at = 2021-02-02T12:29:44.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.0.3" }
 "0.0.4" = { created_at = 2021-03-07T11:37:40.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.0.4" }
@@ -30,7 +31,6 @@
 "0.3.0" = { created_at = 2025-10-24T22:45:39.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.3.0" }
 "0.4.0" = { created_at = 2025-11-09T23:07:25.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.4.0" }
 "0.5.0" = { created_at = 2025-12-14T09:54:40.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.5.0" }
-"latest-commit" = { created_at = 2026-01-17T10:58:34.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/latest-commit", prerelease = true }
 "0.6.0" = { created_at = 2026-02-02T22:21:13.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.6.0" }
 "0.7.0" = { created_at = 2026-03-08T21:40:46.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.7.0" }
 "0.8.0" = { created_at = 2026-04-06T20:48:18.000Z, release_url = "https://github.com/uutils/coreutils/releases/tag/0.8.0" }

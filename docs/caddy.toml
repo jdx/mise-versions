@@ -46,18 +46,7 @@
 "1.0.1" = { created_at = 2019-07-02T19:26:51.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v1.0.1" }
 "1.0.2" = { created_at = 2019-08-13T20:52:58.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v1.0.2" }
 "1.0.3" = { created_at = 2019-08-14T20:03:37.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v1.0.3" }
-"2.0.0-beta1" = { created_at = 2019-09-13T19:03:56.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta1", prerelease = true }
-"2.0.0-beta2" = { created_at = 2019-09-20T19:26:45.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta2", prerelease = true }
-"2.0.0-beta3" = { created_at = 2019-10-01T17:44:42.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta3", prerelease = true }
-"2.0.0-beta4" = { created_at = 2019-10-07T17:07:39.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta4", prerelease = true }
-"2.0.0-beta6" = { created_at = 2019-10-14T17:41:46.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta6", prerelease = true }
-"2.0.0-beta7" = { created_at = 2019-10-28T21:21:20.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta7", prerelease = true }
-"2.0.0-beta8" = { created_at = 2019-10-29T18:11:23.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta8", prerelease = true }
-"2.0.0-beta9" = { created_at = 2019-11-04T20:55:15.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta9", prerelease = true }
 "1.0.4" = { created_at = 2019-11-15T21:30:35.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v1.0.4" }
-"2.0.0-beta10" = { created_at = 2019-11-18T21:33:56.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta10", prerelease = true }
-"2.0.0-beta11" = { created_at = 2019-12-23T20:57:52.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta11", prerelease = true }
-"2.0.0-beta12" = { created_at = 2020-01-01T07:19:58.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta12", prerelease = true }
 "2.0.0-beta.13" = { created_at = 2020-01-22T17:43:13.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta.13", prerelease = true }
 "2.0.0-beta.14" = { created_at = 2020-02-11T22:29:38.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta.14", prerelease = true }
 "2.0.0-beta.15" = { created_at = 2020-02-28T04:25:44.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta.15", prerelease = true }
@@ -65,6 +54,17 @@
 "2.0.0-beta.18" = { created_at = 2020-03-19T22:09:52.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta.18", prerelease = true }
 "2.0.0-beta.19" = { created_at = 2020-03-23T17:31:05.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta.19", prerelease = true }
 "2.0.0-beta.20" = { created_at = 2020-03-24T19:56:48.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta.20", prerelease = true }
+"2.0.0-beta1" = { created_at = 2019-09-13T19:03:56.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta1", prerelease = true }
+"2.0.0-beta10" = { created_at = 2019-11-18T21:33:56.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta10", prerelease = true }
+"2.0.0-beta11" = { created_at = 2019-12-23T20:57:52.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta11", prerelease = true }
+"2.0.0-beta12" = { created_at = 2020-01-01T07:19:58.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta12", prerelease = true }
+"2.0.0-beta2" = { created_at = 2019-09-20T19:26:45.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta2", prerelease = true }
+"2.0.0-beta3" = { created_at = 2019-10-01T17:44:42.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta3", prerelease = true }
+"2.0.0-beta4" = { created_at = 2019-10-07T17:07:39.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta4", prerelease = true }
+"2.0.0-beta6" = { created_at = 2019-10-14T17:41:46.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta6", prerelease = true }
+"2.0.0-beta7" = { created_at = 2019-10-28T21:21:20.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta7", prerelease = true }
+"2.0.0-beta8" = { created_at = 2019-10-29T18:11:23.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta8", prerelease = true }
+"2.0.0-beta9" = { created_at = 2019-11-04T20:55:15.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-beta9", prerelease = true }
 "2.0.0-rc.1" = { created_at = 2020-04-02T23:29:12.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-rc.1", prerelease = true }
 "2.0.0-rc.2" = { created_at = 2020-04-09T19:44:07.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-rc.2", prerelease = true }
 "2.0.0-rc.3" = { created_at = 2020-04-13T19:07:28.000Z, release_url = "https://github.com/caddyserver/caddy/releases/tag/v2.0.0-rc.3", prerelease = true }

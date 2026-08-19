@@ -72,11 +72,11 @@
 "0.8.0-alpha.5" = { created_at = 2024-03-05T16:06:53.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.8.0-alpha.5", prerelease = true }
 "0.8.0-rc.1" = { created_at = 2024-03-13T10:18:22.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.8.0-rc.1", prerelease = true }
 "0.8.0" = { created_at = 2024-03-15T12:33:20.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.8.0" }
-"0.9.0-alpha.1" = { created_at = 2024-03-21T11:04:10.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-alpha.1", prerelease = true }
 "0.8.1" = { created_at = 2024-04-03T08:34:35.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2024-04-26T12:00:32.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.8.2" }
+"0.9.0-alpha.1" = { created_at = 2024-03-21T11:04:10.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-alpha.1", prerelease = true }
 "0.9.0-alpha.2" = { created_at = 2024-04-18T13:28:37.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-alpha.2", prerelease = true }
 "0.9.0-alpha.3" = { created_at = 2024-04-24T13:00:14.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-alpha.3", prerelease = true }
-"0.8.2" = { created_at = 2024-04-26T12:00:32.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.8.2" }
 "0.9.0-alpha.4" = { created_at = 2024-05-01T15:31:12.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-alpha.4", prerelease = true }
 "0.9.0-alpha.5" = { created_at = 2024-05-17T09:29:57.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-alpha.5", prerelease = true }
 "0.9.0-rc.1" = { created_at = 2024-05-31T14:39:32.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.9.0-rc.1", prerelease = true }
@@ -88,24 +88,24 @@
 "0.10.0-alpha.3" = { created_at = 2024-08-01T08:52:21.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.10.0-alpha.3", prerelease = true }
 "0.10.0-rc.1" = { created_at = 2024-08-07T14:51:14.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.10.0-rc.1", prerelease = true }
 "0.10.0" = { created_at = 2024-08-15T08:47:05.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.10.0" }
+"0.10.1" = { created_at = 2024-10-22T14:04:33.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.10.1" }
 "0.11.0-alpha.1" = { created_at = 2024-09-05T16:34:37.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0-alpha.1", prerelease = true }
 "0.11.0-alpha.2" = { created_at = 2024-09-24T15:36:53.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0-alpha.2", prerelease = true }
 "0.11.0-alpha.3" = { created_at = 2024-10-02T11:28:11.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0-alpha.3", prerelease = true }
-"0.10.1" = { created_at = 2024-10-22T14:04:33.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.10.1" }
 "0.11.0-alpha.4" = { created_at = 2024-10-25T08:17:29.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0-alpha.4", prerelease = true }
 "0.11.0-alpha.5" = { created_at = 2024-11-06T16:51:51.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0-alpha.5", prerelease = true }
 "0.11.0-rc.1" = { created_at = 2024-11-14T21:18:25.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0-rc.1", prerelease = true }
 "0.11.0" = { created_at = 2024-11-19T16:27:03.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.0" }
 "0.11.1" = { created_at = 2024-12-18T15:57:00.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.1" }
-"0.12.0-alpha.1" = { created_at = 2024-12-19T15:02:18.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.0-alpha.1", prerelease = true }
 "0.11.2" = { created_at = 2025-01-22T13:01:19.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.11.2" }
+"0.12.0-alpha.1" = { created_at = 2024-12-19T15:02:18.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.0-alpha.1", prerelease = true }
 "0.12.0-alpha.2" = { created_at = 2025-01-22T17:02:20.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.0-alpha.2", prerelease = true }
 "0.12.0-rc.1" = { created_at = 2025-01-28T16:04:51.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.0-rc.1", prerelease = true }
 "0.12.0" = { created_at = 2025-01-30T11:54:27.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.0" }
+"0.12.1" = { created_at = 2025-04-03T19:51:59.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.1" }
 "0.13.0-alpha.1" = { created_at = 2025-03-12T17:05:08.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.13.0-alpha.1", prerelease = true }
 "0.13.0-alpha.2" = { created_at = 2025-03-25T15:51:13.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.13.0-alpha.2", prerelease = true }
 "0.13.0-alpha.3" = { created_at = 2025-03-31T14:38:40.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.13.0-alpha.3", prerelease = true }
-"0.12.1" = { created_at = 2025-04-03T19:51:59.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.12.1" }
 "0.13.0-alpha.4" = { created_at = 2025-04-25T09:02:24.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.13.0-alpha.4", prerelease = true }
 "0.13.0-rc.1" = { created_at = 2025-05-16T14:07:50.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.13.0-rc.1", prerelease = true }
 "0.13.0" = { created_at = 2025-05-22T15:35:07.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.13.0" }
@@ -117,9 +117,9 @@
 "0.14.0-rc.2" = { created_at = 2025-07-28T13:44:23.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.14.0-rc.2", prerelease = true }
 "0.14.0" = { created_at = 2025-08-01T12:59:10.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.14.0" }
 "0.14.1" = { created_at = 2025-08-11T14:52:51.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.14.1" }
+"0.14.2" = { created_at = 2025-10-10T13:34:06.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.14.2" }
 "0.15.0-alpha.1" = { created_at = 2025-09-11T12:24:16.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.15.0-alpha.1", prerelease = true }
 "0.15.0-alpha.2" = { created_at = 2025-10-09T09:48:51.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.15.0-alpha.2", prerelease = true }
-"0.14.2" = { created_at = 2025-10-10T13:34:06.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.14.2" }
 "0.15.0-alpha.3" = { created_at = 2025-10-22T12:27:47.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.15.0-alpha.3", prerelease = true }
 "0.15.0-rc.1" = { created_at = 2025-10-29T14:35:05.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.15.0-rc.1", prerelease = true }
 "0.15.0" = { created_at = 2025-11-06T13:16:17.000Z, release_url = "https://github.com/cue-lang/cue/releases/tag/v0.15.0" }

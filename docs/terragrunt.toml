@@ -1,4 +1,61 @@
 [versions]
+"alpha2025022701" = { created_at = 2025-02-27T16:42:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025022701", prerelease = true }
+"alpha2025022702" = { created_at = 2025-02-27T19:42:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025022702", prerelease = true }
+"alpha2025022703" = { created_at = 2025-02-27T20:53:33.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025022703", prerelease = true }
+"alpha2025030401" = { created_at = 2025-03-05T01:20:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025030401", prerelease = true }
+"alpha2025031301" = { created_at = 2025-03-13T15:01:42.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025031301", prerelease = true }
+"alpha-2025031901" = { created_at = 2025-03-19T11:42:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025031901", prerelease = true }
+"alpha-2025040801" = { created_at = 2025-04-08T18:44:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025040801", prerelease = true }
+"alpha-2025051001" = { created_at = 2025-05-10T14:38:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025051001", prerelease = true }
+"alpha-20250626" = { created_at = 2025-06-26T22:12:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-20250626", prerelease = true }
+"alpha-20250813" = { created_at = 2025-08-13T13:14:54.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-20250813", prerelease = true }
+"alpha-20250828" = { created_at = 2025-08-28T10:05:04.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-20250828", prerelease = true }
+"alpha-2025090201" = { created_at = 2025-09-02T13:41:13.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090201", prerelease = true }
+"alpha-2025090202" = { created_at = 2025-09-02T18:16:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090202", prerelease = true }
+"alpha-2025090301" = { created_at = 2025-09-03T15:00:54.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090301", prerelease = true }
+"alpha-2025090302" = { created_at = 2025-09-03T20:15:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090302", prerelease = true }
+"alpha-2025100901" = { created_at = 2025-10-09T15:49:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025100901", prerelease = true }
+"alpha-2025103001" = { created_at = 2025-10-30T18:28:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025103001", prerelease = true }
+"alpha-2025103002" = { created_at = 2025-10-30T21:45:16.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025103002", prerelease = true }
+"alpha-2025110301" = { created_at = 2025-11-03T15:32:03.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025110301", prerelease = true }
+"beta-2025110302" = { created_at = 2025-11-03T20:48:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025110302", prerelease = true }
+"beta-2025110401" = { created_at = 2025-11-04T11:25:10.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025110401", prerelease = true }
+"beta-2025111001" = { created_at = 2025-11-10T15:52:36.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111001", prerelease = true }
+"beta-2025111002" = { created_at = 2025-11-10T16:27:43.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111002", prerelease = true }
+"beta-2025111003" = { created_at = 2025-11-10T17:46:25.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111003", prerelease = true }
+"beta-2025111004" = { created_at = 2025-11-10T19:10:56.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111004", prerelease = true }
+"beta-2025111005" = { created_at = 2025-11-10T19:39:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111005", prerelease = true }
+"beta-2025111101" = { created_at = 2025-11-10T22:18:11.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111101", prerelease = true }
+"alpha-2025111102" = { created_at = 2025-11-11T13:58:15.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111102", prerelease = true }
+"alpha-2025111103" = { created_at = 2025-11-11T19:00:19.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111103", prerelease = true }
+"alpha-2025111104" = { created_at = 2025-11-11T20:38:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111104", prerelease = true }
+"alpha-2025111105" = { created_at = 2025-11-11T22:08:39.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111105", prerelease = true }
+"alpha-2025111106" = { created_at = 2025-11-11T22:22:06.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111106", prerelease = true }
+"alpha-2025111107" = { created_at = 2025-11-11T22:43:47.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111107", prerelease = true }
+"alpha-2025111108" = { created_at = 2025-11-11T23:04:52.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111108", prerelease = true }
+"alpha-2025111109" = { created_at = 2025-11-11T23:49:23.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111109", prerelease = true }
+"alpha-2025111201" = { created_at = 2025-11-12T18:41:14.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111201", prerelease = true }
+"alpha-2025111701" = { created_at = 2025-11-17T14:41:32.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111701", prerelease = true }
+"alpha-2025121001" = { created_at = 2025-12-10T16:14:38.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025121001", prerelease = true }
+"alpha-2025121101" = { created_at = 2025-12-11T14:01:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025121101", prerelease = true }
+"alpha2025121701" = { created_at = 2025-12-17T20:46:08.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025121701", prerelease = true }
+"alpha2025121801" = { created_at = 2025-12-18T15:01:16.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025121801", prerelease = true }
+"alpha-2026011201" = { created_at = 2026-01-12T15:27:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026011201", prerelease = true }
+"alpha-2026011202" = { created_at = 2026-01-12T16:41:44.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026011202", prerelease = true }
+"alpha-2026011301" = { created_at = 2026-01-13T16:36:18.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026011301", prerelease = true }
+"alpha-2026012801" = { created_at = 2026-01-28T14:49:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026012801", prerelease = true }
+"alpha-2026020401" = { created_at = 2026-02-04T15:10:55.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026020401", prerelease = true }
+"alpha-2026020601" = { created_at = 2026-02-06T17:05:25.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026020601", prerelease = true }
+"alpha-2026020901" = { created_at = 2026-02-09T15:38:37.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026020901", prerelease = true }
+"alpha-2026021301" = { created_at = 2026-02-13T18:48:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026021301", prerelease = true }
+"alpha-2026021701" = { created_at = 2026-02-17T20:06:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026021701", prerelease = true }
+"alpha-2026021801" = { created_at = 2026-02-18T17:28:07.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026021801", prerelease = true }
+"alpha-2026022001" = { created_at = 2026-02-20T15:07:06.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026022001", prerelease = true }
+"alpha-2026030301" = { created_at = 2026-03-03T21:00:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026030301", prerelease = true }
+"alpha-2026031001" = { created_at = 2026-03-10T20:37:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026031001", prerelease = true }
+"alpha-2026031901" = { created_at = 2026-03-19T09:00:42.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026031901", prerelease = true }
+"alpha-2026032001" = { created_at = 2026-03-20T20:20:44.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026032001", prerelease = true }
+"alpha-2026040801" = { created_at = 2026-04-08T12:59:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026040801", prerelease = true }
 "0.0.4" = { created_at = 2016-06-01T11:39:05.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.0.4" }
 "0.0.5" = { created_at = 2016-06-01T11:44:26.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.0.5" }
 "0.0.6" = { created_at = 2016-06-03T10:48:23.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.0.6" }
@@ -367,8 +424,8 @@
 "0.36.9" = { created_at = 2022-04-29T17:11:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.36.9" }
 "0.36.10" = { created_at = 2022-05-04T07:42:43.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.36.10" }
 "0.36.11" = { created_at = 2022-05-10T10:25:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.36.11" }
-"0.37.0" = { created_at = 2022-05-11T11:53:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.37.0" }
 "0.36.12" = { created_at = 2022-05-13T14:00:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.36.12" }
+"0.37.0" = { created_at = 2022-05-11T11:53:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.37.0" }
 "0.37.1" = { created_at = 2022-05-13T14:06:15.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.37.1" }
 "0.37.2" = { created_at = 2022-06-08T14:22:48.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.37.2" }
 "0.37.3" = { created_at = 2022-06-10T08:50:12.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.37.3" }
@@ -443,8 +500,8 @@
 "0.48.4" = { created_at = 2023-07-19T14:37:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.48.4" }
 "0.48.5" = { created_at = 2023-07-28T18:27:49.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.48.5" }
 "0.48.6" = { created_at = 2023-08-02T19:52:39.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.48.6" }
-"0.48.7" = { created_at = 2023-08-09T16:44:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.48.7" }
 "0.48.7-test-signing-binaries" = { created_at = 2023-08-11T10:11:23.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.48.7-test-signing-binaries", prerelease = true }
+"0.48.7" = { created_at = 2023-08-09T16:44:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.48.7" }
 "0.49.0" = { created_at = 2023-08-11T14:22:45.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.49.0" }
 "0.49.1" = { created_at = 2023-08-11T14:34:55.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.49.1" }
 "0.50.0" = { created_at = 2023-08-14T21:27:45.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.50.0" }
@@ -671,12 +728,12 @@
 "0.69.6" = { created_at = 2024-12-03T20:57:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.6" }
 "0.69.7" = { created_at = 2024-12-04T12:30:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.7" }
 "0.69.8" = { created_at = 2024-12-05T15:07:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.8" }
-"0.70.0-beta2024120501" = { created_at = 2024-12-05T15:30:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.70.0-beta2024120501", prerelease = true }
 "0.69.9" = { created_at = 2024-12-06T16:19:12.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.9" }
 "0.69.10" = { created_at = 2024-12-11T13:30:03.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.10" }
 "0.69.11" = { created_at = 2024-12-12T19:08:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.11" }
 "0.69.12" = { created_at = 2024-12-12T20:51:37.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.12" }
 "0.69.13" = { created_at = 2024-12-13T16:25:31.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.69.13" }
+"0.70.0-beta2024120501" = { created_at = 2024-12-05T15:30:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.70.0-beta2024120501", prerelease = true }
 "0.70.0" = { created_at = 2024-12-18T14:48:38.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.70.0" }
 "0.70.1" = { created_at = 2024-12-18T17:34:58.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.70.1" }
 "0.70.2" = { created_at = 2024-12-18T18:21:43.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.70.2" }
@@ -702,10 +759,10 @@
 "0.72.6-alpha20245013001" = { created_at = 2025-01-30T12:37:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.72.6-alpha20245013001", prerelease = true }
 "0.72.6" = { created_at = 2025-01-31T15:49:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.72.6" }
 "0.72.7-alpha2025020501" = { created_at = 2025-02-05T17:16:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.72.7-alpha2025020501", prerelease = true }
-"0.73.0-alpha2025020401" = { created_at = 2025-02-04T13:27:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.0-alpha2025020401", prerelease = true }
-"0.73.0-beta2025020601" = { created_at = 2025-02-06T21:34:48.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.0-beta2025020601", prerelease = true }
 "0.72.8" = { created_at = 2025-02-07T16:07:37.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.72.8" }
 "0.72.9" = { created_at = 2025-02-08T11:51:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.72.9" }
+"0.73.0-alpha2025020401" = { created_at = 2025-02-04T13:27:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.0-alpha2025020401", prerelease = true }
+"0.73.0-beta2025020601" = { created_at = 2025-02-06T21:34:48.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.0-beta2025020601", prerelease = true }
 "0.73.0" = { created_at = 2025-02-10T22:59:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.0" }
 "0.73.1" = { created_at = 2025-02-12T14:03:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.1" }
 "0.73.2" = { created_at = 2025-02-13T20:29:25.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.2" }
@@ -723,28 +780,22 @@
 "0.73.12" = { created_at = 2025-02-24T13:09:55.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.12" }
 "0.73.13" = { created_at = 2025-02-24T16:56:36.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.13" }
 "0.73.14" = { created_at = 2025-02-25T21:51:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.14" }
-"alpha2025022701" = { created_at = 2025-02-27T16:42:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025022701", prerelease = true }
-"alpha2025022702" = { created_at = 2025-02-27T19:42:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025022702", prerelease = true }
-"alpha2025022703" = { created_at = 2025-02-27T20:53:33.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025022703", prerelease = true }
 "0.73.15" = { created_at = 2025-02-27T09:20:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.15" }
 "0.73.16" = { created_at = 2025-02-28T18:25:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.73.16" }
 "0.74.0" = { created_at = 2025-03-03T13:19:32.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.74.0" }
 "0.75.0" = { created_at = 2025-03-03T14:45:54.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.0" }
-"alpha2025030401" = { created_at = 2025-03-05T01:20:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025030401", prerelease = true }
 "0.75.1" = { created_at = 2025-03-06T13:24:15.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.1" }
 "0.75.2" = { created_at = 2025-03-06T16:51:13.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.2" }
 "0.75.3" = { created_at = 2025-03-07T16:44:58.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.3" }
 "0.75.4" = { created_at = 2025-03-10T13:42:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.4" }
 "0.75.5" = { created_at = 2025-03-11T12:06:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.5" }
 "0.75.6" = { created_at = 2025-03-12T13:25:41.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.6" }
-"alpha2025031301" = { created_at = 2025-03-13T15:01:42.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025031301", prerelease = true }
 "0.75.7" = { created_at = 2025-03-13T14:21:12.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.7" }
 "0.75.8" = { created_at = 2025-03-13T16:21:45.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.8" }
 "0.75.9" = { created_at = 2025-03-13T17:52:14.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.9" }
 "0.75.10" = { created_at = 2025-03-14T14:35:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.75.10" }
 "0.76.0" = { created_at = 2025-03-17T15:38:26.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.76.0" }
 "0.76.1" = { created_at = 2025-03-17T16:26:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.76.1" }
-"alpha-2025031901" = { created_at = 2025-03-19T11:42:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025031901", prerelease = true }
 "0.76.2" = { created_at = 2025-03-19T20:11:18.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.76.2" }
 "0.76.3" = { created_at = 2025-03-20T12:00:19.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.76.3" }
 "0.76.4" = { created_at = 2025-03-20T20:33:47.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.76.4" }
@@ -762,7 +813,6 @@
 "0.77.7" = { created_at = 2025-04-03T13:13:28.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.77.7" }
 "0.77.8" = { created_at = 2025-04-07T15:31:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.77.8" }
 "0.77.9" = { created_at = 2025-04-07T18:47:10.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.77.9" }
-"alpha-2025040801" = { created_at = 2025-04-08T18:44:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025040801", prerelease = true }
 "0.77.10" = { created_at = 2025-04-08T20:12:03.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.77.10" }
 "0.77.11" = { created_at = 2025-04-09T12:41:44.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.77.11" }
 "0.77.12" = { created_at = 2025-04-10T17:58:55.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.77.12" }
@@ -779,7 +829,6 @@
 "0.78.0" = { created_at = 2025-05-02T16:30:12.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.78.0" }
 "0.78.1" = { created_at = 2025-05-06T08:57:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.78.1" }
 "0.78.2" = { created_at = 2025-05-09T15:38:08.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.78.2" }
-"alpha-2025051001" = { created_at = 2025-05-10T14:38:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025051001", prerelease = true }
 "0.78.3" = { created_at = 2025-05-12T14:52:10.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.78.3" }
 "0.78.4" = { created_at = 2025-05-13T21:55:04.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.78.4" }
 "0.79.0" = { created_at = 2025-05-20T18:18:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.79.0" }
@@ -804,7 +853,6 @@
 "0.81.10" = { created_at = 2025-06-20T16:24:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.81.10" }
 "0.82.0" = { created_at = 2025-06-24T20:39:15.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.82.0" }
 "0.82.1" = { created_at = 2025-06-26T10:47:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.82.1" }
-"alpha-20250626" = { created_at = 2025-06-26T22:12:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-20250626", prerelease = true }
 "0.82.2" = { created_at = 2025-06-26T20:23:28.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.82.2" }
 "0.82.3" = { created_at = 2025-06-27T14:03:12.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.82.3" }
 "0.82.4" = { created_at = 2025-07-02T13:29:03.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.82.4" }
@@ -813,17 +861,11 @@
 "0.83.2" = { created_at = 2025-07-14T19:44:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.83.2" }
 "0.84.0" = { created_at = 2025-08-01T12:55:41.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.84.0" }
 "0.84.1" = { created_at = 2025-08-04T13:49:48.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.84.1" }
-"alpha-20250813" = { created_at = 2025-08-13T13:14:54.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-20250813", prerelease = true }
 "0.85.0" = { created_at = 2025-08-15T12:18:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.85.0" }
 "0.85.1" = { created_at = 2025-08-21T13:43:07.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.85.1" }
 "0.86.0" = { created_at = 2025-08-22T09:18:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.86.0" }
 "0.86.1" = { created_at = 2025-08-23T17:23:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.86.1" }
 "0.86.2" = { created_at = 2025-08-25T16:00:33.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.86.2" }
-"alpha-20250828" = { created_at = 2025-08-28T10:05:04.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-20250828", prerelease = true }
-"alpha-2025090201" = { created_at = 2025-09-02T13:41:13.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090201", prerelease = true }
-"alpha-2025090202" = { created_at = 2025-09-02T18:16:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090202", prerelease = true }
-"alpha-2025090301" = { created_at = 2025-09-03T15:00:54.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090301", prerelease = true }
-"alpha-2025090302" = { created_at = 2025-09-03T20:15:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025090302", prerelease = true }
 "0.86.3" = { created_at = 2025-09-05T12:52:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.86.3" }
 "0.87.0" = { created_at = 2025-09-05T17:10:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.87.0" }
 "0.87.1" = { created_at = 2025-09-10T19:25:11.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.87.1" }
@@ -839,7 +881,6 @@
 "0.89.1" = { created_at = 2025-10-07T16:50:50.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.89.1" }
 "0.89.2" = { created_at = 2025-10-07T20:51:58.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.89.2" }
 "0.89.3" = { created_at = 2025-10-08T14:46:25.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.89.3" }
-"alpha-2025100901" = { created_at = 2025-10-09T15:49:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025100901", prerelease = true }
 "0.89.4" = { created_at = 2025-10-09T17:40:43.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.89.4" }
 "0.90.0" = { created_at = 2025-10-10T15:22:18.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.90.0" }
 "0.90.1" = { created_at = 2025-10-15T14:14:15.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.90.1" }
@@ -852,84 +893,43 @@
 "0.91.5" = { created_at = 2025-10-24T13:13:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.91.5" }
 "0.92.0" = { created_at = 2025-10-27T14:47:03.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.92.0" }
 "0.92.1" = { created_at = 2025-10-28T16:40:46.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.92.1" }
-"alpha-2025103001" = { created_at = 2025-10-30T18:28:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025103001", prerelease = true }
-"alpha-2025103002" = { created_at = 2025-10-30T21:45:16.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025103002", prerelease = true }
 "0.93.0" = { created_at = 2025-10-31T19:14:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.0" }
-"alpha-2025110301" = { created_at = 2025-11-03T15:32:03.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025110301", prerelease = true }
-"beta-2025110302" = { created_at = 2025-11-03T20:48:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025110302", prerelease = true }
-"beta-2025110401" = { created_at = 2025-11-04T11:25:10.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025110401", prerelease = true }
 "0.93.1" = { created_at = 2025-11-04T16:35:12.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.1" }
 "0.93.2" = { created_at = 2025-11-05T13:44:53.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.2" }
 "0.93.3" = { created_at = 2025-11-05T18:50:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.3" }
-"beta-2025111001" = { created_at = 2025-11-10T15:52:36.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111001", prerelease = true }
-"beta-2025111002" = { created_at = 2025-11-10T16:27:43.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111002", prerelease = true }
-"beta-2025111003" = { created_at = 2025-11-10T17:46:25.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111003", prerelease = true }
-"beta-2025111004" = { created_at = 2025-11-10T19:10:56.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111004", prerelease = true }
-"beta-2025111005" = { created_at = 2025-11-10T19:39:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111005", prerelease = true }
-"beta-2025111101" = { created_at = 2025-11-10T22:18:11.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/beta-2025111101", prerelease = true }
 "0.93.4" = { created_at = 2025-11-10T13:48:31.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.4" }
 "0.93.5" = { created_at = 2025-11-10T20:43:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.5" }
-"alpha-2025111102" = { created_at = 2025-11-11T13:58:15.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111102", prerelease = true }
-"alpha-2025111103" = { created_at = 2025-11-11T19:00:19.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111103", prerelease = true }
-"alpha-2025111104" = { created_at = 2025-11-11T20:38:27.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111104", prerelease = true }
-"alpha-2025111105" = { created_at = 2025-11-11T22:08:39.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111105", prerelease = true }
-"alpha-2025111106" = { created_at = 2025-11-11T22:22:06.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111106", prerelease = true }
-"alpha-2025111107" = { created_at = 2025-11-11T22:43:47.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111107", prerelease = true }
-"alpha-2025111108" = { created_at = 2025-11-11T23:04:52.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111108", prerelease = true }
-"alpha-2025111109" = { created_at = 2025-11-11T23:49:23.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111109", prerelease = true }
 "0.93.6" = { created_at = 2025-11-11T19:51:36.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.6" }
-"alpha-2025111201" = { created_at = 2025-11-12T18:41:14.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111201", prerelease = true }
 "0.93.7" = { created_at = 2025-11-12T14:15:56.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.7" }
 "0.93.8" = { created_at = 2025-11-12T19:13:37.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.8" }
-"alpha-2025111701" = { created_at = 2025-11-17T14:41:32.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025111701", prerelease = true }
 "0.93.9" = { created_at = 2025-11-17T15:04:43.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.9" }
 "0.93.10" = { created_at = 2025-11-20T15:24:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.10" }
 "0.93.11" = { created_at = 2025-11-24T18:36:09.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.11" }
 "0.93.12" = { created_at = 2025-12-01T17:23:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.12" }
 "0.93.13" = { created_at = 2025-12-05T19:00:22.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.93.13" }
-"alpha-2025121001" = { created_at = 2025-12-10T16:14:38.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025121001", prerelease = true }
 "0.94.0" = { created_at = 2025-12-08T18:05:48.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.94.0" }
-"alpha-2025121101" = { created_at = 2025-12-11T14:01:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2025121101", prerelease = true }
 "0.95.0" = { created_at = 2025-12-12T11:57:51.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.95.0" }
 "0.95.1" = { created_at = 2025-12-12T19:58:52.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.95.1" }
 "0.96.0" = { created_at = 2025-12-15T17:09:44.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.96.0" }
-"alpha2025121701" = { created_at = 2025-12-17T20:46:08.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025121701", prerelease = true }
 "0.96.1" = { created_at = 2025-12-17T15:20:45.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.96.1" }
-"alpha2025121801" = { created_at = 2025-12-18T15:01:16.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha2025121801", prerelease = true }
 "0.97.0-rc2025121901" = { created_at = 2025-12-19T13:20:35.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.97.0-rc2025121901", prerelease = true }
 "0.97.0" = { created_at = 2026-01-05T15:36:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.97.0" }
 "0.97.1" = { created_at = 2026-01-07T17:49:07.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.97.1" }
 "0.97.2" = { created_at = 2026-01-09T15:08:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.97.2" }
-"alpha-2026011201" = { created_at = 2026-01-12T15:27:24.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026011201", prerelease = true }
-"alpha-2026011202" = { created_at = 2026-01-12T16:41:44.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026011202", prerelease = true }
-"alpha-2026011301" = { created_at = 2026-01-13T16:36:18.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026011301", prerelease = true }
 "0.98.0-rc2026011501" = { created_at = 2026-01-15T22:33:10.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.98.0-rc2026011501", prerelease = true }
 "0.98.0-rc2026011601" = { created_at = 2026-01-16T17:29:07.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.98.0-rc2026011601", prerelease = true }
 "0.98.0" = { created_at = 2026-01-20T13:02:23.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.98.0" }
 "0.99.0-rc2026012301" = { created_at = 2026-01-23T16:02:49.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.0-rc2026012301", prerelease = true }
 "0.99.0" = { created_at = 2026-01-26T22:11:41.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.0" }
-"alpha-2026012801" = { created_at = 2026-01-28T14:49:02.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026012801", prerelease = true }
 "0.99.1" = { created_at = 2026-01-29T18:29:10.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.1" }
-"1.0.0-rc1" = { created_at = 2026-01-30T21:08:49.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0-rc1", prerelease = true }
-"alpha-2026020401" = { created_at = 2026-02-04T15:10:55.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026020401", prerelease = true }
-"alpha-2026020601" = { created_at = 2026-02-06T17:05:25.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026020601", prerelease = true }
-"alpha-2026020901" = { created_at = 2026-02-09T15:38:37.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026020901", prerelease = true }
-"alpha-2026021301" = { created_at = 2026-02-13T18:48:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026021301", prerelease = true }
 "0.99.2" = { created_at = 2026-02-13T14:55:37.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.2" }
-"alpha-2026021701" = { created_at = 2026-02-17T20:06:40.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026021701", prerelease = true }
-"alpha-2026021801" = { created_at = 2026-02-18T17:28:07.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026021801", prerelease = true }
 "0.99.3" = { created_at = 2026-02-18T20:16:31.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.3" }
 "0.99.4" = { created_at = 2026-02-19T17:49:29.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.4" }
-"1.0.0-rc2" = { created_at = 2026-02-19T15:28:51.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0-rc2", prerelease = true }
-"alpha-2026022001" = { created_at = 2026-02-20T15:07:06.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026022001", prerelease = true }
-"alpha-2026030301" = { created_at = 2026-03-03T21:00:21.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026030301", prerelease = true }
-"1.0.0-rc3" = { created_at = 2026-03-03T21:23:04.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0-rc3", prerelease = true }
-"alpha-2026031001" = { created_at = 2026-03-10T20:37:00.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026031001", prerelease = true }
-"alpha-2026031901" = { created_at = 2026-03-19T09:00:42.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026031901", prerelease = true }
-"alpha-2026032001" = { created_at = 2026-03-20T20:20:44.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026032001", prerelease = true }
 "0.99.5" = { created_at = 2026-03-26T13:36:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v0.99.5" }
+"1.0.0-rc1" = { created_at = 2026-01-30T21:08:49.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0-rc1", prerelease = true }
+"1.0.0-rc2" = { created_at = 2026-02-19T15:28:51.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0-rc2", prerelease = true }
+"1.0.0-rc3" = { created_at = 2026-03-03T21:23:04.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0-rc3", prerelease = true }
 "1.0.0" = { created_at = 2026-03-30T18:05:30.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.0" }
-"alpha-2026040801" = { created_at = 2026-04-08T12:59:17.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/alpha-2026040801", prerelease = true }
 "1.0.1" = { created_at = 2026-04-13T14:16:32.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.1" }
 "1.0.2" = { created_at = 2026-04-21T12:24:34.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.2" }
 "1.0.3" = { created_at = 2026-04-27T14:17:59.000Z, release_url = "https://github.com/gruntwork-io/terragrunt/releases/tag/v1.0.3" }

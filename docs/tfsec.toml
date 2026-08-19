@@ -1,4 +1,5 @@
 [versions]
+"634-all-dirs" = { created_at = 2021-02-27T14:41:28.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/634-all-dirs", prerelease = true }
 "0.1.0" = { created_at = 2019-03-05T09:11:42.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.1.0" }
 "0.1.1" = { created_at = 2019-03-05T09:37:53.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.1.1" }
 "0.1.2" = { created_at = 2019-03-05T09:43:15.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.1.2" }
@@ -88,14 +89,13 @@
 "0.39.1" = { created_at = 2021-02-25T08:21:48.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.1", prerelease = true }
 "0.39.2" = { created_at = 2021-02-25T09:28:15.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.2", prerelease = true }
 "0.39.3" = { created_at = 2021-02-25T10:54:49.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.3" }
-"634-all-dirs" = { created_at = 2021-02-27T14:41:28.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/634-all-dirs", prerelease = true }
 "0.39.4" = { created_at = 2021-02-27T09:14:52.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.4" }
 "0.39.5" = { created_at = 2021-03-02T14:22:20.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.5" }
 "0.39.6" = { created_at = 2021-03-05T20:18:30.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.6" }
 "0.39.7" = { created_at = 2021-03-15T20:43:39.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.7" }
 "0.39.8" = { created_at = 2021-03-15T22:08:09.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.8" }
-"0.39.9" = { created_at = 2021-03-17T18:40:45.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.9", prerelease = true }
 "0.39.9-fix-recursive" = { created_at = 2021-03-18T18:56:34.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.9-fix-recursive", prerelease = true }
+"0.39.9" = { created_at = 2021-03-17T18:40:45.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.9", prerelease = true }
 "0.39.10" = { created_at = 2021-03-18T20:23:11.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.10" }
 "0.39.11" = { created_at = 2021-03-24T21:29:33.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.11" }
 "0.39.12" = { created_at = 2021-03-25T20:33:07.000Z, release_url = "https://github.com/aquasecurity/tfsec/releases/tag/v0.39.12" }
