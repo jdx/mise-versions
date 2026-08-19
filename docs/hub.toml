@@ -5,9 +5,9 @@
 "1.12.0" = { created_at = 2014-03-01T00:25:30.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v1.12.0" }
 "1.12.1" = { created_at = 2014-05-23T10:07:42.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v1.12.1" }
 "1.12.2" = { created_at = 2014-07-11T19:11:37.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v1.12.2" }
-"2.2.0-preview1" = { created_at = 2014-10-20T00:57:56.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.0-preview1", prerelease = true }
 "1.12.3" = { created_at = 2014-11-28T00:40:18.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v1.12.3" }
 "1.12.4" = { created_at = 2014-12-25T19:52:18.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v1.12.4" }
+"2.2.0-preview1" = { created_at = 2014-10-20T00:57:56.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.0-preview1", prerelease = true }
 "2.2.0-rc1" = { created_at = 2014-12-26T02:06:50.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.0-rc1", prerelease = true }
 "2.2.0" = { created_at = 2015-02-14T21:09:46.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.0" }
 "2.2.1" = { created_at = 2015-04-13T14:00:42.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.1" }
@@ -15,19 +15,19 @@
 "2.2.3" = { created_at = 2016-01-22T12:27:43.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.3" }
 "2.2.4" = { created_at = 2016-08-11T22:10:24.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.4" }
 "2.2.5" = { created_at = 2016-08-14T20:11:53.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.5" }
-"2.3.0-pre1" = { created_at = 2017-01-17T14:18:51.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre1", prerelease = true }
-"2.3.0-pre2" = { created_at = 2017-01-17T14:14:12.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre2", prerelease = true }
-"2.3.0-pre3" = { created_at = 2016-08-21T16:39:18.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre3", prerelease = true }
 "2.2.6" = { created_at = 2016-09-08T23:40:57.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.6" }
-"2.3.0-pre4" = { created_at = 2016-09-08T23:46:19.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre4", prerelease = true }
 "2.2.7" = { created_at = 2016-09-11T18:20:35.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.7" }
 "2.2.8" = { created_at = 2016-09-11T18:56:27.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.8" }
+"2.2.9" = { created_at = 2016-10-03T18:40:08.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.9" }
+"2.3.0-pre1" = { created_at = 2017-01-17T14:18:51.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre1", prerelease = true }
+"2.3.0-pre10" = { created_at = 2017-06-26T21:26:01.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre10", prerelease = true }
+"2.3.0-pre2" = { created_at = 2017-01-17T14:14:12.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre2", prerelease = true }
+"2.3.0-pre3" = { created_at = 2016-08-21T16:39:18.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre3", prerelease = true }
+"2.3.0-pre4" = { created_at = 2016-09-08T23:46:19.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre4", prerelease = true }
 "2.3.0-pre5" = { created_at = 2016-09-11T18:23:26.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre5", prerelease = true }
 "2.3.0-pre6" = { created_at = 2016-09-11T18:55:42.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre6", prerelease = true }
-"2.2.9" = { created_at = 2016-10-03T18:40:08.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.2.9" }
 "2.3.0-pre8" = { created_at = 2016-10-03T18:53:30.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre8", prerelease = true }
 "2.3.0-pre9" = { created_at = 2017-02-15T20:57:12.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre9", prerelease = true }
-"2.3.0-pre10" = { created_at = 2017-06-26T21:26:01.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0-pre10", prerelease = true }
 "2.3.0" = { created_at = 2018-05-29T14:45:18.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.3.0" }
 "2.4.0" = { created_at = 2018-06-07T18:30:28.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.4.0" }
 "2.5.0" = { created_at = 2018-07-07T13:19:51.000Z, release_url = "https://github.com/mislav/hub/releases/tag/v2.5.0" }

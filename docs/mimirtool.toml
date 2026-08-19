@@ -11,8 +11,8 @@
 "2.2.0-rc.0" = { created_at = 2022-06-28T11:04:27.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.2.0-rc.0", prerelease = true }
 "2.2.0-rc.1" = { created_at = 2022-07-12T08:50:38.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.2.0-rc.1", prerelease = true }
 "2.2.0" = { created_at = 2022-07-21T17:35:36.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.2.0" }
-"2.3.0-rc0" = { created_at = 2022-08-25T17:00:43.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.3.0-rc0", prerelease = true }
 "2.3.0-rc.2" = { created_at = 2022-09-14T20:28:06.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.3.0-rc.2", prerelease = true }
+"2.3.0-rc0" = { created_at = 2022-08-25T17:00:43.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.3.0-rc0", prerelease = true }
 "2.3.0" = { created_at = 2022-09-20T15:21:00.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.3.0" }
 "2.3.1" = { created_at = 2022-09-27T18:56:13.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.3.1" }
 "2.4.0-rc.0" = { created_at = 2022-10-07T14:18:45.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.4.0-rc.0", prerelease = true }
@@ -22,30 +22,30 @@
 "2.5.0" = { created_at = 2022-12-14T15:34:44.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.5.0" }
 "2.6.0-rc.0" = { created_at = 2023-01-20T17:36:33.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.6.0-rc.0", prerelease = true }
 "2.6.0" = { created_at = 2023-02-02T16:15:30.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.6.0" }
-"2.7.1" = { created_at = 2023-03-16T16:39:25.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.7.1" }
-"2.8.0-rc.0" = { created_at = 2023-04-18T13:59:36.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.8.0-rc.0", prerelease = true }
-"2.7.2" = { created_at = 2023-04-20T20:32:06.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.7.2" }
 "2.6.1" = { created_at = 2023-04-21T03:27:08.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.6.1" }
+"2.6.2" = { created_at = 2023-05-03T10:42:53.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.6.2" }
+"2.7.1" = { created_at = 2023-03-16T16:39:25.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.7.1" }
+"2.7.2" = { created_at = 2023-04-20T20:32:06.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.7.2" }
+"2.7.3" = { created_at = 2023-05-03T11:08:09.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.7.3" }
+"2.8.0-rc.0" = { created_at = 2023-04-18T13:59:36.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.8.0-rc.0", prerelease = true }
 "2.8.0-rc.1" = { created_at = 2023-04-24T14:53:39.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.8.0-rc.1", prerelease = true }
 "2.8.0-rc.2" = { created_at = 2023-04-26T11:29:03.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.8.0-rc.2", prerelease = true }
-"2.6.2" = { created_at = 2023-05-03T10:42:53.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.6.2" }
-"2.7.3" = { created_at = 2023-05-03T11:08:09.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.7.3" }
 "2.8.0" = { created_at = 2023-05-03T12:58:26.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.8.0" }
 "2.9.0-rc.1" = { created_at = 2023-06-12T11:01:51.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.0-rc.1", prerelease = true }
 "2.9.0" = { created_at = 2023-06-20T10:39:04.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.0" }
+"2.9.1" = { created_at = 2023-09-14T14:51:54.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.1" }
+"2.9.2" = { created_at = 2023-10-16T01:31:59.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.2" }
+"2.9.3" = { created_at = 2023-11-13T16:47:22.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.3" }
+"2.9.4" = { created_at = 2023-12-12T15:34:08.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.4" }
 "2.10.0-rc.0" = { created_at = 2023-08-31T07:50:48.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.0-rc.0", prerelease = true }
 "2.10.0-rc.1" = { created_at = 2023-09-04T15:58:10.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.0-rc.1", prerelease = true }
 "2.10.0-rc.2" = { created_at = 2023-09-11T16:28:30.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.0-rc.2", prerelease = true }
-"2.9.1" = { created_at = 2023-09-14T14:51:54.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.1" }
 "2.10.0" = { created_at = 2023-09-18T14:24:23.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.0" }
 "2.10.1" = { created_at = 2023-10-11T13:36:44.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.1" }
 "2.10.2" = { created_at = 2023-10-13T08:55:29.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.2" }
-"2.9.2" = { created_at = 2023-10-16T01:31:59.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.2" }
 "2.10.3" = { created_at = 2023-10-18T13:10:09.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.3" }
 "2.10.4" = { created_at = 2023-11-13T14:59:40.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.4" }
-"2.9.3" = { created_at = 2023-11-13T16:47:22.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.3" }
 "2.10.5" = { created_at = 2023-12-12T16:34:50.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.10.5" }
-"2.9.4" = { created_at = 2023-12-12T15:34:08.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.9.4" }
 "2.11.0-rc.0" = { created_at = 2023-12-20T20:46:01.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.11.0-rc.0", prerelease = true }
 "2.11.0" = { created_at = 2023-12-26T17:26:44.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.11.0" }
 "2.12.0-rc.0" = { created_at = 2024-03-12T19:10:25.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.12.0-rc.0", prerelease = true }
@@ -55,56 +55,55 @@
 "2.13.0-rc.1" = { created_at = 2024-06-27T16:09:30.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.13.0-rc.1", prerelease = true }
 "2.13.0-rc.2" = { created_at = 2024-07-04T18:54:56.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.13.0-rc.2", prerelease = true }
 "2.13.0" = { created_at = 2024-07-05T18:13:39.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.13.0" }
+"2.13.1" = { created_at = 2024-12-04T09:29:28.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.13.1" }
 "2.14.0-rc.0" = { created_at = 2024-09-30T10:40:00.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.14.0-rc.0", prerelease = true }
 "2.14.0" = { created_at = 2024-10-10T14:27:11.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.14.0" }
 "2.14.1" = { created_at = 2024-11-01T22:03:05.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.14.1" }
 "2.14.2" = { created_at = 2024-11-13T16:13:41.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.14.2" }
-"2.13.1" = { created_at = 2024-12-04T09:29:28.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.13.1" }
+"2.14.3" = { created_at = 2025-01-06T14:31:50.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.14.3" }
 "2.15.0-rc.0" = { created_at = 2024-12-12T22:03:13.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.15.0-rc.0", prerelease = true }
 "2.15.0" = { created_at = 2025-01-06T20:43:10.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.15.0" }
-"2.14.3" = { created_at = 2025-01-06T14:31:50.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.14.3" }
 "2.15.1" = { created_at = 2025-03-13T22:12:35.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.15.1" }
-"2.16.0" = { created_at = 2025-03-31T15:26:54.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.16.0" }
 "2.15.2" = { created_at = 2025-04-09T23:34:17.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.15.2" }
 "2.15.3" = { created_at = 2025-06-05T21:24:47.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.15.3" }
+"2.16.0" = { created_at = 2025-03-31T15:26:54.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.16.0" }
 "2.16.1" = { created_at = 2025-06-24T23:34:26.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.16.1" }
+"2.16.2" = { created_at = 2025-10-23T17:27:54.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.16.2" }
 "2.17.0-rc.0" = { created_at = 2025-07-16T14:08:56.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.0-rc.0", prerelease = true }
 "2.17.0-rc.1" = { created_at = 2025-08-07T14:42:06.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.0-rc.1", prerelease = true }
 "2.17.0-rc.2" = { created_at = 2025-08-14T05:44:44.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.0-rc.2", prerelease = true }
 "2.17.0" = { created_at = 2025-08-15T17:03:11.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.0" }
 "2.17.1" = { created_at = 2025-09-05T20:11:48.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.1" }
-"3.0.0-rc.0" = { created_at = 2025-10-20T19:45:32.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0-rc.0", prerelease = true }
-"2.16.2" = { created_at = 2025-10-23T17:27:54.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.16.2" }
-"3.0.0-rc.1" = { created_at = 2025-10-28T17:25:49.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0-rc.1", prerelease = true }
-"3.0.0-rc.2" = { created_at = 2025-10-30T15:04:14.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0-rc.2", prerelease = true }
 "2.17.2" = { created_at = 2025-10-29T10:00:49.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.2" }
-"3.0.0" = { created_at = 2025-10-31T13:45:45.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0" }
-"3.0.1" = { created_at = 2025-11-28T17:25:43.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.1" }
 "2.17.3" = { created_at = 2025-12-01T08:52:22.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.3" }
 "2.17.4-rc.0" = { created_at = 2025-12-30T23:15:41.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.4-rc.0", prerelease = true }
 "2.17.4" = { created_at = 2025-12-30T23:14:38.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.4" }
-"3.0.2" = { created_at = 2026-01-02T08:14:30.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.2" }
 "2.17.5" = { created_at = 2026-01-29T13:17:29.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.5" }
 "2.17.6-rc.0" = { created_at = 2026-02-10T22:32:30.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.6-rc.0", prerelease = true }
-"3.0.3-rc.0" = { created_at = 2026-02-10T22:32:15.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.3-rc.0", prerelease = true }
 "2.17.6" = { created_at = 2026-02-11T21:33:05.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.6" }
-"3.0.3" = { created_at = 2026-02-11T21:32:49.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.3" }
 "2.17.7" = { created_at = 2026-02-26T10:32:45.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.7" }
-"3.0.4" = { created_at = 2026-03-11T06:33:08.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.4" }
-"3.0.5" = { created_at = 2026-03-31T02:14:05.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.5" }
 "2.17.8" = { created_at = 2026-03-31T12:28:03.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.8" }
 "2.17.9" = { created_at = 2026-04-02T22:44:53.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.9" }
 "2.17.10" = { created_at = 2026-04-20T11:45:18.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.10" }
-"3.0.6" = { created_at = 2026-04-20T12:25:56.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.6" }
-"3.1.0-rc.0" = { created_at = 2026-05-08T12:01:24.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.0-rc.0", prerelease = true }
 "2.17.11" = { created_at = 2026-05-15T07:01:53.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-2.17.11" }
+"3.0.0-rc.0" = { created_at = 2025-10-20T19:45:32.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0-rc.0", prerelease = true }
+"3.0.0-rc.1" = { created_at = 2025-10-28T17:25:49.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0-rc.1", prerelease = true }
+"3.0.0-rc.2" = { created_at = 2025-10-30T15:04:14.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0-rc.2", prerelease = true }
+"3.0.0" = { created_at = 2025-10-31T13:45:45.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.0" }
+"3.0.1" = { created_at = 2025-11-28T17:25:43.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.1" }
+"3.0.2" = { created_at = 2026-01-02T08:14:30.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.2" }
+"3.0.3-rc.0" = { created_at = 2026-02-10T22:32:15.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.3-rc.0", prerelease = true }
+"3.0.3" = { created_at = 2026-02-11T21:32:49.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.3" }
+"3.0.4" = { created_at = 2026-03-11T06:33:08.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.4" }
+"3.0.5" = { created_at = 2026-03-31T02:14:05.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.5" }
+"3.0.6" = { created_at = 2026-04-20T12:25:56.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.6" }
+"3.0.7" = { created_at = 2026-06-17T01:07:33.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.7" }
+"3.0.8" = { created_at = 2026-07-16T16:53:48.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.8" }
+"3.1.0-rc.0" = { created_at = 2026-05-08T12:01:24.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.0-rc.0", prerelease = true }
 "3.1.0-rc.1" = { created_at = 2026-05-28T11:40:24.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.0-rc.1", prerelease = true }
 "3.1.0" = { created_at = 2026-06-02T17:40:49.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.0" }
 "3.1.1" = { created_at = 2026-06-12T20:40:48.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.1" }
-"3.0.7" = { created_at = 2026-06-17T01:07:33.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.7" }
 "3.1.2" = { created_at = 2026-06-24T11:20:38.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.2" }
-"3.0.8" = { created_at = 2026-07-16T16:53:48.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.0.8" }
 "3.1.3" = { created_at = 2026-07-16T17:15:13.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.3" }
 "3.1.4" = { created_at = 2026-07-22T03:16:37.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.1.4" }
 "3.2.0-rc.0" = { created_at = 2026-08-03T11:42:22.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.2.0-rc.0", prerelease = true }
-"3.2.0" = { created_at = 2026-08-19T13:59:51.000Z, release_url = "https://github.com/grafana/mimir/releases/tag/mimir-3.2.0" }
