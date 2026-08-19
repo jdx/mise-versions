@@ -20,8 +20,8 @@
 "1.7.0-alpha.1" = { created_at = 2017-07-07T06:21:14.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.7.0-alpha.1", prerelease = true }
 "1.7.0-beta.1" = { created_at = 2017-07-18T19:38:36.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.7.0-beta.1", prerelease = true }
 "1.7.0" = { created_at = 2017-07-27T16:43:35.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.7.0" }
-"1.7.1" = { created_at = 2017-10-09T18:42:30.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.7.1" }
 "1.8.0-alpha.1" = { created_at = 2017-09-26T00:52:02.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.8.0-alpha.1", prerelease = true }
+"1.7.1" = { created_at = 2017-10-09T18:42:30.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.7.1" }
 "1.8.0-beta.1" = { created_at = 2017-11-07T05:55:51.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.8.0-beta.1", prerelease = true }
 "1.8.0" = { created_at = 2017-12-03T21:37:44.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.8.0" }
 "1.8.1" = { created_at = 2018-02-12T03:38:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.8.1" }
@@ -32,208 +32,208 @@
 "1.9.0-beta.2" = { created_at = 2018-04-04T14:52:42.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.9.0-beta.2", prerelease = true }
 "1.9.0" = { created_at = 2018-04-11T18:49:04.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.9.0" }
 "1.9.1" = { created_at = 2018-05-31T03:44:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.9.1" }
-"1.9.2" = { created_at = 2018-07-23T17:47:15.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.9.2" }
 "1.10.0-alpha.1" = { created_at = 2018-06-22T05:09:29.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.10.0-alpha.1", prerelease = true }
+"1.9.2" = { created_at = 2018-07-23T17:47:15.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.9.2" }
 "1.10.0-beta.1" = { created_at = 2018-07-23T16:42:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.10.0-beta.1", prerelease = true }
 "1.10.0" = { created_at = 2018-08-16T01:36:14.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.10.0" }
-"1.10.1" = { created_at = 2018-12-24T20:09:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.10.1" }
 "1.11.0-alpha.1" = { created_at = 2018-10-16T17:01:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.11.0-alpha.1", prerelease = true }
 "1.11.0-beta.1" = { created_at = 2018-11-28T03:53:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.11.0-beta.1", prerelease = true }
+"1.10.1" = { created_at = 2018-12-24T20:09:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.10.1" }
 "1.11.0" = { created_at = 2019-01-02T22:09:10.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.11.0" }
 "1.11.1" = { created_at = 2019-03-01T16:19:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.11.1" }
 "1.12.0-alpha.2" = { created_at = 2019-03-26T23:58:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.0-alpha.2", prerelease = true }
 "1.12.0-alpha.3" = { created_at = 2019-03-28T16:01:42.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.0-alpha.3", prerelease = true }
 "1.12.0-beta.1" = { created_at = 2019-04-08T00:16:49.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.0-beta.1", prerelease = true }
 "1.12.0-beta.2" = { created_at = 2019-04-14T19:26:42.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.0-beta.2", prerelease = true }
+"1.13.0-alpha.1" = { created_at = 2019-04-12T15:44:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.0-alpha.1", prerelease = true }
+"1.14.0-alpha.1" = { created_at = 2019-04-14T20:21:45.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-alpha.1", prerelease = true }
 "1.12.0" = { created_at = 2019-05-15T07:48:06.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.0" }
 "1.12.1" = { created_at = 2019-05-17T09:35:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.1" }
-"1.12.2" = { created_at = 2019-06-21T03:33:26.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.2" }
-"1.12.3" = { created_at = 2019-08-02T15:56:19.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.3" }
-"1.13.0-alpha.1" = { created_at = 2019-04-12T15:44:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.0-alpha.1", prerelease = true }
 "1.13.0-beta.1" = { created_at = 2019-05-19T21:04:35.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.0-beta.1", prerelease = true }
+"1.14.0-alpha.2" = { created_at = 2019-05-19T19:51:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-alpha.2", prerelease = true }
+"1.12.2" = { created_at = 2019-06-21T03:33:26.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.2" }
 "1.13.0-beta.2" = { created_at = 2019-06-21T02:56:11.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.0-beta.2", prerelease = true }
+"1.14.0-alpha.3" = { created_at = 2019-06-21T02:31:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-alpha.3", prerelease = true }
+"1.12.3" = { created_at = 2019-08-02T15:56:19.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.12.3" }
 "1.13.0" = { created_at = 2019-08-02T15:33:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.0" }
+"1.14.0-beta.2" = { created_at = 2019-08-23T03:26:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-beta.2", prerelease = true }
+"1.15.0-alpha.1" = { created_at = 2019-09-09T14:16:58.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.15.0-alpha.1", prerelease = true }
 "1.13.1" = { created_at = 2019-09-25T03:56:30.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.1" }
 "1.13.2" = { created_at = 2019-09-25T20:28:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.13.2" }
-"1.14.0-alpha.1" = { created_at = 2019-04-14T20:21:45.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-alpha.1", prerelease = true }
-"1.14.0-alpha.2" = { created_at = 2019-05-19T19:51:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-alpha.2", prerelease = true }
-"1.14.0-alpha.3" = { created_at = 2019-06-21T02:31:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-alpha.3", prerelease = true }
-"1.14.0-beta.2" = { created_at = 2019-08-23T03:26:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0-beta.2", prerelease = true }
 "1.14.0" = { created_at = 2019-10-01T16:02:12.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.0" }
-"1.14.1" = { created_at = 2019-11-08T05:35:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.1" }
-"1.15.0-alpha.1" = { created_at = 2019-09-09T14:16:58.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.15.0-alpha.1", prerelease = true }
 "1.15.0-beta.1" = { created_at = 2019-10-16T03:06:08.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.15.0-beta.1", prerelease = true }
-"1.15.0" = { created_at = 2019-11-20T01:54:38.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.15.0" }
-"1.15.1" = { created_at = 2020-01-30T02:39:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.15.1" }
-"1.15.2" = { created_at = 2020-02-07T22:44:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.15.2" }
-"1.15.3" = { created_at = 2020-05-06T14:33:04.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.15.3" }
+"1.14.1" = { created_at = 2019-11-08T05:35:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.14.1" }
 "1.16.0-alpha.1" = { created_at = 2019-11-08T06:18:08.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.16.0-alpha.1", prerelease = true }
+"1.15.0" = { created_at = 2019-11-20T01:54:38.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.15.0" }
 "1.16.0-alpha.2" = { created_at = 2019-11-20T01:09:07.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.16.0-alpha.2", prerelease = true }
-"1.16.0-beta.1" = { created_at = 2020-01-30T02:02:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.0-beta.1", prerelease = true }
-"1.16.0-beta.2" = { created_at = 2020-02-10T21:25:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.0-beta.2", prerelease = true }
-"1.16.0" = { created_at = 2020-02-27T09:51:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.0" }
-"1.16.1" = { created_at = 2020-04-23T19:45:49.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.1" }
-"1.16.2" = { created_at = 2020-05-06T14:33:43.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.2" }
-"1.16.3" = { created_at = 2020-05-31T00:49:37.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.3" }
-"1.16.4" = { created_at = 2020-07-06T02:09:12.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.4" }
 "1.17.0-alpha.1" = { created_at = 2019-11-26T04:52:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/1.17.0-alpha.1", prerelease = true }
 "1.17.0-alpha.2" = { created_at = 2020-01-29T16:01:33.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-alpha.2", prerelease = true }
+"1.15.1" = { created_at = 2020-01-30T02:39:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.15.1" }
+"1.16.0-beta.1" = { created_at = 2020-01-30T02:02:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.0-beta.1", prerelease = true }
 "1.17.0-alpha.3" = { created_at = 2020-02-06T16:25:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-alpha.3", prerelease = true }
-"1.17.0-alpha.4" = { created_at = 2020-02-11T05:11:42.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-alpha.4", prerelease = true }
-"1.17.0-beta.1" = { created_at = 2020-02-27T14:22:02.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-beta.1", prerelease = true }
-"1.17.0-beta.2" = { created_at = 2020-05-06T14:34:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-beta.2", prerelease = true }
-"1.17.0" = { created_at = 2020-05-31T16:40:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0" }
-"1.17.1" = { created_at = 2020-07-06T03:17:39.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.1" }
-"1.17.2" = { created_at = 2020-09-09T15:56:12.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.2" }
 "1.18.0-alpha.2" = { created_at = 2020-02-06T03:37:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0-alpha.2", prerelease = true }
+"1.15.2" = { created_at = 2020-02-07T22:44:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.15.2" }
+"1.16.0-beta.2" = { created_at = 2020-02-10T21:25:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.0-beta.2", prerelease = true }
+"1.17.0-alpha.4" = { created_at = 2020-02-11T05:11:42.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-alpha.4", prerelease = true }
+"1.16.0" = { created_at = 2020-02-27T09:51:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.0" }
+"1.17.0-beta.1" = { created_at = 2020-02-27T14:22:02.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-beta.1", prerelease = true }
+"1.16.1" = { created_at = 2020-04-23T19:45:49.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.1" }
+"1.15.3" = { created_at = 2020-05-06T14:33:04.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.15.3" }
+"1.16.2" = { created_at = 2020-05-06T14:33:43.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.2" }
+"1.17.0-beta.2" = { created_at = 2020-05-06T14:34:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0-beta.2", prerelease = true }
 "1.18.0-alpha.3" = { created_at = 2020-05-06T14:34:15.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0-alpha.3", prerelease = true }
+"1.16.3" = { created_at = 2020-05-31T00:49:37.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.3" }
+"1.17.0" = { created_at = 2020-05-31T16:40:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.0" }
 "1.18.0-beta.1" = { created_at = 2020-06-02T04:58:37.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0-beta.1", prerelease = true }
-"1.18.0-beta.2" = { created_at = 2020-07-13T17:01:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0-beta.2", prerelease = true }
-"1.18.0" = { created_at = 2020-08-02T23:12:17.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0" }
-"1.18.1" = { created_at = 2020-09-09T17:01:53.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.1" }
-"1.18.2" = { created_at = 2020-10-24T15:38:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.2" }
-"1.18.3" = { created_at = 2021-01-28T16:00:40.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.3" }
+"1.16.4" = { created_at = 2020-07-06T02:09:12.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.16.4" }
 "1.19.0-alpha.1" = { created_at = 2020-07-05T20:58:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-alpha.1", prerelease = true }
+"1.17.1" = { created_at = 2020-07-06T03:17:39.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.1" }
+"1.18.0-beta.2" = { created_at = 2020-07-13T17:01:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0-beta.2", prerelease = true }
 "1.19.0-alpha.2" = { created_at = 2020-07-31T14:43:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-alpha.2", prerelease = true }
+"1.18.0" = { created_at = 2020-08-02T23:12:17.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.0" }
 "1.19.0-alpha.3" = { created_at = 2020-09-07T22:25:45.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-alpha.3", prerelease = true }
+"1.17.2" = { created_at = 2020-09-09T15:56:12.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.17.2" }
+"1.18.1" = { created_at = 2020-09-09T17:01:53.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.1" }
 "1.19.0-alpha.4" = { created_at = 2020-09-16T10:22:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-alpha.4", prerelease = true }
 "1.19.0-alpha.5" = { created_at = 2020-10-15T07:31:27.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-alpha.5", prerelease = true }
+"1.18.2" = { created_at = 2020-10-24T15:38:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.2" }
 "1.19.0-beta.1" = { created_at = 2020-11-11T02:44:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-beta.1", prerelease = true }
 "1.19.0-beta.2" = { created_at = 2020-11-22T00:00:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-beta.2", prerelease = true }
 "1.19.0-beta.3" = { created_at = 2020-12-23T16:19:27.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0-beta.3", prerelease = true }
-"1.19.0" = { created_at = 2021-01-29T19:13:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0" }
-"1.19.1" = { created_at = 2021-02-19T16:10:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.1" }
-"1.19.2" = { created_at = 2021-04-10T18:31:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.2" }
-"1.19.3" = { created_at = 2021-05-13T12:33:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.3" }
 "1.20.0-alpha.1" = { created_at = 2021-01-15T15:37:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.0-alpha.1", prerelease = true }
+"1.18.3" = { created_at = 2021-01-28T16:00:40.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.18.3" }
+"1.19.0" = { created_at = 2021-01-29T19:13:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.0" }
 "1.20.0-alpha.2" = { created_at = 2021-02-08T14:42:40.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.0-alpha.2", prerelease = true }
+"1.21.0-alpha.1" = { created_at = 2021-02-16T12:14:14.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-alpha.1", prerelease = true }
+"1.19.1" = { created_at = 2021-02-19T16:10:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.1" }
 "1.20.0-beta.1" = { created_at = 2021-02-23T10:28:33.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.0-beta.1", prerelease = true }
 "1.20.0-beta.2" = { created_at = 2021-03-12T18:12:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.0-beta.2", prerelease = true }
-"1.20.0" = { created_at = 2021-04-10T18:55:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.0" }
-"1.20.1" = { created_at = 2021-05-13T12:34:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.1" }
-"1.20.2" = { created_at = 2021-06-18T19:01:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.2" }
-"1.20.3" = { created_at = 2021-10-09T13:19:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.3" }
-"1.21.0-alpha.1" = { created_at = 2021-02-16T12:14:14.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-alpha.1", prerelease = true }
 "1.21.0-alpha.2" = { created_at = 2021-03-22T11:12:35.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-alpha.2", prerelease = true }
+"1.19.2" = { created_at = 2021-04-10T18:31:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.2" }
+"1.20.0" = { created_at = 2021-04-10T18:55:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.0" }
 "1.21.0-alpha.3" = { created_at = 2021-04-14T10:15:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-alpha.3", prerelease = true }
+"1.22.0-alpha.1" = { created_at = 2021-05-10T05:01:22.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.0-alpha.1", prerelease = true }
 "1.21.0-beta.1" = { created_at = 2021-05-11T03:18:13.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-beta.1", prerelease = true }
+"1.19.3" = { created_at = 2021-05-13T12:33:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.19.3" }
+"1.20.1" = { created_at = 2021-05-13T12:34:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.1" }
 "1.21.0-beta.2" = { created_at = 2021-05-23T17:29:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-beta.2", prerelease = true }
 "1.21.0-beta.3" = { created_at = 2021-06-05T04:12:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0-beta.3", prerelease = true }
+"1.20.2" = { created_at = 2021-06-18T19:01:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.2" }
 "1.21.0" = { created_at = 2021-07-02T16:42:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.0" }
-"1.21.1" = { created_at = 2021-08-24T01:16:26.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.1" }
-"1.21.2" = { created_at = 2021-10-09T13:29:58.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.2" }
-"1.21.4" = { created_at = 2021-11-20T07:53:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.4" }
-"1.21.5" = { created_at = 2022-03-05T13:55:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.5" }
-"1.22.0-alpha.1" = { created_at = 2021-05-10T05:01:22.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.0-alpha.1", prerelease = true }
 "1.22.0-alpha.2" = { created_at = 2021-07-18T06:00:17.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.0-alpha.2", prerelease = true }
+"1.21.1" = { created_at = 2021-08-24T01:16:26.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.1" }
 "1.22.0-beta.1" = { created_at = 2021-08-28T17:15:39.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.0-beta.1", prerelease = true }
+"1.23.0-alpha.1" = { created_at = 2021-08-28T18:32:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-alpha.1", prerelease = true }
 "1.22.0-beta.2" = { created_at = 2021-10-02T20:54:48.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.0-beta.2", prerelease = true }
+"1.20.3" = { created_at = 2021-10-09T13:19:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.20.3" }
+"1.21.2" = { created_at = 2021-10-09T13:29:58.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.2" }
 "1.22.0" = { created_at = 2021-10-14T13:57:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.0" }
 "1.22.1" = { created_at = 2021-10-22T20:06:42.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.1" }
+"1.23.0-alpha.2" = { created_at = 2021-11-01T03:34:49.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-alpha.2", prerelease = true }
+"1.21.4" = { created_at = 2021-11-20T07:53:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.4" }
 "1.22.2" = { created_at = 2021-11-20T08:39:34.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.2" }
+"1.23.0-beta.1" = { created_at = 2021-12-11T11:26:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-beta.1", prerelease = true }
+"1.24.0-alpha.2" = { created_at = 2022-01-01T21:46:29.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-alpha.2", prerelease = true }
 "1.22.3" = { created_at = 2022-01-07T17:52:45.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.3" }
 "1.22.4" = { created_at = 2022-02-21T14:06:08.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.4" }
-"1.22.5" = { created_at = 2022-04-20T12:00:02.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.5" }
-"1.22.6" = { created_at = 2022-07-29T14:23:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.6" }
-"1.23.0-alpha.1" = { created_at = 2021-08-28T18:32:05.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-alpha.1", prerelease = true }
-"1.23.0-alpha.2" = { created_at = 2021-11-01T03:34:49.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-alpha.2", prerelease = true }
-"1.23.0-beta.1" = { created_at = 2021-12-11T11:26:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-beta.1", prerelease = true }
 "1.23.0-beta.2" = { created_at = 2022-02-24T08:01:48.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0-beta.2", prerelease = true }
+"1.21.5" = { created_at = 2022-03-05T13:55:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.21.5" }
 "1.23.0" = { created_at = 2022-03-06T11:15:52.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.0" }
+"1.24.0-alpha.3" = { created_at = 2022-03-19T05:11:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-alpha.3", prerelease = true }
+"1.22.5" = { created_at = 2022-04-20T12:00:02.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.5" }
 "1.23.1" = { created_at = 2022-04-20T12:04:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.1" }
 "1.23.2" = { created_at = 2022-05-11T16:55:45.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.2" }
-"1.23.3" = { created_at = 2022-07-29T14:25:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.3" }
-"1.23.4" = { created_at = 2022-09-03T04:35:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.4" }
-"1.24.0-alpha.2" = { created_at = 2022-01-01T21:46:29.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-alpha.2", prerelease = true }
-"1.24.0-alpha.3" = { created_at = 2022-03-19T05:11:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-alpha.3", prerelease = true }
 "1.24.0-alpha.4" = { created_at = 2022-05-11T12:27:36.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-alpha.4", prerelease = true }
 "1.24.0-alpha.5" = { created_at = 2022-05-22T06:11:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-alpha.5", prerelease = true }
 "1.24.0-beta.1" = { created_at = 2022-06-05T05:41:07.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-beta.1", prerelease = true }
 "1.24.0-beta.2" = { created_at = 2022-06-12T16:48:31.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-beta.2", prerelease = true }
 "1.24.0-beta.3" = { created_at = 2022-06-27T06:08:11.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0-beta.3", prerelease = true }
-"1.24.0" = { created_at = 2022-07-08T08:33:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0" }
-"1.24.1" = { created_at = 2022-07-29T19:37:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.1" }
-"1.24.2" = { created_at = 2022-09-03T05:01:20.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.2" }
-"1.24.3" = { created_at = 2022-09-16T09:12:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.3" }
-"1.24.4" = { created_at = 2022-10-18T10:38:13.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.4" }
-"1.24.5" = { created_at = 2022-11-25T06:53:38.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.5" }
 "1.25.0-alpha.1" = { created_at = 2022-06-29T15:02:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.0-alpha.1", prerelease = true }
+"1.24.0" = { created_at = 2022-07-08T08:33:50.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.0" }
+"1.22.6" = { created_at = 2022-07-29T14:23:00.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.22.6" }
+"1.23.3" = { created_at = 2022-07-29T14:25:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.3" }
+"1.24.1" = { created_at = 2022-07-29T19:37:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.1" }
 "1.25.0-alpha.2" = { created_at = 2022-07-29T19:33:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.0-alpha.2", prerelease = true }
 "1.25.0-beta.1" = { created_at = 2022-08-31T11:59:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.0-beta.1", prerelease = true }
+"1.23.4" = { created_at = 2022-09-03T04:35:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.23.4" }
+"1.24.2" = { created_at = 2022-09-03T05:01:20.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.2" }
+"1.24.3" = { created_at = 2022-09-16T09:12:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.3" }
 "1.25.0" = { created_at = 2022-09-19T12:04:11.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.0" }
-"1.25.1" = { created_at = 2022-09-29T12:02:36.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.1" }
-"1.25.2" = { created_at = 2022-10-18T15:22:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.2" }
-"1.25.3" = { created_at = 2022-11-25T06:58:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.3" }
-"1.25.4" = { created_at = 2023-03-09T11:57:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.4" }
 "1.26.0-alpha.1" = { created_at = 2022-09-21T09:09:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.0-alpha.1", prerelease = true }
+"1.25.1" = { created_at = 2022-09-29T12:02:36.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.1" }
+"1.24.4" = { created_at = 2022-10-18T10:38:13.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.4" }
+"1.25.2" = { created_at = 2022-10-18T15:22:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.2" }
+"1.24.5" = { created_at = 2022-11-25T06:53:38.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.24.5" }
+"1.25.3" = { created_at = 2022-11-25T06:58:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.3" }
 "1.26.0-alpha.2" = { created_at = 2022-11-25T21:44:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.0-alpha.2", prerelease = true }
 "1.26.0-beta.1" = { created_at = 2022-12-23T10:58:04.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.0-beta.1", prerelease = true }
+"1.27.0-alpha.1" = { created_at = 2022-12-27T19:23:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-alpha.1", prerelease = true }
 "1.26.0-beta.2" = { created_at = 2023-01-14T03:27:29.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.0-beta.2", prerelease = true }
+"1.25.4" = { created_at = 2023-03-09T11:57:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.25.4" }
 "1.26.2" = { created_at = 2023-03-10T14:44:10.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.2" }
 "1.26.3" = { created_at = 2023-05-06T16:18:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.3" }
-"1.26.4" = { created_at = 2023-06-17T16:16:06.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.4" }
-"1.26.5" = { created_at = 2023-07-16T07:09:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.5" }
-"1.26.6" = { created_at = 2023-09-23T06:14:33.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.6" }
-"1.27.0-alpha.1" = { created_at = 2022-12-27T19:23:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-alpha.1", prerelease = true }
 "1.27.0-alpha.2" = { created_at = 2023-05-20T04:15:20.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-alpha.2", prerelease = true }
+"1.26.4" = { created_at = 2023-06-17T16:16:06.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.4" }
 "1.27.0-beta.1" = { created_at = 2023-06-17T16:15:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-beta.1", prerelease = true }
 "1.27.0-beta.2" = { created_at = 2023-06-20T12:53:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-beta.2", prerelease = true }
-"1.27.0-beta.3" = { created_at = 2023-07-02T03:03:22.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-beta.3", prerelease = true }
-"1.27.0" = { created_at = 2023-07-17T08:59:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0" }
-"1.27.1" = { created_at = 2023-09-03T12:00:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.1" }
-"1.27.2" = { created_at = 2023-11-13T09:58:06.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.2" }
-"1.27.3" = { created_at = 2024-02-02T14:33:35.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.3" }
 "1.28.0-alpha.1" = { created_at = 2023-06-25T06:34:57.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.0-alpha.1", prerelease = true }
+"1.27.0-beta.3" = { created_at = 2023-07-02T03:03:22.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0-beta.3", prerelease = true }
+"1.26.5" = { created_at = 2023-07-16T07:09:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.5" }
+"1.27.0" = { created_at = 2023-07-17T08:59:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.0" }
 "1.28.0-alpha.2" = { created_at = 2023-08-11T00:43:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.0-alpha.2", prerelease = true }
+"1.27.1" = { created_at = 2023-09-03T12:00:24.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.1" }
 "1.28.0-beta.1" = { created_at = 2023-09-03T06:45:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.0-beta.1", prerelease = true }
 "1.28.0-beta.2" = { created_at = 2023-09-08T07:00:07.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.0-beta.2", prerelease = true }
-"1.28.0" = { created_at = 2023-09-23T16:18:37.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.0" }
-"1.28.1" = { created_at = 2023-11-13T09:59:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.1" }
-"1.28.2" = { created_at = 2023-12-22T15:03:39.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.2" }
-"1.28.3" = { created_at = 2024-01-26T15:49:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.3" }
-"1.28.4" = { created_at = 2024-02-02T15:49:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.4" }
-"1.28.5" = { created_at = 2024-05-11T20:50:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.5" }
-"1.28.7" = { created_at = 2024-07-21T13:44:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.7" }
 "1.29.0-alpha.1" = { created_at = 2023-09-08T14:53:23.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.0-alpha.1", prerelease = true }
+"1.26.6" = { created_at = 2023-09-23T06:14:33.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.26.6" }
+"1.28.0" = { created_at = 2023-09-23T16:18:37.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.0" }
+"1.27.2" = { created_at = 2023-11-13T09:58:06.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.2" }
+"1.28.1" = { created_at = 2023-11-13T09:59:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.1" }
 "1.29.0-alpha.2" = { created_at = 2023-11-13T08:25:01.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.0-alpha.2", prerelease = true }
+"1.28.2" = { created_at = 2023-12-22T15:03:39.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.2" }
 "1.29.0-alpha.3" = { created_at = 2023-12-22T14:40:37.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.0-alpha.3", prerelease = true }
+"1.28.3" = { created_at = 2024-01-26T15:49:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.3" }
+"1.27.3" = { created_at = 2024-02-02T14:33:35.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.27.3" }
+"1.28.4" = { created_at = 2024-02-02T15:49:46.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.4" }
 "1.29.0-beta.1" = { created_at = 2024-03-15T20:46:55.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.0-beta.1", prerelease = true }
+"1.28.5" = { created_at = 2024-05-11T20:50:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.5" }
 "1.29.0" = { created_at = 2024-05-16T10:44:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.0" }
-"1.29.2" = { created_at = 2024-07-24T11:26:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.2" }
 "1.30.0-alpha.1" = { created_at = 2024-05-17T10:02:10.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.0-alpha.1", prerelease = true }
 "1.30.0-beta.1" = { created_at = 2024-06-28T10:56:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.0-beta.1", prerelease = true }
+"1.28.7" = { created_at = 2024-07-21T13:44:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.28.7" }
+"1.29.2" = { created_at = 2024-07-24T11:26:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.29.2" }
 "1.30.0" = { created_at = 2024-08-16T19:19:43.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.0" }
 "1.30.1" = { created_at = 2024-09-13T19:09:48.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.1" }
+"1.31.0-alpha.1" = { created_at = 2024-10-15T18:07:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.31.0-alpha.1", prerelease = true }
 "1.30.2" = { created_at = 2024-11-27T01:26:19.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.2" }
 "1.30.3" = { created_at = 2024-12-03T14:46:18.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.3" }
-"1.30.4" = { created_at = 2025-01-30T20:26:22.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.4" }
-"1.31.0-alpha.1" = { created_at = 2024-10-15T18:07:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.31.0-alpha.1", prerelease = true }
 "1.31.0-beta.1" = { created_at = 2024-12-17T04:37:41.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.31.0-beta.1", prerelease = true }
 "1.31.0" = { created_at = 2025-01-28T13:01:54.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.31.0" }
+"1.30.4" = { created_at = 2025-01-30T20:26:22.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.30.4" }
 "1.32.0-beta.1" = { created_at = 2025-02-08T17:40:07.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.0-beta.1", prerelease = true }
 "1.32.0" = { created_at = 2025-05-07T02:38:10.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.0" }
-"1.32.1" = { created_at = 2025-07-07T08:16:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.1" }
-"1.32.2" = { created_at = 2025-08-30T12:40:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.2" }
-"1.32.4" = { created_at = 2026-03-18T12:25:51.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.4" }
 "1.33.0-alpha.1" = { created_at = 2025-05-07T02:17:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.0-alpha.1", prerelease = true }
+"1.32.1" = { created_at = 2025-07-07T08:16:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.1" }
 "1.33.0-beta.1" = { created_at = 2025-07-07T08:15:49.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.0-beta.1", prerelease = true }
 "1.33.0" = { created_at = 2025-08-09T15:55:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.0" }
-"1.33.1" = { created_at = 2025-08-30T12:40:20.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.1" }
-"1.33.2" = { created_at = 2026-03-18T12:26:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.2" }
 "1.34.0-alpha.1" = { created_at = 2025-08-10T22:09:28.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.0-alpha.1", prerelease = true }
+"1.32.2" = { created_at = 2025-08-30T12:40:03.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.2" }
+"1.33.1" = { created_at = 2025-08-30T12:40:20.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.1" }
 "1.34.0-beta.1" = { created_at = 2025-10-05T07:31:51.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.0-beta.1", prerelease = true }
 "1.34.0" = { created_at = 2025-10-21T18:39:02.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.0" }
 "1.34.1" = { created_at = 2025-11-25T18:35:09.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.1" }
-"1.34.2" = { created_at = 2026-03-18T12:26:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.2" }
-"1.34.3" = { created_at = 2026-05-27T15:01:15.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.3" }
 "1.35.0-alpha.1" = { created_at = 2025-12-01T15:32:52.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.0-alpha.1", prerelease = true }
 "1.35.0-beta.1" = { created_at = 2026-02-14T13:54:53.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.0-beta.1", prerelease = true }
+"1.32.4" = { created_at = 2026-03-18T12:25:51.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.32.4" }
+"1.33.2" = { created_at = 2026-03-18T12:26:25.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.33.2" }
+"1.34.2" = { created_at = 2026-03-18T12:26:47.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.2" }
 "1.35.0" = { created_at = 2026-03-18T12:27:10.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.0" }
-"1.35.1" = { created_at = 2026-05-28T15:23:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.1" }
-"1.35.2" = { created_at = 2026-07-15T15:25:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.2" }
+"1.34.3" = { created_at = 2026-05-27T15:01:15.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.34.3" }
 "1.36.0-alpha.1" = { created_at = 2026-05-27T15:57:58.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.36.0-alpha.1", prerelease = true }
+"1.35.1" = { created_at = 2026-05-28T15:23:32.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.1" }
 "1.36.0-beta.1" = { created_at = 2026-06-12T20:41:31.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.36.0-beta.1", prerelease = true }
+"1.35.2" = { created_at = 2026-07-15T15:25:59.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.35.2" }
 "1.36.0" = { created_at = 2026-07-15T15:31:39.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.36.0" }
+"1.37.0-alpha.1" = { created_at = 2026-07-15T15:26:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.37.0-alpha.1", prerelease = true }
 "1.36.1" = { created_at = 2026-07-28T15:23:15.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.36.1" }
 "1.36.2" = { created_at = 2026-08-08T14:36:21.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.36.2" }
-"1.37.0-alpha.1" = { created_at = 2026-07-15T15:26:16.000Z, release_url = "https://github.com/kubernetes/kops/releases/tag/v1.37.0-alpha.1", prerelease = true }

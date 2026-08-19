@@ -13,22 +13,15 @@
 "1.6.0" = { created_at = 2024-01-10T14:13:28.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.6.0" }
 "1.6.1" = { created_at = 2024-01-24T14:36:24.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.6.1" }
 "1.6.2" = { created_at = 2024-02-22T12:41:20.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.6.2" }
-"1.6.3" = { created_at = 2024-07-09T14:11:30.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.6.3" }
 "1.7.0-alpha1" = { created_at = 2024-03-14T15:38:15.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.0-alpha1", prerelease = true }
 "1.7.0-beta1" = { created_at = 2024-04-18T14:21:09.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.0-beta1", prerelease = true }
 "1.7.0-rc1" = { created_at = 2024-04-24T13:31:17.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.0-rc1", prerelease = true }
 "1.7.0" = { created_at = 2024-04-30T15:44:22.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.0" }
 "1.7.1" = { created_at = 2024-05-08T15:59:45.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.1" }
 "1.7.2" = { created_at = 2024-06-03T15:36:53.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.2" }
-"1.7.3" = { created_at = 2024-07-09T14:12:05.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.3" }
-"1.7.4" = { created_at = 2024-10-23T16:26:41.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.4" }
-"1.7.5" = { created_at = 2024-11-04T20:46:43.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.5" }
-"1.7.6" = { created_at = 2024-11-22T15:47:48.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.6" }
-"1.7.7" = { created_at = 2024-12-05T12:00:40.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.7" }
-"1.7.8" = { created_at = 2025-04-24T20:53:05.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.8" }
-"1.7.9" = { created_at = 2025-07-15T17:26:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.9" }
-"1.7.10" = { created_at = 2025-07-31T14:16:17.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.10" }
 "1.8.0-alpha1" = { created_at = 2024-06-24T16:08:31.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.0-alpha1", prerelease = true }
+"1.6.3" = { created_at = 2024-07-09T14:11:30.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.6.3" }
+"1.7.3" = { created_at = 2024-07-09T14:12:05.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.3" }
 "1.8.0-beta1" = { created_at = 2024-07-09T14:52:58.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.0-beta1", prerelease = true }
 "1.8.0-beta2" = { created_at = 2024-07-11T16:59:58.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.0-beta2", prerelease = true }
 "1.8.0-rc1" = { created_at = 2024-07-23T14:20:18.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.0-rc1", prerelease = true }
@@ -36,26 +29,26 @@
 "1.8.1" = { created_at = 2024-08-07T13:53:04.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.1" }
 "1.8.2" = { created_at = 2024-09-04T18:41:20.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.2" }
 "1.8.3" = { created_at = 2024-10-03T17:54:50.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.3" }
+"1.7.4" = { created_at = 2024-10-23T16:26:41.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.4" }
 "1.8.4" = { created_at = 2024-10-23T17:08:07.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.4" }
+"1.7.5" = { created_at = 2024-11-04T20:46:43.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.5" }
 "1.8.5" = { created_at = 2024-11-04T20:47:57.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.5" }
-"1.8.6" = { created_at = 2024-11-22T16:21:52.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.6" }
-"1.8.7" = { created_at = 2024-12-05T12:24:17.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.7" }
-"1.8.8" = { created_at = 2024-12-26T15:28:13.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.8" }
-"1.8.9" = { created_at = 2025-04-24T20:53:48.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.9" }
-"1.8.10" = { created_at = 2025-07-15T17:25:10.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.10" }
-"1.8.11" = { created_at = 2025-07-31T14:16:46.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.11" }
 "1.9.0-alpha1" = { created_at = 2024-11-06T13:30:53.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0-alpha1", prerelease = true }
 "1.9.0-alpha2" = { created_at = 2024-11-19T19:24:34.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0-alpha2", prerelease = true }
+"1.7.6" = { created_at = 2024-11-22T15:47:48.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.6" }
+"1.8.6" = { created_at = 2024-11-22T16:21:52.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.6" }
+"1.7.7" = { created_at = 2024-12-05T12:00:40.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.7" }
+"1.8.7" = { created_at = 2024-12-05T12:24:17.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.7" }
 "1.9.0-beta1" = { created_at = 2024-12-05T15:21:17.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0-beta1", prerelease = true }
 "1.9.0-beta2" = { created_at = 2024-12-09T14:56:29.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0-beta2", prerelease = true }
 "1.9.0-rc1" = { created_at = 2024-12-12T14:43:52.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0-rc1", prerelease = true }
+"1.8.8" = { created_at = 2024-12-26T15:28:13.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.8" }
 "1.9.0-rc2" = { created_at = 2024-12-30T12:22:57.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0-rc2", prerelease = true }
 "1.9.0" = { created_at = 2025-01-09T16:20:29.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.0" }
-"1.9.1" = { created_at = 2025-04-24T20:54:41.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.1" }
-"1.9.2" = { created_at = 2025-07-15T16:54:07.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.2" }
-"1.9.3" = { created_at = 2025-07-31T14:17:12.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.3" }
-"1.9.4" = { created_at = 2025-09-03T18:46:08.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.4" }
 "1.10.0-alpha1" = { created_at = 2025-03-28T13:42:48.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.0-alpha1", prerelease = true }
+"1.7.8" = { created_at = 2025-04-24T20:53:05.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.8" }
+"1.8.9" = { created_at = 2025-04-24T20:53:48.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.9" }
+"1.9.1" = { created_at = 2025-04-24T20:54:41.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.1" }
 "1.10.0-alpha2" = { created_at = 2025-04-25T20:21:07.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.0-alpha2", prerelease = true }
 "1.10.0-beta1" = { created_at = 2025-05-19T15:57:41.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.0-beta1", prerelease = true }
 "1.10.0-beta2" = { created_at = 2025-05-23T14:48:53.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.0-beta2", prerelease = true }
@@ -63,38 +56,47 @@
 "1.10.0" = { created_at = 2025-06-24T13:58:50.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.0" }
 "1.10.1" = { created_at = 2025-06-25T15:48:03.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.1" }
 "1.10.2" = { created_at = 2025-07-01T17:44:31.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.2" }
+"1.7.9" = { created_at = 2025-07-15T17:26:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.9" }
+"1.8.10" = { created_at = 2025-07-15T17:25:10.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.10" }
+"1.9.2" = { created_at = 2025-07-15T16:54:07.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.2" }
 "1.10.3" = { created_at = 2025-07-15T14:33:31.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.3" }
+"1.7.10" = { created_at = 2025-07-31T14:16:17.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.7.10" }
+"1.8.11" = { created_at = 2025-07-31T14:16:46.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.8.11" }
+"1.9.3" = { created_at = 2025-07-31T14:17:12.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.3" }
 "1.10.4" = { created_at = 2025-07-31T14:18:24.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.4" }
 "1.10.5" = { created_at = 2025-08-01T14:57:00.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.5" }
+"1.9.4" = { created_at = 2025-09-03T18:46:08.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.9.4" }
 "1.10.6" = { created_at = 2025-09-03T18:46:37.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.6" }
-"1.10.7" = { created_at = 2025-11-06T14:03:10.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.7" }
-"1.10.8" = { created_at = 2025-12-08T19:49:22.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.8" }
-"1.10.9" = { created_at = 2026-02-12T14:58:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.9" }
-"1.10.10" = { created_at = 2026-05-11T11:29:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.10" }
 "1.11.0-beta1" = { created_at = 2025-10-23T16:16:52.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.0-beta1", prerelease = true }
 "1.11.0-rc1" = { created_at = 2025-11-03T16:51:39.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.0-rc1", prerelease = true }
+"1.10.7" = { created_at = 2025-11-06T14:03:10.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.7" }
 "1.11.0-rc2" = { created_at = 2025-11-17T14:43:43.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.0-rc2", prerelease = true }
 "1.11.0-rc3" = { created_at = 2025-11-19T15:44:43.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.0-rc3", prerelease = true }
 "1.11.0-rc4" = { created_at = 2025-11-25T16:48:43.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.0-rc4", prerelease = true }
+"1.10.8" = { created_at = 2025-12-08T19:49:22.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.8" }
 "1.11.0" = { created_at = 2025-12-09T18:52:00.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.0" }
 "1.11.1" = { created_at = 2025-12-10T17:45:29.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.1" }
 "1.11.2" = { created_at = 2025-12-19T19:20:24.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.2" }
 "1.11.3" = { created_at = 2026-01-13T17:51:25.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.3" }
 "1.11.4" = { created_at = 2026-01-21T16:45:52.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.4" }
+"1.10.9" = { created_at = 2026-02-12T14:58:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.9" }
 "1.11.5" = { created_at = 2026-02-12T15:43:04.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.5" }
 "1.11.6" = { created_at = 2026-04-08T11:48:19.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.6" }
-"1.11.7" = { created_at = 2026-05-11T12:16:08.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.7" }
-"1.11.8" = { created_at = 2026-05-14T09:47:13.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.8" }
-"1.11.9" = { created_at = 2026-06-12T16:11:30.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.9" }
-"1.11.10" = { created_at = 2026-06-18T15:03:51.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.10" }
-"1.11.11" = { created_at = 2026-06-23T13:24:06.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.11" }
-"1.11.12" = { created_at = 2026-07-13T16:07:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.12" }
-"1.11.13" = { created_at = 2026-07-21T11:39:02.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.13" }
 "1.12.0-beta1" = { created_at = 2026-04-08T14:54:54.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.0-beta1", prerelease = true }
 "1.12.0-rc1" = { created_at = 2026-04-29T19:56:42.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.0-rc1", prerelease = true }
+"1.10.10" = { created_at = 2026-05-11T11:29:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.10.10" }
+"1.11.7" = { created_at = 2026-05-11T12:16:08.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.7" }
+"1.11.8" = { created_at = 2026-05-14T09:47:13.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.8" }
 "1.12.0" = { created_at = 2026-05-14T11:57:20.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.0" }
 "1.12.1" = { created_at = 2026-05-27T10:44:28.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.1" }
+"1.11.9" = { created_at = 2026-06-12T16:11:30.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.9" }
 "1.12.2" = { created_at = 2026-06-12T15:26:49.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.2" }
+"1.11.10" = { created_at = 2026-06-18T15:03:51.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.10" }
 "1.12.3" = { created_at = 2026-06-18T15:03:59.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.3" }
+"1.11.11" = { created_at = 2026-06-23T13:24:06.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.11" }
+"1.11.12" = { created_at = 2026-07-13T16:07:11.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.12" }
 "1.12.4" = { created_at = 2026-07-13T16:07:42.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.4" }
+"1.11.13" = { created_at = 2026-07-21T11:39:02.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.13" }
 "1.12.5" = { created_at = 2026-07-21T11:39:19.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.5" }
+"1.11.14" = { created_at = 2026-08-19T11:39:12.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.11.14" }
+"1.12.6" = { created_at = 2026-08-19T11:40:07.000Z, release_url = "https://github.com/opentofu/opentofu/releases/tag/v1.12.6" }
