@@ -462,7 +462,19 @@ generate_toml_file() {
 		read -r json_type json_count < <(printf '%s' "$json_output" | jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' 2>/dev/null || echo "invalid 0")
 		if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
 			# Convert JSON array to NDJSON and pipe to generate-toml.js
-			if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
+			# mise flags prereleases with `prerelease: true` and omits the key
+			# otherwise, so on this path an absent key means "not a prerelease".
+			# Materialise that as an explicit boolean: generate-toml.js only
+			# treats an explicit boolean as definitive, and without it a flag
+			# recorded while a version was still a prerelease can never be
+			# cleared once upstream promotes it (e.g. pinact 4.1.1).
+			# TEMPORARY: once jdx/mise#12265 (three-state prerelease output:
+			# true/false when the source knows, absent when it doesn't) is in
+			# the deployed mise, drop this coercion — explicit false then
+			# arrives on its own, and an absent key will mean "unknown", which
+			# must fall back to the existing TOML instead of being coerced to
+			# stable.
+			if printf '%s' "$json_output" | jq -c '.[] | .prerelease = (.prerelease == true)' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 				if toml_has_versions "$toml_file.tmp"; then
 					mv "$toml_file.tmp" "$toml_file"
 					rm -f "$error_output"

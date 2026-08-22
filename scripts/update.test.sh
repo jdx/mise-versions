@@ -138,6 +138,34 @@ test_pipe_to_generate_toml() {
 }
 test_pipe_to_generate_toml
 
+# Mirrors the JSON path in fetch_tool: mise omits `prerelease` for stable
+# releases, so it is materialised as an explicit boolean before
+# generate-toml.js sees it. Without that, an absent key reads as "unknown"
+# and a flag recorded while a version was still a prerelease survives the
+# promotion to a full release (e.g. pinact 4.1.1).
+test_json_path_clears_stale_prerelease() {
+	local existing_toml="$TEMP_DIR/existing_prerelease.toml"
+	cat >"$existing_toml" <<'EOF'
+[versions]
+"4.1.1-0" = { created_at = 2026-07-24T00:34:52.000Z, prerelease = true }
+"4.1.1" = { created_at = 2026-07-30T00:23:08.000Z, prerelease = true }
+EOF
+
+	local json_output
+	json_output='[{"version":"4.1.1-0","created_at":"2026-07-24T00:34:52Z","prerelease":true},{"version":"4.1.1","created_at":"2026-07-30T00:23:08Z"}]'
+
+	local toml_output
+	toml_output=$(printf '%s' "$json_output" |
+		jq -c '.[] | .prerelease = (.prerelease == true)' |
+		node scripts/generate-toml.js test-tool "$existing_toml" 2>/dev/null)
+
+	assert_contains "$toml_output" '"4.1.1-0" = { created_at = 2026-07-24T00:34:52.000Z, prerelease = true }' \
+		"Genuine prerelease keeps its flag on the JSON path"
+	assert_contains "$toml_output" '"4.1.1" = { created_at = 2026-07-30T00:23:08.000Z }' \
+		"Promoted release loses the stale prerelease flag on the JSON path"
+}
+test_json_path_clears_stale_prerelease
+
 echo ""
 
 # ============================================
