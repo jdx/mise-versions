@@ -1,14 +1,8 @@
 [versions]
-"0.0.1-alpha.7" = { created_at = 2025-07-22T16:21:59.781Z, prerelease = true }
-"0.0.1-alpha.8" = { created_at = 2025-07-23T06:18:04.601Z, prerelease = true }
-"0.0.1-alpha.9" = { created_at = 2025-07-24T12:34:50.084Z, prerelease = true }
-"0.0.1-alpha.10" = { created_at = 2025-07-24T14:17:58.190Z, prerelease = true }
 "0.0.1-alpha.11" = { created_at = 2025-07-29T07:28:03.618Z, prerelease = true }
 "0.0.1-alpha.12" = { created_at = 2025-07-31T14:08:58.739Z, prerelease = true }
 "0.0.1-alpha.13" = { created_at = 2025-08-01T09:48:28.202Z, prerelease = true }
 "0.0.1-alpha.14" = { created_at = 2025-08-01T09:55:20.009Z, prerelease = true }
-"0.0.1-dev1" = { created_at = 2025-07-22T14:49:53.012Z, prerelease = true }
-"0.0.1" = { created_at = 2025-07-22T14:36:58.393Z }
 "0.0.2" = { created_at = 2025-08-01T10:29:31.430Z }
 "0.0.4-nightly.0" = { created_at = 2025-08-02T00:48:47.503Z, prerelease = true }
 "0.0.4-nightly.1" = { created_at = 2025-08-03T00:59:10.224Z, prerelease = true }
@@ -78,7 +72,6 @@
 "0.0.14-nightly.0" = { created_at = 2025-09-25T09:05:44.430Z, prerelease = true }
 "0.0.14-nightly.1" = { created_at = 2025-09-26T00:11:22.878Z, prerelease = true }
 "0.0.14-nightly.2" = { created_at = 2025-09-29T00:18:18.310Z, prerelease = true }
-"0.0.14-nightly.20251024.d482ad28" = { created_at = 2025-10-24T03:50:19.958Z, prerelease = true }
 "0.0.14" = { created_at = 2025-09-29T06:24:31.229Z }
 "0.0.15-nightly.0" = { created_at = 2025-10-01T00:17:22.211Z, prerelease = true }
 "0.0.15-nightly.1" = { created_at = 2025-10-03T00:11:01.437Z, prerelease = true }
@@ -96,7 +89,6 @@
 "0.1.0-nightly.20251025.2a5577e5" = { created_at = 2025-10-25T00:11:59.963Z, prerelease = true }
 "0.1.0-nightly.20251026.2a5577e5" = { created_at = 2025-10-26T00:13:10.263Z, prerelease = true }
 "0.1.0-nightly.20251027.2a5577e5" = { created_at = 2025-10-27T00:11:26.295Z, prerelease = true }
-"0.1.0-preview" = { created_at = 2025-09-24T00:13:59.347Z, prerelease = true }
 "0.1.0-preview.0" = { created_at = 2025-10-24T07:47:19.528Z, prerelease = true }
 "0.1.0" = { created_at = 2025-10-27T09:58:51.749Z }
 "0.1.1-nightly.20251028.65cf80f4" = { created_at = 2025-10-28T00:11:16.396Z, prerelease = true }
@@ -116,7 +108,6 @@
 "0.1.4" = { created_at = 2025-11-05T12:18:58.325Z }
 "0.1.5-nightly.20251106.decb04ef" = { created_at = 2025-11-06T00:12:19.073Z, prerelease = true }
 "0.1.5-nightly.20251107.d17c37af" = { created_at = 2025-11-07T00:13:33.145Z, prerelease = true }
-"0.1.5" = { created_at = 2025-11-07T10:01:54.416Z }
 "0.2.0-nightly.20251108.3c01c715" = { created_at = 2025-11-08T00:11:36.189Z, prerelease = true }
 "0.2.0-nightly.20251109.3c01c715" = { created_at = 2025-11-09T00:11:14.759Z, prerelease = true }
 "0.2.0-nightly.20251110.3c01c715" = { created_at = 2025-11-10T00:11:06.909Z, prerelease = true }
@@ -456,7 +447,6 @@
 "0.16.1-preview.0" = { created_at = 2026-05-27T00:45:03.217Z, prerelease = true }
 "0.16.1" = { created_at = 2026-05-23T14:52:55.155Z }
 "0.16.2" = { created_at = 2026-05-27T09:30:48.774Z }
-"0.16.10-preview.0" = { created_at = 2026-05-09T06:11:32.747Z, prerelease = true }
 "0.17.0-nightly.20260530.c699738f9" = { created_at = 2026-05-30T00:40:57.140Z, prerelease = true }
 "0.17.0-nightly.20260531.c699738f9" = { created_at = 2026-05-31T00:40:18.498Z, prerelease = true }
 "0.17.0-nightly.20260601.1c48e4121" = { created_at = 2026-06-01T00:40:20.778Z, prerelease = true }

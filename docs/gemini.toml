@@ -1,41 +1,23 @@
 [versions]
-"0.0.1" = { created_at = 2025-09-18T20:05:39.431Z }
-"0.0.2" = { created_at = 2025-09-18T21:16:49.467Z }
-"0.0.3-preview.4" = { created_at = 2025-09-04T17:21:15.577Z, prerelease = true }
 "0.0.3" = { created_at = 2025-09-18T21:38:46.754Z }
 "0.0.4" = { created_at = 2025-09-18T22:17:35.914Z }
 "0.0.44-beta.0" = { created_at = 2025-09-27T02:36:01.540Z, prerelease = true }
 "0.0.77" = { created_at = 2025-09-19T12:46:39.973Z }
-"0.0.88" = { created_at = 2025-09-19T18:58:27.161Z }
 "0.0.89" = { created_at = 2025-09-19T23:23:35.686Z }
-"0.0.773" = { created_at = 2025-09-19T18:28:39.073Z }
 "0.0.777" = { created_at = 2025-09-19T15:40:07.010Z }
 "0.0.888" = { created_at = 2025-09-19T19:09:59.488Z }
 "0.0.899" = { created_at = 2025-09-19T23:30:07.209Z }
 "0.0.7770" = { created_at = 2025-09-19T16:54:55.347Z }
 "0.0.7771" = { created_at = 2025-09-19T17:06:44.654Z }
 "0.0.7772" = { created_at = 2025-09-19T17:33:48.959Z }
-"0.0.7777" = { created_at = 2025-09-19T20:58:55.023Z }
 "0.0.8888" = { created_at = 2025-09-19T19:23:30.320Z }
 "0.0.88888" = { created_at = 2025-09-19T20:16:08.302Z }
-"0.0.89999" = { created_at = 2025-09-19T23:43:02.513Z }
 "0.0.888888" = { created_at = 2025-09-19T21:29:21.931Z }
-"0.0.899999" = { created_at = 2025-09-19T23:51:07.564Z }
-"0.0.8999999" = { created_at = 2025-09-19T23:58:03.438Z }
 "0.0.77777772" = { created_at = 2025-09-26T22:48:18.743Z }
 "0.0.77777773" = { created_at = 2025-10-14T00:36:33.767Z }
 "0.0.77777774" = { created_at = 2025-10-14T00:48:41.165Z }
 "0.0.77777776" = { created_at = 2025-10-14T00:53:50.118Z }
-"0.0.89999999" = { created_at = 2025-09-20T00:07:33.394Z }
-"0.0.899999999" = { created_at = 2025-09-20T00:15:25.477Z }
 "0.0.8888888888" = { created_at = 2025-09-19T21:08:01.090Z }
-"0.0.8999999999" = { created_at = 2025-09-20T00:26:14.385Z }
-"0.0.88888888888" = { created_at = 2025-09-19T23:05:04.953Z }
-"0.0.89999999999" = { created_at = 2025-09-20T00:32:44.315Z }
-"0.0.899999999999" = { created_at = 2025-09-20T00:48:01.114Z }
-"0.0.8999999999999" = { created_at = 2025-09-20T00:58:12.700Z }
-"0.0.89999999999999" = { created_at = 2025-09-23T16:45:19.599Z }
-"0.0.8999999999999999" = { created_at = 2025-09-25T11:50:08.311Z }
 "0.1.0-development.2" = { created_at = 2025-07-08T06:31:47.712Z, prerelease = true }
 "0.1.0" = { created_at = 2025-06-25T13:03:28.263Z }
 "0.1.1" = { created_at = 2025-06-25T13:19:12.496Z }
@@ -62,22 +44,13 @@
 "0.1.8-rc.1" = { created_at = 2025-07-01T22:17:18.674Z, prerelease = true }
 "0.1.8" = { created_at = 2025-07-01T22:51:19.941Z }
 "0.1.9-nightly.250704.23eea823" = { created_at = 2025-07-04T19:35:29.406Z, prerelease = true }
-"0.1.9-nightly.250704.38fc1835" = { created_at = 2025-07-04T08:30:06.469Z, prerelease = true }
 "0.1.9-nightly.250707.d1c0a211" = { created_at = 2025-07-07T01:35:46.714Z, prerelease = true }
 "0.1.9-nightly.250708.137ffec3" = { created_at = 2025-07-08T06:47:27.924Z, prerelease = true }
 "0.1.9-nightly.250708.a4097ae6" = { created_at = 2025-07-08T00:08:38.866Z, prerelease = true }
 "0.1.9-nightly.250709.c8cf954e" = { created_at = 2025-07-09T00:08:41.583Z, prerelease = true }
 "0.1.9-nightly.250710.da50a1ee" = { created_at = 2025-07-10T00:08:43.768Z, prerelease = true }
-"0.1.9-nightly.20250704.b1fbe7b0" = { created_at = 2025-07-04T07:56:35.702Z, prerelease = true }
 "0.1.9-rc.0" = { created_at = 2025-07-01T23:18:13.266Z, prerelease = true }
-"0.1.9-rc.1" = { created_at = 2025-07-02T00:10:59.426Z, prerelease = true }
 "0.1.9" = { created_at = 2025-07-02T00:26:22.401Z }
-"0.1.10-dev.0" = { created_at = 2025-07-02T01:06:28.080Z, prerelease = true }
-"0.1.10-dev.11" = { created_at = 2025-07-03T01:15:48.793Z, prerelease = true }
-"0.1.10-dev.12" = { created_at = 2025-07-03T02:44:05.965Z, prerelease = true }
-"0.1.10-dev.13" = { created_at = 2025-07-03T03:05:10.502Z, prerelease = true }
-"0.1.10-dev.14" = { created_at = 2025-07-03T03:07:44.353Z, prerelease = true }
-"0.1.10-dev.15" = { created_at = 2025-07-04T04:48:25.041Z, prerelease = true }
 "0.1.10" = { created_at = 2025-07-10T03:54:28.692Z }
 "0.1.11-nightly.250713.4442e893" = { created_at = 2025-07-13T00:08:36.246Z, prerelease = true }
 "0.1.11" = { created_at = 2025-07-11T07:14:10.493Z }
@@ -113,7 +86,6 @@
 "0.1.21" = { created_at = 2025-08-14T05:38:08.524Z }
 "0.1.22" = { created_at = 2025-08-18T21:36:41.651Z }
 "0.2.0-preview.0" = { created_at = 2025-08-20T02:18:34.269Z, prerelease = true }
-"0.2.0-preview.1" = { created_at = 2025-08-22T19:05:50.269Z, prerelease = true }
 "0.2.0-preview.2" = { created_at = 2025-08-22T20:01:11.852Z, prerelease = true }
 "0.2.0" = { created_at = 2025-08-27T01:16:39.500Z }
 "0.2.1" = { created_at = 2025-08-27T06:55:36.242Z }
@@ -133,7 +105,6 @@
 "0.4.0-preview" = { created_at = 2025-09-04T21:29:19.099Z, prerelease = true }
 "0.4.0-preview.1" = { created_at = 2025-09-06T00:06:25.356Z, prerelease = true }
 "0.4.0-preview.2" = { created_at = 2025-09-06T18:27:47.498Z, prerelease = true }
-"0.4.0-preview.3" = { created_at = 2025-09-09T20:49:41.669Z, prerelease = true }
 "0.4.0-preview.4" = { created_at = 2025-09-09T21:00:00.203Z, prerelease = true }
 "0.4.0" = { created_at = 2025-09-09T21:32:00.369Z }
 "0.4.1" = { created_at = 2025-09-11T22:51:07.893Z }
@@ -161,14 +132,11 @@
 "0.6.0-preview.10" = { created_at = 2025-09-23T19:09:31.819Z, prerelease = true }
 "0.6.0" = { created_at = 2025-09-24T00:36:30.694Z }
 "0.6.1" = { created_at = 2025-09-25T00:19:23.826Z }
-"0.7.0-nightly.20250912.68035591" = { created_at = 2025-09-12T00:27:27.504Z, prerelease = true }
 "0.7.0-nightly.20250918.2722473a" = { created_at = 2025-09-18T00:11:10.786Z, prerelease = true }
 "0.7.0-preview.0" = { created_at = 2025-09-24T00:33:47.580Z, prerelease = true }
 "0.7.0-preview.1" = { created_at = 2025-09-25T21:02:43.323Z, prerelease = true }
 "0.7.0-preview.2" = { created_at = 2025-10-01T15:52:59.340Z, prerelease = true }
 "0.7.0" = { created_at = 2025-10-01T19:37:13.396Z }
-"0.7.1-reland" = { created_at = 2025-09-19T19:43:29.004Z, prerelease = true }
-"0.7.1" = { created_at = 2025-09-19T18:53:33.677Z }
 "0.8.0-nightly.20250926.2defdcff" = { created_at = 2025-09-26T17:41:54.426Z, prerelease = true }
 "0.8.0-nightly.20250927.19400ba8" = { created_at = 2025-09-27T01:41:22.622Z, prerelease = true }
 "0.8.0-nightly.20250929.042288e7" = { created_at = 2025-09-29T19:40:44.622Z, prerelease = true }
@@ -182,7 +150,6 @@
 "0.8.0" = { created_at = 2025-10-07T21:50:42.730Z }
 "0.8.1" = { created_at = 2025-10-08T03:40:33.702Z }
 "0.8.2" = { created_at = 2025-10-10T00:09:58.259Z }
-"0.9.0-nightly.20250926.1487841d" = { created_at = 2025-09-26T18:29:45.080Z, prerelease = true }
 "0.9.0-nightly.20251001.14dbda91" = { created_at = 2025-10-01T23:48:28.341Z, prerelease = true }
 "0.9.0-nightly.20251001.33269bdb" = { created_at = 2025-10-01T23:00:56.542Z, prerelease = true }
 "0.9.0-nightly.20251002.0f465e88" = { created_at = 2025-10-02T18:46:17.661Z, prerelease = true }
@@ -206,7 +173,6 @@
 "0.9.0-preview.6" = { created_at = 2025-10-15T01:31:31.780Z, prerelease = true }
 "0.9.0-preview.7" = { created_at = 2025-10-15T01:55:42.185Z, prerelease = true }
 "0.9.0" = { created_at = 2025-10-15T14:30:11.531Z }
-"0.10.0-nightly.20250926.1487841d" = { created_at = 2025-09-26T18:36:37.401Z, prerelease = true }
 "0.10.0-nightly.20251009.ae02236c" = { created_at = 2025-10-09T21:15:48.664Z, prerelease = true }
 "0.10.0-nightly.20251009.cd354aeb" = { created_at = 2025-10-09T18:30:02.762Z, prerelease = true }
 "0.10.0-nightly.20251010.558be873" = { created_at = 2025-10-10T13:58:48.173Z, prerelease = true }
@@ -327,8 +293,6 @@
 "0.20.0-preview.0" = { created_at = 2025-12-02T23:06:15.031Z, prerelease = true }
 "0.20.0-preview.1" = { created_at = 2025-12-05T04:50:47.339Z, prerelease = true }
 "0.20.0-preview.2" = { created_at = 2025-12-08T20:40:09.068Z, prerelease = true }
-"0.20.0-preview.3" = { created_at = 2025-12-08T22:22:34.449Z, prerelease = true }
-"0.20.0-preview.4" = { created_at = 2025-12-08T22:47:43.611Z, prerelease = true }
 "0.20.0-preview.5" = { created_at = 2025-12-09T01:53:24.862Z, prerelease = true }
 "0.20.0" = { created_at = 2025-12-09T20:19:10.289Z }
 "0.20.1" = { created_at = 2025-12-12T18:26:04.369Z }

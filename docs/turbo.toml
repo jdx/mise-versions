@@ -110,15 +110,12 @@
 "1.0.16" = { created_at = 2021-12-17T05:13:44.331Z }
 "1.0.17" = { created_at = 2021-12-17T15:56:07.470Z }
 "1.0.18" = { created_at = 2021-12-17T21:08:21.245Z }
-"1.0.19" = { created_at = 2021-12-18T04:29:15.116Z }
 "1.0.20-canary.0" = { created_at = 2021-12-18T21:34:03.672Z, prerelease = true }
 "1.0.20-canary.1" = { created_at = 2021-12-21T14:42:09.022Z, prerelease = true }
 "1.0.20-canary.2" = { created_at = 2021-12-22T22:52:34.693Z, prerelease = true }
-"1.0.20" = { created_at = 2021-12-22T23:01:05.065Z }
 "1.0.21-canary.0" = { created_at = 2021-12-23T12:27:29.854Z, prerelease = true }
 "1.0.21-canary.1" = { created_at = 2021-12-23T12:36:16.033Z, prerelease = true }
 "1.0.21-canary.2" = { created_at = 2021-12-23T13:27:10.996Z, prerelease = true }
-"1.0.21" = { created_at = 2021-12-23T13:29:32.243Z }
 "1.0.22" = { created_at = 2021-12-23T18:51:29.371Z }
 "1.0.23" = { created_at = 2021-12-23T23:06:33.118Z }
 "1.0.24-canary.0" = { created_at = 2021-12-29T16:04:53.156Z, prerelease = true }
@@ -127,8 +124,6 @@
 "1.0.24" = { created_at = 2021-12-31T14:09:07.742Z }
 "1.0.25-canary.0" = { created_at = 2022-01-07T22:58:21.363Z, prerelease = true }
 "1.0.25-canary.1" = { created_at = 2022-01-10T19:30:00.222Z, prerelease = true }
-"1.0.25" = { created_at = 2022-01-10T19:34:28.135Z }
-"1.0.26" = { created_at = 2022-01-12T14:52:50.378Z }
 "1.0.27" = { created_at = 2022-01-14T01:08:43.813Z }
 "1.0.28" = { created_at = 2022-01-14T02:20:46.070Z }
 "1.0.29" = { created_at = 2022-01-26T17:53:58.672Z }
@@ -156,8 +151,6 @@
 "1.1.7-canary.2" = { created_at = 2022-03-11T23:32:59.262Z, prerelease = true }
 "1.1.7-canary.3" = { created_at = 2022-03-14T18:45:30.550Z, prerelease = true }
 "1.1.7-canary.5" = { created_at = 2022-03-17T20:10:01.575Z, prerelease = true }
-"1.1.7" = { created_at = 2022-03-21T19:31:55.498Z }
-"1.1.8" = { created_at = 2022-03-21T20:08:48.881Z }
 "1.1.9" = { created_at = 2022-03-21T20:21:39.354Z }
 "1.1.10-canary.0" = { created_at = 2022-03-23T21:32:02.346Z, prerelease = true }
 "1.1.10" = { created_at = 2022-03-23T21:43:44.736Z }
@@ -213,9 +206,7 @@
 "1.3.4" = { created_at = 2022-07-21T17:20:49.870Z }
 "1.3.5-canary.0" = { created_at = 2022-07-27T13:39:47.993Z, prerelease = true }
 "1.4.0" = { created_at = 2022-07-29T17:36:26.266Z }
-"1.4.1-canary.0" = { created_at = 2022-08-01T21:13:54.054Z, prerelease = true }
 "1.4.1-canary.1" = { created_at = 2022-08-01T23:28:31.619Z, prerelease = true }
-"1.4.1" = { created_at = 2022-08-01T23:06:47.549Z }
 "1.4.2" = { created_at = 2022-08-01T23:38:17.527Z }
 "1.4.3-canary.0" = { created_at = 2022-08-09T00:27:57.925Z, prerelease = true }
 "1.4.3" = { created_at = 2022-08-09T21:21:38.092Z }
@@ -301,7 +292,6 @@
 "1.8.6" = { created_at = 2023-03-27T22:08:15.050Z }
 "1.8.7-canary.0" = { created_at = 2023-03-28T21:15:54.751Z, prerelease = true }
 "1.8.7-canary.1" = { created_at = 2023-03-29T00:14:51.894Z, prerelease = true }
-"1.8.7" = { created_at = 2023-03-29T17:07:59.443Z }
 "1.8.8" = { created_at = 2023-03-29T22:37:35.384Z }
 "1.8.9-canary.0" = { created_at = 2023-03-31T14:40:28.669Z, prerelease = true }
 "1.8.9-canary.1" = { created_at = 2023-04-03T20:57:59.651Z, prerelease = true }
@@ -326,10 +316,8 @@
 "1.9.4-canary.9" = { created_at = 2023-05-04T19:58:14.459Z, prerelease = true }
 "1.9.4-canary.10" = { created_at = 2023-05-05T17:50:21.869Z, prerelease = true }
 "1.9.4-canary.11" = { created_at = 2023-05-09T01:03:19.179Z, prerelease = true }
-"1.9.4" = { created_at = 2023-05-11T22:41:08.347Z }
 "1.9.5-canary.0" = { created_at = 2023-05-12T10:00:03.455Z, prerelease = true }
 "1.9.5-canary.1" = { created_at = 2023-05-15T14:06:53.607Z, prerelease = true }
-"1.9.5" = { created_at = 2023-05-15T16:57:03.763Z }
 "1.9.6" = { created_at = 2023-05-16T00:28:16.088Z }
 "1.9.7-canary.0" = { created_at = 2023-05-17T01:01:24.670Z, prerelease = true }
 "1.9.7" = { created_at = 2023-05-17T20:31:39.282Z }
@@ -530,8 +518,6 @@
 "2.2.4-canary.5" = { created_at = 2024-10-31T21:22:54.067Z, prerelease = true }
 "2.2.4-canary.6" = { created_at = 2024-11-04T03:29:19.582Z, prerelease = true }
 "2.2.4-canary.7" = { created_at = 2024-11-05T14:43:05.512Z, prerelease = true }
-"2.2.4-canary.8" = { created_at = 2024-11-06T19:17:44.892Z, prerelease = true }
-"2.2.4-canary.9" = { created_at = 2024-11-08T14:39:23.427Z, prerelease = true }
 "2.2.4-canary.10" = { created_at = 2024-11-13T13:43:17.596Z, prerelease = true }
 "2.3.0" = { created_at = 2024-11-14T17:53:51.491Z }
 "2.3.1-canary.0" = { created_at = 2024-11-15T17:25:09.510Z, prerelease = true }
@@ -560,7 +546,6 @@
 "2.3.7" = { created_at = 2025-02-13T14:06:46.479Z }
 "2.4.0" = { created_at = 2025-01-31T19:32:23.280Z }
 "2.4.1-canary.0" = { created_at = 2025-02-03T17:43:35.982Z, prerelease = true }
-"2.4.1-canary.1" = { created_at = 2025-02-07T01:18:29.760Z, prerelease = true }
 "2.4.1-canary.2" = { created_at = 2025-02-07T03:12:25.603Z, prerelease = true }
 "2.4.1-canary.3" = { created_at = 2025-02-10T14:17:25.941Z, prerelease = true }
 "2.4.1" = { created_at = 2025-02-10T17:19:50.956Z }
