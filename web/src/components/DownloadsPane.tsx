@@ -63,15 +63,16 @@ function DailyBarChart({
           return (
             <div
               key={d.date}
-              class="flex-1 h-full flex items-end group relative"
-              title={`${label}: ${d.count} downloads`}
+              class="flex-1 h-full flex items-end group relative outline-none"
+              aria-label={`${label}: ${d.count.toLocaleString()} downloads`}
+              tabIndex={0}
             >
               <div
                 class="w-full bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
                 style={{ height: `${Math.max(height, 2)}%` }}
               />
-              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
-                {label}: {d.count.toLocaleString()}
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+                {label}: {d.count.toLocaleString()} downloads
               </div>
             </div>
           );

@@ -208,9 +208,10 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
             </span>
           )}
         </div>
+        <div class="text-xs text-gray-500 mt-1">vs prior 30 days</div>
       </div>
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
-        <div class="text-sm text-gray-400 mb-1">Week-over-Week</div>
+        <div class="text-sm text-gray-400 mb-1">Downloads Week-over-Week</div>
         <div class="text-3xl font-bold">
           {growthData?.global.wow !== null ? (
             <span class={`inline-flex items-center gap-1 px-2 py-0.5 rounded ${growthData.global.wow >= 0 ? 'bg-green-400/10 text-green-400' : 'bg-red-400/10 text-red-400'} text-sm font-medium`}>
@@ -220,6 +221,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
             <span class="text-gray-500">...</span>
           )}
         </div>
+        <div class="text-xs text-gray-500 mt-1">vs prior 7 days</div>
       </div>
     </div>
 
@@ -321,21 +323,44 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                     {data.map((d, i) => {
                       const x = (i / data.length) * chartWidth + 1;
                       const barHeight = (d.dau / maxDAU) * chartHeight;
+                      const tooltipWidth = 150;
+                      const tooltipX = Math.min(
+                        Math.max(x + barWidth / 2 - tooltipWidth / 2, 0),
+                        chartWidth - tooltipWidth,
+                      );
                       return (
-                        <rect
-                          x={x}
-                          y={chartHeight - barHeight}
-                          width={barWidth}
-                          height={barHeight}
-                          fill="#B026FF"
-                          opacity="0.8"
-                        >
-                          <title>{d.date}: {d.dau.toLocaleString()} DAU</title>
-                        </rect>
+                        <g class="group">
+                          <rect
+                            x={x}
+                            y={0}
+                            width={barWidth}
+                            height={chartHeight}
+                            fill="transparent"
+                            class="cursor-default outline-none"
+                            tabindex="0"
+                            aria-label={`${d.date}: ${d.dau.toLocaleString()} daily active users`}
+                          />
+                          <rect
+                            x={x}
+                            y={chartHeight - barHeight}
+                            width={barWidth}
+                            height={barHeight}
+                            fill="#B026FF"
+                            opacity="0.8"
+                            pointer-events="none"
+                          />
+                          <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="#374151" />
+                            <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
+                              {d.date.slice(5)} · {d.dau.toLocaleString()} users
+                            </text>
+                          </g>
+                        </g>
                       );
                     })}
                     {data.map((d, i) => {
-                      if (i % 7 !== 0 && i !== data.length - 1) return null;
+                      const lastIndex = data.length - 1;
+                      if (i !== lastIndex && (i % 7 !== 0 || lastIndex - i < 3)) return null;
                       const x = (i / data.length) * chartWidth + barWidth / 2;
                       const dateLabel = d.date.slice(5);
                       return (
@@ -383,21 +408,44 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                     {data.map((d, i) => {
                       const x = (i / data.length) * chartWidth + 1;
                       const barHeight = (d.count / maxCount) * chartHeight;
+                      const tooltipWidth = 150;
+                      const tooltipX = Math.min(
+                        Math.max(x + barWidth / 2 - tooltipWidth / 2, 0),
+                        chartWidth - tooltipWidth,
+                      );
                       return (
-                        <rect
-                          x={x}
-                          y={chartHeight - barHeight}
-                          width={barWidth}
-                          height={barHeight}
-                          fill="#00D4FF"
-                          opacity="0.8"
-                        >
-                          <title>{d.date}: {d.count} tools updated</title>
-                        </rect>
+                        <g class="group">
+                          <rect
+                            x={x}
+                            y={0}
+                            width={barWidth}
+                            height={chartHeight}
+                            fill="transparent"
+                            class="cursor-default outline-none"
+                            tabindex="0"
+                            aria-label={`${d.date}: ${d.count.toLocaleString()} version updates`}
+                          />
+                          <rect
+                            x={x}
+                            y={chartHeight - barHeight}
+                            width={barWidth}
+                            height={barHeight}
+                            fill="#00D4FF"
+                            opacity="0.8"
+                            pointer-events="none"
+                          />
+                          <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="#374151" />
+                            <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
+                              {d.date.slice(5)} · {d.count.toLocaleString()} updates
+                            </text>
+                          </g>
+                        </g>
                       );
                     })}
                     {data.map((d, i) => {
-                      if (i % 7 !== 0 && i !== data.length - 1) return null;
+                      const lastIndex = data.length - 1;
+                      if (i !== lastIndex && (i % 7 !== 0 || lastIndex - i < 3)) return null;
                       const x = (i / data.length) * chartWidth + barWidth / 2;
                       const dateLabel = d.date.slice(5);
                       return (

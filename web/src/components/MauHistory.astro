@@ -8,7 +8,10 @@ interface Props {
 }
 
 const { daily } = Astro.props;
-const data = daily.filter((point) => point.mau > 0);
+const reliableHistoryStart = "2026-03-01";
+const data = daily.filter(
+  (point) => point.mau > 0 && point.date >= reliableHistoryStart,
+);
 const latest = data.at(-1);
 
 function formatChange(current: number, previous?: number): number | null {
@@ -112,6 +115,7 @@ const currentMonth = new Date().toISOString().slice(0, 7);
         <h2 class="text-lg font-semibold text-gray-200">Monthly Active Users</h2>
         <p class="text-xs text-gray-500">
           Unique users across downloads and version checks in the trailing 30 days; daily snapshots make recent changes visible before a calendar month closes.
+          Comparable history is shown from March 2026.
         </p>
       </div>
       <span class="text-xs text-gray-500">through {latest.date}</span>
@@ -144,7 +148,7 @@ const currentMonth = new Date().toISOString().slice(0, 7);
     </div>
 
     <div class="overflow-x-auto">
-      <svg viewBox={`0 0 ${width} ${height}`} class="min-w-[700px] w-full" role="img" aria-label="Daily snapshots of trailing 30-day monthly active users over the past year">
+      <svg viewBox={`0 0 ${width} ${height}`} class="min-w-[700px] w-full" role="img" aria-label="Daily snapshots of trailing 30-day monthly active users since March 2026">
         <g transform={`translate(${padding.left}, ${padding.top})`}>
           {yTicks.map((tick) => (
             <g>
@@ -196,7 +200,7 @@ const currentMonth = new Date().toISOString().slice(0, 7);
                 <th class="py-2 pr-4 font-medium">Month</th>
                 <th class="py-2 px-4 font-medium">Snapshot</th>
                 <th class="py-2 px-4 font-medium text-right">MAU snapshot</th>
-                <th class="py-2 pl-4 font-medium text-right">Month-over-month</th>
+                <th class="py-2 pl-4 font-medium text-right">Change vs prior snapshot</th>
               </tr>
             </thead>
             <tbody>

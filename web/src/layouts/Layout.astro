@@ -63,14 +63,14 @@ const currentPath = Astro.url.pathname;
   </head>
   <body class="bg-dark-900 text-gray-100 font-sans min-h-screen">
     <header class="bg-dark-800 border-b border-dark-600 relative">
-      <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <a
           href="/"
-          class="text-xl font-bold text-neon-purple hover:text-neon-pink transition-colors"
+          class="text-xl font-bold text-neon-purple hover:text-neon-pink transition-colors whitespace-nowrap"
         >
           mise versions
         </a>
-        <nav class="flex items-center gap-6">
+        <nav class="flex w-full min-w-0 items-center gap-3 sm:w-auto sm:gap-6">
           <NavSearch initialQuery={Astro.url.searchParams.get("q") || ""} client:load />
           <a
             href="/stats"
@@ -83,7 +83,7 @@ const currentPath = Astro.url.pathname;
           </a>
           <a
             href="https://mise.jdx.dev"
-            class="text-sm text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-1.5"
+            class="hidden text-sm text-gray-400 hover:text-neon-purple transition-colors xl:flex items-center gap-1.5"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -94,7 +94,7 @@ const currentPath = Astro.url.pathname;
           </a>
           <a
             href="https://github.com/jdx/mise"
-            class="text-sm text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-1.5"
+            class="hidden text-sm text-gray-400 hover:text-neon-purple transition-colors xl:flex items-center gap-1.5"
             target="_blank"
             rel="noopener noreferrer"
           >

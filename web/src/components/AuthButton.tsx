@@ -61,28 +61,38 @@ export function AuthButton() {
 
   if (state.authenticated) {
     return (
-      <div class="flex items-center gap-3">
-        <span class="text-gray-400 text-sm">
-          <GitHubIcon />
-        </span>
-        <span class="text-gray-300">{state.username}</span>
+      <>
         <a
           href={logoutUrl}
-          class="text-gray-500 hover:text-gray-300 text-sm transition-colors"
+          aria-label={`Logout ${state.username || "GitHub user"}`}
+          class="text-gray-400 transition-colors hover:text-gray-200 xl:hidden"
         >
-          Logout
+          <GitHubIcon />
         </a>
-      </div>
+        <div class="hidden items-center gap-3 xl:flex">
+          <span class="text-gray-400 text-sm">
+            <GitHubIcon />
+          </span>
+          <span class="text-gray-300">{state.username}</span>
+          <a
+            href={logoutUrl}
+            class="text-gray-500 hover:text-gray-300 text-sm transition-colors"
+          >
+            Logout
+          </a>
+        </div>
+      </>
     );
   }
 
   return (
     <a
       href={loginUrl}
-      class="flex items-center gap-2 px-3 py-1.5 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-gray-300 hover:text-white transition-colors"
+      aria-label="Login with GitHub"
+      class="flex items-center gap-2 px-2 py-1.5 xl:px-3 bg-dark-700 hover:bg-dark-600 border border-dark-500 rounded-lg text-gray-300 hover:text-white transition-colors"
     >
       <GitHubIcon />
-      <span>Login with GitHub</span>
+      <span class="hidden xl:inline">Login with GitHub</span>
     </a>
   );
 }
