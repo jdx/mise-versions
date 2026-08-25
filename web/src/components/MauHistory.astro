@@ -1,0 +1,229 @@
+---
+import { formatCompact } from "../lib/format";
+
+type MauPoint = { date: string; mau: number };
+
+interface Props {
+  daily: MauPoint[];
+}
+
+const { daily } = Astro.props;
+const data = daily.filter((point) => point.mau > 0);
+const latest = data.at(-1);
+
+function formatChange(current: number, previous?: number): number | null {
+  if (!previous) return null;
+  return ((current - previous) / previous) * 100;
+}
+
+function snapshotAtOrBefore(date: string): MauPoint | undefined {
+  return data.findLast((point) => point.date <= date);
+}
+
+function daysBefore(date: string, days: number): string {
+  const timestamp = new Date(`${date}T00:00:00Z`).getTime() - days * 86400_000;
+  return new Date(timestamp).toISOString().slice(0, 10);
+}
+
+function daysBetween(start: string, end: string): number {
+  return Math.round(
+    (new Date(`${end}T00:00:00Z`).getTime() -
+      new Date(`${start}T00:00:00Z`).getTime()) /
+      86400_000,
+  );
+}
+
+const monthEnds = [
+  ...data
+    .reduce((months, point) => {
+      months.set(point.date.slice(0, 7), point);
+      return months;
+    }, new Map<string, MauPoint>())
+    .values(),
+];
+const recentMonths = monthEnds.slice(-12);
+
+const thirtyDayBaseline = latest
+  ? snapshotAtOrBefore(daysBefore(latest.date, 30))
+  : undefined;
+const thirtyDayChange = latest
+  ? formatChange(latest.mau, thirtyDayBaseline?.mau)
+  : null;
+
+const quattroLaunch = "2026-08-14";
+const quattroBaseline = snapshotAtOrBefore(daysBefore(quattroLaunch, 1));
+const quattroChange =
+  latest && latest.date >= quattroLaunch
+    ? formatChange(latest.mau, quattroBaseline?.mau)
+    : null;
+
+const width = 1000;
+const height = 280;
+const padding = { top: 24, right: 24, bottom: 42, left: 70 };
+const chartWidth = width - padding.left - padding.right;
+const chartHeight = height - padding.top - padding.bottom;
+const values = data.map((point) => point.mau);
+const rawMin = values.length > 0 ? Math.min(...values) : 0;
+const rawMax = values.length > 0 ? Math.max(...values) : 1;
+const range = Math.max(rawMax - rawMin, rawMax * 0.1, 1);
+const yMin = Math.max(0, rawMin - range * 0.12);
+const yMax = rawMax + range * 0.12;
+const timestampForDate = (date: string) =>
+  new Date(`${date}T00:00:00Z`).getTime();
+const firstTimestamp = data.length > 0 ? timestampForDate(data[0].date) : 0;
+const lastTimestamp = latest ? timestampForDate(latest.date) : firstTimestamp;
+const xForDate = (date: string) =>
+  firstTimestamp === lastTimestamp
+    ? chartWidth / 2
+    : ((timestampForDate(date) - firstTimestamp) /
+        (lastTimestamp - firstTimestamp)) *
+      chartWidth;
+const yForValue = (value: number) =>
+  chartHeight - ((value - yMin) / (yMax - yMin)) * chartHeight;
+const mauPath = data
+  .map(
+    (point, index) =>
+      `${index === 0 ? "M" : "L"} ${xForDate(point.date)} ${yForValue(point.mau)}`,
+  )
+  .join(" ");
+const showQuattroLaunch =
+  data.length > 0 && quattroLaunch >= data[0].date && quattroLaunch <= latest!.date;
+const monthStarts = [
+  ...data
+    .reduce((months, point) => {
+      const month = point.date.slice(0, 7);
+      if (!months.has(month)) months.set(month, point);
+      return months;
+    }, new Map<string, MauPoint>())
+    .values(),
+];
+const tickInterval = Math.max(1, Math.ceil(monthStarts.length / 7));
+const xTicks = monthStarts.filter(
+  (_, index) => index % tickInterval === 0 || index === monthStarts.length - 1,
+);
+const yTicks = [yMax, (yMax + yMin) / 2, yMin];
+const currentMonth = new Date().toISOString().slice(0, 7);
+---
+
+{latest && (
+  <section class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+    <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between mb-4">
+      <div>
+        <h2 class="text-lg font-semibold text-gray-200">Monthly Active Users</h2>
+        <p class="text-xs text-gray-500">
+          Unique users across downloads and version checks in the trailing 30 days; daily snapshots make recent changes visible before a calendar month closes.
+        </p>
+      </div>
+      <span class="text-xs text-gray-500">through {latest.date}</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+      <div class="bg-dark-700 rounded p-3">
+        <div class="text-xs text-gray-400">Latest MAU snapshot</div>
+        <div class="text-2xl font-semibold text-cyan-400">{formatCompact(latest.mau)}</div>
+      </div>
+      <div class="bg-dark-700 rounded p-3">
+        <div class="text-xs text-gray-400">30-day change</div>
+        <div class={`text-2xl font-semibold ${thirtyDayChange === null ? 'text-gray-500' : thirtyDayChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+          {thirtyDayChange === null ? "—" : `${thirtyDayChange >= 0 ? "+" : ""}${thirtyDayChange.toFixed(1)}%`}
+        </div>
+        {thirtyDayBaseline && <div class="text-xs text-gray-500">from {formatCompact(thirtyDayBaseline.mau)}</div>}
+      </div>
+      <div class="bg-dark-700 rounded p-3">
+        <div class="text-xs text-gray-400">Since Omarchy Quattro</div>
+        <div class={`text-2xl font-semibold ${quattroChange === null ? 'text-gray-500' : quattroChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+          {quattroChange === null ? "—" : `${quattroChange >= 0 ? "+" : ""}${quattroChange.toFixed(1)}%`}
+        </div>
+        {quattroBaseline && latest.date >= quattroLaunch && (
+          <div class="text-xs text-gray-500">
+            {daysBetween(quattroLaunch, latest.date)} days since Aug 14 launch; baseline {formatCompact(quattroBaseline.mau)}
+          </div>
+        )}
+        <div class="text-[11px] text-gray-600 mt-1">Timing comparison, not causal attribution.</div>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <svg viewBox={`0 0 ${width} ${height}`} class="min-w-[700px] w-full" role="img" aria-label="Daily snapshots of trailing 30-day monthly active users over the past year">
+        <g transform={`translate(${padding.left}, ${padding.top})`}>
+          {yTicks.map((tick) => (
+            <g>
+              <line x1="0" x2={chartWidth} y1={yForValue(tick)} y2={yForValue(tick)} stroke="#374151" stroke-width="1" />
+              <text x="-10" y={yForValue(tick) + 4} text-anchor="end" class="fill-gray-500 text-xs">
+                {formatCompact(Math.round(tick))}
+              </text>
+            </g>
+          ))}
+          {showQuattroLaunch && (
+            <g>
+              <line
+                x1={xForDate(quattroLaunch)}
+                x2={xForDate(quattroLaunch)}
+                y1="0"
+                y2={chartHeight}
+                stroke="#F472B6"
+                stroke-width="1.5"
+                stroke-dasharray="5 4"
+              />
+              <text x={xForDate(quattroLaunch) + 6} y="12" class="fill-pink-400 text-xs">Quattro</text>
+            </g>
+          )}
+          <path d={mauPath} fill="none" stroke="#00D4FF" stroke-width="3" stroke-linejoin="round" />
+          {data.map((point) => (
+            <circle cx={xForDate(point.date)} cy={yForValue(point.mau)} r="6" fill="transparent">
+              <title>{point.date}: {point.mau.toLocaleString()} MAU</title>
+            </circle>
+          ))}
+          <circle cx={xForDate(latest.date)} cy={yForValue(latest.mau)} r="4" fill="#00D4FF" />
+          {xTicks.map((point) => {
+            return (
+              <text x={xForDate(point.date)} y={chartHeight + 24} text-anchor="middle" class="fill-gray-500 text-xs">
+                {point.date.slice(0, 7)}
+              </text>
+            );
+          })}
+        </g>
+      </svg>
+    </div>
+
+    {recentMonths.length > 0 && (
+      <div class="mt-5">
+        <h3 class="text-sm font-medium text-gray-300 mb-2">Monthly history</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-dark-600 text-left text-xs text-gray-500">
+                <th class="py-2 pr-4 font-medium">Month</th>
+                <th class="py-2 px-4 font-medium">Snapshot</th>
+                <th class="py-2 px-4 font-medium text-right">MAU snapshot</th>
+                <th class="py-2 pl-4 font-medium text-right">Month-over-month</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...recentMonths].reverse().map((point) => {
+                const index = monthEnds.indexOf(point);
+                const previous = index > 0 ? monthEnds[index - 1] : undefined;
+                const change = formatChange(point.mau, previous?.mau);
+                return (
+                  <tr class="border-b border-dark-700 last:border-0">
+                    <td class="py-2 pr-4 text-gray-300">
+                      {new Date(`${point.date}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })}
+                      {point === latest && point.date.startsWith(currentMonth) && <span class="ml-2 text-xs text-gray-500">month to date</span>}
+                    </td>
+                    <td class="py-2 px-4 text-gray-500">{point.date}</td>
+                    <td class="py-2 px-4 text-right text-gray-300" title={`Snapshot from ${point.date}`}>
+                      {point.mau.toLocaleString()}
+                    </td>
+                    <td class={`py-2 pl-4 text-right ${change === null ? 'text-gray-500' : change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {change === null ? "—" : `${change >= 0 ? "+" : ""}${change.toFixed(1)}%`}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )}
+  </section>
+)}
