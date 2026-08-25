@@ -36,6 +36,31 @@ function daysBetween(start: string, end: string): number {
   );
 }
 
+function formatDate(date: string, month: "short" | "long" = "short"): string {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-US", {
+    month,
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function formatMonth(date: string): string {
+  return new Date(`${date}T00:00:00Z`).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function niceStep(span: number, targetTicks = 6): number {
+  const roughStep = Math.max(span / targetTicks, 1);
+  const magnitude = 10 ** Math.floor(Math.log10(roughStep));
+  const normalized = roughStep / magnitude;
+  const multiplier = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+  return multiplier * magnitude;
+}
+
 const monthEnds = [
   ...data
     .reduce((months, point) => {
@@ -69,8 +94,10 @@ const values = data.map((point) => point.mau);
 const rawMin = values.length > 0 ? Math.min(...values) : 0;
 const rawMax = values.length > 0 ? Math.max(...values) : 1;
 const range = Math.max(rawMax - rawMin, rawMax * 0.1, 1);
-const yMin = Math.max(0, rawMin - range * 0.12);
-const yMax = rawMax + range * 0.12;
+const yStep = niceStep(range);
+const yMin = Math.max(0, Math.floor(rawMin / yStep) * yStep);
+const roundedYMax = Math.ceil(rawMax / yStep) * yStep;
+const yMax = roundedYMax > yMin ? roundedYMax : yMin + yStep;
 const timestampForDate = (date: string) =>
   new Date(`${date}T00:00:00Z`).getTime();
 const firstTimestamp = data.length > 0 ? timestampForDate(data[0].date) : 0;
@@ -104,43 +131,47 @@ const tickInterval = Math.max(1, Math.ceil(monthStarts.length / 7));
 const xTicks = monthStarts.filter(
   (_, index) => index % tickInterval === 0 || index === monthStarts.length - 1,
 );
-const yTicks = [yMax, (yMax + yMin) / 2, yMin];
-const currentMonth = new Date().toISOString().slice(0, 7);
+const yTicks = Array.from(
+  { length: Math.round((yMax - yMin) / yStep) + 1 },
+  (_, index) => yMax - index * yStep,
+);
 ---
 
 {latest && (
   <section class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-    <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between mb-4">
-      <div>
-        <h2 class="text-lg font-semibold text-gray-200">Monthly Active Users</h2>
-        <p class="text-xs text-gray-500">
-          Unique users across downloads and version checks in the trailing 30 days; daily snapshots make recent changes visible before a calendar month closes.
-          Comparable history is shown from March 2026.
-        </p>
-      </div>
-      <span class="text-xs text-gray-500">through {latest.date}</span>
+    <div class="mb-4">
+      <h2 class="text-lg font-semibold text-gray-200">Monthly Active Users</h2>
+      <p class="text-xs text-gray-500">
+        Unique users across downloads and version checks in the trailing 30 days; daily snapshots make recent changes visible before a calendar month closes.
+        Comparable history is shown from March 2026.
+      </p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
       <div class="bg-dark-700 rounded p-3">
         <div class="text-xs text-gray-400">Latest MAU snapshot</div>
         <div class="text-2xl font-semibold text-cyan-400">{formatCompact(latest.mau)}</div>
+        <div class="text-xs text-gray-500">As of {formatDate(latest.date, "long")}</div>
       </div>
       <div class="bg-dark-700 rounded p-3">
         <div class="text-xs text-gray-400">30-day change</div>
         <div class={`text-2xl font-semibold ${thirtyDayChange === null ? 'text-gray-500' : thirtyDayChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
           {thirtyDayChange === null ? "—" : `${thirtyDayChange >= 0 ? "+" : ""}${thirtyDayChange.toFixed(1)}%`}
         </div>
-        {thirtyDayBaseline && <div class="text-xs text-gray-500">from {formatCompact(thirtyDayBaseline.mau)}</div>}
+        {thirtyDayBaseline && (
+          <div class="text-xs text-gray-500">
+            From {formatCompact(thirtyDayBaseline.mau)} on {formatDate(thirtyDayBaseline.date)}
+          </div>
+        )}
       </div>
       <div class="bg-dark-700 rounded p-3">
-        <div class="text-xs text-gray-400">Since Omarchy Quattro</div>
+        <div class="text-xs text-gray-400">Change since Omarchy Quattro launch</div>
         <div class={`text-2xl font-semibold ${quattroChange === null ? 'text-gray-500' : quattroChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
           {quattroChange === null ? "—" : `${quattroChange >= 0 ? "+" : ""}${quattroChange.toFixed(1)}%`}
         </div>
         {quattroBaseline && latest.date >= quattroLaunch && (
           <div class="text-xs text-gray-500">
-            {daysBetween(quattroLaunch, latest.date)} days since Aug 14 launch; baseline {formatCompact(quattroBaseline.mau)}
+            {daysBetween(quattroLaunch, latest.date)} days after Aug 14; from {formatCompact(quattroBaseline.mau)} on {formatDate(quattroBaseline.date)}
           </div>
         )}
         <div class="text-[11px] text-gray-600 mt-1">Timing comparison, not causal attribution.</div>
@@ -169,7 +200,7 @@ const currentMonth = new Date().toISOString().slice(0, 7);
                 stroke-width="1.5"
                 stroke-dasharray="5 4"
               />
-              <text x={xForDate(quattroLaunch) + 6} y="12" class="fill-pink-400 text-xs">Quattro</text>
+              <text x={xForDate(quattroLaunch) - 6} y="12" text-anchor="end" class="fill-pink-400 text-xs">Quattro · Aug 14</text>
             </g>
           )}
           <path d={mauPath} fill="none" stroke="#00D4FF" stroke-width="3" stroke-linejoin="round" />
@@ -182,7 +213,7 @@ const currentMonth = new Date().toISOString().slice(0, 7);
           {xTicks.map((point) => {
             return (
               <text x={xForDate(point.date)} y={chartHeight + 24} text-anchor="middle" class="fill-gray-500 text-xs">
-                {point.date.slice(0, 7)}
+                {new Date(`${point.date}T00:00:00Z`).toLocaleDateString("en-US", { month: "short", timeZone: "UTC" })}
               </text>
             );
           })}
@@ -193,12 +224,12 @@ const currentMonth = new Date().toISOString().slice(0, 7);
     {recentMonths.length > 0 && (
       <div class="mt-5">
         <h3 class="text-sm font-medium text-gray-300 mb-2">Monthly history</h3>
-        <div class="overflow-x-auto">
+        <div class="hidden overflow-x-auto sm:block">
           <table class="w-full text-sm">
             <thead>
               <tr class="border-b border-dark-600 text-left text-xs text-gray-500">
                 <th class="py-2 pr-4 font-medium">Month</th>
-                <th class="py-2 px-4 font-medium">Snapshot</th>
+                <th class="py-2 px-4 font-medium">Snapshot date</th>
                 <th class="py-2 px-4 font-medium text-right">MAU snapshot</th>
                 <th class="py-2 pl-4 font-medium text-right">Change vs prior snapshot</th>
               </tr>
@@ -210,11 +241,11 @@ const currentMonth = new Date().toISOString().slice(0, 7);
                 const change = formatChange(point.mau, previous?.mau);
                 return (
                   <tr class="border-b border-dark-700 last:border-0">
-                    <td class="py-2 pr-4 text-gray-300">
-                      {new Date(`${point.date}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })}
-                      {point === latest && point.date.startsWith(currentMonth) && <span class="ml-2 text-xs text-gray-500">month to date</span>}
+                    <td class="py-2 pr-4 text-gray-300 whitespace-nowrap">
+                      {formatMonth(point.date)}
+                      {point === latest && <span class="ml-2 text-xs text-gray-500">latest</span>}
                     </td>
-                    <td class="py-2 px-4 text-gray-500">{point.date}</td>
+                    <td class="py-2 px-4 text-gray-500 whitespace-nowrap">{formatDate(point.date)}</td>
                     <td class="py-2 px-4 text-right text-gray-300" title={`Snapshot from ${point.date}`}>
                       {point.mau.toLocaleString()}
                     </td>
@@ -226,6 +257,34 @@ const currentMonth = new Date().toISOString().slice(0, 7);
               })}
             </tbody>
           </table>
+        </div>
+        <div class="space-y-2 sm:hidden">
+          {[...recentMonths].reverse().map((point) => {
+            const index = monthEnds.indexOf(point);
+            const previous = index > 0 ? monthEnds[index - 1] : undefined;
+            const change = formatChange(point.mau, previous?.mau);
+            return (
+              <div class="rounded border border-dark-600 bg-dark-700 p-3">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <div class="text-sm text-gray-300">
+                      {formatMonth(point.date)}
+                      {point === latest && <span class="ml-2 text-xs text-gray-500">latest</span>}
+                    </div>
+                    <div class="text-xs text-gray-500">As of {formatDate(point.date)}</div>
+                  </div>
+                  <div class="text-right">
+                    <div class="font-medium text-gray-200">{point.mau.toLocaleString()}</div>
+                    <div class={`text-xs ${change === null ? 'text-gray-500' : change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {change === null
+                        ? "No prior snapshot"
+                        : `${change >= 0 ? "+" : ""}${change.toFixed(1)}% vs ${formatDate(previous!.date).replace(/, \d{4}$/, "")}`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     )}

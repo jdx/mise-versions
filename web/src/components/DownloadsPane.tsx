@@ -20,6 +20,29 @@ function formatAxisNumber(n: number): string {
   return n.toString();
 }
 
+function moveDailyBarFocus(event: KeyboardEvent) {
+  const current = event.currentTarget as HTMLElement;
+  const bars = [
+    ...(current.parentElement?.querySelectorAll<HTMLElement>(
+      "[data-daily-bar]",
+    ) || []),
+  ];
+  const currentIndex = bars.indexOf(current);
+  let nextIndex = currentIndex;
+
+  if (event.key === "ArrowLeft") nextIndex = Math.max(0, currentIndex - 1);
+  else if (event.key === "ArrowRight") {
+    nextIndex = Math.min(bars.length - 1, currentIndex + 1);
+  } else if (event.key === "Home") nextIndex = 0;
+  else if (event.key === "End") nextIndex = bars.length - 1;
+  else return;
+
+  event.preventDefault();
+  for (const bar of bars) bar.tabIndex = -1;
+  bars[nextIndex].tabIndex = 0;
+  bars[nextIndex].focus();
+}
+
 function DailyBarChart({
   daily,
 }: {
@@ -52,8 +75,12 @@ function DailyBarChart({
         <span>0</span>
       </div>
       {/* Chart */}
-      <div class="flex-1 h-32 flex items-end gap-0.5">
-        {days.map((d) => {
+      <div
+        class="flex-1 h-32 flex items-end gap-0.5"
+        role="group"
+        aria-label="Daily downloads by date. Use the left and right arrow keys to inspect days."
+      >
+        {days.map((d, index) => {
           const height = maxCount > 0 ? (d.count / maxCount) * 100 : 0;
           const dateObj = new Date(d.date);
           const label = dateObj.toLocaleDateString("en-US", {
@@ -65,7 +92,9 @@ function DailyBarChart({
               key={d.date}
               class="flex-1 h-full flex items-end group relative outline-none"
               aria-label={`${label}: ${d.count.toLocaleString()} downloads`}
-              tabIndex={0}
+              data-daily-bar
+              tabIndex={index === days.length - 1 ? 0 : -1}
+              onKeyDown={moveDailyBarFocus}
             >
               <div
                 class="w-full bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
