@@ -26,7 +26,8 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
       );
       // Drop responses whose query no longer matches the input (out-of-order
       // resolves or a superseded keystroke) so the dropdown never goes stale.
-      if (inputRef.current && inputRef.current.value.trim() !== q.trim()) return;
+      if (inputRef.current && inputRef.current.value.trim() !== q.trim())
+        return;
       if (!res.ok) {
         setSuggestions([]);
         return;
@@ -104,7 +105,7 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
   };
 
   return (
-    <div class="relative w-40 sm:w-56 md:w-64">
+    <div class="relative min-w-0 flex-1 sm:w-56 sm:flex-none md:w-64">
       <input
         ref={inputRef}
         type="text"

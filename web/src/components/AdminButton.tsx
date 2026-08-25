@@ -26,7 +26,7 @@ export function AdminButton() {
     <>
       <a
         href="https://github.com/jdx/mise-versions"
-        class="text-sm text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-1.5"
+        class="hidden text-sm text-gray-400 hover:text-neon-purple transition-colors xl:flex items-center gap-1.5"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -47,7 +47,7 @@ export function AdminButton() {
       </a>
       <a
         href="/admin"
-        class="text-sm text-gray-400 hover:text-neon-purple transition-colors flex items-center gap-1.5"
+        class="hidden text-sm text-gray-400 hover:text-neon-purple transition-colors xl:flex items-center gap-1.5"
       >
         <svg
           class="w-4 h-4"
