@@ -47,7 +47,8 @@ export function AdminButton() {
       </a>
       <a
         href="/admin"
-        class="hidden text-sm text-gray-400 hover:text-neon-purple transition-colors xl:flex items-center gap-1.5"
+        aria-label="Admin"
+        class="flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-neon-purple"
       >
         <svg
           class="w-4 h-4"
@@ -68,7 +69,7 @@ export function AdminButton() {
             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
           />
         </svg>
-        Admin
+        <span class="hidden xl:inline">Admin</span>
       </a>
     </>
   );
