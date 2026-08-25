@@ -315,6 +315,62 @@ describe("generate-toml.js", () => {
     });
   });
 
+  describe("rolling", () => {
+    it("should emit rolling = true when input flags it", async () => {
+      const input =
+        '{"version":"nightly","created_at":"2024-01-15T10:30:00Z","rolling":true}\n';
+      const { stdout, code } = await runGenerateToml(input, ["test-tool"]);
+      assert.strictEqual(code, 0);
+      assert.strictEqual(parse(stdout).versions.nightly.rolling, true);
+    });
+
+    it("should omit rolling when input is false or missing", async () => {
+      const input = [
+        '{"version":"stable","rolling":false}',
+        '{"version":"1.0.0"}',
+      ].join("\n");
+      const { stdout, code } = await runGenerateToml(input, ["test-tool"]);
+      assert.strictEqual(code, 0);
+      const parsed = parse(stdout);
+      assert.strictEqual(parsed.versions.stable.rolling, undefined);
+      assert.strictEqual(parsed.versions["1.0.0"].rolling, undefined);
+    });
+
+    it("should preserve rolling from existing TOML when input lacks it", async () => {
+      const existingToml = join(tempDir, "existing.toml");
+      writeFileSync(
+        existingToml,
+        `[versions]
+"nightly" = { created_at = 2024-01-15T10:30:00.000Z, rolling = true }
+`,
+      );
+      const input = '{"version":"nightly"}\n';
+      const { stdout, code } = await runGenerateToml(input, [
+        "test-tool",
+        existingToml,
+      ]);
+      assert.strictEqual(code, 0);
+      assert.strictEqual(parse(stdout).versions.nightly.rolling, true);
+    });
+
+    it("should let API value override an existing rolling flag", async () => {
+      const existingToml = join(tempDir, "existing.toml");
+      writeFileSync(
+        existingToml,
+        `[versions]
+"stable" = { created_at = 2024-01-15T10:30:00.000Z, rolling = true }
+`,
+      );
+      const input = '{"version":"stable","rolling":false}\n';
+      const { stdout, code } = await runGenerateToml(input, [
+        "test-tool",
+        existingToml,
+      ]);
+      assert.strictEqual(code, 0);
+      assert.strictEqual(parse(stdout).versions.stable.rolling, undefined);
+    });
+  });
+
   describe("ignored moving version tags", () => {
     const ignoredVersions = [
       ["bottom", "nightly-b3694fc3-1782177088"],
