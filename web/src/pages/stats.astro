@@ -323,17 +323,41 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                     {data.map((d, i) => {
                       const x = (i / data.length) * chartWidth + 1;
                       const barHeight = (d.dau / maxDAU) * chartHeight;
+                      const tooltipWidth = 150;
+                      const tooltipX = Math.min(
+                        Math.max(x + barWidth / 2 - tooltipWidth / 2, 0),
+                        chartWidth - tooltipWidth,
+                      );
                       return (
-                        <rect
-                          x={x}
-                          y={chartHeight - barHeight}
-                          width={barWidth}
-                          height={barHeight}
-                          fill="#B026FF"
-                          opacity="0.8"
-                        >
-                          <title>{d.date}: {d.dau.toLocaleString()} DAU</title>
-                        </rect>
+                        <g class="group">
+                          <rect
+                            x={x}
+                            y={0}
+                            width={barWidth}
+                            height={chartHeight}
+                            fill="transparent"
+                            class="cursor-default outline-none"
+                            tabindex="0"
+                            aria-label={`${d.date}: ${d.dau.toLocaleString()} daily active users`}
+                          >
+                            <title>{d.date}: {d.dau.toLocaleString()} daily active users</title>
+                          </rect>
+                          <rect
+                            x={x}
+                            y={chartHeight - barHeight}
+                            width={barWidth}
+                            height={barHeight}
+                            fill="#B026FF"
+                            opacity="0.8"
+                            pointer-events="none"
+                          />
+                          <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="#374151" />
+                            <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
+                              {d.date.slice(5)} · {d.dau.toLocaleString()} users
+                            </text>
+                          </g>
+                        </g>
                       );
                     })}
                     {data.map((d, i) => {
@@ -386,17 +410,41 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                     {data.map((d, i) => {
                       const x = (i / data.length) * chartWidth + 1;
                       const barHeight = (d.count / maxCount) * chartHeight;
+                      const tooltipWidth = 150;
+                      const tooltipX = Math.min(
+                        Math.max(x + barWidth / 2 - tooltipWidth / 2, 0),
+                        chartWidth - tooltipWidth,
+                      );
                       return (
-                        <rect
-                          x={x}
-                          y={chartHeight - barHeight}
-                          width={barWidth}
-                          height={barHeight}
-                          fill="#00D4FF"
-                          opacity="0.8"
-                        >
-                          <title>{d.date}: {d.count} tools updated</title>
-                        </rect>
+                        <g class="group">
+                          <rect
+                            x={x}
+                            y={0}
+                            width={barWidth}
+                            height={chartHeight}
+                            fill="transparent"
+                            class="cursor-default outline-none"
+                            tabindex="0"
+                            aria-label={`${d.date}: ${d.count.toLocaleString()} version updates`}
+                          >
+                            <title>{d.date}: {d.count.toLocaleString()} version updates</title>
+                          </rect>
+                          <rect
+                            x={x}
+                            y={chartHeight - barHeight}
+                            width={barWidth}
+                            height={barHeight}
+                            fill="#00D4FF"
+                            opacity="0.8"
+                            pointer-events="none"
+                          />
+                          <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
+                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="#374151" />
+                            <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
+                              {d.date.slice(5)} · {d.count.toLocaleString()} updates
+                            </text>
+                          </g>
+                        </g>
                       );
                     })}
                     {data.map((d, i) => {
