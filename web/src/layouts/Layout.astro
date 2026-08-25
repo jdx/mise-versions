@@ -19,7 +19,7 @@ const {
 
 const fullTitle = title === "mise versions" ? title : `${title} | mise versions`;
 const canonicalUrl = new URL(Astro.url.pathname, "https://mise-tools.jdx.dev").href;
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 ---
 
 <!doctype html>
