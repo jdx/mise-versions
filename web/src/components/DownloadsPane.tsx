@@ -64,7 +64,6 @@ function DailyBarChart({
             <div
               key={d.date}
               class="flex-1 h-full flex items-end group relative outline-none"
-              title={`${label}: ${d.count} downloads`}
               aria-label={`${label}: ${d.count.toLocaleString()} downloads`}
               tabIndex={0}
             >

@@ -339,9 +339,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                             class="cursor-default outline-none"
                             tabindex="0"
                             aria-label={`${d.date}: ${d.dau.toLocaleString()} daily active users`}
-                          >
-                            <title>{d.date}: {d.dau.toLocaleString()} daily active users</title>
-                          </rect>
+                          />
                           <rect
                             x={x}
                             y={chartHeight - barHeight}
@@ -426,9 +424,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                             class="cursor-default outline-none"
                             tabindex="0"
                             aria-label={`${d.date}: ${d.count.toLocaleString()} version updates`}
-                          >
-                            <title>{d.date}: {d.count.toLocaleString()} version updates</title>
-                          </rect>
+                          />
                           <rect
                             x={x}
                             y={chartHeight - barHeight}
