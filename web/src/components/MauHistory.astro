@@ -1,4 +1,6 @@
 ---
+import { formatCompact } from "../lib/format";
+
 type MauPoint = { date: string; mau: number };
 
 interface Props {
@@ -8,12 +10,6 @@ interface Props {
 const { daily } = Astro.props;
 const data = daily.filter((point) => point.mau > 0);
 const latest = data.at(-1);
-
-function formatCompact(value: number): string {
-  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(2)}m`;
-  if (value >= 1_000) return `${(value / 1_000).toFixed(value >= 100_000 ? 0 : 1)}k`;
-  return value.toLocaleString();
-}
 
 function formatChange(current: number, previous?: number): number | null {
   if (!previous) return null;
@@ -72,17 +68,26 @@ const rawMax = values.length > 0 ? Math.max(...values) : 1;
 const range = Math.max(rawMax - rawMin, rawMax * 0.1, 1);
 const yMin = Math.max(0, rawMin - range * 0.12);
 const yMax = rawMax + range * 0.12;
-const xForIndex = (index: number) =>
-  data.length <= 1 ? chartWidth / 2 : (index / (data.length - 1)) * chartWidth;
+const timestampForDate = (date: string) =>
+  new Date(`${date}T00:00:00Z`).getTime();
+const firstTimestamp = data.length > 0 ? timestampForDate(data[0].date) : 0;
+const lastTimestamp = latest ? timestampForDate(latest.date) : firstTimestamp;
+const xForDate = (date: string) =>
+  firstTimestamp === lastTimestamp
+    ? chartWidth / 2
+    : ((timestampForDate(date) - firstTimestamp) /
+        (lastTimestamp - firstTimestamp)) *
+      chartWidth;
 const yForValue = (value: number) =>
   chartHeight - ((value - yMin) / (yMax - yMin)) * chartHeight;
 const mauPath = data
   .map(
     (point, index) =>
-      `${index === 0 ? "M" : "L"} ${xForIndex(index)} ${yForValue(point.mau)}`,
+      `${index === 0 ? "M" : "L"} ${xForDate(point.date)} ${yForValue(point.mau)}`,
   )
   .join(" ");
-const launchIndex = data.findIndex((point) => point.date >= quattroLaunch);
+const showQuattroLaunch =
+  data.length > 0 && quattroLaunch >= data[0].date && quattroLaunch <= latest!.date;
 const monthStarts = [
   ...data
     .reduce((months, point) => {
@@ -97,6 +102,7 @@ const xTicks = monthStarts.filter(
   (_, index) => index % tickInterval === 0 || index === monthStarts.length - 1,
 );
 const yTicks = [yMax, (yMax + yMin) / 2, yMin];
+const currentMonth = new Date().toISOString().slice(0, 7);
 ---
 
 {latest && (
@@ -138,7 +144,7 @@ const yTicks = [yMax, (yMax + yMin) / 2, yMin];
     </div>
 
     <div class="overflow-x-auto">
-      <svg viewBox={`0 0 ${width} ${height}`} class="min-w-[700px] w-full" role="img" aria-label="Trailing 30-day monthly active users over time">
+      <svg viewBox={`0 0 ${width} ${height}`} class="min-w-[700px] w-full" role="img" aria-label="Daily snapshots of trailing 30-day monthly active users over the past year">
         <g transform={`translate(${padding.left}, ${padding.top})`}>
           {yTicks.map((tick) => (
             <g>
@@ -148,31 +154,30 @@ const yTicks = [yMax, (yMax + yMin) / 2, yMin];
               </text>
             </g>
           ))}
-          {launchIndex >= 0 && (
+          {showQuattroLaunch && (
             <g>
               <line
-                x1={xForIndex(launchIndex)}
-                x2={xForIndex(launchIndex)}
+                x1={xForDate(quattroLaunch)}
+                x2={xForDate(quattroLaunch)}
                 y1="0"
                 y2={chartHeight}
                 stroke="#F472B6"
                 stroke-width="1.5"
                 stroke-dasharray="5 4"
               />
-              <text x={xForIndex(launchIndex) + 6} y="12" class="fill-pink-400 text-xs">Quattro</text>
+              <text x={xForDate(quattroLaunch) + 6} y="12" class="fill-pink-400 text-xs">Quattro</text>
             </g>
           )}
           <path d={mauPath} fill="none" stroke="#00D4FF" stroke-width="3" stroke-linejoin="round" />
-          {data.map((point, index) => (
-            <circle cx={xForIndex(index)} cy={yForValue(point.mau)} r="6" fill="transparent">
+          {data.map((point) => (
+            <circle cx={xForDate(point.date)} cy={yForValue(point.mau)} r="6" fill="transparent">
               <title>{point.date}: {point.mau.toLocaleString()} MAU</title>
             </circle>
           ))}
-          <circle cx={xForIndex(data.length - 1)} cy={yForValue(latest.mau)} r="4" fill="#00D4FF" />
+          <circle cx={xForDate(latest.date)} cy={yForValue(latest.mau)} r="4" fill="#00D4FF" />
           {xTicks.map((point) => {
-            const index = data.indexOf(point);
             return (
-              <text x={xForIndex(index)} y={chartHeight + 24} text-anchor="middle" class="fill-gray-500 text-xs">
+              <text x={xForDate(point.date)} y={chartHeight + 24} text-anchor="middle" class="fill-gray-500 text-xs">
                 {point.date.slice(0, 7)}
               </text>
             );
@@ -203,7 +208,7 @@ const yTicks = [yMax, (yMax + yMin) / 2, yMin];
                   <tr class="border-b border-dark-700 last:border-0">
                     <td class="py-2 pr-4 text-gray-300">
                       {new Date(`${point.date}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })}
-                      {point === latest && <span class="ml-2 text-xs text-gray-500">month to date</span>}
+                      {point === latest && point.date.startsWith(currentMonth) && <span class="ml-2 text-xs text-gray-500">month to date</span>}
                     </td>
                     <td class="py-2 px-4 text-gray-500">{point.date}</td>
                     <td class="py-2 px-4 text-right text-gray-300" title={`Snapshot from ${point.date}`}>

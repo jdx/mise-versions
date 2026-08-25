@@ -4,6 +4,7 @@ import MauHistory from '../components/MauHistory.astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
 import { loadToolsJson, type ToolsData } from '../lib/data-loader';
+import { formatCompact } from '../lib/format';
 
 import { env } from "cloudflare:workers";
 // Version updates data type (now from D1)
@@ -58,16 +59,6 @@ try {
 }
 
 // Helper functions
-function formatCompact(n: number): string {
-  if (n >= 1_000_000) {
-    return (n / 1_000_000).toFixed(n >= 10_000_000 ? 1 : 2) + "m";
-  }
-  if (n >= 1_000) {
-    return (n / 1_000).toFixed(n >= 10_000 ? 1 : 2) + "k";
-  }
-  return n.toString();
-}
-
 function getBackendType(backend: string): string {
   const colonIndex = backend.indexOf(":");
   return colonIndex > 0 ? backend.slice(0, colonIndex) : backend;
@@ -315,7 +306,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
               const chartHeight = height - padding.top - padding.bottom;
               type DayData = { date: string; dau: number };
               const data: DayData[] = dauMauData.daily.slice(-29);
-              const maxDAU = Math.max(...data.map(d => d.dau));
+              const maxDAU = Math.max(...data.map(d => d.dau), 1);
               const barWidth = chartWidth / data.length - 2;
 
               return (
