@@ -108,7 +108,7 @@ const currentPath = Astro.url.pathname;
         </nav>
       </div>
       <!-- MAU tab hanging below header -->
-      <MAUCounter client:load />
+      {currentPath !== "/stats" && <MAUCounter client:load />}
     </header>
     <main class="max-w-6xl mx-auto px-4 py-8">
       <slot />
