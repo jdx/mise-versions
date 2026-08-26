@@ -26,6 +26,6 @@
 "0.12.2" = { created_at = 2026-04-22T18:39:56.092Z }
 "0.12.3" = { created_at = 2026-06-10T23:09:56.419Z }
 "0.12.4" = { created_at = 2026-07-05T14:15:49.457Z }
-"stable" = { created_at = 2026-01-19T20:41:46.935Z }
+"stable" = { created_at = 2026-01-19T20:41:46.935Z, rolling = true }
 "0.12.5" = { created_at = 2026-08-23T18:47:37.433Z }
-"nightly" = { created_at = 2026-01-19T20:41:46.935Z }
+"nightly" = { created_at = 2026-01-19T20:41:46.935Z, rolling = true }
