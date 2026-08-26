@@ -7,7 +7,7 @@
  *
  * Input JSON format (NDJSON from stdin):
  *   {"version":"1.1.0"}
- *   {"version":"1.0.0","created_at":"2024-01-15T10:30:00Z","release_url":"https://github.com/...","prerelease":false}
+ *   {"version":"nightly","created_at":"2024-01-15T10:30:00Z","release_url":"https://github.com/...","rolling":true}
  *
  * Output TOML format (same order as input). Note that created_at is emitted
  * as a TOML offset datetime (unquoted), not a string:
@@ -15,6 +15,7 @@
  *   "1.1.0" = { created_at = 2024-02-20T14:45:00.000Z }
  *   "1.0.0" = { created_at = 2024-01-15T10:30:00.000Z, release_url = "https://github.com/..." }
  *   "1.2.0-rc1" = { created_at = 2024-02-25T09:00:00.000Z, prerelease = true }
+ *   "nightly" = { created_at = 2024-02-26T09:00:00.000Z, rolling = true }
  *
  * `prerelease = true` is emitted only when the upstream signal says so
  * (currently github + aqua via the GitHub release flag). It is omitted when
@@ -118,6 +119,7 @@ function parseNdjson(ndjsonData) {
           // Only an explicit boolean from the JSON path is definitive.
           prerelease:
             typeof obj.prerelease === "boolean" ? obj.prerelease : null,
+          rolling: typeof obj.rolling === "boolean" ? obj.rolling : null,
         });
       }
     } catch (e) {
@@ -158,6 +160,7 @@ if (existingTomlPath && existsSync(existingTomlPath)) {
           created_at: toISOString(data.created_at),
           release_url: data.release_url || null,
           prerelease: data.prerelease === true,
+          rolling: data.rolling === true,
         };
       }
     }
@@ -206,10 +209,12 @@ for (const v of newVersions) {
   // majority of entries stay one column narrower.
   const prerelease =
     v.prerelease !== null ? v.prerelease : existing.prerelease === true;
+  const rolling = v.rolling !== null ? v.rolling : existing.rolling === true;
 
   const parts = [`created_at = ${isoDate}`];
   if (releaseUrl) parts.push(`release_url = "${releaseUrl}"`);
   if (prerelease) parts.push(`prerelease = true`);
+  if (rolling) parts.push(`rolling = true`);
   lines.push(`"${v.version}" = { ${parts.join(", ")} }`);
 }
 
