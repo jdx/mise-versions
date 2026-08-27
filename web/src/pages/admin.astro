@@ -17,7 +17,7 @@ if (!auth || !isAdmin(auth.username)) {
     <div class="flex items-center justify-between">
       <div>
         <h1 class="text-2xl font-bold text-gray-100">Admin Dashboard</h1>
-        <p class="text-gray-400 text-sm mt-1">Token pool management and system status</p>
+        <p class="text-gray-400 text-sm mt-1">Capacity, token health, and system status</p>
       </div>
       <button
         id="refresh-btn"
@@ -29,6 +29,98 @@ if (!auth || !isAdmin(auth.username)) {
         </svg>
       </button>
     </div>
+
+    <!-- Token observability -->
+    <section class="bg-dark-800 border border-dark-600 rounded-xl overflow-hidden">
+      <div class="px-5 py-4 border-b border-dark-600 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div class="flex items-center gap-3">
+            <h2 class="text-lg font-semibold text-gray-100">GitHub API capacity</h2>
+            <span id="capacity-status" class="rounded-full px-2.5 py-1 text-xs font-semibold bg-dark-700 text-gray-400">Collecting data</span>
+          </div>
+          <p id="capacity-updated" class="text-xs text-gray-500 mt-1">Hourly quota headroom across the shared token pool</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="alert-status" class="text-xs text-gray-500">Checking alert setup…</span>
+          <button
+            id="check-capacity-btn"
+            class="px-3 py-1.5 bg-neon-purple/10 hover:bg-neon-purple/20 border border-neon-purple/40 rounded-lg text-sm text-neon-purple hover:text-white transition-colors"
+          >
+            Check now
+          </button>
+        </div>
+      </div>
+
+      <div class="p-5 space-y-5">
+        <div id="capacity-empty" class="hidden rounded-lg border border-dashed border-dark-500 px-4 py-8 text-center text-sm text-gray-400">
+          No observations yet. Run a check now; the scheduled monitor will add another point every 15 minutes.
+        </div>
+
+        <div id="capacity-content" class="space-y-5">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500">Available tokens</div>
+              <div id="metric-available" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div class="text-xs text-gray-500 mt-1">at least 1k requests left</div>
+            </div>
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500">Quota remaining</div>
+              <div id="metric-remaining" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div id="metric-remaining-detail" class="text-xs text-gray-500 mt-1">across the pool</div>
+            </div>
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500">Quota burn</div>
+              <div id="metric-burn" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div id="metric-checkouts" class="text-xs text-gray-500 mt-1">collecting a trend</div>
+            </div>
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500">Time to reserve</div>
+              <div id="metric-runway" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before the 1k/token reserve</div>
+            </div>
+          </div>
+
+          <div id="capacity-reasons" class="hidden rounded-lg border px-4 py-3 text-sm"></div>
+
+          <div class="grid lg:grid-cols-3 gap-4">
+            <div class="lg:col-span-2 rounded-lg bg-dark-900/50 border border-dark-600 p-4">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <div>
+                  <h3 class="text-sm font-medium text-gray-200">Pool headroom</h3>
+                  <p class="text-xs text-gray-500 mt-1">Percent of GitHub core quota remaining · last 24 hours</p>
+                </div>
+                <span id="chart-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
+              </div>
+              <div class="relative h-52">
+                <div class="absolute inset-y-0 left-0 flex flex-col justify-between text-[10px] text-gray-600 pb-5">
+                  <span>100%</span><span>50%</span><span>0%</span>
+                </div>
+                <svg id="quota-chart" class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="GitHub quota remaining over the last 24 hours">
+                  <line x1="0" y1="10" x2="720" y2="10" stroke="#27272f" />
+                  <line x1="0" y1="95" x2="720" y2="95" stroke="#27272f" />
+                  <line x1="0" y1="180" x2="720" y2="180" stroke="#27272f" />
+                  <line x1="0" y1="154.5" x2="720" y2="154.5" stroke="#fb923c" stroke-dasharray="5 5" opacity=".45" />
+                  <path id="quota-area" fill="url(#quota-fill)" d=""></path>
+                  <polyline id="quota-line" fill="none" stroke="#22d3ee" stroke-width="3" vector-effect="non-scaling-stroke" points=""></polyline>
+                  <defs>
+                    <linearGradient id="quota-fill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#22d3ee" stop-opacity=".28"></stop>
+                      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+
+            <div class="rounded-lg bg-dark-900/50 border border-dark-600 p-4">
+              <h3 class="text-sm font-medium text-gray-200">Token headroom</h3>
+              <p class="text-xs text-gray-500 mt-1 mb-4">Latest core quota by token</p>
+              <div id="token-headroom" class="space-y-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Maintenance Card -->
     <div class="bg-dark-800 border border-dark-600 rounded-lg overflow-hidden">
@@ -247,6 +339,195 @@ if (!auth || !isAdmin(auth.username)) {
       localStorage.setItem(PANEL_STATE_KEY, JSON.stringify(state));
     } catch {
       // Ignore localStorage errors
+    }
+  }
+
+  interface CapacitySummary {
+    level: 'healthy' | 'warning' | 'critical';
+    reasons: string[];
+    observedAt: string | null;
+    tokenCount: number;
+    availableTokens: number;
+    remaining: number;
+    limit: number;
+    remainingPercent: number | null;
+    quotaBurnPerHour: number | null;
+    checkoutRatePerHour: number | null;
+    hoursToReserve: number | null;
+    nextResetAt: string | null;
+  }
+
+  interface CapacityToken {
+    tokenId: number;
+    userId: string | null;
+    userName: string | null;
+    remaining: number | null;
+    limit: number | null;
+    available: boolean;
+    error: string | null;
+  }
+
+  interface CapacityHistoryPoint {
+    observedAt: string;
+    remaining: number;
+    limit: number;
+    availableTokens: number;
+    usageCount: number;
+  }
+
+  interface CapacityData {
+    summary: CapacitySummary;
+    tokens: CapacityToken[];
+    history: CapacityHistoryPoint[];
+    alerting: { configured: boolean; recipient: string | null };
+  }
+
+  function escapeHtml(value: string): string {
+    const span = document.createElement('span');
+    span.textContent = value;
+    return span.innerHTML;
+  }
+
+  function formatCompact(value: number): string {
+    return new Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 }).format(value);
+  }
+
+  function setMetric(id: string, value: string, tone = 'text-gray-100') {
+    const element = document.getElementById(id);
+    if (!element) return;
+    element.textContent = value;
+    element.className = `mt-2 text-2xl font-semibold ${tone}`;
+  }
+
+  function renderQuotaChart(history: CapacityHistoryPoint[]) {
+    const line = document.getElementById('quota-line');
+    const area = document.getElementById('quota-area');
+    const range = document.getElementById('chart-range');
+    if (!line || !area || !range) return;
+
+    const points = history.filter((point) => point.limit > 0);
+    if (points.length === 0) {
+      line.setAttribute('points', '');
+      area.setAttribute('d', '');
+      range.textContent = 'waiting for data';
+      return;
+    }
+
+    const width = 720;
+    const top = 10;
+    const bottom = 180;
+    const coordinates = points.map((point, index) => {
+      const x = points.length === 1 ? width / 2 : (index / (points.length - 1)) * width;
+      const percent = Math.max(0, Math.min(100, point.remaining / point.limit * 100));
+      const y = bottom - (percent / 100) * (bottom - top);
+      return { x, y };
+    });
+    const pointList = coordinates.map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+    line.setAttribute('points', pointList);
+    const first = coordinates[0];
+    const last = coordinates[coordinates.length - 1];
+    area.setAttribute('d', `M ${first.x} ${bottom} L ${pointList.replaceAll(' ', ' L ')} L ${last.x} ${bottom} Z`);
+
+    const start = new Date(points[0].observedAt);
+    const end = new Date(points[points.length - 1].observedAt);
+    range.textContent = points.length === 1
+      ? start.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+      : `${start.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} – ${end.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+
+  function renderCapacity(data: CapacityData) {
+    const { summary } = data;
+    const empty = document.getElementById('capacity-empty');
+    const content = document.getElementById('capacity-content');
+    const hasData = Boolean(summary.observedAt);
+    empty?.classList.toggle('hidden', hasData);
+    content?.classList.toggle('hidden', !hasData);
+
+    const status = document.getElementById('capacity-status');
+    const statusStyles = {
+      healthy: 'bg-green-400/10 text-green-300 border border-green-400/30',
+      warning: 'bg-orange-400/10 text-orange-300 border border-orange-400/30',
+      critical: 'bg-red-400/10 text-red-300 border border-red-400/30',
+    };
+    if (status && !hasData) {
+      status.textContent = 'No data';
+      status.className = 'rounded-full px-2.5 py-1 text-xs font-semibold bg-dark-700 text-gray-400';
+    } else if (status) {
+      status.textContent = summary.level === 'healthy' ? 'Healthy' : summary.level === 'warning' ? 'Watch' : 'Critical';
+      status.className = `rounded-full px-2.5 py-1 text-xs font-semibold ${statusStyles[summary.level]}`;
+    }
+
+    const updated = document.getElementById('capacity-updated');
+    if (updated && summary.observedAt) {
+      updated.textContent = `Last checked ${new Date(summary.observedAt).toLocaleString()} · snapshots every 15 minutes`;
+    }
+
+    const metricTone = summary.level === 'critical' ? 'text-red-300' : summary.level === 'warning' ? 'text-orange-300' : 'text-green-300';
+    setMetric('metric-available', `${summary.availableTokens}/${summary.tokenCount}`, metricTone);
+    setMetric('metric-remaining', summary.remainingPercent === null ? '—' : `${summary.remainingPercent}%`, metricTone);
+    const remainingDetail = document.getElementById('metric-remaining-detail');
+    if (remainingDetail) remainingDetail.textContent = `${summary.remaining.toLocaleString()} of ${summary.limit.toLocaleString()} requests`;
+    setMetric('metric-burn', summary.quotaBurnPerHour === null ? 'Learning' : `${formatCompact(summary.quotaBurnPerHour)}/h`);
+    const checkouts = document.getElementById('metric-checkouts');
+    if (checkouts) checkouts.textContent = summary.checkoutRatePerHour === null ? 'needs two snapshots' : `${formatCompact(summary.checkoutRatePerHour)} token checkouts/hour`;
+    setMetric('metric-runway', summary.hoursToReserve === null ? 'Stable' : `${summary.hoursToReserve}h`, summary.hoursToReserve !== null && summary.hoursToReserve <= 6 ? metricTone : 'text-gray-100');
+    const reset = document.getElementById('metric-reset');
+    if (reset) reset.textContent = summary.nextResetAt ? `next quota reset ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'before the 1k/token reserve';
+
+    const reasons = document.getElementById('capacity-reasons');
+    if (reasons) {
+      reasons.classList.toggle('hidden', summary.reasons.length === 0);
+      reasons.className = `${summary.reasons.length === 0 ? 'hidden ' : ''}rounded-lg border px-4 py-3 text-sm ${summary.level === 'critical' ? 'border-red-500/30 bg-red-900/20 text-red-200' : 'border-orange-500/30 bg-orange-900/20 text-orange-200'}`;
+      reasons.innerHTML = summary.reasons.map((reason) => `<div>• ${escapeHtml(reason)}</div>`).join('');
+    }
+
+    const alertStatus = document.getElementById('alert-status');
+    if (alertStatus) {
+      alertStatus.textContent = data.alerting.configured ? `Resend alerts → ${data.alerting.recipient}` : 'Resend alerts not configured';
+      alertStatus.className = `text-xs ${data.alerting.configured ? 'text-green-400' : 'text-orange-400'}`;
+    }
+
+    const headroom = document.getElementById('token-headroom');
+    if (headroom) {
+      headroom.innerHTML = data.tokens.map((token) => {
+        const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : 0;
+        const color = token.error || percent <= 15 ? 'bg-red-400' : percent <= 35 ? 'bg-orange-400' : 'bg-cyan-400';
+        const label = token.userId || token.userName || `token ${token.tokenId}`;
+        return `<div>
+          <div class="flex items-center justify-between gap-3 text-xs mb-1.5">
+            <span class="text-gray-300 truncate" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
+            <span class="font-mono ${token.error ? 'text-red-400' : 'text-gray-400'}">${token.error ? 'check failed' : `${token.remaining?.toLocaleString()} · ${percent}%`}</span>
+          </div>
+          <div class="h-2 rounded-full bg-dark-700 overflow-hidden"><div class="h-full rounded-full ${color}" style="width: ${percent}%"></div></div>
+        </div>`;
+      }).join('') || '<div class="text-sm text-gray-500">No pool tokens</div>';
+    }
+
+    renderQuotaChart(data.history);
+  }
+
+  async function loadCapacity(runCheck = false) {
+    const button = document.getElementById('check-capacity-btn') as HTMLButtonElement | null;
+    if (runCheck && button) {
+      button.disabled = true;
+      button.textContent = 'Checking…';
+    }
+    try {
+      const response = await fetch('/api/admin/token-observability', { method: runCheck ? 'POST' : 'GET' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      renderCapacity(await response.json());
+    } catch (error) {
+      const status = document.getElementById('capacity-status');
+      if (status) {
+        status.textContent = 'Unavailable';
+        status.className = 'rounded-full px-2.5 py-1 text-xs font-semibold bg-red-400/10 text-red-300 border border-red-400/30';
+      }
+      console.error('capacity:', error);
+    } finally {
+      if (runCheck && button) {
+        button.disabled = false;
+        button.textContent = 'Check now';
+      }
     }
   }
 
@@ -763,6 +1044,7 @@ if (!auth || !isAdmin(auth.username)) {
       `;
     }
     await Promise.all([
+      loadCapacity(),
       loadAdminData(),
       loadAsdfPrimaryData(),
       loadTableCounts(),
@@ -890,6 +1172,7 @@ if (!auth || !isAdmin(auth.username)) {
 
   // Initialize
   // Load data
+  loadCapacity();
   loadAdminData();
   loadAsdfPrimaryData();
   loadTableCounts();
@@ -909,4 +1192,5 @@ if (!auth || !isAdmin(auth.username)) {
   document.getElementById('table-counts-expand-btn')?.addEventListener('click', toggleTableCountsExpanded);
   document.getElementById('refresh-btn')?.addEventListener('click', refreshAll);
   document.getElementById('refresh-mau-btn')?.addEventListener('click', refreshMau);
+  document.getElementById('check-capacity-btn')?.addEventListener('click', () => loadCapacity(true));
 </script>

@@ -48,6 +48,7 @@ prompt_for_secret "GITHUB_CLIENT_ID" "Your GitHub App client ID"
 prompt_for_secret "GITHUB_CLIENT_SECRET" "Your GitHub App client secret"
 prompt_for_secret "GITHUB_WEBHOOK_SECRET" "Your GitHub App webhook secret"
 prompt_for_secret "API_SECRET" "A secure random string for API authentication (generate one with: openssl rand -hex 32)"
+prompt_for_secret "RESEND_API_KEY" "Resend API key for token pool capacity alerts"
 
 echo ""
 echo "🏗️  Deploying to Cloudflare Workers..."

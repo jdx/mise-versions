@@ -144,6 +144,46 @@ export const migrations: Migration[] = [
       );
     },
   },
+  {
+    id: 5,
+    name: "add_token_observability",
+    async up(db) {
+      console.log("Running migration 5: add_token_observability");
+
+      await db.run(sql`
+        CREATE TABLE IF NOT EXISTS token_observations (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          token_id INTEGER NOT NULL,
+          observed_at TEXT NOT NULL,
+          remaining INTEGER,
+          limit_count INTEGER,
+          reset_at TEXT,
+          usage_count INTEGER NOT NULL,
+          is_available INTEGER NOT NULL,
+          error TEXT,
+          FOREIGN KEY (token_id) REFERENCES tokens (id) ON DELETE CASCADE
+        )
+      `);
+      await db.run(sql`
+        CREATE INDEX IF NOT EXISTS idx_token_observations_time
+        ON token_observations(observed_at)
+      `);
+      await db.run(sql`
+        CREATE INDEX IF NOT EXISTS idx_token_observations_token_time
+        ON token_observations(token_id, observed_at)
+      `);
+
+      await db.run(sql`
+        CREATE TABLE IF NOT EXISTS token_alert_state (
+          id INTEGER PRIMARY KEY CHECK (id = 1),
+          level TEXT NOT NULL,
+          fingerprint TEXT NOT NULL,
+          last_sent_at TEXT,
+          updated_at TEXT NOT NULL
+        )
+      `);
+    },
+  },
 ];
 
 export async function runMigrations(db: ReturnType<typeof drizzle>) {
