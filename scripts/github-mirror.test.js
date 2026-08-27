@@ -639,10 +639,10 @@ test("GitHub attestation caches use a short non-stale policy", () => {
       attestationsCacheHeaders,
     } from "./web/src/lib/github/mirror.ts";
 
-    assert.equal(ATTESTATION_FRESH_SECONDS, 300);
+    assert.equal(ATTESTATION_FRESH_SECONDS, 1800);
     assert.equal(
       attestationsCacheHeaders()["Cache-Control"],
-      "public, max-age=300, s-maxage=300",
+      "public, max-age=1800, s-maxage=1800",
     );
 
     const response = __testing.edgeCacheResponse(
@@ -655,7 +655,7 @@ test("GitHub attestation caches use a short non-stale policy", () => {
     );
     assert.equal(
       response.headers.get("Cache-Control"),
-      "public, max-age=300, s-maxage=300",
+      "public, max-age=1800, s-maxage=1800",
     );
   `);
 });
@@ -691,7 +691,7 @@ test("GitHub attestation mirror refreshes incomplete positive results", () => {
         get: async (key) => {
           assert.equal(key, cacheKey);
           return {
-            cached_at: Date.now() - 6 * 60 * 1000,
+            cached_at: Date.now() - 31 * 60 * 1000,
             data: { attestations: [{ bundle: { id: "immutable-release" } }] },
           };
         },
@@ -728,7 +728,7 @@ test("GitHub attestation mirror serves fresh positive results without fetching",
       DB: {},
       GITHUB_CACHE: {
         get: async () => ({
-          cached_at: Date.now() - 4 * 60 * 1000,
+          cached_at: Date.now() - 29 * 60 * 1000,
           data: { attestations: [{ bundle: { id: "workflow" } }] },
         }),
         put: async () => {
