@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
+  ATTESTATION_FRESH_SECONDS,
   attestationsCacheHeaders,
   getCachedGitHubAttestations,
   githubStatus,
@@ -45,9 +46,15 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     const response = jsonResponse(
       attestations,
       200,
-      attestationsCacheHeaders(attestations),
+      attestationsCacheHeaders(),
     );
-    locals.cfContext.waitUntil(putGitHubMirrorEdgeCache(request, response));
+    locals.cfContext.waitUntil(
+      putGitHubMirrorEdgeCache(request, response, {
+        browserMaxAge: ATTESTATION_FRESH_SECONDS,
+        edgeMaxAge: ATTESTATION_FRESH_SECONDS,
+        staleWhileRevalidate: 0,
+      }),
+    );
     return response;
   } catch (error) {
     console.error(

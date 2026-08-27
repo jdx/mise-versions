@@ -630,6 +630,124 @@ test("GitHub attestations hydrate signed blob bundle URLs without GitHub tokens"
   `);
 });
 
+test("GitHub attestation caches use a short non-stale policy", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      ATTESTATION_FRESH_SECONDS,
+      __testing,
+      attestationsCacheHeaders,
+    } from "./web/src/lib/github/mirror.ts";
+
+    assert.equal(ATTESTATION_FRESH_SECONDS, 1800);
+    assert.equal(
+      attestationsCacheHeaders()["Cache-Control"],
+      "public, max-age=1800, s-maxage=1800",
+    );
+
+    const response = __testing.edgeCacheResponse(
+      new Response("{}", { status: 200 }),
+      {
+        browserMaxAge: ATTESTATION_FRESH_SECONDS,
+        edgeMaxAge: ATTESTATION_FRESH_SECONDS,
+        staleWhileRevalidate: 0,
+      },
+    );
+    assert.equal(
+      response.headers.get("Cache-Control"),
+      "public, max-age=1800, s-maxage=1800",
+    );
+  `);
+});
+
+test("GitHub attestation mirror refreshes incomplete positive results", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubAttestations } from "./web/src/lib/github/mirror.ts";
+
+    const digest = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0";
+    const cacheKey = "github:attestations:owner/repo:" + digest;
+    let fetches = 0;
+    globalThis.fetch = async (url) => {
+      fetches++;
+      assert.equal(
+        String(url),
+        "https://api.github.com/repos/owner/repo/attestations/" +
+          encodeURIComponent(digest) +
+          "?per_page=30",
+      );
+      return new Response(JSON.stringify({
+        attestations: [
+          { bundle: { id: "immutable-release" } },
+          { bundle: { id: "workflow" } },
+        ],
+      }), { status: 200 });
+    };
+
+    const writes = [];
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          assert.equal(key, cacheKey);
+          return {
+            cached_at: Date.now() - 31 * 60 * 1000,
+            data: { attestations: [{ bundle: { id: "immutable-release" } }] },
+          };
+        },
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    const response = await getCachedGitHubAttestations(
+      env,
+      "owner",
+      "repo",
+      digest,
+    );
+
+    assert.equal(fetches, 1);
+    assert.equal(response.attestations.length, 2);
+    assert.equal(writes.length, 1);
+    assert.equal(writes[0].key, cacheKey);
+    assert.deepEqual(writes[0].options, { expirationTtl: 2592000 });
+    assert.equal(JSON.parse(writes[0].value).data.attestations.length, 2);
+  `);
+});
+
+test("GitHub attestation mirror serves fresh positive results without fetching", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubAttestations } from "./web/src/lib/github/mirror.ts";
+
+    const digest = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0";
+    globalThis.fetch = async () => {
+      throw new Error("fresh attestation cache should not fetch");
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => ({
+          cached_at: Date.now() - 29 * 60 * 1000,
+          data: { attestations: [{ bundle: { id: "workflow" } }] },
+        }),
+        put: async () => {
+          throw new Error("fresh attestation cache should not write");
+        },
+      },
+    };
+
+    const response = await getCachedGitHubAttestations(
+      env,
+      "owner",
+      "repo",
+      digest,
+    );
+
+    assert.equal(response.attestations.length, 1);
+  `);
+});
+
 test("GitHub rate limiting only applies to GitHub API responses", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
