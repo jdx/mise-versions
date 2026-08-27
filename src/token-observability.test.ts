@@ -78,6 +78,23 @@ test("bridges manual checks when a full rate interval is available", () => {
   assert.equal(summary.checkoutRatePerHour, 12);
 });
 
+test("excludes deleted tokens from current burn rates", () => {
+  const previous = "2026-08-27T12:00:00.000Z";
+  const current = "2026-08-27T13:00:00.000Z";
+  const currentToken = observation(1, current, 4_000, 12);
+  const recent = [
+    observation(1, previous, 4_100, 10),
+    observation(2, previous, 4_500, 20),
+    currentToken,
+    observation(2, current, 3_500, 30),
+  ];
+
+  const summary = summarizeTokenPool([currentToken], recent);
+
+  assert.equal(summary.quotaBurnPerHour, 100);
+  assert.equal(summary.checkoutRatePerHour, 2);
+});
+
 test("warns when the pool has only one token with reserve", () => {
   const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
   const summary = summarizeTokenPool([current], [current]);

@@ -308,7 +308,10 @@ export function summarizeTokenPool(
       token.remaining !== null &&
       token.remaining >= MIN_TOKEN_REMAINING,
   ).length;
-  const rates = calculateRates(recent);
+  const currentTokenIds = new Set(latest.map((token) => token.tokenId));
+  const rates = calculateRates(
+    recent.filter((token) => currentTokenIds.has(token.tokenId)),
+  );
   const usableRemaining = usable.reduce(
     (sum, token) =>
       sum + Math.max(0, (token.remaining ?? 0) - MIN_TOKEN_REMAINING),
