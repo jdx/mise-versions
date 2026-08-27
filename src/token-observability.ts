@@ -231,13 +231,17 @@ function calculateRates(observations: TokenObservation[]): {
     let tokenQuotaElapsedHours = 0;
     let tokenCheckoutCount = 0;
     let tokenCheckoutElapsedHours = 0;
+    let previous = entries[0];
     for (let index = 1; index < entries.length; index++) {
-      const previous = entries[index - 1];
       const current = entries[index];
       const elapsedHours =
         (Date.parse(current.observedAt) - Date.parse(previous.observedAt)) /
         3_600_000;
-      if (elapsedHours < MIN_RATE_INTERVAL_HOURS || elapsedHours > 2) continue;
+      if (elapsedHours < MIN_RATE_INTERVAL_HOURS) continue;
+      if (elapsedHours > 2) {
+        previous = current;
+        continue;
+      }
 
       const checkoutDelta = current.usageCount - previous.usageCount;
       if (checkoutDelta >= 0) {
@@ -256,6 +260,7 @@ function calculateRates(observations: TokenObservation[]): {
           tokenQuotaElapsedHours += elapsedHours;
         }
       }
+      previous = current;
     }
     if (tokenQuotaElapsedHours > 0) {
       quotaBurnPerHour += tokenQuotaConsumed / tokenQuotaElapsedHours;

@@ -65,6 +65,19 @@ test("ignores short manual-check gaps when calculating burn", () => {
   assert.equal(summary.hoursToReserve, null);
 });
 
+test("bridges manual checks when a full rate interval is available", () => {
+  const recent = [
+    observation(1, "2026-08-27T12:00:00.000Z", 4_100, 10),
+    observation(1, "2026-08-27T12:05:00.000Z", 4_050, 11),
+    observation(1, "2026-08-27T12:15:00.000Z", 3_950, 13),
+  ];
+
+  const summary = summarizeTokenPool(recent.slice(-1), recent);
+
+  assert.equal(summary.quotaBurnPerHour, 600);
+  assert.equal(summary.checkoutRatePerHour, 12);
+});
+
 test("warns when the pool has only one token with reserve", () => {
   const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
   const summary = summarizeTokenPool([current], [current]);
