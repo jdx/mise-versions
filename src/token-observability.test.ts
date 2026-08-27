@@ -3,7 +3,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  getAlertDecision,
   summarizeTokenPool,
+  type AlertState,
   type TokenObservation,
 } from "./token-observability.js";
 
@@ -61,4 +63,83 @@ test("marks a pool with no available token critical", () => {
 
   assert.equal(summary.level, "critical");
   assert.equal(summary.availableTokens, 0);
+  assert.equal(summary.belowReserveTokens, 1);
+  assert.match(summary.reasons.join(" "), /below reserve/);
+});
+
+test("marks locally rate-limited tokens separately from reserve", () => {
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
+  current.available = false;
+  const summary = summarizeTokenPool([current], [current]);
+
+  assert.equal(summary.rateLimitedTokens, 1);
+  assert.equal(summary.belowReserveTokens, 0);
+  assert.match(summary.reasons.join(" "), /marked rate-limited/);
+});
+
+test("represents an empty observation run instead of reusing stale state", () => {
+  const observedAt = "2026-08-27T13:00:00.000Z";
+  const summary = summarizeTokenPool([], [], observedAt);
+
+  assert.equal(summary.level, "critical");
+  assert.equal(summary.observedAt, observedAt);
+  assert.equal(summary.tokenCount, 0);
+});
+
+test("alert decision sends on changes and suppresses unchanged state", () => {
+  const now = new Date("2026-08-27T13:00:00.000Z");
+  const summary = summarizeTokenPool(
+    [observation(1, now.toISOString(), 4_000, 12)],
+    [],
+  );
+  const state: AlertState = {
+    level: "warning",
+    fingerprint: "same",
+    last_sent_at: "2026-08-27T12:00:00.000Z",
+  };
+
+  assert.deepEqual(getAlertDecision(state, summary, "changed", now), {
+    recovery: false,
+    shouldSend: true,
+  });
+  assert.deepEqual(getAlertDecision(state, summary, "same", now), {
+    recovery: false,
+    shouldSend: false,
+  });
+});
+
+test("alert decision repeats after twelve hours", () => {
+  const now = new Date("2026-08-27T13:00:00.000Z");
+  const summary = summarizeTokenPool(
+    [observation(1, now.toISOString(), 4_000, 12)],
+    [],
+  );
+  const state: AlertState = {
+    level: "warning",
+    fingerprint: "same",
+    last_sent_at: "2026-08-27T00:59:59.000Z",
+  };
+
+  assert.equal(getAlertDecision(state, summary, "same", now).shouldSend, true);
+});
+
+test("alert decision sends recovery after an unhealthy state", () => {
+  const now = new Date("2026-08-27T13:00:00.000Z");
+  const healthy = summarizeTokenPool(
+    [
+      observation(1, now.toISOString(), 4_000, 12),
+      observation(2, now.toISOString(), 4_000, 12),
+    ],
+    [],
+  );
+  const state: AlertState = {
+    level: "critical",
+    fingerprint: "critical",
+    last_sent_at: "2026-08-27T12:00:00.000Z",
+  };
+
+  assert.deepEqual(getAlertDecision(state, healthy, "healthy", now), {
+    recovery: true,
+    shouldSend: true,
+  });
 });

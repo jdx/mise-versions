@@ -35,6 +35,7 @@ export type TokenPoolSummary = {
   tokenCount: number;
   availableTokens: number;
   rateLimitedTokens: number;
+  belowReserveTokens: number;
   invalidTokens: number;
   remaining: number;
   limit: number;
@@ -76,14 +77,19 @@ type ObservationRow = {
   error: string | null;
 };
 
-type AlertState = {
+type ObservationRunRow = {
+  observed_at: string;
+  token_count: number;
+};
+
+export type AlertState = {
   level: TokenRiskLevel;
   fingerprint: string;
   last_sent_at: string | null;
 };
 
 function errorMessage(error: unknown): string {
-  return error instanceof Error ? error.message.slice(0, 500) : "Unknown error";
+  return (error instanceof Error ? error.message : String(error)).slice(0, 500);
 }
 
 function round(value: number, places = 1): number {
@@ -153,17 +159,23 @@ async function loadPoolTokens(
 
 async function storeObservations(
   db: D1Database,
+  observedAt: string,
   observations: TokenObservation[],
 ): Promise<void> {
-  if (observations.length === 0) return;
-  await db.batch(
-    observations.map((observation) =>
+  await db.batch([
+    db
+      .prepare(
+        `INSERT INTO token_observation_runs (observed_at, token_count)
+           VALUES (?, ?)`,
+      )
+      .bind(observedAt, observations.length),
+    ...observations.map((observation) =>
       db
         .prepare(
           `INSERT INTO token_observations
-           (token_id, observed_at, remaining, limit_count, reset_at,
-            usage_count, is_available, error)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+             (token_id, observed_at, remaining, limit_count, reset_at,
+              usage_count, is_available, error)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         )
         .bind(
           observation.tokenId,
@@ -176,7 +188,7 @@ async function storeObservations(
           observation.error,
         ),
     ),
-  );
+  ]);
 }
 
 function mapObservation(row: ObservationRow): TokenObservation {
@@ -262,6 +274,7 @@ function calculateRates(observations: TokenObservation[]): {
 export function summarizeTokenPool(
   latest: TokenObservation[],
   recent: TokenObservation[],
+  observedAt: string | null = latest[0]?.observedAt ?? null,
 ): TokenPoolSummary {
   const usable = latest.filter(
     (token) => token.remaining !== null && !token.error,
@@ -274,8 +287,18 @@ export function summarizeTokenPool(
   const remainingPercent = limit > 0 ? round((remaining / limit) * 100) : null;
   const availableTokens = latest.filter((token) => token.available).length;
   const invalidTokens = latest.filter((token) => token.error).length;
+  const belowReserveTokens = latest.filter(
+    (token) =>
+      !token.error &&
+      token.remaining !== null &&
+      token.remaining < MIN_TOKEN_REMAINING,
+  ).length;
   const rateLimitedTokens = latest.filter(
-    (token) => !token.error && !token.available,
+    (token) =>
+      !token.error &&
+      !token.available &&
+      token.remaining !== null &&
+      token.remaining >= MIN_TOKEN_REMAINING,
   ).length;
   const rates = calculateRates(recent);
   const usableRemaining = usable.reduce(
@@ -307,7 +330,11 @@ export function summarizeTokenPool(
     );
   if (rateLimitedTokens > 0)
     reasons.push(
-      `${rateLimitedTokens} token${rateLimitedTokens === 1 ? " is" : "s are"} below reserve`,
+      `${rateLimitedTokens} token${rateLimitedTokens === 1 ? " is" : "s are"} marked rate-limited`,
+    );
+  if (belowReserveTokens > 0)
+    reasons.push(
+      `${belowReserveTokens} token${belowReserveTokens === 1 ? " is" : "s are"} below reserve`,
     );
   if (remainingPercent !== null && remainingPercent <= 35)
     reasons.push(`Only ${remainingPercent}% of quota remains`);
@@ -327,6 +354,7 @@ export function summarizeTokenPool(
     availableTokens <= 1 ||
     invalidTokens > 0 ||
     rateLimitedTokens > 0 ||
+    belowReserveTokens > 0 ||
     (remainingPercent !== null && remainingPercent <= 35) ||
     (hoursToReserve !== null && hoursToReserve <= 6)
   ) {
@@ -336,10 +364,11 @@ export function summarizeTokenPool(
   return {
     level,
     reasons,
-    observedAt: latest[0]?.observedAt ?? null,
+    observedAt,
     tokenCount: latest.length,
     availableTokens,
     rateLimitedTokens,
+    belowReserveTokens,
     invalidTokens,
     remaining,
     limit,
@@ -369,15 +398,47 @@ async function loadObservationRows(
   return result.results;
 }
 
-function latestRun(observations: TokenObservation[]): TokenObservation[] {
-  const latestAt = observations.at(-1)?.observedAt;
+async function loadObservationRuns(
+  db: D1Database,
+  since: string,
+): Promise<ObservationRunRow[]> {
+  const result = await db
+    .prepare(
+      `SELECT observed_at, token_count
+       FROM token_observation_runs
+       WHERE observed_at >= ?
+       ORDER BY observed_at`,
+    )
+    .bind(since)
+    .all<ObservationRunRow>();
+  return result.results;
+}
+
+function latestRun(
+  observations: TokenObservation[],
+  latestAt: string | undefined,
+): TokenObservation[] {
   return latestAt
     ? observations.filter((observation) => observation.observedAt === latestAt)
     : [];
 }
 
-function historyPoints(observations: TokenObservation[]): TokenHistoryPoint[] {
-  const points = new Map<string, TokenHistoryPoint>();
+function historyPoints(
+  runs: ObservationRunRow[],
+  observations: TokenObservation[],
+): TokenHistoryPoint[] {
+  const points = new Map<string, TokenHistoryPoint>(
+    runs.map((run) => [
+      run.observed_at,
+      {
+        observedAt: run.observed_at,
+        remaining: 0,
+        limit: 0,
+        availableTokens: 0,
+        usageCount: 0,
+      },
+    ]),
+  );
   for (const observation of observations) {
     const point = points.get(observation.observedAt) ?? {
       observedAt: observation.observedAt,
@@ -405,12 +466,14 @@ export async function getTokenObservability(
   const observations = (await loadObservationRows(env.DB, since)).map(
     mapObservation,
   );
-  const latest = latestRun(observations);
+  const runs = await loadObservationRuns(env.DB, since);
+  const latestAt = runs.at(-1)?.observed_at;
+  const latest = latestRun(observations, latestAt);
 
   return {
-    summary: summarizeTokenPool(latest, observations),
+    summary: summarizeTokenPool(latest, observations, latestAt ?? null),
     tokens: latest,
-    history: historyPoints(observations),
+    history: historyPoints(runs, observations),
     alerting: {
       configured: Boolean(
         env.RESEND_API_KEY && env.TOKEN_ALERT_TO && env.TOKEN_ALERT_FROM,
@@ -425,6 +488,7 @@ function alertFingerprint(summary: TokenPoolSummary): string {
     summary.level,
     summary.availableTokens,
     summary.rateLimitedTokens,
+    summary.belowReserveTokens,
     summary.invalidTokens,
   ].join("|");
 }
@@ -513,19 +577,11 @@ async function maybeAlert(
 ): Promise<void> {
   const state = await getAlertState(env.DB);
   const fingerprint = alertFingerprint(summary);
-  const recovery =
-    summary.level === "healthy" && state && state.level !== "healthy";
-  const repeatDue = Boolean(
-    summary.level !== "healthy" &&
-    state?.last_sent_at &&
-    now.getTime() - Date.parse(state.last_sent_at) >=
-      ALERT_REPEAT_HOURS * 3_600_000,
-  );
-  const changed = !state || state.fingerprint !== fingerprint;
-  const neverSent = !state?.last_sent_at;
-  const shouldSend = Boolean(
-    recovery ||
-    (summary.level !== "healthy" && (changed || repeatDue || neverSent)),
+  const { recovery, shouldSend } = getAlertDecision(
+    state,
+    summary,
+    fingerprint,
+    now,
   );
 
   let sentAt: string | null = null;
@@ -535,10 +591,36 @@ async function maybeAlert(
     env.TOKEN_ALERT_TO &&
     env.TOKEN_ALERT_FROM
   ) {
-    await sendAlert(env, summary, Boolean(recovery));
+    await sendAlert(env, summary, recovery);
     sentAt = now.toISOString();
   }
   await saveAlertState(env.DB, summary, fingerprint, sentAt);
+}
+
+export function getAlertDecision(
+  state: AlertState | null,
+  summary: TokenPoolSummary,
+  fingerprint: string,
+  now: Date,
+): { recovery: boolean; shouldSend: boolean } {
+  const recovery = Boolean(
+    summary.level === "healthy" && state && state.level !== "healthy",
+  );
+  const repeatDue = Boolean(
+    summary.level !== "healthy" &&
+    state?.last_sent_at &&
+    now.getTime() - Date.parse(state.last_sent_at) >=
+      ALERT_REPEAT_HOURS * 3_600_000,
+  );
+  const changed = !state || state.fingerprint !== fingerprint;
+  const neverSent = !state?.last_sent_at;
+  return {
+    recovery,
+    shouldSend: Boolean(
+      recovery ||
+      (summary.level !== "healthy" && (changed || repeatDue || neverSent)),
+    ),
+  };
 }
 
 export async function observeTokenPool(
@@ -550,10 +632,18 @@ export async function observeTokenPool(
   const observations = await Promise.all(
     tokens.map((token) => inspectToken(token, observedAt)),
   );
-  await storeObservations(env.DB, observations);
-  await env.DB.prepare("DELETE FROM token_observations WHERE observed_at < ?")
-    .bind(new Date(now.getTime() - 30 * 86_400_000).toISOString())
-    .run();
+  await storeObservations(env.DB, observedAt, observations);
+  const retentionCutoff = new Date(
+    now.getTime() - 30 * 86_400_000,
+  ).toISOString();
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM token_observations WHERE observed_at < ?").bind(
+      retentionCutoff,
+    ),
+    env.DB.prepare(
+      "DELETE FROM token_observation_runs WHERE observed_at < ?",
+    ).bind(retentionCutoff),
+  ]);
 
   const data = await getTokenObservability(env, now);
   await maybeAlert(env, data.summary, now);

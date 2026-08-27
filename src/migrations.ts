@@ -151,6 +151,13 @@ export const migrations: Migration[] = [
       console.log("Running migration 5: add_token_observability");
 
       await db.run(sql`
+        CREATE TABLE IF NOT EXISTS token_observation_runs (
+          observed_at TEXT PRIMARY KEY,
+          token_count INTEGER NOT NULL
+        )
+      `);
+
+      await db.run(sql`
         CREATE TABLE IF NOT EXISTS token_observations (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           token_id INTEGER NOT NULL,
@@ -186,8 +193,14 @@ export const migrations: Migration[] = [
   },
 ];
 
-export async function runMigrations(db: ReturnType<typeof drizzle>) {
-  console.log("Starting database migrations...");
+export async function runMigrations(
+  db: ReturnType<typeof drizzle>,
+  options: { quiet?: boolean } = {},
+) {
+  const log = (...values: unknown[]) => {
+    if (!options.quiet) console.log(...values);
+  };
+  log("Starting database migrations...");
 
   // Create migrations table if it doesn't exist
   await db.run(sql`
@@ -208,7 +221,7 @@ export async function runMigrations(db: ReturnType<typeof drizzle>) {
   // Run pending migrations
   for (const migration of migrations) {
     if (!appliedIds.has(migration.id)) {
-      console.log(`Applying migration ${migration.id}: ${migration.name}`);
+      log(`Applying migration ${migration.id}: ${migration.name}`);
 
       try {
         await migration.up(db);
@@ -219,17 +232,17 @@ export async function runMigrations(db: ReturnType<typeof drizzle>) {
           VALUES (${migration.id}, ${migration.name}, ${new Date().toISOString()})
         `);
 
-        console.log(`✅ Migration ${migration.id} applied successfully`);
+        log(`✅ Migration ${migration.id} applied successfully`);
       } catch (error) {
         console.error(`❌ Migration ${migration.id} failed:`, error);
         throw error;
       }
     } else {
-      console.log(`⏭️  Migration ${migration.id} already applied`);
+      log(`⏭️  Migration ${migration.id} already applied`);
     }
   }
 
-  console.log("✅ All migrations completed");
+  log("✅ All migrations completed");
 }
 
 export async function getMigrationStatus(db: ReturnType<typeof drizzle>) {
