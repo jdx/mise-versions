@@ -320,6 +320,8 @@ if (!auth || !isAdmin(auth.username)) {
 </Layout>
 
 <script>
+  import type { TokenObservabilityData } from '../../../src/token-observability';
+
   // localStorage helpers for panel state persistence
   const PANEL_STATE_KEY = 'admin-panel-state';
 
@@ -342,45 +344,8 @@ if (!auth || !isAdmin(auth.username)) {
     }
   }
 
-  interface CapacitySummary {
-    level: 'healthy' | 'warning' | 'critical';
-    reasons: string[];
-    observedAt: string | null;
-    tokenCount: number;
-    availableTokens: number;
-    remaining: number;
-    limit: number;
-    remainingPercent: number | null;
-    quotaBurnPerHour: number | null;
-    checkoutRatePerHour: number | null;
-    hoursToReserve: number | null;
-    nextResetAt: string | null;
-  }
-
-  interface CapacityToken {
-    tokenId: number;
-    userId: string | null;
-    userName: string | null;
-    remaining: number | null;
-    limit: number | null;
-    available: boolean;
-    error: string | null;
-  }
-
-  interface CapacityHistoryPoint {
-    observedAt: string;
-    remaining: number;
-    limit: number;
-    availableTokens: number;
-    usageCount: number;
-  }
-
-  interface CapacityData {
-    summary: CapacitySummary;
-    tokens: CapacityToken[];
-    history: CapacityHistoryPoint[];
-    alerting: { configured: boolean; recipient: string | null };
-  }
+  type CapacityHistoryPoint = TokenObservabilityData['history'][number];
+  type CapacityData = TokenObservabilityData;
 
   function escapeHtml(value: string): string {
     const span = document.createElement('span');
@@ -463,10 +428,19 @@ if (!auth || !isAdmin(auth.username)) {
     }
 
     const metricTone = summary.level === 'critical' ? 'text-red-300' : summary.level === 'warning' ? 'text-orange-300' : 'text-green-300';
-    setMetric('metric-available', `${summary.availableTokens}/${summary.tokenCount}`, metricTone);
+    setMetric(
+      'metric-available',
+      summary.complete
+        ? `${summary.availableTokens}/${summary.tokenCount}`
+        : `${summary.availableTokens}/${summary.checkedTokens} checked`,
+      metricTone,
+    );
     setMetric('metric-remaining', summary.remainingPercent === null ? '—' : `${summary.remainingPercent}%`, metricTone);
     const remainingDetail = document.getElementById('metric-remaining-detail');
-    if (remainingDetail) remainingDetail.textContent = `${summary.remaining.toLocaleString()} of ${summary.limit.toLocaleString()} requests`;
+    if (remainingDetail) {
+      const coverage = summary.complete ? 'across the pool' : `across ${summary.checkedTokens} of ${summary.tokenCount} tokens`;
+      remainingDetail.textContent = `${summary.remaining.toLocaleString()} of ${summary.limit.toLocaleString()} requests · ${coverage}`;
+    }
     setMetric('metric-burn', summary.quotaBurnPerHour === null ? 'Learning' : `${formatCompact(summary.quotaBurnPerHour)}/h`);
     const checkouts = document.getElementById('metric-checkouts');
     if (checkouts) checkouts.textContent = summary.checkoutRatePerHour === null ? 'needs two snapshots' : `${formatCompact(summary.checkoutRatePerHour)} token checkouts/hour`;

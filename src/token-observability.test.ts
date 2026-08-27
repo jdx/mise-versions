@@ -4,10 +4,66 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   getAlertDecision,
+  selectCurrentObservations,
+  selectTokenBatch,
+  shouldEvaluateAlert,
   summarizeTokenPool,
   type AlertState,
   type TokenObservation,
 } from "./token-observability.js";
+
+test("rotates bounded token batches between observation intervals", () => {
+  const tokens = [1, 2, 3, 4, 5];
+
+  assert.deepEqual(
+    selectTokenBatch(tokens, new Date("1970-01-01T00:00:00.000Z"), 2),
+    [1, 2],
+  );
+  assert.deepEqual(
+    selectTokenBatch(tokens, new Date("1970-01-01T00:15:00.000Z"), 2),
+    [3, 4],
+  );
+  assert.deepEqual(
+    selectTokenBatch(tokens, new Date("1970-01-01T00:30:00.000Z"), 2),
+    [5],
+  );
+});
+
+test("combines fresh rotating batches for the current pool", () => {
+  const now = new Date("2026-08-27T13:00:00.000Z");
+  const stale = observation(1, "2026-08-27T12:00:00.000Z", 4_500, 1);
+  const tokenOne = observation(1, "2026-08-27T12:45:00.000Z", 4_000, 2);
+  const tokenTwo = observation(2, "2026-08-27T12:30:00.000Z", 3_500, 3);
+  const deleted = observation(3, "2026-08-27T12:50:00.000Z", 3_000, 4);
+
+  const current = selectCurrentObservations(
+    [stale, tokenTwo, tokenOne, deleted],
+    [1, 2],
+  );
+
+  assert.deepEqual(current, [tokenOne, tokenTwo]);
+  const summary = summarizeTokenPool(current, current, now.toISOString(), 2);
+  assert.equal(summary.complete, true);
+  assert.equal(
+    getAlertDecision(
+      {
+        level: "warning",
+        fingerprint: "unhealthy",
+        last_sent_at: "2026-08-27T12:00:00.000Z",
+      },
+      summary,
+      "healthy",
+      now,
+    ).recovery,
+    true,
+  );
+});
+
+test("keeps the last-known snapshot when scheduled checks are delayed", () => {
+  const lastKnown = observation(1, "2026-08-27T12:00:00.000Z", 4_500, 1);
+
+  assert.deepEqual(selectCurrentObservations([lastKnown], [1]), [lastKnown]);
+});
 
 function observation(
   tokenId: number,
@@ -93,6 +149,37 @@ test("excludes deleted tokens from current burn rates", () => {
 
   assert.equal(summary.quotaBurnPerHour, 100);
   assert.equal(summary.checkoutRatePerHour, 2);
+});
+
+test("marks a bounded observation as incomplete without a false critical", () => {
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 500, 12);
+  const summary = summarizeTokenPool(
+    [current],
+    [current],
+    current.observedAt,
+    60,
+  );
+
+  assert.equal(summary.level, "warning");
+  assert.equal(summary.complete, false);
+  assert.equal(summary.checkedTokens, 1);
+  assert.equal(summary.tokenCount, 60);
+  assert.equal(summary.quotaBurnPerHour, null);
+  assert.doesNotMatch(summary.reasons.join(" "), /No token has/);
+  assert.match(summary.reasons.join(" "), /59 tokens were deferred/);
+  assert.equal(shouldEvaluateAlert(summary), true);
+});
+
+test("defers alert decisions only when partial data has no concrete issue", () => {
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
+  const summary = summarizeTokenPool(
+    [current],
+    [current],
+    current.observedAt,
+    60,
+  );
+
+  assert.equal(shouldEvaluateAlert(summary), false);
 });
 
 test("warns when the pool has only one token with reserve", () => {

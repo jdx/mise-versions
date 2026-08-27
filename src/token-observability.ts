@@ -4,6 +4,9 @@ const MIN_TOKEN_REMAINING = 1_000;
 const HISTORY_HOURS = 24;
 const ALERT_REPEAT_HOURS = 12;
 const MIN_RATE_INTERVAL_HOURS = 10 / 60;
+const MAX_TOKEN_CHECKS_PER_RUN = 45;
+const OBSERVATION_INTERVAL_MS = 15 * 60_000;
+const TOKEN_CHECK_CONCURRENCY = 5;
 
 type PoolToken = {
   id: number;
@@ -34,6 +37,8 @@ export type TokenPoolSummary = {
   reasons: string[];
   observedAt: string | null;
   tokenCount: number;
+  checkedTokens: number;
+  complete: boolean;
   availableTokens: number;
   rateLimitedTokens: number;
   belowReserveTokens: number;
@@ -149,7 +154,7 @@ async function loadPoolTokens(
       `SELECT id, user_id, user_name, token, usage_count, rate_limited_at
        FROM tokens
        WHERE is_active = 1
-         AND user_id != 'jdx'
+         AND (user_id IS NULL OR user_id != 'jdx')
          AND (expires_at IS NULL OR expires_at > ?)
        ORDER BY id`,
     )
@@ -158,9 +163,28 @@ async function loadPoolTokens(
   return result.results;
 }
 
+async function loadPoolTokenIds(
+  db: D1Database,
+  now: string,
+): Promise<number[]> {
+  const result = await db
+    .prepare(
+      `SELECT id
+       FROM tokens
+       WHERE is_active = 1
+         AND (user_id IS NULL OR user_id != 'jdx')
+         AND (expires_at IS NULL OR expires_at > ?)
+       ORDER BY id`,
+    )
+    .bind(now)
+    .all<{ id: number }>();
+  return result.results.map(({ id }) => id);
+}
+
 async function storeObservations(
   db: D1Database,
   observedAt: string,
+  tokenCount: number,
   observations: TokenObservation[],
 ): Promise<void> {
   await db.batch([
@@ -169,7 +193,7 @@ async function storeObservations(
         `INSERT INTO token_observation_runs (observed_at, token_count)
            VALUES (?, ?)`,
       )
-      .bind(observedAt, observations.length),
+      .bind(observedAt, tokenCount),
     ...observations.map((observation) =>
       db
         .prepare(
@@ -192,6 +216,36 @@ async function storeObservations(
         ),
     ),
   ]);
+}
+
+export function selectTokenBatch<T>(
+  tokens: T[],
+  now: Date,
+  maximum = MAX_TOKEN_CHECKS_PER_RUN,
+): T[] {
+  if (tokens.length <= maximum) return tokens;
+
+  const batchCount = Math.ceil(tokens.length / maximum);
+  const interval = Math.floor(now.getTime() / OBSERVATION_INTERVAL_MS);
+  const batchIndex = interval % batchCount;
+  return tokens.slice(batchIndex * maximum, (batchIndex + 1) * maximum);
+}
+
+async function inspectTokens(
+  tokens: PoolToken[],
+  observedAt: string,
+): Promise<TokenObservation[]> {
+  const observations: TokenObservation[] = [];
+  for (let index = 0; index < tokens.length; index += TOKEN_CHECK_CONCURRENCY) {
+    observations.push(
+      ...(await Promise.all(
+        tokens
+          .slice(index, index + TOKEN_CHECK_CONCURRENCY)
+          .map((token) => inspectToken(token, observedAt)),
+      )),
+    );
+  }
+  return observations;
 }
 
 function mapObservation(row: ObservationRow): TokenObservation {
@@ -283,7 +337,10 @@ export function summarizeTokenPool(
   latest: TokenObservation[],
   recent: TokenObservation[],
   observedAt: string | null = latest[0]?.observedAt ?? null,
+  tokenCount = latest.length,
 ): TokenPoolSummary {
+  const checkedTokens = latest.length;
+  const complete = checkedTokens === tokenCount;
   const usable = latest.filter(
     (token) => token.remaining !== null && !token.error,
   );
@@ -309,9 +366,11 @@ export function summarizeTokenPool(
       token.remaining >= MIN_TOKEN_REMAINING,
   ).length;
   const currentTokenIds = new Set(latest.map((token) => token.tokenId));
-  const rates = calculateRates(
-    recent.filter((token) => currentTokenIds.has(token.tokenId)),
-  );
+  const rates = complete
+    ? calculateRates(
+        recent.filter((token) => currentTokenIds.has(token.tokenId)),
+      )
+    : { quotaBurnPerHour: null, checkoutRatePerHour: null };
   const usableRemaining = usable.reduce(
     (sum, token) =>
       sum + Math.max(0, (token.remaining ?? 0) - MIN_TOKEN_REMAINING),
@@ -329,10 +388,16 @@ export function summarizeTokenPool(
 
   const reasons: string[] = [];
   let level: TokenRiskLevel = "healthy";
-  if (latest.length === 0) reasons.push("No pool tokens are configured");
-  if (availableTokens === 0) {
+  if (tokenCount === 0) reasons.push("No pool tokens are configured");
+  if (!complete) {
+    const deferredTokens = tokenCount - checkedTokens;
+    reasons.push(
+      `${deferredTokens} token${deferredTokens === 1 ? " was" : "s were"} deferred to another check`,
+    );
+  }
+  if (complete && availableTokens === 0) {
     reasons.push("No token has at least 1,000 requests left");
-  } else if (availableTokens === 1) {
+  } else if (complete && availableTokens === 1) {
     reasons.push("Only one token has at least 1,000 requests left");
   }
   if (invalidTokens > 0)
@@ -347,7 +412,7 @@ export function summarizeTokenPool(
     reasons.push(
       `${belowReserveTokens} token${belowReserveTokens === 1 ? " is" : "s are"} below reserve`,
     );
-  if (remainingPercent !== null && remainingPercent <= 35)
+  if (complete && remainingPercent !== null && remainingPercent <= 35)
     reasons.push(`Only ${remainingPercent}% of quota remains`);
   if (hoursToReserve !== null && hoursToReserve <= 6)
     reasons.push(
@@ -355,14 +420,15 @@ export function summarizeTokenPool(
     );
 
   if (
-    latest.length === 0 ||
-    availableTokens === 0 ||
-    (remainingPercent !== null && remainingPercent <= 15) ||
+    tokenCount === 0 ||
+    (complete && availableTokens === 0) ||
+    (complete && remainingPercent !== null && remainingPercent <= 15) ||
     (hoursToReserve !== null && hoursToReserve <= 2)
   ) {
     level = "critical";
   } else if (
-    availableTokens <= 1 ||
+    !complete ||
+    (complete && availableTokens <= 1) ||
     invalidTokens > 0 ||
     rateLimitedTokens > 0 ||
     belowReserveTokens > 0 ||
@@ -376,7 +442,9 @@ export function summarizeTokenPool(
     level,
     reasons,
     observedAt,
-    tokenCount: latest.length,
+    tokenCount,
+    checkedTokens,
+    complete,
     availableTokens,
     rateLimitedTokens,
     belowReserveTokens,
@@ -408,6 +476,27 @@ async function loadObservationRows(
   return result.results;
 }
 
+async function loadLatestObservationRows(
+  db: D1Database,
+): Promise<ObservationRow[]> {
+  const result = await db
+    .prepare(
+      `SELECT o.token_id, o.user_id, o.user_name, o.observed_at, o.remaining,
+              o.limit_count, o.reset_at, o.usage_count, o.is_available, o.error
+       FROM token_observations o
+       INNER JOIN (
+         SELECT token_id, MAX(observed_at) AS observed_at
+         FROM token_observations
+         GROUP BY token_id
+       ) latest
+         ON latest.token_id = o.token_id
+        AND latest.observed_at = o.observed_at
+       ORDER BY o.token_id`,
+    )
+    .all<ObservationRow>();
+  return result.results;
+}
+
 async function loadObservationRuns(
   db: D1Database,
   since: string,
@@ -424,39 +513,75 @@ async function loadObservationRuns(
   return result.results;
 }
 
-function latestRun(
+export function selectCurrentObservations(
   observations: TokenObservation[],
-  latestAt: string | undefined,
+  tokenIds: number[],
 ): TokenObservation[] {
-  return latestAt
-    ? observations.filter((observation) => observation.observedAt === latestAt)
-    : [];
+  if (tokenIds.length === 0) return [];
+
+  const currentTokenIds = new Set(tokenIds);
+  const latest = new Map<number, TokenObservation>();
+  for (const observation of observations) {
+    if (currentTokenIds.has(observation.tokenId)) {
+      const current = latest.get(observation.tokenId);
+      if (!current || observation.observedAt > current.observedAt) {
+        latest.set(observation.tokenId, observation);
+      }
+    }
+  }
+  return tokenIds.flatMap((tokenId) => {
+    const observation = latest.get(tokenId);
+    return observation ? [observation] : [];
+  });
+}
+
+function selectAlertObservations(
+  observations: TokenObservation[],
+  tokenIds: number[],
+  now: Date,
+  maximum = MAX_TOKEN_CHECKS_PER_RUN,
+): TokenObservation[] {
+  const batchCount = Math.ceil(tokenIds.length / maximum);
+  const cutoff = now.getTime() - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
+  return selectCurrentObservations(
+    observations.filter(
+      (observation) => Date.parse(observation.observedAt) >= cutoff,
+    ),
+    tokenIds,
+  );
 }
 
 function historyPoints(
   runs: ObservationRunRow[],
   observations: TokenObservation[],
 ): TokenHistoryPoint[] {
+  const observationCounts = new Map<string, number>();
+  for (const observation of observations) {
+    observationCounts.set(
+      observation.observedAt,
+      (observationCounts.get(observation.observedAt) ?? 0) + 1,
+    );
+  }
   const points = new Map<string, TokenHistoryPoint>(
-    runs.map((run) => [
-      run.observed_at,
-      {
-        observedAt: run.observed_at,
-        remaining: 0,
-        limit: 0,
-        availableTokens: 0,
-        usageCount: 0,
-      },
-    ]),
+    runs
+      .filter(
+        (run) =>
+          (observationCounts.get(run.observed_at) ?? 0) === run.token_count,
+      )
+      .map((run) => [
+        run.observed_at,
+        {
+          observedAt: run.observed_at,
+          remaining: 0,
+          limit: 0,
+          availableTokens: 0,
+          usageCount: 0,
+        },
+      ]),
   );
   for (const observation of observations) {
-    const point = points.get(observation.observedAt) ?? {
-      observedAt: observation.observedAt,
-      remaining: 0,
-      limit: 0,
-      availableTokens: 0,
-      usageCount: 0,
-    };
+    const point = points.get(observation.observedAt);
+    if (!point) continue;
     point.remaining += observation.remaining ?? 0;
     point.limit += observation.limit ?? 0;
     point.availableTokens += observation.available ? 1 : 0;
@@ -470,18 +595,58 @@ export async function getTokenObservability(
   env: Env,
   now = new Date(),
 ): Promise<TokenObservabilityData> {
+  const state = await loadTokenObservabilityState(env, now);
+  return tokenObservabilityData(env, state);
+}
+
+type TokenObservabilityState = {
+  observations: TokenObservation[];
+  latestObservations: TokenObservation[];
+  runs: ObservationRunRow[];
+  latestAt: string | undefined;
+  currentTokenIds: number[];
+};
+
+async function loadTokenObservabilityState(
+  env: Env,
+  now: Date,
+): Promise<TokenObservabilityState> {
   const since = new Date(
     now.getTime() - HISTORY_HOURS * 3_600_000,
   ).toISOString();
   const observations = (await loadObservationRows(env.DB, since)).map(
     mapObservation,
   );
+  const latestObservations = (await loadLatestObservationRows(env.DB)).map(
+    mapObservation,
+  );
   const runs = await loadObservationRuns(env.DB, since);
   const latestAt = runs.at(-1)?.observed_at;
-  const latest = latestRun(observations, latestAt);
+  const currentTokenIds = await loadPoolTokenIds(env.DB, now.toISOString());
+  return {
+    observations,
+    latestObservations,
+    runs,
+    latestAt,
+    currentTokenIds,
+  };
+}
+
+function tokenObservabilityData(
+  env: Env,
+  state: TokenObservabilityState,
+): TokenObservabilityData {
+  const { observations, latestObservations, runs, latestAt, currentTokenIds } =
+    state;
+  const latest = selectCurrentObservations(latestObservations, currentTokenIds);
 
   return {
-    summary: summarizeTokenPool(latest, observations, latestAt ?? null),
+    summary: summarizeTokenPool(
+      latest,
+      observations,
+      latestAt ?? null,
+      currentTokenIds.length,
+    ),
     tokens: latest,
     history: historyPoints(runs, observations),
     alerting: {
@@ -494,6 +659,14 @@ export async function getTokenObservability(
 }
 
 function alertFingerprint(summary: TokenPoolSummary): string {
+  if (!summary.complete) {
+    return [
+      "partial",
+      summary.invalidTokens > 0,
+      summary.rateLimitedTokens > 0,
+      summary.belowReserveTokens > 0,
+    ].join("|");
+  }
   return [
     summary.level,
     summary.availableTokens,
@@ -556,6 +729,12 @@ async function sendAlert(
   const reasons = summary.reasons.length
     ? `<ul>${summary.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>`
     : "<p>The token pool is back within its healthy thresholds.</p>";
+  const availability = summary.complete
+    ? `${summary.availableTokens}/${summary.tokenCount}`
+    : `${summary.availableTokens}/${summary.checkedTokens} checked (${summary.tokenCount} total)`;
+  const quotaLabel = summary.complete
+    ? "Quota remaining"
+    : "Checked-token quota";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -567,8 +746,8 @@ async function sendAlert(
       to: env.TOKEN_ALERT_TO,
       subject,
       html: `<h2>GitHub token pool ${escapeHtml(label)}</h2>${reasons}
-        <p><strong>Available tokens:</strong> ${summary.availableTokens}/${summary.tokenCount}<br>
-        <strong>Quota remaining:</strong> ${summary.remaining.toLocaleString()} / ${summary.limit.toLocaleString()} (${summary.remainingPercent ?? "unknown"}%)<br>
+        <p><strong>Available tokens:</strong> ${availability}<br>
+        <strong>${quotaLabel}:</strong> ${summary.remaining.toLocaleString()} / ${summary.limit.toLocaleString()} (${summary.remainingPercent ?? "unknown"}%)<br>
         <strong>Quota burn:</strong> ${summary.quotaBurnPerHour?.toLocaleString() ?? "collecting data"}/hour</p>
         <p><a href="https://mise-versions.jdx.dev/admin">Open token observability</a></p>`,
     }),
@@ -585,6 +764,8 @@ async function maybeAlert(
   summary: TokenPoolSummary,
   now: Date,
 ): Promise<void> {
+  if (!shouldEvaluateAlert(summary)) return;
+
   const state = await getAlertState(env.DB);
   const fingerprint = alertFingerprint(summary);
   const { recovery, shouldSend } = getAlertDecision(
@@ -605,6 +786,15 @@ async function maybeAlert(
     sentAt = now.toISOString();
   }
   await saveAlertState(env.DB, summary, fingerprint, sentAt);
+}
+
+export function shouldEvaluateAlert(summary: TokenPoolSummary): boolean {
+  return (
+    summary.complete ||
+    summary.invalidTokens > 0 ||
+    summary.rateLimitedTokens > 0 ||
+    summary.belowReserveTokens > 0
+  );
 }
 
 export function getAlertDecision(
@@ -639,10 +829,9 @@ export async function observeTokenPool(
 ): Promise<TokenObservabilityData> {
   const observedAt = now.toISOString();
   const tokens = await loadPoolTokens(env.DB, observedAt);
-  const observations = await Promise.all(
-    tokens.map((token) => inspectToken(token, observedAt)),
-  );
-  await storeObservations(env.DB, observedAt, observations);
+  const tokensToCheck = selectTokenBatch(tokens, now);
+  const observations = await inspectTokens(tokensToCheck, observedAt);
+  await storeObservations(env.DB, observedAt, tokens.length, observations);
   const retentionCutoff = new Date(
     now.getTime() - 30 * 86_400_000,
   ).toISOString();
@@ -655,7 +844,19 @@ export async function observeTokenPool(
     ).bind(retentionCutoff),
   ]);
 
-  const data = await getTokenObservability(env, now);
-  await maybeAlert(env, data.summary, now);
+  const state = await loadTokenObservabilityState(env, now);
+  const data = tokenObservabilityData(env, state);
+  const alertObservations = selectAlertObservations(
+    state.latestObservations,
+    state.currentTokenIds,
+    now,
+  );
+  const alertSummary = summarizeTokenPool(
+    alertObservations,
+    state.observations,
+    state.latestAt ?? null,
+    state.currentTokenIds.length,
+  );
+  await maybeAlert(env, alertSummary, now);
   return data;
 }
