@@ -4,10 +4,28 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   getAlertDecision,
+  selectTokenBatch,
   summarizeTokenPool,
   type AlertState,
   type TokenObservation,
 } from "./token-observability.js";
+
+test("rotates bounded token batches between observation intervals", () => {
+  const tokens = [1, 2, 3, 4, 5];
+
+  assert.deepEqual(
+    selectTokenBatch(tokens, new Date("1970-01-01T00:00:00.000Z"), 2),
+    [1, 2],
+  );
+  assert.deepEqual(
+    selectTokenBatch(tokens, new Date("1970-01-01T00:15:00.000Z"), 2),
+    [3, 4],
+  );
+  assert.deepEqual(
+    selectTokenBatch(tokens, new Date("1970-01-01T00:30:00.000Z"), 2),
+    [5],
+  );
+});
 
 function observation(
   tokenId: number,
@@ -93,6 +111,24 @@ test("excludes deleted tokens from current burn rates", () => {
 
   assert.equal(summary.quotaBurnPerHour, 100);
   assert.equal(summary.checkoutRatePerHour, 2);
+});
+
+test("marks a bounded observation as incomplete without a false critical", () => {
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 500, 12);
+  const summary = summarizeTokenPool(
+    [current],
+    [current],
+    current.observedAt,
+    60,
+  );
+
+  assert.equal(summary.level, "warning");
+  assert.equal(summary.complete, false);
+  assert.equal(summary.checkedTokens, 1);
+  assert.equal(summary.tokenCount, 60);
+  assert.equal(summary.quotaBurnPerHour, null);
+  assert.doesNotMatch(summary.reasons.join(" "), /No token has/);
+  assert.match(summary.reasons.join(" "), /59 tokens were deferred/);
 });
 
 test("warns when the pool has only one token with reserve", () => {

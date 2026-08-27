@@ -14,10 +14,14 @@ _Timeline showing the number of tools updated each day over the last 30 days_
 
 ## Token pool observability
 
-The authenticated `/admin` dashboard records GitHub core-rate-limit snapshots
-every 15 minutes. It shows aggregate quota headroom, quota burn per hour, token
-checkout rate, estimated time until the 1,000-request-per-token reserve, and
-the latest headroom for each pool token.
+The scheduled Worker records GitHub core-rate-limit snapshots every 15 minutes,
+and the authenticated `/admin` dashboard displays them. It shows aggregate
+quota headroom, quota burn per hour, token checkout rate, estimated time until
+the 1,000-request-per-token reserve, and the latest headroom for each pool token.
+
+Each run checks at most 45 tokens to stay within the Workers Free-plan external
+subrequest limit while leaving room for alerts. Larger pools rotate through
+batches and are shown as incomplete rather than being classified as critical.
 
 The monitor warns when only one token is available, a token cannot be checked,
 a token falls below reserve, less than 35% of aggregate quota remains, or the
