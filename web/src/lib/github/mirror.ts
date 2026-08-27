@@ -10,9 +10,9 @@ const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
 const NEGATIVE_RELEASE_NOT_FOUND_FRESH_MS = 30 * 60 * 1000;
 const NEGATIVE_RELEASE_AUTH_FRESH_MS = 5 * 60 * 1000;
 const NEGATIVE_RELEASE_TRANSIENT_FRESH_MS = 60 * 1000;
-const NEGATIVE_ATTESTATION_FRESH_MS = 30 * 60 * 1000;
+export const ATTESTATION_FRESH_SECONDS = 5 * 60;
+const ATTESTATION_FRESH_MS = ATTESTATION_FRESH_SECONDS * 1000;
 const EDGE_SHORT_TTL_SECONDS = 60 * 60;
-const EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS = 30 * 60;
 const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
 const EDGE_MIRROR_CACHE_TTL_SECONDS = 60 * 60;
 
@@ -65,10 +65,12 @@ export function cacheHeaders({
   browserMaxAge = 600,
   edgeMaxAge = EDGE_SHORT_TTL_SECONDS,
   immutable = false,
+  staleWhileRevalidate = 24 * 60 * 60,
 }: {
   browserMaxAge?: number;
   edgeMaxAge?: number;
   immutable?: boolean;
+  staleWhileRevalidate?: number;
 } = {}): Record<string, string> {
   const directives = [
     `public`,
@@ -77,8 +79,8 @@ export function cacheHeaders({
   ];
   if (immutable) {
     directives.push("immutable");
-  } else {
-    directives.push("stale-while-revalidate=86400");
+  } else if (staleWhileRevalidate > 0) {
+    directives.push(`stale-while-revalidate=${staleWhileRevalidate}`);
   }
   return {
     "Cache-Control": directives.join(", "),
@@ -94,13 +96,11 @@ export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
   });
 }
 
-export function attestationsCacheHeaders(response: GitHubAttestationsResponse) {
-  const positive = response.attestations.length > 0;
+export function attestationsCacheHeaders() {
   return cacheHeaders({
-    edgeMaxAge: positive
-      ? EDGE_IMMUTABLE_TTL_SECONDS
-      : EDGE_NEGATIVE_ATTESTATION_TTL_SECONDS,
-    immutable: positive,
+    browserMaxAge: ATTESTATION_FRESH_SECONDS,
+    edgeMaxAge: ATTESTATION_FRESH_SECONDS,
+    staleWhileRevalidate: 0,
   });
 }
 
@@ -118,25 +118,44 @@ export async function matchGitHubMirrorEdgeCache(
 export async function putGitHubMirrorEdgeCache(
   request: Request,
   response: Response,
+  options?: EdgeCacheOptions,
 ): Promise<void> {
   if (response.status !== 200) return;
 
   try {
     await defaultEdgeCache().put(
       edgeCacheRequest(request),
-      edgeCacheResponse(response),
+      edgeCacheResponse(response, options),
     );
   } catch (error) {
     console.warn("failed to write GitHub mirror edge cache:", error);
   }
 }
 
-function edgeCacheResponse(response: Response): Response {
+interface EdgeCacheOptions {
+  browserMaxAge?: number;
+  edgeMaxAge?: number;
+  staleWhileRevalidate?: number;
+}
+
+function edgeCacheResponse(
+  response: Response,
+  {
+    browserMaxAge = 600,
+    edgeMaxAge = EDGE_MIRROR_CACHE_TTL_SECONDS,
+    staleWhileRevalidate = 24 * 60 * 60,
+  }: EdgeCacheOptions = {},
+): Response {
   const headers = new Headers(response.headers);
-  headers.set(
-    "Cache-Control",
-    `public, max-age=600, s-maxage=${EDGE_MIRROR_CACHE_TTL_SECONDS}, stale-while-revalidate=86400`,
-  );
+  const directives = [
+    "public",
+    `max-age=${browserMaxAge}`,
+    `s-maxage=${edgeMaxAge}`,
+  ];
+  if (staleWhileRevalidate > 0) {
+    directives.push(`stale-while-revalidate=${staleWhileRevalidate}`);
+  }
+  headers.set("Cache-Control", directives.join(", "));
   return new Response(response.clone().body, {
     status: response.status,
     statusText: response.statusText,
@@ -323,16 +342,9 @@ export async function getCachedGitHubAttestations(
   return getOrRefresh({
     env,
     cacheKey: `github:attestations:${owner}/${repo}:${digest}`,
-    isFresh: (entry) => {
-      if (entry.data.attestations.length > 0) {
-        return true;
-      }
-      const age = Date.now() - entry.cached_at;
-      return age < NEGATIVE_ATTESTATION_FRESH_MS;
-    },
+    isFresh: (entry) => Date.now() - entry.cached_at < ATTESTATION_FRESH_MS,
     fetcher: (token) => fetchGitHubAttestations(owner, repo, digest, token),
-    expirationTtl: (data) =>
-      data.attestations.length > 0 ? undefined : CACHE_TTL_SECONDS,
+    expirationTtl: () => CACHE_TTL_SECONDS,
   });
 }
 
@@ -712,6 +724,7 @@ class GitHubError extends Error {
 
 export const __testing = {
   GitHubError,
+  edgeCacheResponse,
   githubJsonHeaders,
   isGitHubApiUrl,
   isRateLimited,
