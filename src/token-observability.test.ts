@@ -6,6 +6,7 @@ import {
   getAlertDecision,
   selectCurrentObservations,
   selectTokenBatch,
+  shouldEvaluateAlert,
   summarizeTokenPool,
   type AlertState,
   type TokenObservation,
@@ -38,8 +39,6 @@ test("combines fresh rotating batches for the current pool", () => {
   const current = selectCurrentObservations(
     [stale, tokenTwo, tokenOne, deleted],
     [1, 2],
-    now,
-    1,
   );
 
   assert.deepEqual(current, [tokenOne, tokenTwo]);
@@ -58,6 +57,12 @@ test("combines fresh rotating batches for the current pool", () => {
     ).recovery,
     true,
   );
+});
+
+test("keeps the last-known snapshot when scheduled checks are delayed", () => {
+  const lastKnown = observation(1, "2026-08-27T12:00:00.000Z", 4_500, 1);
+
+  assert.deepEqual(selectCurrentObservations([lastKnown], [1]), [lastKnown]);
 });
 
 function observation(
@@ -162,6 +167,19 @@ test("marks a bounded observation as incomplete without a false critical", () =>
   assert.equal(summary.quotaBurnPerHour, null);
   assert.doesNotMatch(summary.reasons.join(" "), /No token has/);
   assert.match(summary.reasons.join(" "), /59 tokens were deferred/);
+  assert.equal(shouldEvaluateAlert(summary), true);
+});
+
+test("defers alert decisions only when partial data has no concrete issue", () => {
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
+  const summary = summarizeTokenPool(
+    [current],
+    [current],
+    current.observedAt,
+    60,
+  );
+
+  assert.equal(shouldEvaluateAlert(summary), false);
 });
 
 test("warns when the pool has only one token with reserve", () => {

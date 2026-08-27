@@ -476,6 +476,27 @@ async function loadObservationRows(
   return result.results;
 }
 
+async function loadLatestObservationRows(
+  db: D1Database,
+): Promise<ObservationRow[]> {
+  const result = await db
+    .prepare(
+      `SELECT o.token_id, o.user_id, o.user_name, o.observed_at, o.remaining,
+              o.limit_count, o.reset_at, o.usage_count, o.is_available, o.error
+       FROM token_observations o
+       INNER JOIN (
+         SELECT token_id, MAX(observed_at) AS observed_at
+         FROM token_observations
+         GROUP BY token_id
+       ) latest
+         ON latest.token_id = o.token_id
+        AND latest.observed_at = o.observed_at
+       ORDER BY o.token_id`,
+    )
+    .all<ObservationRow>();
+  return result.results;
+}
+
 async function loadObservationRuns(
   db: D1Database,
   since: string,
@@ -495,20 +516,13 @@ async function loadObservationRuns(
 export function selectCurrentObservations(
   observations: TokenObservation[],
   tokenIds: number[],
-  now: Date,
-  maximum = MAX_TOKEN_CHECKS_PER_RUN,
 ): TokenObservation[] {
   if (tokenIds.length === 0) return [];
 
-  const batchCount = Math.ceil(tokenIds.length / maximum);
-  const cutoff = now.getTime() - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
   const currentTokenIds = new Set(tokenIds);
   const latest = new Map<number, TokenObservation>();
   for (const observation of observations) {
-    if (
-      currentTokenIds.has(observation.tokenId) &&
-      Date.parse(observation.observedAt) >= cutoff
-    ) {
+    if (currentTokenIds.has(observation.tokenId)) {
       const current = latest.get(observation.tokenId);
       if (!current || observation.observedAt > current.observedAt) {
         latest.set(observation.tokenId, observation);
@@ -519,6 +533,22 @@ export function selectCurrentObservations(
     const observation = latest.get(tokenId);
     return observation ? [observation] : [];
   });
+}
+
+function selectAlertObservations(
+  observations: TokenObservation[],
+  tokenIds: number[],
+  now: Date,
+  maximum = MAX_TOKEN_CHECKS_PER_RUN,
+): TokenObservation[] {
+  const batchCount = Math.ceil(tokenIds.length / maximum);
+  const cutoff = now.getTime() - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
+  return selectCurrentObservations(
+    observations.filter(
+      (observation) => Date.parse(observation.observedAt) >= cutoff,
+    ),
+    tokenIds,
+  );
 }
 
 function historyPoints(
@@ -565,16 +595,50 @@ export async function getTokenObservability(
   env: Env,
   now = new Date(),
 ): Promise<TokenObservabilityData> {
+  const state = await loadTokenObservabilityState(env, now);
+  return tokenObservabilityData(env, state);
+}
+
+type TokenObservabilityState = {
+  observations: TokenObservation[];
+  latestObservations: TokenObservation[];
+  runs: ObservationRunRow[];
+  latestAt: string | undefined;
+  currentTokenIds: number[];
+};
+
+async function loadTokenObservabilityState(
+  env: Env,
+  now: Date,
+): Promise<TokenObservabilityState> {
   const since = new Date(
     now.getTime() - HISTORY_HOURS * 3_600_000,
   ).toISOString();
   const observations = (await loadObservationRows(env.DB, since)).map(
     mapObservation,
   );
+  const latestObservations = (await loadLatestObservationRows(env.DB)).map(
+    mapObservation,
+  );
   const runs = await loadObservationRuns(env.DB, since);
   const latestAt = runs.at(-1)?.observed_at;
   const currentTokenIds = await loadPoolTokenIds(env.DB, now.toISOString());
-  const latest = selectCurrentObservations(observations, currentTokenIds, now);
+  return {
+    observations,
+    latestObservations,
+    runs,
+    latestAt,
+    currentTokenIds,
+  };
+}
+
+function tokenObservabilityData(
+  env: Env,
+  state: TokenObservabilityState,
+): TokenObservabilityData {
+  const { observations, latestObservations, runs, latestAt, currentTokenIds } =
+    state;
+  const latest = selectCurrentObservations(latestObservations, currentTokenIds);
 
   return {
     summary: summarizeTokenPool(
@@ -595,9 +659,16 @@ export async function getTokenObservability(
 }
 
 function alertFingerprint(summary: TokenPoolSummary): string {
+  if (!summary.complete) {
+    return [
+      "partial",
+      summary.invalidTokens > 0,
+      summary.rateLimitedTokens > 0,
+      summary.belowReserveTokens > 0,
+    ].join("|");
+  }
   return [
     summary.level,
-    summary.complete,
     summary.availableTokens,
     summary.rateLimitedTokens,
     summary.belowReserveTokens,
@@ -693,7 +764,7 @@ async function maybeAlert(
   summary: TokenPoolSummary,
   now: Date,
 ): Promise<void> {
-  if (!summary.complete) return;
+  if (!shouldEvaluateAlert(summary)) return;
 
   const state = await getAlertState(env.DB);
   const fingerprint = alertFingerprint(summary);
@@ -715,6 +786,15 @@ async function maybeAlert(
     sentAt = now.toISOString();
   }
   await saveAlertState(env.DB, summary, fingerprint, sentAt);
+}
+
+export function shouldEvaluateAlert(summary: TokenPoolSummary): boolean {
+  return (
+    summary.complete ||
+    summary.invalidTokens > 0 ||
+    summary.rateLimitedTokens > 0 ||
+    summary.belowReserveTokens > 0
+  );
 }
 
 export function getAlertDecision(
@@ -764,7 +844,19 @@ export async function observeTokenPool(
     ).bind(retentionCutoff),
   ]);
 
-  const data = await getTokenObservability(env, now);
-  await maybeAlert(env, data.summary, now);
+  const state = await loadTokenObservabilityState(env, now);
+  const data = tokenObservabilityData(env, state);
+  const alertObservations = selectAlertObservations(
+    state.latestObservations,
+    state.currentTokenIds,
+    now,
+  );
+  const alertSummary = summarizeTokenPool(
+    alertObservations,
+    state.observations,
+    state.latestAt ?? null,
+    state.currentTokenIds.length,
+  );
+  await maybeAlert(env, alertSummary, now);
   return data;
 }
