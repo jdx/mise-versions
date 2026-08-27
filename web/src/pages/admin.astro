@@ -113,8 +113,8 @@ if (!auth || !isAdmin(auth.username)) {
             </div>
 
             <div class="rounded-lg bg-dark-900/50 border border-dark-600 p-4">
-              <h3 class="text-sm font-medium text-gray-200">Token headroom</h3>
-              <p class="text-xs text-gray-500 mt-1 mb-4">Latest core quota by token</p>
+              <h3 class="text-sm font-medium text-gray-200">Token health mix</h3>
+              <p class="text-xs text-gray-500 mt-1 mb-4">Latest core quota distribution</p>
               <div id="token-headroom" class="space-y-4"></div>
             </div>
           </div>
@@ -282,6 +282,30 @@ if (!auth || !isAdmin(auth.username)) {
       <!-- Expanded content -->
       <div id="expanded-content" class="hidden">
         <div class="border-t border-dark-600"></div>
+        <div class="px-4 py-3 border-b border-dark-600 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex flex-1 flex-col gap-2 sm:flex-row">
+            <label class="sr-only" for="token-search">Search token users</label>
+            <input
+              id="token-search"
+              type="search"
+              placeholder="Search user or display name"
+              class="w-full sm:max-w-sm rounded-lg border border-dark-500 bg-dark-900 px-3 py-2 text-sm text-gray-200 placeholder:text-gray-600 focus:border-neon-purple focus:outline-none"
+            />
+            <label class="sr-only" for="token-filter">Filter tokens</label>
+            <select
+              id="token-filter"
+              class="rounded-lg border border-dark-500 bg-dark-900 px-3 py-2 text-sm text-gray-300 focus:border-neon-purple focus:outline-none"
+            >
+              <option value="attention">Needs attention</option>
+              <option value="all">All statuses</option>
+              <option value="rate-limited">Rate limited</option>
+              <option value="inactive">Inactive</option>
+              <option value="expiring">Expiring soon</option>
+              <option value="invalid">Invalid</option>
+            </select>
+          </div>
+          <span id="token-results-summary" class="text-xs text-gray-500 whitespace-nowrap">Loading…</span>
+        </div>
         <div class="relative">
           <!-- Loading overlay -->
           <div id="table-loading-overlay" class="hidden absolute inset-0 bg-dark-900/70 z-10 flex items-center justify-center">
@@ -293,9 +317,9 @@ if (!auth || !isAdmin(auth.username)) {
               <span class="text-sm text-gray-400">Testing tokens...</span>
             </div>
           </div>
-          <div class="overflow-x-auto">
+          <div class="overflow-x-auto max-h-[32rem] overflow-y-auto">
             <table class="w-full">
-              <thead class="bg-dark-700">
+              <thead class="bg-dark-700 sticky top-0 z-[1]">
                 <tr>
                   <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">User</th>
                   <th class="px-4 py-2 text-left text-sm font-medium text-gray-400">Usage</th>
@@ -463,16 +487,29 @@ if (!auth || !isAdmin(auth.username)) {
 
     const headroom = document.getElementById('token-headroom');
     if (headroom) {
-      headroom.innerHTML = data.tokens.map((token) => {
-        const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : 0;
-        const color = token.error || percent <= 15 ? 'bg-red-400' : percent <= 35 ? 'bg-orange-400' : 'bg-cyan-400';
-        const label = token.userId || token.userName || `token ${token.tokenId}`;
+      const buckets = [
+        { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% quota' },
+        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '16–35% quota' },
+        { label: 'Low', count: 0, color: 'bg-red-400', detail: '≤15% quota' },
+        { label: 'Unavailable', count: 0, color: 'bg-gray-500', detail: 'limited or failed' },
+      ];
+      for (const token of data.tokens) {
+        const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : null;
+        if (token.error || percent === null) buckets[3].count++;
+        else if (percent <= 15) buckets[2].count++;
+        else if (!token.available) buckets[3].count++;
+        else if (percent <= 35) buckets[1].count++;
+        else buckets[0].count++;
+      }
+      const total = data.tokens.length;
+      headroom.innerHTML = buckets.map((bucket) => {
+        const percent = total === 0 ? 0 : Math.round(bucket.count / total * 100);
         return `<div>
           <div class="flex items-center justify-between gap-3 text-xs mb-1.5">
-            <span class="text-gray-300 truncate" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
-            <span class="font-mono ${token.error ? 'text-red-400' : 'text-gray-400'}">${token.error ? 'check failed' : `${token.remaining?.toLocaleString()} · ${percent}%`}</span>
+            <span class="text-gray-300">${bucket.label} <span class="text-gray-600">· ${bucket.detail}</span></span>
+            <span class="font-mono text-gray-400">${bucket.count.toLocaleString()} · ${percent}%</span>
           </div>
-          <div class="h-2 rounded-full bg-dark-700 overflow-hidden"><div class="h-full rounded-full ${color}" style="width: ${percent}%"></div></div>
+          <div class="h-2 rounded-full bg-dark-700 overflow-hidden"><div class="h-full rounded-full ${bucket.color}" style="width: ${percent}%"></div></div>
         </div>`;
       }).join('') || '<div class="text-sm text-gray-500">No pool tokens</div>';
     }
@@ -700,6 +737,8 @@ if (!auth || !isAdmin(auth.username)) {
     expires_at: string | null;
   }> = [];
 
+  const TOKEN_TABLE_LIMIT = 50;
+
   // Store test results
   let testResults: Map<number, { valid: boolean; error?: string; rateLimit?: { remaining: number; limit: number } }> = new Map();
 
@@ -760,6 +799,7 @@ if (!auth || !isAdmin(auth.username)) {
 
   function renderTokenTable() {
     const tableBody = document.getElementById('token-table-body');
+    const summary = document.getElementById('token-results-summary');
     if (!tableBody) return;
 
     if (tokenData.length === 0) {
@@ -768,17 +808,51 @@ if (!auth || !isAdmin(auth.username)) {
           <td colspan="5" class="px-4 py-8 text-center text-gray-500">No tokens in pool</td>
         </tr>
       `;
+      if (summary) summary.textContent = '0 tokens';
       return;
     }
 
-    // Sort by user_id (username)
-    const sortedTokens = [...tokenData].sort((a, b) => {
+    const search = (document.getElementById('token-search') as HTMLInputElement | null)?.value.trim().toLowerCase() ?? '';
+    const filter = (document.getElementById('token-filter') as HTMLSelectElement | null)?.value ?? 'attention';
+    const now = Date.now();
+    const expiresSoonAt = now + 24 * 60 * 60 * 1000;
+    const tokenStatus = (token: typeof tokenData[number]) => {
+      const rateLimited = Boolean(token.rate_limited_at && new Date(token.rate_limited_at).getTime() > now);
+      const inactive = !token.is_active;
+      const expiring = Boolean(token.expires_at && new Date(token.expires_at).getTime() <= expiresSoonAt);
+      const invalid = testResults.get(token.id)?.valid === false;
+      return { rateLimited, inactive, expiring, invalid, attention: rateLimited || inactive || expiring || invalid };
+    };
+    const matchingTokens = tokenData.filter((token) => {
+      const status = tokenStatus(token);
+      const matchesSearch = !search || `${token.user_id ?? ''} ${token.user_name ?? ''}`.toLowerCase().includes(search);
+      const matchesFilter = filter === 'all' || (filter === 'rate-limited' ? status.rateLimited : status[filter as keyof typeof status]);
+      return matchesSearch && matchesFilter;
+    }).sort((a, b) => {
       const aName = (a.user_id || '').toLowerCase();
       const bName = (b.user_id || '').toLowerCase();
       return aName.localeCompare(bName);
     });
+    const visibleTokens = matchingTokens.slice(0, TOKEN_TABLE_LIMIT);
 
-    tableBody.innerHTML = sortedTokens.map((t) => {
+    if (summary) {
+      summary.textContent = matchingTokens.length > TOKEN_TABLE_LIMIT
+        ? `Showing ${TOKEN_TABLE_LIMIT} of ${matchingTokens.length.toLocaleString()} matches · refine search`
+        : `${matchingTokens.length.toLocaleString()} match${matchingTokens.length === 1 ? '' : 'es'}`;
+    }
+
+    if (visibleTokens.length === 0) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="5" class="px-4 py-8 text-center text-gray-500">
+            ${filter === 'attention' && !search ? 'No tokens need attention' : 'No matching tokens'}
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tableBody.innerHTML = visibleTokens.map((t) => {
       const isRateLimited = t.rate_limited_at && new Date(t.rate_limited_at) > new Date();
       const testResult = testResults.get(t.id);
 
@@ -799,8 +873,8 @@ if (!auth || !isAdmin(auth.username)) {
       return `
         <tr class="hover:bg-dark-700/50" data-token-id="${t.id}">
           <td class="px-4 py-3">
-            <div class="text-gray-200">${t.user_id || 'Unknown'}</div>
-            <div class="text-xs text-gray-500">${t.user_name || ''}</div>
+            <div class="text-gray-200">${escapeHtml(t.user_id || 'Unknown')}</div>
+            <div class="text-xs text-gray-500">${escapeHtml(t.user_name || '')}</div>
           </td>
           <td class="px-4 py-3 text-gray-300">${t.usage_count.toLocaleString()}</td>
           <td class="px-4 py-3 text-gray-400 text-sm">${t.last_used ? new Date(t.last_used).toLocaleString() : 'Never'}</td>
@@ -929,9 +1003,11 @@ if (!auth || !isAdmin(auth.username)) {
       if (alertContainer && expiringList) {
         if (data.expiringSoon.length > 0) {
           alertContainer.classList.remove('hidden');
-          expiringList.innerHTML = data.expiringSoon.map((t: { user_name: string | null; expires_at: string }) => `
-            <div class="text-sm text-orange-300">${t.user_name || 'Unknown'} - expires ${new Date(t.expires_at).toLocaleString()}</div>
+          const expiringPreview = data.expiringSoon.slice(0, 10).map((t: { user_name: string | null; expires_at: string }) => `
+            <div class="text-sm text-orange-300">${escapeHtml(t.user_name || 'Unknown')} - expires ${new Date(t.expires_at).toLocaleString()}</div>
           `).join('');
+          const remainingExpiring = data.expiringSoon.length - 10;
+          expiringList.innerHTML = `${expiringPreview}${remainingExpiring > 0 ? `<div class="pt-1 text-xs text-orange-400">And ${remainingExpiring.toLocaleString()} more · use the Expiring soon filter</div>` : ''}`;
         } else {
           alertContainer.classList.add('hidden');
         }
@@ -1167,4 +1243,6 @@ if (!auth || !isAdmin(auth.username)) {
   document.getElementById('refresh-btn')?.addEventListener('click', refreshAll);
   document.getElementById('refresh-mau-btn')?.addEventListener('click', refreshMau);
   document.getElementById('check-capacity-btn')?.addEventListener('click', () => loadCapacity(true));
+  document.getElementById('token-search')?.addEventListener('input', renderTokenTable);
+  document.getElementById('token-filter')?.addEventListener('change', renderTokenTable);
 </script>
