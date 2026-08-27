@@ -163,6 +163,24 @@ async function loadPoolTokens(
   return result.results;
 }
 
+async function loadPoolTokenIds(
+  db: D1Database,
+  now: string,
+): Promise<number[]> {
+  const result = await db
+    .prepare(
+      `SELECT id
+       FROM tokens
+       WHERE is_active = 1
+         AND (user_id IS NULL OR user_id != 'jdx')
+         AND (expires_at IS NULL OR expires_at > ?)
+       ORDER BY id`,
+    )
+    .bind(now)
+    .all<{ id: number }>();
+  return result.results.map(({ id }) => id);
+}
+
 async function storeObservations(
   db: D1Database,
   observedAt: string,
@@ -474,13 +492,33 @@ async function loadObservationRuns(
   return result.results;
 }
 
-function latestRun(
+export function selectCurrentObservations(
   observations: TokenObservation[],
-  latestAt: string | undefined,
+  tokenIds: number[],
+  now: Date,
+  maximum = MAX_TOKEN_CHECKS_PER_RUN,
 ): TokenObservation[] {
-  return latestAt
-    ? observations.filter((observation) => observation.observedAt === latestAt)
-    : [];
+  if (tokenIds.length === 0) return [];
+
+  const batchCount = Math.ceil(tokenIds.length / maximum);
+  const cutoff = now.getTime() - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
+  const currentTokenIds = new Set(tokenIds);
+  const latest = new Map<number, TokenObservation>();
+  for (const observation of observations) {
+    if (
+      currentTokenIds.has(observation.tokenId) &&
+      Date.parse(observation.observedAt) >= cutoff
+    ) {
+      const current = latest.get(observation.tokenId);
+      if (!current || observation.observedAt > current.observedAt) {
+        latest.set(observation.tokenId, observation);
+      }
+    }
+  }
+  return tokenIds.flatMap((tokenId) => {
+    const observation = latest.get(tokenId);
+    return observation ? [observation] : [];
+  });
 }
 
 function historyPoints(
@@ -497,7 +535,8 @@ function historyPoints(
   const points = new Map<string, TokenHistoryPoint>(
     runs
       .filter(
-        (run) => observationCounts.get(run.observed_at) === run.token_count,
+        (run) =>
+          (observationCounts.get(run.observed_at) ?? 0) === run.token_count,
       )
       .map((run) => [
         run.observed_at,
@@ -534,15 +573,15 @@ export async function getTokenObservability(
   );
   const runs = await loadObservationRuns(env.DB, since);
   const latestAt = runs.at(-1)?.observed_at;
-  const latest = latestRun(observations, latestAt);
-  const latestTokenCount = runs.at(-1)?.token_count ?? latest.length;
+  const currentTokenIds = await loadPoolTokenIds(env.DB, now.toISOString());
+  const latest = selectCurrentObservations(observations, currentTokenIds, now);
 
   return {
     summary: summarizeTokenPool(
       latest,
       observations,
       latestAt ?? null,
-      latestTokenCount,
+      currentTokenIds.length,
     ),
     tokens: latest,
     history: historyPoints(runs, observations),
@@ -619,6 +658,12 @@ async function sendAlert(
   const reasons = summary.reasons.length
     ? `<ul>${summary.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul>`
     : "<p>The token pool is back within its healthy thresholds.</p>";
+  const availability = summary.complete
+    ? `${summary.availableTokens}/${summary.tokenCount}`
+    : `${summary.availableTokens}/${summary.checkedTokens} checked (${summary.tokenCount} total)`;
+  const quotaLabel = summary.complete
+    ? "Quota remaining"
+    : "Checked-token quota";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -630,8 +675,8 @@ async function sendAlert(
       to: env.TOKEN_ALERT_TO,
       subject,
       html: `<h2>GitHub token pool ${escapeHtml(label)}</h2>${reasons}
-        <p><strong>Available tokens:</strong> ${summary.availableTokens}/${summary.tokenCount}<br>
-        <strong>Quota remaining:</strong> ${summary.remaining.toLocaleString()} / ${summary.limit.toLocaleString()} (${summary.remainingPercent ?? "unknown"}%)<br>
+        <p><strong>Available tokens:</strong> ${availability}<br>
+        <strong>${quotaLabel}:</strong> ${summary.remaining.toLocaleString()} / ${summary.limit.toLocaleString()} (${summary.remainingPercent ?? "unknown"}%)<br>
         <strong>Quota burn:</strong> ${summary.quotaBurnPerHour?.toLocaleString() ?? "collecting data"}/hour</p>
         <p><a href="https://mise-versions.jdx.dev/admin">Open token observability</a></p>`,
     }),
@@ -648,11 +693,7 @@ async function maybeAlert(
   summary: TokenPoolSummary,
   now: Date,
 ): Promise<void> {
-  const concretePartialFailure =
-    summary.invalidTokens > 0 ||
-    summary.rateLimitedTokens > 0 ||
-    summary.belowReserveTokens > 0;
-  if (!summary.complete && !concretePartialFailure) return;
+  if (!summary.complete) return;
 
   const state = await getAlertState(env.DB);
   const fingerprint = alertFingerprint(summary);

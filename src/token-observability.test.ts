@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   getAlertDecision,
+  selectCurrentObservations,
   selectTokenBatch,
   summarizeTokenPool,
   type AlertState,
@@ -24,6 +25,38 @@ test("rotates bounded token batches between observation intervals", () => {
   assert.deepEqual(
     selectTokenBatch(tokens, new Date("1970-01-01T00:30:00.000Z"), 2),
     [5],
+  );
+});
+
+test("combines fresh rotating batches for the current pool", () => {
+  const now = new Date("2026-08-27T13:00:00.000Z");
+  const stale = observation(1, "2026-08-27T12:00:00.000Z", 4_500, 1);
+  const tokenOne = observation(1, "2026-08-27T12:45:00.000Z", 4_000, 2);
+  const tokenTwo = observation(2, "2026-08-27T12:30:00.000Z", 3_500, 3);
+  const deleted = observation(3, "2026-08-27T12:50:00.000Z", 3_000, 4);
+
+  const current = selectCurrentObservations(
+    [stale, tokenTwo, tokenOne, deleted],
+    [1, 2],
+    now,
+    1,
+  );
+
+  assert.deepEqual(current, [tokenOne, tokenTwo]);
+  const summary = summarizeTokenPool(current, current, now.toISOString(), 2);
+  assert.equal(summary.complete, true);
+  assert.equal(
+    getAlertDecision(
+      {
+        level: "warning",
+        fingerprint: "unhealthy",
+        last_sent_at: "2026-08-27T12:00:00.000Z",
+      },
+      summary,
+      "healthy",
+      now,
+    ).recovery,
+    true,
   );
 });
 
