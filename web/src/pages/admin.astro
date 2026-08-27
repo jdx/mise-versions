@@ -299,7 +299,6 @@ if (!auth || !isAdmin(auth.username)) {
               <option value="attention">Needs attention</option>
               <option value="all">All statuses</option>
               <option value="rate-limited">Rate limited</option>
-              <option value="inactive">Inactive</option>
               <option value="expiring">Expiring soon</option>
               <option value="invalid">Invalid</option>
             </select>
@@ -489,14 +488,15 @@ if (!auth || !isAdmin(auth.username)) {
     if (headroom) {
       const buckets = [
         { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% quota' },
-        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '16–35% quota' },
-        { label: 'Low', count: 0, color: 'bg-red-400', detail: '≤15% quota' },
-        { label: 'Unavailable', count: 0, color: 'bg-gray-500', detail: 'limited or failed' },
+        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '≤35% quota' },
+        { label: 'Below reserve', count: 0, color: 'bg-red-400', detail: '<1k requests' },
+        { label: 'Rate limited', count: 0, color: 'bg-purple-400', detail: 'locally paused' },
+        { label: 'Check failed', count: 0, color: 'bg-gray-500', detail: 'quota unknown' },
       ];
       for (const token of data.tokens) {
         const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : null;
-        if (token.error || percent === null) buckets[3].count++;
-        else if (percent <= 15) buckets[2].count++;
+        if (token.error || percent === null) buckets[4].count++;
+        else if (token.remaining !== null && token.remaining < 1_000) buckets[2].count++;
         else if (!token.available) buckets[3].count++;
         else if (percent <= 35) buckets[1].count++;
         else buckets[0].count++;
@@ -818,16 +818,24 @@ if (!auth || !isAdmin(auth.username)) {
     const expiresSoonAt = now + 24 * 60 * 60 * 1000;
     const tokenStatus = (token: typeof tokenData[number]) => {
       const rateLimited = Boolean(token.rate_limited_at && new Date(token.rate_limited_at).getTime() > now);
-      const inactive = !token.is_active;
       const expiring = Boolean(token.expires_at && new Date(token.expires_at).getTime() <= expiresSoonAt);
       const invalid = testResults.get(token.id)?.valid === false;
-      return { rateLimited, inactive, expiring, invalid, attention: rateLimited || inactive || expiring || invalid };
+      return { rateLimited, expiring, invalid, attention: rateLimited || expiring || invalid };
+    };
+    const matchesTokenFilter = (status: ReturnType<typeof tokenStatus>) => {
+      switch (filter) {
+        case 'all': return true;
+        case 'attention': return status.attention;
+        case 'rate-limited': return status.rateLimited;
+        case 'expiring': return status.expiring;
+        case 'invalid': return status.invalid;
+        default: return false;
+      }
     };
     const matchingTokens = tokenData.filter((token) => {
       const status = tokenStatus(token);
       const matchesSearch = !search || `${token.user_id ?? ''} ${token.user_name ?? ''}`.toLowerCase().includes(search);
-      const matchesFilter = filter === 'all' || (filter === 'rate-limited' ? status.rateLimited : status[filter as keyof typeof status]);
-      return matchesSearch && matchesFilter;
+      return matchesSearch && matchesTokenFilter(status);
     }).sort((a, b) => {
       const aName = (a.user_id || '').toLowerCase();
       const bName = (b.user_id || '').toLowerCase();
