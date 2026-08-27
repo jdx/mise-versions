@@ -7,6 +7,60 @@ export interface Migration {
   up: (db: ReturnType<typeof drizzle>) => Promise<void>;
 }
 
+async function addTokenObservabilitySchema(
+  db: ReturnType<typeof drizzle>,
+  log = true,
+): Promise<void> {
+  if (log) console.log("Running migration 5: add_token_observability");
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS token_observation_runs (
+      observed_at TEXT PRIMARY KEY,
+      token_count INTEGER NOT NULL
+    )
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS token_observations (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      token_id INTEGER NOT NULL,
+      user_id TEXT,
+      user_name TEXT,
+      observed_at TEXT NOT NULL,
+      remaining INTEGER,
+      limit_count INTEGER,
+      reset_at TEXT,
+      usage_count INTEGER NOT NULL,
+      is_available INTEGER NOT NULL,
+      error TEXT
+    )
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_token_observations_time
+    ON token_observations(observed_at)
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_token_observations_token_time
+    ON token_observations(token_id, observed_at)
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS token_alert_state (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      level TEXT NOT NULL,
+      fingerprint TEXT NOT NULL,
+      last_sent_at TEXT,
+      updated_at TEXT NOT NULL
+    )
+  `);
+}
+
+export async function ensureTokenObservabilitySchema(
+  db: ReturnType<typeof drizzle>,
+): Promise<void> {
+  await addTokenObservabilitySchema(db, false);
+}
+
 export const migrations: Migration[] = [
   {
     id: 1,
@@ -148,59 +202,13 @@ export const migrations: Migration[] = [
     id: 5,
     name: "add_token_observability",
     async up(db) {
-      console.log("Running migration 5: add_token_observability");
-
-      await db.run(sql`
-        CREATE TABLE IF NOT EXISTS token_observation_runs (
-          observed_at TEXT PRIMARY KEY,
-          token_count INTEGER NOT NULL
-        )
-      `);
-
-      await db.run(sql`
-        CREATE TABLE IF NOT EXISTS token_observations (
-          id INTEGER PRIMARY KEY AUTOINCREMENT,
-          token_id INTEGER NOT NULL,
-          observed_at TEXT NOT NULL,
-          remaining INTEGER,
-          limit_count INTEGER,
-          reset_at TEXT,
-          usage_count INTEGER NOT NULL,
-          is_available INTEGER NOT NULL,
-          error TEXT,
-          FOREIGN KEY (token_id) REFERENCES tokens (id) ON DELETE CASCADE
-        )
-      `);
-      await db.run(sql`
-        CREATE INDEX IF NOT EXISTS idx_token_observations_time
-        ON token_observations(observed_at)
-      `);
-      await db.run(sql`
-        CREATE INDEX IF NOT EXISTS idx_token_observations_token_time
-        ON token_observations(token_id, observed_at)
-      `);
-
-      await db.run(sql`
-        CREATE TABLE IF NOT EXISTS token_alert_state (
-          id INTEGER PRIMARY KEY CHECK (id = 1),
-          level TEXT NOT NULL,
-          fingerprint TEXT NOT NULL,
-          last_sent_at TEXT,
-          updated_at TEXT NOT NULL
-        )
-      `);
+      await addTokenObservabilitySchema(db);
     },
   },
 ];
 
-export async function runMigrations(
-  db: ReturnType<typeof drizzle>,
-  options: { quiet?: boolean } = {},
-) {
-  const log = (...values: unknown[]) => {
-    if (!options.quiet) console.log(...values);
-  };
-  log("Starting database migrations...");
+export async function runMigrations(db: ReturnType<typeof drizzle>) {
+  console.log("Starting database migrations...");
 
   // Create migrations table if it doesn't exist
   await db.run(sql`
@@ -221,7 +229,7 @@ export async function runMigrations(
   // Run pending migrations
   for (const migration of migrations) {
     if (!appliedIds.has(migration.id)) {
-      log(`Applying migration ${migration.id}: ${migration.name}`);
+      console.log(`Applying migration ${migration.id}: ${migration.name}`);
 
       try {
         await migration.up(db);
@@ -232,17 +240,17 @@ export async function runMigrations(
           VALUES (${migration.id}, ${migration.name}, ${new Date().toISOString()})
         `);
 
-        log(`✅ Migration ${migration.id} applied successfully`);
+        console.log(`✅ Migration ${migration.id} applied successfully`);
       } catch (error) {
         console.error(`❌ Migration ${migration.id} failed:`, error);
         throw error;
       }
     } else {
-      log(`⏭️  Migration ${migration.id} already applied`);
+      console.log(`⏭️  Migration ${migration.id} already applied`);
     }
   }
 
-  log("✅ All migrations completed");
+  console.log("✅ All migrations completed");
 }
 
 export async function getMigrationStatus(db: ReturnType<typeof drizzle>) {

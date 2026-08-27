@@ -174,12 +174,14 @@ async function storeObservations(
       db
         .prepare(
           `INSERT INTO token_observations
-             (token_id, observed_at, remaining, limit_count, reset_at,
-              usage_count, is_available, error)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+             (token_id, user_id, user_name, observed_at, remaining,
+              limit_count, reset_at, usage_count, is_available, error)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         )
         .bind(
           observation.tokenId,
+          observation.userId,
+          observation.userName,
           observation.observedAt,
           observation.remaining,
           observation.limit,
@@ -387,10 +389,9 @@ async function loadObservationRows(
 ): Promise<ObservationRow[]> {
   const result = await db
     .prepare(
-      `SELECT o.token_id, t.user_id, t.user_name, o.observed_at, o.remaining,
+      `SELECT o.token_id, o.user_id, o.user_name, o.observed_at, o.remaining,
               o.limit_count, o.reset_at, o.usage_count, o.is_available, o.error
        FROM token_observations o
-       JOIN tokens t ON t.id = o.token_id
        WHERE o.observed_at >= ?
        ORDER BY o.observed_at, o.token_id`,
     )
