@@ -7,6 +7,142 @@ export interface Migration {
   up: (db: ReturnType<typeof drizzle>) => Promise<void>;
 }
 
+async function addTokenObservabilitySchema(
+  db: ReturnType<typeof drizzle>,
+  log = true,
+): Promise<void> {
+  if (log) console.log("Running migration 5: add_token_observability");
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS token_observation_runs (
+      observed_at TEXT PRIMARY KEY,
+      token_count INTEGER NOT NULL
+    )
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS token_observations (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      token_id INTEGER NOT NULL,
+      user_id TEXT,
+      user_name TEXT,
+      observed_at TEXT NOT NULL,
+      remaining INTEGER,
+      limit_count INTEGER,
+      reset_at TEXT,
+      usage_count INTEGER NOT NULL,
+      is_available INTEGER NOT NULL,
+      error TEXT
+    )
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_token_observations_time
+    ON token_observations(observed_at)
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_token_observations_token_time
+    ON token_observations(token_id, observed_at)
+  `);
+
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS token_alert_state (
+      id INTEGER PRIMARY KEY CHECK (id = 1),
+      level TEXT NOT NULL,
+      fingerprint TEXT NOT NULL,
+      last_sent_at TEXT,
+      updated_at TEXT NOT NULL
+    )
+  `);
+}
+
+export async function ensureTokenObservabilitySchema(
+  db: ReturnType<typeof drizzle>,
+): Promise<void> {
+  await addTokenObservabilitySchema(db, false);
+}
+
+async function ensureTokenObservationIndexes(
+  db: ReturnType<typeof drizzle>,
+): Promise<void> {
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_token_observations_time
+    ON token_observations(observed_at)
+  `);
+  await db.run(sql`
+    CREATE INDEX IF NOT EXISTS idx_token_observations_token_time
+    ON token_observations(token_id, observed_at)
+  `);
+}
+
+async function preserveTokenObservationSnapshots(
+  db: ReturnType<typeof drizzle>,
+): Promise<void> {
+  console.log("Running migration 6: preserve_token_observation_snapshots");
+
+  const columns = (await db.all(
+    sql`PRAGMA table_info(token_observations)`,
+  )) as Array<{ name: string }>;
+  const foreignKeys = (await db.all(
+    sql`PRAGMA foreign_key_list(token_observations)`,
+  )) as Array<{ table: string }>;
+  const columnNames = new Set(columns.map((column) => column.name));
+  const hasIdentityColumns =
+    columnNames.has("user_id") && columnNames.has("user_name");
+  const referencesTokens = foreignKeys.some(
+    (foreignKey) => foreignKey.table === "tokens",
+  );
+
+  if (hasIdentityColumns && !referencesTokens) {
+    await ensureTokenObservationIndexes(db);
+    return;
+  }
+
+  await db.run(sql`DROP TABLE IF EXISTS token_observations_new`);
+  await db.run(sql`
+    CREATE TABLE token_observations_new (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      token_id INTEGER NOT NULL,
+      user_id TEXT,
+      user_name TEXT,
+      observed_at TEXT NOT NULL,
+      remaining INTEGER,
+      limit_count INTEGER,
+      reset_at TEXT,
+      usage_count INTEGER NOT NULL,
+      is_available INTEGER NOT NULL,
+      error TEXT
+    )
+  `);
+
+  if (hasIdentityColumns) {
+    await db.run(sql`
+      INSERT INTO token_observations_new
+        (id, token_id, user_id, user_name, observed_at, remaining, limit_count,
+         reset_at, usage_count, is_available, error)
+      SELECT id, token_id, user_id, user_name, observed_at, remaining,
+             limit_count, reset_at, usage_count, is_available, error
+      FROM token_observations
+    `);
+  } else {
+    await db.run(sql`
+      INSERT INTO token_observations_new
+        (id, token_id, user_id, user_name, observed_at, remaining, limit_count,
+         reset_at, usage_count, is_available, error)
+      SELECT o.id, o.token_id, t.user_id, t.user_name, o.observed_at,
+             o.remaining, o.limit_count, o.reset_at, o.usage_count,
+             o.is_available, o.error
+      FROM token_observations o
+      LEFT JOIN tokens t ON t.id = o.token_id
+    `);
+  }
+
+  await db.run(sql`DROP TABLE token_observations`);
+  await db.run(
+    sql`ALTER TABLE token_observations_new RENAME TO token_observations`,
+  );
+  await ensureTokenObservationIndexes(db);
+}
+
 export const migrations: Migration[] = [
   {
     id: 1,
@@ -142,6 +278,20 @@ export const migrations: Migration[] = [
       await db.run(
         sql`CREATE INDEX IF NOT EXISTS idx_tokens_rate_limited ON tokens(rate_limited_at)`,
       );
+    },
+  },
+  {
+    id: 5,
+    name: "add_token_observability",
+    async up(db) {
+      await addTokenObservabilitySchema(db);
+    },
+  },
+  {
+    id: 6,
+    name: "preserve_token_observation_snapshots",
+    async up(db) {
+      await preserveTokenObservationSnapshots(db);
     },
   },
 ];
