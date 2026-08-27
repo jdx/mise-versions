@@ -3,6 +3,7 @@ import { Octokit } from "@octokit/rest";
 const MIN_TOKEN_REMAINING = 1_000;
 const HISTORY_HOURS = 24;
 const ALERT_REPEAT_HOURS = 12;
+const MIN_RATE_INTERVAL_HOURS = 10 / 60;
 
 type PoolToken = {
   id: number;
@@ -234,7 +235,7 @@ function calculateRates(observations: TokenObservation[]): {
       const elapsedHours =
         (Date.parse(current.observedAt) - Date.parse(previous.observedAt)) /
         3_600_000;
-      if (elapsedHours <= 0 || elapsedHours > 2) continue;
+      if (elapsedHours < MIN_RATE_INTERVAL_HOURS || elapsedHours > 2) continue;
 
       const checkoutDelta = current.usageCount - previous.usageCount;
       if (checkoutDelta >= 0) {

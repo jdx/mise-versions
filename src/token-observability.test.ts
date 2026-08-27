@@ -47,6 +47,24 @@ test("summarizes total pool burn instead of averaging token rates", () => {
   assert.equal(summary.hoursToReserve, 29);
 });
 
+test("ignores short manual-check gaps when calculating burn", () => {
+  const previous = "2026-08-27T12:00:00.000Z";
+  const current = "2026-08-27T12:01:00.000Z";
+  const recent = [
+    observation(1, previous, 4_100, 10),
+    observation(2, previous, 4_100, 20),
+    observation(1, current, 4_000, 12),
+    observation(2, current, 4_000, 23),
+  ];
+
+  const summary = summarizeTokenPool(recent.slice(-2), recent);
+
+  assert.equal(summary.level, "healthy");
+  assert.equal(summary.quotaBurnPerHour, null);
+  assert.equal(summary.checkoutRatePerHour, null);
+  assert.equal(summary.hoursToReserve, null);
+});
+
 test("warns when the pool has only one token with reserve", () => {
   const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
   const summary = summarizeTokenPool([current], [current]);
