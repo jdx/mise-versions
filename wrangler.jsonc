@@ -79,6 +79,6 @@
     "TOKEN_ALERT_FROM": "mise-tools@mise.jdx.dev",
   },
   "triggers": {
-    "crons": ["*/15 * * * *"],
+    "crons": ["*/15 * * * *", "7,37 * * * *"],
   },
 }
