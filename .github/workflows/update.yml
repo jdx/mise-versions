@@ -8,7 +8,8 @@ on:
         default: "false"
         type: boolean
   schedule:
-    - cron: "*/30 * * * *"
+    # Avoid the :00 high-load window and stagger half-hour runs away from common boundaries.
+    - cron: "7,37 * * * *"
 
 concurrency:
   group: update
