@@ -444,7 +444,7 @@ generate_toml_file() {
 	error_output=$(mktemp)
 
 	# Try to get JSON with timestamps/release URLs/prerelease flags from
-	# mise ls-remote --prerelease --json. The TOML path can carry prerelease
+	# mise ls-remote --minimum-release-age 0s --prerelease --json. The TOML path can carry prerelease
 	# metadata, so collect the superset and let clients filter by that flag.
 	# Pass the rotated per-tool token via GITHUB_API_TOKEN so this call
 	# isn't rate-limited by the workflow's single shared MISE_GITHUB_TOKEN.
@@ -457,7 +457,7 @@ generate_toml_file() {
 	local json_output
 	local json_metadata_fallback=0
 	local fallback_new_versions=""
-	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --prerelease --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
+	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --minimum-release-age 0s --prerelease --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
 		local json_type json_count
 		read -r json_type json_count < <(printf '%s' "$json_output" | jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' 2>/dev/null || echo "invalid 0")
 		if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
@@ -582,12 +582,13 @@ fetch() {
 
 	# Create a temporary file to capture stderr and check for rate limiting.
 	# Docker container is used for isolation: `mise ls-remote` may execute
-	# untrusted plugin code (asdf/vfox), and the sandbox contains it.
+	# untrusted plugin code (asdf/vfox), and the sandbox contains it. Disable
+	# minimum_release_age explicitly so this fallback catalog is complete.
 	local stderr_file
 	stderr_file=$(mktemp)
 
 	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
-		jdxcode/mise -y ls-remote "$tool" >"docs/$tool" 2>"$stderr_file"; then
+		jdxcode/mise -y ls-remote --minimum-release-age 0s "$tool" >"docs/$tool" 2>"$stderr_file"; then
 		log_error "Failed to fetch versions" "tool=$tool"
 		cat "$stderr_file" >&2
 

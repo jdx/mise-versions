@@ -195,6 +195,34 @@ test_skip_list_parser_ignores_other_case_blocks
 echo ""
 
 # ============================================
+# Test: version collection disables release age filtering
+# ============================================
+echo "--- Version Collection Release Age Tests ---"
+
+test_json_collection_disables_release_age_filtering() {
+	local command
+	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+
+	assert_contains "$command" 'mise ls-remote --minimum-release-age 0s' \
+		"JSON metadata collection disables minimum_release_age"
+}
+test_json_collection_disables_release_age_filtering
+
+test_docker_collection_disables_release_age_filtering() {
+	local command
+	command=$(awk '
+		/docker run --rm/ { docker_run = $0; next }
+		docker_run && /jdxcode\/mise -y ls-remote/ { print docker_run " " $0; exit }
+	' scripts/update.sh)
+
+	assert_contains "$command" 'ls-remote --minimum-release-age 0s "$tool"' \
+		"Docker catalog collection disables minimum_release_age"
+}
+test_docker_collection_disables_release_age_filtering
+
+echo ""
+
+# ============================================
 # Test: Statistics helpers (isolated)
 # ============================================
 echo "--- Statistics Helper Tests ---"
