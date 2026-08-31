@@ -1,60 +1,201 @@
 [versions]
-"1.3.13" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.4.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.4.3" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.4.4" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.4.5" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.4.6" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.5.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.5.1" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.5.2" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.5.3" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.5.4" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.5.5" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.6.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.6.1" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.6.2" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.7.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.7.1" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.7.2" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.7.3" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.8.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.8.1" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.8.2" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.1" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.2" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.3" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.4" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.5" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.6" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.9.7" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.10.0" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.10.1" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.10.2" = { created_at = 2026-05-03T19:27:10.233Z }
-"1.11.7" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.0" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.1" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.2" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.3" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.4" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.6" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.7" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.8" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.9" = { created_at = 2026-04-13T14:26:37.527Z }
-"1.12.10" = { created_at = 2026-04-27T06:27:52.156Z }
-"1.12.11" = { created_at = 2026-05-02T20:53:43.925Z }
-"1.12.12" = { created_at = 2026-06-14T08:49:46.250Z }
-"1.12.13" = { created_at = 2026-08-25T18:49:32.884Z }
-"1.12.14" = { created_at = 2026-08-25T18:49:32.884Z }
-"1.12.15" = { created_at = 2026-08-25T18:49:32.884Z }
-"1.13.0" = { created_at = 2026-08-25T18:49:32.884Z }
-"2.0.0" = { created_at = 2026-06-15T01:43:30.156Z }
-"2.0.1" = { created_at = 2026-06-29T11:20:07.323Z }
-"2.0.2" = { created_at = 2026-07-13T09:49:16.902Z }
-"2.0.3" = { created_at = 2026-07-18T04:10:35.030Z }
-"2.0.4" = { created_at = 2026-07-27T00:26:33.028Z }
-"2.0.5" = { created_at = 2026-08-04T06:29:11.149Z }
-"2.0.6" = { created_at = 2026-08-08T11:13:28.652Z }
-"2.0.7" = { created_at = 2026-08-21T06:13:47.624Z }
-"2.0.8" = { created_at = 2026-08-28T06:36:49.536Z }
+"0.13.5" = { created_at = 2014-05-27T14:40:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.5" }
+"0.13.6" = { created_at = 2014-09-12T21:12:27.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.6" }
+"0.13.7" = { created_at = 2014-12-25T21:14:48.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.7" }
+"0.13.8" = { created_at = 2015-03-20T17:04:34.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.8" }
+"0.13.9" = { created_at = 2015-08-11T21:30:03.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.9" }
+"0.13.11" = { created_at = 2016-02-22T15:56:26.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.11" }
+"0.13.12" = { created_at = 2016-07-17T04:54:10.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.12" }
+"0.13.13" = { created_at = 2016-10-28T12:27:08.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.13" }
+"0.13.14" = { created_at = 2017-04-08T19:16:05.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.14", prerelease = true }
+"0.13.15" = { created_at = 2017-04-12T09:27:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.15" }
+"0.13.16-M1" = { created_at = 2017-04-28T03:36:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.16-M1", prerelease = true }
+"0.13.16-RC1" = { created_at = 2017-07-23T21:38:29.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.16-RC1", prerelease = true }
+"0.13.16" = { created_at = 2017-07-26T20:04:41.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.16" }
+"0.13.17-RC1" = { created_at = 2018-01-04T23:46:46.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.17-RC1", prerelease = true }
+"0.13.17" = { created_at = 2018-01-31T20:17:43.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.17" }
+"0.13.18" = { created_at = 2018-11-28T19:56:53.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v0.13.18" }
+"1.0.0-M5" = { created_at = 2017-04-18T17:52:31.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.0-M5", prerelease = true }
+"1.0.0-M6" = { created_at = 2017-05-30T19:07:14.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.0-M6", prerelease = true }
+"1.0.0-RC2" = { created_at = 2017-07-17T05:30:10.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.0-RC2", prerelease = true }
+"1.0.0-RC3" = { created_at = 2017-07-28T23:32:21.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.0-RC3", prerelease = true }
+"1.0.0" = { created_at = 2017-08-10T21:31:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.0" }
+"1.0.1" = { created_at = 2017-08-28T18:51:26.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.1" }
+"1.0.2" = { created_at = 2017-09-17T00:37:05.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.2" }
+"1.0.3" = { created_at = 2017-10-27T04:01:21.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.3" }
+"1.0.4" = { created_at = 2017-11-26T09:18:36.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.0.4" }
+"1.1.0-M1" = { created_at = 2017-10-03T18:06:06.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.0-M1", prerelease = true }
+"1.1.0-RC1" = { created_at = 2017-11-30T23:38:47.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.0-RC1", prerelease = true }
+"1.1.0-RC2" = { created_at = 2017-12-17T22:10:39.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.0-RC2", prerelease = true }
+"1.1.0-RC3" = { created_at = 2017-12-22T19:28:39.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.0-RC3", prerelease = true }
+"1.1.0-RC4" = { created_at = 2017-12-22T22:32:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.0-RC4", prerelease = true }
+"1.1.0" = { created_at = 2018-01-05T22:00:17.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2018-02-09T21:49:43.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2018-03-26T18:35:27.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.2" }
+"1.1.3" = { created_at = 2018-04-07T18:48:17.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.3", prerelease = true }
+"1.1.4" = { created_at = 2018-04-09T19:57:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.4" }
+"1.1.5" = { created_at = 2018-05-09T16:25:49.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.5" }
+"1.1.6" = { created_at = 2018-05-29T16:54:52.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.1.6" }
+"1.2.0-M1" = { created_at = 2018-06-19T03:59:53.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.0-M1", prerelease = true }
+"1.2.0-RC1" = { created_at = 2018-07-15T04:50:17.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.0-RC1", prerelease = true }
+"1.2.0-RC2" = { created_at = 2018-07-15T04:50:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.0-RC2", prerelease = true }
+"1.2.0-RC3" = { created_at = 2018-07-26T15:36:04.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.0-RC3", prerelease = true }
+"1.2.0" = { created_at = 2018-07-30T13:58:25.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2018-08-07T03:24:20.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.1" }
+"1.2.3" = { created_at = 2018-09-14T14:16:37.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.3" }
+"1.2.4" = { created_at = 2018-10-08T16:28:29.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.4" }
+"1.2.5" = { created_at = 2018-10-17T04:06:08.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.5", prerelease = true }
+"1.2.6" = { created_at = 2018-10-17T05:55:08.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.6" }
+"1.2.7" = { created_at = 2018-11-30T20:58:51.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.7" }
+"1.2.8" = { created_at = 2018-12-30T08:12:25.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.2.8" }
+"1.3.0-RC1" = { created_at = 2019-05-15T17:47:31.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.0-RC1", prerelease = true }
+"1.3.0-RC2" = { created_at = 2019-06-10T16:51:59.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.0-RC2", prerelease = true }
+"1.3.0-RC3" = { created_at = 2019-07-17T14:52:36.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.0-RC3", prerelease = true }
+"1.3.0-RC4" = { created_at = 2019-08-20T22:27:29.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.0-RC4", prerelease = true }
+"1.3.0-RC5" = { created_at = 2019-08-29T21:52:16.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.0-RC5", prerelease = true }
+"1.3.0" = { created_at = 2019-09-04T06:25:00.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.0" }
+"1.3.1" = { created_at = 2019-09-20T04:21:33.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.1", prerelease = true }
+"1.3.2" = { created_at = 2019-09-20T17:32:17.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.2" }
+"1.3.3" = { created_at = 2019-10-14T16:09:00.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.3" }
+"1.3.4" = { created_at = 2019-11-23T18:37:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.4" }
+"1.3.5" = { created_at = 2019-12-13T17:43:40.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.5" }
+"1.3.6" = { created_at = 2019-12-26T03:21:24.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.6" }
+"1.3.7" = { created_at = 2020-01-15T06:19:23.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.7" }
+"1.3.8" = { created_at = 2020-02-04T00:38:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.8" }
+"1.3.9" = { created_at = 2020-03-31T16:56:57.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.9" }
+"1.3.10" = { created_at = 2020-04-15T03:32:55.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.10" }
+"1.3.11" = { created_at = 2020-05-29T19:17:33.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.11" }
+"1.3.12" = { created_at = 2020-05-31T04:58:17.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.12" }
+"1.3.13" = { created_at = 2020-06-27T21:54:06.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.3.13" }
+"1.4.0-M1" = { created_at = 2020-06-23T21:25:45.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.0-M1", prerelease = true }
+"1.4.0-M2" = { created_at = 2020-09-08T02:15:52.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.0-M2", prerelease = true }
+"1.4.0-RC1" = { created_at = 2020-09-08T02:16:27.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.0-RC1", prerelease = true }
+"1.4.0-RC2" = { created_at = 2020-09-23T12:45:12.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.0-RC2", prerelease = true }
+"1.4.0" = { created_at = 2020-10-05T01:07:54.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.0" }
+"1.4.1" = { created_at = 2020-10-19T20:34:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.1" }
+"1.4.2" = { created_at = 2020-11-02T04:44:09.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.2" }
+"1.4.3" = { created_at = 2020-11-16T02:54:29.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.3" }
+"1.4.4" = { created_at = 2020-11-23T01:47:54.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.4" }
+"1.4.5" = { created_at = 2020-12-14T07:04:57.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.5" }
+"1.4.6" = { created_at = 2020-12-24T09:21:18.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.6" }
+"1.4.7" = { created_at = 2021-01-31T06:05:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.7" }
+"1.4.8" = { created_at = 2021-03-08T00:32:10.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.8" }
+"1.4.9" = { created_at = 2021-03-10T04:49:00.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.4.9" }
+"1.5.0-M1" = { created_at = 2021-01-18T06:39:47.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.0-M1", prerelease = true }
+"1.5.0-M2" = { created_at = 2021-02-22T07:11:25.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.0-M2" }
+"1.5.0-RC1" = { created_at = 2021-03-15T07:26:55.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.0-RC1" }
+"1.5.0-RC2" = { created_at = 2021-03-22T09:54:11.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.0-RC2" }
+"1.5.0" = { created_at = 2021-04-04T18:16:46.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.0" }
+"1.5.1" = { created_at = 2021-04-26T03:11:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.1" }
+"1.5.2" = { created_at = 2021-05-10T00:28:20.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.2" }
+"1.5.3" = { created_at = 2021-06-01T03:17:52.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.3" }
+"1.5.4" = { created_at = 2021-06-14T03:46:31.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.4" }
+"1.5.5" = { created_at = 2021-07-12T07:32:49.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.5" }
+"1.5.6" = { created_at = 2021-12-10T05:51:17.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.6" }
+"1.5.7" = { created_at = 2021-12-15T06:51:46.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.7" }
+"1.5.8" = { created_at = 2021-12-20T23:59:26.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.5.8" }
+"1.6.0-M1" = { created_at = 2021-09-20T00:34:32.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.6.0-M1", prerelease = true }
+"1.6.0-RC1" = { created_at = 2021-11-29T18:19:20.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.6.0-RC1", prerelease = true }
+"1.6.0-RC2" = { created_at = 2021-12-18T23:45:06.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.6.0-RC2", prerelease = true }
+"1.6.0" = { created_at = 2021-12-26T19:29:32.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.6.0" }
+"1.6.1" = { created_at = 2021-12-29T05:37:36.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.6.1" }
+"1.6.2" = { created_at = 2022-02-01T04:39:55.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.6.2" }
+"1.7.0-M1" = { created_at = 2022-03-27T07:37:56.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.0-M1", prerelease = true }
+"1.7.0-M2" = { created_at = 2022-04-18T03:54:18.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.0-M2", prerelease = true }
+"1.7.0-M3" = { created_at = 2022-06-13T07:53:35.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.0-M3", prerelease = true }
+"1.7.0-RC1" = { created_at = 2022-06-27T09:39:54.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.0-RC1", prerelease = true }
+"1.7.0-RC2" = { created_at = 2022-07-03T01:01:11.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.0-RC2", prerelease = true }
+"1.7.0" = { created_at = 2022-07-10T20:11:51.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.0" }
+"1.7.1" = { created_at = 2022-07-12T04:00:33.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.1" }
+"1.7.2" = { created_at = 2022-10-03T04:23:46.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.2" }
+"1.7.3" = { created_at = 2022-10-31T02:29:23.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.7.3" }
+"1.8.0-RC1" = { created_at = 2022-11-07T04:40:47.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.8.0-RC1", prerelease = true }
+"1.8.0" = { created_at = 2022-11-10T22:52:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.8.0" }
+"1.8.1" = { created_at = 2023-01-03T22:01:21.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.8.1" }
+"1.8.2" = { created_at = 2023-01-05T06:17:03.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.8.2" }
+"1.8.3" = { created_at = 2023-05-12T07:23:28.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.8.3" }
+"1.9.0-RC1" = { created_at = 2023-05-01T07:04:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.0-RC1", prerelease = true }
+"1.9.0-RC2" = { created_at = 2023-05-07T21:08:34.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.0-RC2", prerelease = true }
+"1.9.0-RC3" = { created_at = 2023-05-15T08:58:56.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.0-RC3", prerelease = true }
+"1.9.0" = { created_at = 2023-06-02T13:54:11.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.0" }
+"1.9.1" = { created_at = 2023-06-26T05:41:52.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.1" }
+"1.9.2" = { created_at = 2023-07-10T02:42:05.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.2" }
+"1.9.3" = { created_at = 2023-07-24T06:19:20.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.3" }
+"1.9.4" = { created_at = 2023-08-25T01:32:58.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.4" }
+"1.9.5" = { created_at = 2023-09-14T05:21:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.5" }
+"1.9.6" = { created_at = 2023-09-15T16:08:52.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.6" }
+"1.9.7" = { created_at = 2023-10-22T23:08:05.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.7" }
+"1.9.8" = { created_at = 2023-12-14T04:22:51.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.8" }
+"1.9.9" = { created_at = 2024-02-23T05:52:27.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.9.9" }
+"1.10.0-M1" = { created_at = 2023-12-07T07:42:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.0-M1", prerelease = true }
+"1.10.0-RC1" = { created_at = 2024-04-09T06:56:43.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.0-RC1", prerelease = true }
+"1.10.0-RC2" = { created_at = 2024-04-15T05:48:56.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.0-RC2", prerelease = true }
+"1.10.0" = { created_at = 2024-05-06T03:36:23.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.0" }
+"1.10.1" = { created_at = 2024-07-07T22:35:01.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.1" }
+"1.10.2" = { created_at = 2024-09-16T02:24:29.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.2" }
+"1.10.3" = { created_at = 2024-10-20T03:26:21.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.3" }
+"1.10.4" = { created_at = 2024-10-28T10:28:41.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.4" }
+"1.10.5" = { created_at = 2024-11-04T01:46:46.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.5" }
+"1.10.6" = { created_at = 2024-11-30T07:09:14.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.6" }
+"1.10.7" = { created_at = 2024-12-23T03:36:15.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.7" }
+"1.10.8" = { created_at = 2025-03-03T16:34:30.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.8", prerelease = true }
+"1.10.9" = { created_at = 2025-03-03T21:13:15.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.9" }
+"1.10.10" = { created_at = 2025-03-04T06:13:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.10" }
+"1.10.11" = { created_at = 2025-03-17T05:55:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.10.11" }
+"1.11.0-RC1" = { created_at = 2025-05-17T20:55:20.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.0-RC1", prerelease = true }
+"1.11.0-RC2" = { created_at = 2025-05-18T20:19:43.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.0-RC2", prerelease = true }
+"1.11.0" = { created_at = 2025-05-24T07:06:51.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.0" }
+"1.11.1" = { created_at = 2025-06-02T04:33:39.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.1" }
+"1.11.2" = { created_at = 2025-06-07T20:37:36.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.2" }
+"1.11.3" = { created_at = 2025-07-05T22:41:08.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.3" }
+"1.11.4" = { created_at = 2025-08-04T10:25:03.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.4" }
+"1.11.5" = { created_at = 2025-08-24T20:37:29.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.5" }
+"1.11.6" = { created_at = 2025-09-06T23:15:12.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.6" }
+"1.11.7" = { created_at = 2025-10-05T20:00:07.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.11.7" }
+"1.12.0-M1" = { created_at = 2025-11-02T07:36:44.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.0-M1", prerelease = true }
+"1.12.0-M2" = { created_at = 2025-11-25T06:11:55.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.0-M2", prerelease = true }
+"1.12.0-RC1" = { created_at = 2025-12-20T04:55:20.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.0-RC1", prerelease = true }
+"1.12.0" = { created_at = 2026-01-05T02:38:45.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.0" }
+"1.12.1" = { created_at = 2026-01-26T11:38:02.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.1" }
+"1.12.2" = { created_at = 2026-02-04T05:36:49.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.2" }
+"1.12.3" = { created_at = 2026-02-15T00:43:04.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.3" }
+"1.12.4" = { created_at = 2026-02-23T09:01:13.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.4" }
+"1.12.5" = { created_at = 2026-03-01T23:26:53.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.5" }
+"1.12.6" = { created_at = 2026-03-16T02:59:49.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.6" }
+"1.12.7" = { created_at = 2026-03-23T22:30:14.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.7" }
+"1.12.8" = { created_at = 2026-03-25T02:29:13.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.8" }
+"1.12.9" = { created_at = 2026-04-07T04:40:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.9" }
+"1.12.10" = { created_at = 2026-04-27T06:12:08.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.10" }
+"1.12.11" = { created_at = 2026-05-02T20:32:41.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.11" }
+"1.12.12" = { created_at = 2026-06-14T06:28:49.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.12" }
+"1.12.13" = { created_at = 2026-06-21T22:11:41.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.13" }
+"1.12.14" = { created_at = 2026-07-16T23:57:07.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.14" }
+"1.12.15" = { created_at = 2026-08-07T02:15:32.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.12.15" }
+"1.13.0" = { created_at = 2026-08-21T02:04:48.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v1.13.0" }
+"2.0.0-M3" = { created_at = 2024-12-18T07:45:41.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-M3", prerelease = true }
+"2.0.0-M4" = { created_at = 2025-03-12T05:50:28.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-M4", prerelease = true }
+"2.0.0-RC1" = { created_at = 2025-08-11T00:35:16.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC1", prerelease = true }
+"2.0.0-RC10" = { created_at = 2026-03-26T04:52:59.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC10", prerelease = true }
+"2.0.0-RC11" = { created_at = 2026-04-07T05:16:55.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC11", prerelease = true }
+"2.0.0-RC12" = { created_at = 2026-04-13T07:16:26.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC12", prerelease = true }
+"2.0.0-RC13" = { created_at = 2026-05-17T19:48:46.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC13", prerelease = true }
+"2.0.0-RC14" = { created_at = 2026-06-01T15:29:32.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC14", prerelease = true }
+"2.0.0-RC15" = { created_at = 2026-06-08T04:41:28.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC15", prerelease = true }
+"2.0.0-RC16" = { created_at = 2026-06-11T03:11:43.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC16", prerelease = true }
+"2.0.0-RC2" = { created_at = 2025-08-11T00:33:48.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC2", prerelease = true }
+"2.0.0-RC3" = { created_at = 2025-08-16T23:04:59.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC3", prerelease = true }
+"2.0.0-RC4" = { created_at = 2025-08-31T05:47:00.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC4", prerelease = true }
+"2.0.0-RC5" = { created_at = 2025-09-21T21:55:00.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC5", prerelease = true }
+"2.0.0-RC6" = { created_at = 2025-09-29T06:42:34.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC6", prerelease = true }
+"2.0.0-RC7" = { created_at = 2025-11-26T05:52:14.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC7", prerelease = true }
+"2.0.0-RC8" = { created_at = 2026-01-05T06:58:38.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC8", prerelease = true }
+"2.0.0-RC9" = { created_at = 2026-02-16T06:05:42.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0-RC9", prerelease = true }
+"2.0.0" = { created_at = 2026-06-14T23:30:22.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.0" }
+"2.0.1" = { created_at = 2026-06-29T03:55:10.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.1" }
+"2.0.2" = { created_at = 2026-07-13T05:13:12.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.2" }
+"2.0.3" = { created_at = 2026-07-17T00:38:48.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.3" }
+"2.0.4" = { created_at = 2026-07-26T21:16:55.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.4" }
+"2.0.5" = { created_at = 2026-08-03T22:49:48.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.5" }
+"2.0.6" = { created_at = 2026-08-07T02:53:26.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.6" }
+"2.0.7" = { created_at = 2026-08-21T03:09:54.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.7" }
+"2.0.8" = { created_at = 2026-08-28T03:14:44.000Z, release_url = "https://github.com/sbt/sbt/releases/tag/v2.0.8" }

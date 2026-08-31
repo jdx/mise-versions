@@ -1,12 +1,13 @@
 [versions]
-"dev-2025-09" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2025-10" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2025-11" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2025-12" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2026-01" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2026-02" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2026-03" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2026-04" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2026-05" = { created_at = 2026-08-30T23:13:17.436Z }
-"dev-2026-06" = { created_at = 2026-08-30T23:13:17.436Z }
-"nightly" = { created_at = 2026-08-30T23:13:17.436Z }
+"dev-2025-09" = { created_at = 2025-10-12T00:05:27.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2025-09" }
+"dev-2025-10" = { created_at = 2025-11-02T21:48:58.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2025-10" }
+"dev-2025-11" = { created_at = 2025-11-13T20:13:04.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2025-11" }
+"dev-2025-12" = { created_at = 2026-01-06T04:11:09.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2025-12" }
+"dev-2026-01" = { created_at = 2026-01-31T20:28:23.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-01" }
+"dev-2026-02" = { created_at = 2026-02-12T02:00:39.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-02" }
+"dev-2026-03" = { created_at = 2026-03-17T06:00:24.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-03" }
+"dev-2026-04" = { created_at = 2026-04-17T10:22:23.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-04" }
+"dev-2026-05" = { created_at = 2026-05-07T07:26:52.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-05" }
+"dev-2026-06" = { created_at = 2026-07-23T21:45:25.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-06" }
+"nightly" = { created_at = 2026-08-30T07:59:40.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/nightly", prerelease = true }
+"dev-2026-08" = { created_at = 2026-08-30T23:55:16.000Z, release_url = "https://github.com/DanielGavin/ols/releases/tag/dev-2026-08" }
