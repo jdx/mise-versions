@@ -4,7 +4,6 @@ import { setupDatabase } from "../../../../src/database";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
-const RELEASE_FRESH_SECONDS = RELEASE_FRESH_MS / 1000;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
@@ -239,11 +238,9 @@ export async function getCachedGitHubRelease(
       expirationTtl: (data) =>
         data.assets.length === 0
           ? EMPTY_RELEASE_CACHE_TTL_SECONDS
-          : cacheGeneration
-            ? RELEASE_FRESH_SECONDS
-            : tag !== "latest" && data.immutable === true
-              ? undefined
-              : CACHE_TTL_SECONDS,
+          : tag !== "latest" && data.immutable === true
+            ? undefined
+            : CACHE_TTL_SECONDS,
       useStaleOnError: releaseStaleFallbackAllowed,
       onFetchError: async (error, cached) => {
         if (cached && githubStatus(error) === 404) {

@@ -75,3 +75,19 @@ test("invalid latest generations are ignored", () => {
     );
   `);
 });
+
+test("generation lookup failures fall back to legacy cache keys", () => {
+  runGenerationTest(`
+    import assert from "node:assert/strict";
+    import { getGitHubLatestReleaseGeneration } from "./web/src/lib/github/release-generation.ts";
+
+    const warnings = [];
+    console.warn = (...args) => warnings.push(args);
+    const cache = { get: async () => { throw new Error("KV unavailable"); } };
+    assert.equal(
+      await getGitHubLatestReleaseGeneration(cache, "owner", "repo"),
+      undefined,
+    );
+    assert.equal(warnings.length, 1);
+  `);
+});

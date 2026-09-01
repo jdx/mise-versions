@@ -48,8 +48,16 @@ export async function getGitHubLatestReleaseGeneration(
   owner: string,
   repo: string,
 ): Promise<string | undefined> {
-  const generation = await cache.get(latestReleaseGenerationKey(owner, repo));
-  return validGeneration(generation) ? generation : undefined;
+  try {
+    const generation = await cache.get(latestReleaseGenerationKey(owner, repo));
+    return validGeneration(generation) ? generation : undefined;
+  } catch (error) {
+    console.warn(
+      `failed to read GitHub latest release generation for ${owner}/${repo}:`,
+      error,
+    );
+    return undefined;
+  }
 }
 
 export async function rotateGitHubLatestReleaseGenerations(
