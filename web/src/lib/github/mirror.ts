@@ -4,6 +4,7 @@ import { setupDatabase } from "../../../../src/database";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
+const RELEASE_FRESH_SECONDS = RELEASE_FRESH_MS / 1000;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
@@ -90,7 +91,8 @@ export function cacheHeaders({
 export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
   const immutable = tag !== "latest" && release.immutable === true;
   return cacheHeaders({
-    browserMaxAge: immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
+    browserMaxAge:
+      tag === "latest" ? 0 : immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
     edgeMaxAge: immutable ? EDGE_IMMUTABLE_TTL_SECONDS : EDGE_SHORT_TTL_SECONDS,
     immutable,
   });
@@ -106,9 +108,14 @@ export function attestationsCacheHeaders() {
 
 export async function matchGitHubMirrorEdgeCache(
   request: Request,
+  cacheGeneration?: string,
 ): Promise<Response | null> {
   try {
-    return (await defaultEdgeCache().match(edgeCacheRequest(request))) ?? null;
+    return (
+      (await defaultEdgeCache().match(
+        edgeCacheRequest(request, cacheGeneration),
+      )) ?? null
+    );
   } catch (error) {
     console.warn("failed to read GitHub mirror edge cache:", error);
     return null;
@@ -124,7 +131,7 @@ export async function putGitHubMirrorEdgeCache(
 
   try {
     await defaultEdgeCache().put(
-      edgeCacheRequest(request),
+      edgeCacheRequest(request, options?.cacheGeneration),
       edgeCacheResponse(response, options),
     );
   } catch (error) {
@@ -136,6 +143,7 @@ interface EdgeCacheOptions {
   browserMaxAge?: number;
   edgeMaxAge?: number;
   staleWhileRevalidate?: number;
+  cacheGeneration?: string;
 }
 
 function edgeCacheResponse(
@@ -167,13 +175,16 @@ function defaultEdgeCache(): Cache {
   return (caches as unknown as { default: Cache }).default;
 }
 
-function edgeCacheRequest(request: Request): Request {
+function edgeCacheRequest(request: Request, cacheGeneration?: string): Request {
   // Query params are ignored by these mirror handlers, so strip them to avoid
   // unbounded cache-key variants. Cache API cold misses are not coalesced, and
   // cached allowlisted responses can outlive registry removals until this
   // capped edge TTL expires.
   const url = new URL(request.url);
   url.search = "";
+  if (cacheGeneration) {
+    url.searchParams.set("__mise_cache_generation", cacheGeneration);
+  }
   return new Request(url.toString(), { method: "GET" });
 }
 
@@ -203,9 +214,11 @@ export async function getCachedGitHubRelease(
   owner: string,
   repo: string,
   tag: string,
+  cacheGeneration?: string,
 ): Promise<GitHubRelease> {
-  const cacheKey = `github:release:${owner}/${repo}:${tag}`;
-  const negativeCacheKey = `github:release-error:${owner}/${repo}:${tag}`;
+  const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
+  const cacheKey = `github:release:${owner}/${repo}:${tag}${generationSuffix}`;
+  const negativeCacheKey = `github:release-error:${owner}/${repo}:${tag}${generationSuffix}`;
   const cachedError = await cachedReleaseError(env, negativeCacheKey);
   if (cachedError) {
     throw cachedError;
@@ -226,9 +239,11 @@ export async function getCachedGitHubRelease(
       expirationTtl: (data) =>
         data.assets.length === 0
           ? EMPTY_RELEASE_CACHE_TTL_SECONDS
-          : tag !== "latest" && data.immutable === true
-            ? undefined
-            : CACHE_TTL_SECONDS,
+          : cacheGeneration
+            ? RELEASE_FRESH_SECONDS
+            : tag !== "latest" && data.immutable === true
+              ? undefined
+              : CACHE_TTL_SECONDS,
       useStaleOnError: releaseStaleFallbackAllowed,
       onFetchError: async (error, cached) => {
         if (cached && githubStatus(error) === 404) {
@@ -724,6 +739,7 @@ class GitHubError extends Error {
 
 export const __testing = {
   GitHubError,
+  edgeCacheRequest,
   edgeCacheResponse,
   githubJsonHeaders,
   isGitHubApiUrl,

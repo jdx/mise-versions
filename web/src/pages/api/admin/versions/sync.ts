@@ -11,6 +11,7 @@ import {
   runAnalyticsMigrations,
   setupAnalytics,
 } from "../../../../../../src/analytics";
+import { rotateGitHubLatestReleaseGenerations } from "../../../../lib/github/release-generation";
 
 interface VersionData {
   version: string;
@@ -262,12 +263,21 @@ export const POST: APIRoute = async ({ request, locals }) => {
     }
   }
 
+  // Rotate mutable `releases/latest` cache keys after the catalog is synced.
+  // Exact-tag release caches remain reusable, while the next latest lookup is
+  // guaranteed not to reuse metadata from an earlier catalog generation.
+  const latestCacheGenerations = await rotateGitHubLatestReleaseGenerations(
+    env.GITHUB_CACHE,
+    body.tools,
+  );
+
   return jsonResponse({
     success: true,
     tools_processed: toolsProcessed,
     versions_upserted: versionsUpserted,
     versions_deleted: versionsDeleted,
     new_versions: newVersionsTotal,
+    latest_cache_generations: latestCacheGenerations,
     errors,
   });
 };

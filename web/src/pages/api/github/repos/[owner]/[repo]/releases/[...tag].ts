@@ -11,6 +11,7 @@ import {
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
 import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
+import { getGitHubLatestReleaseGeneration } from "../../../../../../../lib/github/release-generation";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo } = params;
@@ -31,7 +32,11 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     return errorResponse("Invalid GitHub release path", 400);
   }
 
-  const cached = await matchGitHubMirrorEdgeCache(request);
+  const cacheGeneration =
+    tag === "latest"
+      ? await getGitHubLatestReleaseGeneration(env.GITHUB_CACHE, owner, repo)
+      : undefined;
+  const cached = await matchGitHubMirrorEdgeCache(request, cacheGeneration);
   if (cached) return cached;
 
   let registered: boolean;
@@ -46,13 +51,24 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   }
 
   try {
-    const release = await getCachedGitHubRelease(env, owner, repo, tag);
+    const release = await getCachedGitHubRelease(
+      env,
+      owner,
+      repo,
+      tag,
+      cacheGeneration,
+    );
     const response = jsonResponse(
       release,
       200,
       releaseCacheHeaders(tag, release),
     );
-    locals.cfContext.waitUntil(putGitHubMirrorEdgeCache(request, response));
+    locals.cfContext.waitUntil(
+      putGitHubMirrorEdgeCache(request, response, {
+        browserMaxAge: tag === "latest" ? 0 : undefined,
+        cacheGeneration,
+      }),
+    );
     return response;
   } catch (error) {
     console.error(
