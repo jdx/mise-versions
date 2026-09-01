@@ -53,6 +53,176 @@ test("GitHub release mirror caches empty assets as a short cache miss", () => {
   `);
 });
 
+test("catalog generations isolate mutable latest caches", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      __testing,
+      getCachedGitHubRelease,
+      releaseCacheHeaders,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const generation = "123e4567-e89b-42d3-a456-426614174000";
+    const reads = [];
+    const writes = [];
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response(JSON.stringify({
+        tag_name: "v2.0.0",
+        draft: false,
+        prerelease: false,
+        created_at: "2026-09-01T00:00:00Z",
+        published_at: "2026-09-01T00:00:00Z",
+        assets: [{
+          name: "tool.tar.gz",
+          browser_download_url: "https://github.com/owner/repo/releases/download/v2.0.0/tool.tar.gz",
+          url: "https://api.github.com/repos/owner/repo/releases/assets/2",
+        }],
+      }), { status: 200 });
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          reads.push(key);
+          if (key === "github:release:owner/repo:latest") {
+            return {
+              cached_at: Date.now(),
+              data: { tag_name: "v1.0.0", assets: [{}] },
+            };
+          }
+          return null;
+        },
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    const release = await getCachedGitHubRelease(
+      env,
+      "Owner",
+      "Repo",
+      "latest",
+      generation,
+    );
+
+    assert.equal(fetches, 1);
+    assert.equal(release.tag_name, "v2.0.0");
+    assert.equal(reads.includes("github:release:owner/repo:latest"), false);
+    assert.equal(
+      writes[0].key,
+      "github:release:owner/repo:latest:" + generation,
+    );
+    assert.deepEqual(writes[0].options, { expirationTtl: 2592000 });
+    assert.equal(
+      releaseCacheHeaders("latest", release)["Cache-Control"],
+      "public, max-age=0, s-maxage=3600",
+    );
+    assert.equal(
+      __testing.edgeCacheResponse(new Response("latest"), {
+        browserMaxAge: 0,
+        staleWhileRevalidate: 0,
+      }).headers.get("Cache-Control"),
+      "public, max-age=0, s-maxage=3600",
+    );
+    assert.equal(
+      new URL(
+        __testing.edgeCacheRequest(
+          new Request("https://example.com/releases/latest?ignored=1"),
+          generation,
+        ).url,
+      ).searchParams.get("__mise_cache_generation"),
+      generation,
+    );
+  `);
+});
+
+test("catalog generations preserve stale latest fallback", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+
+    const generation = "123e4567-e89b-42d3-a456-426614174000";
+    const cacheKey = "github:release:owner/repo:latest:" + generation;
+    const staleRelease = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      assets: [{ name: "tool.tar.gz" }],
+    };
+    globalThis.fetch = async () => {
+      throw new Error("GitHub unavailable");
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => key === cacheKey
+          ? { cached_at: Date.now() - 7 * 60 * 60 * 1000, data: staleRelease }
+          : null,
+        put: async () => {
+          throw new Error("stale fallback should not write");
+        },
+      },
+    };
+
+    assert.deepEqual(
+      await getCachedGitHubRelease(
+        env,
+        "owner",
+        "repo",
+        "latest",
+        generation,
+      ),
+      staleRelease,
+    );
+  `);
+});
+
+test("catalog rotations fall back to the previous latest generation", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubReleaseResult } from "./web/src/lib/github/mirror.ts";
+
+    const current = "123e4567-e89b-42d3-a456-426614174000";
+    const previous = "123e4567-e89b-42d3-a456-426614174001";
+    const previousCacheKey = "github:release:owner/repo:latest:" + previous;
+    const staleRelease = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      assets: [{ name: "tool.tar.gz" }],
+    };
+    globalThis.fetch = async () => {
+      throw new Error("GitHub unavailable after catalog rotation");
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => key === previousCacheKey
+          ? { cached_at: Date.now() - 7 * 60 * 60 * 1000, data: staleRelease }
+          : null,
+        put: async () => {
+          throw new Error("previous-generation fallback should not write");
+        },
+      },
+    };
+
+    assert.deepEqual(
+      await getCachedGitHubReleaseResult(
+        env,
+        "owner",
+        "repo",
+        "latest",
+        current,
+        previous,
+      ),
+      { release: staleRelease, staleFallback: true },
+    );
+  `);
+});
+
 test("GitHub release mirror follows API redirects", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";

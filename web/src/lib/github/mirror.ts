@@ -90,8 +90,10 @@ export function cacheHeaders({
 export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
   const immutable = tag !== "latest" && release.immutable === true;
   return cacheHeaders({
-    browserMaxAge: immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
+    browserMaxAge:
+      tag === "latest" ? 0 : immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
     edgeMaxAge: immutable ? EDGE_IMMUTABLE_TTL_SECONDS : EDGE_SHORT_TTL_SECONDS,
+    staleWhileRevalidate: tag === "latest" ? 0 : undefined,
     immutable,
   });
 }
@@ -106,9 +108,14 @@ export function attestationsCacheHeaders() {
 
 export async function matchGitHubMirrorEdgeCache(
   request: Request,
+  cacheGeneration?: string,
 ): Promise<Response | null> {
   try {
-    return (await defaultEdgeCache().match(edgeCacheRequest(request))) ?? null;
+    return (
+      (await defaultEdgeCache().match(
+        edgeCacheRequest(request, cacheGeneration),
+      )) ?? null
+    );
   } catch (error) {
     console.warn("failed to read GitHub mirror edge cache:", error);
     return null;
@@ -124,7 +131,7 @@ export async function putGitHubMirrorEdgeCache(
 
   try {
     await defaultEdgeCache().put(
-      edgeCacheRequest(request),
+      edgeCacheRequest(request, options?.cacheGeneration),
       edgeCacheResponse(response, options),
     );
   } catch (error) {
@@ -136,6 +143,7 @@ interface EdgeCacheOptions {
   browserMaxAge?: number;
   edgeMaxAge?: number;
   staleWhileRevalidate?: number;
+  cacheGeneration?: string;
 }
 
 function edgeCacheResponse(
@@ -167,13 +175,16 @@ function defaultEdgeCache(): Cache {
   return (caches as unknown as { default: Cache }).default;
 }
 
-function edgeCacheRequest(request: Request): Request {
+function edgeCacheRequest(request: Request, cacheGeneration?: string): Request {
   // Query params are ignored by these mirror handlers, so strip them to avoid
   // unbounded cache-key variants. Cache API cold misses are not coalesced, and
   // cached allowlisted responses can outlive registry removals until this
   // capped edge TTL expires.
   const url = new URL(request.url);
   url.search = "";
+  if (cacheGeneration) {
+    url.searchParams.set("__mise_cache_generation", cacheGeneration);
+  }
   return new Request(url.toString(), { method: "GET" });
 }
 
@@ -203,15 +214,40 @@ export async function getCachedGitHubRelease(
   owner: string,
   repo: string,
   tag: string,
+  cacheGeneration?: string,
+  previousCacheGeneration?: string,
 ): Promise<GitHubRelease> {
-  const cacheKey = `github:release:${owner}/${repo}:${tag}`;
-  const negativeCacheKey = `github:release-error:${owner}/${repo}:${tag}`;
+  return (
+    await getCachedGitHubReleaseResult(
+      env,
+      owner,
+      repo,
+      tag,
+      cacheGeneration,
+      previousCacheGeneration,
+    )
+  ).release;
+}
+
+export async function getCachedGitHubReleaseResult(
+  env: Env,
+  owner: string,
+  repo: string,
+  tag: string,
+  cacheGeneration?: string,
+  previousCacheGeneration?: string,
+): Promise<{ release: GitHubRelease; staleFallback: boolean }> {
+  const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
+  const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
+  const cacheKey = `github:release:${cacheRepository}:${tag}${generationSuffix}`;
+  const negativeCacheKey = `github:release-error:${cacheRepository}:${tag}${generationSuffix}`;
   const cachedError = await cachedReleaseError(env, negativeCacheKey);
   if (cachedError) {
     throw cachedError;
   }
 
   let release: GitHubRelease;
+  let staleFallback = false;
   try {
     release = await getOrRefresh({
       env,
@@ -230,6 +266,13 @@ export async function getCachedGitHubRelease(
             ? undefined
             : CACHE_TTL_SECONDS,
       useStaleOnError: releaseStaleFallbackAllowed,
+      onStaleFallback: () => {
+        staleFallback = true;
+      },
+      staleCacheKey:
+        tag === "latest" && cacheGeneration
+          ? `github:release:${cacheRepository}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
+          : undefined,
       onFetchError: async (error, cached) => {
         if (cached && githubStatus(error) === 404) {
           await deleteCachedRelease(env, cacheKey);
@@ -254,7 +297,7 @@ export async function getCachedGitHubRelease(
       new Headers(),
     );
   }
-  return release;
+  return { release, staleFallback };
 }
 
 async function cachedReleaseError(
@@ -355,6 +398,8 @@ async function getOrRefresh<T>({
   fetcher,
   expirationTtl,
   useStaleOnError = () => true,
+  staleCacheKey,
+  onStaleFallback,
   onFetchError,
 }: {
   env: Env;
@@ -363,6 +408,8 @@ async function getOrRefresh<T>({
   fetcher: (token: TokenRecord | null) => Promise<T>;
   expirationTtl?: (data: T) => number | undefined;
   useStaleOnError?: (error: unknown) => boolean;
+  staleCacheKey?: string;
+  onStaleFallback?: () => void;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -390,7 +437,22 @@ async function getOrRefresh<T>({
     }
     await onFetchError?.(error, cached);
     if (cached && useStaleOnError(error)) {
+      onStaleFallback?.();
       return cached.data;
+    }
+    if (staleCacheKey && useStaleOnError(error)) {
+      try {
+        const stale = await env.GITHUB_CACHE.get<CacheEntry<T>>(
+          staleCacheKey,
+          "json",
+        );
+        if (stale) {
+          onStaleFallback?.();
+          return stale.data;
+        }
+      } catch (cacheError) {
+        console.warn("failed to read fallback GitHub cache entry:", cacheError);
+      }
     }
     throw error;
   }
@@ -724,6 +786,7 @@ class GitHubError extends Error {
 
 export const __testing = {
   GitHubError,
+  edgeCacheRequest,
   edgeCacheResponse,
   githubJsonHeaders,
   isGitHubApiUrl,

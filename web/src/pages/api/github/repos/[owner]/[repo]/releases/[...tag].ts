@@ -2,7 +2,8 @@ import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
-  getCachedGitHubRelease,
+  cacheHeaders,
+  getCachedGitHubReleaseResult,
   githubStatus,
   matchGitHubMirrorEdgeCache,
   putGitHubMirrorEdgeCache,
@@ -11,6 +12,7 @@ import {
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
 import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
+import { getGitHubLatestReleaseGenerations } from "../../../../../../../lib/github/release-generation";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo } = params;
@@ -31,7 +33,12 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     return errorResponse("Invalid GitHub release path", 400);
   }
 
-  const cached = await matchGitHubMirrorEdgeCache(request);
+  const cacheGenerations =
+    tag === "latest"
+      ? await getGitHubLatestReleaseGenerations(env.GITHUB_CACHE, owner, repo)
+      : undefined;
+  const cacheGeneration = cacheGenerations?.current;
+  const cached = await matchGitHubMirrorEdgeCache(request, cacheGeneration);
   if (cached) return cached;
 
   let registered: boolean;
@@ -46,13 +53,34 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   }
 
   try {
-    const release = await getCachedGitHubRelease(env, owner, repo, tag);
+    const { release, staleFallback } = await getCachedGitHubReleaseResult(
+      env,
+      owner,
+      repo,
+      tag,
+      cacheGeneration,
+      cacheGenerations?.previous,
+    );
     const response = jsonResponse(
       release,
       200,
-      releaseCacheHeaders(tag, release),
+      staleFallback
+        ? cacheHeaders({
+            browserMaxAge: 0,
+            edgeMaxAge: 0,
+            staleWhileRevalidate: 0,
+          })
+        : releaseCacheHeaders(tag, release),
     );
-    locals.cfContext.waitUntil(putGitHubMirrorEdgeCache(request, response));
+    if (!staleFallback) {
+      locals.cfContext.waitUntil(
+        putGitHubMirrorEdgeCache(request, response, {
+          browserMaxAge: tag === "latest" ? 0 : undefined,
+          staleWhileRevalidate: tag === "latest" ? 0 : undefined,
+          cacheGeneration,
+        }),
+      );
+    }
     return response;
   } catch (error) {
     console.error(
