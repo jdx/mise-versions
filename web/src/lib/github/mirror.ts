@@ -93,6 +93,7 @@ export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
     browserMaxAge:
       tag === "latest" ? 0 : immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
     edgeMaxAge: immutable ? EDGE_IMMUTABLE_TTL_SECONDS : EDGE_SHORT_TTL_SECONDS,
+    staleWhileRevalidate: tag === "latest" ? 0 : undefined,
     immutable,
   });
 }
@@ -214,6 +215,7 @@ export async function getCachedGitHubRelease(
   repo: string,
   tag: string,
   cacheGeneration?: string,
+  previousCacheGeneration?: string,
 ): Promise<GitHubRelease> {
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const cacheKey = `github:release:${owner}/${repo}:${tag}${generationSuffix}`;
@@ -242,6 +244,10 @@ export async function getCachedGitHubRelease(
             ? undefined
             : CACHE_TTL_SECONDS,
       useStaleOnError: releaseStaleFallbackAllowed,
+      staleCacheKey:
+        tag === "latest" && cacheGeneration
+          ? `github:release:${owner}/${repo}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
+          : undefined,
       onFetchError: async (error, cached) => {
         if (cached && githubStatus(error) === 404) {
           await deleteCachedRelease(env, cacheKey);
@@ -367,6 +373,7 @@ async function getOrRefresh<T>({
   fetcher,
   expirationTtl,
   useStaleOnError = () => true,
+  staleCacheKey,
   onFetchError,
 }: {
   env: Env;
@@ -375,6 +382,7 @@ async function getOrRefresh<T>({
   fetcher: (token: TokenRecord | null) => Promise<T>;
   expirationTtl?: (data: T) => number | undefined;
   useStaleOnError?: (error: unknown) => boolean;
+  staleCacheKey?: string;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -403,6 +411,17 @@ async function getOrRefresh<T>({
     await onFetchError?.(error, cached);
     if (cached && useStaleOnError(error)) {
       return cached.data;
+    }
+    if (staleCacheKey && useStaleOnError(error)) {
+      try {
+        const stale = await env.GITHUB_CACHE.get<CacheEntry<T>>(
+          staleCacheKey,
+          "json",
+        );
+        if (stale) return stale.data;
+      } catch (cacheError) {
+        console.warn("failed to read fallback GitHub cache entry:", cacheError);
+      }
     }
     throw error;
   }

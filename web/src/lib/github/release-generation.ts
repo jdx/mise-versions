@@ -8,6 +8,11 @@ interface ToolReleaseData {
   versions?: VersionReleaseData[];
 }
 
+export interface GitHubLatestReleaseGenerations {
+  current: string;
+  previous?: string;
+}
+
 function repositoryFromReleaseUrl(
   releaseUrl: string | null | undefined,
 ): string | null {
@@ -43,14 +48,43 @@ function validGeneration(value: string | null): value is string {
   );
 }
 
-export async function getGitHubLatestReleaseGeneration(
+function parseGenerations(
+  value: string | null,
+): GitHubLatestReleaseGenerations | undefined {
+  if (validGeneration(value)) return { current: value };
+  if (!value) return undefined;
+
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return undefined;
+    }
+    const record = parsed as Record<string, unknown>;
+    if (!validGenerationValue(record.current)) return undefined;
+    return {
+      current: record.current,
+      previous: validGenerationValue(record.previous)
+        ? record.previous
+        : undefined,
+    };
+  } catch {
+    return undefined;
+  }
+}
+
+function validGenerationValue(value: unknown): value is string {
+  return typeof value === "string" && validGeneration(value);
+}
+
+export async function getGitHubLatestReleaseGenerations(
   cache: KVNamespace,
   owner: string,
   repo: string,
-): Promise<string | undefined> {
+): Promise<GitHubLatestReleaseGenerations | undefined> {
   try {
-    const generation = await cache.get(latestReleaseGenerationKey(owner, repo));
-    return validGeneration(generation) ? generation : undefined;
+    return parseGenerations(
+      await cache.get(latestReleaseGenerationKey(owner, repo)),
+    );
   } catch (error) {
     console.warn(
       `failed to read GitHub latest release generation for ${owner}/${repo}:`,
@@ -74,19 +108,21 @@ export async function rotateGitHubLatestReleaseGenerations(
     }
   }
 
-  await Promise.all(
-    [...repositories].map((repository) =>
-      cache.put(
-        `${LATEST_RELEASE_GENERATION_PREFIX}${repository}`,
-        crypto.randomUUID(),
-      ),
-    ),
-  );
+  for (const repository of repositories) {
+    const key = `${LATEST_RELEASE_GENERATION_PREFIX}${repository}`;
+    const existing = parseGenerations(await cache.get(key));
+    const generations: GitHubLatestReleaseGenerations = {
+      current: crypto.randomUUID(),
+      previous: existing?.current,
+    };
+    await cache.put(key, JSON.stringify(generations));
+  }
   return repositories.size;
 }
 
 export const __testing = {
   latestReleaseGenerationKey,
+  parseGenerations,
   repositoryFromReleaseUrl,
   validGeneration,
 };

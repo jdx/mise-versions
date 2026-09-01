@@ -116,7 +116,14 @@ test("catalog generations isolate mutable latest caches", () => {
     assert.deepEqual(writes[0].options, { expirationTtl: 2592000 });
     assert.equal(
       releaseCacheHeaders("latest", release)["Cache-Control"],
-      "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+      "public, max-age=0, s-maxage=3600",
+    );
+    assert.equal(
+      __testing.edgeCacheResponse(new Response("latest"), {
+        browserMaxAge: 0,
+        staleWhileRevalidate: 0,
+      }).headers.get("Cache-Control"),
+      "public, max-age=0, s-maxage=3600",
     );
     assert.equal(
       new URL(
@@ -166,6 +173,50 @@ test("catalog generations preserve stale latest fallback", () => {
         "repo",
         "latest",
         generation,
+      ),
+      staleRelease,
+    );
+  `);
+});
+
+test("catalog rotations fall back to the previous latest generation", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+
+    const current = "123e4567-e89b-42d3-a456-426614174000";
+    const previous = "123e4567-e89b-42d3-a456-426614174001";
+    const previousCacheKey = "github:release:owner/repo:latest:" + previous;
+    const staleRelease = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      assets: [{ name: "tool.tar.gz" }],
+    };
+    globalThis.fetch = async () => {
+      throw new Error("GitHub unavailable after catalog rotation");
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => key === previousCacheKey
+          ? { cached_at: Date.now() - 7 * 60 * 60 * 1000, data: staleRelease }
+          : null,
+        put: async () => {
+          throw new Error("previous-generation fallback should not write");
+        },
+      },
+    };
+
+    assert.deepEqual(
+      await getCachedGitHubRelease(
+        env,
+        "owner",
+        "repo",
+        "latest",
+        current,
+        previous,
       ),
       staleRelease,
     );

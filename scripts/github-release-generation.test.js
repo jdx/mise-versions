@@ -19,7 +19,7 @@ test("catalog sync rotates one latest generation per GitHub repository", () => {
   runGenerationTest(`
     import assert from "node:assert/strict";
     import {
-      getGitHubLatestReleaseGeneration,
+      getGitHubLatestReleaseGenerations,
       rotateGitHubLatestReleaseGenerations,
     } from "./web/src/lib/github/release-generation.ts";
 
@@ -54,23 +54,36 @@ test("catalog sync rotates one latest generation per GitHub repository", () => {
       "github:release-generation:other/tool",
       "github:release-generation:owner/repo",
     ]);
-    const generation = await getGitHubLatestReleaseGeneration(
+    const generation = await getGitHubLatestReleaseGenerations(
       cache,
       "OWNER",
       "REPO",
     );
-    assert.match(generation, /^[0-9a-f-]{36}$/);
+    assert.match(generation.current, /^[0-9a-f-]{36}$/);
+
+    await rotateGitHubLatestReleaseGenerations(cache, [{
+      versions: [
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.2.0" },
+      ],
+    }]);
+    const rotated = await getGitHubLatestReleaseGenerations(
+      cache,
+      "owner",
+      "repo",
+    );
+    assert.notEqual(rotated.current, generation.current);
+    assert.equal(rotated.previous, generation.current);
   `);
 });
 
 test("invalid latest generations are ignored", () => {
   runGenerationTest(`
     import assert from "node:assert/strict";
-    import { getGitHubLatestReleaseGeneration } from "./web/src/lib/github/release-generation.ts";
+    import { getGitHubLatestReleaseGenerations } from "./web/src/lib/github/release-generation.ts";
 
     const cache = { get: async () => "../../untrusted" };
     assert.equal(
-      await getGitHubLatestReleaseGeneration(cache, "owner", "repo"),
+      await getGitHubLatestReleaseGenerations(cache, "owner", "repo"),
       undefined,
     );
   `);
@@ -79,13 +92,13 @@ test("invalid latest generations are ignored", () => {
 test("generation lookup failures fall back to legacy cache keys", () => {
   runGenerationTest(`
     import assert from "node:assert/strict";
-    import { getGitHubLatestReleaseGeneration } from "./web/src/lib/github/release-generation.ts";
+    import { getGitHubLatestReleaseGenerations } from "./web/src/lib/github/release-generation.ts";
 
     const warnings = [];
     console.warn = (...args) => warnings.push(args);
     const cache = { get: async () => { throw new Error("KV unavailable"); } };
     assert.equal(
-      await getGitHubLatestReleaseGeneration(cache, "owner", "repo"),
+      await getGitHubLatestReleaseGenerations(cache, "owner", "repo"),
       undefined,
     );
     assert.equal(warnings.length, 1);
