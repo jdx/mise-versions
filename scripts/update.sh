@@ -344,14 +344,14 @@ generate_summary() {
 | Metric | Value |
 |--------|-------|
 | JSON Metadata Fallbacks | $(get_stat "total_json_metadata_fallbacks") |
-| New Versions Added Via Fallback | ${fallback_new_versions_count} |
+| New Versions Rejected Without Metadata | ${fallback_new_versions_count} |
 SUMMARY_EOF
 
 	append_summary_list_section "📦 Updated Tools" "updated_tools_list" "No tools were updated in this run." "docs_link" "$commit_hash"
 	append_summary_list_section "❌ Failed Tools" "failed_tools_list" "No tools failed in this run." "code" "$commit_hash"
 	append_summary_list_section "📭 No Versions" "no_versions_tools_list" "No tools returned an empty version list." "code" "$commit_hash"
-	append_summary_list_section "🔁 JSON Metadata Fallbacks" "json_metadata_fallback_tools_list" "No tools needed plain-text fallback after an empty JSON metadata response." "docs_link" "$commit_hash"
-	append_summary_list_section "🆕 New Versions Added Via Fallback" "fallback_new_versions_list" "No new versions were added through the plain-text fallback path." "fallback_version" "$commit_hash"
+	append_summary_list_section "🔁 JSON Metadata Fallbacks" "json_metadata_fallback_tools_list" "No tools needed a plain-text fallback after a JSON metadata failure." "docs_link" "$commit_hash"
+	append_summary_list_section "🚫 New Versions Rejected Without Metadata" "fallback_new_versions_list" "No new versions were rejected because of missing metadata." "fallback_version" "$commit_hash"
 
 	# Output to GitHub Actions summary
 	if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
@@ -440,8 +440,9 @@ generate_toml_file() {
 		return
 	fi
 
-	local error_output
+	local error_output metadata_error_output
 	error_output=$(mktemp)
+	metadata_error_output=$(mktemp)
 
 	# Try to get JSON with timestamps/release URLs/prerelease flags from
 	# mise ls-remote --minimum-release-age 0s --prerelease --json. The TOML path can carry prerelease
@@ -455,50 +456,68 @@ generate_toml_file() {
 	# plain-text path — losing `release_url` and `created_at` for any new
 	# version that wasn't already in the existing TOML.
 	local json_output
-	local json_metadata_fallback=0
+	local json_metadata_fallback_reason=""
 	local fallback_new_versions=""
-	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --minimum-release-age 0s --prerelease --json "$tool" 2>/dev/null) && [ -n "$json_output" ]; then
-		local json_type json_count
-		read -r json_type json_count < <(printf '%s' "$json_output" | jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' 2>/dev/null || echo "invalid 0")
-		if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
-			# Convert JSON array to NDJSON and pipe to generate-toml.js
-			if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
-				if toml_has_versions "$toml_file.tmp"; then
-					mv "$toml_file.tmp" "$toml_file"
-					rm -f "$error_output"
-					return
+	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --minimum-release-age 0s --prerelease --json --no-versions-host --strict-metadata "$tool" 2>"$metadata_error_output"); then
+		if [ -z "$json_output" ]; then
+			json_metadata_fallback_reason="empty JSON metadata response"
+		else
+			local json_type json_count
+			read -r json_type json_count < <(printf '%s' "$json_output" | jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' 2>/dev/null || echo "invalid 0")
+			if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
+				# Convert JSON array to NDJSON and pipe to generate-toml.js
+				if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
+					if toml_has_versions "$toml_file.tmp"; then
+						mv "$toml_file.tmp" "$toml_file"
+						rm -f "$error_output" "$metadata_error_output"
+						return
+					fi
+					rm -f "$toml_file.tmp"
 				fi
-				rm -f "$toml_file.tmp"
+				json_metadata_fallback_reason="failed to generate TOML from JSON metadata"
+			elif [ "$json_type" = "array" ] && [ "${json_count:-0}" -eq 0 ]; then
+				json_metadata_fallback_reason="empty JSON metadata array"
+			else
+				json_metadata_fallback_reason="invalid JSON metadata response"
 			fi
-		elif [ "$json_type" = "array" ] && [ "${json_count:-0}" -eq 0 ]; then
-			json_metadata_fallback=1
-			increment_stat "total_json_metadata_fallbacks"
-			add_to_list "json_metadata_fallback_tools_list" "$tool"
-			log_info "mise ls-remote --json returned empty, using plain-text fallback" "tool=$tool"
 		fi
+	else
+		json_metadata_fallback_reason="mise ls-remote --json failed"
 	fi
 
-	# Fall back to plain text conversion (preserves existing timestamps).
-	# `fetch()` already guaranteed versions_file is non-empty, so this path
-	# should always produce a populated TOML.
-	if [ "$json_metadata_fallback" -eq 1 ]; then
-		fallback_new_versions=$(collect_fallback_new_versions "$tool" || true)
+	# Fall back to plain text only when it cannot introduce incomplete metadata.
+	# Existing versions retain their stored metadata, but a newly discovered
+	# version would otherwise receive the current time and lose fields such as
+	# release_url and prerelease. Skip the tool and retry it on the next run.
+	increment_stat "total_json_metadata_fallbacks"
+	add_to_list "json_metadata_fallback_tools_list" "$tool"
+	log_warn "Using plain-text fallback after metadata failure" "tool=$tool" "reason=$json_metadata_fallback_reason"
+	if [ -s "$metadata_error_output" ]; then
+		cat "$metadata_error_output" >&2
+	fi
+	fallback_new_versions=$(collect_fallback_new_versions "$tool" || true)
+	if [ -n "$fallback_new_versions" ]; then
+		record_fallback_new_versions "$tool" "$fallback_new_versions"
+		log_error "Refusing to add new versions without metadata" "tool=$tool"
+		rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+		return 1
 	fi
 	if jq -R -c 'select(length > 0) | {version: .}' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 		if toml_has_versions "$toml_file.tmp"; then
 			mv "$toml_file.tmp" "$toml_file"
-			record_fallback_new_versions "$tool" "$fallback_new_versions"
-			rm -f "$error_output"
+			rm -f "$error_output" "$metadata_error_output"
 		else
 			log_warn "Generated TOML had no versions, refusing to overwrite" "tool=$tool"
-			rm -f "$toml_file.tmp" "$error_output"
+			rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+			return 1
 		fi
 	else
 		echo "Warning: Failed to generate TOML for $tool" >&2
 		if [ -s "$error_output" ]; then
 			cat "$error_output" >&2
 		fi
-		rm -f "$toml_file.tmp" "$error_output"
+		rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+		return 1
 	fi
 }
 
@@ -647,7 +666,11 @@ fetch() {
 		;;
 	esac
 
-	generate_toml_file "$tool" "$token"
+	if ! generate_toml_file "$tool" "$token"; then
+		rm -f "docs/$tool"
+		echo "failed" >"$status_file"
+		return 1
+	fi
 	rm -f "docs/$tool"
 	echo "fetched" >"$status_file"
 }

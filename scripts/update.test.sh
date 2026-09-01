@@ -208,6 +208,30 @@ test_json_collection_disables_release_age_filtering() {
 }
 test_json_collection_disables_release_age_filtering
 
+test_json_collection_requires_upstream_metadata() {
+	local command
+	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+
+	assert_contains "$command" '--no-versions-host' \
+		"JSON metadata collection explicitly bypasses the versions host"
+	assert_contains "$command" '--strict-metadata' \
+		"JSON metadata collection fails when upstream metadata fails"
+}
+test_json_collection_requires_upstream_metadata
+
+test_new_versions_are_rejected_during_metadata_fallback() {
+	local fallback_block
+	fallback_block=$(sed -n '/fallback_new_versions=$(collect_fallback_new_versions/,/if jq -R -c/p' scripts/update.sh)
+
+	assert_contains "$fallback_block" 'if [ -n "$fallback_new_versions" ]; then' \
+		"Metadata fallback detects newly discovered versions"
+	assert_contains "$fallback_block" 'Refusing to add new versions without metadata' \
+		"Metadata fallback rejects incomplete new versions"
+	assert_contains "$fallback_block" 'return 1' \
+		"Metadata fallback fails the tool update"
+}
+test_new_versions_are_rejected_during_metadata_fallback
+
 test_docker_collection_disables_release_age_filtering() {
 	local command
 	command=$(awk '
