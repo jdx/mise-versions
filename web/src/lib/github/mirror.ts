@@ -217,6 +217,26 @@ export async function getCachedGitHubRelease(
   cacheGeneration?: string,
   previousCacheGeneration?: string,
 ): Promise<GitHubRelease> {
+  return (
+    await getCachedGitHubReleaseResult(
+      env,
+      owner,
+      repo,
+      tag,
+      cacheGeneration,
+      previousCacheGeneration,
+    )
+  ).release;
+}
+
+export async function getCachedGitHubReleaseResult(
+  env: Env,
+  owner: string,
+  repo: string,
+  tag: string,
+  cacheGeneration?: string,
+  previousCacheGeneration?: string,
+): Promise<{ release: GitHubRelease; staleFallback: boolean }> {
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const cacheKey = `github:release:${owner}/${repo}:${tag}${generationSuffix}`;
   const negativeCacheKey = `github:release-error:${owner}/${repo}:${tag}${generationSuffix}`;
@@ -226,6 +246,7 @@ export async function getCachedGitHubRelease(
   }
 
   let release: GitHubRelease;
+  let staleFallback = false;
   try {
     release = await getOrRefresh({
       env,
@@ -244,6 +265,9 @@ export async function getCachedGitHubRelease(
             ? undefined
             : CACHE_TTL_SECONDS,
       useStaleOnError: releaseStaleFallbackAllowed,
+      onStaleFallback: () => {
+        staleFallback = true;
+      },
       staleCacheKey:
         tag === "latest" && cacheGeneration
           ? `github:release:${owner}/${repo}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
@@ -272,7 +296,7 @@ export async function getCachedGitHubRelease(
       new Headers(),
     );
   }
-  return release;
+  return { release, staleFallback };
 }
 
 async function cachedReleaseError(
@@ -374,6 +398,7 @@ async function getOrRefresh<T>({
   expirationTtl,
   useStaleOnError = () => true,
   staleCacheKey,
+  onStaleFallback,
   onFetchError,
 }: {
   env: Env;
@@ -383,6 +408,7 @@ async function getOrRefresh<T>({
   expirationTtl?: (data: T) => number | undefined;
   useStaleOnError?: (error: unknown) => boolean;
   staleCacheKey?: string;
+  onStaleFallback?: () => void;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -410,6 +436,7 @@ async function getOrRefresh<T>({
     }
     await onFetchError?.(error, cached);
     if (cached && useStaleOnError(error)) {
+      onStaleFallback?.();
       return cached.data;
     }
     if (staleCacheKey && useStaleOnError(error)) {
@@ -418,7 +445,10 @@ async function getOrRefresh<T>({
           staleCacheKey,
           "json",
         );
-        if (stale) return stale.data;
+        if (stale) {
+          onStaleFallback?.();
+          return stale.data;
+        }
       } catch (cacheError) {
         console.warn("failed to read fallback GitHub cache entry:", cacheError);
       }

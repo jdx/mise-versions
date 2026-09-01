@@ -182,7 +182,7 @@ test("catalog generations preserve stale latest fallback", () => {
 test("catalog rotations fall back to the previous latest generation", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
-    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+    import { getCachedGitHubReleaseResult } from "./web/src/lib/github/mirror.ts";
 
     const current = "123e4567-e89b-42d3-a456-426614174000";
     const previous = "123e4567-e89b-42d3-a456-426614174001";
@@ -210,7 +210,7 @@ test("catalog rotations fall back to the previous latest generation", () => {
     };
 
     assert.deepEqual(
-      await getCachedGitHubRelease(
+      await getCachedGitHubReleaseResult(
         env,
         "owner",
         "repo",
@@ -218,7 +218,7 @@ test("catalog rotations fall back to the previous latest generation", () => {
         current,
         previous,
       ),
-      staleRelease,
+      { release: staleRelease, staleFallback: true },
     );
   `);
 });

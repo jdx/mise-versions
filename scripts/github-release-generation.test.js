@@ -59,10 +59,12 @@ test("catalog sync rotates one latest generation per GitHub repository", () => {
       "OWNER",
       "REPO",
     );
-    assert.match(generation.current, /^[0-9a-f-]{36}$/);
+    assert.match(generation.current, /^[0-9a-f]{64}$/);
 
     await rotateGitHubLatestReleaseGenerations(cache, [{
       versions: [
+        { release_url: "https://github.com/Owner/Repo/releases/tag/v1.0.0" },
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.1.0" },
         { release_url: "https://github.com/owner/repo/releases/tag/v1.2.0" },
       ],
     }]);
@@ -73,6 +75,19 @@ test("catalog sync rotates one latest generation per GitHub repository", () => {
     );
     assert.notEqual(rotated.current, generation.current);
     assert.equal(rotated.previous, generation.current);
+
+    await rotateGitHubLatestReleaseGenerations(cache, [{
+      versions: [
+        { release_url: "https://github.com/Owner/Repo/releases/tag/v1.0.0" },
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.1.0" },
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.2.0" },
+      ],
+    }]);
+    assert.deepEqual(
+      await getGitHubLatestReleaseGenerations(cache, "owner", "repo"),
+      rotated,
+    );
+    assert.equal(writes.length, 3);
   `);
 });
 

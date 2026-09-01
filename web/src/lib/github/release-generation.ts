@@ -42,9 +42,10 @@ function latestReleaseGenerationKey(owner: string, repo: string): string {
 function validGeneration(value: string | null): value is string {
   return (
     value !== null &&
-    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+    (/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
       value,
-    )
+    ) ||
+      /^[0-9a-f]{64}$/i.test(value))
   );
 }
 
@@ -76,6 +77,18 @@ function validGenerationValue(value: unknown): value is string {
   return typeof value === "string" && validGeneration(value);
 }
 
+async function generationForReleaseUrls(
+  releaseUrls: Set<string>,
+): Promise<string> {
+  const input = new TextEncoder().encode(
+    JSON.stringify([...releaseUrls].sort()),
+  );
+  const digest = await crypto.subtle.digest("SHA-256", input);
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 export async function getGitHubLatestReleaseGenerations(
   cache: KVNamespace,
   owner: string,
@@ -98,21 +111,26 @@ export async function rotateGitHubLatestReleaseGenerations(
   cache: KVNamespace,
   tools: ToolReleaseData[],
 ): Promise<number> {
-  const repositories = new Set<string>();
+  const repositories = new Map<string, Set<string>>();
   for (const tool of tools) {
     if (!Array.isArray(tool.versions)) continue;
     for (const version of tool.versions) {
       if (!version || typeof version !== "object") continue;
       const repository = repositoryFromReleaseUrl(version.release_url);
-      if (repository) repositories.add(repository);
+      if (!repository || typeof version.release_url !== "string") continue;
+      const releaseUrls = repositories.get(repository) ?? new Set<string>();
+      releaseUrls.add(version.release_url);
+      repositories.set(repository, releaseUrls);
     }
   }
 
-  for (const repository of repositories) {
+  for (const [repository, releaseUrls] of repositories) {
     const key = `${LATEST_RELEASE_GENERATION_PREFIX}${repository}`;
     const existing = parseGenerations(await cache.get(key));
+    const current = await generationForReleaseUrls(releaseUrls);
+    if (existing?.current === current) continue;
     const generations: GitHubLatestReleaseGenerations = {
-      current: crypto.randomUUID(),
+      current,
       previous: existing?.current,
     };
     await cache.put(key, JSON.stringify(generations));
@@ -121,6 +139,7 @@ export async function rotateGitHubLatestReleaseGenerations(
 }
 
 export const __testing = {
+  generationForReleaseUrls,
   latestReleaseGenerationKey,
   parseGenerations,
   repositoryFromReleaseUrl,

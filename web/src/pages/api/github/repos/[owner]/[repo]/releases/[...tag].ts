@@ -2,7 +2,8 @@ import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
-  getCachedGitHubRelease,
+  cacheHeaders,
+  getCachedGitHubReleaseResult,
   githubStatus,
   matchGitHubMirrorEdgeCache,
   putGitHubMirrorEdgeCache,
@@ -52,7 +53,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   }
 
   try {
-    const release = await getCachedGitHubRelease(
+    const { release, staleFallback } = await getCachedGitHubReleaseResult(
       env,
       owner,
       repo,
@@ -63,15 +64,23 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     const response = jsonResponse(
       release,
       200,
-      releaseCacheHeaders(tag, release),
+      staleFallback
+        ? cacheHeaders({
+            browserMaxAge: 0,
+            edgeMaxAge: 0,
+            staleWhileRevalidate: 0,
+          })
+        : releaseCacheHeaders(tag, release),
     );
-    locals.cfContext.waitUntil(
-      putGitHubMirrorEdgeCache(request, response, {
-        browserMaxAge: tag === "latest" ? 0 : undefined,
-        staleWhileRevalidate: tag === "latest" ? 0 : undefined,
-        cacheGeneration,
-      }),
-    );
+    if (!staleFallback) {
+      locals.cfContext.waitUntil(
+        putGitHubMirrorEdgeCache(request, response, {
+          browserMaxAge: tag === "latest" ? 0 : undefined,
+          staleWhileRevalidate: tag === "latest" ? 0 : undefined,
+          cacheGeneration,
+        }),
+      );
+    }
     return response;
   } catch (error) {
     console.error(
