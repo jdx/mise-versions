@@ -77,6 +77,18 @@ function validGenerationValue(value: unknown): value is string {
   return typeof value === "string" && validGeneration(value);
 }
 
+function hasUsableRelease(value: string | null): boolean {
+  if (!value) return false;
+  try {
+    const parsed = JSON.parse(value) as {
+      data?: { assets?: unknown[] };
+    };
+    return Array.isArray(parsed.data?.assets) && parsed.data.assets.length > 0;
+  } catch {
+    return false;
+  }
+}
+
 async function generationForReleaseUrls(
   releaseUrls: Set<string>,
 ): Promise<string> {
@@ -129,9 +141,16 @@ export async function rotateGitHubLatestReleaseGenerations(
     const existing = parseGenerations(await cache.get(key));
     const current = await generationForReleaseUrls(releaseUrls);
     if (existing?.current === current) continue;
+    let previous = existing?.previous;
+    if (existing) {
+      const outgoingRelease = await cache.get(
+        `github:release:${repository}:latest:${existing.current}`,
+      );
+      if (hasUsableRelease(outgoingRelease)) previous = existing.current;
+    }
     const generations: GitHubLatestReleaseGenerations = {
       current,
-      previous: existing?.current,
+      previous,
     };
     await cache.put(key, JSON.stringify(generations));
   }
@@ -140,6 +159,7 @@ export async function rotateGitHubLatestReleaseGenerations(
 
 export const __testing = {
   generationForReleaseUrls,
+  hasUsableRelease,
   latestReleaseGenerationKey,
   parseGenerations,
   repositoryFromReleaseUrl,

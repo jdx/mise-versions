@@ -60,6 +60,10 @@ test("catalog sync rotates one latest generation per GitHub repository", () => {
       "REPO",
     );
     assert.match(generation.current, /^[0-9a-f]{64}$/);
+    values.set(
+      "github:release:owner/repo:latest:" + generation.current,
+      JSON.stringify({ data: { assets: [{ name: "tool.tar.gz" }] } }),
+    );
 
     await rotateGitHubLatestReleaseGenerations(cache, [{
       versions: [
@@ -88,6 +92,22 @@ test("catalog sync rotates one latest generation per GitHub repository", () => {
       rotated,
     );
     assert.equal(writes.length, 3);
+
+    await rotateGitHubLatestReleaseGenerations(cache, [{
+      versions: [
+        { release_url: "https://github.com/Owner/Repo/releases/tag/v1.0.0" },
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.1.0" },
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.2.0" },
+        { release_url: "https://github.com/owner/repo/releases/tag/v1.3.0" },
+      ],
+    }]);
+    const rotatedWhileCold = await getGitHubLatestReleaseGenerations(
+      cache,
+      "owner",
+      "repo",
+    );
+    assert.notEqual(rotatedWhileCold.current, rotated.current);
+    assert.equal(rotatedWhileCold.previous, generation.current);
   `);
 });
 
