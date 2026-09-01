@@ -237,9 +237,10 @@ export async function getCachedGitHubReleaseResult(
   cacheGeneration?: string,
   previousCacheGeneration?: string,
 ): Promise<{ release: GitHubRelease; staleFallback: boolean }> {
+  const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
-  const cacheKey = `github:release:${owner}/${repo}:${tag}${generationSuffix}`;
-  const negativeCacheKey = `github:release-error:${owner}/${repo}:${tag}${generationSuffix}`;
+  const cacheKey = `github:release:${cacheRepository}:${tag}${generationSuffix}`;
+  const negativeCacheKey = `github:release-error:${cacheRepository}:${tag}${generationSuffix}`;
   const cachedError = await cachedReleaseError(env, negativeCacheKey);
   if (cachedError) {
     throw cachedError;
@@ -270,7 +271,7 @@ export async function getCachedGitHubReleaseResult(
       },
       staleCacheKey:
         tag === "latest" && cacheGeneration
-          ? `github:release:${owner}/${repo}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
+          ? `github:release:${cacheRepository}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
           : undefined,
       onFetchError: async (error, cached) => {
         if (cached && githubStatus(error) === 404) {

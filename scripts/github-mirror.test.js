@@ -100,8 +100,8 @@ test("catalog generations isolate mutable latest caches", () => {
 
     const release = await getCachedGitHubRelease(
       env,
-      "owner",
-      "repo",
+      "Owner",
+      "Repo",
       "latest",
       generation,
     );
