@@ -389,10 +389,22 @@ collect_fallback_new_versions() {
 
 	local fetched_versions
 	local existing_versions
+	local filtered_toml
 	fetched_versions=$(mktemp)
 	existing_versions=$(mktemp)
+	filtered_toml=$(mktemp)
 
-	awk 'NF && !seen[$0]++ { print }' "$versions_file" >"$fetched_versions"
+	# Use the canonical generator to apply ignored-versions.toml before
+	# deciding whether the plain-text fallback contains a new version.
+	if ! jq -R -c 'select(length > 0) | {version: .}' "$versions_file" |
+		node scripts/generate-toml.js "$tool" >"$filtered_toml"; then
+		rm -f "$fetched_versions" "$existing_versions" "$filtered_toml"
+		return 1
+	fi
+	if ! yq -p=toml -o=json '.versions // {}' "$filtered_toml" 2>/dev/null | jq -r 'keys[]' >"$fetched_versions"; then
+		rm -f "$fetched_versions" "$existing_versions" "$filtered_toml"
+		return 1
+	fi
 
 	if [ -s "$toml_file" ] && yq -p=toml -o=json '.versions // {}' "$toml_file" 2>/dev/null | jq -r 'keys[]' >"$existing_versions"; then
 		awk 'NR == FNR { existing[$0] = 1; next } !($0 in existing)' "$existing_versions" "$fetched_versions"
@@ -400,7 +412,7 @@ collect_fallback_new_versions() {
 		cat "$fetched_versions"
 	fi
 
-	rm -f "$fetched_versions" "$existing_versions"
+	rm -f "$fetched_versions" "$existing_versions" "$filtered_toml"
 }
 
 record_fallback_new_versions() {
@@ -437,7 +449,8 @@ generate_toml_file() {
 
 	# Check if versions file exists
 	if [ ! -f "$versions_file" ]; then
-		return
+		log_error "Versions file disappeared before TOML generation" "tool=$tool"
+		return 1
 	fi
 
 	local error_output metadata_error_output
@@ -495,7 +508,14 @@ generate_toml_file() {
 	if [ -s "$metadata_error_output" ]; then
 		cat "$metadata_error_output" >&2
 	fi
-	fallback_new_versions=$(collect_fallback_new_versions "$tool" || true)
+	if [ -s "$error_output" ]; then
+		cat "$error_output" >&2
+	fi
+	if ! fallback_new_versions=$(collect_fallback_new_versions "$tool"); then
+		log_error "Failed to compare fallback versions" "tool=$tool"
+		rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+		return 1
+	fi
 	if [ -n "$fallback_new_versions" ]; then
 		record_fallback_new_versions "$tool" "$fallback_new_versions"
 		log_error "Refusing to add new versions without metadata" "tool=$tool"
