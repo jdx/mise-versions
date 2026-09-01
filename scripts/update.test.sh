@@ -208,6 +208,79 @@ test_json_collection_disables_release_age_filtering() {
 }
 test_json_collection_disables_release_age_filtering
 
+test_json_collection_requires_upstream_metadata() {
+	local command
+	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+
+	assert_contains "$command" '--no-versions-host' \
+		"JSON metadata collection explicitly bypasses the versions host"
+	assert_contains "$command" '--strict-metadata' \
+		"JSON metadata collection fails when upstream metadata fails"
+}
+test_json_collection_requires_upstream_metadata
+
+test_new_versions_are_rejected_during_metadata_fallback() {
+	local fallback_block
+	fallback_block=$(sed -n '/fallback_new_versions=$(collect_fallback_new_versions/,/if jq -R -c/p' scripts/update.sh)
+
+	assert_contains "$fallback_block" 'if [ -n "$fallback_new_versions" ]; then' \
+		"Metadata fallback detects newly discovered versions"
+	assert_contains "$fallback_block" 'Refusing to add new versions without metadata' \
+		"Metadata fallback rejects incomplete new versions"
+	assert_contains "$fallback_block" 'return 1' \
+		"Metadata fallback fails the tool update"
+}
+test_new_versions_are_rejected_during_metadata_fallback
+
+test_fallback_new_versions_ignore_denied_tags() {
+	local test_root="$TEMP_DIR/fallback_versions"
+	local collect_function
+	local yq_bin
+	collect_function=$(sed -n '/^collect_fallback_new_versions() {/,/^}/p' scripts/update.sh)
+	yq_bin=$(mise which yq 2>/dev/null || command -v yq)
+	mkdir -p "$test_root/docs"
+	ln -s "$PWD/scripts" "$test_root/scripts"
+	printf '1.0.0\nnightly\n' >"$test_root/docs/crush"
+	printf '[versions]\n"1.0.0" = { created_at = 2026-01-01T00:00:00.000Z }\n' >"$test_root/docs/crush.toml"
+
+	local result
+	result=$(
+		cd "$test_root"
+		PATH="$(dirname "$yq_bin"):$PATH"
+		eval "$collect_function"
+		collect_fallback_new_versions crush
+	)
+	assert_equals "" "$result" "Ignored tags do not block metadata fallback"
+
+	printf '1.0.0\n2.0.0\nnightly\n' >"$test_root/docs/crush"
+	result=$(
+		cd "$test_root"
+		PATH="$(dirname "$yq_bin"):$PATH"
+		eval "$collect_function"
+		collect_fallback_new_versions crush
+	)
+	assert_equals "2.0.0" "$result" "Fallback comparison still reports real new versions"
+}
+test_fallback_new_versions_ignore_denied_tags
+
+test_generate_toml_missing_versions_file_fails() {
+	local missing_file_block
+	missing_file_block=$(sed -n '/# Check if versions file exists/,/local error_output/p' scripts/update.sh)
+
+	assert_contains "$missing_file_block" 'return 1' \
+		"Missing versions files fail TOML generation"
+}
+test_generate_toml_missing_versions_file_fails
+
+test_json_generation_errors_are_reported() {
+	local fallback_block
+	fallback_block=$(sed -n '/Using plain-text fallback after metadata failure/,/fallback_new_versions=/p' scripts/update.sh)
+
+	assert_contains "$fallback_block" 'cat "$error_output" >&2' \
+		"JSON-to-TOML generation errors are printed before fallback"
+}
+test_json_generation_errors_are_reported
+
 test_docker_collection_disables_release_age_filtering() {
 	local command
 	command=$(awk '
