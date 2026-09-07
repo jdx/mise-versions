@@ -5,7 +5,7 @@ import { formatForecastRelative, parseUtcDate, formatUtcDate } from '../lib/mau-
 const latest = observations.at(-1)!;
 const forecast = forecastStarCrossover(observations);
 const projection = forecast?.status === 'forecast' ? forecast : null;
-const data = observations.filter(p => p.date >= formatUtcDate(parseUtcDate(latest.date) - 365 * 86400000));
+const data = observations;
 const showProjection = projection && projection.daysAway <= 365 * 5;
 const endDate = showProjection ? projection.hitDate : latest.date;
 const start = parseUtcDate(data[0].date), end = parseUtcDate(endDate);

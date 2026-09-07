@@ -85,3 +85,11 @@ test("daily downloads use adjacent snapshots, preserving zeroes and leaving gaps
     ],
   );
 });
+
+test("star history keeps mise’s earliest observations rather than imposing a recent cutoff", () => {
+  const points = parseStarCsv(
+    "date,mise_stars,brew_stars\n2022-12-01,0,33000\n2023-01-27,35,33306\n2026-09-07,33566,49455",
+  );
+  assert.equal(points[0].date, "2023-01-27");
+  assert.equal(points.length, 2);
+});

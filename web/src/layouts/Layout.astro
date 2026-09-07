@@ -1,6 +1,5 @@
 ---
-import { AuthButton } from '../components/AuthButton';
-import { AdminButton } from '../components/AdminButton';
+import { SiteMenu } from '../components/SiteMenu';
 import { ThemeSelect } from '../components/ThemeSelect';
 import { NavSearch } from '../components/NavSearch';
 import '../index.css';
@@ -81,16 +80,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
         <div class="nav-actions">
           {currentPath !== '/' && <NavSearch initialQuery={Astro.url.searchParams.get("q") || ""} client:load />}
           <ThemeSelect client:load />
-          <details class="site-menu">
-            <summary aria-label="Resources and account">More <span aria-hidden="true">⌄</span></summary>
-            <div class="site-menu-panel">
-              <a href="https://mise.jdx.dev">Documentation ↗</a>
-              <a href="https://github.com/jdx/mise">mise on GitHub ↗</a>
-              <a href="https://github.com/jdx/mise-versions">Site source ↗</a>
-              <AdminButton client:load />
-              <AuthButton client:load />
-            </div>
-          </details>
+          <SiteMenu client:load />
         </div>
       </div>
     </header>

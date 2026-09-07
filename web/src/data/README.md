@@ -34,7 +34,7 @@ release, not every historical version.
 are cumulative GitHub release-asset counters (all assets, not just executables).
 The 30-day change requires an exact dated baseline and is omitted when counters
 decrease. `mise-stars.json` selects mise and Homebrew from `competitors.csv`,
-retaining two years of observations. The crossover forecast uses the existing
+retaining the entire shared history from mise’s first recorded stars. The crossover forecast uses the existing
 MAU forecast's blended 7-, 30-, and 365-day pace for **both** repositories; the
 Homebrew target keeps growing. Forecasts are estimates, not scheduled events.
 

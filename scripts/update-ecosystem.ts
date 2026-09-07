@@ -161,7 +161,7 @@ const extra = await Promise.all(
     return response.text();
   }),
 );
-const stars = parseStarCsv(extra[0]).slice(-740);
+const stars = parseStarCsv(extra[0]);
 const downloads = parseMiseDownloadsCsv(extra[1]);
 if (!stars.length || !downloads.length)
   throw new Error("Missing mise growth observations");
