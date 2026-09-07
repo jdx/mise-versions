@@ -1,0 +1,57 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "eb4e9cc71a22",
+  "session_id": "01a07ac6-cafd-7ae1-82e3-142b3c522be0",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-07T07:34:39.997327Z",
+  "branch": "feat/mau-million-forecast",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "package.json",
+    "web/src/components/MauHistory.astro",
+    "web/src/lib/mau-forecast.test.ts",
+    "web/src/lib/mau-forecast.ts"
+  ],
+  "agent": "Codex",
+  "model": "gpt-6-astra",
+  "turn_id": "32713b7cfb9d",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 51324,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 105984,
+    "output_tokens": 460,
+    "api_call_count": 4
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-07T07:34:39.974695Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 15,
+    "total_committed": 0,
+    "total_lines_changed": 15,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 488,
+      "user_lines_removed": 15,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "package.json": 1,
+        "web/src/components/MauHistory.astro": 217,
+        "web/src/lib/mau-forecast.test.ts": 146,
+        "web/src/lib/mau-forecast.ts": 124
+      },
+      "user_removed_per_file": {
+        "package.json": 1,
+        "web/src/components/MauHistory.astro": 14
+      }
+    }
+  ]
+}
