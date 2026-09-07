@@ -1,7 +1,12 @@
 ---
 import { formatCompact } from "../lib/format";
-
-type MauPoint = { date: string; mau: number };
+import {
+  forecastNextMillion,
+  formatForecastRelative,
+  formatUtcDate,
+  parseUtcDate,
+  type MauPoint,
+} from "../lib/mau-forecast";
 
 interface Props {
   daily: MauPoint[];
@@ -85,23 +90,37 @@ const quattroChange =
     ? formatChange(latest.mau, quattroBaseline?.mau)
     : null;
 
+const forecast = forecastNextMillion(data);
+const showForecastOnChart = Boolean(forecast?.showOnChart);
 const width = 1000;
 const height = 280;
-const padding = { top: 24, right: 24, bottom: 42, left: 70 };
+const padding = { top: 28, right: showForecastOnChart ? 36 : 24, bottom: 42, left: 70 };
 const chartWidth = width - padding.left - padding.right;
 const chartHeight = height - padding.top - padding.bottom;
-const values = data.map((point) => point.mau);
+const values = [
+  ...data.map((point) => point.mau),
+  ...(showForecastOnChart && forecast ? [forecast.target] : []),
+];
 const rawMin = values.length > 0 ? Math.min(...values) : 0;
 const rawMax = values.length > 0 ? Math.max(...values) : 1;
 const range = Math.max(rawMax - rawMin, rawMax * 0.1, 1);
 const yStep = niceStep(range);
 const yMin = Math.max(0, Math.floor(rawMin / yStep) * yStep);
-const roundedYMax = Math.ceil(rawMax / yStep) * yStep;
-const yMax = roundedYMax > yMin ? roundedYMax : yMin + yStep;
-const timestampForDate = (date: string) =>
-  new Date(`${date}T00:00:00Z`).getTime();
+let yMax = Math.ceil(rawMax / yStep) * yStep;
+if (yMax <= yMin) yMax = yMin + yStep;
+if (showForecastOnChart && forecast && yMax <= forecast.target) {
+  yMax = forecast.target + yStep;
+}
+const timestampForDate = (date: string) => parseUtcDate(date);
 const firstTimestamp = data.length > 0 ? timestampForDate(data[0].date) : 0;
-const lastTimestamp = latest ? timestampForDate(latest.date) : firstTimestamp;
+const chartEndDate = (() => {
+  if (!latest) return "";
+  if (!showForecastOnChart || !forecast) return latest.date;
+  const historyDays = Math.max(daysBetween(data[0].date, latest.date), 1);
+  const padDays = Math.max(4, Math.round(historyDays * 0.05));
+  return formatUtcDate(parseUtcDate(forecast.hitDate) + padDays * 86400_000);
+})();
+const lastTimestamp = chartEndDate ? timestampForDate(chartEndDate) : firstTimestamp;
 const xForDate = (date: string) =>
   firstTimestamp === lastTimestamp
     ? chartWidth / 2
@@ -116,6 +135,39 @@ const mauPath = data
       `${index === 0 ? "M" : "L"} ${xForDate(point.date)} ${yForValue(point.mau)}`,
   )
   .join(" ");
+const mauAreaPath =
+  data.length > 0 && latest
+    ? `${mauPath} L ${xForDate(latest.date)} ${chartHeight} L ${xForDate(data[0].date)} ${chartHeight} Z`
+    : "";
+const forecastPath =
+  showForecastOnChart && forecast && latest
+    ? `M ${xForDate(latest.date)} ${yForValue(latest.mau)} L ${xForDate(forecast.hitDate)} ${yForValue(forecast.target)}`
+    : "";
+const forecastAreaPath =
+  showForecastOnChart && forecast && latest
+    ? `M ${xForDate(latest.date)} ${yForValue(latest.mau)} L ${xForDate(forecast.hitDate)} ${yForValue(forecast.target)} L ${xForDate(forecast.hitDate)} ${chartHeight} L ${xForDate(latest.date)} ${chartHeight} Z`
+    : "";
+const forecastLabel =
+  forecast
+    ? `${forecast.targetLabel} · ${formatDate(forecast.hitDate)}`
+    : "";
+const forecastPillWidth = Math.max(108, forecastLabel.length * 6.7 + 18);
+const forecastPoint = showForecastOnChart && forecast
+  ? {
+      x: xForDate(forecast.hitDate),
+      y: yForValue(forecast.target),
+    }
+  : null;
+const forecastPill =
+  forecastPoint && forecast
+    ? {
+        x: Math.min(
+          Math.max(forecastPoint.x - forecastPillWidth + 8, 4),
+          chartWidth - forecastPillWidth - 4,
+        ),
+        y: forecastPoint.y > 30 ? forecastPoint.y - 28 : forecastPoint.y + 14,
+      }
+    : null;
 const showQuattroLaunch =
   data.length > 0 && quattroLaunch >= data[0].date && quattroLaunch <= latest!.date;
 const monthStarts = [
@@ -128,9 +180,14 @@ const monthStarts = [
     .values(),
 ];
 const tickInterval = Math.max(1, Math.ceil(monthStarts.length / 7));
-const xTicks = monthStarts.filter(
-  (_, index) => index % tickInterval === 0 || index === monthStarts.length - 1,
-);
+const xTicks = monthStarts
+  .filter(
+    (_, index) => index % tickInterval === 0 || index === monthStarts.length - 1,
+  )
+  .filter((point) => {
+    if (!showForecastOnChart || !forecast) return true;
+    return Math.abs(daysBetween(point.date, forecast.hitDate)) > 20;
+  });
 const yTicks = Array.from(
   { length: Math.round((yMax - yMin) / yStep) + 1 },
   (_, index) => yMax - index * yStep,
@@ -147,7 +204,7 @@ const yTicks = Array.from(
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+    <div class={`grid grid-cols-1 gap-3 mb-5 ${forecast ? "sm:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-3"}`}>
       <div class="bg-dark-700 rounded p-3">
         <div class="text-xs text-gray-400">Latest MAU snapshot</div>
         <div class="text-2xl font-semibold text-cyan-400">{formatCompact(latest.mau)}</div>
@@ -176,10 +233,51 @@ const yTicks = Array.from(
         )}
         <div class="text-[11px] text-gray-600 mt-1">Timing comparison, not causal attribution.</div>
       </div>
+      {forecast && (
+        <div class="relative overflow-hidden rounded p-3 bg-dark-700 ring-1 ring-amber-400/35">
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-400/15 via-transparent to-cyan-400/10"></div>
+          <div class="relative">
+            <div class="text-xs text-amber-300/80">On pace for {forecast.targetLabel}</div>
+            <div class="text-2xl font-semibold text-amber-300">{formatDate(forecast.hitDate)}</div>
+            <div class="text-xs text-gray-400">
+              {formatForecastRelative(forecast.daysAway)}
+            </div>
+            <div class="text-[11px] text-gray-600 mt-1">
+              Linear projection of the last {forecast.windowDays} days.
+            </div>
+          </div>
+        </div>
+      )}
     </div>
 
     <div class="overflow-x-auto">
-      <svg viewBox={`0 0 ${width} ${height}`} class="min-w-[700px] w-full" role="img" aria-label="Daily snapshots of trailing 30-day monthly active users since March 2026">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        class="min-w-[700px] w-full"
+        role="img"
+        aria-label={
+          forecast
+            ? `Daily snapshots of trailing 30-day monthly active users since March 2026. On pace for ${forecast.targetLabel} around ${formatDate(forecast.hitDate)}.`
+            : "Daily snapshots of trailing 30-day monthly active users since March 2026"
+        }
+      >
+        <defs>
+          <linearGradient id="mau-history-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="#00D4FF" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="mau-forecast-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.16" />
+            <stop offset="100%" stop-color="#FBBF24" stop-opacity="0" />
+          </linearGradient>
+          <filter id="mau-forecast-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="2.4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         <g transform={`translate(${padding.left}, ${padding.top})`}>
           {yTicks.map((tick) => (
             <g>
@@ -189,6 +287,18 @@ const yTicks = Array.from(
               </text>
             </g>
           ))}
+          {showForecastOnChart && forecast && (
+            <line
+              x1="0"
+              x2={xForDate(forecast.hitDate)}
+              y1={yForValue(forecast.target)}
+              y2={yForValue(forecast.target)}
+              stroke="#FBBF24"
+              stroke-width="1"
+              stroke-dasharray="3 5"
+              opacity="0.55"
+            />
+          )}
           {showQuattroLaunch && (
             <g>
               <line
@@ -203,13 +313,70 @@ const yTicks = Array.from(
               <text x={xForDate(quattroLaunch) - 6} y="12" text-anchor="end" class="fill-pink-400 text-xs">Quattro · Aug 14</text>
             </g>
           )}
+          {mauAreaPath && <path d={mauAreaPath} fill="url(#mau-history-fill)" />}
+          {forecastAreaPath && <path d={forecastAreaPath} fill="url(#mau-forecast-fill)" />}
           <path d={mauPath} fill="none" stroke="#00D4FF" stroke-width="3" stroke-linejoin="round" />
+          {showForecastOnChart && forecast && forecastPath && (
+            <g>
+              <line
+                x1={xForDate(forecast.hitDate)}
+                x2={xForDate(forecast.hitDate)}
+                y1={yForValue(forecast.target)}
+                y2={chartHeight}
+                stroke="#FBBF24"
+                stroke-width="1"
+                stroke-dasharray="3 5"
+                opacity="0.45"
+              />
+              <path
+                d={forecastPath}
+                class="mau-forecast-dash"
+                fill="none"
+                stroke="#FBBF24"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              />
+            </g>
+          )}
           {data.map((point) => (
             <circle cx={xForDate(point.date)} cy={yForValue(point.mau)} r="6" fill="transparent">
               <title>{point.date}: {point.mau.toLocaleString()} MAU</title>
             </circle>
           ))}
           <circle cx={xForDate(latest.date)} cy={yForValue(latest.mau)} r="4" fill="#00D4FF" />
+          {forecastPoint && forecast && (
+            <g filter="url(#mau-forecast-glow)">
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="8" fill="#FBBF24" fill-opacity="0.18" />
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="4.5" fill="#FBBF24" />
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="2" fill="#0a0a0f" />
+              <title>
+                {forecast.targetLabel} pace: {formatDate(forecast.hitDate)} ({formatForecastRelative(forecast.daysAway)})
+              </title>
+            </g>
+          )}
+          {forecastPill && forecast && (
+            <g>
+              <rect
+                x={forecastPill.x}
+                y={forecastPill.y}
+                width={forecastPillWidth}
+                height="20"
+                rx="10"
+                fill="#12121a"
+                stroke="#FBBF24"
+                stroke-width="1"
+                opacity="0.95"
+              />
+              <text
+                x={forecastPill.x + forecastPillWidth / 2}
+                y={forecastPill.y + 14}
+                text-anchor="middle"
+                class="fill-amber-200 text-[11px]"
+              >
+                {forecastLabel}
+              </text>
+            </g>
+          )}
           {xTicks.map((point) => {
             return (
               <text x={xForDate(point.date)} y={chartHeight + 24} text-anchor="middle" class="fill-gray-500 text-xs">
@@ -217,9 +384,26 @@ const yTicks = Array.from(
               </text>
             );
           })}
+          {showForecastOnChart && forecast && (
+            <text
+              x={xForDate(forecast.hitDate)}
+              y={chartHeight + 24}
+              text-anchor="middle"
+              class="fill-amber-300/80 text-[11px]"
+            >
+              {new Date(`${forecast.hitDate}T00:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })}
+            </text>
+          )}
         </g>
       </svg>
     </div>
+    {forecast && (
+      <p class="mt-2 text-[11px] text-gray-500">
+        {showForecastOnChart
+          ? `Dashed gold line projects the last ${forecast.windowDays} days linearly.`
+          : `On pace for ${forecast.targetLabel} around ${formatDate(forecast.hitDate)} (${formatForecastRelative(forecast.daysAway)}), from a linear fit of the last ${forecast.windowDays} days. Too far out to plot.`}
+      </p>
+    )}
 
     {recentMonths.length > 0 && (
       <div class="mt-5">
@@ -290,3 +474,22 @@ const yTicks = Array.from(
     )}
   </section>
 )}
+
+<style>
+  .mau-forecast-dash {
+    stroke-dasharray: 7 6;
+    animation: mau-dash 1.3s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mau-forecast-dash {
+      animation: none;
+    }
+  }
+
+  @keyframes mau-dash {
+    to {
+      stroke-dashoffset: -13;
+    }
+  }
+</style>
