@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "fb41afb6413b",
+  "session_id": "01a07ac6-cafd-7ae1-82e3-142b3c522be0",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-07T07:49:44.009214Z",
+  "branch": "chore/fix-wrangler-types",
+  "checkpoints_count": 2,
+  "save_step_count": 1,
+  "files_touched": [],
+  "agent": "Codex",
+  "model": "gpt-6-astra",
+  "turn_id": "67655f8d023c",
+  "checkpoint_transcript_start": 137,
+  "transcript_lines_at_start": 137,
+  "compact_transcript_start": 17,
+  "token_usage": {
+    "input_tokens": 13006,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 285440,
+    "output_tokens": 5307,
+    "api_call_count": 3
+  },
+  "session_metrics": {
+    "turn_count": 2
+  }
+}

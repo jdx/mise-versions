@@ -1,0 +1,24 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "fb41afb6413b",
+  "strategy": "manual-commit",
+  "branch": "chore/fix-wrangler-types",
+  "checkpoints_count": 2,
+  "files_touched": null,
+  "sessions": [
+    {
+      "metadata": "/fb/41afb6413b/0/metadata.json",
+      "transcript": "/fb/41afb6413b/0/full.jsonl",
+      "compact_transcript": "/fb/41afb6413b/0/transcript.jsonl",
+      "content_hash": "/fb/41afb6413b/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 13006,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 285440,
+    "output_tokens": 5307,
+    "api_call_count": 3
+  }
+}
