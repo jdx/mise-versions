@@ -1,0 +1,18 @@
+---
+interface Props {
+  start: string;
+  end: string;
+  x: (date: string) => number;
+  top: number;
+  bottom: number;
+}
+const {start, end, x, top, bottom} = Astro.props;
+const years: string[] = [];
+for (let year = Number(start.slice(0,4)); year <= Number(end.slice(0,4)); year++) {
+  const date = `${year}-01-01`;
+  if (date >= start && date <= end) years.push(date);
+}
+---
+<g class="year-grid" aria-hidden="true" pointer-events="none">
+  {years.map(date => <line x1={x(date)} x2={x(date)} y1={top} y2={bottom} stroke="var(--muted)" stroke-opacity="0.2" stroke-width="1" vector-effect="non-scaling-stroke" />)}
+</g>

@@ -1,4 +1,5 @@
 ---
+import YearGrid from "./YearGrid.astro";
 import { sevenDayAverage, forecastDailyAverage, nextActivityMilestone } from '../lib/daily-average';
 import { formatCompact } from '../lib/format';
 import { parseUtcDate, formatForecastRelative } from '../lib/mau-forecast';
@@ -32,6 +33,7 @@ const dateLabel = (date:string)=>new Date(`${date}T00:00:00Z`).toLocaleDateStrin
   </div>
   <svg viewBox="0 0 540 218" data-activity-chart role="group" aria-label={`${title} and 7-day average. Latest average ${latest.value===null?'unavailable':Math.round(latest.value).toLocaleString()}. ${forecast ? `Projected to reach ${forecast.target.toLocaleString()} ${unit} on ${dateLabel(forecast.hitDate)}.`:''}`}>
     {[0,.5,1].map(f=><g><line x1="48" x2="512" y1={y(max*f)} y2={y(max*f)} stroke="var(--border)" stroke-dasharray="3 5"/><text x="40" y={y(max*f)+4} text-anchor="end">{formatCompact(max*f)}</text></g>)}
+<YearGrid start={data[0].date} end={endDate} x={x} top={42} bottom={186} />
     {validData.map((p,i)=>{
       const avg = averageByDate.get(p.date);
       const label = `${p.date}: ${p.value!.toLocaleString()} ${unit}; 7-day average ${avg == null ? 'unavailable' : Math.round(avg).toLocaleString()}`;

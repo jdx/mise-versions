@@ -1,4 +1,5 @@
 ---
+import YearGrid from "../components/YearGrid.astro";
 import DailyActivityChart from '../components/DailyActivityChart.astro';
 import MiseAdoption from '../components/MiseAdoption.astro';
 import Layout from '../layouts/Layout.astro';
@@ -246,6 +247,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                     0
                   </text>
                   <g transform={`translate(${padding.left}, ${padding.top})`}>
+                    <YearGrid start={data[0].date} end={data.at(-1)!.date} x={(date) => data.findIndex(d => d.date === date) / data.length * chartWidth} top={0} bottom={chartHeight} />
                     {data.map((d, i) => {
                       const x = (i / data.length) * chartWidth + 1;
                       const barHeight = (d.count / maxCount) * chartHeight;
@@ -285,6 +287,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                         </g>
                       );
                     })}
+                    <YearGrid start={data[0].date} end={data.at(-1)!.date} x={(date) => data.findIndex(d => d.date === date) / data.length * chartWidth} top={0} bottom={chartHeight} />
                     {data.map((d, i) => {
                       const lastIndex = data.length - 1;
                       if (i !== lastIndex && (i % 7 !== 0 || lastIndex - i < 3)) return null;

@@ -1,4 +1,5 @@
 ---
+import YearGrid from "./YearGrid.astro";
 import observations from '../data/mise-adoption.json';
 import releaseDownloads from '../data/mise-downloads.json';
 import DailyActivityChart from './DailyActivityChart.astro';
@@ -40,6 +41,7 @@ const charts = [
     return <div class="adoption-chart"><h3>{chart.title}</h3>
       <svg viewBox="0 0 540 205" role="img" aria-label={`${chart.title} from ${chart.data[0].date} to ${last.date}. Latest value ${last.value?.toLocaleString() ?? 'unavailable'}. Full daily values are in the source data.`}>
         {[0,.5,1].map(f=><g><line x1="48" x2="512" y1={y(max*f)} y2={y(max*f)} stroke="var(--border)" stroke-dasharray="3 5"/><text x="40" y={y(max*f)+4} text-anchor="end">{Math.round(max*f).toLocaleString('en-US',{notation:'compact'})}</text></g>)}
+<YearGrid start={chart.data[0].date} end={last.date} x={x} top={32} bottom={172} />
         {chart.bars ? valid.map(p=><rect x={x(p.date)-1.7} y={y(p.value)} width="3.4" height={172-y(p.value)} fill={chart.color}><title>{p.date}: {p.value.toLocaleString()} downloads</title></rect>) : <path d={path} fill="none" stroke={chart.color} stroke-width="2.5" stroke-linejoin="round"/>}
         <text x="48" y="197">{chart.data[0].date}</text><text x="512" y="197" text-anchor="end">{last.date}</text>
       </svg>

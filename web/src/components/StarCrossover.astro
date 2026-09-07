@@ -1,7 +1,8 @@
 ---
+import YearGrid from "./YearGrid.astro";
 import observations from '../data/mise-stars.json';
 import { forecastStarCrossover } from '../lib/mise-growth';
-import { formatForecastRelative, parseUtcDate, formatUtcDate } from '../lib/mau-forecast';
+import { formatForecastRelative, parseUtcDate } from '../lib/mau-forecast';
 const latest = observations.at(-1)!;
 const forecast = forecastStarCrossover(observations);
 const projection = forecast?.status === 'forecast' ? forecast : null;
@@ -14,7 +15,7 @@ const x = (date: string) => 64 + (parseUtcDate(date)-start) / Math.max(end-start
 const y = (value: number) => 224 - value / max * 190;
 const path = (key: 'mise' | 'homebrew') => data.map((p,i)=>`${i && parseUtcDate(p.date)-parseUtcDate(data[i-1].date) === 86400000 ? 'L':'M'}${x(p.date).toFixed(2)},${y(p[key]).toFixed(2)}`).join(' ');
 const dateLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
-const ticks = Array.from({length:5},(_,i)=>formatUtcDate(start+(end-start)*i/4));
+const ticks = [data[0].date, ...Array.from({length: new Date(end).getUTCFullYear()-new Date(start).getUTCFullYear()+1}, (_,i)=>`${new Date(start).getUTCFullYear()+i}-01-01`).filter(date=>parseUtcDate(date)>start+90*86400000 && parseUtcDate(date)<=end)];
 ---
 <div class="star-crossover">
   <div class="star-crossover-heading">
@@ -28,6 +29,7 @@ const ticks = Array.from({length:5},(_,i)=>formatUtcDate(start+(end-start)*i/4))
     <svg viewBox="0 0 1000 265" role="img" aria-label={`GitHub star history for mise and Homebrew. ${projection ? `At current growth rates, mise is projected to pass Homebrew on ${dateLabel(projection.hitDate)}.` : 'No near-term crossover projected.'}`}>
       {showProjection && <rect x={x(latest.date)} y="24" width={x(endDate)-x(latest.date)} height="200" fill="var(--forecast)" opacity=".035" />}
       {[0, .25, .5, .75, 1].map(f=><g><line x1="64" x2="926" y1={y(max*f)} y2={y(max*f)} stroke="var(--border)"/><text x="52" y={y(max*f)+4} text-anchor="end">{Math.round(max*f/1000)}K</text></g>)}
+<YearGrid start={data[0].date} end={endDate} x={x} top={34} bottom={224} />
       <path d={path('mise')} fill="none" stroke="var(--accent)" stroke-width="2.5" />
       <path d={path('homebrew')} fill="none" stroke="var(--data)" stroke-width="2.5" />
       {showProjection && <>

@@ -1,4 +1,5 @@
 ---
+import YearGrid from "./YearGrid.astro";
 import { formatCompact } from "../lib/format";
 import {
   forecastNextMillion,
@@ -234,11 +235,10 @@ const yTicks = Array.from(
         <div class="text-[11px] text-gray-600 mt-1">Timing comparison, not causal attribution.</div>
       </div>
       {forecast && (
-        <div class="relative overflow-hidden rounded p-3 bg-dark-700 ring-1 ring-amber-400/35">
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-br from-amber-400/15 via-transparent to-cyan-400/10"></div>
+        <div class="rounded p-3 bg-dark-700">
           <div class="relative">
-            <div class="text-xs text-amber-300/80">On pace for {forecast.targetLabel}</div>
-            <div class="text-2xl font-semibold text-amber-300">{formatDate(forecast.hitDate)}</div>
+            <div class="text-xs text-gray-400">On pace for {forecast.targetLabel}</div>
+            <div class="text-xl font-medium text-gray-300">{formatDate(forecast.hitDate)}</div>
             <div class="text-xs text-gray-400">
               {formatForecastRelative(forecast.daysAway)}
             </div>
@@ -267,16 +267,10 @@ const yTicks = Array.from(
             <stop offset="100%" stop-color="var(--data)" stop-opacity="0" />
           </linearGradient>
           <linearGradient id="mau-forecast-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="var(--forecast)" stop-opacity="0.16" />
+            <stop offset="0%" stop-color="var(--forecast)" stop-opacity="0.06" />
             <stop offset="100%" stop-color="var(--forecast)" stop-opacity="0" />
           </linearGradient>
-          <filter id="mau-forecast-glow" x="-80%" y="-80%" width="260%" height="260%">
-            <feGaussianBlur stdDeviation="2.4" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+
         </defs>
         <g transform={`translate(${padding.left}, ${padding.top})`}>
           {yTicks.map((tick) => (
@@ -287,6 +281,7 @@ const yTicks = Array.from(
               </text>
             </g>
           ))}
+          <YearGrid start={data[0].date} end={chartEndDate} x={xForDate} top={0} bottom={chartHeight} />
           {showForecastOnChart && forecast && (
             <line
               x1="0"
@@ -330,10 +325,10 @@ const yTicks = Array.from(
               />
               <path
                 d={forecastPath}
-                class="mau-forecast-dash"
+                class="mau-forecast-dash" opacity="0.7"
                 fill="none"
                 stroke="var(--forecast)"
-                stroke-width="2.5"
+                stroke-width="1.8"
                 stroke-linecap="round"
               />
             </g>
@@ -345,9 +340,8 @@ const yTicks = Array.from(
           ))}
           <circle cx={xForDate(latest.date)} cy={yForValue(latest.mau)} r="4" fill="var(--data)" />
           {forecastPoint && forecast && (
-            <g filter="url(#mau-forecast-glow)">
-              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="8" fill="var(--forecast)" fill-opacity="0.18" />
-              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="4.5" fill="var(--forecast)" />
+            <g opacity="0.75">
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="3.5" fill="var(--forecast)" />
               <circle cx={forecastPoint.x} cy={forecastPoint.y} r="2" fill="var(--canvas)" />
               <title>
                 {forecast.targetLabel} pace: {formatDate(forecast.hitDate)} ({formatForecastRelative(forecast.daysAway)})
@@ -361,9 +355,9 @@ const yTicks = Array.from(
                 y={forecastPill.y}
                 width={forecastPillWidth}
                 height="20"
-                rx="10"
+                rx="4"
                 fill="var(--surface)"
-                stroke="var(--forecast)"
+                stroke="var(--border)"
                 stroke-width="1"
                 opacity="0.95"
               />
@@ -371,7 +365,7 @@ const yTicks = Array.from(
                 x={forecastPill.x + forecastPillWidth / 2}
                 y={forecastPill.y + 14}
                 text-anchor="middle"
-                class="fill-amber-300 text-[11px]"
+                class="fill-gray-400 text-[11px]"
               >
                 {forecastLabel}
               </text>
@@ -476,20 +470,5 @@ const yTicks = Array.from(
 )}
 
 <style>
-  .mau-forecast-dash {
-    stroke-dasharray: 7 6;
-    animation: mau-dash 1.3s linear infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .mau-forecast-dash {
-      animation: none;
-    }
-  }
-
-  @keyframes mau-dash {
-    to {
-      stroke-dashoffset: -13;
-    }
-  }
+  .mau-forecast-dash { stroke-dasharray: 7 6; }
 </style>
