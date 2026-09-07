@@ -1,0 +1,60 @@
+redesign the entire ui on these pages: [https://mise-versions.jdx.dev/stats](https://mise-versions.jdx.dev/stats) [https://mise-versions.jdx.dev/](https://mise-versions.jdx.dev/)  [https://mise-versions.jdx.dev/tools/dagger](https://mise-versions.jdx.dev/tools/dagger)
+
+---
+
+just push the change direct to origin/main
+
+---
+
+start cooking
+
+---
+
+# "Every tool. One place." - remove that, we don't need a damn tile
+
+---
+
+can we include the mise-related data from [https://github.com/jdx/mise-analytics](https://github.com/jdx/mise-analytics) somehow?
+i would also like to show extra metadata for packslip backend stuff which hasn't been released yet but will be in the next release. hk is one that has a packslip json. 2 ideas that come to mind are completions and skills, but we could probablly do more. in the same way we like to show nice badges to promote secure supply chain enabled tools we want to promote packslip as it's the preferred backend and we want vendors to adopt  so we want them a bit jealous of tools that are packslip
+
+---
+
+.
+
+---
+
+none of this "next mise release" just assume packslip support exists now
+
+---
+
+the packslip thing is too big and prominent
+
+i want to see the rank and the homebrew download count together
+
+i want mise downloads, can we pull that data from jdx/mise-analytics?
+
+i want to see when mise will beat homebrew for stars similar to how we have the 1m thing
+
+---
+
+i don't want cumulative downloads, can we use the csv from mise-analytics to show the daily count?
+
+---
+
+the "more" dropdown is all sorts of janky
+
+---
+
+we should show the entire star history since mise started
+
+---
+
+could we improve the release timeline? i also want a 7-day average line on the mise download that has similar milestones like we have for MAU, but 1m is probably too high for the nearest one
+
+---
+
+do similar stuff for DAU
+
+---
+
+i also want to see 90 days for DAU if we have the data
