@@ -1,0 +1,24 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "5be16bf39b4d",
+  "strategy": "manual-commit",
+  "branch": "codex/ui-redesign",
+  "checkpoints_count": 1,
+  "files_touched": null,
+  "sessions": [
+    {
+      "metadata": "/5b/e16bf39b4d/0/metadata.json",
+      "transcript": "/5b/e16bf39b4d/0/full.jsonl",
+      "compact_transcript": "/5b/e16bf39b4d/0/transcript.jsonl",
+      "content_hash": "/5b/e16bf39b4d/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 8041,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 960256,
+    "output_tokens": 3247,
+    "api_call_count": 12
+  }
+}
