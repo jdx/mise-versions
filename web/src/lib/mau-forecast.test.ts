@@ -3,10 +3,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-  FORECAST_WINDOW_DAYS,
+  blendedDailyPace,
   forecastNextMillion,
   formatForecastRelative,
   formatMillionLabel,
+  formatPaceLabel,
   nextMillion,
 } from "./mau-forecast";
 
@@ -46,7 +47,29 @@ test("relative copy covers days, weeks, months, and years", () => {
   assert.equal(formatForecastRelative(800), "in 2.2 years");
 });
 
-test("linear window projects a constant climb to 1M", () => {
+test("pace labels name the windows that contributed", () => {
+  assert.equal(formatPaceLabel([7]), "7-day rate");
+  assert.equal(formatPaceLabel([7, 30]), "average of 7-day and 30-day rates");
+  assert.equal(
+    formatPaceLabel([7, 30, 365]),
+    "average of 7-day, 30-day, and 365-day rates",
+  );
+});
+
+test("blends 7-day, 30-day, and 365-day endpoint rates equally", () => {
+  const points = [
+    { date: "2025-12-31", mau: 335_000 },
+    { date: "2026-12-01", mau: 400_000 },
+    { date: "2026-12-24", mau: 560_000 },
+    { date: "2026-12-31", mau: 700_000 },
+  ];
+  const pace = blendedDailyPace(points);
+  assert.ok(pace);
+  assert.deepEqual(pace.windows, [7, 30, 365]);
+  assert.ok(Math.abs(pace.slope - (20_000 + 10_000 + 1_000) / 3) < 1e-6);
+});
+
+test("constant recent climb still hits 1M on that pace", () => {
   const points = series(
     "2026-08-17",
     Array.from({ length: 21 }, (_, i) => 460_000 + i * 14_000),
@@ -57,7 +80,7 @@ test("linear window projects a constant climb to 1M", () => {
   assert.equal(forecast.targetLabel, "1M");
   assert.equal(forecast.hitDate, "2026-09-24");
   assert.equal(forecast.daysAway, 18);
-  assert.equal(forecast.windowDays, FORECAST_WINDOW_DAYS);
+  assert.deepEqual(forecast.windows, [7, 30]);
   assert.equal(forecast.showOnChart, true);
   assert.equal(forecast.showInText, true);
   assert.ok(Math.abs(forecast.dailySlope - 14_000) < 1e-6);
@@ -103,7 +126,27 @@ test("omits a forecast when MAU is not increasing", () => {
   assert.equal(forecastNextMillion(points), null);
 });
 
-test("projects the post-Quattro climb near the end of September 2026", () => {
+test("long-run rate pulls a short spike later than a 7-day fit alone", () => {
+  const slow = series(
+    "2026-01-01",
+    Array.from({ length: 359 }, (_, i) => 300_000 + i * 500),
+  );
+  const latestSlow = slow.at(-1)!;
+  const fast = series(
+    latestSlow.date,
+    Array.from({ length: 8 }, (_, i) => latestSlow.mau + i * 20_000),
+  );
+  const points = [...slow.slice(0, -1), ...fast];
+  const forecast = forecastNextMillion(points);
+  assert.ok(forecast);
+  assert.deepEqual(forecast.windows, [7, 30, 365]);
+
+  const sevenDayOnly = (fast.at(-1)!.mau - fast[0]!.mau) / 7;
+  assert.ok(forecast.dailySlope < sevenDayOnly);
+  assert.ok(forecast.hitDate >= "2027-02-01");
+});
+
+test("projects the post-Quattro climb in late September 2026", () => {
   const points = [
     ["2026-08-17", 481_024],
     ["2026-08-18", 497_974],
@@ -132,7 +175,7 @@ test("projects the post-Quattro climb near the end of September 2026", () => {
   assert.equal(forecast.targetLabel, "1M");
   assert.equal(forecast.showOnChart, true);
   assert.ok(forecast.hitDate >= "2026-09-20");
-  assert.ok(forecast.hitDate <= "2026-09-24");
+  assert.ok(forecast.hitDate <= "2026-09-26");
 });
 
 test("needs enough recent points to fit", () => {

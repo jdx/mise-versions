@@ -242,8 +242,8 @@ const yTicks = Array.from(
             <div class="text-xs text-gray-400">
               {formatForecastRelative(forecast.daysAway)}
             </div>
-            <div class="text-[11px] text-gray-600 mt-1">
-              Linear projection of the last {forecast.windowDays} days.
+            <div class="text-[11px] text-gray-600 mt-1 first-letter:uppercase">
+              {forecast.paceLabel}.
             </div>
           </div>
         </div>
@@ -400,8 +400,8 @@ const yTicks = Array.from(
     {forecast && (
       <p class="mt-2 text-[11px] text-gray-500">
         {showForecastOnChart
-          ? `Dashed gold line projects the last ${forecast.windowDays} days linearly.`
-          : `On pace for ${forecast.targetLabel} around ${formatDate(forecast.hitDate)} (${formatForecastRelative(forecast.daysAway)}), from a linear fit of the last ${forecast.windowDays} days. Too far out to plot.`}
+          ? `Dashed gold line projects the ${forecast.paceLabel}.`
+          : `On pace for ${forecast.targetLabel} around ${formatDate(forecast.hitDate)} (${formatForecastRelative(forecast.daysAway)}), from the ${forecast.paceLabel}. Too far out to plot.`}
       </p>
     )}
 

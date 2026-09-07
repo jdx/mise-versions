@@ -6,17 +6,17 @@ export type MauForecast = {
   hitDate: string;
   daysAway: number;
   dailySlope: number;
-  windowDays: number;
+  windows: number[];
+  paceLabel: string;
   showOnChart: boolean;
   showInText: boolean;
 };
 
-export const FORECAST_WINDOW_DAYS = 21;
+export const PACE_WINDOWS_DAYS = [7, 30, 365] as const;
 export const CHART_HORIZON_MONTHS = 16;
 export const TEXT_HORIZON_YEARS = 10;
 
 const DAY_MS = 86_400_000;
-const MIN_WINDOW_POINTS = 7;
 
 export function parseUtcDate(date: string): number {
   return Date.parse(`${date}T00:00:00Z`);
@@ -57,26 +57,61 @@ export function formatForecastRelative(daysAway: number): string {
   return `in ${rounded} years`;
 }
 
-function linearSlope(points: MauPoint[]): number | null {
-  const n = points.length;
-  if (n < MIN_WINDOW_POINTS) return null;
+export function formatPaceLabel(windows: number[]): string {
+  if (windows.length === 0) return "";
+  if (windows.length === 1) return `${windows[0]}-day rate`;
+  const names = windows.map((days) => `${days}-day`);
+  if (names.length === 2) return `average of ${names[0]} and ${names[1]} rates`;
+  return `average of ${names.slice(0, -1).join(", ")}, and ${names.at(-1)} rates`;
+}
 
-  const origin = parseUtcDate(points[0].date);
-  const xs = points.map(
-    (point) => (parseUtcDate(point.date) - origin) / DAY_MS,
+function snapshotAtOrBefore(
+  series: MauPoint[],
+  date: string,
+): MauPoint | undefined {
+  return series.findLast((point) => point.date <= date);
+}
+
+function daysBetween(start: string, end: string): number {
+  return (parseUtcDate(end) - parseUtcDate(start)) / DAY_MS;
+}
+
+function windowRate(
+  series: MauPoint[],
+  latest: MauPoint,
+  windowDays: number,
+): number | null {
+  const targetDate = formatUtcDate(
+    parseUtcDate(latest.date) - windowDays * DAY_MS,
   );
-  const ys = points.map((point) => point.mau);
-  const meanX = xs.reduce((sum, x) => sum + x, 0) / n;
-  const meanY = ys.reduce((sum, y) => sum + y, 0) / n;
-  let sxx = 0;
-  let sxy = 0;
-  for (let i = 0; i < n; i++) {
-    const dx = xs[i] - meanX;
-    sxx += dx * dx;
-    sxy += dx * (ys[i] - meanY);
+  const baseline = snapshotAtOrBefore(series, targetDate) ?? series[0];
+  if (!baseline || baseline.date >= latest.date) return null;
+
+  const spanDays = daysBetween(baseline.date, latest.date);
+  if (spanDays < 2 || spanDays < windowDays * 0.5) return null;
+  return (latest.mau - baseline.mau) / spanDays;
+}
+
+export function blendedDailyPace(points: MauPoint[]): {
+  slope: number;
+  windows: number[];
+} | null {
+  const series = points.filter((point) => point.mau > 0);
+  const latest = series.at(-1);
+  if (!latest) return null;
+
+  const rates: number[] = [];
+  const windows: number[] = [];
+  for (const windowDays of PACE_WINDOWS_DAYS) {
+    const rate = windowRate(series, latest, windowDays);
+    if (rate === null) continue;
+    rates.push(rate);
+    windows.push(windowDays);
   }
-  if (sxx === 0) return null;
-  return sxy / sxx;
+  if (rates.length === 0) return null;
+
+  const slope = rates.reduce((sum, rate) => sum + rate, 0) / rates.length;
+  return { slope, windows };
 }
 
 export function forecastNextMillion(points: MauPoint[]): MauForecast | null {
@@ -84,20 +119,14 @@ export function forecastNextMillion(points: MauPoint[]): MauForecast | null {
   const latest = series.at(-1);
   if (!latest) return null;
 
-  const windowStart = formatUtcDate(
-    parseUtcDate(latest.date) - FORECAST_WINDOW_DAYS * DAY_MS,
-  );
-  const window = series.filter((point) => point.date >= windowStart);
-  const slope = linearSlope(
-    window.length >= MIN_WINDOW_POINTS ? window : series,
-  );
-  if (slope === null || slope <= 0) return null;
+  const pace = blendedDailyPace(series);
+  if (pace === null || pace.slope <= 0) return null;
 
   const target = nextMillion(latest.mau);
   const remaining = target - latest.mau;
   if (remaining <= 0) return null;
 
-  const rawDays = remaining / slope;
+  const rawDays = remaining / pace.slope;
   if (!Number.isFinite(rawDays) || rawDays <= 0) return null;
 
   const hitMs = parseUtcDate(latest.date) + rawDays * DAY_MS;
@@ -116,8 +145,9 @@ export function forecastNextMillion(points: MauPoint[]): MauForecast | null {
     targetLabel: formatMillionLabel(target),
     hitDate,
     daysAway,
-    dailySlope: slope,
-    windowDays: FORECAST_WINDOW_DAYS,
+    dailySlope: pace.slope,
+    windows: pace.windows,
+    paceLabel: formatPaceLabel(pace.windows),
     showOnChart: hitDate <= chartDeadline,
     showInText: true,
   };
