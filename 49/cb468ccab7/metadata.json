@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "49cb468ccab7",
+  "strategy": "manual-commit",
+  "branch": "feat/mau-million-forecast",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "web/src/components/MauHistory.astro",
+    "web/src/lib/mau-forecast.test.ts",
+    "web/src/lib/mau-forecast.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/49/cb468ccab7/0/metadata.json",
+      "transcript": "/49/cb468ccab7/0/full.jsonl",
+      "compact_transcript": "/49/cb468ccab7/0/transcript.jsonl",
+      "content_hash": "/49/cb468ccab7/0/content_hash.txt",
+      "prompt": "/49/cb468ccab7/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 1572,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 148992,
+    "output_tokens": 216,
+    "api_call_count": 2
+  }
+}
