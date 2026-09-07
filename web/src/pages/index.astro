@@ -1,4 +1,5 @@
 ---
+import { getPackslipForBackends } from '../lib/packslip';
 import Layout from '../layouts/Layout.astro';
 import { ToolSearch } from '../components/ToolSearch';
 import { drizzle } from 'drizzle-orm/d1';
@@ -45,6 +46,7 @@ try {
 // Fetch trending data (only shown on first page without filters)
 let trendingTools: Array<{
   name: string;
+  packslip?: boolean;
   downloads_30d: number;
   trendingScore: number;
   dailyBoost: number;
@@ -57,7 +59,7 @@ let trendingTools: Array<{
 try {
   const db = drizzle(env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
-  trendingTools = await analytics.getTrendingTools(6);
+  trendingTools = (await analytics.getTrendingTools(6)).map(t => ({...t, packslip: !!getPackslipForBackends(t.backends)}));
 } catch (e) {
   console.error('Failed to fetch trending tools:', e);
 }

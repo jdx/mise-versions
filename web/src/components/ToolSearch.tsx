@@ -6,7 +6,10 @@ import {
   type SortKey,
 } from "../lib/directory-state";
 
+import { PackslipBadge } from "./PackslipBadge";
+
 interface Tool {
+  packslip?: object;
   name: string;
   latest_version: string;
   latest_stable_version?: string;
@@ -19,6 +22,7 @@ interface Tool {
 }
 
 interface TrendingTool {
+  packslip?: boolean;
   name: string;
   downloads_30d: number;
   trendingScore: number;
@@ -620,6 +624,7 @@ export function ToolSearch({
                           ↑
                         </span>
                       )}
+                      {tool.packslip && <PackslipBadge />}
                       {tool.security && tool.security.length > 0 && (
                         <LockIcon security={tool.security} />
                       )}
@@ -783,13 +788,14 @@ export function ToolSearch({
             {toolsWithDownloads.map((tool) => (
               <tr key={tool.name} class="hover:bg-dark-700 transition-colors">
                 <td class="px-4 py-3">
-                  <div class="flex items-center gap-1.5 group">
+                  <div class="flex flex-wrap items-center gap-1.5 group">
                     <a
                       href={`/tools/${tool.name}`}
                       class="text-neon-purple hover:text-neon-pink font-medium transition-colors"
                     >
                       <HighlightedName name={tool.name} />
                     </a>
+                    {tool.packslip && <PackslipBadge />}
                     {tool.security && tool.security.length > 0 && (
                       <LockIcon security={tool.security} />
                     )}

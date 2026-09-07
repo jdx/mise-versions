@@ -1,0 +1,43 @@
+---
+import observations from '../data/mise-stars.json';
+import { forecastStarCrossover } from '../lib/mise-growth';
+import { formatForecastRelative, parseUtcDate, formatUtcDate } from '../lib/mau-forecast';
+const latest = observations.at(-1)!;
+const forecast = forecastStarCrossover(observations);
+const projection = forecast?.status === 'forecast' ? forecast : null;
+const data = observations.filter(p => p.date >= formatUtcDate(parseUtcDate(latest.date) - 365 * 86400000));
+const showProjection = projection && projection.daysAway <= 365 * 5;
+const endDate = showProjection ? projection.hitDate : latest.date;
+const start = parseUtcDate(data[0].date), end = parseUtcDate(endDate);
+const max = Math.ceil(Math.max(...data.flatMap(p=>[p.mise,p.homebrew]), showProjection ? projection.stars : 0) / 10000) * 10000;
+const x = (date: string) => 64 + (parseUtcDate(date)-start) / Math.max(end-start, 1) * 862;
+const y = (value: number) => 224 - value / max * 190;
+const path = (key: 'mise' | 'homebrew') => data.map((p,i)=>`${i && parseUtcDate(p.date)-parseUtcDate(data[i-1].date) === 86400000 ? 'L':'M'}${x(p.date).toFixed(2)},${y(p[key]).toFixed(2)}`).join(' ');
+const dateLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+const ticks = Array.from({length:5},(_,i)=>formatUtcDate(start+(end-start)*i/4));
+---
+<div class="star-crossover">
+  <div class="star-crossover-heading">
+    <div><h3>GitHub stars · mise vs Homebrew</h3><p class="star-legend"><span class="mise-series">● mise {latest.mise.toLocaleString()}</span><span class="brew-series">● Homebrew {latest.homebrew.toLocaleString()}</span><span>As of {latest.date}</span></p></div>
+    <div class="star-forecast">
+      {projection ? <><span>On pace to pass Homebrew</span><strong>{dateLabel(projection.hitDate)}</strong><span>{formatForecastRelative(projection.daysAway)}</span></>
+        : <><span>mise vs Homebrew</span><strong class="forecast-state">{forecast?.status === 'ahead' ? 'mise is ahead' : forecast?.status === 'not-closing' ? 'Gap is not closing' : forecast?.status === 'distant' ? 'More than 10 years away' : 'Not enough history'}</strong></>}
+    </div>
+  </div>
+  <div class="star-chart-scroll">
+    <svg viewBox="0 0 1000 265" role="img" aria-label={`GitHub star history for mise and Homebrew. ${projection ? `At current growth rates, mise is projected to pass Homebrew on ${dateLabel(projection.hitDate)}.` : 'No near-term crossover projected.'}`}>
+      {showProjection && <rect x={x(latest.date)} y="24" width={x(endDate)-x(latest.date)} height="200" fill="var(--forecast)" opacity=".035" />}
+      {[0, .25, .5, .75, 1].map(f=><g><line x1="64" x2="926" y1={y(max*f)} y2={y(max*f)} stroke="var(--border)"/><text x="52" y={y(max*f)+4} text-anchor="end">{Math.round(max*f/1000)}K</text></g>)}
+      <path d={path('mise')} fill="none" stroke="var(--accent)" stroke-width="2.5" />
+      <path d={path('homebrew')} fill="none" stroke="var(--data)" stroke-width="2.5" />
+      {showProjection && <>
+        <line x1={x(latest.date)} x2={x(endDate)} y1={y(latest.mise)} y2={y(projection.stars)} stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="7 6"/>
+        <line x1={x(latest.date)} x2={x(endDate)} y1={y(latest.homebrew)} y2={y(latest.homebrew+projection.brewPace*projection.daysAway)} stroke="var(--data)" stroke-width="2.5" stroke-dasharray="7 6"/>
+        <circle cx={x(endDate)} cy={y(projection.stars)} r="5" fill="var(--forecast)"/>
+        <text x={x(latest.date)+10} y="20" class="projection-label">Projection</text>
+      </>}
+      {ticks.map(date=><text x={x(date)} y="251" text-anchor="middle">{new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US',{month:'short',year:'numeric',timeZone:'UTC'})}</text>)}
+    </svg>
+  </div>
+  <p class="adoption-context">{projection ? `Projects each repository using the ${projection.paceLabel}. Dashed lines show the forecast; growth can change.` : 'Compares the average of recent 7-, 30-, and 365-day growth rates for both repositories.'} <a href="https://github.com/jdx/mise-analytics/blob/main/competitors.csv">Star history ↗</a></p>
+</div>

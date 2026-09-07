@@ -11,7 +11,7 @@ const TOOLS_CACHE_TTL_SECONDS = 300;
 
 export const GET: APIRoute = async ({ url, locals }) => {
   try {
-    const cacheKey = await requestCacheKey("api-tools", url);
+    const cacheKey = await requestCacheKey("api-tools-packslip-v1", url);
     const cached = await getCachedJson(env.DOWNLOAD_DEDUPE, cacheKey);
     if (cached) {
       return new Response(JSON.stringify(cached), {

@@ -1,0 +1,23 @@
+---
+import type { PackslipMetadata } from '../lib/packslip-manifest';
+import { PackslipBadge } from './PackslipBadge';
+interface Props { metadata: PackslipMetadata }
+const { metadata: p } = Astro.props;
+---
+<section class="packslip-panel" aria-label="Packslip capabilities">
+  <div class="packslip-intro"><PackslipBadge /><span>Preferred backend</span></div>
+  {p.capabilities.length > 0 && <ul class="packslip-capabilities">
+    {p.capabilities.map(c => <li title={c.detail}><span aria-hidden="true">✓</span> {c.label}</li>)}
+  </ul>}
+  <p class="packslip-summary"><a href={p.releaseUrl}>{p.version}</a> · {p.artifactCount} builds · <a href={p.manifestUrl}>Verified manifest ↗</a></p>
+  <details class="packslip-details">
+    <summary>Platforms &amp; details</summary>
+    {p.capabilities.map(c => <p><strong>{c.label}:</strong> {c.detail}</p>)}
+    <div class="platform-tags">{p.platforms.map(platform => <span>{platform}</span>)}</div>
+    <p>Executables: <span class="font-mono">{p.binaries.join(', ')}</span></p>
+    <p>Publisher: {p.publisher}. Manifest published {p.publishedAt.slice(0, 10)}. Capabilities apply to this release.</p>
+    <p>The manifest’s signature and transparency log were verified with Packslip. Release binaries and linked provenance attestations were not independently verified here.</p>
+    {p.provenanceCount > 0 && <p>{p.provenanceCount} of {p.artifactCount} builds link to provenance attestations.</p>}
+    <p><a href="https://packslip.dev/">Publish with Packslip ↗</a></p>
+  </details>
+</section>

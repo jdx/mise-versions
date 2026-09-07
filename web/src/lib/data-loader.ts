@@ -2,6 +2,9 @@
 import { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 
+import { getPackslip } from "./packslip";
+import type { PackslipMetadata } from "./packslip-manifest";
+
 // Pagination types
 export interface ToolsQueryParams {
   page?: number;
@@ -22,6 +25,7 @@ export interface PaginatedToolsResult {
 }
 
 export interface ToolMeta {
+  packslip?: PackslipMetadata;
   name: string;
   latest_version: string;
   latest_stable_version?: string;
@@ -65,6 +69,7 @@ interface ToolRow {
 function parseToolRow(row: ToolRow): ToolMeta {
   return {
     name: row.name,
+    packslip: getPackslip(row.github),
     latest_version: row.latest_version || "",
     latest_stable_version: row.latest_stable_version || undefined,
     version_count: row.version_count || 0,
@@ -335,23 +340,7 @@ export async function loadToolsPaginated(
   const totalPages = Math.ceil(totalCount / limit);
 
   // Parse tool rows
-  const tools: ToolMeta[] = (mainResults.results || []).map((row) => ({
-    name: row.name,
-    latest_version: row.latest_version || "",
-    latest_stable_version: row.latest_stable_version || undefined,
-    version_count: row.version_count || 0,
-    last_updated: row.last_updated,
-    description: row.description || undefined,
-    github: row.github || undefined,
-    homepage: row.homepage || undefined,
-    repo_url: row.repo_url || undefined,
-    license: row.license || undefined,
-    backends: row.backends ? JSON.parse(row.backends) : undefined,
-    authors: row.authors ? JSON.parse(row.authors) : undefined,
-    security: row.security ? JSON.parse(row.security) : undefined,
-    package_urls: row.package_urls ? JSON.parse(row.package_urls) : undefined,
-    aqua_link: row.aqua_link || undefined,
-  }));
+  const tools: ToolMeta[] = (mainResults.results || []).map(parseToolRow);
 
   // Build downloads map
   const downloads: Record<string, number> = {};

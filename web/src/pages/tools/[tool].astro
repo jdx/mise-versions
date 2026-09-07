@@ -1,4 +1,6 @@
 ---
+import PackslipPanel from '../../components/PackslipPanel.astro';
+import { PackslipBadge } from '../../components/PackslipBadge';
 import Layout from '../../layouts/Layout.astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
@@ -105,7 +107,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
     <div class="tool-heading page-heading">
       <span class="tool-monogram" aria-hidden="true">{tool.slice(0, 1).toUpperCase()}</span>
       <div>
-      <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool}</h1>
+      <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool} {toolMeta.packslip && <PackslipBadge />}</h1>
       {toolMeta.description && (
         <p class="text-gray-400 mb-2">{toolMeta.description}</p>
       )}
@@ -176,7 +178,9 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
       <aside class="tool-sidebar" aria-label="Tool information">
       <!-- Left column: Info -->
       <InfoPane client:load tool={tool} toolMeta={toolMeta} />
+      {toolMeta.packslip && <PackslipPanel metadata={toolMeta.packslip} />}
 
+      {!toolMeta.packslip && <p class="packslip-vendor">Publish this tool? <a href="https://packslip.dev/">Add Packslip</a> to bring completions, agent skills, and richer metadata to mise’s preferred backend.</p>}
       </aside>
     </div>
   </div>

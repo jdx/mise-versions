@@ -1,0 +1,44 @@
+name: ecosystem metadata
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 10 * * *"
+
+concurrency:
+  group: ecosystem-metadata
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4
+      - run: aube ci
+      - name: Install manifest verifier
+        run: mise install github:jdx/packslip@1.1.1
+      - name: Refresh adoption data and discover publisher manifests
+        run: mise exec github:jdx/packslip@1.1.1 -- aube exec tsx scripts/update-ecosystem.ts
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Format snapshots
+        run: aube exec prettier --write web/src/data/*.json
+      - name: Commit snapshots and deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add web/src/data/*.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh ecosystem metadata"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh workflow run deploy.yml --ref main

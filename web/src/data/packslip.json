@@ -1,0 +1,210 @@
+{
+  "aubepkg/aube": {
+    "project": "github.com/aubepkg/aube",
+    "version": "2.2.12",
+    "publishedAt": "2026-09-06T00:44:31.544512459Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.2.12/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.2.12",
+    "publisher": "aubepkg",
+    "capabilities": [],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["aube", "aube.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  },
+  "jdx/aube": {
+    "project": "github.com/aubepkg/aube",
+    "version": "2.2.12",
+    "publishedAt": "2026-09-06T00:44:31.544512459Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.2.12/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.2.12",
+    "publisher": "aubepkg",
+    "capabilities": [],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["aube", "aube.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  },
+  "jdx/communique": {
+    "project": "github.com/jdx/communique",
+    "version": "1.3.5",
+    "publishedAt": "2026-09-05T11:58:57.327419607Z",
+    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.3.5/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.3.5",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["communique", "communique.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  },
+  "jdx/fnox": {
+    "project": "github.com/jdx/fnox",
+    "version": "1.35.1",
+    "publishedAt": "2026-09-05T19:21:45.195089453Z",
+    "manifestUrl": "https://github.com/jdx/fnox/releases/download/v1.35.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/fnox/releases/tag/v1.35.1",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["fnox", "fnox.exe"],
+    "artifactCount": 8,
+    "provenanceCount": 8
+  },
+  "jdx/hk": {
+    "project": "github.com/jdx/hk",
+    "version": "1.58.1",
+    "publishedAt": "2026-09-05T19:43:41.082536817Z",
+    "manifestUrl": "https://github.com/jdx/hk/releases/download/v1.58.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v1.58.1",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["hk", "hk.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  },
+  "jdx/mr-boxington": {
+    "project": "github.com/jdx/mr-boxington",
+    "version": "1.9.0",
+    "publishedAt": "2026-09-06T16:11:17.430826056Z",
+    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.9.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.9.0",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["mbx", "mbx.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  },
+  "jdx/pitchfork": {
+    "project": "github.com/jdx/pitchfork",
+    "version": "2.24.2",
+    "publishedAt": "2026-09-05T20:58:57.577360439Z",
+    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.24.2/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.24.2",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / x86_64 / gnu",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["pitchfork", "pitchfork.exe"],
+    "artifactCount": 5,
+    "provenanceCount": 5
+  },
+  "jdx/usage": {
+    "project": "github.com/jdx/usage",
+    "version": "6.8.0",
+    "publishedAt": "2026-09-06T17:44:38.075641987Z",
+    "manifestUrl": "https://github.com/jdx/usage/releases/download/v6.8.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v6.8.0",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Man pages",
+        "detail": "Reference documentation for your terminal"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64"
+    ],
+    "binaries": ["usage", "usage.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  }
+}
