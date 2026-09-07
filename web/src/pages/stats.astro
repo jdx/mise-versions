@@ -1,4 +1,5 @@
 ---
+import DailyActivityChart from '../components/DailyActivityChart.astro';
 import MiseAdoption from '../components/MiseAdoption.astro';
 import Layout from '../layouts/Layout.astro';
 import MauHistory from '../components/MauHistory.astro';
@@ -43,7 +44,7 @@ try {
 // Fetch analytics data with error handling for local dev
 let downloads: Record<string, number> = {};
 let backendStatsData: { downloads_by_backend: Array<{ backend: string; count: number }>; top_tools_by_backend: Record<string, Array<{ tool: string; count: number }>> } | null = null;
-let dauMauData: { daily: Array<{ date: string; dau: number; mau: number }>; current_mau: number } | null = null;
+let dauMauData: { daily: Array<{ date: string; dau: number; mau: number; dau_available?: boolean }>; current_mau: number } | null = null;
 let growthData: GrowthData | null = null;
 let versionUpdatesData: VersionUpdatesData | null = null;
 
@@ -207,94 +208,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
     <!-- DAU and Version Updates charts -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {dauMauData && dauMauData.daily.length > 0 && (
-        <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-          <h2 class="text-lg font-semibold text-gray-200 mb-3">
-            Daily Active Users
-          </h2>
-          <div class="overflow-x-auto">
-            {(() => {
-              const width = 500;
-              const height = 200;
-              const padding = { top: 20, right: 50, bottom: 30, left: 50 };
-              const chartWidth = width - padding.left - padding.right;
-              const chartHeight = height - padding.top - padding.bottom;
-              type DayData = { date: string; dau: number };
-              const data: DayData[] = dauMauData.daily.slice(-29);
-              const maxDAU = Math.max(...data.map(d => d.dau), 1);
-              const barWidth = chartWidth / data.length - 2;
-
-              return (
-                <svg
-                  width={width}
-                  height={height}
-                  class="min-w-[400px]"
-                  role="group"
-                  aria-label="Daily active users by date. Use the left and right arrow keys to inspect days."
-                  data-daily-chart
-                >
-                  <text x={padding.left - 10} y={padding.top} text-anchor="end" class="fill-purple-400 text-xs">
-                    {formatCompact(maxDAU)}
-                  </text>
-                  <text x={padding.left - 10} y={padding.top + chartHeight} text-anchor="end" class="fill-purple-400 text-xs">
-                    0
-                  </text>
-                  <g transform={`translate(${padding.left}, ${padding.top})`}>
-                    {data.map((d, i) => {
-                      const x = (i / data.length) * chartWidth + 1;
-                      const barHeight = (d.dau / maxDAU) * chartHeight;
-                      const tooltipWidth = 150;
-                      const tooltipX = Math.min(
-                        Math.max(x + barWidth / 2 - tooltipWidth / 2, 0),
-                        chartWidth - tooltipWidth,
-                      );
-                      return (
-                        <g class="group">
-                          <rect
-                            x={x}
-                            y={0}
-                            width={barWidth}
-                            height={chartHeight}
-                            fill="transparent"
-                            class="cursor-default outline-none"
-                            tabindex={i === data.length - 1 ? "0" : "-1"}
-                            data-daily-bar
-                            aria-label={`${d.date}: ${d.dau.toLocaleString()} daily active users`}
-                          />
-                          <rect
-                            x={x}
-                            y={chartHeight - barHeight}
-                            width={barWidth}
-                            height={barHeight}
-                            fill="var(--accent)"
-                            opacity="0.8"
-                            pointer-events="none"
-                          />
-                          <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
-                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="var(--border)" />
-                            <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
-                              {d.date.slice(5)} · {d.dau.toLocaleString()} users
-                            </text>
-                          </g>
-                        </g>
-                      );
-                    })}
-                    {data.map((d, i) => {
-                      const lastIndex = data.length - 1;
-                      if (i !== lastIndex && (i % 7 !== 0 || lastIndex - i < 3)) return null;
-                      const x = (i / data.length) * chartWidth + barWidth / 2;
-                      const dateLabel = d.date.slice(5);
-                      return (
-                        <text x={x} y={chartHeight + 15} text-anchor="middle" class="fill-gray-500 text-xs">
-                          {dateLabel}
-                        </text>
-                      );
-                    })}
-                  </g>
-                </svg>
-              );
-            })()}
-          </div>
-        </div>
+        <DailyActivityChart points={dauMauData.daily.map(p => ({date:p.date,value:p.dau_available === false ? null : p.dau}))} title="Daily active users" unit="DAU" />
       )}
 
       {versionUpdatesData && versionUpdatesData.daily.length > 0 && (

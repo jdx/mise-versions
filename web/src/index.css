@@ -1193,3 +1193,153 @@ code,
 .star-crossover .adoption-context {
   margin-bottom: 0;
 }
+.download-average-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+.download-average-summary > span > strong {
+  color: var(--data);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.download-average-summary .download-milestone {
+  border-left: 2px solid var(--forecast);
+  padding-left: 0.7rem;
+  line-height: 1.6;
+}
+.download-average-summary .download-milestone strong {
+  color: var(--forecast);
+  font-size: 0.8rem;
+}
+.adoption-chart .download-target-label {
+  fill: var(--forecast);
+}
+.release-timeline {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: var(--surface);
+}
+.release-timeline-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+}
+.release-timeline h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.release-timeline-heading p {
+  color: var(--muted);
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+.release-timeline select {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.4rem;
+}
+.release-months {
+  display: flex;
+  align-items: end;
+  overflow-x: auto;
+  gap: 5px;
+  padding: 12px 3px 5px;
+  margin: 1rem 0;
+}
+.release-month {
+  flex: 1 0 8px;
+  height: 98px;
+  min-width: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: column;
+  gap: 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 0;
+  border-radius: 4px;
+}
+.release-month-bar {
+  display: block;
+  width: 100%;
+  max-width: 40px;
+  background: var(--data);
+  opacity: 0.45;
+  border-radius: 3px 3px 0 0;
+  min-height: 1px;
+}
+.release-month[aria-pressed="true"] .release-month-bar,
+.release-month:hover .release-month-bar {
+  background: var(--accent);
+  opacity: 1;
+}
+.release-month-label {
+  height: 15px;
+  font-size: 9px;
+}
+.release-selection {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.8rem;
+}
+.release-selection span {
+  color: var(--muted);
+}
+.release-preview {
+  margin-top: 0.5rem;
+}
+.release-preview > a,
+.release-preview > div {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+  font-size: 0.75rem;
+}
+.release-preview .font-mono {
+  overflow-wrap: anywhere;
+  color: var(--accent);
+}
+.release-preview time {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.release-preview p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  padding: 0.5rem 0;
+}
+.release-expand {
+  padding: 0.5rem 0 0;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: none;
+  border: 0;
+}
+.activity-period {
+  color: var(--muted);
+  font-size: 0.65rem;
+  margin-top: 0.4rem;
+}
+
+.release-month:focus-visible {
+  outline-offset: -2px;
+}

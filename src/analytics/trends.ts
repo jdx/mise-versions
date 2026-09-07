@@ -164,13 +164,19 @@ export function createTrendsFunctions(
       const dauMap = new Map(dauResults.map((r) => [r.date, r.dau]));
       const mauMap = new Map(mauResults.map((r) => [r.date, r.mau]));
 
-      const dailyData: Array<{ date: string; dau: number; mau: number }> = [];
+      const dailyData: Array<{
+        date: string;
+        dau: number;
+        mau: number;
+        dau_available: boolean;
+      }> = [];
       for (let i = days - 1; i >= 1; i--) {
         const dayTimestamp = now - i * 86400;
         const date = new Date(dayTimestamp * 1000).toISOString().split("T")[0];
         dailyData.push({
           date,
           dau: dauMap.get(date) ?? 0,
+          dau_available: dauMap.has(date),
           mau: mauMap.get(date) ?? 0,
         });
       }

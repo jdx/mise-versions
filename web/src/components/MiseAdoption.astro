@@ -1,6 +1,7 @@
 ---
 import observations from '../data/mise-adoption.json';
 import releaseDownloads from '../data/mise-downloads.json';
+import DailyActivityChart from './DailyActivityChart.astro';
 import StarCrossover from './StarCrossover.astro';
 import { starChange } from '../lib/mise-adoption';
 import { downloadChange, dailyDownloads } from '../lib/mise-growth';
@@ -15,7 +16,6 @@ const since = new Date(latest.date);
 since.setUTCFullYear(since.getUTCFullYear() - 1);
 const brewPoints = observations.filter(p => p.date >= since.toISOString().slice(0, 10));
 const charts = [
-  { title: 'mise downloads · daily', data: daily.slice(-90), color: 'var(--accent)', bars: true },
   { title: 'Homebrew installs · rolling 30 days', data: brewPoints.map(p=>({date:p.date,value:p.brewInstalls})), color: 'var(--data)', bars: false },
 ];
 ---
@@ -27,7 +27,7 @@ const charts = [
     <div><h3>GitHub stars</h3><strong>{latest.stars.toLocaleString()}</strong><p>{stars30d === null ? 'jdx/mise' : `${stars30d >= 0 ? '+' : ''}${stars30d.toLocaleString()} over 30 days`}</p><p>Through {latest.date}</p></div>
   </div>
   <StarCrossover />
-  <div class="adoption-charts">{charts.map(chart => {
+  <div class="adoption-charts"><DailyActivityChart points={daily} title="mise downloads · daily" unit="downloads/day" />{charts.map(chart => {
     const valid = chart.data.filter((p):p is {date:string,value:number} => p.value !== null);
     if (!valid.length) return null;
     const max = Math.max(...valid.map(p=>p.value),1);
