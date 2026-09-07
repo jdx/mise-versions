@@ -1251,73 +1251,96 @@ code,
   padding: 0.4rem;
 }
 .release-dots {
-  display: flex;
-  position: relative;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
-  padding: 8px 2px;
-  margin-top: 0.8rem;
+  margin-top: 1rem;
+}
+.release-time-plot {
+  position: relative;
+  min-width: 600px;
+  height: 126px;
+}
+.release-time-plot::before {
+  content: "";
+  position: absolute;
+  top: 85px;
+  left: 4%;
+  right: 4%;
+  height: 1px;
+  background: var(--border);
 }
 .release-stop {
-  position: relative;
-  flex: 1 0 72px;
-  display: grid;
-  justify-items: center;
-  gap: 12px;
-  padding: 8px 0;
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 100px;
+  transform: translateX(-50%);
   border: 0;
   background: transparent;
   color: var(--muted);
   border-radius: 5px;
+  padding: 0;
 }
-.release-stop::before {
+.release-stop-year {
+  position: absolute;
+  top: var(--label-top);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+.release-stop-year:not(.release-label-hidden)::after {
   content: "";
   position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  height: 1px;
+  top: 20px;
+  left: 50%;
+  height: calc(60px - var(--label-top));
+  width: 1px;
   background: var(--border);
 }
-.release-stop:first-child::before {
-  left: 50%;
-}
-.release-stop:last-child::before {
-  right: 50%;
-}
 .release-dot {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--data);
-  box-shadow: 0 0 0 4px var(--surface);
+  box-shadow: 0 0 0 3px var(--surface);
 }
-.release-dot-multiple {
-  outline: 1px solid var(--data);
-  outline-offset: 3px;
+.release-stop[aria-pressed="true"],
+.release-stop:hover,
+.release-stop:focus-visible {
+  z-index: 2;
 }
 .release-stop[aria-pressed="true"] .release-dot,
 .release-stop:hover .release-dot {
   background: var(--accent);
   outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline-offset: 3px;
 }
-.release-stop[aria-pressed="true"] {
-  color: var(--accent);
+.release-label-hidden {
+  visibility: hidden;
 }
-.release-stop-year {
-  font-size: 9px;
-  line-height: 16px;
-}
-.release-stop-date {
-  font-size: 10px;
-  line-height: 16px;
+.release-stop[aria-pressed="true"] .release-label-hidden,
+.release-stop:hover .release-label-hidden {
+  visibility: visible;
+  top: 52px;
+  padding: 0 4px;
+  background: var(--surface);
 }
 .release-stop:focus-visible {
   outline-offset: -2px;
+}
+.release-year-tick {
+  position: absolute;
+  top: 108px;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-size: 9px;
 }
 .release-trail-controls {
   display: flex;
@@ -1395,8 +1418,7 @@ code,
 .release-stop-milestone .release-dot {
   width: 12px;
   height: 12px;
-  margin-top: -1px;
-  margin-bottom: -1px;
+  top: 79px;
 }
 .release-milestone-label {
   color: var(--text-secondary);

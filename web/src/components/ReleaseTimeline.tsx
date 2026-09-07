@@ -14,6 +14,29 @@ export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
         : history.days;
   const current = days.find((d) => d.date === selected) ?? days.at(-1);
   const rail = useRef<HTMLDivElement>(null);
+  const start = days.length ? Date.parse(days[0].date) : 0;
+  const end = days.length ? Date.parse(days.at(-1)!.date) : start;
+  const position = (date: string) =>
+    end === start ? 50 : 4 + (92 * (Date.parse(date) - start)) / (end - start);
+  const lanes = [-Infinity, -Infinity, -Infinity];
+  const labelLanes = days.map((day) => {
+    if (!day.milestones.length) return -1;
+    const x = position(day.date);
+    const lane = lanes.findIndex((last) => x - last >= 8);
+    if (lane >= 0) lanes[lane] = x;
+    return lane;
+  });
+  const years = days.length
+    ? Array.from(
+        {
+          length:
+            new Date(end).getUTCFullYear() -
+            new Date(start).getUTCFullYear() +
+            1,
+        },
+        (_, i) => String(new Date(start).getUTCFullYear() + i),
+      )
+    : [];
   useEffect(() => {
     const container = rail.current;
     const dot = container?.querySelector<HTMLElement>('[aria-pressed="true"]');
@@ -45,8 +68,8 @@ export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
           <h3>Release timeline</h3>
           <p>
             {range === "milestones" && milestones.length
-              ? "Major versions · minor milestones for 0.x"
-              : "One dot per release day · oldest to newest"}
+              ? "Major versions · minor milestones for 0.x · spaced by date"
+              : "One dot per release day · spaced by date"}
             {history.undated > 0 ? ` · ${history.undated} without dates` : ""}
           </p>
         </div>
@@ -95,36 +118,69 @@ export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
           buttons[next].focus();
         }}
       >
-        {days.map((day) => (
-          <button
-            type="button"
-            key={day.date}
-            class={`release-stop ${day.milestones.length ? "release-stop-milestone" : ""}`}
-            aria-pressed={day.date === current.date}
-            tabIndex={day.date === current.date ? 0 : -1}
-            aria-label={`${day.milestones.map((v) => `v${v}`).join(", ")}${day.milestones.length ? ", " : ""}${dateLabel(day.date)}: ${day.releases.length} releases`}
-            title={day.releases.map((v) => v.version).join(", ")}
-            onClick={() => choose(day.date)}
-          >
-            <span
-              class={`release-stop-year ${day.milestones.length ? "release-milestone-label" : ""}`}
+        <div class="release-time-plot">
+          {days.map((day, index) => (
+            <button
+              type="button"
+              style={{
+                left: `${position(day.date)}%`,
+                "--label-top": `${labelLanes[index] * 22}px`,
+              }}
+              key={day.date}
+              class={`release-stop ${day.milestones.length ? "release-stop-milestone" : ""}`}
+              aria-pressed={day.date === current.date}
+              tabIndex={day.date === current.date ? 0 : -1}
+              aria-label={`${day.milestones.map((v) => `v${v}`).join(", ")}${day.milestones.length ? ", " : ""}${dateLabel(day.date)}: ${day.releases.length} releases`}
+              title={day.releases.map((v) => v.version).join(", ")}
+              onClick={() => choose(day.date)}
             >
-              {day.milestones.length
-                ? day.milestones.map((v) => `v${v}`).join(" · ")
-                : day.date.slice(0, 4)}
-            </span>
+              <span
+                class={`release-stop-year ${day.milestones.length ? "release-milestone-label" : ""} ${labelLanes[index] < 0 ? "release-label-hidden" : ""}`}
+              >
+                {day.milestones.length
+                  ? day.milestones.map((v) => `v${v}`).join(" · ")
+                  : day.date.slice(0, 4)}
+              </span>
+              <span
+                class={`release-dot ${day.releases.length > 1 ? "release-dot-multiple" : ""}`}
+              />
+            </button>
+          ))}
+          <span
+            class="release-year-tick"
+            style={{ left: "4%", transform: "none" }}
+          >
+            {new Date(start).toLocaleDateString("en-US", {
+              month: "short",
+              year: "numeric",
+              timeZone: "UTC",
+            })}
+          </span>
+          {end !== start && (
             <span
-              class={`release-dot ${day.releases.length > 1 ? "release-dot-multiple" : ""}`}
-            />
-            <span class="release-stop-date">
-              {new Date(`${day.date}T00:00:00Z`).toLocaleDateString("en-US", {
+              class="release-year-tick"
+              style={{ left: "96%", transform: "translateX(-100%)" }}
+            >
+              {new Date(end).toLocaleDateString("en-US", {
                 month: "short",
-                year: "2-digit",
+                year: "numeric",
                 timeZone: "UTC",
               })}
             </span>
-          </button>
-        ))}
+          )}
+          {years.map((year) => {
+            const date = `${year}-01-01`;
+            if (position(date) < 14 || position(date) > 86) return null;
+            return (
+              <span
+                class="release-year-tick"
+                style={{ left: `${position(date)}%` }}
+              >
+                {year}
+              </span>
+            );
+          })}
+        </div>
       </div>
       <div class="release-trail-controls">
         <button
