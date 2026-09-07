@@ -1,0 +1,24 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "141e594e41f9",
+  "strategy": "manual-commit",
+  "branch": "chore/update-aube",
+  "checkpoints_count": 2,
+  "files_touched": null,
+  "sessions": [
+    {
+      "metadata": "/14/1e594e41f9/0/metadata.json",
+      "transcript": "/14/1e594e41f9/0/full.jsonl",
+      "compact_transcript": "/14/1e594e41f9/0/transcript.jsonl",
+      "content_hash": "/14/1e594e41f9/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 89465,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 876800,
+    "output_tokens": 3310,
+    "api_call_count": 15
+  }
+}
