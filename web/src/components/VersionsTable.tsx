@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "preact/hooks";
+import { useState, useMemo, useCallback, useEffect } from "preact/hooks";
 import {
   isPrerelease,
   getDistribution,
@@ -132,7 +132,7 @@ function buildReleaseUrl(github: string, version: string): string {
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
-  useMemo(() => {
+  useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value);
     }, delay);
@@ -504,7 +504,8 @@ export function VersionsTable({
   );
 
   return (
-    <div>
+    <section class="versions-section" aria-label="Versions">
+      <h2>Version history</h2>
       {/* Search and hide prereleases row */}
       <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
         {/* Search input */}
@@ -516,6 +517,7 @@ export function VersionsTable({
               setSearchQuery((e.target as HTMLInputElement).value);
               handleFilterChange();
             }}
+            aria-label="Search versions"
             placeholder="Search versions..."
             class="w-full px-4 py-2 pl-10 bg-dark-700 border border-dark-600 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple text-sm"
           />
@@ -526,9 +528,9 @@ export function VersionsTable({
             viewBox="0 0 24 24"
           >
             <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width={2}
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
@@ -624,6 +626,9 @@ export function VersionsTable({
             {timeline.milestones.map((m) => (
               <div
                 key={m.version}
+                tabIndex={0}
+                role="img"
+                aria-label={`${m.version}, ${m.dateStr}`}
                 class="absolute -translate-x-1/2 group"
                 style={{ left: `${Math.min(Math.max(m.position, 2), 98)}%` }}
               >
@@ -642,7 +647,16 @@ export function VersionsTable({
                   </span>
                 </div>
                 {/* Tooltip */}
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10 border border-dark-600">
+                <div
+                  class="absolute bottom-8 left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity whitespace-normal w-max max-w-[240px] break-words pointer-events-none z-10 border border-dark-600"
+                  style={
+                    m.position < 35
+                      ? { left: 0, transform: "none" }
+                      : m.position > 65
+                        ? { left: "auto", right: 0, transform: "none" }
+                        : undefined
+                  }
+                >
                   <div class="font-mono text-neon-purple">{m.version}</div>
                   <div class="text-gray-500">{m.dateStr}</div>
                 </div>
@@ -728,7 +742,7 @@ export function VersionsTable({
           <div class="border-t border-dark-600 p-4 text-center">
             <button
               onClick={() => setDisplayCount((c) => c + ITEMS_PER_PAGE)}
-              class="px-6 py-2 bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-white rounded-lg transition-colors text-sm"
+              class="px-6 py-2 bg-dark-700 hover:bg-dark-600 text-gray-300 hover:text-gray-100 rounded-lg transition-colors text-sm"
             >
               Load more (showing {displayedVersions.length.toLocaleString()} of{" "}
               {filteredVersions.length.toLocaleString()})
@@ -743,6 +757,6 @@ export function VersionsTable({
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

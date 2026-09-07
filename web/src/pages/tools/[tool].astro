@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 import { setupAnalytics } from '../../../../src/analytics';
+import { InstallCommand } from '../../components/InstallCommand';
 import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
@@ -99,9 +100,11 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <div>
-    <!-- Header -->
-    <div class="mb-6">
+  <div class="tool-page">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Tools</a><span aria-hidden="true">/</span><span aria-current="page">{tool}</span></nav>
+    <div class="tool-heading page-heading">
+      <span class="tool-monogram" aria-hidden="true">{tool.slice(0, 1).toUpperCase()}</span>
+      <div>
       <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool}</h1>
       {toolMeta.description && (
         <p class="text-gray-400 mb-2">{toolMeta.description}</p>
@@ -139,17 +142,18 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
         {downloadStats.total > 0 && (
           <>
             <span>·</span>
-            <span>{downloadStats.total.toLocaleString()} downloads</span>
+            <span>{downloadStats.total.toLocaleString()} downloads all time</span>
           </>
         )}
       </div>
     </div>
 
+    </div>
+    <InstallCommand tool={tool} client:load />
     <!-- Two-column layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-      <!-- Left column: Info -->
-      <InfoPane client:load tool={tool} toolMeta={toolMeta} />
+    <div class="tool-workspace">
 
+      <div class="tool-primary">
       <!-- Right column: Downloads -->
       <DownloadsPane
         client:load
@@ -159,7 +163,6 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
         byVersion={downloadStats.byVersion}
         byOs={downloadStats.byOs}
       />
-    </div>
 
     <!-- Versions Table (includes timeline) -->
     <VersionsTable
@@ -169,5 +172,12 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
       github={toolMeta.github}
       tool={tool}
     />
+      </div>
+      <aside class="tool-sidebar" aria-label="Tool information">
+      <!-- Left column: Info -->
+      <InfoPane client:load tool={tool} toolMeta={toolMeta} />
+
+      </aside>
+    </div>
   </div>
 </Layout>

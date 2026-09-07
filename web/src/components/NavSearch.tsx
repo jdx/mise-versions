@@ -32,7 +32,8 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
         setSuggestions([]);
         return;
       }
-      const data = await res.json();
+      const data = await res.json<{ tools?: Suggestion[] }>();
+      if (inputRef.current?.value.trim() !== q.trim()) return;
       setSuggestions((data.tools || []).slice(0, MAX_SUGGESTIONS));
     } catch (e) {
       console.error("Failed to fetch search suggestions:", e);
@@ -108,7 +109,15 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
     <div class="relative min-w-0 flex-1 sm:w-56 sm:flex-none md:w-64">
       <input
         ref={inputRef}
-        type="text"
+        type="search"
+        aria-label="Search tools"
+        role="combobox"
+        aria-expanded={showSuggestions && suggestions.length > 0}
+        aria-controls="tool-suggestions"
+        aria-autocomplete="list"
+        aria-activedescendant={
+          selectedIndex >= 0 ? `suggestion-${selectedIndex}` : undefined
+        }
         placeholder="Search tools..."
         value={query}
         onInput={(e) => handleInput((e.target as HTMLInputElement).value)}
@@ -119,12 +128,22 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
         autocomplete="off"
       />
       {showSuggestions && suggestions.length > 0 && (
-        <div class="absolute z-50 w-full mt-1 bg-dark-800 border border-dark-600 rounded-lg shadow-lg overflow-hidden">
+        <div
+          id="tool-suggestions"
+          role="listbox"
+          aria-label="Tool suggestions"
+          class="absolute z-50 w-full mt-1 bg-dark-800 border border-dark-600 rounded-lg shadow-lg overflow-hidden"
+        >
           {suggestions.map((tool, index) => (
             <button
               key={tool.name}
+              id={`suggestion-${index}`}
+              role="option"
+              aria-selected={index === selectedIndex}
+              tabIndex={-1}
               type="button"
-              onMouseDown={() => goToTool(tool.name)}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => goToTool(tool.name)}
               class={`w-full px-3 py-2 text-left text-sm transition-colors ${
                 index === selectedIndex
                   ? "bg-neon-purple/20 text-neon-purple"

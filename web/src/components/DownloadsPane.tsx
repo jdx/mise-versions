@@ -2,16 +2,16 @@ import { useState, useEffect } from "preact/hooks";
 
 // Version colors for stacked chart
 const VERSION_COLORS = [
-  "#B026FF", // Purple
-  "#00D4FF", // Cyan
+  "var(--accent)", // Purple
+  "var(--data)", // Cyan
   "#FF2D95", // Pink
   "#22C55E", // Green
   "#F97316", // Orange
   "#3B82F6", // Blue
   "#8B5CF6", // Violet
-  "#FBBF24", // Yellow
+  "var(--forecast)", // Yellow
   "#EF4444", // Red
-  "#6B7280", // Gray
+  "var(--muted)", // Gray
 ];
 
 function formatAxisNumber(n: number): string {
@@ -86,6 +86,7 @@ function DailyBarChart({
           const label = dateObj.toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
+            timeZone: "UTC",
           });
           return (
             <div
@@ -100,7 +101,16 @@ function DailyBarChart({
                 class="w-full bg-neon-purple hover:bg-neon-pink transition-colors rounded-t"
                 style={{ height: `${Math.max(height, 2)}%` }}
               />
-              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10">
+              <div
+                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 bg-dark-700 rounded text-xs text-gray-300 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-10"
+                style={
+                  index < 5
+                    ? { left: 0, transform: "none" }
+                    : index > days.length - 6
+                      ? { left: "auto", right: 0, transform: "none" }
+                      : undefined
+                }
+              >
                 {label}: {d.count.toLocaleString()} downloads
               </div>
             </div>
@@ -136,7 +146,7 @@ function MonthlyLineChart({
 
   // Create SVG path for the line
   const points = months.map((m, i) => {
-    const x = (i / (months.length - 1)) * 100;
+    const x = (i / (months.length - 1)) * 600;
     const y = chartHeight - (m.count / maxCount) * (chartHeight - 20);
     return { x, y, ...m };
   });
@@ -146,7 +156,7 @@ function MonthlyLineChart({
     .join(" ");
 
   // Create area path (line + bottom edge)
-  const areaPath = `${linePath} L 100 ${chartHeight} L 0 ${chartHeight} Z`;
+  const areaPath = `${linePath} L 600 ${chartHeight} L 0 ${chartHeight} Z`;
 
   return (
     <div class="flex">
@@ -160,24 +170,32 @@ function MonthlyLineChart({
       <div class="flex-1">
         <div class="h-32 relative">
           <svg
-            viewBox={`0 0 100 ${chartHeight}`}
+            viewBox={`0 0 600 ${chartHeight}`}
             preserveAspectRatio="none"
             class="w-full h-full"
           >
             {/* Gradient fill under the line */}
             <defs>
               <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#B026FF" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#B026FF" stopOpacity="0" />
+                <stop
+                  offset="0%"
+                  stop-color="var(--accent)"
+                  stop-opacity="0.3"
+                />
+                <stop
+                  offset="100%"
+                  stop-color="var(--accent)"
+                  stop-opacity="0"
+                />
               </linearGradient>
             </defs>
             <path d={areaPath} fill="url(#areaGradient)" />
             <path
               d={linePath}
               fill="none"
-              stroke="#B026FF"
-              strokeWidth="2"
-              vectorEffect="non-scaling-stroke"
+              stroke="var(--accent)"
+              stroke-width="2"
+              vector-effect="non-scaling-stroke"
             />
             {/* Data points */}
             {points.map((p) => (
@@ -186,14 +204,15 @@ function MonthlyLineChart({
                 cx={p.x}
                 cy={p.y}
                 r="3"
-                fill="#B026FF"
+                fill="var(--accent)"
                 class="hover:fill-[#FF2D95] cursor-pointer"
-                vectorEffect="non-scaling-stroke"
+                vector-effect="non-scaling-stroke"
               >
                 <title>
                   {new Date(p.month + "-01").toLocaleDateString("en-US", {
                     month: "short",
                     year: "numeric",
+                    timeZone: "UTC",
                   })}
                   : {p.count.toLocaleString()}
                 </title>
@@ -411,6 +430,7 @@ export function DownloadsPane({
   const [versionTrendsData, setVersionTrendsData] =
     useState<VersionTrendData | null>(null);
   const [versionTrendsLoading, setVersionTrendsLoading] = useState(false);
+  const [versionTrendsError, setVersionTrendsError] = useState(false);
 
   // Sync from localStorage on mount (after hydration)
   useEffect(() => {
@@ -423,32 +443,39 @@ export function DownloadsPane({
   const setChartView = (view: ChartView) => {
     setChartViewState(view);
     if (typeof window !== "undefined") {
-      localStorage.setItem(CHART_VIEW_KEY, view);
+      try {
+        localStorage.setItem(CHART_VIEW_KEY, view);
+      } catch {}
     }
   };
 
-  // Fetch version trends when switching to that tab
+  // Keep failures visible and retry only when requested, rather than looping.
   useEffect(() => {
-    if (
-      chartView === "versions" &&
-      !versionTrendsData &&
-      !versionTrendsLoading
-    ) {
-      setVersionTrendsLoading(true);
-      fetch(`/api/downloads/${tool}/version-trends?days=30`)
-        .then((res) => res.json<VersionTrendData>())
-        .then((data) => {
-          setVersionTrendsData(data);
-          setVersionTrendsLoading(false);
-        })
-        .catch(() => {
-          setVersionTrendsLoading(false);
-        });
-    }
-  }, [chartView, tool, versionTrendsData, versionTrendsLoading]);
+    if (chartView !== "versions" || versionTrendsData || versionTrendsError)
+      return;
+    const controller = new AbortController();
+    setVersionTrendsLoading(true);
+    fetch(`/api/downloads/${encodeURIComponent(tool)}/version-trends?days=30`, {
+      signal: controller.signal,
+    })
+      .then(async (res) => {
+        if (!res.ok) throw new Error("Version trends unavailable");
+        return res.json<VersionTrendData>();
+      })
+      .then((data) => {
+        if (!controller.signal.aborted) setVersionTrendsData(data);
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setVersionTrendsError(true);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setVersionTrendsLoading(false);
+      });
+    return () => controller.abort();
+  }, [chartView, tool, versionTrendsData, versionTrendsError]);
 
   return (
-    <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+    <div class="download-panel bg-dark-800 border border-dark-600 rounded-lg p-4">
       <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads</h2>
 
       <div class="mb-4">
@@ -462,6 +489,7 @@ export function DownloadsPane({
           </div>
           <div class="flex rounded-lg overflow-hidden border border-dark-600">
             <button
+              aria-pressed={chartView === "30d"}
               onClick={() => setChartView("30d")}
               class={`px-2 py-1 text-xs font-medium transition-colors ${
                 chartView === "30d"
@@ -472,6 +500,7 @@ export function DownloadsPane({
               30d
             </button>
             <button
+              aria-pressed={chartView === "12m"}
               onClick={() => setChartView("12m")}
               class={`px-2 py-1 text-xs font-medium transition-colors ${
                 chartView === "12m"
@@ -482,6 +511,7 @@ export function DownloadsPane({
               12m
             </button>
             <button
+              aria-pressed={chartView === "versions"}
               onClick={() => setChartView("versions")}
               class={`px-2 py-1 text-xs font-medium transition-colors ${
                 chartView === "versions"
@@ -493,7 +523,14 @@ export function DownloadsPane({
             </button>
           </div>
         </div>
-        {chartView === "30d" ? (
+        {chartView === "versions" && versionTrendsError ? (
+          <div class="inline-notice" role="alert">
+            Version trends are unavailable.
+            <button onClick={() => setVersionTrendsError(false)}>
+              Try again
+            </button>
+          </div>
+        ) : chartView === "30d" ? (
           <DailyBarChart daily={daily} />
         ) : chartView === "12m" ? (
           <MonthlyLineChart monthly={monthly || []} />

@@ -4,17 +4,30 @@ export default {
   theme: {
     extend: {
       colors: {
+        cyan: { 400: "var(--data)" },
         neon: {
-          purple: "#B026FF",
-          pink: "#FF2D95",
-          blue: "#00D4FF",
+          purple: "var(--accent)",
+          pink: "var(--accent-hover)",
+          blue: "var(--data)",
         },
         dark: {
-          900: "#0a0a0f",
-          800: "#12121a",
-          700: "#1a1a24",
-          600: "#24242f",
+          900: "var(--canvas)",
+          800: "var(--surface)",
+          700: "var(--surface-raised)",
+          600: "var(--border)",
+          500: "var(--border-strong)",
         },
+        gray: {
+          100: "var(--text)",
+          200: "var(--text)",
+          300: "var(--text-secondary)",
+          400: "var(--text-secondary)",
+          500: "var(--muted)",
+          600: "var(--muted)",
+        },
+        green: { 400: "var(--positive)" },
+        red: { 400: "var(--negative)" },
+        amber: { 300: "var(--forecast)", 400: "var(--forecast)" },
       },
     },
   },

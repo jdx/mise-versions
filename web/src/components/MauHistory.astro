@@ -263,12 +263,12 @@ const yTicks = Array.from(
       >
         <defs>
           <linearGradient id="mau-history-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.22" />
-            <stop offset="100%" stop-color="#00D4FF" stop-opacity="0" />
+            <stop offset="0%" stop-color="var(--data)" stop-opacity="0.22" />
+            <stop offset="100%" stop-color="var(--data)" stop-opacity="0" />
           </linearGradient>
           <linearGradient id="mau-forecast-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.16" />
-            <stop offset="100%" stop-color="#FBBF24" stop-opacity="0" />
+            <stop offset="0%" stop-color="var(--forecast)" stop-opacity="0.16" />
+            <stop offset="100%" stop-color="var(--forecast)" stop-opacity="0" />
           </linearGradient>
           <filter id="mau-forecast-glow" x="-80%" y="-80%" width="260%" height="260%">
             <feGaussianBlur stdDeviation="2.4" result="blur" />
@@ -281,7 +281,7 @@ const yTicks = Array.from(
         <g transform={`translate(${padding.left}, ${padding.top})`}>
           {yTicks.map((tick) => (
             <g>
-              <line x1="0" x2={chartWidth} y1={yForValue(tick)} y2={yForValue(tick)} stroke="#374151" stroke-width="1" />
+              <line x1="0" x2={chartWidth} y1={yForValue(tick)} y2={yForValue(tick)} stroke="var(--border)" stroke-width="1" />
               <text x="-10" y={yForValue(tick) + 4} text-anchor="end" class="fill-gray-500 text-xs">
                 {formatCompact(Math.round(tick))}
               </text>
@@ -293,7 +293,7 @@ const yTicks = Array.from(
               x2={xForDate(forecast.hitDate)}
               y1={yForValue(forecast.target)}
               y2={yForValue(forecast.target)}
-              stroke="#FBBF24"
+              stroke="var(--forecast)"
               stroke-width="1"
               stroke-dasharray="3 5"
               opacity="0.55"
@@ -315,7 +315,7 @@ const yTicks = Array.from(
           )}
           {mauAreaPath && <path d={mauAreaPath} fill="url(#mau-history-fill)" />}
           {forecastAreaPath && <path d={forecastAreaPath} fill="url(#mau-forecast-fill)" />}
-          <path d={mauPath} fill="none" stroke="#00D4FF" stroke-width="3" stroke-linejoin="round" />
+          <path d={mauPath} fill="none" stroke="var(--data)" stroke-width="3" stroke-linejoin="round" />
           {showForecastOnChart && forecast && forecastPath && (
             <g>
               <line
@@ -323,7 +323,7 @@ const yTicks = Array.from(
                 x2={xForDate(forecast.hitDate)}
                 y1={yForValue(forecast.target)}
                 y2={chartHeight}
-                stroke="#FBBF24"
+                stroke="var(--forecast)"
                 stroke-width="1"
                 stroke-dasharray="3 5"
                 opacity="0.45"
@@ -332,7 +332,7 @@ const yTicks = Array.from(
                 d={forecastPath}
                 class="mau-forecast-dash"
                 fill="none"
-                stroke="#FBBF24"
+                stroke="var(--forecast)"
                 stroke-width="2.5"
                 stroke-linecap="round"
               />
@@ -343,12 +343,12 @@ const yTicks = Array.from(
               <title>{point.date}: {point.mau.toLocaleString()} MAU</title>
             </circle>
           ))}
-          <circle cx={xForDate(latest.date)} cy={yForValue(latest.mau)} r="4" fill="#00D4FF" />
+          <circle cx={xForDate(latest.date)} cy={yForValue(latest.mau)} r="4" fill="var(--data)" />
           {forecastPoint && forecast && (
             <g filter="url(#mau-forecast-glow)">
-              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="8" fill="#FBBF24" fill-opacity="0.18" />
-              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="4.5" fill="#FBBF24" />
-              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="2" fill="#0a0a0f" />
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="8" fill="var(--forecast)" fill-opacity="0.18" />
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="4.5" fill="var(--forecast)" />
+              <circle cx={forecastPoint.x} cy={forecastPoint.y} r="2" fill="var(--canvas)" />
               <title>
                 {forecast.targetLabel} pace: {formatDate(forecast.hitDate)} ({formatForecastRelative(forecast.daysAway)})
               </title>
@@ -362,8 +362,8 @@ const yTicks = Array.from(
                 width={forecastPillWidth}
                 height="20"
                 rx="10"
-                fill="#12121a"
-                stroke="#FBBF24"
+                fill="var(--surface)"
+                stroke="var(--forecast)"
                 stroke-width="1"
                 opacity="0.95"
               />
@@ -371,7 +371,7 @@ const yTicks = Array.from(
                 x={forecastPill.x + forecastPillWidth / 2}
                 y={forecastPill.y + 14}
                 text-anchor="middle"
-                class="fill-amber-200 text-[11px]"
+                class="fill-amber-300 text-[11px]"
               >
                 {forecastLabel}
               </text>
@@ -406,8 +406,8 @@ const yTicks = Array.from(
     )}
 
     {recentMonths.length > 0 && (
-      <div class="mt-5">
-        <h3 class="text-sm font-medium text-gray-300 mb-2">Monthly history</h3>
+      <details class="monthly-history mt-5">
+        <summary class="text-sm font-medium text-gray-300 mb-2">Monthly history <span class="text-gray-500">⌄</span></summary>
         <div class="hidden overflow-x-auto sm:block">
           <table class="w-full text-sm">
             <thead>
@@ -470,7 +470,7 @@ const yTicks = Array.from(
             );
           })}
         </div>
-      </div>
+      </details>
     )}
   </section>
 )}

@@ -169,7 +169,7 @@ test("projects the post-Quattro climb in late September 2026", () => {
     ["2026-09-04", 747_358],
     ["2026-09-05", 752_423],
     ["2026-09-06", 755_509],
-  ].map(([date, mau]) => ({ date, mau: Number(mau) }));
+  ].map(([date, mau]) => ({ date: String(date), mau: Number(mau) }));
   const forecast = forecastNextMillion(points);
   assert.ok(forecast);
   assert.equal(forecast.targetLabel, "1M");

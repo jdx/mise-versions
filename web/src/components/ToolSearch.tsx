@@ -1,8 +1,10 @@
-import { useState, useMemo, useRef } from "preact/hooks";
+import { useState, useMemo, useRef, useEffect } from "preact/hooks";
 
-type SortKey = "name" | "downloads" | "updated";
-
-const VALID_SORT_KEYS: SortKey[] = ["name", "downloads", "updated"];
+import {
+  directoryQuery,
+  readDirectoryState,
+  type SortKey,
+} from "../lib/directory-state";
 
 interface Tool {
   name: string;
@@ -52,6 +54,7 @@ interface Props {
   initialSearch?: string;
   initialSort?: SortKey;
   initialBackends?: string[];
+  initialError?: boolean;
 }
 
 // Security level detection and lock icon
@@ -126,9 +129,9 @@ function LockIcon({
         viewBox="0 0 24 24"
       >
         <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width={2}
           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
         />
       </svg>
@@ -147,7 +150,7 @@ function LockIcon({
 // Mini sparkline SVG component
 function Sparkline({
   data,
-  color = "#B026FF",
+  color = "var(--accent)",
 }: {
   data: number[];
   color?: string;
@@ -161,7 +164,8 @@ function Sparkline({
 
   const points = data
     .map((value, i) => {
-      const x = padding + (i / (data.length - 1)) * (width - padding * 2);
+      const x =
+        padding + (i / Math.max(data.length - 1, 1)) * (width - padding * 2);
       const y = height - padding - (value / max) * (height - padding * 2);
       return `${x},${y}`;
     })
@@ -214,27 +218,6 @@ function cleanBackend(backend: string): string {
   return result;
 }
 
-// Parse URL params for initial state
-function getInitialState() {
-  if (typeof window === "undefined")
-    return {
-      search: "",
-      sortBy: "downloads" as SortKey,
-      selectedBackends: new Set<string>(),
-    };
-  const params = new URLSearchParams(window.location.search);
-  const q = params.get("q") || "";
-  const sort = params.get("sort") as SortKey;
-  const backends = params.get("backends");
-  return {
-    search: q,
-    sortBy: VALID_SORT_KEYS.includes(sort) ? sort : ("downloads" as SortKey),
-    selectedBackends: backends
-      ? new Set(backends.split(",").filter(Boolean))
-      : new Set<string>(),
-  };
-}
-
 export function ToolSearch({
   tools: initialTools,
   downloads: initialDownloads,
@@ -244,6 +227,7 @@ export function ToolSearch({
   initialSearch = "",
   initialSort = "downloads",
   initialBackends = [],
+  initialError = false,
 }: Props) {
   // State for current data (updated via API)
   const [tools, setTools] = useState(initialTools);
@@ -258,6 +242,10 @@ export function ToolSearch({
     new Set(initialBackends),
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(initialError);
+  const requestId = useRef(0);
+  const requestedPage = useRef(initialPagination.page);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   // Fetch tools from API
   const fetchTools = async (params: {
@@ -265,29 +253,26 @@ export function ToolSearch({
     search?: string;
     sort?: SortKey;
     backends?: string[];
+    history?: boolean;
   }) => {
+    const id = ++requestId.current;
+    requestedPage.current = params.page || 1;
     setIsLoading(true);
+    setError(false);
     try {
-      const searchParams = new URLSearchParams();
-      if (params.page && params.page > 1)
-        searchParams.set("page", String(params.page));
-      if (params.search?.trim()) searchParams.set("q", params.search.trim());
-      if (params.sort && params.sort !== "downloads")
-        searchParams.set("sort", params.sort);
-      if (params.backends && params.backends.length > 0) {
-        searchParams.set("backends", params.backends.join(","));
-      }
+      const searchParams = directoryQuery(params);
 
       // Update URL without reload
       const newUrl = searchParams.toString()
         ? `${window.location.pathname}?${searchParams.toString()}`
         : window.location.pathname;
-      window.history.pushState(null, "", newUrl);
+      if (params.history !== false) window.history.pushState(null, "", newUrl);
 
       const response = await fetch(`/api/tools?${searchParams.toString()}`);
       if (!response.ok) throw new Error("Failed to fetch tools");
 
       const data: ToolsApiResponse = await response.json();
+      if (id !== requestId.current) return;
       setTools(data.tools);
       setDownloads(data.downloads);
       setPagination({
@@ -297,11 +282,27 @@ export function ToolSearch({
       });
       // Don't update backendCounts - keep the global counts for filter chips
     } catch (error) {
+      if (id === requestId.current) setError(true);
       console.error("Failed to fetch tools:", error);
     } finally {
-      setIsLoading(false);
+      if (id === requestId.current) setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const restore = () => {
+      const state = readDirectoryState(window.location.search);
+      setSearch(state.search);
+      setSortBy(state.sort);
+      setSelectedBackends(new Set(state.backends));
+      fetchTools({ ...state, history: false });
+    };
+    window.addEventListener("popstate", restore);
+    return () => {
+      window.removeEventListener("popstate", restore);
+      requestId.current++;
+    };
+  }, []);
 
   // Handle page change
   const handlePageChange = (newPage: number) => {
@@ -318,7 +319,12 @@ export function ToolSearch({
       backends: [...selectedBackends],
     });
     // Scroll to top of results
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    resultsRef.current?.scrollIntoView({
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+      block: "start",
+    });
   };
 
   // Handle sort change
@@ -473,6 +479,7 @@ export function ToolSearch({
               key={p}
               onClick={() => handlePageChange(p)}
               disabled={isLoading}
+              aria-current={p === pagination.page ? "page" : undefined}
               class={`px-3 py-1.5 rounded border transition-colors ${
                 p === pagination.page
                   ? "bg-neon-purple/20 border-neon-purple text-neon-purple"
@@ -531,22 +538,63 @@ export function ToolSearch({
 
   return (
     <div>
+      <section class="directory-search" aria-label="Find tools">
+        <h1 class="sr-only">Tool directory</h1>
+        <div>
+          <form
+            class="hero-search"
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              fetchTools({
+                page: 1,
+                search,
+                sort: sortBy,
+                backends: [...selectedBackends],
+              });
+            }}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--muted)"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 5 5" />
+            </svg>
+            <input
+              type="search"
+              aria-label="Search tools"
+              placeholder="Search tools…"
+              value={search}
+              onInput={(e) => setSearch(e.currentTarget.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </section>
       {/* Hot Tools Section - only show on first page with no filters */}
       {hotTools.length > 0 &&
         !search.trim() &&
         selectedBackends.size === 0 &&
         pagination.page === 1 && (
-          <div class="mb-8">
-            <h2 class="text-sm font-medium text-gray-400 mb-4 flex items-center gap-2">
-              <span class="text-orange-400">🔥</span> Hot Tools
-              <span class="text-xs text-gray-500">(trending)</span>
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <section class="trending-section">
+            <div class="section-heading">
+              <h2>
+                Trending tools <span class="text-neon-purple">↗</span>
+              </h2>
+              <span>Downloads · 30 days</span>
+            </div>
+            <div class="trending-grid">
               {hotTools.map((tool, index) => (
                 <a
                   key={tool.name}
                   href={`/tools/${tool.name}`}
-                  class="bg-dark-800 border border-dark-600 rounded-lg p-4 hover:border-neon-purple/50 hover:bg-dark-700 transition-all group"
+                  class="trending-card group"
                 >
                   <div class="flex items-start justify-between mb-2">
                     <div class="flex items-center gap-2">
@@ -599,70 +647,115 @@ export function ToolSearch({
                 </a>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-      <div class="mb-4 flex items-center justify-end gap-4">
-        <div class="text-sm text-gray-500 whitespace-nowrap flex items-center gap-2">
-          {isLoading && (
-            <svg
-              class="animate-spin h-4 w-4 text-neon-purple"
-              fill="none"
-              viewBox="0 0 24 24"
+      <div ref={resultsRef} class="directory-toolbar">
+        <div>
+          <h2>All tools</h2>
+          <div class="text-sm text-gray-500 whitespace-nowrap flex items-center gap-2">
+            {isLoading && (
+              <svg
+                class="animate-spin h-4 w-4 text-neon-purple"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                ></circle>
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            )}
+            {search.trim() || selectedBackends.size > 0
+              ? `${pagination.totalCount.toLocaleString()} matching tools`
+              : `${pagination.totalCount.toLocaleString()} tools`}
+          </div>
+        </div>
+        <div class="directory-controls">
+          <label class="flex items-center gap-2">
+            <span class="sr-only">Sort tools</span>
+            <select
+              value={sortBy}
+              onChange={(e) =>
+                handleSortChange(e.currentTarget.value as SortKey)
+              }
             >
-              <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4"
-              ></circle>
-              <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-              ></path>
-            </svg>
+              <option value="downloads">Most downloaded</option>
+              <option value="name">Name A–Z</option>
+              <option value="updated">Recently updated</option>
+            </select>
+          </label>
+          {/* Backend filter chips */}
+          {sortedBackendCounts.size > 0 && (
+            <details class="filter-disclosure">
+              <summary>
+                Backends{" "}
+                {selectedBackends.size > 0 ? `(${selectedBackends.size})` : ""}{" "}
+                ⌄
+              </summary>
+              <div class="filter-panel">
+                {[...sortedBackendCounts.entries()].map(([backend, count]) => (
+                  <button
+                    key={backend}
+                    aria-pressed={selectedBackends.has(backend)}
+                    onClick={() => handleBackendToggle(backend)}
+                    disabled={isLoading}
+                    class={`px-3 py-1 text-sm rounded-full border transition-colors ${
+                      selectedBackends.has(backend)
+                        ? "bg-neon-purple/20 border-neon-purple text-neon-purple"
+                        : "bg-dark-800 border-dark-600 text-gray-400 hover:border-gray-500 hover:text-gray-300"
+                    } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
+                    {backend}
+                    <span class="ml-1 text-xs opacity-70">({count})</span>
+                  </button>
+                ))}
+                {selectedBackends.size > 0 && (
+                  <button
+                    onClick={handleClearFilters}
+                    disabled={isLoading}
+                    class={`px-3 py-1 text-sm rounded-full border border-dark-600 bg-dark-800 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+            </details>
           )}
-          {search.trim() || selectedBackends.size > 0
-            ? `${pagination.totalCount.toLocaleString()} matching tools`
-            : `${pagination.totalCount.toLocaleString()} tools`}
         </div>
       </div>
-
-      {/* Backend filter chips */}
-      {sortedBackendCounts.size > 0 && (
-        <div class="mb-6 flex flex-wrap items-center gap-2">
-          <span class="text-sm text-gray-500">Filter:</span>
-          {[...sortedBackendCounts.entries()].map(([backend, count]) => (
-            <button
-              key={backend}
-              onClick={() => handleBackendToggle(backend)}
-              disabled={isLoading}
-              class={`px-3 py-1 text-sm rounded-full border transition-colors ${
-                selectedBackends.has(backend)
-                  ? "bg-neon-purple/20 border-neon-purple text-neon-purple"
-                  : "bg-dark-800 border-dark-600 text-gray-400 hover:border-gray-500 hover:text-gray-300"
-              } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
-            >
-              {backend}
-              <span class="ml-1 text-xs opacity-70">({count})</span>
-            </button>
-          ))}
-          {selectedBackends.size > 0 && (
-            <button
-              onClick={handleClearFilters}
-              disabled={isLoading}
-              class={`px-3 py-1 text-sm rounded-full border border-dark-600 bg-dark-800 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
-            >
-              Clear
-            </button>
-          )}
+      <div role="status" class="sr-only">
+        {isLoading ? "Loading tools" : `${pagination.totalCount} tools found`}
+      </div>
+      {error && (
+        <div class="inline-notice" role="alert">
+          Tools could not be loaded.{" "}
+          {tools.length > 0 && "The previous results are shown."}
+          <button
+            onClick={() =>
+              fetchTools({
+                page: requestedPage.current,
+                search,
+                sort: sortBy,
+                backends: [...selectedBackends],
+                history: false,
+              })
+            }
+          >
+            Try again
+          </button>
         </div>
       )}
-
-      <div class="bg-dark-800 rounded-lg border border-dark-600 overflow-hidden">
+      <div class="directory-table" aria-busy={isLoading}>
         <table class="w-full">
           <thead class="bg-dark-700 border-b border-dark-600">
             <tr>
@@ -700,6 +793,11 @@ export function ToolSearch({
                     {tool.security && tool.security.length > 0 && (
                       <LockIcon security={tool.security} />
                     )}
+                  </div>
+                  <div class="mobile-meta">
+                    {tool.backends?.[0] && cleanBackend(tool.backends[0])}
+                    <br />
+                    {tool.downloads_30d.toLocaleString()} downloads / 30d
                   </div>
                 </td>
                 <td class="px-4 py-3 text-sm font-mono">
@@ -758,6 +856,12 @@ export function ToolSearch({
             ))}
           </tbody>
         </table>
+        {!isLoading && !error && tools.length === 0 && (
+          <div class="empty-state">
+            <h3>No tools found</h3>
+            <p>Try another name or clear your backend filters.</p>
+          </div>
+        )}
       </div>
 
       <Pagination />

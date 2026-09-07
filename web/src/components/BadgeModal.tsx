@@ -1,4 +1,4 @@
-import { useState, useCallback } from "preact/hooks";
+import { useState, useCallback, useEffect, useRef } from "preact/hooks";
 
 interface BadgeModalProps {
   tool: string;
@@ -6,7 +6,46 @@ interface BadgeModalProps {
 }
 
 export function BadgeModal({ tool, onClose }: BadgeModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null;
+    const modal = modalRef.current;
+    const focusable = () =>
+      Array.from(
+        modal?.querySelectorAll<HTMLElement>(
+          'button, a[href], input, select, textarea, [tabindex="0"]',
+        ) || [],
+      );
+    focusable()[0]?.focus();
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+      }
+      if (event.key === "Tab") {
+        const items = focusable();
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", keydown);
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", keydown);
+      document.body.style.overflow = overflow;
+      previous?.focus();
+    };
+  }, []);
 
   const baseUrl = "https://mise-tools.jdx.dev";
   const toolUrl = `${baseUrl}/tools/${tool}`;
@@ -46,10 +85,19 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="badge-title"
+        class="bg-dark-800 border border-dark-600 rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+      >
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-gray-200">Get Badge</h2>
+          <h2 id="badge-title" class="text-xl font-semibold text-gray-200">
+            Get Badge
+          </h2>
           <button
+            aria-label="Close badge dialog"
             onClick={onClose}
             class="text-gray-400 hover:text-gray-200 transition-colors"
           >
@@ -60,9 +108,9 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
               viewBox="0 0 24 24"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width={2}
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>

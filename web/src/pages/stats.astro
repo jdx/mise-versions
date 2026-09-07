@@ -66,20 +66,20 @@ function getBackendType(backend: string): string {
 }
 
 const BACKEND_COLORS: Record<string, string> = {
-  aqua: "#00D4FF",
-  ubi: "#B026FF",
+  aqua: "var(--data)",
+  ubi: "var(--accent)",
   asdf: "#FF2D95",
   vfox: "#22C55E",
   cargo: "#F97316",
   npm: "#EF4444",
   go: "#3B82F6",
   pipx: "#8B5CF6",
-  core: "#FBBF24",
+  core: "var(--forecast)",
   gem: "#EC4899",
 };
 
 function getBackendColor(backend: string): string {
-  return BACKEND_COLORS[backend] || "#6B7280";
+  return BACKEND_COLORS[backend] || "var(--muted)";
 }
 
 // Compute backend statistics (derived from tools.json for tool counts)
@@ -141,65 +141,24 @@ const formattedLatestStatsDate = latestStatsDate
 const topToolsByBackend = backendStatsData?.top_tools_by_backend || {};
 const topBackends = backendDownloads.slice(0, 5).map((b: { label: string }) => b.label);
 
-// Donut chart SVG generation
-function describeArc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number): string {
-  const start = {
-    x: cx + radius * Math.cos(startAngle),
-    y: cy + radius * Math.sin(startAngle),
-  };
-  const end = {
-    x: cx + radius * Math.cos(endAngle),
-    y: cy + radius * Math.sin(endAngle),
-  };
-  const largeArcFlag = endAngle - startAngle > Math.PI ? 1 : 0;
-  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${end.x} ${end.y}`;
-}
-
-function generateDonutSegments(data: Array<{ label: string; value: number; color: string }>, size: number = 300) {
-  const validData = data.filter(d => d.value > 0);
-  const total = validData.reduce((sum, d) => sum + d.value, 0);
-  if (validData.length === 0 || total === 0) return [];
-
-  const strokeWidth = 60;
-  const radius = (size - strokeWidth) / 2;
-  const cx = size / 2;
-  const cy = size / 2;
-
-  let currentAngle = -Math.PI / 2;
-  return validData.map(d => {
-    const percentage = d.value / total;
-    const startAngle = currentAngle;
-    const arcLength = percentage * Math.PI * 2 * 0.9999;
-    const endAngle = startAngle + arcLength;
-    currentAngle = startAngle + percentage * Math.PI * 2;
-    return {
-      ...d,
-      startAngle,
-      endAngle,
-      percentage,
-      path: describeArc(cx, cy, radius, startAngle, endAngle)
-    };
-  });
-}
-
-const donutSegments = generateDonutSegments(sortedCounts.slice(0, 8));
-const donutSize = 300;
-const strokeWidth = 60;
-
 Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
 ---
 
 <Layout title="Stats" description="Download statistics and ecosystem metrics for mise">
-  <div class="space-y-8">
-    <div>
-      <h1 class="text-2xl font-bold text-gray-100">Ecosystem Stats</h1>
+  <div class="stats-page space-y-8">
+    <div class="page-heading">
+      <h1>Ecosystem stats</h1>
       {formattedLatestStatsDate && (
         <p class="mt-1 text-sm text-gray-500">Daily analytics through {formattedLatestStatsDate}</p>
       )}
     </div>
 
+    <section class="audience-panel" aria-label="Audience growth">
+      {dauMauData ? <MauHistory daily={dauMauData.daily} /> : <div class="inline-notice">Audience history is currently unavailable.</div>}
+    </section>
+    <div class="section-heading"><h2>Across the ecosystem</h2><span>Tools, backends, and downloads</span></div>
     <!-- Overview cards -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div class="metric-grid grid grid-cols-1 md:grid-cols-4 gap-4">
       <div class="bg-dark-800 border border-dark-600 rounded-lg p-6">
         <div class="text-sm text-gray-400 mb-1">Total Tools</div>
         <div class="text-3xl font-bold text-gray-100">
@@ -218,7 +177,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
           <span class="text-3xl font-bold text-gray-100">
             {formatCompact(totalDownloads)}
           </span>
-          {growthData?.global.mom !== null && (
+          {growthData && growthData.global.mom !== null && (
             <span class={`text-xs ${growthData.global.mom >= 0 ? 'text-green-400' : 'text-red-400'}`}>
               {growthData.global.mom >= 0 ? '↑' : '↓'} {Math.abs(growthData.global.mom).toFixed(1)}%
             </span>
@@ -232,7 +191,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
           <span class="text-3xl font-bold text-gray-100">
             {growthData ? formatCompact(growthData.global.thisWeek) : "..."}
           </span>
-          {growthData?.global.wow !== null ? (
+          {growthData && growthData.global.wow !== null ? (
             <span class={`text-xs ${growthData.global.wow >= 0 ? 'text-green-400' : 'text-red-400'}`}>
               {growthData.global.wow >= 0 ? '↑' : '↓'} {Math.abs(growthData.global.wow).toFixed(1)}%
             </span>
@@ -241,73 +200,6 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
         <div class="text-xs text-gray-500 mt-1">vs prior 7 days</div>
       </div>
     </div>
-
-    <!-- Charts row -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-      <!-- Tools by backend (Donut Chart) -->
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-gray-200 mb-3">Tools by Backend</h2>
-        {donutSegments.length > 0 ? (
-          <div class="flex items-center gap-4">
-            <svg width={donutSize} height={donutSize} viewBox={`0 0 ${donutSize} ${donutSize}`}>
-              {donutSegments.map(seg => (
-                <path
-                  d={seg.path}
-                  fill="none"
-                  stroke={seg.color}
-                  stroke-width={strokeWidth}
-                  stroke-linecap="butt"
-                />
-              ))}
-            </svg>
-            <div class="space-y-1">
-              {donutSegments.slice(0, 6).map(seg => (
-                <div class="flex items-center gap-2 text-sm whitespace-nowrap">
-                  <div class="w-3 h-3 rounded-sm flex-shrink-0" style={`background-color: ${seg.color}`}></div>
-                  <span class="text-gray-400">{seg.label}</span>
-                  <span class="text-gray-500">{seg.value.toLocaleString()} ({(seg.percentage * 100).toFixed(1)}%)</span>
-                </div>
-              ))}
-              {donutSegments.length > 6 && (
-                <div class="text-xs text-gray-500">+{donutSegments.length - 6} more</div>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div class="flex items-center gap-6">
-            <div class="rounded-full bg-dark-700 flex items-center justify-center" style={`width: ${donutSize}px; height: ${donutSize}px`}>
-              <span class="text-gray-500 text-sm">No data</span>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <!-- Downloads distribution (Bar Chart) -->
-      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
-        <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads by Backend</h2>
-        <div class="space-y-2">
-          {backendDownloads.slice(0, 10).map((item: { label: string; value: number; color: string }) => {
-            const maxValue = Math.max(...backendDownloads.map((b: { value: number }) => b.value));
-            return (
-              <div class="flex items-center gap-3">
-                <div class="w-20 text-sm text-gray-400 truncate">{item.label}</div>
-                <div class="flex-1 h-6 bg-dark-700 rounded overflow-hidden">
-                  <div
-                    class="h-full"
-                    style={`width: ${(item.value / maxValue) * 100}%; background-color: ${item.color}`}
-                  />
-                </div>
-                <div class="w-16 text-sm text-gray-400 text-right">
-                  {formatCompact(item.value)}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-
-    {dauMauData && <MauHistory daily={dauMauData.daily} />}
 
     <!-- DAU and Version Updates charts -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -370,12 +262,12 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                             y={chartHeight - barHeight}
                             width={barWidth}
                             height={barHeight}
-                            fill="#B026FF"
+                            fill="var(--accent)"
                             opacity="0.8"
                             pointer-events="none"
                           />
                           <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
-                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="#374151" />
+                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="var(--border)" />
                             <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
                               {d.date.slice(5)} · {d.dau.toLocaleString()} users
                             </text>
@@ -463,12 +355,12 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
                             y={chartHeight - barHeight}
                             width={barWidth}
                             height={barHeight}
-                            fill="#00D4FF"
+                            fill="var(--data)"
                             opacity="0.8"
                             pointer-events="none"
                           />
                           <g class="pointer-events-none opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100">
-                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="#374151" />
+                            <rect x={tooltipX} y={-18} width={tooltipWidth} height={22} rx={4} fill="var(--border)" />
                             <text x={tooltipX + tooltipWidth / 2} y={-4} text-anchor="middle" class="fill-gray-200 text-xs">
                               {d.date.slice(5)} · {d.count.toLocaleString()} updates
                             </text>
@@ -526,6 +418,49 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
         });
       }
     </script>
+
+    <!-- Charts row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <!-- Tools by backend (Donut Chart) -->
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">Tools by Backend</h2>
+        <p class="text-xs text-gray-500 mb-5">Primary backend for each registered tool</p>
+        {sortedCounts.length ? sortedCounts.map(item => (
+          <div class="backend-row">
+            <span>{item.label}</span>
+            <div class="backend-track"><span style={`width:${item.value / Math.max(...sortedCounts.map(b => b.value)) * 100}%;background:${item.color}`}></span></div>
+            <span class="text-right font-mono">{item.value.toLocaleString()}</span>
+          </div>
+        )) : <p class="text-sm text-gray-500">No backend data available.</p>}
+      </div>
+
+      <!-- Downloads distribution (Bar Chart) -->
+      <div class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-gray-200 mb-3">Downloads by Backend</h2>
+        <div class="space-y-2">
+          {backendDownloads.slice(0, 10).map((item: { label: string; value: number; color: string }) => {
+            const maxValue = Math.max(...backendDownloads.map((b: { value: number }) => b.value));
+            return (
+              <div class="flex items-center gap-3">
+                <div class="w-20 text-sm text-gray-400 truncate">{item.label}</div>
+                <div class="flex-1 h-6 bg-dark-700 rounded overflow-hidden">
+                  <div
+                    class="h-full"
+                    style={`width: ${(item.value / maxValue) * 100}%; background-color: ${item.color}`}
+                  />
+                </div>
+                <div class="w-16 text-sm text-gray-400 text-right">
+                  {formatCompact(item.value)}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+
+
+
 
     <!-- Trending Tools -->
     {growthData && (growthData.topGrowing.length > 0 || growthData.topDeclining.length > 0) && (

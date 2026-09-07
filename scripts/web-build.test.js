@@ -43,15 +43,16 @@ describe("web build CSS", () => {
       "Tailwind preflight reset is missing",
     );
 
+    assert.match(css, /--canvas:#111216/);
+    assert.match(css, /data-theme=dark/);
+
     const expectedUtilities = [
-      ".bg-dark-900{background-color:#0a0a0f}",
-      ".bg-dark-800{background-color:#12121a}",
-      ".text-neon-purple{color:#b026ff}",
-      ".hover\\:text-neon-pink:hover{color:#ff2d95}",
+      ".bg-dark-800{background-color:var(--surface)}",
+      ".text-neon-purple{color:var(--accent)}",
+      ".hover\\:text-neon-pink:hover{color:var(--accent-hover)}",
       ".px-4{padding-inline:calc(var(--spacing) * 4)}",
       ".py-8{padding-block:calc(var(--spacing) * 8)}",
       ".text-xl{font-size:var(--text-xl);",
-      ".max-w-6xl{max-width:var(--container-6xl)}",
     ];
 
     for (const utility of expectedUtilities) {
