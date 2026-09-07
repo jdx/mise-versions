@@ -1,12 +1,4 @@
 [versions]
-"alpha-3" = { created_at = 2015-04-05T19:02:37.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-3", prerelease = true }
-"alpha-5" = { created_at = 2015-05-05T12:16:13.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-5", prerelease = true }
-"alpha-6" = { created_at = 2015-05-31T22:32:19.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/alpha-6", prerelease = true }
-"beta-1" = { created_at = 2015-06-29T13:08:52.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-1" }
-"beta-2" = { created_at = 2015-08-27T05:47:45.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-2" }
-"beta-4" = { created_at = 2015-11-14T20:21:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/beta-4" }
-"3.0.0-beta.3" = { created_at = 2015-10-01T12:30:53.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.0.0-beta.3" }
-"3.0.0" = { created_at = 2016-03-09T18:09:45.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.0.0" }
 "3.1.0" = { created_at = 2016-04-04T18:42:16.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.1.0" }
 "3.1.1" = { created_at = 2016-05-17T12:34:02.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.1.1" }
 "3.2.0" = { created_at = 2016-06-18T21:01:29.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.2.0" }
@@ -26,7 +18,6 @@
 "3.4.6" = { created_at = 2017-11-17T22:26:54.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.6" }
 "3.4.7" = { created_at = 2017-11-22T19:58:56.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.4.7" }
 "3.5.0" = { created_at = 2017-12-22T20:41:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.0" }
-"3.5.1" = { created_at = 2018-05-03T22:19:35.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.1" }
 "3.5.2" = { created_at = 2018-05-03T23:37:09.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.2" }
 "3.5.3" = { created_at = 2018-05-10T02:01:22.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.5.3" }
 "3.6.0" = { created_at = 2018-06-19T20:50:10.000Z, release_url = "https://github.com/erlang/rebar3/releases/tag/3.6.0" }

@@ -1,162 +1,6 @@
 [versions]
-"0.2.0" = { created_at = 2018-12-19T13:27:39.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.2.0" }
-"0.3.0" = { created_at = 2018-12-26T13:22:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.3.0" }
-"0.4.0" = { created_at = 2019-01-03T10:04:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.4.0" }
-"0.5.0" = { created_at = 2019-01-09T13:19:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.5.0" }
-"0.6.0" = { created_at = 2019-01-16T15:21:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.6.0" }
-"0.7.0" = { created_at = 2019-01-23T15:24:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.7.0" }
-"0.8.0" = { created_at = 2019-02-06T17:24:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.8.0" }
-"0.9.1" = { created_at = 2019-02-14T20:03:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.9.1" }
-"0.10.0" = { created_at = 2019-03-01T10:12:54.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.10.0" }
-"0.11.0" = { created_at = 2019-03-06T15:52:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.11.0" }
-"0.12.0" = { created_at = 2019-03-20T16:50:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.12.0" }
-"0.13.0" = { created_at = 2019-04-08T12:48:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.13.0" }
-"0.13.1" = { created_at = 2019-04-09T19:47:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.13.1" }
-"0.13.2" = { created_at = 2019-04-15T20:09:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.13.2" }
-"0.13.3" = { created_at = 2019-04-16T13:24:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.13.3" }
-"0.14.0" = { created_at = 2019-04-25T10:06:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.14.0" }
-"0.15.0" = { created_at = 2019-05-14T17:12:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.15.0" }
-"0.16.0" = { created_at = 2019-06-03T15:39:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.16.0" }
-"0.16.1" = { created_at = 2019-06-06T09:41:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.16.1" }
-"0.17.0" = { created_at = 2019-06-19T14:47:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.17.0" }
-"0.18.0" = { created_at = 2019-06-27T13:02:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.18.0" }
-"0.19.0" = { created_at = 2019-07-10T13:47:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.19.0" }
-"0.19.1" = { created_at = 2019-07-11T13:49:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.19.1" }
-"0.20.0" = { created_at = 2019-07-31T13:42:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.20.0" }
-"0.21.0" = { created_at = 2019-08-15T08:33:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.21.0" }
-"0.21.1" = { created_at = 2019-08-15T13:49:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.21.1" }
-"0.21.2" = { created_at = 2019-09-05T08:30:15.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.21.2" }
-"0.22.0" = { created_at = 2019-09-15T14:01:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.22.0" }
-"0.23.0" = { created_at = 2019-09-25T20:28:19.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.23.0" }
-"0.23.1" = { created_at = 2019-09-26T06:35:48.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.23.1" }
-"0.23.2" = { created_at = 2019-10-02T16:10:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.23.2" }
-"0.24.0" = { created_at = 2019-10-12T07:06:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.24.0" }
-"0.25.0" = { created_at = 2019-10-16T09:39:00.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.25.0" }
-"0.26.0" = { created_at = 2019-10-22T15:57:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.26.0" }
-"0.26.1" = { created_at = 2019-10-23T12:26:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.26.1" }
-"0.27.0" = { created_at = 2019-10-30T10:41:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.27.0" }
-"0.28.0" = { created_at = 2019-11-04T12:03:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.28.0" }
-"0.28.1" = { created_at = 2019-11-04T21:19:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/0.28.1" }
-"1.0.0.CR1" = { created_at = 2019-11-06T15:46:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.0.0.CR1", prerelease = true }
-"1.0.0.CR2" = { created_at = 2019-11-20T13:14:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.0.0.CR2", prerelease = true }
-"1.0.0.Final" = { created_at = 2019-11-25T10:41:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.0.0.Final" }
-"1.0.1.Final" = { created_at = 2019-11-28T11:58:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.0.1.Final" }
-"1.1.0.CR1" = { created_at = 2019-12-10T18:58:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.1.0.CR1", prerelease = true }
-"1.1.0.Final" = { created_at = 2019-12-17T12:01:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.1.0.Final" }
-"1.1.1.Final" = { created_at = 2020-01-07T08:55:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.1.1.Final" }
-"1.2.0.CR1" = { created_at = 2020-01-21T10:44:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.2.0.CR1", prerelease = true }
-"1.2.0.Final" = { created_at = 2020-01-23T09:58:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.2.0.Final" }
-"1.3.0.Alpha1" = { created_at = 2020-02-06T08:48:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.0.Alpha1", prerelease = true }
-"1.3.0.Alpha2" = { created_at = 2020-02-17T12:31:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.0.Alpha2", prerelease = true }
-"1.2.1.Final" = { created_at = 2020-02-19T10:31:48.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.2.1.Final" }
-"1.3.0.CR1" = { created_at = 2020-03-06T01:45:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.0.CR1", prerelease = true }
-"1.3.0.CR2" = { created_at = 2020-03-10T00:07:48.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.0.CR2", prerelease = true }
-"1.3.0.Final" = { created_at = 2020-03-13T08:46:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.0.Final" }
-"1.3.1.Final" = { created_at = 2020-03-28T16:35:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.1.Final" }
-"1.3.2.Final" = { created_at = 2020-04-08T13:12:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.2.Final" }
-"1.4.0.CR1" = { created_at = 2020-04-15T07:47:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.4.0.CR1", prerelease = true }
-"1.4.0.Final" = { created_at = 2020-04-24T11:05:33.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.4.0.Final" }
-"1.4.1.Final" = { created_at = 2020-04-27T07:48:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.4.1.Final" }
-"1.4.2.Final" = { created_at = 2020-05-05T13:10:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.4.2.Final" }
-"1.5.0.CR1" = { created_at = 2020-05-20T19:24:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.5.0.CR1", prerelease = true }
-"1.3.3.Final" = { created_at = 2020-05-21T14:44:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.3.Final" }
-"1.5.0.Final" = { created_at = 2020-06-03T16:16:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.5.0.Final" }
-"1.3.4.Final" = { created_at = 2020-06-03T09:41:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.3.4.Final" }
-"1.5.1.Final" = { created_at = 2020-06-11T18:31:19.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.5.1.Final" }
-"1.5.2.Final" = { created_at = 2020-06-18T23:43:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.5.2.Final" }
-"1.6.0.CR1" = { created_at = 2020-06-26T09:52:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.6.0.CR1", prerelease = true }
-"1.6.0.Final" = { created_at = 2020-07-08T15:11:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.6.0.Final" }
-"1.6.1.Final" = { created_at = 2020-07-21T13:22:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.6.1.Final" }
-"1.7.0.CR1" = { created_at = 2020-07-31T16:49:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.0.CR1", prerelease = true }
-"1.7.0.CR2" = { created_at = 2020-08-05T07:36:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.0.CR2", prerelease = true }
-"1.7.0.Final" = { created_at = 2020-08-13T15:51:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.0.Final" }
-"1.7.1.Final" = { created_at = 2020-08-27T07:36:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.1.Final" }
-"1.8.0.CR1" = { created_at = 2020-09-02T19:17:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.8.0.CR1", prerelease = true }
-"1.7.2.Final" = { created_at = 2020-09-03T16:10:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.2.Final" }
-"1.7.3.Final" = { created_at = 2020-09-09T12:43:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.3.Final" }
-"1.8.0.Final" = { created_at = 2020-09-15T13:28:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.8.0.Final" }
-"1.8.1.Final" = { created_at = 2020-09-18T12:59:48.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.8.1.Final" }
-"1.7.4.Final" = { created_at = 2020-09-29T06:12:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.4.Final" }
-"1.7.5.Final" = { created_at = 2020-09-29T06:05:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.5.Final" }
-"1.8.2.Final" = { created_at = 2020-10-06T22:17:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.8.2.Final" }
-"1.9.0.CR1" = { created_at = 2020-10-07T20:43:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.9.0.CR1", prerelease = true }
-"1.8.3.Final" = { created_at = 2020-10-09T14:38:30.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.8.3.Final" }
-"1.9.0.Final" = { created_at = 2020-10-21T14:04:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.9.0.Final" }
-"1.9.1.Final" = { created_at = 2020-10-29T11:40:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.9.1.Final" }
-"1.9.2.Final" = { created_at = 2020-11-05T18:55:03.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.9.2.Final" }
-"1.10.0.CR1" = { created_at = 2020-11-11T00:49:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.0.CR1", prerelease = true }
-"1.10.0.Final" = { created_at = 2020-11-24T13:43:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.0.Final" }
-"1.10.1.Final" = { created_at = 2020-11-30T08:54:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.1.Final" }
-"1.10.2.Final" = { created_at = 2020-12-01T09:45:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.2.Final" }
-"1.10.3.Final" = { created_at = 2020-12-08T15:11:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.3.Final" }
-"1.10.4.Final" = { created_at = 2020-12-16T19:56:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.4.Final" }
-"1.7.6.Final" = { created_at = 2020-12-16T14:20:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.7.6.Final" }
-"1.10.5.Final" = { created_at = 2020-12-17T11:48:38.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.10.5.Final" }
-"1.11.0.Beta1" = { created_at = 2020-12-17T12:55:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.0.Beta1", prerelease = true }
-"1.11.0.Beta2" = { created_at = 2020-12-24T17:11:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.0.Beta2", prerelease = true }
-"1.11.0.CR1" = { created_at = 2021-01-07T09:30:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.0.CR1", prerelease = true }
-"1.11.0.Final" = { created_at = 2021-01-20T11:47:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.0.Final" }
-"1.11.1.Final" = { created_at = 2021-01-27T17:27:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.1.Final" }
-"1.11.2.Final" = { created_at = 2021-02-09T17:08:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.2.Final" }
-"1.12.0.CR1" = { created_at = 2021-02-11T14:49:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.12.0.CR1", prerelease = true }
-"1.11.3.Final" = { created_at = 2021-02-11T20:29:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.3.Final" }
-"1.12.0.Final" = { created_at = 2021-02-23T16:31:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.12.0.Final" }
-"1.11.4.Final" = { created_at = 2021-02-26T11:14:00.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.4.Final" }
-"1.11.5.Final" = { created_at = 2021-03-01T12:58:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.5.Final" }
-"1.12.1.Final" = { created_at = 2021-03-03T16:28:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.12.1.Final" }
-"1.11.6.Final" = { created_at = 2021-03-10T15:02:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.6.Final" }
-"1.12.2.Final" = { created_at = 2021-03-11T15:41:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.12.2.Final" }
-"1.13.0.CR1" = { created_at = 2021-03-17T16:59:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.0.CR1", prerelease = true }
-"1.13.0.Final" = { created_at = 2021-03-30T15:06:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.0.Final" }
-"1.13.1.Final" = { created_at = 2021-04-07T19:16:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.1.Final" }
-"1.13.2.Final" = { created_at = 2021-04-14T18:12:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.2.Final" }
-"2.0.0.Alpha1" = { created_at = 2021-04-22T14:32:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.Alpha1", prerelease = true }
-"1.13.3.Final" = { created_at = 2021-04-28T16:21:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.3.Final" }
-"2.0.0.Alpha2" = { created_at = 2021-05-06T08:30:39.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.Alpha2", prerelease = true }
-"1.13.4.Final" = { created_at = 2021-05-12T17:48:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.4.Final" }
-"1.11.7.Final" = { created_at = 2021-05-19T11:53:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.11.7.Final" }
-"2.0.0.Alpha3" = { created_at = 2021-05-20T18:51:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.Alpha3", prerelease = true }
-"1.13.5.Final" = { created_at = 2021-05-27T08:11:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.5.Final" }
-"2.0.0.CR1" = { created_at = 2021-05-26T17:33:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.CR1", prerelease = true }
-"1.13.6.Final" = { created_at = 2021-05-27T16:38:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.6.Final" }
-"2.0.0.CR2" = { created_at = 2021-05-27T16:38:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.CR2", prerelease = true }
 "2.0.0.CR3" = { created_at = 2021-06-04T12:14:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.CR3", prerelease = true }
-"1.13.7.Final" = { created_at = 2021-06-09T14:22:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/1.13.7.Final" }
-"2.0.0.Final" = { created_at = 2021-06-30T14:29:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.0.Final" }
-"2.0.1.Final" = { created_at = 2021-07-07T07:13:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.1.Final" }
-"2.0.2.Final" = { created_at = 2021-07-13T18:11:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.2.Final" }
-"2.1.0.CR1" = { created_at = 2021-07-15T16:45:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.1.0.CR1", prerelease = true }
-"2.0.3.Final" = { created_at = 2021-07-22T09:14:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.0.3.Final" }
-"2.1.0.Final" = { created_at = 2021-07-29T17:51:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.1.0.Final" }
-"2.1.1.Final" = { created_at = 2021-08-04T18:03:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.1.1.Final" }
-"2.1.2.Final" = { created_at = 2021-08-11T13:57:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.1.2.Final" }
-"2.2.0.CR1" = { created_at = 2021-08-18T15:19:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.0.CR1", prerelease = true }
-"2.1.3.Final" = { created_at = 2021-08-19T17:15:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.1.3.Final" }
-"2.2.0.Final" = { created_at = 2021-08-31T06:05:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.0.Final" }
-"2.1.4.Final" = { created_at = 2021-08-26T14:52:03.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.1.4.Final" }
-"2.2.1.Final" = { created_at = 2021-08-31T12:22:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.1.Final" }
-"2.2.2.Final" = { created_at = 2021-09-07T16:45:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.2.Final" }
-"2.2.3.Final" = { created_at = 2021-09-16T14:48:30.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.3.Final" }
-"2.3.0.CR1" = { created_at = 2021-09-22T10:46:00.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.3.0.CR1", prerelease = true }
-"2.3.0.Final" = { created_at = 2021-10-06T08:40:32.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.3.0.Final" }
-"2.4.0.CR1" = { created_at = 2021-11-03T17:37:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.4.0.CR1", prerelease = true }
-"2.3.1.Final" = { created_at = 2021-10-20T09:18:32.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.3.1.Final" }
-"2.4.0.Final" = { created_at = 2021-10-27T07:41:20.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.4.0.Final" }
-"2.4.1.Final" = { created_at = 2021-11-03T14:32:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.4.1.Final" }
-"2.5.0.CR1" = { created_at = 2021-11-11T17:50:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.5.0.CR1", prerelease = true }
-"2.4.2.Final" = { created_at = 2021-11-12T11:49:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.4.2.Final" }
-"2.5.0.Final" = { created_at = 2021-11-24T09:35:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.5.0.Final" }
-"2.5.1.Final" = { created_at = 2021-12-01T15:09:03.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.5.1.Final" }
-"2.6.0.CR1" = { created_at = 2021-12-08T20:15:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.6.0.CR1", prerelease = true }
-"2.5.2.Final" = { created_at = 2021-12-10T16:19:53.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.5.2.Final" }
-"2.2.4.Final" = { created_at = 2021-12-15T17:52:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.4.Final" }
-"2.5.3.Final" = { created_at = 2021-12-15T20:39:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.5.3.Final" }
-"2.6.0.Final" = { created_at = 2021-12-22T14:39:05.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.6.0.Final" }
-"2.5.4.Final" = { created_at = 2021-12-20T13:26:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.5.4.Final" }
-"2.2.5.Final" = { created_at = 2021-12-21T16:37:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.2.5.Final" }
-"2.6.1.Final" = { created_at = 2021-12-24T14:38:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.6.1.Final" }
 "2.6.2.Final" = { created_at = 2022-01-10T16:40:30.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.6.2.Final" }
-"2.7.0.CR1" = { created_at = 2022-01-19T15:52:30.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.0.CR1", prerelease = true }
 "2.6.3.Final" = { created_at = 2022-01-20T14:57:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.6.3.Final" }
 "2.7.0.Final" = { created_at = 2022-02-02T13:50:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.0.Final" }
 "2.7.1.Final" = { created_at = 2022-02-08T16:01:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.1.Final" }
@@ -164,53 +8,41 @@
 "2.7.3.Final" = { created_at = 2022-03-02T15:53:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.3.Final" }
 "2.7.4.Final" = { created_at = 2022-03-09T20:40:20.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.4.Final" }
 "2.7.5.Final" = { created_at = 2022-03-16T12:01:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.5.Final" }
-"2.8.0.CR1" = { created_at = 2022-03-23T17:53:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.8.0.CR1", prerelease = true }
 "2.8.0.Final" = { created_at = 2022-04-12T09:24:34.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.8.0.Final" }
 "2.8.1.Final" = { created_at = 2022-04-19T16:29:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.8.1.Final" }
 "2.8.2.Final" = { created_at = 2022-04-26T16:23:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.8.2.Final" }
-"2.9.0.CR1" = { created_at = 2022-04-27T20:41:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.9.0.CR1", prerelease = true }
 "2.9.0.Final" = { created_at = 2022-05-11T08:56:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.9.0.Final" }
 "2.8.3.Final" = { created_at = 2022-05-06T17:32:15.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.8.3.Final" }
 "2.9.1.Final" = { created_at = 2022-05-17T14:50:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.9.1.Final" }
 "2.9.2.Final" = { created_at = 2022-05-25T15:46:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.9.2.Final" }
 "2.7.6.Final" = { created_at = 2022-05-30T16:44:30.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.7.6.Final" }
-"2.10.0.CR1" = { created_at = 2022-06-09T21:04:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.10.0.CR1", prerelease = true }
 "2.10.0.Final" = { created_at = 2022-06-22T09:03:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.10.0.Final" }
 "2.10.1.Final" = { created_at = 2022-06-29T14:42:54.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.10.1.Final" }
 "2.10.2.Final" = { created_at = 2022-07-06T15:57:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.10.2.Final" }
-"2.11.0.CR1" = { created_at = 2022-07-13T17:26:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.11.0.CR1", prerelease = true }
 "2.10.3.Final" = { created_at = 2022-07-19T17:06:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.10.3.Final" }
-"2.11.0.Final" = { created_at = 2023-08-23T17:22:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.11.0.Final" }
 "2.10.4.Final" = { created_at = 2022-07-27T12:58:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.10.4.Final" }
 "2.11.1.Final" = { created_at = 2022-07-27T14:47:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.11.1.Final" }
 "2.11.2.Final" = { created_at = 2022-08-05T17:08:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.11.2.Final" }
-"2.12.0.CR1" = { created_at = 2022-08-18T07:57:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.12.0.CR1", prerelease = true }
 "2.11.3.Final" = { created_at = 2022-08-24T12:05:38.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.11.3.Final" }
 "2.12.0.Final" = { created_at = 2022-08-31T10:16:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.12.0.Final" }
 "2.12.1.Final" = { created_at = 2022-09-07T15:34:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.12.1.Final" }
 "2.12.2.Final" = { created_at = 2022-09-13T16:56:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.12.2.Final" }
-"2.13.0.CR1" = { created_at = 2022-09-15T09:38:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.0.CR1", prerelease = true }
 "2.12.3.Final" = { created_at = 2022-09-20T22:53:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.12.3.Final" }
 "2.13.0.Final" = { created_at = 2022-09-28T10:45:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.0.Final" }
 "2.13.1.Final" = { created_at = 2022-10-06T08:31:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.1.Final" }
 "2.13.2.Final" = { created_at = 2022-10-12T16:47:38.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.2.Final" }
 "2.13.3.Final" = { created_at = 2022-10-19T15:05:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.3.Final" }
-"3.0.0.Alpha1" = { created_at = 2022-10-26T09:35:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Alpha1", prerelease = true }
-"2.14.0.CR1" = { created_at = 2022-11-02T07:27:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.14.0.CR1", prerelease = true }
 "2.14.0.Final" = { created_at = 2022-11-09T12:55:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.14.0.Final" }
 "2.13.4.Final" = { created_at = 2022-11-07T16:12:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.4.Final" }
 "2.14.1.Final" = { created_at = 2022-11-16T16:43:05.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.14.1.Final" }
 "2.13.5.Final" = { created_at = 2022-11-25T17:10:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.5.Final" }
 "2.14.2.Final" = { created_at = 2022-11-25T17:10:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.14.2.Final" }
-"2.15.0.CR1" = { created_at = 2022-11-30T17:01:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.15.0.CR1", prerelease = true }
 "2.14.3.Final" = { created_at = 2022-12-06T17:15:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.14.3.Final" }
-"3.0.0.Alpha2" = { created_at = 2022-12-07T11:47:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Alpha2", prerelease = true }
 "2.15.0.Final" = { created_at = 2022-12-14T17:11:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.15.0.Final" }
 "2.13.6.Final" = { created_at = 2022-12-20T09:40:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.6.Final" }
 "2.15.1.Final" = { created_at = 2022-12-21T16:15:51.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.15.1.Final" }
 "2.15.2.Final" = { created_at = 2023-01-04T17:53:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.15.2.Final" }
 "2.15.3.Final" = { created_at = 2023-01-10T17:27:39.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.15.3.Final" }
-"2.16.0.CR1" = { created_at = 2023-01-11T17:55:54.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.0.CR1", prerelease = true }
 "2.16.0.Final" = { created_at = 2023-01-25T15:11:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.0.Final" }
 "2.13.7.Final" = { created_at = 2023-01-19T16:36:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.7.Final" }
 "3.0.0.Alpha3" = { created_at = 2023-01-20T12:36:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Alpha3" }
@@ -220,25 +52,21 @@
 "3.0.0.Alpha4" = { created_at = 2023-02-10T13:58:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Alpha4" }
 "2.16.3.Final" = { created_at = 2023-02-17T08:56:15.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.3.Final" }
 "2.16.4.Final" = { created_at = 2023-03-03T15:20:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.4.Final" }
-"3.0.0.Alpha5" = { created_at = 2023-03-09T13:56:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Alpha5", prerelease = true }
 "3.0.0.Alpha6" = { created_at = 2023-03-15T17:42:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Alpha6" }
 "2.16.5.Final" = { created_at = 2023-03-22T15:12:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.5.Final" }
 "3.0.0.Beta1" = { created_at = 2023-03-22T19:41:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Beta1" }
 "3.0.0.CR1" = { created_at = 2023-03-30T16:45:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.CR1" }
 "2.16.6.Final" = { created_at = 2023-04-04T13:19:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.6.Final" }
 "3.0.0.CR2" = { created_at = 2023-04-05T16:44:39.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.CR2" }
-"3.0.0.Final" = { created_at = 2023-04-26T11:55:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.0.Final" }
 "3.0.1.Final" = { created_at = 2023-04-26T11:54:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.1.Final" }
 "3.0.2.Final" = { created_at = 2023-05-04T07:43:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.2.Final" }
 "2.16.7.Final" = { created_at = 2023-05-05T18:31:20.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.7.Final" }
 "3.0.3.Final" = { created_at = 2023-05-10T15:07:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.3.Final" }
-"3.1.0.CR1" = { created_at = 2023-05-24T06:38:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.1.0.CR1", prerelease = true }
 "3.0.4.Final" = { created_at = 2023-05-25T11:42:15.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.0.4.Final" }
 "3.1.0.Final" = { created_at = 2023-05-31T12:12:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.1.0.Final" }
 "2.13.8.Final" = { created_at = 2023-05-25T17:33:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.8.Final" }
 "3.1.1.Final" = { created_at = 2023-06-07T15:41:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.1.1.Final" }
 "3.1.2.Final" = { created_at = 2023-06-15T18:41:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.1.2.Final" }
-"3.2.0.CR1" = { created_at = 2023-06-22T10:52:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.0.CR1", prerelease = true }
 "3.1.3.Final" = { created_at = 2023-06-29T07:43:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.1.3.Final" }
 "3.2.0.Final" = { created_at = 2023-07-05T13:30:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.0.Final" }
 "2.16.8.Final" = { created_at = 2023-07-05T09:08:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.8.Final" }
@@ -253,11 +81,9 @@
 "3.2.5.Final" = { created_at = 2023-08-28T15:48:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.5.Final" }
 "3.3.1" = { created_at = 2023-08-29T14:29:54.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.3.1" }
 "3.3.2" = { created_at = 2023-09-06T08:56:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.3.2" }
-"3.4.0.CR1" = { created_at = 2023-09-07T07:05:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.4.0.CR1", prerelease = true }
 "2.16.11.Final" = { created_at = 2023-09-14T20:50:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.16.11.Final" }
 "3.2.6.Final" = { created_at = 2023-09-14T20:50:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.6.Final" }
 "3.3.3" = { created_at = 2023-09-14T20:51:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.3.3" }
-"3.4.0" = { created_at = 2023-09-20T17:29:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.4.0" }
 "3.4.1" = { created_at = 2023-09-20T17:29:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.4.1" }
 "3.4.2" = { created_at = 2023-10-05T07:22:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.4.2" }
 "3.5.0.CR1" = { created_at = 2023-10-11T15:51:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.5.0.CR1" }
@@ -267,80 +93,61 @@
 "3.5.0" = { created_at = 2023-10-25T12:34:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.5.0" }
 "3.2.8.Final" = { created_at = 2023-11-08T16:38:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.8.Final" }
 "3.5.1" = { created_at = 2023-11-09T09:09:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.5.1" }
-"3.6.0.CR1" = { created_at = 2023-11-15T16:27:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.0.CR1", prerelease = true }
 "3.5.2" = { created_at = 2023-11-16T15:18:08.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.5.2" }
 "3.2.9.Final" = { created_at = 2023-11-17T19:35:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.9.Final" }
 "2.13.9.Final" = { created_at = 2023-11-22T12:19:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/2.13.9.Final" }
 "3.5.3" = { created_at = 2023-11-21T15:22:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.5.3" }
 "3.6.0" = { created_at = 2023-11-29T10:32:30.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.0" }
 "3.6.1" = { created_at = 2023-12-06T08:40:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.1" }
-"3.6.2" = { created_at = 2023-12-12T15:44:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.2" }
 "3.6.3" = { created_at = 2023-12-13T07:46:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.3" }
 "3.6.4" = { created_at = 2023-12-20T10:32:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.4" }
 "3.6.5" = { created_at = 2024-01-10T17:33:05.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.5" }
 "3.6.6" = { created_at = 2024-01-16T15:21:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.6" }
-"3.7.0.CR1" = { created_at = 2024-01-17T16:44:15.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.7.0.CR1", prerelease = true }
 "3.6.7" = { created_at = 2024-01-23T15:34:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.7" }
-"3.7.0" = { created_at = 2024-01-31T16:36:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.7.0" }
 "3.2.10.Final" = { created_at = 2024-01-25T23:39:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.10.Final" }
 "3.6.8" = { created_at = 2024-01-26T19:35:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.8" }
 "3.6.9" = { created_at = 2024-01-31T18:00:51.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.6.9" }
 "3.7.1" = { created_at = 2024-01-31T16:36:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.7.1" }
 "3.7.2" = { created_at = 2024-02-08T15:15:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.7.2" }
 "3.7.3" = { created_at = 2024-02-14T16:11:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.7.3" }
-"3.8.0.CR1" = { created_at = 2024-02-14T16:10:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.0.CR1", prerelease = true }
 "3.7.4" = { created_at = 2024-02-21T17:21:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.7.4" }
-"3.8.0" = { created_at = 2024-02-28T15:53:33.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.0" }
 "3.8.1" = { created_at = 2024-02-28T15:53:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.1" }
 "3.8.2" = { created_at = 2024-03-07T15:44:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.2" }
-"3.9.0.CR1" = { created_at = 2024-03-13T16:30:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.0.CR1", prerelease = true }
 "3.2.11.Final" = { created_at = 2024-03-14T20:53:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.11.Final" }
 "3.8.3" = { created_at = 2024-03-19T13:56:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.3" }
-"3.9.0.CR2" = { created_at = 2024-03-15T10:38:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.0.CR2", prerelease = true }
-"3.9.0" = { created_at = 2024-03-27T15:03:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.0" }
 "3.9.1" = { created_at = 2024-03-27T15:03:34.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.1" }
 "3.9.2" = { created_at = 2024-04-03T16:07:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.2" }
 "3.9.3" = { created_at = 2024-04-10T15:53:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.3" }
 "3.2.12.Final" = { created_at = 2024-04-16T19:16:19.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.2.12.Final" }
-"3.10.0.CR1" = { created_at = 2024-04-16T19:11:39.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.10.0.CR1", prerelease = true }
 "3.8.4" = { created_at = 2024-04-17T14:56:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.4" }
 "3.9.4" = { created_at = 2024-04-18T13:48:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.4" }
 "3.10.0" = { created_at = 2024-04-30T08:49:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.10.0" }
 "3.9.5" = { created_at = 2024-04-27T13:57:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.9.5" }
 "3.10.1" = { created_at = 2024-05-15T15:30:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.10.1" }
-"3.11.0.CR1" = { created_at = 2024-05-15T16:46:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.11.0.CR1", prerelease = true }
 "3.10.2" = { created_at = 2024-05-22T16:29:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.10.2" }
 "3.11.0" = { created_at = 2024-05-29T06:49:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.11.0" }
 "3.8.5" = { created_at = 2024-06-05T14:04:48.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.5" }
 "3.11.1" = { created_at = 2024-06-05T14:58:54.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.11.1" }
 "3.11.2" = { created_at = 2024-06-13T14:04:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.11.2" }
-"3.12.0.CR1" = { created_at = 2024-06-12T16:25:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.12.0.CR1", prerelease = true }
 "3.11.3" = { created_at = 2024-06-19T14:31:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.11.3" }
 "3.12.0" = { created_at = 2024-06-26T07:51:00.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.12.0" }
 "3.12.1" = { created_at = 2024-07-03T17:35:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.12.1" }
 "3.12.2" = { created_at = 2024-07-10T14:22:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.12.2" }
 "3.12.3" = { created_at = 2024-07-17T13:58:34.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.12.3" }
-"3.13.0.CR1" = { created_at = 2024-07-17T17:02:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.13.0.CR1", prerelease = true }
 "3.13.0" = { created_at = 2024-07-31T09:16:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.13.0" }
 "3.13.1" = { created_at = 2024-08-07T17:48:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.13.1" }
 "3.13.2" = { created_at = 2024-08-09T14:24:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.13.2" }
-"3.14.0.CR1" = { created_at = 2024-08-14T14:32:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.14.0.CR1", prerelease = true }
 "3.13.3" = { created_at = 2024-08-20T14:40:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.13.3" }
-"3.14.0" = { created_at = 2024-08-28T16:15:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.14.0" }
 "3.8.6" = { created_at = 2024-08-29T10:53:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.6" }
 "3.14.1" = { created_at = 2024-08-28T16:15:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.14.1" }
 "3.14.2" = { created_at = 2024-09-04T15:51:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.14.2" }
 "3.14.3" = { created_at = 2024-09-11T15:14:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.14.3" }
-"3.15.0.CR1" = { created_at = 2024-09-11T18:16:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.0.CR1", prerelease = true }
 "3.14.4" = { created_at = 2024-09-14T16:26:20.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.14.4" }
 "3.15.0" = { created_at = 2024-09-25T09:01:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.0" }
 "3.15.1" = { created_at = 2024-09-26T07:56:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.1" }
-"3.16.0.CR1" = { created_at = 2024-10-16T15:51:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.16.0.CR1", prerelease = true }
-"3.16.0" = { created_at = 2024-10-30T14:51:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.16.0" }
 "3.16.1" = { created_at = 2024-10-30T14:51:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.16.1" }
 "3.16.2" = { created_at = 2024-11-06T15:51:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.16.2" }
 "3.16.3" = { created_at = 2024-11-13T17:27:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.16.3" }
-"3.17.0.CR1" = { created_at = 2024-11-13T17:39:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.17.0.CR1", prerelease = true }
 "3.15.2" = { created_at = 2024-11-18T17:27:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.2" }
 "3.16.4" = { created_at = 2024-11-20T16:00:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.16.4" }
 "3.17.0" = { created_at = 2024-11-27T09:58:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.17.0" }
@@ -351,58 +158,45 @@
 "3.17.6" = { created_at = 2025-01-08T17:49:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.17.6" }
 "3.15.3" = { created_at = 2025-01-21T09:08:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.3" }
 "3.17.7" = { created_at = 2025-01-15T16:33:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.17.7" }
-"3.18.0.CR1" = { created_at = 2025-01-15T18:13:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.18.0.CR1", prerelease = true }
 "3.17.8" = { created_at = 2025-01-22T17:05:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.17.8" }
-"3.18.0" = { created_at = 2025-01-29T17:55:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.18.0" }
 "3.18.1" = { created_at = 2025-01-29T17:55:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.18.1" }
 "3.18.2" = { created_at = 2025-02-05T14:53:34.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.18.2" }
 "3.18.3" = { created_at = 2025-02-12T17:35:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.18.3" }
-"3.19.0.CR1" = { created_at = 2025-02-12T16:08:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.19.0.CR1", prerelease = true }
 "3.18.4" = { created_at = 2025-02-19T16:08:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.18.4" }
-"3.19.0" = { created_at = 2025-02-26T15:32:32.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.19.0" }
 "3.19.1" = { created_at = 2025-02-26T15:32:33.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.19.1" }
 "3.8.6.1" = { created_at = 2025-02-27T17:01:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.8.6.1" }
 "3.15.3.1" = { created_at = 2025-02-27T16:31:38.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.3.1" }
 "3.19.2" = { created_at = 2025-03-05T15:42:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.19.2" }
 "3.15.4" = { created_at = 2025-03-18T10:43:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.4" }
 "3.19.3" = { created_at = 2025-03-12T16:24:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.19.3" }
-"3.20.0.CR1" = { created_at = 2025-03-12T18:26:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.0.CR1", prerelease = true }
-"3.21.0.CR1" = { created_at = 2025-03-12T18:12:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.21.0.CR1", prerelease = true }
 "3.19.4" = { created_at = 2025-03-19T16:21:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.19.4" }
 "3.20.0" = { created_at = 2025-03-26T11:24:33.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.0" }
 "3.21.0" = { created_at = 2025-03-26T11:50:47.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.21.0" }
 "3.21.1" = { created_at = 2025-04-02T19:17:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.21.1" }
 "3.21.2" = { created_at = 2025-04-09T14:33:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.21.2" }
 "3.21.3" = { created_at = 2025-04-16T15:03:15.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.21.3" }
-"3.22.0.CR1" = { created_at = 2025-04-16T15:53:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.22.0.CR1", prerelease = true }
 "3.21.4" = { created_at = 2025-04-24T07:49:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.21.4" }
-"3.22.0" = { created_at = 2025-04-30T15:10:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.22.0" }
 "3.22.1" = { created_at = 2025-04-30T15:10:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.22.1" }
 "3.22.2" = { created_at = 2025-05-07T15:23:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.22.2" }
 "3.15.5" = { created_at = 2025-05-20T09:03:21.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.5" }
 "3.20.1" = { created_at = 2025-05-20T09:15:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.1" }
 "3.22.3" = { created_at = 2025-05-15T09:47:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.22.3" }
-"3.23.0.CR1" = { created_at = 2025-05-15T17:53:37.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.23.0.CR1", prerelease = true }
 "3.23.0" = { created_at = 2025-05-28T09:21:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.23.0" }
 "3.23.1" = { created_at = 2025-06-04T16:20:53.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.23.1" }
 "3.23.2" = { created_at = 2025-06-04T22:46:53.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.23.2" }
 "3.23.3" = { created_at = 2025-06-11T16:05:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.23.3" }
-"3.24.0.CR1" = { created_at = 2025-06-11T19:01:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.0.CR1", prerelease = true }
 "3.23.4" = { created_at = 2025-06-19T12:59:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.23.4" }
-"3.24.0" = { created_at = 2025-06-25T13:58:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.0" }
 "3.24.1" = { created_at = 2025-06-25T13:59:00.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.1" }
 "3.24.2" = { created_at = 2025-07-02T10:40:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.2" }
 "3.24.3" = { created_at = 2025-07-09T14:45:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.3" }
 "3.15.6" = { created_at = 2025-07-23T08:26:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.6" }
 "3.20.2" = { created_at = 2025-07-23T08:25:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.2" }
-"3.25.0.CR1" = { created_at = 2025-07-16T15:55:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.25.0.CR1", prerelease = true }
 "3.24.4" = { created_at = 2025-07-17T18:28:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.4" }
 "3.24.5" = { created_at = 2025-07-23T12:02:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.24.5" }
 "3.25.0" = { created_at = 2025-07-30T08:11:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.25.0" }
 "3.25.1" = { created_at = 2025-08-06T21:05:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.25.1" }
 "3.25.2" = { created_at = 2025-08-08T16:47:53.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.25.2" }
 "3.25.3" = { created_at = 2025-08-13T16:32:33.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.25.3" }
-"3.26.0.CR1" = { created_at = 2025-08-13T16:36:05.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.26.0.CR1", prerelease = true }
 "3.15.6.1" = { created_at = 2025-08-18T11:33:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.6.1" }
 "3.20.2.1" = { created_at = 2025-08-18T11:38:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.2.1" }
 "3.25.4" = { created_at = 2025-08-20T17:36:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.25.4" }
@@ -412,17 +206,13 @@
 "3.26.1" = { created_at = 2025-08-29T13:36:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.26.1" }
 "3.26.2" = { created_at = 2025-09-03T15:32:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.26.2" }
 "3.26.3" = { created_at = 2025-09-10T05:14:04.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.26.3" }
-"3.27.0.CR1" = { created_at = 2025-09-10T05:40:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.0.CR1", prerelease = true }
-"3.28.0.CR1" = { created_at = 2025-09-10T10:02:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.0.CR1", prerelease = true }
 "3.15.7" = { created_at = 2025-09-24T05:53:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.15.7" }
 "3.20.3" = { created_at = 2025-09-24T05:58:34.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.3" }
 "3.26.4" = { created_at = 2025-09-17T15:21:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.26.4" }
 "3.27.0" = { created_at = 2025-09-24T12:36:58.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.0" }
-"3.28.0" = { created_at = 2025-09-24T16:35:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.0" }
 "3.28.1" = { created_at = 2025-09-24T16:35:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.1" }
 "3.28.2" = { created_at = 2025-10-01T17:02:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.2" }
 "3.28.3" = { created_at = 2025-10-09T16:19:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.3" }
-"3.29.0.CR1" = { created_at = 2025-10-16T13:21:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.29.0.CR1", prerelease = true }
 "3.28.4" = { created_at = 2025-10-16T15:00:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.4" }
 "3.28.5" = { created_at = 2025-10-22T14:54:52.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.28.5" }
 "3.29.0" = { created_at = 2025-10-29T11:56:39.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.29.0" }
@@ -430,10 +220,8 @@
 "3.29.2" = { created_at = 2025-11-08T16:59:27.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.29.2" }
 "3.20.4" = { created_at = 2025-11-19T10:04:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.4" }
 "3.27.1" = { created_at = 2025-11-19T10:01:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.1" }
-"3.30.0.CR1" = { created_at = 2025-11-13T09:21:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.0.CR1", prerelease = true }
 "3.29.3" = { created_at = 2025-11-14T09:53:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.29.3" }
 "3.29.4" = { created_at = 2025-11-19T20:51:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.29.4" }
-"3.30.0" = { created_at = 2025-11-26T15:45:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.0" }
 "3.30.1" = { created_at = 2025-11-26T15:45:56.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.1" }
 "3.30.2" = { created_at = 2025-12-03T15:38:05.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.2" }
 "3.30.3" = { created_at = 2025-12-10T15:26:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.3" }
@@ -442,34 +230,24 @@
 "3.30.6" = { created_at = 2026-01-07T13:16:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.6" }
 "3.20.5" = { created_at = 2026-01-21T10:37:55.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.5" }
 "3.27.2" = { created_at = 2026-01-21T12:07:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.2" }
-"3.31.0.CR1" = { created_at = 2026-01-14T19:35:03.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.31.0.CR1", prerelease = true }
 "3.30.7" = { created_at = 2026-01-21T15:10:36.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.7" }
-"3.31.0" = { created_at = 2026-01-28T16:44:17.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.31.0" }
 "3.30.8" = { created_at = 2026-01-23T11:16:02.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.30.8" }
 "3.31.1" = { created_at = 2026-01-28T16:44:18.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.31.1" }
 "3.31.2" = { created_at = 2026-02-04T16:02:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.31.2" }
 "3.31.3" = { created_at = 2026-02-11T16:49:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.31.3" }
-"3.32.0.CR1" = { created_at = 2026-02-11T17:02:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.32.0.CR1", prerelease = true }
 "3.31.4" = { created_at = 2026-02-18T16:42:11.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.31.4" }
-"3.32.0" = { created_at = 2026-02-25T15:20:59.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.32.0" }
 "3.32.1" = { created_at = 2026-02-25T15:21:00.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.32.1" }
 "3.32.2" = { created_at = 2026-03-04T21:37:16.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.32.2" }
 "3.32.3" = { created_at = 2026-03-11T16:15:20.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.32.3" }
-"3.33.0.CR1" = { created_at = 2026-03-12T06:19:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.33.0.CR1", prerelease = true }
-"3.34.0.CR1" = { created_at = 2026-03-13T07:35:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.0.CR1", prerelease = true }
 "3.20.6" = { created_at = 2026-03-25T11:22:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.6" }
 "3.27.3" = { created_at = 2026-03-25T11:31:46.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.3" }
 "3.32.4" = { created_at = 2026-03-18T17:57:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.32.4" }
-"3.33.0" = { created_at = 2026-03-25T16:02:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.33.0" }
-"3.34.0" = { created_at = 2026-03-25T16:57:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.0" }
 "3.33.1" = { created_at = 2026-03-25T16:02:32.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.33.1" }
 "3.34.1" = { created_at = 2026-03-25T16:57:14.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.1" }
 "3.34.2" = { created_at = 2026-04-02T13:19:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.2" }
 "3.34.3" = { created_at = 2026-04-08T17:07:28.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.3" }
 "3.34.5" = { created_at = 2026-04-16T20:06:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.5" }
-"3.35.0.CR1" = { created_at = 2026-04-17T10:03:57.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.35.0.CR1", prerelease = true }
 "3.34.6" = { created_at = 2026-04-22T15:41:01.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.6" }
-"3.35.0" = { created_at = 2026-05-01T07:19:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.35.0" }
 "3.35.1" = { created_at = 2026-05-01T07:19:45.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.35.1" }
 "3.20.6.1" = { created_at = 2026-05-04T14:32:23.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.6.1" }
 "3.27.3.1" = { created_at = 2026-05-04T13:46:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.3.1" }
@@ -477,14 +255,12 @@
 "3.34.7" = { created_at = 2026-05-04T16:28:35.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.34.7" }
 "3.35.2" = { created_at = 2026-05-04T16:14:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.35.2" }
 "3.35.3" = { created_at = 2026-05-13T16:32:10.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.35.3" }
-"3.36.0.CR1" = { created_at = 2026-05-13T16:39:20.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.36.0.CR1", prerelease = true }
 "3.27.4" = { created_at = 2026-05-26T14:54:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.4" }
 "3.33.2" = { created_at = 2026-05-26T14:54:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.33.2" }
 "3.35.4" = { created_at = 2026-05-20T14:26:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.35.4" }
 "3.36.0" = { created_at = 2026-05-27T07:31:31.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.36.0" }
 "3.36.1" = { created_at = 2026-06-03T11:48:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.36.1" }
 "3.36.2" = { created_at = 2026-06-11T09:50:05.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.36.2" }
-"3.37.0.CR1" = { created_at = 2026-06-11T11:33:44.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.37.0.CR1", prerelease = true }
 "3.20.6.2" = { created_at = 2026-06-17T18:00:42.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.20.6.2" }
 "3.27.4.1" = { created_at = 2026-06-17T18:29:43.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.4.1" }
 "3.33.2.1" = { created_at = 2026-06-17T18:28:53.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.33.2.1" }
@@ -493,7 +269,6 @@
 "3.37.1" = { created_at = 2026-07-01T17:12:12.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.37.1" }
 "3.37.2" = { created_at = 2026-07-08T14:31:13.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.37.2" }
 "3.37.3" = { created_at = 2026-07-15T16:53:24.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.37.3" }
-"3.38.0.CR1" = { created_at = 2026-07-15T17:10:22.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.38.0.CR1", prerelease = true }
 "3.27.5" = { created_at = 2026-07-29T07:40:07.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.5" }
 "3.37.4" = { created_at = 2026-07-23T08:54:25.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.37.4" }
 "3.38.0" = { created_at = 2026-07-29T08:07:09.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.38.0" }
@@ -502,9 +277,7 @@
 "3.33.3.1" = { created_at = 2026-08-04T16:38:29.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.33.3.1" }
 "3.38.1" = { created_at = 2026-08-04T16:29:53.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.38.1" }
 "3.38.2" = { created_at = 2026-08-13T16:20:50.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.38.2" }
-"3.39.0.CR1" = { created_at = 2026-08-12T15:26:51.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.39.0.CR1", prerelease = true }
 "3.38.3" = { created_at = 2026-08-19T14:48:49.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.38.3" }
-"3.39.0" = { created_at = 2026-08-26T17:06:40.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.39.0" }
 "3.39.1" = { created_at = 2026-08-26T17:06:41.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.39.1" }
 "3.39.2" = { created_at = 2026-09-03T11:02:26.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.39.2" }
 "3.27.5.2" = { created_at = 2026-09-04T05:23:06.000Z, release_url = "https://github.com/quarkusio/quarkus/releases/tag/3.27.5.2" }

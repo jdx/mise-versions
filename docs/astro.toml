@@ -1,5 +1,4 @@
 [versions]
-"0.16" = { created_at = 2020-07-28T22:16:41.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.16" }
 "0.0.1" = { created_at = 2018-02-28T14:29:50.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.0.1" }
 "0.0.2" = { created_at = 2018-03-01T23:43:45.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.0.2" }
 "0.0.3" = { created_at = 2018-03-02T19:44:34.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.0.3" }
@@ -32,9 +31,7 @@
 "0.7.0-alpha.12" = { created_at = 2018-11-03T02:55:21.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.12" }
 "0.7.0-alpha.13" = { created_at = 2018-11-06T16:44:31.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.13" }
 "0.7.0-alpha.14" = { created_at = 2018-11-08T17:36:41.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.14" }
-"0.7.0-alpha.15" = { created_at = 2018-11-08T19:22:08.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.15" }
 "0.7.0-alpha.16" = { created_at = 2018-11-13T22:16:11.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.16" }
-"0.7.0-alpha.18" = { created_at = 2018-11-16T04:05:01.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.18" }
 "0.7.0-alpha.19" = { created_at = 2018-11-16T04:14:18.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.19" }
 "0.7.0-alpha.20" = { created_at = 2018-11-16T14:43:18.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-alpha.20" }
 "0.7.0-rc.1" = { created_at = 2018-11-19T14:28:03.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.7.0-rc.1" }
@@ -59,7 +56,6 @@
 "0.8.0-alpha.5" = { created_at = 2019-02-20T04:07:10.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-alpha.5" }
 "0.8.0-alpha.6" = { created_at = 2019-02-23T19:42:32.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-alpha.6" }
 "0.8.0-alpha.7" = { created_at = 2019-03-02T05:49:55.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-alpha.7" }
-"0.8.0-alpha.8" = { created_at = 2019-03-06T02:24:30.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-alpha.8", prerelease = true }
 "0.8.0-rc.1" = { created_at = 2019-03-09T17:33:34.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-rc.1" }
 "0.8.0-rc.2" = { created_at = 2019-03-11T00:22:56.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-rc.2" }
 "0.8.0-rc.3" = { created_at = 2019-03-11T02:28:23.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.0-rc.3" }
@@ -70,8 +66,6 @@
 "0.8.2-2" = { created_at = 2019-04-23T17:24:51.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.2-2" }
 "0.8.2" = { created_at = 2019-03-15T04:12:22.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.8.2" }
 "0.9.0-alpha.1" = { created_at = 2019-03-18T02:06:36.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.9.0-alpha.1", prerelease = true }
-"0.9.0-alpha.2" = { created_at = 2019-03-29T22:06:14.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.9.0-alpha.2", prerelease = true }
-"0.9.0-alpha.3" = { created_at = 2019-05-01T23:32:38.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.9.0-alpha.3", prerelease = true }
 "0.9.0-alpha.4" = { created_at = 2019-05-02T15:59:10.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.9.0-alpha.4", prerelease = true }
 "0.9.0-alpha.5" = { created_at = 2019-05-07T16:09:36.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.9.0-alpha.5", prerelease = true }
 "0.9.0-alpha.6" = { created_at = 2019-05-08T16:57:11.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.9.0-alpha.6", prerelease = true }
@@ -121,7 +115,6 @@
 "0.10.0-alpha.8" = { created_at = 2019-08-06T14:54:06.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-alpha.8", prerelease = true }
 "0.10.0-rc.1" = { created_at = 2019-08-09T18:12:36.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-rc.1", prerelease = true }
 "0.10.0-rc.2" = { created_at = 2019-08-09T20:37:46.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-rc.2", prerelease = true }
-"0.10.0-rc.3" = { created_at = 2019-08-13T17:17:16.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-rc.3", prerelease = true }
 "0.10.0-rc.4" = { created_at = 2019-08-14T08:56:17.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-rc.4", prerelease = true }
 "0.10.0-rc.5" = { created_at = 2019-08-14T09:46:08.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-rc.5", prerelease = true }
 "0.10.0-rc.6" = { created_at = 2019-08-14T14:38:54.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.0-rc.6", prerelease = true }
@@ -137,11 +130,8 @@
 "0.10.1-alpha.2" = { created_at = 2019-09-06T14:52:27.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.2", prerelease = true }
 "0.10.1-alpha.3" = { created_at = 2019-09-10T01:58:17.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.3", prerelease = true }
 "0.10.1-alpha.4" = { created_at = 2019-09-11T22:47:55.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.4", prerelease = true }
-"0.10.1-alpha.5" = { created_at = 2019-09-12T02:41:12.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.5", prerelease = true }
 "0.10.1-alpha.6" = { created_at = 2019-09-12T15:04:30.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.6", prerelease = true }
-"0.10.1-alpha.7" = { created_at = 2019-09-12T17:36:34.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.7", prerelease = true }
 "0.10.1-alpha.8" = { created_at = 2019-09-12T18:25:17.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.8", prerelease = true }
-"0.10.1-alpha.9" = { created_at = 2019-09-12T19:53:59.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.9", prerelease = true }
 "0.10.1-alpha.10" = { created_at = 2019-09-13T13:57:42.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.10", prerelease = true }
 "0.10.1-alpha.11" = { created_at = 2019-09-14T04:13:26.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.11", prerelease = true }
 "0.10.1-alpha.12" = { created_at = 2019-09-16T13:25:14.000Z, release_url = "https://github.com/astronomer/astro-cli/releases/tag/v0.10.1-alpha.12", prerelease = true }
