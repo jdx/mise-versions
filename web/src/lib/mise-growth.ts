@@ -113,3 +113,25 @@ export function forecastStarCrossover(points: StarPoint[]) {
     paceLabel: formatPaceLabel(mise.windows),
   };
 }
+
+// Release totals are cumulative snapshots. Only adjacent dates give a daily
+// increase; missing dates and counter corrections must not become daily spikes.
+export function dailyDownloads(
+  points: DownloadPoint[],
+): Array<{ date: string; value: number | null }> {
+  const series = points.toSorted((a, b) => a.date.localeCompare(b.date));
+  return series.map((point, i) => {
+    const previous = series[i - 1];
+    const delta = previous ? point.downloads - previous.downloads : null;
+    return {
+      date: point.date,
+      value:
+        previous &&
+        parseUtcDate(point.date) - parseUtcDate(previous.date) === 86400000 &&
+        delta !== null &&
+        delta >= 0
+          ? delta
+          : null,
+    };
+  });
+}

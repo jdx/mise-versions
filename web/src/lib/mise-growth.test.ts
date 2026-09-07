@@ -63,3 +63,25 @@ test("crossover handles ahead, non-closing, insufficient and distant histories",
   assert.equal(forecastStarCrossover(history(21, 20))?.status, "distant");
   assert.equal(forecastStarCrossover(history().slice(-1)), null);
 });
+
+test("daily downloads use adjacent snapshots, preserving zeroes and leaving gaps for corrections", async () => {
+  const { dailyDownloads } = await import("./mise-growth");
+  assert.deepEqual(
+    dailyDownloads([
+      { date: "2026-09-01", downloads: 100 },
+      { date: "2026-09-02", downloads: 150 },
+      { date: "2026-09-03", downloads: 150 },
+      { date: "2026-09-05", downloads: 250 },
+      { date: "2026-09-06", downloads: 200 },
+      { date: "2026-09-07", downloads: 225 },
+    ]),
+    [
+      { date: "2026-09-01", value: null },
+      { date: "2026-09-02", value: 50 },
+      { date: "2026-09-03", value: 0 },
+      { date: "2026-09-05", value: null },
+      { date: "2026-09-06", value: null },
+      { date: "2026-09-07", value: 25 },
+    ],
+  );
+});

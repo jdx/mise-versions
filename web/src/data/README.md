@@ -37,3 +37,8 @@ decrease. `mise-stars.json` selects mise and Homebrew from `competitors.csv`,
 retaining two years of observations. The crossover forecast uses the existing
 MAU forecast's blended 7-, 30-, and 365-day pace for **both** repositories; the
 Homebrew target keeps growing. Forecasts are estimates, not scheduled events.
+
+The downloads chart shows daily increases between consecutive dated snapshots,
+not cumulative totals. The first observation, missing days, and negative counter
+corrections have no daily value; genuine zero increases remain zero. The headline
+uses the latest day's increase, and the chart shows the latest 90 observations.
