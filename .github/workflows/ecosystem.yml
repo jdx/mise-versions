@@ -27,7 +27,7 @@ jobs:
       - name: Refresh adoption data and discover publisher manifests
         run: mise exec github:jdx/packslip@1.1.1 -- aube exec tsx scripts/update-ecosystem.ts
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN || github.token }}
       - name: Format snapshots
         run: aube exec prettier --write web/src/data/*.json
       - name: Commit snapshots and deploy
