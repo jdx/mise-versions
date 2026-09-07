@@ -1,16 +1,30 @@
-import { useMemo, useState } from "preact/hooks";
-import { releaseMonths, type TimelineRelease } from "../lib/release-timeline";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
+import { releaseDays, type TimelineRelease } from "../lib/release-timeline";
 export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
-  const history = useMemo(() => releaseMonths(versions), [versions]);
-  const [range, setRange] = useState("12");
+  const history = useMemo(() => releaseDays(versions), [versions]);
+  const [range, setRange] = useState("milestones");
   const [selected, setSelected] = useState("");
   const [expanded, setExpanded] = useState(false);
-  const months = range === "all" ? history.months : history.months.slice(-12);
-  const current = months.find((m) => m.month === selected) ?? months.at(-1);
-  const max = Math.max(...months.map((m) => m.releases.length), 1);
-  const monthLabel = (month: string) =>
-    new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US", {
+  const milestones = history.days.filter((day) => day.milestones.length);
+  const days =
+    range === "milestones" && milestones.length
+      ? milestones
+      : range === "30"
+        ? history.days.slice(-30)
+        : history.days;
+  const current = days.find((d) => d.date === selected) ?? days.at(-1);
+  const rail = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const container = rail.current;
+    const dot = container?.querySelector<HTMLElement>('[aria-pressed="true"]');
+    if (container && dot)
+      container.scrollLeft =
+        dot.offsetLeft - container.clientWidth / 2 + dot.clientWidth / 2;
+  }, [current?.date, range]);
+  const dateLabel = (date: string) =>
+    new Date(`${date}T00:00:00Z`).toLocaleDateString("en-US", {
       month: "short",
+      day: "numeric",
       year: "numeric",
       timeZone: "UTC",
     });
@@ -20,8 +34,8 @@ export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
         No release dates are available for these versions.
       </p>
     );
-  const choose = (month: string) => {
-    setSelected(month);
+  const choose = (date: string) => {
+    setSelected(date);
     setExpanded(false);
   };
   return (
@@ -30,28 +44,32 @@ export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
         <div>
           <h3>Release timeline</h3>
           <p>
-            {months.reduce((total, month) => total + month.releases.length, 0)}{" "}
-            releases · {monthLabel(months[0].month)}–
-            {monthLabel(months.at(-1)!.month)}
+            {range === "milestones" && milestones.length
+              ? "Major versions · minor milestones for 0.x"
+              : "One dot per release day · oldest to newest"}
             {history.undated > 0 ? ` · ${history.undated} without dates` : ""}
           </p>
         </div>
         <select
           aria-label="Release timeline range"
-          value={range}
+          value={range === "milestones" && !milestones.length ? "all" : range}
           onChange={(e) => {
             setRange(e.currentTarget.value);
             setExpanded(false);
           }}
         >
-          <option value="12">Latest 12 months</option>
+          {milestones.length > 0 && (
+            <option value="milestones">Milestones</option>
+          )}
+          <option value="30">Latest 30 release days</option>
           <option value="all">All history</option>
         </select>
       </div>
       <div
-        class="release-months"
+        class="release-dots"
+        ref={rail}
         role="group"
-        aria-label="Releases by month"
+        aria-label="Release days"
         onKeyDown={(e) => {
           if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
             return;
@@ -73,72 +91,105 @@ export function ReleaseTimeline({ versions }: { versions: TimelineRelease[] }) {
                       i + (e.key === "ArrowRight" ? 1 : -1),
                     ),
                   );
-          choose(months[next].month);
+          choose(days[next].date);
           buttons[next].focus();
         }}
       >
-        {months.map((m, i) => (
+        {days.map((day) => (
           <button
             type="button"
-            key={m.month}
-            class="release-month"
-            aria-pressed={m.month === current.month}
-            tabIndex={m.month === current.month ? 0 : -1}
-            aria-label={`${monthLabel(m.month)}: ${m.releases.length} releases`}
-            title={`${monthLabel(m.month)} · ${m.releases.length} releases`}
-            onClick={() => choose(m.month)}
+            key={day.date}
+            class={`release-stop ${day.milestones.length ? "release-stop-milestone" : ""}`}
+            aria-pressed={day.date === current.date}
+            tabIndex={day.date === current.date ? 0 : -1}
+            aria-label={`${day.milestones.map((v) => `v${v}`).join(", ")}${day.milestones.length ? ", " : ""}${dateLabel(day.date)}: ${day.releases.length} releases`}
+            title={day.releases.map((v) => v.version).join(", ")}
+            onClick={() => choose(day.date)}
           >
             <span
-              class="release-month-bar"
-              style={{ height: `${(m.releases.length / max) * 72}px` }}
+              class={`release-stop-year ${day.milestones.length ? "release-milestone-label" : ""}`}
+            >
+              {day.milestones.length
+                ? day.milestones.map((v) => `v${v}`).join(" · ")
+                : day.date.slice(0, 4)}
+            </span>
+            <span
+              class={`release-dot ${day.releases.length > 1 ? "release-dot-multiple" : ""}`}
             />
-            <span class="release-month-label">
-              {months.length <= 12
-                ? new Date(`${m.month}-01T00:00:00Z`).toLocaleDateString(
-                    "en-US",
-                    { month: "short", timeZone: "UTC" },
-                  )
-                : m.month.endsWith("-01")
-                  ? m.month.slice(0, 4)
-                  : ""}
+            <span class="release-stop-date">
+              {new Date(`${day.date}T00:00:00Z`).toLocaleDateString("en-US", {
+                month: "short",
+                year: "2-digit",
+                timeZone: "UTC",
+              })}
             </span>
           </button>
         ))}
       </div>
+      <div class="release-trail-controls">
+        <button
+          type="button"
+          disabled={current === days[0]}
+          onClick={() => choose(days[days.indexOf(current) - 1].date)}
+          aria-label="Previous release day"
+        >
+          ← Earlier
+        </button>
+        <span>
+          {days.indexOf(current) + 1} / {days.length}{" "}
+          {range === "milestones" && milestones.length
+            ? "milestones"
+            : "release days"}
+        </span>
+        <button
+          type="button"
+          disabled={current === days.at(-1)}
+          onClick={() => choose(days[days.indexOf(current) + 1].date)}
+          aria-label="Next release day"
+        >
+          Later →
+        </button>
+      </div>
       <div class="release-selection" aria-live="polite">
-        <strong>{monthLabel(current.month)}</strong>
+        <strong>{dateLabel(current.date)}</strong>
         <span>{current.releases.length} releases</span>
       </div>
       <div class="release-preview">
-        {current.releases.slice(0, expanded ? undefined : 4).map((v) => {
-          const content = (
-            <>
-              <span class="font-mono">{v.version}</span>
-              <time dateTime={v.created_at!}>
-                {new Date(v.created_at!).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  timeZone: "UTC",
-                })}
-              </time>
-            </>
-          );
-          const safe = v.release_url?.startsWith("https://");
-          return safe ? (
-            <a
-              key={v.version}
-              href={v.release_url!}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {content}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ) : (
-            <div key={v.version}>{content}</div>
-          );
-        })}
-        {!current.releases.length && <p>No releases recorded this month.</p>}
+        {current.releases
+          .toSorted(
+            (a, b) =>
+              Number(a.version.includes("/")) - Number(b.version.includes("/")),
+          )
+          .slice(0, expanded ? undefined : 4)
+          .map((v) => {
+            const content = (
+              <>
+                <span class="font-mono">{v.version}</span>
+                <time dateTime={v.created_at!}>
+                  {new Date(v.created_at!).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>
+              </>
+            );
+            const safe = v.release_url?.startsWith("https://");
+            return safe ? (
+              <a
+                key={v.version}
+                href={v.release_url!}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {content}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <div key={v.version}>{content}</div>
+            );
+          })}
+        {!current.releases.length && <p>No releases recorded this day.</p>}
       </div>
       {current.releases.length > 4 && (
         <button

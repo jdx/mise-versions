@@ -5,7 +5,7 @@ import {
   nextActivityMilestone,
   forecastDailyAverage,
 } from "./daily-average";
-import { releaseMonths } from "./release-timeline";
+import { releaseDays } from "./release-timeline";
 test("average requires seven consecutive valid dates and retains zero days", () => {
   const points = Array.from({ length: 8 }, (_, i) => ({
     date: `2026-09-0${i + 1}`,
@@ -44,20 +44,34 @@ test("milestones choose the next useful level for both downloads and DAU", () =>
     null,
   );
 });
-test("timeline preserves same-day releases, empty months, and invalid-date counts", () => {
-  const result = releaseMonths([
+test("timeline groups release days chronologically and counts invalid dates", () => {
+  const result = releaseDays([
     { version: "1", created_at: "2026-01-01" },
     { version: "2", created_at: "2026-01-01" },
     { version: "3", created_at: "2026-03-02" },
     { version: "4", created_at: "invalid" },
   ]);
   assert.deepEqual(
-    result.months.map((m) => [m.month, m.releases.length]),
+    result.days.map((d) => [d.date, d.releases.length]),
     [
-      ["2026-01", 2],
-      ["2026-02", 0],
-      ["2026-03", 1],
+      ["2026-01-01", 2],
+      ["2026-03-02", 1],
     ],
   );
   assert.equal(result.undated, 1);
+});
+
+test("timeline labels stable major versions and 0.x minor introductions only", () => {
+  const result = releaseDays([
+    { version: "0.2.1", created_at: "2026-02-02" },
+    { version: "0.2.0", created_at: "2026-02-01" },
+    { version: "v1.0.0", created_at: "2026-03-01" },
+    { version: "1.1.0", created_at: "2026-03-02" },
+    { version: "2.0.0-rc.1", created_at: "2026-04-01" },
+    { version: "sdk/go/v2.0.0", created_at: "2026-04-02" },
+  ]);
+  assert.deepEqual(
+    result.days.map((d) => d.milestones),
+    [["0.2"], [], ["1"], [], [], []],
+  );
 });

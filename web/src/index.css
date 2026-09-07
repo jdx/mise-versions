@@ -1250,46 +1250,98 @@ code,
   border-radius: 5px;
   padding: 0.4rem;
 }
-.release-months {
+.release-dots {
   display: flex;
-  align-items: end;
+  position: relative;
   overflow-x: auto;
-  gap: 5px;
-  padding: 12px 3px 5px;
-  margin: 1rem 0;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  padding: 8px 2px;
+  margin-top: 0.8rem;
 }
-.release-month {
-  flex: 1 0 8px;
-  height: 98px;
-  min-width: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  flex-direction: column;
-  gap: 8px;
+.release-stop {
+  position: relative;
+  flex: 1 0 72px;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 8px 0;
   border: 0;
   background: transparent;
   color: var(--muted);
-  padding: 0;
-  border-radius: 4px;
+  border-radius: 5px;
 }
-.release-month-bar {
-  display: block;
-  width: 100%;
-  max-width: 40px;
+.release-stop::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+}
+.release-stop:first-child::before {
+  left: 50%;
+}
+.release-stop:last-child::before {
+  right: 50%;
+}
+.release-dot {
+  position: relative;
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   background: var(--data);
-  opacity: 0.45;
-  border-radius: 3px 3px 0 0;
-  min-height: 1px;
+  box-shadow: 0 0 0 4px var(--surface);
 }
-.release-month[aria-pressed="true"] .release-month-bar,
-.release-month:hover .release-month-bar {
+.release-dot-multiple {
+  outline: 1px solid var(--data);
+  outline-offset: 3px;
+}
+.release-stop[aria-pressed="true"] .release-dot,
+.release-stop:hover .release-dot {
   background: var(--accent);
-  opacity: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
-.release-month-label {
-  height: 15px;
+.release-stop[aria-pressed="true"] {
+  color: var(--accent);
+}
+.release-stop-year {
   font-size: 9px;
+  line-height: 16px;
+}
+.release-stop-date {
+  font-size: 10px;
+  line-height: 16px;
+}
+.release-stop:focus-visible {
+  outline-offset: -2px;
+}
+.release-trail-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin: 0.25rem 0 0.8rem;
+}
+.release-trail-controls button {
+  padding: 0.3rem 0;
+  color: var(--accent);
+  background: transparent;
+  border: 0;
+}
+.release-trail-controls button:disabled {
+  opacity: 0.35;
+}
+@media (max-width: 480px) {
+  .release-timeline-heading {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 }
 .release-selection {
   display: flex;
@@ -1340,6 +1392,17 @@ code,
   margin-top: 0.4rem;
 }
 
-.release-month:focus-visible {
-  outline-offset: -2px;
+.release-stop-milestone .release-dot {
+  width: 12px;
+  height: 12px;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+.release-milestone-label {
+  color: var(--text-secondary);
+  font: 600 11px/16px var(--font-mono, monospace);
+  white-space: nowrap;
+}
+.release-stop[aria-pressed="true"] .release-milestone-label {
+  color: var(--accent);
 }

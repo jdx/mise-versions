@@ -4,25 +4,36 @@ export interface TimelineRelease {
   release_url?: string | null;
   prerelease?: boolean;
 }
-export function releaseMonths(versions: TimelineRelease[]) {
+export function releaseDays(versions: TimelineRelease[]) {
   const dated = versions
     .filter((v) => v.created_at && Number.isFinite(Date.parse(v.created_at)))
-    .toSorted((a, b) => Date.parse(a.created_at!) - Date.parse(b.created_at!));
-  if (!dated.length) return { months: [], undated: versions.length };
+    .toSorted((a, b) => Date.parse(b.created_at!) - Date.parse(a.created_at!));
   const groups = new Map<string, TimelineRelease[]>();
   for (const version of dated) {
-    const month = new Date(version.created_at!).toISOString().slice(0, 7);
-    groups.set(month, [...(groups.get(month) ?? []), version]);
+    const date = new Date(version.created_at!).toISOString().slice(0, 10);
+    const releases = groups.get(date) ?? [];
+    releases.push(version);
+    groups.set(date, releases);
   }
-  const first = new Date(dated[0].created_at!);
-  first.setUTCDate(1);
-  first.setUTCHours(0, 0, 0, 0);
-  const last = new Date(dated.at(-1)!.created_at!).toISOString().slice(0, 7);
-  const months = [];
-  while (first.toISOString().slice(0, 7) <= last) {
-    const month = first.toISOString().slice(0, 7);
-    months.push({ month, releases: (groups.get(month) ?? []).toReversed() });
-    first.setUTCMonth(first.getUTCMonth() + 1);
-  }
-  return { months, undated: versions.length - dated.length };
+  const seen = new Set<string>();
+  const days = [...groups].toReversed().map(([date, releases]) => {
+    const milestones: string[] = [];
+    for (const release of releases) {
+      // Only stable, top-level versions define a release generation.
+      const match = /^v?(\d+)\.(\d+)(?:\.\d+)?(?:\+[^\s]+)?$/.exec(
+        release.version,
+      );
+      if (!match || release.prerelease) continue;
+      const label =
+        Number(match[1]) === 0
+          ? `0.${Number(match[2])}`
+          : String(Number(match[1]));
+      if (!seen.has(label)) {
+        seen.add(label);
+        milestones.push(label);
+      }
+    }
+    return { date, releases, milestones };
+  });
+  return { days, undated: versions.length - dated.length };
 }
