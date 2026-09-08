@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "4532d4f45e4f",
+  "session_id": "01a07e9c-b4fe-7c20-9e7f-f5558b1e5525",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-08T01:25:17.117504Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "web/src/components/MauHistory.astro"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.6-sol",
+  "turn_id": "5acd167c2e4b",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 55331,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 282112,
+    "output_tokens": 1494,
+    "api_call_count": 8
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-08T01:25:17.082963Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 0,
+    "human_modified": 28,
+    "human_removed": 33,
+    "total_committed": 0,
+    "total_lines_changed": 61,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    }
+  ]
+}
