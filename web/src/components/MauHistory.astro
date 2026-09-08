@@ -282,18 +282,6 @@ const yTicks = Array.from(
             </g>
           ))}
           <YearGrid start={data[0].date} end={chartEndDate} x={xForDate} top={0} bottom={chartHeight} />
-          {showForecastOnChart && forecast && (
-            <line
-              x1="0"
-              x2={xForDate(forecast.hitDate)}
-              y1={yForValue(forecast.target)}
-              y2={yForValue(forecast.target)}
-              stroke="var(--forecast)"
-              stroke-width="1"
-              stroke-dasharray="3 5"
-              opacity="0.55"
-            />
-          )}
           {showQuattroLaunch && (
             <g>
               <line
