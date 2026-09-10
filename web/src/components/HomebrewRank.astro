@@ -9,9 +9,9 @@ const best = Math.min(...data.map(p => p.brewRank!));
 const maxRank = Math.max(10, Math.ceil(Math.max(...data.map(p => p.brewRank!)) / 10) * 10);
 const maxPercent = Math.max(.1, ...data.map(p => p.brewPercent ?? 0)) * 1.1;
 const start = data[0]?.date ?? '', end = latest?.date ?? '';
-const x = (date: string) => 55 + (parseUtcDate(date) - parseUtcDate(start)) / Math.max(parseUtcDate(end) - parseUtcDate(start), 1) * 420;
-const rankY = (rank: number) => 40 + (rank - 1) / (maxRank - 1) * 140;
-const percentY = (percent: number) => 180 - percent / maxPercent * 140;
+const x = (date: string) => 55 + (parseUtcDate(date) - parseUtcDate(start)) / Math.max(parseUtcDate(end) - parseUtcDate(start), 1) * 870;
+const rankY = (rank: number) => 40 + (rank - 1) / (maxRank - 1) * 180;
+const percentY = (percent: number) => 220 - percent / maxPercent * 180;
 function path(key: 'brewRank' | 'brewPercent', y: (v: number) => number) {
   let previous = 0;
   return data.map(p => {
@@ -22,21 +22,29 @@ function path(key: 'brewRank' | 'brewPercent', y: (v: number) => number) {
   }).join(' ');
 }
 ---
-<div class="adoption-chart">
+<div class="adoption-chart homebrew-rank-chart">
   <h3>Homebrew rank · mise</h3>
   {latest ? <>
     <p class="adoption-context">Current <strong>#{latest.brewRank}</strong> · Best <strong>#{best}</strong> · Lower rank is better</p>
     <DataFreshness date={latest.date} />
-    <svg viewBox="0 0 540 220" role="img" aria-label={`mise Homebrew rank history. Current rank ${latest.brewRank}, best rank ${best}. Rank improves upward. Blue line shows install share on the right axis.`}>
-      {[1, Math.round(maxRank/2), maxRank].map(rank => <g><line x1="55" x2="475" y1={rankY(rank)} y2={rankY(rank)} stroke="var(--border)"/><text x="47" y={rankY(rank)+4} text-anchor="end">#{rank}</text></g>)}
-      {[0, .5, 1].map(f => <text x="483" y={percentY(maxPercent*f)+4}>{(maxPercent*f).toFixed(2)}%</text>)}
-      <YearGrid start={start} end={end} x={x} top={40} bottom={180} />
-      <path d={path('brewRank',rankY)} fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+    <svg viewBox="0 0 1000 260" role="img" aria-label={`mise Homebrew rank history. Current rank ${latest.brewRank}, best rank ${best}. Rank improves upward. Blue line shows install share on the right axis.`}>
+      {[1, Math.round(maxRank/2), maxRank].map(rank => <g><line x1="55" x2="925" y1={rankY(rank)} y2={rankY(rank)} stroke="var(--border)"/><text x="47" y={rankY(rank)+4} text-anchor="end">#{rank}</text></g>)}
+      {[0, .5, 1].map(f => <text x="933" y={percentY(maxPercent*f)+4}>{(maxPercent*f).toFixed(2)}%</text>)}
+      <YearGrid start={start} end={end} x={x} top={40} bottom={220} />
+      <path d={path('brewRank',rankY)} fill="none" stroke="#E67E22" stroke-width="2.5"/>
       <path d={path('brewPercent',percentY)} fill="none" stroke="var(--data)" stroke-width="2"/>
       {data.map(p => <circle cx={x(p.date)} cy={rankY(p.brewRank!)} r="4" fill="transparent"><title>{p.date}: rank #{p.brewRank}; install share {p.brewPercent ?? 'unavailable'}%</title></circle>)}
-      <circle cx={x(latest.date)} cy={rankY(latest.brewRank!)} r="3.5" fill="var(--accent)"/>
-      <text x="55" y="207">{start}</text><text x="475" y="207" text-anchor="end">{end}</text>
+      <circle cx={x(latest.date)} cy={rankY(latest.brewRank!)} r="3.5" fill="#E67E22"/>
+      <text x="55" y="247">{start}</text><text x="925" y="247" text-anchor="end">{end}</text>
     </svg>
     <p class="adoption-context">Orange: rank (left axis) · Blue: share of Homebrew install-on-request installs (right axis). Based on rolling 30-day counts.</p>
   </> : <p>Homebrew rank history unavailable.</p>}
 </div>
+
+<style>
+  .homebrew-rank-chart { grid-column: 1 / -1; }
+  @media (max-width: 640px) {
+    .homebrew-rank-chart svg { min-width: 600px; }
+    .homebrew-rank-chart { overflow-x: auto; }
+  }
+</style>
