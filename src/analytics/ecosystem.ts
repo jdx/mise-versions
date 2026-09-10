@@ -1,4 +1,3 @@
-export type BackendDay = { date: string; backend: string; downloads: number };
 export type PlatformCount = { os: string; arch: string; downloads: number };
 export type Momentum = {
   tool: string;
@@ -40,11 +39,6 @@ export async function getEcosystemInsights(db: D1Database, now = Date.now()) {
       .bind(start, today),
     db
       .prepare(
-        `SELECT date,backend_type AS backend,SUM(downloads) AS downloads FROM daily_backend_stats WHERE date>=? AND date<? GROUP BY date,backend_type ORDER BY date,backend_type`,
-      )
-      .bind(date(96), today),
-    db
-      .prepare(
         `SELECT t.name AS tool,SUM(CASE WHEN s.date>=? THEN s.downloads ELSE 0 END) AS current,SUM(CASE WHEN s.date<? THEN s.downloads ELSE 0 END) AS previous FROM daily_tool_stats s JOIN tools t ON t.id=s.tool_id WHERE s.date>=? AND s.date<? GROUP BY t.id,t.name`,
       )
       .bind(week, week, previous, today),
@@ -62,15 +56,14 @@ export async function getEcosystemInsights(db: D1Database, now = Date.now()) {
       latest: string | null;
       days: number;
     },
-    backends: results[2].results as BackendDay[],
     momentum: rankMomentum(
-      results[3].results as {
+      results[2].results as {
         tool: string;
         current: number;
         previous: number;
       }[],
     ),
-    momentumCoverage: results[4].results[0] as {
+    momentumCoverage: results[3].results[0] as {
       latest: string | null;
       days: number;
     },

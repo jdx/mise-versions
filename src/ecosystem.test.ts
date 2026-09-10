@@ -20,7 +20,7 @@ test("momentum sorts by absolute gain, filters noise and labels zero baselines",
 test("ecosystem SQL excludes today, preserves unknown platforms and includes declines", async () => {
   const db = new DatabaseSync(":memory:");
   db.exec(
-    `CREATE TABLE platforms(id INTEGER,os TEXT,arch TEXT);CREATE TABLE tools(id INTEGER,name TEXT);CREATE TABLE daily_tool_platform_stats(date TEXT,platform_id INTEGER,downloads INTEGER);CREATE TABLE daily_backend_stats(date TEXT,backend_type TEXT,downloads INTEGER);CREATE TABLE daily_tool_stats(date TEXT,tool_id INTEGER,downloads INTEGER);INSERT INTO tools VALUES(1,'rising'),(2,'gone');INSERT INTO platforms VALUES(1,'linux','x64');INSERT INTO daily_tool_platform_stats VALUES('2026-09-09',1,100),('2026-09-09',0,20),('2026-09-10',1,999);INSERT INTO daily_backend_stats VALUES('2026-09-09','core',10),('2026-09-10','core',999);INSERT INTO daily_tool_stats VALUES('2026-09-09',1,200),('2026-09-01',1,100),('2026-09-01',2,100),('2026-09-10',1,999);`,
+    `CREATE TABLE platforms(id INTEGER,os TEXT,arch TEXT);CREATE TABLE tools(id INTEGER,name TEXT);CREATE TABLE daily_tool_platform_stats(date TEXT,platform_id INTEGER,downloads INTEGER);CREATE TABLE daily_tool_stats(date TEXT,tool_id INTEGER,downloads INTEGER);INSERT INTO tools VALUES(1,'rising'),(2,'gone');INSERT INTO platforms VALUES(1,'linux','x64');INSERT INTO daily_tool_platform_stats VALUES('2026-09-09',1,100),('2026-09-09',0,20),('2026-09-10',1,999);INSERT INTO daily_tool_stats VALUES('2026-09-09',1,200),('2026-09-01',1,100),('2026-09-01',2,100),('2026-09-10',1,999);`,
   );
   const adapter = {
     prepare(sql: string) {
@@ -46,7 +46,6 @@ test("ecosystem SQL excludes today, preserves unknown platforms and includes dec
       120,
     );
     assert(result.platforms.some((r) => r.os === "unknown"));
-    assert.equal(result.backends.length, 1);
     assert.equal(result.momentum[0].gain, 100);
     assert.equal(result.momentum[1].gain, -100);
     assert.equal(result.momentumCoverage.days, 2);

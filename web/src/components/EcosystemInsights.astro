@@ -1,8 +1,6 @@
 ---
 import { getEcosystemInsights } from '../../../src/analytics/ecosystem';
 import { env } from 'cloudflare:workers';
-import { backendShares } from '../lib/audience-growth';
-import StatsLineChart from './StatsLineChart.astro';
 import DataFreshness from './DataFreshness.astro';
 import { formatCompact } from '../lib/format';
 let data:Awaited<ReturnType<typeof getEcosystemInsights>>|null=null;
@@ -22,9 +20,7 @@ const momentumGroups=[{label:'Largest weekly gains',rows:data?.momentum.filter(r
 <section class="adoption-chart"><h2>Platform mix · last 30 complete days</h2><DataFreshness date={data.platformCoverage.latest??undefined}/><p class="adoption-context">{data.start}–{data.end} · {data.platformCoverage.days}/30 days recorded. Shares are of recorded tool downloads through mise, not users. Unknown platforms remain in the denominator.</p>
 {total>0?<div class="platform-grid">{groups.map(group=><div><h3>{group.label}</h3>{group.rows.map(([name,n])=><div class="share-row"><span>{name}</span><div><i style={`width:${n/total*100}%`}></i></div><span>{n>0 && n/total*100<.1?'<0.1':(n/total*100).toFixed(1)}% · {formatCompact(n)}</span></div>)}</div>)}</div>:<p>No platform observations available.</p>}
 </section>
-<StatsLineChart title="Backend download share over time" series={backendShares(data.backends)} percent unit="share of downloads"/>
-<DataFreshness date={data.backends.at(-1)?.date}/><p class="adoption-context">Shares of seven-day download totals, over the last 90 days. Top five backends by volume in the loaded period; remaining backends are grouped as Other. Gaps require a complete week before the line resumes.</p>
 <section class="adoption-chart"><h2>Tool momentum</h2><DataFreshness date={data.momentumCoverage.latest??undefined}/><p class="adoption-context">Latest seven complete days vs the previous seven, ending {data.end}. Ranked by absolute change; at least 100 downloads in either week. “New activity” means the previous week had zero recorded downloads.</p>
 {data.momentumCoverage.days===14?<div class="momentum-grid">{momentumGroups.map(group=><div><h3>{group.label}</h3>{group.rows.length?<div class="table-scroll"><table><thead><tr><th>Tool</th><th>This week</th><th>Change</th><th>Growth</th></tr></thead><tbody>{group.rows.map(r=><tr><th><a href={`/tools/${encodeURIComponent(r.tool)}`}>{r.tool}</a></th><td>{formatCompact(r.current)}</td><td>{gain(r.gain)}</td><td>{r.percent===null?'New activity':`${r.percent.toFixed(1)}%`}</td></tr>)}</tbody></table></div>:<p>No qualifying changes.</p>}</div>)}</div>:<p>Comparison unavailable: {data.momentumCoverage.days}/14 days recorded.</p>}
-</section></div>:<p class="inline-notice">Platform, momentum, and backend history are temporarily unavailable.</p>}
+</section></div>:<p class="inline-notice">Platform and momentum data are temporarily unavailable.</p>}
 <style>.insights{display:grid;gap:1rem;margin:2rem 0;}.platform-grid,.momentum-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem;margin-top:1rem;}.share-row{display:grid;grid-template-columns:75px 1fr 110px;align-items:center;gap:.5rem;font-size:.8rem;margin:.75rem 0;}.share-row>div{background:var(--border);height:8px;}.share-row i{display:block;background:var(--data);height:100%;}.table-scroll{overflow-x:auto;}table{width:100%;font-size:.8rem;}th,td{padding:.6rem .25rem;text-align:right;border-bottom:1px solid var(--border);}th:first-child{text-align:left;}@media(max-width:850px){.platform-grid,.momentum-grid{grid-template-columns:1fr;}}</style>
