@@ -1,10 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { forecastWeek, freshness } from "./stats-display";
-test("forecast weeks start Monday across year boundaries", () => {
-  assert.equal(forecastWeek("2026-01-01"), "Week of Dec 29, 2025");
-  assert.equal(forecastWeek("2026-09-13"), "Week of Sep 7, 2026");
-  assert.equal(forecastWeek("2026-09-14"), "Week of Sep 14, 2026");
+import { forecastDate, freshness } from "./stats-display";
+test("forecast dates preserve the specific UTC day", () => {
+  assert.equal(forecastDate("2026-01-01"), "Jan 1, 2026");
+  assert.equal(forecastDate("2026-09-13"), "Sep 13, 2026");
+  assert.equal(forecastDate("2026-09-14"), "Sep 14, 2026");
 });
 test("freshness tolerates daily rollup delay but flags older observations", () => {
   const now = Date.parse("2026-09-10T19:00:00Z");

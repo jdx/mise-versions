@@ -1,11 +1,12 @@
 import { parseUtcDate, formatUtcDate } from "./mau-forecast";
 
-// A calendar week conveys forecast precision without implying a confidence interval.
-export function forecastWeek(date: string): string {
-  const ms = parseUtcDate(date);
-  const day = new Date(ms).getUTCDay();
-  const monday = ms - ((day + 6) % 7) * 86400000;
-  return `Week of ${new Date(monday).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}`;
+export function forecastDate(date: string): string {
+  return new Date(parseUtcDate(date)).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 export function freshness(date?: string, now = Date.now()): string {

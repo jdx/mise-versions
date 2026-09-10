@@ -1,12 +1,13 @@
 ---
 import releaseEvents from "../data/mise-events.json";
 import { sevenDayAverage } from "../lib/daily-average";
-import { forecastWeek } from "../lib/stats-display";
+import { forecastDate } from "../lib/stats-display";
 import DataFreshness from "./DataFreshness.astro";
 import YearGrid from "./YearGrid.astro";
 import { formatCompact } from "../lib/format";
 import {
   forecastNextMillion,
+  formatForecastRelative,
   formatUtcDate,
   parseUtcDate,
   type MauPoint,
@@ -165,7 +166,7 @@ const forecastAreaPath =
     : "";
 const forecastLabel =
   forecast
-    ? `${forecast.targetLabel} · ${forecastWeek(forecast.hitDate)}`
+    ? `${forecast.targetLabel} · ${forecastDate(forecast.hitDate)}`
     : "";
 const forecastPillWidth = Math.max(108, forecastLabel.length * 6.7 + 18);
 const forecastPoint = showForecastOnChart && forecast
@@ -254,9 +255,9 @@ const yTicks = Array.from(
         <div class="rounded p-3 bg-dark-700">
           <div class="relative">
             <div class="text-xs text-gray-400">MAU 7-day average · on pace for {forecast.targetLabel}</div>
-            <div class="text-xl font-medium text-gray-300">{forecastWeek(forecast.hitDate)}</div>
+            <div class="text-xl font-medium text-gray-300">{forecastDate(forecast.hitDate)}</div>
             <div class="text-xs text-gray-400">
-              Approximate timing at current growth rates
+              {formatForecastRelative(forecast.daysAway)}
             </div>
             <div class="text-[11px] text-gray-600 mt-1 first-letter:uppercase">
               {forecast.paceLabel}.
@@ -275,7 +276,7 @@ const yTicks = Array.from(
         role="img"
         aria-label={
           forecast
-            ? `Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026. On pace for ${forecast.targetLabel} around ${forecastWeek(forecast.hitDate)}.`
+            ? `Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026. On pace for ${forecast.targetLabel} around ${forecastDate(forecast.hitDate)}.`
             : "Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026"
         }
       >
@@ -347,7 +348,7 @@ const yTicks = Array.from(
               <circle cx={forecastPoint.x} cy={forecastPoint.y} r="3.5" fill="var(--forecast)" />
               <circle cx={forecastPoint.x} cy={forecastPoint.y} r="2" fill="var(--canvas)" />
               <title>
-                {forecast.targetLabel} pace: {forecastWeek(forecast.hitDate)}
+                {forecast.targetLabel} pace: {forecastDate(forecast.hitDate)}
               </title>
             </g>
           )}
@@ -388,7 +389,7 @@ const yTicks = Array.from(
               text-anchor="middle"
               class="fill-amber-300/80 text-[11px]"
             >
-              {forecastWeek(forecast.hitDate).replace(/, \d{4}$/, "")}
+              {forecastDate(forecast.hitDate).replace(/, \d{4}$/, "")}
             </text>
           )}
         </g>
@@ -399,7 +400,7 @@ const yTicks = Array.from(
       <p class="mt-2 text-[11px] text-gray-500">
         {showForecastOnChart
           ? `Dashed gold line projects the ${forecast.paceLabel} of the smoothed MAU series.`
-          : `On pace for ${forecast.targetLabel} around ${forecastWeek(forecast.hitDate)}, from the ${forecast.paceLabel} of the smoothed MAU series. Too far out to plot.`}
+          : `On pace for ${forecast.targetLabel} around ${forecastDate(forecast.hitDate)}, from the ${forecast.paceLabel} of the smoothed MAU series. Too far out to plot.`}
       </p>
     )}
 
