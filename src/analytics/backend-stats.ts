@@ -115,13 +115,28 @@ export function createBackendStatsFunctions(db: ReturnType<typeof drizzle>) {
 
     // Get all backend stats (combined endpoint for efficiency)
     async getBackendStats() {
-      const [downloadsByBackend, topToolsByBackend] = await Promise.all([
-        getDownloadsByBackend(),
-        getTopToolsByBackend(),
-      ]);
+      const [downloadsByBackend, topToolsByBackend, downloadDates, toolDates] =
+        await Promise.all([
+          getDownloadsByBackend(),
+          getTopToolsByBackend(),
+          db
+            .select({
+              date: sql<string | null>`max(${dailyBackendStats.date})`,
+            })
+            .from(dailyBackendStats)
+            .all(),
+          db
+            .select({
+              date: sql<string | null>`max(${dailyToolBackendStats.date})`,
+            })
+            .from(dailyToolBackendStats)
+            .all(),
+        ]);
 
       return {
         downloads_by_backend: downloadsByBackend,
+        downloads_date: downloadDates[0]?.date ?? null,
+        top_tools_date: toolDates[0]?.date ?? null,
         top_tools_by_backend: topToolsByBackend,
       };
     },

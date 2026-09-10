@@ -1,8 +1,10 @@
 ---
+import { forecastWeek } from "../lib/stats-display";
+import DataFreshness from "./DataFreshness.astro";
 import YearGrid from "./YearGrid.astro";
 import { sevenDayAverage, forecastDailyAverage, nextActivityMilestone } from '../lib/daily-average';
 import { formatCompact } from '../lib/format';
-import { parseUtcDate, formatForecastRelative } from '../lib/mau-forecast';
+import { parseUtcDate } from '../lib/mau-forecast';
 interface Props { points: Array<{date:string;value:number|null}>; title: string; unit: string }
 const { points: daily, title, unit } = Astro.props;
 const averages = sevenDayAverage(daily);
@@ -22,16 +24,16 @@ const width = Math.max(1,464/(Math.max(end-start,86400000)/86400000)*.65);
 const validData = data.filter(p=>p.value!==null);
 const averageByDate = new Map(average.map(p=>[p.date,p.value]));
 const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'compact',maximumFractionDigits:0});
-const dateLabel = (date:string)=>new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
 ---
 <div class="adoption-chart daily-activity-chart">
   <h3>{title}</h3>
+  <DataFreshness date={daily.findLast(p => p.value !== null)?.date} />
   <p class="activity-period">{data.length === 90 ? "Last 90 days" : `${data.length} recorded days`} · {data.filter(p=>p.value!==null).length} recorded · {data[0].date}–{latest.date}</p>
   <div class="download-average-summary"><span><strong>{latest.value===null?'—':formatCompact(latest.value)}</strong> {unit} · 7-day average</span>
     {!forecast && latest.value !== null && <span class="download-milestone">Next milestone <strong>{milestoneLabel(nextActivityMilestone(latest.value))} {unit}</strong><br/>No rising trend to project a date</span>}
-    {forecast && <span class="download-milestone">On pace for <strong>{milestoneLabel(forecast.target)} {unit}</strong><br/>{dateLabel(forecast.hitDate)} · {formatForecastRelative(forecast.daysAway)}</span>}
+    {forecast && <span class="download-milestone">On pace for <strong>{milestoneLabel(forecast.target)} {unit}</strong><br/>{forecastWeek(forecast.hitDate)} · approximate</span>}
   </div>
-  <svg viewBox="0 0 540 218" data-activity-chart role="group" aria-label={`${title} and 7-day average. Latest average ${latest.value===null?'unavailable':Math.round(latest.value).toLocaleString()}. ${forecast ? `Projected to reach ${forecast.target.toLocaleString()} ${unit} on ${dateLabel(forecast.hitDate)}.`:''}`}>
+  <svg viewBox="0 0 540 218" data-activity-chart role="group" aria-label={`${title} and 7-day average. Latest average ${latest.value===null?'unavailable':Math.round(latest.value).toLocaleString()}. ${forecast ? `Projected to reach ${forecast.target.toLocaleString()} ${unit} on ${forecastWeek(forecast.hitDate)}.`:''}`}>
     {[0,.5,1].map(f=><g><line x1="48" x2="512" y1={y(max*f)} y2={y(max*f)} stroke="var(--border)" stroke-dasharray="3 5"/><text x="40" y={y(max*f)+4} text-anchor="end">{formatCompact(max*f)}</text></g>)}
 <YearGrid start={data[0].date} end={endDate} x={x} top={42} bottom={186} />
     {validData.map((p,i)=>{
@@ -50,7 +52,7 @@ const dateLabel = (date:string)=>new Date(`${date}T00:00:00Z`).toLocaleDateStrin
       <circle cx={x(forecast.hitDate)} cy={y(forecast.target)} r="4" fill="var(--forecast)"/>
       <text x={x(forecast.hitDate)} y={y(forecast.target)-10} text-anchor="end" class="download-target-label">{milestoneLabel(forecast.target)} {unit}</text>
     </>}
-    <text x="48" y="209">{data[0].date}</text><text x="512" y="209" text-anchor="end">{endDate}</text>
+    <text x="48" y="209">{data[0].date}</text><text x="512" y="209" text-anchor="end">{projected ? forecastWeek(endDate) : endDate}</text>
   </svg>
   <p class="adoption-context">Bars: daily observations · Blue: 7-day average{forecast ? ` · Dashed: projection using the ${forecast.paceLabel}.`:'.'} Milestones track the average, not single-day spikes. A complete week is required.</p>
 </div>

@@ -1,4 +1,6 @@
 ---
+import HomebrewRank from "./HomebrewRank.astro";
+import DataFreshness from "./DataFreshness.astro";
 import YearGrid from "./YearGrid.astro";
 import observations from '../data/mise-adoption.json';
 import releaseDownloads from '../data/mise-downloads.json';
@@ -6,11 +8,12 @@ import DailyActivityChart from './DailyActivityChart.astro';
 import StarCrossover from './StarCrossover.astro';
 import { starChange } from '../lib/mise-adoption';
 import { downloadChange, dailyDownloads } from '../lib/mise-growth';
+import { sevenDayAverage } from '../lib/daily-average';
 import { formatCompact } from '../lib/format';
 const latest = observations.at(-1)!;
 const latestDownloads = releaseDownloads.at(-1)!;
 const daily = dailyDownloads(releaseDownloads);
-const latestDaily = daily.at(-1)!;
+const latestAverage = sevenDayAverage(daily).at(-1);
 const stars30d = starChange(observations, 30);
 const downloads30d = downloadChange(releaseDownloads, 30);
 const since = new Date(latest.date);
@@ -23,9 +26,9 @@ const charts = [
 <section class="mise-adoption" aria-labelledby="mise-adoption-heading">
   <div class="section-heading"><h2 id="mise-adoption-heading">mise adoption</h2><a href="https://github.com/jdx/mise-analytics">Source: mise-analytics ↗</a></div>
   <div class="adoption-metrics">
-    <div><h3>mise downloads · daily</h3><strong>{latestDaily.value?.toLocaleString() ?? '—'}</strong><p>{downloads30d === null ? '30-day increase unavailable' : `${formatCompact(downloads30d)} over 30 days`}</p><p>GitHub release assets · {latestDownloads.date}</p></div>
-    <div><h3>Homebrew installs <span class="brew-rank">#{latest.brewRank ?? '—'}</span></h3><strong>{latest.brewInstalls?.toLocaleString() ?? '—'}</strong><p>Rolling 30 days · {latest.brewPercent ?? '—'}% of install-on-request installs</p><p>Count and formula rank through {latest.date}</p></div>
-    <div><h3>GitHub stars</h3><strong>{latest.stars.toLocaleString()}</strong><p>{stars30d === null ? 'jdx/mise' : `${stars30d >= 0 ? '+' : ''}${stars30d.toLocaleString()} over 30 days`}</p><p>Through {latest.date}</p></div>
+    <div><h3>mise downloads · 7-day average</h3><strong>{latestAverage?.value == null ? '—' : Math.round(latestAverage.value).toLocaleString()}</strong><p>{downloads30d === null ? '30-day increase unavailable' : `${formatCompact(downloads30d)} over 30 days`}</p><p>Downloads/day · week ending {latestDownloads.date}</p><DataFreshness date={latestDownloads.date} /></div>
+    <div><h3>Homebrew installs <span class="brew-rank">#{latest.brewRank ?? '—'}</span></h3><strong>{latest.brewInstalls?.toLocaleString() ?? '—'}</strong><p>Rolling 30 days · {latest.brewPercent ?? '—'}% of install-on-request installs</p><DataFreshness date={latest.date} /></div>
+    <div><h3>GitHub stars</h3><strong>{latest.stars.toLocaleString()}</strong><p>{stars30d === null ? 'jdx/mise' : `${stars30d >= 0 ? '+' : ''}${stars30d.toLocaleString()} over 30 days`}</p><DataFreshness date={latest.date} /></div>
   </div>
   <StarCrossover />
   <div class="adoption-charts"><DailyActivityChart points={daily} title="mise downloads · daily" unit="downloads/day" />{charts.map(chart => {
@@ -46,6 +49,6 @@ const charts = [
         <text x="48" y="197">{chart.data[0].date}</text><text x="512" y="197" text-anchor="end">{last.date}</text>
       </svg>
     </div>;
-  })}</div>
+  })}<HomebrewRank /></div>
   <p class="adoption-context">Daily mise downloads are the increase between consecutive GitHub release-asset snapshots, including supporting files. Missing days and counter decreases are left blank. Homebrew counts installs of mise itself. These are separate measures and are not unique users. <a href="https://github.com/jdx/mise-analytics/blob/main/top-repos-downloads.csv">Download data ↗</a> · <a href="https://github.com/jdx/mise-analytics/blob/main/mise.csv">Homebrew data ↗</a> · Refreshed daily.</p>
 </section>

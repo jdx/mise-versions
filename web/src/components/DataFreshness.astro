@@ -1,0 +1,6 @@
+---
+import { freshness } from '../lib/stats-display';
+interface Props { date?: string }
+const label = freshness(Astro.props.date);
+---
+<p class="text-xs mt-1" style={`color: ${label.startsWith('Data delayed') ? 'var(--forecast)' : 'var(--muted)'}`}>{label}</p>

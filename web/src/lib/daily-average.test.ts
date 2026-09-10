@@ -5,6 +5,7 @@ import {
   nextActivityMilestone,
   forecastDailyAverage,
 } from "./daily-average";
+import { forecastNextMillion } from "./mau-forecast";
 import { releaseDays } from "./release-timeline";
 test("average requires seven consecutive valid dates and retains zero days", () => {
   const points = Array.from({ length: 8 }, (_, i) => ({
@@ -74,4 +75,24 @@ test("timeline labels stable major versions and 0.x minor introductions only", (
     result.days.map((d) => d.milestones),
     [["0.2"], [], ["1"], [], [], []],
   );
+});
+
+test("seven-day smoothing removes weekly MAU swings while preserving growth", () => {
+  const points = Array.from({ length: 42 }, (_, i) => ({
+    date: new Date(Date.UTC(2026, 7, 1 + i)).toISOString().slice(0, 10),
+    value: 500000 + i * 1000 + [0, 7000, 14000, 7000, 0, -14000, -14000][i % 7],
+  }));
+  const averages = sevenDayAverage(points);
+  for (let i = 6; i < points.length; i++) {
+    assert.equal(averages[i].value, 500000 + (i - 3) * 1000);
+  }
+  assert.equal(points.at(-1)?.value, 527000);
+  assert.equal(averages.at(-1)?.value, 538000);
+  const forecast = forecastNextMillion(
+    averages
+      .filter((p): p is { date: string; value: number } => p.value !== null)
+      .map((p) => ({ date: p.date, mau: p.value })),
+  );
+  assert.equal(forecast?.dailySlope, 1000);
+  assert.equal(forecast?.daysAway, 462);
 });
