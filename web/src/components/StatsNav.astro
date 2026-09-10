@@ -1,0 +1,11 @@
+---
+const links=[['/stats','Mise'],['/stats/tools','Tool ecosystem'],['/stats/projects','Other projects']];
+---
+<nav class="stats-nav" aria-label="Stats sections">
+  {links.map(([url,label])=><a href={url} aria-current={Astro.url.pathname.replace(/\/$/,'')===url?'page':undefined}>{label}</a>)}
+</nav>
+<style>
+.stats-nav { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.5rem; }
+a { padding:.5rem .9rem; border:1px solid var(--border); border-radius:8px; color:var(--muted); }
+a[aria-current] { color:var(--text); background:var(--surface-raised); border-color:var(--accent); }
+</style>

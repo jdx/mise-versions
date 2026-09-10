@@ -1,0 +1,19 @@
+---
+import { weeklyMauGains } from '../lib/audience-growth';
+import { formatCompact } from '../lib/format';
+import type { MauPoint } from '../lib/mau-forecast';
+interface Props { daily:MauPoint[] }
+const data=weeklyMauGains(Astro.props.daily);
+const max=Math.max(1,...data.map(p=>Math.abs(p.value??0)));
+const x=(i:number)=>65+i*850/Math.max(data.length,1), width=850/Math.max(data.length,1)*.6;
+const y=(value:number)=>135-value/max*85;
+---
+<section class="adoption-chart">
+<h2>Weekly MAU gains</h2>
+<p class="adoption-context">Change in the seven-day average of MAU, Sunday to Sunday. These are net changes in the active audience, not counts of new users.</p>
+{data.some(p=>p.value!==null)?<><div class="weekly-scroll"><svg viewBox="0 0 960 265" role="img" aria-label="Weekly net gains and losses in smoothed MAU over the last 16 complete weeks">
+  {[-max,0,max].map(v=><g><line x1="55" x2="925" y1={y(v)} y2={y(v)} stroke="var(--border)"/><text x="48" y={y(v)+4} text-anchor="end">{formatCompact(v)}</text></g>)}
+  {data.map((p,i)=><g>{p.value!==null && <rect x={x(i)} y={Math.min(y(p.value),y(0))} width={width} height={Math.max(1,Math.abs(y(p.value)-y(0)))} fill={p.value>=0?'var(--data)':'#F472B6'}><title>Week ending {p.date}: {Math.round(p.value).toLocaleString()} net MAU</title></rect>}{i%3===0 && <text x={x(i)} y="248">{p.date.slice(5)}</text>}</g>)}
+</svg></div><details><summary>Weekly values</summary><ul>{data.slice().reverse().map(p=><li>{p.date}: {p.value===null?'Unavailable':`${p.value>=0?'+':''}${Math.round(p.value).toLocaleString()} MAU`}</li>)}</ul></details></>:<p>Not enough complete weeks to compare.</p>}
+</section>
+<style>.weekly-scroll{overflow-x:auto;} svg{min-width:500px;} summary{cursor:pointer;color:var(--muted);font-size:.8rem;} li{padding:.3rem;}</style>

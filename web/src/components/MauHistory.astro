@@ -1,4 +1,5 @@
 ---
+import releaseEvents from "../data/mise-events.json";
 import { sevenDayAverage } from "../lib/daily-average";
 import { forecastWeek } from "../lib/stats-display";
 import DataFreshness from "./DataFreshness.astro";
@@ -183,6 +184,7 @@ const forecastPill =
         y: forecastPoint.y > 30 ? forecastPoint.y - 28 : forecastPoint.y + 14,
       }
     : null;
+const visibleReleases = releaseEvents.filter(event => data.length && event.date >= data[0].date && event.date <= latest!.date);
 const showQuattroLaunch =
   data.length > 0 && quattroLaunch >= data[0].date && quattroLaunch <= latest!.date;
 const monthStarts = [
@@ -210,7 +212,7 @@ const yTicks = Array.from(
 ---
 
 {latest && (
-  <section class="bg-dark-800 border border-dark-600 rounded-lg p-4">
+  <section class="mau-history bg-dark-800 border border-dark-600 rounded-lg p-4">
     <div class="mb-4">
       <h2 class="text-lg font-semibold text-gray-200">Monthly Active Users</h2>
       <p class="text-xs text-gray-500">
@@ -265,6 +267,7 @@ const yTicks = Array.from(
     </div>
 
     <p class="text-sm text-gray-400 mb-3">MAU 7-day average: <strong>{latestAverage?.value == null ? "—" : formatCompact(latestAverage.value)}</strong> · Week-over-week: <strong>{weeklyChange === null ? "unavailable" : `${weeklyChange >= 0 ? "+" : ""}${weeklyChange.toFixed(1)}%`}</strong></p>
+    <label class="text-xs text-gray-400 flex items-center gap-2 mb-2"><input type="checkbox" class="event-toggle" checked /> Show releases and events</label>
     <div class="overflow-x-auto">
       <svg
         viewBox={`0 0 ${width} ${height}`}
@@ -294,7 +297,7 @@ const yTicks = Array.from(
           ))}
           <YearGrid start={data[0].date} end={chartEndDate} x={xForDate} top={0} bottom={chartHeight} />
           {showQuattroLaunch && (
-            <g>
+            <g class="event-marker">
               <line
                 x1={xForDate(quattroLaunch)}
                 x2={xForDate(quattroLaunch)}
@@ -307,6 +310,7 @@ const yTicks = Array.from(
               <text x={xForDate(quattroLaunch) - 6} y="12" text-anchor="end" class="fill-pink-400 text-xs">Quattro · Aug 14</text>
             </g>
           )}
+          {visibleReleases.map(event => <g class="event-marker"><line x1={xForDate(event.date)} x2={xForDate(event.date)} y1="28" y2={chartHeight} stroke="var(--muted)" stroke-opacity="0.3" stroke-dasharray="2 5"/><a href={event.url}><circle cx={xForDate(event.date)} cy="18" r="4" fill="var(--muted)"/><title>{event.date}: {event.label}</title></a></g>)}
           <path d={rawPath} fill="none" stroke="var(--data)" stroke-width="1" opacity="0.3" />
           {forecastAreaPath && <path d={forecastAreaPath} fill="url(#mau-forecast-fill)" />}
           <path d={mauPath} fill="none" stroke="var(--data)" stroke-width="3" stroke-linejoin="round" />
@@ -399,6 +403,7 @@ const yTicks = Array.from(
       </p>
     )}
 
+    <details class="event-list mt-3"><summary class="text-xs text-gray-400">Release markers</summary><p class="text-xs text-gray-500">First stable mise release published each month. Event timing does not establish causation.</p><ul class="text-xs text-gray-400">{visibleReleases.map(event=><li><a href={event.url}>{event.date} · {event.label} ↗</a></li>)}</ul></details>
     {recentMonths.length > 0 && (
       <details class="monthly-history mt-5">
         <summary class="text-sm font-medium text-gray-300 mb-2">Monthly history <span class="text-gray-500">⌄</span></summary>
@@ -470,5 +475,7 @@ const yTicks = Array.from(
 )}
 
 <style>
+  .mau-history:not(:has(.event-toggle:checked)) .event-marker, .mau-history:not(:has(.event-toggle:checked)) .event-list { display: none; }
+  .event-list li { padding: .3rem 0; }
   .mau-forecast-dash { stroke-dasharray: 7 6; }
 </style>

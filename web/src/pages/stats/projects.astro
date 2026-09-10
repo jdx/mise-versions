@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StatsNav from '../../components/StatsNav.astro';
+import DataFreshness from '../../components/DataFreshness.astro';
+import StatsLineChart from '../../components/StatsLineChart.astro';
+import snapshot from '../../data/projects.json';
+import { projectSummary, projectComparison, projectMilestones, type Project } from '../../lib/project-stats';
+import { dailyDownloads } from '../../lib/mise-growth';
+import { sevenDayAverage } from '../../lib/daily-average';
+import { formatUtcDate, parseUtcDate } from '../../lib/mau-forecast';
+import { formatCompact } from '../../lib/format';
+const projects:Project[]=snapshot.projects.filter(p=>p.name!=='mise');
+const end=projects.map(p=>p.history.at(-1)!.date).sort().at(-1)!;
+const cutoff=formatUtcDate(parseUtcDate(end)-89*86400000);
+const percent=Astro.url.searchParams.get('growth')==='percent';
+const ranked=projects.map(p=>({p,...projectSummary(p)})).sort((a,b)=>((percent?b.percent:b.gain)??-Infinity)-((percent?a.percent:a.gain)??-Infinity));
+const milestones=projects.flatMap(projectMilestones).filter(e=>e.date>=cutoff).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,15);
+const gainLabel=(v:number|null)=>v===null?'—':`${v>=0?'+':''}${Math.round(v).toLocaleString()}`;
+Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-revalidate=3600');
+---
+<Layout title="Other project stats" description="Growth, downloads and milestones for projects tracked by mise-analytics">
+  <StatsNav />
+  <div class="page-heading"><h1>Other projects</h1><p>Stars, release downloads, and Homebrew adoption across projects tracked by mise-analytics.</p><DataFreshness date={end}/></div>
+  <div class="growth-controls" aria-label="Growth comparison"><a href="?growth=absolute" aria-current={!percent?'page':undefined}>Absolute growth</a><a href="?growth=percent" aria-current={percent?'page':undefined}>Percentage growth</a></div>
+  <div class="table-scroll"><table><caption>Project overview · growth over 30 days · downloads/day averaged over seven consecutive days</caption><thead><tr><th>Project</th><th>Stars</th><th>30-day gain</th><th>Growth</th><th>Downloads/day</th><th>Homebrew rank</th><th>Homebrew installs (30d)</th></tr></thead><tbody>
+    {ranked.map(({p,latest,gain,percent,average})=><tr><th><a href={`https://github.com/${p.repo}`}>{p.name} ↗</a>{latest.date!==end && <DataFreshness date={latest.date}/>}</th><td>{latest.stars.toLocaleString()}</td><td>{gainLabel(gain)}</td><td>{percent===null?'—':`${percent.toFixed(1)}%`}</td><td>{average?.value==null?'—':formatCompact(average.value)}{average && average.date!==end && <DataFreshness date={average.date}/>}</td><td>{latest.rank?`#${latest.rank}`:'—'}</td><td>{latest.installs?.toLocaleString()??'—'}</td></tr>)}
+  </tbody></table></div>
+  <p class="adoption-context">Missing data is shown as —. Release assets include supporting files and are not unique users. Smaller projects can have large percentage changes from a small starting base.</p>
+  <StatsLineChart title={`30-day star growth · ${percent?'percentage':'absolute'}`} series={projectComparison(projects,end,percent)} percent={percent} unit={percent?'growth':'stars gained'} />
+  <p class="adoption-context">All lines use the same start and end dates. Projects missing either comparison date are omitted.</p>
+  <section class="adoption-chart milestones"><h2>Recent milestones</h2><p class="adoption-context">Recorded achievements in the last 90 days; bests refer to available history.</p>{milestones.length?<ul>{milestones.map(m=><li><time>{m.date}</time> {m.text}</li>)}</ul>:<p>No recorded milestones in this period.</p>}</section>
+  <h2 class="section-heading">Project histories · last 90 days</h2>
+  <div class="project-grid">{projects.map(p=><div><StatsLineChart title={`${p.name} · stars`} series={[{name:p.name,points:p.history.filter(v=>v.date>=cutoff).map(v=>({date:v.date,value:v.stars}))}]} unit="stars"/><StatsLineChart title={`${p.name} · downloads/day`} series={[{name:'7-day average',points:sevenDayAverage(dailyDownloads(p.downloads)).filter(v=>v.date>=cutoff)}]} unit="downloads/day"/></div>)}</div>
+  <h2 class="section-heading">Competitor comparisons · stars over the last year</h2>
+  {snapshot.comparisons.map(c=><details class="adoption-chart comparison"><summary>{c.name} and alternatives</summary><StatsLineChart title={`${c.name} · competitor star history`} series={c.series.map(s=>({...s,points:s.points.filter(p=>p.date>=new Date(parseUtcDate(end)-365*86400000).toISOString().slice(0,10))}))} unit="stars"/></details>)}
+  <p class="adoption-context">Stars measure GitHub interest, not usage or product quality. <a href="https://github.com/jdx/mise-analytics">Source data: mise-analytics ↗</a> · Refreshed daily.</p>
+</Layout>
+<style>
+.growth-controls {display:flex;gap:1rem;margin:1.5rem 0;flex-wrap:wrap;} .growth-controls a {padding:.5rem .8rem;border:1px solid var(--border);border-radius:6px;} [aria-current] {color:var(--accent);}
+.table-scroll {overflow-x:auto;margin-bottom:1rem;} table {width:100%;font-size:.85rem;border-collapse:collapse;} caption {text-align:left;color:var(--muted);padding:1rem 0;} th,td {padding:.8rem;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap;} th:first-child {text-align:left;}
+.project-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;} .project-grid>div {display:grid;gap:.6rem;} .milestones,.comparison {margin:1rem 0;} .milestones li {padding:.5rem 0;border-bottom:1px solid var(--border);} time {color:var(--muted);margin-right:.8rem;} summary {cursor:pointer;} .comparison :global(.adoption-chart) {border:0;padding:1rem 0;}
+@media(max-width:700px){.project-grid{grid-template-columns:1fr;}}
+</style>
