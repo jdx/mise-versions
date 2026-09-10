@@ -18,7 +18,7 @@ Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-rev
     <StatsNav />
     <div class="page-heading"><h1>Mise stats</h1><p>Audience growth and adoption over time.</p></div>
     {audience?.daily.length?<>
-      <MauHistory daily={audience.daily}/>
+      <section class="audience-panel" aria-label="Audience growth"><MauHistory daily={audience.daily}/></section>
       <WeeklyMauGrowth daily={audience.daily}/>
       <DailyActivityChart title="Daily active users" unit="DAU" points={audience.daily.map(p=>({date:p.date,value:p.dau_available===false?null:p.dau}))}/>
     </>:<p class="inline-notice">Audience history is currently unavailable.</p>}

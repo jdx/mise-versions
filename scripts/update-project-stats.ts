@@ -29,7 +29,8 @@ const comparisons = ["hk", "fnox", "aube"].map((name, i) =>
 );
 if (comparisons.some((c) => c.series.some((s) => !s.points.length)))
   throw new Error("Comparison data incomplete");
-const cutoff = new Date(Date.now() - 370 * 86400000).toISOString().slice(0, 10);
+const cutoff =
+  new Date(Date.now() - 370 * 86400000).toISOString().slice(0, 7) + "-01";
 const monthly = new Map<string, { date: string; label: string; url: string }>();
 // GitHub returns newest releases first. Fetch until the full history window is covered.
 let complete = false;

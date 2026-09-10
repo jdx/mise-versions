@@ -15,12 +15,12 @@ const group=(key:'os'|'arch')=>{
   return [...map].sort((a,b)=>b[1]-a[1]);
 };
 const groups=[{label:'Operating systems',rows:group('os')},{label:'Architectures',rows:group('arch')}];
-const gain=(n:number)=>`${n>=0?'+':''}${formatCompact(n)}`;
+const gain=(n:number)=>`${n>=0?'+':'−'}${formatCompact(Math.abs(n))}`;
 const momentumGroups=[{label:'Largest weekly gains',rows:data?.momentum.filter(r=>r.gain>0).slice(0,10)??[]},{label:'Largest weekly declines',rows:data?.momentum.filter(r=>r.gain<0).slice(-10).reverse()??[]}];
 ---
 {data?<div class="insights">
 <section class="adoption-chart"><h2>Platform mix · last 30 complete days</h2><DataFreshness date={data.platformCoverage.latest??undefined}/><p class="adoption-context">{data.start}–{data.end} · {data.platformCoverage.days}/30 days recorded. Shares are of recorded tool downloads through mise, not users. Unknown platforms remain in the denominator.</p>
-{total>0?<div class="platform-grid">{groups.map(group=><div><h3>{group.label}</h3>{group.rows.map(([name,n])=><div class="share-row"><span>{name}</span><div><i style={`width:${n/total*100}%`}></i></div><span>{(n/total*100).toFixed(1)}% · {formatCompact(n)}</span></div>)}</div>)}</div>:<p>No platform observations available.</p>}
+{total>0?<div class="platform-grid">{groups.map(group=><div><h3>{group.label}</h3>{group.rows.map(([name,n])=><div class="share-row"><span>{name}</span><div><i style={`width:${n/total*100}%`}></i></div><span>{n>0 && n/total*100<.1?'<0.1':(n/total*100).toFixed(1)}% · {formatCompact(n)}</span></div>)}</div>)}</div>:<p>No platform observations available.</p>}
 </section>
 <StatsLineChart title="Backend download share over time" series={backendShares(data.backends)} percent unit="share of downloads"/>
 <DataFreshness date={data.backends.at(-1)?.date}/><p class="adoption-context">Shares of seven-day download totals, over the last 90 days. Top five backends by volume in the loaded period; remaining backends are grouped as Other. Gaps require a complete week before the line resumes.</p>
