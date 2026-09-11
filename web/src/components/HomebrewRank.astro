@@ -27,8 +27,7 @@ function path(key: 'brewRank' | 'brewPercent', y: (v: number) => number) {
   {latest ? <>
     <p class="adoption-context">Current <strong>#{latest.brewRank}</strong> · Best <strong>#{best}</strong> · Lower rank is better</p>
     <DataFreshness date={latest.date} />
-    <div class="rank-plot">
-    <svg viewBox="0 0 1000 260" role="img" aria-label={`mise Homebrew rank history. Current rank ${latest.brewRank}, best rank ${best}. Rank improves upward. Blue line shows install share on the right axis.`}>
+    <svg class="wide-chart" viewBox="0 0 1000 260" role="img" aria-label={`mise Homebrew rank history. Current rank ${latest.brewRank}, best rank ${best}. Rank improves upward. Blue line shows install share on the right axis.`}>
       {[1, Math.round(maxRank/2), maxRank].map(rank => <g><line x1="55" x2="925" y1={rankY(rank)} y2={rankY(rank)} stroke="var(--border)"/><text x="47" y={rankY(rank)+4} text-anchor="end">#{rank}</text></g>)}
       {[0, .5, 1].map(f => <text x="933" y={percentY(maxPercent*f)+4}>{(maxPercent*f).toFixed(2)}%</text>)}
       <YearGrid start={start} end={end} x={x} top={40} bottom={220} />
@@ -38,17 +37,10 @@ function path(key: 'brewRank' | 'brewPercent', y: (v: number) => number) {
       <circle cx={x(latest.date)} cy={rankY(latest.brewRank!)} r="3.5" fill="#E67E22"/>
       <text x="55" y="247">{start}</text><text x="925" y="247" text-anchor="end">{end}</text>
     </svg>
-    </div>
     <p class="adoption-context">Orange: rank (left axis) · Blue: share of Homebrew install-on-request installs (right axis). Based on rolling 30-day counts.</p>
-    <p class="adoption-context sm:hidden">Swipe the chart to see the full history.</p>
   </> : <p>Homebrew rank history unavailable.</p>}
 </div>
 
 <style>
   .homebrew-rank-chart { grid-column: 1 / -1; }
-  .rank-plot { overflow-x: auto; }
-  @media (max-width: 640px) {
-    .homebrew-rank-chart svg { min-width: 600px; }
-
-  }
 </style>

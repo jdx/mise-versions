@@ -1175,12 +1175,10 @@ code,
   font-size: 0.95rem;
 }
 .star-chart-scroll {
-  overflow-x: auto;
   margin-top: 1.3rem;
 }
 .star-chart-scroll svg {
   width: 100%;
-  min-width: 580px;
   height: auto;
 }
 .star-chart-scroll text {
@@ -1427,4 +1425,54 @@ code,
 }
 .release-stop[aria-pressed="true"] .release-milestone-label {
   color: var(--accent);
+}
+
+/*
+ * Wide stats charts fit their column instead of scrolling sideways.
+ *
+ * The wide charts are drawn on a ~1000-unit viewBox, and SVG text is sized in
+ * viewBox units, not CSS pixels, so a chart rendered narrow shrinks its labels
+ * with it. Their old minimum widths (500-700px) stopped the labels shrinking to
+ * ~3px, at the cost of a horizontal scroll that left the newest data
+ * off-screen.
+ *
+ * Here the labels are sized up in viewBox units instead, whenever the chart's
+ * own card is narrow. That is a container query rather than a viewport one on
+ * purpose: /stats/projects lays its charts out two to a row above 700px, so at
+ * a tablet width each chart is about as narrow as on a phone (~270px), and a
+ * viewport breakpoint left exactly that band with ~3px labels. Below 520px of
+ * card width, 20-unit labels land around 5.5-11px; above it the ordinary
+ * 11-unit labels are already 6px or more.
+ *
+ * A longer left-axis label can then run past its gutter, so these SVGs paint
+ * outside their box and each card clips horizontally at its padding, which is
+ * wide enough to hold it. The clip also guarantees no chart annotation can
+ * widen the page. Lines keep their on-screen width rather than thinning to
+ * sub-pixel.
+ *
+ * Placed last in the file on purpose: `.star-chart-scroll text` and
+ * `.adoption-chart text` set the same property at the same specificity.
+ */
+.adoption-chart,
+.star-crossover,
+.mau-history {
+  container-type: inline-size;
+  overflow-x: clip;
+}
+@container (max-width: 520px) {
+  .wide-chart {
+    overflow: visible;
+  }
+  .wide-chart text {
+    font-size: 20px;
+  }
+  .wide-chart path,
+  .wide-chart line {
+    vector-effect: non-scaling-stroke;
+  }
+  /* The forecast is already stated in the text above the chart, and this
+     label's box is a fixed width that cannot grow with the text inside it. */
+  .wide-chart .chart-pill {
+    display: none;
+  }
 }

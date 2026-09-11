@@ -269,10 +269,9 @@ const yTicks = Array.from(
 
     <p class="text-sm text-gray-400 mb-3">MAU 7-day average: <strong>{latestAverage?.value == null ? "—" : formatCompact(latestAverage.value)}</strong> · Week-over-week: <strong>{weeklyChange === null ? "unavailable" : `${weeklyChange >= 0 ? "+" : ""}${weeklyChange.toFixed(1)}%`}</strong></p>
     <label class="text-xs text-gray-400 flex items-center gap-2 mb-2"><input type="checkbox" class="event-toggle" checked /> Show releases and events</label>
-    <div class="overflow-x-auto">
       <svg
         viewBox={`0 0 ${width} ${height}`}
-        class="min-w-[700px] w-full"
+        class="wide-chart w-full"
         role="img"
         aria-label={
           forecast
@@ -353,7 +352,7 @@ const yTicks = Array.from(
             </g>
           )}
           {forecastPill && forecast && (
-            <g>
+            <g class="chart-pill">
               <rect
                 x={forecastPill.x}
                 y={forecastPill.y}
@@ -394,7 +393,6 @@ const yTicks = Array.from(
           )}
         </g>
       </svg>
-    </div>
     <p class="mt-2 text-[11px] text-gray-500">Blue: 7-day average of MAU snapshots · Faint: daily MAU. A complete week is required; smoothing lags changes by about three days. Headline and monthly history show actual snapshots.</p>
     {forecast && (
       <p class="mt-2 text-[11px] text-gray-500">
