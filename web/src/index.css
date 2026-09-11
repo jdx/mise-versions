@@ -1428,31 +1428,38 @@ code,
 }
 
 /*
- * Stats charts fit the column on phones instead of scrolling sideways.
+ * Wide stats charts fit their column instead of scrolling sideways.
  *
- * The wide charts are drawn on a ~1000-unit viewBox, so at phone width they
- * render at about a third of their desktop size, and so does their text: SVG
- * text is sized in viewBox units, not CSS pixels. Their minimum widths existed
- * to stop the labels shrinking to ~3px, at the cost of a horizontal scroll
- * that left the newest data off-screen.
+ * The wide charts are drawn on a ~1000-unit viewBox, and SVG text is sized in
+ * viewBox units, not CSS pixels, so a chart rendered narrow shrinks its labels
+ * with it. Their old minimum widths (500-700px) stopped the labels shrinking to
+ * ~3px, at the cost of a horizontal scroll that left the newest data
+ * off-screen.
  *
- * Here the labels are sized up in viewBox units instead, landing around 6px on
- * a phone, which matches the 540-wide charts that already fit. A longer
- * left-axis label can then run past its gutter, so the SVG paints outside its
- * box and the card clips at its padding, which is wide enough to hold it. The
- * clip also guarantees no chart annotation can widen the page, which is the
- * point of this block. Lines keep their on-screen width rather than thinning
- * to sub-pixel.
+ * Here the labels are sized up in viewBox units instead, whenever the chart's
+ * own card is narrow. That is a container query rather than a viewport one on
+ * purpose: /stats/projects lays its charts out two to a row above 700px, so at
+ * a tablet width each chart is about as narrow as on a phone (~270px), and a
+ * viewport breakpoint left exactly that band with ~3px labels. Below 520px of
+ * card width, 20-unit labels land around 5.5-11px; above it the ordinary
+ * 11-unit labels are already 6px or more.
+ *
+ * A longer left-axis label can then run past its gutter, so these SVGs paint
+ * outside their box and each card clips horizontally at its padding, which is
+ * wide enough to hold it. The clip also guarantees no chart annotation can
+ * widen the page. Lines keep their on-screen width rather than thinning to
+ * sub-pixel.
  *
  * Placed last in the file on purpose: `.star-chart-scroll text` and
  * `.adoption-chart text` set the same property at the same specificity.
  */
-@media (max-width: 640px) {
-  .adoption-chart,
-  .star-crossover,
-  .mau-history {
-    overflow-x: clip;
-  }
+.adoption-chart,
+.star-crossover,
+.mau-history {
+  container-type: inline-size;
+  overflow-x: clip;
+}
+@container (max-width: 520px) {
   .wide-chart {
     overflow: visible;
   }
