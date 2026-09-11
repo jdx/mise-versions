@@ -1175,12 +1175,10 @@ code,
   font-size: 0.95rem;
 }
 .star-chart-scroll {
-  overflow-x: auto;
   margin-top: 1.3rem;
 }
 .star-chart-scroll svg {
   width: 100%;
-  min-width: 580px;
   height: auto;
 }
 .star-chart-scroll text {
@@ -1427,4 +1425,47 @@ code,
 }
 .release-stop[aria-pressed="true"] .release-milestone-label {
   color: var(--accent);
+}
+
+/*
+ * Stats charts fit the column on phones instead of scrolling sideways.
+ *
+ * The wide charts are drawn on a ~1000-unit viewBox, so at phone width they
+ * render at about a third of their desktop size, and so does their text: SVG
+ * text is sized in viewBox units, not CSS pixels. Their minimum widths existed
+ * to stop the labels shrinking to ~3px, at the cost of a horizontal scroll
+ * that left the newest data off-screen.
+ *
+ * Here the labels are sized up in viewBox units instead, landing around 6px on
+ * a phone, which matches the 540-wide charts that already fit. A longer
+ * left-axis label can then run past its gutter, so the SVG paints outside its
+ * box and the card clips at its padding, which is wide enough to hold it. The
+ * clip also guarantees no chart annotation can widen the page, which is the
+ * point of this block. Lines keep their on-screen width rather than thinning
+ * to sub-pixel.
+ *
+ * Placed last in the file on purpose: `.star-chart-scroll text` and
+ * `.adoption-chart text` set the same property at the same specificity.
+ */
+@media (max-width: 640px) {
+  .adoption-chart,
+  .star-crossover,
+  .mau-history {
+    overflow-x: clip;
+  }
+  .wide-chart {
+    overflow: visible;
+  }
+  .wide-chart text {
+    font-size: 20px;
+  }
+  .wide-chart path,
+  .wide-chart line {
+    vector-effect: non-scaling-stroke;
+  }
+  /* The forecast is already stated in the text above the chart, and this
+     label's box is a fixed width that cannot grow with the text inside it. */
+  .wide-chart .chart-pill {
+    display: none;
+  }
 }

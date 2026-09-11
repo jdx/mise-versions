@@ -25,15 +25,14 @@ function path(data:Props['series'][number]['points']) {
   <h3>{title}</h3>
   {points.length ? <>
     <div class="chart-legend">{series.map((s,i)=><span><i style={`background:${colors[i%colors.length]}`}></i>{s.name}</span>)}</div>
-    <div class="chart-scroll"><svg viewBox="0 0 960 265" role="img" aria-label={`${title}. ${unit}. ${series.map(s=>s.name).join(', ')}. From ${new Date(first).toISOString().slice(0,10)} through ${new Date(last).toISOString().slice(0,10)}.`}>
+    <svg class="wide-chart" viewBox="0 0 960 265" role="img" aria-label={`${title}. ${unit}. ${series.map(s=>s.name).join(', ')}. From ${new Date(first).toISOString().slice(0,10)} through ${new Date(last).toISOString().slice(0,10)}.`}>
       {[0,.5,1].map(f=><g><line x1="65" x2="915" y1={y(low+(high-low)*f)} y2={y(low+(high-low)*f)} stroke="var(--border)"/><text x="57" y={y(low+(high-low)*f)+4} text-anchor="end">{label(low+(high-low)*f)}</text></g>)}
       {series.map((s,i)=><g><path d={path(s.points)} fill="none" stroke={colors[i%colors.length]} stroke-width="2.5"/>{s.points.filter((p,index)=>p.value!==null && (index % 7 === 0 || index === s.points.length - 1)).map(p=><circle cx={x(p.date)} cy={y(p.value!)} r="4" fill="transparent"><title>{s.name} · {p.date}: {label(p.value!)} {unit}</title></circle>)}</g>)}
       <text x="65" y="251">{new Date(first).toISOString().slice(0,10)}</text><text x="915" y="251" text-anchor="end">{new Date(last).toISOString().slice(0,10)}</text>
-    </svg></div>
+    </svg>
   </> : <p class="adoption-context">Not enough comparable history.</p>}
 </section>
 <style>
 .chart-legend { display:flex; flex-wrap:wrap; gap:.5rem 1rem; font-size:.75rem; color:var(--muted); margin-top:.75rem; }
 .chart-legend span {display:flex;align-items:center;gap:.35rem;} i {width:.5rem;height:.5rem;border-radius:50%;}
-.chart-scroll {overflow-x:auto;} svg {min-width:500px;}
 </style>
