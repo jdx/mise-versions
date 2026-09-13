@@ -1,10 +1,10 @@
 {
   "aubepkg/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.2.14",
-    "publishedAt": "2026-09-11T17:28:36.593451877Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.2.14/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.2.14",
+    "version": "2.2.15",
+    "publishedAt": "2026-09-13T01:02:41.668425121Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.2.15/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.2.15",
     "publisher": "aubepkg",
     "capabilities": [],
     "platforms": [
@@ -22,10 +22,10 @@
   },
   "jdx/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.2.14",
-    "publishedAt": "2026-09-11T17:28:36.593451877Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.2.14/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.2.14",
+    "version": "2.2.15",
+    "publishedAt": "2026-09-13T01:02:41.668425121Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.2.15/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.2.15",
     "publisher": "aubepkg",
     "capabilities": [],
     "platforms": [
@@ -100,15 +100,23 @@
   },
   "jdx/hk": {
     "project": "github.com/jdx/hk",
-    "version": "1.58.1",
-    "publishedAt": "2026-09-05T19:43:41.082536817Z",
-    "manifestUrl": "https://github.com/jdx/hk/releases/download/v1.58.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v1.58.1",
+    "version": "2.0.0",
+    "publishedAt": "2026-09-13T06:56:09.706661438Z",
+    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.0.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.0.0",
     "publisher": "jdx",
     "capabilities": [
       {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
         "label": "Usage CLI spec",
         "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
       }
     ],
     "platforms": [
@@ -184,10 +192,10 @@
   },
   "jdx/usage": {
     "project": "github.com/jdx/usage",
-    "version": "6.8.0",
-    "publishedAt": "2026-09-06T17:44:38.075641987Z",
-    "manifestUrl": "https://github.com/jdx/usage/releases/download/v6.8.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v6.8.0",
+    "version": "6.9.0",
+    "publishedAt": "2026-09-12T15:09:43.212113592Z",
+    "manifestUrl": "https://github.com/jdx/usage/releases/download/v6.9.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v6.9.0",
     "publisher": "jdx",
     "capabilities": [
       {
