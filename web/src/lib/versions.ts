@@ -1,20 +1,7 @@
-/**
- * Regex fallback for backends that do not expose explicit prerelease metadata.
- * Prefer stored `prerelease = true` where available; this only covers older
- * and non-metadata sources such as Java/Core plugin version lists.
- */
-const PRERELEASE_REGEX =
-  /(-src|-dev|-latest|-stm|[-.](rc|pre)|-milestone|-alpha|-beta|-next|([abc])\d+$|snapshot|master)/i;
-
-export function isPrereleaseVersion(version: string): boolean {
-  return PRERELEASE_REGEX.test(version);
-}
-
 export function isPrerelease(version: {
-  version: string;
   prerelease?: boolean | null;
 }): boolean {
-  return version.prerelease === true || isPrereleaseVersion(version.version);
+  return version.prerelease === true;
 }
 
 /**
