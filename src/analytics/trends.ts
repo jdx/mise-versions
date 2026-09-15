@@ -11,6 +11,7 @@ import {
   dailyVersionStats,
   versionRequests,
 } from "./schema.js";
+import { trimPendingRollups } from "./daily-series.js";
 import {
   analyticsEngineCutoverDate,
   analyticsEngineDataset,
@@ -181,17 +182,10 @@ export function createTrendsFunctions(
         });
       }
 
-      // Rollups for a day are written after it closes, so the most recent days
-      // have no row until the daily maintenance job runs. Drop that tail rather
-      // than reporting it as a day with no activity; interior gaps stay so a
-      // real outage is still visible.
-      while (
-        dailyData.length > 0 &&
-        !dauMap.has(dailyData[dailyData.length - 1].date) &&
-        !mauMap.has(dailyData[dailyData.length - 1].date)
-      ) {
-        dailyData.pop();
-      }
+      const rolledUp = trimPendingRollups(
+        dailyData,
+        (date) => dauMap.has(date) && mauMap.has(date),
+      );
 
       const todayMau = await db
         .select({ mau: dailyMauStats.mau })
@@ -199,14 +193,14 @@ export function createTrendsFunctions(
         .where(sql`${dailyMauStats.date} = ${today}`)
         .get();
 
-      const latestNonZeroMau = [...dailyData]
+      const latestNonZeroMau = [...rolledUp]
         .reverse()
         .find((d) => d.mau > 0)?.mau;
       const currentMAU =
         todayMau && todayMau.mau > 0 ? todayMau.mau : (latestNonZeroMau ?? 0);
 
       return {
-        daily: dailyData,
+        daily: rolledUp,
         current_mau: currentMAU,
       };
     },
