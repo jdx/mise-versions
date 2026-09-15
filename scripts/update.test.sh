@@ -200,24 +200,50 @@ echo ""
 echo "--- Version Collection Release Age Tests ---"
 
 test_json_collection_disables_release_age_filtering() {
-	local command
-	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+	local collection_function
+	collection_function=$(sed -n '/^docker_ls_remote() {/,/^}/p' scripts/update.sh)
 
-	assert_contains "$command" 'mise ls-remote --minimum-release-age 0s' \
-		"JSON metadata collection disables minimum_release_age"
+	assert_contains "$collection_function" 'ls-remote --minimum-release-age 0s "$@" "$tool"' \
+		"Every listing disables minimum_release_age"
 }
 test_json_collection_disables_release_age_filtering
 
 test_json_collection_requires_upstream_metadata() {
 	local command
-	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+	command=$(grep -F -A 1 'docker_ls_remote "$tool" "$token" "$stderr_file" "$json_file"' scripts/update.sh)
 
+	assert_contains "$command" '--json' \
+		"Catalog collection uses the JSON metadata listing"
+	assert_contains "$command" '--prerelease' \
+		"Catalog collection gathers the prerelease superset"
 	assert_contains "$command" '--no-versions-host' \
 		"JSON metadata collection explicitly bypasses the versions host"
 	assert_contains "$command" '--strict-metadata' \
 		"JSON metadata collection fails when upstream metadata fails"
 }
 test_json_collection_requires_upstream_metadata
+
+test_every_listing_runs_in_the_docker_sandbox() {
+	# Drop comments and plain literal-string assignments (log/reason text that
+	# merely names the command) so only real invocations are counted; an
+	# assignment capturing a command substitution still counts.
+	local invocations
+	invocations=$(grep -vE '^[[:space:]]*#' scripts/update.sh |
+		grep -vE '^[[:space:]]*[a-z_]+="[^$`]*"[[:space:]]*$' |
+		grep -c 'ls-remote')
+
+	assert_equals "1" "$invocations" \
+		"ls-remote is only ever invoked through the Docker sandbox helper"
+
+	# The count alone would not notice the helper itself dropping the sandbox.
+	local helper
+	helper=$(sed -n '/^docker_ls_remote() {/,/^}/p' scripts/update.sh)
+	assert_contains "$helper" 'docker run --rm' \
+		"The listing helper runs the container"
+	assert_contains "$helper" 'jdxcode/mise -y ls-remote' \
+		"The listing helper lists versions inside the container"
+}
+test_every_listing_runs_in_the_docker_sandbox
 
 test_new_versions_are_rejected_during_metadata_fallback() {
 	local fallback_block
@@ -265,7 +291,7 @@ test_fallback_new_versions_ignore_denied_tags
 
 test_generate_toml_missing_versions_file_fails() {
 	local missing_file_block
-	missing_file_block=$(sed -n '/# Check if versions file exists/,/local error_output/p' scripts/update.sh)
+	missing_file_block=$(sed -n '/Versions file disappeared before TOML generation/,/fi/p' scripts/update.sh)
 
 	assert_contains "$missing_file_block" 'return 1' \
 		"Missing versions files fail TOML generation"
@@ -273,25 +299,263 @@ test_generate_toml_missing_versions_file_fails() {
 test_generate_toml_missing_versions_file_fails
 
 test_json_generation_errors_are_reported() {
-	local fallback_block
-	fallback_block=$(sed -n '/Using plain-text fallback after metadata failure/,/fallback_new_versions=/p' scripts/update.sh)
+	local json_function
+	json_function=$(sed -n '/^generate_toml_from_json() {/,/^}/p' scripts/update.sh)
 
-	assert_contains "$fallback_block" 'cat "$error_output" >&2' \
+	assert_contains "$json_function" 'cat "$error_output" >&2' \
 		"JSON-to-TOML generation errors are printed before fallback"
 }
 test_json_generation_errors_are_reported
 
-test_docker_collection_disables_release_age_filtering() {
-	local command
-	command=$(awk '
-		/docker run --rm/ { docker_run = $0; next }
-		docker_run && /jdxcode\/mise -y ls-remote/ { print docker_run " " $0; exit }
-	' scripts/update.sh)
+# `fetch` used to make two full upstream listings per tool: a plain-text one for
+# a file it discarded on the happy path, then the JSON one that actually
+# produces the TOML. On repos with very large `/releases` responses (openai/codex,
+# ggml-org/llama.cpp) two listings exceeded the 60s per-tool timeout and the tool
+# stopped being updated at all. jdx/mise#12543
+run_fetch_with_stubbed_listings() {
+	local json_body="$1"
+	local json_exit="${2:-0}"
+	local test_root="$TEMP_DIR/fetch_listings"
 
-	assert_contains "$command" 'ls-remote --minimum-release-age 0s "$tool"' \
-		"Docker catalog collection disables minimum_release_age"
+	rm -rf "$test_root"
+	mkdir -p "$test_root/docs" "$test_root/results"
+
+	(
+		cd "$test_root"
+		set +e
+		# Read by the `fetch` body eval'd in below, not by this function.
+		# shellcheck disable=SC2034
+		RESULTS_DIR="$test_root/results"
+		# shellcheck disable=SC2034
+		FETCH_MAX_ATTEMPTS=3
+		NEEDS_PLAIN_TEXT_FALLBACK=2
+		# shellcheck disable=SC2329
+		get_github_token() { echo "tok tok-id"; }
+		# shellcheck disable=SC2329
+		mise() { echo "GitHub rate limit: 5000"; }
+		# shellcheck disable=SC2329
+		log_info() { :; }
+		# shellcheck disable=SC2329
+		log_warn() { :; }
+		# shellcheck disable=SC2329
+		log_debug() { :; }
+		# shellcheck disable=SC2329
+		log_error() { :; }
+		# shellcheck disable=SC2329
+		increment_stat() { :; }
+		# shellcheck disable=SC2329
+		add_to_list() { :; }
+		# shellcheck disable=SC2329
+		docker_ls_remote() {
+			echo "call" >>"$test_root/listing_calls"
+			if [[ " $* " == *" --json "* ]]; then
+				printf '%s' "$json_body" >"$4"
+				: >"$3"
+				return "$json_exit"
+			fi
+			printf '1.0.0\n' >"$4"
+		}
+		# shellcheck disable=SC2329
+		generate_toml_from_json() {
+			[ -s "$2" ] && [ "$(jq -r 'length' "$2")" -gt 0 ] && return 0
+			# shellcheck disable=SC2034
+			json_metadata_fallback_reason="empty JSON metadata array"
+			return "$NEEDS_PLAIN_TEXT_FALLBACK"
+		}
+		# shellcheck disable=SC2329
+		generate_toml_from_plain_text() { return 0; }
+
+		eval "$FETCH_FUNCTION"
+		fetch tool-under-test >/dev/null 2>&1
+
+		printf '%s %s\n' \
+			"$(wc -l <"$test_root/listing_calls" 2>/dev/null || echo 0)" \
+			"$(cat "$test_root/results/tool-under-test.status")"
+	)
 }
-test_docker_collection_disables_release_age_filtering
+
+test_successful_json_listing_skips_the_plain_text_listing() {
+	FETCH_FUNCTION=$(sed -n '/^fetch() {/,/^}/p' scripts/update.sh)
+	export FETCH_FUNCTION
+
+	assert_equals "1 fetched" "$(run_fetch_with_stubbed_listings '[{"version":"1.0.0"}]')" \
+		"A usable JSON listing costs exactly one upstream listing"
+}
+test_successful_json_listing_skips_the_plain_text_listing
+
+test_unusable_json_listing_falls_back_to_the_plain_text_listing() {
+	FETCH_FUNCTION=$(sed -n '/^fetch() {/,/^}/p' scripts/update.sh)
+	export FETCH_FUNCTION
+
+	assert_equals "2 fetched" "$(run_fetch_with_stubbed_listings '[]')" \
+		"An unusable JSON listing still collects the plain-text listing"
+}
+test_unusable_json_listing_falls_back_to_the_plain_text_listing
+
+# A tool whose metadata listing fails outright (e.g. --strict-metadata rejecting
+# an incomplete upstream response) must still reach the plain-text fallback,
+# which keeps stored metadata and refuses metadata-poor new versions. Failing
+# the tool outright would leave its catalog stale — the bug this PR fixes.
+test_failed_json_listing_still_falls_back() {
+	FETCH_FUNCTION=$(sed -n '/^fetch() {/,/^}/p' scripts/update.sh)
+	export FETCH_FUNCTION
+
+	assert_equals "2 fetched" "$(run_fetch_with_stubbed_listings '' 1)" \
+		"A failed JSON listing falls back instead of failing the tool"
+}
+test_failed_json_listing_still_falls_back
+
+test_metadata_fallback_is_counted_once() {
+	local increments
+	increments=$(grep -c 'increment_stat "total_json_metadata_fallbacks"' scripts/update.sh)
+
+	assert_equals "1" "$increments" \
+		"A tool taking the metadata fallback is counted once per run"
+}
+test_metadata_fallback_is_counted_once
+
+# A recognized rate limit is always consumed: the retry records the tool's
+# final status, so reporting the retry's exit status would tell the caller the
+# rate limit went unhandled. The caller would then carry on with the token this
+# function just retired and overwrite the status the retry recorded.
+run_handle_rate_limit_failure() {
+	local retry_exit="$1"
+	local test_root="$TEMP_DIR/rate_limit"
+
+	rm -rf "$test_root"
+	mkdir -p "$test_root/results"
+
+	(
+		set +e
+		RESULTS_DIR="$test_root/results"
+		# Read by the eval'd function below, not by this one.
+		# shellcheck disable=SC2034
+		FETCH_MAX_ATTEMPTS=3
+		# shellcheck disable=SC2329
+		log_warn() { :; }
+		# shellcheck disable=SC2329
+		log_error() { :; }
+		# shellcheck disable=SC2329
+		mark_token_rate_limited() { :; }
+		# shellcheck disable=SC2329
+		sleep() { :; }
+		# shellcheck disable=SC2329
+		fetch() {
+			echo "failed" >"$RESULTS_DIR/$1.status"
+			return "$retry_exit"
+		}
+
+		local stderr_file="$test_root/stderr"
+		echo "HTTP 403 Forbidden" >"$stderr_file"
+
+		eval "$RATE_LIMIT_FUNCTION"
+		handle_rate_limit_failure tool-under-test 1 tok-id 0 "" "$stderr_file"
+		echo "$?"
+	)
+}
+
+test_consumed_rate_limit_reports_success() {
+	RATE_LIMIT_FUNCTION=$(sed -n '/^handle_rate_limit_failure() {/,/^}/p' scripts/update.sh)
+	export RATE_LIMIT_FUNCTION
+
+	assert_equals "0" "$(run_handle_rate_limit_failure 0)" \
+		"A consumed rate limit reports success when the retry succeeds"
+	assert_equals "0" "$(run_handle_rate_limit_failure 1)" \
+		"A consumed rate limit reports success even when the retry fails"
+}
+test_consumed_rate_limit_reports_success
+
+test_unrecognized_failure_is_not_consumed() {
+	RATE_LIMIT_FUNCTION=$(sed -n '/^handle_rate_limit_failure() {/,/^}/p' scripts/update.sh)
+	export RATE_LIMIT_FUNCTION
+
+	local test_root="$TEMP_DIR/rate_limit_other"
+	rm -rf "$test_root"
+	mkdir -p "$test_root/results"
+	local result
+	result=$(
+		set +e
+		RESULTS_DIR="$test_root/results"
+		echo "500 Internal Server Error" >"$test_root/stderr"
+		eval "$RATE_LIMIT_FUNCTION"
+		handle_rate_limit_failure tool-under-test 1 tok-id 5000 "" "$test_root/stderr"
+		echo "$?"
+	)
+
+	assert_equals "1" "$result" \
+		"A non-rate-limit failure is left for the caller to handle"
+}
+test_unrecognized_failure_is_not_consumed
+
+# Workers run `fetch` in a fresh `bash -c`, so every function it reaches has to
+# be in the `export -f` list. A name in that list that is no longer a function
+# is worse than a missing one: `export -f` fails, and under `set -e` that kills
+# the whole updater before a single tool is fetched.
+update_sh_defined_functions() {
+	grep -oE '^[a-z_]+\(\) \{' scripts/update.sh | sed 's/() {$//' | sort -u
+}
+
+update_sh_exported_functions() {
+	grep -E '^\s*export -f ' scripts/update.sh | sed -E 's/^\s*export -f //' | tr ' ' '\n' | sed '/^$/d' | sort -u
+}
+
+# Body of $1 with comments and the `local` declarations stripped, so a function
+# name that only appears in prose is not mistaken for a call.
+update_sh_function_body() {
+	sed -n "/^$1() {/,/^}/p" scripts/update.sh | sed -E 's/(^|[[:space:]])#.*$//'
+}
+
+test_exported_functions_all_exist() {
+	local missing=""
+	local fn
+	while IFS= read -r fn; do
+		if ! update_sh_defined_functions | grep -qx "$fn"; then
+			missing="$missing $fn"
+		fi
+	done < <(update_sh_exported_functions)
+
+	assert_equals "" "$missing" "Every exported function name is a defined function"
+}
+test_exported_functions_all_exist
+
+test_worker_reachable_functions_are_exported() {
+	local defined exported
+	defined=$(update_sh_defined_functions)
+	exported=$(update_sh_exported_functions)
+
+	# Breadth-first walk of the call graph from the worker entry point.
+	local seen="run_fetch"
+	local queue="run_fetch"
+	local current body callee
+	while [ -n "$queue" ]; do
+		current=$(printf '%s\n' "$queue" | head -1)
+		queue=$(printf '%s\n' "$queue" | tail -n +2)
+		body=$(update_sh_function_body "$current")
+		while IFS= read -r callee; do
+			[ -n "$callee" ] || continue
+			printf '%s\n' "$seen" | grep -qx "$callee" && continue
+			printf '%s\n' "$body" | grep -qE "(^|[^[:alnum:]_\"])$callee([[:space:]]|$)" || continue
+			seen="$seen"$'\n'"$callee"
+			queue="$queue"$'\n'"$callee"
+		done < <(printf '%s\n' "$defined")
+	done
+
+	local unexported=""
+	while IFS= read -r callee; do
+		[ -n "$callee" ] || continue
+		printf '%s\n' "$exported" | grep -qx "$callee" || unexported="$unexported $callee"
+	done < <(printf '%s\n' "$seen" | sort -u)
+
+	assert_equals "" "$unexported" "Every function a worker can reach is exported"
+}
+test_worker_reachable_functions_are_exported
+
+test_fallback_constant_is_exported() {
+	assert_contains "$(grep -E '^\s*export NEEDS_PLAIN_TEXT_FALLBACK' scripts/update.sh)" \
+		"export NEEDS_PLAIN_TEXT_FALLBACK" \
+		"The fallback status constant reaches workers"
+}
+test_fallback_constant_is_exported
 
 echo ""
 
