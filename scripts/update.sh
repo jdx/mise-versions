@@ -612,11 +612,16 @@ handle_rate_limit_failure() {
 	if [ "$attempt" -lt "$FETCH_MAX_ATTEMPTS" ]; then
 		log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id" "attempt=$attempt"
 		sleep 1
-		fetch "$tool" "$((attempt + 1))"
-		return
+		# The retry records this tool's final status. Report success either
+		# way: returning the retry's status would tell the caller the rate
+		# limit went unhandled, and it would carry on with the token this
+		# function just retired, overwriting the status the retry recorded.
+		fetch "$tool" "$((attempt + 1))" || true
+		return 0
 	fi
 	log_error "Rate limited, max retries reached" "tool=$tool" "attempts=$attempt"
 	echo "failed" >"$status_file"
+	return 0
 }
 
 # Fetch versions for a single tool. Safe for concurrent execution.

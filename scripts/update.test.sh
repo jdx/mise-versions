@@ -414,6 +414,79 @@ test_metadata_fallback_is_counted_once() {
 }
 test_metadata_fallback_is_counted_once
 
+# A recognized rate limit is always consumed: the retry records the tool's
+# final status, so reporting the retry's exit status would tell the caller the
+# rate limit went unhandled. The caller would then carry on with the token this
+# function just retired and overwrite the status the retry recorded.
+run_handle_rate_limit_failure() {
+	local retry_exit="$1"
+	local test_root="$TEMP_DIR/rate_limit"
+
+	rm -rf "$test_root"
+	mkdir -p "$test_root/results"
+
+	(
+		set +e
+		RESULTS_DIR="$test_root/results"
+		# Read by the eval'd function below, not by this one.
+		# shellcheck disable=SC2034
+		FETCH_MAX_ATTEMPTS=3
+		# shellcheck disable=SC2329
+		log_warn() { :; }
+		# shellcheck disable=SC2329
+		log_error() { :; }
+		# shellcheck disable=SC2329
+		mark_token_rate_limited() { :; }
+		# shellcheck disable=SC2329
+		sleep() { :; }
+		# shellcheck disable=SC2329
+		fetch() {
+			echo "failed" >"$RESULTS_DIR/$1.status"
+			return "$retry_exit"
+		}
+
+		local stderr_file="$test_root/stderr"
+		echo "HTTP 403 Forbidden" >"$stderr_file"
+
+		eval "$RATE_LIMIT_FUNCTION"
+		handle_rate_limit_failure tool-under-test 1 tok-id 0 "" "$stderr_file"
+		echo "$?"
+	)
+}
+
+test_consumed_rate_limit_reports_success() {
+	RATE_LIMIT_FUNCTION=$(sed -n '/^handle_rate_limit_failure() {/,/^}/p' scripts/update.sh)
+	export RATE_LIMIT_FUNCTION
+
+	assert_equals "0" "$(run_handle_rate_limit_failure 0)" \
+		"A consumed rate limit reports success when the retry succeeds"
+	assert_equals "0" "$(run_handle_rate_limit_failure 1)" \
+		"A consumed rate limit reports success even when the retry fails"
+}
+test_consumed_rate_limit_reports_success
+
+test_unrecognized_failure_is_not_consumed() {
+	RATE_LIMIT_FUNCTION=$(sed -n '/^handle_rate_limit_failure() {/,/^}/p' scripts/update.sh)
+	export RATE_LIMIT_FUNCTION
+
+	local test_root="$TEMP_DIR/rate_limit_other"
+	rm -rf "$test_root"
+	mkdir -p "$test_root/results"
+	local result
+	result=$(
+		set +e
+		RESULTS_DIR="$test_root/results"
+		echo "500 Internal Server Error" >"$test_root/stderr"
+		eval "$RATE_LIMIT_FUNCTION"
+		handle_rate_limit_failure tool-under-test 1 tok-id 5000 "" "$test_root/stderr"
+		echo "$?"
+	)
+
+	assert_equals "1" "$result" \
+		"A non-rate-limit failure is left for the caller to handle"
+}
+test_unrecognized_failure_is_not_consumed
+
 # Workers run `fetch` in a fresh `bash -c`, so every function it reaches has to
 # be in the `export -f` list. A name in that list that is no longer a function
 # is worse than a missing one: `export -f` fails, and under `set -e` that kills
