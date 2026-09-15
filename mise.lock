@@ -292,28 +292,28 @@ url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/382400126"
 provenance = "github-attestations"
 
 [[tools.wait-for-gh-rate-limit]]
-version = "1.1.1"
+version = "1.1.2"
 backend = "github:jdx/wait-for-gh-rate-limit"
 
 [tools.wait-for-gh-rate-limit."platforms.linux-arm64"]
-checksum = "sha256:156016c123e3a979c1e648b9c482338ba7cc0552028ba241eda1bcf9cf7e69e8"
-url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.1/wait-for-gh-rate-limit-aarch64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/337588000"
+checksum = "sha256:9e51999142645a7c150be722ed683be64ea6edd50628c9280604b4669941cce0"
+url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.2/wait-for-gh-rate-limit-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/468362977"
 
 [tools.wait-for-gh-rate-limit."platforms.linux-x64"]
-checksum = "sha256:90668d96b9f0485050c281d72797aa1c09e3d75196aca330a1b9fd4426778641"
-url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.1/wait-for-gh-rate-limit-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/337587818"
+checksum = "sha256:fdce409269ec435e7b2944dcbf660e77e903d35b7470dbea160478810eaaf0e4"
+url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.2/wait-for-gh-rate-limit-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/468362510"
 
 [tools.wait-for-gh-rate-limit."platforms.macos-arm64"]
-checksum = "sha256:266bb0edf065994b5a4b75c91adbae3e94c042ded1de03c00a1673c68409b77e"
-url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.1/wait-for-gh-rate-limit-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/337588442"
+checksum = "sha256:c62fb88819073739c206871b26fe17ea998f22a6c26460c6540baa3c047348e5"
+url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.2/wait-for-gh-rate-limit-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/468362642"
 
 [tools.wait-for-gh-rate-limit."platforms.windows-x64"]
-checksum = "sha256:1e52ba1857d3918b54c336de32028abf5f03b8e16745413e573e4153ab9a92e2"
-url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.1/wait-for-gh-rate-limit-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/337588993"
+checksum = "sha256:62898b7ba99fa6c7d992f054c9ea0cc2806bcdfd7b1e94e5ad7b4ef30d8442a5"
+url = "https://github.com/jdx/wait-for-gh-rate-limit/releases/download/v1.1.2/wait-for-gh-rate-limit-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/jdx/wait-for-gh-rate-limit/releases/assets/468363590"
 
 [[tools.yq]]
 version = "4.53.6"
