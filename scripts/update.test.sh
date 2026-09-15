@@ -224,8 +224,13 @@ test_json_collection_requires_upstream_metadata() {
 test_json_collection_requires_upstream_metadata
 
 test_every_listing_runs_in_the_docker_sandbox() {
+	# Drop comments and plain literal-string assignments (log/reason text that
+	# merely names the command) so only real invocations are counted; an
+	# assignment capturing a command substitution still counts.
 	local invocations
-	invocations=$(grep -vE '^[[:space:]]*#' scripts/update.sh | grep -c 'ls-remote')
+	invocations=$(grep -vE '^[[:space:]]*#' scripts/update.sh |
+		grep -vE '^[[:space:]]*[a-z_]+="[^$`]*"[[:space:]]*$' |
+		grep -c 'ls-remote')
 
 	assert_equals "1" "$invocations" \
 		"ls-remote is only ever invoked through the Docker sandbox helper"
@@ -301,6 +306,7 @@ test_json_generation_errors_are_reported
 # stopped being updated at all. jdx/mise#12543
 run_fetch_with_stubbed_listings() {
 	local json_body="$1"
+	local json_exit="${2:-0}"
 	local test_root="$TEMP_DIR/fetch_listings"
 
 	rm -rf "$test_root"
@@ -336,9 +342,10 @@ run_fetch_with_stubbed_listings() {
 			echo "call" >>"$test_root/listing_calls"
 			if [[ " $* " == *" --json "* ]]; then
 				printf '%s' "$json_body" >"$4"
-			else
-				printf '1.0.0\n' >"$4"
+				: >"$3"
+				return "$json_exit"
 			fi
+			printf '1.0.0\n' >"$4"
 		}
 		# shellcheck disable=SC2329
 		generate_toml_from_json() {
@@ -353,7 +360,9 @@ run_fetch_with_stubbed_listings() {
 		eval "$FETCH_FUNCTION"
 		fetch tool-under-test >/dev/null 2>&1
 
-		printf '%s %s\n' "$(wc -l <"$test_root/listing_calls" 2>/dev/null || echo 0)" "$(cat "$test_root/results/tool-under-test.status")"
+		printf '%s %s\n' \
+			"$(wc -l <"$test_root/listing_calls" 2>/dev/null || echo 0)" \
+			"$(cat "$test_root/results/tool-under-test.status")"
 	)
 }
 
@@ -374,6 +383,98 @@ test_unusable_json_listing_falls_back_to_the_plain_text_listing() {
 		"An unusable JSON listing still collects the plain-text listing"
 }
 test_unusable_json_listing_falls_back_to_the_plain_text_listing
+
+# A tool whose metadata listing fails outright (e.g. --strict-metadata rejecting
+# an incomplete upstream response) must still reach the plain-text fallback,
+# which keeps stored metadata and refuses metadata-poor new versions. Failing
+# the tool outright would leave its catalog stale — the bug this PR fixes.
+test_failed_json_listing_still_falls_back() {
+	FETCH_FUNCTION=$(sed -n '/^fetch() {/,/^}/p' scripts/update.sh)
+	export FETCH_FUNCTION
+
+	assert_equals "2 fetched" "$(run_fetch_with_stubbed_listings '' 1)" \
+		"A failed JSON listing falls back instead of failing the tool"
+}
+test_failed_json_listing_still_falls_back
+
+test_metadata_fallback_is_counted_once() {
+	local increments
+	increments=$(grep -c 'increment_stat "total_json_metadata_fallbacks"' scripts/update.sh)
+
+	assert_equals "1" "$increments" \
+		"A tool taking the metadata fallback is counted once per run"
+}
+test_metadata_fallback_is_counted_once
+
+# Workers run `fetch` in a fresh `bash -c`, so every function it reaches has to
+# be in the `export -f` list. A name in that list that is no longer a function
+# is worse than a missing one: `export -f` fails, and under `set -e` that kills
+# the whole updater before a single tool is fetched.
+update_sh_defined_functions() {
+	grep -oE '^[a-z_]+\(\) \{' scripts/update.sh | sed 's/() {$//' | sort -u
+}
+
+update_sh_exported_functions() {
+	grep -E '^\s*export -f ' scripts/update.sh | sed -E 's/^\s*export -f //' | tr ' ' '\n' | sed '/^$/d' | sort -u
+}
+
+# Body of $1 with comments and the `local` declarations stripped, so a function
+# name that only appears in prose is not mistaken for a call.
+update_sh_function_body() {
+	sed -n "/^$1() {/,/^}/p" scripts/update.sh | sed -E 's/(^|[[:space:]])#.*$//'
+}
+
+test_exported_functions_all_exist() {
+	local missing=""
+	local fn
+	while IFS= read -r fn; do
+		if ! update_sh_defined_functions | grep -qx "$fn"; then
+			missing="$missing $fn"
+		fi
+	done < <(update_sh_exported_functions)
+
+	assert_equals "" "$missing" "Every exported function name is a defined function"
+}
+test_exported_functions_all_exist
+
+test_worker_reachable_functions_are_exported() {
+	local defined exported
+	defined=$(update_sh_defined_functions)
+	exported=$(update_sh_exported_functions)
+
+	# Breadth-first walk of the call graph from the worker entry point.
+	local seen="run_fetch"
+	local queue="run_fetch"
+	local current body callee
+	while [ -n "$queue" ]; do
+		current=$(printf '%s\n' "$queue" | head -1)
+		queue=$(printf '%s\n' "$queue" | tail -n +2)
+		body=$(update_sh_function_body "$current")
+		while IFS= read -r callee; do
+			[ -n "$callee" ] || continue
+			printf '%s\n' "$seen" | grep -qx "$callee" && continue
+			printf '%s\n' "$body" | grep -qE "(^|[^[:alnum:]_\"])$callee([[:space:]]|$)" || continue
+			seen="$seen"$'\n'"$callee"
+			queue="$queue"$'\n'"$callee"
+		done < <(printf '%s\n' "$defined")
+	done
+
+	local unexported=""
+	while IFS= read -r callee; do
+		[ -n "$callee" ] || continue
+		printf '%s\n' "$exported" | grep -qx "$callee" || unexported="$unexported $callee"
+	done < <(printf '%s\n' "$seen" | sort -u)
+
+	assert_equals "" "$unexported" "Every function a worker can reach is exported"
+}
+test_worker_reachable_functions_are_exported
+
+test_fallback_constant_is_exported() {
+	assert_contains "$(grep -E '^\s*export NEEDS_PLAIN_TEXT_FALLBACK' scripts/update.sh)" \
+		"export NEEDS_PLAIN_TEXT_FALLBACK" \
+		"The fallback status constant reaches workers"
+}
+test_fallback_constant_is_exported
 
 echo ""
 

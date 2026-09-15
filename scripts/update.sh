@@ -586,9 +586,12 @@ docker_ls_remote() {
 		jdxcode/mise -y ls-remote --minimum-release-age 0s "$@" "$tool" >"$stdout_file" 2>"$stderr_file"
 }
 
-# Record a failed listing, retiring the token and retrying on a rate limit.
-# Writes the tool's status file and removes $6 (the stderr file).
-handle_fetch_failure() {
+# Handle a rate-limited listing: retire the token and retry with a fresh one.
+#
+# Returns 0 when the failure was consumed (the tool's status file has been
+# written, possibly by a retry) and 1 when this was not a rate limit, leaving the
+# caller to decide. Removes $6 (the stderr file) only when it consumes it.
+handle_rate_limit_failure() {
 	local tool="$1"
 	local attempt="$2"
 	local token_id="$3"
@@ -597,31 +600,24 @@ handle_fetch_failure() {
 	local stderr_file="$6"
 	local status_file="$RESULTS_DIR/$tool.status"
 
-	log_error "Failed to fetch versions" "tool=$tool"
-	cat "$stderr_file" >&2
+	grep -q "403 Forbidden" "$stderr_file" || return 1
 
-	if grep -q "403 Forbidden" "$stderr_file"; then
-		local reset_time=""
-		if [ "$remaining" == "0" ]; then
-			reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
-		fi
-		mark_token_rate_limited "$token_id" "$reset_time"
-		rm -f "$stderr_file"
+	local reset_time=""
+	if [ "$remaining" == "0" ]; then
+		reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
+	fi
+	mark_token_rate_limited "$token_id" "$reset_time"
+	rm -f "$stderr_file"
 
-		# Cap retries so 8 parallel workers can't chain-exhaust the token
-		# pool in milliseconds when everyone hits rate limits at once.
-		if [ "$attempt" -lt "$FETCH_MAX_ATTEMPTS" ]; then
-			log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id" "attempt=$attempt"
-			sleep 1
-			fetch "$tool" "$((attempt + 1))"
-			return
-		fi
-		log_error "Rate limited, max retries reached" "tool=$tool" "attempts=$attempt"
-		echo "failed" >"$status_file"
+	# Cap retries so 8 parallel workers can't chain-exhaust the token
+	# pool in milliseconds when everyone hits rate limits at once.
+	if [ "$attempt" -lt "$FETCH_MAX_ATTEMPTS" ]; then
+		log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id" "attempt=$attempt"
+		sleep 1
+		fetch "$tool" "$((attempt + 1))"
 		return
 	fi
-
-	rm -f "$stderr_file"
+	log_error "Rate limited, max retries reached" "tool=$tool" "attempts=$attempt"
 	echo "failed" >"$status_file"
 }
 
@@ -684,19 +680,28 @@ fetch() {
 	# and is what produces the committed TOML. Collect the prerelease superset
 	# and let clients filter on the flag. `--minimum-release-age 0s` keeps the
 	# published catalog complete regardless of the runner's configured cutoff.
-	local json_file
+	local json_file json_status=0
 	json_file=$(mktemp)
-	if ! docker_ls_remote "$tool" "$token" "$stderr_file" "$json_file" \
+	if docker_ls_remote "$tool" "$token" "$stderr_file" "$json_file" \
 		--prerelease --json --no-versions-host --strict-metadata; then
-		rm -f "$json_file"
-		handle_fetch_failure "$tool" "$attempt" "$token_id" "$remaining" "$rate_limit_info" "$stderr_file"
-		return
+		rm -f "$stderr_file"
+		generate_toml_from_json "$tool" "$json_file" || json_status=$?
+	else
+		log_error "Failed to fetch version metadata" "tool=$tool"
+		cat "$stderr_file" >&2
+		if handle_rate_limit_failure "$tool" "$attempt" "$token_id" "$remaining" "$rate_limit_info" "$stderr_file"; then
+			rm -f "$json_file"
+			return
+		fi
+		rm -f "$stderr_file"
+		# Not a rate limit. The ordinary listing may still work, and the
+		# fallback below is safe: it keeps stored metadata for known versions
+		# and refuses to add a version whose metadata we never saw.
+		json_metadata_fallback_reason="mise ls-remote --json failed"
+		json_status="$NEEDS_PLAIN_TEXT_FALLBACK"
 	fi
-	rm -f "$stderr_file"
-
-	generate_toml_from_json "$tool" "$json_file"
-	local json_status=$?
 	rm -f "$json_file"
+
 	case "$json_status" in
 	0)
 		echo "fetched" >"$status_file"
@@ -713,12 +718,15 @@ fetch() {
 	# so the fallback path can tell "this tool genuinely has no versions" from
 	# "the listing failed", and so `collect_fallback_new_versions` can refuse to
 	# add a version whose metadata we never saw.
-	increment_stat "total_json_metadata_fallbacks"
-	add_to_list "json_metadata_fallback_tools_list" "$tool"
 	stderr_file=$(mktemp)
 	if ! docker_ls_remote "$tool" "$token" "$stderr_file" "docs/$tool"; then
 		rm -f "docs/$tool"
-		handle_fetch_failure "$tool" "$attempt" "$token_id" "$remaining" "$rate_limit_info" "$stderr_file"
+		log_error "Failed to fetch versions" "tool=$tool"
+		cat "$stderr_file" >&2
+		handle_rate_limit_failure "$tool" "$attempt" "$token_id" "$remaining" "$rate_limit_info" "$stderr_file" || {
+			rm -f "$stderr_file"
+			echo "failed" >"$status_file"
+		}
 		return
 	fi
 	rm -f "$stderr_file"
@@ -855,6 +863,7 @@ if setup_token_management; then
 	# RESULTS_DIR; the parent aggregates counts and stages git changes afterward.
 	RESULTS_DIR=$(mktemp -d -t mise_results.XXXXXX)
 	export FETCH_MAX_ATTEMPTS
+	export NEEDS_PLAIN_TEXT_FALLBACK
 	export RESULTS_DIR
 
 	# Pre-seed empty status files for every tool. If a worker is hard-killed
@@ -869,7 +878,7 @@ if setup_token_management; then
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
 
-	export -f fetch run_fetch get_github_token mark_token_rate_limited generate_toml_file collect_fallback_new_versions record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
+	export -f fetch run_fetch get_github_token mark_token_rate_limited docker_ls_remote handle_rate_limit_failure generate_toml_from_json generate_toml_from_plain_text collect_fallback_new_versions record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 
