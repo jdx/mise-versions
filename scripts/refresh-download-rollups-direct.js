@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { completedDates } from "./lib/rollup-dates.js";
 
 /**
  * Refresh daily download rollups directly from GitHub Actions.
@@ -20,6 +21,10 @@ const D1_MAX_PARAMS = 100;
 
 function usage() {
   console.error(`Usage: node scripts/refresh-download-rollups-direct.js [--date=YYYY-MM-DD] [--days=N]
+
+  --date  Newest UTC day to refresh; defaults to yesterday and is clamped to
+          yesterday, since the current UTC day is not over yet.
+  --days  Number of complete days to refresh, counting back from --date.
 
 Environment:
   CLOUDFLARE_ACCOUNT_ID       Cloudflare account id
@@ -62,25 +67,11 @@ function requiredEnv(name) {
   return value;
 }
 
-function dateStrAgo(baseDate, daysAgo) {
-  const date = new Date(`${baseDate}T00:00:00Z`);
-  date.setUTCDate(date.getUTCDate() - daysAgo);
-  return date.toISOString().split("T")[0];
-}
-
 function dateRange(date) {
   return {
     start: `${date} 00:00:00`,
     end: `${date} 23:59:59`,
   };
-}
-
-function orderedDates(baseDate, days) {
-  const offsets =
-    days > 1
-      ? [1, 0, ...Array.from({ length: days - 2 }, (_, i) => i + 2)]
-      : [0];
-  return offsets.map((offset) => dateStrAgo(baseDate, offset));
 }
 
 function finiteNumber(value, label) {
@@ -465,8 +456,7 @@ async function main() {
       process.env.ANALYTICS_ENGINE_CUTOVER_DATE || DEFAULT_CUTOVER_DATE,
   };
 
-  const baseDate = args.date || new Date().toISOString().split("T")[0];
-  const dates = orderedDates(baseDate, args.days);
+  const dates = completedDates(args.date, args.days);
   console.log(`Refreshing download rollups for: ${dates.join(", ")}`);
 
   const results = [];
@@ -474,7 +464,7 @@ async function main() {
   console.log(JSON.stringify({ success: true, results }, null, 2));
 }
 
-export { batchUpsert, orderedDates, parseArgs, refreshDate };
+export { batchUpsert, parseArgs, refreshDate };
 
 if (fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((error) => {

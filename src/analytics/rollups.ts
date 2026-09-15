@@ -2141,7 +2141,9 @@ export function createRollupFunctions(
       let mauDaysProcessed = 0;
       const now = new Date();
 
-      for (let i = 0; i < days; i++) {
+      // Start at yesterday: the current UTC day is still open, and a rollup
+      // written from a partial day would stay wrong until the next refresh.
+      for (let i = 1; i <= days; i++) {
         const date = new Date(now);
         date.setUTCDate(date.getUTCDate() - i);
         const dateStr = date.toISOString().split("T")[0];

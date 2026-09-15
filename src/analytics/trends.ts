@@ -181,6 +181,18 @@ export function createTrendsFunctions(
         });
       }
 
+      // Rollups for a day are written after it closes, so the most recent days
+      // have no row until the daily maintenance job runs. Drop that tail rather
+      // than reporting it as a day with no activity; interior gaps stay so a
+      // real outage is still visible.
+      while (
+        dailyData.length > 0 &&
+        !dauMap.has(dailyData[dailyData.length - 1].date) &&
+        !mauMap.has(dailyData[dailyData.length - 1].date)
+      ) {
+        dailyData.pop();
+      }
+
       const todayMau = await db
         .select({ mau: dailyMauStats.mau })
         .from(dailyMauStats)
