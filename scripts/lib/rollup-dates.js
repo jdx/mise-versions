@@ -12,6 +12,19 @@ export function dateStrAgo(baseDate, daysAgo) {
   return date.toISOString().split("T")[0];
 }
 
+// The CLI parsers only check the YYYY-MM-DD shape, so a value like 2026-99-99
+// reaches here. Clamping it would silently refresh the wrong dates, so reject
+// anything that is not a real calendar date.
+function assertRealUtcDate(date) {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  if (
+    Number.isNaN(parsed.getTime()) ||
+    parsed.toISOString().split("T")[0] !== date
+  ) {
+    throw new Error(`Invalid --date: ${date} is not a calendar date`);
+  }
+}
+
 export function lastCompleteUtcDate(now = Date.now()) {
   return dateStrAgo(new Date(now).toISOString().split("T")[0], 1);
 }
@@ -20,6 +33,7 @@ export function lastCompleteUtcDate(now = Date.now()) {
 // recently completed day is refreshed before older backfill dates. A missing or
 // too-recent `baseDate` is clamped to the last complete UTC day.
 export function completedDates(baseDate, days, now = Date.now()) {
+  if (baseDate) assertRealUtcDate(baseDate);
   const latest = lastCompleteUtcDate(now);
   const start = baseDate && baseDate < latest ? baseDate : latest;
   return Array.from({ length: days }, (_, i) => dateStrAgo(start, i));

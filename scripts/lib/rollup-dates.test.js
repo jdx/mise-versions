@@ -51,6 +51,17 @@ describe("rollup-dates", () => {
     ]);
   });
 
+  it("rejects a date that is not on the calendar", () => {
+    assert.throws(
+      () => completedDates("2026-99-99", 2, noon),
+      /not a calendar date/,
+    );
+    assert.throws(
+      () => completedDates("2026-02-31", 2, noon),
+      /not a calendar date/,
+    );
+  });
+
   it("crosses month and year boundaries", () => {
     assert.equal(dateStrAgo("2026-03-01", 1), "2026-02-28");
     assert.deepEqual(completedDates(null, 2, Date.UTC(2027, 0, 1, 3, 0, 0)), [
