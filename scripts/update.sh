@@ -432,7 +432,7 @@ VERSIONS_EOF
 	) 200>"$STATS_DIR/fallback_new_versions_list.lock"
 }
 
-# Function to generate TOML file with timestamps.
+# Build the committed TOML from the JSON metadata listing.
 # Does NOT run `git add` — the git index is a shared resource and must be
 # updated serially in the parent after all parallel workers finish.
 #
@@ -441,62 +441,68 @@ VERSIONS_EOF
 # theoretically still produce empty output. Prior to this check, an empty
 # result would wipe out hundreds of tools' version history and trip the
 # D1 sync safety check on the next run.
-generate_toml_file() {
+#
+# Returns 0 when the TOML was written, 1 on a hard failure, and
+# $NEEDS_PLAIN_TEXT_FALLBACK when the caller should collect the plain-text
+# listing and take the fallback path (reason in $json_metadata_fallback_reason).
+NEEDS_PLAIN_TEXT_FALLBACK=2
+generate_toml_from_json() {
 	local tool="$1"
-	local token="$2"
+	local json_file="$2"
+	local toml_file="docs/$tool.toml"
+
+	json_metadata_fallback_reason=""
+
+	if [ ! -s "$json_file" ]; then
+		json_metadata_fallback_reason="empty JSON metadata response"
+		return "$NEEDS_PLAIN_TEXT_FALLBACK"
+	fi
+
+	local json_type json_count
+	read -r json_type json_count < <(jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' "$json_file" 2>/dev/null || echo "invalid 0")
+	if [ "$json_type" != "array" ]; then
+		json_metadata_fallback_reason="invalid JSON metadata response"
+		return "$NEEDS_PLAIN_TEXT_FALLBACK"
+	fi
+	if [ "${json_count:-0}" -eq 0 ]; then
+		json_metadata_fallback_reason="empty JSON metadata array"
+		return "$NEEDS_PLAIN_TEXT_FALLBACK"
+	fi
+
+	local error_output
+	error_output=$(mktemp)
+	# Convert JSON array to NDJSON and pipe to generate-toml.js
+	if jq -c '.[]' "$json_file" 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
+		if toml_has_versions "$toml_file.tmp"; then
+			mv "$toml_file.tmp" "$toml_file"
+			rm -f "$error_output"
+			return
+		fi
+		rm -f "$toml_file.tmp"
+	fi
+	if [ -s "$error_output" ]; then
+		cat "$error_output" >&2
+	fi
+	rm -f "$toml_file.tmp" "$error_output"
+	json_metadata_fallback_reason="failed to generate TOML from JSON metadata"
+	return "$NEEDS_PLAIN_TEXT_FALLBACK"
+}
+
+# Handle a tool whose JSON metadata listing did not produce a TOML, using the
+# plain-text listing in docs/$tool that the caller has just collected.
+generate_toml_from_plain_text() {
+	local tool="$1"
 	local toml_file="docs/$tool.toml"
 	local versions_file="docs/$tool"
 
-	# Check if versions file exists
 	if [ ! -f "$versions_file" ]; then
 		log_error "Versions file disappeared before TOML generation" "tool=$tool"
 		return 1
 	fi
 
-	local error_output metadata_error_output
-	error_output=$(mktemp)
-	metadata_error_output=$(mktemp)
-
-	# Try to get JSON with timestamps/release URLs/prerelease flags from
-	# mise ls-remote --minimum-release-age 0s --prerelease --json. The TOML path can carry prerelease
-	# metadata, so collect the superset and let clients filter by that flag.
-	# Pass the rotated per-tool token via GITHUB_API_TOKEN so this call
-	# isn't rate-limited by the workflow's single shared MISE_GITHUB_TOKEN.
-	# Without this, ~58% of tools per run hit GitHub's 5000/hr authenticated
-	# rate limit (8 parallel workers × paginated `/releases` calls all on
-	# one token), aqua's `_list_remote_versions` swallows the 403 into
-	# `Ok(vec![])`, mise emits `[]`, and we'd silently fall through to the
-	# plain-text path — losing `release_url` and `created_at` for any new
-	# version that wasn't already in the existing TOML.
-	local json_output
-	local json_metadata_fallback_reason=""
+	local error_output
 	local fallback_new_versions=""
-	if json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote --minimum-release-age 0s --prerelease --json --no-versions-host --strict-metadata "$tool" 2>"$metadata_error_output"); then
-		if [ -z "$json_output" ]; then
-			json_metadata_fallback_reason="empty JSON metadata response"
-		else
-			local json_type json_count
-			read -r json_type json_count < <(printf '%s' "$json_output" | jq -r '[type, (if type == "array" then length else 0 end)] | @tsv' 2>/dev/null || echo "invalid 0")
-			if [ "$json_type" = "array" ] && [ "${json_count:-0}" -gt 0 ]; then
-				# Convert JSON array to NDJSON and pipe to generate-toml.js
-				if printf '%s' "$json_output" | jq -c '.[]' 2>/dev/null | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
-					if toml_has_versions "$toml_file.tmp"; then
-						mv "$toml_file.tmp" "$toml_file"
-						rm -f "$error_output" "$metadata_error_output"
-						return
-					fi
-					rm -f "$toml_file.tmp"
-				fi
-				json_metadata_fallback_reason="failed to generate TOML from JSON metadata"
-			elif [ "$json_type" = "array" ] && [ "${json_count:-0}" -eq 0 ]; then
-				json_metadata_fallback_reason="empty JSON metadata array"
-			else
-				json_metadata_fallback_reason="invalid JSON metadata response"
-			fi
-		fi
-	else
-		json_metadata_fallback_reason="mise ls-remote --json failed"
-	fi
+	error_output=$(mktemp)
 
 	# Fall back to plain text only when it cannot introduce incomplete metadata.
 	# Existing versions retain their stored metadata, but a newly discovered
@@ -505,30 +511,24 @@ generate_toml_file() {
 	increment_stat "total_json_metadata_fallbacks"
 	add_to_list "json_metadata_fallback_tools_list" "$tool"
 	log_warn "Using plain-text fallback after metadata failure" "tool=$tool" "reason=$json_metadata_fallback_reason"
-	if [ -s "$metadata_error_output" ]; then
-		cat "$metadata_error_output" >&2
-	fi
-	if [ -s "$error_output" ]; then
-		cat "$error_output" >&2
-	fi
 	if ! fallback_new_versions=$(collect_fallback_new_versions "$tool"); then
 		log_error "Failed to compare fallback versions" "tool=$tool"
-		rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+		rm -f "$toml_file.tmp" "$error_output"
 		return 1
 	fi
 	if [ -n "$fallback_new_versions" ]; then
 		record_fallback_new_versions "$tool" "$fallback_new_versions"
 		log_error "Refusing to add new versions without metadata" "tool=$tool"
-		rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+		rm -f "$toml_file.tmp" "$error_output"
 		return 1
 	fi
 	if jq -R -c 'select(length > 0) | {version: .}' "$versions_file" | node scripts/generate-toml.js "$tool" "$toml_file" >"$toml_file.tmp" 2>"$error_output"; then
 		if toml_has_versions "$toml_file.tmp"; then
 			mv "$toml_file.tmp" "$toml_file"
-			rm -f "$error_output" "$metadata_error_output"
+			rm -f "$error_output"
 		else
 			log_warn "Generated TOML had no versions, refusing to overwrite" "tool=$tool"
-			rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+			rm -f "$toml_file.tmp" "$error_output"
 			return 1
 		fi
 	else
@@ -536,7 +536,7 @@ generate_toml_file() {
 		if [ -s "$error_output" ]; then
 			cat "$error_output" >&2
 		fi
-		rm -f "$toml_file.tmp" "$error_output" "$metadata_error_output"
+		rm -f "$toml_file.tmp" "$error_output"
 		return 1
 	fi
 }
@@ -566,6 +566,63 @@ get_github_token() {
 
 	echo "$token_output"
 	return 0
+}
+
+# Run `mise ls-remote` for one tool inside the Docker sandbox, writing stdout to
+# $4 and stderr to $3. Every listing goes through the container: `mise ls-remote`
+# may execute untrusted plugin code (asdf/vfox), and this is what contains it.
+# `--minimum-release-age 0s` is always passed so a runner-level cutoff can never
+# truncate the published catalog.
+#
+# Args: $1 = tool, $2 = token, $3 = stderr file, $4 = stdout file, rest = extra args
+docker_ls_remote() {
+	local tool="$1"
+	local token="$2"
+	local stderr_file="$3"
+	local stdout_file="$4"
+	shift 4
+
+	docker run --rm -e GITHUB_TOKEN="$token" -e GITHUB_API_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
+		jdxcode/mise -y ls-remote --minimum-release-age 0s "$@" "$tool" >"$stdout_file" 2>"$stderr_file"
+}
+
+# Record a failed listing, retiring the token and retrying on a rate limit.
+# Writes the tool's status file and removes $6 (the stderr file).
+handle_fetch_failure() {
+	local tool="$1"
+	local attempt="$2"
+	local token_id="$3"
+	local remaining="$4"
+	local rate_limit_info="$5"
+	local stderr_file="$6"
+	local status_file="$RESULTS_DIR/$tool.status"
+
+	log_error "Failed to fetch versions" "tool=$tool"
+	cat "$stderr_file" >&2
+
+	if grep -q "403 Forbidden" "$stderr_file"; then
+		local reset_time=""
+		if [ "$remaining" == "0" ]; then
+			reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
+		fi
+		mark_token_rate_limited "$token_id" "$reset_time"
+		rm -f "$stderr_file"
+
+		# Cap retries so 8 parallel workers can't chain-exhaust the token
+		# pool in milliseconds when everyone hits rate limits at once.
+		if [ "$attempt" -lt "$FETCH_MAX_ATTEMPTS" ]; then
+			log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id" "attempt=$attempt"
+			sleep 1
+			fetch "$tool" "$((attempt + 1))"
+			return
+		fi
+		log_error "Rate limited, max retries reached" "tool=$tool" "attempts=$attempt"
+		echo "failed" >"$status_file"
+		return
+	fi
+
+	rm -f "$stderr_file"
+	echo "failed" >"$status_file"
 }
 
 # Fetch versions for a single tool. Safe for concurrent execution.
@@ -620,43 +677,50 @@ fetch() {
 	log_info "Fetching versions" "tool=$tool"
 
 	# Create a temporary file to capture stderr and check for rate limiting.
-	# Docker container is used for isolation: `mise ls-remote` may execute
-	# untrusted plugin code (asdf/vfox), and the sandbox contains it. Disable
-	# minimum_release_age explicitly so this fallback catalog is complete.
 	local stderr_file
 	stderr_file=$(mktemp)
 
-	if ! docker run --rm -e GITHUB_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
-		jdxcode/mise -y ls-remote --minimum-release-age 0s "$tool" >"docs/$tool" 2>"$stderr_file"; then
-		log_error "Failed to fetch versions" "tool=$tool"
-		cat "$stderr_file" >&2
-
-		if grep -q "403 Forbidden" "$stderr_file"; then
-			local reset_time=""
-			if [ "$remaining" == "0" ]; then
-				reset_time=$(echo "$rate_limit_info" | grep -oP 'resets at \K\S+ \S+' || echo "")
-			fi
-			mark_token_rate_limited "$token_id" "$reset_time"
-			rm -f "$stderr_file" "docs/$tool"
-
-			# Cap retries so 8 parallel workers can't chain-exhaust the token
-			# pool in milliseconds when everyone hits rate limits at once.
-			if [ "$attempt" -lt "$FETCH_MAX_ATTEMPTS" ]; then
-				log_warn "Rate limited, retrying with new token" "tool=$tool" "token_id=$token_id" "attempt=$attempt"
-				sleep 1
-				fetch "$tool" "$((attempt + 1))"
-				return
-			fi
-			log_error "Rate limited, max retries reached" "tool=$tool" "attempts=$attempt"
-			echo "failed" >"$status_file"
-			return
-		fi
-
-		rm -f "$stderr_file" "docs/$tool"
-		echo "failed" >"$status_file"
+	# The JSON listing carries timestamps, release URLs and prerelease flags,
+	# and is what produces the committed TOML. Collect the prerelease superset
+	# and let clients filter on the flag. `--minimum-release-age 0s` keeps the
+	# published catalog complete regardless of the runner's configured cutoff.
+	local json_file
+	json_file=$(mktemp)
+	if ! docker_ls_remote "$tool" "$token" "$stderr_file" "$json_file" \
+		--prerelease --json --no-versions-host --strict-metadata; then
+		rm -f "$json_file"
+		handle_fetch_failure "$tool" "$attempt" "$token_id" "$remaining" "$rate_limit_info" "$stderr_file"
 		return
 	fi
+	rm -f "$stderr_file"
 
+	generate_toml_from_json "$tool" "$json_file"
+	local json_status=$?
+	rm -f "$json_file"
+	case "$json_status" in
+	0)
+		echo "fetched" >"$status_file"
+		return
+		;;
+	"$NEEDS_PLAIN_TEXT_FALLBACK") ;;
+	*)
+		echo "failed" >"$status_file"
+		return 1
+		;;
+	esac
+
+	# The JSON listing produced nothing usable. Collect the plain-text listing
+	# so the fallback path can tell "this tool genuinely has no versions" from
+	# "the listing failed", and so `collect_fallback_new_versions` can refuse to
+	# add a version whose metadata we never saw.
+	increment_stat "total_json_metadata_fallbacks"
+	add_to_list "json_metadata_fallback_tools_list" "$tool"
+	stderr_file=$(mktemp)
+	if ! docker_ls_remote "$tool" "$token" "$stderr_file" "docs/$tool"; then
+		rm -f "docs/$tool"
+		handle_fetch_failure "$tool" "$attempt" "$token_id" "$remaining" "$rate_limit_info" "$stderr_file"
+		return
+	fi
 	rm -f "$stderr_file"
 
 	local new_lines
@@ -686,7 +750,7 @@ fetch() {
 		;;
 	esac
 
-	if ! generate_toml_file "$tool" "$token"; then
+	if ! generate_toml_from_plain_text "$tool"; then
 		rm -f "docs/$tool"
 		echo "failed" >"$status_file"
 		return 1

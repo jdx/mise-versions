@@ -200,24 +200,37 @@ echo ""
 echo "--- Version Collection Release Age Tests ---"
 
 test_json_collection_disables_release_age_filtering() {
-	local command
-	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+	local collection_function
+	collection_function=$(sed -n '/^docker_ls_remote() {/,/^}/p' scripts/update.sh)
 
-	assert_contains "$command" 'mise ls-remote --minimum-release-age 0s' \
-		"JSON metadata collection disables minimum_release_age"
+	assert_contains "$collection_function" 'ls-remote --minimum-release-age 0s "$@" "$tool"' \
+		"Every listing disables minimum_release_age"
 }
 test_json_collection_disables_release_age_filtering
 
 test_json_collection_requires_upstream_metadata() {
 	local command
-	command=$(grep -F 'json_output=$(GITHUB_API_TOKEN="$token" mise ls-remote' scripts/update.sh)
+	command=$(grep -F -A 1 'docker_ls_remote "$tool" "$token" "$stderr_file" "$json_file"' scripts/update.sh)
 
+	assert_contains "$command" '--json' \
+		"Catalog collection uses the JSON metadata listing"
+	assert_contains "$command" '--prerelease' \
+		"Catalog collection gathers the prerelease superset"
 	assert_contains "$command" '--no-versions-host' \
 		"JSON metadata collection explicitly bypasses the versions host"
 	assert_contains "$command" '--strict-metadata' \
 		"JSON metadata collection fails when upstream metadata fails"
 }
 test_json_collection_requires_upstream_metadata
+
+test_every_listing_runs_in_the_docker_sandbox() {
+	local invocations
+	invocations=$(grep -vE '^[[:space:]]*#' scripts/update.sh | grep -c 'ls-remote')
+
+	assert_equals "1" "$invocations" \
+		"ls-remote is only ever invoked through the Docker sandbox helper"
+}
+test_every_listing_runs_in_the_docker_sandbox
 
 test_new_versions_are_rejected_during_metadata_fallback() {
 	local fallback_block
@@ -265,7 +278,7 @@ test_fallback_new_versions_ignore_denied_tags
 
 test_generate_toml_missing_versions_file_fails() {
 	local missing_file_block
-	missing_file_block=$(sed -n '/# Check if versions file exists/,/local error_output/p' scripts/update.sh)
+	missing_file_block=$(sed -n '/Versions file disappeared before TOML generation/,/fi/p' scripts/update.sh)
 
 	assert_contains "$missing_file_block" 'return 1' \
 		"Missing versions files fail TOML generation"
@@ -273,25 +286,94 @@ test_generate_toml_missing_versions_file_fails() {
 test_generate_toml_missing_versions_file_fails
 
 test_json_generation_errors_are_reported() {
-	local fallback_block
-	fallback_block=$(sed -n '/Using plain-text fallback after metadata failure/,/fallback_new_versions=/p' scripts/update.sh)
+	local json_function
+	json_function=$(sed -n '/^generate_toml_from_json() {/,/^}/p' scripts/update.sh)
 
-	assert_contains "$fallback_block" 'cat "$error_output" >&2' \
+	assert_contains "$json_function" 'cat "$error_output" >&2' \
 		"JSON-to-TOML generation errors are printed before fallback"
 }
 test_json_generation_errors_are_reported
 
-test_docker_collection_disables_release_age_filtering() {
-	local command
-	command=$(awk '
-		/docker run --rm/ { docker_run = $0; next }
-		docker_run && /jdxcode\/mise -y ls-remote/ { print docker_run " " $0; exit }
-	' scripts/update.sh)
+# `fetch` used to make two full upstream listings per tool: a plain-text one for
+# a file it discarded on the happy path, then the JSON one that actually
+# produces the TOML. On repos with very large `/releases` responses (openai/codex,
+# ggml-org/llama.cpp) two listings exceeded the 60s per-tool timeout and the tool
+# stopped being updated at all. jdx/mise#12543
+run_fetch_with_stubbed_listings() {
+	local json_body="$1"
+	local test_root="$TEMP_DIR/fetch_listings"
 
-	assert_contains "$command" 'ls-remote --minimum-release-age 0s "$tool"' \
-		"Docker catalog collection disables minimum_release_age"
+	rm -rf "$test_root"
+	mkdir -p "$test_root/docs" "$test_root/results"
+
+	(
+		cd "$test_root"
+		set +e
+		# Read by the `fetch` body eval'd in below, not by this function.
+		# shellcheck disable=SC2034
+		RESULTS_DIR="$test_root/results"
+		# shellcheck disable=SC2034
+		FETCH_MAX_ATTEMPTS=3
+		NEEDS_PLAIN_TEXT_FALLBACK=2
+		# shellcheck disable=SC2329
+		get_github_token() { echo "tok tok-id"; }
+		# shellcheck disable=SC2329
+		mise() { echo "GitHub rate limit: 5000"; }
+		# shellcheck disable=SC2329
+		log_info() { :; }
+		# shellcheck disable=SC2329
+		log_warn() { :; }
+		# shellcheck disable=SC2329
+		log_debug() { :; }
+		# shellcheck disable=SC2329
+		log_error() { :; }
+		# shellcheck disable=SC2329
+		increment_stat() { :; }
+		# shellcheck disable=SC2329
+		add_to_list() { :; }
+		# shellcheck disable=SC2329
+		docker_ls_remote() {
+			echo "call" >>"$test_root/listing_calls"
+			if [[ " $* " == *" --json "* ]]; then
+				printf '%s' "$json_body" >"$4"
+			else
+				printf '1.0.0\n' >"$4"
+			fi
+		}
+		# shellcheck disable=SC2329
+		generate_toml_from_json() {
+			[ -s "$2" ] && [ "$(jq -r 'length' "$2")" -gt 0 ] && return 0
+			# shellcheck disable=SC2034
+			json_metadata_fallback_reason="empty JSON metadata array"
+			return "$NEEDS_PLAIN_TEXT_FALLBACK"
+		}
+		# shellcheck disable=SC2329
+		generate_toml_from_plain_text() { return 0; }
+
+		eval "$FETCH_FUNCTION"
+		fetch tool-under-test >/dev/null 2>&1
+
+		printf '%s %s\n' "$(wc -l <"$test_root/listing_calls" 2>/dev/null || echo 0)" "$(cat "$test_root/results/tool-under-test.status")"
+	)
 }
-test_docker_collection_disables_release_age_filtering
+
+test_successful_json_listing_skips_the_plain_text_listing() {
+	FETCH_FUNCTION=$(sed -n '/^fetch() {/,/^}/p' scripts/update.sh)
+	export FETCH_FUNCTION
+
+	assert_equals "1 fetched" "$(run_fetch_with_stubbed_listings '[{"version":"1.0.0"}]')" \
+		"A usable JSON listing costs exactly one upstream listing"
+}
+test_successful_json_listing_skips_the_plain_text_listing
+
+test_unusable_json_listing_falls_back_to_the_plain_text_listing() {
+	FETCH_FUNCTION=$(sed -n '/^fetch() {/,/^}/p' scripts/update.sh)
+	export FETCH_FUNCTION
+
+	assert_equals "2 fetched" "$(run_fetch_with_stubbed_listings '[]')" \
+		"An unusable JSON listing still collects the plain-text listing"
+}
+test_unusable_json_listing_falls_back_to_the_plain_text_listing
 
 echo ""
 
