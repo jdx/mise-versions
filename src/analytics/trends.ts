@@ -11,6 +11,7 @@ import {
   dailyVersionStats,
   versionRequests,
 } from "./schema.js";
+import { trimPendingRollups } from "./daily-series.js";
 import {
   analyticsEngineCutoverDate,
   analyticsEngineDataset,
@@ -181,20 +182,19 @@ export function createTrendsFunctions(
         });
       }
 
-      const todayMau = await db
-        .select({ mau: dailyMauStats.mau })
-        .from(dailyMauStats)
-        .where(sql`${dailyMauStats.date} = ${today}`)
-        .get();
+      const rolledUp = trimPendingRollups(
+        dailyData,
+        (date) => dauMap.has(date) && mauMap.has(date),
+      );
 
-      const latestNonZeroMau = [...dailyData]
-        .reverse()
-        .find((d) => d.mau > 0)?.mau;
+      // No writer produces a row for the current UTC day any more, and a row
+      // left over from before that rule would hold a partial count, so the
+      // newest complete day is the snapshot.
       const currentMAU =
-        todayMau && todayMau.mau > 0 ? todayMau.mau : (latestNonZeroMau ?? 0);
+        [...rolledUp].reverse().find((d) => d.mau > 0)?.mau ?? 0;
 
       return {
-        daily: dailyData,
+        daily: rolledUp,
         current_mau: currentMAU,
       };
     },

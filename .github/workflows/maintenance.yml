@@ -17,7 +17,7 @@ on:
           - refresh-version-stats
           - refresh-all
       date:
-        description: "Base date in UTC (YYYY-MM-DD); defaults to today"
+        description: "Newest UTC day to refresh (YYYY-MM-DD); defaults to yesterday, and is clamped to yesterday because the current day is still open"
         required: false
         type: string
       days:

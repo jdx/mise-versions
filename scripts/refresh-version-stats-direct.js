@@ -6,6 +6,8 @@
  * invocation limits and Cloudflare API errors are visible in GHA logs.
  */
 
+import { completedDates } from "./lib/rollup-dates.js";
+
 const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
 const DEFAULT_DATASET = "mise_analytics_events";
 const DEFAULT_CUTOVER_DATE = "2026-06-12";
@@ -14,6 +16,10 @@ const CLOUDFLARE_FETCH_TIMEOUT_MS = 30_000;
 
 function usage() {
   console.error(`Usage: node scripts/refresh-version-stats-direct.js [--date=YYYY-MM-DD] [--days=N]
+
+  --date  Newest UTC day to refresh; defaults to yesterday and is clamped to
+          yesterday, since the current UTC day is not over yet.
+  --days  Number of complete days to refresh, counting back from --date.
 
 Environment:
   CLOUDFLARE_ACCOUNT_ID       Cloudflare account id
@@ -54,12 +60,6 @@ function requiredEnv(name) {
   const value = process.env[name];
   if (!value) throw new Error(`Missing required environment variable: ${name}`);
   return value;
-}
-
-function dateStrAgo(baseDate, daysAgo) {
-  const d = new Date(`${baseDate}T00:00:00Z`);
-  d.setUTCDate(d.getUTCDate() - daysAgo);
-  return d.toISOString().split("T")[0];
 }
 
 function dateRange(date) {
@@ -330,10 +330,7 @@ async function main() {
       process.env.ANALYTICS_ENGINE_CUTOVER_DATE || DEFAULT_CUTOVER_DATE,
   };
 
-  const baseDate = args.date || new Date().toISOString().split("T")[0];
-  const dates = Array.from({ length: args.days }, (_, i) =>
-    dateStrAgo(baseDate, i),
-  );
+  const dates = completedDates(args.date, args.days);
   console.log(`Refreshing version stats for: ${dates.join(", ")}`);
 
   const results = [];

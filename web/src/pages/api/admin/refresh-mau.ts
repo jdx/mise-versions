@@ -29,7 +29,8 @@ export const POST: APIRoute = async ({ request }) => {
       },
     });
 
-    const targets = [dateStrAgo(0), dateStrAgo(1)];
+    // Skip the current UTC day; its counts are partial until it closes.
+    const targets = [dateStrAgo(1), dateStrAgo(2)];
     const results: Array<{
       date: string;
       ok: boolean;

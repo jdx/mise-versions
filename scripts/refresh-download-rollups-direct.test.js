@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 import { afterEach, describe, it } from "node:test";
 import {
   batchUpsert,
-  orderedDates,
   parseArgs,
   refreshDate,
 } from "./refresh-download-rollups-direct.js";
@@ -34,15 +33,6 @@ function jsonResponse(body, status = 200) {
 }
 
 describe("refresh-download-rollups-direct", () => {
-  it("prioritizes the completed day before today and older backfill dates", () => {
-    assert.deepEqual(orderedDates("2026-07-15", 4), [
-      "2026-07-14",
-      "2026-07-15",
-      "2026-07-13",
-      "2026-07-12",
-    ]);
-  });
-
   it("validates the requested backfill window", () => {
     assert.deepEqual(parseArgs(["--date=2026-07-14", "--days=7"]), {
       date: "2026-07-14",
