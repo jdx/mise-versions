@@ -508,8 +508,6 @@ generate_toml_from_plain_text() {
 	# Existing versions retain their stored metadata, but a newly discovered
 	# version would otherwise receive the current time and lose fields such as
 	# release_url and prerelease. Skip the tool and retry it on the next run.
-	increment_stat "total_json_metadata_fallbacks"
-	add_to_list "json_metadata_fallback_tools_list" "$tool"
 	log_warn "Using plain-text fallback after metadata failure" "tool=$tool" "reason=$json_metadata_fallback_reason"
 	if ! fallback_new_versions=$(collect_fallback_new_versions "$tool"); then
 		log_error "Failed to compare fallback versions" "tool=$tool"
@@ -718,6 +716,12 @@ fetch() {
 	# so the fallback path can tell "this tool genuinely has no versions" from
 	# "the listing failed", and so `collect_fallback_new_versions` can refuse to
 	# add a version whose metadata we never saw.
+	#
+	# Record the fallback here rather than where it succeeds: a tool whose
+	# plain-text listing also fails still needed one, and the summary reports
+	# which tools needed a fallback.
+	increment_stat "total_json_metadata_fallbacks"
+	add_to_list "json_metadata_fallback_tools_list" "$tool"
 	stderr_file=$(mktemp)
 	if ! docker_ls_remote "$tool" "$token" "$stderr_file" "docs/$tool"; then
 		rm -f "docs/$tool"

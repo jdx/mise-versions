@@ -234,6 +234,14 @@ test_every_listing_runs_in_the_docker_sandbox() {
 
 	assert_equals "1" "$invocations" \
 		"ls-remote is only ever invoked through the Docker sandbox helper"
+
+	# The count alone would not notice the helper itself dropping the sandbox.
+	local helper
+	helper=$(sed -n '/^docker_ls_remote() {/,/^}/p' scripts/update.sh)
+	assert_contains "$helper" 'docker run --rm' \
+		"The listing helper runs the container"
+	assert_contains "$helper" 'jdxcode/mise -y ls-remote' \
+		"The listing helper lists versions inside the container"
 }
 test_every_listing_runs_in_the_docker_sandbox
 
