@@ -1,4 +1,174 @@
 [versions]
+"0.1.0" = { created_at = 2018-10-18T13:46:39.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.1.0" }
+"0.1.1" = { created_at = 2018-11-30T23:38:37.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.1.1" }
+"0.2.0" = { created_at = 2018-12-04T19:26:38.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.2.0", prerelease = true }
+"0.3.0" = { created_at = 2018-12-06T19:12:06.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.3.0" }
+"0.3.1" = { created_at = 2018-12-12T01:17:30.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.3.1", prerelease = true }
+"0.3.2" = { created_at = 2018-12-12T01:19:53.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.3.2" }
+"0.3.3" = { created_at = 2018-12-10T23:14:24.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.3.3" }
+"0.3.4" = { created_at = 2018-12-20T05:42:30.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.3.4" }
+"0.4.0" = { created_at = 2019-01-07T07:20:25.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.0" }
+"0.4.1" = { created_at = 2019-01-08T06:40:33.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.1" }
+"0.4.2" = { created_at = 2019-01-09T04:41:14.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.2" }
+"0.4.3" = { created_at = 2019-01-12T13:32:28.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.3" }
+"0.4.4" = { created_at = 2019-01-17T20:37:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.4" }
+"0.4.5" = { created_at = 2019-02-05T03:58:36.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.5" }
+"0.4.6" = { created_at = 2019-02-12T21:18:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/0.4.6" }
+"1.0.9" = { created_at = 2019-06-03T22:51:01.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.0.9" }
+"1.0.10" = { created_at = 2019-06-05T22:15:40.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.0.10" }
+"1.0.11" = { created_at = 2019-06-10T22:20:50.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.0.11" }
+"1.0.12" = { created_at = 2019-06-18T08:57:40.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.0.12" }
+"1.1.0" = { created_at = 2019-06-20T15:40:04.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.1.0" }
+"1.1.1" = { created_at = 2019-06-24T23:07:02.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.1.1" }
+"1.1.2" = { created_at = 2019-07-03T12:39:56.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.1.2" }
+"1.1.3" = { created_at = 2019-07-08T11:07:23.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.1.3" }
+"1.1.4" = { created_at = 2019-07-08T11:36:22.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.1.4" }
+"1.2.0" = { created_at = 2019-07-16T08:50:57.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.2.0" }
+"1.2.1" = { created_at = 2019-07-16T12:37:09.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.2.1" }
+"1.2.2" = { created_at = 2019-08-05T10:29:00.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.2.2" }
+"1.3.0" = { created_at = 2019-08-12T07:46:05.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.3.0" }
+"1.3.1" = { created_at = 2019-08-22T15:36:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.3.1" }
+"1.3.2" = { created_at = 2019-08-22T17:25:20.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.3.2", prerelease = true }
+"1.3.3" = { created_at = 2019-08-29T02:39:43.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.3.3" }
+"1.4.0" = { created_at = 2019-09-03T06:33:54.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.0" }
+"1.4.1" = { created_at = 2019-09-03T10:23:58.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.1" }
+"1.4.2" = { created_at = 2019-09-06T13:16:41.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.2" }
+"1.4.3" = { created_at = 2019-09-06T13:23:29.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.3" }
+"1.4.4" = { created_at = 2019-09-06T18:29:58.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.4" }
+"1.4.5" = { created_at = 2019-09-12T16:19:34.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.5" }
+"1.4.6" = { created_at = 2019-09-18T21:07:10.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.6" }
+"1.4.7" = { created_at = 2019-09-23T03:16:49.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.7" }
+"1.4.8" = { created_at = 2019-10-04T21:38:02.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.8" }
+"1.4.9" = { created_at = 2019-10-07T17:27:42.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.4.9" }
+"1.5.1" = { created_at = 2019-10-23T19:32:16.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.1" }
+"1.5.2" = { created_at = 2019-10-29T04:15:58.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.2" }
+"1.5.3" = { created_at = 2019-11-04T15:56:55.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.3" }
+"1.5.4" = { created_at = 2019-11-07T08:32:02.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.4" }
+"1.5.5" = { created_at = 2019-11-12T09:14:26.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.5" }
+"1.5.6" = { created_at = 2019-11-13T06:50:57.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.6" }
+"1.5.7" = { created_at = 2019-11-15T09:36:26.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.7" }
+"1.5.8" = { created_at = 2019-11-22T13:15:29.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.8" }
+"1.5.9" = { created_at = 2019-12-02T10:20:59.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.9" }
+"1.5.10" = { created_at = 2019-12-02T14:23:56.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.5.10" }
+"1.6.0" = { created_at = 2019-12-03T09:25:02.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.6.0" }
+"1.6.1" = { created_at = 2019-12-11T11:25:45.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.6.1" }
+"1.6.2" = { created_at = 2019-12-19T23:31:21.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.6.2" }
+"1.6.3" = { created_at = 2019-12-23T19:44:27.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.6.3" }
+"1.6.4" = { created_at = 2020-01-13T22:10:19.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.6.4" }
+"1.6.5" = { created_at = 2020-01-17T15:43:20.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.6.5" }
+"1.7.0" = { created_at = 2020-01-31T04:24:42.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.7.0" }
+"1.7.1" = { created_at = 2020-01-31T09:09:20.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.7.1" }
+"1.7.2" = { created_at = 2020-02-18T12:26:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.7.2" }
+"1.7.3" = { created_at = 2020-02-24T20:35:38.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.7.3" }
+"1.7.4" = { created_at = 2020-02-28T19:21:29.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.7.4" }
+"1.8.0" = { created_at = 2020-03-06T11:29:26.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.0" }
+"1.8.1" = { created_at = 2020-03-13T01:47:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.1" }
+"1.8.2" = { created_at = 2020-03-31T01:05:03.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.2" }
+"1.8.3" = { created_at = 2020-04-09T07:07:56.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.3" }
+"1.8.4" = { created_at = 2020-04-15T07:17:22.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.4" }
+"1.8.5" = { created_at = 2020-04-29T10:00:36.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.5" }
+"1.8.6" = { created_at = 2020-05-07T06:37:34.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.6" }
+"1.8.7" = { created_at = 2020-05-07T07:18:55.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.7" }
+"1.8.8" = { created_at = 2020-05-07T20:07:35.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.8" }
+"1.8.9" = { created_at = 2020-05-20T20:00:25.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.9" }
+"1.8.10" = { created_at = 2020-06-05T06:36:57.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.10" }
+"1.8.11" = { created_at = 2020-06-11T18:26:08.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.11" }
+"1.8.12" = { created_at = 2020-06-18T22:01:04.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.12" }
+"1.8.13" = { created_at = 2020-06-26T10:09:59.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.13" }
+"1.8.14" = { created_at = 2020-07-01T10:11:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.14" }
+"1.8.15" = { created_at = 2020-07-20T18:59:35.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.15" }
+"1.8.16" = { created_at = 2020-08-17T08:07:43.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.16" }
+"1.8.17" = { created_at = 2020-08-27T08:43:51.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.17" }
+"1.8.18" = { created_at = 2020-09-01T14:02:00.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.18" }
+"1.8.19" = { created_at = 2020-09-04T12:23:28.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.19" }
+"1.8.20" = { created_at = 2020-09-07T10:12:50.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.20" }
+"1.8.21" = { created_at = 2020-09-07T11:59:52.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.21" }
+"1.8.22" = { created_at = 2020-09-14T10:57:39.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.8.22" }
+"1.9.0" = { created_at = 2020-09-24T07:00:52.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.0" }
+"1.9.1" = { created_at = 2020-10-06T14:23:02.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.1" }
+"1.9.2" = { created_at = 2020-10-13T05:12:57.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.2" }
+"1.9.3" = { created_at = 2020-10-22T05:01:14.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.3" }
+"1.9.4" = { created_at = 2020-10-28T09:19:27.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.4" }
+"1.9.5" = { created_at = 2020-11-10T06:57:34.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.5" }
+"1.9.6" = { created_at = 2020-11-19T07:41:59.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.9.6" }
+"1.10.0" = { created_at = 2020-11-23T10:34:21.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.0" }
+"1.10.1" = { created_at = 2020-12-01T07:40:05.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.1" }
+"1.10.2" = { created_at = 2020-12-11T11:56:32.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.2" }
+"1.10.3" = { created_at = 2020-12-24T06:24:27.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.3" }
+"1.10.4" = { created_at = 2021-01-25T20:08:09.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.4" }
+"1.10.5" = { created_at = 2021-01-26T05:56:45.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.5" }
+"1.10.6" = { created_at = 2021-02-05T05:36:07.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.6" }
+"1.10.7" = { created_at = 2021-02-17T10:47:25.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.7" }
+"1.10.8" = { created_at = 2021-02-17T23:54:37.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.8" }
+"1.10.9" = { created_at = 2021-02-19T08:52:21.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.10.9" }
+"1.11.0" = { created_at = 2021-02-23T11:39:06.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.11.0" }
+"1.11.1" = { created_at = 2021-03-04T06:54:40.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.11.1" }
+"1.11.2" = { created_at = 2021-03-08T11:05:13.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.11.2" }
+"1.11.3" = { created_at = 2021-03-08T13:48:45.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.11.3" }
+"1.11.4" = { created_at = 2021-03-11T12:49:12.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.11.4" }
+"1.11.5" = { created_at = 2021-03-17T20:44:51.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.11.5" }
+"1.12.0" = { created_at = 2021-03-26T05:25:02.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.0" }
+"1.12.1" = { created_at = 2021-03-26T21:17:13.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.1" }
+"1.12.2" = { created_at = 2021-03-29T09:42:09.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.2" }
+"1.12.3" = { created_at = 2021-03-29T19:08:30.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.3" }
+"1.12.4" = { created_at = 2021-04-04T12:35:42.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.4" }
+"1.12.5" = { created_at = 2021-04-06T11:38:50.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.5" }
+"1.12.6" = { created_at = 2021-04-09T05:56:05.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.6" }
+"1.12.7" = { created_at = 2021-04-17T06:21:57.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.7" }
+"1.12.8" = { created_at = 2021-04-19T10:34:04.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.8" }
+"1.12.9" = { created_at = 2021-05-04T18:22:37.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.9" }
+"1.12.10" = { created_at = 2021-05-08T10:13:48.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.10" }
+"1.12.11" = { created_at = 2021-05-10T12:28:17.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.11" }
+"1.12.12" = { created_at = 2021-05-14T10:02:18.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.12" }
+"1.12.13" = { created_at = 2021-05-24T12:04:39.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.13" }
+"1.12.14" = { created_at = 2021-05-28T14:07:43.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.14" }
+"1.12.15" = { created_at = 2021-06-07T10:25:37.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.12.15" }
+"1.13.0" = { created_at = 2021-06-18T10:01:52.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.0" }
+"1.13.1" = { created_at = 2021-07-02T09:27:55.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.1" }
+"1.13.2" = { created_at = 2021-07-20T15:36:15.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.2" }
+"1.13.3" = { created_at = 2021-07-30T16:57:49.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.3" }
+"1.13.4" = { created_at = 2021-08-03T15:09:40.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.4" }
+"1.13.5" = { created_at = 2021-08-24T11:19:35.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.5" }
+"1.13.6" = { created_at = 2021-08-25T07:48:47.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.6" }
+"1.13.7" = { created_at = 2021-08-28T07:24:17.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.7" }
+"1.13.8" = { created_at = 2021-09-03T11:56:12.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.8" }
+"1.13.9" = { created_at = 2021-09-07T10:52:48.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.9" }
+"1.13.10" = { created_at = 2021-09-07T19:27:09.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.10" }
+"1.13.11" = { created_at = 2021-09-12T10:04:28.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.13.11" }
+"1.14.0" = { created_at = 2021-09-17T05:37:52.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.0" }
+"1.14.1" = { created_at = 2021-09-29T05:34:34.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.1" }
+"1.14.2" = { created_at = 2021-11-04T09:51:19.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.2" }
+"1.14.3" = { created_at = 2021-11-04T11:03:33.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.3" }
+"1.14.4" = { created_at = 2021-11-04T16:53:03.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.4" }
+"1.14.5" = { created_at = 2021-11-05T12:14:45.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.5" }
+"1.14.6" = { created_at = 2021-11-16T16:02:49.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.6" }
+"1.14.7" = { created_at = 2021-11-24T11:49:39.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.7" }
+"1.14.8" = { created_at = 2021-11-25T16:18:12.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.8" }
+"1.14.9" = { created_at = 2021-12-14T12:27:57.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.9" }
+"1.14.10" = { created_at = 2021-12-21T04:41:45.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.14.10" }
+"1.15.0-rc.1" = { created_at = 2022-01-13T17:47:22.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.0-rc.1", prerelease = true }
+"1.15.0-rc.2" = { created_at = 2022-01-18T10:40:54.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.0-rc.2", prerelease = true }
+"1.15.0" = { created_at = 2022-01-21T10:04:59.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.0" }
+"1.15.1" = { created_at = 2022-01-25T10:19:37.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.1" }
+"1.15.2" = { created_at = 2022-01-26T11:12:19.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.2" }
+"1.15.3" = { created_at = 2022-02-02T17:44:43.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.3" }
+"1.15.4" = { created_at = 2022-02-09T18:45:05.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.4" }
+"1.15.5" = { created_at = 2022-02-18T05:29:58.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.5" }
+"1.15.6" = { created_at = 2022-03-02T14:04:35.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.6" }
+"1.15.7" = { created_at = 2022-03-12T20:21:29.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.7" }
+"1.15.8" = { created_at = 2022-03-15T05:34:13.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/1.15.8" }
+"2.0.0-rc.1" = { created_at = 2022-02-17T19:11:49.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.0-rc.1", prerelease = true }
+"2.0.0-rc.2" = { created_at = 2022-02-23T23:26:23.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.0-rc.2", prerelease = true }
+"2.0.0-rc.3" = { created_at = 2022-03-08T19:58:53.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.0-rc.3", prerelease = true }
+"2.0.0-rc.4" = { created_at = 2022-03-18T17:18:20.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.0-rc.4", prerelease = true }
+"2.0.0" = { created_at = 2022-03-21T13:28:23.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.0" }
+"2.0.1" = { created_at = 2022-03-22T13:52:26.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.1" }
+"2.0.2" = { created_at = 2022-03-28T16:51:09.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.2" }
+"2.0.3-rc.1" = { created_at = 2022-04-01T13:51:29.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.3-rc.1", prerelease = true }
+"2.0.3-rc.2" = { created_at = 2022-04-04T18:14:00.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.3-rc.2", prerelease = true }
+"2.0.3-rc.3" = { created_at = 2022-04-04T20:08:39.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.3-rc.3", prerelease = true }
+"2.0.3" = { created_at = 2022-04-05T08:32:05.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.0.3" }
+"2.1.0" = { created_at = 2022-04-06T13:31:23.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.1.0" }
 "2.1.1-rc.1" = { created_at = 2022-04-11T14:37:16.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.1.1-rc.1", prerelease = true }
 "2.1.1-rc.2" = { created_at = 2022-04-13T15:12:07.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.1.1-rc.2", prerelease = true }
 "2.1.1-rc.3" = { created_at = 2022-04-19T20:27:32.000Z, release_url = "https://github.com/okteto/okteto/releases/tag/2.1.1-rc.3", prerelease = true }
