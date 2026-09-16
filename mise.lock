@@ -123,7 +123,7 @@ url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Window
 url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717277"
 
 [[tools.hk]]
-version = "2.0.0"
+version = "2.0.1"
 backend = "aqua:jdx/hk"
 
 [tools.hk."platforms.linux-arm64"]
