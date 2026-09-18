@@ -3,6 +3,11 @@ import { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
 
 import { getPackslip } from "./packslip";
+import {
+  buildSearchFilter,
+  buildSearchRank,
+  normalizeSearch,
+} from "./tool-search";
 import type { PackslipMetadata } from "./packslip-manifest";
 
 // Pagination types
@@ -178,9 +183,11 @@ export async function loadToolsPaginated(
   const conditions: string[] = ["t.latest_version IS NOT NULL"];
   const bindParams: (string | number)[] = [];
 
-  if (search && search.trim()) {
-    conditions.push("t.name LIKE '%' || ? || '%'");
-    bindParams.push(search.trim().toLowerCase());
+  const query = normalizeSearch(search);
+  if (query) {
+    const filter = buildSearchFilter(query);
+    conditions.push(filter.sql);
+    bindParams.push(...filter.params);
   }
 
   // Backend filter - check if any backend in the JSON array starts with the backend type
@@ -201,12 +208,21 @@ export async function loadToolsPaginated(
       orderClause = "t.name ASC";
       break;
     case "updated":
-      orderClause = "t.last_updated DESC NULLS LAST";
+      orderClause = "t.last_updated DESC NULLS LAST, t.name ASC";
       break;
     case "downloads":
     default:
       orderClause = "downloads_30d DESC, t.name ASC";
       break;
+  }
+
+  // When searching, relevance leads and the chosen sort breaks ties, so an
+  // exact name match ("oc") never sits below a more popular partial match.
+  const rankParams: string[] = [];
+  if (query) {
+    const rank = buildSearchRank(query);
+    orderClause = `${rank.sql} ASC, ${orderClause}`;
+    rankParams.push(...rank.params);
   }
 
   // Main query uses summary tables populated by scheduled rollups.
@@ -266,7 +282,7 @@ export async function loadToolsPaginated(
   `;
 
   // Execute queries with individual error handling
-  const mainBindParams = [...bindParams, limit, offset];
+  const mainBindParams = [...bindParams, ...rankParams, limit, offset];
   const countBindParams = [...bindParams];
 
   let mainResults: D1Result<PaginatedToolRow>;

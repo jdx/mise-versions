@@ -8,6 +8,9 @@ import {
 
 import { PackslipBadge } from "./PackslipBadge";
 
+// Keystrokes settle for this long before the directory refetches.
+const SEARCH_DEBOUNCE_MS = 200;
+
 interface Tool {
   packslip?: object;
   name: string;
@@ -250,6 +253,10 @@ export function ToolSearch({
   const requestId = useRef(0);
   const requestedPage = useRef(initialPagination.page);
   const resultsRef = useRef<HTMLDivElement>(null);
+  // The query the displayed results were fetched for, so the debounce can skip
+  // a refetch when the input already matches what is on screen.
+  const fetchedSearch = useRef(initialSearch.trim());
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch tools from API
   const fetchTools = async (params: {
@@ -257,20 +264,26 @@ export function ToolSearch({
     search?: string;
     sort?: SortKey;
     backends?: string[];
-    history?: boolean;
+    history?: boolean | "replace";
   }) => {
     const id = ++requestId.current;
     requestedPage.current = params.page || 1;
+    fetchedSearch.current = (params.search || "").trim();
     setIsLoading(true);
     setError(false);
     try {
       const searchParams = directoryQuery(params);
 
-      // Update URL without reload
+      // Update URL without reload. Typing replaces the entry instead of
+      // pushing, so a single Back leaves the directory rather than replaying
+      // every keystroke.
       const newUrl = searchParams.toString()
         ? `${window.location.pathname}?${searchParams.toString()}`
         : window.location.pathname;
-      if (params.history !== false) window.history.pushState(null, "", newUrl);
+      if (params.history === "replace")
+        window.history.replaceState(null, "", newUrl);
+      else if (params.history !== false)
+        window.history.pushState(null, "", newUrl);
 
       const response = await fetch(`/api/tools?${searchParams.toString()}`);
       if (!response.ok) throw new Error("Failed to fetch tools");
@@ -307,6 +320,23 @@ export function ToolSearch({
       requestId.current++;
     };
   }, []);
+
+  // Search as you type: refetch once the input settles. Sort/backend changes
+  // re-run this too, but the guard makes it a no-op because their own fetch
+  // already covered the current query.
+  useEffect(() => {
+    if (search.trim() === fetchedSearch.current) return;
+    const timer = window.setTimeout(() => {
+      fetchTools({
+        page: 1,
+        search,
+        sort: sortBy,
+        backends: [...selectedBackends],
+        history: "replace",
+      });
+    }, SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(timer);
+  }, [search, sortBy, selectedBackends]);
 
   // Handle page change
   const handlePageChange = (newPage: number) => {
@@ -549,12 +579,16 @@ export function ToolSearch({
             class="hero-search"
             role="search"
             onSubmit={(e) => {
+              // Results already stream in as you type; Enter just skips the
+              // remaining debounce.
               e.preventDefault();
+              if (search.trim() === fetchedSearch.current) return;
               fetchTools({
                 page: 1,
                 search,
                 sort: sortBy,
                 backends: [...selectedBackends],
+                history: "replace",
               });
             }}
           >
@@ -571,13 +605,35 @@ export function ToolSearch({
               <path d="m16 16 5 5" />
             </svg>
             <input
+              ref={searchInputRef}
               type="search"
               aria-label="Search tools"
               placeholder="Search tools…"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck={false}
               value={search}
               onInput={(e) => setSearch(e.currentTarget.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape" && search) {
+                  e.preventDefault();
+                  setSearch("");
+                }
+              }}
             />
-            <button type="submit">Search</button>
+            {search && (
+              <button
+                type="button"
+                class="search-clear"
+                aria-label="Clear search"
+                onClick={() => {
+                  setSearch("");
+                  searchInputRef.current?.focus();
+                }}
+              >
+                ✕
+              </button>
+            )}
           </form>
         </div>
       </section>
