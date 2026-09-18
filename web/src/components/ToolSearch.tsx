@@ -254,9 +254,12 @@ export function ToolSearch({
   const requestedPage = useRef(initialPagination.page);
   const resultsRef = useRef<HTMLDivElement>(null);
   // The query the displayed results were fetched for, so the debounce can skip
-  // a refetch when the input already matches what is on screen. Null after a
-  // failed request, which makes the same query fetchable again.
-  const fetchedSearch = useRef<string | null>(initialSearch.trim());
+  // a refetch when the input already matches what is on screen. Null whenever
+  // no results stand behind the query -- a failed request here or a failed
+  // server render -- which makes that query fetchable again.
+  const fetchedSearch = useRef<string | null>(
+    initialError ? null : initialSearch.trim(),
+  );
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch tools from API
