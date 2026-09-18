@@ -344,6 +344,9 @@ code,
   font-size: 15px;
 }
 .hero-search .search-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: none;
   width: 26px;
   height: 26px;

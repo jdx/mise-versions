@@ -254,8 +254,9 @@ export function ToolSearch({
   const requestedPage = useRef(initialPagination.page);
   const resultsRef = useRef<HTMLDivElement>(null);
   // The query the displayed results were fetched for, so the debounce can skip
-  // a refetch when the input already matches what is on screen.
-  const fetchedSearch = useRef(initialSearch.trim());
+  // a refetch when the input already matches what is on screen. Null after a
+  // failed request, which makes the same query fetchable again.
+  const fetchedSearch = useRef<string | null>(initialSearch.trim());
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch tools from API
@@ -299,7 +300,12 @@ export function ToolSearch({
       });
       // Don't update backendCounts - keep the global counts for filter chips
     } catch (error) {
-      if (id === requestId.current) setError(true);
+      if (id === requestId.current) {
+        setError(true);
+        // The screen still shows the previous query's results, so let Enter
+        // and the debounce retry this one instead of treating it as fetched.
+        fetchedSearch.current = null;
+      }
       console.error("Failed to fetch tools:", error);
     } finally {
       if (id === requestId.current) setIsLoading(false);
@@ -327,6 +333,9 @@ export function ToolSearch({
   useEffect(() => {
     if (search.trim() === fetchedSearch.current) return;
     const timer = window.setTimeout(() => {
+      // Re-check: submitting with Enter fetches straight away without
+      // changing any dependency, so this timer is still pending.
+      if (search.trim() === fetchedSearch.current) return;
       fetchTools({
         page: 1,
         search,
