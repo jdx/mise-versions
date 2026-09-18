@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "preact/hooks";
 
 const MAX_SUGGESTIONS = 8;
+// Matches the directory search so both inputs feel equally responsive.
+const DEBOUNCE_MS = 200;
 
 interface Suggestion {
   name: string;
@@ -45,7 +47,10 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
     setQuery(value);
     setShowSuggestions(true);
     clearTimeout(debounceRef.current);
-    debounceRef.current = window.setTimeout(() => fetchSuggestions(value), 300);
+    debounceRef.current = window.setTimeout(
+      () => fetchSuggestions(value),
+      DEBOUNCE_MS,
+    );
   };
 
   // Reset the highlight when the list changes. -1 means "nothing selected", so
