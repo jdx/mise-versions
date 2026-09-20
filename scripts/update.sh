@@ -581,7 +581,7 @@ docker_ls_remote() {
 	shift 4
 
 	docker run --rm -e GITHUB_TOKEN="$token" -e GITHUB_API_TOKEN="$token" -e MISE_USE_VERSIONS_HOST -e MISE_LIST_ALL_VERSIONS -e MISE_LOG_HTTP -e MISE_EXPERIMENTAL -e MISE_PRERELEASES -e MISE_TRUSTED_CONFIG_PATHS=/ \
-		jdxcode/mise -y ls-remote --minimum-release-age 0s "$@" "$tool" >"$stdout_file" 2>"$stderr_file"
+		jdxcode/mise:dev -y ls-remote --minimum-release-age 0s "$@" "$tool" >"$stdout_file" 2>"$stderr_file"
 }
 
 # Handle a rate-limited listing: retire the token and retry with a fresh one.
@@ -829,11 +829,11 @@ setup_token_management() {
 if setup_token_management; then
 	log_group_start "Initialization"
 
-	CUR_MISE_VERSION=$(docker run jdxcode/mise -v)
+	CUR_MISE_VERSION=$(docker run jdxcode/mise:dev -v)
 	export CUR_MISE_VERSION
 	log_info "Mise version detected" "version=$CUR_MISE_VERSION"
 
-	tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise registry | awk '{print $1}')"
+	tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise:dev registry | awk '{print $1}')"
 	total_tools=$(echo "$tools" | wc -w)
 	set_stat "total_tools_available" "$total_tools"
 	log_info "Tool registry loaded" "total_tools=$total_tools"
