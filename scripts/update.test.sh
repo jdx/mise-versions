@@ -240,10 +240,26 @@ test_every_listing_runs_in_the_docker_sandbox() {
 	helper=$(sed -n '/^docker_ls_remote() {/,/^}/p' scripts/update.sh)
 	assert_contains "$helper" 'docker run --rm' \
 		"The listing helper runs the container"
-	assert_contains "$helper" 'jdxcode/mise -y ls-remote' \
+	assert_contains "$helper" 'jdxcode/mise:dev -y ls-remote' \
 		"The listing helper lists versions inside the container"
 }
 test_every_listing_runs_in_the_docker_sandbox
+
+test_every_image_reference_uses_the_dev_tag() {
+	# jdxcode/mise:latest is a scratch image holding only the mise binary; the
+	# full image the updater needs (git, bash, node, python) is published under
+	# the dev tag. Check every invocation, not just the listing helper, so the
+	# version probe and registry load cannot drift back to the bare image.
+	local references pinned
+	references=$(grep -vE '^[[:space:]]*#' scripts/update.sh | grep -c 'jdxcode/mise')
+	pinned=$(grep -vE '^[[:space:]]*#' scripts/update.sh | grep -c 'jdxcode/mise:dev')
+
+	assert_equals "3" "$references" \
+		"The updater runs the mise image for the version probe, the registry load, and listings"
+	assert_equals "$references" "$pinned" \
+		"Every mise image reference uses the dev tag"
+}
+test_every_image_reference_uses_the_dev_tag
 
 test_new_versions_are_rejected_during_metadata_fallback() {
 	local fallback_block
