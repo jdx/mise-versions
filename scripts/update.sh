@@ -829,11 +829,11 @@ setup_token_management() {
 if setup_token_management; then
 	log_group_start "Initialization"
 
-	CUR_MISE_VERSION=$(docker run jdxcode/mise:dev -v)
+	CUR_MISE_VERSION=$(docker run --rm jdxcode/mise:dev -v)
 	export CUR_MISE_VERSION
 	log_info "Mise version detected" "version=$CUR_MISE_VERSION"
 
-	tools="$(docker run -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise:dev registry | awk '{print $1}')"
+	tools="$(docker run --rm -e MISE_EXPERIMENTAL=1 -e MISE_VERSION="$CUR_MISE_VERSION" jdxcode/mise:dev registry | awk '{print $1}')"
 	total_tools=$(echo "$tools" | wc -w)
 	set_stat "total_tools_available" "$total_tools"
 	log_info "Tool registry loaded" "total_tools=$total_tools"
