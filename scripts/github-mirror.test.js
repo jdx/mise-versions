@@ -411,11 +411,12 @@ function youngReleaseRefreshSource({
   `;
 }
 
-const legacyCachedRelease = `(published) => ({
+const cachedRelease = `(published) => ({
   tag_name: "v1.0.0",
   draft: false,
   prerelease: false,
   created_at: published,
+  published_at: published,
   immutable: false,
   assets: [{
     name: "tool.tar.gz",
@@ -430,7 +431,7 @@ test("GitHub release mirror refreshes young mutable releases after re-uploads", 
     ${youngReleaseRefreshSource({
       publishedAgoMs: 6 * 60 * 60 * 1000,
       cachedAgoMs: 31 * 60 * 1000,
-      cachedData: legacyCachedRelease,
+      cachedData: cachedRelease,
     })}
 
     assert.equal(fetches, 1);
@@ -457,7 +458,7 @@ test("GitHub release mirror serves recently cached young releases without fetchi
     ${youngReleaseRefreshSource({
       publishedAgoMs: 6 * 60 * 60 * 1000,
       cachedAgoMs: 29 * 60 * 1000,
-      cachedData: legacyCachedRelease,
+      cachedData: cachedRelease,
     })}
 
     assert.equal(fetches, 0);
@@ -470,7 +471,7 @@ test("GitHub release mirror keeps the longer refresh window for older mutable re
     ${youngReleaseRefreshSource({
       publishedAgoMs: 3 * 24 * 60 * 60 * 1000,
       cachedAgoMs: 31 * 60 * 1000,
-      cachedData: legacyCachedRelease,
+      cachedData: cachedRelease,
     })}
 
     assert.equal(fetches, 0);
