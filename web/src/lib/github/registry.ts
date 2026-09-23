@@ -1,4 +1,11 @@
-const GITHUB_BACKEND_PREFIXES = ["aqua", "github", "ubi"] as const;
+// What precedes owner/repo in a registry backend that installs from that
+// repository's GitHub releases.
+const GITHUB_BACKEND_PREFIXES = [
+  "aqua:",
+  "github:",
+  "ubi:",
+  "packslip:github.com/",
+] as const;
 
 const GITHUB_RELEASE_REPOS = new Set([
   "erlang/otp",
@@ -31,11 +38,17 @@ export async function isRegisteredGitHubRepo(
   }
 
   const exactBackends = GITHUB_BACKEND_PREFIXES.map(
-    (backend) => `${backend}:${slug}`,
+    (prefix) => `${prefix}${slug}`,
   );
-  const filteredBackends = GITHUB_BACKEND_PREFIXES.map(
-    (backend) => `${backend}:${likeEscape(slug)}[%`,
-  );
+  const filteredBackends = [
+    ...GITHUB_BACKEND_PREFIXES.map(
+      (prefix) => `${prefix}${likeEscape(slug)}[%`,
+    ),
+    // A packslip project can live in a subdirectory of its repository
+    // (packslip:github.com/owner/repo/sub), and its releases are still the
+    // repository's.
+    `packslip:github.com/${likeEscape(slug)}/%`,
+  ];
 
   const row = await analyticsDb
     .prepare(
@@ -49,10 +62,8 @@ export async function isRegisteredGitHubRepo(
            OR EXISTS (
              SELECT 1
              FROM json_each(t.backends) b
-             WHERE lower(b.value) IN (?, ?, ?)
-                OR lower(b.value) LIKE ? ESCAPE '\\'
-                OR lower(b.value) LIKE ? ESCAPE '\\'
-                OR lower(b.value) LIKE ? ESCAPE '\\'
+             WHERE lower(b.value) IN (${exactBackends.map(() => "?").join(", ")})
+                OR ${filteredBackends.map(() => "lower(b.value) LIKE ? ESCAPE '\\'").join("\n                OR ")}
            )
         LIMIT 1
       `,
