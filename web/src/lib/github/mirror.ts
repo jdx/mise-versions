@@ -130,11 +130,7 @@ export function releaseEdgeCacheOptions(
 }
 
 function isYoungRelease(release: GitHubRelease): boolean {
-  // Entries cached before published_at was stored only have created_at, which
-  // is never later than published_at.
-  const timestamp = new Date(
-    release.published_at ?? release.created_at ?? "",
-  ).getTime();
+  const timestamp = new Date(release.published_at ?? "").getTime();
   return (
     Number.isFinite(timestamp) && Date.now() - timestamp < YOUNG_RELEASE_MS
   );
