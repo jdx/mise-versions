@@ -33,28 +33,28 @@ url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-pc-
 url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325573"
 
 [[tools.aube]]
-version = "2.2.17"
+version = "2.3.0"
 backend = "packslip:github.com/aubepkg/aube"
 specifiers = ["latest"]
 
 [tools.aube."platforms.linux-arm64"]
-checksum = "sha256:933d5e63aafef67baa7ec9b0589674e399b3f0e567837f88404b89f08be0bbc1"
-url = "https://github.com/aubepkg/aube/releases/download/v2.2.17/aube-v2.2.17-aarch64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:79d492a53a053a035d5b7b83b2e351207a75dd149cd8d37ce941dd46b0d555da"
+url = "https://github.com/aubepkg/aube/releases/download/v2.3.0/aube-v2.3.0-aarch64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release-plz.yml"
 
 [tools.aube."platforms.linux-x64"]
-checksum = "sha256:ee4f05a2989e6cbe55b306097cbb53da9f908789acb027e62c430de2f7e22c2f"
-url = "https://github.com/aubepkg/aube/releases/download/v2.2.17/aube-v2.2.17-x86_64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:250a7e2cf657e5e42f4fcce3443fa06ce457863fbbd4d8ccb7cfeb16a345b84d"
+url = "https://github.com/aubepkg/aube/releases/download/v2.3.0/aube-v2.3.0-x86_64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release-plz.yml"
 
 [tools.aube."platforms.macos-arm64"]
-checksum = "sha256:83b2906a998ea62eb4890abb8d45010f0ced1674a2bb6b436c2e352d47bb338f"
-url = "https://github.com/aubepkg/aube/releases/download/v2.2.17/aube-v2.2.17-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:717638c2fb87e3230d84c548ee9509f3dd880966744702c3e0d0345f1937c9b1"
+url = "https://github.com/aubepkg/aube/releases/download/v2.3.0/aube-v2.3.0-aarch64-apple-darwin.tar.gz"
 signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release-plz.yml"
 
 [tools.aube."platforms.windows-x64"]
-checksum = "sha256:03c93095d89f41496436083f45d770b3169dd1f7db91d86577a9e3d004605c0f"
-url = "https://github.com/aubepkg/aube/releases/download/v2.2.17/aube-v2.2.17-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:a6b88d0ea8e364619adeb7b280fa2594e69fabe7362087ba0219113ba6af1e7e"
+url = "https://github.com/aubepkg/aube/releases/download/v2.3.0/aube-v2.3.0-x86_64-pc-windows-msvc.zip"
 signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release-plz.yml"
 
 [[tools.fd]]
@@ -118,28 +118,28 @@ url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Window
 url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717277"
 
 [[tools.hk]]
-version = "2.0.1"
-backend = "aqua:jdx/hk"
+version = "2.1.0"
+backend = "packslip:github.com/jdx/hk"
 specifiers = ["latest"]
 
 [tools.hk."platforms.linux-arm64"]
-checksum = "sha256:8a28f2737914bbffa8dd16f39a2fc65d85e9a52261789cf6a1affd6c6762fbc1"
-url = "https://github.com/jdx/hk/releases/download/v2.0.1/hk-aarch64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:7ffb155147a8a9dae1b571fb31a5d19a35d0175afb5fe3e5b2c652ebf67feb9f"
+url = "https://github.com/jdx/hk/releases/download/v2.1.0/hk-aarch64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [tools.hk."platforms.linux-x64"]
-checksum = "sha256:f14d0290a07f82911f32ea5e4a91dd80d90abb852488912b1ade9b240f70d615"
-url = "https://github.com/jdx/hk/releases/download/v2.0.1/hk-x86_64-unknown-linux-gnu.tar.gz"
+checksum = "sha256:7a7b28741d16f777d8be90fbcd8523996ee95c2d5222d5b173652d9b37e31969"
+url = "https://github.com/jdx/hk/releases/download/v2.1.0/hk-x86_64-unknown-linux-gnu.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [tools.hk."platforms.macos-arm64"]
-checksum = "sha256:6ec393f898f562f76c4839a910356b4afec6740eff23f18ebdf8cf41c793a461"
-url = "https://github.com/jdx/hk/releases/download/v2.0.1/hk-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:b30c6fb4447b5a9c24f9f80d165dca2d2e682907b8acb8222391e0527fea1ebe"
+url = "https://github.com/jdx/hk/releases/download/v2.1.0/hk-aarch64-apple-darwin.tar.gz"
 signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [tools.hk."platforms.windows-x64"]
-checksum = "sha256:b3cb8ab5958393faacefabfb3a402060eb256b1fda8e1f83c74c3fc877ebff8f"
-url = "https://github.com/jdx/hk/releases/download/v2.0.1/hk-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:c0344c09c76f7e25985c4770148130881b19313393d238949e5512ec3691fac3"
+url = "https://github.com/jdx/hk/releases/download/v2.1.0/hk-x86_64-pc-windows-msvc.zip"
 signer = "sigstore-oidc:https://github.com/jdx/hk/.github/workflows/release.yml"
 
 [[tools.node]]
