@@ -2,36 +2,6 @@
 
 lockfile_version = 2
 
-[[tools."aqua:chmln/sd"]]
-version = "1.1.0"
-backend = "aqua:chmln/sd"
-specifiers = ["latest"]
-
-[tools."aqua:chmln/sd"."platforms.linux-arm64"]
-checksum = "sha256:ec8c93c0533ff21f4851d11566808d4082544baf063d9b96ea77c27e98b7cd99"
-url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-aarch64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325535"
-
-[tools."aqua:chmln/sd"."platforms.linux-x64"]
-checksum = "sha256:3613eca74cd686739bb5a6d68319aa56c747e7315274d02323a2ca2b1c5d82d2"
-url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325296"
-
-[tools."aqua:chmln/sd"."platforms.macos-arm64"]
-checksum = "sha256:4bd3c09226376ca0a1d69589c91e86276fae36c5fbaaee669afce583f6682030"
-url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-aarch64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325451"
-
-[tools."aqua:chmln/sd"."platforms.macos-x64"]
-checksum = "sha256:1fca1e9c91813a8aac6821063c923107ba0f66a83309e095edcd3b202f67f97e"
-url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-apple-darwin.tar.gz"
-url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325430"
-
-[tools."aqua:chmln/sd"."platforms.windows-x64"]
-checksum = "sha256:59837c2e7c911099aca1cc46b663bcdc5a949fd3e9fbbaf34fc73e5d5d71007c"
-url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325573"
-
 [[tools.aube]]
 version = "2.3.0"
 backend = "packslip:github.com/aubepkg/aube"
@@ -87,36 +57,6 @@ checksum = "sha256:a227701b8551c35a9931d9f6da75503cf86d88e182d71fb849a70864c5d57
 url = "https://github.com/sharkdp/fd/releases/download/v10.5.0/fd-v10.5.0-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/sharkdp/fd/releases/assets/530482901"
 
-[[tools."github:peak/s5cmd"]]
-version = "2.3.0"
-backend = "github:peak/s5cmd"
-specifiers = ["latest"]
-
-[tools."github:peak/s5cmd"."platforms.linux-arm64"]
-checksum = "sha256:1439f0d00ecedcd2a2f1f2c6749bbb0152b2257bf5086f29646ec8ae38798e24"
-url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717270"
-
-[tools."github:peak/s5cmd"."platforms.linux-x64"]
-checksum = "sha256:33e73005f183e5758161b32440ec65b15c934eb60c3b42795fb335418ca110ac"
-url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-32bit.tar.gz"
-url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717272"
-
-[tools."github:peak/s5cmd"."platforms.macos-arm64"]
-checksum = "sha256:ae007bc96276f498ae3c1fb017e57630cf93ef260cfe7e97b365522e240c973f"
-url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_macOS-arm64.tar.gz"
-url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717274"
-
-[tools."github:peak/s5cmd"."platforms.macos-x64"]
-checksum = "sha256:df6f76f6d317c4d051ad083219ed36eb8d8e5ebc55ceeeb91f5e66cdc3ac71fb"
-url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_macOS-64bit.tar.gz"
-url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717268"
-
-[tools."github:peak/s5cmd"."platforms.windows-x64"]
-checksum = "sha256:a5ff4e82f679dbd45310a0d57519fcfe66c1df2703d883ff9f40a20db7e65fe8"
-url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Windows-32bit.zip"
-url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717277"
-
 [[tools.hk]]
 version = "2.1.0"
 backend = "packslip:github.com/jdx/hk"
@@ -166,6 +106,66 @@ url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-darwin-x64.tar.gz"
 [tools.node."platforms.windows-x64"]
 checksum = "sha256:158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541"
 url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip"
+
+[[tools.s5cmd]]
+version = "2.3.0"
+backend = "aqua:peak/s5cmd"
+specifiers = ["latest"]
+
+[tools.s5cmd."platforms.linux-arm64"]
+checksum = "sha256:1439f0d00ecedcd2a2f1f2c6749bbb0152b2257bf5086f29646ec8ae38798e24"
+url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717270"
+
+[tools.s5cmd."platforms.linux-x64"]
+checksum = "sha256:de0fdbfa3aceae55e069ba81a0fc17b2026567637603734a387b2fca06c299b4"
+url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Linux-64bit.tar.gz"
+url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717269"
+
+[tools.s5cmd."platforms.macos-arm64"]
+checksum = "sha256:ae007bc96276f498ae3c1fb017e57630cf93ef260cfe7e97b365522e240c973f"
+url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_macOS-arm64.tar.gz"
+url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717274"
+
+[tools.s5cmd."platforms.macos-x64"]
+checksum = "sha256:df6f76f6d317c4d051ad083219ed36eb8d8e5ebc55ceeeb91f5e66cdc3ac71fb"
+url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_macOS-64bit.tar.gz"
+url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717268"
+
+[tools.s5cmd."platforms.windows-x64"]
+checksum = "sha256:9d8a98c1d9f6284c6d54aeec3daeb5f1412fd101850ae756c1e70dd8ffe52166"
+url = "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_Windows-64bit.zip"
+url_api = "https://api.github.com/repos/peak/s5cmd/releases/assets/213717275"
+
+[[tools.sd]]
+version = "1.1.0"
+backend = "aqua:chmln/sd"
+specifiers = ["latest"]
+
+[tools.sd."platforms.linux-arm64"]
+checksum = "sha256:ec8c93c0533ff21f4851d11566808d4082544baf063d9b96ea77c27e98b7cd99"
+url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325535"
+
+[tools.sd."platforms.linux-x64"]
+checksum = "sha256:3613eca74cd686739bb5a6d68319aa56c747e7315274d02323a2ca2b1c5d82d2"
+url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325296"
+
+[tools.sd."platforms.macos-arm64"]
+checksum = "sha256:4bd3c09226376ca0a1d69589c91e86276fae36c5fbaaee669afce583f6682030"
+url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325451"
+
+[tools.sd."platforms.macos-x64"]
+checksum = "sha256:1fca1e9c91813a8aac6821063c923107ba0f66a83309e095edcd3b202f67f97e"
+url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325430"
+
+[tools.sd."platforms.windows-x64"]
+checksum = "sha256:59837c2e7c911099aca1cc46b663bcdc5a949fd3e9fbbaf34fc73e5d5d71007c"
+url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325573"
 
 [[tools.shellcheck]]
 version = "0.11.0"

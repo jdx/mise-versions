@@ -16,10 +16,10 @@ depends = ["build"]
 run = "aube exec wrangler deploy"
 
 [tools]
-"aqua:chmln/sd" = "latest"
+sd = "latest"
 aube = { version = "latest", minimum_release_age = "0s" }
 fd = "latest"
-"github:peak/s5cmd" = "latest"
+s5cmd = "latest"
 hk = { version = "latest", minimum_release_age = "0s" }
 node = "24"
 shellcheck = "latest"
