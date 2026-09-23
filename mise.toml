@@ -16,16 +16,16 @@ depends = ["build"]
 run = "aube exec wrangler deploy"
 
 [tools]
-"aqua:chmln/sd" = "latest"
-aube = "latest"
+sd = "latest"
+aube = { version = "latest", minimum_release_age = "0s" }
 fd = "latest"
-"github:peak/s5cmd" = "latest"
-hk = "latest"
+s5cmd = "latest"
+hk = { version = "latest", minimum_release_age = "0s" }
 node = "24"
 shellcheck = "latest"
 shfmt = "latest"
 uv = "latest"
-wait-for-gh-rate-limit = "latest"
+wait-for-gh-rate-limit = { version = "latest", minimum_release_age = "0s" }
 yq = "latest"
 
 [env]
