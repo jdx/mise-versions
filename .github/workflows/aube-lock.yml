@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   aube-lock:
-    uses: jdx/renovate-config/.github/workflows/aube-lock.yml@8cabc2edc8a57962ced923dc1a376ec9bf760e5a # main
+    uses: jdx/renovate-config/.github/workflows/aube-lock.yml@c7361498df70199180841a52ce12658565eca58f # main
     with:
       post_update_task: types
       post_update_paths: |
