@@ -359,6 +359,131 @@ test("GitHub release mirror trusts explicit upstream mutable releases", () => {
   `);
 });
 
+function youngReleaseRefreshSource({
+  publishedAgoMs,
+  cachedAgoMs,
+  cachedData,
+}) {
+  return `
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      releaseCacheHeaders,
+      releaseEdgeCacheOptions,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const published = new Date(Date.now() - ${publishedAgoMs}).toISOString();
+    const reuploaded = new Date(Date.now() - 60 * 1000).toISOString();
+    const writes = [];
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response(JSON.stringify({
+        tag_name: "v1.0.0",
+        draft: false,
+        prerelease: false,
+        immutable: false,
+        created_at: published,
+        published_at: published,
+        updated_at: reuploaded,
+        assets: [{
+          name: "tool.tar.gz",
+          browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+          url: "https://api.github.com/repos/owner/repo/releases/assets/2",
+          digest: "sha256:new",
+          updated_at: reuploaded,
+        }],
+      }), { status: 200 });
+    };
+    const cachedData = ${cachedData};
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => ({
+          cached_at: Date.now() - ${cachedAgoMs},
+          data: cachedData(published),
+        }),
+        put: async (key, value, options) => writes.push({ key, value, options }),
+      },
+    };
+
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "v1.0.0");
+  `;
+}
+
+const legacyCachedRelease = `(published) => ({
+  tag_name: "v1.0.0",
+  draft: false,
+  prerelease: false,
+  created_at: published,
+  immutable: false,
+  assets: [{
+    name: "tool.tar.gz",
+    browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+    url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+    digest: "sha256:old",
+  }],
+})`;
+
+test("GitHub release mirror refreshes young mutable releases after re-uploads", () => {
+  runMirrorTest(`
+    ${youngReleaseRefreshSource({
+      publishedAgoMs: 6 * 60 * 60 * 1000,
+      cachedAgoMs: 31 * 60 * 1000,
+      cachedData: legacyCachedRelease,
+    })}
+
+    assert.equal(fetches, 1);
+    assert.equal(release.assets[0].digest, "sha256:new");
+    assert.equal(release.updated_at, reuploaded);
+    assert.equal(release.published_at, published);
+    assert.equal(release.assets[0].updated_at, reuploaded);
+    assert.equal(JSON.parse(writes[0].value).data.assets[0].digest, "sha256:new");
+    assert.equal(
+      releaseCacheHeaders("v1.0.0", release)["Cache-Control"],
+      "public, max-age=600, s-maxage=1800",
+    );
+    assert.deepEqual(releaseEdgeCacheOptions("v1.0.0", release), {
+      browserMaxAge: undefined,
+      edgeMaxAge: 1800,
+      staleWhileRevalidate: 0,
+      cacheGeneration: undefined,
+    });
+  `);
+});
+
+test("GitHub release mirror serves recently cached young releases without fetching", () => {
+  runMirrorTest(`
+    ${youngReleaseRefreshSource({
+      publishedAgoMs: 6 * 60 * 60 * 1000,
+      cachedAgoMs: 29 * 60 * 1000,
+      cachedData: legacyCachedRelease,
+    })}
+
+    assert.equal(fetches, 0);
+    assert.equal(release.assets[0].digest, "sha256:old");
+  `);
+});
+
+test("GitHub release mirror keeps the longer refresh window for older mutable releases", () => {
+  runMirrorTest(`
+    ${youngReleaseRefreshSource({
+      publishedAgoMs: 3 * 24 * 60 * 60 * 1000,
+      cachedAgoMs: 31 * 60 * 1000,
+      cachedData: legacyCachedRelease,
+    })}
+
+    assert.equal(fetches, 0);
+    assert.equal(release.assets[0].digest, "sha256:old");
+    assert.deepEqual(releaseEdgeCacheOptions("v1.0.0", release), {
+      browserMaxAge: undefined,
+      edgeMaxAge: undefined,
+      staleWhileRevalidate: undefined,
+      cacheGeneration: undefined,
+    });
+  `);
+});
+
 test("GitHub release mirror rejects redirects outside the GitHub API", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";

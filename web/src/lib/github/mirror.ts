@@ -4,6 +4,11 @@ import { setupDatabase } from "../../../../src/database";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
+// Maintainers most often re-upload assets in the first hours or days after
+// publishing, so mutable releases in this window refresh much sooner.
+const YOUNG_RELEASE_MS = 2 * 24 * 60 * 60 * 1000;
+const YOUNG_RELEASE_FRESH_MS = 30 * 60 * 1000;
+const EDGE_YOUNG_RELEASE_TTL_SECONDS = 30 * 60;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
@@ -26,6 +31,7 @@ export interface GitHubAsset {
   browser_download_url: string;
   url: string;
   digest?: string | null;
+  updated_at?: string | null;
 }
 
 export interface GitHubRelease {
@@ -33,6 +39,8 @@ export interface GitHubRelease {
   draft: boolean;
   prerelease: boolean;
   created_at: string;
+  published_at?: string | null;
+  updated_at?: string | null;
   immutable?: boolean;
   assets: GitHubAsset[];
 }
@@ -89,6 +97,13 @@ export function cacheHeaders({
 
 export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
   const immutable = tag !== "latest" && release.immutable === true;
+  if (!immutable && isYoungRelease(release)) {
+    return cacheHeaders({
+      browserMaxAge: tag === "latest" ? 0 : 600,
+      edgeMaxAge: EDGE_YOUNG_RELEASE_TTL_SECONDS,
+      staleWhileRevalidate: 0,
+    });
+  }
   return cacheHeaders({
     browserMaxAge:
       tag === "latest" ? 0 : immutable ? 600 : EDGE_SHORT_TTL_SECONDS,
@@ -96,6 +111,38 @@ export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
     staleWhileRevalidate: tag === "latest" ? 0 : undefined,
     immutable,
   });
+}
+
+export function releaseEdgeCacheOptions(
+  tag: string,
+  release: GitHubRelease,
+  cacheGeneration?: string,
+): EdgeCacheOptions {
+  const young = release.immutable !== true && isYoungRelease(release);
+  return {
+    browserMaxAge: tag === "latest" ? 0 : undefined,
+    edgeMaxAge: young ? EDGE_YOUNG_RELEASE_TTL_SECONDS : undefined,
+    staleWhileRevalidate: tag === "latest" || young ? 0 : undefined,
+    cacheGeneration,
+  };
+}
+
+function isYoungRelease(release: GitHubRelease): boolean {
+  // Entries cached before published_at was stored only have created_at, which
+  // is never later than published_at.
+  const timestamp = new Date(
+    release.published_at ?? release.created_at ?? "",
+  ).getTime();
+  return (
+    Number.isFinite(timestamp) && Date.now() - timestamp < YOUNG_RELEASE_MS
+  );
+}
+
+function releaseFreshMs(release: GitHubRelease): number {
+  if (release.assets.length === 0) {
+    return EMPTY_RELEASE_FRESH_MS;
+  }
+  return isYoungRelease(release) ? YOUNG_RELEASE_FRESH_MS : RELEASE_FRESH_MS;
 }
 
 export function attestationsCacheHeaders() {
@@ -139,7 +186,7 @@ export async function putGitHubMirrorEdgeCache(
   }
 }
 
-interface EdgeCacheOptions {
+export interface EdgeCacheOptions {
   browserMaxAge?: number;
   edgeMaxAge?: number;
   staleWhileRevalidate?: number;
@@ -254,10 +301,7 @@ export async function getCachedGitHubReleaseResult(
       cacheKey,
       isFresh: (entry) =>
         (tag !== "latest" && entry.data.immutable === true) ||
-        Date.now() - entry.cached_at <
-          (entry.data.assets.length === 0
-            ? EMPTY_RELEASE_FRESH_MS
-            : RELEASE_FRESH_MS),
+        Date.now() - entry.cached_at < releaseFreshMs(entry.data),
       fetcher: (token) => fetchGitHubRelease(owner, repo, tag, token),
       expirationTtl: (data) =>
         data.assets.length === 0
@@ -495,7 +539,7 @@ async function fetchGitHubRelease(
     tag === "latest"
       ? "releases/latest"
       : `releases/tags/${encodeURIComponent(tag)}`;
-  const data = await githubJson<GitHubRelease & { published_at?: string }>(
+  const data = await githubJson<GitHubRelease>(
     `https://api.github.com/repos/${owner}/${repo}/${path}`,
     token,
   );
@@ -506,19 +550,23 @@ async function fetchGitHubRelease(
     !data.draft &&
     !data.prerelease &&
     (data.immutable === true ||
-      (data.immutable === undefined && releaseAgeImmutable(data.published_at)));
+      (data.immutable === undefined &&
+        releaseAgeImmutable(data.published_at ?? undefined)));
 
   return {
     tag_name: data.tag_name,
     draft: data.draft,
     prerelease: data.prerelease,
     created_at: data.created_at,
+    published_at: data.published_at ?? null,
+    updated_at: data.updated_at ?? null,
     immutable,
     assets: assets.map((asset) => ({
       name: asset.name,
       browser_download_url: asset.browser_download_url,
       url: asset.url,
       digest: asset.digest ?? null,
+      updated_at: asset.updated_at ?? null,
     })),
   };
 }
