@@ -9,6 +9,7 @@ const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
 const YOUNG_RELEASE_MS = 2 * 24 * 60 * 60 * 1000;
 const YOUNG_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EDGE_YOUNG_RELEASE_TTL_SECONDS = 30 * 60;
+const BROWSER_YOUNG_RELEASE_MAX_AGE_SECONDS = 10 * 60;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
@@ -99,7 +100,8 @@ export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
   const immutable = tag !== "latest" && release.immutable === true;
   if (!immutable && isYoungRelease(release)) {
     return cacheHeaders({
-      browserMaxAge: tag === "latest" ? 0 : 600,
+      browserMaxAge:
+        tag === "latest" ? 0 : BROWSER_YOUNG_RELEASE_MAX_AGE_SECONDS,
       edgeMaxAge: EDGE_YOUNG_RELEASE_TTL_SECONDS,
       staleWhileRevalidate: 0,
     });
