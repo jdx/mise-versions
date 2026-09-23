@@ -37,10 +37,28 @@ test("GitHub registry allowlist normalizes and checks registry-backed slugs", as
     "aqua:cli/cli",
     "github:cli/cli",
     "ubi:cli/cli",
+    "packslip:github.com/cli/cli",
     "aqua:cli/cli[%",
     "github:cli/cli[%",
     "ubi:cli/cli[%",
+    "packslip:github.com/cli/cli[%",
+    "packslip:github.com/cli/cli/%",
   ]);
+  // One placeholder per bound value, so no argument shifts into the wrong slot.
+  assert.equal(seen.query.match(/\?/g).length, seen.args.length);
+});
+
+test("GitHub registry allowlist admits packslip backends and escapes LIKE wildcards", async () => {
+  const seen = {};
+  await isRegisteredGitHubRepo(
+    analyticsDbReturning({ allowed: 1 }, seen),
+    "AubePkg",
+    "my_tool",
+  );
+
+  assert.ok(seen.args.includes("packslip:github.com/aubepkg/my_tool"));
+  assert.ok(seen.args.includes("packslip:github.com/aubepkg/my\\_tool[%"));
+  assert.ok(seen.args.includes("packslip:github.com/aubepkg/my\\_tool/%"));
 });
 
 test("GitHub registry allowlist rejects unknown repos", async () => {
