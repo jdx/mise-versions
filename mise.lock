@@ -30,7 +30,7 @@ url = "https://github.com/chmln/sd/releases/download/v1.1.0/sd-v1.1.0-x86_64-pc-
 url_api = "https://api.github.com/repos/chmln/sd/releases/assets/362325573"
 
 [[tools.aube]]
-version = "2.2.17"
+version = "2.3.0"
 backend = "github:endevco/aube"
 
 [tools.aube."platforms.linux-arm64"]
