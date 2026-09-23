@@ -8,6 +8,7 @@ import {
   matchGitHubMirrorEdgeCache,
   putGitHubMirrorEdgeCache,
   releaseCacheHeaders,
+  releaseEdgeCacheOptions,
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
@@ -74,11 +75,11 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     );
     if (!staleFallback) {
       locals.cfContext.waitUntil(
-        putGitHubMirrorEdgeCache(request, response, {
-          browserMaxAge: tag === "latest" ? 0 : undefined,
-          staleWhileRevalidate: tag === "latest" ? 0 : undefined,
-          cacheGeneration,
-        }),
+        putGitHubMirrorEdgeCache(
+          request,
+          response,
+          releaseEdgeCacheOptions(tag, release, cacheGeneration),
+        ),
       );
     }
     return response;
