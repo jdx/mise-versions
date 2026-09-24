@@ -437,7 +437,8 @@ async function cacheReleaseError(
   cacheKey: string,
   error: unknown,
 ): Promise<void> {
-  if (!(error instanceof GitHubError)) {
+  // A draft may be published any minute; don't hide it behind a 404.
+  if (!(error instanceof GitHubError) || error instanceof DraftReleaseError) {
     return;
   }
   const freshMs = releaseErrorFreshMs(error.status, error);
@@ -673,7 +674,7 @@ async function fetchGitHubRelease(
   );
   // A draft is only visible to tokens with push access; never publish one.
   if (data.draft) {
-    throw new GitHubError(404, "Not found", new Headers());
+    throw new DraftReleaseError(404, "Not found", new Headers());
   }
   const assets = data.assets ?? [];
   const immutable =
@@ -718,12 +719,16 @@ async function fetchGitHubReleaseList(
   token: TokenRecord | null,
 ): Promise<GitHubReleaseListPage> {
   assertValidRepo(owner, repo);
-  const data = await githubJson<
-    (GitHubListedRelease & { assets?: GitHubListedAsset[] })[]
-  >(
+  const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${RELEASE_LIST_PER_PAGE}&page=${page}`,
     token,
   );
+  // GitHub says whether another page exists; a full page may be the last.
+  const hasNextPage = hasNextLink(response.headers.get("link"));
+  const data =
+    await readJsonResponse<
+      (GitHubListedRelease & { assets?: GitHubListedAsset[] })[]
+    >(response);
   if (!Array.isArray(data)) {
     throw new GitHubError(
       502,
@@ -750,13 +755,16 @@ async function fetchGitHubReleaseList(
     }));
   return {
     releases,
-    next_page:
-      data.length >= RELEASE_LIST_PER_PAGE && page < RELEASE_LIST_MAX_PAGE
-        ? page + 1
-        : null,
-    truncated:
-      data.length >= RELEASE_LIST_PER_PAGE && page >= RELEASE_LIST_MAX_PAGE,
+    next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
   };
+}
+
+function hasNextLink(link: string | null): boolean {
+  return (
+    !!link &&
+    link.split(",").some((part) => /;\s*rel="?next"?(\s*;|\s*$)/.test(part))
+  );
 }
 
 async function fetchGitHubAttestations(
@@ -1012,11 +1020,15 @@ export class GitHubError extends Error {
   }
 }
 
+/** A release GitHub showed the pool as a draft; served as a 404. */
+class DraftReleaseError extends GitHubError {}
+
 export const __testing = {
   GitHubError,
   edgeCacheRequest,
   edgeCacheResponse,
   githubJsonHeaders,
+  hasNextLink,
   isGitHubApiUrl,
   isRateLimited,
   resetAt,

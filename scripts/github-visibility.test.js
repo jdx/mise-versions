@@ -306,8 +306,9 @@ test("draft releases are never mirrored by tag", () => {
       () => getCachedGitHubRelease(env, "o", "r", "v2.0.0"),
       (error) => githubStatus(error) === 404,
     );
-    // Only the negative cache entry is written; no release data.
-    assert.ok(writes.every((w) => !w.value.includes("a.tar.gz")));
+    // Nothing is cached: not the draft, and not a 404 that would hide the
+    // release once it is published.
+    assert.deepEqual(writes, []);
   `);
 });
 
@@ -399,7 +400,8 @@ test("release list pages report the next page from the unfiltered size", () => {
     import { getCachedGitHubReleaseList } from "./web/src/lib/github/mirror.ts";
 
     // A full page where every release is a draft: nothing to publish, but
-    // there are more pages.
+    // GitHub links a next page.
+    let link = '<https://api.github.com/repositories/1/releases?page=2>; rel="next", <https://api.github.com/repositories/1/releases?page=20>; rel="last"';
     globalThis.fetch = async () =>
       new Response(JSON.stringify(Array.from({ length: 100 }, (_, i) => ({
         tag_name: "draft-" + i,
@@ -407,7 +409,7 @@ test("release list pages report the next page from the unfiltered size", () => {
         prerelease: false,
         created_at: "2026-01-01T00:00:00Z",
         assets: [],
-      }))), { status: 200 });
+      }))), { status: 200, headers: link ? { link } : {} });
     const env = {
       DB: {},
       GITHUB_CACHE: { get: async () => null, put: async () => {} },
@@ -417,6 +419,14 @@ test("release list pages report the next page from the unfiltered size", () => {
     // The mirror stops at its last page and says the rest is GitHub's.
     const { list: last } = await getCachedGitHubReleaseList(env, "owner", "repo", 10);
     assert.deepEqual(last, { releases: [], next_page: null, truncated: true });
+
+    // A full page with no next link is the end, even at the last page.
+    link = '<https://api.github.com/repositories/1/releases?page=1>; rel="first", <https://api.github.com/repositories/1/releases?page=9>; rel="prev"';
+    const { list: exact } = await getCachedGitHubReleaseList(env, "owner", "repo", 10);
+    assert.deepEqual(exact, { releases: [], next_page: null, truncated: false });
+    link = null;
+    const { list: unlinked } = await getCachedGitHubReleaseList(env, "owner", "repo", 3);
+    assert.deepEqual(unlinked, { releases: [], next_page: null, truncated: false });
   `);
 });
 
