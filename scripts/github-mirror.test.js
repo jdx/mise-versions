@@ -115,8 +115,14 @@ test("catalog generations isolate mutable latest caches", () => {
     );
     assert.deepEqual(writes[0].options, { expirationTtl: 2592000 });
     assert.equal(
-      releaseCacheHeaders("latest", release)["Cache-Control"],
+      releaseCacheHeaders("latest", release, generation)["Cache-Control"],
       "public, max-age=0, s-maxage=3600",
+    );
+    // Without a catalog generation nothing invalidates latest, so it expires
+    // on its own.
+    assert.equal(
+      releaseCacheHeaders("latest", release)["Cache-Control"],
+      "public, max-age=0, s-maxage=600",
     );
     assert.equal(
       __testing.edgeCacheResponse(new Response("latest"), {

@@ -10,6 +10,10 @@ const YOUNG_RELEASE_MS = 2 * 24 * 60 * 60 * 1000;
 const YOUNG_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EDGE_YOUNG_RELEASE_TTL_SECONDS = 30 * 60;
 const BROWSER_YOUNG_RELEASE_MAX_AGE_SECONDS = 10 * 60;
+// `latest` for a repo the catalog does not track has no generation to
+// invalidate it when a release is published, so it expires on its own.
+const UNTRACKED_LATEST_FRESH_MS = 10 * 60 * 1000;
+const EDGE_UNTRACKED_LATEST_TTL_SECONDS = 10 * 60;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
 const RELEASE_IMMUTABLE_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
@@ -44,6 +48,34 @@ export interface GitHubRelease {
   updated_at?: string | null;
   immutable?: boolean;
   assets: GitHubAsset[];
+}
+
+export interface GitHubListedAsset extends GitHubAsset {
+  updated_at?: string | null;
+}
+
+export interface GitHubListedRelease {
+  tag_name: string;
+  draft: boolean;
+  prerelease: boolean;
+  created_at: string;
+  published_at: string | null;
+  assets: GitHubListedAsset[];
+}
+
+export interface GitHubReleaseListPage {
+  releases: GitHubListedRelease[];
+  /**
+   * The page to request next, or null when there is none to request here.
+   * Computed before drafts are removed, so a short `releases` array does not
+   * mean the end.
+   */
+  next_page: number | null;
+  /**
+   * The repository has more releases than the mirror serves
+   * (RELEASE_LIST_MAX_PAGE pages); the rest must come from GitHub.
+   */
+  truncated: boolean;
 }
 
 interface GitHubAttestation {
@@ -96,7 +128,18 @@ export function cacheHeaders({
   };
 }
 
-export function releaseCacheHeaders(tag: string, release: GitHubRelease) {
+export function releaseCacheHeaders(
+  tag: string,
+  release: GitHubRelease,
+  cacheGeneration?: string,
+) {
+  if (isUntrackedLatest(tag, cacheGeneration)) {
+    return cacheHeaders({
+      browserMaxAge: 0,
+      edgeMaxAge: EDGE_UNTRACKED_LATEST_TTL_SECONDS,
+      staleWhileRevalidate: 0,
+    });
+  }
   const immutable = tag !== "latest" && release.immutable === true;
   if (!immutable && isYoungRelease(release)) {
     return cacheHeaders({
@@ -123,10 +166,18 @@ export function releaseEdgeCacheOptions(
   const young = release.immutable !== true && isYoungRelease(release);
   return {
     browserMaxAge: tag === "latest" ? 0 : undefined,
-    edgeMaxAge: young ? EDGE_YOUNG_RELEASE_TTL_SECONDS : undefined,
+    edgeMaxAge: isUntrackedLatest(tag, cacheGeneration)
+      ? EDGE_UNTRACKED_LATEST_TTL_SECONDS
+      : young
+        ? EDGE_YOUNG_RELEASE_TTL_SECONDS
+        : undefined,
     staleWhileRevalidate: tag === "latest" || young ? 0 : undefined,
     cacheGeneration,
   };
+}
+
+function isUntrackedLatest(tag: string, cacheGeneration?: string): boolean {
+  return tag === "latest" && !cacheGeneration;
 }
 
 function isYoungRelease(release: GitHubRelease): boolean {
@@ -154,11 +205,12 @@ export function attestationsCacheHeaders() {
 export async function matchGitHubMirrorEdgeCache(
   request: Request,
   cacheGeneration?: string,
+  cacheKeyParams?: Record<string, string>,
 ): Promise<Response | null> {
   try {
     return (
       (await defaultEdgeCache().match(
-        edgeCacheRequest(request, cacheGeneration),
+        edgeCacheRequest(request, cacheGeneration, cacheKeyParams),
       )) ?? null
     );
   } catch (error) {
@@ -176,7 +228,11 @@ export async function putGitHubMirrorEdgeCache(
 
   try {
     await defaultEdgeCache().put(
-      edgeCacheRequest(request, options?.cacheGeneration),
+      edgeCacheRequest(
+        request,
+        options?.cacheGeneration,
+        options?.cacheKeyParams,
+      ),
       edgeCacheResponse(response, options),
     );
   } catch (error) {
@@ -189,6 +245,7 @@ export interface EdgeCacheOptions {
   edgeMaxAge?: number;
   staleWhileRevalidate?: number;
   cacheGeneration?: string;
+  cacheKeyParams?: Record<string, string>;
 }
 
 function edgeCacheResponse(
@@ -220,13 +277,21 @@ function defaultEdgeCache(): Cache {
   return (caches as unknown as { default: Cache }).default;
 }
 
-function edgeCacheRequest(request: Request, cacheGeneration?: string): Request {
+function edgeCacheRequest(
+  request: Request,
+  cacheGeneration?: string,
+  cacheKeyParams?: Record<string, string>,
+): Request {
   // Query params are ignored by these mirror handlers, so strip them to avoid
-  // unbounded cache-key variants. Cache API cold misses are not coalesced, and
-  // cached allowlisted responses can outlive registry removals until this
-  // capped edge TTL expires.
+  // unbounded cache-key variants; handlers that read a param pass its
+  // normalized value back in `cacheKeyParams`. Cache API cold misses are not
+  // coalesced. Routes check repo visibility before reading this cache, so a
+  // repo that turns private stops being served once that check expires.
   const url = new URL(request.url);
   url.search = "";
+  for (const [key, value] of Object.entries(cacheKeyParams ?? {})) {
+    url.searchParams.set(key, value);
+  }
   if (cacheGeneration) {
     url.searchParams.set("__mise_cache_generation", cacheGeneration);
   }
@@ -299,7 +364,10 @@ export async function getCachedGitHubReleaseResult(
       cacheKey,
       isFresh: (entry) =>
         (tag !== "latest" && entry.data.immutable === true) ||
-        Date.now() - entry.cached_at < releaseFreshMs(entry.data),
+        Date.now() - entry.cached_at <
+          (isUntrackedLatest(tag, cacheGeneration)
+            ? Math.min(UNTRACKED_LATEST_FRESH_MS, releaseFreshMs(entry.data))
+            : releaseFreshMs(entry.data)),
       fetcher: (token) => fetchGitHubRelease(owner, repo, tag, token),
       expirationTtl: (data) =>
         data.assets.length === 0
@@ -369,7 +437,8 @@ async function cacheReleaseError(
   cacheKey: string,
   error: unknown,
 ): Promise<void> {
-  if (!(error instanceof GitHubError)) {
+  // A draft may be published any minute; don't hide it behind a 404.
+  if (!(error instanceof GitHubError) || error instanceof DraftReleaseError) {
     return;
   }
   const freshMs = releaseErrorFreshMs(error.status, error);
@@ -431,6 +500,68 @@ export async function getCachedGitHubAttestations(
     fetcher: (token) => fetchGitHubAttestations(owner, repo, digest, token),
     expirationTtl: () => CACHE_TTL_SECONDS,
   });
+}
+
+export const RELEASE_LIST_MAX_PAGE = 10;
+const RELEASE_LIST_PER_PAGE = 100;
+const RELEASE_LIST_FIRST_PAGE_FRESH_MS = 10 * 60 * 1000;
+const RELEASE_LIST_PAGE_FRESH_MS = 60 * 60 * 1000;
+
+export function releaseListFreshSeconds(page: number): number {
+  return (
+    (page === 1
+      ? RELEASE_LIST_FIRST_PAGE_FRESH_MS
+      : RELEASE_LIST_PAGE_FRESH_MS) / 1000
+  );
+}
+
+/**
+ * One page (100 releases) of a repository's release list, drafts removed.
+ * Only call this for a repo that passed the visibility check.
+ */
+export async function getCachedGitHubReleaseList(
+  env: Env,
+  owner: string,
+  repo: string,
+  page: number,
+  cacheGeneration?: string,
+): Promise<{ list: GitHubReleaseListPage; staleFallback: boolean }> {
+  if (!Number.isInteger(page) || page < 1 || page > RELEASE_LIST_MAX_PAGE) {
+    throw new GitHubError(400, "Invalid page", new Headers());
+  }
+  const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
+  const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
+  const freshMs = releaseListFreshSeconds(page) * 1000;
+  let staleFallback = false;
+  const list = await getOrRefresh({
+    env,
+    cacheKey: `github:releases:${cacheRepository}:${page}${generationSuffix}`,
+    isFresh: (entry) => Date.now() - entry.cached_at < freshMs,
+    fetcher: (token) => fetchGitHubReleaseList(owner, repo, page, token),
+    expirationTtl: () => CACHE_TTL_SECONDS,
+    useStaleOnError: releaseStaleFallbackAllowed,
+    onStaleFallback: () => {
+      staleFallback = true;
+    },
+  });
+  return { list, staleFallback };
+}
+
+/**
+ * Fetch a GitHub API URL with a pool token, marking the token when GitHub
+ * rate-limits it. Errors are thrown as-is; read their status with
+ * `githubStatus`.
+ */
+export async function githubPoolJson<T>(env: Env, url: string): Promise<T> {
+  const token = await nextToken(env);
+  try {
+    return await githubJson<T>(url, token);
+  } catch (error) {
+    if (isRateLimited(error) && token) {
+      await markRateLimited(env, token.id, resetAt(error));
+    }
+    throw error;
+  }
 }
 
 async function getOrRefresh<T>({
@@ -541,6 +672,10 @@ async function fetchGitHubRelease(
     `https://api.github.com/repos/${owner}/${repo}/${path}`,
     token,
   );
+  // A draft is only visible to tokens with push access; never publish one.
+  if (data.draft) {
+    throw new DraftReleaseError(404, "Not found", new Headers());
+  }
   const assets = data.assets ?? [];
   const immutable =
     assets.length > 0 &&
@@ -574,6 +709,61 @@ function releaseAgeImmutable(publishedAt: string | undefined): boolean {
   return (
     Number.isFinite(timestamp) &&
     Date.now() - timestamp > RELEASE_IMMUTABLE_AFTER_MS
+  );
+}
+
+async function fetchGitHubReleaseList(
+  owner: string,
+  repo: string,
+  page: number,
+  token: TokenRecord | null,
+): Promise<GitHubReleaseListPage> {
+  assertValidRepo(owner, repo);
+  const response = await fetchGitHubJsonResponse(
+    `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${RELEASE_LIST_PER_PAGE}&page=${page}`,
+    token,
+  );
+  // GitHub says whether another page exists; a full page may be the last.
+  const hasNextPage = hasNextLink(response.headers.get("link"));
+  const data =
+    await readJsonResponse<
+      (GitHubListedRelease & { assets?: GitHubListedAsset[] })[]
+    >(response);
+  if (!Array.isArray(data)) {
+    throw new GitHubError(
+      502,
+      "GitHub release list response was not an array",
+      new Headers(),
+    );
+  }
+  // Drafts are only visible to tokens with push access; never publish them.
+  const releases = data
+    .filter((release) => !release.draft)
+    .map((release) => ({
+      tag_name: release.tag_name,
+      draft: release.draft,
+      prerelease: release.prerelease,
+      created_at: release.created_at,
+      published_at: release.published_at ?? null,
+      assets: (release.assets ?? []).map((asset) => ({
+        name: asset.name,
+        browser_download_url: asset.browser_download_url,
+        url: asset.url,
+        digest: asset.digest ?? null,
+        updated_at: asset.updated_at ?? null,
+      })),
+    }));
+  return {
+    releases,
+    next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
+  };
+}
+
+function hasNextLink(link: string | null): boolean {
+  return (
+    !!link &&
+    link.split(",").some((part) => /;\s*rel="?next"?(\s*;|\s*$)/.test(part))
   );
 }
 
@@ -819,7 +1009,7 @@ function resetAt(error: unknown): string | undefined {
     : undefined;
 }
 
-class GitHubError extends Error {
+export class GitHubError extends Error {
   constructor(
     readonly status: number,
     message: string,
@@ -830,11 +1020,15 @@ class GitHubError extends Error {
   }
 }
 
+/** A release GitHub showed the pool as a draft; served as a 404. */
+class DraftReleaseError extends GitHubError {}
+
 export const __testing = {
   GitHubError,
   edgeCacheRequest,
   edgeCacheResponse,
   githubJsonHeaders,
+  hasNextLink,
   isGitHubApiUrl,
   isRateLimited,
   resetAt,

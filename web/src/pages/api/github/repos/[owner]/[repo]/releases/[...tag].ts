@@ -12,7 +12,7 @@ import {
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
-import { isRegisteredGitHubRepo } from "../../../../../../../lib/github/registry";
+import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
 import { getGitHubLatestReleaseGenerations } from "../../../../../../../lib/github/release-generation";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
@@ -34,6 +34,13 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     return errorResponse("Invalid GitHub release path", 400);
   }
 
+  // Before any cache read: cached responses must not outlive a repo turning
+  // private or the mirror being restricted.
+  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+    clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
+  });
+  if (denied) return denied;
+
   const cacheGenerations =
     tag === "latest"
       ? await getGitHubLatestReleaseGenerations(env.GITHUB_CACHE, owner, repo)
@@ -41,17 +48,6 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   const cacheGeneration = cacheGenerations?.current;
   const cached = await matchGitHubMirrorEdgeCache(request, cacheGeneration);
   if (cached) return cached;
-
-  let registered: boolean;
-  try {
-    registered = await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo);
-  } catch (error) {
-    console.error(`GitHub registry check failed for ${owner}/${repo}:`, error);
-    return errorResponse("Failed to check GitHub repo registry", 503);
-  }
-  if (!registered) {
-    return errorResponse("GitHub repo is not in the mise registry", 403);
-  }
 
   try {
     const { release, staleFallback } = await getCachedGitHubReleaseResult(
@@ -71,7 +67,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
             edgeMaxAge: 0,
             staleWhileRevalidate: 0,
           })
-        : releaseCacheHeaders(tag, release),
+        : releaseCacheHeaders(tag, release, cacheGeneration),
     );
     if (!staleFallback) {
       locals.cfContext.waitUntil(
