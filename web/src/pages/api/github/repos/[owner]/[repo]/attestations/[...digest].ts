@@ -11,10 +11,7 @@ import {
   validDigest,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
-import {
-  isKnownGitHubAttestationRepo,
-  isRegisteredGitHubRepo,
-} from "../../../../../../../lib/github/registry";
+import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo, digest } = params;
@@ -22,19 +19,15 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     return errorResponse("Invalid GitHub attestation path", 400);
   }
 
+  // Before any cache read: cached responses must not outlive a repo turning
+  // private or the mirror being restricted.
+  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+    attestations: true,
+  });
+  if (denied) return denied;
+
   const cached = await matchGitHubMirrorEdgeCache(request);
   if (cached) return cached;
-
-  let registered: boolean;
-  try {
-    registered = await isRegisteredGitHubRepo(env.ANALYTICS_DB, owner, repo);
-  } catch (error) {
-    console.error(`GitHub registry check failed for ${owner}/${repo}:`, error);
-    return errorResponse("Failed to check GitHub repo registry", 503);
-  }
-  if (!registered && !isKnownGitHubAttestationRepo(owner, repo)) {
-    return errorResponse("GitHub repo is not in the mise registry", 403);
-  }
 
   try {
     const attestations = await getCachedGitHubAttestations(

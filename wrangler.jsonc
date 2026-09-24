@@ -77,6 +77,10 @@
     "ANALYTICS_ENGINE_CUTOVER_DATE": "2026-06-12",
     "TOKEN_ALERT_TO": "mise-tools@mise.jdx.dev",
     "TOKEN_ALERT_FROM": "mise-tools@mise.jdx.dev",
+    // Which repos the /api/github/repos mirror serves: "public" (any public
+    // github.com repo), "registry" (mise registry repos only) or "off".
+    // Restricted or disabled answers are 403s, which mise clients warn about.
+    "GITHUB_MIRROR_ACCESS": "public",
   },
   "triggers": {
     "crons": ["*/15 * * * *", "7,37 * * * *"],
