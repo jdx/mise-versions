@@ -23,6 +23,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   // private or the mirror being restricted.
   const denied = await checkGitHubMirrorAccess(env, owner, repo, {
     attestations: true,
+    clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
   if (denied) return denied;
 

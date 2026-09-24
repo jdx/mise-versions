@@ -82,6 +82,15 @@
     // Restricted or disabled answers are 403s, which mise clients warn about.
     "GITHUB_MIRROR_ACCESS": "public",
   },
+  // Uncached GitHub visibility lookups per client IP (see
+  // web/src/lib/github/visibility.ts). Cached answers are not counted.
+  "ratelimits": [
+    {
+      "name": "GITHUB_VISIBILITY_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 60, "period": 60 },
+    },
+  ],
   "triggers": {
     "crons": ["*/15 * * * *", "7,37 * * * *"],
   },

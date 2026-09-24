@@ -33,7 +33,9 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
 
   // Before any cache read: cached responses must not outlive a repo turning
   // private or the mirror being restricted.
-  const denied = await checkGitHubMirrorAccess(env, owner, repo);
+  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+    clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
+  });
   if (denied) return denied;
 
   // The first page changes when a release is published; tie it to the same

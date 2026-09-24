@@ -212,6 +212,105 @@ test("registry mode 403s unregistered repos and still checks visibility", () => 
   `);
 });
 
+test("uncached lookups are rate limited per client", () => {
+  runMirrorTest(`${PRELUDE}
+    const keys = [];
+    const limiter = (allow) => ({
+      limit: async ({ key }) => {
+        keys.push(key);
+        return { success: allow };
+      },
+    });
+
+    const calls = repoFetch(200, { private: false, visibility: "public" });
+    const limited = await checkGitHubMirrorAccess(
+      makeEnv({ GITHUB_VISIBILITY_LIMITER: limiter(false) }),
+      "owner",
+      "repo",
+      { clientKey: "203.0.113.7" },
+    );
+    assert.equal(limited.status, 429);
+    assert.deepEqual(keys, ["203.0.113.7"]);
+    assert.equal(calls.length, 0);
+
+    // Cached answers are served without spending the client's budget.
+    const cachedEnv = makeEnv({
+      GITHUB_VISIBILITY_LIMITER: limiter(false),
+      GITHUB_CACHE: memoryKv({
+        "github:visibility:owner/repo": JSON.stringify({ cached_at: Date.now(), public: true }),
+      }),
+    });
+    keys.length = 0;
+    assert.equal(
+      await checkGitHubMirrorAccess(cachedEnv, "owner", "repo", { clientKey: "203.0.113.7" }),
+      null,
+    );
+    assert.deepEqual(keys, []);
+
+    assert.equal(
+      await checkGitHubMirrorAccess(
+        makeEnv({ GITHUB_VISIBILITY_LIMITER: limiter(true) }),
+        "owner",
+        "repo",
+        { clientKey: "203.0.113.7" },
+      ),
+      null,
+    );
+  `);
+});
+
+test("a failed cache write does not fail the lookup", () => {
+  runMirrorTest(`${PRELUDE}
+    repoFetch(200, { private: false, visibility: "public" });
+    const env = makeEnv({
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async () => {
+          throw new Error("KV write limit");
+        },
+      },
+    });
+    assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), true);
+  `);
+});
+
+test("draft releases are never mirrored by tag", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const writes = [];
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify({
+        tag_name: "v2.0.0",
+        draft: true,
+        prerelease: false,
+        created_at: "2026-01-01T00:00:00Z",
+        assets: [{
+          name: "a.tar.gz",
+          browser_download_url: "https://github.com/o/r/releases/download/v2.0.0/a.tar.gz",
+          url: "https://api.github.com/repos/o/r/releases/assets/1",
+        }],
+      }), { status: 200 });
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async () => null,
+        put: async (key, value) => writes.push({ key, value }),
+      },
+    };
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "o", "r", "v2.0.0"),
+      (error) => githubStatus(error) === 404,
+    );
+    // Only the negative cache entry is written; no release data.
+    assert.ok(writes.every((w) => !w.value.includes("a.tar.gz")));
+  `);
+});
+
 test("release list mirror fetches one page and drops drafts", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
@@ -264,6 +363,7 @@ test("release list mirror fetches one page and drops drafts", () => {
     const { releases, next_page } = list;
     // Two raw entries, so this is the last page even before drafts are removed.
     assert.equal(next_page, null);
+    assert.equal(list.truncated, false);
     assert.equal(staleFallback, false);
     assert.deepEqual(calls, [
       "https://api.github.com/repos/Owner/Repo/releases?per_page=100&page=2",
@@ -312,8 +412,11 @@ test("release list pages report the next page from the unfiltered size", () => {
       DB: {},
       GITHUB_CACHE: { get: async () => null, put: async () => {} },
     };
-    const { list } = await getCachedGitHubReleaseList(env, "owner", "repo", 10);
-    assert.deepEqual(list, { releases: [], next_page: 11 });
+    const { list: middle } = await getCachedGitHubReleaseList(env, "owner", "repo", 4);
+    assert.deepEqual(middle, { releases: [], next_page: 5, truncated: false });
+    // The mirror stops at its last page and says the rest is GitHub's.
+    const { list: last } = await getCachedGitHubReleaseList(env, "owner", "repo", 10);
+    assert.deepEqual(last, { releases: [], next_page: null, truncated: true });
   `);
 });
 

@@ -66,12 +66,16 @@ export interface GitHubListedRelease {
 export interface GitHubReleaseListPage {
   releases: GitHubListedRelease[];
   /**
-   * The page to request next, or null on the last page. Computed before
-   * drafts are removed, so a short `releases` array does not mean the end.
-   * May exceed RELEASE_LIST_MAX_PAGE, which the caller must then fetch from
-   * GitHub itself.
+   * The page to request next, or null when there is none to request here.
+   * Computed before drafts are removed, so a short `releases` array does not
+   * mean the end.
    */
   next_page: number | null;
+  /**
+   * The repository has more releases than the mirror serves
+   * (RELEASE_LIST_MAX_PAGE pages); the rest must come from GitHub.
+   */
+  truncated: boolean;
 }
 
 interface GitHubAttestation {
@@ -667,6 +671,10 @@ async function fetchGitHubRelease(
     `https://api.github.com/repos/${owner}/${repo}/${path}`,
     token,
   );
+  // A draft is only visible to tokens with push access; never publish one.
+  if (data.draft) {
+    throw new GitHubError(404, "Not found", new Headers());
+  }
   const assets = data.assets ?? [];
   const immutable =
     assets.length > 0 &&
@@ -742,7 +750,12 @@ async function fetchGitHubReleaseList(
     }));
   return {
     releases,
-    next_page: data.length >= RELEASE_LIST_PER_PAGE ? page + 1 : null,
+    next_page:
+      data.length >= RELEASE_LIST_PER_PAGE && page < RELEASE_LIST_MAX_PAGE
+        ? page + 1
+        : null,
+    truncated:
+      data.length >= RELEASE_LIST_PER_PAGE && page >= RELEASE_LIST_MAX_PAGE,
   };
 }
 

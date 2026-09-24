@@ -10,12 +10,23 @@ import {
 // how long a repo that turns private can still be served.
 const VISIBILITY_TTL_SECONDS = 60 * 60;
 
+interface RateLimiter {
+  limit(options: { key: string }): Promise<{ success: boolean }>;
+}
+
 interface Env {
   DB: D1Database;
   ANALYTICS_DB: D1Database;
   GITHUB_CACHE: KVNamespace;
   GITHUB_MIRROR_ACCESS?: string;
+  // Bounds how many uncached lookups one client can make. Negative caching
+  // only helps with repeated names; this stops a stream of unique names from
+  // spending the token pool.
+  GITHUB_VISIBILITY_LIMITER?: RateLimiter;
 }
+
+/** A client made too many uncached visibility lookups. */
+export class VisibilityLookupLimited extends Error {}
 
 interface GitHubRepoVisibility {
   private?: unknown;
@@ -45,6 +56,7 @@ export async function isPublicGitHubRepo(
   env: Env,
   owner: string,
   repo: string,
+  { clientKey }: { clientKey?: string } = {},
 ): Promise<boolean> {
   const cacheKey = `github:visibility:${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const cached = await env.GITHUB_CACHE.get<CachedVisibility>(cacheKey, "json");
@@ -54,6 +66,17 @@ export async function isPublicGitHubRepo(
     Date.now() - cached.cached_at < VISIBILITY_TTL_SECONDS * 1000
   ) {
     return cached.public;
+  }
+
+  if (
+    env.GITHUB_VISIBILITY_LIMITER &&
+    !(
+      await env.GITHUB_VISIBILITY_LIMITER.limit({
+        key: clientKey ?? "unknown",
+      })
+    ).success
+  ) {
+    throw new VisibilityLookupLimited();
   }
 
   let isPublic: boolean;
@@ -74,9 +97,17 @@ export async function isPublicGitHubRepo(
   }
 
   const entry: CachedVisibility = { cached_at: Date.now(), public: isPublic };
-  await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), {
-    expirationTtl: VISIBILITY_TTL_SECONDS,
-  });
+  try {
+    await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), {
+      expirationTtl: VISIBILITY_TTL_SECONDS,
+    });
+  } catch (error) {
+    // The answer stands; the next request just asks GitHub again.
+    console.warn(
+      `failed to cache GitHub visibility for ${owner}/${repo}:`,
+      error,
+    );
+  }
   return isPublic;
 }
 
@@ -87,13 +118,16 @@ export async function isPublicGitHubRepo(
  * A private or missing repo gets a 404, like GitHub, so its existence is not
  * revealed and mise clients fall back quietly. A mirror that has been
  * restricted or disabled answers 403, which mise clients report as a
- * warning.
+ * warning. `clientKey` identifies the caller for the lookup rate limit.
  */
 export async function checkGitHubMirrorAccess(
   env: Env,
   owner: string,
   repo: string,
-  { attestations = false }: { attestations?: boolean } = {},
+  {
+    attestations = false,
+    clientKey,
+  }: { attestations?: boolean; clientKey?: string } = {},
 ): Promise<Response | null> {
   const access = gitHubMirrorAccess(env.GITHUB_MIRROR_ACCESS);
   if (access === "off") {
@@ -120,8 +154,11 @@ export async function checkGitHubMirrorAccess(
 
   let isPublic: boolean;
   try {
-    isPublic = await isPublicGitHubRepo(env, owner, repo);
+    isPublic = await isPublicGitHubRepo(env, owner, repo, { clientKey });
   } catch (error) {
+    if (error instanceof VisibilityLookupLimited) {
+      return errorResponse("Too many uncached repository lookups", 429);
+    }
     console.error(
       `GitHub visibility check failed for ${owner}/${repo}:`,
       error,
