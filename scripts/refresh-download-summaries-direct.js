@@ -172,6 +172,38 @@ const VERSION_SUMMARIES_SQL = `
   GROUP BY tool_id, version
 `;
 
+// Run after the matching rebuild: removes summary rows for a range whose key no
+// longer appears in any source, e.g. after a historical rollup was corrected.
+const PRUNE_PLATFORM_SUMMARIES_SQL = `
+  DELETE FROM tool_platform_download_summaries
+  WHERE tool_id BETWEEN ?1 AND ?2
+    AND (tool_id, platform_id) NOT IN (
+      SELECT tool_id, platform_id FROM daily_tool_platform_stats
+      WHERE tool_id BETWEEN ?1 AND ?2
+      UNION
+      SELECT tool_id, COALESCE(platform_id, 0) FROM downloads
+      WHERE tool_id BETWEEN ?1 AND ?2
+      UNION
+      SELECT tool_id, COALESCE(platform_id, 0) FROM downloads_daily
+      WHERE tool_id BETWEEN ?1 AND ?2
+    )
+`;
+
+const PRUNE_VERSION_SUMMARIES_SQL = `
+  DELETE FROM tool_version_download_summaries
+  WHERE tool_id BETWEEN ?1 AND ?2
+    AND (tool_id, version) NOT IN (
+      SELECT tool_id, version FROM daily_tool_version_stats
+      WHERE tool_id BETWEEN ?1 AND ?2
+      UNION
+      SELECT tool_id, version FROM downloads
+      WHERE tool_id BETWEEN ?1 AND ?2
+      UNION
+      SELECT tool_id, version FROM downloads_daily
+      WHERE tool_id BETWEEN ?1 AND ?2
+    )
+`;
+
 export async function refreshToolSummaries(config, now) {
   const thirtyDaysAgo = dateStr(now - 30 * 86400);
   const updatedAt = new Date(now * 1000).toISOString();
@@ -197,6 +229,18 @@ export async function refreshToolSummaries(config, now) {
       VERSION_SUMMARIES_SQL,
       [first, last],
       `tool_version_download_summaries ${label}`,
+    );
+    await queryD1(
+      config,
+      PRUNE_PLATFORM_SUMMARIES_SQL,
+      [first, last],
+      `prune tool_platform_download_summaries ${label}`,
+    );
+    await queryD1(
+      config,
+      PRUNE_VERSION_SUMMARIES_SQL,
+      [first, last],
+      `prune tool_version_download_summaries ${label}`,
     );
     console.log(`Refreshed download summaries for ${label}`);
   }
@@ -227,22 +271,21 @@ export async function refreshBackendSummaries(config, now) {
     "backend_tool_summaries",
   );
 
-  const [refreshed] = await queryD1(
+  // A failed rebuild throws before this point, so an empty result is real and
+  // must clear the previous run's rows too.
+  await queryD1(
     config,
-    "SELECT COUNT(*) AS count FROM backend_tool_summaries WHERE updated_at = ?",
+    "DELETE FROM backend_tool_summaries WHERE updated_at != ?",
     [updatedAt],
+    "prune backend_tool_summaries",
+  );
+  const [total] = await queryD1(
+    config,
+    "SELECT COUNT(*) AS count FROM backend_tool_summaries",
+    [],
     "count backend_tool_summaries",
   );
-  const count = Number(refreshed?.count ?? 0);
-  if (count > 0) {
-    await queryD1(
-      config,
-      "DELETE FROM backend_tool_summaries WHERE updated_at != ?",
-      [updatedAt],
-      "prune backend_tool_summaries",
-    );
-  }
-  return { backends: count };
+  return { backends: Number(total?.count ?? 0) };
 }
 
 // Mirrors populateTrendingToolSummaries in src/analytics/rollups.ts.
@@ -350,14 +393,12 @@ export async function refreshTrendingSummaries(config, now) {
       updatedAt,
     ]),
   );
-  if (rows.length > 0) {
-    await queryD1(
-      config,
-      "DELETE FROM trending_tool_summaries WHERE updated_at != ?",
-      [updatedAt],
-      "prune trending_tool_summaries",
-    );
-  }
+  await queryD1(
+    config,
+    "DELETE FROM trending_tool_summaries WHERE updated_at != ?",
+    [updatedAt],
+    "prune trending_tool_summaries",
+  );
   return { trending: rows.length };
 }
 

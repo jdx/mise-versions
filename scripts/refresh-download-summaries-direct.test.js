@@ -134,6 +134,9 @@ describe("refresh-download-summaries-direct", () => {
         (3, 'archived', NULL, '["asdf:archived"]');
       INSERT INTO tool_download_summaries VALUES (1, 0, 5, '2026-07-06T00:00:00.000Z');
       INSERT INTO tool_version_download_summaries VALUES (1, '0.57.0', 5);
+      -- No longer present in any source, e.g. after a rollup correction.
+      INSERT INTO tool_version_download_summaries VALUES (1, '0.0.9', 3);
+      INSERT INTO tool_platform_download_summaries VALUES (1, 9, 3);
       INSERT INTO backend_tool_summaries VALUES ('ubi', 9, '2026-07-06T00:00:00.000Z');
     `);
     const insertVersion = db.prepare(
@@ -167,11 +170,11 @@ describe("refresh-download-summaries-direct", () => {
       trending: 0,
     });
     const perToolWrites = statements.filter((sql) =>
-      /INTO tool_(download|platform_download|version_download)_summaries/.test(
+      /(INTO|DELETE FROM) tool_(download|platform_download|version_download)_summaries/.test(
         sql,
       ),
     );
-    assert.equal(perToolWrites.length, 3);
+    assert.equal(perToolWrites.length, 5);
     assert.ok(perToolWrites.every((sql) => sql.includes("BETWEEN ?1 AND ?2")));
 
     assert.deepEqual(
@@ -258,6 +261,31 @@ describe("refresh-download-summaries-direct", () => {
       100,
       100,
     ]);
+  });
+
+  it("clears previous backend and trending rows when nothing qualifies", async () => {
+    const db = createDb();
+    db.exec(`
+      INSERT INTO tools VALUES (1, 'archived', NULL, '["asdf:archived"]');
+      INSERT INTO backend_tool_summaries VALUES ('asdf', 1, '2026-07-06T00:00:00.000Z');
+      INSERT INTO trending_tool_summaries VALUES (1, 900, 3, 3, '[]', '2026-07-06T00:00:00.000Z');
+    `);
+
+    serveD1(db);
+    const results = await refreshSummaries(config, NOW);
+
+    assert.equal(results.backends, 0);
+    assert.equal(results.trending, 0);
+    assert.equal(
+      db.prepare("SELECT COUNT(*) AS count FROM backend_tool_summaries").get()
+        .count,
+      0,
+    );
+    assert.equal(
+      db.prepare("SELECT COUNT(*) AS count FROM trending_tool_summaries").get()
+        .count,
+      0,
+    );
   });
 
   it("skips tools with flat daily downloads", () => {

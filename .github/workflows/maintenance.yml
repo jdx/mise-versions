@@ -90,11 +90,11 @@ jobs:
           ANALYTICS_ENGINE_DATASET: mise_analytics_events
           ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
 
-      # Summaries are derived from the daily rollups, so rebuild them after
-      # the rollup refresh.
+      # Summaries are derived from the daily rollups, so only rebuild them
+      # once the rollup refresh has fully succeeded.
       - name: Refresh download summaries directly
         id: refresh_summaries
-        if: env.TASK == 'refresh-summaries' || env.TASK == 'refresh-all'
+        if: env.TASK == 'refresh-summaries' || (env.TASK == 'refresh-all' && steps.refresh_rollups.outcome == 'success')
         continue-on-error: ${{ env.TASK == 'refresh-all' }}
         run: node scripts/refresh-download-summaries-direct.js
         env:
