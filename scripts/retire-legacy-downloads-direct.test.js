@@ -64,6 +64,17 @@ function createDb() {
       date TEXT NOT NULL, tool_id INTEGER NOT NULL, platform_id INTEGER NOT NULL,
       downloads INTEGER NOT NULL, PRIMARY KEY (date, tool_id, platform_id)
     );
+    CREATE TABLE daily_stats (
+      date TEXT PRIMARY KEY, total_downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL
+    );
+    CREATE TABLE daily_combined_stats (
+      date TEXT PRIMARY KEY, unique_users INTEGER NOT NULL
+    );
+    CREATE TABLE daily_version_stats (
+      date TEXT PRIMARY KEY, total_requests INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL
+    );
     CREATE TABLE tool_download_summaries (
       tool_id INTEGER PRIMARY KEY, downloads_30d INTEGER NOT NULL DEFAULT 0,
       downloads_all_time INTEGER NOT NULL DEFAULT 0, updated_at TEXT NOT NULL
@@ -95,7 +106,11 @@ function createDb() {
     INSERT INTO daily_tool_stats VALUES ('2026-05-01', 1, 2, 2);
     INSERT INTO daily_tool_version_stats VALUES ('2026-05-01', 1, '1.8.1', 2);
     INSERT INTO daily_tool_platform_stats VALUES ('2026-05-01', 1, 1, 2);
-    INSERT INTO version_requests (ip_hash, created_at) VALUES ('a', ${ts("2026-05-01")});
+    INSERT INTO version_requests (ip_hash, created_at) VALUES
+      ('a', ${ts("2026-05-01")}), ('c', ${ts("2026-05-01")});
+    -- 2026-05-03 already has global rollups, so they must be left alone.
+    INSERT INTO daily_stats VALUES ('2026-05-03', 9, 9);
+    INSERT INTO daily_combined_stats VALUES ('2026-05-03', 9);
   `);
   const raw = db.prepare(
     "INSERT INTO downloads (tool_id, version, platform_id, ip_hash, created_at) VALUES (?, ?, ?, ?, ?)",
@@ -152,6 +167,9 @@ describe("retire-legacy-downloads-direct", () => {
         "daily_tool_stats 2026-05-01",
         "daily_tool_version_stats 2026-05-01",
         "daily_tool_platform_stats 2026-05-01",
+        "daily_stats 2026-05-01",
+        "daily_combined_stats 2026-05-01",
+        "daily_version_stats 2026-05-01",
         "daily_tool_stats 2026-05-03",
         "daily_tool_version_stats 2026-05-03",
         "daily_tool_platform_stats 2026-05-03",
@@ -182,6 +200,21 @@ describe("retire-legacy-downloads-direct", () => {
         { date: "2026-05-03", tool_id: 2, downloads: 1, unique_users: 1 },
       ],
     );
+
+    assert.deepEqual(rows(db, "SELECT * FROM daily_stats ORDER BY date"), [
+      { date: "2026-05-01", total_downloads: 4, unique_users: 2 },
+      { date: "2026-05-03", total_downloads: 9, unique_users: 9 },
+    ]);
+    assert.deepEqual(
+      rows(db, "SELECT * FROM daily_combined_stats ORDER BY date"),
+      [
+        { date: "2026-05-01", unique_users: 3 },
+        { date: "2026-05-03", unique_users: 9 },
+      ],
+    );
+    assert.deepEqual(rows(db, "SELECT * FROM daily_version_stats"), [
+      { date: "2026-05-01", total_requests: 2, unique_users: 2 },
+    ]);
 
     assert.deepEqual(await drop(config), {
       dropped: ["downloads", "downloads_daily", "version_requests"],

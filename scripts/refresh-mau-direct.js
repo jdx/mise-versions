@@ -21,7 +21,7 @@ function usage() {
           yesterday, since the current UTC day is not over yet.
   --days  Number of complete days to refresh, counting back from --date.
 
-Every refreshed date's trailing 30-day window must start on or after
+Every refreshed date's trailing 30-day window must start after
 ANALYTICS_ENGINE_CUTOVER_DATE; earlier windows needed the retired raw D1 tables.
 
 Environment:
@@ -193,9 +193,9 @@ async function refreshMauForDate(config, date) {
 
   // Pre-cutover events lived in D1 tables that have been retired, so a window
   // reaching back before the cutover can no longer be counted completely.
-  if (start.slice(0, 10) < config.cutoverDate) {
+  if (start.slice(0, 10) <= config.cutoverDate) {
     throw new Error(
-      `${date}: 30-day MAU window starts ${start}, before Analytics Engine cutover ${config.cutoverDate}`,
+      `${date}: 30-day MAU window starts ${start}, not after Analytics Engine cutover ${config.cutoverDate}`,
     );
   }
 

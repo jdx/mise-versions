@@ -219,13 +219,7 @@ export function createTrackingFunctions(
       arch: string | null,
       full: string | null = null, // Full backend identifier (e.g., "aqua:nektos/act")
     ): Promise<{ deduplicated: boolean }> {
-      // Keep dimension tables populated even though raw events live in
-      // Analytics Engine; scheduled rollups resolve tool/platform names back
-      // to these ids before materializing D1 summaries.
-      await getOrCreateToolId(tool);
-      await getOrCreateBackendId(full);
-      await getOrCreatePlatformId(os, arch);
-
+      // Record the event first so a D1 failure below cannot lose it.
       writeDownloadEvent(cache.events, {
         tool,
         version,
@@ -234,6 +228,13 @@ export function createTrackingFunctions(
         arch,
         full,
       });
+
+      // Keep dimension tables populated even though raw events live in
+      // Analytics Engine; scheduled rollups resolve tool/platform names back
+      // to these ids before materializing D1 summaries.
+      await getOrCreateToolId(tool);
+      await getOrCreateBackendId(full);
+      await getOrCreatePlatformId(os, arch);
       return { deduplicated: false };
     },
   };

@@ -36,7 +36,8 @@ concurrency:
 jobs:
   maintenance:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # The one-time legacy table retirement scans and deletes millions of rows.
+    timeout-minutes: ${{ startsWith(github.event.inputs.task || '', 'legacy-') && 120 || 30 }}
     env:
       TASK: ${{ github.event_name == 'schedule' && 'refresh-all' || github.event.inputs.task || 'refresh-all' }}
     steps:

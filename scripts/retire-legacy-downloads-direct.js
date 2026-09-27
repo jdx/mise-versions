@@ -7,12 +7,14 @@ import { queryD1, requiredEnv } from "./refresh-download-rollups-direct.js";
  * Retire the pre-Analytics Engine raw download tables.
  *
  * `downloads`, `downloads_daily`, and `version_requests` stopped receiving rows
- * at the Analytics Engine cutover. The only numbers still derived from them are
- * per-tool all-time totals for days that never got a daily rollup row, so:
+ * at the Analytics Engine cutover. Days that never got a daily rollup row still
+ * depend on them, so:
  *
- *   --mode=fold    copy those days into daily_tool_stats,
- *                  daily_tool_version_stats, and daily_tool_platform_stats
- *                  (fills missing rows only, so it is safe to re-run)
+ *   --mode=fold    copy those days into the daily rollups: per-tool,
+ *                  per-version, and per-platform downloads from raw and
+ *                  archived rows, and daily_stats, daily_combined_stats, and
+ *                  daily_version_stats from raw rows; fills missing rows only,
+ *                  so it is safe to re-run
  *   --mode=verify  report any legacy rows still missing from those rollups
  *   --mode=drop    verify, then delete the legacy tables; refuses while
  *                  anything is missing, and resumes if interrupted
@@ -22,7 +24,7 @@ import { queryD1, requiredEnv } from "./refresh-download-rollups-direct.js";
 
 const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
 const LEGACY_TABLES = ["downloads", "downloads_daily", "version_requests"];
-const DELETE_BATCH_ROWS = 250_000;
+const DELETE_BATCH_ROWS = 100_000;
 const MODES = ["fold", "verify", "drop"];
 
 function usage() {
@@ -72,26 +74,29 @@ async function existingTables(config) {
   return new Set(rows.map((row) => row.name));
 }
 
-// Every UTC day that has raw or archived download rows.
+async function createdAtDates(config, table, dates) {
+  const [range] = await queryD1(
+    config,
+    `SELECT MIN(created_at) AS oldest, MAX(created_at) AS latest FROM ${table}`,
+    [],
+    `${table} range`,
+  );
+  if (range?.oldest == null) return;
+  const last = dateStr(Number(range.latest));
+  for (
+    let date = dateStr(Number(range.oldest));
+    date <= last;
+    date = dateStr(dayStart(date) + 86400)
+  ) {
+    dates.add(date);
+  }
+}
+
+// Every UTC day that has raw, archived, or version-request rows.
 export async function legacyDates(config, tables) {
   const dates = new Set();
-  if (tables.has("downloads")) {
-    const [range] = await queryD1(
-      config,
-      "SELECT MIN(created_at) AS oldest, MAX(created_at) AS latest FROM downloads",
-      [],
-      "downloads range",
-    );
-    if (range?.oldest != null) {
-      const last = dateStr(Number(range.latest));
-      for (
-        let date = dateStr(Number(range.oldest));
-        date <= last;
-        date = dateStr(dayStart(date) + 86400)
-      ) {
-        dates.add(date);
-      }
-    }
+  for (const table of ["downloads", "version_requests"]) {
+    if (tables.has(table)) await createdAtDates(config, table, dates);
   }
   if (tables.has("downloads_daily")) {
     const rows = await queryD1(
@@ -105,83 +110,109 @@ export async function legacyDates(config, tables) {
   return [...dates].sort();
 }
 
-// Each rollup's legacy source rows for one day (?1 = date, ?2/?3 = the day's
-// created_at bounds), keyed the way the old all-time summaries matched them:
-// a legacy row counted only when the rollup had no row for the same key.
-function rollups(tables) {
+// For one day, the SELECT that yields each rollup's missing rows. ?1 is the
+// date; the day's created_at bounds are inlined because SQLite rejects binding
+// a parameter the statement does not use, and which sources appear depends on
+// which legacy tables still exist. Per-tool keys match the way the old all-time
+// summaries counted legacy rows: only when the rollup had no row for that key.
+function folds(tables, date) {
+  const start = dayStart(date);
+  const createdAt = `created_at >= ${start} AND created_at < ${start + 86400}`;
   const raw = tables.has("downloads");
   const archived = tables.has("downloads_daily");
-  const sources = (rawSql, archivedSql) =>
-    [raw && rawSql, archived && archivedSql]
-      .filter(Boolean)
-      .join(" UNION ALL ");
+  const requests = tables.has("version_requests");
+  const union = (...parts) => parts.filter(Boolean).join(" UNION ALL ");
+
+  const perTool = (table, key, sums, rawSql, archivedSql) => {
+    const source = union(raw && rawSql, archived && archivedSql);
+    const covered = key
+      .split(", ")
+      .map((column) => `s.${column} = src.${column}`)
+      .join(" AND ");
+    return {
+      table,
+      columns: `date, ${key}, ${sums.join(", ")}`,
+      select:
+        source &&
+        `SELECT ?1, ${key}, ${sums.map((sum) => `SUM(${sum})`).join(", ")}
+         FROM (${source}) src
+         WHERE NOT EXISTS (
+           SELECT 1 FROM ${table} s WHERE s.date = ?1 AND ${covered}
+         )
+         GROUP BY ${key}`,
+    };
+  };
+
+  // `source` yields one row of totals for the day; skip days with no events.
+  const perDay = (table, columns, source) => ({
+    table,
+    columns: `date, ${columns.join(", ")}`,
+    select:
+      source &&
+      `SELECT ?1, ${columns.join(", ")}
+       FROM (${source})
+       WHERE ${columns[0]} > 0
+         AND NOT EXISTS (SELECT 1 FROM ${table} WHERE date = ?1)`,
+  });
+
+  const dailyUsers = union(
+    raw && `SELECT ip_hash FROM downloads WHERE ${createdAt}`,
+    requests && `SELECT ip_hash FROM version_requests WHERE ${createdAt}`,
+  );
 
   return [
-    {
-      table: "daily_tool_stats",
-      columns: "date, tool_id, downloads, unique_users",
-      source: sources(
-        `SELECT tool_id, COUNT(*) AS downloads, COUNT(DISTINCT ip_hash) AS unique_users
-         FROM downloads WHERE created_at >= ?2 AND created_at < ?3
-         GROUP BY tool_id`,
-        // Archived rows lost their ip hashes; summing per-group unique ips is
-        // the best available unique_users estimate.
-        `SELECT tool_id, SUM(count) AS downloads, SUM(unique_ips) AS unique_users
-         FROM downloads_daily WHERE date = ?1
-         GROUP BY tool_id`,
-      ),
-      select: "tool_id, SUM(downloads), SUM(unique_users)",
-      key: "tool_id",
-      covered: "s.tool_id = src.tool_id",
-    },
-    {
-      table: "daily_tool_version_stats",
-      columns: "date, tool_id, version, downloads",
-      source: sources(
-        `SELECT tool_id, version, COUNT(*) AS downloads
-         FROM downloads WHERE created_at >= ?2 AND created_at < ?3
-         GROUP BY tool_id, version`,
-        `SELECT tool_id, version, SUM(count) AS downloads
-         FROM downloads_daily WHERE date = ?1
-         GROUP BY tool_id, version`,
-      ),
-      select: "tool_id, version, SUM(downloads)",
-      key: "tool_id, version",
-      covered: "s.tool_id = src.tool_id AND s.version = src.version",
-    },
-    {
-      table: "daily_tool_platform_stats",
-      columns: "date, tool_id, platform_id, downloads",
-      source: sources(
-        `SELECT tool_id, COALESCE(platform_id, 0) AS platform_id, COUNT(*) AS downloads
-         FROM downloads WHERE created_at >= ?2 AND created_at < ?3
-         GROUP BY tool_id, COALESCE(platform_id, 0)`,
-        `SELECT tool_id, COALESCE(platform_id, 0) AS platform_id, SUM(count) AS downloads
-         FROM downloads_daily WHERE date = ?1
-         GROUP BY tool_id, COALESCE(platform_id, 0)`,
-      ),
-      select: "tool_id, platform_id, SUM(downloads)",
-      key: "tool_id, platform_id",
-      covered: "s.tool_id = src.tool_id AND s.platform_id = src.platform_id",
-    },
-  ];
-}
-
-function uncovered(rollup) {
-  return `
-    FROM (${rollup.source}) src
-    WHERE NOT EXISTS (
-      SELECT 1 FROM ${rollup.table} s WHERE s.date = ?1 AND ${rollup.covered}
-    )
-  `;
-}
-
-// ?2/?3 only appear in the raw `downloads` source, and SQLite rejects binding
-// a parameter the statement does not use.
-function dayParams(date, tables) {
-  if (!tables.has("downloads")) return [date];
-  const start = dayStart(date);
-  return [date, start, start + 86400];
+    perTool(
+      "daily_tool_stats",
+      "tool_id",
+      ["downloads", "unique_users"],
+      `SELECT tool_id, COUNT(*) AS downloads, COUNT(DISTINCT ip_hash) AS unique_users
+       FROM downloads WHERE ${createdAt} GROUP BY tool_id`,
+      // Archived rows lost their ip hashes; summing per-group unique ips is
+      // the best available unique_users estimate.
+      `SELECT tool_id, SUM(count) AS downloads, SUM(unique_ips) AS unique_users
+       FROM downloads_daily WHERE date = ?1 GROUP BY tool_id`,
+    ),
+    perTool(
+      "daily_tool_version_stats",
+      "tool_id, version",
+      ["downloads"],
+      `SELECT tool_id, version, COUNT(*) AS downloads
+       FROM downloads WHERE ${createdAt} GROUP BY tool_id, version`,
+      `SELECT tool_id, version, SUM(count) AS downloads
+       FROM downloads_daily WHERE date = ?1 GROUP BY tool_id, version`,
+    ),
+    perTool(
+      "daily_tool_platform_stats",
+      "tool_id, platform_id",
+      ["downloads"],
+      `SELECT tool_id, COALESCE(platform_id, 0) AS platform_id, COUNT(*) AS downloads
+       FROM downloads WHERE ${createdAt} GROUP BY tool_id, COALESCE(platform_id, 0)`,
+      `SELECT tool_id, COALESCE(platform_id, 0) AS platform_id, SUM(count) AS downloads
+       FROM downloads_daily WHERE date = ?1 GROUP BY tool_id, COALESCE(platform_id, 0)`,
+    ),
+    // Global rollups come from raw rows only: archived per-group unique ips
+    // cannot be combined into a daily unique-user count.
+    perDay(
+      "daily_stats",
+      ["total_downloads", "unique_users"],
+      raw &&
+        `SELECT COUNT(*) AS total_downloads, COUNT(DISTINCT ip_hash) AS unique_users
+         FROM downloads WHERE ${createdAt}`,
+    ),
+    perDay(
+      "daily_combined_stats",
+      ["unique_users"],
+      dailyUsers &&
+        `SELECT COUNT(DISTINCT ip_hash) AS unique_users FROM (${dailyUsers})`,
+    ),
+    perDay(
+      "daily_version_stats",
+      ["total_requests", "unique_users"],
+      requests &&
+        `SELECT COUNT(*) AS total_requests, COUNT(DISTINCT ip_hash) AS unique_users
+         FROM version_requests WHERE ${createdAt}`,
+    ),
+  ].filter((rollup) => rollup.select);
 }
 
 export async function fold(config) {
@@ -189,13 +220,11 @@ export async function fold(config) {
   const dates = await legacyDates(config, tables);
   console.log(`Folding ${dates.length} legacy day(s)`);
   for (const date of dates) {
-    for (const rollup of rollups(tables)) {
+    for (const rollup of folds(tables, date)) {
       await queryD1(
         config,
-        `INSERT INTO ${rollup.table} (${rollup.columns})
-         SELECT ?1, ${rollup.select} ${uncovered(rollup)}
-         GROUP BY ${rollup.key}`,
-        dayParams(date, tables),
+        `INSERT INTO ${rollup.table} (${rollup.columns}) ${rollup.select}`,
+        [date],
         `fold ${rollup.table} ${date}`,
       );
     }
@@ -204,21 +233,21 @@ export async function fold(config) {
   return { days: dates.length };
 }
 
-// Returns legacy keys still missing from the rollups, per table and day.
+// Returns legacy rows still missing from the rollups, per table and day.
 export async function verify(config) {
   const tables = await existingTables(config);
   const dates = await legacyDates(config, tables);
   const missing = [];
   for (const date of dates) {
-    for (const rollup of rollups(tables)) {
+    for (const rollup of folds(tables, date)) {
       const [row] = await queryD1(
         config,
-        `SELECT COUNT(*) AS count FROM (SELECT ${rollup.key} ${uncovered(rollup)} GROUP BY ${rollup.key})`,
-        dayParams(date, tables),
+        `SELECT COUNT(*) AS count FROM (${rollup.select})`,
+        [date],
         `verify ${rollup.table} ${date}`,
       );
       const count = Number(row?.count ?? 0);
-      if (count > 0) missing.push({ table: rollup.table, date, keys: count });
+      if (count > 0) missing.push({ table: rollup.table, date, rows: count });
     }
   }
   console.log(
