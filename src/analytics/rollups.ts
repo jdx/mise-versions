@@ -863,6 +863,8 @@ export function createRollupFunctions(
       [thirtyDaysAgo, updatedAt],
     );
 
+    // Rollups can still hold rows for deleted tools; the summaries reference
+    // tools(id), so only rebuild them for tools that exist.
     await runStatement(
       sql`
         INSERT OR REPLACE INTO tool_platform_download_summaries (
@@ -875,6 +877,7 @@ export function createRollupFunctions(
           COALESCE(platform_id, 0) AS platform_id,
           SUM(downloads) AS downloads_all_time
         FROM daily_tool_platform_stats
+        WHERE tool_id IN (SELECT id FROM tools)
         GROUP BY tool_id, COALESCE(platform_id, 0)
       `,
       d1,
@@ -889,6 +892,7 @@ export function createRollupFunctions(
           COALESCE(platform_id, 0) AS platform_id,
           SUM(downloads) AS downloads_all_time
         FROM daily_tool_platform_stats
+        WHERE tool_id IN (SELECT id FROM tools)
         GROUP BY tool_id, COALESCE(platform_id, 0)
       `,
     );
@@ -905,6 +909,7 @@ export function createRollupFunctions(
           version,
           SUM(downloads) AS downloads_all_time
         FROM daily_tool_version_stats
+        WHERE tool_id IN (SELECT id FROM tools)
         GROUP BY tool_id, version
       `,
       d1,
@@ -919,6 +924,7 @@ export function createRollupFunctions(
           version,
           SUM(downloads) AS downloads_all_time
         FROM daily_tool_version_stats
+        WHERE tool_id IN (SELECT id FROM tools)
         GROUP BY tool_id, version
       `,
     );
