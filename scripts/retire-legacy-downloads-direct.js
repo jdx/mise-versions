@@ -19,6 +19,11 @@ import { queryD1, requiredEnv } from "./refresh-download-rollups-direct.js";
  *   --mode=drop    verify, then delete the legacy tables; refuses while
  *                  anything is missing, and resumes if interrupted
  *
+ * Days from the cutover on are never folded: part of their events went to
+ * Analytics Engine, so the legacy rows alone would undercount them, and those
+ * rollups cannot be rebuilt once the legacy rows are gone. If one is missing,
+ * drop refuses unless --allow-cutover-gaps accepts losing those rows.
+ *
  * Run drop only after the code that no longer reads these tables is deployed.
  */
 
@@ -29,7 +34,11 @@ const DELETE_BATCH_ROWS = 100_000;
 const MODES = ["fold", "verify", "drop"];
 
 function usage() {
-  console.error(`Usage: node scripts/retire-legacy-downloads-direct.js --mode=${MODES.join("|")}
+  console.error(`Usage: node scripts/retire-legacy-downloads-direct.js --mode=${MODES.join("|")} [--allow-cutover-gaps]
+
+  --allow-cutover-gaps  With --mode=drop, drop even if rollups for days from
+                        the cutover on are missing legacy rows; those rows are
+                        lost.
 
 Environment:
   CLOUDFLARE_ACCOUNT_ID  Cloudflare account id
@@ -41,6 +50,7 @@ Environment:
 
 export function parseArgs(argv) {
   let mode = null;
+  let allowCutoverGaps = false;
   for (const arg of argv) {
     if (arg === "--help" || arg === "-h") {
       usage();
@@ -48,6 +58,8 @@ export function parseArgs(argv) {
     }
     if (arg.startsWith("--mode=")) {
       mode = arg.slice("--mode=".length);
+    } else if (arg === "--allow-cutover-gaps") {
+      allowCutoverGaps = true;
     } else {
       throw new Error(`Unknown argument: ${arg}`);
     }
@@ -55,7 +67,10 @@ export function parseArgs(argv) {
   if (!MODES.includes(mode)) {
     throw new Error(`--mode must be one of: ${MODES.join(", ")}`);
   }
-  return { mode };
+  if (allowCutoverGaps && mode !== "drop") {
+    throw new Error("--allow-cutover-gaps only applies to --mode=drop");
+  }
+  return { mode, allowCutoverGaps };
 }
 
 function dayStart(date) {
@@ -243,10 +258,13 @@ export async function fold(config) {
 }
 
 // Returns legacy rows still missing from the rollups, per table and day.
+// `missing` can be fixed by fold; `cutoverGaps` (days from the cutover on)
+// cannot.
 export async function verify(config) {
   const tables = await existingTables(config);
   const dates = await legacyDates(config, tables);
   const missing = [];
+  const cutoverGaps = [];
   for (const date of dates) {
     for (const rollup of folds(tables, date)) {
       const [row] = await queryD1(
@@ -256,15 +274,25 @@ export async function verify(config) {
         `verify ${rollup.table} ${date}`,
       );
       const count = Number(row?.count ?? 0);
-      if (count > 0) missing.push({ table: rollup.table, date, rows: count });
+      if (count === 0) continue;
+      const gap = { table: rollup.table, date, rows: count };
+      (date >= config.cutoverDate ? cutoverGaps : missing).push(gap);
     }
   }
-  console.log(
-    missing.length === 0
-      ? `All ${dates.length} legacy day(s) are covered by the daily rollups`
-      : `Missing from rollups: ${JSON.stringify(missing)}`,
-  );
-  return { days: dates.length, missing };
+  if (missing.length === 0 && cutoverGaps.length === 0) {
+    console.log(
+      `All ${dates.length} legacy day(s) are covered by the daily rollups`,
+    );
+  }
+  if (missing.length > 0) {
+    console.log(`Missing from rollups (run fold): ${JSON.stringify(missing)}`);
+  }
+  if (cutoverGaps.length > 0) {
+    console.log(
+      `Missing from cutover-day rollups (cannot be folded): ${JSON.stringify(cutoverGaps)}`,
+    );
+  }
+  return { days: dates.length, missing, cutoverGaps };
 }
 
 async function deleteTable(config, table) {
@@ -305,11 +333,16 @@ async function deleteTable(config, table) {
   console.log(`Dropped ${table}`);
 }
 
-export async function drop(config) {
-  const { missing } = await verify(config);
+export async function drop(config, { allowCutoverGaps = false } = {}) {
+  const { missing, cutoverGaps } = await verify(config);
   if (missing.length > 0) {
     throw new Error(
-      "Refusing to drop legacy tables while rollups are missing legacy rows; run --mode=fold first (fold skips the cutover day, which needs both D1 and Analytics Engine events)",
+      "Refusing to drop legacy tables while rollups are missing legacy rows; run --mode=fold first",
+    );
+  }
+  if (cutoverGaps.length > 0 && !allowCutoverGaps) {
+    throw new Error(
+      "Refusing to drop legacy tables while cutover-day rollups are missing legacy rows; pass --allow-cutover-gaps to drop them anyway",
     );
   }
   const tables = await existingTables(config);
@@ -320,7 +353,7 @@ export async function drop(config) {
 }
 
 async function main() {
-  const { mode } = parseArgs(process.argv.slice(2));
+  const { mode, allowCutoverGaps } = parseArgs(process.argv.slice(2));
   const config = {
     cloudflareAccountId: requiredEnv("CLOUDFLARE_ACCOUNT_ID"),
     cloudflareApiToken: requiredEnv("CLOUDFLARE_API_TOKEN"),
@@ -328,9 +361,16 @@ async function main() {
     cutoverDate:
       process.env.ANALYTICS_ENGINE_CUTOVER_DATE || DEFAULT_CUTOVER_DATE,
   };
-  const result = await { fold, verify, drop }[mode](config);
+  const result = await { fold, verify, drop }[mode](config, {
+    allowCutoverGaps,
+  });
   console.log(JSON.stringify({ success: true, mode, result }, null, 2));
-  if (mode === "verify" && result.missing.length > 0) process.exitCode = 1;
+  if (
+    mode === "verify" &&
+    (result.missing.length > 0 || result.cutoverGaps.length > 0)
+  ) {
+    process.exitCode = 1;
+  }
 }
 
 if (fileURLToPath(import.meta.url) === resolve(process.argv[1])) {

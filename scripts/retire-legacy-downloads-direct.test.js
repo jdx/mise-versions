@@ -149,7 +149,18 @@ function rows(db, sql) {
 
 describe("retire-legacy-downloads-direct", () => {
   it("requires a mode", () => {
-    assert.deepEqual(parseArgs(["--mode=fold"]), { mode: "fold" });
+    assert.deepEqual(parseArgs(["--mode=fold"]), {
+      mode: "fold",
+      allowCutoverGaps: false,
+    });
+    assert.deepEqual(parseArgs(["--mode=drop", "--allow-cutover-gaps"]), {
+      mode: "drop",
+      allowCutoverGaps: true,
+    });
+    assert.throws(
+      () => parseArgs(["--mode=fold", "--allow-cutover-gaps"]),
+      /only applies to --mode=drop/,
+    );
     assert.throws(() => parseArgs([]), /--mode must be one of/);
     assert.throws(() => parseArgs(["--mode=nuke"]), /--mode must be one of/);
   });
@@ -192,9 +203,22 @@ describe("retire-legacy-downloads-direct", () => {
       rows(db, "SELECT date FROM daily_tool_stats WHERE date = '2026-06-12'"),
       [],
     );
-    const { missing } = await verify(config);
-    assert.ok(missing.some(({ date }) => date === "2026-06-12"));
-    await assert.rejects(drop(config), /run --mode=fold first/);
+    const { missing, cutoverGaps } = await verify(config);
+    assert.deepEqual(
+      cutoverGaps.map(({ table, date }) => `${table} ${date}`),
+      [
+        "daily_tool_stats 2026-06-12",
+        "daily_tool_version_stats 2026-06-12",
+        "daily_tool_platform_stats 2026-06-12",
+        "daily_stats 2026-06-12",
+        "daily_combined_stats 2026-06-12",
+      ],
+    );
+    assert.deepEqual(missing, []);
+    await assert.rejects(drop(config), /--allow-cutover-gaps/);
+    assert.deepEqual(await drop(config, { allowCutoverGaps: true }), {
+      dropped: ["downloads", "downloads_daily", "version_requests"],
+    });
   });
 
   it("keeps all-time totals after folding and dropping", async () => {
