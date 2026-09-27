@@ -208,6 +208,50 @@ describe("refresh-download-summaries-direct", () => {
     );
   });
 
+  it("skips rollup rows left behind by deleted tools", async () => {
+    const db = createDb();
+    // Mirror production, where the summary tables reference tools(id).
+    db.exec(`
+      PRAGMA foreign_keys = ON;
+      DROP TABLE tool_platform_download_summaries;
+      DROP TABLE tool_version_download_summaries;
+      CREATE TABLE tool_platform_download_summaries (
+        tool_id INTEGER NOT NULL REFERENCES tools(id), platform_id INTEGER NOT NULL,
+        downloads_all_time INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY (tool_id, platform_id)
+      );
+      CREATE TABLE tool_version_download_summaries (
+        tool_id INTEGER NOT NULL REFERENCES tools(id), version TEXT NOT NULL,
+        downloads_all_time INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY (tool_id, version)
+      );
+      INSERT INTO tools VALUES (1, 'jq', '1.8.1', '[]'), (3, 'node', '24.0.0', '[]');
+      -- Tool 2 was deleted, but its version and platform rollups remain.
+      INSERT INTO daily_tool_version_stats VALUES
+        ('${daysAgo(1)}', 1, '1.8.1', 5), ('${daysAgo(1)}', 2, '0.1.0', 7);
+      INSERT INTO daily_tool_platform_stats VALUES
+        ('${daysAgo(1)}', 1, 1, 5), ('${daysAgo(1)}', 2, 1, 7);
+    `);
+
+    serveD1(db);
+    await refreshSummaries(config, NOW);
+
+    assert.deepEqual(
+      db
+        .prepare("SELECT tool_id FROM tool_version_download_summaries")
+        .all()
+        .map((row) => row.tool_id),
+      [1],
+    );
+    assert.deepEqual(
+      db
+        .prepare("SELECT tool_id FROM tool_platform_download_summaries")
+        .all()
+        .map((row) => row.tool_id),
+      [1],
+    );
+  });
+
   it("scores trending tools by recent daily momentum", async () => {
     const db = createDb();
     db.exec(

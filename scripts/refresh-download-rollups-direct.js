@@ -160,11 +160,16 @@ async function queryAnalyticsEngine(config, sql) {
 }
 
 async function queryD1(config, sql, params = [], label = "D1 query") {
-  const data = await cfFetch(
-    `https://api.cloudflare.com/client/v4/accounts/${config.cloudflareAccountId}/d1/database/${config.analyticsDbId}/query`,
-    config.cloudflareApiToken,
-    { method: "POST", body: JSON.stringify({ sql, params }) },
-  );
+  let data;
+  try {
+    data = await cfFetch(
+      `https://api.cloudflare.com/client/v4/accounts/${config.cloudflareAccountId}/d1/database/${config.analyticsDbId}/query`,
+      config.cloudflareApiToken,
+      { method: "POST", body: JSON.stringify({ sql, params }) },
+    );
+  } catch (error) {
+    throw new Error(`${label} failed: ${error.message}`, { cause: error });
+  }
   const first = Array.isArray(data.result) ? data.result[0] : data.result;
   if (!first?.success) {
     throw new Error(`${label} failed: ${JSON.stringify(data)}`);

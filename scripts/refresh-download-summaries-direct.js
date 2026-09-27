@@ -46,6 +46,10 @@ export function toolIdRanges(ids, size = TOOL_CHUNK_SIZE) {
   return ranges;
 }
 
+// Rollups can still hold rows for tools that were deleted; summaries reference
+// tools(id), so only rebuild them for tools that exist.
+const EXISTING_TOOL_IDS = "SELECT id FROM tools WHERE id BETWEEN ?1 AND ?2";
+
 // ?1/?2 bound the tool id range; ?3 is the 30-day cutoff; ?4 is updated_at.
 const TOOL_SUMMARIES_SQL = `
   INSERT OR REPLACE INTO tool_download_summaries (
@@ -81,7 +85,7 @@ const PLATFORM_SUMMARIES_SQL = `
   )
   SELECT tool_id, platform_id, SUM(downloads)
   FROM daily_tool_platform_stats
-  WHERE tool_id BETWEEN ?1 AND ?2
+  WHERE tool_id BETWEEN ?1 AND ?2 AND tool_id IN (${EXISTING_TOOL_IDS})
   GROUP BY tool_id, platform_id
 `;
 
@@ -93,7 +97,7 @@ const VERSION_SUMMARIES_SQL = `
   )
   SELECT tool_id, version, SUM(downloads)
   FROM daily_tool_version_stats
-  WHERE tool_id BETWEEN ?1 AND ?2
+  WHERE tool_id BETWEEN ?1 AND ?2 AND tool_id IN (${EXISTING_TOOL_IDS})
   GROUP BY tool_id, version
 `;
 
