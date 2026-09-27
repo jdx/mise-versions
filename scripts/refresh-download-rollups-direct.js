@@ -464,7 +464,7 @@ async function main() {
   console.log(JSON.stringify({ success: true, results }, null, 2));
 }
 
-export { batchUpsert, parseArgs, refreshDate };
+export { batchUpsert, parseArgs, queryD1, refreshDate, requiredEnv };
 
 if (fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((error) => {

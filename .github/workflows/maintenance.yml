@@ -15,6 +15,7 @@ on:
           - refresh-rollups
           - refresh-mau
           - refresh-version-stats
+          - refresh-summaries
           - refresh-all
       date:
         description: "Newest UTC day to refresh (YYYY-MM-DD); defaults to yesterday, and is clamped to yesterday because the current day is still open"
@@ -89,6 +90,17 @@ jobs:
           ANALYTICS_ENGINE_DATASET: mise_analytics_events
           ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
 
+      # Summaries are derived from the daily rollups, so only rebuild them
+      # once the rollup refresh has fully succeeded.
+      - name: Refresh download summaries directly
+        id: refresh_summaries
+        if: env.TASK == 'refresh-summaries' || (env.TASK == 'refresh-all' && steps.refresh_rollups.outcome == 'success')
+        continue-on-error: ${{ env.TASK == 'refresh-all' }}
+        run: node scripts/refresh-download-summaries-direct.js
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
       - name: Refresh version stats directly
         if: env.TASK == 'refresh-version-stats' || env.TASK == 'refresh-all'
         run: |
@@ -108,5 +120,5 @@ jobs:
           ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
 
       - name: Fail if required refreshes failed
-        if: env.TASK == 'refresh-all' && (steps.refresh_mau.outcome == 'failure' || steps.refresh_rollups.outcome == 'failure')
+        if: env.TASK == 'refresh-all' && (steps.refresh_mau.outcome == 'failure' || steps.refresh_rollups.outcome == 'failure' || steps.refresh_summaries.outcome == 'failure')
         run: exit 1
