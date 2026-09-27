@@ -23,6 +23,7 @@ import { queryD1, requiredEnv } from "./refresh-download-rollups-direct.js";
  */
 
 const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
+const DEFAULT_CUTOVER_DATE = "2026-06-12";
 const LEGACY_TABLES = ["downloads", "downloads_daily", "version_requests"];
 const DELETE_BATCH_ROWS = 100_000;
 const MODES = ["fold", "verify", "drop"];
@@ -34,6 +35,7 @@ Environment:
   CLOUDFLARE_ACCOUNT_ID  Cloudflare account id
   CLOUDFLARE_API_TOKEN   Cloudflare API token with D1 edit access
   ANALYTICS_DB_ID        Optional; defaults to production ANALYTICS_DB id
+  ANALYTICS_ENGINE_CUTOVER_DATE Optional; defaults to ${DEFAULT_CUTOVER_DATE}
 `);
 }
 
@@ -220,6 +222,13 @@ export async function fold(config) {
   const dates = await legacyDates(config, tables);
   console.log(`Folding ${dates.length} legacy day(s)`);
   for (const date of dates) {
+    // From the cutover day on, part of the events went to Analytics Engine,
+    // so the legacy rows alone would undercount. Those rollups must already
+    // exist; verify reports them if they do not.
+    if (date >= config.cutoverDate) {
+      console.log(`Skipping ${date}: not before cutover ${config.cutoverDate}`);
+      continue;
+    }
     for (const rollup of folds(tables, date)) {
       await queryD1(
         config,
@@ -300,7 +309,7 @@ export async function drop(config) {
   const { missing } = await verify(config);
   if (missing.length > 0) {
     throw new Error(
-      "Refusing to drop legacy tables while rollups are missing legacy rows; run --mode=fold first",
+      "Refusing to drop legacy tables while rollups are missing legacy rows; run --mode=fold first (fold skips the cutover day, which needs both D1 and Analytics Engine events)",
     );
   }
   const tables = await existingTables(config);
@@ -316,6 +325,8 @@ async function main() {
     cloudflareAccountId: requiredEnv("CLOUDFLARE_ACCOUNT_ID"),
     cloudflareApiToken: requiredEnv("CLOUDFLARE_API_TOKEN"),
     analyticsDbId: process.env.ANALYTICS_DB_ID || DEFAULT_ANALYTICS_DB_ID,
+    cutoverDate:
+      process.env.ANALYTICS_ENGINE_CUTOVER_DATE || DEFAULT_CUTOVER_DATE,
   };
   const result = await { fold, verify, drop }[mode](config);
   console.log(JSON.stringify({ success: true, mode, result }, null, 2));

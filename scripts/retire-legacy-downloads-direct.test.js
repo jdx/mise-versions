@@ -20,6 +20,7 @@ const config = {
   cloudflareAccountId: "account",
   cloudflareApiToken: "d1-token",
   analyticsDbId: "database",
+  cutoverDate: "2026-06-12",
 };
 
 const NOW = Date.UTC(2026, 8, 27, 12) / 1000;
@@ -177,6 +178,23 @@ describe("retire-legacy-downloads-direct", () => {
     );
     await assert.rejects(drop(config), /run --mode=fold first/);
     assert.equal(rows(db, "SELECT COUNT(*) AS n FROM downloads")[0].n, 5);
+  });
+
+  it("never folds the cutover day from D1 alone", async () => {
+    const db = createDb();
+    db.prepare(
+      "INSERT INTO downloads (tool_id, version, platform_id, ip_hash, created_at) VALUES (1, '1.8.1', 1, 'a', ?)",
+    ).run(ts("2026-06-12"));
+    serveD1(db);
+
+    await fold(config);
+    assert.deepEqual(
+      rows(db, "SELECT date FROM daily_tool_stats WHERE date = '2026-06-12'"),
+      [],
+    );
+    const { missing } = await verify(config);
+    assert.ok(missing.some(({ date }) => date === "2026-06-12"));
+    await assert.rejects(drop(config), /run --mode=fold first/);
   });
 
   it("keeps all-time totals after folding and dropping", async () => {
