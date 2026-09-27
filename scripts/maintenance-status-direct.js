@@ -93,12 +93,6 @@ async function queryD1({ accountId, token, databaseId, sql, params = [] }) {
   return first.results ?? [];
 }
 
-function isoFromTs(ts) {
-  return ts === null || ts === undefined
-    ? null
-    : new Date(Number(ts) * 1000).toISOString();
-}
-
 async function main() {
   if (process.argv.includes("--help") || process.argv.includes("-h")) {
     usage();
@@ -137,45 +131,9 @@ async function main() {
     `,
   });
 
-  const [downloads] = await queryD1({
-    ...config,
-    sql: `
-      SELECT
-        MIN(created_at) AS oldest_ts,
-        MAX(created_at) AS latest_ts,
-        COUNT(*) AS rows
-      FROM downloads
-    `,
-  });
-
-  const [versionRequests] = await queryD1({
-    ...config,
-    sql: `
-      SELECT
-        MIN(created_at) AS oldest_ts,
-        MAX(created_at) AS latest_ts,
-        COUNT(*) AS rows
-      FROM version_requests
-    `,
-  });
-
   const result = {
     rollups,
     latest_mau_rows: latestMauRows,
-    downloads: {
-      rows: downloads?.rows ?? 0,
-      oldest_ts: downloads?.oldest_ts ?? null,
-      oldest_iso: isoFromTs(downloads?.oldest_ts),
-      latest_ts: downloads?.latest_ts ?? null,
-      latest_iso: isoFromTs(downloads?.latest_ts),
-    },
-    version_requests: {
-      rows: versionRequests?.rows ?? 0,
-      oldest_ts: versionRequests?.oldest_ts ?? null,
-      oldest_iso: isoFromTs(versionRequests?.oldest_ts),
-      latest_ts: versionRequests?.latest_ts ?? null,
-      latest_iso: isoFromTs(versionRequests?.latest_ts),
-    },
   };
 
   console.log(JSON.stringify(result, null, 2));

@@ -159,15 +159,26 @@ export const POST: APIRoute = async ({ request, locals }) => {
     );
 
     const BATCH_SIZE = 50;
-    // Child tables with FK references to tools(id)
+    // Child tables with FK references to tools(id), plus the other
+    // tool-owned rollups and summaries.
     const childTables = [
       "versions",
       "version_updates",
-      "downloads",
-      "downloads_daily",
       "daily_tool_stats",
       "daily_tool_backend_stats",
+      "daily_tool_version_stats",
+      "daily_tool_platform_stats",
+      "tool_download_summaries",
+      "tool_platform_download_summaries",
+      "tool_version_download_summaries",
+      "trending_tool_summaries",
     ];
+    // The retired raw download tables still hold FK rows until
+    // scripts/retire-legacy-downloads-direct.js drops them.
+    const legacyTables = await env.ANALYTICS_DB.prepare(
+      "SELECT name FROM sqlite_master WHERE type = 'table' AND name IN ('downloads', 'downloads_daily')",
+    ).all<{ name: string }>();
+    childTables.push(...legacyTables.results.map((row) => row.name));
     for (let i = 0; i < toolsToDelete.length; i += BATCH_SIZE) {
       const batch = toolsToDelete.slice(i, i + BATCH_SIZE);
       try {

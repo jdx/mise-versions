@@ -196,31 +196,21 @@ export function createTrackingFunctions(
     getOrCreateBackendId,
     getOrCreatePlatformId,
 
-    // Track a version request (for mise DAU/MAU) with daily deduplication per IP.
-    // Relies on the UNIQUE(ip_hash, day) index in D1; INSERT OR IGNORE returns
-    // changes=0 when the (ip, day) pair is already present.
+    // Track a version request (for mise DAU/MAU). Events go to Analytics
+    // Engine and unique users are counted by the scheduled rollups, so nothing
+    // is deduplicated at write time. Without the Analytics Engine binding the
+    // event is dropped.
     async trackVersionRequest(
       ipHash: string,
     ): Promise<{ deduplicated: boolean }> {
-      if (writeVersionRequestEvent(cache.events, ipHash)) {
-        return { deduplicated: false };
-      }
-
-      const now = Math.floor(Date.now() / 1000);
-      const day = Math.floor(now / 86400);
-
-      const result = (await db.run(sql`
-        INSERT OR IGNORE INTO version_requests (ip_hash, created_at, day)
-        VALUES (${ipHash}, ${now}, ${day})
-      `)) as { meta?: { changes?: number } };
-
-      const changes = result.meta?.changes ?? 0;
-      return { deduplicated: changes === 0 };
+      writeVersionRequestEvent(cache.events, ipHash);
+      return { deduplicated: false };
     },
 
-    // Track a download with daily deduplication per IP/tool/version.
-    // Relies on the UNIQUE(tool_id, version, ip_hash, day) index on downloads;
-    // INSERT OR IGNORE returns changes=0 when the row already exists for today.
+    // Track a download. Events go to Analytics Engine; per-IP/tool/version
+    // deduplication happens in the scheduled rollups, so nothing is
+    // deduplicated at write time. Without the Analytics Engine binding the
+    // event is dropped.
     async trackDownload(
       tool: string,
       version: string,
@@ -229,38 +219,23 @@ export function createTrackingFunctions(
       arch: string | null,
       full: string | null = null, // Full backend identifier (e.g., "aqua:nektos/act")
     ): Promise<{ deduplicated: boolean }> {
-      // Keep dimension tables populated even when raw events are written to
+      // Record the event first so a D1 failure below cannot lose it.
+      writeDownloadEvent(cache.events, {
+        tool,
+        version,
+        ipHash,
+        os,
+        arch,
+        full,
+      });
+
+      // Keep dimension tables populated even though raw events live in
       // Analytics Engine; scheduled rollups resolve tool/platform names back
       // to these ids before materializing D1 summaries.
-      const toolId = await getOrCreateToolId(tool);
-      const backendId = await getOrCreateBackendId(full);
-      const platformId = await getOrCreatePlatformId(os, arch);
-
-      if (
-        writeDownloadEvent(cache.events, {
-          tool,
-          version,
-          ipHash,
-          os,
-          arch,
-          full,
-        })
-      ) {
-        return { deduplicated: false };
-      }
-
-      const now = Math.floor(Date.now() / 1000);
-      const day = Math.floor(now / 86400);
-
-      const result = (await db.run(sql`
-        INSERT OR IGNORE INTO downloads
-          (tool_id, backend_id, version, platform_id, ip_hash, created_at, day)
-        VALUES
-          (${toolId}, ${backendId}, ${version}, ${platformId}, ${ipHash}, ${now}, ${day})
-      `)) as { meta?: { changes?: number } };
-
-      const changes = result.meta?.changes ?? 0;
-      return { deduplicated: changes === 0 };
+      await getOrCreateToolId(tool);
+      await getOrCreateBackendId(full);
+      await getOrCreatePlatformId(os, arch);
+      return { deduplicated: false };
     },
   };
 }

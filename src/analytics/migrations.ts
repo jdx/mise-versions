@@ -37,96 +37,16 @@ const analyticsMigrations: AnalyticsMigration[] = [
       `);
     },
   },
+  // Migrations 2, 4, and 5 read or reshaped the retired raw `downloads`,
+  // `downloads_daily`, and `version_requests` tables. They stay as no-ops so
+  // their ids remain reserved: existing databases already recorded them in
+  // analytics_migrations, and new databases record them without touching
+  // tables that no longer exist. Summaries are rebuilt from the daily rollups
+  // by the scheduled maintenance scripts.
   {
     id: 2,
     name: "populate_download_summaries",
-    async up(db) {
-      const now = Math.floor(Date.now() / 1000);
-      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
-        .toISOString()
-        .split("T")[0];
-      const updatedAt = new Date().toISOString();
-
-      await db.run(sql`
-        INSERT OR REPLACE INTO tool_download_summaries (
-          tool_id,
-          downloads_30d,
-          downloads_all_time,
-          updated_at
-        )
-        WITH all_time AS (
-          SELECT tool_id, SUM(downloads) AS downloads_all_time
-          FROM (
-            SELECT tool_id, COUNT(*) AS downloads
-            FROM downloads
-            GROUP BY tool_id
-            UNION ALL
-            SELECT tool_id, SUM(count) AS downloads
-            FROM downloads_daily
-            GROUP BY tool_id
-          )
-          GROUP BY tool_id
-        ),
-        recent AS (
-          SELECT tool_id, SUM(downloads) AS downloads_30d
-          FROM daily_tool_stats
-          WHERE date >= ${thirtyDaysAgo}
-          GROUP BY tool_id
-        )
-        SELECT
-          t.id,
-          COALESCE(r.downloads_30d, 0),
-          COALESCE(a.downloads_all_time, 0),
-          ${updatedAt}
-        FROM tools t
-        LEFT JOIN all_time a ON a.tool_id = t.id
-        LEFT JOIN recent r ON r.tool_id = t.id
-      `);
-
-      await db.run(sql`
-        INSERT OR REPLACE INTO tool_platform_download_summaries (
-          tool_id,
-          platform_id,
-          downloads_all_time
-        )
-        SELECT
-          tool_id,
-          COALESCE(platform_id, 0) AS platform_id,
-          SUM(downloads) AS downloads_all_time
-        FROM (
-          SELECT tool_id, platform_id, COUNT(*) AS downloads
-          FROM downloads
-          GROUP BY tool_id, platform_id
-          UNION ALL
-          SELECT tool_id, platform_id, SUM(count) AS downloads
-          FROM downloads_daily
-          GROUP BY tool_id, platform_id
-        )
-        GROUP BY tool_id, COALESCE(platform_id, 0)
-      `);
-
-      await db.run(sql`
-        INSERT OR REPLACE INTO tool_version_download_summaries (
-          tool_id,
-          version,
-          downloads_all_time
-        )
-        SELECT
-          tool_id,
-          version,
-          SUM(downloads) AS downloads_all_time
-        FROM (
-          SELECT tool_id, version, COUNT(*) AS downloads
-          FROM downloads
-          GROUP BY tool_id, version
-          UNION ALL
-          SELECT tool_id, version, SUM(count) AS downloads
-          FROM downloads_daily
-          GROUP BY tool_id, version
-        )
-        GROUP BY tool_id, version
-      `);
-    },
+    async up() {},
   },
   {
     id: 3,
@@ -277,45 +197,12 @@ const analyticsMigrations: AnalyticsMigration[] = [
   {
     id: 4,
     name: "version_requests_day_unique_index",
-    async up(db) {
-      const cols = await db.all<{ name: string }>(
-        sql`PRAGMA table_info(version_requests)`,
-      );
-      const hasDay = (cols as { name: string }[]).some((c) => c.name === "day");
-      if (!hasDay) {
-        await db.run(sql`ALTER TABLE version_requests ADD COLUMN day INTEGER`);
-      }
-      // Old rows keep day=NULL. SQLite treats NULLs as distinct in unique
-      // indexes, so the index only enforces uniqueness on rows tracked after
-      // the cutover (where day is set explicitly).
-      await db.run(sql`
-        CREATE UNIQUE INDEX IF NOT EXISTS idx_version_requests_unique_ip_day
-        ON version_requests(ip_hash, day)
-      `);
-    },
+    async up() {},
   },
   {
     id: 5,
     name: "downloads_day_unique_index",
-    async up(db) {
-      const cols = await db.all<{ name: string }>(
-        sql`PRAGMA table_info(downloads)`,
-      );
-      const hasDay = (cols as { name: string }[]).some((c) => c.name === "day");
-      if (!hasDay) {
-        await db.run(sql`ALTER TABLE downloads ADD COLUMN day INTEGER`);
-      }
-      // Mirrors the version_requests dedup index: old rows keep day=NULL,
-      // new tracking writes set day and are deduped via INSERT OR IGNORE.
-      // Matches the prior KV dedup key (tool, version, ip_hash, day) — backend
-      // and platform are intentionally excluded so the same user downloading
-      // for multiple platforms in a day still counts as one download, the
-      // same behavior as the KV dedup it replaces.
-      await db.run(sql`
-        CREATE UNIQUE INDEX IF NOT EXISTS idx_downloads_unique_tool_version_ip_day
-        ON downloads(tool_id, version, ip_hash, day)
-      `);
-    },
+    async up() {},
   },
 ];
 
@@ -352,121 +239,15 @@ async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {
 export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   console.log("Running analytics database migrations...");
 
-  // Check if we need to migrate from old schema
-  const tableInfo = await db.all(sql`PRAGMA table_info(downloads)`);
-  const hasOldSchema = tableInfo.some(
-    (col: any) => col.name === "tool" && col.type === "TEXT",
-  );
+  // Dimension tables. Raw download and version-request events live in
+  // Analytics Engine; scheduled rollups resolve names back to these ids.
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS tools (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL UNIQUE
+    )
+  `);
 
-  if (hasOldSchema) {
-    console.log("Migrating from old schema to normalized schema...");
-
-    // Create new lookup tables
-    await db.run(sql`
-      CREATE TABLE IF NOT EXISTS tools (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL UNIQUE
-      )
-    `);
-
-    await db.run(sql`
-      CREATE TABLE IF NOT EXISTS platforms (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        os TEXT,
-        arch TEXT,
-        UNIQUE(os, arch)
-      )
-    `);
-
-    // Populate tools from existing data
-    await db.run(sql`
-      INSERT OR IGNORE INTO tools (name)
-      SELECT DISTINCT tool FROM downloads WHERE tool IS NOT NULL
-    `);
-
-    // Populate platforms from existing data
-    await db.run(sql`
-      INSERT OR IGNORE INTO platforms (os, arch)
-      SELECT DISTINCT os, arch FROM downloads
-    `);
-
-    // Create new downloads table
-    await db.run(sql`
-      CREATE TABLE downloads_new (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        tool_id INTEGER NOT NULL,
-        version TEXT NOT NULL,
-        platform_id INTEGER,
-        ip_hash TEXT NOT NULL,
-        created_at INTEGER NOT NULL,
-        FOREIGN KEY (tool_id) REFERENCES tools(id),
-        FOREIGN KEY (platform_id) REFERENCES platforms(id)
-      )
-    `);
-
-    // Migrate data to new table
-    await db.run(sql`
-      INSERT INTO downloads_new (tool_id, version, platform_id, ip_hash, created_at)
-      SELECT
-        t.id,
-        d.version,
-        p.id,
-        d.ip_hash,
-        CAST(strftime('%s', d.created_at) AS INTEGER)
-      FROM downloads d
-      JOIN tools t ON t.name = d.tool
-      LEFT JOIN platforms p ON (p.os = d.os OR (p.os IS NULL AND d.os IS NULL))
-                            AND (p.arch = d.arch OR (p.arch IS NULL AND d.arch IS NULL))
-    `);
-
-    // Drop old table and rename new one
-    await db.run(sql`DROP TABLE downloads`);
-    await db.run(sql`ALTER TABLE downloads_new RENAME TO downloads`);
-
-    console.log("Migration from old schema completed");
-  } else {
-    // Fresh install - create tables normally
-    await db.run(sql`
-      CREATE TABLE IF NOT EXISTS tools (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL UNIQUE
-      )
-    `);
-
-    await db.run(sql`
-      CREATE TABLE IF NOT EXISTS backends (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        full TEXT NOT NULL UNIQUE
-      )
-    `);
-
-    await db.run(sql`
-      CREATE TABLE IF NOT EXISTS platforms (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        os TEXT,
-        arch TEXT,
-        UNIQUE(os, arch)
-      )
-    `);
-
-    await db.run(sql`
-      CREATE TABLE IF NOT EXISTS downloads (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        tool_id INTEGER NOT NULL,
-        backend_id INTEGER,
-        version TEXT NOT NULL,
-        platform_id INTEGER,
-        ip_hash TEXT NOT NULL,
-        created_at INTEGER NOT NULL,
-        day INTEGER,
-        FOREIGN KEY (tool_id) REFERENCES tools(id),
-        FOREIGN KEY (backend_id) REFERENCES backends(id),
-        FOREIGN KEY (platform_id) REFERENCES platforms(id)
-      )
-    `);
-  }
-
-  // Create backends table if it doesn't exist (for existing installations)
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS backends (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -474,79 +255,14 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     )
   `);
 
-  // Add backend_id column to downloads if it doesn't exist
-  const downloadsColumns = await db.all(sql`PRAGMA table_info(downloads)`);
-  const hasBackendIdInDownloads = downloadsColumns.some(
-    (col: any) => col.name === "backend_id",
-  );
-  if (!hasBackendIdInDownloads) {
-    console.log("Adding backend_id column to downloads table...");
-    await db.run(sql`ALTER TABLE downloads ADD COLUMN backend_id INTEGER`);
-  }
-
-  // Create daily aggregated table
   await db.run(sql`
-    CREATE TABLE IF NOT EXISTS downloads_daily (
+    CREATE TABLE IF NOT EXISTS platforms (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      tool_id INTEGER NOT NULL,
-      backend_id INTEGER,
-      version TEXT NOT NULL,
-      platform_id INTEGER,
-      date TEXT NOT NULL,
-      count INTEGER NOT NULL,
-      unique_ips INTEGER NOT NULL,
-      FOREIGN KEY (tool_id) REFERENCES tools(id),
-      FOREIGN KEY (backend_id) REFERENCES backends(id),
-      FOREIGN KEY (platform_id) REFERENCES platforms(id)
+      os TEXT,
+      arch TEXT,
+      UNIQUE(os, arch)
     )
   `);
-
-  // Add backend_id column to downloads_daily if it doesn't exist
-  const dailyColumns = await db.all(sql`PRAGMA table_info(downloads_daily)`);
-  const hasBackendIdInDaily = dailyColumns.some(
-    (col: any) => col.name === "backend_id",
-  );
-  if (!hasBackendIdInDaily) {
-    console.log("Adding backend_id column to downloads_daily table...");
-    await db.run(
-      sql`ALTER TABLE downloads_daily ADD COLUMN backend_id INTEGER`,
-    );
-  }
-
-  // Create indices for efficient queries
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_id ON downloads(tool_id)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_backend_id ON downloads(backend_id)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_at ON downloads(created_at)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_created_ip ON downloads(created_at, ip_hash)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_dedup ON downloads(tool_id, version, ip_hash, created_at)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_platform ON downloads(tool_id, platform_id)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_tool_created ON downloads(tool_id, created_at)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_ip_hash ON downloads(ip_hash)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_tool ON downloads_daily(tool_id)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_backend ON downloads_daily(backend_id)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_downloads_daily_date ON downloads_daily(date)`,
-  );
 
   // Create rollup tables for fast queries
   // Check if daily_tool_stats needs to be recreated (missing PRIMARY KEY)
@@ -609,30 +325,6 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   );
   await db.run(
     sql`CREATE INDEX IF NOT EXISTS idx_daily_backend_stats_date ON daily_backend_stats(date)`,
-  );
-
-  // Create version_requests table for mise DAU/MAU tracking.
-  // `day` is the UTC day-bucket (created_at / 86400) and pairs with the
-  // unique index below to dedupe via INSERT OR IGNORE.
-  await db.run(sql`
-    CREATE TABLE IF NOT EXISTS version_requests (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      ip_hash TEXT NOT NULL,
-      created_at INTEGER NOT NULL,
-      day INTEGER
-    )
-  `);
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_at ON version_requests(created_at)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_created_ip ON version_requests(created_at, ip_hash)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_hash ON version_requests(ip_hash)`,
-  );
-  await db.run(
-    sql`CREATE INDEX IF NOT EXISTS idx_version_requests_ip_created ON version_requests(ip_hash, created_at)`,
   );
 
   // Create daily_version_stats rollup table
@@ -768,7 +460,7 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     sql`CREATE INDEX IF NOT EXISTS idx_version_updates_tool_id ON version_updates(tool_id)`,
   );
 
-  // Create daily_combined_stats table for combined DAU (downloads + version_requests)
+  // Create daily_combined_stats table for combined DAU (downloads + version requests)
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS daily_combined_stats (
       date TEXT PRIMARY KEY,
@@ -828,7 +520,7 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   );
 
   // Summary tables for hot read paths. These are maintained by scheduled
-  // rollups and let UI requests avoid scanning downloads/downloads_daily.
+  // rollups and let UI requests avoid scanning the daily rollup tables.
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS tool_download_summaries (
       tool_id INTEGER PRIMARY KEY,

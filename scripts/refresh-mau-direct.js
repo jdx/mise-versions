@@ -13,8 +13,6 @@ const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
 const DEFAULT_DATASET = "mise_analytics_events";
 const DEFAULT_CUTOVER_DATE = "2026-06-12";
 const CLOUDFLARE_RETRY_ATTEMPTS = 3;
-const MAU_HASH_BUCKETS = "0123456789abcdef".split("");
-const MAU_HASH_BUCKET_END = "g";
 
 function usage() {
   console.error(`Usage: node scripts/refresh-mau-direct.js [--date=YYYY-MM-DD] [--days=N]
@@ -22,6 +20,9 @@ function usage() {
   --date  Newest UTC day to refresh; defaults to yesterday and is clamped to
           yesterday, since the current UTC day is not over yet.
   --days  Number of complete days to refresh, counting back from --date.
+
+Every refreshed date's trailing 30-day window must start after
+ANALYTICS_ENGINE_CUTOVER_DATE; earlier windows needed the retired raw D1 tables.
 
 Environment:
   CLOUDFLARE_ACCOUNT_ID       Cloudflare account id
@@ -69,10 +70,6 @@ function dateRange(date) {
     start: `${date} 00:00:00`,
     end: `${date} 23:59:59`,
   };
-}
-
-function timestamp(dateTime) {
-  return Math.floor(new Date(`${dateTime}Z`).getTime() / 1000);
 }
 
 function sleep(ms) {
@@ -165,33 +162,6 @@ async function queryD1({ accountId, token, databaseId, sql, params = [] }) {
   return rows;
 }
 
-async function legacyD1Mau(config, date, startTs, endTs) {
-  console.log(`Falling back to legacy D1 MAU query for ${date}`);
-  const rows = await queryD1({
-    accountId: config.cloudflareAccountId,
-    token: config.cloudflareApiToken,
-    databaseId: config.analyticsDbId,
-    sql: `
-      SELECT COUNT(DISTINCT ip_hash) as mau FROM (
-        SELECT ip_hash FROM downloads WHERE created_at >= ? AND created_at <= ?
-        UNION ALL
-        SELECT ip_hash FROM version_requests WHERE created_at >= ? AND created_at <= ?
-      )
-    `,
-    params: [startTs, endTs, startTs, endTs],
-  });
-  const mau = Number(rows[0]?.mau ?? 0);
-  if (!Number.isFinite(mau)) {
-    throw new Error(`Unexpected legacy D1 MAU result: ${JSON.stringify(rows)}`);
-  }
-  return mau;
-}
-
-function hashBucketEnd(bucket) {
-  const next = MAU_HASH_BUCKETS[MAU_HASH_BUCKETS.indexOf(bucket) + 1];
-  return next || MAU_HASH_BUCKET_END;
-}
-
 async function countMauFromAnalyticsEngine(config, start, end) {
   const rows = await queryAnalyticsEngine({
     accountId: config.analyticsEngineAccountId,
@@ -215,124 +185,23 @@ async function countMauFromAnalyticsEngine(config, start, end) {
   return mau;
 }
 
-async function queryD1UsersForMauBucket(
-  config,
-  startTs,
-  endTs,
-  bucketStart,
-  bucketEnd,
-) {
-  return queryD1({
-    accountId: config.cloudflareAccountId,
-    token: config.cloudflareApiToken,
-    databaseId: config.analyticsDbId,
-    sql: `
-      SELECT DISTINCT ip_hash FROM (
-        SELECT ip_hash FROM downloads
-        WHERE ip_hash >= ? AND ip_hash < ?
-          AND created_at >= ? AND created_at < ?
-        UNION
-        SELECT ip_hash FROM version_requests
-        WHERE ip_hash >= ? AND ip_hash < ?
-          AND created_at >= ? AND created_at < ?
-      )
-    `,
-    params: [
-      bucketStart,
-      bucketEnd,
-      startTs,
-      endTs,
-      bucketStart,
-      bucketEnd,
-      startTs,
-      endTs,
-    ],
-  });
-}
-
-async function countCutoverMauInBuckets(
-  config,
-  d1Start,
-  d1End,
-  aeStart,
-  aeEnd,
-) {
-  let mau = 0;
-
-  for (const bucketStart of MAU_HASH_BUCKETS) {
-    const bucketEnd = hashBucketEnd(bucketStart);
-    const users = new Set();
-
-    const d1Users = await queryD1UsersForMauBucket(
-      config,
-      d1Start,
-      d1End,
-      bucketStart,
-      bucketEnd,
-    );
-    for (const row of d1Users) users.add(row.ip_hash);
-
-    const aeUsers = await queryAnalyticsEngine({
-      accountId: config.analyticsEngineAccountId,
-      token: config.analyticsEngineApiToken,
-      dataset: config.dataset,
-      sql: `
-        SELECT index1 AS ip_hash
-        FROM ${config.dataset}
-        WHERE
-          index1 >= '${bucketStart}'
-          AND index1 < '${bucketEnd}'
-          AND blob1 IN ('download', 'version_request')
-          AND timestamp >= toDateTime('${aeStart}')
-          AND timestamp <= toDateTime('${aeEnd}')
-        GROUP BY index1
-      `,
-    });
-    for (const row of aeUsers) users.add(row.ip_hash);
-
-    console.log(
-      `Bucket ${bucketStart}: ${users.size} unique user(s) after merge`,
-    );
-    mau += users.size;
-  }
-
-  return mau;
-}
-
 async function refreshMauForDate(config, date) {
-  const cutoverDate = config.cutoverDate;
-  const cutoverTs = timestamp(`${cutoverDate}T00:00:00`.replace("T", " "));
   const { end } = dateRange(date);
   const startDate = new Date(`${date}T23:59:59Z`);
   startDate.setUTCDate(startDate.getUTCDate() - 30);
   const start = startDate.toISOString().replace("T", " ").slice(0, 19);
-  const startTs = Math.floor(startDate.getTime() / 1000);
-  const endTs = timestamp(end);
 
-  console.log(`Refreshing MAU for ${date} (${start} to ${end})`);
-
-  let mau;
-  if (endTs < cutoverTs) {
-    mau = await legacyD1Mau(config, date, startTs, endTs);
-  } else if (startTs >= cutoverTs) {
-    mau = await countMauFromAnalyticsEngine(config, start, end);
-  } else {
-    const aeStart = new Date(cutoverTs * 1000)
-      .toISOString()
-      .replace("T", " ")
-      .slice(0, 19);
-    mau = await countCutoverMauInBuckets(
-      config,
-      startTs,
-      Math.min(cutoverTs, endTs + 1),
-      aeStart,
-      end,
+  // Pre-cutover events lived in D1 tables that have been retired, so a window
+  // reaching back before the cutover can no longer be counted completely.
+  if (start.slice(0, 10) <= config.cutoverDate) {
+    throw new Error(
+      `${date}: 30-day MAU window starts ${start}, not after Analytics Engine cutover ${config.cutoverDate}`,
     );
   }
 
-  if (mau <= 0) {
-    mau = await legacyD1Mau(config, date, startTs, endTs);
-  }
+  console.log(`Refreshing MAU for ${date} (${start} to ${end})`);
+
+  const mau = await countMauFromAnalyticsEngine(config, start, end);
 
   if (mau <= 0) {
     throw new Error(`Refusing to write zero MAU for ${date}`);

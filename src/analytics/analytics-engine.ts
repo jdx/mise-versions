@@ -89,12 +89,14 @@ export function analyticsEngineCutoverDate(
   return cutoverDate;
 }
 
+// The cutover day itself is excluded: part of its events were written to the
+// retired D1 tables, so an Analytics Engine-only count would undercount it.
 export function analyticsEngineCoversDate(
   config: AnalyticsEngineSqlConfig | undefined,
   date: string,
 ): boolean {
   const cutoverDate = analyticsEngineCutoverDate(config);
-  return !cutoverDate || date >= cutoverDate;
+  return !cutoverDate || date > cutoverDate;
 }
 
 export async function queryAnalyticsEngine<T>(

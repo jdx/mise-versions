@@ -10,7 +10,6 @@ import { createTrendsFunctions } from "./trends.js";
 import { createRollupFunctions } from "./rollups.js";
 import { createGrowthFunctions } from "./growth.js";
 import { createVersionsFunctions } from "./versions.js";
-import { createMaintenanceFunctions } from "./maintenance.js";
 import type { AnalyticsEngineSqlConfig } from "./analytics-engine.js";
 
 // Re-export schema tables for external use
@@ -18,15 +17,12 @@ export {
   tools,
   backends,
   platforms,
-  downloads,
-  downloadsDaily,
   dailyStats,
   dailyToolStats,
   dailyBackendStats,
   dailyToolBackendStats,
   dailyToolVersionStats,
   dailyToolPlatformStats,
-  versionRequests,
   dailyVersionStats,
   dailyCombinedStats,
   dailyMauStats,
@@ -68,7 +64,6 @@ export function setupAnalytics(
   const versions = createVersionsFunctions(db, {
     analyticsEngine: options.analyticsEngine,
   });
-  const maintenance = createMaintenanceFunctions(db);
 
   return {
     // Tracking functions
@@ -100,7 +95,6 @@ export function setupAnalytics(
     populateRollupTables: rollups.populateRollupTables,
     populateDailyMauStats: rollups.populateDailyMauStats,
     populateVersionStatsRollup: rollups.populateVersionStatsRollup,
-    backfillArchivedToolStats: rollups.backfillArchivedToolStats,
     populateToolDownloadSummaries: rollups.populateToolDownloadSummaries,
     populateBackendToolSummaries: rollups.populateBackendToolSummaries,
     populateTrendingToolSummaries: rollups.populateTrendingToolSummaries,
@@ -113,10 +107,5 @@ export function setupAnalytics(
     getMiseDAUMAU: versions.getMiseDAUMAU,
     recordVersionUpdates: versions.recordVersionUpdates,
     getVersionUpdates: versions.getVersionUpdates,
-
-    // Maintenance functions
-    aggregateOldData: maintenance.aggregateOldData,
-    backfillBackends: maintenance.backfillBackends,
-    makeBackendIdNotNull: maintenance.makeBackendIdNotNull,
   };
 }

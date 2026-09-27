@@ -17,6 +17,10 @@ on:
           - refresh-version-stats
           - refresh-summaries
           - refresh-all
+          - legacy-fold
+          - legacy-verify
+          - legacy-drop
+          - legacy-drop-allow-cutover-gaps
       date:
         description: "Newest UTC day to refresh (YYYY-MM-DD); defaults to yesterday, and is clamped to yesterday because the current day is still open"
         required: false
@@ -33,7 +37,8 @@ concurrency:
 jobs:
   maintenance:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # The one-time legacy table retirement scans and deletes millions of rows.
+    timeout-minutes: ${{ startsWith(github.event.inputs.task || '', 'legacy-') && 120 || 30 }}
     env:
       TASK: ${{ github.event_name == 'schedule' && 'refresh-all' || github.event.inputs.task || 'refresh-all' }}
     steps:
@@ -117,6 +122,22 @@ jobs:
           ANALYTICS_ENGINE_ACCOUNT_ID: ${{ secrets.ANALYTICS_ENGINE_ACCOUNT_ID }}
           ANALYTICS_ENGINE_API_TOKEN: ${{ secrets.ANALYTICS_ENGINE_API_TOKEN }}
           ANALYTICS_ENGINE_DATASET: mise_analytics_events
+          ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
+
+      # One-time retirement of the pre-Analytics Engine raw download tables:
+      # legacy-fold, then legacy-verify, then (after the code that no longer
+      # reads them is deployed) legacy-drop, which re-verifies before deleting.
+      - name: Retire legacy download tables
+        if: startsWith(env.TASK, 'legacy-')
+        run: |
+          case "$TASK" in
+            legacy-drop-allow-cutover-gaps) args=(--mode=drop --allow-cutover-gaps) ;;
+            *) args=(--mode="${TASK#legacy-}") ;;
+          esac
+          node scripts/retire-legacy-downloads-direct.js "${args[@]}"
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
 
       - name: Fail if required refreshes failed

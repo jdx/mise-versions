@@ -36,23 +36,6 @@ function createDb() {
       latest_version TEXT,
       backends TEXT
     );
-    CREATE TABLE downloads (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      tool_id INTEGER NOT NULL,
-      version TEXT NOT NULL,
-      platform_id INTEGER,
-      ip_hash TEXT NOT NULL,
-      created_at INTEGER NOT NULL
-    );
-    CREATE TABLE downloads_daily (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      tool_id INTEGER NOT NULL,
-      version TEXT NOT NULL,
-      platform_id INTEGER,
-      date TEXT NOT NULL,
-      count INTEGER NOT NULL,
-      unique_ips INTEGER NOT NULL
-    );
     CREATE TABLE daily_tool_stats (
       date TEXT NOT NULL, tool_id INTEGER NOT NULL,
       downloads INTEGER NOT NULL, unique_users INTEGER NOT NULL,
@@ -154,9 +137,6 @@ describe("refresh-download-summaries-direct", () => {
         ('${daysAgo(100)}', 1, 1, 5),
         ('${daysAgo(1)}', 1, 1, 60),
         ('${daysAgo(2)}', 1, 2, 40);
-      -- A pre-rollup day only present in downloads_daily still counts.
-      INSERT INTO downloads_daily (tool_id, version, platform_id, date, count, unique_ips)
-        VALUES (1, '0.1.0', 1, '2025-12-01', 7, 7);
     `);
 
     const statements = [];
@@ -185,7 +165,7 @@ describe("refresh-download-summaries-direct", () => {
         .all()
         .map((row) => ({ ...row })),
       [
-        { tool_id: 1, downloads_30d: 100, downloads_all_time: 112 },
+        { tool_id: 1, downloads_30d: 100, downloads_all_time: 105 },
         { tool_id: 2, downloads_30d: 0, downloads_all_time: 0 },
         { tool_id: 3, downloads_30d: 0, downloads_all_time: 0 },
       ],
@@ -198,7 +178,6 @@ describe("refresh-download-summaries-direct", () => {
         .all()
         .map((row) => ({ ...row })),
       [
-        { version: "0.1.0", downloads_all_time: 7 },
         { version: "0.57.0", downloads_all_time: 5 },
         { version: "0.79.0", downloads_all_time: 100 },
       ],
@@ -211,7 +190,7 @@ describe("refresh-download-summaries-direct", () => {
         .all()
         .map((row) => ({ ...row })),
       [
-        { platform_id: 1, downloads_all_time: 72 },
+        { platform_id: 1, downloads_all_time: 65 },
         { platform_id: 2, downloads_all_time: 40 },
       ],
     );

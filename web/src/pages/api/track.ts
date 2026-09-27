@@ -89,8 +89,7 @@ export async function trackDownloadRequest({
       status: 200,
       duration_ms: Date.now() - started,
       cache: "none",
-      tracking: result.deduplicated ? "none" : "queued",
-      d1_write: analyticsEvents ? "skipped" : "attempted",
+      tracking: analyticsEvents ? "queued" : "none",
     });
 
     return new Response(
