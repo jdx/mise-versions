@@ -1,9 +1,8 @@
 // Version tracking and DAU/MAU functions
 import type { drizzle } from "drizzle-orm/d1";
 import { sql } from "drizzle-orm";
-import { versionRequests, dailyVersionStats } from "./schema.js";
+import { dailyVersionStats } from "./schema.js";
 import {
-  analyticsEngineCutoverDate,
   analyticsEngineDataset,
   hasAnalyticsEngineSql,
   queryAnalyticsEngine,
@@ -21,96 +20,34 @@ export function createVersionsFunctions(
   const analyticsEngine = options.analyticsEngine;
 
   async function getCurrentMiseMAU(now: number): Promise<number> {
-    const thirtyDaysAgo = now - 30 * 86400;
-    const cutoverDate = analyticsEngineCutoverDate(analyticsEngine);
+    if (!hasAnalyticsEngineSql(analyticsEngine)) return 0;
 
-    if (hasAnalyticsEngineSql(analyticsEngine) && cutoverDate) {
-      try {
-        const cutoverTimestamp = Math.floor(
-          new Date(`${cutoverDate}T00:00:00Z`).getTime() / 1000,
-        );
-        if (now >= cutoverTimestamp) {
-          const users = new Set<string>();
-          const d1Users = await db.all<{ ip_hash: string }>(sql`
-            SELECT DISTINCT ip_hash
-            FROM version_requests
-            WHERE created_at >= ${thirtyDaysAgo}
-              AND created_at < ${cutoverTimestamp}
-          `);
-          for (const row of d1Users) users.add(row.ip_hash);
-
-          const aeStart = new Date(
-            Math.max(thirtyDaysAgo, cutoverTimestamp) * 1000,
-          )
-            .toISOString()
-            .replace("T", " ")
-            .slice(0, 19);
-          const aeEnd = new Date(now * 1000)
-            .toISOString()
-            .replace("T", " ")
-            .slice(0, 19);
-          const table = analyticsEngineDataset(analyticsEngine);
-          const result = await queryAnalyticsEngine<{ ip_hash: string }>(
-            analyticsEngine!,
-            `
-              SELECT index1 AS ip_hash
-              FROM ${table}
-              WHERE
-                blob1 = 'version_request'
-                AND timestamp >= toDateTime('${aeStart}')
-                AND timestamp <= toDateTime('${aeEnd}')
-              GROUP BY index1
-            `,
-          );
-          for (const row of result.rows) users.add(row.ip_hash);
-          return users.size;
-        }
-      } catch (error) {
-        console.warn(
-          "failed to query cutover-aware Analytics Engine mise MAU:",
-          error,
-        );
-      }
+    try {
+      const end = new Date(now * 1000)
+        .toISOString()
+        .replace("T", " ")
+        .slice(0, 19);
+      const start = new Date((now - 30 * 86400) * 1000)
+        .toISOString()
+        .replace("T", " ")
+        .slice(0, 19);
+      const table = analyticsEngineDataset(analyticsEngine);
+      const result = await queryAnalyticsEngine<{ mau: number }>(
+        analyticsEngine!,
+        `
+          SELECT count(DISTINCT index1) AS mau
+          FROM ${table}
+          WHERE
+            blob1 = 'version_request'
+            AND timestamp >= toDateTime('${start}')
+            AND timestamp <= toDateTime('${end}')
+        `,
+      );
+      return result.rows[0]?.mau ?? 0;
+    } catch (error) {
+      console.warn("failed to query Analytics Engine mise MAU:", error);
+      return 0;
     }
-
-    if (hasAnalyticsEngineSql(analyticsEngine)) {
-      try {
-        const end = new Date(now * 1000)
-          .toISOString()
-          .replace("T", " ")
-          .slice(0, 19);
-        const start = new Date((now - 30 * 86400) * 1000)
-          .toISOString()
-          .replace("T", " ")
-          .slice(0, 19);
-        const table = analyticsEngineDataset(analyticsEngine);
-        const result = await queryAnalyticsEngine<{ mau: number }>(
-          analyticsEngine!,
-          `
-            SELECT count(DISTINCT index1) AS mau
-            FROM ${table}
-            WHERE
-              blob1 = 'version_request'
-              AND timestamp >= toDateTime('${start}')
-              AND timestamp <= toDateTime('${end}')
-          `,
-        );
-        const mau = result.rows[0]?.mau ?? 0;
-        if (mau > 0) return mau;
-      } catch (error) {
-        console.warn("failed to query Analytics Engine mise MAU:", error);
-      }
-    }
-
-    const mauResult = await db
-      .select({
-        mau: sql<number>`count(distinct ip_hash)`,
-      })
-      .from(versionRequests)
-      .where(sql`${versionRequests.created_at} >= ${thirtyDaysAgo}`)
-      .get();
-
-    return mauResult?.mau ?? 0;
   }
 
   return {

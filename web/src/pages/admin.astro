@@ -1121,11 +1121,6 @@ if (!auth || !isAdmin(auth.username)) {
   // Maintenance card
   interface MaintenanceStatus {
     rollups: Record<string, string | null>;
-    downloads: {
-      oldest_iso: string | null;
-      latest_iso: string | null;
-      rows_older_than_90d: number;
-    };
   }
 
   function fmtAge(iso: string | null): string {
@@ -1155,14 +1150,6 @@ if (!auth || !isAdmin(auth.username)) {
     return 'text-green-400';
   }
 
-  function maintenanceStatusClass(iso: string | null, staleAfterDays: number): string {
-    if (!iso) return 'text-red-400';
-    const days = (Date.now() - new Date(iso).getTime()) / 86400000;
-    if (days > staleAfterDays) return 'text-red-400';
-    if (days > staleAfterDays / 2) return 'text-orange-400';
-    return 'text-green-400';
-  }
-
   async function loadMaintenanceStatus() {
     const inline = document.getElementById('maintenance-inline-stats');
     if (!inline) return;
@@ -1172,26 +1159,17 @@ if (!auth || !isAdmin(auth.username)) {
       const data: MaintenanceStatus = await res.json();
       const mauDate = data.rollups.daily_mau_stats;
       const mauIso = mauDate ? `${mauDate}T00:00:00Z` : null;
-      const downloadsLatest = data.downloads.latest_iso;
-      const oldestIso = data.downloads.oldest_iso;
-      const oldestDays = oldestIso
-        ? Math.round((Date.now() - new Date(oldestIso).getTime()) / 86400000)
-        : null;
-      const backlog = data.downloads.rows_older_than_90d;
+      const toolDate = data.rollups.daily_tool_stats;
+      const toolIso = toolDate ? `${toolDate}T00:00:00Z` : null;
       inline.innerHTML = `
         <span title="Latest date in daily_mau_stats">
           <span class="text-gray-500">MAU:</span>
           <span class="${rollupStatusClass(mauDate)}">${mauDate ?? '—'} (${fmtAge(mauIso)})</span>
         </span>
         <span class="text-gray-600">|</span>
-        <span title="Most recent download tracked">
-          <span class="text-gray-500">Last download:</span>
-          <span class="${maintenanceStatusClass(downloadsLatest, 1)}">${fmtAge(downloadsLatest)}</span>
-        </span>
-        <span class="text-gray-600">|</span>
-        <span title="Rows older than 90 days still in downloads (aggregate backlog)">
-          <span class="text-gray-500">Aggregate backlog:</span>
-          <span class="${backlog > 100000 ? 'text-red-400' : backlog > 10000 ? 'text-orange-400' : 'text-green-400'}">${backlog.toLocaleString()} rows${oldestDays !== null ? ` (oldest ${oldestDays}d)` : ''}</span>
+        <span title="Latest date in daily_tool_stats">
+          <span class="text-gray-500">Downloads:</span>
+          <span class="${rollupStatusClass(toolDate)}">${toolDate ?? '—'} (${fmtAge(toolIso)})</span>
         </span>
       `;
     } catch (e) {

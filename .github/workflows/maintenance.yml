@@ -17,6 +17,9 @@ on:
           - refresh-version-stats
           - refresh-summaries
           - refresh-all
+          - legacy-fold
+          - legacy-verify
+          - legacy-drop
       date:
         description: "Newest UTC day to refresh (YYYY-MM-DD); defaults to yesterday, and is clamped to yesterday because the current day is still open"
         required: false
@@ -118,6 +121,16 @@ jobs:
           ANALYTICS_ENGINE_API_TOKEN: ${{ secrets.ANALYTICS_ENGINE_API_TOKEN }}
           ANALYTICS_ENGINE_DATASET: mise_analytics_events
           ANALYTICS_ENGINE_CUTOVER_DATE: "2026-06-12"
+
+      # One-time retirement of the pre-Analytics Engine raw download tables:
+      # legacy-fold, then legacy-verify, then (after the code that no longer
+      # reads them is deployed) legacy-drop, which re-verifies before deleting.
+      - name: Retire legacy download tables
+        if: startsWith(env.TASK, 'legacy-')
+        run: node scripts/retire-legacy-downloads-direct.js --mode="${TASK#legacy-}"
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Fail if required refreshes failed
         if: env.TASK == 'refresh-all' && (steps.refresh_mau.outcome == 'failure' || steps.refresh_rollups.outcome == 'failure' || steps.refresh_summaries.outcome == 'failure')

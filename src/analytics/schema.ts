@@ -26,32 +26,6 @@ export const platforms = sqliteTable("platforms", {
   arch: text("arch"),
 });
 
-// Downloads table with foreign keys and integer timestamp.
-// `day` is the UTC day-bucket (created_at / 86400) and pairs with the
-// UNIQUE(tool_id, version, ip_hash, day) index to dedupe via INSERT OR IGNORE.
-export const downloads = sqliteTable("downloads", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  tool_id: integer("tool_id").notNull(),
-  backend_id: integer("backend_id"), // nullable for old records
-  version: text("version").notNull(),
-  platform_id: integer("platform_id"),
-  ip_hash: text("ip_hash").notNull(),
-  created_at: integer("created_at").notNull(), // Unix timestamp
-  day: integer("day"),
-});
-
-// Daily aggregated data for historical stats (data older than 90 days)
-export const downloadsDaily = sqliteTable("downloads_daily", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  tool_id: integer("tool_id").notNull(),
-  backend_id: integer("backend_id"), // nullable for old records
-  version: text("version").notNull(),
-  platform_id: integer("platform_id"),
-  date: text("date").notNull(), // YYYY-MM-DD
-  count: integer("count").notNull(),
-  unique_ips: integer("unique_ips").notNull(),
-});
-
 // Rollup tables for fast queries
 
 // Global daily stats (for MAU/DAU)
@@ -77,16 +51,6 @@ export const dailyBackendStats = sqliteTable("daily_backend_stats", {
   unique_users: integer("unique_users").notNull(),
 });
 
-// Version requests table - tracks mise CLI requests for DAU/MAU.
-// `day` is the UTC day-bucket (created_at / 86400). A unique index on
-// (ip_hash, day) lets INSERT OR IGNORE handle dedup without a KV roundtrip.
-export const versionRequests = sqliteTable("version_requests", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  ip_hash: text("ip_hash").notNull(),
-  created_at: integer("created_at").notNull(), // Unix timestamp
-  day: integer("day"),
-});
-
 // Daily stats for version requests (for mise DAU/MAU)
 export const dailyVersionStats = sqliteTable("daily_version_stats", {
   date: text("date").primaryKey(), // YYYY-MM-DD
@@ -102,7 +66,7 @@ export const versionUpdates = sqliteTable("version_updates", {
   versions_added: integer("versions_added").notNull().default(1),
 });
 
-// Daily combined stats - unique users across downloads + version_requests (deduplicated)
+// Daily combined stats - unique users across downloads + version requests (deduplicated)
 export const dailyCombinedStats = sqliteTable("daily_combined_stats", {
   date: text("date").primaryKey(), // YYYY-MM-DD
   unique_users: integer("unique_users").notNull(), // Combined DAU
@@ -162,7 +126,7 @@ export const dailyToolPlatformStats = sqliteTable(
 );
 
 // Per-tool summary stats for hot UI queries. These are refreshed by scheduled
-// rollups so request paths do not need to scan raw download tables.
+// rollups so request paths do not need to scan the daily rollup tables.
 export const toolDownloadSummaries = sqliteTable("tool_download_summaries", {
   tool_id: integer("tool_id").primaryKey(),
   downloads_30d: integer("downloads_30d").notNull(),

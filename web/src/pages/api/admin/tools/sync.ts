@@ -163,8 +163,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const childTables = [
       "versions",
       "version_updates",
-      "downloads",
-      "downloads_daily",
       "daily_tool_stats",
       "daily_tool_backend_stats",
     ];

@@ -12,8 +12,7 @@ import {
  *
  * Tool pages, the tool list, the backends page, and the trending section read
  * these summaries instead of scanning the daily rollups. They are derived from
- * daily_tool_*_stats (plus pre-rollup raw/aggregated downloads), so this runs
- * after refresh-download-rollups-direct.js. Summaries are rebuilt in tool id
+ * daily_tool_*_stats, so this runs after refresh-download-rollups-direct.js. Summaries are rebuilt in tool id
  * ranges to keep each D1 statement well inside the query time limit.
  */
 
@@ -55,46 +54,22 @@ const TOOL_SUMMARIES_SQL = `
     downloads_all_time,
     updated_at
   )
-  WITH all_time AS (
-    SELECT tool_id, SUM(downloads) AS downloads_all_time
-    FROM (
-      SELECT tool_id, SUM(downloads) AS downloads
-      FROM daily_tool_stats
-      WHERE tool_id BETWEEN ?1 AND ?2
-      GROUP BY tool_id
-      UNION ALL
-      SELECT d.tool_id, COUNT(*) AS downloads
-      FROM downloads d
-      LEFT JOIN daily_tool_stats s
-        ON s.tool_id = d.tool_id
-        AND s.date = date(d.created_at, 'unixepoch')
-      WHERE d.tool_id BETWEEN ?1 AND ?2 AND s.tool_id IS NULL
-      GROUP BY d.tool_id
-      UNION ALL
-      SELECT dd.tool_id, SUM(dd.count) AS downloads
-      FROM downloads_daily dd
-      LEFT JOIN daily_tool_stats s
-        ON s.tool_id = dd.tool_id
-        AND s.date = dd.date
-      WHERE dd.tool_id BETWEEN ?1 AND ?2 AND s.tool_id IS NULL
-      GROUP BY dd.tool_id
-    )
-    GROUP BY tool_id
-  ),
-  recent AS (
-    SELECT tool_id, SUM(downloads) AS downloads_30d
+  WITH totals AS (
+    SELECT
+      tool_id,
+      SUM(downloads) AS downloads_all_time,
+      SUM(CASE WHEN date >= ?3 THEN downloads ELSE 0 END) AS downloads_30d
     FROM daily_tool_stats
-    WHERE tool_id BETWEEN ?1 AND ?2 AND date >= ?3
+    WHERE tool_id BETWEEN ?1 AND ?2
     GROUP BY tool_id
   )
   SELECT
     t.id,
-    COALESCE(r.downloads_30d, 0),
-    COALESCE(a.downloads_all_time, 0),
+    COALESCE(s.downloads_30d, 0),
+    COALESCE(s.downloads_all_time, 0),
     ?4
   FROM tools t
-  LEFT JOIN all_time a ON a.tool_id = t.id
-  LEFT JOIN recent r ON r.tool_id = t.id
+  LEFT JOIN totals s ON s.tool_id = t.id
   WHERE t.id BETWEEN ?1 AND ?2
 `;
 
@@ -104,35 +79,10 @@ const PLATFORM_SUMMARIES_SQL = `
     platform_id,
     downloads_all_time
   )
-  SELECT
-    tool_id,
-    COALESCE(platform_id, 0) AS platform_id,
-    SUM(downloads) AS downloads_all_time
-  FROM (
-    SELECT tool_id, platform_id, SUM(downloads) AS downloads
-    FROM daily_tool_platform_stats
-    WHERE tool_id BETWEEN ?1 AND ?2
-    GROUP BY tool_id, platform_id
-    UNION ALL
-    SELECT d.tool_id, d.platform_id, COUNT(*) AS downloads
-    FROM downloads d
-    LEFT JOIN daily_tool_platform_stats s
-      ON s.tool_id = d.tool_id
-      AND s.platform_id = COALESCE(d.platform_id, 0)
-      AND s.date = date(d.created_at, 'unixepoch')
-    WHERE d.tool_id BETWEEN ?1 AND ?2 AND s.tool_id IS NULL
-    GROUP BY d.tool_id, d.platform_id
-    UNION ALL
-    SELECT dd.tool_id, dd.platform_id, SUM(dd.count) AS downloads
-    FROM downloads_daily dd
-    LEFT JOIN daily_tool_platform_stats s
-      ON s.tool_id = dd.tool_id
-      AND s.platform_id = COALESCE(dd.platform_id, 0)
-      AND s.date = dd.date
-    WHERE dd.tool_id BETWEEN ?1 AND ?2 AND s.tool_id IS NULL
-    GROUP BY dd.tool_id, dd.platform_id
-  )
-  GROUP BY tool_id, COALESCE(platform_id, 0)
+  SELECT tool_id, platform_id, SUM(downloads)
+  FROM daily_tool_platform_stats
+  WHERE tool_id BETWEEN ?1 AND ?2
+  GROUP BY tool_id, platform_id
 `;
 
 const VERSION_SUMMARIES_SQL = `
@@ -141,50 +91,19 @@ const VERSION_SUMMARIES_SQL = `
     version,
     downloads_all_time
   )
-  SELECT
-    tool_id,
-    version,
-    SUM(downloads) AS downloads_all_time
-  FROM (
-    SELECT tool_id, version, SUM(downloads) AS downloads
-    FROM daily_tool_version_stats
-    WHERE tool_id BETWEEN ?1 AND ?2
-    GROUP BY tool_id, version
-    UNION ALL
-    SELECT d.tool_id, d.version, COUNT(*) AS downloads
-    FROM downloads d
-    LEFT JOIN daily_tool_version_stats s
-      ON s.tool_id = d.tool_id
-      AND s.version = d.version
-      AND s.date = date(d.created_at, 'unixepoch')
-    WHERE d.tool_id BETWEEN ?1 AND ?2 AND s.tool_id IS NULL
-    GROUP BY d.tool_id, d.version
-    UNION ALL
-    SELECT dd.tool_id, dd.version, SUM(dd.count) AS downloads
-    FROM downloads_daily dd
-    LEFT JOIN daily_tool_version_stats s
-      ON s.tool_id = dd.tool_id
-      AND s.version = dd.version
-      AND s.date = dd.date
-    WHERE dd.tool_id BETWEEN ?1 AND ?2 AND s.tool_id IS NULL
-    GROUP BY dd.tool_id, dd.version
-  )
+  SELECT tool_id, version, SUM(downloads)
+  FROM daily_tool_version_stats
+  WHERE tool_id BETWEEN ?1 AND ?2
   GROUP BY tool_id, version
 `;
 
 // Run after the matching rebuild: removes summary rows for a range whose key no
-// longer appears in any source, e.g. after a historical rollup was corrected.
+// longer appears in the rollups, e.g. after a historical rollup was corrected.
 const PRUNE_PLATFORM_SUMMARIES_SQL = `
   DELETE FROM tool_platform_download_summaries
   WHERE tool_id BETWEEN ?1 AND ?2
     AND (tool_id, platform_id) NOT IN (
       SELECT tool_id, platform_id FROM daily_tool_platform_stats
-      WHERE tool_id BETWEEN ?1 AND ?2
-      UNION
-      SELECT tool_id, COALESCE(platform_id, 0) FROM downloads
-      WHERE tool_id BETWEEN ?1 AND ?2
-      UNION
-      SELECT tool_id, COALESCE(platform_id, 0) FROM downloads_daily
       WHERE tool_id BETWEEN ?1 AND ?2
     )
 `;
@@ -194,12 +113,6 @@ const PRUNE_VERSION_SUMMARIES_SQL = `
   WHERE tool_id BETWEEN ?1 AND ?2
     AND (tool_id, version) NOT IN (
       SELECT tool_id, version FROM daily_tool_version_stats
-      WHERE tool_id BETWEEN ?1 AND ?2
-      UNION
-      SELECT tool_id, version FROM downloads
-      WHERE tool_id BETWEEN ?1 AND ?2
-      UNION
-      SELECT tool_id, version FROM downloads_daily
       WHERE tool_id BETWEEN ?1 AND ?2
     )
 `;

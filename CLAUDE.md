@@ -71,7 +71,8 @@ mise run deploy            # builds then deploys
 ### Key Files
 
 - `src/analytics/`: Drizzle ORM schema and analytics functions for D1 (schema, tracking, stats, trends, rollups)
-- `src/worker.ts`: Custom worker wrapper for scheduled tasks (daily rollups, maintenance)
+- `src/worker.ts`: Custom worker wrapper for scheduled tasks (token-pool observability, update workflow dispatch)
+- `.github/workflows/maintenance.yml`: Nightly analytics maintenance; the `scripts/refresh-*-direct.js` scripts roll Analytics Engine events up into the D1 daily and summary tables
 - `web/src/lib/data-loader.ts`: Centralized data loading from D1
 - `scripts/update.sh`: Main version fetching logic with token management
 - `scripts/sync-to-d1.js`: Syncs tool metadata from TOML files to D1
@@ -86,10 +87,11 @@ The `ANALYTICS_DB` contains:
 
 - `tools`: Tool metadata (name, latest_version, description, backends, etc.)
 - `versions`: Per-tool version data with created_at timestamps
-- `downloads`: Raw download tracking
-- `downloads_daily`: Aggregated historical data (90+ days old)
-- Rollup tables: `daily_stats`, `daily_tool_stats`, `daily_backend_stats`
-- `version_requests`: DAU/MAU tracking for mise CLI
+- `backends`, `platforms`: Dimension tables that rollups resolve Analytics Engine names against
+- Daily rollup tables: `daily_stats`, `daily_combined_stats`, `daily_tool_stats`, `daily_backend_stats`, `daily_tool_backend_stats`, `daily_tool_version_stats`, `daily_tool_platform_stats`, `daily_mau_stats`, `daily_version_stats`
+- Summary tables: `tool_download_summaries`, `tool_platform_download_summaries`, `tool_version_download_summaries`, `backend_tool_summaries`, `trending_tool_summaries`
+
+Raw download and mise version-request events are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
 
 ## GitHub Token Management
 

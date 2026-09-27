@@ -21,6 +21,9 @@ function usage() {
           yesterday, since the current UTC day is not over yet.
   --days  Number of complete days to refresh, counting back from --date.
 
+Every refreshed date must be after ANALYTICS_ENGINE_CUTOVER_DATE; earlier days
+needed the retired raw D1 tables.
+
 Environment:
   CLOUDFLARE_ACCOUNT_ID       Cloudflare account id
   CLOUDFLARE_API_TOKEN        Cloudflare API token with D1 edit access
@@ -67,10 +70,6 @@ function dateRange(date) {
     start: `${date} 00:00:00`,
     end: `${date} 23:59:59`,
   };
-}
-
-function timestamp(dateTime) {
-  return Math.floor(new Date(`${dateTime}Z`).getTime() / 1000);
 }
 
 function sleep(ms) {
@@ -198,93 +197,18 @@ async function refreshVersionStatsFromAnalyticsEngine(config, date) {
   };
 }
 
-async function refreshVersionStatsFromD1(config, date) {
-  const dateStart = timestamp(`${date} 00:00:00`);
-  const dateEnd = dateStart + 86400;
-  const rows = await queryD1({
-    accountId: config.cloudflareAccountId,
-    token: config.cloudflareApiToken,
-    databaseId: config.analyticsDbId,
-    sql: `
-      SELECT
-        COUNT(*) AS total_requests,
-        COUNT(DISTINCT ip_hash) AS unique_users
-      FROM version_requests
-      WHERE created_at >= ? AND created_at < ?
-    `,
-    params: [dateStart, dateEnd],
-  });
-
-  return {
-    totalRequests: Number(rows[0]?.total_requests ?? 0),
-    uniqueUsers: Number(rows[0]?.unique_users ?? 0),
-  };
-}
-
-async function refreshCutoverVersionStats(config, date) {
-  const d1Stats = await refreshVersionStatsFromD1(config, date);
-  const { start, end } = dateRange(date);
-  const dateStart = timestamp(`${date} 00:00:00`);
-  const dateEnd = dateStart + 86400;
-
-  const d1Users = await queryD1({
-    accountId: config.cloudflareAccountId,
-    token: config.cloudflareApiToken,
-    databaseId: config.analyticsDbId,
-    sql: `
-      SELECT DISTINCT ip_hash
-      FROM version_requests
-      WHERE created_at >= ? AND created_at < ?
-    `,
-    params: [dateStart, dateEnd],
-  });
-  const aeUsers = await queryAnalyticsEngine({
-    accountId: config.analyticsEngineAccountId,
-    token: config.analyticsEngineApiToken,
-    sql: `
-      SELECT index1 AS ip_hash
-      FROM ${config.dataset}
-      WHERE
-        blob1 = 'version_request'
-        AND timestamp >= toDateTime('${start}')
-        AND timestamp <= toDateTime('${end}')
-      GROUP BY index1
-    `,
-  });
-  const aeStats = await queryAnalyticsEngine({
-    accountId: config.analyticsEngineAccountId,
-    token: config.analyticsEngineApiToken,
-    sql: `
-      SELECT sum(_sample_interval) AS total_requests
-      FROM ${config.dataset}
-      WHERE
-        blob1 = 'version_request'
-        AND timestamp >= toDateTime('${start}')
-        AND timestamp <= toDateTime('${end}')
-    `,
-  });
-
-  const users = new Set();
-  for (const row of d1Users) users.add(row.ip_hash);
-  for (const row of aeUsers) users.add(row.ip_hash);
-
-  return {
-    totalRequests:
-      d1Stats.totalRequests + Number(aeStats[0]?.total_requests ?? 0),
-    uniqueUsers: users.size,
-  };
-}
-
 async function refreshVersionStatsForDate(config, date) {
-  console.log(`Refreshing version stats for ${date}`);
-  let stats;
-  if (date === config.cutoverDate) {
-    stats = await refreshCutoverVersionStats(config, date);
-  } else if (date > config.cutoverDate) {
-    stats = await refreshVersionStatsFromAnalyticsEngine(config, date);
-  } else {
-    stats = await refreshVersionStatsFromD1(config, date);
+  // The cutover day and everything before it included events that only
+  // reached the retired raw D1 table, so Analytics Engine alone would
+  // undercount them.
+  if (date <= config.cutoverDate) {
+    throw new Error(
+      `${date} is not after Analytics Engine cutover ${config.cutoverDate}`,
+    );
   }
+
+  console.log(`Refreshing version stats for ${date}`);
+  const stats = await refreshVersionStatsFromAnalyticsEngine(config, date);
 
   if (
     !Number.isFinite(stats.totalRequests) ||

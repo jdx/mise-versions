@@ -18,7 +18,14 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const days = body.days || 90;
 
     const db = drizzle(env.ANALYTICS_DB);
-    const analytics = setupAnalytics(db);
+    const analytics = setupAnalytics(db, {
+      analyticsEngine: {
+        accountId: env.ANALYTICS_ENGINE_ACCOUNT_ID,
+        apiToken: env.ANALYTICS_ENGINE_API_TOKEN,
+        dataset: env.ANALYTICS_ENGINE_DATASET,
+        cutoverDate: env.ANALYTICS_ENGINE_CUTOVER_DATE,
+      },
+    });
 
     const result = await analytics.backfillRollupTables(days, env.ANALYTICS_DB);
 
@@ -26,7 +33,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
       success: true,
       days_processed: result.daysProcessed,
       mau_days_processed: result.mauDaysProcessed,
-      archived_tool_rows_inserted: result.archivedToolRowsInserted,
     });
   } catch (error) {
     console.error("Backfill rollups error:", error);
