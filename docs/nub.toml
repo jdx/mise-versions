@@ -1,203 +1,151 @@
 [versions]
-"0.0.1" = { created_at = 2026-05-27T01:02:39.441Z }
-"0.0.2" = { created_at = 2026-05-27T04:17:34.614Z }
-"0.0.3" = { created_at = 2026-05-27T04:24:24.896Z }
-"0.0.4" = { created_at = 2026-05-27T04:32:27.495Z }
-"0.0.5" = { created_at = 2026-05-27T04:39:46.740Z }
-"0.0.7" = { created_at = 2026-05-30T20:40:22.989Z }
-"0.0.8" = { created_at = 2026-05-30T21:02:54.716Z }
-"0.0.9" = { created_at = 2026-05-30T21:23:12.563Z }
-"0.0.10" = { created_at = 2026-05-30T21:51:54.887Z }
-"0.0.11" = { created_at = 2026-05-30T22:22:24.439Z }
-"0.0.12" = { created_at = 2026-06-01T04:28:27.861Z }
-"0.0.13" = { created_at = 2026-06-03T19:51:00.154Z }
-"0.0.14" = { created_at = 2026-06-03T20:02:18.931Z }
-"0.0.15" = { created_at = 2026-06-04T17:32:00.636Z }
-"0.0.16" = { created_at = 2026-06-04T18:44:52.556Z }
-"0.0.17" = { created_at = 2026-06-07T01:19:40.765Z }
-"0.0.18" = { created_at = 2026-06-07T23:00:14.184Z }
-"0.0.19" = { created_at = 2026-06-08T04:47:39.019Z }
-"0.0.20" = { created_at = 2026-06-08T05:25:24.199Z }
-"0.0.21" = { created_at = 2026-06-08T06:08:15.865Z }
-"0.0.22" = { created_at = 2026-06-08T16:44:06.244Z }
-"0.0.23" = { created_at = 2026-06-08T17:58:10.639Z }
-"0.0.24" = { created_at = 2026-06-10T00:05:13.547Z }
-"0.0.25" = { created_at = 2026-06-10T05:26:30.155Z }
-"0.0.26" = { created_at = 2026-06-10T06:32:41.064Z }
-"0.0.27" = { created_at = 2026-06-10T06:58:13.141Z }
-"0.0.28" = { created_at = 2026-06-10T10:31:19.329Z }
-"0.0.29" = { created_at = 2026-06-10T11:13:33.348Z }
-"0.0.30" = { created_at = 2026-06-10T20:59:39.476Z }
-"0.0.31" = { created_at = 2026-06-10T22:32:49.792Z }
-"0.0.32" = { created_at = 2026-06-11T19:40:05.742Z }
-"0.0.33" = { created_at = 2026-06-11T21:25:54.222Z }
-"0.0.34" = { created_at = 2026-06-12T09:50:47.153Z }
-"0.0.35" = { created_at = 2026-06-13T18:08:08.264Z }
-"0.0.36" = { created_at = 2026-06-13T19:48:15.401Z }
-"0.0.37" = { created_at = 2026-06-13T23:12:05.151Z }
-"0.0.38" = { created_at = 2026-06-14T08:11:44.604Z }
-"0.0.39" = { created_at = 2026-06-14T09:18:15.633Z }
-"0.0.40" = { created_at = 2026-06-14T20:36:12.083Z }
-"0.0.41" = { created_at = 2026-06-15T05:17:03.270Z }
-"0.0.42" = { created_at = 2026-06-15T05:43:45.076Z }
-"0.0.44" = { created_at = 2026-06-15T16:15:47.710Z }
-"0.0.45" = { created_at = 2026-06-16T00:19:02.454Z }
-"0.0.46" = { created_at = 2026-06-16T03:10:38.913Z }
-"0.0.47" = { created_at = 2026-06-16T22:18:01.487Z }
-"0.0.48" = { created_at = 2026-06-17T08:47:47.929Z }
-"0.0.49" = { created_at = 2026-06-17T15:07:22.099Z }
-"0.1.0" = { created_at = 2026-06-17T18:10:52.961Z }
-"0.1.1" = { created_at = 2026-06-18T01:22:26.946Z }
-"0.1.2" = { created_at = 2026-06-18T20:52:30.809Z }
-"0.1.3" = { created_at = 2026-06-19T00:17:00.553Z }
-"0.1.4" = { created_at = 2026-06-19T03:45:39.243Z }
-"0.1.5" = { created_at = 2026-06-19T15:38:54.555Z }
-"0.1.6" = { created_at = 2026-06-20T07:38:34.903Z }
-"0.1.7" = { created_at = 2026-06-20T20:37:07.563Z }
-"0.1.8" = { created_at = 2026-06-21T03:45:23.993Z }
-"0.1.9" = { created_at = 2026-06-21T05:40:50.459Z }
-"0.1.10" = { created_at = 2026-06-21T23:32:55.198Z }
-"0.1.11" = { created_at = 2026-06-22T18:12:10.168Z }
-"0.1.12" = { created_at = 2026-06-23T06:43:27.964Z }
-"0.1.13" = { created_at = 2026-06-23T15:30:40.050Z }
-"0.1.14" = { created_at = 2026-06-24T05:18:47.698Z }
-"0.2.0" = { created_at = 2026-06-24T23:27:51.323Z }
-"0.2.1" = { created_at = 2026-06-25T17:44:35.477Z }
-"0.2.2" = { created_at = 2026-06-26T01:03:31.717Z }
-"0.2.3" = { created_at = 2026-06-26T16:10:19.185Z }
-"0.2.4" = { created_at = 2026-06-26T23:15:13.076Z }
-"0.2.5" = { created_at = 2026-06-27T00:45:13.178Z }
-"0.2.6" = { created_at = 2026-06-27T21:18:54.401Z }
-"0.2.7" = { created_at = 2026-06-28T08:14:06.339Z }
-"0.2.8" = { created_at = 2026-06-28T18:41:26.244Z }
-"0.2.9" = { created_at = 2026-06-28T23:45:44.441Z }
-"0.2.10" = { created_at = 2026-06-30T00:06:01.896Z }
-"0.3.0" = { created_at = 2026-07-07T15:31:55.685Z }
-"0.3.1" = { created_at = 2026-07-07T17:42:00.973Z }
-"0.4.0" = { created_at = 2026-07-07T22:03:55.080Z }
-"0.4.1" = { created_at = 2026-07-08T00:48:01.175Z }
-"0.4.2" = { created_at = 2026-07-08T04:02:38.098Z }
-"0.4.3" = { created_at = 2026-07-08T15:15:52.885Z }
-"0.4.4" = { created_at = 2026-07-08T17:48:59.010Z }
-"0.4.5" = { created_at = 2026-07-09T02:29:11.953Z }
-"0.4.6" = { created_at = 2026-07-10T05:49:08.117Z }
-"0.4.7" = { created_at = 2026-07-10T08:22:09.987Z }
-"0.4.8" = { created_at = 2026-07-11T02:53:13.672Z }
-"0.4.9" = { created_at = 2026-07-12T17:57:49.735Z }
-"0.4.10" = { created_at = 2026-07-12T18:32:05.611Z }
-"0.4.11" = { created_at = 2026-07-12T22:12:59.111Z }
-"0.4.12" = { created_at = 2026-07-15T01:19:23.968Z }
-"0.4.13" = { created_at = 2026-07-15T17:22:26.514Z }
-"0.5.0-canary.20260725.95" = { created_at = 2026-07-25T06:27:49.965Z, prerelease = true }
-"0.5.0-canary.20260725.96" = { created_at = 2026-07-25T07:16:04.297Z, prerelease = true }
-"0.5.0-canary.20260725.97" = { created_at = 2026-07-25T07:45:48.381Z, prerelease = true }
-"0.5.0" = { created_at = 2026-07-22T23:39:43.811Z }
-"0.6.0-canary.20260727.102" = { created_at = 2026-07-27T22:16:26.725Z, prerelease = true }
-"0.6.0-canary.20260728.105" = { created_at = 2026-07-28T18:28:11.280Z, prerelease = true }
-"0.6.0-canary.20260728.107" = { created_at = 2026-07-28T18:57:20.575Z, prerelease = true }
-"0.6.0-canary.20260728.108" = { created_at = 2026-07-28T22:13:13.463Z, prerelease = true }
-"0.6.0-canary.20260729.110" = { created_at = 2026-07-29T06:49:22.078Z, prerelease = true }
-"0.6.0-canary.20260729.114" = { created_at = 2026-07-29T07:45:45.112Z, prerelease = true }
-"0.6.0-canary.20260729.118" = { created_at = 2026-07-29T08:51:22.605Z, prerelease = true }
-"0.6.0-canary.20260729.120" = { created_at = 2026-07-29T09:27:20.182Z, prerelease = true }
-"0.6.0-canary.20260729.121" = { created_at = 2026-07-29T10:02:05.881Z, prerelease = true }
-"0.6.0-canary.20260729.123" = { created_at = 2026-07-29T16:50:59.378Z, prerelease = true }
-"0.6.0-canary.20260729.129" = { created_at = 2026-07-29T17:23:06.515Z, prerelease = true }
-"0.6.0-canary.20260729.131" = { created_at = 2026-07-29T19:00:25.226Z, prerelease = true }
-"0.6.0-canary.20260729.137" = { created_at = 2026-07-29T19:40:02.566Z, prerelease = true }
-"0.6.0-canary.20260802.187" = { created_at = 2026-08-02T03:42:45.362Z, prerelease = true }
-"0.6.0-canary.20260802.194" = { created_at = 2026-08-02T18:57:35.739Z, prerelease = true }
-"0.6.0-canary.20260803.198" = { created_at = 2026-08-03T02:42:13.889Z, prerelease = true }
-"0.6.0-canary.20260803.205" = { created_at = 2026-08-03T20:34:11.884Z, prerelease = true }
-"0.6.0-canary.20260803.207" = { created_at = 2026-08-03T20:59:52.985Z, prerelease = true }
-"0.6.0-canary.20260803.208" = { created_at = 2026-08-03T21:47:10.741Z, prerelease = true }
-"0.6.0-canary.20260803.215" = { created_at = 2026-08-03T23:12:37.198Z, prerelease = true }
-"0.6.0-canary.20260803.216" = { created_at = 2026-08-04T00:11:51.083Z, prerelease = true }
-"0.6.0-canary.20260804.218" = { created_at = 2026-08-04T01:46:30.166Z, prerelease = true }
-"0.6.0-canary.20260804.220" = { created_at = 2026-08-04T07:30:11.272Z, prerelease = true }
-"0.6.0-canary.20260805.225" = { created_at = 2026-08-05T02:50:02.221Z, prerelease = true }
-"0.6.0" = { created_at = 2026-07-25T21:22:50.676Z }
-"0.7.0-canary.20260805.232" = { created_at = 2026-08-05T15:20:34.578Z, prerelease = true }
-"0.7.0-canary.20260805.239" = { created_at = 2026-08-05T16:47:02.113Z, prerelease = true }
-"0.7.0" = { created_at = 2026-08-05T08:03:49.022Z }
-"0.7.1-canary.20260806.248" = { created_at = 2026-08-06T03:15:46.166Z, prerelease = true }
-"0.7.1-canary.20260806.249" = { created_at = 2026-08-06T04:57:36.469Z, prerelease = true }
-"0.7.1-canary.20260806.251" = { created_at = 2026-08-06T05:38:34.873Z, prerelease = true }
-"0.7.1-canary.20260806.252" = { created_at = 2026-08-06T06:05:16.296Z, prerelease = true }
-"0.7.1-canary.20260806.253" = { created_at = 2026-08-06T22:12:11.672Z, prerelease = true }
-"0.7.1" = { created_at = 2026-08-05T16:51:21.600Z }
-"0.7.2-canary.20260807.259" = { created_at = 2026-08-07T17:33:02.654Z, prerelease = true }
-"0.7.2-canary.20260807.261" = { created_at = 2026-08-07T22:36:42.957Z, prerelease = true }
-"0.7.2-canary.20260807.264" = { created_at = 2026-08-08T00:02:06.458Z, prerelease = true }
-"0.7.2-canary.20260808.271" = { created_at = 2026-08-08T01:49:19.694Z, prerelease = true }
-"0.7.2" = { created_at = 2026-08-07T00:44:57.059Z }
-"0.7.3-canary.20260808.281" = { created_at = 2026-08-08T04:26:00.107Z, prerelease = true }
-"0.7.3-canary.20260808.283" = { created_at = 2026-08-08T06:23:35.872Z, prerelease = true }
-"0.7.3" = { created_at = 2026-08-08T04:15:31.524Z }
-"0.7.4-canary.20260808.295" = { created_at = 2026-08-08T22:27:44.480Z, prerelease = true }
-"0.7.4-canary.20260809.297" = { created_at = 2026-08-09T17:23:40.261Z, prerelease = true }
-"0.7.4" = { created_at = 2026-08-08T17:39:13.513Z }
-"0.7.5-canary.20260811.304" = { created_at = 2026-08-11T20:32:17.130Z, prerelease = true }
-"0.7.5-canary.20260811.305" = { created_at = 2026-08-11T22:15:28.953Z, prerelease = true }
-"0.7.5-canary.20260811.309" = { created_at = 2026-08-11T23:00:13.105Z, prerelease = true }
-"0.7.5-canary.20260811.310" = { created_at = 2026-08-12T00:07:43.967Z, prerelease = true }
-"0.7.5-canary.20260811.311" = { created_at = 2026-08-12T00:29:53.854Z, prerelease = true }
-"0.7.5-canary.20260812.313" = { created_at = 2026-08-12T15:39:59.126Z, prerelease = true }
-"0.7.5-canary.20260814.315" = { created_at = 2026-08-14T20:42:26.199Z, prerelease = true }
-"0.7.5-canary.20260814.317" = { created_at = 2026-08-14T22:03:58.498Z, prerelease = true }
-"0.7.5" = { created_at = 2026-08-09T17:28:29.139Z }
-"0.8.0-canary.20260827.370" = { created_at = 2026-08-27T23:33:46.718Z, prerelease = true }
-"0.8.0-canary.20260828.374" = { created_at = 2026-08-28T20:19:58.412Z, prerelease = true }
-"0.8.0-canary.20260828.380" = { created_at = 2026-08-28T22:08:10.526Z, prerelease = true }
-"0.8.0-canary.20260828.394" = { created_at = 2026-08-28T22:54:42.684Z, prerelease = true }
-"0.8.0-canary.20260829.396" = { created_at = 2026-08-29T01:34:48.613Z, prerelease = true }
-"0.8.0-canary.20260829.399" = { created_at = 2026-08-29T03:17:43.480Z, prerelease = true }
-"0.8.0-canary.20260829.400" = { created_at = 2026-08-29T04:37:48.979Z, prerelease = true }
-"0.8.0-canary.20260829.402" = { created_at = 2026-08-29T20:51:26.800Z, prerelease = true }
-"0.8.0" = { created_at = 2026-08-28T00:09:42.692Z }
-"0.8.1-canary.20260831.410" = { created_at = 2026-08-31T23:17:12.616Z, prerelease = true }
-"0.8.1-canary.20260831.417" = { created_at = 2026-09-01T00:42:23.309Z, prerelease = true }
-"0.8.1-canary.20260901.420" = { created_at = 2026-09-01T06:03:58.477Z, prerelease = true }
-"0.8.1" = { created_at = 2026-08-29T21:26:16.562Z }
-"0.8.2-canary.20260901.423" = { created_at = 2026-09-01T09:34:41.855Z, prerelease = true }
-"0.8.2-canary.20260901.424" = { created_at = 2026-09-01T19:20:18.427Z, prerelease = true }
-"0.8.2-canary.20260901.425" = { created_at = 2026-09-02T01:47:43.127Z, prerelease = true }
-"0.8.2-canary.20260902.427" = { created_at = 2026-09-02T03:57:46.085Z, prerelease = true }
-"0.8.2-canary.20260902.428" = { created_at = 2026-09-02T19:35:26.972Z, prerelease = true }
-"0.8.2-canary.20260902.430" = { created_at = 2026-09-02T20:14:04.450Z, prerelease = true }
-"0.8.2-canary.20260902.432" = { created_at = 2026-09-02T21:36:53.894Z, prerelease = true }
-"0.8.2-canary.20260902.433" = { created_at = 2026-09-02T22:56:46.055Z, prerelease = true }
-"0.8.2-canary.20260902.437" = { created_at = 2026-09-03T00:00:27.602Z, prerelease = true }
-"0.8.2-canary.20260902.438" = { created_at = 2026-09-03T01:13:09.949Z, prerelease = true }
-"0.8.2" = { created_at = 2026-09-01T06:44:32.034Z }
-"0.8.3-canary.20260903.442" = { created_at = 2026-09-03T02:19:01.902Z, prerelease = true }
-"0.8.3-canary.20260903.446" = { created_at = 2026-09-03T07:40:29.303Z, prerelease = true }
-"0.8.3-canary.20260903.448" = { created_at = 2026-09-03T17:37:47.131Z, prerelease = true }
-"0.8.3-canary.20260903.450" = { created_at = 2026-09-03T22:18:03.931Z, prerelease = true }
-"0.8.3-canary.20260903.456" = { created_at = 2026-09-03T23:06:16.119Z, prerelease = true }
-"0.8.3-canary.20260904.476" = { created_at = 2026-09-04T04:21:13.747Z, prerelease = true }
-"0.8.3-canary.20260904.481" = { created_at = 2026-09-04T06:52:36.132Z, prerelease = true }
-"0.8.3-canary.20260904.490" = { created_at = 2026-09-04T13:28:39.264Z, prerelease = true }
-"0.8.3-canary.20260904.491" = { created_at = 2026-09-04T15:48:08.397Z, prerelease = true }
-"0.8.3-canary.20260904.493" = { created_at = 2026-09-04T17:34:22.737Z, prerelease = true }
-"0.8.3-canary.20260904.498" = { created_at = 2026-09-04T19:39:54.040Z, prerelease = true }
-"0.8.3-canary.20260904.502" = { created_at = 2026-09-04T21:29:56.250Z, prerelease = true }
-"0.8.3-canary.20260904.503" = { created_at = 2026-09-04T22:43:47.180Z, prerelease = true }
-"0.8.3-canary.20260906.505" = { created_at = 2026-09-06T13:53:54.802Z, prerelease = true }
-"0.8.3-canary.20260907.506" = { created_at = 2026-09-07T16:11:33.237Z, prerelease = true }
-"0.8.3" = { created_at = 2026-09-03T01:54:47.115Z }
-"0.9.0-canary.20260908.508" = { created_at = 2026-09-08T14:38:32.276Z, prerelease = true }
-"0.9.0-canary.20260909.509" = { created_at = 2026-09-09T14:43:09.177Z, prerelease = true }
-"0.9.0-canary.20260910.510" = { created_at = 2026-09-10T14:36:59.260Z, prerelease = true }
-"0.9.0-canary.20260910.511" = { created_at = 2026-09-11T14:36:14.120Z, prerelease = true }
-"0.9.0-canary.20260912.512" = { created_at = 2026-09-12T13:41:53.486Z, prerelease = true }
-"0.9.0" = { created_at = 2026-09-07T19:21:29.733Z }
-"0.9.1-canary.20260912.514" = { created_at = 2026-09-13T01:03:25.727Z, prerelease = true }
-"0.9.1" = { created_at = 2026-09-12T23:31:02.479Z }
-"0.9.2-canary.20260914.517" = { created_at = 2026-09-14T16:57:57.583Z, prerelease = true }
-"0.9.2-canary.20260914.518" = { created_at = 2026-09-15T15:37:36.771Z, prerelease = true }
-"0.9.2-canary.20260916.519" = { created_at = 2026-09-16T15:17:58.906Z, prerelease = true }
-"0.9.2" = { created_at = 2026-09-13T22:25:58.357Z }
-"0.9.3-canary.20260920.524" = { created_at = 2026-09-20T14:38:44.797Z, prerelease = true }
-"0.9.3" = { created_at = 2026-09-19T19:39:38.036Z }
-"0.9.5" = { created_at = 2026-09-25T22:45:59.747Z }
+"canary" = { created_at = 2026-09-26T14:46:42.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/canary", prerelease = true }
+"0.0.13" = { created_at = 2026-06-03T19:51:07.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.13" }
+"0.0.14" = { created_at = 2026-06-03T20:02:27.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.14" }
+"0.0.15" = { created_at = 2026-06-04T17:32:07.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.15" }
+"0.0.16" = { created_at = 2026-06-04T18:44:57.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.16" }
+"0.0.17" = { created_at = 2026-06-07T01:19:46.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.17" }
+"0.0.18" = { created_at = 2026-06-07T23:00:20.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.18" }
+"0.0.19" = { created_at = 2026-06-08T04:47:45.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.19" }
+"0.0.20" = { created_at = 2026-06-08T05:25:31.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.20" }
+"0.0.21" = { created_at = 2026-06-08T06:08:22.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.21" }
+"0.0.22" = { created_at = 2026-06-08T16:44:13.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.22" }
+"0.0.23" = { created_at = 2026-06-08T17:58:16.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.23" }
+"0.0.24" = { created_at = 2026-06-10T00:05:19.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.24" }
+"0.0.25" = { created_at = 2026-06-10T05:26:36.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.25" }
+"0.0.26" = { created_at = 2026-06-10T06:32:47.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.26" }
+"0.0.27" = { created_at = 2026-06-10T06:58:20.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.27" }
+"0.0.28" = { created_at = 2026-06-10T10:31:27.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.28" }
+"0.0.29" = { created_at = 2026-06-10T11:13:42.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.29" }
+"0.0.30" = { created_at = 2026-06-10T20:59:48.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.30" }
+"0.0.31" = { created_at = 2026-06-10T22:32:56.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.31" }
+"0.0.32" = { created_at = 2026-06-11T19:40:16.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.32" }
+"0.0.33" = { created_at = 2026-06-11T21:26:05.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.33" }
+"0.0.34" = { created_at = 2026-06-12T09:50:59.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.34" }
+"0.0.35" = { created_at = 2026-06-13T18:08:20.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.35" }
+"0.0.36" = { created_at = 2026-06-13T19:48:24.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.36" }
+"0.0.37" = { created_at = 2026-06-13T23:12:15.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.37" }
+"0.0.38" = { created_at = 2026-06-14T08:11:53.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.38" }
+"0.0.39" = { created_at = 2026-06-14T09:18:25.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.39" }
+"0.0.40" = { created_at = 2026-06-14T20:36:22.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.40" }
+"0.0.41" = { created_at = 2026-06-15T05:17:14.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.41" }
+"0.0.42" = { created_at = 2026-06-15T05:44:01.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.42" }
+"0.0.44" = { created_at = 2026-06-15T16:16:04.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.44" }
+"0.0.45" = { created_at = 2026-06-16T00:19:28.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.45" }
+"0.0.46" = { created_at = 2026-06-16T03:10:54.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.46" }
+"0.0.47" = { created_at = 2026-06-16T22:18:18.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.47" }
+"0.0.48" = { created_at = 2026-06-17T08:50:49.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.48" }
+"0.0.49" = { created_at = 2026-06-17T15:08:45.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.0.49" }
+"0.1.0" = { created_at = 2026-06-17T18:12:16.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.0" }
+"0.1.1" = { created_at = 2026-06-18T01:23:40.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.1" }
+"0.1.2" = { created_at = 2026-06-18T20:53:38.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.2" }
+"0.1.3" = { created_at = 2026-06-19T00:18:08.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.3" }
+"0.1.4" = { created_at = 2026-06-19T03:46:38.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.4" }
+"0.1.5" = { created_at = 2026-06-19T15:39:55.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.5" }
+"0.1.6" = { created_at = 2026-06-20T07:39:49.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.6" }
+"0.1.7" = { created_at = 2026-06-20T20:38:14.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.7" }
+"0.1.8" = { created_at = 2026-06-21T03:46:24.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.8" }
+"0.1.9" = { created_at = 2026-06-21T05:41:56.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.9" }
+"0.1.10" = { created_at = 2026-06-21T23:34:02.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.10" }
+"0.1.11" = { created_at = 2026-06-22T18:13:23.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.11" }
+"0.1.12" = { created_at = 2026-06-23T06:44:32.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.12" }
+"0.1.13" = { created_at = 2026-06-23T15:31:36.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.13" }
+"0.1.14" = { created_at = 2026-06-24T05:19:49.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.1.14" }
+"0.2.0" = { created_at = 2026-06-24T23:50:03.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2026-06-25T17:45:44.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.1" }
+"0.2.2" = { created_at = 2026-06-26T01:04:30.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2026-06-26T16:11:24.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2026-06-26T23:16:14.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.4" }
+"0.2.5" = { created_at = 2026-06-27T00:46:08.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.5" }
+"0.2.6" = { created_at = 2026-06-27T21:19:48.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.6" }
+"0.2.7" = { created_at = 2026-06-28T08:15:01.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.7" }
+"0.2.8" = { created_at = 2026-06-28T18:42:24.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.8" }
+"0.2.9" = { created_at = 2026-06-28T23:46:42.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.9" }
+"0.2.10" = { created_at = 2026-06-30T00:07:01.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.2.10" }
+"0.3.0" = { created_at = 2026-07-07T15:33:01.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2026-07-07T17:42:56.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.3.1" }
+"0.4.0" = { created_at = 2026-07-07T22:04:58.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2026-07-08T00:48:53.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2026-07-08T04:03:52.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2026-07-08T15:16:56.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.3" }
+"0.4.4" = { created_at = 2026-07-08T17:49:59.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.4" }
+"0.4.5" = { created_at = 2026-07-09T02:30:12.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.5" }
+"0.4.6" = { created_at = 2026-07-10T05:50:04.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.6" }
+"0.4.7" = { created_at = 2026-07-10T08:23:16.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.7" }
+"0.4.8" = { created_at = 2026-07-11T02:54:16.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.8" }
+"0.4.9" = { created_at = 2026-07-12T17:58:46.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.9" }
+"0.4.10" = { created_at = 2026-07-12T18:33:06.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.10" }
+"0.4.11" = { created_at = 2026-07-12T22:13:58.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.11" }
+"0.4.12" = { created_at = 2026-07-15T01:20:24.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.12" }
+"0.4.13" = { created_at = 2026-07-15T17:23:18.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.4.13" }
+"0.5.0" = { created_at = 2026-07-22T23:40:49.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.5.0" }
+"0.6.0" = { created_at = 2026-07-25T21:23:51.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2026-08-05T08:04:35.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2026-08-05T16:52:18.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.7.1" }
+"0.7.2" = { created_at = 2026-08-07T00:45:44.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.7.2" }
+"0.7.3" = { created_at = 2026-08-08T04:16:23.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.7.3" }
+"0.7.4" = { created_at = 2026-08-08T17:40:03.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.7.4" }
+"0.7.5" = { created_at = 2026-08-09T17:29:12.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.7.5" }
+"0.8.0-canary.20260827.370" = { created_at = 2026-08-27T23:31:13.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260827.370", prerelease = true }
+"0.8.0-canary.20260828.374" = { created_at = 2026-08-28T20:16:55.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260828.374", prerelease = true }
+"0.8.0-canary.20260828.380" = { created_at = 2026-08-28T22:05:33.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260828.380", prerelease = true }
+"0.8.0-canary.20260828.394" = { created_at = 2026-08-28T22:52:09.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260828.394", prerelease = true }
+"0.8.0-canary.20260829.396" = { created_at = 2026-08-29T01:29:35.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260829.396", prerelease = true }
+"0.8.0-canary.20260829.399" = { created_at = 2026-08-29T03:15:13.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260829.399", prerelease = true }
+"0.8.0-canary.20260829.400" = { created_at = 2026-08-29T04:34:59.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260829.400", prerelease = true }
+"0.8.0-canary.20260829.402" = { created_at = 2026-08-29T20:48:36.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0-canary.20260829.402", prerelease = true }
+"0.8.0" = { created_at = 2026-08-28T00:07:06.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.0" }
+"0.8.1-canary.20260831.410" = { created_at = 2026-08-31T23:14:22.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.1-canary.20260831.410", prerelease = true }
+"0.8.1-canary.20260831.417" = { created_at = 2026-09-01T00:39:40.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.1-canary.20260831.417", prerelease = true }
+"0.8.1-canary.20260901.418" = { created_at = 2026-09-01T01:46:15.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.1-canary.20260901.418", prerelease = true }
+"0.8.1-canary.20260901.419" = { created_at = 2026-09-01T03:32:51.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.1-canary.20260901.419", prerelease = true }
+"0.8.1-canary.20260901.420" = { created_at = 2026-09-01T06:00:16.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.1-canary.20260901.420", prerelease = true }
+"0.8.1" = { created_at = 2026-08-29T21:23:46.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.1" }
+"0.8.2-canary.20260901.423" = { created_at = 2026-09-01T09:30:56.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260901.423", prerelease = true }
+"0.8.2-canary.20260901.424" = { created_at = 2026-09-01T19:16:24.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260901.424", prerelease = true }
+"0.8.2-canary.20260901.425" = { created_at = 2026-09-02T01:27:30.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260901.425", prerelease = true }
+"0.8.2-canary.20260902.427" = { created_at = 2026-09-02T03:52:13.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.427", prerelease = true }
+"0.8.2-canary.20260902.428" = { created_at = 2026-09-02T19:31:47.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.428", prerelease = true }
+"0.8.2-canary.20260902.430" = { created_at = 2026-09-02T20:10:03.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.430", prerelease = true }
+"0.8.2-canary.20260902.432" = { created_at = 2026-09-02T21:31:47.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.432", prerelease = true }
+"0.8.2-canary.20260902.433" = { created_at = 2026-09-02T22:53:09.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.433", prerelease = true }
+"0.8.2-canary.20260902.437" = { created_at = 2026-09-02T23:56:20.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.437", prerelease = true }
+"0.8.2-canary.20260902.438" = { created_at = 2026-09-03T01:06:25.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2-canary.20260902.438", prerelease = true }
+"0.8.2" = { created_at = 2026-09-01T06:41:02.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.2" }
+"0.8.3-canary.20260903.442" = { created_at = 2026-09-03T02:15:35.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260903.442", prerelease = true }
+"0.8.3-canary.20260903.446" = { created_at = 2026-09-03T07:36:51.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260903.446", prerelease = true }
+"0.8.3-canary.20260903.448" = { created_at = 2026-09-03T17:32:34.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260903.448", prerelease = true }
+"0.8.3-canary.20260903.450" = { created_at = 2026-09-03T22:14:10.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260903.450", prerelease = true }
+"0.8.3-canary.20260903.456" = { created_at = 2026-09-03T23:00:13.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260903.456", prerelease = true }
+"0.8.3-canary.20260903.457" = { created_at = 2026-09-04T00:40:39.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260903.457", prerelease = true }
+"0.8.3-canary.20260904.476" = { created_at = 2026-09-04T04:17:45.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.476", prerelease = true }
+"0.8.3-canary.20260904.480" = { created_at = 2026-09-04T05:39:25.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.480", prerelease = true }
+"0.8.3-canary.20260904.481" = { created_at = 2026-09-04T06:49:14.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.481", prerelease = true }
+"0.8.3-canary.20260904.488" = { created_at = 2026-09-04T08:59:28.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.488", prerelease = true }
+"0.8.3-canary.20260904.490" = { created_at = 2026-09-04T13:24:57.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.490", prerelease = true }
+"0.8.3-canary.20260904.491" = { created_at = 2026-09-04T15:44:08.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.491", prerelease = true }
+"0.8.3-canary.20260904.493" = { created_at = 2026-09-04T17:30:15.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.493", prerelease = true }
+"0.8.3-canary.20260904.498" = { created_at = 2026-09-04T19:35:26.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.498", prerelease = true }
+"0.8.3-canary.20260904.502" = { created_at = 2026-09-04T21:25:58.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.502", prerelease = true }
+"0.8.3-canary.20260904.503" = { created_at = 2026-09-04T22:35:00.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260904.503", prerelease = true }
+"0.8.3-canary.20260906.505" = { created_at = 2026-09-06T13:49:37.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260906.505", prerelease = true }
+"0.8.3-canary.20260907.506" = { created_at = 2026-09-07T16:05:20.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3-canary.20260907.506", prerelease = true }
+"0.8.3" = { created_at = 2026-09-03T01:50:45.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.8.3" }
+"0.9.0-canary.20260908.508" = { created_at = 2026-09-08T14:34:34.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.0-canary.20260908.508", prerelease = true }
+"0.9.0-canary.20260909.509" = { created_at = 2026-09-09T14:39:17.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.0-canary.20260909.509", prerelease = true }
+"0.9.0-canary.20260910.510" = { created_at = 2026-09-10T14:32:48.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.0-canary.20260910.510", prerelease = true }
+"0.9.0-canary.20260910.511" = { created_at = 2026-09-11T14:32:21.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.0-canary.20260910.511", prerelease = true }
+"0.9.0-canary.20260912.512" = { created_at = 2026-09-12T13:38:08.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.0-canary.20260912.512", prerelease = true }
+"0.9.0" = { created_at = 2026-09-07T19:16:39.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.0" }
+"0.9.1-canary.20260912.514" = { created_at = 2026-09-13T00:59:28.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.1-canary.20260912.514", prerelease = true }
+"0.9.1" = { created_at = 2026-09-12T23:27:07.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.1" }
+"0.9.2-canary.20260914.517" = { created_at = 2026-09-14T16:53:49.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.2-canary.20260914.517", prerelease = true }
+"0.9.2-canary.20260914.518" = { created_at = 2026-09-15T15:24:40.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.2-canary.20260914.518", prerelease = true }
+"0.9.2-canary.20260916.519" = { created_at = 2026-09-16T15:10:47.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.2-canary.20260916.519", prerelease = true }
+"0.9.2" = { created_at = 2026-09-13T22:22:13.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.2" }
+"0.9.3-canary.20260920.524" = { created_at = 2026-09-20T14:34:30.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.3-canary.20260920.524", prerelease = true }
+"0.9.3-canary.20260922.527" = { created_at = 2026-09-22T15:00:18.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.3-canary.20260922.527", prerelease = true }
+"0.9.3-canary.20260924.529" = { created_at = 2026-09-24T15:13:42.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.3-canary.20260924.529", prerelease = true }
+"0.9.3" = { created_at = 2026-09-19T19:34:36.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.3" }
+"0.9.5-canary.20260926.535" = { created_at = 2026-09-26T14:44:47.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.5-canary.20260926.535", prerelease = true }
+"0.9.5" = { created_at = 2026-09-25T22:50:03.000Z, release_url = "https://github.com/nubjs/nub/releases/tag/v0.9.5" }
