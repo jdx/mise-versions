@@ -1,12 +1,25 @@
 {
   "aubepkg/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.5.1",
-    "publishedAt": "2026-09-27T16:39:28.679802439Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.5.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.5.1",
+    "version": "2.6.0",
+    "publishedAt": "2026-09-28T21:07:47.834277011Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.6.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.6.0",
     "publisher": "aubepkg",
-    "capabilities": [],
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
     "platforms": [
       "Linux / aarch64 / gnu",
       "Linux / aarch64 / musl",
@@ -20,14 +33,62 @@
     "artifactCount": 7,
     "provenanceCount": 7
   },
+  "dagucloud/dagu": {
+    "project": "github.com/dagucloud/dagu",
+    "version": "2.18.0",
+    "publishedAt": "2026-09-29T09:29:08.518861488Z",
+    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.18.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.18.0",
+    "publisher": "dagucloud",
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / armv6",
+      "Linux / armv7",
+      "Linux / i686",
+      "Linux / powerpc64le",
+      "Linux / s390x",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / i686",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["dagu", "dagu.exe"],
+    "artifactCount": 12,
+    "provenanceCount": 12
+  },
   "jdx/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.5.1",
-    "publishedAt": "2026-09-27T16:39:28.679802439Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.5.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.5.1",
+    "version": "2.6.0",
+    "publishedAt": "2026-09-28T21:07:47.834277011Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.6.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.6.0",
     "publisher": "aubepkg",
-    "capabilities": [],
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
     "platforms": [
       "Linux / aarch64 / gnu",
       "Linux / aarch64 / musl",
@@ -142,10 +203,10 @@
   },
   "jdx/mr-boxington": {
     "project": "github.com/jdx/mr-boxington",
-    "version": "1.19.0",
-    "publishedAt": "2026-09-27T16:39:54.573197591Z",
-    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.19.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.19.0",
+    "version": "1.20.0",
+    "publishedAt": "2026-09-28T18:14:23.246310557Z",
+    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.20.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.20.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -155,6 +216,10 @@
       {
         "label": "Usage CLI spec",
         "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
       }
     ],
     "platforms": [
@@ -230,10 +295,10 @@
   },
   "jdx/usage": {
     "project": "github.com/jdx/usage",
-    "version": "6.11.1",
-    "publishedAt": "2026-09-23T15:18:52.581867264Z",
-    "manifestUrl": "https://github.com/jdx/usage/releases/download/v6.11.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v6.11.1",
+    "version": "6.12.0",
+    "publishedAt": "2026-09-28T18:01:14.805934357Z",
+    "manifestUrl": "https://github.com/jdx/usage/releases/download/v6.12.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v6.12.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -243,6 +308,10 @@
       {
         "label": "Usage CLI spec",
         "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
       },
       {
         "label": "Man pages",
@@ -299,5 +368,34 @@
     ],
     "artifactCount": 5,
     "provenanceCount": 5
+  },
+  "stefanprodan/timoni": {
+    "project": "github.com/stefanprodan/timoni",
+    "version": "0.35.0",
+    "publishedAt": "2026-09-28T13:27:11.825617163Z",
+    "manifestUrl": "https://github.com/stefanprodan/timoni/releases/download/v0.35.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/stefanprodan/timoni/releases/tag/v0.35.0",
+    "publisher": "stefanprodan",
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["timoni", "timoni.exe"],
+    "artifactCount": 6,
+    "provenanceCount": 6
   }
 }
