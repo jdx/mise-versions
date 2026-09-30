@@ -1,10 +1,10 @@
 {
   "aubepkg/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.6.0",
-    "publishedAt": "2026-09-28T21:07:47.834277011Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.6.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.6.0",
+    "version": "2.6.1",
+    "publishedAt": "2026-09-29T22:24:52.347204722Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.6.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.6.1",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -35,10 +35,10 @@
   },
   "dagucloud/dagu": {
     "project": "github.com/dagucloud/dagu",
-    "version": "2.18.0",
-    "publishedAt": "2026-09-29T09:29:08.518861488Z",
-    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.18.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.18.0",
+    "version": "2.18.1",
+    "publishedAt": "2026-09-29T15:38:57.967833376Z",
+    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.18.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.18.1",
     "publisher": "dagucloud",
     "capabilities": [
       {
@@ -68,12 +68,43 @@
     "artifactCount": 12,
     "provenanceCount": 12
   },
+  "helmfile/helmfile": {
+    "project": "github.com/helmfile/helmfile",
+    "version": "1.8.1",
+    "publishedAt": "2026-09-30T01:27:54.754024757Z",
+    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.1",
+    "publisher": "helmfile",
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / i686",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / i686",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["helmfile", "helmfile.exe"],
+    "artifactCount": 8,
+    "provenanceCount": 8
+  },
   "jdx/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.6.0",
-    "publishedAt": "2026-09-28T21:07:47.834277011Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.6.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.6.0",
+    "version": "2.6.1",
+    "publishedAt": "2026-09-29T22:24:52.347204722Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.6.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.6.1",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -104,10 +135,10 @@
   },
   "jdx/communique": {
     "project": "github.com/jdx/communique",
-    "version": "1.4.2",
-    "publishedAt": "2026-09-23T18:45:06.880088503Z",
-    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.4.2/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.4.2",
+    "version": "1.5.0",
+    "publishedAt": "2026-09-29T16:52:24.629695708Z",
+    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.5.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.5.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -117,6 +148,10 @@
       {
         "label": "Usage CLI spec",
         "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
       }
     ],
     "platforms": [
@@ -203,10 +238,10 @@
   },
   "jdx/mr-boxington": {
     "project": "github.com/jdx/mr-boxington",
-    "version": "1.20.0",
-    "publishedAt": "2026-09-28T18:14:23.246310557Z",
-    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.20.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.20.0",
+    "version": "1.21.0",
+    "publishedAt": "2026-09-29T18:07:50.821285993Z",
+    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.21.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.21.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -237,10 +272,10 @@
   },
   "jdx/pitchfork": {
     "project": "github.com/jdx/pitchfork",
-    "version": "2.28.0",
-    "publishedAt": "2026-09-27T10:40:40.010442776Z",
-    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.28.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.28.0",
+    "version": "2.29.0",
+    "publishedAt": "2026-09-29T21:32:27.97060366Z",
+    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.29.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.29.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -250,6 +285,10 @@
       {
         "label": "Usage CLI spec",
         "detail": "Enables generated completions and documentation"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
       }
     ],
     "platforms": [
