@@ -40,6 +40,7 @@ jobs:
           DRY_RUN: ${{ github.event.inputs.dry_run }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           # Defaults to the address that already receives token-pool alerts.
           DIGEST_TO: ${{ vars.DIGEST_TO }}

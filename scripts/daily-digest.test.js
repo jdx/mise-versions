@@ -100,12 +100,42 @@ test("stale rollups produce a warning in the email", () => {
       mau: [{ date: "2026-09-28", value: 1 }],
       dau: [],
       downloads: [],
-      movers: [],
+      toolRollupDate: "2026-09-28",
+      movers: [{ name: "big", this_week: 1000, last_week: 500 }],
       projects: [],
-      events: [],
+      release: null,
     },
     NOW,
   );
   assert.match(digest.text, /Data warnings/);
   assert.match(digest.text, /MAU rollup is stale \(latest 2026-09-28/);
+  assert.match(digest.text, /Per-tool rollup is stale/);
+  assert.doesNotMatch(digest.text, /Tool movers \(7d/);
+  assert.equal(digest.idempotencyKey, "mise-daily-digest-2026-09-30");
+});
+
+test("projects without a comparison point get no empty parentheses", () => {
+  const section = projectsSection(
+    [{ name: "demo", history: [{ date: "2026-09-30", stars: 10 }] }],
+    NOW,
+  );
+  assert.deepEqual(section.lines, ["demo: 10 stars"]);
+});
+
+test("the latest release comes from the release record, not monthly markers", () => {
+  const release = {
+    tag_name: "v2026.10.1",
+    published_at: "2026-09-30T12:00:00Z",
+  };
+  assert.deepEqual(miseReleaseSection(null, release, NOW).lines, [
+    "Latest release: mise v2026.10.1 (2026-09-30)",
+  ]);
+  assert.deepEqual(
+    miseReleaseSection(
+      null,
+      { ...release, published_at: "2026-09-01T12:00:00Z" },
+      NOW,
+    ).lines,
+    [],
+  );
 });

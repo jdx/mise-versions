@@ -154,12 +154,12 @@ export function projectsSection(projects, now = Date.now()) {
     .filter(Boolean)
     .sort((a, b) => (b.week ?? -Infinity) - (a.week ?? -Infinity));
   for (const r of ranked.slice(0, 5)) {
+    const changes = [
+      r.week !== null && `${signed(r.week)} 7d`,
+      r.month !== null && `${signed(r.month)} 30d`,
+    ].filter(Boolean);
     lines.push(
-      `${r.name}: ${fmt(r.stars)} stars` +
-        (r.week !== null ? ` (${signed(r.week)} 7d` : " (") +
-        (r.month !== null
-          ? `${r.week !== null ? ", " : ""}${signed(r.month)} 30d)`
-          : ")"),
+      `${r.name}: ${fmt(r.stars)} stars${changes.length ? ` (${changes.join(", ")})` : ""}`,
     );
   }
   return {
@@ -171,7 +171,7 @@ export function projectsSection(projects, now = Date.now()) {
 
 // Release downloads are cumulative snapshots, so the daily number is the
 // difference of two adjacent days; anything else could be a counter correction.
-export function miseReleaseSection(project, events, now = Date.now()) {
+export function miseReleaseSection(project, release, now = Date.now()) {
   const lines = [];
   const downloads = project?.downloads ?? [];
   const latest = downloads.at(-1);
@@ -185,9 +185,11 @@ export function miseReleaseSection(project, events, now = Date.now()) {
     lines.push(
       `mise GitHub release downloads on ${latest.date}: ${fmt(latest.downloads - previous.downloads)}`,
     );
-  const release = events.at(-1);
-  if (release && now - Date.parse(`${release.date}T00:00:00Z`) < 4 * 86400000)
-    lines.push(`Latest release: ${release.label} (${release.date})`);
+  const published = release && Date.parse(release.published_at);
+  if (published && now - published < 4 * 86400000)
+    lines.push(
+      `Latest release: mise ${release.tag_name} (${release.published_at.slice(0, 10)})`,
+    );
   return { title: "mise releases", lines };
 }
 
@@ -224,6 +226,8 @@ export function buildDigest({ day, sections, milestones, warnings }) {
   const footer = "https://mise-tools.jdx.dev/stats";
   return {
     subject,
+    // Stable per day so a retried send cannot deliver the digest twice.
+    idempotencyKey: `mise-daily-digest-${day}`,
     text: `${textParts.join("\n\n")}\n\n${footer}\n`,
     html: `<div style="font-family:system-ui,sans-serif;max-width:640px">${htmlParts.join("")}<p><a href="${footer}">${footer}</a></p></div>`,
   };
@@ -258,6 +262,25 @@ async function readJson(path) {
   return JSON.parse(await readFile(new URL(path, import.meta.url), "utf8"));
 }
 
+// mise-events.json only keeps the first stable release of each month, so ask
+// GitHub for the real latest one. The release line is optional: a failure here
+// should not stop the rest of the digest from going out.
+async function latestMiseRelease() {
+  try {
+    const headers = { Accept: "application/vnd.github+json" };
+    if (process.env.GH_TOKEN)
+      headers.Authorization = `Bearer ${process.env.GH_TOKEN}`;
+    const response = await fetchWithRetry(
+      "https://api.github.com/repos/jdx/mise/releases/latest",
+      { headers },
+    );
+    return await response.json();
+  } catch (error) {
+    console.warn(`Could not fetch the latest mise release: ${error.message}`);
+    return null;
+  }
+}
+
 async function collect() {
   const config = {
     accountId: requiredEnv("CLOUDFLARE_ACCOUNT_ID"),
@@ -270,7 +293,7 @@ async function collect() {
   const priorStart = dateStrAgo(day, 13);
   const priorEnd = dateStrAgo(day, 7);
 
-  const [mau, dau, downloads, movers] = await Promise.all([
+  const [mau, dau, downloads, toolDate, movers] = await Promise.all([
     queryD1(
       config,
       "SELECT date, mau AS value FROM daily_mau_stats WHERE date >= ? AND date <= ?",
@@ -288,6 +311,11 @@ async function collect() {
     ),
     queryD1(
       config,
+      "SELECT MAX(date) AS date FROM daily_tool_stats WHERE date <= ?",
+      [day],
+    ),
+    queryD1(
+      config,
       `SELECT t.name AS name,
          COALESCE(SUM(CASE WHEN s.date BETWEEN ? AND ? THEN s.downloads END), 0) AS this_week,
          COALESCE(SUM(CASE WHEN s.date BETWEEN ? AND ? THEN s.downloads END), 0) AS last_week
@@ -297,18 +325,19 @@ async function collect() {
       [weekStart, day, priorStart, priorEnd, priorStart, day],
     ),
   ]);
-  const [projects, events] = await Promise.all([
+  const [projects, release] = await Promise.all([
     readJson("../web/src/data/projects.json"),
-    readJson("../web/src/data/mise-events.json"),
+    latestMiseRelease(),
   ]);
   return {
     day,
     mau,
     dau,
     downloads,
+    toolRollupDate: toolDate[0]?.date ?? null,
     movers,
     projects: projects.projects,
-    events,
+    release,
   };
 }
 
@@ -329,6 +358,13 @@ export function digestFromData(data, now = Date.now()) {
         `${label} rollup is stale (latest ${latest ?? "none"}, expected ${data.day})`,
       );
   }
+  // The movers compare two weeks of per-tool rows, which a partial rollup
+  // refresh can leave incomplete even when the aggregate tables are current.
+  const toolsCurrent = data.toolRollupDate === data.day;
+  if (!toolsCurrent)
+    warnings.push(
+      `Per-tool rollup is stale (latest ${data.toolRollupDate ?? "none"}, expected ${data.day}); tool movers omitted`,
+    );
   return buildDigest({
     day: data.day,
     warnings,
@@ -336,23 +372,26 @@ export function digestFromData(data, now = Date.now()) {
     sections: [
       audienceSection(data.mau, data.dau, data.day),
       downloadsSection(data.downloads, data.day),
-      moversSection(data.movers),
+      toolsCurrent
+        ? moversSection(data.movers)
+        : { title: "Tool movers", lines: [] },
       projects,
       miseReleaseSection(
         data.projects.find((p) => p.name === "mise"),
-        data.events,
+        data.release,
         now,
       ),
     ],
   });
 }
 
-async function sendEmail({ subject, text, html }) {
+async function sendEmail({ subject, text, html, idempotencyKey }) {
   const response = await fetchWithRetry("https://api.resend.com/emails", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${requiredEnv("RESEND_API_KEY")}`,
       "Content-Type": "application/json",
+      "Idempotency-Key": idempotencyKey,
     },
     body: JSON.stringify({
       from: process.env.DIGEST_FROM || DEFAULT_FROM,
