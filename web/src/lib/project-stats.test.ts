@@ -6,6 +6,7 @@ import {
   projectComparison,
   projectMilestones,
   parseComparison,
+  recentStarTable,
   type Project,
 } from "./project-stats";
 const project = (name = "hk"): Project => ({
@@ -62,4 +63,33 @@ test("comparison data rejects bad schemas and ignores synthetic zero history", (
     [],
   );
   assert.throws(() => parseComparison("hk", "date,count\n2026-09-01,5"));
+});
+test("recent star table ranks projects by growth, newest day first, with daily deltas", () => {
+  const slow = {
+    ...project("slow"),
+    history: project("slow").history.map((v) => ({ ...v, stars: 10 })),
+  };
+  const table = recentStarTable(
+    [slow, project("mise"), project("hk")],
+    "2026-09-09",
+    3,
+    2,
+  );
+  assert.deepEqual(table.names, ["hk", "mise"]);
+  assert.deepEqual(
+    table.rows.map((r) => r.date),
+    ["2026-09-09", "2026-09-08", "2026-09-07"],
+  );
+  assert.deepEqual(table.rows[0].cells[0], { stars: 129, delta: 1 });
+  assert.deepEqual(table.rows[2].cells[0], { stars: 127, delta: 1 });
+});
+test("recent star table leaves unobserved days empty instead of inventing changes", () => {
+  const p = project("hk");
+  const gap = {
+    ...p,
+    history: p.history.filter((v) => v.date !== "2026-09-08"),
+  };
+  const rows = recentStarTable([gap], "2026-09-09", 3, 1).rows;
+  assert.equal(rows[1].cells[0], null);
+  assert.deepEqual(rows[0].cells[0], { stars: 129, delta: null });
 });

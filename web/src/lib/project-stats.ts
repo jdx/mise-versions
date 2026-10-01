@@ -65,14 +65,12 @@ export function parseProjects(
   )) {
     const value = count(stars);
     if (value !== null && value > 0)
-      histories
-        .get(name)
-        ?.set(date, {
-          date,
-          stars: value,
-          rank: count(rank) || null,
-          installs: count(installs),
-        });
+      histories.get(name)?.set(date, {
+        date,
+        stars: value,
+        rank: count(rank) || null,
+        installs: count(installs),
+      });
   }
   for (const [date, name, value] of csv(
     downloads,
@@ -101,18 +99,16 @@ export function parseComparison(name: string, text: string): Comparison {
   const rows = csv(text, header);
   return {
     name,
-    series: keys
-      .slice(1)
-      .map((key, i) => ({
-        name: key.replace(/_stars$/, ""),
-        points: [
-          ...new Map(
-            rows
-              .filter((r) => (count(r[i + 1]) ?? 0) > 0)
-              .map((r) => [r[0], { date: r[0], value: count(r[i + 1])! }]),
-          ).values(),
-        ].sort((a, b) => a.date.localeCompare(b.date)),
-      })),
+    series: keys.slice(1).map((key, i) => ({
+      name: key.replace(/_stars$/, ""),
+      points: [
+        ...new Map(
+          rows
+            .filter((r) => (count(r[i + 1]) ?? 0) > 0)
+            .map((r) => [r[0], { date: r[0], value: count(r[i + 1])! }]),
+        ).values(),
+      ].sort((a, b) => a.date.localeCompare(b.date)),
+    })),
   };
 }
 export function projectSummary(p: Project) {
@@ -196,4 +192,46 @@ export function projectMilestones(p: Project) {
       text: `${p.name}'s best recorded complete download week: ${Math.round(best.value! * 7).toLocaleString("en-US")} downloads`,
     });
   return events;
+}
+// Daily star counts for the fastest-growing projects, newest day first. Days
+// without an observation are left empty (never filled), and a day's change is
+// only shown when the previous day was observed too.
+export function recentStarTable(
+  projects: Project[],
+  end: string,
+  days = 30,
+  limit = 5,
+) {
+  const day = (offset: number) =>
+    formatUtcDate(parseUtcDate(end) - (days - 1 - offset) * 86400000);
+  const dates = Array.from({ length: days }, (_, i) => day(i));
+  const columns = projects
+    .map((p) => {
+      const byDate = new Map(p.history.map((v) => [v.date, v.stars]));
+      // The day before the first row is the baseline, so growth spans the full
+      // `days` intervals like the page's 30-day gain.
+      const baseline = byDate.get(day(-1)) ?? null;
+      const stars = dates.map((d) => byDate.get(d) ?? null);
+      const known = stars.filter((v): v is number => v !== null);
+      const from = baseline ?? known[0];
+      return {
+        name: p.name,
+        baseline,
+        stars,
+        growth: known.length ? known.at(-1)! - from : -Infinity,
+      };
+    })
+    .sort((a, b) => b.growth - a.growth || a.name.localeCompare(b.name))
+    .slice(0, limit);
+  const rows = dates.map((date, i) => ({
+    date,
+    cells: columns.map((c) => {
+      const stars = c.stars[i];
+      const previous = i ? c.stars[i - 1] : c.baseline;
+      return stars === null
+        ? null
+        : { stars, delta: previous === null ? null : stars - previous };
+    }),
+  }));
+  return { names: columns.map((c) => c.name), rows: rows.reverse() };
 }
