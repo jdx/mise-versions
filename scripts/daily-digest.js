@@ -120,7 +120,7 @@ export function moversSection(rows, limit = 5) {
 }
 
 // Star growth per project, and any star milestone crossed in the last 2 days.
-export function projectsSection(projects, now = Date.now()) {
+export function projectsSection(projects, day) {
   const lines = [];
   const milestones = [];
   const ranked = projects
@@ -138,7 +138,7 @@ export function projectsSection(projects, now = Date.now()) {
           previous &&
           previous.stars < target &&
           latest.stars >= target &&
-          now - Date.parse(`${latest.date}T00:00:00Z`) < 3 * 86400000
+          latest.date >= day
         )
           milestones.push(
             `${p.name} reached ${target.toLocaleString("en-US")} stars`,
@@ -171,19 +171,14 @@ export function projectsSection(projects, now = Date.now()) {
 
 // Release downloads are cumulative snapshots, so the daily number is the
 // difference of two adjacent days; anything else could be a counter correction.
-export function miseReleaseSection(project, release, now = Date.now()) {
+export function miseReleaseSection(project, release, day, now = Date.now()) {
   const lines = [];
   const downloads = project?.downloads ?? [];
-  const latest = downloads.at(-1);
-  const previous = downloads.at(-2);
-  if (
-    latest &&
-    previous &&
-    latest.date === dateStrAgo(previous.date, -1) &&
-    latest.downloads >= previous.downloads
-  )
+  const latest = downloads.find((d) => d.date === day);
+  const previous = downloads.find((d) => d.date === dateStrAgo(day, 1));
+  if (latest && previous && latest.downloads >= previous.downloads)
     lines.push(
-      `mise GitHub release downloads on ${latest.date}: ${fmt(latest.downloads - previous.downloads)}`,
+      `mise GitHub release downloads on ${day}: ${fmt(latest.downloads - previous.downloads)}`,
     );
   const published = release && Date.parse(release.published_at);
   if (published && now - published < 4 * 86400000)
@@ -311,8 +306,11 @@ async function collect() {
     ),
     queryD1(
       config,
-      "SELECT MAX(date) AS date FROM daily_tool_stats WHERE date <= ?",
-      [day],
+      `SELECT MAX(date) AS latest,
+         COUNT(DISTINCT CASE WHEN date BETWEEN ? AND ? THEN date END) AS week_days,
+         COUNT(DISTINCT CASE WHEN date BETWEEN ? AND ? THEN date END) AS prior_days
+       FROM daily_tool_stats WHERE date BETWEEN ? AND ?`,
+      [weekStart, day, priorStart, priorEnd, priorStart, day],
     ),
     queryD1(
       config,
@@ -334,7 +332,7 @@ async function collect() {
     mau,
     dau,
     downloads,
-    toolRollupDate: toolDate[0]?.date ?? null,
+    toolCoverage: toolDate[0] ?? null,
     movers,
     projects: projects.projects,
     release,
@@ -342,7 +340,7 @@ async function collect() {
 }
 
 export function digestFromData(data, now = Date.now()) {
-  const projects = projectsSection(data.projects, now);
+  const projects = projectsSection(data.projects, data.day);
   const warnings = [];
   for (const [label, rows] of [
     ["MAU", data.mau],
@@ -360,10 +358,23 @@ export function digestFromData(data, now = Date.now()) {
   }
   // The movers compare two weeks of per-tool rows, which a partial rollup
   // refresh can leave incomplete even when the aggregate tables are current.
-  const toolsCurrent = data.toolRollupDate === data.day;
+  const coverage = data.toolCoverage;
+  const toolsCurrent =
+    coverage?.latest === data.day &&
+    coverage.week_days === 7 &&
+    coverage.prior_days === 7;
   if (!toolsCurrent)
     warnings.push(
-      `Per-tool rollup is stale (latest ${data.toolRollupDate ?? "none"}, expected ${data.day}); tool movers omitted`,
+      `Per-tool rollup is incomplete (latest ${coverage?.latest ?? "none"}, ${coverage?.week_days ?? 0}/7 days this week, ${coverage?.prior_days ?? 0}/7 the week before); tool movers omitted`,
+    );
+  const projectsLatest = data.projects
+    .map((p) => p.history.at(-1)?.date)
+    .filter(Boolean)
+    .sort()
+    .at(-1);
+  if (!projectsLatest || projectsLatest < data.day)
+    warnings.push(
+      `Project snapshot is stale (latest ${projectsLatest ?? "none"}, expected ${data.day}); star figures and milestones may be out of date`,
     );
   return buildDigest({
     day: data.day,
@@ -379,6 +390,7 @@ export function digestFromData(data, now = Date.now()) {
       miseReleaseSection(
         data.projects.find((p) => p.name === "mise"),
         data.release,
+        data.day,
         now,
       ),
     ],

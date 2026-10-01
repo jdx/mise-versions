@@ -64,7 +64,7 @@ test("a star milestone crossed in the latest day is reported", () => {
     { date: "2026-09-29", stars: 999 },
     { date: "2026-09-30", stars: 1001 },
   ];
-  const section = projectsSection([{ name: "demo", history }], NOW);
+  const section = projectsSection([{ name: "demo", history }], "2026-09-30");
   assert.deepEqual(section.milestones, ["demo reached 1,000 stars"]);
 });
 
@@ -74,7 +74,7 @@ test("old milestones are not repeated", () => {
     { date: "2026-08-02", stars: 1001 },
   ];
   assert.deepEqual(
-    projectsSection([{ name: "demo", history }], NOW).milestones,
+    projectsSection([{ name: "demo", history }], "2026-09-30").milestones,
     [],
   );
 });
@@ -87,10 +87,29 @@ test("release downloads need adjacent days", () => {
         { date: "2026-09-30", downloads: 50 },
       ],
     },
-    [],
+    null,
+    "2026-09-30",
     NOW,
   );
   assert.deepEqual(gap.lines, []);
+});
+
+test("release downloads are for the digest day, not today's partial snapshot", () => {
+  const section = miseReleaseSection(
+    {
+      downloads: [
+        { date: "2026-09-29", downloads: 100 },
+        { date: "2026-09-30", downloads: 150 },
+        { date: "2026-10-01", downloads: 160 },
+      ],
+    },
+    null,
+    "2026-09-30",
+    NOW,
+  );
+  assert.deepEqual(section.lines, [
+    "mise GitHub release downloads on 2026-09-30: 50",
+  ]);
 });
 
 test("stale rollups produce a warning in the email", () => {
@@ -100,7 +119,7 @@ test("stale rollups produce a warning in the email", () => {
       mau: [{ date: "2026-09-28", value: 1 }],
       dau: [],
       downloads: [],
-      toolRollupDate: "2026-09-28",
+      toolCoverage: { latest: "2026-09-30", week_days: 5, prior_days: 7 },
       movers: [{ name: "big", this_week: 1000, last_week: 500 }],
       projects: [],
       release: null,
@@ -109,7 +128,11 @@ test("stale rollups produce a warning in the email", () => {
   );
   assert.match(digest.text, /Data warnings/);
   assert.match(digest.text, /MAU rollup is stale \(latest 2026-09-28/);
-  assert.match(digest.text, /Per-tool rollup is stale/);
+  assert.match(
+    digest.text,
+    /Per-tool rollup is incomplete \(latest 2026-09-30, 5\/7 days this week/,
+  );
+  assert.match(digest.text, /Project snapshot is stale/);
   assert.doesNotMatch(digest.text, /Tool movers \(7d/);
   assert.equal(digest.idempotencyKey, "mise-daily-digest-2026-09-30");
 });
@@ -117,7 +140,7 @@ test("stale rollups produce a warning in the email", () => {
 test("projects without a comparison point get no empty parentheses", () => {
   const section = projectsSection(
     [{ name: "demo", history: [{ date: "2026-09-30", stars: 10 }] }],
-    NOW,
+    "2026-09-30",
   );
   assert.deepEqual(section.lines, ["demo: 10 stars"]);
 });
@@ -127,13 +150,14 @@ test("the latest release comes from the release record, not monthly markers", ()
     tag_name: "v2026.10.1",
     published_at: "2026-09-30T12:00:00Z",
   };
-  assert.deepEqual(miseReleaseSection(null, release, NOW).lines, [
+  assert.deepEqual(miseReleaseSection(null, release, "2026-09-30", NOW).lines, [
     "Latest release: mise v2026.10.1 (2026-09-30)",
   ]);
   assert.deepEqual(
     miseReleaseSection(
       null,
       { ...release, published_at: "2026-09-01T12:00:00Z" },
+      "2026-09-30",
       NOW,
     ).lines,
     [],
