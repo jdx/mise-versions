@@ -652,6 +652,29 @@ export async function getTokenObservability(
   return tokenObservabilityData(env, state);
 }
 
+// Pool summary built only from observations recent enough to act on, the same
+// selection the alerts use. Anything destructive should read this rather than
+// `getTokenObservability`, whose latest-per-token view can be up to 30 days
+// stale if the observer stops running. `complete` is false unless every pool
+// token has a fresh observation.
+export async function getFreshTokenSummary(
+  env: Env,
+  now = new Date(),
+): Promise<TokenPoolSummary> {
+  const state = await loadTokenObservabilityState(env, now);
+  const fresh = selectAlertObservations(
+    state.latestObservations,
+    state.currentTokenIds,
+    now,
+  );
+  return summarizeTokenPool(
+    fresh,
+    state.observations,
+    state.latestAt ?? null,
+    state.currentTokenIds.length,
+  );
+}
+
 type TokenObservabilityState = {
   observations: TokenObservation[];
   latestObservations: TokenObservation[];

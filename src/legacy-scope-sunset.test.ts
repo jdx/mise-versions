@@ -233,6 +233,7 @@ function runDeps(
   overrides: Partial<SunsetDeps> & {
     availableTokens?: number;
     level?: string;
+    complete?: boolean;
   } = {},
 ) {
   const calls = {
@@ -244,6 +245,7 @@ function runDeps(
     getSummary: async () => ({
       level: overrides.level ?? "healthy",
       availableTokens: overrides.availableTokens ?? 1_000,
+      complete: overrides.complete ?? true,
     }),
     getPool: async () => pool,
     revoke: async (token) => {
@@ -314,4 +316,13 @@ test("run does nothing while legacy tokens are within the cap", async () => {
   await quietly(() => runLegacyScopeSunset({} as Env, deps));
   assert.deepEqual(calls.revoked, []);
   assert.deepEqual(calls.snapshots, [{ healthy: true, retiredThisRun: 0 }]);
+});
+
+test("run skips when observations do not cover the whole pool (stale observer)", async () => {
+  const pool = withTokens(rows(LEGACY_CAP + 2, "old", LEGACY));
+  const { deps, calls } = runDeps(pool, { complete: false });
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.deepEqual(calls.revoked, []);
+  assert.deepEqual(calls.retired, []);
+  assert.deepEqual(calls.snapshots, [{ healthy: false, retiredThisRun: 0 }]);
 });

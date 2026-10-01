@@ -2,7 +2,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { DEAD_TOKEN_MARKER } from "./dead-token-cleanup.js";
 import { setupDatabase } from "./database.js";
 import { revokeGrant } from "./github-grant.js";
-import { getTokenObservability } from "./token-observability.js";
+import { getFreshTokenSummary } from "./token-observability.js";
 
 // Tokens from before sign-in stopped requesting scopes still carry
 // `public_repo`, which can write to public repos. We only read, so those are
@@ -299,7 +299,11 @@ async function recordSnapshot(
 // The side effects of a run, injectable so the guards can be tested without
 // GitHub or D1.
 export type SunsetDeps = {
-  getSummary: () => Promise<{ level: string; availableTokens: number }>;
+  getSummary: () => Promise<{
+    level: string;
+    availableTokens: number;
+    complete: boolean;
+  }>;
   getPool: () => Promise<(PoolTokenScopes & { token: string })[]>;
   revoke: (accessToken: string) => Promise<boolean>;
   retireUserTokens: (userId: string) => Promise<unknown>;
@@ -312,7 +316,7 @@ export type SunsetDeps = {
 function defaultDeps(env: Env): SunsetDeps {
   const database = setupDatabase(drizzle(env.DB));
   return {
-    getSummary: async () => (await getTokenObservability(env)).summary,
+    getSummary: () => getFreshTokenSummary(env),
     getPool: () => database.getPoolTokens(),
     revoke: (accessToken) => revokeGrant(env, accessToken),
     retireUserTokens: (userId) => database.retireUserTokens(userId),
@@ -329,10 +333,11 @@ export async function runLegacyScopeSunset(
 
   try {
     const summary = await deps.getSummary();
-    // The pool is far larger than one observation batch, so the summary is
-    // rarely "complete"; require it not to be critical and to have plenty of
-    // usable tokens instead.
+    // Revoking grants can't be undone, so only act on a full, recent rotation
+    // of observations: `complete` means every pool token has a fresh check,
+    // which a stalled observer can never satisfy.
     healthy =
+      summary.complete &&
       summary.level !== "critical" &&
       summary.availableTokens >= MIN_AVAILABLE_TOKENS;
     const pool = await deps.getPool();
