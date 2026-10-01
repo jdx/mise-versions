@@ -17,6 +17,7 @@ const ranked=projects.map(p=>({p,...projectSummary(p)})).sort((a,b)=>((percent?b
 const milestones=projects.flatMap(projectMilestones).filter(e=>e.date>=cutoff).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,15);
 const recent=recentStarTable(projects,end);
 const downloadSeries=projects.map(p=>({name:p.name,points:sevenDayAverage(dailyDownloads(p.downloads)).filter(v=>v.date>=cutoff)})).filter(s=>s.points.some(v=>(v.value??0)>0));
+const starComparison=projectComparison(projects,end,percent);
 const gainLabel=(v:number|null)=>v===null?'—':`${v>=0?'+':''}${Math.round(v).toLocaleString()}`;
 Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-revalidate=3600');
 ---
@@ -28,8 +29,9 @@ Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-rev
     {ranked.map(({p,latest,gain,percent,average})=><tr><th><a href={`https://github.com/${p.repo}`}>{p.name} ↗</a>{latest.date!==end && <DataFreshness date={latest.date}/>}</th><td>{latest.stars.toLocaleString()}</td><td>{gainLabel(gain)}</td><td>{percent===null?'—':`${percent.toFixed(1)}%`}</td><td>{average?.value==null?'—':formatCompact(average.value)}{average && average.date!==end && <DataFreshness date={average.date}/>}</td><td>{latest.rank?`#${latest.rank}`:'—'}</td><td>{latest.installs?.toLocaleString()??'—'}</td></tr>)}
   </tbody></table></div>
   <p class="adoption-context">Missing data is shown as —. Release assets include supporting files and are not unique users. Smaller projects can have large percentage changes from a small starting base.</p>
-  <StatsLineChart title={`30-day star growth · ${percent?'percentage':'absolute'}`} series={projectComparison(projects,end,percent)} percent={percent} unit={percent?'growth':'stars gained'} />
-  <p class="adoption-context">All lines use the same start and end dates. Projects missing either comparison date are omitted.</p>
+  <StatsLineChart title={`Other projects · 30-day star growth · ${percent?'percentage':'absolute'}`} series={starComparison.filter(s=>s.name!=='mise')} percent={percent} unit={percent?'growth':'stars gained'} />
+  <p class="adoption-context">All lines use the same start and end dates. Projects missing either comparison date are omitted. mise is charted separately because its growth would flatten every other line.</p>
+  <StatsLineChart title={`mise · 30-day star growth · ${percent?'percentage':'absolute'}`} series={starComparison.filter(s=>s.name==='mise')} percent={percent} unit={percent?'growth':'stars gained'} />
   <section class="adoption-chart milestones"><h2>Recent milestones</h2><p class="adoption-context">Recorded achievements in the last 90 days; bests refer to available history.</p>{milestones.length?<ul>{milestones.map(m=><li><time>{m.date}</time> {m.text}</li>)}</ul>:<p>No recorded milestones in this period.</p>}</section>
   <h2 class="section-heading">Downloads/day · last 90 days</h2>
   <p class="adoption-context">Seven-day average of release downloads. mise is charted separately because its volume would flatten every other line.</p>
