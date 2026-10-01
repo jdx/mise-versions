@@ -36,7 +36,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
     <section aria-labelledby="why">
       <h2 id="why">Why we need it</h2>
       <p>To list versions, <code>mise ls-remote</code> reads releases and tags from the GitHub API for most of the {toolCount ? toolCount.toLocaleString() : 'hundreds of'} tools we track, about every 30 minutes. Without a token GitHub allows <strong>{UNAUTHENTICATED_HOURLY_LIMIT} requests per hour</strong>; with one it allows <strong>{GITHUB_HOURLY_LIMIT.toLocaleString()}</strong>.</p>
-      <p>We aren't anywhere near running out, and we want to keep it that way. Putting all of that load on one account would be fragile, so the work is spread across a pool of tokens. The more people who join, the thinner each person's slice gets, and the less likely it is that anyone ever notices it.</p>
+      <p>We aren't anywhere near running out, and we want to keep it that way. Rather than lean on one account, the work is spread across a pool of tokens. That keeps each person's share small enough that you won't notice it, and means one revoked or busy token doesn't hold up updates for everyone else.</p>
     </section>
 
     <section aria-labelledby="numbers">
