@@ -176,6 +176,17 @@ if (!auth || !isAdmin(auth.username)) {
           </div>
           <svg id="legacy-chart" class="w-full h-48 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Legacy tokens over time"></svg>
         </div>
+        <div class="rounded-lg bg-dark-900/50 border border-dark-600 p-4">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <h3 class="text-sm font-medium text-gray-200">Pool growth</h3>
+              <p class="text-xs text-gray-500 mt-1"><span class="text-orange-300">Legacy</span> and <span class="text-green-300">new</span> tokens, stacked · earlier days are rebuilt from join dates, later days are daily snapshots</p>
+            </div>
+            <span id="growth-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
+          </div>
+          <svg id="growth-chart" class="w-full h-48 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Pool size over time, split into legacy and new tokens"></svg>
+          <div id="growth-legend" class="mt-2 flex flex-wrap gap-4 text-xs text-gray-400"></div>
+        </div>
       </div>
     </section>
 
@@ -611,6 +622,7 @@ if (!auth || !isAdmin(auth.username)) {
     current: LegacyCurrent;
     config: { enabled: boolean; maxPerRun: number; minPoolSize: number; minAvailableTokens: number };
     history: LegacySnapshot[];
+    growth: GrowthPoint[];
   };
 
   function renderLegacyChart(history: LegacySnapshot[], current: LegacyCurrent) {
@@ -642,6 +654,48 @@ if (!auth || !isAdmin(auth.username)) {
       : `${first.toLocaleDateString()} – ${last.toLocaleDateString()}`;
   }
 
+  type GrowthPoint = { day: string; legacy: number; clean: number };
+
+  function renderGrowthChart(growth: GrowthPoint[]) {
+    const svg = document.getElementById('growth-chart');
+    const range = document.getElementById('growth-range');
+    const legend = document.getElementById('growth-legend');
+    if (!svg || !range || !legend) return;
+    if (growth.length === 0) {
+      svg.innerHTML = '';
+      range.textContent = 'no data';
+      return;
+    }
+    const width = 720, top = 10, bottom = 180;
+    const max = Math.max(1, ...growth.map((p) => p.legacy + p.clean));
+    const x = (i: number) => growth.length === 1 ? width / 2 : (i / (growth.length - 1)) * width;
+    const y = (v: number) => bottom - (v / max) * (bottom - top);
+    const area = (lower: (p: GrowthPoint) => number, upper: (p: GrowthPoint) => number) => {
+      const forward = growth.map((p, i) => `${x(i).toFixed(1)},${y(upper(p)).toFixed(1)}`);
+      const back = growth.map((p, i) => `${x(i).toFixed(1)},${y(lower(p)).toFixed(1)}`).reverse();
+      return [...forward, ...back].join(' ');
+    };
+    const line = (value: (p: GrowthPoint) => number) =>
+      growth.map((p, i) => `${x(i).toFixed(1)},${y(value(p)).toFixed(1)}`).join(' ');
+    // Legacy sits on the bottom; new tokens stack on top, so the upper edge is the total.
+    svg.innerHTML = `
+      <line x1="0" y1="${top}" x2="${width}" y2="${top}" stroke="#27272f" />
+      <line x1="0" y1="${(top + bottom) / 2}" x2="${width}" y2="${(top + bottom) / 2}" stroke="#27272f" />
+      <line x1="0" y1="${bottom}" x2="${width}" y2="${bottom}" stroke="#27272f" />
+      <polygon fill="#fb923c" fill-opacity=".35" points="${area(() => 0, (p) => p.legacy)}" />
+      <polygon fill="#4ade80" fill-opacity=".35" points="${area((p) => p.legacy, (p) => p.legacy + p.clean)}" />
+      <polyline fill="none" stroke="#fb923c" stroke-width="2" vector-effect="non-scaling-stroke" points="${line((p) => p.legacy)}" />
+      <polyline fill="none" stroke="#4ade80" stroke-width="2" vector-effect="non-scaling-stroke" points="${line((p) => p.legacy + p.clean)}" />
+      <text x="2" y="${top - 2}" fill="#6b7280" font-size="11">${max.toLocaleString()}</text>
+      <text x="2" y="${bottom + 14}" fill="#6b7280" font-size="11">0</text>`;
+    const last = growth[growth.length - 1];
+    range.textContent = growth.length === 1 ? growth[0].day : `${growth[0].day} – ${last.day}`;
+    legend.innerHTML = `
+      <span><span class="text-orange-300">■</span> Legacy ${last.legacy.toLocaleString()}</span>
+      <span><span class="text-green-300">■</span> New ${last.clean.toLocaleString()}</span>
+      <span>Total ${(last.legacy + last.clean).toLocaleString()}</span>`;
+  }
+
   function renderLegacy(data: LegacyData) {
     const { current, config } = data;
     const set = (id: string, text: string) => {
@@ -671,6 +725,7 @@ if (!auth || !isAdmin(auth.username)) {
         : 'Disabled: set the LEGACY_SCOPE_SUNSET secret to "on" to start retiring. Snapshots are still recorded daily.';
     }
     renderLegacyChart(data.history, current);
+    renderGrowthChart(data.growth);
   }
 
   async function loadLegacy() {

@@ -5,6 +5,7 @@ import test from "node:test";
 import {
   LEGACY_CAP,
   MAX_RETIRED_PER_RUN,
+  buildGrowth,
   computeBurndown,
   hasLegacyScopes,
   planSunset,
@@ -136,4 +137,67 @@ test("never retires more rows than the availability budget allows", () => {
   assert.equal(planSunset(tokens, { ...on, maxRows: 4 }).length, 4);
   assert.deepEqual(planSunset(tokens, { ...on, maxRows: 0 }), []);
   assert.deepEqual(planSunset(tokens, { ...on, maxRows: -5 }), []);
+});
+
+test("growth is rebuilt from join dates before any snapshot exists", () => {
+  const pool: PoolTokenScopes[] = [
+    {
+      id: 1,
+      user_id: "a",
+      scopes: LEGACY,
+      created_at: "2026-09-28T10:00:00.000Z",
+    },
+    {
+      id: 2,
+      user_id: "b",
+      scopes: LEGACY,
+      created_at: "2026-09-29T10:00:00.000Z",
+    },
+    {
+      id: 3,
+      user_id: "c",
+      scopes: "[]",
+      created_at: "2026-09-30T10:00:00.000Z",
+    },
+  ];
+  const points = buildGrowth(pool, [], new Date("2026-09-30T12:00:00.000Z"));
+  assert.deepEqual(
+    points.map((p) => [p.day, p.legacy, p.clean]),
+    [
+      ["2026-09-28", 1, 0],
+      ["2026-09-29", 2, 0],
+      ["2026-09-30", 2, 1],
+    ],
+  );
+});
+
+test("growth switches to real snapshots once they exist", () => {
+  const pool: PoolTokenScopes[] = [
+    {
+      id: 1,
+      user_id: "a",
+      scopes: LEGACY,
+      created_at: "2026-09-28T10:00:00.000Z",
+    },
+  ];
+  const points = buildGrowth(
+    pool,
+    [
+      {
+        observed_at: "2026-09-29T04:23:00.000Z",
+        legacy_rows: 7,
+        clean_rows: 2,
+      },
+    ],
+    new Date("2026-10-01T12:00:00.000Z"),
+  );
+  assert.deepEqual(
+    points.map((p) => [p.day, p.legacy, p.clean]),
+    [
+      ["2026-09-28", 1, 0],
+      ["2026-09-29", 7, 2],
+      ["2026-09-30", 7, 2],
+      ["2026-10-01", 7, 2],
+    ],
+  );
 });

@@ -129,6 +129,70 @@ export function planSunset(
   return chosen;
 }
 
+export type GrowthPoint = { day: string; legacy: number; clean: number };
+
+const GROWTH_DAYS = 120;
+
+// Pool size per UTC day, split into legacy (scoped) and new (no-scope) rows.
+// Days before the first real snapshot are reconstructed from when today's pool
+// rows were created; from then on the daily snapshots are used. Reconstructed
+// days therefore show how the current pool grew, not rows already retired.
+export function buildGrowth(
+  pool: PoolTokenScopes[],
+  snapshots: { observed_at: string; legacy_rows: number; clean_rows: number }[],
+  now = new Date(),
+  days = GROWTH_DAYS,
+): GrowthPoint[] {
+  const dayOf = (iso: string) => iso.slice(0, 10);
+  const today = dayOf(now.toISOString());
+  const earliest = pool.reduce(
+    (min, token) => (token.created_at < min ? token.created_at : min),
+    now.toISOString(),
+  );
+  const startMs = Math.max(
+    Date.parse(`${dayOf(earliest)}T00:00:00Z`),
+    Date.parse(`${today}T00:00:00Z`) - (days - 1) * 86_400_000,
+  );
+
+  const byDay = new Map<string, { legacy: number; clean: number }>();
+  for (const snapshot of snapshots) {
+    // Later snapshots overwrite earlier ones from the same day.
+    byDay.set(dayOf(snapshot.observed_at), {
+      legacy: snapshot.legacy_rows,
+      clean: snapshot.clean_rows,
+    });
+  }
+  const firstSnapshotDay = [...byDay.keys()].sort()[0];
+
+  const points: GrowthPoint[] = [];
+  let carried: { legacy: number; clean: number } | null = null;
+  for (
+    let ms = startMs;
+    ms <= Date.parse(`${today}T00:00:00Z`);
+    ms += 86_400_000
+  ) {
+    const day = new Date(ms).toISOString().slice(0, 10);
+    const snapshot = byDay.get(day);
+    if (snapshot) {
+      carried = snapshot;
+      points.push({ day, ...snapshot });
+    } else if (firstSnapshotDay && day > firstSnapshotDay && carried) {
+      points.push({ day, ...carried });
+    } else {
+      const endOfDay = `${day}T23:59:59.999Z`;
+      let legacy = 0;
+      let clean = 0;
+      for (const token of pool) {
+        if (token.created_at > endOfDay) continue;
+        if (hasLegacyScopes(token.scopes)) legacy++;
+        else clean++;
+      }
+      points.push({ day, legacy, clean });
+    }
+  }
+  return points;
+}
+
 export type BurndownSnapshot = {
   observed_at: string;
   legacy_rows: number;
@@ -197,6 +261,7 @@ export async function loadBurndown(env: Env) {
       minAvailableTokens: MIN_AVAILABLE_TOKENS,
     },
     history: history.results.reverse(),
+    growth: buildGrowth(pool, history.results),
   };
 }
 
