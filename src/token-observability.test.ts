@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   getAlertDecision,
+  observeTokenPool,
   selectCurrentObservations,
   selectTokenBatch,
   shouldEvaluateAlert,
@@ -277,4 +278,100 @@ test("alert decision sends recovery after an unhealthy state", () => {
     recovery: true,
     shouldSend: true,
   });
+});
+
+test("returns the fresh check when the alert email cannot be sent", async () => {
+  const inserted: unknown[][] = [];
+  const runs: unknown[][] = [];
+  const rows = () =>
+    inserted.map(
+      ([tokenId, userId, userName, observedAt, remaining, limit]) => ({
+        token_id: tokenId,
+        user_id: userId,
+        user_name: userName,
+        observed_at: observedAt,
+        remaining,
+        limit_count: limit,
+        reset_at: null,
+        usage_count: 0,
+        is_available: 0,
+        error: null,
+      }),
+    );
+  const statement = (sql: string, args: unknown[] = []) => ({
+    bind: (...bound: unknown[]) => statement(sql, bound),
+    all: async () => ({ results: results(sql) }),
+    first: async () => null,
+    run: async () => ({}),
+    sql,
+    args,
+  });
+  const results = (sql: string): unknown[] => {
+    if (sql.includes("user_name, token, usage_count")) {
+      return [
+        {
+          id: 1,
+          user_id: "u",
+          user_name: "u",
+          token: "t",
+          usage_count: 0,
+          rate_limited_at: null,
+        },
+      ];
+    }
+    if (sql.includes("SELECT id")) return [{ id: 1 }];
+    if (sql.includes("FROM token_observation_runs")) {
+      return runs.map(([observedAt, tokenCount]) => ({
+        observed_at: observedAt,
+        token_count: tokenCount,
+      }));
+    }
+    if (sql.includes("FROM token_observations o")) return rows();
+    return [];
+  };
+  const db = {
+    prepare: (sql: string) => statement(sql),
+    batch: async (statements: ReturnType<typeof statement>[]) => {
+      for (const { sql, args } of statements) {
+        if (sql.includes("INSERT INTO token_observation_runs")) runs.push(args);
+        if (sql.includes("INSERT INTO token_observations")) inserted.push(args);
+      }
+      return [];
+    },
+  };
+  const env = {
+    DB: db,
+    RESEND_API_KEY: "re_test",
+    TOKEN_ALERT_TO: "ops@example.com",
+    TOKEN_ALERT_FROM: "alerts@example.com",
+  } as unknown as Env;
+
+  const realFetch = globalThis.fetch;
+  const realConsoleError = console.error;
+  console.error = () => {};
+  globalThis.fetch = (async (input: RequestInfo | URL) => {
+    const url = String(input instanceof Request ? input.url : input);
+    if (url.includes("api.resend.com")) {
+      return new Response("domain is not verified", { status: 403 });
+    }
+    return Response.json({
+      resources: {
+        core: { limit: 5_000, remaining: 500, reset: 1_790_000_000 },
+      },
+    });
+  }) as typeof fetch;
+
+  try {
+    const data = await observeTokenPool(
+      env,
+      new Date("2026-10-01T13:00:00.000Z"),
+    );
+
+    assert.equal(runs.length, 1, "the snapshot is stored before alerting");
+    assert.equal(data.summary.observedAt, "2026-10-01T13:00:00.000Z");
+    assert.match(data.alerting.error ?? "", /Resend returned 403/);
+  } finally {
+    globalThis.fetch = realFetch;
+    console.error = realConsoleError;
+  }
 });

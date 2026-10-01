@@ -67,6 +67,9 @@ export type TokenObservabilityData = {
   alerting: {
     configured: boolean;
     recipient: string | null;
+    // Set when this check stored its snapshot but could not evaluate or send
+    // the alert (for example Resend rejecting the email).
+    error?: string | null;
   };
 };
 
@@ -857,6 +860,14 @@ export async function observeTokenPool(
     state.latestAt ?? null,
     state.currentTokenIds.length,
   );
-  await maybeAlert(env, alertSummary, now);
-  return data;
+  // The snapshot is already stored, so a failing alert must not turn the
+  // check into a failed request; report it alongside the fresh data instead.
+  let alertError: string | null = null;
+  try {
+    await maybeAlert(env, alertSummary, now);
+  } catch (error) {
+    alertError = errorMessage(error);
+    console.error("token_alert_failed", { error: alertError });
+  }
+  return { ...data, alerting: { ...data.alerting, error: alertError } };
 }
