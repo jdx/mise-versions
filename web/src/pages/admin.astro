@@ -576,18 +576,17 @@ if (!auth || !isAdmin(auth.username)) {
     return `Check failed: ${error instanceof Error ? error.message : String(error)}`;
   }
 
-  // A "Check now" result is fresher than any read that started before it, so a
-  // slow GET (initial load or Refresh All) must not paint over it.
+  // Once a "Check now" has rendered, any read that started before that moment
+  // may hold an older snapshot, so a slow GET (initial load or Refresh All)
+  // must not paint over it. Reads that finish before the check renders (or
+  // while it fails) are still shown.
   let capacityRequestSeq = 0;
-  let capacityCheckSeq = 0;
+  let capacityFreshAfterSeq = 0;
 
   async function loadCapacity(runCheck = false) {
     const seq = ++capacityRequestSeq;
-    if (runCheck) {
-      capacityCheckSeq = seq;
-      setCapacityChecking(true);
-    }
-    const isStaleRead = () => !runCheck && capacityCheckSeq > seq;
+    if (runCheck) setCapacityChecking(true);
+    const isStaleRead = () => !runCheck && seq <= capacityFreshAfterSeq;
     const controller = new AbortController();
     const timeout = runCheck ? window.setTimeout(() => controller.abort(), CAPACITY_CHECK_TIMEOUT_MS) : undefined;
     let failedResponse: Response | undefined;
@@ -604,6 +603,7 @@ if (!auth || !isAdmin(auth.username)) {
       if (isStaleRead()) return;
       renderCapacity(data);
       if (runCheck) {
+        capacityFreshAfterSeq = capacityRequestSeq;
         const checked = describeCapacityCheck(data.summary);
         if (data.alerting.error) {
           showCapacityResult(`${checked}, but alerting failed: ${data.alerting.error.slice(0, 200)}`, 'warning');
