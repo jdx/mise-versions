@@ -1,6 +1,6 @@
 ---
 import releaseEvents from "../data/mise-events.json";
-import { sevenDayAverage } from "../lib/daily-average";
+import { sevenDayAverage, pastActivityMilestones } from "../lib/daily-average";
 import { forecastDate } from "../lib/stats-display";
 import DataFreshness from "./DataFreshness.astro";
 import YearGrid from "./YearGrid.astro";
@@ -29,6 +29,15 @@ const smoothed = averages
   .filter((point): point is { date: string; value: number } => point.value !== null)
   .map(point => ({ date: point.date, mau: point.value }));
 const averageByDate = new Map(averages.map(point => [point.date, point.value]));
+const reached = pastActivityMilestones(averages);
+const lastReached = reached.at(-1);
+const reachedLabel = (value: number) =>
+  value.toLocaleString("en-US", { notation: "compact", maximumFractionDigits: 1 });
+const chartReached = [...Map.groupBy(reached, (m) => m.date)].map(([date, ms]) => ({
+  date,
+  value: ms[0].value,
+  levels: ms.map((m) => m.level),
+}));
 
 const previousWeekAverage = latest ? averageByDate.get(formatUtcDate(parseUtcDate(latest.date) - 7 * 86400_000)) : null;
 const weeklyChange = latestAverage?.value != null && previousWeekAverage != null
@@ -267,7 +276,7 @@ const yTicks = Array.from(
       )}
     </div>
 
-    <p class="text-sm text-gray-400 mb-3">MAU 7-day average: <strong>{latestAverage?.value == null ? "—" : formatCompact(latestAverage.value)}</strong> · Week-over-week: <strong>{weeklyChange === null ? "unavailable" : `${weeklyChange >= 0 ? "+" : ""}${weeklyChange.toFixed(1)}%`}</strong></p>
+    <p class="text-sm text-gray-400 mb-3">MAU 7-day average: <strong>{latestAverage?.value == null ? "—" : formatCompact(latestAverage.value)}</strong> · Week-over-week: <strong>{weeklyChange === null ? "unavailable" : `${weeklyChange >= 0 ? "+" : ""}${weeklyChange.toFixed(1)}%`}</strong>{lastReached && <> · Passed <strong class="mau-reached-text">{reachedLabel(lastReached.level)}</strong> on {forecastDate(lastReached.date)}{reached.length > 1 && <span class="text-gray-500"> · earlier: {reached.slice(-4, -1).reverse().map(m => `${reachedLabel(m.level)} (${forecastDate(m.date)})`).join(", ")}</span>}</>}</p>
     <label class="text-xs text-gray-400 flex items-center gap-2 mb-2"><input type="checkbox" class="event-toggle" checked /> Show releases and events</label>
       <svg
         viewBox={`0 0 ${width} ${height}`}
@@ -314,6 +323,17 @@ const yTicks = Array.from(
           <path d={rawPath} fill="none" stroke="var(--data)" stroke-width="1" opacity="0.3" />
           {forecastAreaPath && <path d={forecastAreaPath} fill="url(#mau-forecast-fill)" />}
           <path d={mauPath} fill="none" stroke="var(--data)" stroke-width="3" stroke-linejoin="round" />
+          {chartReached.map((m) => {
+            const px = xForDate(m.date);
+            const py = yForValue(m.value);
+            return (
+              <g pointer-events="none" role="img" aria-label={`Reached ${m.levels.map((l) => l.toLocaleString()).join(", ")} MAU on ${forecastDate(m.date)}`}>
+                <line x1={px} x2={px} y1={py} y2={chartHeight} stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3" />
+                <circle cx={px} cy={py} r="4.5" fill="var(--surface)" stroke="var(--data)" stroke-width="2" />
+                <text x={px} y={py - 10} text-anchor={px > chartWidth - 40 ? "end" : "middle"} class="mau-reached-label">{m.levels.map(reachedLabel).join(" · ")}</text>
+              </g>
+            );
+          })}
           {showForecastOnChart && forecast && forecastPath && (
             <g>
               <line
@@ -393,7 +413,7 @@ const yTicks = Array.from(
           )}
         </g>
       </svg>
-    <p class="mt-2 text-[11px] text-gray-500">Blue: 7-day average of MAU snapshots · Faint: daily MAU. A complete week is required; smoothing lags changes by about three days. Headline and monthly history show actual snapshots.</p>
+    <p class="mt-2 text-[11px] text-gray-500">Blue: 7-day average of MAU snapshots · Faint: daily MAU · Circles: day the average first passed a milestone. A complete week is required; smoothing lags changes by about three days. Headline and monthly history show actual snapshots.</p>
     {forecast && (
       <p class="mt-2 text-[11px] text-gray-500">
         {showForecastOnChart
@@ -477,4 +497,6 @@ const yTicks = Array.from(
   .mau-history:not(:has(.event-toggle:checked)) .event-marker, .mau-history:not(:has(.event-toggle:checked)) .event-list { display: none; }
   .event-list li { padding: .3rem 0; }
   .mau-forecast-dash { stroke-dasharray: 7 6; }
+  .mau-reached-label { fill: var(--data); font-size: 11px; }
+  .mau-reached-text { color: var(--data); }
 </style>
