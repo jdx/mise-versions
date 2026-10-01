@@ -6,6 +6,7 @@ export const OAUTH_STATE_COOKIE_NAME = "mise_oauth_state";
 export interface AuthStatusResponse {
   authenticated: boolean;
   username?: string;
+  lookups?: number;
 }
 
 // HMAC signing for secure cookies

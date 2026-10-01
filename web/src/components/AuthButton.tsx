@@ -29,6 +29,15 @@ export function AuthButton() {
         <span class="auth-username" title={state.username || "GitHub user"}>
           {state.username || "GitHub user"}
         </span>
+        {state.lookups ? (
+          <a
+            href="/share-rate-limit"
+            class="auth-lookups"
+            title="Version lookups your GitHub token has helped with"
+          >
+            {state.lookups.toLocaleString()} lookups
+          </a>
+        ) : null}
         <a href={logoutUrl} class="auth-signout">
           Sign out
         </a>

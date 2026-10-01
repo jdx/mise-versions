@@ -122,6 +122,42 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .all();
     },
 
+    // getNextToken() counts a checkout when it picks a token. Take it back when
+    // the token turns out not to be lent (skipped, invalid, or below the floor)
+    // so usage_count only counts lookups the token actually helped with.
+    async undoCheckout(tokenId: number) {
+      await db
+        .update(tokens)
+        .set({ usage_count: sql`max(usage_count - 1, 0)` })
+        .where(eq(tokens.id, tokenId))
+        .run();
+    },
+
+    // Count a checkout that bypassed getNextToken() (the emergency path).
+    async recordCheckout(tokenId: number) {
+      await db
+        .update(tokens)
+        .set({
+          last_used: new Date().toISOString(),
+          usage_count: sql`usage_count + 1`,
+        })
+        .where(eq(tokens.id, tokenId))
+        .run();
+    },
+
+    // Lookups a user's token(s) have helped with. A user can have several
+    // rows (one per sign-in), so sum across all of them.
+    async getUsageForUser(userId: string) {
+      const row = await db
+        .select({
+          lookups: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
+        })
+        .from(tokens)
+        .where(eq(tokens.user_id, userId))
+        .get();
+      return { lookups: row?.lookups ?? 0 };
+    },
+
     // Store new token
     async storeToken(
       userId: string | null,

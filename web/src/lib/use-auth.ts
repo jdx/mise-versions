@@ -4,12 +4,14 @@ import type { AuthStatusResponse } from "./auth";
 export interface AuthState {
   authenticated: boolean;
   username: string | null;
+  lookups: number | null;
   loading: boolean;
 }
 
 const SIGNED_OUT: AuthState = {
   authenticated: false,
   username: null,
+  lookups: null,
   loading: false,
 };
 
@@ -27,6 +29,7 @@ function fetchAuth(): Promise<AuthState> {
       return {
         authenticated: data.authenticated,
         username: data.username || null,
+        lookups: data.lookups ?? null,
         loading: false,
       };
     } catch {
@@ -40,6 +43,7 @@ export function useAuth(): AuthState {
   const [state, setState] = useState<AuthState>({
     authenticated: false,
     username: null,
+    lookups: null,
     loading: true,
   });
 

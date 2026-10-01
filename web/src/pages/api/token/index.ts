@@ -45,6 +45,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
         // Token is invalid, deactivate it and try to get another
         await database.deactivateExpiredTokens();
         console.log(`Deactivated invalid token for user ${token.user_id}`);
+        await database.undoCheckout(token.id);
         token = await database.getNextToken();
         continue;
       }
@@ -70,12 +71,14 @@ export const GET: APIRoute = async ({ request, locals }) => {
       // Mark token as rate-limited until reset time
       const resetAt = new Date(data.resources.core.reset * 1000).toISOString();
       await database.markTokenRateLimited(token.id, resetAt);
+      await database.undoCheckout(token.id);
       console.log(
         `Token ${token.id} has ${remaining}/${limit} remaining (at or below the floor), marked rate-limited until ${resetAt}`,
       );
     } catch (e) {
       console.log(`Failed to check rate limit for token ${token.id}:`, e);
       // If rate limit check fails, skip this token
+      await database.undoCheckout(token.id);
     }
 
     // Try next token
@@ -83,6 +86,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
 
     // Avoid infinite loop if we've tried all tokens
     if (token && triedTokenIds.has(token.id)) {
+      await database.undoCheckout(token.id);
       break;
     }
   }
@@ -91,6 +95,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
   // into the pool once more, down to a hard minimum, and tell the maintainer.
   const emergency = await findEmergencyToken(database);
   if (emergency) {
+    await database.recordCheckout(emergency.token.id);
     await alertEmergencyTokenUse(env, {
       tokenId: emergency.token.id,
       remaining: emergency.remaining,

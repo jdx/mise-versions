@@ -5,6 +5,7 @@ import { drizzle } from 'drizzle-orm/d1';
 import { setupDatabase } from '../../../src/database';
 import { env } from 'cloudflare:workers';
 import { formatCompact } from '../lib/format';
+import { getAuthCookie } from '../lib/auth';
 import { MIN_REMAINING, EMERGENCY_MIN_REMAINING } from '../../../src/token-budget';
 
 const GITHUB_HOURLY_LIMIT = 5000;
@@ -16,6 +17,15 @@ try {
 } catch (e) {
   console.error('Token pool stats unavailable', e);
 }
+const auth = await getAuthCookie(Astro.request, env.API_SECRET);
+let mine: { lookups: number } | null = null;
+if (auth) {
+  try {
+    mine = await setupDatabase(drizzle(env.DB)).getUsageForUser(auth.username);
+  } catch (e) {
+    console.error('Usage lookup unavailable', e);
+  }
+}
 let toolCount: number | null = null;
 try {
   const row = await env.ANALYTICS_DB.prepare('SELECT count(*) AS n FROM tools WHERE latest_version IS NOT NULL').first<{ n: number }>();
@@ -23,14 +33,18 @@ try {
 } catch (e) {
   console.error('Tool count unavailable', e);
 }
-Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public, max-age=300, stale-while-revalidate=3600');
 ---
 <Layout title="Share your GitHub rate limit" description="Why mise versions asks you to sign in with GitHub, exactly how your token is used, and how to take it back.">
   <article class="explainer">
     <div class="page-heading">
       <h1>Share your GitHub rate limit</h1>
       <p>mise versions is kept up to date by a job that asks GitHub about every tool, all day. GitHub limits how many questions one account can ask per hour, so we borrow a little headroom from people who are happy to lend it.</p>
-      <p class="explainer-cta"><SignInLink client:load /></p>
+      {auth ? (
+        <p class="explainer-thanks">Thanks, <strong>{auth.username}</strong>.{mine && mine.lookups > 0 ? <> Your token has helped with <strong>{mine.lookups.toLocaleString()}</strong> version lookups so far.</> : <> Your token will start showing up here once the update job borrows it.</>}</p>
+      ) : (
+        <p class="explainer-cta"><SignInLink client:load /></p>
+      )}
     </div>
 
     <section aria-labelledby="why">
@@ -85,7 +99,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
       <p>Note that <em>Sign out</em> on this site only clears the cookie in your browser. To remove the token itself, revoke it on GitHub.</p>
     </section>
 
-    <p class="explainer-cta"><SignInLink client:load /></p>
+    {!auth && <p class="explainer-cta"><SignInLink client:load /></p>}
   </article>
 </Layout>
 <style>
@@ -100,6 +114,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
 .explainer strong { color: var(--text); }
 .explainer a:not(.auth-signin) { color: var(--accent); text-decoration: underline; }
 .explainer code { font-size: 13px; background: var(--surface-raised); padding: 1px 6px; border-radius: 4px; }
+.explainer-thanks { padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); }
 .explainer-cta { margin: 20px 0 0; }
 .explainer-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 0 0 12px; }
 .explainer-stats div { border: 1px solid var(--border); border-radius: 9px; padding: 14px 16px; background: var(--surface); }

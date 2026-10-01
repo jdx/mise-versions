@@ -297,6 +297,17 @@ code,
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.auth-lookups {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.auth-lookups:hover {
+  color: var(--text);
+}
 .auth-signout {
   color: var(--text-secondary);
   white-space: nowrap;
@@ -898,6 +909,7 @@ code,
     gap: 4px;
   }
   .auth-signin-long,
+  .auth-lookups,
   .auth-username {
     display: none;
   }
