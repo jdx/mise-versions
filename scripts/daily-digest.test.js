@@ -82,6 +82,33 @@ test("old milestones are not repeated", () => {
   );
 });
 
+test("a milestone is reported on exactly one digest day", () => {
+  // The snapshot refresh already ran today, so history includes day + 1.
+  const history = [
+    { date: "2026-09-29", stars: 999 },
+    { date: "2026-09-30", stars: 999 },
+    { date: "2026-10-01", stars: 1001 },
+  ];
+  const project = { name: "demo", history };
+  assert.deepEqual(projectsSection([project], "2026-09-30").milestones, []);
+  assert.deepEqual(projectsSection([project], "2026-10-01").milestones, [
+    "demo reached 1,000 stars",
+  ]);
+  // Next run after a missed refresh: same snapshot, a later digest day.
+  assert.deepEqual(projectsSection([project], "2026-10-02").milestones, []);
+});
+
+test("a stale snapshot does not repeat a milestone it already announced", () => {
+  const history = [
+    { date: "2026-09-27", stars: 999 },
+    { date: "2026-09-28", stars: 1001 },
+  ];
+  assert.deepEqual(
+    projectsSection([{ name: "demo", history }], "2026-09-30").milestones,
+    [],
+  );
+});
+
 test("release downloads need adjacent days", () => {
   const gap = miseReleaseSection(
     {

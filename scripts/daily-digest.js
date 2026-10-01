@@ -182,7 +182,7 @@ export function moversSection(rows, limit = 5) {
   return { title: "Tool movers (7d vs previous 7d)", lines };
 }
 
-// Star growth per project, and any star milestone crossed in the last 2 days.
+// Star growth per project, and any star milestone crossed on the digest day.
 export function projectsSection(projects, day) {
   const lines = [];
   const milestones = [];
@@ -195,13 +195,18 @@ export function projectsSection(projects, day) {
         history.find((h) => h.date === dateStrAgo(latest.date, days))?.stars;
       const week = at(7);
       const month = at(30);
-      const previous = history.at(-2);
+      // A milestone belongs to exactly one digest day: the one whose snapshot
+      // crossed it, compared with the snapshot for the day before. Using the
+      // latest snapshot instead would repeat it when that snapshot is dated
+      // after the digest day and then becomes the digest day on the next run.
+      const current = history.find((h) => h.date === day);
+      const previous = history.find((h) => h.date === dateStrAgo(day, 1));
       for (const target of STAR_MILESTONES) {
         if (
+          current &&
           previous &&
           previous.stars < target &&
-          latest.stars >= target &&
-          latest.date >= day
+          current.stars >= target
         )
           milestones.push(
             `${p.name} reached ${target.toLocaleString("en-US")} stars`,
