@@ -576,8 +576,18 @@ if (!auth || !isAdmin(auth.username)) {
     return `Check failed: ${error instanceof Error ? error.message : String(error)}`;
   }
 
+  // A "Check now" result is fresher than any read that started before it, so a
+  // slow GET (initial load or Refresh All) must not paint over it.
+  let capacityRequestSeq = 0;
+  let capacityCheckSeq = 0;
+
   async function loadCapacity(runCheck = false) {
-    if (runCheck) setCapacityChecking(true);
+    const seq = ++capacityRequestSeq;
+    if (runCheck) {
+      capacityCheckSeq = seq;
+      setCapacityChecking(true);
+    }
+    const isStaleRead = () => !runCheck && capacityCheckSeq > seq;
     const controller = new AbortController();
     const timeout = runCheck ? window.setTimeout(() => controller.abort(), CAPACITY_CHECK_TIMEOUT_MS) : undefined;
     let failedResponse: Response | undefined;
@@ -591,11 +601,12 @@ if (!auth || !isAdmin(auth.username)) {
         throw new Error(`HTTP ${response.status}`);
       }
       const data: CapacityData = await response.json();
+      if (isStaleRead()) return;
       renderCapacity(data);
       if (runCheck) {
         const checked = describeCapacityCheck(data.summary);
         if (data.alerting.error) {
-          showCapacityResult(`${checked}, but the alert email failed: ${data.alerting.error.slice(0, 200)}`, 'warning');
+          showCapacityResult(`${checked}, but alerting failed: ${data.alerting.error.slice(0, 200)}`, 'warning');
         } else {
           showCapacityResult(checked, 'success');
         }
@@ -605,7 +616,7 @@ if (!auth || !isAdmin(auth.username)) {
       if (runCheck) {
         // Keep whatever was already on screen; just say the check didn't work.
         showCapacityResult(await capacityErrorMessage(error, failedResponse), 'error');
-      } else {
+      } else if (!isStaleRead()) {
         const status = document.getElementById('capacity-status');
         if (status) {
           status.textContent = 'Unavailable';
