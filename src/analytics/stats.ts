@@ -12,20 +12,21 @@ import {
 } from "./schema.js";
 
 export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
-  return {
-    // Get download stats for a specific tool
-    async getDownloadStats(tool: string) {
-      const toolRecord = await db
-        .select({ id: tools.id })
-        .from(tools)
-        .where(eq(tools.name, tool))
-        .get();
+  async function getToolId(tool: string): Promise<number | null> {
+    const toolRecord = await db
+      .select({ id: tools.id })
+      .from(tools)
+      .where(eq(tools.name, tool))
+      .get();
+    return toolRecord?.id ?? null;
+  }
 
-      if (!toolRecord) {
-        return { total: 0, byVersion: [], byOs: [], daily: [] };
-      }
-
-      const toolId = toolRecord.id;
+  const analytics = {
+    // The part of a tool's download stats that is public: the all-time total
+    // and the last 30 days. Runs only the queries it returns.
+    async getDownloadSummary(tool: string) {
+      const toolId = await getToolId(tool);
+      if (toolId === null) return { total: 0, daily: [] };
 
       const summary = await db
         .select({ count: toolDownloadSummaries.downloads_all_time })
@@ -34,6 +35,37 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .get();
 
       const total = summary?.count ?? 0;
+
+      // Daily downloads (last 30 days from rollups, excluding current day)
+      const now = Math.floor(Date.now() / 1000);
+      const today = new Date(now * 1000).toISOString().split("T")[0];
+      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
+        .toISOString()
+        .split("T")[0];
+      const daily = await db
+        .select({
+          date: dailyToolStats.date,
+          count: dailyToolStats.downloads,
+        })
+        .from(dailyToolStats)
+        .where(
+          and(
+            eq(dailyToolStats.tool_id, toolId),
+            sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`,
+            sql`${dailyToolStats.date} < ${today}`,
+          ),
+        )
+        .orderBy(dailyToolStats.date)
+        .all();
+
+      return { total, daily };
+    },
+
+    // The breakdowns shown to signed-in visitors only: per version, per
+    // platform and per month. Runs only the queries it returns.
+    async getDownloadBreakdowns(tool: string) {
+      const toolId = await getToolId(tool);
+      if (toolId === null) return { byVersion: [], byOs: [], monthly: [] };
 
       // Downloads by version
       const byVersion = await db
@@ -61,28 +93,7 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .groupBy(platforms.os)
         .all();
 
-      // Daily downloads (last 30 days from rollups, excluding current day)
       const now = Math.floor(Date.now() / 1000);
-      const today = new Date(now * 1000).toISOString().split("T")[0];
-      const thirtyDaysAgo = new Date((now - 30 * 86400) * 1000)
-        .toISOString()
-        .split("T")[0];
-      const daily = await db
-        .select({
-          date: dailyToolStats.date,
-          count: dailyToolStats.downloads,
-        })
-        .from(dailyToolStats)
-        .where(
-          and(
-            eq(dailyToolStats.tool_id, toolId),
-            sql`${dailyToolStats.date} >= ${thirtyDaysAgo}`,
-            sql`${dailyToolStats.date} < ${today}`,
-          ),
-        )
-        .orderBy(dailyToolStats.date)
-        .all();
-
       // Monthly downloads (last 12 months from rollups)
       const twelveMonthsAgo = new Date((now - 365 * 86400) * 1000)
         .toISOString()
@@ -103,13 +114,16 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
         .orderBy(sql`strftime('%Y-%m', ${dailyToolStats.date})`)
         .all();
 
-      return {
-        total,
-        byVersion,
-        byOs,
-        daily,
-        monthly,
-      };
+      return { byVersion, byOs, monthly };
+    },
+
+    // Everything above in one call, for callers that want it all.
+    async getDownloadStats(tool: string) {
+      const [summary, breakdowns] = await Promise.all([
+        analytics.getDownloadSummary(tool),
+        analytics.getDownloadBreakdowns(tool),
+      ]);
+      return { ...summary, ...breakdowns };
     },
 
     // Get top downloaded tools (all time)
@@ -185,4 +199,6 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
       return result?.mau ?? 0;
     },
   };
+
+  return analytics;
 }

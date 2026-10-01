@@ -17,7 +17,7 @@ export const GET: APIRoute = async ({ params, locals }) => {
 
     // Per-version, per-platform and 12-month breakdowns need a signed-in
     // session; see /api/downloads/<tool>/details.
-    const { total, daily } = await analytics.getDownloadStats(tool);
+    const { total, daily } = await analytics.getDownloadSummary(tool);
 
     return new Response(JSON.stringify({ total, daily }), {
       status: 200,

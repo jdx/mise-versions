@@ -15,8 +15,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 
   try {
     const analytics = setupAnalytics(drizzle(env.ANALYTICS_DB));
-    const { monthly, byVersion, byOs } = await analytics.getDownloadStats(tool);
-    return privateJson({ monthly, byVersion, byOs });
+    return privateJson(await analytics.getDownloadBreakdowns(tool));
   } catch (error) {
     console.error("Get download details error:", error);
     return privateJson({ error: "Failed to get download details" }, 500);

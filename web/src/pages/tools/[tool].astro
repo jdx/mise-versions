@@ -57,7 +57,7 @@ let downloadStats: {
 try {
   const db = drizzle(env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
-  const { total, daily } = await analytics.getDownloadStats(tool);
+  const { total, daily } = await analytics.getDownloadSummary(tool);
   downloadStats = { total, daily };
 } catch (e) {
   console.error('Failed to fetch download stats:', e);

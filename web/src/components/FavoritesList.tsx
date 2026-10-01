@@ -123,9 +123,13 @@ export function FavoritesList() {
             </p>
           </div>
           <div class="watchlist-version">
-            <span class="watchlist-version-number">
-              {tool.latest_stable_version || tool.latest_version}
-            </span>
+            <span class="watchlist-version-number">{tool.latest_version}</span>
+            {tool.latest_stable_version &&
+              tool.latest_stable_version !== tool.latest_version && (
+                <span class="watchlist-version-age">
+                  stable {tool.latest_stable_version}
+                </span>
+              )}
             {tool.last_updated && (
               <span class="watchlist-version-age">
                 {formatRelativeTime(tool.last_updated)}
