@@ -31,7 +31,7 @@ const charts = [
     <div><h3>GitHub stars</h3><strong>{latest.stars.toLocaleString()}</strong><p>{stars30d === null ? 'jdx/mise' : `${stars30d >= 0 ? '+' : ''}${stars30d.toLocaleString()} over 30 days`}</p><DataFreshness date={latest.date} /></div>
   </div>
   <StarCrossover />
-  <div class="adoption-charts"><DailyActivityChart points={daily} title="mise downloads · daily" unit="downloads/day" />{charts.map(chart => {
+  <div class="adoption-charts"><DailyActivityChart points={daily} title="mise downloads · daily" unit="downloads/day" days={180} />{charts.map(chart => {
     const valid = chart.data.filter((p):p is {date:string,value:number} => p.value !== null);
     if (!valid.length) return null;
     const max = Math.max(...valid.map(p=>p.value),1);

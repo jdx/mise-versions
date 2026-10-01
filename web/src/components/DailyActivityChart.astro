@@ -5,14 +5,14 @@ import YearGrid from "./YearGrid.astro";
 import { sevenDayAverage, forecastDailyAverage, nextActivityMilestone, pastActivityMilestones } from '../lib/daily-average';
 import { formatCompact } from '../lib/format';
 import { parseUtcDate, formatForecastRelative } from '../lib/mau-forecast';
-interface Props { points: Array<{date:string;value:number|null}>; title: string; unit: string }
-const { points: daily, title, unit } = Astro.props;
+interface Props { points: Array<{date:string;value:number|null}>; title: string; unit: string; days?: number }
+const { points: daily, title, unit, days = 90 } = Astro.props;
 const averages = sevenDayAverage(daily);
 const latest = averages.at(-1)!;
 const forecast = forecastDailyAverage(averages);
 const reached = pastActivityMilestones(averages);
 const lastReached = reached.at(-1);
-const cutoff = parseUtcDate(latest.date) - 89 * 86400000;
+const cutoff = parseUtcDate(latest.date) - (days - 1) * 86400000;
 const data = daily.filter(p=>parseUtcDate(p.date)>=cutoff), average = averages.filter(p=>parseUtcDate(p.date)>=cutoff);
 const projected = forecast?.showOnChart;
 const endDate = projected ? forecast.hitDate : latest.date;
@@ -31,7 +31,7 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
 <div class="adoption-chart daily-activity-chart">
   <h3>{title}</h3>
   <DataFreshness date={daily.findLast(p => p.value !== null)?.date} />
-  <p class="activity-period">{data.length === 90 ? "Last 90 days" : `${data.length} recorded days`} · {data.filter(p=>p.value!==null).length} recorded · {data[0].date}–{latest.date}</p>
+  <p class="activity-period">{data.length === days ? `Last ${days} days` : `${data.length} recorded days`} · {data.filter(p=>p.value!==null).length} recorded · {data[0].date}–{latest.date}</p>
   <div class="download-average-summary"><span><strong>{latest.value===null?'—':formatCompact(latest.value)}</strong> {unit} · 7-day average</span>
     {lastReached && <span class="download-milestone download-milestone-reached">Passed <strong>{milestoneLabel(lastReached.level)} {unit}</strong><br/>{forecastDate(lastReached.date)}{reached.length > 1 && <> · earlier: {reached.slice(-4,-1).reverse().map(m=>`${milestoneLabel(m.level)} (${forecastDate(m.date)})`).join(', ')}</>}</span>}
     {!forecast && latest.value !== null && <span class="download-milestone">Next milestone <strong>{milestoneLabel(nextActivityMilestone(latest.value))} {unit}</strong><br/>No rising trend to project a date</span>}

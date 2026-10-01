@@ -20,7 +20,7 @@ Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-rev
     {audience?.daily.length?<>
       <section class="audience-panel" aria-label="Audience growth"><MauHistory daily={audience.daily}/></section>
       <WeeklyMauGrowth daily={audience.daily}/>
-      <DailyActivityChart title="Daily active users" unit="DAU" points={audience.daily.map(p=>({date:p.date,value:p.dau_available===false?null:p.dau}))}/>
+      <DailyActivityChart title="Daily active users" unit="DAU" days={365} points={audience.daily.map(p=>({date:p.date,value:p.dau_available===false?null:p.dau}))}/>
     </>:<p class="inline-notice">Audience history is currently unavailable.</p>}
     <MiseAdoption />
   </div>
