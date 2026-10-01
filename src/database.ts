@@ -171,35 +171,6 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       return { lookups: row?.lookups ?? 0, sharing: (row?.active ?? 0) > 0 };
     },
 
-    // Retire the scoped rows that died when a user's old grant was revoked.
-    // Only rows created before `before` that carry scopes: a no-scope token
-    // stored by an overlapping sign-in belongs to a newer grant and survives.
-    async retireScopedUserTokensBefore(userId: string, before: string) {
-      await db
-        .update(tokens)
-        .set({ is_active: 0, token: "", refresh_token: null })
-        .where(
-          and(
-            eq(tokens.user_id, userId),
-            eq(tokens.is_active, 1),
-            lte(tokens.created_at, before),
-            isNotNull(tokens.scopes),
-            sql`${tokens.scopes} != '[]'`,
-          ),
-        )
-        .run();
-    },
-
-    // Retire every token row for a user whose grant was revoked on GitHub.
-    // Rows are kept (inactive, secrets cleared) so their lookup count survives.
-    async retireUserTokens(userId: string) {
-      await db
-        .update(tokens)
-        .set({ is_active: 0, token: "", refresh_token: null })
-        .where(eq(tokens.user_id, userId))
-        .run();
-    },
-
     // Deactivate specific token rows and clear their secrets. `marker` goes in
     // the token column so different retirement reasons can be told apart.
     async retireTokens(tokenIds: number[], marker: string) {
@@ -239,7 +210,6 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         userEmail?: string;
         refreshToken?: string;
         refreshTokenExpiresAt?: string;
-        scopes?: string[];
       },
     ) {
       const now = new Date().toISOString();
@@ -256,14 +226,13 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
           last_validated: now,
           refresh_token: options?.refreshToken,
           refresh_token_expires_at: options?.refreshTokenExpiresAt,
-          scopes: options?.scopes ? JSON.stringify(options.scopes) : null,
         })
         .returning();
 
       if (!userId) return await insert.get();
 
-      // One live token per person. Retire their earlier rows (which may carry
-      // broader scopes) and add the new one in a single atomic batch, so a
+      // One live token per person. Retire their earlier rows and add the new
+      // one in a single atomic batch, so a
       // failed insert never discards a working token and concurrent sign-ins
       // can't leave two active rows. Lookup counts are kept: the rows stay.
       const [, inserted] = await db.batch([

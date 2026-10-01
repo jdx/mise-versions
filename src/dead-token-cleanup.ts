@@ -4,6 +4,7 @@ import { setupDatabase } from "./database.js";
 // A pooled token that GitHub keeps rejecting is already revoked or expired, so
 // it is dead weight in the pool (and shows up as "could not be checked").
 // Remove tokens that failed with bad credentials on every check for a while.
+export const DEAD_TOKEN_CLEANUP_CRON = "23 4 * * *";
 export const DEAD_TOKEN_MARKER = "invalid";
 export const DEAD_WINDOW_DAYS = 3;
 export const DEAD_MIN_CHECKS = 3;
