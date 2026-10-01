@@ -531,16 +531,18 @@ function calculateCheckoutRate(
   return round((checkoutRatePerHour / tokensWithRate) * poolSize);
 }
 
-// A handful of revoked tokens is normal churn; a tenth of the pool failing
-// to answer points at a GitHub outage or a bulk revocation.
+// A handful of revoked tokens is normal churn; a tenth of the checked tokens
+// failing to answer points at a GitHub outage or a bulk revocation. The share
+// is of the tokens actually checked so an outage is visible mid-rotation.
 const WIDESPREAD_INVALID_SHARE = 0.1;
 
 function hasWidespreadInvalidTokens(
   invalidTokens: number,
-  tokenCount: number,
+  checkedTokens: number,
 ): boolean {
   return (
-    tokenCount > 0 && invalidTokens / tokenCount >= WIDESPREAD_INVALID_SHARE
+    checkedTokens > 0 &&
+    invalidTokens / checkedTokens >= WIDESPREAD_INVALID_SHARE
   );
 }
 
@@ -616,7 +618,7 @@ export function summarizeTokenPool(
   // quota, so they are not worth an alert on their own.
   const widespreadInvalid = hasWidespreadInvalidTokens(
     invalidTokens,
-    tokenCount,
+    checkedTokens,
   );
   const reasons: string[] = [];
   let level: TokenRiskLevel = "healthy";
@@ -632,9 +634,9 @@ export function summarizeTokenPool(
   }
   if (widespreadInvalid)
     reasons.push(
-      `${invalidTokens} of ${tokenCount} tokens could not be checked`,
+      `${invalidTokens} of ${checkedTokens} checked tokens could not be checked`,
     );
-  if (complete && lendablePercent !== null && lendablePercent <= 35)
+  if (lendablePercent !== null && lendablePercent <= 35)
     reasons.push(
       `Only ${lendablePercent}% of lendable quota remains (above the ${MIN_REMAINING.toLocaleString()} floor)`,
     );
@@ -935,11 +937,14 @@ function tokenObservabilityData(
 
 // Alerts follow the risk level and its causes, not raw token counts, so the
 // routine drift of those counts between rotations never re-sends an email.
-function alertFingerprint(summary: TokenPoolSummary): string {
+// Availability only matters once a complete rotation shows it is nearly gone.
+export function alertFingerprint(summary: TokenPoolSummary): string {
   return [
     summary.level,
-    Math.min(summary.availableTokens, 2),
-    hasWidespreadInvalidTokens(summary.invalidTokens, summary.tokenCount),
+    summary.complete && summary.availableTokens <= 1
+      ? summary.availableTokens
+      : "ok",
+    hasWidespreadInvalidTokens(summary.invalidTokens, summary.checkedTokens),
   ].join("|");
 }
 

@@ -3,6 +3,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  alertFingerprint,
   buildPoolGrowth,
   getAlertDecision,
   historyPoints,
@@ -462,6 +463,94 @@ test("stays healthy with a few unreachable, rate-limited or low tokens", () => {
   assert.deepEqual(summary.reasons, []);
 });
 
+test("explains a partial rotation that warns on low quota", () => {
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_100, 12);
+  const summary = summarizeTokenPool(
+    [current],
+    [current],
+    current.observedAt,
+    60,
+  );
+
+  assert.equal(summary.level, "warning");
+  assert.match(summary.reasons.join(" "), /lendable quota remains/);
+});
+
+test("warns on an outage visible in a partial rotation", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  const failed = Array.from({ length: 45 }, (_, index) => ({
+    ...observation(index + 1, now, 0, 1),
+    remaining: null,
+    limit: null,
+    error: "GitHub is down",
+  }));
+
+  const summary = summarizeTokenPool(failed, failed, now, 1_248);
+
+  assert.equal(summary.complete, false);
+  assert.equal(summary.level, "warning");
+  assert.equal(shouldEvaluateAlert(summary), true);
+});
+
+test("alert fingerprints ignore routine count drift", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  const pool = (
+    count: number,
+    overrides: (token: TokenObservation, index: number) => TokenObservation = (
+      token,
+    ) => token,
+    tokenCount = count,
+  ) => {
+    const tokens = Array.from({ length: count }, (_, index) =>
+      overrides(observation(index + 1, now, 4_950, 1), index),
+    );
+    return summarizeTokenPool(tokens, tokens, now, tokenCount);
+  };
+  const invalid = (token: TokenObservation): TokenObservation => ({
+    ...token,
+    remaining: null,
+    limit: null,
+    error: "bad credentials",
+  });
+
+  // Dead, rate-limited and low tokens come and go without changing the level.
+  const healthy = alertFingerprint(pool(100));
+  assert.equal(
+    alertFingerprint(
+      pool(100, (token, index) => {
+        if (index === 0) return invalid(token);
+        if (index === 1) return { ...token, available: false };
+        return index === 2 ? { ...token, remaining: 3_000 } : token;
+      }),
+    ),
+    healthy,
+  );
+
+  // Availability only distinguishes warnings once the rotation is complete.
+  const partialWarning = alertFingerprint(
+    pool(20, (token, index) => (index < 2 ? invalid(token) : token), 200),
+  );
+  assert.equal(
+    partialWarning,
+    alertFingerprint(
+      pool(20, (token, index) => (index < 3 ? invalid(token) : token), 200),
+    ),
+  );
+
+  // A different level, availability bucket or outage resends.
+  assert.notEqual(alertFingerprint(pool(1)), healthy);
+  assert.notEqual(
+    alertFingerprint(pool(1)),
+    alertFingerprint(pool(1, (token) => ({ ...token, remaining: 500 }))),
+  );
+  assert.notEqual(
+    alertFingerprint(
+      pool(20, (token, index) => (index < 2 ? invalid(token) : token)),
+    ),
+    healthy,
+  );
+});
+
 test("warns when a tenth of the pool cannot be checked", () => {
   const now = "2026-08-27T13:00:00.000Z";
   const tokens = Array.from({ length: 20 }, (_, index) =>
@@ -478,7 +567,9 @@ test("warns when a tenth of the pool cannot be checked", () => {
   const summary = summarizeTokenPool(tokens, tokens, now, 20);
 
   assert.equal(summary.level, "warning");
-  assert.deepEqual(summary.reasons, ["2 of 20 tokens could not be checked"]);
+  assert.deepEqual(summary.reasons, [
+    "2 of 20 checked tokens could not be checked",
+  ]);
 });
 
 test("warns when the pool has only one token with reserve", () => {
