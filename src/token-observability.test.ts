@@ -31,10 +31,10 @@ test("rotates bounded token batches between observation intervals", () => {
 
 test("combines fresh rotating batches for the current pool", () => {
   const now = new Date("2026-08-27T13:00:00.000Z");
-  const stale = observation(1, "2026-08-27T12:00:00.000Z", 4_500, 1);
-  const tokenOne = observation(1, "2026-08-27T12:45:00.000Z", 4_000, 2);
-  const tokenTwo = observation(2, "2026-08-27T12:30:00.000Z", 3_500, 3);
-  const deleted = observation(3, "2026-08-27T12:50:00.000Z", 3_000, 4);
+  const stale = observation(1, "2026-08-27T12:00:00.000Z", 4_950, 1);
+  const tokenOne = observation(1, "2026-08-27T12:45:00.000Z", 4_900, 2);
+  const tokenTwo = observation(2, "2026-08-27T12:30:00.000Z", 4_800, 3);
+  const deleted = observation(3, "2026-08-27T12:50:00.000Z", 4_700, 4);
 
   const current = selectCurrentObservations(
     [stale, tokenTwo, tokenOne, deleted],
@@ -80,7 +80,7 @@ function observation(
     limit: 5_000,
     resetAt: "2026-08-27T13:30:00.000Z",
     usageCount,
-    available: remaining >= 1_000,
+    available: remaining > 4_000,
     error: null,
   };
 }
@@ -89,10 +89,10 @@ test("summarizes total pool burn instead of averaging token rates", () => {
   const previous = "2026-08-27T12:00:00.000Z";
   const current = "2026-08-27T13:00:00.000Z";
   const recent = [
-    observation(1, previous, 4_100, 10),
-    observation(2, previous, 3_900, 20),
-    observation(1, current, 4_000, 12),
-    observation(2, current, 3_800, 23),
+    observation(1, previous, 4_900, 10),
+    observation(2, previous, 4_700, 20),
+    observation(1, current, 4_800, 12),
+    observation(2, current, 4_600, 23),
   ];
 
   const summary = summarizeTokenPool(recent.slice(-2), recent);
@@ -100,17 +100,17 @@ test("summarizes total pool burn instead of averaging token rates", () => {
   assert.equal(summary.level, "healthy");
   assert.equal(summary.quotaBurnPerHour, 200);
   assert.equal(summary.checkoutRatePerHour, 5);
-  assert.equal(summary.hoursToReserve, 29);
+  assert.equal(summary.hoursToReserve, 7);
 });
 
 test("ignores short manual-check gaps when calculating burn", () => {
   const previous = "2026-08-27T12:00:00.000Z";
   const current = "2026-08-27T12:01:00.000Z";
   const recent = [
-    observation(1, previous, 4_100, 10),
-    observation(2, previous, 4_100, 20),
-    observation(1, current, 4_000, 12),
-    observation(2, current, 4_000, 23),
+    observation(1, previous, 4_900, 10),
+    observation(2, previous, 4_900, 20),
+    observation(1, current, 4_800, 12),
+    observation(2, current, 4_800, 23),
   ];
 
   const summary = summarizeTokenPool(recent.slice(-2), recent);
@@ -123,9 +123,9 @@ test("ignores short manual-check gaps when calculating burn", () => {
 
 test("bridges manual checks when a full rate interval is available", () => {
   const recent = [
-    observation(1, "2026-08-27T12:00:00.000Z", 4_100, 10),
-    observation(1, "2026-08-27T12:05:00.000Z", 4_050, 11),
-    observation(1, "2026-08-27T12:15:00.000Z", 3_950, 13),
+    observation(1, "2026-08-27T12:00:00.000Z", 4_900, 10),
+    observation(1, "2026-08-27T12:05:00.000Z", 4_850, 11),
+    observation(1, "2026-08-27T12:15:00.000Z", 4_750, 13),
   ];
 
   const summary = summarizeTokenPool(recent.slice(-1), recent);
@@ -137,12 +137,12 @@ test("bridges manual checks when a full rate interval is available", () => {
 test("excludes deleted tokens from current burn rates", () => {
   const previous = "2026-08-27T12:00:00.000Z";
   const current = "2026-08-27T13:00:00.000Z";
-  const currentToken = observation(1, current, 4_000, 12);
+  const currentToken = observation(1, current, 4_800, 12);
   const recent = [
-    observation(1, previous, 4_100, 10),
-    observation(2, previous, 4_500, 20),
+    observation(1, previous, 4_900, 10),
+    observation(2, previous, 4_950, 20),
     currentToken,
-    observation(2, current, 3_500, 30),
+    observation(2, current, 4_500, 30),
   ];
 
   const summary = summarizeTokenPool([currentToken], recent);
@@ -171,7 +171,7 @@ test("marks a bounded observation as incomplete without a false critical", () =>
 });
 
 test("defers alert decisions only when partial data has no concrete issue", () => {
-  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_900, 12);
   const summary = summarizeTokenPool(
     [current],
     [current],
@@ -183,12 +183,12 @@ test("defers alert decisions only when partial data has no concrete issue", () =
 });
 
 test("warns when the pool has only one token with reserve", () => {
-  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_900, 12);
   const summary = summarizeTokenPool([current], [current]);
 
   assert.equal(summary.level, "warning");
   assert.deepEqual(summary.reasons, [
-    "Only one token has at least 1,000 requests left",
+    "Only one token has more than 4,000 requests left",
   ]);
 });
 
@@ -203,7 +203,7 @@ test("marks a pool with no available token critical", () => {
 });
 
 test("marks locally rate-limited tokens separately from reserve", () => {
-  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_000, 12);
+  const current = observation(1, "2026-08-27T13:00:00.000Z", 4_900, 12);
   current.available = false;
   const summary = summarizeTokenPool([current], [current]);
 
@@ -224,7 +224,7 @@ test("represents an empty observation run instead of reusing stale state", () =>
 test("alert decision sends on changes and suppresses unchanged state", () => {
   const now = new Date("2026-08-27T13:00:00.000Z");
   const summary = summarizeTokenPool(
-    [observation(1, now.toISOString(), 4_000, 12)],
+    [observation(1, now.toISOString(), 4_900, 12)],
     [],
   );
   const state: AlertState = {
@@ -246,7 +246,7 @@ test("alert decision sends on changes and suppresses unchanged state", () => {
 test("alert decision repeats after twelve hours", () => {
   const now = new Date("2026-08-27T13:00:00.000Z");
   const summary = summarizeTokenPool(
-    [observation(1, now.toISOString(), 4_000, 12)],
+    [observation(1, now.toISOString(), 4_900, 12)],
     [],
   );
   const state: AlertState = {
@@ -262,8 +262,8 @@ test("alert decision sends recovery after an unhealthy state", () => {
   const now = new Date("2026-08-27T13:00:00.000Z");
   const healthy = summarizeTokenPool(
     [
-      observation(1, now.toISOString(), 4_000, 12),
-      observation(2, now.toISOString(), 4_000, 12),
+      observation(1, now.toISOString(), 4_900, 12),
+      observation(2, now.toISOString(), 4_800, 12),
     ],
     [],
   );

@@ -1,6 +1,10 @@
 import { Octokit } from "@octokit/rest";
+import {
+  EMERGENCY_MIN_REMAINING,
+  hasBudget,
+  MIN_REMAINING,
+} from "./token-budget.js";
 
-const MIN_TOKEN_REMAINING = 1_000;
 const HISTORY_HOURS = 24;
 const ALERT_REPEAT_HOURS = 12;
 const MIN_RATE_INTERVAL_HOURS = 10 / 60;
@@ -126,7 +130,7 @@ async function inspectToken(
       limit: core.limit,
       resetAt,
       usageCount: token.usage_count,
-      available: !locallyRateLimited && core.remaining >= MIN_TOKEN_REMAINING,
+      available: !locallyRateLimited && hasBudget(core.remaining),
       error: null,
     };
   } catch (error) {
@@ -354,16 +358,14 @@ export function summarizeTokenPool(
   const invalidTokens = latest.filter((token) => token.error).length;
   const belowReserveTokens = latest.filter(
     (token) =>
-      !token.error &&
-      token.remaining !== null &&
-      token.remaining < MIN_TOKEN_REMAINING,
+      !token.error && token.remaining !== null && !hasBudget(token.remaining),
   ).length;
   const rateLimitedTokens = latest.filter(
     (token) =>
       !token.error &&
       !token.available &&
       token.remaining !== null &&
-      token.remaining >= MIN_TOKEN_REMAINING,
+      hasBudget(token.remaining),
   ).length;
   const currentTokenIds = new Set(latest.map((token) => token.tokenId));
   const rates = complete
@@ -372,8 +374,7 @@ export function summarizeTokenPool(
       )
     : { quotaBurnPerHour: null, checkoutRatePerHour: null };
   const usableRemaining = usable.reduce(
-    (sum, token) =>
-      sum + Math.max(0, (token.remaining ?? 0) - MIN_TOKEN_REMAINING),
+    (sum, token) => sum + Math.max(0, (token.remaining ?? 0) - MIN_REMAINING),
     0,
   );
   const hoursToReserve =
@@ -396,9 +397,13 @@ export function summarizeTokenPool(
     );
   }
   if (complete && availableTokens === 0) {
-    reasons.push("No token has at least 1,000 requests left");
+    reasons.push(
+      `No token has more than ${MIN_REMAINING.toLocaleString()} requests left`,
+    );
   } else if (complete && availableTokens === 1) {
-    reasons.push("Only one token has at least 1,000 requests left");
+    reasons.push(
+      `Only one token has more than ${MIN_REMAINING.toLocaleString()} requests left`,
+    );
   }
   if (invalidTokens > 0)
     reasons.push(
@@ -756,6 +761,51 @@ async function sendAlert(
     throw new Error(
       `Resend returned ${response.status}: ${(await response.text()).slice(0, 500)}`,
     );
+  }
+}
+
+const EMERGENCY_ALERT_KEY = "token-emergency-alert";
+const EMERGENCY_ALERT_TTL_SECONDS = 3_600;
+
+// Called when the token endpoint lends a token that is below the normal floor.
+// Emails the maintainer at most once an hour and never throws, so an alerting
+// problem can't stop the update job from getting its token.
+export async function alertEmergencyTokenUse(
+  env: Env,
+  info: { tokenId: number; remaining: number; limit: number },
+): Promise<void> {
+  try {
+    console.warn("token_pool_emergency_checkout", info);
+    if (await env.DOWNLOAD_DEDUPE.get(EMERGENCY_ALERT_KEY)) return;
+    await env.DOWNLOAD_DEDUPE.put(EMERGENCY_ALERT_KEY, "1", {
+      expirationTtl: EMERGENCY_ALERT_TTL_SECONDS,
+    });
+    if (!env.RESEND_API_KEY || !env.TOKEN_ALERT_TO || !env.TOKEN_ALERT_FROM)
+      return;
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: env.TOKEN_ALERT_FROM,
+        to: env.TOKEN_ALERT_TO,
+        subject: "[mise-versions] Token pool emergency: lending low tokens",
+        html: `<h2>No token is above ${MIN_REMAINING.toLocaleString()} requests left</h2>
+          <p>To keep the update job going, a volunteer's token with only
+          <strong>${info.remaining.toLocaleString()} / ${info.limit.toLocaleString()}</strong>
+          requests left (token #${info.tokenId}) was lent out. Normally tokens at or below
+          ${MIN_REMAINING.toLocaleString()} are left alone; the hard minimum is
+          ${EMERGENCY_MIN_REMAINING.toLocaleString()}. This email is sent at most once an hour.</p>
+          <p><a href="https://mise-versions.jdx.dev/admin">Open token observability</a></p>`,
+      }),
+    });
+    if (!response.ok) {
+      console.error("emergency alert failed", response.status);
+    }
+  } catch (error) {
+    console.error("emergency alert error", errorMessage(error));
   }
 }
 

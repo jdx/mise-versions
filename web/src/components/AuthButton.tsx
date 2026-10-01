@@ -1,17 +1,10 @@
-import { useState, useEffect } from "preact/hooks";
-import type { AuthStatusResponse } from "../lib/auth";
+import { useAuth, authUrls } from "../lib/use-auth";
 
-interface AuthState {
-  authenticated: boolean;
-  username: string | null;
-  loading: boolean;
-}
-
-function GitHubIcon() {
+export function GitHubIcon() {
   return (
     <svg
       aria-hidden="true"
-      class="site-menu-icon"
+      class="auth-icon"
       viewBox="0 0 24 24"
       fill="currentColor"
     >
@@ -21,68 +14,42 @@ function GitHubIcon() {
 }
 
 export function AuthButton() {
-  const [state, setState] = useState<AuthState>({
-    authenticated: false,
-    username: null,
-    loading: true,
-  });
+  const state = useAuth();
+  const { loginUrl, logoutUrl } = authUrls();
 
-  useEffect(() => {
-    async function checkAuth() {
-      try {
-        const response = await fetch("/api/auth/me");
-        const contentType = response.headers.get("content-type");
-        if (!contentType?.includes("application/json")) {
-          setState({ authenticated: false, username: null, loading: false });
-          return;
-        }
-        const data = await response.json<AuthStatusResponse>();
-        setState({
-          authenticated: data.authenticated,
-          username: data.username || null,
-          loading: false,
-        });
-      } catch {
-        setState({ authenticated: false, username: null, loading: false });
-      }
-    }
-
-    checkAuth();
-  }, []);
-
+  // Reserve space while loading so the header doesn't shift.
   if (state.loading) {
+    return <span class="auth-placeholder" aria-hidden="true" />;
+  }
+
+  if (state.authenticated) {
     return (
-      <div class="site-menu-status" role="status">
-        Checking account…
+      <div class="auth-identity">
+        <GitHubIcon />
+        <span class="auth-username" title={state.username || "GitHub user"}>
+          {state.username || "GitHub user"}
+        </span>
+        <a href={logoutUrl} class="auth-signout">
+          Sign out
+        </a>
       </div>
     );
   }
 
-  // Get current page path for return_to
-  const currentPath =
-    typeof window !== "undefined"
-      ? window.location.pathname + window.location.search
-      : "/";
-  const loginUrl = `/api/auth/login?return_to=${encodeURIComponent(currentPath)}`;
-  const logoutUrl = `/api/auth/logout?return_to=${encodeURIComponent(currentPath)}`;
-
-  if (state.authenticated) {
-    return (
-      <>
-        <div class="site-menu-identity">
-          <GitHubIcon />
-          <span title={state.username || "GitHub user"}>
-            {state.username || "GitHub user"}
-          </span>
-        </div>
-        <a href={logoutUrl} class="site-menu-item">
-          Sign out
-        </a>
-      </>
-    );
-  }
   return (
-    <a href={loginUrl} class="site-menu-item">
+    <a href={loginUrl} class="auth-signin">
+      <GitHubIcon />
+      <span>
+        Sign in<span class="auth-signin-long"> with GitHub</span>
+      </span>
+    </a>
+  );
+}
+
+export function SignInLink() {
+  const { loginUrl } = authUrls();
+  return (
+    <a href={loginUrl} class="auth-signin auth-signin-primary">
       <GitHubIcon />
       <span>Sign in with GitHub</span>
     </a>

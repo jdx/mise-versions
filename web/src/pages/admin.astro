@@ -61,7 +61,7 @@ if (!auth || !isAdmin(auth.username)) {
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
               <div class="text-xs uppercase tracking-wide text-gray-500">Available tokens</div>
               <div id="metric-available" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
-              <div class="text-xs text-gray-500 mt-1">at least 1k requests left</div>
+              <div class="text-xs text-gray-500 mt-1">more than 4k requests left</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
               <div class="text-xs uppercase tracking-wide text-gray-500">Quota remaining</div>
@@ -76,7 +76,7 @@ if (!auth || !isAdmin(auth.username)) {
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
               <div class="text-xs uppercase tracking-wide text-gray-500">Time to reserve</div>
               <div id="metric-runway" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
-              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before the 1k/token reserve</div>
+              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before the 4k/token floor</div>
             </div>
           </div>
 
@@ -469,7 +469,7 @@ if (!auth || !isAdmin(auth.username)) {
     if (checkouts) checkouts.textContent = summary.checkoutRatePerHour === null ? 'needs two snapshots' : `${formatCompact(summary.checkoutRatePerHour)} token checkouts/hour`;
     setMetric('metric-runway', summary.hoursToReserve === null ? 'Stable' : `${summary.hoursToReserve}h`, summary.hoursToReserve !== null && summary.hoursToReserve <= 6 ? metricTone : 'text-gray-100');
     const reset = document.getElementById('metric-reset');
-    if (reset) reset.textContent = summary.nextResetAt ? `next quota reset ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'before the 1k/token reserve';
+    if (reset) reset.textContent = summary.nextResetAt ? `next quota reset ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'before the 4k/token floor';
 
     const reasons = document.getElementById('capacity-reasons');
     if (reasons) {
@@ -489,14 +489,14 @@ if (!auth || !isAdmin(auth.username)) {
       const buckets = [
         { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% quota' },
         { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '≤35% quota' },
-        { label: 'Below reserve', count: 0, color: 'bg-red-400', detail: '<1k requests' },
+        { label: 'Below floor', count: 0, color: 'bg-red-400', detail: '≤4k requests left' },
         { label: 'Rate limited', count: 0, color: 'bg-purple-400', detail: 'locally paused' },
         { label: 'Check failed', count: 0, color: 'bg-gray-500', detail: 'quota unknown' },
       ];
       for (const token of data.tokens) {
         const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : null;
         if (token.error || percent === null) buckets[4].count++;
-        else if (token.remaining !== null && token.remaining < 1_000) buckets[2].count++;
+        else if (token.remaining !== null && token.remaining <= 4_000) buckets[2].count++;
         else if (!token.available) buckets[3].count++;
         else if (percent <= 35) buckets[1].count++;
         else buckets[0].count++;

@@ -105,6 +105,23 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .all();
     },
 
+    // Every usable pool token, ignoring the local rate-limited mark. Used by
+    // the emergency path, which re-checks live quota itself.
+    async getPoolTokens() {
+      const now = new Date().toISOString();
+      return await db
+        .select()
+        .from(tokens)
+        .where(
+          and(
+            eq(tokens.is_active, 1),
+            sql`${tokens.user_id} != 'jdx'`,
+            or(isNull(tokens.expires_at), gt(tokens.expires_at, now)),
+          ),
+        )
+        .all();
+    },
+
     // Store new token
     async storeToken(
       userId: string | null,
@@ -257,6 +274,33 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       return {
         active: active?.count ?? 0,
         total: total?.count ?? 0,
+      };
+    },
+
+    // Aggregate, non-identifying pool numbers for the public explainer page.
+    // Mirrors getNextToken(): the maintainer's own token is not in the pool.
+    async getPublicPoolStats() {
+      const now = new Date().toISOString();
+      const row = await db
+        .select({
+          contributors: sql<number>`count(*)`,
+          available: sql<number>`coalesce(sum(case when ${tokens.rate_limited_at} is null or ${tokens.rate_limited_at} <= ${now} then 1 else 0 end), 0)`,
+          checkouts: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
+        })
+        .from(tokens)
+        .where(
+          and(
+            eq(tokens.is_active, 1),
+            sql`${tokens.user_id} != 'jdx'`,
+            or(isNull(tokens.expires_at), gt(tokens.expires_at, now)),
+          ),
+        )
+        .get();
+
+      return {
+        contributors: row?.contributors ?? 0,
+        available: row?.available ?? 0,
+        checkouts: row?.checkouts ?? 0,
       };
     },
 
