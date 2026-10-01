@@ -342,20 +342,6 @@ code,
 .signin-banner-inner strong {
   color: var(--text);
 }
-.signin-banner-dismiss {
-  flex: none;
-  background: transparent;
-  border: 0;
-  color: var(--muted);
-  font-size: 22px;
-  line-height: 1;
-  padding: 4px 8px;
-  border-radius: 6px;
-}
-.signin-banner-dismiss:hover {
-  color: var(--text);
-  background: var(--surface-raised);
-}
 .site-main {
   max-width: 1344px;
   margin: auto;
