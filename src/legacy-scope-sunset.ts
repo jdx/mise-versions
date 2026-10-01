@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/d1";
 import { DEAD_TOKEN_MARKER } from "./dead-token-cleanup.js";
 import { setupDatabase } from "./database.js";
+import { revokeGrant } from "./github-grant.js";
 import { getTokenObservability } from "./token-observability.js";
 
 // Tokens from before sign-in stopped requesting scopes still carry
@@ -116,27 +117,6 @@ export function planSunset(
     excess -= rows.length;
   }
   return chosen;
-}
-
-// Deleting the grant revokes every token the user has issued to the app.
-async function revokeGrant(env: Env, accessToken: string): Promise<boolean> {
-  const response = await fetch(
-    `https://api.github.com/applications/${env.GITHUB_CLIENT_ID}/grant`,
-    {
-      method: "DELETE",
-      headers: {
-        Authorization: `Basic ${btoa(`${env.GITHUB_CLIENT_ID}:${env.GITHUB_CLIENT_SECRET}`)}`,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-        "User-Agent": "mise-versions",
-        "X-GitHub-Api-Version": "2022-11-28",
-      },
-      body: JSON.stringify({ access_token: accessToken }),
-    },
-  );
-  await response.body?.cancel();
-  // 404 means the grant is already gone, which is what we wanted.
-  return response.status === 204 || response.status === 404;
 }
 
 export type BurndownSnapshot = {

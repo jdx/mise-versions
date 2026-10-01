@@ -1,5 +1,9 @@
 import type { APIRoute } from "astro";
-import { setOAuthStateCookie, setReturnToCookie } from "../../../lib/auth";
+import {
+  newOAuthState,
+  setOAuthStateCookie,
+  setReturnToCookie,
+} from "../../../lib/auth";
 
 import { env } from "cloudflare:workers";
 // GET /api/auth/login - Redirect to GitHub OAuth
@@ -7,7 +11,8 @@ export const GET: APIRoute = async ({ request, locals, redirect }) => {
   const url = new URL(request.url);
 
   const redirectUri = `${url.origin}/api/auth/callback`;
-  const state = crypto.randomUUID();
+  // fresh=1: second pass after we removed an old, scoped authorization.
+  const state = newOAuthState(url.searchParams.get("fresh") === "1");
 
   // Get return_to from query param (where to go after login)
   const returnTo = url.searchParams.get("return_to") || "/";

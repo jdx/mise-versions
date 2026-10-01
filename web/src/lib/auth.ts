@@ -77,6 +77,18 @@ export function clearAuthCookie(): string {
   return `${AUTH_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`;
 }
 
+// A sign-in that is the second pass of "replace a scoped token with a clean
+// one" carries this suffix in its state, so the callback only retries once.
+const FRESH_STATE_SUFFIX = ".fresh";
+
+export function newOAuthState(fresh: boolean): string {
+  return crypto.randomUUID() + (fresh ? FRESH_STATE_SUFFIX : "");
+}
+
+export function isFreshOAuthState(state: string): boolean {
+  return state.endsWith(FRESH_STATE_SUFFIX);
+}
+
 export function setOAuthStateCookie(state: string): string {
   // Short-lived cookie (10 minutes) for CSRF protection during OAuth flow
   return `${OAUTH_STATE_COOKIE_NAME}=${state}; Path=/; Max-Age=600; HttpOnly; SameSite=Lax; Secure`;
