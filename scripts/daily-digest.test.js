@@ -218,6 +218,17 @@ test("a zero-download day has no tool rows and is still complete", () => {
   assert.equal(toolCoverage(tools, totals, "2026-09-30").complete, true);
 });
 
+test("most days missing tool rows is not treated as typical", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const result = toolCoverage(
+    dayRows("2026-09-30", 2, 980),
+    totals,
+    "2026-09-30",
+  );
+  assert.equal(result.complete, false);
+  assert.equal(result.problems.length, 12);
+});
+
 test("a day with downloads but no tool rows is flagged", () => {
   const totals = dayRows("2026-09-30", 14, 1000);
   const tools = dayRows("2026-09-30", 14, 980).filter(

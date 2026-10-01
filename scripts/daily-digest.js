@@ -130,19 +130,19 @@ export function toolCoverage(toolDaily, totals, day) {
     const total = totalByDate.get(date);
     if (total === undefined) {
       problems.push(`${date} has no daily total`);
+    } else if (total > 0 && !toolByDate.has(date)) {
+      // Never judged against the median: if most days lack rows the median is
+      // zero and would let every one of them through.
+      problems.push(`${date} is missing tool rows`);
     } else if (total > 0) {
-      ratios.push({ date, ratio: (toolByDate.get(date) ?? 0) / total });
+      ratios.push({ date, ratio: toolByDate.get(date) / total });
     }
   }
   const sorted = ratios.map((r) => r.ratio).sort((a, b) => a - b);
   const typical = sorted.length ? sorted[Math.floor(sorted.length / 2)] : 0;
   for (const { date, ratio } of ratios) {
     if (ratio < typical * MIN_TOOL_COVERAGE)
-      problems.push(
-        toolByDate.has(date)
-          ? `${date} has a partial set of tool rows`
-          : `${date} is missing tool rows`,
-      );
+      problems.push(`${date} has a partial set of tool rows`);
   }
   return { complete: problems.length === 0, problems };
 }
