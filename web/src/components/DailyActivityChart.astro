@@ -25,7 +25,7 @@ const path = average.filter(p=>p.value!==null).map(p=>{const time=parseUtcDate(p
 const width = Math.max(1,464/(Math.max(end-start,86400000)/86400000)*.65);
 const validData = data.filter(p=>p.value!==null);
 const averageByDate = new Map(average.map(p=>[p.date,p.value]));
-const chartReached = [...Map.groupBy(reached.filter(m=>parseUtcDate(m.date)>=cutoff), m=>m.date)].map(([date,ms])=>({date,levels:ms.map(m=>m.level)}));
+const chartReached = [...Map.groupBy(reached.filter(m=>parseUtcDate(m.date)>=cutoff), m=>m.date)].map(([date,ms])=>({date,value:ms[0].value,levels:ms.map(m=>m.level)}));
 const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'compact',maximumFractionDigits:1});
 ---
 <div class="adoption-chart daily-activity-chart">
@@ -51,7 +51,7 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
       </g>;
     })}
     {chartReached.map(m=>{
-      const avg = averageByDate.get(m.date) ?? m.levels.at(-1)!;
+      const avg = m.value;
       const px = x(m.date);
       return <g class="download-reached" pointer-events="none" role="img" aria-label={`Reached ${m.levels.map(l=>l.toLocaleString()).join(', ')} ${unit} on ${forecastDate(m.date)}`}>
         <line x1={px} x2={px} y1={y(avg)} y2="186" stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3"/>

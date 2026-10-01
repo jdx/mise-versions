@@ -41,10 +41,10 @@ export function pastActivityMilestones(averages: DailyCount[]) {
   const max = Math.max(...valid.map((p) => p.value));
   return activityMilestoneLevels(max)
     .filter((level) => valid[0].value < level)
-    .map((level) => ({
-      level,
-      date: valid.find((p) => p.value >= level)!.date,
-    }))
+    .map((level) => {
+      const hit = valid.find((p) => p.value >= level)!;
+      return { level, date: hit.date, value: hit.value };
+    })
     .sort((a, b) => a.date.localeCompare(b.date) || a.level - b.level);
 }
 export function forecastDailyAverage(averages: DailyCount[]) {
