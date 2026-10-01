@@ -329,11 +329,13 @@ const yTicks = Array.from(
           {chartReached.map((m) => {
             const px = xForDate(m.date);
             const py = yForValue(m.value);
+            const label = m.levels.map(reachedLabel).join(" · ");
+            const flip = px - 9 - label.length * 7 < 0;
             return (
               <g pointer-events="none" aria-hidden="true">
                 <line x1={px} x2={px} y1={py} y2={chartHeight} stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3" />
                 <circle cx={px} cy={py} r="3.5" fill="var(--surface)" stroke="var(--data)" stroke-width="1.5" />
-                <text x={px < 60 ? px + 9 : px - 9} y={py + 4} text-anchor={px < 60 ? "start" : "end"} class="mau-reached-label">{m.levels.map(reachedLabel).join(" · ")}</text>
+                <text x={flip ? px + 9 : px - 9} y={py + 4} text-anchor={flip ? "start" : "end"} class="mau-reached-label">{label}</text>
               </g>
             );
           })}
