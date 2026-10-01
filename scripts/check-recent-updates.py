@@ -134,7 +134,7 @@ def send_no_updates_email():
     """
     
     data = {
-        "from": "mise-tools@mise.jdx.dev",
+        "from": "mise-tools@en.dev",
         "to": "mise-tools@mise.jdx.dev",
         "subject": subject,
         "html": html_content
