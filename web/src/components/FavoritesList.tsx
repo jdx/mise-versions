@@ -48,7 +48,12 @@ export function FavoritesList() {
         setState({ status: "ready", tools });
       })
       .catch(() => {
-        if (!controller.signal.aborted) setState({ status: "error" });
+        // A failed refetch must not replace a list that is already showing.
+        if (!controller.signal.aborted) {
+          setState((current) =>
+            current.status === "ready" ? current : { status: "error" },
+          );
+        }
       });
     return () => controller.abort();
   }, [attempt]);
@@ -60,7 +65,7 @@ export function FavoritesList() {
   const refetchedFor = useRef("");
   const unlisted =
     state.status === "ready"
-      ? [...favorites.tools]
+      ? [...favorites.confirmed]
           .filter((name) => !state.tools.some((t) => t.name === name))
           .sort()
           .join(",")

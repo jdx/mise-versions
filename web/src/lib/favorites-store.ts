@@ -1,5 +1,8 @@
 // Client-side state for the signed-in user's favorite tools. Every island on
 // the page shares this module, so the list is fetched once per page load.
+//
+// Two sets are tracked: `tools` is what the stars show (it moves the moment
+// someone clicks), `confirmed` is what the server has actually saved.
 import { useEffect, useState } from "preact/hooks";
 import { loginUrl } from "./login-url";
 
@@ -8,11 +11,16 @@ export type FavoritesStatus = "loading" | "anonymous" | "ready" | "error";
 interface FavoritesState {
   status: FavoritesStatus;
   tools: ReadonlySet<string>;
+  confirmed: ReadonlySet<string>;
 }
 
 const PENDING_KEY = "mise-pending-favorite";
 
-let state: FavoritesState = { status: "loading", tools: new Set() };
+let state: FavoritesState = {
+  status: "loading",
+  tools: new Set(),
+  confirmed: new Set(),
+};
 let loading: Promise<void> | null = null;
 const listeners = new Set<() => void>();
 
@@ -21,36 +29,19 @@ function setState(next: FavoritesState) {
   for (const listener of listeners) listener();
 }
 
-function takePending(): string | null {
+function peekPending(): string | null {
   try {
-    const tool = sessionStorage.getItem(PENDING_KEY);
-    sessionStorage.removeItem(PENDING_KEY);
-    return tool;
+    return sessionStorage.getItem(PENDING_KEY);
   } catch {
     return null;
   }
 }
 
-function rememberPending(tool: string) {
+function setPending(tool: string | null) {
   try {
-    sessionStorage.setItem(PENDING_KEY, tool);
+    if (tool) sessionStorage.setItem(PENDING_KEY, tool);
+    else sessionStorage.removeItem(PENDING_KEY);
   } catch {}
-}
-
-// Writes for one tool go out one at a time, in click order. Two quick clicks
-// would otherwise race on the server and could leave it disagreeing with the
-// star the visitor sees.
-const writes = new Map<string, Promise<unknown>>();
-
-function send(method: "PUT" | "DELETE", tool: string): Promise<boolean> {
-  const result = (writes.get(tool) ?? Promise.resolve()).then(() =>
-    request(method, tool),
-  );
-  const tail = result.finally(() => {
-    if (writes.get(tool) === tail) writes.delete(tool);
-  });
-  writes.set(tool, tail);
-  return result;
 }
 
 async function request(
@@ -69,56 +60,103 @@ async function request(
   }
 }
 
+function withTool(set: ReadonlySet<string>, tool: string, present: boolean) {
+  const next = new Set(set);
+  if (present) next.add(tool);
+  else next.delete(tool);
+  return next;
+}
+
+// Writes for one tool go out one at a time, in click order. Two quick clicks
+// would otherwise race on the server and could leave it disagreeing with the
+// star the visitor sees.
+const writes = new Map<string, Promise<unknown>>();
+
+// Show `wanted` immediately, save it, and resolve to whether the server
+// accepted it. When the last queued write for the tool settles, the star is
+// set to what the server really has, so failed writes never leave it wrong.
+function setFavorite(tool: string, wanted: boolean): Promise<boolean> {
+  setState({ ...state, tools: withTool(state.tools, tool, wanted) });
+
+  const result = (writes.get(tool) ?? Promise.resolve()).then(async () => {
+    const ok = await request(wanted ? "PUT" : "DELETE", tool);
+    if (ok) {
+      setState({
+        ...state,
+        confirmed: withTool(state.confirmed, tool, wanted),
+      });
+    }
+    return ok;
+  });
+  const tail = result.then(() => {
+    if (writes.get(tool) !== tail) return;
+    writes.delete(tool);
+    setState({
+      ...state,
+      tools: withTool(state.tools, tool, state.confirmed.has(tool)),
+    });
+  });
+  writes.set(tool, tail);
+  return result;
+}
+
 async function load() {
   try {
     const response = await fetch("/api/favorites");
     if (response.status === 401) {
-      setState({ status: "anonymous", tools: new Set() });
+      setState({
+        status: "anonymous",
+        tools: new Set(),
+        confirmed: new Set(),
+      });
       return;
     }
     if (!response.ok) throw new Error("Favorites unavailable");
     const data = await response.json<{ favorites: string[] }>();
-    setState({ status: "ready", tools: new Set(data.favorites) });
+    const saved = new Set(data.favorites);
+    setState({ status: "ready", tools: saved, confirmed: saved });
   } catch {
-    setState({ status: "error", tools: new Set() });
+    setState({ status: "error", tools: new Set(), confirmed: new Set() });
     return;
   }
 
-  // Finish the favorite the visitor clicked before they went to sign in.
-  const pending = takePending();
-  if (pending && !state.tools.has(pending)) await toggleFavorite(pending);
+  // Finish the favorite the visitor clicked before they went to sign in. It
+  // stays remembered until the server has saved it, so a failure is retried on
+  // the next page load.
+  const pending = peekPending();
+  if (!pending) return;
+  if (state.confirmed.has(pending) || (await setFavorite(pending, true))) {
+    setPending(null);
+  }
 }
 
-function ensureLoaded(): Promise<void> {
+export function ensureLoaded(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
   loading ??= load();
   return loading;
 }
 
+export function favoritesSnapshot(): Readonly<FavoritesState> {
+  return state;
+}
+
 export async function toggleFavorite(tool: string): Promise<void> {
-  // A click that lands before the list arrives waits for it, rather than being
-  // dropped: signed-out clicks still need to start the sign-in.
-  if (state.status === "loading") await ensureLoaded();
-  if (state.status === "anonymous") {
-    rememberPending(tool);
-    window.location.assign(loginUrl());
-    return;
-  }
-  if (state.status !== "ready") return;
-
-  const adding = !state.tools.has(tool);
-  const optimistic = new Set(state.tools);
-  if (adding) optimistic.add(tool);
-  else optimistic.delete(tool);
-  const previous = state.tools;
-  setState({ status: "ready", tools: optimistic });
-
-  if (!(await send(adding ? "PUT" : "DELETE", tool))) {
-    // Only roll back this tool; another toggle may have landed meanwhile.
-    const reverted = new Set(state.tools);
-    if (previous.has(tool)) reverted.add(tool);
-    else reverted.delete(tool);
-    setState({ status: "ready", tools: reverted });
+  switch (state.status) {
+    case "anonymous":
+      setPending(tool);
+      window.location.assign(loginUrl());
+      return;
+    case "error":
+      // The list never loaded; a click is a request to try again.
+      loading = null;
+      await ensureLoaded();
+      return;
+    case "ready":
+      await setFavorite(tool, !state.tools.has(tool));
+      return;
+    default:
+      // Still loading: the star is disabled, so this is not reachable by click.
+      return;
   }
 }
 
@@ -138,6 +176,7 @@ export function useFavorites() {
     status: state.status,
     has: (tool: string) => state.tools.has(tool),
     tools: state.tools,
+    confirmed: state.confirmed,
     toggle: toggleFavorite,
   };
 }
