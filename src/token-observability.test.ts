@@ -16,10 +16,10 @@ import {
 } from "./token-observability.js";
 
 test("builds history from rotating batches of a larger pool", () => {
-  // 100 tokens checked 45 at a time: every run observes only part of the pool.
+  // Each run observes only part of the pool; later points reuse earlier readings.
   const runs = [
-    { observed_at: "2026-08-27T12:00:00.000Z", token_count: 100 },
-    { observed_at: "2026-08-27T12:15:00.000Z", token_count: 100 },
+    { observed_at: "2026-08-27T12:00:00.000Z", token_count: 2 },
+    { observed_at: "2026-08-27T12:15:00.000Z", token_count: 3 },
   ];
   const observations = [
     observation(1, "2026-08-27T12:00:00.000Z", 5_000, 1),
@@ -67,6 +67,27 @@ test("builds a cumulative pool growth series by join date", () => {
   assert.equal(growth.contributors, 3);
   assert.equal(growth.addedLast7Days, 3);
   assert.equal(growth.addedLast30Days, 3);
+});
+
+test("history skips points that cover only part of the pool", () => {
+  const runs = [
+    { observed_at: "2026-08-27T12:00:00.000Z", token_count: 4 },
+    { observed_at: "2026-08-27T12:15:00.000Z", token_count: 4 },
+  ];
+  const observations = [
+    observation(1, "2026-08-27T12:00:00.000Z", 5_000, 0),
+    observation(2, "2026-08-27T12:00:00.000Z", 5_000, 0),
+    observation(3, "2026-08-27T12:15:00.000Z", 5_000, 0),
+    observation(4, "2026-08-27T12:15:00.000Z", 5_000, 0),
+  ];
+
+  const points = historyPoints(runs, observations);
+
+  // The first run has seen only 2 of 4 tokens; the second has seen all four.
+  assert.deepEqual(
+    points.map((point) => point.observedAt),
+    ["2026-08-27T12:15:00.000Z"],
+  );
 });
 
 test("history points carry an estimated burn per run", () => {

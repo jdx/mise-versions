@@ -6,6 +6,10 @@ import {
 } from "./token-budget.js";
 
 const HISTORY_HOURS = 24;
+// History points are built from the newest reading of every token, so the
+// first points of the window need readings from the rotation before it.
+const HISTORY_LOOKBACK_HOURS = 12;
+const MIN_HISTORY_COVERAGE = 0.9;
 const ALERT_REPEAT_HOURS = 12;
 const MIN_RATE_INTERVAL_HOURS = 10 / 60;
 const MAX_TOKEN_CHECKS_PER_RUN = 45;
@@ -757,6 +761,9 @@ export function historyPoints(
       point.usageCount += observation.usageCount;
     }
     if (point.lendableLimit <= 0) continue;
+    // Skip points that only cover part of the pool: they would plot a partial
+    // sample as if it were the whole pool's headroom.
+    if (covered < run.token_count * MIN_HISTORY_COVERAGE) continue;
     // Scale to the usable share of the whole pool, as the live tile does.
     const poolSize = Math.round(run.token_count * (usable / covered));
     point.burnPerHour = calculateQuotaBurn(
@@ -778,6 +785,8 @@ export async function getTokenObservability(
 
 type TokenObservabilityState = {
   observations: TokenObservation[];
+  // Includes the lookback before the window, for building history points.
+  historyObservations: TokenObservation[];
   latestObservations: TokenObservation[];
   runs: ObservationRunRow[];
   latestAt: string | undefined;
@@ -792,8 +801,14 @@ async function loadTokenObservabilityState(
   const since = new Date(
     now.getTime() - HISTORY_HOURS * 3_600_000,
   ).toISOString();
-  const observations = (await loadObservationRows(env.DB, since)).map(
-    mapObservation,
+  const lookbackSince = new Date(
+    now.getTime() - (HISTORY_HOURS + HISTORY_LOOKBACK_HOURS) * 3_600_000,
+  ).toISOString();
+  const historyObservations = (
+    await loadObservationRows(env.DB, lookbackSince)
+  ).map(mapObservation);
+  const observations = historyObservations.filter(
+    (observation) => observation.observedAt >= since,
   );
   const latestObservations = (await loadLatestObservationRows(env.DB)).map(
     mapObservation,
@@ -803,6 +818,7 @@ async function loadTokenObservabilityState(
   const poolTokens = await loadPoolTokenRows(env.DB, now.toISOString());
   return {
     observations,
+    historyObservations,
     latestObservations,
     runs,
     latestAt,
@@ -817,6 +833,7 @@ function tokenObservabilityData(
 ): TokenObservabilityData {
   const {
     observations,
+    historyObservations,
     latestObservations,
     runs,
     latestAt,
@@ -833,7 +850,7 @@ function tokenObservabilityData(
       currentTokenIds.length,
     ),
     tokens: latest,
-    history: historyPoints(runs, observations),
+    history: historyPoints(runs, historyObservations),
     growth,
     alerting: {
       configured: Boolean(
