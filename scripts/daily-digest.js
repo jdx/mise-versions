@@ -18,8 +18,8 @@ const STAR_MILESTONES = [
   100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000,
 ];
 const MIN_MOVER_DOWNLOADS = 100;
-// Per-tool rows for a day should add up to nearly the day's total. A day well
-// below that lost tool rows to a partial refresh.
+// A day's tool rows must reach this fraction of the typical tool-to-total
+// ratio; below it the day lost tool rows to a partial refresh.
 const MIN_TOOL_COVERAGE = 0.9;
 
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
@@ -114,21 +114,34 @@ export function downloadsSection(rows, day) {
   return { title: "Tool downloads", lines };
 }
 
-// Whether the per-tool rows cover both comparison weeks completely: every day
-// present, and each day's tool rows adding up to nearly that day's total.
+// Whether the per-tool rows cover both comparison weeks completely. Every day
+// needs a daily total, and each day's tool rows should add up to about the same
+// share of it as on a typical day in the window: rows for tools the rollup
+// could not map are skipped, so the share is rarely 100% but is stable, while a
+// partly written day falls well below it. A day with no downloads has no tool
+// rows at all and is complete.
 export function toolCoverage(toolDaily, totals, day) {
   const problems = [];
   const totalByDate = new Map(totals.map((r) => [r.date, r.value]));
   const toolByDate = new Map(toolDaily.map((r) => [r.date, r.value]));
+  const ratios = [];
   for (let i = 0; i < 14; i++) {
     const date = dateStrAgo(day, i);
-    const tools = toolByDate.get(date);
     const total = totalByDate.get(date);
-    if (tools === undefined) problems.push(`${date} missing`);
-    else if (total === undefined) problems.push(`${date} has no daily total`);
-    else if (tools < total * MIN_TOOL_COVERAGE)
+    if (total === undefined) {
+      problems.push(`${date} has no daily total`);
+    } else if (total > 0) {
+      ratios.push({ date, ratio: (toolByDate.get(date) ?? 0) / total });
+    }
+  }
+  const sorted = ratios.map((r) => r.ratio).sort((a, b) => a - b);
+  const typical = sorted.length ? sorted[Math.floor(sorted.length / 2)] : 0;
+  for (const { date, ratio } of ratios) {
+    if (ratio < typical * MIN_TOOL_COVERAGE)
       problems.push(
-        `${date} has ${Math.round((tools / total) * 100)}% of its downloads`,
+        toolByDate.has(date)
+          ? `${date} has a partial set of tool rows`
+          : `${date} is missing tool rows`,
       );
   }
   return { complete: problems.length === 0, problems };

@@ -184,7 +184,7 @@ test("weekly download totals are withheld when a day is missing", () => {
   );
 });
 
-test("tool coverage rejects days whose tool rows fall short of the total", () => {
+test("tool coverage flags a partly written day", () => {
   const totals = dayRows("2026-09-30", 14, 1000);
   assert.equal(
     toolCoverage(dayRows("2026-09-30", 14, 980), totals, "2026-09-30").complete,
@@ -195,7 +195,37 @@ test("tool coverage rejects days whose tool rows fall short of the total", () =>
   );
   const result = toolCoverage(partial, totals, "2026-09-30");
   assert.equal(result.complete, false);
-  assert.deepEqual(result.problems, ["2026-09-28 has 30% of its downloads"]);
+  assert.deepEqual(result.problems, [
+    "2026-09-28 has a partial set of tool rows",
+  ]);
+});
+
+test("tool coverage accepts a stable share of unmapped tools", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  assert.equal(
+    toolCoverage(dayRows("2026-09-30", 14, 700), totals, "2026-09-30").complete,
+    true,
+  );
+});
+
+test("a zero-download day has no tool rows and is still complete", () => {
+  const totals = dayRows("2026-09-30", 14, 1000).map((r) =>
+    r.date === "2026-09-25" ? { ...r, value: 0 } : r,
+  );
+  const tools = dayRows("2026-09-30", 14, 980).filter(
+    (r) => r.date !== "2026-09-25",
+  );
+  assert.equal(toolCoverage(tools, totals, "2026-09-30").complete, true);
+});
+
+test("a day with downloads but no tool rows is flagged", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const tools = dayRows("2026-09-30", 14, 980).filter(
+    (r) => r.date !== "2026-09-25",
+  );
+  assert.deepEqual(toolCoverage(tools, totals, "2026-09-30").problems, [
+    "2026-09-25 is missing tool rows",
+  ]);
 });
 
 test("control characters never reach the subject line", () => {
