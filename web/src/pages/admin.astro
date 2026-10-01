@@ -42,11 +42,16 @@ if (!auth || !isAdmin(auth.username)) {
         </div>
         <div class="flex items-center gap-3">
           <span id="alert-status" class="text-xs text-gray-500">Checking alert setup…</span>
+          <span id="capacity-check-result" role="status" aria-live="polite" class="hidden text-xs"></span>
           <button
             id="check-capacity-btn"
-            class="px-3 py-1.5 bg-neon-purple/10 hover:bg-neon-purple/20 border border-neon-purple/40 rounded-lg text-sm text-neon-purple hover:text-white transition-colors"
+            class="inline-flex items-center gap-2 whitespace-nowrap px-3 py-1.5 bg-neon-purple/10 hover:bg-neon-purple/20 border border-neon-purple/40 rounded-lg text-sm text-neon-purple hover:text-white transition-colors disabled:opacity-60 disabled:cursor-wait"
           >
-            Check now
+            <svg id="check-capacity-spinner" class="hidden animate-spin w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span id="check-capacity-label">Check now</span>
           </button>
         </div>
       </div>
@@ -432,6 +437,7 @@ if (!auth || !isAdmin(auth.username)) {
     content?.classList.toggle('hidden', !hasData);
 
     const status = document.getElementById('capacity-status');
+    status?.removeAttribute('title');
     const statusStyles = {
       healthy: 'bg-green-400/10 text-green-300 border border-green-400/30',
       warning: 'bg-orange-400/10 text-orange-300 border border-orange-400/30',
@@ -517,28 +523,99 @@ if (!auth || !isAdmin(auth.username)) {
     renderQuotaChart(data.history);
   }
 
-  async function loadCapacity(runCheck = false) {
-    const button = document.getElementById('check-capacity-btn') as HTMLButtonElement | null;
-    if (runCheck && button) {
-      button.disabled = true;
-      button.textContent = 'Checking…';
+  const CAPACITY_CHECK_TIMEOUT_MS = 90_000;
+  let capacityResultTimer: number | undefined;
+
+  function showCapacityResult(message: string, tone: 'success' | 'warning' | 'error') {
+    const result = document.getElementById('capacity-check-result');
+    if (!result) return;
+    window.clearTimeout(capacityResultTimer);
+    result.textContent = message;
+    result.className = `text-xs ${tone === 'success' ? 'text-green-400' : tone === 'warning' ? 'text-orange-400' : 'text-red-400'}`;
+    // Warnings and failures stay put until the next check so they can't be missed.
+    if (tone === 'success') {
+      capacityResultTimer = window.setTimeout(() => result.classList.add('hidden'), 8000);
     }
+  }
+
+  function setCapacityChecking(checking: boolean) {
+    const button = document.getElementById('check-capacity-btn') as HTMLButtonElement | null;
+    const label = document.getElementById('check-capacity-label');
+    const spinner = document.getElementById('check-capacity-spinner');
+    if (button) button.disabled = checking;
+    if (label) label.textContent = checking ? 'Checking…' : 'Check now';
+    spinner?.classList.toggle('hidden', !checking);
+    if (checking) {
+      window.clearTimeout(capacityResultTimer);
+      document.getElementById('capacity-check-result')?.classList.add('hidden');
+    }
+  }
+
+  function describeCapacityCheck(summary: CapacityData['summary']): string {
+    if (summary.tokenCount === 0) return 'Checked just now — no pool tokens configured';
+    if (summary.complete) return `Checked just now — all ${summary.tokenCount} tokens`;
+    return `Checked just now — ${summary.checkedTokens} of ${summary.tokenCount} tokens (the rest rotate in on later checks)`;
+  }
+
+  async function capacityErrorMessage(error: unknown, response?: Response): Promise<string> {
+    if (error instanceof DOMException && error.name === 'AbortError') {
+      return `Check timed out after ${CAPACITY_CHECK_TIMEOUT_MS / 1000}s`;
+    }
+    if (response) {
+      // The route answers with {"error": "..."}, auth failures with plain text,
+      // and the platform with HTML or nothing; show only what is readable.
+      let body = (await response.text().catch(() => '')).trim();
+      try {
+        body = String(JSON.parse(body).error ?? body);
+      } catch {
+        // not JSON
+      }
+      const detail = body && !body.startsWith('<') ? `: ${body.slice(0, 200)}` : '';
+      return `Check failed (HTTP ${response.status}${detail})`;
+    }
+    return `Check failed: ${error instanceof Error ? error.message : String(error)}`;
+  }
+
+  async function loadCapacity(runCheck = false) {
+    if (runCheck) setCapacityChecking(true);
+    const controller = new AbortController();
+    const timeout = runCheck ? window.setTimeout(() => controller.abort(), CAPACITY_CHECK_TIMEOUT_MS) : undefined;
+    let failedResponse: Response | undefined;
     try {
-      const response = await fetch('/api/admin/token-observability', { method: runCheck ? 'POST' : 'GET' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      renderCapacity(await response.json());
+      const response = await fetch('/api/admin/token-observability', {
+        method: runCheck ? 'POST' : 'GET',
+        signal: controller.signal,
+      });
+      if (!response.ok) {
+        failedResponse = response;
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data: CapacityData = await response.json();
+      renderCapacity(data);
+      if (runCheck) {
+        const checked = describeCapacityCheck(data.summary);
+        if (data.alerting.error) {
+          showCapacityResult(`${checked}, but the alert email failed: ${data.alerting.error.slice(0, 200)}`, 'warning');
+        } else {
+          showCapacityResult(checked, 'success');
+        }
+      }
     } catch (error) {
-      const status = document.getElementById('capacity-status');
-      if (status) {
-        status.textContent = 'Unavailable';
-        status.className = 'rounded-full px-2.5 py-1 text-xs font-semibold bg-red-400/10 text-red-300 border border-red-400/30';
-      }
       console.error('capacity:', error);
-    } finally {
-      if (runCheck && button) {
-        button.disabled = false;
-        button.textContent = 'Check now';
+      if (runCheck) {
+        // Keep whatever was already on screen; just say the check didn't work.
+        showCapacityResult(await capacityErrorMessage(error, failedResponse), 'error');
+      } else {
+        const status = document.getElementById('capacity-status');
+        if (status) {
+          status.textContent = 'Unavailable';
+          status.className = 'rounded-full px-2.5 py-1 text-xs font-semibold bg-red-400/10 text-red-300 border border-red-400/30';
+          status.title = error instanceof Error ? error.message : String(error);
+        }
       }
+    } finally {
+      window.clearTimeout(timeout);
+      if (runCheck) setCapacityChecking(false);
     }
   }
 
