@@ -141,6 +141,8 @@ function observation(
   observedAt: string,
   remaining: number,
   usageCount: number,
+  // Defaults to a fresh window (reset in an hour), which carries no burn sample.
+  resetAt = new Date(Date.parse(observedAt) + 3_600_000).toISOString(),
 ): TokenObservation {
   return {
     tokenId,
@@ -149,32 +151,121 @@ function observation(
     observedAt,
     remaining,
     limit: 5_000,
-    resetAt: "2026-08-27T13:30:00.000Z",
+    resetAt,
     usageCount,
     available: remaining > 4_000,
     error: null,
   };
 }
 
-test("summarizes total pool burn instead of averaging token rates", () => {
-  const previous = "2026-08-27T12:00:00.000Z";
-  const current = "2026-08-27T13:00:00.000Z";
-  const recent = [
-    observation(1, previous, 4_900, 10),
-    observation(2, previous, 4_700, 20),
-    observation(1, current, 4_800, 12),
-    observation(2, current, 4_600, 23),
+const HALF_SPENT_WINDOW = "2026-08-27T13:30:00.000Z";
+
+test("estimates pool burn from single readings scaled to the pool", () => {
+  const at = "2026-08-27T13:00:00.000Z";
+  // Windows are half over (reset in 30m): token 1 spent 200, token 2 spent 400.
+  const readings = [
+    observation(1, at, 4_800, 10, HALF_SPENT_WINDOW),
+    observation(2, at, 4_600, 20, HALF_SPENT_WINDOW),
   ];
 
-  const summary = summarizeTokenPool(recent.slice(-2), recent);
+  const summary = summarizeTokenPool(readings, readings, at, 2);
 
-  assert.equal(summary.level, "healthy");
-  assert.equal(summary.quotaBurnPerHour, 200);
-  assert.equal(summary.checkoutRatePerHour, 5);
-  assert.equal(summary.hoursToReserve, 7);
+  // 200/0.5h + 400/0.5h
+  assert.equal(summary.quotaBurnPerHour, 1_200);
 });
 
-test("ignores short manual-check gaps when calculating burn", () => {
+test("scales sampled burn up to tokens that were not in the sample", () => {
+  const at = "2026-08-27T13:00:00.000Z";
+  const readings = Array.from({ length: 4 }, (_, index) =>
+    observation(index + 1, at, 4_900, 0, HALF_SPENT_WINDOW),
+  );
+
+  // One reading per token, 100 spent over half an hour each.
+  assert.equal(
+    summarizeTokenPool(readings, readings, at, 4).quotaBurnPerHour,
+    800,
+  );
+});
+
+test("counts idle tokens as an hour without spend", () => {
+  const at = "2026-08-27T13:00:00.000Z";
+  const idle = (id: number) =>
+    observation(id, at, 5_000, 0, "2026-08-27T14:00:00.000Z");
+  const busy = observation(3, at, 4_000, 0, "2026-08-27T13:30:00.000Z");
+  const readings = [idle(1), idle(2), busy];
+
+  const summary = summarizeTokenPool(readings, readings, at, 3);
+
+  // 1000 spent over 0.5h + two idle hours = 2.5 exposure hours, times 3 tokens.
+  assert.equal(summary.quotaBurnPerHour, 1_200);
+  assert.equal(
+    summarizeTokenPool([idle(1)], [idle(1)], at, 1).quotaBurnPerHour,
+    0,
+  );
+});
+
+test("keeps burn in a learning state without usable window data", () => {
+  const at = "2026-08-27T13:00:00.000Z";
+  const reading = { ...observation(1, at, 4_800, 1), resetAt: null };
+
+  const summary = summarizeTokenPool([reading], [reading], at, 1);
+
+  assert.equal(summary.quotaBurnPerHour, null);
+  assert.equal(summary.hoursToReserve, null);
+});
+
+test("ignores readings older than the burn sample and deleted tokens", () => {
+  const stale = "2026-08-27T08:00:00.000Z";
+  const at = "2026-08-27T13:00:00.000Z";
+  const current = observation(1, at, 4_800, 12, HALF_SPENT_WINDOW);
+  const recent = [
+    // Spent a lot, but five hours ago.
+    observation(1, stale, 1_000, 10, "2026-08-27T08:30:00.000Z"),
+    // Deleted token.
+    observation(2, at, 1_000, 30),
+    current,
+  ];
+
+  const summary = summarizeTokenPool([current], recent, at, 1);
+
+  assert.equal(summary.quotaBurnPerHour, 400);
+});
+
+test("derives hours to reserve from the estimated burn", () => {
+  const at = "2026-08-27T13:00:00.000Z";
+  const readings = [
+    observation(1, at, 4_800, 0, HALF_SPENT_WINDOW),
+    observation(2, at, 4_800, 0, HALF_SPENT_WINDOW),
+  ];
+
+  const summary = summarizeTokenPool(readings, readings, at, 2);
+
+  // 800 requests/h across the pool, 1600 above the floor.
+  assert.equal(summary.quotaBurnPerHour, 800);
+  assert.equal(summary.hoursToReserve, 2);
+  assert.equal(summary.level, "critical");
+});
+
+test("measures checkout rate across a full rotation gap", () => {
+  // A pool of 1248 tokens is only observed once every ~7 hours.
+  const ids = Array.from({ length: 1_248 }, (_, index) => index + 1);
+  const earlier = ids.map((id) =>
+    observation(id, "2026-08-27T06:00:00.000Z", 5_000, 100),
+  );
+  const latest = ids.map((id) =>
+    observation(id, "2026-08-27T13:00:00.000Z", 5_000, 170),
+  );
+
+  const summary = summarizeTokenPool(
+    latest,
+    [...earlier, ...latest],
+    "2026-08-27T13:00:00.000Z",
+  );
+
+  assert.equal(summary.checkoutRatePerHour, 12_480);
+});
+
+test("ignores short manual-check gaps when calculating checkouts", () => {
   const previous = "2026-08-27T12:00:00.000Z";
   const current = "2026-08-27T12:01:00.000Z";
   const recent = [
@@ -187,9 +278,7 @@ test("ignores short manual-check gaps when calculating burn", () => {
   const summary = summarizeTokenPool(recent.slice(-2), recent);
 
   assert.equal(summary.level, "healthy");
-  assert.equal(summary.quotaBurnPerHour, null);
   assert.equal(summary.checkoutRatePerHour, null);
-  assert.equal(summary.hoursToReserve, null);
 });
 
 test("bridges manual checks when a full rate interval is available", () => {
@@ -201,25 +290,7 @@ test("bridges manual checks when a full rate interval is available", () => {
 
   const summary = summarizeTokenPool(recent.slice(-1), recent);
 
-  assert.equal(summary.quotaBurnPerHour, 600);
   assert.equal(summary.checkoutRatePerHour, 12);
-});
-
-test("excludes deleted tokens from current burn rates", () => {
-  const previous = "2026-08-27T12:00:00.000Z";
-  const current = "2026-08-27T13:00:00.000Z";
-  const currentToken = observation(1, current, 4_800, 12);
-  const recent = [
-    observation(1, previous, 4_900, 10),
-    observation(2, previous, 4_950, 20),
-    currentToken,
-    observation(2, current, 4_500, 30),
-  ];
-
-  const summary = summarizeTokenPool([currentToken], recent);
-
-  assert.equal(summary.quotaBurnPerHour, 100);
-  assert.equal(summary.checkoutRatePerHour, 2);
 });
 
 test("marks a bounded observation as incomplete without a false critical", () => {
