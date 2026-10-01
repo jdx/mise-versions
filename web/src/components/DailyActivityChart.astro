@@ -50,6 +50,7 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
         <g class="pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"><rect x={tooltipX} y="8" width="200" height="24" rx="4" fill="var(--surface-raised)"/><text x={tooltipX+100} y="24" text-anchor="middle">{p.date.slice(5)} · {formatCompact(p.value!)} · avg {avg==null?'—':formatCompact(avg)}</text></g>
       </g>;
     })}
+    <path d={path} fill="none" stroke="var(--data)" stroke-width="2.5" stroke-linejoin="round"/>
     {chartReached.map(m=>{
       const avg = m.value;
       const px = x(m.date);
@@ -59,7 +60,6 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
         <text x={px<110?px+8:px-8} y={y(avg)+4} text-anchor={px<110?'start':'end'} class="download-reached-label">{m.levels.map(milestoneLabel).join(' · ')}</text>
       </g>;
     })}
-    <path d={path} fill="none" stroke="var(--data)" stroke-width="2.5" stroke-linejoin="round"/>
     {projected && latest.value!==null && <>
       <line x1={x(latest.date)} x2={x(forecast.hitDate)} y1={y(latest.value)} y2={y(forecast.target)} stroke="var(--forecast)" stroke-width="2" stroke-dasharray="5 4"/>
       <circle cx={x(forecast.hitDate)} cy={y(forecast.target)} r="4" fill="var(--forecast)"/>
