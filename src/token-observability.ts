@@ -90,7 +90,7 @@ type ObservationRow = {
   error: string | null;
 };
 
-type ObservationRunRow = {
+export type ObservationRunRow = {
   observed_at: string;
   token_count: number;
 };
@@ -559,44 +559,47 @@ function selectAlertObservations(
   );
 }
 
-function historyPoints(
+// Each run only checks one rotating batch of the pool, so a point is built from
+// the newest observation of every token seen within one full rotation (rather
+// than from that run's batch alone).
+export function historyPoints(
   runs: ObservationRunRow[],
   observations: TokenObservation[],
 ): TokenHistoryPoint[] {
-  const observationCounts = new Map<string, number>();
-  for (const observation of observations) {
-    observationCounts.set(
-      observation.observedAt,
-      (observationCounts.get(observation.observedAt) ?? 0) + 1,
-    );
-  }
-  const points = new Map<string, TokenHistoryPoint>(
-    runs
-      .filter(
-        (run) =>
-          (observationCounts.get(run.observed_at) ?? 0) === run.token_count,
-      )
-      .map((run) => [
-        run.observed_at,
-        {
-          observedAt: run.observed_at,
-          remaining: 0,
-          limit: 0,
-          availableTokens: 0,
-          usageCount: 0,
-        },
-      ]),
+  const sorted = [...observations].sort((a, b) =>
+    a.observedAt.localeCompare(b.observedAt),
   );
-  for (const observation of observations) {
-    const point = points.get(observation.observedAt);
-    if (!point) continue;
-    point.remaining += observation.remaining ?? 0;
-    point.limit += observation.limit ?? 0;
-    point.availableTokens += observation.available ? 1 : 0;
-    point.usageCount += observation.usageCount;
-    points.set(observation.observedAt, point);
+  const latest = new Map<number, TokenObservation>();
+  const points: TokenHistoryPoint[] = [];
+  let next = 0;
+  for (const run of runs) {
+    while (next < sorted.length && sorted[next].observedAt <= run.observed_at) {
+      latest.set(sorted[next].tokenId, sorted[next]);
+      next++;
+    }
+    const batchCount = Math.max(
+      1,
+      Math.ceil(run.token_count / MAX_TOKEN_CHECKS_PER_RUN),
+    );
+    const cutoff =
+      Date.parse(run.observed_at) - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
+    const point: TokenHistoryPoint = {
+      observedAt: run.observed_at,
+      remaining: 0,
+      limit: 0,
+      availableTokens: 0,
+      usageCount: 0,
+    };
+    for (const observation of latest.values()) {
+      if (Date.parse(observation.observedAt) < cutoff) continue;
+      point.remaining += observation.remaining ?? 0;
+      point.limit += observation.limit ?? 0;
+      point.availableTokens += observation.available ? 1 : 0;
+      point.usageCount += observation.usageCount;
+    }
+    if (point.limit > 0) points.push(point);
   }
-  return [...points.values()];
+  return points;
 }
 
 export async function getTokenObservability(

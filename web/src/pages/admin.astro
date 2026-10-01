@@ -560,8 +560,9 @@ if (!auth || !isAdmin(auth.username)) {
     setMetric('metric-burn', summary.quotaBurnPerHour === null ? 'Learning' : `${formatCompact(summary.quotaBurnPerHour)}/h`);
     const checkouts = document.getElementById('metric-checkouts');
     if (checkouts) {
+      const burnPercent = summary.limit > 0 ? (summary.quotaBurnPerHour ?? 0) / summary.limit * 100 : 0;
       const burnShare = summary.quotaBurnPerHour !== null && summary.limit > 0
-        ? `${(summary.quotaBurnPerHour / summary.limit * 100).toFixed(1)}% of the pool's ${formatCompact(summary.limit)}/h`
+        ? `${burnPercent < 0.1 ? '<0.1' : burnPercent.toFixed(1)}% of the pool's ${formatCompact(summary.limit)}/h`
         : null;
       const handouts = summary.checkoutRatePerHour === null ? null : `${formatCompact(summary.checkoutRatePerHour)} tokens handed out/h`;
       checkouts.textContent = [burnShare, handouts].filter(Boolean).join(' · ') || 'needs two snapshots';

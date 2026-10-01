@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   getAlertDecision,
+  historyPoints,
   observeTokenPool,
   selectCurrentObservations,
   selectTokenBatch,
@@ -12,6 +13,30 @@ import {
   type AlertState,
   type TokenObservation,
 } from "./token-observability.js";
+
+test("builds history from rotating batches of a larger pool", () => {
+  // 100 tokens checked 45 at a time: every run observes only part of the pool.
+  const runs = [
+    { observed_at: "2026-08-27T12:00:00.000Z", token_count: 100 },
+    { observed_at: "2026-08-27T12:15:00.000Z", token_count: 100 },
+  ];
+  const observations = [
+    observation(1, "2026-08-27T12:00:00.000Z", 5_000, 1),
+    observation(2, "2026-08-27T12:00:00.000Z", 4_000, 1),
+    observation(3, "2026-08-27T12:15:00.000Z", 3_000, 1),
+    observation(2, "2026-08-27T12:15:00.000Z", 5_000, 2),
+  ];
+
+  const points = historyPoints(runs, observations);
+
+  assert.equal(points.length, 2);
+  assert.equal(points[0].remaining, 9_000);
+  assert.equal(points[0].limit, 10_000);
+  // Token 1 carries over from the previous run; token 2 is replaced by its newer reading.
+  assert.equal(points[1].remaining, 13_000);
+  assert.equal(points[1].limit, 15_000);
+  assert.deepEqual(historyPoints(runs, []), []);
+});
 
 test("rotates bounded token batches between observation intervals", () => {
   const tokens = [1, 2, 3, 4, 5];
