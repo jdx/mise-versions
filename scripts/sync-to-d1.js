@@ -8,7 +8,7 @@
  * Usage: node sync-to-d1.js
  *
  * Environment variables:
- *   SYNC_API_URL - Base URL of the API (e.g., https://mise-tools.jdx.dev)
+ *   SYNC_API_URL - Base URL of the API (e.g., https://mise-versions.jdx.dev)
  *   API_SECRET   - API secret for authentication
  */
 

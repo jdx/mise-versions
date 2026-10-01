@@ -74,14 +74,14 @@ if (!auth || !isAdmin(auth.username)) {
               <div id="metric-remaining-detail" class="text-xs text-gray-500 mt-1">across the pool</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
-              <div class="text-xs uppercase tracking-wide text-gray-500">Quota burn</div>
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="GitHub API requests actually spent per hour, summed across every token in the pool">API requests / hour</div>
               <div id="metric-burn" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
               <div id="metric-checkouts" class="text-xs text-gray-500 mt-1">collecting a trend</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
-              <div class="text-xs uppercase tracking-wide text-gray-500">Time to reserve</div>
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="How long the pool could keep spending at the current rate before its tokens hit the 4k-request floor. Quotas refill every hour, so anything above a few hours means usage is sustainable.">Hours until floor</div>
               <div id="metric-runway" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
-              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before the 4k/token floor</div>
+              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before tokens hit the 4k floor</div>
             </div>
           </div>
 
@@ -92,19 +92,19 @@ if (!auth || !isAdmin(auth.username)) {
               <div class="flex items-start justify-between gap-3 mb-4">
                 <div>
                   <h3 class="text-sm font-medium text-gray-200">Pool headroom</h3>
-                  <p class="text-xs text-gray-500 mt-1">Percent of GitHub core quota remaining · last 24 hours</p>
+                  <p id="chart-subtitle" class="text-xs text-gray-500 mt-1">Percent of GitHub core quota remaining · last 24 hours</p>
                 </div>
                 <span id="chart-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
               </div>
               <div class="relative h-52">
                 <div class="absolute inset-y-0 left-0 flex flex-col justify-between text-[10px] text-gray-600 pb-5">
-                  <span>100%</span><span>50%</span><span>0%</span>
+                  <span id="axis-top">100%</span><span id="axis-mid">50%</span><span id="axis-bottom">0%</span>
                 </div>
                 <svg id="quota-chart" class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="GitHub quota remaining over the last 24 hours">
                   <line x1="0" y1="10" x2="720" y2="10" stroke="#27272f" />
                   <line x1="0" y1="95" x2="720" y2="95" stroke="#27272f" />
                   <line x1="0" y1="180" x2="720" y2="180" stroke="#27272f" />
-                  <line x1="0" y1="154.5" x2="720" y2="154.5" stroke="#fb923c" stroke-dasharray="5 5" opacity=".45" />
+                  <line id="quota-floor" x1="0" y1="154.5" x2="720" y2="154.5" stroke="#fb923c" stroke-dasharray="5 5" opacity=".45" />
                   <path id="quota-area" fill="url(#quota-fill)" d=""></path>
                   <polyline id="quota-line" fill="none" stroke="#22d3ee" stroke-width="3" vector-effect="non-scaling-stroke" points=""></polyline>
                   <defs>
@@ -477,10 +477,29 @@ if (!auth || !isAdmin(auth.username)) {
     const width = 720;
     const top = 10;
     const bottom = 180;
-    const coordinates = points.map((point, index) => {
+    const percents = points.map((point) => Math.max(0, Math.min(100, point.remaining / point.limit * 100)));
+    // The pool usually sits near 100%, so zoom the axis to the data instead of a fixed 0-100%.
+    const dip = 100 - Math.min(...percents);
+    const span = [2, 5, 10, 25, 50, 100].find((step) => step >= dip * 1.2) ?? 100;
+    const axisMin = 100 - span;
+    const label = (value: number) => `${Number.isInteger(value) ? value : value.toFixed(1)}%`;
+    document.getElementById('axis-top')!.textContent = '100%';
+    document.getElementById('axis-mid')!.textContent = label(100 - span / 2);
+    document.getElementById('axis-bottom')!.textContent = label(axisMin);
+    const subtitle = document.getElementById('chart-subtitle');
+    if (subtitle) {
+      subtitle.textContent = span === 100
+        ? 'Percent of GitHub core quota remaining · last 24 hours'
+        : `Percent of GitHub core quota remaining · last 24 hours · axis zoomed to ${axisMin}–100%`;
+    }
+    const floor = document.getElementById('quota-floor');
+    if (floor) {
+      // The dashed line marks the 15% "critical" threshold; only draw it when it is on the axis.
+      floor.style.display = axisMin <= 15 ? '' : 'none';
+    }
+    const coordinates = percents.map((percent, index) => {
       const x = points.length === 1 ? width / 2 : (index / (points.length - 1)) * width;
-      const percent = Math.max(0, Math.min(100, point.remaining / point.limit * 100));
-      const y = bottom - (percent / 100) * (bottom - top);
+      const y = bottom - ((percent - axisMin) / span) * (bottom - top);
       return { x, y };
     });
     const pointList = coordinates.map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
@@ -540,10 +559,25 @@ if (!auth || !isAdmin(auth.username)) {
     }
     setMetric('metric-burn', summary.quotaBurnPerHour === null ? 'Learning' : `${formatCompact(summary.quotaBurnPerHour)}/h`);
     const checkouts = document.getElementById('metric-checkouts');
-    if (checkouts) checkouts.textContent = summary.checkoutRatePerHour === null ? 'needs two snapshots' : `${formatCompact(summary.checkoutRatePerHour)} token checkouts/hour`;
-    setMetric('metric-runway', summary.hoursToReserve === null ? 'Stable' : `${summary.hoursToReserve}h`, summary.hoursToReserve !== null && summary.hoursToReserve <= 6 ? metricTone : 'text-gray-100');
+    if (checkouts) {
+      const burnShare = summary.quotaBurnPerHour !== null && summary.limit > 0
+        ? `${(summary.quotaBurnPerHour / summary.limit * 100).toFixed(1)}% of the pool's ${formatCompact(summary.limit)}/h`
+        : null;
+      const handouts = summary.checkoutRatePerHour === null ? null : `${formatCompact(summary.checkoutRatePerHour)} tokens handed out/h`;
+      checkouts.textContent = [burnShare, handouts].filter(Boolean).join(' · ') || 'needs two snapshots';
+    }
+    // Quotas refill hourly, so a runway beyond a day just means "sustainable".
+    const runway = summary.hoursToReserve;
+    setMetric(
+      'metric-runway',
+      runway === null || runway > 24 ? '24h+' : `${runway}h`,
+      runway !== null && runway <= 6 ? metricTone : 'text-gray-100',
+    );
     const reset = document.getElementById('metric-reset');
-    if (reset) reset.textContent = summary.nextResetAt ? `next quota reset ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'before the 4k/token floor';
+    if (reset) {
+      const refill = summary.nextResetAt ? ` · next refill ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : '';
+      reset.textContent = `at this rate, until tokens hit the 4k floor${refill}`;
+    }
 
     const reasons = document.getElementById('capacity-reasons');
     if (reasons) {

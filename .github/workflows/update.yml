@@ -19,7 +19,7 @@ permissions:
 env:
   GITHUB_API_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
   GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
-  TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
+  TOKEN_MANAGER_URL: https://mise-versions.jdx.dev
   TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
   DRY_RUN: 0
   # Disable mise's versions host: this workflow IS what populates it, so
@@ -53,12 +53,12 @@ jobs:
       - name: Sync tools to D1
         run: node scripts/sync-to-d1.js
         env:
-          SYNC_API_URL: https://mise-tools.jdx.dev
+          SYNC_API_URL: https://mise-versions.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
       - name: Sync versions to D1
         run: node scripts/sync-versions-to-d1.js
         env:
-          SYNC_API_URL: https://mise-tools.jdx.dev
+          SYNC_API_URL: https://mise-versions.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
           FULL_SYNC: ${{ inputs.full_sync || 'false' }}
       - name: Push committed versions

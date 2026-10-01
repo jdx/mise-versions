@@ -47,7 +47,7 @@ export function BadgeModal({ tool, onClose }: BadgeModalProps) {
     };
   }, []);
 
-  const baseUrl = "https://mise-tools.jdx.dev";
+  const baseUrl = "https://mise-versions.jdx.dev";
   const toolUrl = `${baseUrl}/tools/${tool}`;
 
   const badges = [

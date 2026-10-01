@@ -1,6 +1,6 @@
 // Retry wrapper for sync API calls.
 // Retries on network errors, 5xx, and 404 (worker cold-start / deploy races
-// against mise-tools.jdx.dev have been observed returning 404 intermittently).
+// against mise-versions.jdx.dev have been observed returning 404 intermittently).
 // Other 4xx responses are treated as fatal since retrying won't help.
 export async function fetchWithRetry(
   url,
