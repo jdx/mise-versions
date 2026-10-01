@@ -152,6 +152,9 @@ export async function toggleFavorite(tool: string): Promise<void> {
       await ensureLoaded();
       return;
     case "ready":
+      // Clicking the star for a favorite that is still waiting to be saved
+      // after sign-in replaces that intent, so it is not replayed later.
+      if (peekPending() === tool) setPending(null);
       await setFavorite(tool, !state.tools.has(tool));
       return;
     default:

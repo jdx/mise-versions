@@ -28,6 +28,9 @@ function cleanBackend(backend: string): string {
 export function FavoritesList() {
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
+  // True when a refetch failed while a list was already showing.
+  const [outdated, setOutdated] = useState(false);
+  const showingList = useRef(false);
   const favorites = useFavorites();
 
   useEffect(() => {
@@ -45,14 +48,15 @@ export function FavoritesList() {
         const tools = [...data.tools].sort((a, b) =>
           (b.last_updated ?? "").localeCompare(a.last_updated ?? ""),
         );
+        showingList.current = true;
         setState({ status: "ready", tools });
+        setOutdated(false);
       })
       .catch(() => {
         // A failed refetch must not replace a list that is already showing.
         if (!controller.signal.aborted) {
-          setState((current) =>
-            current.status === "ready" ? current : { status: "error" },
-          );
+          if (showingList.current) setOutdated(true);
+          else setState({ status: "error" });
         }
       });
     return () => controller.abort();
@@ -108,41 +112,53 @@ export function FavoritesList() {
   }
 
   return (
-    <ul class="watchlist">
-      {state.tools.map((tool) => (
-        <li
-          key={tool.name}
-          class={`watchlist-item${favorites.has(tool.name) ? "" : " watchlist-item-removed"}`}
-        >
-          <FavoriteButton tool={tool.name} />
-          <div class="watchlist-main">
-            <a class="watchlist-name" href={`/tools/${tool.name}`}>
-              {tool.name}
-            </a>
-            {tool.description && (
-              <p class="watchlist-description">{tool.description}</p>
-            )}
-            <p class="watchlist-meta">
-              {tool.backend && <span>{cleanBackend(tool.backend)}</span>}
-              <span>{tool.downloads_30d.toLocaleString()} downloads / 30d</span>
-            </p>
-          </div>
-          <div class="watchlist-version">
-            <span class="watchlist-version-number">{tool.latest_version}</span>
-            {tool.latest_stable_version &&
-              tool.latest_stable_version !== tool.latest_version && (
+    <>
+      {outdated && (
+        <div class="inline-notice" role="alert">
+          Your latest changes could not be loaded.
+          <button onClick={() => setAttempt((n) => n + 1)}>Try again</button>
+        </div>
+      )}
+      <ul class="watchlist">
+        {state.tools.map((tool) => (
+          <li
+            key={tool.name}
+            class={`watchlist-item${favorites.has(tool.name) ? "" : " watchlist-item-removed"}`}
+          >
+            <FavoriteButton tool={tool.name} />
+            <div class="watchlist-main">
+              <a class="watchlist-name" href={`/tools/${tool.name}`}>
+                {tool.name}
+              </a>
+              {tool.description && (
+                <p class="watchlist-description">{tool.description}</p>
+              )}
+              <p class="watchlist-meta">
+                {tool.backend && <span>{cleanBackend(tool.backend)}</span>}
+                <span>
+                  {tool.downloads_30d.toLocaleString()} downloads / 30d
+                </span>
+              </p>
+            </div>
+            <div class="watchlist-version">
+              <span class="watchlist-version-number">
+                {tool.latest_version}
+              </span>
+              {tool.latest_stable_version &&
+                tool.latest_stable_version !== tool.latest_version && (
+                  <span class="watchlist-version-age">
+                    stable {tool.latest_stable_version}
+                  </span>
+                )}
+              {tool.last_updated && (
                 <span class="watchlist-version-age">
-                  stable {tool.latest_stable_version}
+                  {formatRelativeTime(tool.last_updated)}
                 </span>
               )}
-            {tool.last_updated && (
-              <span class="watchlist-version-age">
-                {formatRelativeTime(tool.last_updated)}
-              </span>
-            )}
-          </div>
-        </li>
-      ))}
-    </ul>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

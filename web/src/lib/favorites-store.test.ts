@@ -128,3 +128,35 @@ test("a pending favorite survives a failed save for the next visit", async () =>
   assert.ok(!store.favoritesSnapshot().tools.has("go"));
   assert.equal(session.get("mise-pending-favorite"), "go");
 });
+
+test("removing a favorite whose post-sign-in save failed does not bring it back", async () => {
+  const store = await freshStore();
+  session.set("mise-pending-favorite", "go");
+
+  // Hold the first save open so the visitor can click while it is in flight.
+  let failFirstSave!: () => void;
+  const firstSave = new Promise<void>((resolve) => (failFirstSave = resolve));
+  let puts = 0;
+  const gated = globalThis.fetch;
+  Object.assign(globalThis, {
+    fetch: async (url: string, init?: RequestInit) => {
+      if (init?.method === "PUT" && puts++ === 0) {
+        await firstSave;
+        return json({ error: "x" }, 500);
+      }
+      return gated(url, init);
+    },
+  });
+  handler = (method) =>
+    method === "GET" ? json({ favorites: [] }) : json({ ok: true });
+
+  const loaded = store.ensureLoaded();
+  while (!store.favoritesSnapshot().tools.has("go")) {
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+  const removal = store.toggleFavorite("go"); // un-star while the save is pending
+  failFirstSave();
+  await Promise.all([loaded, removal]);
+  assert.equal(session.has("mise-pending-favorite"), false);
+  assert.ok(!store.favoritesSnapshot().tools.has("go"));
+});
