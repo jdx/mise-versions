@@ -579,7 +579,17 @@ if (!auth || !isAdmin(auth.username)) {
   // Reads race with "Check now" (initial load, Refresh All, scheduled snapshots),
   // so order them by the snapshot they carry rather than by when they finished:
   // a read is dropped only if it is older than what is already on screen.
+  const CAPACITY_HISTORY_WINDOW_MS = 24 * 3_600_000; // the API's HISTORY_HOURS
   let capacityDisplayedAt: string | null = null;
+
+  function isOlderCapacityRead(observedAt: string | null): boolean {
+    if (!capacityDisplayedAt) return false;
+    if (observedAt) return observedAt < capacityDisplayedAt;
+    // No snapshot at all: either the displayed one has aged out of the API's
+    // window (show "No data"), or the read started before the first-ever check
+    // wrote anything (stale, drop it).
+    return Date.now() - Date.parse(capacityDisplayedAt) < CAPACITY_HISTORY_WINDOW_MS;
+  }
 
   async function loadCapacity(runCheck = false) {
     if (runCheck) setCapacityChecking(true);
@@ -597,9 +607,9 @@ if (!auth || !isAdmin(auth.username)) {
       }
       const data: CapacityData = await response.json();
       const observedAt = data.summary.observedAt;
-      if (!runCheck && capacityDisplayedAt && (!observedAt || observedAt < capacityDisplayedAt)) return;
+      if (!runCheck && isOlderCapacityRead(observedAt)) return;
       renderCapacity(data);
-      if (observedAt) capacityDisplayedAt = observedAt;
+      capacityDisplayedAt = observedAt;
       if (runCheck) {
         const checked = describeCapacityCheck(data.summary);
         if (data.alerting.error) {
@@ -613,6 +623,11 @@ if (!auth || !isAdmin(auth.username)) {
       if (runCheck) {
         // Keep whatever was already on screen; just say the check didn't work.
         showCapacityResult(await capacityErrorMessage(error, failedResponse), 'error');
+      } else if (capacityDisplayedAt) {
+        // A snapshot is still on screen (possibly fresh from a check), so leave
+        // its status alone and just flag that the refresh didn't land.
+        const updated = document.getElementById('capacity-updated');
+        if (updated && !updated.textContent?.includes('refresh failed')) updated.textContent += ' · refresh failed';
       } else {
         const status = document.getElementById('capacity-status');
         if (status) {
