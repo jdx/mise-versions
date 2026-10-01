@@ -382,12 +382,22 @@ function calculateQuotaBurn(
     ...readings.map((observation) => Date.parse(observation.observedAt)),
   );
   const cutoff = newest - BURN_SAMPLE_HOURS * MS_PER_HOUR;
+  // Readings of a token in the same window are cumulative, so repeated ones
+  // (small pools are re-read every run) would count the same requests again.
+  // Use only the newest reading of each token.
+  const newestByToken = new Map<number, TokenObservation>();
+  for (const reading of readings) {
+    if (Date.parse(reading.observedAt) < cutoff) continue;
+    const seen = newestByToken.get(reading.tokenId);
+    if (!seen || reading.observedAt > seen.observedAt) {
+      newestByToken.set(reading.tokenId, reading);
+    }
+  }
   let spent = 0;
   let exposureHours = 0;
   const sampledTokens = new Set<number>();
-  for (const reading of readings) {
+  for (const reading of newestByToken.values()) {
     const observedAt = Date.parse(reading.observedAt);
-    if (observedAt < cutoff) continue;
     const hoursToReset =
       (Date.parse(reading.resetAt as string) - observedAt) / MS_PER_HOUR;
     if (hoursToReset < 0 || hoursToReset > QUOTA_WINDOW_HOURS * 1.01) continue;

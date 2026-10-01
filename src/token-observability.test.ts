@@ -252,6 +252,24 @@ test("scales sampled burn up to tokens that were not in the sample", () => {
   );
 });
 
+test("does not count repeated readings of one window again", () => {
+  const window = "2026-08-27T13:00:00.000Z";
+  // A burst of 1000 requests early in the window, re-read every 15 minutes.
+  const readings = ["12:15", "12:30", "12:45"].map((time) =>
+    observation(1, `2026-08-27T${time}:00.000Z`, 4_000, 0, window),
+  );
+
+  const summary = summarizeTokenPool(
+    readings.slice(-1),
+    readings,
+    "2026-08-27T12:45:00.000Z",
+    1,
+  );
+
+  // Newest reading only: 1000 requests over the 0.75h since the window began.
+  assert.equal(Math.round(summary.quotaBurnPerHour ?? 0), 1_333);
+});
+
 test("counts idle tokens as an hour without spend", () => {
   const at = "2026-08-27T13:00:00.000Z";
   const idle = (id: number) =>
