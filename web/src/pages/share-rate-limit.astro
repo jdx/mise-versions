@@ -40,7 +40,7 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
   <article class="explainer">
     <div class="page-heading">
       <h1>Share your GitHub rate limit</h1>
-      <p>mise versions is kept up to date by a job that asks GitHub about every tool, all day. GitHub limits how many questions one account can ask per hour, so we borrow a little headroom from people who are happy to lend it.</p>
+      <p>When mise installs a tool, it often has to ask GitHub for that project's releases and checksums. Without a token GitHub allows only 60 of those requests an hour, which a busy laptop or a shared CI machine can burn through quickly. mise versions answers those questions for everyone instead, so mise users don't have to hit the GitHub API themselves. To do that we need GitHub tokens of our own, and we borrow a little headroom from people who are happy to lend it.</p>
       {auth && sharing ? (
         <p class="explainer-thanks">Thanks, <strong>{auth.username}</strong>.{mine && mine.lookups > 0 ? <> Your token has helped with <strong>{mine.lookups.toLocaleString()}</strong> version lookups so far.</> : <> Your token will start showing up here once our servers borrow it.</>}</p>
       ) : (
@@ -53,8 +53,9 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
 
     <section aria-labelledby="why">
       <h2 id="why">Why we need it</h2>
-      <p>To list versions, <code>mise ls-remote</code> reads releases and tags from the GitHub API for most of the {toolCount ? toolCount.toLocaleString() : 'hundreds of'} tools we track, about every 30 minutes. Without a token GitHub allows <strong>{UNAUTHENTICATED_HOURLY_LIMIT} requests per hour</strong>; with one it allows <strong>{GITHUB_HOURLY_LIMIT.toLocaleString()}</strong>.</p>
-      <p>One account can't keep up with that. Without other people's tokens, updates would stall. Spreading the work across a pool is what keeps us well clear of the limits, and it keeps each person's share small enough that you won't notice it. It also means one revoked or busy token doesn't hold up updates for everyone else.</p>
+      <p>mise's <code>aqua</code>, <code>github</code> and <code>packslip</code> backends install tools straight from GitHub releases. Rather than every mise user calling the GitHub API directly, they ask mise versions, which makes the call once with a pooled token, caches the answer and serves it to everyone. That's what keeps all of mise's users clear of GitHub's rate limits. Anonymous requests get <strong>{UNAUTHENTICATED_HOURLY_LIMIT} per hour</strong>; a token gets <strong>{GITHUB_HOURLY_LIMIT.toLocaleString()}</strong>.</p>
+      <p>The same pool refreshes this site's version lists (<code>mise ls-remote</code> for the {toolCount ? toolCount.toLocaleString() : 'hundreds of'} tools we track, about every 30 minutes) and runs mise's end-to-end tests.</p>
+      <p>One account can't keep up with all of that. Without other people's tokens, lookups would stall for everyone. Spreading the work across a pool keeps us well clear of the limits and keeps each person's share small enough that you won't notice it. It also means one revoked or busy token doesn't hold things up for anyone else.</p>
     </section>
 
     <section aria-labelledby="numbers">
@@ -73,7 +74,7 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
       <ol>
         <li><strong>You click “Sign in with GitHub.”</strong> GitHub shows its standard authorization screen. We never see your password.</li>
         <li><strong>GitHub gives us an OAuth token.</strong> We store it, with your username, in our database, along with a few timestamps and a usage counter.</li>
-        <li><strong>Our servers borrow it.</strong> Before each lookup we pick the least recently used token, so the load rotates evenly across everyone. The borrowers are the job that refreshes version lists, the site's GitHub release mirror that mise uses to look up releases and checksums, and mise's own end-to-end tests.</li>
+        <li><strong>Our servers borrow it.</strong> Before each lookup we pick the least recently used token, so the load rotates evenly across everyone. The borrowers are the GitHub mirror that mise uses (releases, checksums and attestations for the <code>aqua</code>, <code>github</code> and <code>packslip</code> backends), the job that refreshes version lists, and mise's own end-to-end tests.</li>
         <li><strong>It's used to read public data.</strong> The calls list releases and tags, and fetch release and attestation details, on public repositories. In the update job the token is masked in the logs.</li>
         <li><strong>We leave you plenty.</strong> If your token has {MIN_REMAINING.toLocaleString()} or fewer of its {GITHUB_HOURLY_LIMIT.toLocaleString()} hourly requests left, we don't touch it until GitHub resets the hour. That holds no matter who used them up, whether it was us, you, or another app on your account. In practice we use far less than the difference. The one exception is a genuine emergency, when every token in the pool is that low and updates would otherwise stall. Then we may borrow from one that still has more than {EMERGENCY_MIN_REMAINING.toLocaleString()} left, and the maintainer gets an alert so it gets sorted out.</li>
       </ol>
