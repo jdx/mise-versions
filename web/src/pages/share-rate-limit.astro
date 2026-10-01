@@ -41,7 +41,7 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
       <h1>Share your GitHub rate limit</h1>
       <p>mise versions is kept up to date by a job that asks GitHub about every tool, all day. GitHub limits how many questions one account can ask per hour, so we borrow a little headroom from people who are happy to lend it.</p>
       {auth ? (
-        <p class="explainer-thanks">Thanks, <strong>{auth.username}</strong>.{mine && mine.lookups > 0 ? <> Your token has helped with <strong>{mine.lookups.toLocaleString()}</strong> version lookups so far.</> : <> Your token will start showing up here once the update job borrows it.</>}</p>
+        <p class="explainer-thanks">Thanks, <strong>{auth.username}</strong>.{mine && mine.lookups > 0 ? <> Your token has helped with <strong>{mine.lookups.toLocaleString()}</strong> version lookups so far.</> : <> Your token will start showing up here once our servers borrow it.</>}</p>
       ) : (
         <p class="explainer-cta"><SignInLink client:load /></p>
       )}
@@ -61,7 +61,7 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
         <div><dt>Update runs per day</dt><dd>~48</dd></div>
         <div><dt>Tokens lent out, all time</dt><dd>{pool ? formatCompact(pool.checkouts) : '—'}</dd></div>
       </dl>
-      <p class="adoption-context">These figures come live from the token pool and are cached for a few minutes. A “lend” is one time the update job borrowed a token for a lookup.</p>
+      <p class="adoption-context">These figures come live from the token pool and are cached for a few minutes. A “lend” is one time a token was borrowed for a lookup.</p>
     </section>
 
     <section aria-labelledby="how">
@@ -69,8 +69,8 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
       <ol>
         <li><strong>You click “Sign in with GitHub.”</strong> GitHub shows its standard authorization screen. We never see your password.</li>
         <li><strong>GitHub gives us an OAuth token.</strong> We store it, with your username, in our database, along with a few timestamps and a usage counter.</li>
-        <li><strong>The update job borrows it.</strong> Before each lookup the job asks our server for a token. We hand out the least recently used one, so the load rotates evenly across everyone.</li>
-        <li><strong>It's used to read public data.</strong> The token is passed to <code>mise ls-remote</code>, which lists releases and tags on public repositories. The token is masked in the job's logs.</li>
+        <li><strong>Our servers borrow it.</strong> Before each lookup we pick the least recently used token, so the load rotates evenly across everyone. The borrowers are the job that refreshes version lists, the site's GitHub release mirror that mise uses to look up releases and checksums, and mise's own end-to-end tests.</li>
+        <li><strong>It's used to read public data.</strong> The calls list releases and tags, and fetch release and attestation details, on public repositories. In the update job the token is masked in the logs.</li>
         <li><strong>We leave you plenty.</strong> If your token has {MIN_REMAINING.toLocaleString()} or fewer of its {GITHUB_HOURLY_LIMIT.toLocaleString()} hourly requests left, we don't touch it until GitHub resets the hour. That holds no matter who used them up, whether it was us, you, or another app on your account. In practice we use far less than the difference. The one exception is a genuine emergency, when every token in the pool is that low and updates would otherwise stall. Then we may borrow from one that still has more than {EMERGENCY_MIN_REMAINING.toLocaleString()} left, and the maintainer gets an alert so it gets sorted out.</li>
       </ol>
       <p>Signed in, you also get fresher repository details (stars, license, last push) on tool pages, fetched with your own token.</p>
@@ -84,7 +84,7 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
         <li>Your OAuth token (and its refresh token and expiry, if GitHub issues them)</li>
         <li>When the token was last used, how many times, and whether it is currently rate limited</li>
       </ul>
-      <p>The token lives in our server-side database and is never sent to your browser or shown on any page. It is sent over HTTPS to the update job so it can call GitHub. Your browser only gets a signed cookie saying who you are. We don't sell, share or email anything.</p>
+      <p>The token lives in our server-side database and is never sent to your browser or shown on any page. It is sent over HTTPS to the update job so it can call GitHub; apart from that, only our servers use it, and only to call GitHub. Your browser only gets a signed cookie saying who you are. We don't sell, share or email anything.</p>
     </section>
 
     <section aria-labelledby="permissions">

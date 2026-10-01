@@ -319,7 +319,7 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       const now = new Date().toISOString();
       const row = await db
         .select({
-          contributors: sql<number>`count(*)`,
+          contributors: sql<number>`count(distinct ${tokens.user_id})`,
           available: sql<number>`coalesce(sum(case when ${tokens.rate_limited_at} is null or ${tokens.rate_limited_at} <= ${now} then 1 else 0 end), 0)`,
           checkouts: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
         })

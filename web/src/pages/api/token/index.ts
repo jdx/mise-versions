@@ -96,11 +96,14 @@ export const GET: APIRoute = async ({ request, locals }) => {
   const emergency = await findEmergencyToken(database);
   if (emergency) {
     await database.recordCheckout(emergency.token.id);
-    await alertEmergencyTokenUse(env, {
-      tokenId: emergency.token.id,
-      remaining: emergency.remaining,
-      limit: emergency.limit,
-    });
+    // Best-effort: don't make the update job wait on KV/Resend.
+    locals.cfContext.waitUntil(
+      alertEmergencyTokenUse(env, {
+        tokenId: emergency.token.id,
+        remaining: emergency.remaining,
+        limit: emergency.limit,
+      }),
+    );
     return jsonResponse({
       token: emergency.token.token,
       installation_id: emergency.token.id,
@@ -114,13 +117,23 @@ export const GET: APIRoute = async ({ request, locals }) => {
   return errorResponse("No tokens with sufficient rate limit available", 503);
 };
 
-const EMERGENCY_SCAN_LIMIT = 30;
+const EMERGENCY_SCAN_LIMIT = 60;
 const EMERGENCY_SCAN_CONCURRENCY = 5;
 
-// Live-checks pool tokens (rate-limit lookups don't use quota) and returns the
-// one with the most requests left, if any is above the emergency minimum.
+function shuffle<T>(items: T[]): T[] {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+// Live-checks pool tokens (rate-limit lookups don't use quota) in a random
+// order, so a large pool is eventually covered, and returns the best token in
+// the first batch that has one above the emergency minimum.
 async function findEmergencyToken(database: ReturnType<typeof setupDatabase>) {
-  const candidates = (await database.getPoolTokens()).slice(
+  const candidates = shuffle(await database.getPoolTokens()).slice(
     0,
     EMERGENCY_SCAN_LIMIT,
   );
@@ -129,7 +142,6 @@ async function findEmergencyToken(database: ReturnType<typeof setupDatabase>) {
     remaining: number;
     limit: number;
   };
-  const found: Candidate[] = [];
 
   for (let i = 0; i < candidates.length; i += EMERGENCY_SCAN_CONCURRENCY) {
     const batch = candidates.slice(i, i + EMERGENCY_SCAN_CONCURRENCY);
@@ -149,8 +161,10 @@ async function findEmergencyToken(database: ReturnType<typeof setupDatabase>) {
         }
       }),
     );
-    found.push(...results.filter((r): r is Candidate => r !== null));
+    const found = results
+      .filter((r): r is Candidate => r !== null)
+      .sort((a, b) => b.remaining - a.remaining);
+    if (found.length > 0) return found[0];
   }
-
-  return found.sort((a, b) => b.remaining - a.remaining)[0] ?? null;
+  return null;
 }

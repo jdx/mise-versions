@@ -1,6 +1,7 @@
 import { drizzle } from "drizzle-orm/d1";
 import { uncompress } from "snappyjs";
 import { setupDatabase } from "../../../../src/database";
+import { hasBudget } from "../../../../src/token-budget";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
@@ -100,6 +101,9 @@ interface Env {
 interface TokenRecord {
   id: number;
   token: string;
+  // Filled in from GitHub's rate-limit headers as the token is used.
+  remaining?: number;
+  rateLimitReset?: string;
 }
 
 export function cacheHeaders({
@@ -555,10 +559,14 @@ export async function getCachedGitHubReleaseList(
 export async function githubPoolJson<T>(env: Env, url: string): Promise<T> {
   const token = await nextToken(env);
   try {
-    return await githubJson<T>(url, token);
+    const data = await githubJson<T>(url, token);
+    await benchIfLow(env, token);
+    return data;
   } catch (error) {
     if (isRateLimited(error) && token) {
       await markRateLimited(env, token.id, resetAt(error));
+    } else {
+      await benchIfLow(env, token);
     }
     throw error;
   }
@@ -596,6 +604,7 @@ async function getOrRefresh<T>({
   const token = await nextToken(env);
   try {
     const data = await fetcher(token);
+    await benchIfLow(env, token);
     const ttl = expirationTtl ? expirationTtl(data) : CACHE_TTL_SECONDS;
     const options = ttl === undefined ? undefined : { expirationTtl: ttl };
     await env.GITHUB_CACHE.put(
@@ -607,6 +616,8 @@ async function getOrRefresh<T>({
   } catch (error) {
     if (isRateLimited(error) && token) {
       await markRateLimited(env, token.id, resetAt(error));
+    } else {
+      await benchIfLow(env, token);
     }
     await onFetchError?.(error, cached);
     if (cached && useStaleOnError(error)) {
@@ -825,6 +836,28 @@ async function hydrateBundle(
   };
 }
 
+function recordRateLimit(token: TokenRecord | null, headers: Headers) {
+  if (!token) return;
+  const remaining = Number(headers.get("x-ratelimit-remaining"));
+  const reset = Number(headers.get("x-ratelimit-reset"));
+  if (
+    headers.get("x-ratelimit-remaining") === null ||
+    !Number.isFinite(remaining)
+  )
+    return;
+  token.remaining = remaining;
+  if (Number.isFinite(reset) && reset > 0) {
+    token.rateLimitReset = new Date(reset * 1000).toISOString();
+  }
+}
+
+// Volunteers' tokens are left alone once they run low, however the requests
+// were spent. Called after each use, using the headers GitHub already sent.
+async function benchIfLow(env: Env, token: TokenRecord | null) {
+  if (token?.remaining === undefined || hasBudget(token.remaining)) return;
+  await markRateLimited(env, token.id, token.rateLimitReset);
+}
+
 async function githubJson<T>(
   url: string,
   token: TokenRecord | null,
@@ -842,6 +875,7 @@ async function fetchGitHubJsonResponse(
   for (let redirectCount = 0; ; redirectCount++) {
     const headers = githubJsonHeaders(currentUrl, token);
     const response = await fetch(currentUrl, { headers, redirect: "manual" });
+    recordRateLimit(token, response.headers);
     if (isGitHubApiRedirect(response)) {
       await response.body?.cancel();
       if (redirectCount >= maxRedirects) {

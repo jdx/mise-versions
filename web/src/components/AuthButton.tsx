@@ -56,7 +56,10 @@ export function AuthButton() {
 }
 
 export function SignInLink() {
+  const state = useAuth();
   const { loginUrl } = authUrls();
+  // Signing in again would add a duplicate pool entry.
+  if (state.loading || state.authenticated) return null;
   return (
     <a href={loginUrl} class="auth-signin auth-signin-primary">
       <GitHubIcon />
