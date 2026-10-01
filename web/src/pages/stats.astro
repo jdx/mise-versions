@@ -13,10 +13,10 @@ let audience:Awaited<ReturnType<typeof analytics.getDAUMAUHistory>>|null=null;
 try {audience=await analytics.getDAUMAUHistory(370);} catch(e) {console.error('Audience history unavailable',e);}
 Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-revalidate=3600');
 ---
-<Layout title="Mise stats" description="Mise audience, adoption, downloads and Homebrew rankings">
+<Layout title="mise stats" description="mise audience, adoption, downloads and Homebrew rankings">
   <div class="stats-page space-y-8">
     <StatsNav />
-    <div class="page-heading"><h1>Mise stats</h1><p>Audience growth and adoption over time.</p></div>
+    <div class="page-heading"><h1>mise stats</h1><p>Audience growth and adoption over time.</p></div>
     {audience?.daily.length?<>
       <section class="audience-panel" aria-label="Audience growth"><MauHistory daily={audience.daily}/></section>
       <WeeklyMauGrowth daily={audience.daily}/>

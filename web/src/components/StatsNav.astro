@@ -1,5 +1,5 @@
 ---
-const links=[['/stats','Mise'],['/stats/tools','Tool ecosystem'],['/stats/projects','Other projects']];
+const links=[['/stats','mise'],['/stats/tools','Tool ecosystem'],['/stats/projects','Projects']];
 ---
 <nav class="stats-nav" aria-label="Stats sections">
   {links.map(([url,label])=><a href={url} aria-current={Astro.url.pathname.replace(/\/$/,'')===url?'page':undefined}>{label}</a>)}
