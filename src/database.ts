@@ -171,6 +171,18 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .run();
     },
 
+    // Deactivate specific token rows and clear their secrets. `marker` goes in
+    // the token column so different retirement reasons can be told apart.
+    async retireTokens(tokenIds: number[], marker: string) {
+      for (const id of tokenIds) {
+        await db
+          .update(tokens)
+          .set({ is_active: 0, token: marker, refresh_token: null })
+          .where(eq(tokens.id, id))
+          .run();
+      }
+    },
+
     // Store new token
     async storeToken(
       userId: string | null,

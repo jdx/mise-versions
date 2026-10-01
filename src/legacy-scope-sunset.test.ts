@@ -5,6 +5,7 @@ import test from "node:test";
 import {
   LEGACY_CAP,
   MAX_RETIRED_PER_RUN,
+  computeBurndown,
   hasLegacyScopes,
   planSunset,
   type PoolTokenScopes,
@@ -109,4 +110,22 @@ test("counts every row of a user with several sign-ins", () => {
   ];
   // 1002 legacy rows: retiring "a" removes 3 rows, which clears the excess.
   assert.deepEqual(planSunset(tokens, on), ["a"]);
+});
+
+test("burndown counts legacy and new rows against the cap", () => {
+  const tokens = [
+    ...rows(LEGACY_CAP + 20, "old", LEGACY),
+    ...rows(5, "new", "[]"),
+  ];
+  const burndown = computeBurndown(tokens);
+  assert.equal(burndown.legacyRows, LEGACY_CAP + 20);
+  assert.equal(burndown.cleanRows, 5);
+  assert.equal(burndown.legacyUsers, LEGACY_CAP + 20);
+  assert.equal(burndown.allowedLegacy, LEGACY_CAP - 5);
+  assert.equal(burndown.excess, 25);
+});
+
+test("burndown excess is zero once legacy fits the allowance", () => {
+  assert.equal(computeBurndown(rows(10, "old", LEGACY)).excess, 0);
+  assert.equal(computeBurndown(rows(3, "new", "[]"), 2).allowedLegacy, 0);
 });

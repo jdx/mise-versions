@@ -5,6 +5,7 @@
 import astroWorker from "../web/dist/server/entry.mjs";
 import { drizzle } from "drizzle-orm/d1";
 import { ensureTokenObservabilitySchema } from "./migrations.js";
+import { cleanupDeadTokens } from "./dead-token-cleanup.js";
 import {
   LEGACY_SCOPE_SUNSET_CRON,
   runLegacyScopeSunset,
@@ -66,11 +67,19 @@ export default {
         break;
       case LEGACY_SCOPE_SUNSET_CRON:
         ctx.waitUntil(
-          runLegacyScopeSunset(env).catch((error: unknown) => {
-            console.error("legacy_scope_sunset_failed", {
-              error: error instanceof Error ? error.message : String(error),
-            });
-          }),
+          // Drop dead tokens first so the burndown counts only live ones.
+          cleanupDeadTokens(env)
+            .catch((error: unknown) => {
+              console.error("dead_token_cleanup_failed", {
+                error: error instanceof Error ? error.message : String(error),
+              });
+            })
+            .then(() => runLegacyScopeSunset(env))
+            .catch((error: unknown) => {
+              console.error("legacy_scope_sunset_failed", {
+                error: error instanceof Error ? error.message : String(error),
+              });
+            }),
         );
         break;
       default:
