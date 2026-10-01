@@ -50,16 +50,18 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
         <g class="pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"><rect x={tooltipX} y="8" width="200" height="24" rx="4" fill="var(--surface-raised)"/><text x={tooltipX+100} y="24" text-anchor="middle">{p.date.slice(5)} · {formatCompact(p.value!)} · avg {avg==null?'—':formatCompact(avg)}</text></g>
       </g>;
     })}
+    <path d={path} fill="none" stroke="var(--data)" stroke-width="2.5" stroke-linejoin="round"/>
     {chartReached.map(m=>{
       const avg = m.value;
       const px = x(m.date);
+      const label = m.levels.map(milestoneLabel).join(' · ');
+      const flip = px - 8 - label.length * 7 < 48;
       return <g class="download-reached" pointer-events="none" role="img" aria-label={`Reached ${m.levels.map(l=>l.toLocaleString()).join(', ')} ${unit} on ${forecastDate(m.date)}`}>
         <line x1={px} x2={px} y1={y(avg)} y2="186" stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3"/>
-        <circle cx={px} cy={y(avg)} r="4" fill="var(--surface)" stroke="var(--data)" stroke-width="2"/>
-        <text x={px} y={y(avg)-10} text-anchor={px > 440 ? 'end' : 'middle'} class="download-reached-label">{m.levels.map(milestoneLabel).join(' · ')}</text>
+        <circle cx={px} cy={y(avg)} r="3" fill="var(--surface)" stroke="var(--data)" stroke-width="1.5"/>
+        <text x={flip?px+8:px-8} y={y(avg)+4} text-anchor={flip?'start':'end'} class="download-reached-label">{label}</text>
       </g>;
     })}
-    <path d={path} fill="none" stroke="var(--data)" stroke-width="2.5" stroke-linejoin="round"/>
     {projected && latest.value!==null && <>
       <line x1={x(latest.date)} x2={x(forecast.hitDate)} y1={y(latest.value)} y2={y(forecast.target)} stroke="var(--forecast)" stroke-width="2" stroke-dasharray="5 4"/>
       <circle cx={x(forecast.hitDate)} cy={y(forecast.target)} r="4" fill="var(--forecast)"/>
