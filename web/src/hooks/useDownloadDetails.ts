@@ -12,48 +12,69 @@ export type DownloadDetailsState =
   | { status: "error" }
   | { status: "ready"; data: DownloadDetails };
 
-// The downloads panel and the versions table both need these numbers; sharing
-// the in-flight request keeps it to one fetch per tool per page load.
-const requests = new Map<string, Promise<DownloadDetailsState>>();
+// The downloads panel and the versions table are separate islands that need
+// the same numbers. They share one entry per tool, so a single request serves
+// both and a retry from either one updates both.
+interface Entry {
+  state: DownloadDetailsState;
+  started: boolean;
+  listeners: Set<() => void>;
+}
 
-function request(tool: string): Promise<DownloadDetailsState> {
-  let pending = requests.get(tool);
-  if (!pending) {
-    pending = fetch(`/api/downloads/${encodeURIComponent(tool)}/details`)
-      .then(async (response): Promise<DownloadDetailsState> => {
-        if (response.status === 401) return { status: "locked" };
-        if (!response.ok) return { status: "error" };
-        return {
-          status: "ready",
-          data: await response.json<DownloadDetails>(),
-        };
-      })
-      .catch((): DownloadDetailsState => ({ status: "error" }));
-    requests.set(tool, pending);
+const entries = new Map<string, Entry>();
+
+function entryFor(tool: string): Entry {
+  let entry = entries.get(tool);
+  if (!entry) {
+    entry = {
+      state: { status: "loading" },
+      started: false,
+      listeners: new Set(),
+    };
+    entries.set(tool, entry);
   }
-  return pending;
+  return entry;
+}
+
+function publish(entry: Entry, state: DownloadDetailsState) {
+  entry.state = state;
+  for (const listener of entry.listeners) listener();
+}
+
+async function load(tool: string) {
+  const entry = entryFor(tool);
+  entry.started = true;
+  publish(entry, { status: "loading" });
+  try {
+    const response = await fetch(
+      `/api/downloads/${encodeURIComponent(tool)}/details`,
+    );
+    if (response.status === 401) return publish(entry, { status: "locked" });
+    if (!response.ok) return publish(entry, { status: "error" });
+    publish(entry, {
+      status: "ready",
+      data: await response.json<DownloadDetails>(),
+    });
+  } catch {
+    publish(entry, { status: "error" });
+  }
 }
 
 export function useDownloadDetails(tool: string) {
-  const [state, setState] = useState<DownloadDetailsState>({
-    status: "loading",
-  });
-  const [attempt, setAttempt] = useState(0);
+  const [, rerender] = useState(0);
 
   useEffect(() => {
-    let current = true;
-    setState({ status: "loading" });
-    void request(tool).then((next) => {
-      if (!current) return;
-      // Do not cache failures, so retrying actually retries.
-      if (next.status === "error") requests.delete(tool);
-      setState(next);
-    });
+    const entry = entryFor(tool);
+    const listener = () => rerender((n) => n + 1);
+    entry.listeners.add(listener);
+    if (!entry.started) void load(tool);
+    // The entry may have changed between render and subscribing.
+    listener();
     return () => {
-      current = false;
+      entry.listeners.delete(listener);
     };
-  }, [tool, attempt]);
+  }, [tool]);
 
-  const retry = useCallback(() => setAttempt((n) => n + 1), []);
-  return { state, retry };
+  const retry = useCallback(() => void load(tool), [tool]);
+  return { state: entryFor(tool).state, retry };
 }

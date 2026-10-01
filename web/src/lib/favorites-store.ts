@@ -13,7 +13,7 @@ interface FavoritesState {
 const PENDING_KEY = "mise-pending-favorite";
 
 let state: FavoritesState = { status: "loading", tools: new Set() };
-let started = false;
+let loading: Promise<void> | null = null;
 const listeners = new Set<() => void>();
 
 function setState(next: FavoritesState) {
@@ -70,13 +70,16 @@ async function load() {
   if (pending && !state.tools.has(pending)) await toggleFavorite(pending);
 }
 
-function ensureLoaded() {
-  if (started || typeof window === "undefined") return;
-  started = true;
-  void load();
+function ensureLoaded(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
+  loading ??= load();
+  return loading;
 }
 
 export async function toggleFavorite(tool: string): Promise<void> {
+  // A click that lands before the list arrives waits for it, rather than being
+  // dropped: signed-out clicks still need to start the sign-in.
+  if (state.status === "loading") await ensureLoaded();
   if (state.status === "anonymous") {
     rememberPending(tool);
     window.location.assign(loginUrl());
@@ -105,7 +108,7 @@ export function useFavorites() {
   useEffect(() => {
     const listener = () => rerender((n) => n + 1);
     listeners.add(listener);
-    ensureLoaded();
+    void ensureLoaded();
     // The store may have changed between render and subscribing.
     listener();
     return () => {
