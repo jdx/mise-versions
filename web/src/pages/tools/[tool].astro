@@ -6,6 +6,7 @@ import { drizzle } from 'drizzle-orm/d1';
 import { sql } from 'drizzle-orm';
 import { setupAnalytics } from '../../../../src/analytics';
 import { InstallCommand } from '../../components/InstallCommand';
+import { FavoriteButton } from '../../components/FavoriteButton';
 import { InfoPane } from '../../components/InfoPane';
 import { DownloadsPane } from '../../components/DownloadsPane';
 import { VersionsTable } from '../../components/VersionsTable';
@@ -45,27 +46,21 @@ try {
   console.error('Failed to load versions from D1:', e);
 }
 
-// Fetch download stats
+// Fetch the download stats everyone can see. Per-version, per-platform and
+// 12-month numbers are fetched in the browser for signed-in visitors only, so
+// they never end up in this publicly cached HTML.
 let downloadStats: {
   total: number;
   daily: Array<{ date: string; count: number }>;
-  monthly: Array<{ month: string; count: number }>;
-  byVersion: Array<{ version: string; count: number }>;
-  byOs?: Array<{ os: string | null; count: number }>;
-} = { total: 0, daily: [], monthly: [], byVersion: [] };
+} = { total: 0, daily: [] };
 
 try {
   const db = drizzle(env.ANALYTICS_DB);
   const analytics = setupAnalytics(db);
-  downloadStats = await analytics.getDownloadStats(tool);
+  const { total, daily } = await analytics.getDownloadStats(tool);
+  downloadStats = { total, daily };
 } catch (e) {
   console.error('Failed to fetch download stats:', e);
-}
-
-// Create downloads by version map for the versions table
-const downloadsByVersion: Record<string, number> = {};
-for (const v of downloadStats.byVersion) {
-  downloadsByVersion[v.version] = v.count;
 }
 
 // Get page title and description
@@ -107,7 +102,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
     <div class="tool-heading page-heading">
       <span class="tool-monogram" aria-hidden="true">{tool.slice(0, 1).toUpperCase()}</span>
       <div>
-      <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool} {toolMeta.packslip && <PackslipBadge />}</h1>
+      <h1 class="text-3xl font-bold text-gray-100 mb-2">{tool} {toolMeta.packslip && <PackslipBadge />} <FavoriteButton tool={tool} client:load /></h1>
       {toolMeta.description && (
         <p class="text-gray-400 mb-2">{toolMeta.description}</p>
       )}
@@ -161,16 +156,12 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-re
         client:load
         tool={tool}
         daily={downloadStats.daily}
-        monthly={downloadStats.monthly}
-        byVersion={downloadStats.byVersion}
-        byOs={downloadStats.byOs}
       />
 
     <!-- Versions Table (includes timeline) -->
     <VersionsTable
       client:load
       versions={versions}
-      downloadsByVersion={downloadsByVersion}
       github={toolMeta.github}
       tool={tool}
     />

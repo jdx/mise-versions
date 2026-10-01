@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 
-import { loadToolsPaginated } from "./data-loader";
+import { loadToolsByName, loadToolsPaginated } from "./data-loader";
 
 interface ToolFixture {
   name: string;
@@ -132,4 +132,35 @@ test("an explicit sort still ranks exact matches first", async () => {
     byUpdated.tools.map((t) => t.name),
     ["oc", "ocaml", "velociraptor"],
   );
+});
+
+test("loads tools by name in the requested order and skips unknown names", async () => {
+  const db = fakeD1([
+    { name: "node", downloads: 100 },
+    { name: "python", downloads: 50 },
+    { name: "go", downloads: 7 },
+  ]);
+
+  const result = await loadToolsByName(db, ["go", "missing", "node"]);
+  assert.deepEqual(
+    result.tools.map((t) => t.name),
+    ["go", "node"],
+  );
+  assert.deepEqual(result.downloads, { go: 7, node: 100 });
+});
+
+test("loading no tool names makes no query", async () => {
+  const result = await loadToolsByName(fakeD1([]), []);
+  assert.deepEqual(result, { tools: [], downloads: {} });
+});
+
+test("loading more names than D1 allows per statement still works", async () => {
+  const fixtures = Array.from({ length: 150 }, (_, i) => ({
+    name: `tool-${i}`,
+    downloads: i,
+  }));
+  const names = fixtures.map((t) => t.name).reverse();
+  const result = await loadToolsByName(fakeD1(fixtures), names);
+  assert.equal(result.tools.length, 150);
+  assert.equal(result.tools[0].name, "tool-149");
 });

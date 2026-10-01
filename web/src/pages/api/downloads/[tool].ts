@@ -15,9 +15,11 @@ export const GET: APIRoute = async ({ params, locals }) => {
     const db = drizzle(env.ANALYTICS_DB);
     const analytics = setupAnalytics(db);
 
-    const stats = await analytics.getDownloadStats(tool);
+    // Per-version, per-platform and 12-month breakdowns need a signed-in
+    // session; see /api/downloads/<tool>/details.
+    const { total, daily } = await analytics.getDownloadStats(tool);
 
-    return new Response(JSON.stringify(stats), {
+    return new Response(JSON.stringify({ total, daily }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",

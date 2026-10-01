@@ -6,6 +6,7 @@ import {
   type SortKey,
 } from "../lib/directory-state";
 
+import { FavoriteButton } from "./FavoriteButton";
 import { PackslipBadge } from "./PackslipBadge";
 
 // Keystrokes settle for this long before the directory refetches.
@@ -867,6 +868,7 @@ export function ToolSearch({
                     {tool.security && tool.security.length > 0 && (
                       <LockIcon security={tool.security} />
                     )}
+                    <FavoriteButton tool={tool.name} />
                   </div>
                   <div class="mobile-meta">
                     {tool.backends?.[0] && cleanBackend(tool.backends[0])}

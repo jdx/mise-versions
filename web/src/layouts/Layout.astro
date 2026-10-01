@@ -76,6 +76,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
         <nav class="primary-nav" aria-label="Main navigation">
           <a href="/" aria-current={currentPath === '/' || currentPath.startsWith('/tools/') ? 'page' : undefined}>Tools</a>
           <a href="/stats" aria-current={(currentPath === '/stats' || currentPath.startsWith('/stats/')) ? 'page' : undefined}>Stats</a>
+          <a href="/favorites" aria-current={currentPath === '/favorites' ? 'page' : undefined}>Favorites</a>
         </nav>
         <div class="nav-actions">
           {currentPath !== '/' && <NavSearch initialQuery={Astro.url.searchParams.get("q") || ""} client:load />}

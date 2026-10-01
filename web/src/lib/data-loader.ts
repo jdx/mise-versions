@@ -164,6 +164,63 @@ export async function loadToolMeta(
   return row ? parseToolRow(row) : null;
 }
 
+// D1 allows at most 100 bound parameters per statement.
+const TOOL_NAME_CHUNK = 80;
+
+/**
+ * Load specific tools by name, in the order given. Names that no longer exist
+ * are skipped. Used for per-user lists such as favorites.
+ */
+export async function loadToolsByName(
+  analyticsDb: D1Database,
+  names: string[],
+): Promise<{ tools: ToolMeta[]; downloads: Record<string, number> }> {
+  const found = new Map<string, ToolMeta>();
+  const downloads: Record<string, number> = {};
+
+  for (let i = 0; i < names.length; i += TOOL_NAME_CHUNK) {
+    const chunk = names.slice(i, i + TOOL_NAME_CHUNK);
+    const placeholders = chunk.map(() => "?").join(", ");
+    const { results } = await analyticsDb
+      .prepare(
+        `SELECT
+          t.name,
+          t.latest_version,
+          t.latest_stable_version,
+          t.version_count,
+          t.last_updated,
+          t.description,
+          t.github,
+          t.homepage,
+          t.repo_url,
+          t.license,
+          t.backends,
+          t.authors,
+          t.security,
+          t.package_urls,
+          t.aqua_link,
+          COALESCE(s.downloads_30d, 0) as downloads_30d
+        FROM tools t
+        LEFT JOIN tool_download_summaries s ON s.tool_id = t.id
+        WHERE t.latest_version IS NOT NULL AND t.name IN (${placeholders})`,
+      )
+      .bind(...chunk)
+      .all<PaginatedToolRow>();
+    for (const row of results) {
+      found.set(row.name, parseToolRow(row));
+      downloads[row.name] = row.downloads_30d;
+    }
+  }
+
+  return {
+    tools: names.flatMap((name) => {
+      const tool = found.get(name);
+      return tool ? [tool] : [];
+    }),
+    downloads,
+  };
+}
+
 interface PaginatedToolRow extends ToolRow {
   downloads_30d: number;
 }

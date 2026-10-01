@@ -1,5 +1,8 @@
 import { ReleaseTimeline } from "./ReleaseTimeline";
+import { LockMark } from "./LockMark";
 import { useState, useMemo, useCallback, useEffect } from "preact/hooks";
+import { useDownloadDetails } from "../hooks/useDownloadDetails";
+import { useLoginUrl } from "../hooks/useLoginUrl";
 import {
   isPrerelease,
   getDistribution,
@@ -118,9 +121,8 @@ function getInterestingPrefixes(
 
 interface VersionsTableProps {
   versions: Version[];
-  downloadsByVersion: Record<string, number>;
   github?: string;
-  tool?: string;
+  tool: string;
 }
 
 // Construct release URL from github slug and version
@@ -145,12 +147,11 @@ function useDebounce<T>(value: T, delay: number): T {
 
 const ITEMS_PER_PAGE = 100;
 
-export function VersionsTable({
-  versions,
-  downloadsByVersion,
-  github,
-  tool,
-}: VersionsTableProps) {
+export function VersionsTable({ versions, github, tool }: VersionsTableProps) {
+  // Per-version download counts need a GitHub sign-in.
+  const { state: details } = useDownloadDetails(tool);
+  const loginHref = useLoginUrl();
+
   // Initialize distribution to default for this tool (if it has distributions)
   const defaultDist = tool ? getDefaultDistribution(tool) : null;
   const toolHasDistributions = tool ? hasDistributions(tool) : false;
@@ -167,8 +168,9 @@ export function VersionsTable({
 
   // Create a map of version -> download count
   const versionDownloads = useMemo(() => {
-    return new Map(Object.entries(downloadsByVersion));
-  }, [downloadsByVersion]);
+    const counts = details.status === "ready" ? details.data.byVersion : [];
+    return new Map(counts.map((v) => [v.version, v.count]));
+  }, [details]);
 
   // Get unique distributions for this tool
   const distributions = useMemo(() => {
@@ -442,7 +444,21 @@ export function VersionsTable({
                 </span>
               </th>
               <th class="text-right px-4 py-3 hidden sm:table-cell">
-                <SortButton label="Downloads" sortKey="downloads" />
+                {details.status === "ready" ? (
+                  <SortButton label="Downloads" sortKey="downloads" />
+                ) : details.status === "locked" ? (
+                  <a
+                    href={loginHref}
+                    class="text-sm font-medium text-gray-400 hover:text-gray-200"
+                    title="Sign in with GitHub to see downloads per version"
+                  >
+                    Downloads <LockMark />
+                  </a>
+                ) : (
+                  <span class="text-sm font-medium text-gray-500">
+                    Downloads
+                  </span>
+                )}
               </th>
               <th class="text-right px-4 py-3">
                 <SortButton label="Released" sortKey="released" />
@@ -479,7 +495,9 @@ export function VersionsTable({
                   </div>
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-400 hidden sm:table-cell text-right">
-                  {(versionDownloads.get(v.version) || 0).toLocaleString()}
+                  {details.status === "ready"
+                    ? (versionDownloads.get(v.version) || 0).toLocaleString()
+                    : "–"}
                 </td>
                 <td class="px-4 py-3 text-sm text-gray-400 text-right">
                   {v.created_at ? (
