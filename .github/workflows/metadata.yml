@@ -11,7 +11,7 @@ concurrency:
 
 env:
   GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
-  TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
+  TOKEN_MANAGER_URL: https://mise-versions.jdx.dev
   TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
 
 jobs:
@@ -28,5 +28,5 @@ jobs:
       - name: Fetch and sync tool metadata
         run: node scripts/fetch-metadata.js
         env:
-          SYNC_API_URL: https://mise-tools.jdx.dev
+          SYNC_API_URL: https://mise-versions.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}

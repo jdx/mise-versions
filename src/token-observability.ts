@@ -6,6 +6,10 @@ import {
 } from "./token-budget.js";
 
 const HISTORY_HOURS = 24;
+// History points are built from the newest reading of every token, so the
+// first points of the window need readings from the rotation before it.
+const HISTORY_LOOKBACK_HOURS = 12;
+const MIN_HISTORY_COVERAGE = 0.9;
 const ALERT_REPEAT_HOURS = 12;
 const MIN_RATE_INTERVAL_HOURS = 10 / 60;
 const MAX_TOKEN_CHECKS_PER_RUN = 45;
@@ -50,6 +54,10 @@ export type TokenPoolSummary = {
   remaining: number;
   limit: number;
   remainingPercent: number | null;
+  // Requests above the lending floor: what the pool can actually still hand out.
+  lendable: number;
+  lendableLimit: number;
+  lendablePercent: number | null;
   quotaBurnPerHour: number | null;
   checkoutRatePerHour: number | null;
   hoursToReserve: number | null;
@@ -60,14 +68,30 @@ export type TokenHistoryPoint = {
   observedAt: string;
   remaining: number;
   limit: number;
+  lendable: number;
+  lendableLimit: number;
   availableTokens: number;
   usageCount: number;
+  // Estimated pool spend at this point, null until enough readings exist.
+  burnPerHour: number | null;
+};
+
+export type PoolGrowthPoint = { date: string; tokens: number };
+
+export type PoolGrowth = {
+  total: number;
+  contributors: number;
+  addedLast7Days: number;
+  addedLast30Days: number;
+  // Active pool tokens by join date, one point per day (cumulative).
+  series: PoolGrowthPoint[];
 };
 
 export type TokenObservabilityData = {
   summary: TokenPoolSummary;
   tokens: TokenObservation[];
   history: TokenHistoryPoint[];
+  growth: PoolGrowth;
   alerting: {
     configured: boolean;
     recipient: string | null;
@@ -90,7 +114,7 @@ type ObservationRow = {
   error: string | null;
 };
 
-type ObservationRunRow = {
+export type ObservationRunRow = {
   observed_at: string;
   token_count: number;
 };
@@ -170,13 +194,19 @@ async function loadPoolTokens(
   return result.results;
 }
 
-async function loadPoolTokenIds(
+type PoolTokenRow = {
+  id: number;
+  user_id: string | null;
+  created_at: string;
+};
+
+async function loadPoolTokenRows(
   db: D1Database,
   now: string,
-): Promise<number[]> {
+): Promise<PoolTokenRow[]> {
   const result = await db
     .prepare(
-      `SELECT id
+      `SELECT id, user_id, created_at
        FROM tokens
        WHERE is_active = 1
          AND (user_id IS NULL OR user_id != 'jdx')
@@ -184,8 +214,48 @@ async function loadPoolTokenIds(
        ORDER BY id`,
     )
     .bind(now)
-    .all<{ id: number }>();
-  return result.results.map(({ id }) => id);
+    .all<PoolTokenRow>();
+  return result.results;
+}
+
+const GROWTH_DAYS = 90;
+const DAY_MS = 86_400_000;
+
+export function buildPoolGrowth(
+  rows: Pick<PoolTokenRow, "user_id" | "created_at">[],
+  now: Date,
+  days = GROWTH_DAYS,
+): PoolGrowth {
+  const joined = rows
+    .map((row) => Date.parse(row.created_at.replace(" ", "T")))
+    .filter((time) => !Number.isNaN(time))
+    .sort((a, b) => a - b);
+  const startOfToday = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+  );
+  const series: PoolGrowthPoint[] = [];
+  let index = 0;
+  for (let offset = days - 1; offset >= 0; offset--) {
+    const dayStart = startOfToday - offset * DAY_MS;
+    while (index < joined.length && joined[index] < dayStart + DAY_MS) index++;
+    series.push({
+      date: new Date(dayStart).toISOString().slice(0, 10),
+      tokens: index,
+    });
+  }
+  const addedSince = (daysAgo: number) =>
+    joined.filter((time) => time >= now.getTime() - daysAgo * DAY_MS).length;
+  return {
+    total: rows.length,
+    contributors: new Set(
+      rows.map((row) => row.user_id).filter((id) => id !== null),
+    ).size,
+    addedLast7Days: addedSince(7),
+    addedLast30Days: addedSince(30),
+    series,
+  };
 }
 
 async function storeObservations(
@@ -270,10 +340,156 @@ function mapObservation(row: ObservationRow): TokenObservation {
   };
 }
 
-function calculateRates(observations: TokenObservation[]): {
-  quotaBurnPerHour: number | null;
-  checkoutRatePerHour: number | null;
-} {
+function lendableRemaining(token: TokenObservation): number {
+  return Math.max(0, (token.remaining ?? 0) - MIN_REMAINING);
+}
+
+function lendableCapacity(token: TokenObservation): number {
+  return token.remaining === null
+    ? 0
+    : Math.max(0, (token.limit ?? 0) - MIN_REMAINING);
+}
+
+// GitHub quota windows last one hour and begin at a token's first request.
+// An idle token reports reset_at = now + 1h, while a busy one reports the end
+// of the window that started at reset_at - 1h.
+const QUOTA_WINDOW_HOURS = 1;
+// Burn is sampled from recent readings only so it tracks current load. Each
+// run only checks one batch, so this has to span several runs.
+const BURN_SAMPLE_HOURS = 3;
+const MIN_BURN_SAMPLE_TOKENS = 20;
+const MS_PER_HOUR = 3_600_000;
+
+type BurnInterval = {
+  start: number;
+  end: number;
+  used: number;
+  idle: boolean;
+  // When the quota window this interval belongs to ends (busy windows only).
+  windowEnd: number;
+};
+
+// Turns one token's readings into non-overlapping spans of "spent `used`
+// requests over this long". Readings in the same quota window are cumulative,
+// so only the newest per window counts. An idle reading (fresh window, nothing
+// spent) claims the last hour had no spend, clipped to start after any earlier
+// window or idle claim so the same time is never counted twice.
+function burnIntervals(readings: TokenObservation[]): BurnInterval[] {
+  const windows = new Map<string, BurnInterval>();
+  const idle: BurnInterval[] = [];
+  for (const reading of [...readings].sort((a, b) =>
+    a.observedAt.localeCompare(b.observedAt),
+  )) {
+    const observedAt = Date.parse(reading.observedAt);
+    const resetAt = Date.parse(reading.resetAt as string);
+    const hoursToReset = (resetAt - observedAt) / MS_PER_HOUR;
+    if (hoursToReset < 0 || hoursToReset > QUOTA_WINDOW_HOURS * 1.01) continue;
+
+    const used = Math.max(
+      0,
+      (reading.limit as number) - (reading.remaining as number),
+    );
+    const elapsedHours =
+      QUOTA_WINDOW_HOURS - Math.min(QUOTA_WINDOW_HOURS, hoursToReset);
+    if (used === 0 && elapsedHours < 0.02) {
+      idle.push({
+        start: observedAt - QUOTA_WINDOW_HOURS * MS_PER_HOUR,
+        end: observedAt,
+        used: 0,
+        idle: true,
+        windowEnd: observedAt,
+      });
+    } else {
+      windows.set(reading.resetAt as string, {
+        start: observedAt - elapsedHours * MS_PER_HOUR,
+        end: observedAt,
+        used,
+        idle: false,
+        windowEnd: resetAt,
+      });
+    }
+  }
+
+  const all = [...idle, ...windows.values()].sort((a, b) => a.end - b.end);
+  const accepted: BurnInterval[] = [];
+  let lastIdleEnd = -Infinity;
+  for (const interval of all) {
+    let start = interval.start;
+    if (interval.idle) {
+      const previousWindowEnd = Math.max(
+        -Infinity,
+        ...all
+          .filter((other) => !other.idle && other.windowEnd <= interval.end)
+          .map((other) => other.windowEnd),
+      );
+      start = Math.max(start, lastIdleEnd, previousWindowEnd);
+      lastIdleEnd = Math.max(lastIdleEnd, interval.end);
+    }
+    if (interval.end > start) accepted.push({ ...interval, start });
+  }
+  return accepted;
+}
+
+// Estimates what the whole pool spends per hour from single readings, so it
+// works with rotating batches where one token is only seen every few hours.
+// Each reading says "this token spent `used` requests over the `elapsed`
+// hours since its window began" (or nothing over the last hour if idle). The
+// pool rate is total spent over total exposure, scaled to the pool size.
+function calculateQuotaBurn(
+  observations: TokenObservation[],
+  poolSize: number,
+): number | null {
+  const readings = observations.filter(
+    (observation) =>
+      !observation.error &&
+      observation.remaining !== null &&
+      observation.limit !== null &&
+      observation.resetAt !== null,
+  );
+  if (readings.length === 0 || poolSize === 0) return null;
+
+  const newest = Math.max(
+    ...readings.map((observation) => Date.parse(observation.observedAt)),
+  );
+  const cutoff = newest - BURN_SAMPLE_HOURS * MS_PER_HOUR;
+  const byToken = new Map<number, TokenObservation[]>();
+  for (const reading of readings) {
+    if (Date.parse(reading.observedAt) < cutoff) continue;
+    const entries = byToken.get(reading.tokenId) ?? [];
+    entries.push(reading);
+    byToken.set(reading.tokenId, entries);
+  }
+
+  let spent = 0;
+  let exposureHours = 0;
+  let sampledTokens = 0;
+  for (const entries of byToken.values()) {
+    const intervals = burnIntervals(entries);
+    if (intervals.length === 0) continue;
+    sampledTokens++;
+    for (const interval of intervals) {
+      spent += interval.used;
+      exposureHours += (interval.end - interval.start) / MS_PER_HOUR;
+    }
+  }
+  if (exposureHours === 0) return null;
+  if (sampledTokens < Math.min(poolSize, MIN_BURN_SAMPLE_TOKENS)) {
+    return null;
+  }
+  return round((spent / exposureHours) * poolSize);
+}
+
+// usage_count only ever grows, so any two readings of a token give a valid
+// rate. The gap limit has to cover a full rotation of the pool.
+function calculateCheckoutRate(
+  observations: TokenObservation[],
+  poolSize: number,
+): number | null {
+  const batchCount = Math.ceil(poolSize / MAX_TOKEN_CHECKS_PER_RUN);
+  const maxGapHours = Math.max(
+    2,
+    ((batchCount + 1) * OBSERVATION_INTERVAL_MS) / MS_PER_HOUR + 1,
+  );
   const byToken = new Map<number, TokenObservation[]>();
   for (const observation of observations) {
     const entries = byToken.get(observation.tokenId) ?? [];
@@ -281,63 +497,38 @@ function calculateRates(observations: TokenObservation[]): {
     byToken.set(observation.tokenId, entries);
   }
 
-  let quotaBurnPerHour = 0;
-  let quotaTokensWithRate = 0;
   let checkoutRatePerHour = 0;
-  let checkoutTokensWithRate = 0;
-
+  let tokensWithRate = 0;
   for (const entries of byToken.values()) {
     entries.sort((a, b) => a.observedAt.localeCompare(b.observedAt));
-    let tokenQuotaConsumed = 0;
-    let tokenQuotaElapsedHours = 0;
-    let tokenCheckoutCount = 0;
-    let tokenCheckoutElapsedHours = 0;
+    let checkouts = 0;
+    let elapsedTotal = 0;
     let previous = entries[0];
     for (let index = 1; index < entries.length; index++) {
       const current = entries[index];
       const elapsedHours =
         (Date.parse(current.observedAt) - Date.parse(previous.observedAt)) /
-        3_600_000;
+        MS_PER_HOUR;
       if (elapsedHours < MIN_RATE_INTERVAL_HOURS) continue;
-      if (elapsedHours > 2) {
+      if (elapsedHours > maxGapHours) {
         previous = current;
         continue;
       }
-
-      const checkoutDelta = current.usageCount - previous.usageCount;
-      if (checkoutDelta >= 0) {
-        tokenCheckoutCount += checkoutDelta;
-        tokenCheckoutElapsedHours += elapsedHours;
-      }
-
-      if (
-        current.resetAt === previous.resetAt &&
-        current.remaining !== null &&
-        previous.remaining !== null
-      ) {
-        const quotaDelta = previous.remaining - current.remaining;
-        if (quotaDelta >= 0) {
-          tokenQuotaConsumed += quotaDelta;
-          tokenQuotaElapsedHours += elapsedHours;
-        }
+      const delta = current.usageCount - previous.usageCount;
+      if (delta >= 0) {
+        checkouts += delta;
+        elapsedTotal += elapsedHours;
       }
       previous = current;
     }
-    if (tokenQuotaElapsedHours > 0) {
-      quotaBurnPerHour += tokenQuotaConsumed / tokenQuotaElapsedHours;
-      quotaTokensWithRate++;
-    }
-    if (tokenCheckoutElapsedHours > 0) {
-      checkoutRatePerHour += tokenCheckoutCount / tokenCheckoutElapsedHours;
-      checkoutTokensWithRate++;
+    if (elapsedTotal > 0) {
+      checkoutRatePerHour += checkouts / elapsedTotal;
+      tokensWithRate++;
     }
   }
-
-  return {
-    quotaBurnPerHour: quotaTokensWithRate > 0 ? round(quotaBurnPerHour) : null,
-    checkoutRatePerHour:
-      checkoutTokensWithRate > 0 ? round(checkoutRatePerHour) : null,
-  };
+  if (tokensWithRate === 0) return null;
+  // Tokens with no usable pair still exist, so scale the sampled mean up.
+  return round((checkoutRatePerHour / tokensWithRate) * poolSize);
 }
 
 export function summarizeTokenPool(
@@ -371,15 +562,31 @@ export function summarizeTokenPool(
       hasBudget(token.remaining),
   ).length;
   const currentTokenIds = new Set(latest.map((token) => token.tokenId));
+  const currentObservations = recent.filter((token) =>
+    currentTokenIds.has(token.tokenId),
+  );
   const rates = complete
-    ? calculateRates(
-        recent.filter((token) => currentTokenIds.has(token.tokenId)),
-      )
+    ? {
+        quotaBurnPerHour: calculateQuotaBurn(
+          currentObservations,
+          usable.length,
+        ),
+        checkoutRatePerHour: calculateCheckoutRate(
+          currentObservations,
+          tokenCount,
+        ),
+      }
     : { quotaBurnPerHour: null, checkoutRatePerHour: null };
   const usableRemaining = usable.reduce(
-    (sum, token) => sum + Math.max(0, (token.remaining ?? 0) - MIN_REMAINING),
+    (sum, token) => sum + lendableRemaining(token),
     0,
   );
+  const lendableLimit = usable.reduce(
+    (sum, token) => sum + lendableCapacity(token),
+    0,
+  );
+  const lendablePercent =
+    lendableLimit > 0 ? round((usableRemaining / lendableLimit) * 100) : null;
   const hoursToReserve =
     rates.quotaBurnPerHour && rates.quotaBurnPerHour > 0
       ? round(usableRemaining / rates.quotaBurnPerHour)
@@ -420,8 +627,10 @@ export function summarizeTokenPool(
     reasons.push(
       `${belowReserveTokens} token${belowReserveTokens === 1 ? " is" : "s are"} below reserve`,
     );
-  if (complete && remainingPercent !== null && remainingPercent <= 35)
-    reasons.push(`Only ${remainingPercent}% of quota remains`);
+  if (complete && lendablePercent !== null && lendablePercent <= 35)
+    reasons.push(
+      `Only ${lendablePercent}% of lendable quota remains (above the ${MIN_REMAINING.toLocaleString()} floor)`,
+    );
   if (hoursToReserve !== null && hoursToReserve <= 6)
     reasons.push(
       `${hoursToReserve}h until the pool reaches reserve at the current burn rate`,
@@ -430,7 +639,7 @@ export function summarizeTokenPool(
   if (
     tokenCount === 0 ||
     (complete && availableTokens === 0) ||
-    (complete && remainingPercent !== null && remainingPercent <= 15) ||
+    (complete && lendablePercent !== null && lendablePercent <= 15) ||
     (hoursToReserve !== null && hoursToReserve <= 2)
   ) {
     level = "critical";
@@ -440,7 +649,7 @@ export function summarizeTokenPool(
     invalidTokens > 0 ||
     rateLimitedTokens > 0 ||
     belowReserveTokens > 0 ||
-    (remainingPercent !== null && remainingPercent <= 35) ||
+    (lendablePercent !== null && lendablePercent <= 35) ||
     (hoursToReserve !== null && hoursToReserve <= 6)
   ) {
     level = "warning";
@@ -460,6 +669,9 @@ export function summarizeTokenPool(
     remaining,
     limit,
     remainingPercent,
+    lendable: usableRemaining,
+    lendableLimit,
+    lendablePercent,
     quotaBurnPerHour: rates.quotaBurnPerHour,
     checkoutRatePerHour: rates.checkoutRatePerHour,
     hoursToReserve,
@@ -559,44 +771,76 @@ function selectAlertObservations(
   );
 }
 
-function historyPoints(
+// Each run only checks one rotating batch of the pool, so a point is built from
+// the newest observation of every token seen within one full rotation (rather
+// than from that run's batch alone).
+export function historyPoints(
   runs: ObservationRunRow[],
   observations: TokenObservation[],
 ): TokenHistoryPoint[] {
-  const observationCounts = new Map<string, number>();
-  for (const observation of observations) {
-    observationCounts.set(
-      observation.observedAt,
-      (observationCounts.get(observation.observedAt) ?? 0) + 1,
-    );
-  }
-  const points = new Map<string, TokenHistoryPoint>(
-    runs
-      .filter(
-        (run) =>
-          (observationCounts.get(run.observed_at) ?? 0) === run.token_count,
-      )
-      .map((run) => [
-        run.observed_at,
-        {
-          observedAt: run.observed_at,
-          remaining: 0,
-          limit: 0,
-          availableTokens: 0,
-          usageCount: 0,
-        },
-      ]),
+  const sorted = [...observations].sort((a, b) =>
+    a.observedAt.localeCompare(b.observedAt),
   );
-  for (const observation of observations) {
-    const point = points.get(observation.observedAt);
-    if (!point) continue;
-    point.remaining += observation.remaining ?? 0;
-    point.limit += observation.limit ?? 0;
-    point.availableTokens += observation.available ? 1 : 0;
-    point.usageCount += observation.usageCount;
-    points.set(observation.observedAt, point);
+  const latest = new Map<number, TokenObservation>();
+  const points: TokenHistoryPoint[] = [];
+  let next = 0;
+  let sampleStart = 0;
+  for (const run of runs) {
+    while (next < sorted.length && sorted[next].observedAt <= run.observed_at) {
+      latest.set(sorted[next].tokenId, sorted[next]);
+      next++;
+    }
+    const runTime = Date.parse(run.observed_at);
+    const sampleCutoff = runTime - BURN_SAMPLE_HOURS * MS_PER_HOUR;
+    while (
+      sampleStart < next &&
+      Date.parse(sorted[sampleStart].observedAt) < sampleCutoff
+    ) {
+      sampleStart++;
+    }
+    const batchCount = Math.max(
+      1,
+      Math.ceil(run.token_count / MAX_TOKEN_CHECKS_PER_RUN),
+    );
+    const cutoff = runTime - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
+    const point: TokenHistoryPoint = {
+      observedAt: run.observed_at,
+      remaining: 0,
+      limit: 0,
+      lendable: 0,
+      lendableLimit: 0,
+      availableTokens: 0,
+      usageCount: 0,
+      burnPerHour: null,
+    };
+    let covered = 0;
+    let usable = 0;
+    for (const observation of latest.values()) {
+      if (Date.parse(observation.observedAt) < cutoff) continue;
+      covered++;
+      point.remaining += observation.remaining ?? 0;
+      point.limit += observation.limit ?? 0;
+      if (!observation.error) {
+        usable++;
+        point.lendable += lendableRemaining(observation);
+        point.lendableLimit += lendableCapacity(observation);
+      }
+      point.availableTokens += observation.available ? 1 : 0;
+      point.usageCount += observation.usageCount;
+    }
+    if (point.lendableLimit <= 0) continue;
+    // Skip points that only cover part of the pool: they would plot a partial
+    // sample as if it were the whole pool's headroom.
+    if (covered < run.token_count * MIN_HISTORY_COVERAGE) continue;
+    // Scale to the usable share of the whole pool, as the live tile does.
+    const poolSize = Math.round(run.token_count * (usable / covered));
+    point.burnPerHour = calculateQuotaBurn(
+      sorted.slice(sampleStart, next),
+      poolSize,
+    );
+    points.push(point);
   }
-  return [...points.values()];
+  return points;
 }
 
 export async function getTokenObservability(
@@ -609,10 +853,13 @@ export async function getTokenObservability(
 
 type TokenObservabilityState = {
   observations: TokenObservation[];
+  // Includes the lookback before the window, for building history points.
+  historyObservations: TokenObservation[];
   latestObservations: TokenObservation[];
   runs: ObservationRunRow[];
   latestAt: string | undefined;
   currentTokenIds: number[];
+  growth: PoolGrowth;
 };
 
 async function loadTokenObservabilityState(
@@ -622,21 +869,29 @@ async function loadTokenObservabilityState(
   const since = new Date(
     now.getTime() - HISTORY_HOURS * 3_600_000,
   ).toISOString();
-  const observations = (await loadObservationRows(env.DB, since)).map(
-    mapObservation,
+  const lookbackSince = new Date(
+    now.getTime() - (HISTORY_HOURS + HISTORY_LOOKBACK_HOURS) * 3_600_000,
+  ).toISOString();
+  const historyObservations = (
+    await loadObservationRows(env.DB, lookbackSince)
+  ).map(mapObservation);
+  const observations = historyObservations.filter(
+    (observation) => observation.observedAt >= since,
   );
   const latestObservations = (await loadLatestObservationRows(env.DB)).map(
     mapObservation,
   );
   const runs = await loadObservationRuns(env.DB, since);
   const latestAt = runs.at(-1)?.observed_at;
-  const currentTokenIds = await loadPoolTokenIds(env.DB, now.toISOString());
+  const poolTokens = await loadPoolTokenRows(env.DB, now.toISOString());
   return {
     observations,
+    historyObservations,
     latestObservations,
     runs,
     latestAt,
-    currentTokenIds,
+    currentTokenIds: poolTokens.map((token) => token.id),
+    growth: buildPoolGrowth(poolTokens, now),
   };
 }
 
@@ -644,8 +899,15 @@ function tokenObservabilityData(
   env: Env,
   state: TokenObservabilityState,
 ): TokenObservabilityData {
-  const { observations, latestObservations, runs, latestAt, currentTokenIds } =
-    state;
+  const {
+    observations,
+    historyObservations,
+    latestObservations,
+    runs,
+    latestAt,
+    currentTokenIds,
+    growth,
+  } = state;
   const latest = selectCurrentObservations(latestObservations, currentTokenIds);
 
   return {
@@ -656,7 +918,8 @@ function tokenObservabilityData(
       currentTokenIds.length,
     ),
     tokens: latest,
-    history: historyPoints(runs, observations),
+    history: historyPoints(runs, historyObservations),
+    growth,
     alerting: {
       configured: Boolean(
         env.RESEND_API_KEY && env.TOKEN_ALERT_TO && env.TOKEN_ALERT_FROM,
@@ -741,8 +1004,8 @@ async function sendAlert(
     ? `${summary.availableTokens}/${summary.tokenCount}`
     : `${summary.availableTokens}/${summary.checkedTokens} checked (${summary.tokenCount} total)`;
   const quotaLabel = summary.complete
-    ? "Quota remaining"
-    : "Checked-token quota";
+    ? "Lendable quota"
+    : "Checked-token lendable quota";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -755,7 +1018,7 @@ async function sendAlert(
       subject,
       html: `<h2>GitHub token pool ${escapeHtml(label)}</h2>${reasons}
         <p><strong>Available tokens:</strong> ${availability}<br>
-        <strong>${quotaLabel}:</strong> ${summary.remaining.toLocaleString()} / ${summary.limit.toLocaleString()} (${summary.remainingPercent ?? "unknown"}%)<br>
+        <strong>${quotaLabel}:</strong> ${summary.lendable.toLocaleString()} / ${summary.lendableLimit.toLocaleString()} requests above the ${MIN_REMAINING.toLocaleString()} floor (${summary.lendablePercent ?? "unknown"}%)<br>
         <strong>Quota burn:</strong> ${summary.quotaBurnPerHour?.toLocaleString() ?? "collecting data"}/hour</p>
         <p><a href="https://mise-versions.jdx.dev/admin">Open token observability</a></p>`,
     }),

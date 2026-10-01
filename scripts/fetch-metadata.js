@@ -5,7 +5,7 @@
  * Usage: node fetch-metadata.js [--tool=name]
  *
  * Environment variables:
- *   SYNC_API_URL - Base URL of the API (e.g., https://mise-tools.jdx.dev)
+ *   SYNC_API_URL - Base URL of the API (e.g., https://mise-versions.jdx.dev)
  *   API_SECRET   - API secret for authentication
  *   TOKEN_MANAGER_URL / TOKEN_MANAGER_SECRET - GitHub token manager (optional)
  *   GITHUB_TOKEN - Fallback GitHub token (optional)

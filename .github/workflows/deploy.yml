@@ -80,5 +80,5 @@ jobs:
       - name: Run database migrations
         run: node scripts/migrate.js run
         env:
-          TOKEN_MANAGER_URL: https://mise-tools.jdx.dev
+          TOKEN_MANAGER_URL: https://mise-versions.jdx.dev
           TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}

@@ -15,11 +15,11 @@ interface Props {
 const {
   title = "mise versions",
   description = "Browse tool versions and download stats for mise",
-  ogImage = "https://mise-tools.jdx.dev/api/og",
+  ogImage = "https://mise-versions.jdx.dev/api/og",
 } = Astro.props;
 
 const fullTitle = title === "mise versions" ? title : `${title} | mise versions`;
-const canonicalUrl = new URL(Astro.url.pathname, "https://mise-tools.jdx.dev").href;
+const canonicalUrl = new URL(Astro.url.pathname, "https://mise-versions.jdx.dev").href;
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 ---
 

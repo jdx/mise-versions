@@ -8,7 +8,7 @@ mise-versions is a service that tracks and stores version numbers for tools supp
 
 1. **Version collection**: Shell scripts run via GitHub Actions (every 15 min) that fetch versions using `mise ls-remote` in Docker
 2. **Version data files**: Plain text version files and TOML files (with timestamps) committed under `docs/`
-3. **Web app**: Astro-based frontend deployed to Cloudflare Workers at `mise-tools.jdx.dev`
+3. **Web app**: Astro-based frontend deployed to Cloudflare Workers at `mise-versions.jdx.dev`
 4. **Analytics API**: Download tracking and statistics via Cloudflare D1 database
 
 ## Common Commands

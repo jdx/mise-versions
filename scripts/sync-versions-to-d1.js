@@ -5,7 +5,7 @@
  * Usage: node sync-versions-to-d1.js
  *
  * Environment variables:
- *   SYNC_API_URL - Base URL of the API (e.g., https://mise-tools.jdx.dev)
+ *   SYNC_API_URL - Base URL of the API (e.g., https://mise-versions.jdx.dev)
  *   API_SECRET   - API secret for authentication
  *   FULL_SYNC    - Set to "true" to sync all tools (default: only sync updated tools)
  *

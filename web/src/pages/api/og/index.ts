@@ -157,7 +157,7 @@ export const GET: APIRoute = async ({ locals }) => {
         </div>
         <div style="display: flex; align-items: center; gap: 16px;">
           <span style="font-size: 16px; color: #9ca3af;">${toolCount}+ tools</span>
-          <span style="font-size: 14px; color: #6b7280;">mise-tools.jdx.dev</span>
+          <span style="font-size: 14px; color: #6b7280;">mise-versions.jdx.dev</span>
         </div>
       </div>
 

@@ -59,7 +59,7 @@ function generateImage(
         <div style="display: flex; align-items: center; gap: 8px;">
           <span style="font-size: 28px; font-weight: 800; background: linear-gradient(90deg, #B026FF, #FF2D95); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">mise tools</span>
         </div>
-        <span style="font-size: 14px; color: #6b7280;">mise-tools.jdx.dev</span>
+        <span style="font-size: 14px; color: #6b7280;">mise-versions.jdx.dev</span>
       </div>
 
       <!-- Tool card (centered, larger version of Hot Tools card style) -->

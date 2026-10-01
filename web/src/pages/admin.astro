@@ -69,19 +69,19 @@ if (!auth || !isAdmin(auth.username)) {
               <div class="text-xs text-gray-500 mt-1">more than 4k requests left</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
-              <div class="text-xs uppercase tracking-wide text-gray-500">Quota remaining</div>
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="Share of the requests above each token's 4k floor that are still unspent. Requests under the floor are never lent, so they don't count.">Lendable quota</div>
               <div id="metric-remaining" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
-              <div id="metric-remaining-detail" class="text-xs text-gray-500 mt-1">across the pool</div>
+              <div id="metric-remaining-detail" class="text-xs text-gray-500 mt-1">above the 4k floor</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
-              <div class="text-xs uppercase tracking-wide text-gray-500">Quota burn</div>
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="GitHub API requests actually spent per hour, summed across every token in the pool">API requests / hour</div>
               <div id="metric-burn" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
               <div id="metric-checkouts" class="text-xs text-gray-500 mt-1">collecting a trend</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
-              <div class="text-xs uppercase tracking-wide text-gray-500">Time to reserve</div>
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="How long the pool could keep spending at the current rate before its tokens hit the 4k-request floor. Quotas refill every hour, so anything above a few hours means usage is sustainable.">Hours until floor</div>
               <div id="metric-runway" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
-              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before the 4k/token floor</div>
+              <div id="metric-reset" class="text-xs text-gray-500 mt-1">before tokens hit the 4k floor</div>
             </div>
           </div>
 
@@ -92,19 +92,20 @@ if (!auth || !isAdmin(auth.username)) {
               <div class="flex items-start justify-between gap-3 mb-4">
                 <div>
                   <h3 class="text-sm font-medium text-gray-200">Pool headroom</h3>
-                  <p class="text-xs text-gray-500 mt-1">Percent of GitHub core quota remaining · last 24 hours</p>
+                  <p id="chart-subtitle" class="text-xs text-gray-500 mt-1">Percent of lendable quota (above the 4k floor) remaining · last 24 hours</p>
                 </div>
                 <span id="chart-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
               </div>
               <div class="relative h-52">
                 <div class="absolute inset-y-0 left-0 flex flex-col justify-between text-[10px] text-gray-600 pb-5">
-                  <span>100%</span><span>50%</span><span>0%</span>
+                  <span id="axis-top">100%</span><span id="axis-mid">50%</span><span id="axis-bottom">0%</span>
                 </div>
-                <svg id="quota-chart" class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="GitHub quota remaining over the last 24 hours">
+                <svg id="quota-chart" class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Lendable GitHub quota remaining over the last 24 hours">
                   <line x1="0" y1="10" x2="720" y2="10" stroke="#27272f" />
                   <line x1="0" y1="95" x2="720" y2="95" stroke="#27272f" />
                   <line x1="0" y1="180" x2="720" y2="180" stroke="#27272f" />
-                  <line x1="0" y1="154.5" x2="720" y2="154.5" stroke="#fb923c" stroke-dasharray="5 5" opacity=".45" />
+                  <line id="quota-warning" x1="0" y1="0" x2="720" y2="0" stroke="#fbbf24" stroke-dasharray="5 5" opacity=".45" style="display: none"><title>Warning below 35% lendable</title></line>
+                  <line id="quota-critical" x1="0" y1="0" x2="720" y2="0" stroke="#fb923c" stroke-dasharray="5 5" opacity=".6" style="display: none"><title>Critical below 15% lendable</title></line>
                   <path id="quota-area" fill="url(#quota-fill)" d=""></path>
                   <polyline id="quota-line" fill="none" stroke="#22d3ee" stroke-width="3" vector-effect="non-scaling-stroke" points=""></polyline>
                   <defs>
@@ -121,6 +122,75 @@ if (!auth || !isAdmin(auth.username)) {
               <h3 class="text-sm font-medium text-gray-200">Token health mix</h3>
               <p class="text-xs text-gray-500 mt-1 mb-4">Latest core quota distribution</p>
               <div id="token-headroom" class="space-y-4"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="Active tokens currently in the lending pool">Pool size</div>
+              <div id="pool-growth-total" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div id="pool-growth-contributors" class="text-xs text-gray-500 mt-1">—</div>
+            </div>
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500">Joined this week</div>
+              <div id="pool-growth-7d" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div class="text-xs text-gray-500 mt-1">new tokens in the last 7 days</div>
+            </div>
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500">Joined this month</div>
+              <div id="pool-growth-30d" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div class="text-xs text-gray-500 mt-1">new tokens in the last 30 days</div>
+            </div>
+            <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="Tokens that GitHub rejected or that could not be checked in the latest snapshot">Unusable tokens</div>
+              <div id="pool-growth-invalid" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
+              <div id="pool-growth-invalid-detail" class="text-xs text-gray-500 mt-1">could not be checked</div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-4">
+            <div class="rounded-lg bg-dark-900/50 border border-dark-600 p-4">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <div>
+                  <h3 class="text-sm font-medium text-gray-200">Pool growth</h3>
+                  <p class="text-xs text-gray-500 mt-1">Active tokens by join date · last 90 days</p>
+                </div>
+                <span id="pool-growth-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
+              </div>
+              <div class="relative h-44">
+                <div class="absolute inset-y-0 left-0 flex flex-col justify-between text-[10px] text-gray-600 pb-5">
+                  <span id="pool-growth-axis-top">—</span><span id="pool-growth-axis-bottom">—</span>
+                </div>
+                <svg class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Pool size over the last 90 days">
+                  <line x1="0" y1="10" x2="720" y2="10" stroke="#27272f" />
+                  <line x1="0" y1="180" x2="720" y2="180" stroke="#27272f" />
+                  <path id="pool-growth-area" fill="#a78bfa" fill-opacity=".14" d=""></path>
+                  <polyline id="pool-growth-line" fill="none" stroke="#a78bfa" stroke-width="3" vector-effect="non-scaling-stroke" points=""></polyline>
+                </svg>
+              </div>
+              <p class="text-xs text-gray-600 mt-2">Counts tokens still in the pool, so tokens that have since been removed are not included.</p>
+            </div>
+
+            <div class="rounded-lg bg-dark-900/50 border border-dark-600 p-4">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <div>
+                  <h3 class="text-sm font-medium text-gray-200">Pool usage</h3>
+                  <p class="text-xs text-gray-500 mt-1">Estimated GitHub API requests spent per hour · last 24 hours</p>
+                </div>
+                <span id="usage-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
+              </div>
+              <div class="relative h-44">
+                <div class="absolute inset-y-0 left-0 flex flex-col justify-between text-[10px] text-gray-600 pb-5">
+                  <span id="usage-axis-top">—</span><span id="usage-axis-bottom">0</span>
+                </div>
+                <svg class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Estimated pool API requests per hour over the last 24 hours">
+                  <line x1="0" y1="10" x2="720" y2="10" stroke="#27272f" />
+                  <line x1="0" y1="180" x2="720" y2="180" stroke="#27272f" />
+                  <path id="usage-area" fill="#f472b6" fill-opacity=".14" d=""></path>
+                  <polyline id="usage-line" fill="none" stroke="#f472b6" stroke-width="3" vector-effect="non-scaling-stroke" points=""></polyline>
+                </svg>
+              </div>
+              <p class="text-xs text-gray-600 mt-2">Sampled from the last 3 hours of token readings, so it is smoothed and the first few hours of the window are noisier.</p>
             </div>
           </div>
         </div>
@@ -398,7 +468,7 @@ if (!auth || !isAdmin(auth.username)) {
     const range = document.getElementById('chart-range');
     if (!line || !area || !range) return;
 
-    const points = history.filter((point) => point.limit > 0);
+    const points = history.filter((point) => point.lendableLimit > 0);
     if (points.length === 0) {
       line.setAttribute('points', '');
       area.setAttribute('d', '');
@@ -409,11 +479,36 @@ if (!auth || !isAdmin(auth.username)) {
     const width = 720;
     const top = 10;
     const bottom = 180;
-    const coordinates = points.map((point, index) => {
+    const percents = points.map((point) => Math.max(0, Math.min(100, point.lendable / point.lendableLimit * 100)));
+    // The pool usually sits near 100%, so zoom the axis to the data instead of a fixed 0-100%.
+    const dip = 100 - Math.min(...percents);
+    const span = [2, 5, 10, 25, 50, 100].find((step) => step >= dip * 1.2) ?? 100;
+    const axisMin = 100 - span;
+    const label = (value: number) => `${Number.isInteger(value) ? value : value.toFixed(1)}%`;
+    document.getElementById('axis-top')!.textContent = '100%';
+    document.getElementById('axis-mid')!.textContent = label(100 - span / 2);
+    document.getElementById('axis-bottom')!.textContent = label(axisMin);
+    const subtitle = document.getElementById('chart-subtitle');
+    if (subtitle) {
+      subtitle.textContent = span === 100
+        ? 'Percent of lendable quota (above the 4k floor) remaining · last 24 hours'
+        : `Percent of lendable quota (above the 4k floor) remaining · last 24 hours · axis zoomed to ${axisMin}–100%`;
+    }
+    const yFor = (percent: number) => bottom - ((percent - axisMin) / span) * (bottom - top);
+    // Dashed markers for the alert thresholds, drawn only when they are on the zoomed axis.
+    for (const [id, threshold] of [['quota-warning', 35], ['quota-critical', 15]] as const) {
+      const marker = document.getElementById(id);
+      if (!marker) continue;
+      const visible = threshold >= axisMin;
+      marker.style.display = visible ? '' : 'none';
+      if (visible) {
+        marker.setAttribute('y1', yFor(threshold).toFixed(1));
+        marker.setAttribute('y2', yFor(threshold).toFixed(1));
+      }
+    }
+    const coordinates = percents.map((percent, index) => {
       const x = points.length === 1 ? width / 2 : (index / (points.length - 1)) * width;
-      const percent = Math.max(0, Math.min(100, point.remaining / point.limit * 100));
-      const y = bottom - (percent / 100) * (bottom - top);
-      return { x, y };
+      return { x, y: yFor(percent) };
     });
     const pointList = coordinates.map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
     line.setAttribute('points', pointList);
@@ -426,6 +521,83 @@ if (!auth || !isAdmin(auth.username)) {
     range.textContent = points.length === 1
       ? start.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
       : `${start.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} – ${end.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
+  }
+
+  function renderSeries(
+    prefix: string,
+    series: { time: string; value: number }[],
+    options: { zeroBased: boolean; format: (value: number) => string; formatTime: (time: string) => string },
+  ) {
+    const line = document.getElementById(`${prefix}-line`);
+    const area = document.getElementById(`${prefix}-area`);
+    const range = document.getElementById(`${prefix}-range`);
+    const axisTop = document.getElementById(`${prefix}-axis-top`);
+    const axisBottom = document.getElementById(`${prefix}-axis-bottom`);
+    if (!line || !area || !range || !axisTop || !axisBottom) return;
+    if (series.length === 0) {
+      line.setAttribute('points', '');
+      area.setAttribute('d', '');
+      range.textContent = 'waiting for data';
+      return;
+    }
+
+    const width = 720;
+    const top = 10;
+    const bottom = 180;
+    const values = series.map((point) => point.value);
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    // Growth reads better zoomed to its range; usage should anchor at zero.
+    const axisMin = options.zeroBased ? 0 : Math.max(0, Math.floor(min * 0.95));
+    const axisMax = max > axisMin ? max : axisMin + 1;
+    const coordinates = series.map((point, index) => ({
+      x: series.length === 1 ? width / 2 : (index / (series.length - 1)) * width,
+      y: bottom - ((point.value - axisMin) / (axisMax - axisMin)) * (bottom - top),
+    }));
+    const pointList = coordinates.map(({ x, y }) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+    line.setAttribute('points', pointList);
+    area.setAttribute('d', `M ${coordinates[0].x} ${bottom} L ${pointList.replaceAll(' ', ' L ')} L ${coordinates[coordinates.length - 1].x} ${bottom} Z`);
+    axisTop.textContent = options.format(axisMax);
+    axisBottom.textContent = options.format(axisMin);
+    range.textContent = series.length === 1
+      ? options.formatTime(series[0].time)
+      : `${options.formatTime(series[0].time)} – ${options.formatTime(series[series.length - 1].time)}`;
+  }
+
+  function renderGrowth(data: CapacityData) {
+    const { growth, summary } = data;
+    const total = document.getElementById('pool-growth-total');
+    if (total) total.textContent = growth.total.toLocaleString();
+    const contributors = document.getElementById('pool-growth-contributors');
+    if (contributors) contributors.textContent = `from ${growth.contributors.toLocaleString()} contributors`;
+    const week = document.getElementById('pool-growth-7d');
+    if (week) week.textContent = `+${growth.addedLast7Days.toLocaleString()}`;
+    const month = document.getElementById('pool-growth-30d');
+    if (month) month.textContent = `+${growth.addedLast30Days.toLocaleString()}`;
+    const invalid = document.getElementById('pool-growth-invalid');
+    if (invalid) {
+      invalid.textContent = summary.invalidTokens.toLocaleString();
+      invalid.className = `mt-2 text-2xl font-semibold ${summary.invalidTokens > 0 ? 'text-orange-300' : 'text-gray-100'}`;
+    }
+    const invalidDetail = document.getElementById('pool-growth-invalid-detail');
+    if (invalidDetail) {
+      const share = growth.total > 0 ? (summary.invalidTokens / growth.total * 100).toFixed(1) : '0';
+      invalidDetail.textContent = `${share}% of the pool could not be checked`;
+    }
+
+    const dateLabel = (time: string) => new Date(`${time}T00:00:00Z`).toLocaleDateString([], { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    renderSeries('pool-growth', growth.series.map((point) => ({ time: point.date, value: point.tokens })), {
+      zeroBased: false,
+      format: (value) => Math.round(value).toLocaleString(),
+      formatTime: dateLabel,
+    });
+
+    const timeLabel = (time: string) => new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    renderSeries(
+      'usage',
+      data.history.filter((point) => point.burnPerHour !== null).map((point) => ({ time: point.observedAt, value: point.burnPerHour as number })),
+      { zeroBased: true, format: (value) => formatCompact(Math.round(value)), formatTime: timeLabel },
+    );
   }
 
   function renderCapacity(data: CapacityData) {
@@ -464,18 +636,38 @@ if (!auth || !isAdmin(auth.username)) {
         : `${summary.availableTokens}/${summary.checkedTokens} checked`,
       metricTone,
     );
-    setMetric('metric-remaining', summary.remainingPercent === null ? '—' : `${summary.remainingPercent}%`, metricTone);
+    setMetric('metric-remaining', summary.lendablePercent === null ? '—' : `${summary.lendablePercent}%`, metricTone);
     const remainingDetail = document.getElementById('metric-remaining-detail');
     if (remainingDetail) {
       const coverage = summary.complete ? 'across the pool' : `across ${summary.checkedTokens} of ${summary.tokenCount} tokens`;
-      remainingDetail.textContent = `${summary.remaining.toLocaleString()} of ${summary.limit.toLocaleString()} requests · ${coverage}`;
+      remainingDetail.textContent = `${summary.lendable.toLocaleString()} of ${summary.lendableLimit.toLocaleString()} requests above the 4k floor · ${coverage}`;
     }
     setMetric('metric-burn', summary.quotaBurnPerHour === null ? 'Learning' : `${formatCompact(summary.quotaBurnPerHour)}/h`);
     const checkouts = document.getElementById('metric-checkouts');
-    if (checkouts) checkouts.textContent = summary.checkoutRatePerHour === null ? 'needs two snapshots' : `${formatCompact(summary.checkoutRatePerHour)} token checkouts/hour`;
-    setMetric('metric-runway', summary.hoursToReserve === null ? 'Stable' : `${summary.hoursToReserve}h`, summary.hoursToReserve !== null && summary.hoursToReserve <= 6 ? metricTone : 'text-gray-100');
+    if (checkouts) {
+      const burnPercent = summary.limit > 0 ? (summary.quotaBurnPerHour ?? 0) / summary.limit * 100 : 0;
+      const burnShare = summary.quotaBurnPerHour !== null && summary.limit > 0
+        ? `${burnPercent < 0.1 ? '<0.1' : burnPercent.toFixed(1)}% of the pool's ${formatCompact(summary.limit)}/h`
+        : null;
+      const handouts = summary.checkoutRatePerHour === null ? null : `${formatCompact(summary.checkoutRatePerHour)} tokens handed out/h`;
+      checkouts.textContent = [burnShare, handouts].filter(Boolean).join(' · ') || 'needs two snapshots';
+    }
+    // Quotas refill hourly, so a runway beyond a day just means "sustainable".
+    // A null runway is only sustainable once a burn rate has been measured.
+    const runway = summary.hoursToReserve;
+    const learning = summary.quotaBurnPerHour === null;
+    setMetric(
+      'metric-runway',
+      learning ? 'Learning' : runway === null || runway > 24 ? '24h+' : `${runway}h`,
+      !learning && runway !== null && runway <= 6 ? metricTone : 'text-gray-100',
+    );
     const reset = document.getElementById('metric-reset');
-    if (reset) reset.textContent = summary.nextResetAt ? `next quota reset ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : 'before the 4k/token floor';
+    if (reset) {
+      const refill = summary.nextResetAt ? ` · next refill ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : '';
+      reset.textContent = learning
+        ? `needs two snapshots${refill}`
+        : `at this rate, until tokens hit the 4k floor${refill}`;
+    }
 
     const reasons = document.getElementById('capacity-reasons');
     if (reasons) {
@@ -493,18 +685,21 @@ if (!auth || !isAdmin(auth.username)) {
     const headroom = document.getElementById('token-headroom');
     if (headroom) {
       const buckets = [
-        { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% quota' },
-        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '≤35% quota' },
+        { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% lendable' },
+        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '≤35% lendable' },
         { label: 'Below floor', count: 0, color: 'bg-red-400', detail: '≤4k requests left' },
         { label: 'Rate limited', count: 0, color: 'bg-purple-400', detail: 'locally paused' },
         { label: 'Check failed', count: 0, color: 'bg-gray-500', detail: 'quota unknown' },
       ];
+      const FLOOR = 4_000;
       for (const token of data.tokens) {
-        const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : null;
-        if (token.error || percent === null) buckets[4].count++;
-        else if (token.remaining !== null && token.remaining <= 4_000) buckets[2].count++;
+        const lendable = token.remaining !== null && token.limit && token.limit > FLOOR
+          ? Math.round((token.remaining - FLOOR) / (token.limit - FLOOR) * 100)
+          : null;
+        if (token.error || lendable === null) buckets[4].count++;
+        else if (token.remaining !== null && token.remaining <= FLOOR) buckets[2].count++;
         else if (!token.available) buckets[3].count++;
-        else if (percent <= 35) buckets[1].count++;
+        else if (lendable <= 35) buckets[1].count++;
         else buckets[0].count++;
       }
       const total = data.tokens.length;
@@ -521,6 +716,7 @@ if (!auth || !isAdmin(auth.username)) {
     }
 
     renderQuotaChart(data.history);
+    renderGrowth(data);
   }
 
   const CAPACITY_CHECK_TIMEOUT_MS = 90_000;
