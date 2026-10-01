@@ -270,6 +270,37 @@ test("does not count repeated readings of one window again", () => {
   assert.equal(Math.round(summary.quotaBurnPerHour ?? 0), 1_333);
 });
 
+test("keeps spend from an earlier window when the newest reading follows a reset", () => {
+  // Busy until the 12:00 reset (2000 spent over 50 minutes), then a fresh
+  // window at 12:05. Using only the newest reading would report zero.
+  const readings = [
+    observation(
+      1,
+      "2026-08-27T11:50:00.000Z",
+      3_000,
+      0,
+      "2026-08-27T12:00:00.000Z",
+    ),
+    observation(
+      1,
+      "2026-08-27T12:05:00.000Z",
+      5_000,
+      0,
+      "2026-08-27T13:05:00.000Z",
+    ),
+  ];
+
+  const summary = summarizeTokenPool(
+    readings.slice(-1),
+    readings,
+    "2026-08-27T12:05:00.000Z",
+    1,
+  );
+
+  // 2000 over 0.8333h of busy window plus the 5 minutes since the reset.
+  assert.equal(Math.round(summary.quotaBurnPerHour ?? 0), 2_182);
+});
+
 test("counts idle tokens as an hour without spend", () => {
   const at = "2026-08-27T13:00:00.000Z";
   const idle = (id: number) =>

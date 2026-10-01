@@ -360,6 +360,76 @@ const BURN_SAMPLE_HOURS = 3;
 const MIN_BURN_SAMPLE_TOKENS = 20;
 const MS_PER_HOUR = 3_600_000;
 
+type BurnInterval = {
+  start: number;
+  end: number;
+  used: number;
+  idle: boolean;
+  // When the quota window this interval belongs to ends (busy windows only).
+  windowEnd: number;
+};
+
+// Turns one token's readings into non-overlapping spans of "spent `used`
+// requests over this long". Readings in the same quota window are cumulative,
+// so only the newest per window counts. An idle reading (fresh window, nothing
+// spent) claims the last hour had no spend, clipped to start after any earlier
+// window or idle claim so the same time is never counted twice.
+function burnIntervals(readings: TokenObservation[]): BurnInterval[] {
+  const windows = new Map<string, BurnInterval>();
+  const idle: BurnInterval[] = [];
+  for (const reading of [...readings].sort((a, b) =>
+    a.observedAt.localeCompare(b.observedAt),
+  )) {
+    const observedAt = Date.parse(reading.observedAt);
+    const resetAt = Date.parse(reading.resetAt as string);
+    const hoursToReset = (resetAt - observedAt) / MS_PER_HOUR;
+    if (hoursToReset < 0 || hoursToReset > QUOTA_WINDOW_HOURS * 1.01) continue;
+
+    const used = Math.max(
+      0,
+      (reading.limit as number) - (reading.remaining as number),
+    );
+    const elapsedHours =
+      QUOTA_WINDOW_HOURS - Math.min(QUOTA_WINDOW_HOURS, hoursToReset);
+    if (used === 0 && elapsedHours < 0.02) {
+      idle.push({
+        start: observedAt - QUOTA_WINDOW_HOURS * MS_PER_HOUR,
+        end: observedAt,
+        used: 0,
+        idle: true,
+        windowEnd: observedAt,
+      });
+    } else {
+      windows.set(reading.resetAt as string, {
+        start: observedAt - elapsedHours * MS_PER_HOUR,
+        end: observedAt,
+        used,
+        idle: false,
+        windowEnd: resetAt,
+      });
+    }
+  }
+
+  const all = [...idle, ...windows.values()].sort((a, b) => a.end - b.end);
+  const accepted: BurnInterval[] = [];
+  let lastIdleEnd = -Infinity;
+  for (const interval of all) {
+    let start = interval.start;
+    if (interval.idle) {
+      const previousWindowEnd = Math.max(
+        -Infinity,
+        ...all
+          .filter((other) => !other.idle && other.windowEnd <= interval.end)
+          .map((other) => other.windowEnd),
+      );
+      start = Math.max(start, lastIdleEnd, previousWindowEnd);
+      lastIdleEnd = Math.max(lastIdleEnd, interval.end);
+    }
+    if (interval.end > start) accepted.push({ ...interval, start });
+  }
+  return accepted;
+}
+
 // Estimates what the whole pool spends per hour from single readings, so it
 // works with rotating batches where one token is only seen every few hours.
 // Each reading says "this token spent `used` requests over the `elapsed`
@@ -382,40 +452,28 @@ function calculateQuotaBurn(
     ...readings.map((observation) => Date.parse(observation.observedAt)),
   );
   const cutoff = newest - BURN_SAMPLE_HOURS * MS_PER_HOUR;
-  // Readings of a token in the same window are cumulative, so repeated ones
-  // (small pools are re-read every run) would count the same requests again.
-  // Use only the newest reading of each token.
-  const newestByToken = new Map<number, TokenObservation>();
+  const byToken = new Map<number, TokenObservation[]>();
   for (const reading of readings) {
     if (Date.parse(reading.observedAt) < cutoff) continue;
-    const seen = newestByToken.get(reading.tokenId);
-    if (!seen || reading.observedAt > seen.observedAt) {
-      newestByToken.set(reading.tokenId, reading);
-    }
+    const entries = byToken.get(reading.tokenId) ?? [];
+    entries.push(reading);
+    byToken.set(reading.tokenId, entries);
   }
+
   let spent = 0;
   let exposureHours = 0;
-  const sampledTokens = new Set<number>();
-  for (const reading of newestByToken.values()) {
-    const observedAt = Date.parse(reading.observedAt);
-    const hoursToReset =
-      (Date.parse(reading.resetAt as string) - observedAt) / MS_PER_HOUR;
-    if (hoursToReset < 0 || hoursToReset > QUOTA_WINDOW_HOURS * 1.01) continue;
-
-    const used = Math.max(
-      0,
-      (reading.limit as number) - (reading.remaining as number),
-    );
-    const elapsedHours =
-      QUOTA_WINDOW_HOURS - Math.min(QUOTA_WINDOW_HOURS, hoursToReset);
-    // A fresh window with nothing spent means no requests for a full hour.
-    exposureHours +=
-      used === 0 && elapsedHours < 0.02 ? QUOTA_WINDOW_HOURS : elapsedHours;
-    spent += used;
-    sampledTokens.add(reading.tokenId);
+  let sampledTokens = 0;
+  for (const entries of byToken.values()) {
+    const intervals = burnIntervals(entries);
+    if (intervals.length === 0) continue;
+    sampledTokens++;
+    for (const interval of intervals) {
+      spent += interval.used;
+      exposureHours += (interval.end - interval.start) / MS_PER_HOUR;
+    }
   }
   if (exposureHours === 0) return null;
-  if (sampledTokens.size < Math.min(poolSize, MIN_BURN_SAMPLE_TOKENS)) {
+  if (sampledTokens < Math.min(poolSize, MIN_BURN_SAMPLE_TOKENS)) {
     return null;
   }
   return round((spent / exposureHours) * poolSize);
