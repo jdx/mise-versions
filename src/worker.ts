@@ -5,6 +5,10 @@
 import astroWorker from "../web/dist/server/entry.mjs";
 import { drizzle } from "drizzle-orm/d1";
 import { ensureTokenObservabilitySchema } from "./migrations.js";
+import {
+  LEGACY_SCOPE_SUNSET_CRON,
+  runLegacyScopeSunset,
+} from "./legacy-scope-sunset.js";
 import { observeTokenPool } from "./token-observability.js";
 import {
   dispatchUpdateWorkflow,
@@ -58,6 +62,15 @@ export default {
               });
               throw error;
             }),
+        );
+        break;
+      case LEGACY_SCOPE_SUNSET_CRON:
+        ctx.waitUntil(
+          runLegacyScopeSunset(env).catch((error: unknown) => {
+            console.error("legacy_scope_sunset_failed", {
+              error: error instanceof Error ? error.message : String(error),
+            });
+          }),
         );
         break;
       default:

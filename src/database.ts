@@ -158,6 +158,16 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       return { lookups: row?.lookups ?? 0 };
     },
 
+    // Retire every token row for a user whose grant was revoked on GitHub.
+    // Rows are kept (inactive, secrets cleared) so their lookup count survives.
+    async retireUserTokens(userId: string) {
+      await db
+        .update(tokens)
+        .set({ is_active: 0, token: "", refresh_token: null })
+        .where(eq(tokens.user_id, userId))
+        .run();
+    },
+
     // Store new token
     async storeToken(
       userId: string | null,
