@@ -33,6 +33,9 @@ const reached = pastActivityMilestones(averages);
 const lastReached = reached.at(-1);
 const reachedLabel = (value: number) =>
   value.toLocaleString("en-US", { notation: "compact", maximumFractionDigits: 1 });
+const reachedSummary = reached.length
+  ? ` Milestones passed: ${reached.map((m) => `${m.level.toLocaleString()} on ${forecastDate(m.date)}`).join(", ")}.`
+  : "";
 const chartReached = [...Map.groupBy(reached, (m) => m.date)].map(([date, ms]) => ({
   date,
   value: ms[0].value,
@@ -284,8 +287,8 @@ const yTicks = Array.from(
         role="img"
         aria-label={
           forecast
-            ? `Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026. On pace for ${forecast.targetLabel} around ${forecastDate(forecast.hitDate)}.`
-            : "Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026"
+            ? `Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026. On pace for ${forecast.targetLabel} around ${forecastDate(forecast.hitDate)}.${reachedSummary}`
+            : `Seven-day average and daily snapshots of trailing 30-day monthly active users since March 2026.${reachedSummary}`
         }
       >
         <defs>
@@ -327,7 +330,7 @@ const yTicks = Array.from(
             const px = xForDate(m.date);
             const py = yForValue(m.value);
             return (
-              <g pointer-events="none" role="img" aria-label={`Reached ${m.levels.map((l) => l.toLocaleString()).join(", ")} MAU on ${forecastDate(m.date)}`}>
+              <g pointer-events="none" aria-hidden="true">
                 <line x1={px} x2={px} y1={py} y2={chartHeight} stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3" />
                 <circle cx={px} cy={py} r="3.5" fill="var(--surface)" stroke="var(--data)" stroke-width="1.5" />
                 <text x={px - 9} y={py + 4} text-anchor="end" class="mau-reached-label">{m.levels.map(reachedLabel).join(" · ")}</text>
