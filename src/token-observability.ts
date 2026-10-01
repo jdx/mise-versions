@@ -809,11 +809,13 @@ export async function alertEmergencyTokenUse(
   env: Env,
   info: { tokenId: number; remaining: number; limit: number },
 ): Promise<void> {
+  let claimed = false;
   try {
     console.warn("token_pool_emergency_checkout", info);
     if (!env.RESEND_API_KEY || !env.TOKEN_ALERT_TO || !env.TOKEN_ALERT_FROM)
       return;
     if (!(await claimEmergencyAlert(env.DB))) return;
+    claimed = true;
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -839,7 +841,8 @@ export async function alertEmergencyTokenUse(
     }
   } catch (error) {
     console.error("emergency alert error", errorMessage(error));
-    await releaseEmergencyAlert(env.DB).catch(() => undefined);
+    // Only hand back a claim we actually hold.
+    if (claimed) await releaseEmergencyAlert(env.DB).catch(() => undefined);
   }
 }
 

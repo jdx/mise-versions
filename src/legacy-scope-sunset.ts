@@ -145,9 +145,16 @@ export function buildGrowth(
 ): GrowthPoint[] {
   const dayOf = (iso: string) => iso.slice(0, 10);
   const today = dayOf(now.toISOString());
+  // Start at the earliest of: when the oldest current row joined, and the
+  // first stored snapshot (so recorded history survives pool turnover).
+  const earliestSnapshot = snapshots.reduce(
+    (min, snapshot) =>
+      snapshot.observed_at < min ? snapshot.observed_at : min,
+    now.toISOString(),
+  );
   const earliest = pool.reduce(
     (min, token) => (token.created_at < min ? token.created_at : min),
-    now.toISOString(),
+    earliestSnapshot,
   );
   const startMs = Math.max(
     Date.parse(`${dayOf(earliest)}T00:00:00Z`),

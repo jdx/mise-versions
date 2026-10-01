@@ -94,7 +94,10 @@ export const GET: APIRoute = async ({ request, locals }) => {
       // Either the grant could not be replaced, or the fresh pass still came
       // back scoped (e.g. someone hit /login?fresh=1 by hand). A scoped token
       // must never enter the pool, so drop this one and refuse the sign-in.
-      await revokeGrant(env, authResult.token).catch(() => false);
+      // If the revoke works, the user's stored tokens died with the grant.
+      if (await revokeGrant(env, authResult.token).catch(() => false)) {
+        await database.retireUserTokens(user.login);
+      }
       console.warn(`Refused scoped token for ${user.login}`);
       return redirectWithError("scoped_token");
     }

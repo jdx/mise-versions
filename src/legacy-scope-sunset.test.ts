@@ -201,3 +201,28 @@ test("growth switches to real snapshots once they exist", () => {
     ],
   );
 });
+
+test("growth keeps recorded history after the pool turns over", () => {
+  // Every current row is newer than the oldest stored snapshot.
+  const pool: PoolTokenScopes[] = [
+    {
+      id: 1,
+      user_id: "a",
+      scopes: "[]",
+      created_at: "2026-09-30T10:00:00.000Z",
+    },
+  ];
+  const points = buildGrowth(
+    pool,
+    [
+      {
+        observed_at: "2026-09-27T04:23:00.000Z",
+        legacy_rows: 5,
+        clean_rows: 0,
+      },
+    ],
+    new Date("2026-09-30T12:00:00.000Z"),
+  );
+  assert.equal(points[0].day, "2026-09-27");
+  assert.deepEqual([points[0].legacy, points[0].clean], [5, 0]);
+});
