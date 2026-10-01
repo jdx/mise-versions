@@ -568,16 +568,20 @@ if (!auth || !isAdmin(auth.username)) {
       checkouts.textContent = [burnShare, handouts].filter(Boolean).join(' · ') || 'needs two snapshots';
     }
     // Quotas refill hourly, so a runway beyond a day just means "sustainable".
+    // A null runway is only sustainable once a burn rate has been measured.
     const runway = summary.hoursToReserve;
+    const learning = summary.quotaBurnPerHour === null;
     setMetric(
       'metric-runway',
-      runway === null || runway > 24 ? '24h+' : `${runway}h`,
-      runway !== null && runway <= 6 ? metricTone : 'text-gray-100',
+      learning ? 'Learning' : runway === null || runway > 24 ? '24h+' : `${runway}h`,
+      !learning && runway !== null && runway <= 6 ? metricTone : 'text-gray-100',
     );
     const reset = document.getElementById('metric-reset');
     if (reset) {
       const refill = summary.nextResetAt ? ` · next refill ${new Date(summary.nextResetAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}` : '';
-      reset.textContent = `at this rate, until tokens hit the 4k floor${refill}`;
+      reset.textContent = learning
+        ? `needs two snapshots${refill}`
+        : `at this rate, until tokens hit the 4k floor${refill}`;
     }
 
     const reasons = document.getElementById('capacity-reasons');
