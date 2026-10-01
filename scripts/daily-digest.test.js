@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { dateStrAgo } from "./lib/rollup-dates.js";
 import {
   audienceSection,
   downloadsSection,
@@ -7,6 +8,8 @@ import {
   projectsSection,
   miseReleaseSection,
   digestFromData,
+  buildDigest,
+  toolCoverage,
 } from "./daily-digest.js";
 
 const NOW = Date.parse("2026-10-01T06:00:00Z");
@@ -119,7 +122,7 @@ test("stale rollups produce a warning in the email", () => {
       mau: [{ date: "2026-09-28", value: 1 }],
       dau: [],
       downloads: [],
-      toolCoverage: { latest: "2026-09-30", week_days: 5, prior_days: 7 },
+      toolDaily: [{ date: "2026-09-30", value: 100 }],
       movers: [{ name: "big", this_week: 1000, last_week: 500 }],
       projects: [],
       release: null,
@@ -130,7 +133,7 @@ test("stale rollups produce a warning in the email", () => {
   assert.match(digest.text, /MAU rollup is stale \(latest 2026-09-28/);
   assert.match(
     digest.text,
-    /Per-tool rollup is incomplete \(latest 2026-09-30, 5\/7 days this week/,
+    /Per-tool rollup is incomplete \(2026-09-30 has no daily total/,
   );
   assert.match(digest.text, /Project snapshot is stale/);
   assert.doesNotMatch(digest.text, /Tool movers \(7d/);
@@ -162,4 +165,45 @@ test("the latest release comes from the release record, not monthly markers", ()
     ).lines,
     [],
   );
+});
+
+const dayRows = (day, count, value) =>
+  Array.from({ length: count }, (_, i) => ({
+    date: dateStrAgo(day, i),
+    value,
+  }));
+
+test("weekly download totals are withheld when a day is missing", () => {
+  const rows = dayRows("2026-09-30", 14, 100).filter(
+    (r) => r.date !== "2026-09-27",
+  );
+  const section = downloadsSection(rows, "2026-09-30");
+  assert.equal(
+    section.lines[1],
+    "Weekly totals unavailable: 6/7 days recorded this week, 7/7 the week before",
+  );
+});
+
+test("tool coverage rejects days whose tool rows fall short of the total", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  assert.equal(
+    toolCoverage(dayRows("2026-09-30", 14, 980), totals, "2026-09-30").complete,
+    true,
+  );
+  const partial = dayRows("2026-09-30", 14, 980).map((r) =>
+    r.date === "2026-09-28" ? { ...r, value: 300 } : r,
+  );
+  const result = toolCoverage(partial, totals, "2026-09-30");
+  assert.equal(result.complete, false);
+  assert.deepEqual(result.problems, ["2026-09-28 has 30% of its downloads"]);
+});
+
+test("control characters never reach the subject line", () => {
+  const digest = buildDigest({
+    day: "2026-09-30",
+    sections: [],
+    warnings: [],
+    milestones: ["evil\r\nBcc: x@example.com reached 100 stars"],
+  });
+  assert.doesNotMatch(digest.subject, /[\r\n]/);
 });

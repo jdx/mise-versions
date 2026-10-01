@@ -18,6 +18,9 @@ const STAR_MILESTONES = [
   100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000,
 ];
 const MIN_MOVER_DOWNLOADS = 100;
+// Per-tool rows for a day should add up to nearly the day's total. A day well
+// below that lost tool rows to a partial refresh.
+const MIN_TOOL_COVERAGE = 0.9;
 
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
 const signed = (n) => `${n >= 0 ? "+" : "−"}${fmt(Math.abs(n))}`;
@@ -71,11 +74,20 @@ export function audienceSection(mauRows, dauRows, day) {
   return { title: "Audience", lines };
 }
 
-// Tool downloads through mise: the day itself plus 7d vs the prior 7d.
+// Number of distinct days with a row in the inclusive range.
+function daysRecorded(rows, start, end) {
+  return new Set(
+    rows.filter((r) => r.date >= start && r.date <= end).map((r) => r.date),
+  ).size;
+}
+
+// Tool downloads through mise: the day itself plus 7d vs the prior 7d. A
+// weekly total is only meaningful when every day in both windows was recorded.
 export function downloadsSection(rows, day) {
   const yesterday = rows.find((r) => r.date === day)?.value;
-  const thisWeek = sumRange(rows, dateStrAgo(day, 6), day);
-  const lastWeek = sumRange(rows, dateStrAgo(day, 13), dateStrAgo(day, 7));
+  const weekStart = dateStrAgo(day, 6);
+  const priorStart = dateStrAgo(day, 13);
+  const priorEnd = dateStrAgo(day, 7);
   const lines = [];
   if (yesterday === undefined) {
     lines.push(`No tool downloads recorded for ${day} yet.`);
@@ -86,10 +98,40 @@ export function downloadsSection(rows, day) {
         (sameDay ? ` (${pct(yesterday, sameDay)} vs same day last week)` : ""),
     );
   }
-  lines.push(
-    `Last 7 days: ${fmt(thisWeek)} (${pct(thisWeek, lastWeek)} vs the 7 days before)`,
-  );
+  const thisDays = daysRecorded(rows, weekStart, day);
+  const priorDays = daysRecorded(rows, priorStart, priorEnd);
+  if (thisDays === 7 && priorDays === 7) {
+    const thisWeek = sumRange(rows, weekStart, day);
+    const lastWeek = sumRange(rows, priorStart, priorEnd);
+    lines.push(
+      `Last 7 days: ${fmt(thisWeek)} (${pct(thisWeek, lastWeek)} vs the 7 days before)`,
+    );
+  } else {
+    lines.push(
+      `Weekly totals unavailable: ${thisDays}/7 days recorded this week, ${priorDays}/7 the week before`,
+    );
+  }
   return { title: "Tool downloads", lines };
+}
+
+// Whether the per-tool rows cover both comparison weeks completely: every day
+// present, and each day's tool rows adding up to nearly that day's total.
+export function toolCoverage(toolDaily, totals, day) {
+  const problems = [];
+  const totalByDate = new Map(totals.map((r) => [r.date, r.value]));
+  const toolByDate = new Map(toolDaily.map((r) => [r.date, r.value]));
+  for (let i = 0; i < 14; i++) {
+    const date = dateStrAgo(day, i);
+    const tools = toolByDate.get(date);
+    const total = totalByDate.get(date);
+    if (tools === undefined) problems.push(`${date} missing`);
+    else if (total === undefined) problems.push(`${date} has no daily total`);
+    else if (tools < total * MIN_TOOL_COVERAGE)
+      problems.push(
+        `${date} has ${Math.round((tools / total) * 100)}% of its downloads`,
+      );
+  }
+  return { complete: problems.length === 0, problems };
 }
 
 // Biggest absolute week-over-week movers among tools with real volume.
@@ -189,9 +231,15 @@ export function miseReleaseSection(project, release, day, now = Date.now()) {
 }
 
 export function buildDigest({ day, sections, milestones, warnings }) {
-  const subject = milestones.length
-    ? `mise daily digest ${day} · ${milestones[0]}`
-    : `mise daily digest ${day}`;
+  // Milestone text comes from project names, so keep control characters out of
+  // the subject line.
+  const subject = (
+    milestones.length
+      ? `mise daily digest ${day} · ${milestones[0]}`
+      : `mise daily digest ${day}`
+  )
+    .replace(/[\u0000-\u001f\u007f]+/g, " ")
+    .trim();
   const textParts = [];
   const htmlParts = [];
   if (warnings.length) {
@@ -288,7 +336,7 @@ async function collect() {
   const priorStart = dateStrAgo(day, 13);
   const priorEnd = dateStrAgo(day, 7);
 
-  const [mau, dau, downloads, toolDate, movers] = await Promise.all([
+  const [mau, dau, downloads, toolDaily, movers] = await Promise.all([
     queryD1(
       config,
       "SELECT date, mau AS value FROM daily_mau_stats WHERE date >= ? AND date <= ?",
@@ -306,11 +354,9 @@ async function collect() {
     ),
     queryD1(
       config,
-      `SELECT MAX(date) AS latest,
-         COUNT(DISTINCT CASE WHEN date BETWEEN ? AND ? THEN date END) AS week_days,
-         COUNT(DISTINCT CASE WHEN date BETWEEN ? AND ? THEN date END) AS prior_days
-       FROM daily_tool_stats WHERE date BETWEEN ? AND ?`,
-      [weekStart, day, priorStart, priorEnd, priorStart, day],
+      `SELECT date, SUM(downloads) AS value FROM daily_tool_stats
+       WHERE date BETWEEN ? AND ? GROUP BY date`,
+      [priorStart, day],
     ),
     queryD1(
       config,
@@ -332,7 +378,7 @@ async function collect() {
     mau,
     dau,
     downloads,
-    toolCoverage: toolDate[0] ?? null,
+    toolDaily,
     movers,
     projects: projects.projects,
     release,
@@ -358,14 +404,11 @@ export function digestFromData(data, now = Date.now()) {
   }
   // The movers compare two weeks of per-tool rows, which a partial rollup
   // refresh can leave incomplete even when the aggregate tables are current.
-  const coverage = data.toolCoverage;
-  const toolsCurrent =
-    coverage?.latest === data.day &&
-    coverage.week_days === 7 &&
-    coverage.prior_days === 7;
+  const coverage = toolCoverage(data.toolDaily, data.downloads, data.day);
+  const toolsCurrent = coverage.complete;
   if (!toolsCurrent)
     warnings.push(
-      `Per-tool rollup is incomplete (latest ${coverage?.latest ?? "none"}, ${coverage?.week_days ?? 0}/7 days this week, ${coverage?.prior_days ?? 0}/7 the week before); tool movers omitted`,
+      `Per-tool rollup is incomplete (${coverage.problems.slice(0, 3).join("; ")}${coverage.problems.length > 3 ? `; +${coverage.problems.length - 3} more` : ""}); tool movers omitted`,
     );
   const projectsLatest = data.projects
     .map((p) => p.history.at(-1)?.date)
