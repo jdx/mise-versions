@@ -55,8 +55,8 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
       const px = x(m.date);
       return <g class="download-reached" pointer-events="none" role="img" aria-label={`Reached ${m.levels.map(l=>l.toLocaleString()).join(', ')} ${unit} on ${forecastDate(m.date)}`}>
         <line x1={px} x2={px} y1={y(avg)} y2="186" stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3"/>
-        <circle cx={px} cy={y(avg)} r="4" fill="var(--surface)" stroke="var(--data)" stroke-width="2"/>
-        <text x={px} y={y(avg)-10} text-anchor={px > 440 ? 'end' : 'middle'} class="download-reached-label">{m.levels.map(milestoneLabel).join(' · ')}</text>
+        <circle cx={px} cy={y(avg)} r="3" fill="var(--surface)" stroke="var(--data)" stroke-width="1.5"/>
+        <text x={px-8} y={y(avg)+4} text-anchor="end" class="download-reached-label">{m.levels.map(milestoneLabel).join(' · ')}</text>
       </g>;
     })}
     <path d={path} fill="none" stroke="var(--data)" stroke-width="2.5" stroke-linejoin="round"/>

@@ -1239,6 +1239,11 @@ code,
 }
 .adoption-chart .download-reached-label {
   fill: var(--data);
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+  stroke-linejoin: round;
 }
 .adoption-chart .download-target-label {
   fill: var(--forecast);
