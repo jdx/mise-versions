@@ -16,6 +16,8 @@ import {
 
 // GET /api/auth/callback - Handle GitHub OAuth callback
 export const GET: APIRoute = async ({ request, locals }) => {
+  // Rows created after this belong to an overlapping, newer sign-in.
+  const startedAt = new Date().toISOString();
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
@@ -82,7 +84,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
         !isFreshOAuthState(state) &&
         (await revokeGrant(env, authResult.token))
       ) {
-        await database.retireUserTokens(user.login);
+        await database.retireScopedUserTokensBefore(user.login, startedAt);
         const again = new URL("/api/auth/login", url.origin);
         again.searchParams.set("return_to", returnTo);
         again.searchParams.set("fresh", "1");
@@ -96,7 +98,7 @@ export const GET: APIRoute = async ({ request, locals }) => {
       // must never enter the pool, so drop this one and refuse the sign-in.
       // If the revoke works, the user's stored tokens died with the grant.
       if (await revokeGrant(env, authResult.token).catch(() => false)) {
-        await database.retireUserTokens(user.login);
+        await database.retireScopedUserTokensBefore(user.login, startedAt);
       }
       console.warn(`Refused scoped token for ${user.login}`);
       return redirectWithError("scoped_token");

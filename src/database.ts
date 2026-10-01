@@ -171,6 +171,25 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       return { lookups: row?.lookups ?? 0, sharing: (row?.active ?? 0) > 0 };
     },
 
+    // Retire the scoped rows that died when a user's old grant was revoked.
+    // Only rows created before `before` that carry scopes: a no-scope token
+    // stored by an overlapping sign-in belongs to a newer grant and survives.
+    async retireScopedUserTokensBefore(userId: string, before: string) {
+      await db
+        .update(tokens)
+        .set({ is_active: 0, token: "", refresh_token: null })
+        .where(
+          and(
+            eq(tokens.user_id, userId),
+            eq(tokens.is_active, 1),
+            lte(tokens.created_at, before),
+            isNotNull(tokens.scopes),
+            sql`${tokens.scopes} != '[]'`,
+          ),
+        )
+        .run();
+    },
+
     // Retire every token row for a user whose grant was revoked on GitHub.
     // Rows are kept (inactive, secrets cleared) so their lookup count survives.
     async retireUserTokens(userId: string) {
