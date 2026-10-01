@@ -81,5 +81,5 @@ test("recent star table ranks projects by growth, newest day first, with daily d
     ["2026-09-09", "2026-09-08", "2026-09-07"],
   );
   assert.deepEqual(table.rows[0].cells[0], { stars: 129, delta: 1 });
-  assert.deepEqual(table.rows[2].cells[0], { stars: 127, delta: null });
+  assert.deepEqual(table.rows[2].cells[0], { stars: 127, delta: 1 });
 });

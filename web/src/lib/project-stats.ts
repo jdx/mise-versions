@@ -210,12 +210,17 @@ export function recentStarTable(
       let last: number | null = null;
       const byDate = new Map(p.history.map((v) => [v.date, v.stars]));
       for (const v of p.history) if (v.date < start) last = v.stars;
+      // The value just before the first row is the baseline, so growth spans
+      // the full `days` intervals like the page's 30-day gain.
+      const baseline = last;
       const stars = dates.map((d) => (last = byDate.get(d) ?? last));
       const known = stars.filter((v): v is number => v !== null);
+      const from = baseline ?? known[0];
       return {
         name: p.name,
+        baseline,
         stars,
-        growth: known.length ? known.at(-1)! - known[0] : -Infinity,
+        growth: known.length ? known.at(-1)! - from : -Infinity,
       };
     })
     .sort((a, b) => b.growth - a.growth || a.name.localeCompare(b.name))
@@ -224,7 +229,7 @@ export function recentStarTable(
     date,
     cells: columns.map((c) => {
       const stars = c.stars[i];
-      const previous = i ? c.stars[i - 1] : null;
+      const previous = i ? c.stars[i - 1] : c.baseline;
       return stars === null
         ? null
         : { stars, delta: previous === null ? null : stars - previous };
