@@ -94,6 +94,10 @@ export const GET: APIRoute = async ({ request, locals }) => {
     const expiresAt =
       "expiresAt" in authResult ? (authResult.expiresAt as string) : null;
 
+    // One live token per person: earlier rows (which may carry broader scopes)
+    // stop being lent out, and repeat sign-ins don't inflate the pool.
+    await database.supersedeUserTokens(user.login);
+
     await database.storeToken(user.login, authResult.token, expiresAt, {
       userName: user.name ?? undefined,
       userEmail: user.email ?? undefined,

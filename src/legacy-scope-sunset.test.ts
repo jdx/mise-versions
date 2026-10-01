@@ -129,3 +129,11 @@ test("burndown excess is zero once legacy fits the allowance", () => {
   assert.equal(computeBurndown(rows(10, "old", LEGACY)).excess, 0);
   assert.equal(computeBurndown(rows(3, "new", "[]"), 2).allowedLegacy, 0);
 });
+
+test("never retires more rows than the availability budget allows", () => {
+  const tokens = rows(LEGACY_CAP + 10, "old", LEGACY);
+  // 10 over the cap, but only 4 rows of headroom above the availability floor.
+  assert.equal(planSunset(tokens, { ...on, maxRows: 4 }).length, 4);
+  assert.deepEqual(planSunset(tokens, { ...on, maxRows: 0 }), []);
+  assert.deepEqual(planSunset(tokens, { ...on, maxRows: -5 }), []);
+});

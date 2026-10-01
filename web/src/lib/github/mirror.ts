@@ -845,6 +845,9 @@ function recordRateLimit(token: TokenRecord | null, headers: Headers) {
     !Number.isFinite(remaining)
   )
     return;
+  // Parallel requests share this token object and can finish out of order;
+  // keep the lowest reading seen so a late, higher one can't hide a low token.
+  if (token.remaining !== undefined && token.remaining <= remaining) return;
   token.remaining = remaining;
   if (Number.isFinite(reset) && reset > 0) {
     token.rateLimitReset = new Date(reset * 1000).toISOString();

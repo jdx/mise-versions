@@ -78,7 +78,14 @@ export function computeBurndown(
 // counted in rows because a user can have several.
 export function planSunset(
   tokens: PoolTokenScopes[],
-  options: { enabled: boolean; healthy: boolean; legacyCap?: number },
+  options: {
+    enabled: boolean;
+    healthy: boolean;
+    legacyCap?: number;
+    // Most rows this run may take out of the pool (usable tokens above the
+    // availability floor). Unset means no limit.
+    maxRows?: number;
+  },
 ): string[] {
   if (!options.enabled || !options.healthy) return [];
 
@@ -109,9 +116,12 @@ export function planSunset(
 
   const chosen: string[] = [];
   let remaining = tokens.length;
+  let rowBudget = options.maxRows ?? Number.POSITIVE_INFINITY;
   for (const [userId, rows] of oldestFirst) {
     if (excess <= 0 || chosen.length >= MAX_RETIRED_PER_RUN) break;
     if (remaining - rows.length < MIN_POOL_SIZE_AFTER) continue;
+    if (rows.length > rowBudget) continue;
+    rowBudget -= rows.length;
     chosen.push(userId);
     remaining -= rows.length;
     excess -= rows.length;
@@ -236,7 +246,13 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
       summary.availableTokens >= MIN_AVAILABLE_TOKENS;
     const database = setupDatabase(drizzle(env.DB));
     const pool = await database.getPoolTokens();
-    const users = planSunset(pool, { enabled: true, healthy });
+    // Retiring may remove usable tokens, so only spend what is left above the
+    // availability floor.
+    const users = planSunset(pool, {
+      enabled: true,
+      healthy,
+      maxRows: summary.availableTokens - MIN_AVAILABLE_TOKENS,
+    });
     if (users.length === 0) {
       console.info("legacy_scope_sunset_nothing_to_do", {
         healthy,

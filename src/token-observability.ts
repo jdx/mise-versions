@@ -765,6 +765,7 @@ async function sendAlert(
 }
 
 const EMERGENCY_ALERT_KEY = "token-emergency-alert";
+const EMERGENCY_ALERT_LOCK_KEY = "token-emergency-alert-lock";
 const EMERGENCY_ALERT_TTL_SECONDS = 3_600;
 
 // Called when the token endpoint lends a token that is below the normal floor.
@@ -776,12 +777,16 @@ export async function alertEmergencyTokenUse(
 ): Promise<void> {
   try {
     console.warn("token_pool_emergency_checkout", info);
-    if (await env.DOWNLOAD_DEDUPE.get(EMERGENCY_ALERT_KEY)) return;
-    await env.DOWNLOAD_DEDUPE.put(EMERGENCY_ALERT_KEY, "1", {
-      expirationTtl: EMERGENCY_ALERT_TTL_SECONDS,
-    });
     if (!env.RESEND_API_KEY || !env.TOKEN_ALERT_TO || !env.TOKEN_ALERT_FROM)
       return;
+    if (await env.DOWNLOAD_DEDUPE.get(EMERGENCY_ALERT_KEY)) return;
+    // A short lock keeps parallel checkouts from all sending at once; the
+    // hourly key is only set once an email was actually accepted, so a
+    // failed send is retried by the next emergency checkout.
+    if (await env.DOWNLOAD_DEDUPE.get(EMERGENCY_ALERT_LOCK_KEY)) return;
+    await env.DOWNLOAD_DEDUPE.put(EMERGENCY_ALERT_LOCK_KEY, "1", {
+      expirationTtl: 60,
+    });
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -803,7 +808,11 @@ export async function alertEmergencyTokenUse(
     });
     if (!response.ok) {
       console.error("emergency alert failed", response.status);
+      return;
     }
+    await env.DOWNLOAD_DEDUPE.put(EMERGENCY_ALERT_KEY, "1", {
+      expirationTtl: EMERGENCY_ALERT_TTL_SECONDS,
+    });
   } catch (error) {
     console.error("emergency alert error", errorMessage(error));
   }

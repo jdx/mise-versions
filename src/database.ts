@@ -1,6 +1,16 @@
 import { drizzle } from "drizzle-orm/d1";
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
-import { sql, eq, gt, lte, isNull, isNotNull, and, or } from "drizzle-orm";
+import {
+  sql,
+  eq,
+  gt,
+  lte,
+  isNull,
+  isNotNull,
+  inArray,
+  and,
+  or,
+} from "drizzle-orm";
 
 // GitHub tokens table for round-robin usage (user tokens only)
 export const tokens = sqliteTable("tokens", {
@@ -183,6 +193,35 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       }
     },
 
+    // A user signing in again replaces their earlier token rows rather than
+    // adding to them: older rows (possibly with broader scopes) stop being
+    // lent and the pool doesn't grow with every sign-in. Lookup counts are
+    // kept because the rows stay.
+    async supersedeUserTokens(userId: string) {
+      await db
+        .update(tokens)
+        .set({ is_active: 0, token: "superseded", refresh_token: null })
+        .where(and(eq(tokens.user_id, userId), eq(tokens.is_active, 1)))
+        .run();
+    },
+
+    async getPoolTokensByIds(tokenIds: number[]) {
+      if (tokenIds.length === 0) return [];
+      const now = new Date().toISOString();
+      return await db
+        .select()
+        .from(tokens)
+        .where(
+          and(
+            inArray(tokens.id, tokenIds),
+            eq(tokens.is_active, 1),
+            sql`${tokens.user_id} != 'jdx'`,
+            or(isNull(tokens.expires_at), gt(tokens.expires_at, now)),
+          ),
+        )
+        .all();
+    },
+
     // Store new token
     async storeToken(
       userId: string | null,
@@ -346,7 +385,6 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .select({
           contributors: sql<number>`count(distinct ${tokens.user_id})`,
           available: sql<number>`coalesce(sum(case when ${tokens.rate_limited_at} is null or ${tokens.rate_limited_at} <= ${now} then 1 else 0 end), 0)`,
-          checkouts: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
         })
         .from(tokens)
         .where(
@@ -358,10 +396,19 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         )
         .get();
 
+      // Lifetime total: include retired and expired rows so it never drops.
+      const lifetime = await db
+        .select({
+          checkouts: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
+        })
+        .from(tokens)
+        .where(sql`${tokens.user_id} != 'jdx'`)
+        .get();
+
       return {
         contributors: row?.contributors ?? 0,
         available: row?.available ?? 0,
-        checkouts: row?.checkouts ?? 0,
+        checkouts: lifetime?.checkouts ?? 0,
       };
     },
 
