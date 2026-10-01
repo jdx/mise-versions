@@ -96,7 +96,6 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
       <h2 id="permissions">What the token can do</h2>
       <p>We ask GitHub for <strong>no permissions at all</strong>. The authorization screen only says it will read your public profile. A token like that can read public information, the same as anyone browsing GitHub, but with the higher rate limit. It can't change anything, and it can't see your private repositories, organizations, or account settings.</p>
       <p>The code is open source if you want to check: the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/login.ts">sign-in redirect</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/callback.ts">callback</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/token/index.ts">token endpoint</a> and the <a href="https://github.com/jdx/mise-versions/blob/main/scripts/update.sh">update script</a>.</p>
-      <p class="adoption-context">If you signed in before this change, your older token may still carry the broader <code>public_repo</code> permission. We're retiring those gradually. When you sign in again we first remove your old authorization on GitHub, so you'll see the consent screen once more and get a new token with no permissions. If yours is retired in the meantime you'll simply stop sharing until you sign in again. You can also revoke it yourself on GitHub (below) at any time.</p>
     </section>
 
     <section aria-labelledby="revoke">

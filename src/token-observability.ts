@@ -110,10 +110,28 @@ function round(value: number, places = 1): number {
   return Math.round(value * multiplier) / multiplier;
 }
 
+// GitHub reports a classic token's real scopes in `x-oauth-scopes` (empty
+// when it has none). Tokens that don't carry the header (fine-grained, app
+// tokens) return null so we leave whatever is stored alone.
+export function parseOAuthScopes(
+  header: string | null | undefined,
+): string[] | null {
+  if (header === null || header === undefined) return null;
+  return header
+    .split(",")
+    .map((scope) => scope.trim())
+    .filter(Boolean);
+}
+
+type InspectedToken = {
+  observation: TokenObservation;
+  scopes: string[] | null;
+};
+
 async function inspectToken(
   token: PoolToken,
   observedAt: string,
-): Promise<TokenObservation> {
+): Promise<InspectedToken> {
   try {
     const response = await new Octokit({
       auth: token.token,
@@ -125,31 +143,58 @@ async function inspectToken(
     );
 
     return {
-      tokenId: token.id,
-      userId: token.user_id,
-      userName: token.user_name,
-      observedAt,
-      remaining: core.remaining,
-      limit: core.limit,
-      resetAt,
-      usageCount: token.usage_count,
-      available: !locallyRateLimited && hasBudget(core.remaining),
-      error: null,
+      observation: {
+        tokenId: token.id,
+        userId: token.user_id,
+        userName: token.user_name,
+        observedAt,
+        remaining: core.remaining,
+        limit: core.limit,
+        resetAt,
+        usageCount: token.usage_count,
+        available: !locallyRateLimited && hasBudget(core.remaining),
+        error: null,
+      },
+      scopes: parseOAuthScopes(response.headers["x-oauth-scopes"]),
     };
   } catch (error) {
     return {
-      tokenId: token.id,
-      userId: token.user_id,
-      userName: token.user_name,
-      observedAt,
-      remaining: null,
-      limit: null,
-      resetAt: null,
-      usageCount: token.usage_count,
-      available: false,
-      error: errorMessage(error),
+      observation: {
+        tokenId: token.id,
+        userId: token.user_id,
+        userName: token.user_name,
+        observedAt,
+        remaining: null,
+        limit: null,
+        resetAt: null,
+        usageCount: token.usage_count,
+        available: false,
+        error: errorMessage(error),
+      },
+      scopes: null,
     };
   }
+}
+
+// Record what GitHub says each token can do. The sign-in flow stored scopes
+// from its own response, which left every row looking scope-free; this is the
+// source of truth the legacy-scope burndown reads.
+async function storeScopes(
+  db: D1Database,
+  inspected: InspectedToken[],
+): Promise<void> {
+  const statements = inspected.flatMap(({ observation, scopes }) => {
+    if (!scopes) return [];
+    const json = JSON.stringify(scopes);
+    return [
+      db
+        .prepare(
+          "UPDATE tokens SET scopes = ? WHERE id = ? AND (scopes IS NULL OR scopes != ?)",
+        )
+        .bind(json, observation.tokenId, json),
+    ];
+  });
+  if (statements.length > 0) await db.batch(statements);
 }
 
 async function loadPoolTokens(
@@ -241,8 +286,8 @@ export function selectTokenBatch<T>(
 async function inspectTokens(
   tokens: PoolToken[],
   observedAt: string,
-): Promise<TokenObservation[]> {
-  const observations: TokenObservation[] = [];
+): Promise<InspectedToken[]> {
+  const observations: InspectedToken[] = [];
   for (let index = 0; index < tokens.length; index += TOKEN_CHECK_CONCURRENCY) {
     observations.push(
       ...(await Promise.all(
@@ -607,6 +652,29 @@ export async function getTokenObservability(
   return tokenObservabilityData(env, state);
 }
 
+// Pool summary built only from observations recent enough to act on, the same
+// selection the alerts use. Anything destructive should read this rather than
+// `getTokenObservability`, whose latest-per-token view can be up to 30 days
+// stale if the observer stops running. `complete` is false unless every pool
+// token has a fresh observation.
+export async function getFreshTokenSummary(
+  env: Env,
+  now = new Date(),
+): Promise<TokenPoolSummary> {
+  const state = await loadTokenObservabilityState(env, now);
+  const fresh = selectAlertObservations(
+    state.latestObservations,
+    state.currentTokenIds,
+    now,
+  );
+  return summarizeTokenPool(
+    fresh,
+    state.observations,
+    state.latestAt ?? null,
+    state.currentTokenIds.length,
+  );
+}
+
 type TokenObservabilityState = {
   observations: TokenObservation[];
   latestObservations: TokenObservation[];
@@ -920,8 +988,14 @@ export async function observeTokenPool(
   const observedAt = now.toISOString();
   const tokens = await loadPoolTokens(env.DB, observedAt);
   const tokensToCheck = selectTokenBatch(tokens, now);
-  const observations = await inspectTokens(tokensToCheck, observedAt);
+  const inspected = await inspectTokens(tokensToCheck, observedAt);
+  const observations = inspected.map(({ observation }) => observation);
   await storeObservations(env.DB, observedAt, tokens.length, observations);
+  try {
+    await storeScopes(env.DB, inspected);
+  } catch (error) {
+    console.error("token_scope_store_failed", { error: errorMessage(error) });
+  }
   const retentionCutoff = new Date(
     now.getTime() - 30 * 86_400_000,
   ).toISOString();

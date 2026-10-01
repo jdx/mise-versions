@@ -2,7 +2,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { DEAD_TOKEN_MARKER } from "./dead-token-cleanup.js";
 import { setupDatabase } from "./database.js";
 import { revokeGrant } from "./github-grant.js";
-import { getTokenObservability } from "./token-observability.js";
+import { getFreshTokenSummary } from "./token-observability.js";
 
 // Tokens from before sign-in stopped requesting scopes still carry
 // `public_repo`, which can write to public repos. We only read, so those are
@@ -79,7 +79,6 @@ export function computeBurndown(
 export function planSunset(
   tokens: PoolTokenScopes[],
   options: {
-    enabled: boolean;
     healthy: boolean;
     legacyCap?: number;
     // Most rows this run may take out of the pool (usable tokens above the
@@ -87,7 +86,7 @@ export function planSunset(
     maxRows?: number;
   },
 ): string[] {
-  if (!options.enabled || !options.healthy) return [];
+  if (!options.healthy) return [];
 
   let excess = computeBurndown(tokens, options.legacyCap).excess;
   if (excess <= 0) return [];
@@ -262,7 +261,6 @@ export async function loadBurndown(env: Env) {
       deadRemoved: await countDeadRemoved(env.DB),
     },
     config: {
-      enabled: env.LEGACY_SCOPE_SUNSET === "on",
       maxPerRun: MAX_RETIRED_PER_RUN,
       minPoolSize: MIN_POOL_SIZE_AFTER,
       minAvailableTokens: MIN_AVAILABLE_TOKENS,
@@ -274,7 +272,7 @@ export async function loadBurndown(env: Env) {
 
 async function recordSnapshot(
   env: Env,
-  details: { enabled: boolean; healthy: boolean; retiredThisRun: number },
+  details: { healthy: boolean; retiredThisRun: number },
 ): Promise<void> {
   await ensureSnapshotTable(env.DB);
   const pool = await setupDatabase(drizzle(env.DB)).getPoolTokens();
@@ -292,36 +290,60 @@ async function recordSnapshot(
       burndown.legacyUsers,
       await countRetiredUsers(env.DB),
       details.retiredThisRun,
-      details.enabled ? 1 : 0,
+      1,
       details.healthy ? 1 : 0,
     )
     .run();
 }
 
-export async function runLegacyScopeSunset(env: Env): Promise<void> {
-  const enabled = env.LEGACY_SCOPE_SUNSET === "on";
+// The side effects of a run, injectable so the guards can be tested without
+// GitHub or D1.
+export type SunsetDeps = {
+  getSummary: () => Promise<{
+    level: string;
+    availableTokens: number;
+    complete: boolean;
+  }>;
+  getPool: () => Promise<(PoolTokenScopes & { token: string })[]>;
+  revoke: (accessToken: string) => Promise<boolean>;
+  retireUserTokens: (userId: string) => Promise<unknown>;
+  recordSnapshot: (details: {
+    healthy: boolean;
+    retiredThisRun: number;
+  }) => Promise<void>;
+};
+
+function defaultDeps(env: Env): SunsetDeps {
+  const database = setupDatabase(drizzle(env.DB));
+  return {
+    getSummary: () => getFreshTokenSummary(env),
+    getPool: () => database.getPoolTokens(),
+    revoke: (accessToken) => revokeGrant(env, accessToken),
+    retireUserTokens: (userId) => database.retireUserTokens(userId),
+    recordSnapshot: (details) => recordSnapshot(env, details),
+  };
+}
+
+export async function runLegacyScopeSunset(
+  env: Env,
+  deps: SunsetDeps = defaultDeps(env),
+): Promise<void> {
   let healthy = false;
   let retired = 0;
 
   try {
-    if (!enabled) {
-      console.info("legacy_scope_sunset_disabled");
-      return;
-    }
-
-    const { summary } = await getTokenObservability(env);
-    // The pool is far larger than one observation batch, so the summary is
-    // rarely "complete"; require it not to be critical and to have plenty of
-    // usable tokens instead.
+    const summary = await deps.getSummary();
+    // Revoking grants can't be undone, so only act on a full, recent rotation
+    // of observations: `complete` means every pool token has a fresh check,
+    // which a stalled observer can never satisfy.
     healthy =
+      summary.complete &&
       summary.level !== "critical" &&
       summary.availableTokens >= MIN_AVAILABLE_TOKENS;
-    const database = setupDatabase(drizzle(env.DB));
-    const pool = await database.getPoolTokens();
+    const pool = await deps.getPool();
     // Retiring may remove usable tokens, so only spend what is left above the
     // availability floor.
     const users = planSunset(pool, {
-      enabled: true,
       healthy,
       maxRows: summary.availableTokens - MIN_AVAILABLE_TOKENS,
     });
@@ -339,11 +361,11 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
       );
       if (!row) continue;
       try {
-        if (!(await revokeGrant(env, row.token))) {
+        if (!(await deps.revoke(row.token))) {
           console.warn("legacy_scope_sunset_revoke_failed", { userId });
           return;
         }
-        await database.retireUserTokens(userId);
+        await deps.retireUserTokens(userId);
         retired++;
         console.info("legacy_scope_sunset_retired", { userId });
       } catch (error) {
@@ -355,16 +377,14 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
       }
     }
   } finally {
-    // Always record a point so the burndown chart has history, even while the
-    // sunset is disabled or skipped.
-    await recordSnapshot(env, {
-      enabled,
-      healthy,
-      retiredThisRun: retired,
-    }).catch((error: unknown) => {
-      console.error("legacy_scope_snapshot_failed", {
-        error: error instanceof Error ? error.message : String(error),
+    // Always record a point so the burndown chart has history, even when the
+    // run is skipped.
+    await deps
+      .recordSnapshot({ healthy, retiredThisRun: retired })
+      .catch((error: unknown) => {
+        console.error("legacy_scope_snapshot_failed", {
+          error: error instanceof Error ? error.message : String(error),
+        });
       });
-    });
   }
 }

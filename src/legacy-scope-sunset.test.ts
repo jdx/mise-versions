@@ -9,11 +9,13 @@ import {
   computeBurndown,
   hasLegacyScopes,
   planSunset,
+  runLegacyScopeSunset,
+  type SunsetDeps,
   type PoolTokenScopes,
 } from "./legacy-scope-sunset.js";
 
 const LEGACY = '["public_repo"]';
-const on = { enabled: true, healthy: true };
+const on = { healthy: true };
 
 function rows(
   count: number,
@@ -36,10 +38,9 @@ test("only tokens with scopes count as legacy", () => {
   assert.equal(hasLegacyScopes("not json"), false);
 });
 
-test("does nothing when disabled or the pool is unhealthy", () => {
+test("does nothing when the pool is unhealthy", () => {
   const tokens = rows(LEGACY_CAP + 50, "old", LEGACY);
-  assert.deepEqual(planSunset(tokens, { enabled: false, healthy: true }), []);
-  assert.deepEqual(planSunset(tokens, { enabled: true, healthy: false }), []);
+  assert.deepEqual(planSunset(tokens, { healthy: false }), []);
 });
 
 test("leaves legacy tokens alone while they are within the cap", () => {
@@ -225,4 +226,103 @@ test("growth keeps recorded history after the pool turns over", () => {
   );
   assert.equal(points[0].day, "2026-09-27");
   assert.deepEqual([points[0].legacy, points[0].clean], [5, 0]);
+});
+
+function runDeps(
+  pool: (PoolTokenScopes & { token: string })[],
+  overrides: Partial<SunsetDeps> & {
+    availableTokens?: number;
+    level?: string;
+    complete?: boolean;
+  } = {},
+) {
+  const calls = {
+    revoked: [] as string[],
+    retired: [] as string[],
+    snapshots: [] as unknown[],
+  };
+  const deps: SunsetDeps = {
+    getSummary: async () => ({
+      level: overrides.level ?? "healthy",
+      availableTokens: overrides.availableTokens ?? 1_000,
+      complete: overrides.complete ?? true,
+    }),
+    getPool: async () => pool,
+    revoke: async (token) => {
+      calls.revoked.push(token);
+      return true;
+    },
+    retireUserTokens: async (userId) => {
+      calls.retired.push(userId);
+    },
+    recordSnapshot: async (details) => {
+      calls.snapshots.push(details);
+    },
+    ...overrides,
+  };
+  return { deps, calls };
+}
+
+const withTokens = (pool: PoolTokenScopes[]) =>
+  pool.map((row) => ({ ...row, token: `tok-${row.user_id}` }));
+
+async function quietly<T>(fn: () => Promise<T>): Promise<T> {
+  const { info, warn, error } = console;
+  console.info = console.warn = console.error = () => {};
+  try {
+    return await fn();
+  } finally {
+    Object.assign(console, { info, warn, error });
+  }
+}
+
+test("run revokes and retires the excess when the pool is healthy", async () => {
+  const pool = withTokens([...rows(LEGACY_CAP + 2, "old", LEGACY)]);
+  const { deps, calls } = runDeps(pool);
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.equal(calls.retired.length, 2);
+  assert.equal(calls.revoked.length, 2);
+  assert.deepEqual(calls.snapshots, [{ healthy: true, retiredThisRun: 2 }]);
+});
+
+test("run skips and still records a snapshot when the pool is critical", async () => {
+  const pool = withTokens(rows(LEGACY_CAP + 2, "old", LEGACY));
+  const { deps, calls } = runDeps(pool, { level: "critical" });
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.deepEqual(calls.revoked, []);
+  assert.deepEqual(calls.retired, []);
+  assert.deepEqual(calls.snapshots, [{ healthy: false, retiredThisRun: 0 }]);
+});
+
+test("run skips when too few tokens are available", async () => {
+  const pool = withTokens(rows(LEGACY_CAP + 2, "old", LEGACY));
+  const { deps, calls } = runDeps(pool, { availableTokens: 10 });
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.deepEqual(calls.revoked, []);
+  assert.deepEqual(calls.snapshots, [{ healthy: false, retiredThisRun: 0 }]);
+});
+
+test("run keeps a user's tokens when GitHub does not confirm the revoke", async () => {
+  const pool = withTokens(rows(LEGACY_CAP + 2, "old", LEGACY));
+  const { deps, calls } = runDeps(pool, { revoke: async () => false });
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.deepEqual(calls.retired, []);
+  assert.deepEqual(calls.snapshots, [{ healthy: true, retiredThisRun: 0 }]);
+});
+
+test("run does nothing while legacy tokens are within the cap", async () => {
+  const pool = withTokens(rows(LEGACY_CAP, "old", LEGACY));
+  const { deps, calls } = runDeps(pool);
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.deepEqual(calls.revoked, []);
+  assert.deepEqual(calls.snapshots, [{ healthy: true, retiredThisRun: 0 }]);
+});
+
+test("run skips when observations do not cover the whole pool (stale observer)", async () => {
+  const pool = withTokens(rows(LEGACY_CAP + 2, "old", LEGACY));
+  const { deps, calls } = runDeps(pool, { complete: false });
+  await quietly(() => runLegacyScopeSunset({} as Env, deps));
+  assert.deepEqual(calls.revoked, []);
+  assert.deepEqual(calls.retired, []);
+  assert.deepEqual(calls.snapshots, [{ healthy: false, retiredThisRun: 0 }]);
 });
