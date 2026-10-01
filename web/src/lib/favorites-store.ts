@@ -37,7 +37,26 @@ function rememberPending(tool: string) {
   } catch {}
 }
 
-async function send(method: "PUT" | "DELETE", tool: string): Promise<boolean> {
+// Writes for one tool go out one at a time, in click order. Two quick clicks
+// would otherwise race on the server and could leave it disagreeing with the
+// star the visitor sees.
+const writes = new Map<string, Promise<unknown>>();
+
+function send(method: "PUT" | "DELETE", tool: string): Promise<boolean> {
+  const result = (writes.get(tool) ?? Promise.resolve()).then(() =>
+    request(method, tool),
+  );
+  const tail = result.finally(() => {
+    if (writes.get(tool) === tail) writes.delete(tool);
+  });
+  writes.set(tool, tail);
+  return result;
+}
+
+async function request(
+  method: "PUT" | "DELETE",
+  tool: string,
+): Promise<boolean> {
   try {
     const response = await fetch("/api/favorites", {
       method,
@@ -118,6 +137,7 @@ export function useFavorites() {
   return {
     status: state.status,
     has: (tool: string) => state.tools.has(tool),
+    tools: state.tools,
     toggle: toggleFavorite,
   };
 }

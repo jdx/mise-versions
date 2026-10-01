@@ -1,5 +1,6 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { FavoriteButton } from "./FavoriteButton";
+import { useFavorites } from "../lib/favorites-store";
 import { SignInPrompt } from "./SignInPrompt";
 import { formatRelativeTime } from "../utils/time";
 import "../styles/member.css";
@@ -27,10 +28,14 @@ function cleanBackend(backend: string): string {
 export function FavoritesList() {
   const [state, setState] = useState<LoadState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
+  const favorites = useFavorites();
 
   useEffect(() => {
     const controller = new AbortController();
-    setState({ status: "loading" });
+    // Refetches after the first load keep showing the current list.
+    setState((current) =>
+      current.status === "ready" ? current : { status: "loading" },
+    );
     fetch("/api/favorites?details=1", { signal: controller.signal })
       .then(async (response) => {
         if (response.status === 401) return setState({ status: "anonymous" });
@@ -47,6 +52,25 @@ export function FavoritesList() {
       });
     return () => controller.abort();
   }, [attempt]);
+
+  // A favorite saved after this list loaded (for example the one picked just
+  // before signing in) is missing from it: fetch again to pick it up.
+  // A name can stay unlisted for good (the tool was removed from the registry),
+  // so fetch again only when the set of unlisted names changes.
+  const refetchedFor = useRef("");
+  const unlisted =
+    state.status === "ready"
+      ? [...favorites.tools]
+          .filter((name) => !state.tools.some((t) => t.name === name))
+          .sort()
+          .join(",")
+      : "";
+  useEffect(() => {
+    if (unlisted && unlisted !== refetchedFor.current) {
+      refetchedFor.current = unlisted;
+      setAttempt((n) => n + 1);
+    }
+  }, [unlisted]);
 
   if (state.status === "loading") {
     return <p class="inline-notice">Loading your favorites…</p>;
@@ -81,7 +105,10 @@ export function FavoritesList() {
   return (
     <ul class="watchlist">
       {state.tools.map((tool) => (
-        <li key={tool.name} class="watchlist-item">
+        <li
+          key={tool.name}
+          class={`watchlist-item${favorites.has(tool.name) ? "" : " watchlist-item-removed"}`}
+        >
           <FavoriteButton tool={tool.name} />
           <div class="watchlist-main">
             <a class="watchlist-name" href={`/tools/${tool.name}`}>

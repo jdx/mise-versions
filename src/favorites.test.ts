@@ -6,24 +6,31 @@ import { DatabaseSync } from "node:sqlite";
 import {
   MAX_FAVORITES,
   addFavorite,
+  ensureFavoritesSchema,
   listFavorites,
   removeFavorite,
 } from "./favorites.js";
 
 // Minimal D1 stand-in backed by real SQLite so SQL and bind order are exercised.
-function fakeD1() {
+function fakeD1({ withTable = true } = {}) {
   const db = new DatabaseSync(":memory:");
-  db.exec(`
-    CREATE TABLE favorites (
-      user_id TEXT NOT NULL,
-      tool TEXT NOT NULL,
-      created_at TEXT NOT NULL,
-      PRIMARY KEY (user_id, tool)
-    )
-  `);
+  if (withTable) {
+    db.exec(`
+      CREATE TABLE favorites (
+        user_id TEXT NOT NULL,
+        tool TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, tool)
+      )
+    `);
+  }
   return {
     prepare(query: string) {
       return {
+        run: async () => {
+          const info = db.prepare(query).run();
+          return { meta: { changes: Number(info.changes) } };
+        },
         bind: (...params: unknown[]) => ({
           all: async () => ({
             results: db.prepare(query).all(...(params as never[])),
@@ -74,4 +81,12 @@ test("enforces the per-user cap but still reports existing entries", async () =>
   assert.equal(await addFavorite(db, "octocat", "one-too-many"), "limit");
   assert.equal(await addFavorite(db, "octocat", "tool-0"), "exists");
   assert.equal(await addFavorite(db, "hubot", "one-too-many"), "added");
+});
+
+test("creates the table on first use when the migration has not run yet", async () => {
+  const db = fakeD1({ withTable: false });
+  await assert.rejects(listFavorites(db, "octocat"));
+  await ensureFavoritesSchema(db);
+  assert.deepEqual(await listFavorites(db, "octocat"), []);
+  assert.equal(await addFavorite(db, "octocat", "node"), "added");
 });

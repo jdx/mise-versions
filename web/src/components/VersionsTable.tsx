@@ -149,7 +149,7 @@ const ITEMS_PER_PAGE = 100;
 
 export function VersionsTable({ versions, github, tool }: VersionsTableProps) {
   // Per-version download counts need a GitHub sign-in.
-  const { state: details } = useDownloadDetails(tool);
+  const { state: details, retry: retryDetails } = useDownloadDetails(tool);
   const loginHref = useLoginUrl();
 
   // Initialize distribution to default for this tool (if it has distributions)
@@ -454,6 +454,15 @@ export function VersionsTable({ versions, github, tool }: VersionsTableProps) {
                   >
                     Downloads <LockMark />
                   </a>
+                ) : details.status === "error" ? (
+                  <button
+                    type="button"
+                    class="text-sm font-medium text-gray-400 hover:text-gray-200"
+                    title="Download counts failed to load. Try again"
+                    onClick={retryDetails}
+                  >
+                    Downloads ↻
+                  </button>
                 ) : (
                   <span class="text-sm font-medium text-gray-500">
                     Downloads

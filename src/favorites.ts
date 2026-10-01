@@ -3,6 +3,28 @@
 
 export const MAX_FAVORITES = 200;
 
+const CREATE_TABLE = `CREATE TABLE IF NOT EXISTS favorites (
+  user_id TEXT NOT NULL,
+  tool TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, tool)
+)`;
+
+// Migrations run through the deployed worker, so the favorites endpoints can
+// go live a moment before migration 8 has run (or if a later deploy step
+// fails). Creating the table on first use closes that window.
+let schemaReady: Promise<unknown> | null = null;
+export function ensureFavoritesSchema(db: D1Database): Promise<unknown> {
+  schemaReady ??= db
+    .prepare(CREATE_TABLE)
+    .run()
+    .catch((error) => {
+      schemaReady = null;
+      throw error;
+    });
+  return schemaReady;
+}
+
 export type AddFavoriteResult = "added" | "exists" | "limit";
 
 export async function listFavorites(

@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 import {
   addFavorite,
+  ensureFavoritesSchema,
   listFavorites,
   removeFavorite,
 } from "../../../../src/favorites";
@@ -28,6 +29,7 @@ export const GET: APIRoute = async ({ request, url }) => {
   const session = await requireSession(request, env.API_SECRET);
   if (session instanceof Response) return session;
 
+  await ensureFavoritesSchema(env.DB);
   const favorites = await listFavorites(env.DB, session.username);
   if (url.searchParams.get("details") !== "1") {
     return privateJson({ favorites });
@@ -62,6 +64,7 @@ export const PUT: APIRoute = async ({ request }) => {
     return privateJson({ error: "Unknown tool" }, 404);
   }
 
+  await ensureFavoritesSchema(env.DB);
   const result = await addFavorite(env.DB, session.username, tool);
   if (result === "limit") {
     return privateJson({ error: "Favorites limit reached" }, 409);
@@ -77,6 +80,7 @@ export const DELETE: APIRoute = async ({ request }) => {
   const tool = await readTool(request);
   if (!tool) return privateJson({ error: "Expected JSON body with tool" }, 400);
 
+  await ensureFavoritesSchema(env.DB);
   await removeFavorite(env.DB, session.username, tool);
   return privateJson({ tool, favorited: false });
 };

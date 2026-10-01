@@ -80,6 +80,11 @@
   padding: 16px;
   background: var(--surface);
 }
+/* Unstarred rows stay put so the star can be pressed again to undo. */
+.watchlist-item-removed .watchlist-main,
+.watchlist-item-removed .watchlist-version {
+  opacity: 0.5;
+}
 .watchlist-name {
   color: var(--text);
   font-weight: 600;
