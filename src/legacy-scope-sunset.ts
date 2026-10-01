@@ -12,7 +12,7 @@ import { getTokenObservability } from "./token-observability.js";
 // shrinks below that cap.
 export const LEGACY_SCOPE_SUNSET_CRON = "23 4 * * *";
 export const LEGACY_CAP = 1_000;
-export const MAX_RETIRED_PER_RUN = 25;
+export const MAX_RETIRED_PER_RUN = 100;
 export const MIN_POOL_SIZE_AFTER = 10;
 export const MIN_AVAILABLE_TOKENS = 50;
 
