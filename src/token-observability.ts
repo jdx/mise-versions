@@ -531,6 +531,19 @@ function calculateCheckoutRate(
   return round((checkoutRatePerHour / tokensWithRate) * poolSize);
 }
 
+// A handful of revoked tokens is normal churn; a tenth of the pool failing
+// to answer points at a GitHub outage or a bulk revocation.
+const WIDESPREAD_INVALID_SHARE = 0.1;
+
+function hasWidespreadInvalidTokens(
+  invalidTokens: number,
+  tokenCount: number,
+): boolean {
+  return (
+    tokenCount > 0 && invalidTokens / tokenCount >= WIDESPREAD_INVALID_SHARE
+  );
+}
+
 export function summarizeTokenPool(
   latest: TokenObservation[],
   recent: TokenObservation[],
@@ -597,15 +610,17 @@ export function summarizeTokenPool(
       .filter((value): value is string => Boolean(value))
       .sort()[0] ?? null;
 
+  // Only conditions that threaten the pool's ability to keep lending count.
+  // A few dead, rate-limited or low tokens, or a rotation that has not yet
+  // covered every token, are routine and already show up in the lendable
+  // quota, so they are not worth an alert on their own.
+  const widespreadInvalid = hasWidespreadInvalidTokens(
+    invalidTokens,
+    tokenCount,
+  );
   const reasons: string[] = [];
   let level: TokenRiskLevel = "healthy";
   if (tokenCount === 0) reasons.push("No pool tokens are configured");
-  if (!complete) {
-    const deferredTokens = tokenCount - checkedTokens;
-    reasons.push(
-      `${deferredTokens} token${deferredTokens === 1 ? " was" : "s were"} deferred to another check`,
-    );
-  }
   if (complete && availableTokens === 0) {
     reasons.push(
       `No token has more than ${MIN_REMAINING.toLocaleString()} requests left`,
@@ -615,17 +630,9 @@ export function summarizeTokenPool(
       `Only one token has more than ${MIN_REMAINING.toLocaleString()} requests left`,
     );
   }
-  if (invalidTokens > 0)
+  if (widespreadInvalid)
     reasons.push(
-      `${invalidTokens} token${invalidTokens === 1 ? "" : "s"} could not be checked`,
-    );
-  if (rateLimitedTokens > 0)
-    reasons.push(
-      `${rateLimitedTokens} token${rateLimitedTokens === 1 ? " is" : "s are"} marked rate-limited`,
-    );
-  if (belowReserveTokens > 0)
-    reasons.push(
-      `${belowReserveTokens} token${belowReserveTokens === 1 ? " is" : "s are"} below reserve`,
+      `${invalidTokens} of ${tokenCount} tokens could not be checked`,
     );
   if (complete && lendablePercent !== null && lendablePercent <= 35)
     reasons.push(
@@ -644,11 +651,8 @@ export function summarizeTokenPool(
   ) {
     level = "critical";
   } else if (
-    !complete ||
     (complete && availableTokens <= 1) ||
-    invalidTokens > 0 ||
-    rateLimitedTokens > 0 ||
-    belowReserveTokens > 0 ||
+    widespreadInvalid ||
     (lendablePercent !== null && lendablePercent <= 35) ||
     (hoursToReserve !== null && hoursToReserve <= 6)
   ) {
@@ -929,21 +933,13 @@ function tokenObservabilityData(
   };
 }
 
+// Alerts follow the risk level and its causes, not raw token counts, so the
+// routine drift of those counts between rotations never re-sends an email.
 function alertFingerprint(summary: TokenPoolSummary): string {
-  if (!summary.complete) {
-    return [
-      "partial",
-      summary.invalidTokens > 0,
-      summary.rateLimitedTokens > 0,
-      summary.belowReserveTokens > 0,
-    ].join("|");
-  }
   return [
     summary.level,
-    summary.availableTokens,
-    summary.rateLimitedTokens,
-    summary.belowReserveTokens,
-    summary.invalidTokens,
+    Math.min(summary.availableTokens, 2),
+    hasWidespreadInvalidTokens(summary.invalidTokens, summary.tokenCount),
   ].join("|");
 }
 
@@ -1141,13 +1137,10 @@ async function maybeAlert(
   await saveAlertState(env.DB, summary, fingerprint, sentAt);
 }
 
+// A partial rotation only speaks for the tokens it checked, so it can raise an
+// alert but cannot clear one.
 export function shouldEvaluateAlert(summary: TokenPoolSummary): boolean {
-  return (
-    summary.complete ||
-    summary.invalidTokens > 0 ||
-    summary.rateLimitedTokens > 0 ||
-    summary.belowReserveTokens > 0
-  );
+  return summary.complete || summary.level !== "healthy";
 }
 
 export function getAlertDecision(

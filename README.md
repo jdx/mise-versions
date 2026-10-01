@@ -23,10 +23,13 @@ Each run checks at most 45 tokens to stay within the Workers Free-plan external
 subrequest limit while leaving room for alerts. Larger pools rotate through
 batches and are shown as incomplete rather than being classified as critical.
 
-The monitor warns when only one token is available, a token cannot be checked,
-a token falls below reserve, less than 35% of aggregate quota remains, or the
-pool is within six hours of reserve. It becomes critical at zero available
-tokens, 15% aggregate quota, or two hours to reserve.
+The monitor warns only when the pool is at risk: only one token is available,
+10% or more of the pool cannot be checked, less than 35% of lendable quota
+remains, or the pool is within six hours of reserve. It becomes critical at
+zero available tokens, 15% lendable quota, or two hours to reserve. A few
+rate-limited, below-reserve or unreachable tokens, or a rotation that has not
+yet covered the whole pool, do not warn on their own; the dashboard still
+shows them.
 
 Alerts use Resend. `TOKEN_ALERT_TO` and `TOKEN_ALERT_FROM` are non-secret Worker
 variables in `wrangler.jsonc`; configure `RESEND_API_KEY` as a Worker secret:

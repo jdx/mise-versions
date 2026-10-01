@@ -422,11 +422,10 @@ test("marks a bounded observation as incomplete without a false critical", () =>
   assert.equal(summary.tokenCount, 60);
   assert.equal(summary.quotaBurnPerHour, null);
   assert.doesNotMatch(summary.reasons.join(" "), /No token has/);
-  assert.match(summary.reasons.join(" "), /59 tokens were deferred/);
   assert.equal(shouldEvaluateAlert(summary), true);
 });
 
-test("defers alert decisions only when partial data has no concrete issue", () => {
+test("does not alert on a partial rotation with healthy quota", () => {
   const current = observation(1, "2026-08-27T13:00:00.000Z", 4_900, 12);
   const summary = summarizeTokenPool(
     [current],
@@ -435,7 +434,51 @@ test("defers alert decisions only when partial data has no concrete issue", () =
     60,
   );
 
+  assert.equal(summary.level, "healthy");
+  assert.deepEqual(summary.reasons, []);
   assert.equal(shouldEvaluateAlert(summary), false);
+});
+
+test("stays healthy with a few unreachable, rate-limited or low tokens", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  const tokens = Array.from({ length: 100 }, (_, index) =>
+    observation(index + 1, now, 4_950, 1),
+  );
+  tokens[0] = {
+    ...observation(1, now, 0, 1),
+    remaining: null,
+    limit: null,
+    error: "bad credentials",
+  };
+  tokens[1].available = false;
+  tokens[2] = observation(3, now, 3_000, 1);
+
+  const summary = summarizeTokenPool(tokens, tokens, now, 100);
+
+  assert.equal(summary.invalidTokens, 1);
+  assert.equal(summary.rateLimitedTokens, 1);
+  assert.equal(summary.belowReserveTokens, 1);
+  assert.equal(summary.level, "healthy");
+  assert.deepEqual(summary.reasons, []);
+});
+
+test("warns when a tenth of the pool cannot be checked", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  const tokens = Array.from({ length: 20 }, (_, index) =>
+    index < 2
+      ? {
+          ...observation(index + 1, now, 0, 1),
+          remaining: null,
+          limit: null,
+          error: "GitHub is down",
+        }
+      : observation(index + 1, now, 4_950, 1),
+  );
+
+  const summary = summarizeTokenPool(tokens, tokens, now, 20);
+
+  assert.equal(summary.level, "warning");
+  assert.deepEqual(summary.reasons, ["2 of 20 tokens could not be checked"]);
 });
 
 test("warns when the pool has only one token with reserve", () => {
@@ -455,17 +498,18 @@ test("marks a pool with no available token critical", () => {
   assert.equal(summary.level, "critical");
   assert.equal(summary.availableTokens, 0);
   assert.equal(summary.belowReserveTokens, 1);
-  assert.match(summary.reasons.join(" "), /below reserve/);
+  assert.match(summary.reasons.join(" "), /No token has more than/);
 });
 
-test("marks locally rate-limited tokens separately from reserve", () => {
+test("counts locally rate-limited tokens separately from reserve", () => {
   const current = observation(1, "2026-08-27T13:00:00.000Z", 4_900, 12);
   current.available = false;
   const summary = summarizeTokenPool([current], [current]);
 
   assert.equal(summary.rateLimitedTokens, 1);
   assert.equal(summary.belowReserveTokens, 0);
-  assert.match(summary.reasons.join(" "), /marked rate-limited/);
+  assert.equal(summary.availableTokens, 0);
+  assert.equal(summary.level, "critical");
 });
 
 test("represents an empty observation run instead of reusing stale state", () => {
