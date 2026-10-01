@@ -193,18 +193,6 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       }
     },
 
-    // A user signing in again replaces their earlier token rows rather than
-    // adding to them: older rows (possibly with broader scopes) stop being
-    // lent and the pool doesn't grow with every sign-in. Lookup counts are
-    // kept because the rows stay.
-    async supersedeUserTokens(userId: string) {
-      await db
-        .update(tokens)
-        .set({ is_active: 0, token: "superseded", refresh_token: null })
-        .where(and(eq(tokens.user_id, userId), eq(tokens.is_active, 1)))
-        .run();
-    },
-
     async getPoolTokensByIds(tokenIds: number[]) {
       if (tokenIds.length === 0) return [];
       const now = new Date().toISOString();
@@ -237,7 +225,7 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
     ) {
       const now = new Date().toISOString();
 
-      return await db
+      const insert = db
         .insert(tokens)
         .values({
           user_id: userId,
@@ -251,8 +239,22 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
           refresh_token_expires_at: options?.refreshTokenExpiresAt,
           scopes: options?.scopes ? JSON.stringify(options.scopes) : null,
         })
-        .returning()
-        .get();
+        .returning();
+
+      if (!userId) return await insert.get();
+
+      // One live token per person. Retire their earlier rows (which may carry
+      // broader scopes) and add the new one in a single atomic batch, so a
+      // failed insert never discards a working token and concurrent sign-ins
+      // can't leave two active rows. Lookup counts are kept: the rows stay.
+      const [, inserted] = await db.batch([
+        db
+          .update(tokens)
+          .set({ is_active: 0, token: "superseded", refresh_token: null })
+          .where(and(eq(tokens.user_id, userId), eq(tokens.is_active, 1))),
+        insert,
+      ]);
+      return inserted[0];
     },
 
     // Update token validation timestamp

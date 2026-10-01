@@ -764,9 +764,43 @@ async function sendAlert(
   }
 }
 
-const EMERGENCY_ALERT_KEY = "token-emergency-alert";
-const EMERGENCY_ALERT_LOCK_KEY = "token-emergency-alert-lock";
-const EMERGENCY_ALERT_TTL_SECONDS = 3_600;
+const EMERGENCY_ALERT_LOCK = "token-emergency-alert";
+const EMERGENCY_ALERT_TTL_MS = 3_600_000;
+
+// Atomically claim the right to send: an upsert that only succeeds when the
+// previous claim has expired, so simultaneous checkouts can't both win.
+async function claimEmergencyAlert(db: D1Database): Promise<boolean> {
+  await db
+    .prepare(
+      `CREATE TABLE IF NOT EXISTS token_alert_locks (
+         name TEXT PRIMARY KEY,
+         expires_at TEXT NOT NULL
+       )`,
+    )
+    .run();
+  const now = new Date();
+  const result = await db
+    .prepare(
+      `INSERT INTO token_alert_locks (name, expires_at) VALUES (?, ?)
+       ON CONFLICT(name) DO UPDATE SET expires_at = excluded.expires_at
+       WHERE token_alert_locks.expires_at <= ?`,
+    )
+    .bind(
+      EMERGENCY_ALERT_LOCK,
+      new Date(now.getTime() + EMERGENCY_ALERT_TTL_MS).toISOString(),
+      now.toISOString(),
+    )
+    .run();
+  return result.meta.changes > 0;
+}
+
+// Hand the claim back so the next emergency checkout can retry a failed send.
+async function releaseEmergencyAlert(db: D1Database): Promise<void> {
+  await db
+    .prepare("UPDATE token_alert_locks SET expires_at = ? WHERE name = ?")
+    .bind(new Date(0).toISOString(), EMERGENCY_ALERT_LOCK)
+    .run();
+}
 
 // Called when the token endpoint lends a token that is below the normal floor.
 // Emails the maintainer at most once an hour and never throws, so an alerting
@@ -779,14 +813,7 @@ export async function alertEmergencyTokenUse(
     console.warn("token_pool_emergency_checkout", info);
     if (!env.RESEND_API_KEY || !env.TOKEN_ALERT_TO || !env.TOKEN_ALERT_FROM)
       return;
-    if (await env.DOWNLOAD_DEDUPE.get(EMERGENCY_ALERT_KEY)) return;
-    // A short lock keeps parallel checkouts from all sending at once; the
-    // hourly key is only set once an email was actually accepted, so a
-    // failed send is retried by the next emergency checkout.
-    if (await env.DOWNLOAD_DEDUPE.get(EMERGENCY_ALERT_LOCK_KEY)) return;
-    await env.DOWNLOAD_DEDUPE.put(EMERGENCY_ALERT_LOCK_KEY, "1", {
-      expirationTtl: 60,
-    });
+    if (!(await claimEmergencyAlert(env.DB))) return;
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -808,13 +835,11 @@ export async function alertEmergencyTokenUse(
     });
     if (!response.ok) {
       console.error("emergency alert failed", response.status);
-      return;
+      await releaseEmergencyAlert(env.DB);
     }
-    await env.DOWNLOAD_DEDUPE.put(EMERGENCY_ALERT_KEY, "1", {
-      expirationTtl: EMERGENCY_ALERT_TTL_SECONDS,
-    });
   } catch (error) {
     console.error("emergency alert error", errorMessage(error));
+    await releaseEmergencyAlert(env.DB).catch(() => undefined);
   }
 }
 

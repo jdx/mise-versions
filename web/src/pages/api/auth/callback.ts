@@ -77,8 +77,11 @@ export const GET: APIRoute = async ({ request, locals }) => {
       "scopes" in authResult && Array.isArray(authResult.scopes)
         ? (authResult.scopes as string[])
         : [];
-    if (scopes.length > 0 && !isFreshOAuthState(state)) {
-      if (await revokeGrant(env, authResult.token)) {
+    if (scopes.length > 0) {
+      if (
+        !isFreshOAuthState(state) &&
+        (await revokeGrant(env, authResult.token))
+      ) {
         await database.retireUserTokens(user.login);
         const again = new URL("/api/auth/login", url.origin);
         again.searchParams.set("return_to", returnTo);
@@ -88,15 +91,16 @@ export const GET: APIRoute = async ({ request, locals }) => {
         headers.append("Set-Cookie", clearReturnToCookie());
         return new Response(null, { status: 302, headers });
       }
-      console.warn(`Could not replace scoped grant for ${user.login}`);
+      // Either the grant could not be replaced, or the fresh pass still came
+      // back scoped (e.g. someone hit /login?fresh=1 by hand). A scoped token
+      // must never enter the pool, so drop this one and refuse the sign-in.
+      await revokeGrant(env, authResult.token).catch(() => false);
+      console.warn(`Refused scoped token for ${user.login}`);
+      return redirectWithError("scoped_token");
     }
 
     const expiresAt =
       "expiresAt" in authResult ? (authResult.expiresAt as string) : null;
-
-    // One live token per person: earlier rows (which may carry broader scopes)
-    // stop being lent out, and repeat sign-ins don't inflate the pool.
-    await database.supersedeUserTokens(user.login);
 
     await database.storeToken(user.login, authResult.token, expiresAt, {
       userName: user.name ?? undefined,
