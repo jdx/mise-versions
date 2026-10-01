@@ -24,8 +24,10 @@ subrequest limit while leaving room for alerts. Larger pools rotate through
 batches and are shown as incomplete rather than being classified as critical.
 
 The monitor warns only when the pool is at risk: only one token is available,
-10% or more of the checked tokens fail their check, less than 35% of lendable quota
-remains, or the pool is within six hours of reserve. It becomes critical at
+10% or more of the checked tokens fail their check (and at least 10 tokens, or
+10% of a smaller pool, so a few dead tokens in one early batch don't count),
+less than 35% of lendable quota remains, or the pool is within six hours of
+reserve. It becomes critical at
 zero available tokens, 15% lendable quota, or two hours to reserve. A few
 rate-limited, below-reserve or unreachable tokens, or a rotation that has not
 yet covered the whole pool, do not warn on their own; the dashboard still
