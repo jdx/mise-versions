@@ -2,7 +2,7 @@
 import { forecastDate } from "../lib/stats-display";
 import DataFreshness from "./DataFreshness.astro";
 import YearGrid from "./YearGrid.astro";
-import { sevenDayAverage, forecastDailyAverage, nextActivityMilestone } from '../lib/daily-average';
+import { sevenDayAverage, forecastDailyAverage, nextActivityMilestone, pastActivityMilestones } from '../lib/daily-average';
 import { formatCompact } from '../lib/format';
 import { parseUtcDate, formatForecastRelative } from '../lib/mau-forecast';
 interface Props { points: Array<{date:string;value:number|null}>; title: string; unit: string }
@@ -10,6 +10,8 @@ const { points: daily, title, unit } = Astro.props;
 const averages = sevenDayAverage(daily);
 const latest = averages.at(-1)!;
 const forecast = forecastDailyAverage(averages);
+const reached = pastActivityMilestones(averages);
+const lastReached = reached.at(-1);
 const cutoff = parseUtcDate(latest.date) - 89 * 86400000;
 const data = daily.filter(p=>parseUtcDate(p.date)>=cutoff), average = averages.filter(p=>parseUtcDate(p.date)>=cutoff);
 const projected = forecast?.showOnChart;
@@ -23,6 +25,7 @@ const path = average.filter(p=>p.value!==null).map(p=>{const time=parseUtcDate(p
 const width = Math.max(1,464/(Math.max(end-start,86400000)/86400000)*.65);
 const validData = data.filter(p=>p.value!==null);
 const averageByDate = new Map(average.map(p=>[p.date,p.value]));
+const chartReached = reached.filter(m=>parseUtcDate(m.date)>=cutoff);
 const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'compact',maximumFractionDigits:0});
 ---
 <div class="adoption-chart daily-activity-chart">
@@ -30,6 +33,7 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
   <DataFreshness date={daily.findLast(p => p.value !== null)?.date} />
   <p class="activity-period">{data.length === 90 ? "Last 90 days" : `${data.length} recorded days`} · {data.filter(p=>p.value!==null).length} recorded · {data[0].date}–{latest.date}</p>
   <div class="download-average-summary"><span><strong>{latest.value===null?'—':formatCompact(latest.value)}</strong> {unit} · 7-day average</span>
+    {lastReached && <span class="download-milestone download-milestone-reached">Passed <strong>{milestoneLabel(lastReached.level)} {unit}</strong><br/>{forecastDate(lastReached.date)}{reached.length > 1 && <> · earlier: {reached.slice(-4,-1).reverse().map(m=>`${milestoneLabel(m.level)} (${forecastDate(m.date)})`).join(', ')}</>}</span>}
     {!forecast && latest.value !== null && <span class="download-milestone">Next milestone <strong>{milestoneLabel(nextActivityMilestone(latest.value))} {unit}</strong><br/>No rising trend to project a date</span>}
     {forecast && <span class="download-milestone">On pace for <strong>{milestoneLabel(forecast.target)} {unit}</strong><br/>{forecastDate(forecast.hitDate)} · {formatForecastRelative(forecast.daysAway)}</span>}
   </div>
@@ -46,6 +50,15 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
         <g class="pointer-events-none opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"><rect x={tooltipX} y="8" width="200" height="24" rx="4" fill="var(--surface-raised)"/><text x={tooltipX+100} y="24" text-anchor="middle">{p.date.slice(5)} · {formatCompact(p.value!)} · avg {avg==null?'—':formatCompact(avg)}</text></g>
       </g>;
     })}
+    {chartReached.map(m=>{
+      const avg = averageByDate.get(m.date) ?? m.level;
+      const px = x(m.date);
+      return <g class="download-reached" role="img" aria-label={`Reached ${m.level.toLocaleString()} ${unit} on ${forecastDate(m.date)}`}>
+        <line x1={px} x2={px} y1={y(avg)} y2="186" stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3"/>
+        <circle cx={px} cy={y(avg)} r="4" fill="var(--surface)" stroke="var(--data)" stroke-width="2"/>
+        <text x={px} y={y(avg)-10} text-anchor={px > 440 ? 'end' : 'middle'} class="download-reached-label">{milestoneLabel(m.level)}</text>
+      </g>;
+    })}
     <path d={path} fill="none" stroke="var(--data)" stroke-width="2.5" stroke-linejoin="round"/>
     {projected && latest.value!==null && <>
       <line x1={x(latest.date)} x2={x(forecast.hitDate)} y1={y(latest.value)} y2={y(forecast.target)} stroke="var(--forecast)" stroke-width="2" stroke-dasharray="5 4"/>
@@ -54,7 +67,7 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
     </>}
     <text x="48" y="209">{data[0].date}</text><text x="512" y="209" text-anchor="end">{endDate}</text>
   </svg>
-  <p class="adoption-context">Bars: daily observations · Blue: 7-day average{forecast ? ` · Dashed: projection using the ${forecast.paceLabel}.`:'.'} Milestones track the average, not single-day spikes. A complete week is required.</p>
+  <p class="adoption-context">Bars: daily observations · Blue: 7-day average{forecast ? ` · Dashed: projection using the ${forecast.paceLabel}.`:'.'} Circles mark the day the average first passed a milestone. Milestones track the average, not single-day spikes. A complete week is required.</p>
 </div>
 
 <script>

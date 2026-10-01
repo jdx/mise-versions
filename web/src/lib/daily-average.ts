@@ -25,6 +25,28 @@ export function nextActivityMilestone(value: number): number {
     [1, 2.5, 5, 10].map((n) => n * scale).find((n) => n > value) ?? scale * 10
   );
 }
+export function activityMilestoneLevels(max: number): number[] {
+  const levels: number[] = [];
+  for (let scale = 1; scale <= max; scale *= 10)
+    for (const n of [1, 2.5, 5]) if (n * scale <= max) levels.push(n * scale);
+  return levels;
+}
+// First day the average reached each milestone. Levels the series already
+// started above are skipped, since we never saw them being hit.
+export function pastActivityMilestones(averages: DailyCount[]) {
+  const valid = averages.filter(
+    (p): p is { date: string; value: number } => p.value !== null,
+  );
+  if (!valid.length) return [];
+  const max = Math.max(...valid.map((p) => p.value));
+  return activityMilestoneLevels(max)
+    .filter((level) => valid[0].value < level)
+    .map((level) => ({
+      level,
+      date: valid.find((p) => p.value >= level)!.date,
+    }))
+    .sort((a, b) => a.date.localeCompare(b.date) || a.level - b.level);
+}
 export function forecastDailyAverage(averages: DailyCount[]) {
   const latest = averages.at(-1);
   if (!latest || latest.value === null) return null;
