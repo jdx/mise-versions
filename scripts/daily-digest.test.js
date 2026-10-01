@@ -208,6 +208,16 @@ test("tool coverage accepts a stable share of unmapped tools", () => {
   );
 });
 
+test("tool coverage flags partial days even when most of the window is partial", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const tools = dayRows("2026-09-30", 14, 1000).map((r, i) =>
+    i < 8 ? { ...r, value: 850 } : r,
+  );
+  const result = toolCoverage(tools, totals, "2026-09-30");
+  assert.equal(result.complete, false);
+  assert.equal(result.problems.length, 8);
+});
+
 test("a zero-download day has no tool rows and is still complete", () => {
   const totals = dayRows("2026-09-30", 14, 1000).map((r) =>
     r.date === "2026-09-25" ? { ...r, value: 0 } : r,

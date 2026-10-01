@@ -139,7 +139,11 @@ export function toolCoverage(toolDaily, totals, day) {
     }
   }
   const sorted = ratios.map((r) => r.ratio).sort((a, b) => a - b);
-  const typical = sorted.length ? sorted[Math.floor(sorted.length / 2)] : 0;
+  // Upper quartile rather than the median: partly written days sit below the
+  // true share, so a median would drift down with them when they are common.
+  const typical = sorted.length
+    ? sorted[Math.floor((sorted.length - 1) * 0.75)]
+    : 0;
   for (const { date, ratio } of ratios) {
     if (ratio < typical * MIN_TOOL_COVERAGE)
       problems.push(`${date} has a partial set of tool rows`);
