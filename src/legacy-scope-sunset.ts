@@ -79,7 +79,6 @@ export function computeBurndown(
 export function planSunset(
   tokens: PoolTokenScopes[],
   options: {
-    enabled: boolean;
     healthy: boolean;
     legacyCap?: number;
     // Most rows this run may take out of the pool (usable tokens above the
@@ -87,7 +86,7 @@ export function planSunset(
     maxRows?: number;
   },
 ): string[] {
-  if (!options.enabled || !options.healthy) return [];
+  if (!options.healthy) return [];
 
   let excess = computeBurndown(tokens, options.legacyCap).excess;
   if (excess <= 0) return [];
@@ -262,7 +261,6 @@ export async function loadBurndown(env: Env) {
       deadRemoved: await countDeadRemoved(env.DB),
     },
     config: {
-      enabled: env.LEGACY_SCOPE_SUNSET === "on",
       maxPerRun: MAX_RETIRED_PER_RUN,
       minPoolSize: MIN_POOL_SIZE_AFTER,
       minAvailableTokens: MIN_AVAILABLE_TOKENS,
@@ -274,7 +272,7 @@ export async function loadBurndown(env: Env) {
 
 async function recordSnapshot(
   env: Env,
-  details: { enabled: boolean; healthy: boolean; retiredThisRun: number },
+  details: { healthy: boolean; retiredThisRun: number },
 ): Promise<void> {
   await ensureSnapshotTable(env.DB);
   const pool = await setupDatabase(drizzle(env.DB)).getPoolTokens();
@@ -292,23 +290,17 @@ async function recordSnapshot(
       burndown.legacyUsers,
       await countRetiredUsers(env.DB),
       details.retiredThisRun,
-      details.enabled ? 1 : 0,
+      1,
       details.healthy ? 1 : 0,
     )
     .run();
 }
 
 export async function runLegacyScopeSunset(env: Env): Promise<void> {
-  const enabled = env.LEGACY_SCOPE_SUNSET === "on";
   let healthy = false;
   let retired = 0;
 
   try {
-    if (!enabled) {
-      console.info("legacy_scope_sunset_disabled");
-      return;
-    }
-
     const { summary } = await getTokenObservability(env);
     // The pool is far larger than one observation batch, so the summary is
     // rarely "complete"; require it not to be critical and to have plenty of
@@ -321,7 +313,6 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
     // Retiring may remove usable tokens, so only spend what is left above the
     // availability floor.
     const users = planSunset(pool, {
-      enabled: true,
       healthy,
       maxRows: summary.availableTokens - MIN_AVAILABLE_TOKENS,
     });
@@ -355,10 +346,9 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
       }
     }
   } finally {
-    // Always record a point so the burndown chart has history, even while the
-    // sunset is disabled or skipped.
+    // Always record a point so the burndown chart has history, even when the
+    // run is skipped.
     await recordSnapshot(env, {
-      enabled,
       healthy,
       retiredThisRun: retired,
     }).catch((error: unknown) => {

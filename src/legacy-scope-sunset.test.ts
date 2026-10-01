@@ -13,7 +13,7 @@ import {
 } from "./legacy-scope-sunset.js";
 
 const LEGACY = '["public_repo"]';
-const on = { enabled: true, healthy: true };
+const on = { healthy: true };
 
 function rows(
   count: number,
@@ -36,10 +36,9 @@ test("only tokens with scopes count as legacy", () => {
   assert.equal(hasLegacyScopes("not json"), false);
 });
 
-test("does nothing when disabled or the pool is unhealthy", () => {
+test("does nothing when the pool is unhealthy", () => {
   const tokens = rows(LEGACY_CAP + 50, "old", LEGACY);
-  assert.deepEqual(planSunset(tokens, { enabled: false, healthy: true }), []);
-  assert.deepEqual(planSunset(tokens, { enabled: true, healthy: false }), []);
+  assert.deepEqual(planSunset(tokens, { healthy: false }), []);
 });
 
 test("leaves legacy tokens alone while they are within the cap", () => {

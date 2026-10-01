@@ -720,7 +720,7 @@ if (!auth || !isAdmin(auth.username)) {
   };
   type LegacyData = {
     current: LegacyCurrent;
-    config: { enabled: boolean; maxPerRun: number; minPoolSize: number; minAvailableTokens: number };
+    config: { maxPerRun: number; minPoolSize: number; minAvailableTokens: number };
     history: LegacySnapshot[];
     growth: GrowthPoint[];
   };
@@ -815,14 +815,12 @@ if (!auth || !isAdmin(auth.username)) {
 
     const status = document.getElementById('legacy-status');
     if (status) {
-      status.textContent = config.enabled ? 'Retiring' : 'Off';
-      status.className = `rounded-full px-2.5 py-1 text-xs font-semibold ${config.enabled ? 'bg-green-400/10 text-green-300 border border-green-400/30' : 'bg-dark-700 text-gray-400'}`;
+      status.textContent = 'Retiring';
+      status.className = 'rounded-full px-2.5 py-1 text-xs font-semibold bg-green-400/10 text-green-300 border border-green-400/30';
     }
     const note = document.getElementById('legacy-note');
     if (note) {
-      note.textContent = config.enabled
-        ? `Daily at 04:23 UTC · skips unless the pool is not critical with ${config.minAvailableTokens}+ usable tokens · never below ${config.minPoolSize} tokens`
-        : 'Disabled: set the LEGACY_SCOPE_SUNSET secret to "on" to start retiring. Snapshots are still recorded daily.';
+      note.textContent = `Daily at 04:23 UTC · skips unless the pool is not critical with ${config.minAvailableTokens}+ usable tokens · never below ${config.minPoolSize} tokens`;
     }
     renderLegacyChart(data.history, current);
     renderGrowthChart(data.growth);

@@ -3,14 +3,11 @@
 interface Env {
   ANALYTICS_ENGINE_ACCOUNT_ID?: string;
   ANALYTICS_ENGINE_API_TOKEN?: string;
-  // Set to "on" (as a secret) to start retiring legacy-scope tokens.
-  LEGACY_SCOPE_SUNSET?: string;
 }
 
 declare namespace Cloudflare {
   interface Env {
     ANALYTICS_ENGINE_ACCOUNT_ID?: string;
     ANALYTICS_ENGINE_API_TOKEN?: string;
-    LEGACY_SCOPE_SUNSET?: string;
   }
 }
