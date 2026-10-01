@@ -50,6 +50,10 @@ export type TokenPoolSummary = {
   remaining: number;
   limit: number;
   remainingPercent: number | null;
+  // Requests above the lending floor: what the pool can actually still hand out.
+  lendable: number;
+  lendableLimit: number;
+  lendablePercent: number | null;
   quotaBurnPerHour: number | null;
   checkoutRatePerHour: number | null;
   hoursToReserve: number | null;
@@ -60,6 +64,8 @@ export type TokenHistoryPoint = {
   observedAt: string;
   remaining: number;
   limit: number;
+  lendable: number;
+  lendableLimit: number;
   availableTokens: number;
   usageCount: number;
 };
@@ -270,6 +276,16 @@ function mapObservation(row: ObservationRow): TokenObservation {
   };
 }
 
+function lendableRemaining(token: TokenObservation): number {
+  return Math.max(0, (token.remaining ?? 0) - MIN_REMAINING);
+}
+
+function lendableCapacity(token: TokenObservation): number {
+  return token.remaining === null
+    ? 0
+    : Math.max(0, (token.limit ?? 0) - MIN_REMAINING);
+}
+
 function calculateRates(observations: TokenObservation[]): {
   quotaBurnPerHour: number | null;
   checkoutRatePerHour: number | null;
@@ -377,9 +393,15 @@ export function summarizeTokenPool(
       )
     : { quotaBurnPerHour: null, checkoutRatePerHour: null };
   const usableRemaining = usable.reduce(
-    (sum, token) => sum + Math.max(0, (token.remaining ?? 0) - MIN_REMAINING),
+    (sum, token) => sum + lendableRemaining(token),
     0,
   );
+  const lendableLimit = usable.reduce(
+    (sum, token) => sum + lendableCapacity(token),
+    0,
+  );
+  const lendablePercent =
+    lendableLimit > 0 ? round((usableRemaining / lendableLimit) * 100) : null;
   const hoursToReserve =
     rates.quotaBurnPerHour && rates.quotaBurnPerHour > 0
       ? round(usableRemaining / rates.quotaBurnPerHour)
@@ -420,8 +442,10 @@ export function summarizeTokenPool(
     reasons.push(
       `${belowReserveTokens} token${belowReserveTokens === 1 ? " is" : "s are"} below reserve`,
     );
-  if (complete && remainingPercent !== null && remainingPercent <= 35)
-    reasons.push(`Only ${remainingPercent}% of quota remains`);
+  if (complete && lendablePercent !== null && lendablePercent <= 35)
+    reasons.push(
+      `Only ${lendablePercent}% of lendable quota remains (above the ${MIN_REMAINING.toLocaleString()} floor)`,
+    );
   if (hoursToReserve !== null && hoursToReserve <= 6)
     reasons.push(
       `${hoursToReserve}h until the pool reaches reserve at the current burn rate`,
@@ -430,7 +454,7 @@ export function summarizeTokenPool(
   if (
     tokenCount === 0 ||
     (complete && availableTokens === 0) ||
-    (complete && remainingPercent !== null && remainingPercent <= 15) ||
+    (complete && lendablePercent !== null && lendablePercent <= 15) ||
     (hoursToReserve !== null && hoursToReserve <= 2)
   ) {
     level = "critical";
@@ -440,7 +464,7 @@ export function summarizeTokenPool(
     invalidTokens > 0 ||
     rateLimitedTokens > 0 ||
     belowReserveTokens > 0 ||
-    (remainingPercent !== null && remainingPercent <= 35) ||
+    (lendablePercent !== null && lendablePercent <= 35) ||
     (hoursToReserve !== null && hoursToReserve <= 6)
   ) {
     level = "warning";
@@ -460,6 +484,9 @@ export function summarizeTokenPool(
     remaining,
     limit,
     remainingPercent,
+    lendable: usableRemaining,
+    lendableLimit,
+    lendablePercent,
     quotaBurnPerHour: rates.quotaBurnPerHour,
     checkoutRatePerHour: rates.checkoutRatePerHour,
     hoursToReserve,
@@ -587,6 +614,8 @@ export function historyPoints(
       observedAt: run.observed_at,
       remaining: 0,
       limit: 0,
+      lendable: 0,
+      lendableLimit: 0,
       availableTokens: 0,
       usageCount: 0,
     };
@@ -594,10 +623,14 @@ export function historyPoints(
       if (Date.parse(observation.observedAt) < cutoff) continue;
       point.remaining += observation.remaining ?? 0;
       point.limit += observation.limit ?? 0;
+      if (!observation.error) {
+        point.lendable += lendableRemaining(observation);
+        point.lendableLimit += lendableCapacity(observation);
+      }
       point.availableTokens += observation.available ? 1 : 0;
       point.usageCount += observation.usageCount;
     }
-    if (point.limit > 0) points.push(point);
+    if (point.lendableLimit > 0) points.push(point);
   }
   return points;
 }
@@ -744,8 +777,8 @@ async function sendAlert(
     ? `${summary.availableTokens}/${summary.tokenCount}`
     : `${summary.availableTokens}/${summary.checkedTokens} checked (${summary.tokenCount} total)`;
   const quotaLabel = summary.complete
-    ? "Quota remaining"
-    : "Checked-token quota";
+    ? "Lendable quota"
+    : "Checked-token lendable quota";
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -758,7 +791,7 @@ async function sendAlert(
       subject,
       html: `<h2>GitHub token pool ${escapeHtml(label)}</h2>${reasons}
         <p><strong>Available tokens:</strong> ${availability}<br>
-        <strong>${quotaLabel}:</strong> ${summary.remaining.toLocaleString()} / ${summary.limit.toLocaleString()} (${summary.remainingPercent ?? "unknown"}%)<br>
+        <strong>${quotaLabel}:</strong> ${summary.lendable.toLocaleString()} / ${summary.lendableLimit.toLocaleString()} requests above the ${MIN_REMAINING.toLocaleString()} floor (${summary.lendablePercent ?? "unknown"}%)<br>
         <strong>Quota burn:</strong> ${summary.quotaBurnPerHour?.toLocaleString() ?? "collecting data"}/hour</p>
         <p><a href="https://mise-versions.jdx.dev/admin">Open token observability</a></p>`,
     }),

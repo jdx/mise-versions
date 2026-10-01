@@ -69,9 +69,9 @@ if (!auth || !isAdmin(auth.username)) {
               <div class="text-xs text-gray-500 mt-1">more than 4k requests left</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
-              <div class="text-xs uppercase tracking-wide text-gray-500">Quota remaining</div>
+              <div class="text-xs uppercase tracking-wide text-gray-500" title="Share of the requests above each token's 4k floor that are still unspent. Requests under the floor are never lent, so they don't count.">Lendable quota</div>
               <div id="metric-remaining" class="mt-2 text-2xl font-semibold text-gray-100">—</div>
-              <div id="metric-remaining-detail" class="text-xs text-gray-500 mt-1">across the pool</div>
+              <div id="metric-remaining-detail" class="text-xs text-gray-500 mt-1">above the 4k floor</div>
             </div>
             <div class="rounded-lg bg-dark-900/70 border border-dark-600 p-4">
               <div class="text-xs uppercase tracking-wide text-gray-500" title="GitHub API requests actually spent per hour, summed across every token in the pool">API requests / hour</div>
@@ -92,7 +92,7 @@ if (!auth || !isAdmin(auth.username)) {
               <div class="flex items-start justify-between gap-3 mb-4">
                 <div>
                   <h3 class="text-sm font-medium text-gray-200">Pool headroom</h3>
-                  <p id="chart-subtitle" class="text-xs text-gray-500 mt-1">Percent of GitHub core quota remaining · last 24 hours</p>
+                  <p id="chart-subtitle" class="text-xs text-gray-500 mt-1">Percent of lendable quota (above the 4k floor) remaining · last 24 hours</p>
                 </div>
                 <span id="chart-range" class="text-xs text-gray-500 whitespace-nowrap">—</span>
               </div>
@@ -100,11 +100,10 @@ if (!auth || !isAdmin(auth.username)) {
                 <div class="absolute inset-y-0 left-0 flex flex-col justify-between text-[10px] text-gray-600 pb-5">
                   <span id="axis-top">100%</span><span id="axis-mid">50%</span><span id="axis-bottom">0%</span>
                 </div>
-                <svg id="quota-chart" class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="GitHub quota remaining over the last 24 hours">
+                <svg id="quota-chart" class="w-full h-full pl-9 overflow-visible" viewBox="0 0 720 200" preserveAspectRatio="none" role="img" aria-label="Lendable GitHub quota remaining over the last 24 hours">
                   <line x1="0" y1="10" x2="720" y2="10" stroke="#27272f" />
                   <line x1="0" y1="95" x2="720" y2="95" stroke="#27272f" />
                   <line x1="0" y1="180" x2="720" y2="180" stroke="#27272f" />
-                  <line id="quota-floor" x1="0" y1="154.5" x2="720" y2="154.5" stroke="#fb923c" stroke-dasharray="5 5" opacity=".45" />
                   <path id="quota-area" fill="url(#quota-fill)" d=""></path>
                   <polyline id="quota-line" fill="none" stroke="#22d3ee" stroke-width="3" vector-effect="non-scaling-stroke" points=""></polyline>
                   <defs>
@@ -466,7 +465,7 @@ if (!auth || !isAdmin(auth.username)) {
     const range = document.getElementById('chart-range');
     if (!line || !area || !range) return;
 
-    const points = history.filter((point) => point.limit > 0);
+    const points = history.filter((point) => point.lendableLimit > 0);
     if (points.length === 0) {
       line.setAttribute('points', '');
       area.setAttribute('d', '');
@@ -477,7 +476,7 @@ if (!auth || !isAdmin(auth.username)) {
     const width = 720;
     const top = 10;
     const bottom = 180;
-    const percents = points.map((point) => Math.max(0, Math.min(100, point.remaining / point.limit * 100)));
+    const percents = points.map((point) => Math.max(0, Math.min(100, point.lendable / point.lendableLimit * 100)));
     // The pool usually sits near 100%, so zoom the axis to the data instead of a fixed 0-100%.
     const dip = 100 - Math.min(...percents);
     const span = [2, 5, 10, 25, 50, 100].find((step) => step >= dip * 1.2) ?? 100;
@@ -489,13 +488,8 @@ if (!auth || !isAdmin(auth.username)) {
     const subtitle = document.getElementById('chart-subtitle');
     if (subtitle) {
       subtitle.textContent = span === 100
-        ? 'Percent of GitHub core quota remaining · last 24 hours'
-        : `Percent of GitHub core quota remaining · last 24 hours · axis zoomed to ${axisMin}–100%`;
-    }
-    const floor = document.getElementById('quota-floor');
-    if (floor) {
-      // The dashed line marks the 15% "critical" threshold; only draw it when it is on the axis.
-      floor.style.display = axisMin <= 15 ? '' : 'none';
+        ? 'Percent of lendable quota (above the 4k floor) remaining · last 24 hours'
+        : `Percent of lendable quota (above the 4k floor) remaining · last 24 hours · axis zoomed to ${axisMin}–100%`;
     }
     const coordinates = percents.map((percent, index) => {
       const x = points.length === 1 ? width / 2 : (index / (points.length - 1)) * width;
@@ -551,11 +545,11 @@ if (!auth || !isAdmin(auth.username)) {
         : `${summary.availableTokens}/${summary.checkedTokens} checked`,
       metricTone,
     );
-    setMetric('metric-remaining', summary.remainingPercent === null ? '—' : `${summary.remainingPercent}%`, metricTone);
+    setMetric('metric-remaining', summary.lendablePercent === null ? '—' : `${summary.lendablePercent}%`, metricTone);
     const remainingDetail = document.getElementById('metric-remaining-detail');
     if (remainingDetail) {
       const coverage = summary.complete ? 'across the pool' : `across ${summary.checkedTokens} of ${summary.tokenCount} tokens`;
-      remainingDetail.textContent = `${summary.remaining.toLocaleString()} of ${summary.limit.toLocaleString()} requests · ${coverage}`;
+      remainingDetail.textContent = `${summary.lendable.toLocaleString()} of ${summary.lendableLimit.toLocaleString()} requests above the 4k floor · ${coverage}`;
     }
     setMetric('metric-burn', summary.quotaBurnPerHour === null ? 'Learning' : `${formatCompact(summary.quotaBurnPerHour)}/h`);
     const checkouts = document.getElementById('metric-checkouts');
@@ -600,18 +594,21 @@ if (!auth || !isAdmin(auth.username)) {
     const headroom = document.getElementById('token-headroom');
     if (headroom) {
       const buckets = [
-        { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% quota' },
-        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '≤35% quota' },
+        { label: 'Healthy', count: 0, color: 'bg-green-400', detail: '>35% lendable' },
+        { label: 'Watch', count: 0, color: 'bg-orange-400', detail: '≤35% lendable' },
         { label: 'Below floor', count: 0, color: 'bg-red-400', detail: '≤4k requests left' },
         { label: 'Rate limited', count: 0, color: 'bg-purple-400', detail: 'locally paused' },
         { label: 'Check failed', count: 0, color: 'bg-gray-500', detail: 'quota unknown' },
       ];
+      const FLOOR = 4_000;
       for (const token of data.tokens) {
-        const percent = token.remaining !== null && token.limit ? Math.round(token.remaining / token.limit * 100) : null;
-        if (token.error || percent === null) buckets[4].count++;
-        else if (token.remaining !== null && token.remaining <= 4_000) buckets[2].count++;
+        const lendable = token.remaining !== null && token.limit && token.limit > FLOOR
+          ? Math.round((token.remaining - FLOOR) / (token.limit - FLOOR) * 100)
+          : null;
+        if (token.error || lendable === null) buckets[4].count++;
+        else if (token.remaining !== null && token.remaining <= FLOOR) buckets[2].count++;
         else if (!token.available) buckets[3].count++;
-        else if (percent <= 35) buckets[1].count++;
+        else if (lendable <= 35) buckets[1].count++;
         else buckets[0].count++;
       }
       const total = data.tokens.length;

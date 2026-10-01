@@ -32,10 +32,55 @@ test("builds history from rotating batches of a larger pool", () => {
   assert.equal(points.length, 2);
   assert.equal(points[0].remaining, 9_000);
   assert.equal(points[0].limit, 10_000);
+  // Only requests above the 4k floor are lendable: (5000-4000) + (4000-4000).
+  assert.equal(points[0].lendable, 1_000);
+  assert.equal(points[0].lendableLimit, 2_000);
   // Token 1 carries over from the previous run; token 2 is replaced by its newer reading.
   assert.equal(points[1].remaining, 13_000);
   assert.equal(points[1].limit, 15_000);
   assert.deepEqual(historyPoints(runs, []), []);
+});
+
+test("reports lendable quota above the reserve floor", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  const latest = [
+    observation(1, now, 5_000, 1),
+    observation(2, now, 4_500, 1),
+    observation(3, now, 4_000, 1),
+    {
+      ...observation(4, now, 0, 1),
+      remaining: null,
+      limit: null,
+      error: "bad",
+    },
+  ];
+
+  const summary = summarizeTokenPool(latest, latest, now, 4);
+
+  assert.equal(summary.lendable, 1_500);
+  assert.equal(summary.lendableLimit, 3_000);
+  assert.equal(summary.lendablePercent, 50);
+  // The raw percentage used by alert thresholds is unchanged.
+  assert.equal(summary.remainingPercent, 90);
+});
+
+test("alerts on lendable quota rather than raw quota", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  // 80% raw quota left, but every token is only 300 requests above the floor.
+  const tokens = [1, 2, 3].map((id) => observation(id, now, 4_300, 1));
+
+  const summary = summarizeTokenPool(tokens, tokens, now, 3);
+
+  assert.equal(summary.remainingPercent, 86);
+  assert.equal(summary.lendablePercent, 30);
+  assert.equal(summary.level, "warning");
+  assert.ok(summary.reasons.some((reason) => reason.includes("30%")));
+
+  const nearlyDry = [1, 2, 3].map((id) => observation(id, now, 4_100, 1));
+  assert.equal(
+    summarizeTokenPool(nearlyDry, nearlyDry, now, 3).level,
+    "critical",
+  );
 });
 
 test("rotates bounded token batches between observation intervals", () => {
