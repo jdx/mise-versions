@@ -160,3 +160,28 @@ test("removing a favorite whose post-sign-in save failed does not bring it back"
   assert.equal(session.has("mise-pending-favorite"), false);
   assert.ok(!store.favoritesSnapshot().tools.has("go"));
 });
+
+test("retrying after a failed load puts the store back in loading", async () => {
+  const store = await freshStore();
+  handler = () => json({}, 500);
+  await store.ensureLoaded();
+
+  let gets = 0;
+  let release!: () => void;
+  const held = new Promise<void>((resolve) => (release = resolve));
+  Object.assign(globalThis, {
+    fetch: async () => {
+      gets++;
+      await held;
+      return json({ favorites: [] });
+    },
+  });
+  const first = store.toggleFavorite("node");
+  assert.equal(store.favoritesSnapshot().status, "loading");
+  // A second click while the retry is in flight must not start another fetch.
+  await store.toggleFavorite("go");
+  release();
+  await first;
+  assert.equal(gets, 1);
+  assert.equal(store.favoritesSnapshot().status, "ready");
+});

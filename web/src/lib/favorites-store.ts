@@ -147,7 +147,10 @@ export async function toggleFavorite(tool: string): Promise<void> {
       window.location.assign(loginUrl());
       return;
     case "error":
-      // The list never loaded; a click is a request to try again.
+      // The list never loaded; a click is a request to try again. Going back
+      // to "loading" disables the stars so a second click cannot start a
+      // second, overlapping fetch.
+      setState({ ...state, status: "loading" });
       loading = null;
       await ensureLoaded();
       return;
