@@ -11,8 +11,7 @@ export const GET: APIRoute = async ({ request, locals, redirect }) => {
   const url = new URL(request.url);
 
   const redirectUri = `${url.origin}/api/auth/callback`;
-  // fresh=1: second pass after we removed an old, scoped authorization.
-  const state = newOAuthState(url.searchParams.get("fresh") === "1");
+  const state = newOAuthState();
 
   // Get return_to from query param (where to go after login)
   const returnTo = url.searchParams.get("return_to") || "/";

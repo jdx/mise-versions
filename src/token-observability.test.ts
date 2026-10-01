@@ -5,7 +5,6 @@ import test from "node:test";
 import {
   getAlertDecision,
   observeTokenPool,
-  parseOAuthScopes,
   selectCurrentObservations,
   selectTokenBatch,
   shouldEvaluateAlert,
@@ -29,17 +28,6 @@ test("rotates bounded token batches between observation intervals", () => {
     selectTokenBatch(tokens, new Date("1970-01-01T00:30:00.000Z"), 2),
     [5],
   );
-});
-
-test("reads real scopes from the x-oauth-scopes header", () => {
-  assert.deepEqual(parseOAuthScopes("public_repo"), ["public_repo"]);
-  assert.deepEqual(parseOAuthScopes("public_repo, read:org"), [
-    "public_repo",
-    "read:org",
-  ]);
-  assert.deepEqual(parseOAuthScopes(""), []);
-  assert.equal(parseOAuthScopes(null), null);
-  assert.equal(parseOAuthScopes(undefined), null);
 });
 
 test("combines fresh rotating batches for the current pool", () => {
@@ -295,7 +283,6 @@ test("alert decision sends recovery after an unhealthy state", () => {
 test("returns the fresh check when the alert email cannot be sent", async () => {
   const inserted: unknown[][] = [];
   const runs: unknown[][] = [];
-  const scopeUpdates: unknown[][] = [];
   const rows = () =>
     inserted.map(
       ([tokenId, userId, userName, observedAt, remaining, limit]) => ({
@@ -348,7 +335,6 @@ test("returns the fresh check when the alert email cannot be sent", async () => 
       for (const { sql, args } of statements) {
         if (sql.includes("INSERT INTO token_observation_runs")) runs.push(args);
         if (sql.includes("INSERT INTO token_observations")) inserted.push(args);
-        if (sql.includes("UPDATE tokens SET scopes")) scopeUpdates.push(args);
       }
       return [];
     },
@@ -368,14 +354,11 @@ test("returns the fresh check when the alert email cannot be sent", async () => 
     if (url.includes("api.resend.com")) {
       return new Response("domain is not verified", { status: 403 });
     }
-    return Response.json(
-      {
-        resources: {
-          core: { limit: 5_000, remaining: 500, reset: 1_790_000_000 },
-        },
+    return Response.json({
+      resources: {
+        core: { limit: 5_000, remaining: 500, reset: 1_790_000_000 },
       },
-      { headers: { "x-oauth-scopes": "public_repo" } },
-    );
+    });
   }) as typeof fetch;
 
   try {
@@ -385,7 +368,6 @@ test("returns the fresh check when the alert email cannot be sent", async () => 
     );
 
     assert.equal(runs.length, 1, "the snapshot is stored before alerting");
-    assert.deepEqual(scopeUpdates, [['["public_repo"]', 1, '["public_repo"]']]);
     assert.equal(data.summary.observedAt, "2026-10-01T13:00:00.000Z");
     assert.match(data.alerting.error ?? "", /Resend returned 403/);
   } finally {

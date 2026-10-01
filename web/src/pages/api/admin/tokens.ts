@@ -31,7 +31,6 @@ export const GET: APIRoute = async ({ request, locals }) => {
     rate_limited_at: t.rate_limited_at,
     expires_at: t.expires_at,
     last_validated: t.last_validated,
-    scopes: t.scopes ? JSON.parse(t.scopes) : null,
     created_at: t.created_at,
   }));
 

@@ -3,11 +3,9 @@ import { createOAuthUserAuth } from "@octokit/auth-oauth-user";
 import { Octokit } from "@octokit/rest";
 import { drizzle } from "drizzle-orm/d1";
 import { setupDatabase } from "../../../../../src/database";
-import { revokeGrant } from "../../../../../src/github-grant";
 import { env } from "cloudflare:workers";
 import {
   getOAuthStateCookie,
-  isFreshOAuthState,
   clearOAuthStateCookie,
   setAuthCookie,
   getReturnToCookie,
@@ -16,8 +14,6 @@ import {
 
 // GET /api/auth/callback - Handle GitHub OAuth callback
 export const GET: APIRoute = async ({ request, locals }) => {
-  // Rows created after this belong to an overlapping, newer sign-in.
-  const startedAt = new Date().toISOString();
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
@@ -71,39 +67,6 @@ export const GET: APIRoute = async ({ request, locals }) => {
     const db = drizzle(env.DB);
     const database = setupDatabase(db);
 
-    // GitHub re-issues the scopes a user authorized before, so an old
-    // `public_repo` grant keeps producing write-capable tokens. We only read,
-    // so remove that grant and send the user through GitHub once more; the
-    // fresh consent screen asks for (and returns) no scopes.
-    const scopes =
-      "scopes" in authResult && Array.isArray(authResult.scopes)
-        ? (authResult.scopes as string[])
-        : [];
-    if (scopes.length > 0) {
-      if (
-        !isFreshOAuthState(state) &&
-        (await revokeGrant(env, authResult.token))
-      ) {
-        await database.retireScopedUserTokensBefore(user.login, startedAt);
-        const again = new URL("/api/auth/login", url.origin);
-        again.searchParams.set("return_to", returnTo);
-        again.searchParams.set("fresh", "1");
-        const headers = new Headers({ Location: again.toString() });
-        headers.append("Set-Cookie", clearOAuthStateCookie());
-        headers.append("Set-Cookie", clearReturnToCookie());
-        return new Response(null, { status: 302, headers });
-      }
-      // Either the grant could not be replaced, or the fresh pass still came
-      // back scoped (e.g. someone hit /login?fresh=1 by hand). A scoped token
-      // must never enter the pool, so drop this one and refuse the sign-in.
-      // If the revoke works, the user's stored tokens died with the grant.
-      if (await revokeGrant(env, authResult.token).catch(() => false)) {
-        await database.retireScopedUserTokensBefore(user.login, startedAt);
-      }
-      console.warn(`Refused scoped token for ${user.login}`);
-      return redirectWithError("scoped_token");
-    }
-
     const expiresAt =
       "expiresAt" in authResult ? (authResult.expiresAt as string) : null;
 
@@ -118,7 +81,6 @@ export const GET: APIRoute = async ({ request, locals }) => {
         "refreshTokenExpiresAt" in authResult
           ? (authResult.refreshTokenExpiresAt as string)
           : undefined,
-      scopes: "scopes" in authResult ? scopes : undefined,
     });
 
     console.log(`Token stored for user: ${user.login}`);
