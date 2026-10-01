@@ -492,6 +492,26 @@ test("warns on an outage visible in a partial rotation", () => {
   assert.equal(shouldEvaluateAlert(summary), true);
 });
 
+test("ignores a few failures clustered in an early batch", () => {
+  const now = "2026-08-27T13:00:00.000Z";
+  const batch = Array.from({ length: 45 }, (_, index) =>
+    index < 5
+      ? {
+          ...observation(index + 1, now, 0, 1),
+          remaining: null,
+          limit: null,
+          error: "bad credentials",
+        }
+      : observation(index + 1, now, 4_950, 1),
+  );
+
+  const summary = summarizeTokenPool(batch, batch, now, 1_248);
+
+  assert.equal(summary.invalidTokens, 5);
+  assert.equal(summary.level, "healthy");
+  assert.equal(shouldEvaluateAlert(summary), false);
+});
+
 test("alert fingerprints ignore routine count drift", () => {
   const now = "2026-08-27T13:00:00.000Z";
   const pool = (
@@ -528,12 +548,12 @@ test("alert fingerprints ignore routine count drift", () => {
 
   // Availability only distinguishes warnings once the rotation is complete.
   const partialWarning = alertFingerprint(
-    pool(20, (token, index) => (index < 2 ? invalid(token) : token), 200),
+    pool(20, (token, index) => (index < 10 ? invalid(token) : token), 200),
   );
   assert.equal(
     partialWarning,
     alertFingerprint(
-      pool(20, (token, index) => (index < 3 ? invalid(token) : token), 200),
+      pool(20, (token, index) => (index < 12 ? invalid(token) : token), 200),
     ),
   );
 

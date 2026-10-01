@@ -533,16 +533,25 @@ function calculateCheckoutRate(
 
 // A handful of revoked tokens is normal churn; a tenth of the checked tokens
 // failing to answer points at a GitHub outage or a bulk revocation. The share
-// is of the tokens actually checked so an outage is visible mid-rotation.
+// is of the tokens actually checked so an outage is visible mid-rotation, and
+// an absolute floor keeps a few dead tokens that share one early batch from
+// looking like an outage before the rest of the pool has been checked.
 const WIDESPREAD_INVALID_SHARE = 0.1;
+const WIDESPREAD_INVALID_MIN_TOKENS = 10;
 
 function hasWidespreadInvalidTokens(
   invalidTokens: number,
   checkedTokens: number,
+  tokenCount: number,
 ): boolean {
   return (
     checkedTokens > 0 &&
-    invalidTokens / checkedTokens >= WIDESPREAD_INVALID_SHARE
+    invalidTokens / checkedTokens >= WIDESPREAD_INVALID_SHARE &&
+    invalidTokens >=
+      Math.min(
+        WIDESPREAD_INVALID_MIN_TOKENS,
+        Math.ceil(tokenCount * WIDESPREAD_INVALID_SHARE),
+      )
   );
 }
 
@@ -619,6 +628,7 @@ export function summarizeTokenPool(
   const widespreadInvalid = hasWidespreadInvalidTokens(
     invalidTokens,
     checkedTokens,
+    tokenCount,
   );
   const reasons: string[] = [];
   let level: TokenRiskLevel = "healthy";
@@ -944,7 +954,11 @@ export function alertFingerprint(summary: TokenPoolSummary): string {
     summary.complete && summary.availableTokens <= 1
       ? summary.availableTokens
       : "ok",
-    hasWidespreadInvalidTokens(summary.invalidTokens, summary.checkedTokens),
+    hasWidespreadInvalidTokens(
+      summary.invalidTokens,
+      summary.checkedTokens,
+      summary.tokenCount,
+    ),
   ].join("|");
 }
 
