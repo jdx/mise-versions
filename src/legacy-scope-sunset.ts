@@ -296,20 +296,46 @@ async function recordSnapshot(
     .run();
 }
 
-export async function runLegacyScopeSunset(env: Env): Promise<void> {
+// The side effects of a run, injectable so the guards can be tested without
+// GitHub or D1.
+export type SunsetDeps = {
+  getSummary: () => Promise<{ level: string; availableTokens: number }>;
+  getPool: () => Promise<(PoolTokenScopes & { token: string })[]>;
+  revoke: (accessToken: string) => Promise<boolean>;
+  retireUserTokens: (userId: string) => Promise<unknown>;
+  recordSnapshot: (details: {
+    healthy: boolean;
+    retiredThisRun: number;
+  }) => Promise<void>;
+};
+
+function defaultDeps(env: Env): SunsetDeps {
+  const database = setupDatabase(drizzle(env.DB));
+  return {
+    getSummary: async () => (await getTokenObservability(env)).summary,
+    getPool: () => database.getPoolTokens(),
+    revoke: (accessToken) => revokeGrant(env, accessToken),
+    retireUserTokens: (userId) => database.retireUserTokens(userId),
+    recordSnapshot: (details) => recordSnapshot(env, details),
+  };
+}
+
+export async function runLegacyScopeSunset(
+  env: Env,
+  deps: SunsetDeps = defaultDeps(env),
+): Promise<void> {
   let healthy = false;
   let retired = 0;
 
   try {
-    const { summary } = await getTokenObservability(env);
+    const summary = await deps.getSummary();
     // The pool is far larger than one observation batch, so the summary is
     // rarely "complete"; require it not to be critical and to have plenty of
     // usable tokens instead.
     healthy =
       summary.level !== "critical" &&
       summary.availableTokens >= MIN_AVAILABLE_TOKENS;
-    const database = setupDatabase(drizzle(env.DB));
-    const pool = await database.getPoolTokens();
+    const pool = await deps.getPool();
     // Retiring may remove usable tokens, so only spend what is left above the
     // availability floor.
     const users = planSunset(pool, {
@@ -330,11 +356,11 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
       );
       if (!row) continue;
       try {
-        if (!(await revokeGrant(env, row.token))) {
+        if (!(await deps.revoke(row.token))) {
           console.warn("legacy_scope_sunset_revoke_failed", { userId });
           return;
         }
-        await database.retireUserTokens(userId);
+        await deps.retireUserTokens(userId);
         retired++;
         console.info("legacy_scope_sunset_retired", { userId });
       } catch (error) {
@@ -348,13 +374,12 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
   } finally {
     // Always record a point so the burndown chart has history, even when the
     // run is skipped.
-    await recordSnapshot(env, {
-      healthy,
-      retiredThisRun: retired,
-    }).catch((error: unknown) => {
-      console.error("legacy_scope_snapshot_failed", {
-        error: error instanceof Error ? error.message : String(error),
+    await deps
+      .recordSnapshot({ healthy, retiredThisRun: retired })
+      .catch((error: unknown) => {
+        console.error("legacy_scope_snapshot_failed", {
+          error: error instanceof Error ? error.message : String(error),
+        });
       });
-    });
   }
 }
