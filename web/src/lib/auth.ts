@@ -7,6 +7,8 @@ export interface AuthStatusResponse {
   authenticated: boolean;
   username?: string;
   lookups?: number;
+  // False when the user is signed in but their token is no longer in the pool.
+  sharing?: boolean;
 }
 
 // HMAC signing for secure cookies

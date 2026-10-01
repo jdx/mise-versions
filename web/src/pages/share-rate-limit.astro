@@ -18,7 +18,7 @@ try {
   console.error('Token pool stats unavailable', e);
 }
 const auth = await getAuthCookie(Astro.request, env.API_SECRET);
-let mine: { lookups: number } | null = null;
+let mine: { lookups: number; sharing: boolean } | null = null;
 if (auth) {
   try {
     mine = await setupDatabase(drizzle(env.DB)).getUsageForUser(auth.username);
@@ -26,6 +26,7 @@ if (auth) {
     console.error('Usage lookup unavailable', e);
   }
 }
+const sharing = auth ? (mine ? mine.sharing : true) : false;
 let toolCount: number | null = null;
 try {
   const row = await env.ANALYTICS_DB.prepare('SELECT count(*) AS n FROM tools WHERE latest_version IS NOT NULL').first<{ n: number }>();
@@ -40,10 +41,13 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
     <div class="page-heading">
       <h1>Share your GitHub rate limit</h1>
       <p>mise versions is kept up to date by a job that asks GitHub about every tool, all day. GitHub limits how many questions one account can ask per hour, so we borrow a little headroom from people who are happy to lend it.</p>
-      {auth ? (
+      {auth && sharing ? (
         <p class="explainer-thanks">Thanks, <strong>{auth.username}</strong>.{mine && mine.lookups > 0 ? <> Your token has helped with <strong>{mine.lookups.toLocaleString()}</strong> version lookups so far.</> : <> Your token will start showing up here once our servers borrow it.</>}</p>
       ) : (
-        <p class="explainer-cta"><SignInLink client:load /></p>
+        <>
+          {auth && <p class="explainer-thanks">You're signed in as <strong>{auth.username}</strong>, but your earlier token was retired or expired, so you're not sharing right now.{mine && mine.lookups > 0 ? <> It helped with <strong>{mine.lookups.toLocaleString()}</strong> lookups while it was active.</> : null}</p>}
+          <p class="explainer-cta"><SignInLink client:load /></p>
+        </>
       )}
     </div>
 
@@ -100,7 +104,7 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
       <p>Note that <em>Sign out</em> on this site only clears the cookie in your browser. To remove the token itself, revoke it on GitHub.</p>
     </section>
 
-    {!auth && <p class="explainer-cta"><SignInLink client:load /></p>}
+    {!(auth && sharing) && <p class="explainer-cta"><SignInLink client:load /></p>}
   </article>
 </Layout>
 <style>

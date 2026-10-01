@@ -4,11 +4,15 @@ import { getTokenObservability } from "./token-observability.js";
 
 // Tokens from before sign-in stopped requesting scopes still carry
 // `public_repo`, which can write to public repos. We only read, so those are
-// retired gradually: a few per day, only while the pool is healthy and never
-// below a minimum size, because the pool is what keeps updates running.
+// retired gradually. The pool is what keeps updates running, so the rule is:
+// legacy tokens are capped at LEGACY_CAP minus the number of new no-scope
+// tokens. Each new token displaces one legacy token, and the pool never
+// shrinks below that cap.
 export const LEGACY_SCOPE_SUNSET_CRON = "23 4 * * *";
-export const MAX_RETIRED_PER_RUN = 2;
+export const LEGACY_CAP = 1_000;
+export const MAX_RETIRED_PER_RUN = 25;
 export const MIN_POOL_SIZE_AFTER = 10;
+export const MIN_AVAILABLE_TOKENS = 50;
 
 export type PoolTokenScopes = {
   id: number;
@@ -27,37 +31,58 @@ export function hasLegacyScopes(scopes: string | null): boolean {
   }
 }
 
-// Which legacy-scope users to retire this run. A user can have several token
-// rows and revoking their grant kills all of them, so the budget is in users
-// and the pool-size check counts every row that would go.
+// Which legacy-scope users to retire this run. Revoking a grant kills every
+// token the user has issued, so users who also hold a no-scope token are left
+// alone (revoking would take out their new token too), and the excess is
+// counted in rows because a user can have several.
 export function planSunset(
   tokens: PoolTokenScopes[],
-  options: { enabled: boolean; healthy: boolean },
+  options: { enabled: boolean; healthy: boolean; legacyCap?: number },
 ): string[] {
   if (!options.enabled || !options.healthy) return [];
 
   const legacyByUser = new Map<string, PoolTokenScopes[]>();
+  const usersWithCleanToken = new Set<string>();
+  let cleanRows = 0;
+  let legacyRows = 0;
   for (const token of tokens) {
-    if (!token.user_id || !hasLegacyScopes(token.scopes)) continue;
-    legacyByUser.set(token.user_id, [
-      ...(legacyByUser.get(token.user_id) ?? []),
-      token,
-    ]);
+    if (hasLegacyScopes(token.scopes)) {
+      legacyRows++;
+      if (token.user_id) {
+        legacyByUser.set(token.user_id, [
+          ...(legacyByUser.get(token.user_id) ?? []),
+          token,
+        ]);
+      }
+    } else {
+      cleanRows++;
+      if (token.user_id) usersWithCleanToken.add(token.user_id);
+    }
   }
 
-  const oldestFirst = [...legacyByUser.entries()].sort(
-    ([, a], [, b]) =>
-      Math.min(...a.map((t) => Date.parse(t.created_at))) -
-      Math.min(...b.map((t) => Date.parse(t.created_at))),
+  const allowedLegacy = Math.max(
+    0,
+    (options.legacyCap ?? LEGACY_CAP) - cleanRows,
   );
+  let excess = legacyRows - allowedLegacy;
+  if (excess <= 0) return [];
+
+  const oldestFirst = [...legacyByUser.entries()]
+    .filter(([userId]) => !usersWithCleanToken.has(userId))
+    .sort(
+      ([, a], [, b]) =>
+        Math.min(...a.map((t) => Date.parse(t.created_at))) -
+        Math.min(...b.map((t) => Date.parse(t.created_at))),
+    );
 
   const chosen: string[] = [];
   let remaining = tokens.length;
   for (const [userId, rows] of oldestFirst) {
-    if (chosen.length >= MAX_RETIRED_PER_RUN) break;
+    if (excess <= 0 || chosen.length >= MAX_RETIRED_PER_RUN) break;
     if (remaining - rows.length < MIN_POOL_SIZE_AFTER) continue;
     chosen.push(userId);
     remaining -= rows.length;
+    excess -= rows.length;
   }
   return chosen;
 }
@@ -90,7 +115,12 @@ export async function runLegacyScopeSunset(env: Env): Promise<void> {
   }
 
   const { summary } = await getTokenObservability(env);
-  const healthy = summary.level === "healthy" && summary.complete;
+  // The pool is far larger than one observation batch, so the summary is
+  // rarely "complete"; require it not to be critical and to have plenty of
+  // usable tokens instead.
+  const healthy =
+    summary.level !== "critical" &&
+    summary.availableTokens >= MIN_AVAILABLE_TOKENS;
   const database = setupDatabase(drizzle(env.DB));
   const pool = await database.getPoolTokens();
   const users = planSunset(pool, { enabled: true, healthy });

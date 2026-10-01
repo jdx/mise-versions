@@ -9,18 +9,21 @@ export const GET: APIRoute = async ({ request, locals }) => {
   const auth = await getAuthCookie(request, env.API_SECRET);
 
   let lookups: number | undefined;
+  let sharing: boolean | undefined;
   if (auth) {
     try {
-      lookups = (
-        await setupDatabase(drizzle(env.DB)).getUsageForUser(auth.username)
-      ).lookups;
+      const usage = await setupDatabase(drizzle(env.DB)).getUsageForUser(
+        auth.username,
+      );
+      lookups = usage.lookups;
+      sharing = usage.sharing;
     } catch (error) {
       console.error("Usage lookup failed", error);
     }
   }
 
   const response: AuthStatusResponse = auth
-    ? { authenticated: true, username: auth.username, lookups }
+    ? { authenticated: true, username: auth.username, lookups, sharing }
     : { authenticated: false };
 
   return new Response(JSON.stringify(response), {

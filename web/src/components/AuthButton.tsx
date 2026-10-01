@@ -38,6 +38,11 @@ export function AuthButton() {
             {state.lookups.toLocaleString()} lookups
           </a>
         ) : null}
+        {!state.sharing ? (
+          <a href={loginUrl} class="auth-signin auth-signin-primary">
+            Share again
+          </a>
+        ) : null}
         <a href={logoutUrl} class="auth-signout">
           Sign out
         </a>
@@ -59,7 +64,7 @@ export function SignInLink() {
   const state = useAuth();
   const { loginUrl } = authUrls();
   // Signing in again would add a duplicate pool entry.
-  if (state.loading || state.authenticated) return null;
+  if (state.loading || (state.authenticated && state.sharing)) return null;
   return (
     <a href={loginUrl} class="auth-signin auth-signin-primary">
       <GitHubIcon />

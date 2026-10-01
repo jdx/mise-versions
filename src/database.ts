@@ -145,17 +145,20 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .run();
     },
 
-    // Lookups a user's token(s) have helped with. A user can have several
-    // rows (one per sign-in), so sum across all of them.
+    // Lookups a user's token(s) have helped with, and whether any of them is
+    // still in the pool. A user can have several rows (one per sign-in), so
+    // sum across all of them.
     async getUsageForUser(userId: string) {
+      const now = new Date().toISOString();
       const row = await db
         .select({
           lookups: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
+          active: sql<number>`coalesce(sum(case when ${tokens.is_active} = 1 and (${tokens.expires_at} is null or ${tokens.expires_at} > ${now}) then 1 else 0 end), 0)`,
         })
         .from(tokens)
         .where(eq(tokens.user_id, userId))
         .get();
-      return { lookups: row?.lookups ?? 0 };
+      return { lookups: row?.lookups ?? 0, sharing: (row?.active ?? 0) > 0 };
     },
 
     // Retire every token row for a user whose grant was revoked on GitHub.

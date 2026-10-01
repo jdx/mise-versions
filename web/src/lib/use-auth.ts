@@ -5,6 +5,8 @@ export interface AuthState {
   authenticated: boolean;
   username: string | null;
   lookups: number | null;
+  // Signed in with a token in the pool. Unknown (true) if the lookup failed.
+  sharing: boolean;
   loading: boolean;
 }
 
@@ -12,6 +14,7 @@ const SIGNED_OUT: AuthState = {
   authenticated: false,
   username: null,
   lookups: null,
+  sharing: false,
   loading: false,
 };
 
@@ -30,6 +33,7 @@ function fetchAuth(): Promise<AuthState> {
         authenticated: data.authenticated,
         username: data.username || null,
         lookups: data.lookups ?? null,
+        sharing: data.sharing ?? data.authenticated,
         loading: false,
       };
     } catch {
@@ -44,6 +48,7 @@ export function useAuth(): AuthState {
     authenticated: false,
     username: null,
     lookups: null,
+    sharing: false,
     loading: true,
   });
 
