@@ -76,7 +76,8 @@
     "ANALYTICS_ENGINE_DATASET": "mise_analytics_events",
     "ANALYTICS_ENGINE_CUTOVER_DATE": "2026-06-12",
     "TOKEN_ALERT_TO": "mise-tools@mise.jdx.dev",
-    "TOKEN_ALERT_FROM": "mise-tools@mise.jdx.dev",
+    // Resend only sends from verified domains; en.dev is the one on the account.
+    "TOKEN_ALERT_FROM": "mise-tools@en.dev",
     // Which repos the /api/github/repos mirror serves: "public" (any public
     // github.com repo), "registry" (mise registry repos only) or "off".
     // Restricted or disabled answers are 403s, which mise clients warn about.
