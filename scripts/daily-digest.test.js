@@ -239,6 +239,16 @@ test("most days missing tool rows is not treated as typical", () => {
   assert.equal(result.problems.length, 12);
 });
 
+test("tool rows left on a zero-download day are flagged as stale", () => {
+  const totals = dayRows("2026-09-30", 14, 1000).map((r) =>
+    r.date === "2026-09-25" ? { ...r, value: 0 } : r,
+  );
+  assert.deepEqual(
+    toolCoverage(dayRows("2026-09-30", 14, 980), totals, "2026-09-30").problems,
+    ["2026-09-25 has stale tool rows"],
+  );
+});
+
 test("a day with downloads but no tool rows is flagged", () => {
   const totals = dayRows("2026-09-30", 14, 1000);
   const tools = dayRows("2026-09-30", 14, 980).filter(

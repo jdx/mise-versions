@@ -130,6 +130,10 @@ export function toolCoverage(toolDaily, totals, day) {
     const total = totalByDate.get(date);
     if (total === undefined) {
       problems.push(`${date} has no daily total`);
+    } else if (total === 0 && toolByDate.get(date) > 0) {
+      // A re-refresh does not delete tool rows it no longer writes, so rows
+      // left behind on a zero day are stale and would inflate the movers.
+      problems.push(`${date} has stale tool rows`);
     } else if (total > 0 && !toolByDate.has(date)) {
       // Never judged against the median: if most days lack rows the median is
       // zero and would let every one of them through.
