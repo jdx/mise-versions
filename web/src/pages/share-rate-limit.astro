@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SignInLink } from '../components/AuthButton';
+import { drizzle } from 'drizzle-orm/d1';
+import { setupDatabase } from '../../../src/database';
+import { env } from 'cloudflare:workers';
+import { formatCompact } from '../lib/format';
+import { getAuthCookie } from '../lib/auth';
+import { MIN_REMAINING, EMERGENCY_MIN_REMAINING } from '../../../src/token-budget';
+
+const GITHUB_HOURLY_LIMIT = 5000;
+const UNAUTHENTICATED_HOURLY_LIMIT = 60;
+
+let pool: Awaited<ReturnType<ReturnType<typeof setupDatabase>['getPublicPoolStats']>> | null = null;
+try {
+  pool = await setupDatabase(drizzle(env.DB)).getPublicPoolStats();
+} catch (e) {
+  console.error('Token pool stats unavailable', e);
+}
+const auth = await getAuthCookie(Astro.request, env.API_SECRET);
+let mine: { lookups: number; sharing: boolean } | null = null;
+if (auth) {
+  try {
+    mine = await setupDatabase(drizzle(env.DB)).getUsageForUser(auth.username);
+  } catch (e) {
+    console.error('Usage lookup unavailable', e);
+  }
+}
+const sharing = auth ? (mine ? mine.sharing : true) : false;
+let toolCount: number | null = null;
+try {
+  const row = await env.ANALYTICS_DB.prepare('SELECT count(*) AS n FROM tools WHERE latest_version IS NOT NULL').first<{ n: number }>();
+  toolCount = row?.n ?? null;
+} catch (e) {
+  console.error('Tool count unavailable', e);
+}
+Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public, max-age=300, stale-while-revalidate=3600');
+---
+<Layout title="Share your GitHub rate limit" description="Why mise versions asks you to sign in with GitHub, exactly how your token is used, and how to take it back.">
+  <article class="explainer">
+    <div class="page-heading">
+      <h1>Share your GitHub rate limit</h1>
+      <p>When mise installs a tool, it often has to ask GitHub for that project's releases and checksums. Without a token GitHub allows only 60 of those requests an hour, which a busy laptop or a shared CI machine can burn through quickly. mise versions answers those questions for everyone instead, so mise users don't have to hit the GitHub API themselves. To do that we need GitHub tokens of our own, and we borrow a little headroom from people who are happy to lend it.</p>
+      {auth && sharing ? (
+        <p class="explainer-thanks">Thanks, <strong>{auth.username}</strong>.{mine && mine.lookups > 0 ? <> Your token has helped with <strong>{mine.lookups.toLocaleString()}</strong> version lookups so far.</> : <> Your token will start showing up here once our servers borrow it.</>}</p>
+      ) : (
+        <>
+          {auth && <p class="explainer-thanks">You're signed in as <strong>{auth.username}</strong>, but your earlier token was retired or expired, so you're not sharing right now.{mine && mine.lookups > 0 ? <> It helped with <strong>{mine.lookups.toLocaleString()}</strong> lookups while it was active.</> : null}</p>}
+          <p class="explainer-cta"><SignInLink client:load /></p>
+        </>
+      )}
+    </div>
+
+    <section aria-labelledby="why">
+      <h2 id="why">Why we need it</h2>
+      <p>mise's <code>aqua</code>, <code>github</code> and <code>packslip</code> backends install tools straight from GitHub releases. Rather than every mise user calling the GitHub API directly, they ask mise versions, which makes the call once with a pooled token, caches the answer and serves it to everyone. That's what keeps all of mise's users clear of GitHub's rate limits. Anonymous requests get <strong>{UNAUTHENTICATED_HOURLY_LIMIT} per hour</strong>; a token gets <strong>{GITHUB_HOURLY_LIMIT.toLocaleString()}</strong>.</p>
+      <p>The same pool refreshes this site's version lists (<code>mise ls-remote</code> for the {toolCount ? toolCount.toLocaleString() : 'hundreds of'} tools we track, about every 30 minutes) and runs mise's end-to-end tests.</p>
+      <p>One account can't keep up with all of that. Without other people's tokens, lookups would stall for everyone. Spreading the work across a pool keeps us well clear of the limits and keeps each person's share small enough that you won't notice it. It also means one revoked or busy token doesn't hold things up for anyone else.</p>
+    </section>
+
+    <section aria-labelledby="numbers">
+      <h2 id="numbers">Rough numbers</h2>
+      <dl class="explainer-stats">
+        <div><dt>Tools tracked</dt><dd>{toolCount ? toolCount.toLocaleString() : '—'}</dd></div>
+        <div><dt>People sharing</dt><dd>{pool ? pool.contributors.toLocaleString() : '—'}</dd></div>
+        <div><dt>Update runs per day</dt><dd>~48</dd></div>
+        <div><dt>Tokens lent out, all time</dt><dd>{pool ? formatCompact(pool.checkouts) : '—'}</dd></div>
+      </dl>
+      <p class="adoption-context">These figures come live from the token pool and are cached for a few minutes. A “lend” is one time a token was borrowed for a lookup.</p>
+    </section>
+
+    <section aria-labelledby="how">
+      <h2 id="how">How it works</h2>
+      <ol>
+        <li><strong>You click “Sign in with GitHub.”</strong> GitHub shows its standard authorization screen. We never see your password.</li>
+        <li><strong>GitHub gives us an OAuth token.</strong> We store it, with your username, in our database, along with a few timestamps and a usage counter.</li>
+        <li><strong>Our servers borrow it.</strong> Before each lookup we pick the least recently used token, so the load rotates evenly across everyone. The borrowers are the GitHub mirror that mise uses (releases, checksums and attestations for the <code>aqua</code>, <code>github</code> and <code>packslip</code> backends), the job that refreshes version lists, and mise's own end-to-end tests.</li>
+        <li><strong>It's used to read public data.</strong> The calls list releases and tags, and fetch release and attestation details, on public repositories. In the update job the token is masked in the logs.</li>
+        <li><strong>We leave you plenty.</strong> If your token has {MIN_REMAINING.toLocaleString()} or fewer of its {GITHUB_HOURLY_LIMIT.toLocaleString()} hourly requests left, we don't touch it until GitHub resets the hour. That holds no matter who used them up, whether it was us, you, or another app on your account. In practice we use far less than the difference. The one exception is a genuine emergency, when every token in the pool is that low and updates would otherwise stall. Then we may borrow from one that still has more than {EMERGENCY_MIN_REMAINING.toLocaleString()} left, and the maintainer gets an alert so it gets sorted out.</li>
+      </ol>
+      <p>Signed in, you also get fresher repository details (stars, license, last push) on tool pages, fetched with your own token.</p>
+    </section>
+
+    <section aria-labelledby="stored">
+      <h2 id="stored">What we store</h2>
+      <ul>
+        <li>Your GitHub username and display name</li>
+        <li>The email on your GitHub profile, only if you've made one public</li>
+        <li>Your OAuth token (and its refresh token and expiry, if GitHub issues them)</li>
+        <li>When the token was last used, how many times, and whether it is currently rate limited</li>
+      </ul>
+      <p>The token lives in our server-side database and is never sent to your browser or shown on any page. It is sent over HTTPS to the update job so it can call GitHub; apart from that, only our servers use it, and only to call GitHub. Your browser only gets a signed cookie saying who you are. We don't sell, share or email anything.</p>
+    </section>
+
+    <section aria-labelledby="permissions">
+      <h2 id="permissions">What the token can do</h2>
+      <p>We ask GitHub for <strong>no permissions at all</strong>. The authorization screen only says it will read your public profile. A token like that can read public information, the same as anyone browsing GitHub, but with the higher rate limit. It can't change anything, and it can't see your private repositories, organizations, or account settings.</p>
+      <p>The code is open source if you want to check: the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/login.ts">sign-in redirect</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/callback.ts">callback</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/token/index.ts">token endpoint</a> and the <a href="https://github.com/jdx/mise-versions/blob/main/scripts/update.sh">update script</a>.</p>
+      <p class="adoption-context">If you signed in before this change, your older token may still carry the broader <code>public_repo</code> permission. We're retiring those gradually. When you sign in again we first remove your old authorization on GitHub, so you'll see the consent screen once more and get a new token with no permissions. If yours is retired in the meantime you'll simply stop sharing until you sign in again. You can also revoke it yourself on GitHub (below) at any time.</p>
+    </section>
+
+    <section aria-labelledby="revoke">
+      <h2 id="revoke">Taking it back</h2>
+      <p>You can stop sharing at any time. Open <a href="https://github.com/settings/applications">GitHub → Settings → Applications</a>, find the mise versions app under <em>Authorized OAuth Apps</em>, and choose <strong>Revoke</strong>. GitHub rejects the token immediately, so it can't be used again.</p>
+      <p>Note that <em>Sign out</em> on this site only clears the cookie in your browser. To remove the token itself, revoke it on GitHub.</p>
+    </section>
+
+    {!(auth && sharing) && <p class="explainer-cta"><SignInLink client:load /></p>}
+  </article>
+</Layout>
+<style>
+.explainer { max-width: 760px; }
+.explainer section { margin: 0 0 32px; }
+.explainer h2 { font-size: 20px; margin-bottom: 12px; letter-spacing: -0.02em; }
+.explainer p, .explainer li { color: var(--text-secondary); font-size: 15px; line-height: 1.75; }
+.explainer p { margin: 0 0 12px; }
+.explainer ol, .explainer ul { margin: 0 0 12px; padding-left: 22px; }
+.explainer li { margin-bottom: 8px; }
+.explainer li::marker { color: var(--muted); }
+.explainer strong { color: var(--text); }
+.explainer a:not(.auth-signin) { color: var(--accent); text-decoration: underline; }
+.explainer code { font-size: 13px; background: var(--surface-raised); padding: 1px 6px; border-radius: 4px; }
+.explainer-thanks { padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); }
+.explainer-cta { margin: 20px 0 0; }
+.explainer-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 0 0 12px; }
+.explainer-stats div { border: 1px solid var(--border); border-radius: 9px; padding: 14px 16px; background: var(--surface); }
+.explainer-stats dt { color: var(--muted); font-size: 12px; }
+.explainer-stats dd { margin: 4px 0 0; font-size: 24px; font-weight: 650; letter-spacing: -0.03em; }
+</style>

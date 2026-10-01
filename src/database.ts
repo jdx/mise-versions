@@ -1,6 +1,16 @@
 import { drizzle } from "drizzle-orm/d1";
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
-import { sql, eq, gt, lte, isNull, isNotNull, and, or } from "drizzle-orm";
+import {
+  sql,
+  eq,
+  gt,
+  lte,
+  isNull,
+  isNotNull,
+  inArray,
+  and,
+  or,
+} from "drizzle-orm";
 
 // GitHub tokens table for round-robin usage (user tokens only)
 export const tokens = sqliteTable("tokens", {
@@ -105,6 +115,120 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
         .all();
     },
 
+    // Every usable pool token, ignoring the local rate-limited mark. Used by
+    // the emergency path, which re-checks live quota itself.
+    async getPoolTokens() {
+      const now = new Date().toISOString();
+      return await db
+        .select()
+        .from(tokens)
+        .where(
+          and(
+            eq(tokens.is_active, 1),
+            sql`${tokens.user_id} != 'jdx'`,
+            or(isNull(tokens.expires_at), gt(tokens.expires_at, now)),
+          ),
+        )
+        .all();
+    },
+
+    // getNextToken() counts a checkout when it picks a token. Take it back when
+    // the token turns out not to be lent (skipped, invalid, or below the floor)
+    // so usage_count only counts lookups the token actually helped with.
+    async undoCheckout(tokenId: number) {
+      await db
+        .update(tokens)
+        .set({ usage_count: sql`max(usage_count - 1, 0)` })
+        .where(eq(tokens.id, tokenId))
+        .run();
+    },
+
+    // Count a checkout that bypassed getNextToken() (the emergency path).
+    async recordCheckout(tokenId: number) {
+      await db
+        .update(tokens)
+        .set({
+          last_used: new Date().toISOString(),
+          usage_count: sql`usage_count + 1`,
+        })
+        .where(eq(tokens.id, tokenId))
+        .run();
+    },
+
+    // Lookups a user's token(s) have helped with, and whether any of them is
+    // still in the pool. A user can have several rows (one per sign-in), so
+    // sum across all of them.
+    async getUsageForUser(userId: string) {
+      const now = new Date().toISOString();
+      const row = await db
+        .select({
+          lookups: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
+          active: sql<number>`coalesce(sum(case when ${tokens.is_active} = 1 and (${tokens.expires_at} is null or ${tokens.expires_at} > ${now}) then 1 else 0 end), 0)`,
+        })
+        .from(tokens)
+        .where(eq(tokens.user_id, userId))
+        .get();
+      return { lookups: row?.lookups ?? 0, sharing: (row?.active ?? 0) > 0 };
+    },
+
+    // Retire the scoped rows that died when a user's old grant was revoked.
+    // Only rows created before `before` that carry scopes: a no-scope token
+    // stored by an overlapping sign-in belongs to a newer grant and survives.
+    async retireScopedUserTokensBefore(userId: string, before: string) {
+      await db
+        .update(tokens)
+        .set({ is_active: 0, token: "", refresh_token: null })
+        .where(
+          and(
+            eq(tokens.user_id, userId),
+            eq(tokens.is_active, 1),
+            lte(tokens.created_at, before),
+            isNotNull(tokens.scopes),
+            sql`${tokens.scopes} != '[]'`,
+          ),
+        )
+        .run();
+    },
+
+    // Retire every token row for a user whose grant was revoked on GitHub.
+    // Rows are kept (inactive, secrets cleared) so their lookup count survives.
+    async retireUserTokens(userId: string) {
+      await db
+        .update(tokens)
+        .set({ is_active: 0, token: "", refresh_token: null })
+        .where(eq(tokens.user_id, userId))
+        .run();
+    },
+
+    // Deactivate specific token rows and clear their secrets. `marker` goes in
+    // the token column so different retirement reasons can be told apart.
+    async retireTokens(tokenIds: number[], marker: string) {
+      for (const id of tokenIds) {
+        await db
+          .update(tokens)
+          .set({ is_active: 0, token: marker, refresh_token: null })
+          .where(eq(tokens.id, id))
+          .run();
+      }
+    },
+
+    async getPoolTokensByIds(tokenIds: number[]) {
+      if (tokenIds.length === 0) return [];
+      const now = new Date().toISOString();
+      return await db
+        .select()
+        .from(tokens)
+        .where(
+          and(
+            inArray(tokens.id, tokenIds),
+            eq(tokens.is_active, 1),
+            sql`${tokens.user_id} != 'jdx'`,
+            or(isNull(tokens.expires_at), gt(tokens.expires_at, now)),
+          ),
+        )
+        .all();
+    },
+
     // Store new token
     async storeToken(
       userId: string | null,
@@ -120,7 +244,7 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
     ) {
       const now = new Date().toISOString();
 
-      return await db
+      const insert = db
         .insert(tokens)
         .values({
           user_id: userId,
@@ -134,8 +258,22 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
           refresh_token_expires_at: options?.refreshTokenExpiresAt,
           scopes: options?.scopes ? JSON.stringify(options.scopes) : null,
         })
-        .returning()
-        .get();
+        .returning();
+
+      if (!userId) return await insert.get();
+
+      // One live token per person. Retire their earlier rows (which may carry
+      // broader scopes) and add the new one in a single atomic batch, so a
+      // failed insert never discards a working token and concurrent sign-ins
+      // can't leave two active rows. Lookup counts are kept: the rows stay.
+      const [, inserted] = await db.batch([
+        db
+          .update(tokens)
+          .set({ is_active: 0, token: "superseded", refresh_token: null })
+          .where(and(eq(tokens.user_id, userId), eq(tokens.is_active, 1))),
+        insert,
+      ]);
+      return inserted[0];
     },
 
     // Update token validation timestamp
@@ -257,6 +395,41 @@ export function setupDatabase(db: ReturnType<typeof drizzle>) {
       return {
         active: active?.count ?? 0,
         total: total?.count ?? 0,
+      };
+    },
+
+    // Aggregate, non-identifying pool numbers for the public explainer page.
+    // Mirrors getNextToken(): the maintainer's own token is not in the pool.
+    async getPublicPoolStats() {
+      const now = new Date().toISOString();
+      const row = await db
+        .select({
+          contributors: sql<number>`count(distinct ${tokens.user_id})`,
+          available: sql<number>`coalesce(sum(case when ${tokens.rate_limited_at} is null or ${tokens.rate_limited_at} <= ${now} then 1 else 0 end), 0)`,
+        })
+        .from(tokens)
+        .where(
+          and(
+            eq(tokens.is_active, 1),
+            sql`${tokens.user_id} != 'jdx'`,
+            or(isNull(tokens.expires_at), gt(tokens.expires_at, now)),
+          ),
+        )
+        .get();
+
+      // Lifetime total: include retired and expired rows so it never drops.
+      const lifetime = await db
+        .select({
+          checkouts: sql<number>`coalesce(sum(${tokens.usage_count}), 0)`,
+        })
+        .from(tokens)
+        .where(sql`${tokens.user_id} != 'jdx'`)
+        .get();
+
+      return {
+        contributors: row?.contributors ?? 0,
+        available: row?.available ?? 0,
+        checkouts: lifetime?.checkouts ?? 0,
       };
     },
 

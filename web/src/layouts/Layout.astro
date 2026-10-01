@@ -1,5 +1,7 @@
 ---
 import { SiteMenu } from '../components/SiteMenu';
+import { AuthButton } from '../components/AuthButton';
+import { SignInBanner } from '../components/SignInBanner';
 import { ThemeSelect } from '../components/ThemeSelect';
 import { NavSearch } from '../components/NavSearch';
 import '../index.css';
@@ -80,10 +82,12 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
         <div class="nav-actions">
           {currentPath !== '/' && <NavSearch initialQuery={Astro.url.searchParams.get("q") || ""} client:load />}
           <ThemeSelect client:load />
+          <AuthButton client:load />
           <SiteMenu client:load />
         </div>
       </div>
     </header>
+    <SignInBanner client:load />
     <main id="main" class="site-main"><slot /></main>
     <footer class="site-footer">
       <a class="wordmark" href="https://mise.jdx.dev">mise<span class="wordmark-sub"> / the front-end to your dev env</span></a>

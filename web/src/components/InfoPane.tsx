@@ -1,4 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
+import { useAuth } from "../lib/use-auth";
 
 interface SecurityFeature {
   type: string;
@@ -104,15 +105,7 @@ export function InfoPane({ tool, toolMeta }: InfoPaneProps) {
   const [ghData, setGhData] = useState<GithubData | null>(null);
   const [ghLoading, setGhLoading] = useState(false);
   const [ghStale, setGhStale] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-
-  // Check auth status
-  useEffect(() => {
-    fetch("/api/auth/me")
-      .then((res) => res.json<{ authenticated: boolean }>())
-      .then((data) => setAuthenticated(data.authenticated))
-      .catch(() => {});
-  }, []);
+  const { authenticated } = useAuth();
 
   // Fetch GitHub data
   const parsed = toolMeta?.github ? parseGithubSlug(toolMeta.github) : null;

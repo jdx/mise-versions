@@ -6,6 +6,9 @@ export const OAUTH_STATE_COOKIE_NAME = "mise_oauth_state";
 export interface AuthStatusResponse {
   authenticated: boolean;
   username?: string;
+  lookups?: number;
+  // False when the user is signed in but their token is no longer in the pool.
+  sharing?: boolean;
 }
 
 // HMAC signing for secure cookies
@@ -72,6 +75,18 @@ export async function setAuthCookie(
 
 export function clearAuthCookie(): string {
   return `${AUTH_COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax; Secure`;
+}
+
+// A sign-in that is the second pass of "replace a scoped token with a clean
+// one" carries this suffix in its state, so the callback only retries once.
+const FRESH_STATE_SUFFIX = ".fresh";
+
+export function newOAuthState(fresh: boolean): string {
+  return crypto.randomUUID() + (fresh ? FRESH_STATE_SUFFIX : "");
+}
+
+export function isFreshOAuthState(state: string): boolean {
+  return state.endsWith(FRESH_STATE_SUFFIX);
 }
 
 export function setOAuthStateCookie(state: string): string {

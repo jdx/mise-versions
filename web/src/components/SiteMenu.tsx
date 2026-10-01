@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "preact/hooks";
-import { AuthButton } from "./AuthButton";
 import { AdminButton } from "./AdminButton";
 
 export function SiteMenu() {
@@ -63,7 +62,7 @@ export function SiteMenu() {
       <summary
         ref={trigger}
         class="site-menu-trigger"
-        aria-label="More resources and account"
+        aria-label="More resources"
         aria-controls="site-menu-panel"
       >
         More{" "}
@@ -109,6 +108,9 @@ export function SiteMenu() {
               ↗
             </span>
           </a>
+          <a class="site-menu-item" href="/share-rate-limit">
+            <span>Share your rate limit</span>
+          </a>
           <a class="site-menu-item" href="https://github.com/jdx/mise-versions">
             <span>Site source</span>
             <span class="site-menu-external" aria-hidden="true">
@@ -118,7 +120,6 @@ export function SiteMenu() {
         </nav>
         <div class="site-menu-account">
           <AdminButton />
-          <AuthButton />
         </div>
       </div>
     </details>

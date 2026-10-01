@@ -1,4 +1,6 @@
 import type { APIRoute } from "astro";
+import { drizzle } from "drizzle-orm/d1";
+import { setupDatabase } from "../../../../../src/database";
 import { getAuthCookie, type AuthStatusResponse } from "../../../lib/auth";
 
 import { env } from "cloudflare:workers";
@@ -6,8 +8,22 @@ import { env } from "cloudflare:workers";
 export const GET: APIRoute = async ({ request, locals }) => {
   const auth = await getAuthCookie(request, env.API_SECRET);
 
+  let lookups: number | undefined;
+  let sharing: boolean | undefined;
+  if (auth) {
+    try {
+      const usage = await setupDatabase(drizzle(env.DB)).getUsageForUser(
+        auth.username,
+      );
+      lookups = usage.lookups;
+      sharing = usage.sharing;
+    } catch (error) {
+      console.error("Usage lookup failed", error);
+    }
+  }
+
   const response: AuthStatusResponse = auth
-    ? { authenticated: true, username: auth.username }
+    ? { authenticated: true, username: auth.username, lookups, sharing }
     : { authenticated: false };
 
   return new Response(JSON.stringify(response), {
