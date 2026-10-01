@@ -89,8 +89,9 @@ Astro.response.headers.set('Cache-Control', auth ? 'private, no-store' : 'public
 
     <section aria-labelledby="permissions">
       <h2 id="permissions">What the token can do</h2>
-      <p>We ask for GitHub's <code>public_repo</code> scope, which GitHub describes as “Access public repositories.” In GitHub's model that scope technically also permits writing to public repositories you can write to, and there isn't a narrower read-only option for this kind of token. We only make read requests, and the code that does so is open source: see the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/callback.ts">sign-in callback</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/token/index.ts">token endpoint</a> and the <a href="https://github.com/jdx/mise-versions/blob/main/scripts/update.sh">update script</a>.</p>
-      <p>It does <strong>not</strong> grant access to your private repositories, organizations, or account settings.</p>
+      <p>We ask GitHub for <strong>no permissions at all</strong>. The authorization screen only says it will read your public profile. A token like that can read public information, the same as anyone browsing GitHub, but with the higher rate limit. It can't change anything, and it can't see your private repositories, organizations, or account settings.</p>
+      <p>The code is open source if you want to check: the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/login.ts">sign-in redirect</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/auth/callback.ts">callback</a>, the <a href="https://github.com/jdx/mise-versions/blob/main/web/src/pages/api/token/index.ts">token endpoint</a> and the <a href="https://github.com/jdx/mise-versions/blob/main/scripts/update.sh">update script</a>.</p>
+      <p class="adoption-context">If you signed in before this change, your older token may still carry the broader <code>public_repo</code> permission. Revoking it on GitHub (below) and signing in again replaces it with the no-permission one.</p>
     </section>
 
     <section aria-labelledby="revoke">

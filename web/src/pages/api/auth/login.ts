@@ -7,7 +7,6 @@ export const GET: APIRoute = async ({ request, locals, redirect }) => {
   const url = new URL(request.url);
 
   const redirectUri = `${url.origin}/api/auth/callback`;
-  const scope = "public_repo";
   const state = crypto.randomUUID();
 
   // Get return_to from query param (where to go after login)
@@ -16,7 +15,8 @@ export const GET: APIRoute = async ({ request, locals, redirect }) => {
   const githubAuthUrl = new URL("https://github.com/login/oauth/authorize");
   githubAuthUrl.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
   githubAuthUrl.searchParams.set("redirect_uri", redirectUri);
-  githubAuthUrl.searchParams.set("scope", scope);
+  // No scope: we only read public data, which needs no permissions. A token
+  // with no scopes cannot write to anything.
   githubAuthUrl.searchParams.set("state", state);
 
   // Store state and return_to in cookies
