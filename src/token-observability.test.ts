@@ -3,6 +3,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  buildPoolGrowth,
   getAlertDecision,
   historyPoints,
   observeTokenPool,
@@ -39,6 +40,49 @@ test("builds history from rotating batches of a larger pool", () => {
   assert.equal(points[1].remaining, 13_000);
   assert.equal(points[1].limit, 15_000);
   assert.deepEqual(historyPoints(runs, []), []);
+});
+
+test("builds a cumulative pool growth series by join date", () => {
+  const now = new Date("2026-10-01T12:00:00.000Z");
+  const rows = [
+    { user_id: "a", created_at: "2026-09-01T10:00:00.000Z" },
+    { user_id: "b", created_at: "2026-09-29 08:00:00" },
+    { user_id: "b", created_at: "2026-09-30T23:00:00.000Z" },
+    { user_id: null, created_at: "2026-10-01T01:00:00.000Z" },
+    { user_id: "c", created_at: "2025-01-01T00:00:00.000Z" },
+  ];
+
+  const growth = buildPoolGrowth(rows, now, 5);
+
+  assert.deepEqual(
+    growth.series.map((point) => point.date),
+    ["2026-09-27", "2026-09-28", "2026-09-29", "2026-09-30", "2026-10-01"],
+  );
+  assert.deepEqual(
+    growth.series.map((point) => point.tokens),
+    [2, 2, 3, 4, 5],
+  );
+  assert.equal(growth.total, 5);
+  // Distinct users, not counting tokens with no user.
+  assert.equal(growth.contributors, 3);
+  assert.equal(growth.addedLast7Days, 3);
+  assert.equal(growth.addedLast30Days, 3);
+});
+
+test("history points carry an estimated burn per run", () => {
+  const at = "2026-08-27T13:00:00.000Z";
+  const tokens = Array.from({ length: 30 }, (_, index) => index + 1);
+  const observations = tokens.map((id) =>
+    observation(id, at, 4_900, 0, HALF_SPENT_WINDOW),
+  );
+
+  const [point] = historyPoints(
+    [{ observed_at: at, token_count: 30 }],
+    observations,
+  );
+
+  // 100 spent over half an hour per token, 30 tokens.
+  assert.equal(point.burnPerHour, 6_000);
 });
 
 test("reports lendable quota above the reserve floor", () => {
@@ -460,7 +504,8 @@ test("returns the fresh check when the alert email cannot be sent", async () => 
         },
       ];
     }
-    if (sql.includes("SELECT id")) return [{ id: 1 }];
+    if (sql.includes("SELECT id"))
+      return [{ id: 1, user_id: "u", created_at: "2026-08-01T00:00:00.000Z" }];
     if (sql.includes("FROM token_observation_runs")) {
       return runs.map(([observedAt, tokenCount]) => ({
         observed_at: observedAt,

@@ -68,12 +68,26 @@ export type TokenHistoryPoint = {
   lendableLimit: number;
   availableTokens: number;
   usageCount: number;
+  // Estimated pool spend at this point, null until enough readings exist.
+  burnPerHour: number | null;
+};
+
+export type PoolGrowthPoint = { date: string; tokens: number };
+
+export type PoolGrowth = {
+  total: number;
+  contributors: number;
+  addedLast7Days: number;
+  addedLast30Days: number;
+  // Active pool tokens by join date, one point per day (cumulative).
+  series: PoolGrowthPoint[];
 };
 
 export type TokenObservabilityData = {
   summary: TokenPoolSummary;
   tokens: TokenObservation[];
   history: TokenHistoryPoint[];
+  growth: PoolGrowth;
   alerting: {
     configured: boolean;
     recipient: string | null;
@@ -176,13 +190,19 @@ async function loadPoolTokens(
   return result.results;
 }
 
-async function loadPoolTokenIds(
+type PoolTokenRow = {
+  id: number;
+  user_id: string | null;
+  created_at: string;
+};
+
+async function loadPoolTokenRows(
   db: D1Database,
   now: string,
-): Promise<number[]> {
+): Promise<PoolTokenRow[]> {
   const result = await db
     .prepare(
-      `SELECT id
+      `SELECT id, user_id, created_at
        FROM tokens
        WHERE is_active = 1
          AND (user_id IS NULL OR user_id != 'jdx')
@@ -190,8 +210,48 @@ async function loadPoolTokenIds(
        ORDER BY id`,
     )
     .bind(now)
-    .all<{ id: number }>();
-  return result.results.map(({ id }) => id);
+    .all<PoolTokenRow>();
+  return result.results;
+}
+
+const GROWTH_DAYS = 90;
+const DAY_MS = 86_400_000;
+
+export function buildPoolGrowth(
+  rows: Pick<PoolTokenRow, "user_id" | "created_at">[],
+  now: Date,
+  days = GROWTH_DAYS,
+): PoolGrowth {
+  const joined = rows
+    .map((row) => Date.parse(row.created_at.replace(" ", "T")))
+    .filter((time) => !Number.isNaN(time))
+    .sort((a, b) => a - b);
+  const startOfToday = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+  );
+  const series: PoolGrowthPoint[] = [];
+  let index = 0;
+  for (let offset = days - 1; offset >= 0; offset--) {
+    const dayStart = startOfToday - offset * DAY_MS;
+    while (index < joined.length && joined[index] < dayStart + DAY_MS) index++;
+    series.push({
+      date: new Date(dayStart).toISOString().slice(0, 10),
+      tokens: index,
+    });
+  }
+  const addedSince = (daysAgo: number) =>
+    joined.filter((time) => time >= now.getTime() - daysAgo * DAY_MS).length;
+  return {
+    total: rows.length,
+    contributors: new Set(
+      rows.map((row) => row.user_id).filter((id) => id !== null),
+    ).size,
+    addedLast7Days: addedSince(7),
+    addedLast30Days: addedSince(30),
+    series,
+  };
 }
 
 async function storeObservations(
@@ -652,17 +712,25 @@ export function historyPoints(
   const latest = new Map<number, TokenObservation>();
   const points: TokenHistoryPoint[] = [];
   let next = 0;
+  let sampleStart = 0;
   for (const run of runs) {
     while (next < sorted.length && sorted[next].observedAt <= run.observed_at) {
       latest.set(sorted[next].tokenId, sorted[next]);
       next++;
     }
+    const runTime = Date.parse(run.observed_at);
+    const sampleCutoff = runTime - BURN_SAMPLE_HOURS * MS_PER_HOUR;
+    while (
+      sampleStart < next &&
+      Date.parse(sorted[sampleStart].observedAt) < sampleCutoff
+    ) {
+      sampleStart++;
+    }
     const batchCount = Math.max(
       1,
       Math.ceil(run.token_count / MAX_TOKEN_CHECKS_PER_RUN),
     );
-    const cutoff =
-      Date.parse(run.observed_at) - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
+    const cutoff = runTime - (batchCount + 1) * OBSERVATION_INTERVAL_MS;
     const point: TokenHistoryPoint = {
       observedAt: run.observed_at,
       remaining: 0,
@@ -671,19 +739,31 @@ export function historyPoints(
       lendableLimit: 0,
       availableTokens: 0,
       usageCount: 0,
+      burnPerHour: null,
     };
+    let covered = 0;
+    let usable = 0;
     for (const observation of latest.values()) {
       if (Date.parse(observation.observedAt) < cutoff) continue;
+      covered++;
       point.remaining += observation.remaining ?? 0;
       point.limit += observation.limit ?? 0;
       if (!observation.error) {
+        usable++;
         point.lendable += lendableRemaining(observation);
         point.lendableLimit += lendableCapacity(observation);
       }
       point.availableTokens += observation.available ? 1 : 0;
       point.usageCount += observation.usageCount;
     }
-    if (point.lendableLimit > 0) points.push(point);
+    if (point.lendableLimit <= 0) continue;
+    // Scale to the usable share of the whole pool, as the live tile does.
+    const poolSize = Math.round(run.token_count * (usable / covered));
+    point.burnPerHour = calculateQuotaBurn(
+      sorted.slice(sampleStart, next),
+      poolSize,
+    );
+    points.push(point);
   }
   return points;
 }
@@ -702,6 +782,7 @@ type TokenObservabilityState = {
   runs: ObservationRunRow[];
   latestAt: string | undefined;
   currentTokenIds: number[];
+  growth: PoolGrowth;
 };
 
 async function loadTokenObservabilityState(
@@ -719,13 +800,14 @@ async function loadTokenObservabilityState(
   );
   const runs = await loadObservationRuns(env.DB, since);
   const latestAt = runs.at(-1)?.observed_at;
-  const currentTokenIds = await loadPoolTokenIds(env.DB, now.toISOString());
+  const poolTokens = await loadPoolTokenRows(env.DB, now.toISOString());
   return {
     observations,
     latestObservations,
     runs,
     latestAt,
-    currentTokenIds,
+    currentTokenIds: poolTokens.map((token) => token.id),
+    growth: buildPoolGrowth(poolTokens, now),
   };
 }
 
@@ -733,8 +815,14 @@ function tokenObservabilityData(
   env: Env,
   state: TokenObservabilityState,
 ): TokenObservabilityData {
-  const { observations, latestObservations, runs, latestAt, currentTokenIds } =
-    state;
+  const {
+    observations,
+    latestObservations,
+    runs,
+    latestAt,
+    currentTokenIds,
+    growth,
+  } = state;
   const latest = selectCurrentObservations(latestObservations, currentTokenIds);
 
   return {
@@ -746,6 +834,7 @@ function tokenObservabilityData(
     ),
     tokens: latest,
     history: historyPoints(runs, observations),
+    growth,
     alerting: {
       configured: Boolean(
         env.RESEND_API_KEY && env.TOKEN_ALERT_TO && env.TOKEN_ALERT_FROM,
