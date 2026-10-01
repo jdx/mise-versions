@@ -4,6 +4,7 @@ import {
   sevenDayAverage,
   nextActivityMilestone,
   forecastDailyAverage,
+  pastActivityMilestones,
 } from "./daily-average";
 import { forecastNextMillion } from "./mau-forecast";
 import { releaseDays } from "./release-timeline";
@@ -45,6 +46,31 @@ test("milestones choose the next useful level for both downloads and DAU", () =>
     null,
   );
 });
+test("past milestones record the first day the average crossed each level", () => {
+  const values = [0, 10, 20, 30, 20, 60, 120, 260, 600].flatMap((v) =>
+    Array(7).fill(v),
+  );
+  const points = values.map((value, i) => ({
+    date: new Date(Date.UTC(2026, 0, 1 + i)).toISOString().slice(0, 10),
+    value,
+  }));
+  const milestones = pastActivityMilestones(sevenDayAverage(points));
+  assert.deepEqual(
+    milestones.map((m) => m.level),
+    [1, 2.5, 5, 10, 25, 50, 100, 250, 500],
+  );
+  assert.equal(milestones.at(-1)?.date, "2026-03-02");
+  // Series that starts above a level never saw it being hit.
+  assert.deepEqual(
+    pastActivityMilestones([
+      { date: "2026-01-01", value: 500 },
+      { date: "2026-01-02", value: 700 },
+    ]),
+    [],
+  );
+  assert.deepEqual(pastActivityMilestones([]), []);
+});
+
 test("timeline groups release days chronologically and counts invalid dates", () => {
   const result = releaseDays([
     { version: "1", created_at: "2026-01-01" },

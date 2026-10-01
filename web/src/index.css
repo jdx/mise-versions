@@ -1231,6 +1231,15 @@ code,
   color: var(--forecast);
   font-size: 0.8rem;
 }
+.download-average-summary .download-milestone-reached {
+  border-left-color: var(--data);
+}
+.download-average-summary .download-milestone-reached strong {
+  color: var(--data);
+}
+.adoption-chart .download-reached-label {
+  fill: var(--data);
+}
 .adoption-chart .download-target-label {
   fill: var(--forecast);
 }
