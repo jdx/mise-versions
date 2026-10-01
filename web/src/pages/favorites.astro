@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FavoritesList } from '../components/FavoritesList';
+
+// The HTML is the same for everyone; the list itself loads in the browser from
+// a private endpoint, so this page can be cached like the rest of the site.
+Astro.response.headers.set('Cache-Control', 'public, max-age=300, stale-while-revalidate=3600');
+---
+
+<Layout title="Favorites" description="The mise tools you follow, with their latest versions">
+  <div class="favorites-page">
+    <div class="page-heading">
+      <h1>Favorites</h1>
+      <p>The tools you follow, newest release first.</p>
+    </div>
+    <FavoritesList client:load />
+  </div>
+</Layout>

@@ -347,6 +347,20 @@ export const migrations: Migration[] = [
       await preserveTokenObservationSnapshots(db);
     },
   },
+  {
+    id: 8,
+    name: "add_favorites",
+    async up(db) {
+      await db.run(sql`
+        CREATE TABLE IF NOT EXISTS favorites (
+          user_id TEXT NOT NULL,
+          tool TEXT NOT NULL,
+          created_at TEXT NOT NULL,
+          PRIMARY KEY (user_id, tool)
+        )
+      `);
+    },
+  },
 ];
 
 export async function runMigrations(db: ReturnType<typeof drizzle>) {

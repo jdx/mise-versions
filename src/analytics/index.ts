@@ -75,6 +75,8 @@ export function setupAnalytics(
 
     // Stats functions
     getDownloadStats: stats.getDownloadStats,
+    getDownloadSummary: stats.getDownloadSummary,
+    getDownloadBreakdowns: stats.getDownloadBreakdowns,
     getTopTools: stats.getTopTools,
     getAll30DayDownloads: stats.getAll30DayDownloads,
     getMAU: stats.getMAU,

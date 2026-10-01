@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import { setupAnalytics } from "../../../../../../src/analytics";
 import { env } from "cloudflare:workers";
+import { requireSession } from "../../../../lib/session";
 import {
   getCachedJson,
   putCachedJson,
@@ -11,6 +12,9 @@ import {
 const VERSION_TRENDS_CACHE_TTL_SECONDS = 300;
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
+  const session = await requireSession(request, env.API_SECRET);
+  if (session instanceof Response) return session;
+
   const { tool } = params;
 
   if (!tool) {
@@ -31,7 +35,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
         status: 200,
         headers: {
           "Content-Type": "application/json",
-          "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+          "Cache-Control": "private, no-store",
         },
       });
     }
@@ -53,7 +57,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=300, stale-while-revalidate=3600",
+        "Cache-Control": "private, no-store",
       },
     });
   } catch (e) {

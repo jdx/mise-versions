@@ -1,4 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
+import { useDownloadDetails } from "../hooks/useDownloadDetails";
+import { LockMark } from "./LockMark";
+import { SignInPrompt } from "./SignInPrompt";
 
 // Version colors for stacked chart
 const VERSION_COLORS = [
@@ -403,9 +406,6 @@ function VersionTrendsChart({
 interface DownloadsPaneProps {
   tool: string;
   daily: Array<{ date: string; count: number }>;
-  monthly: Array<{ month: string; count: number }>;
-  byVersion: Array<{ version: string; count: number }>;
-  byOs?: Array<{ os: string | null; count: number }>;
 }
 
 const CHART_VIEW_KEY = "mise-downloads-chart-view";
@@ -419,13 +419,12 @@ function getStoredChartView(): ChartView {
   return "30d";
 }
 
-export function DownloadsPane({
-  tool,
-  daily,
-  monthly,
-  byVersion,
-  byOs,
-}: DownloadsPaneProps) {
+export function DownloadsPane({ tool, daily }: DownloadsPaneProps) {
+  // Everyone sees the last 30 days. The longer view and the per-version and
+  // per-platform breakdowns come from an endpoint that needs a GitHub sign-in.
+  const { state: details, retry: retryDetails } = useDownloadDetails(tool);
+  const byVersion = details.status === "ready" ? details.data.byVersion : [];
+  const byOs = details.status === "ready" ? details.data.byOs : [];
   const [chartView, setChartViewState] = useState<ChartView>("30d");
   const [versionTrendsData, setVersionTrendsData] =
     useState<VersionTrendData | null>(null);
@@ -451,7 +450,12 @@ export function DownloadsPane({
 
   // Keep failures visible and retry only when requested, rather than looping.
   useEffect(() => {
-    if (chartView !== "versions" || versionTrendsData || versionTrendsError)
+    if (
+      chartView !== "versions" ||
+      details.status !== "ready" ||
+      versionTrendsData ||
+      versionTrendsError
+    )
       return;
     const controller = new AbortController();
     setVersionTrendsLoading(true);
@@ -472,7 +476,7 @@ export function DownloadsPane({
         if (!controller.signal.aborted) setVersionTrendsLoading(false);
       });
     return () => controller.abort();
-  }, [chartView, tool, versionTrendsData, versionTrendsError]);
+  }, [chartView, tool, details.status, versionTrendsData, versionTrendsError]);
 
   return (
     <div class="download-panel bg-dark-800 border border-dark-600 rounded-lg p-4">
@@ -508,7 +512,7 @@ export function DownloadsPane({
                   : "bg-dark-700 text-gray-400 hover:text-gray-200"
               }`}
             >
-              12m
+              12m{details.status === "locked" && <LockMark />}
             </button>
             <button
               aria-pressed={chartView === "versions"}
@@ -519,11 +523,26 @@ export function DownloadsPane({
                   : "bg-dark-700 text-gray-400 hover:text-gray-200"
               }`}
             >
-              versions
+              versions{details.status === "locked" && <LockMark />}
             </button>
           </div>
         </div>
-        {chartView === "versions" && versionTrendsError ? (
+        {chartView !== "30d" && details.status === "locked" ? (
+          <SignInPrompt>
+            {chartView === "12m"
+              ? "The 12-month history is for signed-in visitors."
+              : "Version trends are for signed-in visitors."}
+          </SignInPrompt>
+        ) : chartView !== "30d" && details.status === "loading" ? (
+          <div class="h-32 flex items-center justify-center">
+            <div class="text-gray-500 text-sm">Loading...</div>
+          </div>
+        ) : chartView !== "30d" && details.status === "error" ? (
+          <div class="inline-notice" role="alert">
+            Download details are unavailable.
+            <button onClick={retryDetails}>Try again</button>
+          </div>
+        ) : chartView === "versions" && versionTrendsError ? (
           <div class="inline-notice" role="alert">
             Version trends are unavailable.
             <button onClick={() => setVersionTrendsError(false)}>
@@ -533,7 +552,9 @@ export function DownloadsPane({
         ) : chartView === "30d" ? (
           <DailyBarChart daily={daily} />
         ) : chartView === "12m" ? (
-          <MonthlyLineChart monthly={monthly || []} />
+          <MonthlyLineChart
+            monthly={details.status === "ready" ? details.data.monthly : []}
+          />
         ) : (
           <VersionTrendsChart
             data={versionTrendsData}
@@ -541,6 +562,14 @@ export function DownloadsPane({
           />
         )}
       </div>
+
+      {details.status === "locked" && (
+        <div class="mt-4 pt-4 border-t border-dark-600">
+          <SignInPrompt compact>
+            Top versions and platform breakdown are for signed-in visitors.
+          </SignInPrompt>
+        </div>
+      )}
 
       {byVersion.length > 0 && (
         <div class="mt-4 pt-4 border-t border-dark-600">
