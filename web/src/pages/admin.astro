@@ -576,17 +576,13 @@ if (!auth || !isAdmin(auth.username)) {
     return `Check failed: ${error instanceof Error ? error.message : String(error)}`;
   }
 
-  // Once a "Check now" has rendered, any read that started before that moment
-  // may hold an older snapshot, so a slow GET (initial load or Refresh All)
-  // must not paint over it. Reads that finish before the check renders (or
-  // while it fails) are still shown.
-  let capacityRequestSeq = 0;
-  let capacityFreshAfterSeq = 0;
+  // Reads race with "Check now" (initial load, Refresh All, scheduled snapshots),
+  // so order them by the snapshot they carry rather than by when they finished:
+  // a read is dropped only if it is older than what is already on screen.
+  let capacityDisplayedAt: string | null = null;
 
   async function loadCapacity(runCheck = false) {
-    const seq = ++capacityRequestSeq;
     if (runCheck) setCapacityChecking(true);
-    const isStaleRead = () => !runCheck && seq <= capacityFreshAfterSeq;
     const controller = new AbortController();
     const timeout = runCheck ? window.setTimeout(() => controller.abort(), CAPACITY_CHECK_TIMEOUT_MS) : undefined;
     let failedResponse: Response | undefined;
@@ -600,10 +596,11 @@ if (!auth || !isAdmin(auth.username)) {
         throw new Error(`HTTP ${response.status}`);
       }
       const data: CapacityData = await response.json();
-      if (isStaleRead()) return;
+      const observedAt = data.summary.observedAt;
+      if (!runCheck && capacityDisplayedAt && (!observedAt || observedAt < capacityDisplayedAt)) return;
       renderCapacity(data);
+      if (observedAt) capacityDisplayedAt = observedAt;
       if (runCheck) {
-        capacityFreshAfterSeq = capacityRequestSeq;
         const checked = describeCapacityCheck(data.summary);
         if (data.alerting.error) {
           showCapacityResult(`${checked}, but alerting failed: ${data.alerting.error.slice(0, 200)}`, 'warning');
@@ -616,7 +613,7 @@ if (!auth || !isAdmin(auth.username)) {
       if (runCheck) {
         // Keep whatever was already on screen; just say the check didn't work.
         showCapacityResult(await capacityErrorMessage(error, failedResponse), 'error');
-      } else if (!isStaleRead()) {
+      } else {
         const status = document.getElementById('capacity-status');
         if (status) {
           status.textContent = 'Unavailable';
