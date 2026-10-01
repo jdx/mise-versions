@@ -193,27 +193,25 @@ export function projectMilestones(p: Project) {
     });
   return events;
 }
-// Daily star counts for the fastest-growing projects, newest day first. Gaps are
-// forward-filled and each cell carries the change from the previous day.
+// Daily star counts for the fastest-growing projects, newest day first. Days
+// without an observation are left empty (never filled), and a day's change is
+// only shown when the previous day was observed too.
 export function recentStarTable(
   projects: Project[],
   end: string,
   days = 30,
   limit = 5,
 ) {
-  const start = formatUtcDate(parseUtcDate(end) - (days - 1) * 86400000);
-  const dates = Array.from({ length: days }, (_, i) =>
-    formatUtcDate(parseUtcDate(start) + i * 86400000),
-  );
+  const day = (offset: number) =>
+    formatUtcDate(parseUtcDate(end) - (days - 1 - offset) * 86400000);
+  const dates = Array.from({ length: days }, (_, i) => day(i));
   const columns = projects
     .map((p) => {
-      let last: number | null = null;
       const byDate = new Map(p.history.map((v) => [v.date, v.stars]));
-      for (const v of p.history) if (v.date < start) last = v.stars;
-      // The value just before the first row is the baseline, so growth spans
-      // the full `days` intervals like the page's 30-day gain.
-      const baseline = last;
-      const stars = dates.map((d) => (last = byDate.get(d) ?? last));
+      // The day before the first row is the baseline, so growth spans the full
+      // `days` intervals like the page's 30-day gain.
+      const baseline = byDate.get(day(-1)) ?? null;
+      const stars = dates.map((d) => byDate.get(d) ?? null);
       const known = stars.filter((v): v is number => v !== null);
       const from = baseline ?? known[0];
       return {

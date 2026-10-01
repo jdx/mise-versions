@@ -83,3 +83,13 @@ test("recent star table ranks projects by growth, newest day first, with daily d
   assert.deepEqual(table.rows[0].cells[0], { stars: 129, delta: 1 });
   assert.deepEqual(table.rows[2].cells[0], { stars: 127, delta: 1 });
 });
+test("recent star table leaves unobserved days empty instead of inventing changes", () => {
+  const p = project("hk");
+  const gap = {
+    ...p,
+    history: p.history.filter((v) => v.date !== "2026-09-08"),
+  };
+  const rows = recentStarTable([gap], "2026-09-09", 3, 1).rows;
+  assert.equal(rows[1].cells[0], null);
+  assert.deepEqual(rows[0].cells[0], { stars: 129, delta: null });
+});
