@@ -26,7 +26,7 @@ const width = Math.max(1,464/(Math.max(end-start,86400000)/86400000)*.65);
 const validData = data.filter(p=>p.value!==null);
 const averageByDate = new Map(average.map(p=>[p.date,p.value]));
 const chartReached = [...Map.groupBy(reached.filter(m=>parseUtcDate(m.date)>=cutoff), m=>m.date)].map(([date,ms])=>({date,levels:ms.map(m=>m.level)}));
-const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'compact',maximumFractionDigits:0});
+const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'compact',maximumFractionDigits:1});
 ---
 <div class="adoption-chart daily-activity-chart">
   <h3>{title}</h3>
@@ -53,7 +53,7 @@ const milestoneLabel = (value:number)=>value.toLocaleString('en-US',{notation:'c
     {chartReached.map(m=>{
       const avg = averageByDate.get(m.date) ?? m.levels.at(-1)!;
       const px = x(m.date);
-      return <g class="download-reached" role="img" aria-label={`Reached ${m.levels.map(l=>l.toLocaleString()).join(', ')} ${unit} on ${forecastDate(m.date)}`}>
+      return <g class="download-reached" pointer-events="none" role="img" aria-label={`Reached ${m.levels.map(l=>l.toLocaleString()).join(', ')} ${unit} on ${forecastDate(m.date)}`}>
         <line x1={px} x2={px} y1={y(avg)} y2="186" stroke="var(--data)" stroke-opacity=".5" stroke-dasharray="2 3"/>
         <circle cx={px} cy={y(avg)} r="4" fill="var(--surface)" stroke="var(--data)" stroke-width="2"/>
         <text x={px} y={y(avg)-10} text-anchor={px > 440 ? 'end' : 'middle'} class="download-reached-label">{m.levels.map(milestoneLabel).join(' · ')}</text>
