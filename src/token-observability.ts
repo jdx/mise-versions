@@ -634,7 +634,7 @@ export function summarizeTokenPool(
   }
   if (widespreadInvalid)
     reasons.push(
-      `${invalidTokens} of ${checkedTokens} checked tokens could not be checked`,
+      `${invalidTokens} of ${checkedTokens} checked tokens failed their check`,
     );
   if (lendablePercent !== null && lendablePercent <= 35)
     reasons.push(

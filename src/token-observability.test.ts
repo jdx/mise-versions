@@ -568,7 +568,7 @@ test("warns when a tenth of the pool cannot be checked", () => {
 
   assert.equal(summary.level, "warning");
   assert.deepEqual(summary.reasons, [
-    "2 of 20 checked tokens could not be checked",
+    "2 of 20 checked tokens failed their check",
   ]);
 });
 
