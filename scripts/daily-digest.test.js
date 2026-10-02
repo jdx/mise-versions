@@ -298,6 +298,13 @@ test("the digest focuses on change since the day before", () => {
   );
   assert.match(digest.text, /Up: big: 1,500 \(\+1,000, \+200\.0%\)/);
   assert.match(digest.text, /mise: \+3 \(103 total\)/);
+  // The sparklines line up whatever the label lengths.
+  const columns = digest.text
+    .split("\n")
+    .filter((l) => /^- (MAU|DAU|Tool downloads) +[▁-█]/.test(l))
+    .map((l) => l.search(/[▁-█]/));
+  assert.equal(columns.length, 3);
+  assert.equal(new Set(columns).size, 1);
   assert.doesNotMatch(digest.text, /Data warnings/);
   // One combined chart per topic rather than one chart per metric.
   assert.match(digest.html, /Changes since 2026-09-29/);

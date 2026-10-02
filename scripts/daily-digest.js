@@ -313,12 +313,12 @@ function renderText({
   if (milestones.length) section("Milestones", milestones);
   if (note) parts.push(note);
   section(`Changes since ${dateStrAgo(day, 1)}`, changes.map(changeText));
-  const trendLines = trends
-    .filter((t) => t.points.some((p) => p.value !== null))
-    .map((t) => {
-      const latest = t.points.at(-1).value;
-      return `${t.label.padEnd(14)} ${sparkline(t.points)} ${latest === null ? "no data" : fmt(latest)}`;
-    });
+  const shown = trends.filter((t) => t.points.some((p) => p.value !== null));
+  const labelWidth = Math.max(...shown.map((t) => t.label.length));
+  const trendLines = shown.map((t) => {
+    const latest = t.points.at(-1).value;
+    return `${t.label.padEnd(labelWidth)} ${sparkline(t.points)} ${latest === null ? "no data" : fmt(latest)}`;
+  });
   if (trendLines.length) section(`Last ${TREND_DAYS} days`, trendLines);
   if (movers.up.length || movers.down.length) {
     section(
