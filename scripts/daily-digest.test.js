@@ -20,33 +20,57 @@ const series = (day, values) =>
     value,
   }));
 
-test("changes compare the day with yesterday and the same day last week", () => {
+test("changes compare the day with yesterday and the 7-day average with the week before", () => {
   const day = "2026-09-30";
+  // 14 days: the earlier week is flat at 100; the latest ends on a jump to 220.
+  const dau = series(day, [...Array(7).fill(100), ...Array(6).fill(110), 220]);
   const rows = changesSection(
     {
       mau: [
         { date: "2026-09-30", value: 1100 },
         { date: "2026-09-29", value: 1000 },
       ],
-      dau: [
-        { date: "2026-09-30", value: 220 },
-        { date: "2026-09-29", value: 200 },
-        { date: "2026-09-23", value: 200 },
-      ],
+      dau,
       downloads: [],
       projects: [],
     },
     day,
   );
+  // One day of data is enough for the day comparison but not for the averages.
   assert.deepEqual(rows[0], {
     label: "MAU",
     current: 1100,
     previous: 1000,
-    weekAgo: null,
+    avg: null,
+    priorAvg: null,
   });
-  assert.equal(rows[1].weekAgo, 200);
+  assert.equal(rows[1].current, 220);
+  assert.equal(rows[1].previous, 110);
+  assert.equal(rows[1].avg, (6 * 110 + 220) / 7);
+  assert.equal(rows[1].priorAvg, 100);
   // A missing day is null, never an invented zero.
   assert.equal(rows[2].current, null);
+});
+
+test("weekend dips show in the day but not in the 7-day average", () => {
+  const day = "2026-09-26"; // a Saturday
+  // Weekdays 200, weekend days 100, repeating; the week is flat.
+  const dau = Array.from({ length: 28 }, (_, i) => {
+    const date = dateStrAgo(day, 27 - i);
+    const weekday = new Date(`${date}T00:00:00Z`).getUTCDay();
+    return { date, value: weekday === 0 || weekday === 6 ? 100 : 200 };
+  });
+  const [, row] = changesSection(
+    { mau: [], dau, downloads: [], projects: [] },
+    day,
+  );
+  assert.ok(row.current < row.previous);
+  assert.equal(row.avg, row.priorAvg);
+  const digest = digestFromData(fullData({ day, dau }), NOW);
+  assert.match(
+    digest.text,
+    /DAU: 100, 7d avg 171, \+0\.0% vs the 7 days before; day −100 \(−50\.0%\) vs yesterday/,
+  );
 });
 
 test("release downloads and stars are daily differences of adjacent snapshots", () => {
@@ -82,6 +106,55 @@ test("release downloads and stars are daily differences of adjacent snapshots", 
   assert.equal(release.previous, 50);
   assert.equal(stars.current, 6);
   assert.equal(stars.previous, 3);
+});
+
+test("release downloads and stars average the full 7-day windows", () => {
+  const day = "2026-09-30";
+  // 16 daily snapshots (15 differences), cumulative: +10/day for the earlier
+  // week, +20/day for the latest.
+  const dates = Array.from({ length: 16 }, (_, i) => dateStrAgo(day, 15 - i));
+  const cumulative = (perDay) => {
+    let total = 1000;
+    return dates.map((date, i) => {
+      if (i > 0) total += perDay(i);
+      return { date, total };
+    });
+  };
+  // Differences are indexed 1..15; the latest 7 are 9..15.
+  const downloads = cumulative((i) => (i >= 9 ? 20 : 10));
+  const stars = cumulative((i) => (i >= 9 ? 2 : 1));
+  const projects = [
+    {
+      name: "mise",
+      downloads: downloads.map((d) => ({ date: d.date, downloads: d.total })),
+      history: stars.map((d) => ({ date: d.date, stars: d.total })),
+    },
+  ];
+  const run = (projs) =>
+    changesSection({ mau: [], dau: [], downloads: [], projects: projs }, day);
+  const [, , , release, starRow] = run(projects);
+  assert.deepEqual(
+    [release.avg, release.priorAvg, starRow.avg, starRow.priorAvg],
+    [20, 10, 2, 1],
+  );
+  // Without the 15 snapshots the older week needs, only the latest week stays.
+  const short = projects.map((p) => ({
+    ...p,
+    downloads: p.downloads.slice(2),
+    history: p.history.slice(2),
+  }));
+  const [, , , shortRelease, shortStars] = run(short);
+  assert.equal(shortRelease.avg, 20);
+  assert.equal(shortRelease.priorAvg, null);
+  assert.equal(shortStars.priorAvg, null);
+  // A gap inside the latest week removes both of its dependent windows.
+  const gapped = projects.map((p) => ({
+    ...p,
+    downloads: p.downloads.filter((d) => d.date !== dateStrAgo(day, 3)),
+  }));
+  const [, , , gapRelease] = run(gapped);
+  assert.equal(gapRelease.avg, null);
+  assert.equal(gapRelease.current, 20);
 });
 
 test("a counter decrease or gap leaves release downloads without a value", () => {
@@ -131,19 +204,19 @@ test("trend series keeps gaps as null and ends on the digest day", () => {
   );
 });
 
-test("movers compare the day with yesterday, ignore low volume, sort by change", () => {
+test("movers compare 7-day averages, ignore low volume, sort by change", () => {
   const { up, down } = moversSection([
-    { name: "big", today: 1500, yesterday: 500 },
-    { name: "tiny", today: 50, yesterday: 5 },
-    { name: "drop", today: 100, yesterday: 900 },
+    { name: "big", this_week: 10500, last_week: 3500 },
+    { name: "tiny", this_week: 350, last_week: 35 },
+    { name: "drop", this_week: 700, last_week: 6300 },
   ]);
   assert.deepEqual(
-    up.map((r) => [r.name, r.change]),
-    [["big", 1000]],
+    up.map((r) => [r.name, r.avg, r.change]),
+    [["big", 1500, 1000]],
   );
   assert.deepEqual(
-    down.map((r) => [r.name, r.change]),
-    [["drop", -800]],
+    down.map((r) => [r.name, r.avg, r.change]),
+    [["drop", 100, -800]],
   );
 });
 
@@ -259,7 +332,7 @@ test("the latest release comes from the release record, not monthly markers", ()
 });
 
 const fullData = (overrides = {}) => {
-  const day = "2026-09-30";
+  const day = overrides.day ?? "2026-09-30";
   const days = 35;
   return {
     day,
@@ -267,7 +340,7 @@ const fullData = (overrides = {}) => {
     dau: series(day, Array(days).fill(200)),
     downloads: series(day, Array(days).fill(1000)),
     toolDaily: series(day, Array(14).fill(980)),
-    movers: [{ name: "big", today: 1500, yesterday: 500 }],
+    movers: [{ name: "big", this_week: 10500, last_week: 3500 }],
     projects: [
       {
         name: "mise",
@@ -283,21 +356,33 @@ const fullData = (overrides = {}) => {
   };
 };
 
-test("the digest focuses on change since the day before", () => {
+test("the digest leads with 7-day average changes and keeps the day comparison", () => {
   const data = fullData();
-  data.downloads = series(data.day, Array(34).fill(1000).concat([1100]));
+  // The latest week averages 1,100 against 1,000 before, ending on a dip.
+  data.downloads = series(data.day, [
+    ...Array(28).fill(1000),
+    ...Array(5).fill(1200),
+    1000,
+    700,
+  ]);
+  data.toolDaily = data.downloads
+    .slice(-14)
+    .map((r) => ({ ...r, value: r.value * 0.98 }));
   const digest = digestFromData(data, NOW);
   assert.equal(
     digest.subject,
-    "mise daily digest 2026-09-30 · downloads +10.0%",
+    "mise daily digest 2026-09-30 · downloads +10.0% (7d avg)",
   );
-  assert.match(digest.text, /Changes since 2026-09-29/);
+  assert.match(digest.text, /Changes on 2026-09-30/);
   assert.match(
     digest.text,
-    /Tool downloads: 1,100, \+100 \(\+10\.0%\) vs yesterday/,
+    /Tool downloads: 700, 7d avg 1,100, \+10\.0% vs the 7 days before; day −300 \(−30\.0%\) vs yesterday/,
   );
-  assert.match(digest.text, /Up: big: 1,500 \(\+1,000, \+200\.0%\)/);
+  assert.match(digest.text, /Up: big: 1,500\/day \(\+1,000, \+200\.0%\)/);
   assert.match(digest.text, /mise: \+3 \(103 total\)/);
+  // Rows without two full weeks say so instead of silently omitting the comparison.
+  assert.match(digest.text, /mise release downloads: no data/);
+  assert.match(digest.text, /Stars gained: 3, no 7d comparison/);
   // The sparklines line up whatever the label lengths.
   const columns = digest.text
     .split("\n")
@@ -307,7 +392,8 @@ test("the digest focuses on change since the day before", () => {
   assert.equal(new Set(columns).size, 1);
   assert.doesNotMatch(digest.text, /Data warnings/);
   // One combined chart per topic rather than one chart per metric.
-  assert.match(digest.html, /Changes since 2026-09-29/);
+  assert.match(digest.html, /Changes on 2026-09-30/);
+  assert.match(digest.html, /7-day average vs the 7 days before/);
   assert.match(digest.html, /Last 14 days/);
   assert.match(digest.html, /Tool download movers/);
   assert.match(digest.html, /Stars gained/);
@@ -336,13 +422,13 @@ test("stale rollups produce a warning in the email", () => {
   assert.equal(digest.idempotencyKey, "mise-daily-digest-2026-09-30");
 });
 
-test("a bad day outside the comparison does not hide the movers", () => {
+test("a partial day anywhere in the two weeks omits the movers", () => {
   const toolDaily = series("2026-09-30", Array(14).fill(980)).map((r) =>
     r.date === "2026-09-20" ? { ...r, value: 100 } : r,
   );
   const digest = digestFromData(fullData({ toolDaily }), NOW);
-  assert.match(digest.text, /Tool download movers/);
-  assert.doesNotMatch(digest.text, /Per-tool rollup is incomplete/);
+  assert.match(digest.text, /2026-09-20 has a partial set of tool rows/);
+  assert.doesNotMatch(digest.text, /Tool download movers/);
 });
 
 test("missing data renders without NaN or undefined", () => {
@@ -357,7 +443,9 @@ test("missing data renders without NaN or undefined", () => {
 
 test("html escapes names coming from data", () => {
   const digest = digestFromData(
-    fullData({ movers: [{ name: "<b>x</b>", today: 900, yesterday: 100 }] }),
+    fullData({
+      movers: [{ name: "<b>x</b>", this_week: 6300, last_week: 700 }],
+    }),
     NOW,
   );
   assert.doesNotMatch(digest.html, /<b>x<\/b>/);
@@ -391,10 +479,9 @@ test("tool coverage flags a partial day when most of the window is equally parti
   const tools = dayRows("2026-09-30", 14, 1000).map((r, i) =>
     i < 10 ? { ...r, value: 850 } : r,
   );
-  const result = toolCoverage(tools, totals, "2026-09-30", ["2026-09-30"]);
-  assert.deepEqual(result.problems, [
-    "2026-09-30 has a partial set of tool rows",
-  ]);
+  const result = toolCoverage(tools, totals, "2026-09-30");
+  assert.equal(result.complete, false);
+  assert.equal(result.problems.length, 10);
 });
 
 test("tool coverage accepts a stable share of unmapped tools", () => {
@@ -444,6 +531,25 @@ test("tool rows left on a zero-download day are flagged as stale", () => {
     toolCoverage(dayRows("2026-09-30", 14, 980), totals, "2026-09-30").problems,
     ["2026-09-25 has stale tool rows"],
   );
+});
+
+test("tool rows above the daily total are flagged as stale", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const withStale = (value) =>
+    dayRows("2026-09-30", 14, 980).map((r) =>
+      r.date === "2026-09-28" ? { ...r, value } : r,
+    );
+  // Above the daily total.
+  assert.deepEqual(
+    toolCoverage(withStale(1200), totals, "2026-09-30").problems,
+    ["2026-09-28 has stale tool rows"],
+  );
+  // A share that rises while staying under the total is legitimate (a tool
+  // added to the catalog), not stale.
+  const risen = dayRows("2026-09-30", 14, 700).map((r) =>
+    r.date === "2026-09-28" ? { ...r, value: 900 } : r,
+  );
+  assert.equal(toolCoverage(risen, totals, "2026-09-30").complete, true);
 });
 
 test("a day with downloads but no tool rows is flagged", () => {
