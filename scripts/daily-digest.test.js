@@ -108,6 +108,55 @@ test("release downloads and stars are daily differences of adjacent snapshots", 
   assert.equal(stars.previous, 3);
 });
 
+test("release downloads and stars average the full 7-day windows", () => {
+  const day = "2026-09-30";
+  // 16 daily snapshots (15 differences), cumulative: +10/day for the earlier
+  // week, +20/day for the latest.
+  const dates = Array.from({ length: 16 }, (_, i) => dateStrAgo(day, 15 - i));
+  const cumulative = (perDay) => {
+    let total = 1000;
+    return dates.map((date, i) => {
+      if (i > 0) total += perDay(i);
+      return { date, total };
+    });
+  };
+  // Differences are indexed 1..15; the latest 7 are 9..15.
+  const downloads = cumulative((i) => (i >= 9 ? 20 : 10));
+  const stars = cumulative((i) => (i >= 9 ? 2 : 1));
+  const projects = [
+    {
+      name: "mise",
+      downloads: downloads.map((d) => ({ date: d.date, downloads: d.total })),
+      history: stars.map((d) => ({ date: d.date, stars: d.total })),
+    },
+  ];
+  const run = (projs) =>
+    changesSection({ mau: [], dau: [], downloads: [], projects: projs }, day);
+  const [, , , release, starRow] = run(projects);
+  assert.deepEqual(
+    [release.avg, release.priorAvg, starRow.avg, starRow.priorAvg],
+    [20, 10, 2, 1],
+  );
+  // Without the 15 snapshots the older week needs, only the latest week stays.
+  const short = projects.map((p) => ({
+    ...p,
+    downloads: p.downloads.slice(2),
+    history: p.history.slice(2),
+  }));
+  const [, , , shortRelease, shortStars] = run(short);
+  assert.equal(shortRelease.avg, 20);
+  assert.equal(shortRelease.priorAvg, null);
+  assert.equal(shortStars.priorAvg, null);
+  // A gap inside the latest week removes both of its dependent windows.
+  const gapped = projects.map((p) => ({
+    ...p,
+    downloads: p.downloads.filter((d) => d.date !== dateStrAgo(day, 3)),
+  }));
+  const [, , , gapRelease] = run(gapped);
+  assert.equal(gapRelease.avg, null);
+  assert.equal(gapRelease.current, 20);
+});
+
 test("a counter decrease or gap leaves release downloads without a value", () => {
   const project = (downloads) => ({ name: "mise", downloads, history: [] });
   const release = (p) =>
@@ -482,6 +531,26 @@ test("tool rows left on a zero-download day are flagged as stale", () => {
     toolCoverage(dayRows("2026-09-30", 14, 980), totals, "2026-09-30").problems,
     ["2026-09-25 has stale tool rows"],
   );
+});
+
+test("leftover tool rows on a busy day are flagged as stale", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const withStale = (value) =>
+    dayRows("2026-09-30", 14, 980).map((r) =>
+      r.date === "2026-09-28" ? { ...r, value } : r,
+    );
+  // Above the daily total.
+  assert.deepEqual(
+    toolCoverage(withStale(1200), totals, "2026-09-30").problems,
+    ["2026-09-28 has stale tool rows"],
+  );
+  // Within the total but well above the usual share.
+  const lowShare = dayRows("2026-09-30", 14, 700).map((r) =>
+    r.date === "2026-09-28" ? { ...r, value: 900 } : r,
+  );
+  assert.deepEqual(toolCoverage(lowShare, totals, "2026-09-30").problems, [
+    "2026-09-28 has stale tool rows",
+  ]);
 });
 
 test("a day with downloads but no tool rows is flagged", () => {
