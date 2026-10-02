@@ -47,26 +47,38 @@ const escapeHtml = (s) =>
 
 const byDate = (rows) => new Map(rows.map((r) => [r.date, r.value]));
 
-// One metric on the digest day next to the day before and the same weekday a
-// week earlier (many of these swing with the day of the week). Missing data is
-// null, never zero.
-function metricRow(label, current, previous, weekAgo) {
+const WEEK = 7;
+
+// Average of the 7 days ending at `end`. Null unless every one of them has a
+// value, so a gap cannot pass for a quiet week.
+function weekAverage(valueOn, end) {
+  let total = 0;
+  for (let i = 0; i < WEEK; i++) {
+    const value = valueOn(dateStrAgo(end, i));
+    if (value === undefined) return null;
+    total += value;
+  }
+  return total / WEEK;
+}
+
+// One metric on the digest day next to the day before, and its trailing 7-day
+// average next to the 7 days before that. Daily numbers swing with the day of
+// the week (weekends are always down), so the averages are the like-for-like
+// comparison. `valueOn(date)` is the metric's value for a date, or undefined
+// when unknown; missing data is null here, never zero.
+function metricRow(label, valueOn, day) {
   return {
     label,
-    current: current ?? null,
-    previous: previous ?? null,
-    weekAgo: weekAgo ?? null,
+    current: valueOn(day) ?? null,
+    previous: valueOn(dateStrAgo(day, 1)) ?? null,
+    avg: weekAverage(valueOn, day),
+    priorAvg: weekAverage(valueOn, dateStrAgo(day, WEEK)),
   };
 }
 
 function seriesRow(label, rows, day) {
   const values = byDate(rows);
-  return metricRow(
-    label,
-    values.get(day),
-    values.get(dateStrAgo(day, 1)),
-    values.get(dateStrAgo(day, 7)),
-  );
+  return metricRow(label, (date) => values.get(date), day);
 }
 
 // Release downloads are cumulative snapshots, so a day's number is the
@@ -79,49 +91,48 @@ function releaseRow(project, day) {
       value: d.downloads,
     })),
   );
-  const gained = (date) => {
-    const now = totals.get(date);
-    const before = totals.get(dateStrAgo(date, 1));
-    return now !== undefined && before !== undefined && now >= before
-      ? now - before
-      : undefined;
-  };
   return metricRow(
     "mise release downloads",
-    gained(day),
-    gained(dateStrAgo(day, 1)),
-    gained(dateStrAgo(day, 7)),
+    (date) => {
+      const now = totals.get(date);
+      const before = totals.get(dateStrAgo(date, 1));
+      return now !== undefined && before !== undefined && now >= before
+        ? now - before
+        : undefined;
+    },
+    day,
   );
 }
 
 // Stars gained across every tracked project, from adjacent daily snapshots. A
 // total that leaves a project out would understate it, so one missing snapshot
-// makes the whole figure unavailable (digestFromData warns about the project).
+// makes the day unavailable (digestFromData warns about the project).
 function starsRow(projects, day) {
-  const gained = (date) => {
-    let total;
-    for (const p of projects) {
-      const stars = byDate(
-        p.history
-          .filter((h) => h.stars > 0)
-          .map((h) => ({ date: h.date, value: h.stars })),
-      );
-      const now = stars.get(date);
-      const before = stars.get(dateStrAgo(date, 1));
-      if (now === undefined || before === undefined) return undefined;
-      total = (total ?? 0) + (now - before);
-    }
-    return total;
-  };
+  const snapshots = projects.map((p) =>
+    byDate(
+      p.history
+        .filter((h) => h.stars > 0)
+        .map((h) => ({ date: h.date, value: h.stars })),
+    ),
+  );
   return metricRow(
     "Stars gained",
-    gained(day),
-    gained(dateStrAgo(day, 1)),
-    gained(dateStrAgo(day, 7)),
+    (date) => {
+      let total;
+      for (const stars of snapshots) {
+        const now = stars.get(date);
+        const before = stars.get(dateStrAgo(date, 1));
+        if (now === undefined || before === undefined) return undefined;
+        total = (total ?? 0) + (now - before);
+      }
+      return total;
+    },
+    day,
   );
 }
 
-// The headline table: every metric against the day before.
+// The headline table: every metric's 7-day average against the week before,
+// plus the day against the day before.
 export function changesSection({ mau, dau, downloads, projects }, day) {
   return [
     seriesRow("MAU", mau, day),
@@ -145,18 +156,14 @@ export function trendSeries(rows, day, days = TREND_DAYS) {
   });
 }
 
-// Whether the per-tool rows cover the days being compared. Every day needs a
+// Whether the per-tool rows cover both weeks being compared. Every day needs a
 // daily total, and each day's tool rows should add up to about the same share
 // of it as on a typical day in the 14-day window: rows for tools the rollup
 // could not map are skipped, so the share is rarely 100% but is stable, while a
 // partly written day falls well below it. A day with no downloads has no tool
-// rows at all and is complete. Only problems on the `focus` dates (default: the
-// whole window) are reported, so an old bad day cannot hide today's movers.
-export function toolCoverage(toolDaily, totals, day, focus = null) {
+// rows at all and is complete.
+export function toolCoverage(toolDaily, totals, day) {
   const problems = [];
-  const report = (date, message) => {
-    if (!focus || focus.includes(date)) problems.push(message);
-  };
   const totalByDate = new Map(totals.map((r) => [r.date, r.value]));
   const toolByDate = new Map(toolDaily.map((r) => [r.date, r.value]));
   const ratios = [];
@@ -164,15 +171,15 @@ export function toolCoverage(toolDaily, totals, day, focus = null) {
     const date = dateStrAgo(day, i);
     const total = totalByDate.get(date);
     if (total === undefined) {
-      report(date, `${date} has no daily total`);
+      problems.push(`${date} has no daily total`);
     } else if (total === 0 && toolByDate.get(date) > 0) {
       // A re-refresh does not delete tool rows it no longer writes, so rows
       // left behind on a zero day are stale and would inflate the movers.
-      report(date, `${date} has stale tool rows`);
+      problems.push(`${date} has stale tool rows`);
     } else if (total > 0 && !toolByDate.has(date)) {
       // Never judged against the median: if most days lack rows the median is
       // zero and would let every one of them through.
-      report(date, `${date} is missing tool rows`);
+      problems.push(`${date} is missing tool rows`);
     } else if (total > 0) {
       ratios.push({ date, ratio: toolByDate.get(date) / total });
     }
@@ -187,19 +194,25 @@ export function toolCoverage(toolDaily, totals, day, focus = null) {
     : 0;
   for (const { date, ratio } of ratios) {
     if (ratio < typical * MIN_TOOL_COVERAGE)
-      report(date, `${date} has a partial set of tool rows`);
+      problems.push(`${date} has a partial set of tool rows`);
   }
   return { complete: problems.length === 0, problems };
 }
 
-// Biggest absolute day-over-day movers among tools with real volume.
+// Biggest absolute movers among tools with real volume, comparing the average
+// downloads per day over the last 7 days with the 7 days before. Rows carry the
+// two weeks' totals.
 export function moversSection(rows, limit = 5) {
   const movers = rows
+    .map((r) => ({
+      name: r.name,
+      avg: r.this_week / WEEK,
+      priorAvg: r.last_week / WEEK,
+    }))
     .filter(
-      (r) =>
-        r.today >= MIN_MOVER_DOWNLOADS || r.yesterday >= MIN_MOVER_DOWNLOADS,
+      (r) => r.avg >= MIN_MOVER_DOWNLOADS || r.priorAvg >= MIN_MOVER_DOWNLOADS,
     )
-    .map((r) => ({ ...r, change: r.today - r.yesterday }));
+    .map((r) => ({ ...r, change: r.avg - r.priorAvg }));
   return {
     up: movers
       .filter((r) => r.change > 0)
@@ -280,20 +293,28 @@ function sparkline(points) {
     .join("");
 }
 
+const signedPct = (current, previous) => {
+  const change = pct(current, previous);
+  return change === "n/a" ? "" : ` (${change})`;
+};
+
 function changeText(row) {
   if (row.current === null) return `${row.label}: no data`;
   let text = `${row.label}: ${fmt(row.current)}`;
-  if (row.previous !== null) {
-    const change = pct(row.current, row.previous);
-    text += `, ${signed(row.current - row.previous)}${change === "n/a" ? "" : ` (${change})`} vs yesterday`;
+  if (row.avg !== null) {
+    text += `, 7d avg ${fmt(row.avg)}`;
+    if (row.priorAvg !== null) {
+      const change = pct(row.avg, row.priorAvg);
+      text += `, ${change === "n/a" ? signed(row.avg - row.priorAvg) : change} vs the 7 days before`;
+    }
   }
-  if (row.weekAgo !== null && pct(row.current, row.weekAgo) !== "n/a")
-    text += `, ${pct(row.current, row.weekAgo)} vs same day last week`;
+  if (row.previous !== null)
+    text += `; day ${signed(row.current - row.previous)}${signedPct(row.current, row.previous)} vs yesterday`;
   return text;
 }
 
 function moverText(r) {
-  return `${r.name}: ${fmt(r.today)} (${signed(r.change)}${r.yesterday > 0 ? `, ${pct(r.today, r.yesterday)}` : ", new"})`;
+  return `${r.name}: ${fmt(r.avg)}/day (${signed(r.change)}${r.priorAvg > 0 ? `, ${pct(r.avg, r.priorAvg)}` : ", new"})`;
 }
 
 function renderText({
@@ -394,32 +415,25 @@ ${hasLead ? `<td align="right" style="padding:5px 10px;white-space:nowrap;font-w
 }
 
 function changeItem(row) {
-  const change =
-    row.current !== null && row.previous !== null
-      ? pctChange(row.current, row.previous)
-      : null;
-  const delta =
-    row.current !== null && row.previous !== null
-      ? row.current - row.previous
-      : null;
+  const hasWeeks = row.avg !== null && row.priorAvg !== null;
+  const change = hasWeeks ? pctChange(row.avg, row.priorAvg) : null;
+  const delta = hasWeeks ? row.avg - row.priorAvg : null;
   return {
     label: row.label,
     lead: row.current === null ? undefined : fmt(row.current),
+    // A week that grew from nothing has no percentage; clip it to a full bar.
     value:
       change === null
         ? delta === null || delta === 0
           ? 0
           : Math.sign(delta) * MAX_BAR_PERCENT
         : change,
-    text:
-      delta === null
-        ? "no comparison"
-        : `${signed(delta)}${change === null ? "" : ` (${pct(row.current, row.previous)})`}`,
+    text: hasWeeks
+      ? `${signed(delta)}/day${change === null ? "" : ` (${pct(row.avg, row.priorAvg)})`}`
+      : "no 7d comparison",
     sub:
-      row.current !== null &&
-      row.weekAgo !== null &&
-      pct(row.current, row.weekAgo) !== "n/a"
-        ? `${pct(row.current, row.weekAgo)} vs same day last week`
+      row.current !== null && row.previous !== null
+        ? `day ${signed(row.current - row.previous)}${signedPct(row.current, row.previous)} vs yesterday`
         : undefined,
   };
 }
@@ -480,7 +494,10 @@ function renderHtml({
       `<p style="margin:16px 0 0;font-size:14px">${escapeHtml(note)}</p>`,
     );
   parts.push(
-    heading(`Changes since ${dateStrAgo(day, 1)}`, `bars: % vs the day before`),
+    heading(
+      `Changes since ${dateStrAgo(day, 1)}`,
+      "bars: 7-day average vs the 7 days before",
+    ),
     barChart(changes.map(changeItem), MAX_BAR_PERCENT),
   );
   const trend = trendChart(trends);
@@ -492,14 +509,17 @@ function renderHtml({
   const moverItems = [...movers.up, ...movers.down.slice().reverse()].map(
     (r) => ({
       label: r.name,
-      lead: fmt(r.today),
+      lead: fmt(r.avg),
       value: r.change,
-      text: `${signed(r.change)}${r.yesterday > 0 ? ` (${pct(r.today, r.yesterday)})` : " new"}`,
+      text: `${signed(r.change)}/day${r.priorAvg > 0 ? ` (${pct(r.avg, r.priorAvg)})` : " new"}`,
     }),
   );
   if (moverItems.length)
     parts.push(
-      heading("Tool download movers", "vs the day before"),
+      heading(
+        "Tool download movers",
+        "7-day average per day vs the 7 days before",
+      ),
       barChart(
         moverItems,
         Math.max(...moverItems.map((i) => Math.abs(i.value))),
@@ -533,14 +553,14 @@ export function buildDigest({
 }) {
   const downloads = changes.find((c) => c.label === "Tool downloads");
   const downloadsChange =
-    downloads?.current != null && downloads.previous != null
-      ? pct(downloads.current, downloads.previous)
+    downloads?.avg != null && downloads.priorAvg != null
+      ? pct(downloads.avg, downloads.priorAvg)
       : "n/a";
   // Milestone text comes from project names, so keep control characters out of
   // the subject line.
   const subject = [
     `mise daily digest ${day}`,
-    downloadsChange !== "n/a" && `downloads ${downloadsChange}`,
+    downloadsChange !== "n/a" && `downloads ${downloadsChange} (7d avg)`,
     milestones[0],
   ]
     .filter(Boolean)
@@ -623,8 +643,9 @@ async function collect() {
   };
   const day = lastCompleteUtcDate();
   const since = dateStrAgo(day, 35);
-  const yesterday = dateStrAgo(day, 1);
-  const coverageStart = dateStrAgo(day, 13);
+  const weekStart = dateStrAgo(day, WEEK - 1);
+  const priorStart = dateStrAgo(day, 2 * WEEK - 1);
+  const priorEnd = dateStrAgo(day, WEEK);
 
   const [mau, dau, downloads, toolDaily, movers] = await Promise.all([
     queryD1(
@@ -646,17 +667,17 @@ async function collect() {
       config,
       `SELECT date, SUM(downloads) AS value FROM daily_tool_stats
        WHERE date BETWEEN ? AND ? GROUP BY date`,
-      [coverageStart, day],
+      [priorStart, day],
     ),
     queryD1(
       config,
       `SELECT t.name AS name,
-         COALESCE(SUM(CASE WHEN s.date = ? THEN s.downloads END), 0) AS today,
-         COALESCE(SUM(CASE WHEN s.date = ? THEN s.downloads END), 0) AS yesterday
+         COALESCE(SUM(CASE WHEN s.date BETWEEN ? AND ? THEN s.downloads END), 0) AS this_week,
+         COALESCE(SUM(CASE WHEN s.date BETWEEN ? AND ? THEN s.downloads END), 0) AS last_week
        FROM daily_tool_stats s JOIN tools t ON t.id = s.tool_id
-       WHERE s.date IN (?, ?)
+       WHERE s.date BETWEEN ? AND ?
        GROUP BY t.name`,
-      [day, yesterday, day, yesterday],
+      [weekStart, day, priorStart, priorEnd, priorStart, day],
     ),
   ]);
   const [projects, release] = await Promise.all([
@@ -693,12 +714,9 @@ export function digestFromData(data, now = Date.now()) {
         `${label} rollup is stale (latest ${latest ?? "none"}, expected ${day})`,
       );
   }
-  // The movers compare two days of per-tool rows, which a partial rollup
+  // The movers compare two weeks of per-tool rows, which a partial rollup
   // refresh can leave incomplete even when the aggregate tables are current.
-  const coverage = toolCoverage(data.toolDaily, data.downloads, day, [
-    day,
-    dateStrAgo(day, 1),
-  ]);
+  const coverage = toolCoverage(data.toolDaily, data.downloads, day);
   const toolsCurrent = coverage.complete;
   if (!toolsCurrent)
     warnings.push(
