@@ -533,7 +533,7 @@ test("tool rows left on a zero-download day are flagged as stale", () => {
   );
 });
 
-test("leftover tool rows on a busy day are flagged as stale", () => {
+test("tool rows above the daily total are flagged as stale", () => {
   const totals = dayRows("2026-09-30", 14, 1000);
   const withStale = (value) =>
     dayRows("2026-09-30", 14, 980).map((r) =>
@@ -544,13 +544,12 @@ test("leftover tool rows on a busy day are flagged as stale", () => {
     toolCoverage(withStale(1200), totals, "2026-09-30").problems,
     ["2026-09-28 has stale tool rows"],
   );
-  // Within the total but well above the usual share.
-  const lowShare = dayRows("2026-09-30", 14, 700).map((r) =>
+  // A share that rises while staying under the total is legitimate (a tool
+  // added to the catalog), not stale.
+  const risen = dayRows("2026-09-30", 14, 700).map((r) =>
     r.date === "2026-09-28" ? { ...r, value: 900 } : r,
   );
-  assert.deepEqual(toolCoverage(lowShare, totals, "2026-09-30").problems, [
-    "2026-09-28 has stale tool rows",
-  ]);
+  assert.equal(toolCoverage(risen, totals, "2026-09-30").complete, true);
 });
 
 test("a day with downloads but no tool rows is flagged", () => {

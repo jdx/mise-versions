@@ -160,9 +160,9 @@ export function trendSeries(rows, day, days = TREND_DAYS) {
 // daily total, and each day's tool rows should add up to about the same share
 // of it as on a typical day in the 14-day window: rows for tools the rollup
 // could not map are skipped, so the share is rarely 100% but is stable, while a
-// partly written day falls well below it, and leftover rows from a previous
-// refresh push it above. A day with no downloads has no tool rows at all and is
-// complete.
+// partly written day falls well below it, and a day whose tool rows exceed its
+// total is carrying leftovers. A day with no downloads has no tool rows at all
+// and is complete.
 export function toolCoverage(toolDaily, totals, day) {
   const problems = [];
   const totalByDate = new Map(totals.map((r) => [r.date, r.value]));
@@ -197,10 +197,11 @@ export function toolCoverage(toolDaily, totals, day) {
     if (ratio < typical * MIN_TOOL_COVERAGE)
       problems.push(`${date} has a partial set of tool rows`);
     // A refresh does not delete rows for tools that dropped out of a day's
-    // results, so leftovers push the tool rows above the daily total (or well
-    // above their usual share of it) and would invent movers.
-    else if (ratio > 1 || ratio > typical / MIN_TOOL_COVERAGE)
-      problems.push(`${date} has stale tool rows`);
+    // results, and leftovers can push the tool rows past the daily total they
+    // were part of. That is the only stale-row case that is certain: a share
+    // that merely rises (a tool added to the catalog) is legitimate, so it is
+    // not judged against the typical share.
+    else if (ratio > 1) problems.push(`${date} has stale tool rows`);
   }
   return { complete: problems.length === 0, problems };
 }
