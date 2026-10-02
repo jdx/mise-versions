@@ -68,6 +68,7 @@ test("release downloads and stars are daily differences of adjacent snapshots", 
     {
       name: "other",
       history: [
+        { date: "2026-09-28", stars: 4 },
         { date: "2026-09-29", stars: 5 },
         { date: "2026-09-30", stars: 6 },
       ],
@@ -80,7 +81,7 @@ test("release downloads and stars are daily differences of adjacent snapshots", 
   assert.equal(release.current, 80);
   assert.equal(release.previous, 50);
   assert.equal(stars.current, 6);
-  assert.equal(stars.previous, 2);
+  assert.equal(stars.previous, 3);
 });
 
 test("a counter decrease or gap leaves release downloads without a value", () => {
@@ -194,7 +195,7 @@ test("a stale snapshot does not repeat a milestone it already announced", () => 
   );
 });
 
-test("star gains list the projects that moved, biggest first", () => {
+test("star gains list every tracked project, biggest first", () => {
   const project = (name, from, to) => ({
     name,
     history: [
@@ -202,22 +203,43 @@ test("star gains list the projects that moved, biggest first", () => {
       { date: "2026-09-30", stars: to },
     ],
   });
-  const { gains } = projectsSection(
-    [project("quiet", 50, 50), project("a", 10, 12), project("b", 100, 110)],
-    "2026-09-30",
-  );
-  assert.deepEqual(
-    gains.map((g) => g.name),
-    ["b", "a"],
-  );
+  const projects = [
+    project("quiet", 50, 50),
+    project("a", 10, 12),
+    ...Array.from({ length: 10 }, (_, i) => project(`p${i}`, 100, 101)),
+    project("b", 100, 110),
+  ];
+  const { gains, missing } = projectsSection(projects, "2026-09-30");
+  assert.equal(gains.length, 13);
+  assert.equal(gains[0].name, "b");
+  assert.equal(gains.at(-1).name, "quiet");
+  assert.deepEqual(missing, []);
 });
 
-test("projects without yesterday's snapshot are left out of the gains", () => {
+test("projects without yesterday's snapshot are reported, not silently dropped", () => {
   const section = projectsSection(
     [{ name: "demo", history: [{ date: "2026-09-30", stars: 10 }] }],
     "2026-09-30",
   );
   assert.deepEqual(section.gains, []);
+  assert.deepEqual(section.missing, ["demo"]);
+});
+
+test("a project gap makes the stars total unavailable and warns", () => {
+  const withSnapshots = (name) => ({
+    name,
+    history: [
+      { date: "2026-09-29", stars: 10 },
+      { date: "2026-09-30", stars: 12 },
+    ],
+  });
+  const gap = { name: "gap", history: [{ date: "2026-09-30", stars: 5 }] };
+  const digest = digestFromData(
+    fullData({ projects: [withSnapshots("mise"), gap] }),
+    NOW,
+  );
+  assert.match(digest.text, /Star snapshots missing for gap/);
+  assert.match(digest.text, /Stars gained: no data/);
 });
 
 test("the latest release comes from the release record, not monthly markers", () => {
@@ -354,6 +376,17 @@ test("tool coverage flags a partly written day", () => {
   assert.equal(result.complete, false);
   assert.deepEqual(result.problems, [
     "2026-09-28 has a partial set of tool rows",
+  ]);
+});
+
+test("tool coverage flags a partial day when most of the window is equally partial", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const tools = dayRows("2026-09-30", 14, 1000).map((r, i) =>
+    i < 10 ? { ...r, value: 850 } : r,
+  );
+  const result = toolCoverage(tools, totals, "2026-09-30", ["2026-09-30"]);
+  assert.deepEqual(result.problems, [
+    "2026-09-30 has a partial set of tool rows",
   ]);
 });
 

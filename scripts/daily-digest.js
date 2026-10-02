@@ -94,7 +94,9 @@ function releaseRow(project, day) {
   );
 }
 
-// Stars gained across every tracked project, from adjacent daily snapshots.
+// Stars gained across every tracked project, from adjacent daily snapshots. A
+// total that leaves a project out would understate it, so one missing snapshot
+// makes the whole figure unavailable (digestFromData warns about the project).
 function starsRow(projects, day) {
   const gained = (date) => {
     let total;
@@ -106,8 +108,8 @@ function starsRow(projects, day) {
       );
       const now = stars.get(date);
       const before = stars.get(dateStrAgo(date, 1));
-      if (now !== undefined && before !== undefined)
-        total = (total ?? 0) + (now - before);
+      if (now === undefined || before === undefined) return undefined;
+      total = (total ?? 0) + (now - before);
     }
     return total;
   };
@@ -176,10 +178,12 @@ export function toolCoverage(toolDaily, totals, day, focus = null) {
     }
   }
   const sorted = ratios.map((r) => r.ratio).sort((a, b) => a - b);
-  // Upper quartile rather than the median: partly written days sit below the
+  // A high quantile rather than the median: partly written days sit below the
   // true share, so a median would drift down with them when they are common.
+  // The 90th percentile still finds the true share while at least a tenth of
+  // the window is complete; fewer than that and nothing can be judged anyway.
   const typical = sorted.length
-    ? sorted[Math.floor((sorted.length - 1) * 0.75)]
+    ? sorted[Math.floor((sorted.length - 1) * 0.9)]
     : 0;
   for (const { date, ratio } of ratios) {
     if (ratio < typical * MIN_TOOL_COVERAGE)
@@ -209,8 +213,11 @@ export function moversSection(rows, limit = 5) {
 }
 
 // Stars gained per project on the digest day, and any star milestone crossed.
-export function projectsSection(projects, day, limit = 8) {
+// Every tracked project is listed, including quiet ones; projects missing the
+// snapshot for either day are reported in `missing` instead of silently dropped.
+export function projectsSection(projects, day) {
   const gains = [];
+  const missing = [];
   const milestones = [];
   for (const p of projects) {
     const history = p.history.filter((h) => h.stars > 0);
@@ -220,7 +227,10 @@ export function projectsSection(projects, day, limit = 8) {
     // after the digest day and then becomes the digest day on the next run.
     const current = history.find((h) => h.date === day);
     const previous = history.find((h) => h.date === dateStrAgo(day, 1));
-    if (!current || !previous) continue;
+    if (!current || !previous) {
+      missing.push(p.name);
+      continue;
+    }
     for (const target of STAR_MILESTONES) {
       if (previous.stars < target && current.stars >= target)
         milestones.push(
@@ -234,13 +244,7 @@ export function projectsSection(projects, day, limit = 8) {
     });
   }
   gains.sort((a, b) => b.change - a.change || b.stars - a.stars);
-  // Quiet projects add rows but no information: keep everything that moved,
-  // and fill up to the limit only when little did.
-  const moved = gains.filter((g) => g.change !== 0);
-  return {
-    gains: (moved.length ? moved : gains).slice(0, limit),
-    milestones,
-  };
+  return { gains, missing, milestones };
 }
 
 // A short note when mise itself shipped recently.
@@ -705,6 +709,10 @@ export function digestFromData(data, now = Date.now()) {
     .filter(Boolean)
     .sort()
     .at(-1);
+  if (projects.missing.length)
+    warnings.push(
+      `Star snapshots missing for ${projects.missing.join(", ")} on ${day} or ${dateStrAgo(day, 1)}; they are left out of the star figures`,
+    );
   if (!projectsLatest || projectsLatest < day)
     warnings.push(
       `Project snapshot is stale (latest ${projectsLatest ?? "none"}, expected ${day}); star figures and milestones may be out of date`,
