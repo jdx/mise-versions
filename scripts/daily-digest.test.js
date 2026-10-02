@@ -324,13 +324,16 @@ test("the digest leads with 7-day average changes and keeps the day comparison",
     digest.subject,
     "mise daily digest 2026-09-30 · downloads +10.0% (7d avg)",
   );
-  assert.match(digest.text, /Changes since 2026-09-29/);
+  assert.match(digest.text, /Changes on 2026-09-30/);
   assert.match(
     digest.text,
     /Tool downloads: 700, 7d avg 1,100, \+10\.0% vs the 7 days before; day −300 \(−30\.0%\) vs yesterday/,
   );
   assert.match(digest.text, /Up: big: 1,500\/day \(\+1,000, \+200\.0%\)/);
   assert.match(digest.text, /mise: \+3 \(103 total\)/);
+  // Rows without two full weeks say so instead of silently omitting the comparison.
+  assert.match(digest.text, /mise release downloads: no data/);
+  assert.match(digest.text, /Stars gained: 3, no 7d comparison; day/);
   // The sparklines line up whatever the label lengths.
   const columns = digest.text
     .split("\n")
@@ -340,7 +343,7 @@ test("the digest leads with 7-day average changes and keeps the day comparison",
   assert.equal(new Set(columns).size, 1);
   assert.doesNotMatch(digest.text, /Data warnings/);
   // One combined chart per topic rather than one chart per metric.
-  assert.match(digest.html, /Changes since 2026-09-29/);
+  assert.match(digest.html, /Changes on 2026-09-30/);
   assert.match(digest.html, /7-day average vs the 7 days before/);
   assert.match(digest.html, /Last 14 days/);
   assert.match(digest.html, /Tool download movers/);

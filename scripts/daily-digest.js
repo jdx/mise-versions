@@ -301,12 +301,12 @@ const signedPct = (current, previous) => {
 function changeText(row) {
   if (row.current === null) return `${row.label}: no data`;
   let text = `${row.label}: ${fmt(row.current)}`;
-  if (row.avg !== null) {
-    text += `, 7d avg ${fmt(row.avg)}`;
-    if (row.priorAvg !== null) {
-      const change = pct(row.avg, row.priorAvg);
-      text += `, ${change === "n/a" ? signed(row.avg - row.priorAvg) : change} vs the 7 days before`;
-    }
+  if (row.avg !== null) text += `, 7d avg ${fmt(row.avg)}`;
+  if (row.avg !== null && row.priorAvg !== null) {
+    const change = pct(row.avg, row.priorAvg);
+    text += `, ${change === "n/a" ? signed(row.avg - row.priorAvg) : change} vs the 7 days before`;
+  } else {
+    text += ", no 7d comparison";
   }
   if (row.previous !== null)
     text += `; day ${signed(row.current - row.previous)}${signedPct(row.current, row.previous)} vs yesterday`;
@@ -333,7 +333,10 @@ function renderText({
   if (warnings.length) section("Data warnings", warnings);
   if (milestones.length) section("Milestones", milestones);
   if (note) parts.push(note);
-  section(`Changes since ${dateStrAgo(day, 1)}`, changes.map(changeText));
+  section(
+    `Changes on ${day} (7-day averages vs the 7 days before)`,
+    changes.map(changeText),
+  );
   const shown = trends.filter((t) => t.points.some((p) => p.value !== null));
   const labelWidth = Math.max(...shown.map((t) => t.label.length));
   const trendLines = shown.map((t) => {
@@ -494,10 +497,7 @@ function renderHtml({
       `<p style="margin:16px 0 0;font-size:14px">${escapeHtml(note)}</p>`,
     );
   parts.push(
-    heading(
-      `Changes since ${dateStrAgo(day, 1)}`,
-      "bars: 7-day average vs the 7 days before",
-    ),
+    heading(`Changes on ${day}`, "bars: 7-day average vs the 7 days before"),
     barChart(changes.map(changeItem), MAX_BAR_PERCENT),
   );
   const trend = trendChart(trends);
