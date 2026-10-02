@@ -2,11 +2,11 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { dateStrAgo } from "./lib/rollup-dates.js";
 import {
-  audienceSection,
-  downloadsSection,
+  changesSection,
+  trendSeries,
   moversSection,
   projectsSection,
-  miseReleaseSection,
+  releaseNote,
   digestFromData,
   buildDigest,
   toolCoverage,
@@ -14,61 +14,147 @@ import {
 
 const NOW = Date.parse("2026-10-01T06:00:00Z");
 
-test("audience compares MAU against a week and a month earlier", () => {
-  const section = audienceSection(
-    [
-      { date: "2026-09-30", value: 1100 },
-      { date: "2026-09-23", value: 1000 },
-      { date: "2026-08-31", value: 1200 },
-    ],
-    [
-      { date: "2026-09-30", value: 220 },
-      { date: "2026-09-23", value: 200 },
-    ],
-    "2026-09-30",
+const series = (day, values) =>
+  values.map((value, i) => ({
+    date: dateStrAgo(day, values.length - 1 - i),
+    value,
+  }));
+
+test("changes compare the day with yesterday and the same day last week", () => {
+  const day = "2026-09-30";
+  const rows = changesSection(
+    {
+      mau: [
+        { date: "2026-09-30", value: 1100 },
+        { date: "2026-09-29", value: 1000 },
+      ],
+      dau: [
+        { date: "2026-09-30", value: 220 },
+        { date: "2026-09-29", value: 200 },
+        { date: "2026-09-23", value: 200 },
+      ],
+      downloads: [],
+      projects: [],
+    },
+    day,
+  );
+  assert.deepEqual(rows[0], {
+    label: "MAU",
+    current: 1100,
+    previous: 1000,
+    weekAgo: null,
+  });
+  assert.equal(rows[1].weekAgo, 200);
+  // A missing day is null, never an invented zero.
+  assert.equal(rows[2].current, null);
+});
+
+test("release downloads and stars are daily differences of adjacent snapshots", () => {
+  const day = "2026-09-30";
+  const projects = [
+    {
+      name: "mise",
+      downloads: [
+        { date: "2026-09-28", downloads: 100 },
+        { date: "2026-09-29", downloads: 150 },
+        { date: "2026-09-30", downloads: 230 },
+      ],
+      history: [
+        { date: "2026-09-28", stars: 10 },
+        { date: "2026-09-29", stars: 12 },
+        { date: "2026-09-30", stars: 17 },
+      ],
+    },
+    {
+      name: "other",
+      history: [
+        { date: "2026-09-28", stars: 4 },
+        { date: "2026-09-29", stars: 5 },
+        { date: "2026-09-30", stars: 6 },
+      ],
+    },
+  ];
+  const [, , , release, stars] = changesSection(
+    { mau: [], dau: [], downloads: [], projects },
+    day,
+  );
+  assert.equal(release.current, 80);
+  assert.equal(release.previous, 50);
+  assert.equal(stars.current, 6);
+  assert.equal(stars.previous, 3);
+});
+
+test("a counter decrease or gap leaves release downloads without a value", () => {
+  const project = (downloads) => ({ name: "mise", downloads, history: [] });
+  const release = (p) =>
+    changesSection(
+      { mau: [], dau: [], downloads: [], projects: [p] },
+      "2026-09-30",
+    )[3];
+  assert.equal(
+    release(
+      project([
+        { date: "2026-09-29", downloads: 200 },
+        { date: "2026-09-30", downloads: 150 },
+      ]),
+    ).current,
+    null,
   );
   assert.equal(
-    section.lines[0],
-    "MAU 1,100 (+100 vs 7d ago) (−100 vs 30d ago)",
+    release(
+      project([
+        { date: "2026-09-27", downloads: 10 },
+        { date: "2026-09-30", downloads: 50 },
+      ]),
+    ).current,
+    null,
   );
-  assert.equal(section.lines[1], "DAU 220 (+10.0% vs same day last week)");
 });
 
-test("audience reports a missing day instead of inventing a number", () => {
-  const section = audienceSection([], [], "2026-09-30");
-  assert.deepEqual(section.lines, ["No MAU recorded for 2026-09-30 yet."]);
+test("trend series keeps gaps as null and ends on the digest day", () => {
+  const points = trendSeries(
+    [
+      { date: "2026-09-30", value: 3 },
+      { date: "2026-09-28", value: 1 },
+    ],
+    "2026-09-30",
+    4,
+  );
+  assert.deepEqual(
+    points.map((p) => [p.date, p.value]),
+    [
+      ["2026-09-27", null],
+      ["2026-09-28", 1],
+      ["2026-09-29", null],
+      ["2026-09-30", 3],
+    ],
+  );
 });
 
-test("downloads compare the last 7 days with the 7 before", () => {
-  const rows = [];
-  for (let i = 0; i < 14; i++) {
-    const date = new Date(Date.parse("2026-09-30T00:00:00Z") - i * 86400000)
-      .toISOString()
-      .slice(0, 10);
-    rows.push({ date, value: i < 7 ? 200 : 100 });
-  }
-  const section = downloadsSection(rows, "2026-09-30");
-  assert.match(section.lines[1], /Last 7 days: 1,400 \(\+100\.0%/);
-});
-
-test("movers ignore low-volume tools and sort by absolute change", () => {
-  const section = moversSection([
-    { name: "big", this_week: 1000, last_week: 500 },
-    { name: "tiny", this_week: 50, last_week: 5 },
-    { name: "drop", this_week: 100, last_week: 900 },
+test("movers compare the day with yesterday, ignore low volume, sort by change", () => {
+  const { up, down } = moversSection([
+    { name: "big", today: 1500, yesterday: 500 },
+    { name: "tiny", today: 50, yesterday: 5 },
+    { name: "drop", today: 100, yesterday: 900 },
   ]);
-  assert.match(section.lines[0], /^Up: big: 1,000 \(\+500, \+100\.0%\)$/);
-  assert.match(section.lines[1], /^Down: drop: 100 \(−800/);
-  assert.doesNotMatch(section.lines.join(), /tiny/);
+  assert.deepEqual(
+    up.map((r) => [r.name, r.change]),
+    [["big", 1000]],
+  );
+  assert.deepEqual(
+    down.map((r) => [r.name, r.change]),
+    [["drop", -800]],
+  );
 });
 
-test("a star milestone crossed in the latest day is reported", () => {
+test("a star milestone crossed on the digest day is reported", () => {
   const history = [
     { date: "2026-09-29", stars: 999 },
     { date: "2026-09-30", stars: 1001 },
   ];
   const section = projectsSection([{ name: "demo", history }], "2026-09-30");
   assert.deepEqual(section.milestones, ["demo reached 1,000 stars"]);
+  assert.deepEqual(section.gains, [{ name: "demo", stars: 1001, change: 2 }]);
 });
 
 test("old milestones are not repeated", () => {
@@ -109,51 +195,134 @@ test("a stale snapshot does not repeat a milestone it already announced", () => 
   );
 });
 
-test("release downloads need adjacent days", () => {
-  const gap = miseReleaseSection(
-    {
-      downloads: [
-        { date: "2026-09-27", downloads: 10 },
-        { date: "2026-09-30", downloads: 50 },
-      ],
-    },
-    null,
-    "2026-09-30",
-    NOW,
-  );
-  assert.deepEqual(gap.lines, []);
+test("star gains list every tracked project, biggest first", () => {
+  const project = (name, from, to) => ({
+    name,
+    history: [
+      { date: "2026-09-29", stars: from },
+      { date: "2026-09-30", stars: to },
+    ],
+  });
+  const projects = [
+    project("quiet", 50, 50),
+    project("a", 10, 12),
+    ...Array.from({ length: 10 }, (_, i) => project(`p${i}`, 100, 101)),
+    project("b", 100, 110),
+  ];
+  const { gains, missing } = projectsSection(projects, "2026-09-30");
+  assert.equal(gains.length, 13);
+  assert.equal(gains[0].name, "b");
+  assert.equal(gains.at(-1).name, "quiet");
+  assert.deepEqual(missing, []);
 });
 
-test("release downloads are for the digest day, not today's partial snapshot", () => {
-  const section = miseReleaseSection(
-    {
-      downloads: [
-        { date: "2026-09-29", downloads: 100 },
-        { date: "2026-09-30", downloads: 150 },
-        { date: "2026-10-01", downloads: 160 },
-      ],
-    },
-    null,
+test("projects without yesterday's snapshot are reported, not silently dropped", () => {
+  const section = projectsSection(
+    [{ name: "demo", history: [{ date: "2026-09-30", stars: 10 }] }],
     "2026-09-30",
+  );
+  assert.deepEqual(section.gains, []);
+  assert.deepEqual(section.missing, ["demo"]);
+});
+
+test("a project gap makes the stars total unavailable and warns", () => {
+  const withSnapshots = (name) => ({
+    name,
+    history: [
+      { date: "2026-09-29", stars: 10 },
+      { date: "2026-09-30", stars: 12 },
+    ],
+  });
+  const gap = { name: "gap", history: [{ date: "2026-09-30", stars: 5 }] };
+  const digest = digestFromData(
+    fullData({ projects: [withSnapshots("mise"), gap] }),
     NOW,
   );
-  assert.deepEqual(section.lines, [
-    "mise GitHub release downloads on 2026-09-30: 50",
-  ]);
+  assert.match(digest.text, /Star snapshots missing for gap/);
+  assert.match(digest.text, /Stars gained: no data/);
+});
+
+test("the latest release comes from the release record, not monthly markers", () => {
+  const release = {
+    tag_name: "v2026.10.1",
+    published_at: "2026-09-30T12:00:00Z",
+  };
+  assert.equal(
+    releaseNote(release, NOW),
+    "Latest release: mise v2026.10.1 (2026-09-30)",
+  );
+  assert.equal(
+    releaseNote({ ...release, published_at: "2026-09-01T12:00:00Z" }, NOW),
+    null,
+  );
+  assert.equal(releaseNote(null, NOW), null);
+});
+
+const fullData = (overrides = {}) => {
+  const day = "2026-09-30";
+  const days = 35;
+  return {
+    day,
+    mau: series(day, Array(days).fill(1000)),
+    dau: series(day, Array(days).fill(200)),
+    downloads: series(day, Array(days).fill(1000)),
+    toolDaily: series(day, Array(14).fill(980)),
+    movers: [{ name: "big", today: 1500, yesterday: 500 }],
+    projects: [
+      {
+        name: "mise",
+        history: [
+          { date: "2026-09-29", stars: 100 },
+          { date: "2026-09-30", stars: 103 },
+        ],
+        downloads: [],
+      },
+    ],
+    release: null,
+    ...overrides,
+  };
+};
+
+test("the digest focuses on change since the day before", () => {
+  const data = fullData();
+  data.downloads = series(data.day, Array(34).fill(1000).concat([1100]));
+  const digest = digestFromData(data, NOW);
+  assert.equal(
+    digest.subject,
+    "mise daily digest 2026-09-30 · downloads +10.0%",
+  );
+  assert.match(digest.text, /Changes since 2026-09-29/);
+  assert.match(
+    digest.text,
+    /Tool downloads: 1,100, \+100 \(\+10\.0%\) vs yesterday/,
+  );
+  assert.match(digest.text, /Up: big: 1,500 \(\+1,000, \+200\.0%\)/);
+  assert.match(digest.text, /mise: \+3 \(103 total\)/);
+  // The sparklines line up whatever the label lengths.
+  const columns = digest.text
+    .split("\n")
+    .filter((l) => /^- (MAU|DAU|Tool downloads) +[▁-█]/.test(l))
+    .map((l) => l.search(/[▁-█]/));
+  assert.equal(columns.length, 3);
+  assert.equal(new Set(columns).size, 1);
+  assert.doesNotMatch(digest.text, /Data warnings/);
+  // One combined chart per topic rather than one chart per metric.
+  assert.match(digest.html, /Changes since 2026-09-29/);
+  assert.match(digest.html, /Last 14 days/);
+  assert.match(digest.html, /Tool download movers/);
+  assert.match(digest.html, /Stars gained/);
+  assert.equal(digest.html.match(/<h2/g).length, 4);
 });
 
 test("stale rollups produce a warning in the email", () => {
   const digest = digestFromData(
-    {
-      day: "2026-09-30",
+    fullData({
       mau: [{ date: "2026-09-28", value: 1 }],
       dau: [],
       downloads: [],
       toolDaily: [{ date: "2026-09-30", value: 100 }],
-      movers: [{ name: "big", this_week: 1000, last_week: 500 }],
       projects: [],
-      release: null,
-    },
+    }),
     NOW,
   );
   assert.match(digest.text, /Data warnings/);
@@ -163,35 +332,36 @@ test("stale rollups produce a warning in the email", () => {
     /Per-tool rollup is incomplete \(2026-09-30 has no daily total/,
   );
   assert.match(digest.text, /Project snapshot is stale/);
-  assert.doesNotMatch(digest.text, /Tool movers \(7d/);
+  assert.doesNotMatch(digest.text, /Tool download movers/);
   assert.equal(digest.idempotencyKey, "mise-daily-digest-2026-09-30");
 });
 
-test("projects without a comparison point get no empty parentheses", () => {
-  const section = projectsSection(
-    [{ name: "demo", history: [{ date: "2026-09-30", stars: 10 }] }],
-    "2026-09-30",
+test("a bad day outside the comparison does not hide the movers", () => {
+  const toolDaily = series("2026-09-30", Array(14).fill(980)).map((r) =>
+    r.date === "2026-09-20" ? { ...r, value: 100 } : r,
   );
-  assert.deepEqual(section.lines, ["demo: 10 stars"]);
+  const digest = digestFromData(fullData({ toolDaily }), NOW);
+  assert.match(digest.text, /Tool download movers/);
+  assert.doesNotMatch(digest.text, /Per-tool rollup is incomplete/);
 });
 
-test("the latest release comes from the release record, not monthly markers", () => {
-  const release = {
-    tag_name: "v2026.10.1",
-    published_at: "2026-09-30T12:00:00Z",
-  };
-  assert.deepEqual(miseReleaseSection(null, release, "2026-09-30", NOW).lines, [
-    "Latest release: mise v2026.10.1 (2026-09-30)",
-  ]);
-  assert.deepEqual(
-    miseReleaseSection(
-      null,
-      { ...release, published_at: "2026-09-01T12:00:00Z" },
-      "2026-09-30",
-      NOW,
-    ).lines,
-    [],
+test("missing data renders without NaN or undefined", () => {
+  const digest = digestFromData(
+    fullData({ mau: [], dau: [], downloads: [], toolDaily: [], movers: [] }),
+    NOW,
   );
+  for (const out of [digest.text, digest.html, digest.subject])
+    assert.doesNotMatch(out, /NaN|undefined|Infinity/);
+  assert.match(digest.text, /MAU: no data/);
+});
+
+test("html escapes names coming from data", () => {
+  const digest = digestFromData(
+    fullData({ movers: [{ name: "<b>x</b>", today: 900, yesterday: 100 }] }),
+    NOW,
+  );
+  assert.doesNotMatch(digest.html, /<b>x<\/b>/);
+  assert.match(digest.html, /&lt;b&gt;x&lt;\/b&gt;/);
 });
 
 const dayRows = (day, count, value) =>
@@ -199,17 +369,6 @@ const dayRows = (day, count, value) =>
     date: dateStrAgo(day, i),
     value,
   }));
-
-test("weekly download totals are withheld when a day is missing", () => {
-  const rows = dayRows("2026-09-30", 14, 100).filter(
-    (r) => r.date !== "2026-09-27",
-  );
-  const section = downloadsSection(rows, "2026-09-30");
-  assert.equal(
-    section.lines[1],
-    "Weekly totals unavailable: 6/7 days recorded this week, 7/7 the week before",
-  );
-});
 
 test("tool coverage flags a partly written day", () => {
   const totals = dayRows("2026-09-30", 14, 1000);
@@ -224,6 +383,17 @@ test("tool coverage flags a partly written day", () => {
   assert.equal(result.complete, false);
   assert.deepEqual(result.problems, [
     "2026-09-28 has a partial set of tool rows",
+  ]);
+});
+
+test("tool coverage flags a partial day when most of the window is equally partial", () => {
+  const totals = dayRows("2026-09-30", 14, 1000);
+  const tools = dayRows("2026-09-30", 14, 1000).map((r, i) =>
+    i < 10 ? { ...r, value: 850 } : r,
+  );
+  const result = toolCoverage(tools, totals, "2026-09-30", ["2026-09-30"]);
+  assert.deepEqual(result.problems, [
+    "2026-09-30 has a partial set of tool rows",
   ]);
 });
 
@@ -289,7 +459,8 @@ test("a day with downloads but no tool rows is flagged", () => {
 test("control characters never reach the subject line", () => {
   const digest = buildDigest({
     day: "2026-09-30",
-    sections: [],
+    changes: [],
+    trends: [],
     warnings: [],
     milestones: ["evil\r\nBcc: x@example.com reached 100 stars"],
   });
