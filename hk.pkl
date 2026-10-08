@@ -7,6 +7,12 @@ local linters = new Mapping<String, Step> {
     ["shfmt"] = (Builtins.shfmt) {
         stage = "*"
     }
+    // lints GitHub Actions workflows (jdx/jactionlint, a maintained actionlint fork)
+    ["jactionlint"] {
+        glob = List(".github/workflows/*.yml", ".github/workflows/*.yaml")
+        batch = true
+        check = "jactionlint {{ files }}"
+    }
     ["tsc"] {
         glob = List("src/**/*.ts")
         check = "aube exec tsc --noEmit"

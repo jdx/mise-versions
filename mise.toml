@@ -21,6 +21,7 @@ aube = { version = "latest", minimum_release_age = "0s" }
 fd = "latest"
 s5cmd = "latest"
 hk = { version = "latest", minimum_release_age = "0s" }
+jactionlint = "latest"
 node = "24"
 shellcheck = "latest"
 shfmt = "latest"

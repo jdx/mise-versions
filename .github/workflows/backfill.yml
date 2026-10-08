@@ -60,18 +60,23 @@ jobs:
         run: mise cache clear
 
       - name: Run backfill script
+        env:
+          INPUT_SCRIPT: ${{ github.event.inputs.script }}
+          INPUT_TOOL: ${{ github.event.inputs.tool }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          INPUT_DEBUG: ${{ github.event.inputs.debug }}
         run: |
-          args=""
-          if [ -n "${{ github.event.inputs.tool }}" ]; then
-            args="$args --tool=${{ github.event.inputs.tool }}"
+          args=()
+          if [ -n "$INPUT_TOOL" ]; then
+            args+=("--tool=$INPUT_TOOL")
           fi
-          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
-            args="$args --dry-run"
+          if [ "$INPUT_DRY_RUN" = "true" ]; then
+            args+=(--dry-run)
           fi
-          if [ "${{ github.event.inputs.debug }}" = "true" ]; then
-            args="$args --debug"
+          if [ "$INPUT_DEBUG" = "true" ]; then
+            args+=(--debug)
           fi
-          node scripts/${{ github.event.inputs.script }} $args
+          node "scripts/$INPUT_SCRIPT" "${args[@]}"
 
       - name: Push any remaining changes
         if: ${{ github.event.inputs.dry_run != 'true' }}
