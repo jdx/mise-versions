@@ -1,0 +1,8 @@
+ignores:
+  # update.yml installs the newest mise with the official installer on purpose:
+  # the mise that mise-action restores from its cache has a self-update bug that
+  # blocks upgrades across major versions, and this job needs the latest release.
+  - rule: unverified-download
+    file: .github/workflows/update.yml
+    job: update
+    reason: installs the latest mise with the official installer because the cached mise cannot upgrade itself across major versions
