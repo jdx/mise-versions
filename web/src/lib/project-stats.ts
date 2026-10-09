@@ -1,4 +1,4 @@
-import { dailyDownloads } from "./mise-growth";
+import { dailyDownloads, type DownloadPoint } from "./mise-growth";
 import { sevenDayAverage } from "./daily-average";
 import { parseUtcDate, formatUtcDate } from "./mau-forecast";
 export type ProjectPoint = {
@@ -11,7 +11,7 @@ export type Project = {
   repo: string;
   name: string;
   history: ProjectPoint[];
-  downloads: { date: string; downloads: number }[];
+  downloads: DownloadPoint[];
 };
 export type Comparison = {
   name: string;
@@ -74,13 +74,18 @@ export function parseProjects(
         installs: count(installs),
       });
   }
-  for (const [date, name, value] of csv(
+  for (const [date, name, value, fetchedAt] of csv(
     downloads,
     "date,repo_name,release_downloads",
     ["fetched_at"],
   )) {
     const n = count(value);
-    if (n !== null) counts.get(name)?.set(date, { date, downloads: n });
+    if (n !== null)
+      counts.get(name)?.set(date, {
+        date,
+        downloads: n,
+        ...(fetchedAt ? { fetchedAt } : {}),
+      });
   }
   return projects
     .map((p) => ({
