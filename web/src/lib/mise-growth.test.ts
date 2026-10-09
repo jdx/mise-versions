@@ -7,6 +7,14 @@ import {
   forecastStarCrossover,
 } from "./mise-growth";
 
+test("downloads accept the fetched_at column mise-analytics appends", () => {
+  const csv =
+    "date,repo_name,release_downloads,fetched_at\n2026-08-01,mise,0,\n2026-08-31,hk,900,2026-08-31T08:15:00Z\n2026-08-31,mise,110,2026-08-31T08:15:00Z";
+  assert.deepEqual(parseMiseDownloadsCsv(csv), [
+    { date: "2026-08-01", downloads: 0 },
+    { date: "2026-08-31", downloads: 110 },
+  ]);
+});
 test("downloads select mise alone, deduplicate snapshots and preserve real zeroes", () => {
   const csv =
     "date,repo_name,release_downloads\r\n2026-08-01,mise,0\r\n2026-08-31,hk,900\r\n2026-08-31,mise,100\r\n2026-08-31,mise,110\r\n2026-02-30,mise,9";

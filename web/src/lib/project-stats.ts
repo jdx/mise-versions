@@ -22,9 +22,11 @@ const validDate = (s: string) =>
   Number.isFinite(parseUtcDate(s)) &&
   formatUtcDate(parseUtcDate(s)) === s;
 const count = (s: string) => (/^\d+$/.test(s ?? "") ? Number(s) : null);
-function csv(text: string, header: string) {
+// `optional` lists columns the source may append after the required header.
+function csv(text: string, header: string, optional: string[] = []) {
   const [first, ...rows] = text.trim().split(/\r?\n/);
-  if (first !== header) throw new Error(`Unexpected CSV header: ${first}`);
+  if (![header, ...optional.map((c) => `${header},${c}`)].includes(first))
+    throw new Error(`Unexpected CSV header: ${first}`);
   return rows
     .map((row) => row.split(","))
     .filter(
@@ -75,6 +77,7 @@ export function parseProjects(
   for (const [date, name, value] of csv(
     downloads,
     "date,repo_name,release_downloads",
+    ["fetched_at"],
   )) {
     const n = count(value);
     if (n !== null) counts.get(name)?.set(date, { date, downloads: n });

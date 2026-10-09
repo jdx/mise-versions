@@ -50,18 +50,13 @@ export function parseStarCsv(csv: string): StarPoint[] {
 
 export function parseMiseDownloadsCsv(csv: string): DownloadPoint[] {
   const [header, ...lines] = csv.trim().split(/\r?\n/);
-  if (header !== "date,repo_name,release_downloads")
+  // mise-analytics appends columns such as fetched_at; only the first three are read.
+  if (!/^date,repo_name,release_downloads(,\w+)*$/.test(header))
     throw new Error("Unexpected download CSV columns");
   const result = new Map<string, DownloadPoint>();
   for (const line of lines) {
-    const [date, repo, count, ...extra] = line.split(",");
-    if (
-      extra.length ||
-      !validDate(date) ||
-      !validCount(count) ||
-      repo !== "mise"
-    )
-      continue;
+    const [date, repo, count] = line.split(",");
+    if (!validDate(date) || !validCount(count) || repo !== "mise") continue;
     result.set(date, { date, downloads: Number(count) });
   }
   return [...result.values()].sort((a, b) => a.date.localeCompare(b.date));

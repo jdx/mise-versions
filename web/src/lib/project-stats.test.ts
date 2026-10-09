@@ -33,6 +33,17 @@ test("project parsing preserves missing metrics and canonical repos, deduplicate
   assert.equal(result[0].downloads[0].downloads, 0);
   assert.throws(() => parseProjects("jdx/aube", "wrong", "wrong"));
 });
+test("project downloads accept the fetched_at column mise-analytics appends", () => {
+  const result = parseProjects(
+    "jdx/aube",
+    "date,repo_name,github_stars,brew_rank,brew_installs,brew_pct\n2026-09-02,aube,100,,,",
+    "date,repo_name,release_downloads,fetched_at\n2026-09-01,aube,5,\n2026-09-02,aube,9,2026-09-02T08:15:00Z",
+  );
+  assert.deepEqual(
+    result[0].downloads.map((d) => d.downloads),
+    [5, 9],
+  );
+});
 test("summaries require exact baseline and comparisons use one shared window", () => {
   const p = project(),
     end = p.history.at(-1)!.date;
