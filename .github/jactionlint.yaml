@@ -6,3 +6,9 @@ ignores:
     file: .github/workflows/update.yml
     job: update
     reason: installs the latest mise with the official installer because the cached mise cannot upgrade itself across major versions
+  # scripts/python.sh commits the regenerated catalog and runs `git push`, which
+  # needs the checkout credential left in the git config.
+  - rule: artipacked
+    file: .github/workflows/python.yml
+    job: update
+    reason: scripts/python.sh pushes the regenerated python-precompiled catalog with the persisted checkout credential
