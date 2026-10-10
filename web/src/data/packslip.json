@@ -236,6 +236,31 @@
     "artifactCount": 7,
     "provenanceCount": 7
   },
+  "jdx/jactionlint": {
+    "project": "github.com/jdx/jactionlint",
+    "version": "2.0.2",
+    "publishedAt": "2026-10-09T19:57:43.268906Z",
+    "manifestUrl": "https://github.com/jdx/jactionlint/releases/download/v2.0.2/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/jactionlint/releases/tag/v2.0.2",
+    "publisher": "jdx",
+    "capabilities": [],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / armv6",
+      "Linux / i686",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / i686",
+      "Windows / x86_64",
+      "freebsd / i686",
+      "freebsd / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["jactionlint", "jactionlint.exe"],
+    "artifactCount": 11,
+    "provenanceCount": 11
+  },
   "jdx/mr-boxington": {
     "project": "github.com/jdx/mr-boxington",
     "version": "1.23.0",
