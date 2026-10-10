@@ -27,8 +27,7 @@ concurrency:
   group: backfill-${{ github.event.inputs.script }}
   cancel-in-progress: true
 
-permissions:
-  contents: write
+permissions: {}
 
 env:
   GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
@@ -40,12 +39,14 @@ env:
 
 jobs:
   backfill:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5
+      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5.0.0
 
       - run: aube ci
 

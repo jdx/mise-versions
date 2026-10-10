@@ -29,6 +29,8 @@ on:
         description: "Number of days to refresh, counting backward from date"
         required: false
         type: string
+permissions:
+  contents: read
 
 concurrency:
   group: maintenance-${{ github.event.inputs.task || 'refresh-all' }}
@@ -46,7 +48,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5
+      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5.0.0
 
       - name: Maintenance status
         if: env.TASK == 'status'
