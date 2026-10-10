@@ -12,9 +12,7 @@ concurrency:
   group: update
   cancel-in-progress: false
 
-permissions:
-  actions: write
-  contents: write
+permissions: {}
 
 env:
   GITHUB_API_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
@@ -36,6 +34,9 @@ env:
   MISE_PRERELEASES: "1"
 jobs:
   update:
+    permissions:
+      actions: write
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
@@ -43,7 +44,7 @@ jobs:
         with:
           # Queued workflow_dispatch runs otherwise retain their stale event SHA.
           ref: main
-      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5
+      - uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
       - run: curl https://mise.run | MISE_INSTALL_PATH="$HOME/.local/share/mise/bin/mise" sh && mise --version
       - run: aube ci
       - run: ./scripts/update.sh
