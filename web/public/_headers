@@ -1,0 +1,16 @@
+# Workers static assets headers (not applied to Worker responses).
+
+# Install beacon: mise requests
+#   GET /t?tool=<tool>&full=<backend>&version=<version>&os=<os>&arch=<arch>
+# after installing a tool. It is a static asset so it never invokes the Worker;
+# installs are counted from Cloudflare Logpush by
+# scripts/refresh-logpush-analytics-direct.js. The query string does not
+# affect asset matching.
+/t
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=31536000, immutable
+
+# Python precompiled lists, copied from R2 at deploy time by
+# scripts/fetch-python-precompiled-assets.js.
+/data/*.gz
+  Content-Type: application/gzip

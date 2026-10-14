@@ -30,3 +30,17 @@ jobs:
         env:
           API_URL: https://mise-versions.jdx.dev
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+
+  deploy:
+    needs: update
+    permissions:
+      contents: read
+    uses: ./.github/workflows/deploy.yml
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      MISE_GITHUB_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN }}
+      TOKEN_MANAGER_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+      PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID: ${{ secrets.PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID }}
+      PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY: ${{ secrets.PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY }}
