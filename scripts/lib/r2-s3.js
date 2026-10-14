@@ -25,6 +25,17 @@ export function uriEncode(value, keepSlash = false) {
   return keepSlash ? encoded.replaceAll("%2F", "/") : encoded;
 }
 
+// SigV4 canonical query string. The request URL must carry exactly this
+// encoding too: URLSearchParams form-encodes (space as +, bare *), which would
+// not match the signature for values like an opaque continuation token.
+export function canonicalQueryString(query) {
+  return Object.entries(query)
+    .map(([k, v]) => [uriEncode(k), uriEncode(String(v))])
+    .sort(([a, av], [b, bv]) => (a < b ? -1 : a > b ? 1 : av < bv ? -1 : 1))
+    .map(([k, v]) => `${k}=${v}`)
+    .join("&");
+}
+
 function amzDate(now) {
   return now
     .toISOString()
@@ -62,11 +73,7 @@ export function signRequest({
     .map((name) => `${name}:${allHeaders[name].trim()}\n`)
     .join("");
   const signedHeaders = headerNames.join(";");
-  const canonicalQuery = Object.entries(query)
-    .map(([k, v]) => [uriEncode(k), uriEncode(String(v))])
-    .sort(([a, av], [b, bv]) => (a < b ? -1 : a > b ? 1 : av < bv ? -1 : 1))
-    .map(([k, v]) => `${k}=${v}`)
-    .join("&");
+  const canonicalQuery = canonicalQueryString(query);
   const canonicalRequest = [
     method,
     uriEncode(path, true),
@@ -150,7 +157,7 @@ export class R2Client {
     const path = key ? `/${this.bucket}/${key}` : `/${this.bucket}`;
     const url = new URL(this.endpoint);
     url.pathname = uriEncode(path, true);
-    url.search = new URLSearchParams(query).toString();
+    url.search = canonicalQueryString(query);
     for (let attempt = 0; attempt <= RETRY_ATTEMPTS; attempt++) {
       const headers = signRequest({
         method,

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { afterEach, describe, it } from "node:test";
 import {
   R2Client,
+  canonicalQueryString,
   parseListObjectsV2,
   signRequest,
   uriEncode,
@@ -56,6 +57,26 @@ describe("r2-s3", () => {
       signature(headers),
       "34b48302e7b5fa45bde8084f4b7868a86f0a534bc59db6670ed5711ef69dc6f7",
     );
+  });
+
+  it("sends the same RFC 3986 query string it signs", async () => {
+    assert.equal(
+      canonicalQueryString({ prefix: "a b", "continuation-token": "x*(y)+/=" }),
+      "continuation-token=x%2A%28y%29%2B%2F%3D&prefix=a%20b",
+    );
+    let sent;
+    globalThis.fetch = async (url) => {
+      sent = new URL(url);
+      return new Response("<IsTruncated>false</IsTruncated>");
+    };
+    const client = new R2Client({
+      accountId: "acct",
+      accessKeyId: "id",
+      secretAccessKey: "secret",
+      bucket: "bucket",
+    });
+    await client.request("GET", "", { query: { prefix: "a b*" } });
+    assert.equal(sent.search, "?prefix=a%20b%2A");
   });
 
   it("encodes paths per RFC 3986", () => {

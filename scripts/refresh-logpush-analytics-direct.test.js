@@ -338,4 +338,24 @@ describe("refresh-logpush-analytics-direct", () => {
       ["2026-10-12"],
     );
   });
+
+  it("recomputes later MAU in a dry run without touching D1", async () => {
+    const set = (values) => encodeUserHashes(Float64Array.from(values));
+    const r2 = fakeR2({
+      "rollups/mise-users/v1/2026-10-10.bin.gz": set([1, 2]),
+      "rollups/mise-users/v1/2026-10-11.bin.gz": set([3]),
+    });
+    globalThis.fetch = async () => {
+      throw new Error("D1 must not be called in a dry run");
+    };
+    const results = await recomputeLaterMau(
+      { ...config(r2), cloudflareApiToken: undefined, dryRun: true },
+      ["2026-10-10"],
+      new Map(),
+      "2026-10-11",
+    );
+    assert.deepEqual(results, [
+      { date: "2026-10-11", mau: 3, mauDaysCovered: 2 },
+    ]);
+  });
 });

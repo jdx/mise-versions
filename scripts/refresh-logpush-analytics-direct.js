@@ -258,12 +258,15 @@ export async function recomputeLaterMau(
     // A day's window can only gain user sets over time (a backfill adds one).
     // Fewer than the stored row saw means files went missing, so a rewrite
     // would replace a complete count with a partial one; keep the row.
-    const [existing] = await queryD1(
-      config,
-      "SELECT days_covered FROM logpush_daily_mau WHERE date = ?",
-      [date],
-      "logpush_daily_mau read",
-    );
+    // A dry run writes nothing and may have no D1 token, so it skips this.
+    const [existing] = config.dryRun
+      ? []
+      : await queryD1(
+          config,
+          "SELECT days_covered FROM logpush_daily_mau WHERE date = ?",
+          [date],
+          "logpush_daily_mau read",
+        );
     if (existing && mau.daysCovered < Number(existing.days_covered)) {
       console.warn(
         `${date}: keeping stored MAU (${existing.days_covered} days covered); only ${mau.daysCovered} user sets are available now`,
