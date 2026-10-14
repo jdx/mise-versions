@@ -740,16 +740,21 @@ async function verifiedCrawl(
   }
 }
 
-/** The same number of entries, with the same newest one. */
+/**
+ * The same number of entries, with the same newest one. When GitHub sends no
+ * last-page link the count is unknown, and only the newest entry can be
+ * compared (as before counts were checked), rather than counting the list as
+ * moving on every refresh.
+ */
 function sameTally(
   a: GitHubListPage<StoredItem>,
   b: GitHubListPage<StoredItem>,
 ): boolean {
   const count = (page: GitHubListPage<StoredItem>) =>
     page.hasNextPage ? page.lastPage : page.items.length;
+  const known = count(a) !== null && count(b) !== null;
   return (
-    count(a) !== null &&
-    count(a) === count(b) &&
+    (!known || count(a) === count(b)) &&
     a.items.length === b.items.length &&
     a.items.every((item, i) => itemKey(item) === itemKey(b.items[i]))
   );

@@ -1159,3 +1159,27 @@ test("a full crawl after a failed merge checks page 1 against the count too", ()
     assert.ok(!tags.includes("v201"));
   `);
 });
+
+test("a count without a last-page link falls back to the newest entry", () => {
+  runVersionsTest(`
+    github.releases = releases(250);
+    // GitHub links the next page of the count read, but not the last.
+    const realFetch = globalThis.fetch;
+    globalThis.fetch = async (input, init) => {
+      const response = await realFetch(input, init);
+      if (new URL(String(input)).searchParams.get("per_page") !== "1") return response;
+      const headers = new Headers(response.headers);
+      headers.set("link", headers.get("link").split(", ").filter((l) => !l.includes('rel="last"')).join(", "));
+      return new Response(response.body, { status: response.status, headers });
+    };
+    const kv = memoryKv();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    // Not counted as moving: one crawl, complete, with the full crawl done.
+    assert.equal(versions.releases.length, 250);
+    assert.equal(versions.truncated, false);
+    assert.ok(storedEntry(kv, "github:versions:releases:o/r").full_at > 0);
+    assert.equal(apiCalls().filter((c) => c.includes("per_page=20&")).length, 1);
+  `);
+});
