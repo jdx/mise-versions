@@ -34,6 +34,8 @@ Environment:
   ANALYTICS_ENGINE_DATASET    Optional; defaults to ${DEFAULT_DATASET}
   ANALYTICS_ENGINE_CUTOVER_DATE Optional; defaults to ${DEFAULT_CUTOVER_DATE}
   ANALYTICS_DB_ID             Optional; defaults to production ANALYTICS_DB id
+  LOGPUSH_CUTOVER_DATE        Optional; from this date on, add the Logpush
+                              beacon installs (logpush_daily_* tables)
 `);
 }
 
@@ -348,6 +350,82 @@ function buildDimensionRows(
   };
 }
 
+// Daily download tables and their key/value columns. The logpush_* shadow
+// tables written by refresh-logpush-analytics-direct.js have the same shape.
+const DIMENSION_TABLES = [
+  ["daily_tool_stats", ["date", "tool_id"], ["downloads", "unique_users"]],
+  [
+    "daily_backend_stats",
+    ["date", "backend_type"],
+    ["downloads", "unique_users"],
+  ],
+  [
+    "daily_tool_backend_stats",
+    ["date", "tool_id", "backend_type"],
+    ["downloads"],
+  ],
+  ["daily_tool_version_stats", ["date", "tool_id", "version"], ["downloads"]],
+  [
+    "daily_tool_platform_stats",
+    ["date", "tool_id", "platform_id"],
+    ["downloads"],
+  ],
+];
+
+// From LOGPUSH_CUTOVER_DATE on, installs reported by the static /t beacon
+// (counted from Logpush) are added to the Analytics Engine counts, which then
+// only cover clients that still POST /api/tools/<tool>. A client sends one or
+// the other, so the counts add up; unique users are summed too, which
+// overcounts only a user seen through both paths on the same day.
+async function loadLogpushRows(config, date) {
+  const [stats] = await queryD1(
+    config,
+    "SELECT total_downloads, unique_users FROM logpush_daily_stats WHERE date = ?",
+    [date],
+    "logpush_daily_stats",
+  );
+  if (!stats) {
+    throw new Error(
+      `${date}: no logpush_daily_stats row; run the Logpush rollup first (LOGPUSH_CUTOVER_DATE=${config.logpushCutoverDate})`,
+    );
+  }
+  const tables = {};
+  for (const [table, keys, values] of DIMENSION_TABLES) {
+    const columns = [...keys, ...values];
+    const rows = await queryD1(
+      config,
+      `SELECT ${columns.join(", ")} FROM logpush_${table} WHERE date = ?`,
+      [date],
+      `logpush_${table}`,
+    );
+    tables[table] = rows.map((row) => columns.map((column) => row[column]));
+  }
+  return {
+    totalDownloads: finiteNumber(stats.total_downloads, "logpush downloads"),
+    uniqueUsers: finiteNumber(stats.unique_users, "logpush users"),
+    tables,
+  };
+}
+
+// Sum rows shaped [...keys, ...values] that share the same keys.
+function sumRows(keyCount, ...rowSets) {
+  const merged = new Map();
+  for (const rows of rowSets) {
+    for (const row of rows) {
+      const key = JSON.stringify(row.slice(0, keyCount));
+      const existing = merged.get(key);
+      if (!existing) {
+        merged.set(key, [...row]);
+        continue;
+      }
+      for (let i = keyCount; i < row.length; i++) {
+        existing[i] = Number(existing[i]) + Number(row[i]);
+      }
+    }
+  }
+  return [...merged.values()];
+}
+
 async function refreshDate(config, date) {
   if (date <= config.cutoverDate) {
     throw new Error(
@@ -356,6 +434,10 @@ async function refreshDate(config, date) {
   }
 
   console.log(`Refreshing download rollups for ${date}`);
+  const logpush =
+    config.logpushCutoverDate && date >= config.logpushCutoverDate
+      ? await loadLogpushRows(config, date)
+      : null;
   const { start, end } = dateRange(date);
   const range = `timestamp >= toDateTime('${start}') AND timestamp <= toDateTime('${end}')`;
   const dedupedDownloads = `(
@@ -409,11 +491,12 @@ async function refreshDate(config, date) {
     ),
   ]);
 
-  const totalDownloads = finiteNumber(globalRows[0]?.total, "total downloads");
-  const downloadUsers = finiteNumber(
-    globalRows[0]?.unique_users,
-    "download users",
-  );
+  const totalDownloads =
+    finiteNumber(globalRows[0]?.total, "total downloads") +
+    (logpush?.totalDownloads ?? 0);
+  const downloadUsers =
+    finiteNumber(globalRows[0]?.unique_users, "download users") +
+    (logpush?.uniqueUsers ?? 0);
   const combinedUsers = finiteNumber(
     combinedRows[0]?.unique_users,
     "combined users",
@@ -439,60 +522,39 @@ async function refreshDate(config, date) {
   const [toolRows, backendRows, toolBackendRows, versionRows, platformRows] =
     dimensions.rows;
   const ids = await loadDimensionIds(config, platformRows);
-  const {
-    dailyTools,
-    dailyBackends,
-    dailyToolBackends,
-    dailyVersions,
-    dailyPlatforms,
-  } = buildDimensionRows(date, ids, {
+  const built = buildDimensionRows(date, ids, {
     toolRows,
     backendRows,
     toolBackendRows,
     versionRows,
     platformRows,
   });
-
-  await batchUpsert(
-    config,
-    "daily_tool_stats",
-    ["date", "tool_id", "downloads", "unique_users"],
-    dailyTools,
-  );
-  await batchUpsert(
-    config,
-    "daily_backend_stats",
-    ["date", "backend_type", "downloads", "unique_users"],
-    dailyBackends,
-  );
-  await batchUpsert(
-    config,
-    "daily_tool_backend_stats",
-    ["date", "tool_id", "backend_type", "downloads"],
-    dailyToolBackends,
-  );
-  await batchUpsert(
-    config,
-    "daily_tool_version_stats",
-    ["date", "tool_id", "version", "downloads"],
-    dailyVersions,
-  );
-  await batchUpsert(
-    config,
-    "daily_tool_platform_stats",
-    ["date", "tool_id", "platform_id", "downloads"],
-    dailyPlatforms,
-  );
+  const aeRows = {
+    daily_tool_stats: built.dailyTools,
+    daily_backend_stats: built.dailyBackends,
+    daily_tool_backend_stats: built.dailyToolBackends,
+    daily_tool_version_stats: built.dailyVersions,
+    daily_tool_platform_stats: built.dailyPlatforms,
+  };
+  const written = {};
+  for (const [table, keys, values] of DIMENSION_TABLES) {
+    const rows = logpush
+      ? sumRows(keys.length, aeRows[table], logpush.tables[table])
+      : aeRows[table];
+    await batchUpsert(config, table, [...keys, ...values], rows);
+    written[table] = rows.length;
+  }
 
   const result = {
     date,
     totalDownloads,
     combinedUsers,
-    tools: dailyTools.length,
-    backends: dailyBackends.length,
-    toolBackends: dailyToolBackends.length,
-    versions: dailyVersions.length,
-    platforms: dailyPlatforms.length,
+    logpushDownloads: logpush?.totalDownloads ?? null,
+    tools: written.daily_tool_stats,
+    backends: written.daily_backend_stats,
+    toolBackends: written.daily_tool_backend_stats,
+    versions: written.daily_tool_version_stats,
+    platforms: written.daily_tool_platform_stats,
   };
   console.log(JSON.stringify(result));
   return result;
@@ -513,7 +575,16 @@ async function main() {
     dataset: process.env.ANALYTICS_ENGINE_DATASET || DEFAULT_DATASET,
     cutoverDate:
       process.env.ANALYTICS_ENGINE_CUTOVER_DATE || DEFAULT_CUTOVER_DATE,
+    logpushCutoverDate: process.env.LOGPUSH_CUTOVER_DATE || null,
   };
+  if (
+    config.logpushCutoverDate &&
+    !/^\d{4}-\d{2}-\d{2}$/.test(config.logpushCutoverDate)
+  ) {
+    throw new Error(
+      `Invalid LOGPUSH_CUTOVER_DATE: ${config.logpushCutoverDate}`,
+    );
+  }
 
   const dates = completedDates(args.date, args.days);
   console.log(`Refreshing download rollups for: ${dates.join(", ")}`);

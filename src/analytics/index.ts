@@ -68,7 +68,6 @@ export function setupAnalytics(
   return {
     // Tracking functions
     trackDownload: tracking.trackDownload,
-    trackVersionRequest: tracking.trackVersionRequest,
     getOrCreateToolId: tracking.getOrCreateToolId,
     getOrCreateBackendId: tracking.getOrCreateBackendId,
     getOrCreatePlatformId: tracking.getOrCreatePlatformId,

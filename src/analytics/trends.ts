@@ -8,8 +8,10 @@ import {
   dailyCombinedStats,
   dailyMauStats,
   dailyVersionStats,
+  logpushDailyDau,
+  logpushDailyMau,
 } from "./schema.js";
-import { trimPendingRollups } from "./daily-series.js";
+import { mergeAudienceRows, trimPendingRollups } from "./daily-series.js";
 import {
   analyticsEngineDataset,
   hasAnalyticsEngineSql,
@@ -97,8 +99,39 @@ export function createTrendsFunctions(
         .orderBy(dailyMauStats.date)
         .all();
 
-      const dauMap = new Map(dauResults.map((r) => [r.date, r.dau]));
-      const mauMap = new Map(mauResults.map((r) => [r.date, r.mau]));
+      const logpushDauResults = await db
+        .select({
+          date: logpushDailyDau.date,
+          dau: logpushDailyDau.unique_users,
+        })
+        .from(logpushDailyDau)
+        .where(
+          and(
+            sql`${logpushDailyDau.date} >= ${startDate}`,
+            sql`${logpushDailyDau.date} < ${today}`,
+          ),
+        )
+        .all();
+
+      const logpushMauResults = await db
+        .select({
+          date: logpushDailyMau.date,
+          mau: logpushDailyMau.mau,
+          days_covered: logpushDailyMau.days_covered,
+        })
+        .from(logpushDailyMau)
+        .where(
+          and(
+            sql`${logpushDailyMau.date} >= ${startDate}`,
+            sql`${logpushDailyMau.date} < ${today}`,
+          ),
+        )
+        .all();
+
+      const { dau: dauMap, mau: mauMap } = mergeAudienceRows(
+        { dau: dauResults, mau: mauResults },
+        { dau: logpushDauResults, mau: logpushMauResults },
+      );
 
       const dailyData: Array<{
         date: string;

@@ -236,10 +236,11 @@ async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {
   }
 }
 
-// Shadow rollups computed from Cloudflare Logpush http_requests logs by
+// Rollups computed from Cloudflare Logpush http_requests logs by
 // scripts/refresh-logpush-analytics-direct.js. They mirror daily_combined_stats,
-// daily_mau_stats, and the daily_* download rollups so the two sources can be
-// compared row for row before the site switches over; nothing reads them yet.
+// daily_mau_stats, and the daily_* download rollups. The site reads the DAU/MAU
+// tables, and scripts/refresh-download-rollups-direct.js adds the download
+// tables into daily_* from LOGPUSH_CUTOVER_DATE on.
 async function createLogpushShadowTables(db: AnalyticsDb): Promise<void> {
   await db.run(sql`
     CREATE TABLE IF NOT EXISTS logpush_daily_dau (

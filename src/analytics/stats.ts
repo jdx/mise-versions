@@ -6,10 +6,12 @@ import {
   platforms,
   dailyToolStats,
   dailyMauStats,
+  logpushDailyMau,
   toolDownloadSummaries,
   toolPlatformDownloadSummaries,
   toolVersionDownloadSummaries,
 } from "./schema.js";
+import { mergeAudienceRows } from "./daily-series.js";
 
 export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
   async function getToolId(tool: string): Promise<number | null> {
@@ -188,15 +190,34 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
       // back to the latest populated date, since the scheduled MAU step can lag
       // behind other rollups and returning 0 hides the header badge even when
       // recent MAU data exists.
-      const result = await db
-        .select({ mau: dailyMauStats.mau, date: dailyMauStats.date })
-        .from(dailyMauStats)
-        .where(sql`${dailyMauStats.date} < ${today}`)
-        .orderBy(sql`${dailyMauStats.date} DESC`)
-        .limit(1)
-        .get();
-
-      return result?.mau ?? 0;
+      const [legacy, logpush] = await Promise.all([
+        db
+          .select({ mau: dailyMauStats.mau, date: dailyMauStats.date })
+          .from(dailyMauStats)
+          .where(sql`${dailyMauStats.date} < ${today}`)
+          .orderBy(sql`${dailyMauStats.date} DESC`)
+          .limit(1)
+          .all(),
+        db
+          .select({
+            mau: logpushDailyMau.mau,
+            date: logpushDailyMau.date,
+            days_covered: logpushDailyMau.days_covered,
+          })
+          .from(logpushDailyMau)
+          .where(sql`${logpushDailyMau.date} < ${today}`)
+          .orderBy(sql`${logpushDailyMau.date} DESC`)
+          .limit(1)
+          .all(),
+      ]);
+      // Prefer Logpush (every mise client) per mergeAudienceRows, on the
+      // newest date either source has.
+      const { mau } = mergeAudienceRows(
+        { dau: [], mau: legacy },
+        { dau: [], mau: logpush },
+      );
+      const latest = [...mau.keys()].sort().pop();
+      return latest ? (mau.get(latest) ?? 0) : 0;
     },
   };
 

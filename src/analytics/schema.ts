@@ -79,6 +79,28 @@ export const dailyMauStats = sqliteTable("daily_mau_stats", {
   mau: integer("mau").notNull(), // 30-day trailing unique users as of this date
 });
 
+// Logpush shadow audience rollups, written by
+// scripts/refresh-logpush-analytics-direct.js from Cloudflare Logpush logs.
+// They count every non-CI mise client, including ones that only fetch static
+// assets, and replace daily_combined_stats/daily_mau_stats where present.
+export const logpushDailyDau = sqliteTable("logpush_daily_dau", {
+  date: text("date").primaryKey(), // YYYY-MM-DD
+  unique_users: integer("unique_users").notNull(),
+  mise_requests: integer("mise_requests").notNull(),
+  ci_requests: integer("ci_requests").notNull(),
+  log_lines: integer("log_lines").notNull(),
+  first_event_at: text("first_event_at"),
+  last_event_at: text("last_event_at"),
+  updated_at: text("updated_at").notNull(),
+});
+
+export const logpushDailyMau = sqliteTable("logpush_daily_mau", {
+  date: text("date").primaryKey(), // YYYY-MM-DD
+  mau: integer("mau").notNull(),
+  days_covered: integer("days_covered").notNull(), // of the 30-day window
+  updated_at: text("updated_at").notNull(),
+});
+
 // Per-tool per-backend daily stats (for top tools by backend queries)
 export const dailyToolBackendStats = sqliteTable(
   "daily_tool_backend_stats",

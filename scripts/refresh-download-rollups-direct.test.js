@@ -106,4 +106,99 @@ describe("refresh-download-rollups-direct", () => {
     assert.ok(d1Writes.some(({ sql }) => sql.includes("daily_stats")));
     assert.ok(d1Writes.some(({ sql }) => sql.includes("daily_combined_stats")));
   });
+
+  it("adds Logpush beacon installs from LOGPUSH_CUTOVER_DATE on", async () => {
+    const d1Writes = [];
+    globalThis.fetch = async (url, options) => {
+      const body = options.body;
+      if (String(url).includes("analytics_engine")) {
+        if (body.includes(" AS total")) {
+          return jsonResponse({ data: [{ total: "10", unique_users: "3" }] });
+        }
+        if (body.includes("blob1 IN")) {
+          return jsonResponse({ data: [{ unique_users: "5" }] });
+        }
+        if (body.includes("GROUP BY tool, version")) {
+          return jsonResponse({
+            data: [{ tool: "node", version: "22", downloads: "4" }],
+          });
+        }
+        if (body.includes("GROUP BY tool, backend_type")) {
+          return jsonResponse({ data: [] });
+        }
+        if (body.includes("GROUP BY tool, os, arch")) {
+          return jsonResponse({ data: [] });
+        }
+        if (body.includes("GROUP BY backend_type")) {
+          return jsonResponse({ data: [] });
+        }
+        if (body.includes("GROUP BY tool")) {
+          return jsonResponse({
+            data: [{ tool: "node", downloads: "4", unique_users: "2" }],
+          });
+        }
+        return jsonResponse({ data: [] });
+      }
+
+      const { sql, params } = JSON.parse(body);
+      let results = [];
+      if (sql.startsWith("SELECT id, name FROM tools")) {
+        results = [{ id: 1, name: "node" }];
+      } else if (sql.includes("FROM logpush_daily_stats")) {
+        results = [{ total_downloads: 6, unique_users: 4 }];
+      } else if (sql.includes("FROM logpush_daily_tool_stats")) {
+        results = [
+          { date: "2026-07-14", tool_id: 1, downloads: 5, unique_users: 3 },
+          { date: "2026-07-14", tool_id: 2, downloads: 1, unique_users: 1 },
+        ];
+      } else if (sql.includes("FROM logpush_daily_tool_version_stats")) {
+        results = [
+          { date: "2026-07-14", tool_id: 1, version: "22", downloads: 5 },
+        ];
+      } else if (sql.startsWith("INSERT")) {
+        d1Writes.push({ sql, params });
+      }
+      return jsonResponse({
+        success: true,
+        result: [{ success: true, results }],
+      });
+    };
+
+    const result = await refreshDate(
+      { ...config(), logpushCutoverDate: "2026-07-14" },
+      "2026-07-14",
+    );
+    assert.equal(result.totalDownloads, 16);
+    const write = (table) =>
+      d1Writes.find(({ sql }) => sql.includes(`INTO ${table} `)).params;
+    assert.deepEqual(write("daily_stats"), ["2026-07-14", 16, 7]);
+    assert.deepEqual(write("daily_tool_stats"), [
+      "2026-07-14",
+      1,
+      9,
+      5,
+      "2026-07-14",
+      2,
+      1,
+      1,
+    ]);
+    assert.deepEqual(write("daily_tool_version_stats"), [
+      "2026-07-14",
+      1,
+      "22",
+      9,
+    ]);
+  });
+
+  it("refuses to publish a cutover day without Logpush rows", async () => {
+    globalThis.fetch = async () =>
+      jsonResponse({ success: true, result: [{ success: true, results: [] }] });
+    await assert.rejects(
+      refreshDate(
+        { ...config(), logpushCutoverDate: "2026-07-01" },
+        "2026-07-14",
+      ),
+      /no logpush_daily_stats row/,
+    );
+  });
 });

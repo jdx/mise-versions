@@ -95,7 +95,8 @@ test("daily downloads use adjacent snapshots, preserving zeroes and leaving gaps
 });
 
 test("daily downloads scale each increase by the real time between snapshots", async () => {
-  const { dailyDownloads, parseMiseDownloadsCsv } = await import("./mise-growth");
+  const { dailyDownloads, parseMiseDownloadsCsv } =
+    await import("./mise-growth");
   // 36h gap then 12h gap: both are really 100/day, not 150 then 50.
   assert.deepEqual(
     dailyDownloads([
@@ -121,8 +122,14 @@ test("daily downloads scale each increase by the real time between snapshots", a
   const points = parseMiseDownloadsCsv(
     "date,repo_name,release_downloads,fetched_at\n2026-10-07,mise,0,\n2026-10-08,mise,80,not-a-time\n2026-10-09,mise,160,2026-10-09T08:15:00Z",
   );
-  assert.deepEqual(points.map((p) => p.fetchedAt), [undefined, undefined, "2026-10-09T08:15:00Z"]);
-  assert.deepEqual(dailyDownloads(points).map((v) => v.value), [null, 80, 80]);
+  assert.deepEqual(
+    points.map((p) => p.fetchedAt),
+    [undefined, undefined, "2026-10-09T08:15:00Z"],
+  );
+  assert.deepEqual(
+    dailyDownloads(points).map((v) => v.value),
+    [null, 80, 80],
+  );
 });
 
 test("star history keeps mise’s earliest observations rather than imposing a recent cutoff", () => {
