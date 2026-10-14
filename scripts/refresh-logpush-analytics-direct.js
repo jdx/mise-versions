@@ -23,7 +23,11 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
 import { createGunzip } from "node:zlib";
-import { completedDates, dateStrAgo } from "./lib/rollup-dates.js";
+import {
+  completedDates,
+  dateStrAgo,
+  lastCompleteUtcDate,
+} from "./lib/rollup-dates.js";
 import {
   DEFAULT_BEACON_HOSTS,
   LogpushDayAggregator,
@@ -215,6 +219,53 @@ export async function trailingMau(date, loadSet) {
   return { mau: unionSize(sets), daysCovered: sets.length };
 }
 
+// Each day's user set feeds the MAU of the 29 days after it, so refreshing a
+// day (a backfill, or a repaired day) also changes those days' MAU. The
+// completed days after the refreshed ones, up to `lastDate`, that have a user
+// set of their own (and so a logpush_daily_mau row) and were not refreshed in
+// this run.
+export function laterMauDates(refreshedDates, lastDate) {
+  const refreshed = new Set(refreshedDates);
+  const dates = new Set();
+  for (const date of refreshedDates) {
+    for (let i = 1; i < MAU_WINDOW_DAYS; i++) {
+      const later = dateStrAgo(date, -i);
+      if (later > lastDate) break;
+      if (!refreshed.has(later)) dates.add(later);
+    }
+  }
+  return [...dates].sort();
+}
+
+export async function recomputeLaterMau(
+  config,
+  refreshedDates,
+  userSets,
+  lastDate = lastCompleteUtcDate(),
+) {
+  const updatedAt = new Date().toISOString();
+  const results = [];
+  for (const date of laterMauDates(refreshedDates, lastDate)) {
+    if (!(await loadUserSet(config, date, userSets))) continue;
+    const mau = await trailingMau(date, (day) =>
+      loadUserSet(config, day, userSets),
+    );
+    if (!config.dryRun) {
+      await batchUpsert(
+        config,
+        "logpush_daily_mau",
+        ["date", "mau", "days_covered", "updated_at"],
+        [[date, mau.mau, mau.daysCovered, updatedAt]],
+      );
+    }
+    results.push({ date, mau: mau.mau, mauDaysCovered: mau.daysCovered });
+  }
+  if (results.length > 0) {
+    console.log(`Recomputed MAU for later days: ${JSON.stringify(results)}`);
+  }
+  return results;
+}
+
 async function replaceDateRows(config, table, columns, date, rows) {
   await queryD1(
     config,
@@ -268,7 +319,9 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
     ["date", "total_downloads", "unique_users"],
     [[date, rollups.total, rollups.uniqueUsers]],
   );
-  const ids = await loadDimensionIds(config, rollups.platforms);
+  const ids = await loadDimensionIds(config, rollups.platforms, {
+    createTools: rollups.tools.map((row) => row.tool),
+  });
   const rows = buildDimensionRows(date, ids, {
     toolRows: rollups.tools,
     backendRows: rollups.backends,
@@ -416,7 +469,13 @@ async function main() {
   for (const date of dates) {
     results.push(await refreshDate(config, date, userSets));
   }
-  console.log(JSON.stringify({ success: true, results }, null, 2));
+  const refreshed = results
+    .filter((result) => !result.skipped)
+    .map((result) => result.date);
+  const recomputedMau = await recomputeLaterMau(config, refreshed, userSets);
+  console.log(
+    JSON.stringify({ success: true, results, recomputedMau }, null, 2),
+  );
   if (results.every((result) => result.skipped)) {
     throw new Error(
       "No Logpush objects found for any requested date; check the bucket, prefix, zones, and credentials",

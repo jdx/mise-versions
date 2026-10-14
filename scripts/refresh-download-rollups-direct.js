@@ -209,12 +209,37 @@ function platformIdMap(rows) {
   );
 }
 
-async function loadDimensionIds(config, platformRows) {
-  const [tools, existingPlatforms] = await Promise.all([
+// Tool and platform ids for the aggregate rows. `createTools` lists tool
+// names to create when missing, as the Worker's download route does at
+// tracking time (getOrCreateToolId); the Logpush beacon has no such step.
+async function loadDimensionIds(
+  config,
+  platformRows,
+  { createTools = [] } = {},
+) {
+  const [existingTools, existingPlatforms] = await Promise.all([
     queryD1(config, "SELECT id, name FROM tools"),
     queryD1(config, "SELECT id, os, arch FROM platforms"),
   ]);
+  let tools = toolIdMap(existingTools);
   let platforms = platformIdMap(existingPlatforms);
+
+  const missingTools = [...new Set(createTools)].filter(
+    (name) => name && !tools.has(name),
+  );
+  if (missingTools.length > 0) {
+    for (let i = 0; i < missingTools.length; i += D1_MAX_PARAMS) {
+      const batch = missingTools.slice(i, i + D1_MAX_PARAMS);
+      await queryD1(
+        config,
+        `INSERT OR IGNORE INTO tools (name) VALUES ${batch.map(() => "(?)").join(", ")}`,
+        batch,
+        "create tools",
+      );
+    }
+    console.log(`Created ${missingTools.length} tool row(s)`);
+    tools = toolIdMap(await queryD1(config, "SELECT id, name FROM tools"));
+  }
 
   const missing = new Map();
   for (const row of platformRows) {
@@ -242,7 +267,7 @@ async function loadDimensionIds(config, platformRows) {
     );
   }
 
-  return { tools: toolIdMap(tools), platforms };
+  return { tools, platforms };
 }
 
 function resolveToolRows(rows, tools, build) {

@@ -154,6 +154,12 @@ jobs:
   # never delays the rollups the site does show.
   logpush:
     if: (github.event_name == 'schedule' || github.event.inputs.task == 'refresh-logpush' || github.event.inputs.task == 'refresh-all' || github.event.inputs.task == '')
+    # One Logpush rollup at a time across every entry point (schedule,
+    # refresh-all, refresh-logpush): each day's tables are cleared and refilled
+    # in separate requests, so overlapping runs could interleave.
+    concurrency:
+      group: maintenance-logpush
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:

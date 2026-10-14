@@ -28,6 +28,10 @@ on:
         required: true
       TOKEN_MANAGER_SECRET:
         required: true
+      PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID:
+        required: false
+      PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY:
+        required: false
 
 permissions:
   contents: read
@@ -58,9 +62,14 @@ jobs:
         run: aube --dir web run build
 
       # Serve /data/python-precompiled*.gz as static assets (no Worker
-      # invocation), byte-identical to the R2 copies behind /tools/*.gz.
+      # invocation), byte-identical to the R2 objects behind /tools/*.gz. Read
+      # from R2 directly: the Worker route's responses are edge-cached.
       - name: Copy python-precompiled lists into static assets
         run: node scripts/fetch-python-precompiled-assets.js web/dist/client/data
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID: ${{ secrets.PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID }}
+          PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY: ${{ secrets.PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY }}
 
       - name: Deploy to Cloudflare Workers
         run: |

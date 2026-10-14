@@ -4,7 +4,9 @@ import { gzipSync } from "node:zlib";
 import { afterEach, describe, it } from "node:test";
 import {
   forEachLine,
+  laterMauDates,
   parseArgs,
+  recomputeLaterMau,
   refreshDate,
   trailingMau,
 } from "./refresh-logpush-analytics-direct.js";
@@ -54,16 +56,23 @@ function fakeR2(objects) {
 
 function fakeD1() {
   const writes = [];
+  const tools = [
+    { id: 1, name: "node" },
+    { id: 2, name: "jq" },
+  ];
   globalThis.fetch = async (url, options) => {
     assert.match(String(url), /\/d1\/database\/db\/query$/);
     const { sql, params } = JSON.parse(options.body);
     writes.push({ sql, params });
     let results = [];
     if (sql.startsWith("SELECT id, name FROM tools")) {
-      results = [
-        { id: 1, name: "node" },
-        { id: 2, name: "jq" },
-      ];
+      results = tools;
+    } else if (sql.startsWith("INSERT OR IGNORE INTO tools")) {
+      for (const name of params) {
+        if (!tools.some((tool) => tool.name === name)) {
+          tools.push({ id: tools.length + 1, name });
+        }
+      }
     } else if (sql.startsWith("SELECT id, os, arch FROM platforms")) {
       results = [{ id: 7, os: "linux", arch: "x64" }];
     }
@@ -208,9 +217,19 @@ describe("refresh-logpush-analytics-direct", () => {
       2,
       1,
     ]);
+    // unknown-tool is created like the Worker's getOrCreateToolId would.
+    assert.deepEqual(
+      writes.find(({ sql }) => sql.startsWith("INSERT OR IGNORE INTO tools"))
+        .params,
+      ["unknown-tool"],
+    );
     assert.deepEqual(insert("logpush_daily_tool_stats").params, [
       "2026-10-13",
       1,
+      1,
+      1,
+      "2026-10-13",
+      3,
       1,
       1,
     ]);
@@ -218,6 +237,10 @@ describe("refresh-logpush-analytics-direct", () => {
       "2026-10-13",
       1,
       7,
+      1,
+      "2026-10-13",
+      3,
+      0, // no os/arch: unknown platform
       1,
     ]);
     assert.ok(
@@ -235,6 +258,49 @@ describe("refresh-logpush-analytics-direct", () => {
     assert.deepEqual(
       await refreshDate(config(fakeR2({})), "2026-10-13", new Map()),
       { date: "2026-10-13", skipped: true },
+    );
+  });
+
+  it("lists the later days whose MAU a refresh changes", () => {
+    assert.deepEqual(
+      laterMauDates(["2026-10-12", "2026-10-13"], "2026-10-13"),
+      [],
+    );
+    assert.deepEqual(laterMauDates(["2026-10-10"], "2026-10-13"), [
+      "2026-10-11",
+      "2026-10-12",
+      "2026-10-13",
+    ]);
+    const later = laterMauDates(["2026-09-01"], "2026-12-31");
+    assert.equal(later.length, 29);
+    assert.equal(later.at(-1), "2026-09-30");
+  });
+
+  it("recomputes later MAU from stored user sets after a backfill", async () => {
+    const set = (values) => encodeUserHashes(Float64Array.from(values));
+    const r2 = fakeR2({
+      "rollups/mise-users/v1/2026-10-10.bin.gz": set([1, 2]),
+      // 2026-10-11 has no Logpush data, so it gets no MAU row
+      "rollups/mise-users/v1/2026-10-12.bin.gz": set([2, 3]),
+      "rollups/mise-users/v1/2026-10-13.bin.gz": set([4]),
+    });
+    const writes = fakeD1();
+    const results = await recomputeLaterMau(
+      config(r2),
+      ["2026-10-10"],
+      new Map(),
+      "2026-10-13",
+    );
+    assert.deepEqual(results, [
+      { date: "2026-10-12", mau: 3, mauDaysCovered: 2 },
+      { date: "2026-10-13", mau: 4, mauDaysCovered: 3 },
+    ]);
+    assert.deepEqual(
+      writes.map(({ params }) => params.slice(0, 3)),
+      [
+        ["2026-10-12", 3, 2],
+        ["2026-10-13", 4, 3],
+      ],
     );
   });
 });

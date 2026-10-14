@@ -4,21 +4,27 @@ import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
-import { afterEach, describe, it } from "node:test";
+import { describe, it } from "node:test";
 import {
   fetchPythonPrecompiledAssets,
   pythonPrecompiledNames,
 } from "./fetch-python-precompiled-assets.js";
 
-const originalFetch = globalThis.fetch;
-afterEach(() => {
-  globalThis.fetch = originalFetch;
-});
-
 function docsDir(files) {
   const dir = mkdtempSync(join(tmpdir(), "pp-docs-"));
   for (const file of files) writeFileSync(join(dir, file), "");
   return dir;
+}
+
+function fakeR2(objects) {
+  const keys = [];
+  return {
+    keys,
+    async getObject(key) {
+      keys.push(key);
+      return objects[key] ?? null;
+    },
+  };
 }
 
 describe("fetch-python-precompiled-assets", () => {
@@ -37,31 +43,23 @@ describe("fetch-python-precompiled-assets", () => {
     ]);
   });
 
-  it("writes the source bytes unchanged and skips lists the source lacks", async () => {
-    const bodies = {
-      "/tools/python-precompiled.gz": gzipSync("all"),
-      "/tools/python-precompiled-x86_64-unknown-linux-gnu.gz": gzipSync("x86"),
-    };
-    globalThis.fetch = async (url) => {
-      const body = bodies[new URL(url).pathname];
-      return body
-        ? new Response(body, {
-            headers: { "Content-Type": "application/gzip" },
-          })
-        : new Response("missing", { status: 404 });
+  it("copies the R2 objects byte for byte", async () => {
+    const objects = {
+      "tools/python-precompiled.gz": gzipSync("all"),
+      "tools/python-precompiled-x86_64-unknown-linux-gnu.gz": gzipSync("x86"),
     };
     const outputDir = mkdtempSync(join(tmpdir(), "pp-out-"));
     const result = await fetchPythonPrecompiledAssets({
+      r2: fakeR2(objects),
       docsDir: docsDir([
         "python-precompiled.toml",
         "python-precompiled-x86_64-unknown-linux-gnu.toml",
-        "python-precompiled-riscv64-unknown-linux-gnu.toml",
       ]),
       outputDir,
-      sourceUrl: "https://example.test/",
     });
-    assert.deepEqual(result.missing, [
-      "python-precompiled-riscv64-unknown-linux-gnu",
+    assert.deepEqual(result.written, [
+      "python-precompiled",
+      "python-precompiled-x86_64-unknown-linux-gnu",
     ]);
     assert.deepEqual(readdirSync(outputDir).sort(), [
       "python-precompiled-x86_64-unknown-linux-gnu.gz",
@@ -69,18 +67,32 @@ describe("fetch-python-precompiled-assets", () => {
     ]);
     assert.deepEqual(
       readFileSync(join(outputDir, "python-precompiled.gz")),
-      bodies["/tools/python-precompiled.gz"],
+      objects["tools/python-precompiled.gz"],
     );
   });
 
-  it("fails rather than publishing a non-gzip body", async () => {
-    globalThis.fetch = async () => new Response("<html>");
+  it("fails without writing anything when an expected list is missing", async () => {
+    const outputDir = mkdtempSync(join(tmpdir(), "pp-out-"));
     await assert.rejects(
       fetchPythonPrecompiledAssets({
+        r2: fakeR2({ "tools/python-precompiled.gz": gzipSync("all") }),
+        docsDir: docsDir([
+          "python-precompiled.toml",
+          "python-precompiled-riscv64-unknown-linux-gnu.toml",
+        ]),
+        outputDir,
+      }),
+      /tools\/python-precompiled-riscv64-unknown-linux-gnu.gz not found/,
+    );
+    assert.deepEqual(readdirSync(outputDir), []);
+  });
+
+  it("fails rather than publishing a non-gzip object", async () => {
+    await assert.rejects(
+      fetchPythonPrecompiledAssets({
+        r2: fakeR2({ "tools/python-precompiled.gz": Buffer.from("<html>") }),
         docsDir: docsDir(["python-precompiled.toml"]),
         outputDir: mkdtempSync(join(tmpdir(), "pp-out-")),
-        sourceUrl: "https://example.test",
-        attempts: 1,
       }),
       /not gzip/,
     );
