@@ -1246,7 +1246,7 @@ test("GitHub attestation checks back off while the answer stays the same", () =>
     assert.equal(fresh(0), 30 * minute);
     assert.equal(fresh(1 * hour), 30 * minute);
     assert.equal(fresh(8 * hour), 2 * hour);
-    assert.equal(fresh(30 * 24 * hour), 6 * hour);
+    assert.equal(fresh(30 * 24 * hour), 24 * hour);
 
     // Signed bundle URLs differ per fetch and do not count as a change.
     assert.equal(
@@ -1284,11 +1284,10 @@ test("GitHub attestation checks back off while the answer stays the same", () =>
     await getCachedGitHubAttestations(legacy, "owner", "repo", digest);
     assert.equal(legacy.writes[0].value.unchanged_since, legacyCachedAt);
 
-    // An entry stable for two days is fresh for 6 hours (the cap) after its
-    // last check.
+    // An entry stable for two days is fresh for 12 hours after its last check.
     const stable = envWith({
-      cached_at: Date.now() - 5 * hour,
-      unchanged_since: Date.now() - 5 * hour - 48 * hour,
+      cached_at: Date.now() - 11 * hour,
+      unchanged_since: Date.now() - 11 * hour - 48 * hour,
       data: { attestations: [{ bundle: { id: "workflow" } }] },
     });
     await getCachedGitHubAttestations(stable, "owner", "repo", digest);
@@ -1297,8 +1296,8 @@ test("GitHub attestation checks back off while the answer stays the same", () =>
     // A change resets the clock.
     body = { attestations: [{ bundle: { id: "workflow" } }, { bundle: { id: "release" } }] };
     const changed = envWith({
-      cached_at: Date.now() - 7 * hour,
-      unchanged_since: Date.now() - 7 * hour - 48 * hour,
+      cached_at: Date.now() - 13 * hour,
+      unchanged_since: Date.now() - 13 * hour - 48 * hour,
       data: { attestations: [{ bundle: { id: "workflow" } }] },
     });
     const before = Date.now();
