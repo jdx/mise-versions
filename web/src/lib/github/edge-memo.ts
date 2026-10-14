@@ -38,8 +38,9 @@ export interface MemoLoad<T> {
   expiresAt: number;
 }
 
-// Scoped by KV binding object, so separate namespaces (and separate test
-// stubs) never share answers.
+// The in-isolate maps are scoped by KV binding object, so separate test stubs
+// never share answers there. The edge (Cache API) tier is keyed by `key` alone,
+// so it assumes every caller memoizes the same GITHUB_CACHE namespace.
 const localMemos = new WeakMap<object, Map<string, LocalEntry>>();
 const inflight = new WeakMap<object, Map<string, Promise<MemoLoad<unknown>>>>();
 
@@ -79,7 +80,7 @@ function setLocal(scope: object, key: string, entry: LocalEntry) {
   memo.set(key, entry);
 }
 
-/** The memoized value for `key`, or undefined when there is none in date. */
+/** The memoized value for `key`, or undefined when none exists or it has expired. */
 export async function readMemo<T>(
   scope: object,
   key: string,

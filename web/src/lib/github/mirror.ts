@@ -27,10 +27,12 @@ const ATTESTATION_FRESH_MS = ATTESTATION_FRESH_SECONDS * 1000;
 // Attestations for a digest can still be added in the hours after a release
 // is published, but almost never later. Once a cached answer has stopped
 // changing, check it less often: a quarter of how long it has been stable,
-// up to a day. Each check rewrites the KV entry, so this is most of the
-// mirror's KV writes for long-lived digests.
+// up to 6 hours. Each check rewrites the KV entry, so this is most of the
+// mirror's KV writes for long-lived digests. The cap bounds how long a late
+// attestation (see #289) can be missing for clients that do not retry GitHub
+// when the mirror's set fails verification (mise#12495).
 const ATTESTATION_STABLE_FRESH_FRACTION = 4;
-const ATTESTATION_MAX_FRESH_MS = 24 * 60 * 60 * 1000;
+const ATTESTATION_MAX_FRESH_MS = 6 * 60 * 60 * 1000;
 const EDGE_SHORT_TTL_SECONDS = 60 * 60;
 const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
 const EDGE_MIRROR_CACHE_TTL_SECONDS = 60 * 60;
