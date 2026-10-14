@@ -2,6 +2,15 @@
 
 stores version numbers of common mise plugins
 
+## Static version data
+
+mise reads these static files from `https://mise-versions.jdx.dev/data/`:
+
+- `<tool>.toml`: every known version of one tool, with `created_at` and flags.
+- `index.v1.json`: one file covering every tool, with enough entries for `latest`
+  and common prefixes such as `22` or `3.12`. See
+  [docs/versions-index.md](docs/versions-index.md) for the client contract.
+
 ## Tool Update Analysis
 
 This repository tracks tool updates through git history analysis. The chart below shows the daily number of tool updates over the last 30 days.
