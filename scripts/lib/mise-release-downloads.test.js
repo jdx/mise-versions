@@ -199,6 +199,18 @@ describe("dayCoverage", () => {
     );
   });
 
+  it("does not count neighbouring days' objects that only cross midnight", () => {
+    // The day's own folder is empty; only batches crossing into and out of
+    // it were listed from the neighbouring folders.
+    const neighbours = [
+      ...objects("jdx.dev", "2026-10-14T23:58:00Z", "2026-10-15T00:02:00Z"),
+      ...objects("jdx.dev", "2026-10-15T23:58:00Z", "2026-10-16T00:02:00Z"),
+    ];
+    const coverage = dayCoverage(neighbours, ["jdx.dev"], "2026-10-15");
+    assert.equal(coverage.complete, false);
+    assert.equal(coverage.zones["jdx.dev"].largestGapSeconds, 86400 - 4 * 60);
+  });
+
   it("rejects a day that starts late, ends early, or misses a zone", () => {
     // The Logpush jobs were created at about 14:54 UTC on 2026-10-14.
     const late = objects(
