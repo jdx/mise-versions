@@ -43,7 +43,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -70,6 +70,15 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID: ${{ secrets.PYTHON_PRECOMPILED_R2_ACCESS_KEY_ID }}
           PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY: ${{ secrets.PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY }}
+
+      # Serve the GitHub version lists clients have asked for as static
+      # assets under /data/github/ (no Worker invocation), refreshing the ones
+      # that are due through the currently deployed Worker. Never fails the
+      # deploy: a list that is not baked is answered by the Worker.
+      - name: Bake GitHub version lists into static assets
+        run: node scripts/bake-github-versions.js web/dist/client
+        env:
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
 
       - name: Deploy to Cloudflare Workers
         run: |

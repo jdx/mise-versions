@@ -14,3 +14,10 @@
 # scripts/fetch-python-precompiled-assets.js.
 /data/*.gz
   Content-Type: application/gzip
+
+# GitHub version lists, baked at deploy time by
+# scripts/bake-github-versions.js. Lists that are not baked fall through to
+# the Worker (web/src/pages/data/github/), which answers with the same body.
+/data/github/*
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate

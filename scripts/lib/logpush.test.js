@@ -371,3 +371,45 @@ describe("LogpushDayAggregator", () => {
     );
   });
 });
+
+describe("GitHub versions demand", () => {
+  it("collects baked list paths mise fetched, CI included", () => {
+    const aggregator = new LogpushDayAggregator({
+      date: "2026-10-13",
+      secret: SECRET,
+    });
+    aggregator.addRecord(
+      record({ ClientRequestURI: "/data/github/cli/cli/releases.json" }),
+    );
+    aggregator.addRecord(
+      record({
+        ClientRequestURI: "/data/github/apache/tomcat/tags.json?x=1",
+        ClientRequestUserAgent: `${UA} ci`,
+      }),
+    );
+    // Not served, not GET, another host, or not a list.
+    aggregator.addRecord(
+      record({
+        ClientRequestURI: "/data/github/o/missing/releases.json",
+        EdgeResponseStatus: 404,
+      }),
+    );
+    aggregator.addRecord(
+      record({
+        ClientRequestURI: "/data/github/o/head/releases.json",
+        ClientRequestMethod: "HEAD",
+      }),
+    );
+    aggregator.addRecord(
+      record({
+        ClientRequestURI: "/data/github/o/elsewhere/releases.json",
+        ClientRequestHost: "example.com",
+      }),
+    );
+    aggregator.addRecord(record({ ClientRequestURI: "/data/node.toml" }));
+    assert.deepEqual([...aggregator.githubVersionsPaths].sort(), [
+      "/data/github/apache/tomcat/tags.json",
+      "/data/github/cli/cli/releases.json",
+    ]);
+  });
+});
