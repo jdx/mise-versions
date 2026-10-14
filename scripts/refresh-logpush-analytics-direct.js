@@ -39,6 +39,12 @@ import {
   logpushDayPrefixes,
   objectOverlapsDate,
 } from "./lib/logpush.js";
+import {
+  DEFAULT_MISE_RELEASE_ZONES,
+  MiseReleaseDayAggregator,
+  dayCoverage,
+  writeMiseReleaseDownloads,
+} from "./lib/mise-release-downloads.js";
 import { R2Client } from "./lib/r2-s3.js";
 import {
   decodeUserHashes,
@@ -85,6 +91,8 @@ Environment:
   LOGPUSH_HOSTS                 Optional comma list of hosts to count; defaults to all
   LOGPUSH_BEACON_HOSTS          Optional comma list; defaults to ${DEFAULT_BEACON_HOSTS.join(",")}
   LOGPUSH_STATE_PREFIX          Optional; defaults to ${DEFAULT_STATE_PREFIX}
+  LOGPUSH_RELEASE_ZONES         Optional comma list of zones to count mise release
+                                downloads in; defaults to ${DEFAULT_MISE_RELEASE_ZONES.join(",")}
   ANALYTICS_DB_ID               Optional; defaults to production ANALYTICS_DB id
 `);
 }
@@ -148,9 +156,11 @@ export async function forEachLine(buffer, onLine) {
   if (rest) onLine(rest);
 }
 
+// Each object is tagged with its zone, since the mise usage numbers and the
+// release download counts read different zones.
 async function listDayObjects(config, date) {
   const objects = [];
-  for (const zone of config.zones) {
+  for (const zone of new Set([...config.zones, ...releaseZones(config)])) {
     for (const { folderDate, prefix } of logpushDayPrefixes(
       config.prefix,
       zone,
@@ -159,7 +169,7 @@ async function listDayObjects(config, date) {
       const listed = await config.r2.listObjects(prefix);
       for (const object of listed) {
         if (objectOverlapsDate(object.key, folderDate, date)) {
-          objects.push(object);
+          objects.push({ ...object, zone });
         }
       }
     }
@@ -167,7 +177,11 @@ async function listDayObjects(config, date) {
   return objects;
 }
 
-async function readDay(config, date, objects) {
+function releaseZones(config) {
+  return config.releaseZones ?? DEFAULT_MISE_RELEASE_ZONES;
+}
+
+async function readDay(config, date, objects, releases) {
   const aggregator = new LogpushDayAggregator({
     date,
     secret: config.ipHashSecret,
@@ -183,7 +197,12 @@ async function readDay(config, date, objects) {
       const buffer = await config.r2.getObject(object.key);
       if (!buffer) throw new Error(`Log object disappeared: ${object.key}`);
       bytes += buffer.length;
-      await forEachLine(buffer, (line) => aggregator.addLine(line));
+      const usage = config.zones.includes(object.zone);
+      const release = releaseZones(config).includes(object.zone);
+      await forEachLine(buffer, (line) => {
+        if (usage) aggregator.addLine(line);
+        if (release) releases.addLine(line);
+      });
       done++;
       if (done % 50 === 0 || done === objects.length) {
         console.log(
@@ -398,9 +417,25 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
   return rollups;
 }
 
+// A day's release download counts are only marked covered when every release
+// zone's logs span the whole day; see dayCoverage().
+function miseReleaseResult(config, date, objects, releases) {
+  const coverage = dayCoverage(objects, releaseZones(config), date);
+  if (!coverage.complete) {
+    console.warn(
+      `${date}: Logpush objects do not cover the whole day in every release zone, so mise release downloads are stored but not marked covered: ${JSON.stringify(coverage.zones)}`,
+    );
+  }
+  return {
+    complete: coverage.complete,
+    ...releases.stats,
+    versions: releases.versions.size,
+  };
+}
+
 export async function refreshDate(config, date, userSets) {
   const objects = await listDayObjects(config, date);
-  if (objects.length === 0) {
+  if (!objects.some((object) => config.zones.includes(object.zone))) {
     console.warn(
       `${date}: no Logpush objects under ${config.prefix}/{${config.zones.join(",")}}; skipping`,
     );
@@ -408,7 +443,8 @@ export async function refreshDate(config, date, userSets) {
   }
   console.log(`${date}: reading ${objects.length} Logpush object(s)`);
   const started = Date.now();
-  const aggregator = await readDay(config, date, objects);
+  const releases = new MiseReleaseDayAggregator({ date });
+  const aggregator = await readDay(config, date, objects, releases);
   const hashes = aggregator.userHashes();
   userSets.set(date, hashes);
   const { stats } = aggregator;
@@ -450,6 +486,7 @@ export async function refreshDate(config, date, userSets) {
     ciRequests: stats.ciRequests,
     beaconRequests: stats.beaconRequests,
     downloads: aggregator.downloads.size,
+    miseReleases: miseReleaseResult(config, date, objects, releases),
   };
   if (config.dryRun) {
     const rollups = aggregator.downloadRollups();
@@ -458,7 +495,15 @@ export async function refreshDate(config, date, userSets) {
       .slice(0, 10)
       .map(({ tool, downloads }) => ({ tool, downloads }));
   } else {
-    await writeD1(config, date, aggregator, mau, new Date().toISOString());
+    const updatedAt = new Date().toISOString();
+    await writeD1(config, date, aggregator, mau, updatedAt);
+    await writeMiseReleaseDownloads(
+      config,
+      date,
+      releases,
+      result.miseReleases.complete,
+      updatedAt,
+    );
   }
   console.log(JSON.stringify(result));
   return result;
@@ -476,6 +521,7 @@ async function main() {
     ipHashSecret: requiredEnv("IP_HASH_SECRET"),
     prefix: process.env.LOGPUSH_PREFIX || DEFAULT_PREFIX,
     zones: listEnv("LOGPUSH_ZONES", DEFAULT_ZONES.split(",")),
+    releaseZones: listEnv("LOGPUSH_RELEASE_ZONES", DEFAULT_MISE_RELEASE_ZONES),
     hosts: listEnv("LOGPUSH_HOSTS", null),
     beaconHosts: listEnv("LOGPUSH_BEACON_HOSTS", DEFAULT_BEACON_HOSTS),
     statePrefix: (

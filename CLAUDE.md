@@ -94,6 +94,8 @@ The `ANALYTICS_DB` contains:
 
 - Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, compared against the Analytics Engine numbers before cutover; the site does not read them yet
 
+- mise release downloads: `mise_release_daily_downloads` (per UTC day and `mise.jdx.dev`/`mise.en.dev` release folder `/v<version>/`, binary vs other files) and `mise_release_download_days` (one row per fully covered day), written by the Logpush rollup through `scripts/lib/mise-release-downloads.js` and served by `GET /api/mise-releases/downloads?days=N`, which jdx/mise uses to prune release folders nobody downloads
+
 Raw download and mise version-request events are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
 
 ## GitHub Token Management

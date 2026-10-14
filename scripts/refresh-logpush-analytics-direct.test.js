@@ -386,4 +386,97 @@ describe("refresh-logpush-analytics-direct", () => {
     assert.ok(inserts.includes("logpush_daily_dau"));
     assert.ok(!inserts.includes("logpush_daily_mau"));
   });
+
+  it("counts mise release downloads from every release zone", async () => {
+    const release = (overrides) =>
+      line({
+        EdgeStartTimestamp: "2026-10-15T12:00:00Z",
+        ClientRequestHost: "mise.jdx.dev",
+        ClientRequestURI: "/v2026.10.8/mise-v2026.10.8-linux-x64.tar.gz",
+        ClientRequestUserAgent: "curl/8.7.1",
+        ...overrides,
+      });
+    const r2 = fakeR2({
+      "http_requests/jdx.dev/20261015/20261015T000000Z_20261015T120000Z_a.log.gz":
+        gzipSync(
+          [
+            line({ EdgeStartTimestamp: "2026-10-15T01:00:00Z" }),
+            release({}),
+            release({ ClientRequestURI: "/v2026.10.8/SHASUMS256.txt" }),
+          ].join("\n"),
+        ),
+      "http_requests/jdx.dev/20261015/20261015T120000Z_20261015T235959Z_b.log.gz":
+        gzipSync(release({ EdgeStartTimestamp: "2026-10-15T23:00:00Z" })),
+      // en.dev only feeds the release counts, not the mise usage numbers.
+      "http_requests/en.dev/20261015/20261015T000000Z_20261015T235959Z_c.log.gz":
+        gzipSync(
+          [
+            release({ ClientRequestHost: "mise.en.dev" }),
+            release({
+              ClientRequestHost: "mise.en.dev",
+              ClientRequestURI: "/v2026.9.0/mise-v2026.9.0-macos-arm64",
+              ClientRequestUserAgent: UA,
+              ClientIP: "198.51.100.77",
+            }),
+          ].join("\n"),
+        ),
+    });
+    const writes = fakeD1();
+    const result = await refreshDate(
+      { ...config(r2), releaseZones: ["jdx.dev", "en.dev"] },
+      "2026-10-15",
+      new Map(),
+    );
+    assert.equal(result.dau, 1); // the en.dev mise client is not a user here
+    assert.deepEqual(result.miseReleases, {
+      complete: true,
+      requests: 5,
+      binaryRequests: 4,
+      otherRequests: 1,
+      versions: 2,
+    });
+    const insert = (table) =>
+      writes.find(({ sql }) =>
+        sql.startsWith(`INSERT OR REPLACE INTO ${table} `),
+      );
+    assert.deepEqual(insert("mise_release_daily_downloads").params, [
+      "2026-10-15",
+      "2026.10.8",
+      3,
+      1,
+      "2026-10-15",
+      "2026.9.0",
+      1,
+      0,
+    ]);
+    assert.deepEqual(insert("mise_release_download_days").params.slice(0, 3), [
+      "2026-10-15",
+      4,
+      1,
+    ]);
+  });
+
+  it("does not mark release downloads covered when a zone is missing", async () => {
+    const r2 = fakeR2({
+      "http_requests/jdx.dev/20261015/20261015T000000Z_20261015T235959Z_a.log.gz":
+        gzipSync(line({ EdgeStartTimestamp: "2026-10-15T01:00:00Z" })),
+    });
+    const writes = fakeD1();
+    const result = await refreshDate(
+      { ...config(r2), releaseZones: ["jdx.dev", "en.dev"] },
+      "2026-10-15",
+      new Map(),
+    );
+    assert.equal(result.miseReleases.complete, false);
+    assert.ok(
+      writes.some(({ sql }) =>
+        sql.startsWith("DELETE FROM mise_release_download_days"),
+      ),
+    );
+    assert.ok(
+      !writes.some(({ sql }) =>
+        sql.startsWith("INSERT OR REPLACE INTO mise_release_download_days"),
+      ),
+    );
+  });
 });
