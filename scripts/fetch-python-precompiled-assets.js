@@ -9,7 +9,11 @@
  * through that route, whose responses the edge caches for up to an hour, so a
  * deploy right after an upload publishes the uploaded bytes. One list exists
  * per docs/python-precompiled*.toml (scripts/python-precompiled.sh writes both
- * from the same platform list), and a missing one fails the run.
+ * from the same platform list). The python-precompiled workflow pushes a new
+ * platform's TOML before it uploads that list, and that push triggers a
+ * deploy, so a missing platform list is skipped with a warning (the deploy the
+ * workflow runs after its upload adds it) rather than blocking the Worker
+ * deploy. A missing main list, or any object that is not gzip, fails the run.
  *
  * Usage: node scripts/fetch-python-precompiled-assets.js [outputDir]
  *   outputDir defaults to web/dist/client/data (run after the web build,
@@ -34,6 +38,7 @@ const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPO_ROOT = join(dirname(SCRIPT_PATH), "..");
 const DEFAULT_BUCKET = "mise-versions-data";
 const CONCURRENCY = 8;
+const MAIN_LIST = "python-precompiled";
 
 export function pythonPrecompiledNames(docsDir) {
   return readdirSync(docsDir)
@@ -57,20 +62,25 @@ export async function fetchPythonPrecompiledAssets({
   outputDir = join(REPO_ROOT, "web", "dist", "client", "data"),
 }) {
   const names = pythonPrecompiledNames(docsDir);
-  if (!names.includes("python-precompiled")) {
+  if (!names.includes(MAIN_LIST)) {
     throw new Error(`docs/python-precompiled.toml not found in ${docsDir}`);
   }
 
   // Read everything before writing anything, so a failure leaves no partial
   // set of lists behind.
   const buffers = new Map();
+  const missing = [];
   let next = 0;
   const worker = async () => {
     while (next < names.length) {
       const name = names[next++];
       const key = r2ObjectKey(name);
       const buffer = await r2.getObject(key);
-      if (!buffer) throw new Error(`R2 object ${key} not found`);
+      if (!buffer) {
+        if (name === MAIN_LIST) throw new Error(`R2 object ${key} not found`);
+        missing.push(name);
+        continue;
+      }
       if (!isGzip(buffer)) throw new Error(`R2 object ${key} is not gzip`);
       buffers.set(name, buffer);
     }
@@ -81,7 +91,7 @@ export async function fetchPythonPrecompiledAssets({
   for (const [name, buffer] of buffers) {
     writeFileSync(join(outputDir, `${name}.gz`), buffer);
   }
-  return { written: [...buffers.keys()].sort() };
+  return { written: [...buffers.keys()].sort(), missing: missing.sort() };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
@@ -101,8 +111,13 @@ if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
     bucket: process.env.PYTHON_PRECOMPILED_R2_BUCKET || DEFAULT_BUCKET,
   });
   fetchPythonPrecompiledAssets({ r2, ...(outputDir ? { outputDir } : {}) })
-    .then(({ written }) => {
+    .then(({ written, missing }) => {
       console.log(`Wrote ${written.length} python-precompiled .gz assets`);
+      for (const name of missing) {
+        console.warn(
+          `::warning::R2 has no tools/${name}.gz yet; /data/${name}.gz is not published by this deploy`,
+        );
+      }
     })
     .catch((error) => {
       console.error(error);
