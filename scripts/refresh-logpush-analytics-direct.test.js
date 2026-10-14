@@ -371,4 +371,19 @@ describe("refresh-logpush-analytics-direct", () => {
       { date: "2026-10-11", mau: 3, mauDaysCovered: 2 },
     ]);
   });
+
+  it("keeps a day's stored MAU when refreshing it with fewer user sets", async () => {
+    const r2 = fakeR2({
+      "http_requests/jdx.dev/20261013/20261013T000000Z_20261013T120000Z_a.log.gz":
+        gzipSync(line({})),
+    });
+    const writes = fakeD1({ mauRows: { "2026-10-13": { days_covered: 5 } } });
+    const result = await refreshDate(config(r2), "2026-10-13", new Map());
+    assert.equal(result.mauDaysCovered, 1);
+    const inserts = writes
+      .filter(({ sql }) => sql.startsWith("INSERT OR REPLACE INTO"))
+      .map(({ sql }) => sql.split(" ")[4]);
+    assert.ok(inserts.includes("logpush_daily_dau"));
+    assert.ok(!inserts.includes("logpush_daily_mau"));
+  });
 });

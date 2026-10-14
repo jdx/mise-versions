@@ -224,6 +224,35 @@ export async function trailingMau(date, loadSet) {
   return { mau: unionSize(sets), daysCovered: sets.length };
 }
 
+// Write a day's MAU row unless the stored row was computed from more user sets.
+// A window only gains sets over time (a backfill adds one); fewer than before
+// means files went missing, and a rewrite would replace a complete count with
+// a partial one, so the stored row is kept. Dry runs write nothing and may
+// have no D1 token, so they skip the check too. Returns whether the row was
+// (or, in a dry run, would be) written.
+async function writeMau(config, date, mau, updatedAt) {
+  if (config.dryRun) return true;
+  const [existing] = await queryD1(
+    config,
+    "SELECT days_covered FROM logpush_daily_mau WHERE date = ?",
+    [date],
+    "logpush_daily_mau read",
+  );
+  if (existing && mau.daysCovered < Number(existing.days_covered)) {
+    console.warn(
+      `${date}: keeping stored MAU (${existing.days_covered} days covered); only ${mau.daysCovered} user sets are available now`,
+    );
+    return false;
+  }
+  await batchUpsert(
+    config,
+    "logpush_daily_mau",
+    ["date", "mau", "days_covered", "updated_at"],
+    [[date, mau.mau, mau.daysCovered, updatedAt]],
+  );
+  return true;
+}
+
 // Each day's user set feeds the MAU of the 29 days after it, so refreshing a
 // day (a backfill, or a repaired day) also changes those days' MAU. The
 // completed days after the refreshed ones, up to `lastDate`, that have a user
@@ -255,32 +284,7 @@ export async function recomputeLaterMau(
     const mau = await trailingMau(date, (day) =>
       loadUserSet(config, day, userSets),
     );
-    // A day's window can only gain user sets over time (a backfill adds one).
-    // Fewer than the stored row saw means files went missing, so a rewrite
-    // would replace a complete count with a partial one; keep the row.
-    // A dry run writes nothing and may have no D1 token, so it skips this.
-    const [existing] = config.dryRun
-      ? []
-      : await queryD1(
-          config,
-          "SELECT days_covered FROM logpush_daily_mau WHERE date = ?",
-          [date],
-          "logpush_daily_mau read",
-        );
-    if (existing && mau.daysCovered < Number(existing.days_covered)) {
-      console.warn(
-        `${date}: keeping stored MAU (${existing.days_covered} days covered); only ${mau.daysCovered} user sets are available now`,
-      );
-      continue;
-    }
-    if (!config.dryRun) {
-      await batchUpsert(
-        config,
-        "logpush_daily_mau",
-        ["date", "mau", "days_covered", "updated_at"],
-        [[date, mau.mau, mau.daysCovered, updatedAt]],
-      );
-    }
+    if (!(await writeMau(config, date, mau, updatedAt))) continue;
     results.push({ date, mau: mau.mau, mauDaysCovered: mau.daysCovered });
   }
   if (results.length > 0) {
@@ -328,12 +332,7 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
       ],
     ],
   );
-  await batchUpsert(
-    config,
-    "logpush_daily_mau",
-    ["date", "mau", "days_covered", "updated_at"],
-    [[date, mau.mau, mau.daysCovered, updatedAt]],
-  );
+  await writeMau(config, date, mau, updatedAt);
 
   // logpush_daily_stats marks a day's download tables as complete: drop it
   // before rewriting them and write it back only once all are refilled, so a
