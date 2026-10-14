@@ -173,7 +173,11 @@ export async function readThroughMemo<T>(
       return (await existing).value;
     } catch {
       // The shared load failed, possibly for a reason specific to the caller
-      // that started it (such as its rate limit); try on our own.
+      // that started it (such as its rate limit), so it is retried once. The
+      // first waiter to see the failure starts the retry below; the others
+      // join it rather than each calling `load` again.
+      const retry = pending.get(key) as Promise<MemoLoad<T>> | undefined;
+      if (retry && retry !== existing) return (await retry).value;
     }
   }
 

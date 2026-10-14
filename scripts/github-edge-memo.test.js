@@ -154,6 +154,37 @@ test("read-through memo shares one load and does not memoize failures", () => {
       "ok",
     );
 
+    // When a shared load fails, its waiters retry it once between them
+    // instead of each calling load again.
+    let flakyLoads = 0;
+    let releaseFlaky;
+    const flakyGate = new Promise((resolve) => (releaseFlaky = resolve));
+    const flaky = async () => {
+      flakyLoads++;
+      if (flakyLoads === 1) {
+        await flakyGate;
+        throw new Error("rate limited");
+      }
+      return { value: "retried", expiresAt: Date.now() + 60_000 };
+    };
+    const callers = [1, 2, 3, 4].map(() =>
+      readThroughMemo(scope, "flaky", flaky).then(
+        (value) => ({ value }),
+        (error) => ({ error: error.message }),
+      ),
+    );
+    // Let every caller find the in-flight load before it fails.
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    releaseFlaky();
+    const outcomes = await Promise.all(callers);
+    assert.equal(flakyLoads, 2);
+    assert.deepEqual(outcomes[0], { error: "rate limited" });
+    assert.deepEqual(outcomes.slice(1), [
+      { value: "retried" },
+      { value: "retried" },
+      { value: "retried" },
+    ]);
+
     // An already-expired load is returned but not memoized.
     let expiredLoads = 0;
     const expired = async () => {
