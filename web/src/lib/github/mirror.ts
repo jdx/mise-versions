@@ -940,6 +940,10 @@ async function fetchGitHubTagList(
   token: TokenRecord | null,
 ): Promise<GitHubTagListPage> {
   assertValidRepo(owner, repo);
+  // Dates need GraphQL, which refuses anonymous requests. Fail before the
+  // REST call too, so an empty pool doesn't spend the shared anonymous limit
+  // on a page that can't be completed.
+  if (dates && !token) throw noGraphQLTokenError();
   const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${TAG_LIST_PER_PAGE}&page=${page}`,
     token,
@@ -990,6 +994,14 @@ async function fetchGitHubTagList(
 
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
+function noGraphQLTokenError(): GitHubError {
+  return new GitHubError(
+    503,
+    "No GitHub token for GraphQL commit dates",
+    new Headers(),
+  );
+}
+
 interface GitHubCommitDatesResponse {
   data?: {
     repository?: Record<string, { committedDate?: unknown } | null> | null;
@@ -1010,13 +1022,7 @@ async function fetchGitHubCommitDates(
   token: TokenRecord | null,
 ): Promise<Map<string, string>> {
   // GitHub's GraphQL API refuses anonymous requests.
-  if (!token) {
-    throw new GitHubError(
-      503,
-      "No GitHub token for GraphQL commit dates",
-      new Headers(),
-    );
-  }
+  if (!token) throw noGraphQLTokenError();
   const unique = [...new Set(shas)];
   if (unique.some((sha) => !/^[0-9a-f]{40}([0-9a-f]{24})?$/.test(sha))) {
     throw new GitHubError(
