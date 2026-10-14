@@ -36,7 +36,20 @@ const PARSE_BUDGET_BYTES = 24 * 1024 * 1024;
 // open at `deadlineMs` are cancelled, keeping the pages before the first
 // unfinished one. Both must fit a background refresh's 30s and a client's
 // patience; openai/codex pages take about 8s each.
-const crawlTiming = { budgetMs: 20 * 1000, deadlineMs: 25 * 1000 };
+const crawlTiming = {
+  budgetMs: 20 * 1000,
+  deadlineMs: 25 * 1000,
+  coldWaitMs: 1500,
+};
+// A crawl starts with the newest PROBE_PER_PAGE entries. That read is small
+// (cli/cli: 0.4s and 0.8 MB, where a page of 100 is 2.8s and 3.8 MB), and its
+// `rel="last"` link gives the exact number of pages, so all of them can be
+// read at once instead of after page 1. A second probe at the end checks the
+// pages join up. A cold request waits `coldWaitMs` for the whole list, then
+// is answered with the probe's entries (truncated) while the crawl finishes
+// in the background: mise's prefer-offline commands (shims, `mise x`) give a
+// lookup one 3s attempt.
+const PROBE_PER_PAGE = 20;
 
 // Page 1 (where new releases and tags land) is re-read after a quarter of
 // how long the list has been unchanged, within these bounds: every build for a
@@ -269,6 +282,9 @@ export async function getCachedGitHubVersions(
     });
     if (!success) throw new VersionsCrawlLimited();
   }
+  if (!stored && waitUntil) {
+    return coldVersions(env, owner, repo, cacheKey, options, waitUntil);
+  }
   try {
     return respond(await refresh(), options, "fresh");
   } catch (error) {
@@ -279,6 +295,81 @@ export async function getCachedGitHubVersions(
   }
 }
 
+/**
+ * A list nobody has asked for yet. Waits `coldWaitMs` for the whole list;
+ * if the crawl takes longer, answers with the longest newest-first prefix it
+ * has read so far (page 1 if it is in, else the probe) as a truncated list,
+ * briefly cached, and lets the crawl finish and store the whole list in the
+ * background.
+ */
+async function coldVersions(
+  env: Env,
+  owner: string,
+  repo: string,
+  cacheKey: string,
+  options: VersionsOptions,
+  waitUntil: (promise: Promise<unknown>) => void,
+): Promise<VersionsResult> {
+  let best: GitHubListPage<StoredItem> | undefined;
+  let prefixed: () => void = () => {};
+  const prefix = new Promise<void>((resolve) => {
+    prefixed = resolve;
+  });
+  const refreshing = refreshVersions(
+    env,
+    owner,
+    repo,
+    cacheKey,
+    options,
+    null,
+    "full",
+    {
+      onPrefix: (page) => {
+        if (!best || page.items.length > best.items.length) best = page;
+        prefixed();
+      },
+    },
+  );
+  const settled = refreshing.then(
+    (entry) => ({ entry }) as const,
+    (error: unknown) => ({ error }) as const,
+  );
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const waited = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), crawlTiming.coldWaitMs);
+  });
+  let first = await Promise.race([settled, waited]);
+  clearTimeout(timer);
+  if (first === null) {
+    const next = await Promise.race([
+      settled,
+      prefix.then(() => ({ page: best! }) as const),
+    ]);
+    if ("page" in next) {
+      waitUntil(
+        refreshing.catch((error) => {
+          console.warn(
+            `background GitHub versions crawl failed for ${owner}/${repo}:`,
+            error,
+          );
+        }),
+      );
+      const now = Date.now();
+      const partial: StoredVersions = {
+        head_at: now,
+        full_at: 0,
+        unchanged_since: now,
+        items: next.page.items,
+        truncated: next.page.hasNextPage,
+      };
+      return respond(partial, options, "refreshing");
+    }
+    first = next;
+  }
+  if ("error" in first) throw first.error;
+  return respond(first.entry, options, "fresh");
+}
+
 async function refreshVersions(
   env: Env,
   owner: string,
@@ -287,7 +378,17 @@ async function refreshVersions(
   { source, asset, generation }: VersionsOptions,
   stored: StoredVersions | null,
   step: "head" | "full" | "fresh",
-  { requireToken = false }: { requireToken?: boolean } = {},
+  {
+    requireToken = false,
+    onPrefix,
+  }: {
+    requireToken?: boolean;
+    /**
+     * Called with each newest-first page as soon as it is read (the probe,
+     * then page 1), for an answer that cannot wait for the whole list.
+     */
+    onPrefix?: (page: GitHubListPage<StoredItem>) => void;
+  } = {},
 ): Promise<StoredVersions> {
   const result = await withPoolToken(env, async (token) => {
     if (requireToken && !token) throw new NoPoolToken();
@@ -299,7 +400,10 @@ async function refreshVersions(
     );
     try {
       // A retry is only worth it while there is time to wait for it.
-      const fetchPage = (page: number) =>
+      const canRetry = () =>
+        !deadline.signal.aborted &&
+        Date.now() - startedAt < crawlTiming.budgetMs / 2;
+      const fetchPage = (page: number, perPage = PER_PAGE) =>
         fetchPageWithRetry(
           owner,
           repo,
@@ -308,17 +412,38 @@ async function refreshVersions(
           page,
           token,
           deadline.signal,
-          () =>
-            !deadline.signal.aborted &&
-            Date.now() - startedAt < crawlTiming.budgetMs / 2,
+          canRetry,
+          perPage,
         );
-      const head = await fetchPage(1);
-      // A page 1 with nothing after it is the whole list: a full crawl.
-      if (stored && step === "head" && head.hasNextPage) {
-        const merged = mergeHead(head, stored);
+      const reprobe = () => fetchPage(1, PROBE_PER_PAGE);
+      if (stored && step === "head") {
+        const probe = await reprobe();
+        onPrefix?.(probe);
+        // A probe with nothing after it is the whole list: a full crawl.
+        if (!probe.hasNextPage) {
+          return { items: probe.items, truncated: false, full: true };
+        }
+        const merged = mergeHead(probe, stored);
         if (merged) return { ...merged, full: false };
+        return await verifiedCrawl(probe, fetchPage, reprobe, startedAt);
       }
-      return await verifiedCrawl(head, fetchPage, startedAt);
+      // A full crawl needs page 1 unless the list has 20 entries or fewer,
+      // so read it alongside the probe: most lists fit on it, and a list that
+      // fits on one page is read in one request and needs no check.
+      const page1 = fetchPage(1);
+      page1.then(
+        (page) => onPrefix?.(page),
+        () => {},
+      );
+      let probe: GitHubListPage<StoredItem>;
+      try {
+        probe = await reprobe();
+      } catch (error) {
+        page1.catch(() => {});
+        throw error;
+      }
+      onPrefix?.(probe);
+      return await verifiedCrawl(probe, fetchPage, reprobe, startedAt, page1);
     } finally {
       clearTimeout(timer);
     }
@@ -517,26 +642,39 @@ function mergeHead(
  * A crawl whose pages are known to join up. Pages are read at slightly
  * different moments, so a release published (or deleted) above a page
  * boundary mid-crawl shifts the list between two reads and can drop an
- * entry. The common case is a new release at the top, so page 1 is read
- * again afterwards: if it moved, the crawl runs once more, and if it is
- * still moving only page 1 is kept, truncated, with the full crawl left due.
- * If page 1 cannot be read again (the deadline passed, or GitHub failed),
- * the pages read are kept as a truncated prefix, also with the full crawl
- * left due.
+ * entry. The probe is read again afterwards: if the newest entries or the
+ * number of entries changed, the crawl runs once more, and if the list is
+ * still moving only the new probe is kept, truncated, with the full crawl
+ * left due. If the probe cannot be read again (the deadline passed, or GitHub
+ * failed), the pages read are kept as a truncated prefix, also with the full
+ * crawl left due.
  */
 async function verifiedCrawl(
-  head: GitHubListPage<StoredItem>,
+  probe: GitHubListPage<StoredItem>,
   fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>,
+  reprobe: () => Promise<GitHubListPage<StoredItem>>,
   startedAt: number,
+  page1?: Promise<GitHubListPage<StoredItem>>,
 ): Promise<{ items: StoredItem[]; truncated: boolean; full: boolean }> {
-  let first = head;
-  let firstStartedAt = startedAt;
+  let current = probe;
+  let probedAt = startedAt;
   for (let attempt = 0; ; attempt++) {
-    const crawled = await crawl(first, fetchPage, firstStartedAt);
-    if (crawled.pages <= 1) return { ...crawled, full: true };
-    const verifyStartedAt = Date.now();
-    const verify = await fetchPage(1).catch(() => null);
-    if (verify && sameItems(verify.items, first.items)) {
+    if (!current.hasNextPage) {
+      page1?.catch(() => {});
+      return { items: current.items, truncated: false, full: true };
+    }
+    const crawled = await crawl(
+      current,
+      fetchPage,
+      probedAt,
+      attempt === 0 ? page1 : undefined,
+    );
+    // One page is one read: nothing can have shifted between pages.
+    if (crawled.pages === 1 && !crawled.truncated) {
+      return { items: crawled.items, truncated: false, full: true };
+    }
+    const verify = await reprobe().catch(() => null);
+    if (verify && sameProbe(verify, current)) {
       return { ...crawled, full: true };
     }
     if (
@@ -544,8 +682,8 @@ async function verifiedCrawl(
       attempt === 0 &&
       Date.now() - startedAt < crawlTiming.budgetMs
     ) {
-      first = verify;
-      firstStartedAt = verifyStartedAt;
+      current = verify;
+      probedAt = Date.now();
       continue;
     }
     // The check could not run (out of time, or GitHub failed): keep what was
@@ -555,28 +693,53 @@ async function verifiedCrawl(
   }
 }
 
-function sameItems(a: StoredItem[], b: StoredItem[]): boolean {
+/** The same newest entries, and the same number of pages of them. */
+function sameProbe(
+  a: GitHubListPage<StoredItem>,
+  b: GitHubListPage<StoredItem>,
+): boolean {
   return (
-    a.length === b.length &&
-    a.every((item, i) => itemKey(item) === itemKey(b[i]))
+    a.hasNextPage === b.hasNextPage &&
+    a.lastPage === b.lastPage &&
+    a.items.length === b.items.length &&
+    a.items.every((item, i) => itemKey(item) === itemKey(b.items[i]))
   );
 }
 
 /**
- * Every page up to VERSIONS_MAX_PAGES, in GitHub's order, or as many as fit
- * in crawlTiming.budgetMs.
+ * Every page of 100 up to VERSIONS_MAX_PAGES, in GitHub's order, or as many
+ * as fit in crawlTiming.budgetMs. `probe` is the newest PROBE_PER_PAGE
+ * entries, read at `probedAt`; its last-page link says how many pages there
+ * are and its size how big they are.
  */
 async function crawl(
-  first: GitHubListPage<StoredItem>,
+  probe: GitHubListPage<StoredItem>,
   fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>,
-  startedAt = Date.now(),
+  probedAt = Date.now(),
+  /** Page 1, if it is already being read. */
+  page1?: Promise<GitHubListPage<StoredItem>>,
 ): Promise<{ items: StoredItem[]; truncated: boolean; pages: number }> {
-  const pages = [first];
+  const pages: GitHubListPage<StoredItem>[] = [];
+  const known = Math.max(
+    1,
+    Math.min(
+      VERSIONS_MAX_PAGES,
+      Math.ceil(((probe.lastPage ?? 1) * PROBE_PER_PAGE) / PER_PAGE),
+    ),
+  );
+  const pageBytes = (probe.bytes || 0) * (PER_PAGE / PROBE_PER_PAGE);
+  const concurrency = Math.max(
+    1,
+    Math.min(
+      MAX_PAGE_CONCURRENCY,
+      Math.floor(PARSE_BUDGET_BYTES / Math.max(1, pageBytes)),
+    ),
+  );
   // Start another batch only if it should finish in time, judging by how
-  // long the last one (at first, page 1) took.
-  let lastBatchMs = Date.now() - startedAt;
+  // long the last one took.
+  let lastBatchMs = 0;
   const inBudget = () =>
-    Date.now() - startedAt + lastBatchMs <= crawlTiming.budgetMs;
+    Date.now() - probedAt + lastBatchMs <= crawlTiming.budgetMs;
   const timed = async <T>(batch: Promise<T>): Promise<T> => {
     const batchStart = Date.now();
     const result = await batch;
@@ -584,14 +747,17 @@ async function crawl(
     return result;
   };
   // A later page GitHub cannot serve ends the list there, as a truncated
-  // prefix; only answers such as a rate limit or a 404 fail the crawl.
+  // prefix; only answers such as a rate limit or a 404 fail the crawl. Page 1
+  // has nothing before it, so its failure fails the crawl.
   let failed = false;
   const tryPage = (page: number) =>
-    fetchPage(page).catch((error) => {
-      if (!transientError(error)) throw error;
-      console.warn(`GitHub list page ${page} failed; truncating:`, error);
-      return null;
-    });
+    page === 1
+      ? (page1 ?? fetchPage(page))
+      : fetchPage(page).catch((error) => {
+          if (!transientError(error)) throw error;
+          console.warn(`GitHub list page ${page} failed; truncating:`, error);
+          return null;
+        });
   const add = (results: (GitHubListPage<StoredItem> | null)[]) => {
     for (const result of results) {
       if (!result) {
@@ -601,29 +767,13 @@ async function crawl(
       pages.push(result);
     }
   };
-  if (first.hasNextPage) {
-    // GitHub links the last page, so the rest can be read in parallel.
-    const known = Math.min(first.lastPage ?? 1, VERSIONS_MAX_PAGES);
-    const rest = Array.from(
-      { length: Math.max(0, known - 1) },
-      (_, i) => i + 2,
-    );
-    const concurrency = Math.max(
-      1,
-      Math.min(
-        MAX_PAGE_CONCURRENCY,
-        Math.floor(PARSE_BUDGET_BYTES / Math.max(1, first.bytes || 0)),
-      ),
-    );
-    for (
-      let i = 0;
-      i < rest.length && !failed && inBudget();
-      i += concurrency
-    ) {
-      add(
-        await timed(Promise.all(rest.slice(i, i + concurrency).map(tryPage))),
-      );
-    }
+  const all = Array.from({ length: known }, (_, i) => i + 1);
+  for (
+    let i = 0;
+    i < all.length && !failed && (i === 0 || inBudget());
+    i += concurrency
+  ) {
+    add(await timed(Promise.all(all.slice(i, i + concurrency).map(tryPage))));
   }
   // The list may have grown while it was read, or GitHub sent no last link.
   while (
@@ -660,14 +810,17 @@ async function fetchPageWithRetry(
   token: TokenRecord | null,
   signal: AbortSignal | undefined,
   canRetry: () => boolean = () => true,
+  perPage = PER_PAGE,
 ): Promise<GitHubListPage<StoredItem>> {
+  const read = () =>
+    fetchPage(owner, repo, source, asset, page, token, signal, perPage);
   try {
-    return await fetchPage(owner, repo, source, asset, page, token, signal);
+    return await read();
   } catch (error) {
     // GitHub times out on some pages of releases with many assets
     // (openai/codex) and answers the same request on a retry.
     if (!transientError(error) || !canRetry()) throw error;
-    return fetchPage(owner, repo, source, asset, page, token, signal);
+    return read();
   }
 }
 
@@ -685,6 +838,7 @@ async function fetchPage(
   page: number,
   token: TokenRecord | null,
   signal?: AbortSignal,
+  perPage = PER_PAGE,
 ): Promise<GitHubListPage<StoredItem>> {
   if (source === "tags") {
     const result = await fetchGitHubTagPage(
@@ -694,10 +848,18 @@ async function fetchPage(
       true,
       token,
       signal,
+      perPage,
     );
     return { ...result, items: result.items.map(compactTag) };
   }
-  const result = await fetchGitHubReleasePage(owner, repo, page, token, signal);
+  const result = await fetchGitHubReleasePage(
+    owner,
+    repo,
+    page,
+    token,
+    signal,
+    perPage,
+  );
   return {
     ...result,
     items: result.items.map((release) => compactRelease(release, asset)),
@@ -898,7 +1060,11 @@ export async function recordVersionsDemand(
 export const __testing = {
   crawl,
   /** Shorten the crawl's time limits for a test. */
-  setCrawlTiming(timing: { budgetMs?: number; deadlineMs?: number }) {
+  setCrawlTiming(timing: {
+    budgetMs?: number;
+    deadlineMs?: number;
+    coldWaitMs?: number;
+  }) {
     Object.assign(crawlTiming, timing);
   },
   mergeHead,

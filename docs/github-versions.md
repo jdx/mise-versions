@@ -115,6 +115,13 @@ This happens when:
   and takes GitHub around 8 s, so the server keeps 100–200 releases. It can also
   happen if GitHub fails part-way through a crawl, or a page is still open at
   the crawl's 25-second deadline, or
+- nobody had asked for the list before, and reading it takes more than about
+  1.5 s (lists of a few hundred entries or more). The first request is then
+  answered with the newest entries already read (100, or 20 if page 1 is still
+  loading), while the whole list is read and stored in the background. Requests
+  after that, from a minute later at the same location, get the whole list.
+  mise's prefer-offline commands give a lookup a single 3 s attempt, which a
+  full crawl of a big repository can exceed, or
 - the list kept changing while it was read. Pages are read at slightly
   different moments, so a release published mid-crawl could otherwise drop an
   entry at a page boundary. The server reads page 1 again after a crawl and

@@ -948,17 +948,18 @@ async function fetchGitHubReleaseList(
   };
 }
 
-/** One page (100) of a repository's releases, drafts removed. */
+/** One page (100 by default) of a repository's releases, drafts removed. */
 export async function fetchGitHubReleasePage(
   owner: string,
   repo: string,
   page: number,
   token: TokenRecord | null,
   signal?: AbortSignal,
+  perPage = RELEASE_LIST_PER_PAGE,
 ): Promise<GitHubListPage<GitHubListedRelease>> {
   assertValidRepo(owner, repo);
   const response = await fetchGitHubJsonResponse(
-    `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${RELEASE_LIST_PER_PAGE}&page=${page}`,
+    `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${perPage}&page=${page}`,
     token,
     signal,
   );
@@ -1026,7 +1027,7 @@ async function fetchGitHubTagList(
 }
 
 /**
- * One page (100) of a repository's tags, in GitHub's order. With `dates`,
+ * One page (100 by default) of a repository's tags, in GitHub's order. With `dates`,
  * each tag also carries its commit's committer date (one GraphQL query).
  */
 export async function fetchGitHubTagPage(
@@ -1036,6 +1037,7 @@ export async function fetchGitHubTagPage(
   dates: boolean,
   token: TokenRecord | null,
   signal?: AbortSignal,
+  perPage = TAG_LIST_PER_PAGE,
 ): Promise<GitHubListPage<GitHubTag>> {
   assertValidRepo(owner, repo);
   // Dates need GraphQL, which refuses anonymous requests. Fail before the
@@ -1043,7 +1045,7 @@ export async function fetchGitHubTagPage(
   // on a page that can't be completed.
   if (dates && !token) throw noGraphQLTokenError();
   const response = await fetchGitHubJsonResponse(
-    `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${TAG_LIST_PER_PAGE}&page=${page}`,
+    `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${perPage}&page=${page}`,
     token,
     signal,
   );
