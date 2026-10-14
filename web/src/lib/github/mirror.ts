@@ -927,6 +927,29 @@ export interface GitHubListPage<T> {
   lastPage: number | null;
   /** The size of GitHub's JSON for this page. */
   bytes: number;
+  /** GitHub's ETag for this page, for a conditional request next time. */
+  etag?: string | null;
+  /**
+   * GitHub answered 304 to `ifNoneMatch`: the page is as it was, and
+   * nothing else is filled in. A 304 to an authenticated request does not
+   * count against the rate limit.
+   */
+  notModified?: boolean;
+}
+
+function notModifiedPage<T>(
+  response: Response,
+  etag: string,
+): GitHubListPage<T> {
+  void response.body?.cancel();
+  return {
+    items: [],
+    hasNextPage: false,
+    lastPage: null,
+    bytes: 0,
+    etag,
+    notModified: true,
+  };
 }
 
 async function fetchGitHubReleaseList(
@@ -956,13 +979,18 @@ export async function fetchGitHubReleasePage(
   token: TokenRecord | null,
   signal?: AbortSignal,
   perPage = RELEASE_LIST_PER_PAGE,
+  ifNoneMatch?: string,
 ): Promise<GitHubListPage<GitHubListedRelease>> {
   assertValidRepo(owner, repo);
   const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${perPage}&page=${page}`,
     token,
     signal,
+    ifNoneMatch,
   );
+  if (ifNoneMatch && response.status === 304) {
+    return notModifiedPage(response, ifNoneMatch);
+  }
   const link = response.headers.get("link");
   const { data, bytes } =
     await readSizedJsonResponse<
@@ -997,6 +1025,7 @@ export async function fetchGitHubReleasePage(
     hasNextPage: hasNextLink(link),
     lastPage: lastLinkPage(link),
     bytes,
+    etag: response.headers.get("etag"),
   };
 }
 
@@ -1038,6 +1067,7 @@ export async function fetchGitHubTagPage(
   token: TokenRecord | null,
   signal?: AbortSignal,
   perPage = TAG_LIST_PER_PAGE,
+  ifNoneMatch?: string,
 ): Promise<GitHubListPage<GitHubTag>> {
   assertValidRepo(owner, repo);
   // Dates need GraphQL, which refuses anonymous requests. Fail before the
@@ -1048,7 +1078,11 @@ export async function fetchGitHubTagPage(
     `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${perPage}&page=${page}`,
     token,
     signal,
+    ifNoneMatch,
   );
+  if (ifNoneMatch && response.status === 304) {
+    return notModifiedPage(response, ifNoneMatch);
+  }
   const link = response.headers.get("link");
   const { data, bytes } =
     await readSizedJsonResponse<GitHubRestTag[]>(response);
@@ -1093,6 +1127,7 @@ export async function fetchGitHubTagPage(
     hasNextPage: hasNextLink(link),
     lastPage: lastLinkPage(link),
     bytes,
+    etag: response.headers.get("etag"),
   };
 }
 
@@ -1312,11 +1347,14 @@ async function fetchGitHubJsonResponse(
   url: string,
   token: TokenRecord | null,
   signal?: AbortSignal,
+  /** An ETag from an earlier answer; GitHub may then answer 304. */
+  ifNoneMatch?: string,
 ): Promise<Response> {
   const maxRedirects = 3;
   let currentUrl = url;
   for (let redirectCount = 0; ; redirectCount++) {
     const headers = githubJsonHeaders(currentUrl, token);
+    if (ifNoneMatch) headers["If-None-Match"] = ifNoneMatch;
     const response = await fetch(currentUrl, {
       headers,
       redirect: "manual",
@@ -1346,6 +1384,7 @@ async function fetchGitHubJsonResponse(
       continue;
     }
 
+    if (ifNoneMatch && response.status === 304) return response;
     return validateGitHubJsonResponse(response, currentUrl);
   }
 }

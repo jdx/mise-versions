@@ -4,29 +4,42 @@
  * static assets, so /data/github/{owner}/{repo}/releases.json (and tags.json,
  * assets/{asset}/releases.json) is served without invoking the Worker.
  *
- * The Worker keeps each list in KV: it crawls one on the first request
- * (which misses the static assets and falls through to the Worker) and marks
- * it as demanded. Here, it pages through those lists via
- * /api/admin/github/versions/bake, which refreshes the ones that are due
- * (repos that just released every build, quiet ones a few times a day),
- * re-checks that each repo may still be served, and drops lists nobody has
- * asked for in 30 days. The client contract is docs/github-versions.md.
+ * The Worker's refresher (a cron, see web/src/lib/github/versions.ts) keeps
+ * the lists fresh in KV, checks their repos' access, and marks every list
+ * whose content or bake status changes. This script only copies: it keeps the
+ * baked tree between deploys (the deploy workflow caches BAKE_CACHE_DIR) and
+ * asks /api/admin/github/versions/changes for the lists changed since the
+ * last bake, so a deploy reads KV only for what changed and makes no GitHub
+ * requests. Without a cached tree it bakes every list.
  *
- * Run after the web build. A failure bakes what it has and exits 0: a list
- * that is not baked is still answered by the Worker.
+ * A failure bakes what it has and exits 0: a list that is not baked is still
+ * answered by the Worker.
  *
- * Usage: node scripts/bake-github-versions.js [assetsDir]
- *   assetsDir defaults to web/dist/client; files go under its data/github/.
+ * Usage:
+ *   node scripts/bake-github-versions.js [assetsDir]
+ *     Update the cached tree and copy it under assetsDir/data/github/
+ *     (default web/dist/client). Run after the web build.
+ *   node scripts/bake-github-versions.js --ack
+ *     After the deploy: tell the Worker what was published, so its refresher
+ *     dispatches deploys only for later changes.
  *
  * Environment:
- *   API_SECRET               Worker API secret (required, else nothing is baked)
- *   BAKE_API_URL             Defaults to https://mise-versions.jdx.dev
- *   BAKE_REFRESH_SECONDS     Stop asking for refreshes after this long (180)
- *   BAKE_DEADLINE_SECONDS    Stop paging after this long (300)
- *   BAKE_MAX_FILES           Cap on baked files (see MAX_ASSET_FILES)
+ *   API_SECRET             Worker API secret (required, else nothing is baked)
+ *   BAKE_API_URL           Defaults to https://mise-versions.jdx.dev
+ *   BAKE_CACHE_DIR         Defaults to .cache/github-versions
+ *   BAKE_DEADLINE_SECONDS  Stop asking after this long (120)
+ *   BAKE_MAX_FILES         Cap on baked files (see MAX_ASSET_FILES)
  */
 
-import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -34,9 +47,14 @@ const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPO_ROOT = join(dirname(SCRIPT_PATH), "..");
 const DEFAULT_API_URL = "https://mise-versions.jdx.dev";
 // Workers Paid allows 100,000 static asset files per version. Leave room for
-// everything else the build emits (about 1,100 files on 2026-10-14).
+// everything else the build emits (about 1,200 files on 2026-10-14).
 export const MAX_ASSET_FILES = 95_000;
-const PAGE_LIMIT = 100;
+const PAGE_LIMIT = 200;
+const MANIFEST_VERSION = 1;
+// The changes listing comes from KV list(), whose metadata can trail a write
+// by up to a minute. Ask again from this long before the last watermark:
+// rewriting a few unchanged lists is harmless.
+export const SINCE_MARGIN_MS = 10 * 60 * 1000;
 const VALID_PATH =
   /^github\/[a-z0-9_.-]+\/[a-z0-9_.-]+\/(releases\.json|tags\.json|assets\/[A-Za-z0-9._+@~-]+\/releases\.json)$/;
 
@@ -48,154 +66,372 @@ export function countFiles(dir) {
   return count;
 }
 
+/** The cached tree's manifest, or null when there is no usable cache. */
+export function readManifest(cacheDir) {
+  try {
+    const manifest = JSON.parse(
+      readFileSync(join(cacheDir, "manifest.json"), "utf8"),
+    );
+    if (
+      manifest?.version !== MANIFEST_VERSION ||
+      typeof manifest.watermark !== "number" ||
+      typeof manifest.files !== "object" ||
+      !existsSync(join(cacheDir, "tree"))
+    ) {
+      return null;
+    }
+    return manifest;
+  } catch {
+    return null;
+  }
+}
+
+function writeManifest(cacheDir, manifest) {
+  mkdirSync(cacheDir, { recursive: true });
+  writeFileSync(
+    join(cacheDir, "manifest.json"),
+    JSON.stringify({ version: MANIFEST_VERSION, ...manifest }),
+  );
+}
+
+async function post(
+  fetchImpl,
+  url,
+  secret,
+  body,
+  remainingMs,
+  log,
+  label,
+  attempts = 2,
+) {
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const remaining = remainingMs();
+    if (remaining <= 0) return { error: "deadline" };
+    // A plain timer rather than AbortSignal.timeout(), whose timer does not
+    // keep Node's event loop alive.
+    const deadline = new AbortController();
+    const timer = setTimeout(
+      () => deadline.abort(new Error("bake deadline")),
+      remaining,
+    );
+    try {
+      const response = await fetchImpl(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${secret}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+        signal: deadline.signal,
+      });
+      if (response.status === 404) return { notFound: true };
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+      }
+      return { page: await response.json() };
+    } catch (error) {
+      log.warn(`${label} attempt ${attempt}: ${error}`);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  return { error: "failed" };
+}
+
 /**
- * Collect every bakeable file from the Worker. Never throws on a failed
- * page: it stops and returns what it has.
+ * Every page of /changes since `since` (all baked lists without it).
+ * `watermark` is the Worker's clock at the first page. `complete` is false
+ * when a page could not be read; `notFound` when the deployed Worker has no
+ * such endpoint.
  */
-export async function collectBakedFiles({
+export async function collectChanges({
   apiUrl = DEFAULT_API_URL,
   secret,
+  since,
   fetchImpl = fetch,
-  refreshMs = 180_000,
-  deadlineMs = 300_000,
+  deadlineMs = 120_000,
   now = () => Date.now(),
   log = console,
 }) {
   const started = now();
+  const remainingMs = () => deadlineMs - (now() - started);
   const files = [];
-  const totals = {
-    pages: 0,
-    listed: 0,
-    unrequested: 0,
-    denied: 0,
-    refreshed: 0,
-    deferred: 0,
-    failed: 0,
-  };
+  const deleted = [];
+  let watermark;
   let cursor;
-  let outOfTokens = false;
-  let complete = false;
-  while (now() - started < deadlineMs) {
-    const refresh = !outOfTokens && now() - started < refreshMs;
-    let page;
-    for (let attempt = 1; attempt <= 2 && !page; attempt++) {
-      // A stalled request or a slow body must not hold up the deploy: both
-      // are cancelled when the deadline passes.
-      const remaining = deadlineMs - (now() - started);
-      if (remaining <= 0) break;
-      try {
-        const response = await fetchImpl(
-          `${apiUrl}/api/admin/github/versions/bake`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${secret}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ cursor, limit: PAGE_LIMIT, refresh }),
-            signal: AbortSignal.timeout(remaining),
-          },
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${await response.text()}`);
-        }
-        page = await response.json();
-      } catch (error) {
-        log.warn(`bake page ${totals.pages + 1} attempt ${attempt}: ${error}`);
-      }
+  let pages = 0;
+  for (;;) {
+    const result = await post(
+      fetchImpl,
+      `${apiUrl}/api/admin/github/versions/changes`,
+      secret,
+      { since, cursor, limit: PAGE_LIMIT },
+      remainingMs,
+      log,
+      `changes page ${pages + 1}`,
+    );
+    if (result.notFound && pages === 0) {
+      return {
+        files,
+        deleted,
+        watermark,
+        pages,
+        complete: false,
+        notFound: true,
+      };
     }
-    if (!page) break;
-    totals.pages++;
-    for (const key of Object.keys(page.stats ?? {})) {
-      if (key in totals) totals[key] += page.stats[key];
+    if (!result.page) {
+      return { files, deleted, watermark, pages, complete: false };
     }
-    files.push(...(page.files ?? []));
-    outOfTokens ||= page.outOfTokens === true;
-    cursor = page.cursor;
-    if (!cursor) {
-      complete = true;
-      break;
-    }
+    pages++;
+    watermark ??= result.page.now;
+    files.push(...(result.page.files ?? []));
+    deleted.push(...(result.page.deleted ?? []));
+    cursor = result.page.cursor;
+    if (!cursor) return { files, deleted, watermark, pages, complete: true };
   }
-  return { files, totals, complete, outOfTokens };
 }
 
 /**
- * Write the most recently requested files, up to `maxFiles`, under
- * `assetsDir/data/`. Returns how many were written and dropped.
+ * Every list from the endpoint that came before /changes, for the one deploy
+ * whose Worker predates it (the deploy that ships this script runs it
+ * against the previous Worker).
  */
-export function writeBakedFiles(files, { assetsDir, maxFiles }) {
-  const dataDir = resolve(assetsDir, "data");
-  const valid = files.filter((file) => VALID_PATH.test(file.path));
-  const unique = new Map();
-  for (const file of valid) unique.set(file.path, file);
-  const chosen = [...unique.values()]
-    .sort((a, b) => b.requested_at - a.requested_at)
-    .slice(0, Math.max(0, maxFiles));
-  for (const file of chosen) {
-    const target = resolve(dataDir, file.path);
-    if (!target.startsWith(dataDir + sep)) continue;
+export async function collectLegacy({
+  apiUrl = DEFAULT_API_URL,
+  secret,
+  fetchImpl = fetch,
+  deadlineMs = 120_000,
+  now = () => Date.now(),
+  log = console,
+}) {
+  const started = now();
+  const remainingMs = () => deadlineMs - (now() - started);
+  const files = [];
+  let cursor;
+  for (let pages = 1; ; pages++) {
+    const result = await post(
+      fetchImpl,
+      `${apiUrl}/api/admin/github/versions/bake`,
+      secret,
+      { cursor, limit: 100, refresh: false },
+      remainingMs,
+      log,
+      `legacy bake page ${pages}`,
+    );
+    if (!result.page) return { files, complete: false };
+    files.push(...(result.page.files ?? []));
+    cursor = result.page.cursor;
+    if (!cursor) return { files, complete: true };
+  }
+}
+
+function treePath(cacheDir, path) {
+  const tree = resolve(cacheDir, "tree");
+  const target = resolve(tree, path);
+  return VALID_PATH.test(path) && target.startsWith(tree + sep) ? target : null;
+}
+
+/**
+ * Apply files and deletions to the cached tree (emptied first for a full
+ * bake). Returns the manifest's file index, path to requested_at.
+ */
+export function applyChanges(
+  cacheDir,
+  { files, deleted = [], full, index = {} },
+) {
+  if (full) {
+    rmSync(join(cacheDir, "tree"), { recursive: true, force: true });
+    index = {};
+  }
+  mkdirSync(join(cacheDir, "tree"), { recursive: true });
+  const next = { ...index };
+  let written = 0;
+  let removed = 0;
+  let invalid = 0;
+  for (const path of deleted) {
+    const target = treePath(cacheDir, path);
+    if (!target) {
+      invalid++;
+      continue;
+    }
+    if (existsSync(target)) {
+      rmSync(target, { force: true });
+      removed++;
+    }
+    delete next[path];
+  }
+  for (const file of files) {
+    const target = treePath(cacheDir, file.path);
+    if (!target) {
+      invalid++;
+      continue;
+    }
     mkdirSync(dirname(target), { recursive: true });
     writeFileSync(target, file.body);
+    next[file.path] = file.requested_at;
+    written++;
   }
+  return { index: next, written, removed, invalid };
+}
+
+/**
+ * Copy the most recently requested files of the tree, up to `maxFiles`,
+ * under `assetsDir/data/`.
+ */
+export function publishTree(cacheDir, { assetsDir, index, maxFiles }) {
+  const dataDir = resolve(assetsDir, "data");
+  const chosen = Object.entries(index)
+    .filter(([path]) => treePath(cacheDir, path))
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, Math.max(0, maxFiles));
+  let published = 0;
+  for (const [path] of chosen) {
+    const source = treePath(cacheDir, path);
+    if (!existsSync(source)) continue;
+    const target = resolve(dataDir, path);
+    mkdirSync(dirname(target), { recursive: true });
+    cpSync(source, target);
+    published++;
+  }
+  return { published, overCap: Object.keys(index).length - chosen.length };
+}
+
+/** Update the cached tree from the Worker and publish it into the build. */
+export async function bake({
+  assetsDir,
+  cacheDir,
+  maxFiles = MAX_ASSET_FILES,
+  ...options
+}) {
+  const started = Date.now();
+  const manifest = readManifest(cacheDir);
+  const since =
+    manifest && manifest.watermark > 0
+      ? manifest.watermark - SINCE_MARGIN_MS
+      : undefined;
+  let index = manifest?.files ?? {};
+  let watermark = manifest?.watermark ?? 0;
+  let mode = since === undefined ? "full" : "incremental";
+  let stats;
+  const changes = await collectChanges({ ...options, since });
+  if (changes.notFound) {
+    // The deployed Worker predates /changes. Bake everything it has, and
+    // leave the watermark at 0 so the next deploy bakes in full from the new
+    // endpoint.
+    mode = "legacy";
+    const legacy = await collectLegacy(options);
+    if (legacy.files.length > 0 || legacy.complete) {
+      stats = applyChanges(cacheDir, { files: legacy.files, full: true });
+      index = stats.index;
+    }
+    watermark = 0;
+  } else {
+    stats = applyChanges(cacheDir, {
+      files: changes.files,
+      deleted: changes.deleted,
+      full: since === undefined && changes.pages > 0,
+      index,
+    });
+    index = stats.index;
+    // A bake that stopped part-way keeps its old watermark (a full one, 0),
+    // so the next deploy asks again for everything after it.
+    if (changes.complete) watermark = changes.watermark;
+    else if (since === undefined) watermark = 0;
+  }
+  writeManifest(cacheDir, { watermark, files: index });
+  const published = publishTree(cacheDir, { assetsDir, index, maxFiles });
   return {
-    written: chosen.length,
-    invalid: files.length - valid.length,
-    overCap: unique.size - chosen.length,
+    mode,
+    complete: mode === "legacy" ? undefined : changes.complete,
+    since,
+    watermark,
+    written: stats?.written ?? 0,
+    removed: stats?.removed ?? 0,
+    lists: Object.keys(index).length,
+    ...published,
+    ms: Date.now() - started,
   };
 }
 
+/** Tell the Worker that the cached watermark was deployed. */
+export async function ack({
+  apiUrl = DEFAULT_API_URL,
+  secret,
+  cacheDir,
+  fetchImpl = fetch,
+  log = console,
+}) {
+  const manifest = readManifest(cacheDir);
+  if (!manifest || !(manifest.watermark > 0)) return { acked: false };
+  const result = await post(
+    fetchImpl,
+    `${apiUrl}/api/admin/github/versions/baked`,
+    secret,
+    { watermark: manifest.watermark },
+    () => 30_000,
+    log,
+    "ack",
+  );
+  return { acked: !!result.page, watermark: manifest.watermark };
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
-  const [assetsDir = join(REPO_ROOT, "web/dist/client")] =
-    process.argv.slice(2);
+  const args = process.argv.slice(2);
   const secret = process.env.API_SECRET;
+  const apiUrl = process.env.BAKE_API_URL || DEFAULT_API_URL;
+  const cacheDir = resolve(
+    process.env.BAKE_CACHE_DIR || join(REPO_ROOT, ".cache/github-versions"),
+  );
   if (!secret) {
     console.warn(
       "::warning::API_SECRET is not set; not baking /data/github/ version lists",
     );
     process.exit(0);
   }
-  const seconds = (name, fallback) => {
-    const value = Number(process.env[name]);
-    return (Number.isFinite(value) && value > 0 ? value : fallback) * 1000;
-  };
-  const existing = countFiles(assetsDir);
-  const maxFiles = Math.min(
-    Number(process.env.BAKE_MAX_FILES) || Infinity,
-    MAX_ASSET_FILES - existing,
-  );
-  collectBakedFiles({
-    apiUrl: process.env.BAKE_API_URL || DEFAULT_API_URL,
-    secret,
-    refreshMs: seconds("BAKE_REFRESH_SECONDS", 180),
-    deadlineMs: seconds("BAKE_DEADLINE_SECONDS", 300),
-  })
-    .then(({ files, totals, complete, outOfTokens }) => {
-      const result = writeBakedFiles(files, { assetsDir, maxFiles });
+  const main = async () => {
+    if (args[0] === "--ack") {
+      const result = await ack({ apiUrl, secret, cacheDir });
       console.log(
-        `Baked ${result.written} GitHub version lists (${existing} other assets; ` +
-          `${totals.refreshed} refreshed, ${totals.deferred} deferred, ` +
-          `${totals.failed} failed, ${totals.unrequested} unrequested, ` +
-          `${totals.denied} not servable, ${result.overCap} over the cap) ` +
-          `in ${totals.pages} pages`,
+        result.acked
+          ? `Acknowledged GitHub version lists baked up to ${new Date(result.watermark).toISOString()}`
+          : "No GitHub version-list bake to acknowledge",
       );
-      if (!complete) {
-        console.warn(
-          "::warning::Stopped before the end of the GitHub version lists; the rest are served by the Worker until the next deploy",
-        );
-      }
-      if (outOfTokens) {
-        console.warn(
-          "::warning::The token pool ran out; due GitHub version lists were baked as stored",
-        );
-      }
-      if (result.overCap > 0) {
-        console.warn(
-          `::warning::${result.overCap} GitHub version lists were left out to stay under the static asset file limit`,
-        );
-      }
-    })
-    .catch((error) => {
-      console.warn(`::warning::Baking GitHub version lists failed: ${error}`);
+      return;
+    }
+    const assetsDir = args[0] ?? join(REPO_ROOT, "web/dist/client");
+    const deadline = Number(process.env.BAKE_DEADLINE_SECONDS);
+    const existing = countFiles(assetsDir);
+    const maxFiles = Math.min(
+      Number(process.env.BAKE_MAX_FILES) || Infinity,
+      MAX_ASSET_FILES - existing,
+    );
+    const result = await bake({
+      assetsDir,
+      cacheDir,
+      maxFiles,
+      apiUrl,
+      secret,
+      deadlineMs:
+        (Number.isFinite(deadline) && deadline > 0 ? deadline : 120) * 1000,
     });
+    console.log(
+      `Baked ${result.published} GitHub version lists (${result.mode}: ` +
+        `${result.written} written, ${result.removed} removed; ` +
+        `${existing} other assets) in ${(result.ms / 1000).toFixed(1)}s`,
+    );
+    if (result.complete === false) {
+      console.warn(
+        "::warning::Stopped before the end of the GitHub version-list changes; the next deploy asks again",
+      );
+    }
+    if (result.overCap > 0) {
+      console.warn(
+        `::warning::${result.overCap} GitHub version lists were left out to stay under the static asset file limit`,
+      );
+    }
+  };
+  main().catch((error) => {
+    console.warn(`::warning::Baking GitHub version lists failed: ${error}`);
+  });
 }

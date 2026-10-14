@@ -16,6 +16,11 @@ import {
 } from "./workflow-dispatch.js";
 
 const TOKEN_OBSERVABILITY_CRON = "*/15 * * * *";
+// The GitHub version-list refresher (web/src/lib/github/versions.ts), run
+// through its admin route so the Astro bundle keeps the code.
+const GITHUB_VERSIONS_REFRESH_CRON = "*/10 * * * *";
+const GITHUB_VERSIONS_REFRESH_URL =
+  "https://mise-versions.jdx.dev/api/admin/github/versions/refresh";
 
 function isMissingTokenObservabilitySchema(error: unknown): boolean {
   const message = error instanceof Error ? error.message : String(error);
@@ -71,6 +76,33 @@ export default {
               error: error instanceof Error ? error.message : String(error),
             });
           }),
+        );
+        break;
+      case GITHUB_VERSIONS_REFRESH_CRON:
+        // Handled in-process by the Astro bundle: no network request.
+        ctx.waitUntil(
+          Promise.resolve(
+            astroWorker.fetch(
+              new Request(GITHUB_VERSIONS_REFRESH_URL, {
+                method: "POST",
+                headers: { Authorization: `Bearer ${env.API_SECRET}` },
+              }),
+              env,
+              ctx,
+            ),
+          )
+            .then(async (response) => {
+              const run = await response.text();
+              if (!response.ok) {
+                throw new Error(`refresh answered ${response.status}: ${run}`);
+              }
+              console.info("github_versions_refreshed", run);
+            })
+            .catch((error: unknown) => {
+              console.error("github_versions_refresh_failed", {
+                error: error instanceof Error ? error.message : String(error),
+              });
+            }),
         );
         break;
       default:

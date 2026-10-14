@@ -36,14 +36,17 @@ on:
 permissions:
   contents: read
 
+# Queue rather than cancel: a deploy in progress finishes, and of the deploys
+# dispatched meanwhile (catalog updates, the GitHub version-list refresher)
+# only the newest waits, so a burst still produces one more deploy.
 concurrency:
   group: deploy
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -72,13 +75,28 @@ jobs:
           PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY: ${{ secrets.PYTHON_PRECOMPILED_R2_SECRET_ACCESS_KEY }}
 
       # Serve the GitHub version lists clients have asked for as static
-      # assets under /data/github/ (no Worker invocation), refreshing the ones
-      # that are due through the currently deployed Worker. Never fails the
-      # deploy: a list that is not baked is answered by the Worker.
+      # assets under /data/github/ (no Worker invocation). The Worker's
+      # refresher keeps them fresh in KV; the bake copies only the lists
+      # changed since the cached tree's bake, and every list without a cache.
+      # No GitHub requests. Never fails the deploy: a list that is not baked
+      # is answered by the Worker.
+      - name: Restore baked GitHub version lists
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/github-versions
+          key: github-versions-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: github-versions-
+
       - name: Bake GitHub version lists into static assets
         run: node scripts/bake-github-versions.js web/dist/client
         env:
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+
+      - name: Save baked GitHub version lists
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .cache/github-versions
+          key: github-versions-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Deploy to Cloudflare Workers
         run: |
@@ -99,6 +117,13 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Only now are the baked lists live: tell the Worker, so its refresher
+      # dispatches deploys only for changes after them.
+      - name: Acknowledge baked GitHub version lists
+        run: node scripts/bake-github-versions.js --ack
+        env:
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
 
       - name: Configure Resend alert secret
         run: |

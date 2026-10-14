@@ -1,12 +1,17 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, existsSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import {
-  collectBakedFiles,
+  ack,
+  applyChanges,
+  bake,
+  collectChanges,
   countFiles,
-  writeBakedFiles,
+  publishTree,
+  readManifest,
+  SINCE_MARGIN_MS,
 } from "./bake-github-versions.js";
 
 const file = (path, requested_at, body = "{}") => ({
@@ -16,132 +21,318 @@ const file = (path, requested_at, body = "{}") => ({
 });
 const silent = { warn: () => {} };
 
-test("collectBakedFiles pages through the bake endpoint", async () => {
-  const bodies = [];
-  const pages = [
-    {
-      files: [file("github/a/a/releases.json", 1)],
-      cursor: "c1",
-      stats: { listed: 2, refreshed: 1, unrequested: 1 },
-      outOfTokens: false,
-    },
-    {
-      files: [file("github/b/b/tags.json", 2)],
-      cursor: null,
-      stats: { listed: 1, deferred: 1 },
-      outOfTokens: true,
-    },
-  ];
-  const result = await collectBakedFiles({
-    apiUrl: "https://example.test",
-    secret: "s3cret",
-    log: silent,
-    fetchImpl: async (url, init) => {
-      assert.equal(url, "https://example.test/api/admin/github/versions/bake");
-      assert.equal(init.headers.Authorization, "Bearer s3cret");
-      bodies.push(JSON.parse(init.body));
-      return Response.json(pages[bodies.length - 1]);
-    },
-  });
-  assert.deepEqual(bodies, [
-    { limit: 100, refresh: true },
-    { cursor: "c1", limit: 100, refresh: true },
-  ]);
-  assert.equal(result.files.length, 2);
-  assert.equal(result.complete, true);
-  assert.equal(result.outOfTokens, true);
-  assert.equal(result.totals.refreshed, 1);
-  assert.equal(result.totals.deferred, 1);
-  assert.equal(result.totals.pages, 2);
-});
+function dirs() {
+  const root = mkdtempSync(join(tmpdir(), "bake-"));
+  return {
+    root,
+    cacheDir: join(root, "cache"),
+    assetsDir: join(root, "assets"),
+    cleanup: () => rmSync(root, { recursive: true, force: true }),
+  };
+}
 
-test("collectBakedFiles stops refreshing when out of time or tokens, and stops paging on errors", async () => {
-  let clock = 0;
-  const refreshes = [];
-  const result = await collectBakedFiles({
-    secret: "s",
-    log: silent,
-    refreshMs: 1000,
-    deadlineMs: 5000,
-    now: () => clock,
-    fetchImpl: async (_url, init) => {
-      const body = JSON.parse(init.body);
-      refreshes.push(body.refresh);
-      clock += 600;
-      if (refreshes.length === 3) return new Response("boom", { status: 502 });
-      if (refreshes.length === 4) throw new Error("network");
-      return Response.json({
-        files: [file(`github/o/r${refreshes.length}/releases.json`, 1)],
-        cursor: `c${refreshes.length}`,
-        stats: {},
-        outOfTokens: false,
-      });
-    },
-  });
-  // Page 2 starts after 600ms (refreshing), page 3 after 1200ms (not).
-  // Page 3 fails twice (502, then a network error): stop with what we have.
-  assert.deepEqual(refreshes, [true, true, false, false]);
-  assert.equal(result.files.length, 2);
-  assert.equal(result.complete, false);
-});
+// A Worker answering /changes from `lists` (path -> { c, b, body, r }).
+function fakeWorker(lists, { now = 1_000_000, pageSize = 2 } = {}) {
+  const calls = [];
+  const fetchImpl = async (url, init) => {
+    const body = JSON.parse(init.body);
+    calls.push({ url, body });
+    if (url.endsWith("/changes")) {
+      const paths = Object.keys(lists).sort();
+      const start = body.cursor ? Number(body.cursor) : 0;
+      const page = paths.slice(start, start + pageSize);
+      const next =
+        start + pageSize < paths.length ? String(start + pageSize) : null;
+      const files = [];
+      const deleted = [];
+      for (const path of page) {
+        const list = lists[path];
+        if (body.since !== undefined && list.c <= body.since) continue;
+        if (list.b) files.push(file(path, list.r ?? list.c, list.body));
+        else if (body.since !== undefined) deleted.push(path);
+      }
+      return Response.json({ files, deleted, cursor: next, now });
+    }
+    if (url.endsWith("/baked")) return Response.json({ baked: body.watermark });
+    return new Response("not found", { status: 404 });
+  };
+  return { fetchImpl, calls };
+}
 
-test("writeBakedFiles keeps the most recently requested files under the cap", () => {
-  const dir = mkdtempSync(join(tmpdir(), "bake-"));
+test("a bake without a cache bakes every list and records the watermark", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
   try {
-    const result = writeBakedFiles(
-      [
-        file("github/old/repo/releases.json", 1, '{"old":true}'),
-        file("github/new/repo/releases.json", 3, '{"new":true}'),
-        file("github/mid/repo/assets/packslip.sigstore.json/releases.json", 2),
-        // Never outside data/github/, never uppercase.
-        file("github/../../etc/passwd", 9),
-        file("github/Up/Case/releases.json", 9),
-      ],
-      { assetsDir: dir, maxFiles: 2 },
-    );
-    assert.deepEqual(result, { written: 2, invalid: 2, overCap: 1 });
+    const worker = fakeWorker({
+      "github/a/a/releases.json": { c: 10, b: true, body: '{"a":1}' },
+      "github/b/b/tags.json": { c: 20, b: true, body: '{"b":1}' },
+      "github/c/c/releases.json": { c: 30, b: false, body: "{}" },
+    });
+    const result = await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+    assert.equal(result.mode, "full");
+    assert.equal(result.complete, true);
+    assert.equal(result.published, 2);
+    assert.equal(result.watermark, 1_000_000);
+    // No watermark asked: every baked list.
+    assert.ok(worker.calls.every((call) => call.body.since === undefined));
     assert.equal(
-      readFileSync(join(dir, "data/github/new/repo/releases.json"), "utf8"),
-      '{"new":true}',
+      readFileSync(join(assetsDir, "data/github/a/a/releases.json"), "utf8"),
+      '{"a":1}',
     );
-    assert.ok(
-      existsSync(
-        join(
-          dir,
-          "data/github/mid/repo/assets/packslip.sigstore.json/releases.json",
-        ),
-      ),
-    );
-    assert.ok(!existsSync(join(dir, "data/github/old")));
-    assert.equal(countFiles(dir), 2);
+    assert.ok(existsSync(join(assetsDir, "data/github/b/b/tags.json")));
+    assert.ok(!existsSync(join(assetsDir, "data/github/c")));
+    const manifest = readManifest(cacheDir);
+    assert.equal(manifest.watermark, 1_000_000);
+    assert.deepEqual(Object.keys(manifest.files).sort(), [
+      "github/a/a/releases.json",
+      "github/b/b/tags.json",
+    ]);
   } finally {
-    rmSync(dir, { recursive: true, force: true });
+    cleanup();
   }
 });
 
-test("collectBakedFiles cancels a stalled request at the deadline", async () => {
+test("a bake with a cache applies only what changed since its watermark", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const lists = {
+      "github/a/a/releases.json": { c: 10, b: true, body: '{"a":1}' },
+      "github/b/b/tags.json": { c: 20, b: true, body: '{"b":1}' },
+    };
+    let worker = fakeWorker(lists, { now: 100 });
+    await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+
+    // Later: a updated, b removed, d added; the margin re-asks a little.
+    const later = 100 + SINCE_MARGIN_MS + 1000;
+    lists["github/a/a/releases.json"] = {
+      c: later - 10,
+      b: true,
+      body: '{"a":2}',
+    };
+    lists["github/b/b/tags.json"] = { c: later - 5, b: false, body: "{}" };
+    lists["github/d/d/releases.json"] = {
+      c: later - 1,
+      b: true,
+      body: '{"d":1}',
+    };
+    worker = fakeWorker(lists, { now: later });
+    const fresh = join(cacheDir, "..", "assets2");
+    const result = await bake({
+      assetsDir: fresh,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+    assert.equal(result.mode, "incremental");
+    assert.equal(result.since, 100 - SINCE_MARGIN_MS);
+    assert.ok(
+      worker.calls.every((call) => call.body.since === 100 - SINCE_MARGIN_MS),
+    );
+    assert.equal(result.written, 2);
+    assert.equal(result.removed, 1);
+    assert.equal(result.published, 2);
+    // A new build directory gets the whole tree, not only the changes.
+    assert.equal(
+      readFileSync(join(fresh, "data/github/a/a/releases.json"), "utf8"),
+      '{"a":2}',
+    );
+    assert.ok(existsSync(join(fresh, "data/github/d/d/releases.json")));
+    assert.ok(!existsSync(join(fresh, "data/github/b/b/tags.json")));
+    assert.equal(readManifest(cacheDir).watermark, later);
+  } finally {
+    cleanup();
+  }
+});
+
+test("a bake that stops part-way keeps its old watermark", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const worker = fakeWorker(
+      {
+        "github/a/a/releases.json": { c: 10, b: true },
+        "github/b/b/releases.json": { c: 10, b: true },
+        "github/c/c/releases.json": { c: 10, b: true },
+      },
+      { now: 500 },
+    );
+    await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+    assert.equal(readManifest(cacheDir).watermark, 500);
+
+    // The second page fails: what was read is applied, the watermark stays.
+    let page = 0;
+    const failing = async (url, init) => {
+      page++;
+      if (page > 1) return new Response("boom", { status: 502 });
+      return worker.fetchImpl(url, init);
+    };
+    const result = await bake({
+      assetsDir: join(assetsDir, "..", "x"),
+      cacheDir,
+      secret: "s",
+      fetchImpl: failing,
+      log: silent,
+    });
+    assert.equal(result.complete, false);
+    assert.equal(readManifest(cacheDir).watermark, 500);
+    assert.equal(result.published, 3);
+  } finally {
+    cleanup();
+  }
+});
+
+test("against a Worker without /changes, the old endpoint bakes everything once", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const calls = [];
+    const result = await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      log: silent,
+      fetchImpl: async (url, init) => {
+        calls.push(url);
+        if (url.endsWith("/changes"))
+          return new Response("nope", { status: 404 });
+        const body = JSON.parse(init.body);
+        // The previous Worker's bake endpoint, asked not to refresh.
+        assert.equal(body.refresh, false);
+        return Response.json({
+          files: [file("github/a/a/releases.json", 1, '{"legacy":1}')],
+          cursor: null,
+        });
+      },
+    });
+    assert.equal(result.mode, "legacy");
+    assert.equal(result.published, 1);
+    assert.deepEqual(
+      calls.map((url) => url.split("/").pop()),
+      ["changes", "bake"],
+    );
+    // The next deploy bakes in full from /changes.
+    assert.equal(readManifest(cacheDir).watermark, 0);
+    assert.equal(
+      readFileSync(join(assetsDir, "data/github/a/a/releases.json"), "utf8"),
+      '{"legacy":1}',
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+test("collectChanges pages, keeps the first page's clock, and stops at the deadline", async () => {
+  const worker = fakeWorker(
+    {
+      "github/a/a/releases.json": { c: 1, b: true },
+      "github/b/b/releases.json": { c: 1, b: true },
+      "github/c/c/releases.json": { c: 1, b: true },
+    },
+    { now: 42 },
+  );
+  const all = await collectChanges({
+    secret: "s",
+    fetchImpl: worker.fetchImpl,
+    log: silent,
+  });
+  assert.equal(all.pages, 2);
+  assert.equal(all.files.length, 3);
+  assert.equal(all.watermark, 42);
+  assert.equal(all.complete, true);
+
   const started = Date.now();
-  const result = await collectBakedFiles({
+  const stalled = await collectChanges({
     secret: "s",
     log: silent,
     deadlineMs: 150,
     fetchImpl: async (_url, init) => {
       if (init.signal.aborted) throw init.signal.reason;
-      // The first page answers; the second never does.
-      if (!init.body.includes("c1")) {
-        return Response.json({
-          files: [file("github/o/r/releases.json", 1)],
-          cursor: "c1",
-          stats: {},
-          outOfTokens: false,
-        });
-      }
       return new Promise((_, reject) =>
         init.signal.addEventListener("abort", () => reject(init.signal.reason)),
       );
     },
   });
   assert.ok(Date.now() - started < 1000, "returned at the deadline");
-  assert.equal(result.files.length, 1);
-  assert.equal(result.complete, false);
+  assert.equal(stalled.complete, false);
+  assert.equal(stalled.files.length, 0);
+});
+
+test("the tree keeps only valid paths and publishes the most requested first", () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const { index, invalid } = applyChanges(cacheDir, {
+      full: true,
+      files: [
+        file("github/old/repo/releases.json", 1),
+        file("github/new/repo/releases.json", 3),
+        file("github/mid/repo/assets/packslip.sigstore.json/releases.json", 2),
+        file("github/../../etc/passwd", 9),
+        file("github/Up/Case/releases.json", 9),
+      ],
+    });
+    assert.equal(invalid, 2);
+    const result = publishTree(cacheDir, { assetsDir, index, maxFiles: 2 });
+    assert.deepEqual(result, { published: 2, overCap: 1 });
+    assert.ok(
+      existsSync(join(assetsDir, "data/github/new/repo/releases.json")),
+    );
+    assert.ok(!existsSync(join(assetsDir, "data/github/old")));
+    assert.equal(countFiles(assetsDir), 2);
+  } finally {
+    cleanup();
+  }
+});
+
+test("ack reports the deployed watermark, and nothing without one", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const worker = fakeWorker(
+      { "github/a/a/releases.json": { c: 1, b: true } },
+      { now: 77 },
+    );
+    assert.deepEqual(
+      await ack({
+        secret: "s",
+        cacheDir,
+        fetchImpl: worker.fetchImpl,
+        log: silent,
+      }),
+      { acked: false },
+    );
+    await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+    const result = await ack({
+      secret: "s",
+      cacheDir,
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+    assert.deepEqual(result, { acked: true, watermark: 77 });
+    const call = worker.calls.at(-1);
+    assert.ok(call.url.endsWith("/api/admin/github/versions/baked"));
+    assert.deepEqual(call.body, { watermark: 77 });
+  } finally {
+    cleanup();
+  }
 });

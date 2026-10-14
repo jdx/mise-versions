@@ -21,7 +21,9 @@ const PRELUDE = `
   import assert from "node:assert/strict";
   import {
     __testing,
-    bakeVersionsPage,
+    listVersionsChanges,
+    recordVersionsBaked,
+    refreshVersionLists,
     getCachedGitHubVersions,
     parseVersionsPath,
     recordVersionsDemand,
@@ -56,6 +58,8 @@ const PRELUDE = `
     // page -> remaining failures to answer with before succeeding
     failures: {},
     failStatus: 504,
+    // ETags to answer with, and to honour If-None-Match against.
+    etags: {},
   };
   globalThis.fetch = async (input, init) => {
     const url = new URL(String(input));
@@ -72,6 +76,9 @@ const PRELUDE = `
     }
     const kind = url.pathname.endsWith("/tags") ? "tags" : "releases";
     const page = Number(url.searchParams.get("page"));
+    const etag = github.etags[kind];
+    const ifNoneMatch = init?.headers?.["If-None-Match"];
+    if (etag && ifNoneMatch === etag) return new Response(null, { status: 304 });
     if (github.failures[page] > 0) {
       github.failures[page]--;
       return new Response("timeout", { status: github.failStatus });
@@ -83,9 +90,11 @@ const PRELUDE = `
     const links = [];
     if (page < last) links.push("<" + base + (page + 1) + '>; rel="next"');
     if (page < last) links.push("<" + base + last + '>; rel="last"');
+    const headers = links.length ? { link: links.join(", ") } : {};
+    if (etag) headers.etag = etag;
     return new Response(JSON.stringify(all.slice((page - 1) * perPage, page * perPage)), {
       status: 200,
-      headers: links.length ? { link: links.join(", ") } : {},
+      headers,
     });
   };
 
@@ -105,20 +114,46 @@ const PRELUDE = `
     },
   };
 
+  // A KV namespace in memory. An initial value of the form
+  // { $value, $meta } is stored with metadata.
   function memoryKv(initial = {}) {
-    const store = new Map(Object.entries(initial).map(([k, v]) => [k, JSON.stringify(v)]));
+    const store = new Map();
+    const meta = new Map();
+    for (const [key, value] of Object.entries(initial)) {
+      if (value && typeof value === "object" && "$value" in value) {
+        store.set(key, JSON.stringify(value.$value));
+        if (value.$meta) meta.set(key, value.$meta);
+      } else {
+        store.set(key, JSON.stringify(value));
+      }
+    }
     const writes = [];
+    const read = (key, type) => {
+      const value = store.get(key);
+      if (value === undefined) return null;
+      return type === "json" ? JSON.parse(value) : value;
+    };
     return {
       store,
+      meta,
       writes,
-      get: async (key, type) => {
-        const value = store.get(key);
-        if (value === undefined) return null;
-        return type === "json" ? JSON.parse(value) : value;
-      },
+      get: async (key, type) =>
+        Array.isArray(key)
+          ? new Map(key.map((k) => [k, read(k, type)]))
+          : read(key, type),
+      getWithMetadata: async (key, type) => ({
+        value: read(key, type),
+        metadata: meta.get(key) ?? null,
+      }),
       put: async (key, value, options) => {
         writes.push({ key, value, options });
         store.set(key, value);
+        if (options?.metadata) meta.set(key, options.metadata);
+        else meta.delete(key);
+      },
+      delete: async (key) => {
+        store.delete(key);
+        meta.delete(key);
       },
       list: async ({ prefix = "", cursor, limit = 1000 }) => {
         const keys = [...store.keys()].filter((key) => key.startsWith(prefix)).sort();
@@ -126,7 +161,7 @@ const PRELUDE = `
         const page = keys.slice(start, start + limit);
         const done = start + limit >= keys.length;
         return {
-          keys: page.map((name) => ({ name })),
+          keys: page.map((name) => (meta.has(name) ? { name, metadata: meta.get(name) } : { name })),
           list_complete: done,
           cursor: done ? undefined : String(start + limit),
         };
@@ -178,7 +213,12 @@ test("a cold crawl reads every page and stores compact releases", () => {
     assert.equal(versions.releases.at(-1).tag, "v1");
     assert.equal(kv.writes.length, 1);
     assert.equal(kv.writes[0].key, "github:versions:releases:owner/repo");
-    assert.deepEqual(kv.writes[0].options, { expirationTtl: 30 * 24 * 60 * 60 });
+    assert.equal(kv.writes[0].options.expirationTtl, 30 * 24 * 60 * 60);
+    // A list first read for a request (which passed the access check) is
+    // bakeable from the start, and marked as changed for the next bake.
+    const meta = kv.writes[0].options.metadata;
+    assert.equal(meta.b, true);
+    assert.ok(Date.now() - meta.c < 5000 && meta.c === meta.a);
     const entry = storedEntry(kv, "github:versions:releases:owner/repo");
     assert.equal(entry.head_at, entry.full_at);
     // Untracked: page 1 is re-read after 10 minutes, so the edge keeps it
@@ -663,7 +703,11 @@ test("responses carry fetched_at, and Worker requests count as demand", () => {
     assert.ok(Date.now() - firstStamp < 5000);
     assert.equal(storedEntry(kv, "github:versions:releases:o/r").requested_at, undefined);
     const demandWrite = kv.writes.find((w) => w.key === demandKey);
-    assert.deepEqual(demandWrite.options, { expirationTtl: 35 * 24 * 60 * 60 });
+    // In metadata too, so the refresher reads all demand with list().
+    assert.deepEqual(demandWrite.options, {
+      expirationTtl: 35 * 24 * 60 * 60,
+      metadata: { r: firstStamp },
+    });
 
     // Within a day: no rewrite.
     kv.writes.length = 0;
@@ -685,116 +729,214 @@ test("responses carry fetched_at, and Worker requests count as demand", () => {
   `);
 });
 
-// Lists in KV, each with its demand and freshness, plus visibility answers.
-const BAKE_SETUP = `
+// Lists in KV with their metadata and demand, plus visibility answers.
+const REFRESH_SETUP = `
   const now = Date.now();
   const item = (tag) => ({ tag, date: "d", prerelease: false, asset_count: 1 });
-  const entry = (extra) => ({
-    head_at: now - MIN, full_at: now - MIN, unchanged_since: now - MIN,
-    items: [item("v1")], truncated: false, ...extra,
-  });
+  const entry = { head_at: now - MIN, full_at: now - MIN, unchanged_since: now - MIN, items: [item("v1")], truncated: false };
+  const meta = (extra) => ({ c: now - 2 * HOUR, b: true, a: now - MIN, h: now - MIN, f: now - MIN, u: now - MIN, r: now - HOUR, ...extra });
+  const list = (extra = {}, value = {}) => ({ $value: { ...entry, ...value }, $meta: meta(extra) });
   const demand = (key, ago = HOUR) => ({
-    ["github:versions-demand:" + key]: { requested_at: now - ago },
+    ["github:versions-demand:" + key]: { $value: { requested_at: now - ago }, $meta: { r: now - ago } },
   });
   const visibility = (isPublic) => ({ cached_at: now, public: isPublic });
   const kv = memoryKv({
-    "github:versions:releases:fresh/repo": entry(),
-    "github:versions:releases:due/repo": entry({ head_at: now - HOUR, unchanged_since: now - HOUR }),
-    "github:versions:tags:fresh/repo": entry({ items: [{ tag: "t1", sha: "a".repeat(40), date: "d" }] }),
-    "github:versions:releases:fresh/repo:asset:packslip.sigstore.json": entry({
-      items: [{ ...item("v2"), has_asset: true }, { ...item("v1"), has_asset: false }],
-    }),
-    "github:versions:releases:quiet/repo": entry(),
-    "github:versions:releases:secret/repo": entry(),
+    "github:versions:releases:fresh/repo": list(),
+    // Page 1 read an hour ago, after an hour unchanged: due.
+    "github:versions:releases:due/repo": list(
+      { h: now - HOUR, u: now - 2 * HOUR },
+      { head_at: now - HOUR, unchanged_since: now - 2 * HOUR },
+    ),
+    // Nobody asked for 31 days: stop baking it.
+    "github:versions:releases:quiet/repo": list(),
+    // Access last checked 2 hours ago, and the repo is private now.
+    "github:versions:releases:secret/repo": list({ a: now - 2 * HOUR }),
+    // Written before lists had metadata.
+    "github:versions:releases:legacy/repo": entry,
     ...demand("releases:fresh/repo"),
     ...demand("releases:due/repo"),
-    ...demand("tags:fresh/repo"),
-    ...demand("releases:fresh/repo:asset:packslip.sigstore.json"),
     ...demand("releases:quiet/repo", 31 * 24 * HOUR),
     ...demand("releases:secret/repo"),
+    ...demand("releases:legacy/repo"),
     "github:visibility:fresh/repo": visibility(true),
     "github:visibility:due/repo": visibility(true),
     "github:visibility:quiet/repo": visibility(true),
     "github:visibility:secret/repo": visibility(false),
+    "github:visibility:legacy/repo": visibility(true),
+    "github:versions-state:baked": { at: now - 30 * MIN },
   });
   github.releases = releases(2);
+  const env = { DB: poolDb, GITHUB_CACHE: kv, ANALYTICS_DB: {} };
+  const dispatches = [];
+  const dispatch = async () => { dispatches.push(Date.now()); };
 `;
 
-test("a bake page exports demanded, servable lists and refreshes the due ones", () => {
+test("the refresher refreshes due lists, marks changes and dispatches a deploy", () => {
   runVersionsTest(`
-    ${BAKE_SETUP}
-    const page = await bakeVersionsPage(
-      { DB: poolDb, GITHUB_CACHE: kv, ANALYTICS_DB: {} },
-      { limit: 100, refreshUntil: Date.now() + 60_000 },
-    );
-    assert.equal(page.cursor, null);
-    assert.deepEqual(page.stats, {
-      listed: 6, unrequested: 1, denied: 1, refreshed: 1, deferred: 0, failed: 0,
+    ${REFRESH_SETUP}
+    const run = await refreshVersionLists(env, { dispatch });
+    assert.deepEqual(run, {
+      lists: 5, refreshed: 2, dropped: 2, added: 1, failed: 0, deferred: 0, changed: 4, dispatched: true,
     });
-    const files = Object.fromEntries(page.files.map((f) => [f.path, JSON.parse(f.body)]));
-    assert.deepEqual(Object.keys(files).sort(), [
-      "github/due/repo/releases.json",
-      "github/fresh/repo/assets/packslip.sigstore.json/releases.json",
-      "github/fresh/repo/releases.json",
-      "github/fresh/repo/tags.json",
+    // GitHub was asked only about the due list (the probe) and the legacy
+    // one (a full crawl: probe and page 1).
+    assert.deepEqual(apiCalls().sort(), [
+      "/repos/due/repo/releases?per_page=20&page=1",
+      "/repos/legacy/repo/releases?per_page=100&page=1",
+      "/repos/legacy/repo/releases?per_page=20&page=1",
     ]);
-    // Only the due list went to GitHub, and it is baked as refreshed.
+    const m = (key) => kv.meta.get("github:versions:releases:" + key);
+    // Fresh: not touched at all.
+    assert.ok(!kv.writes.some((w) => w.key === "github:versions:releases:fresh/repo"));
+    // Due: refreshed (v2 is new), so its change time moved on.
+    assert.ok(m("due/repo").c >= now && m("due/repo").b);
+    assert.deepEqual(storedEntry(kv, "github:versions:releases:due/repo").items.map((r) => r.tag), ["v2", "v1"]);
+    // Quiet and secret: no longer baked, marked as changed for the bake.
+    assert.equal(m("quiet/repo").b, false);
+    assert.ok(m("quiet/repo").c >= now);
+    assert.equal(m("secret/repo").b, false);
+    assert.ok(m("secret/repo").a >= now);
+    // Legacy: checked, read in full, and baked from now on.
+    assert.equal(m("legacy/repo").b, true);
+    assert.ok(m("legacy/repo").c >= now);
+    assert.equal(m("legacy/repo").r, now - HOUR);
+    // One deploy, and the lease is given back.
+    assert.equal(dispatches.length, 1);
+    assert.ok(storedEntry(kv, "github:versions-state:dispatched").at >= now);
+    assert.equal(kv.store.has("github:versions-state:refresher-lease"), false);
+
+    // The next run finds nothing due, and the change is already dispatched.
+    apiCalls();
+    const again = await refreshVersionLists(env, { dispatch });
+    assert.equal(again.refreshed, 0);
+    assert.equal(again.changed, 0);
+    assert.equal(again.dispatched, false);
+    assert.deepEqual(apiCalls(), []);
+  `);
+});
+
+test("deploys are dispatched only for changes not yet baked or in flight", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // Another run holds the lease: do nothing.
+    kv.store.set("github:versions-state:refresher-lease", JSON.stringify({ until: now + MIN }));
+    assert.equal((await refreshVersionLists(env, { dispatch })).skipped, "leased");
+    assert.deepEqual(apiCalls(), []);
+    kv.store.delete("github:versions-state:refresher-lease");
+
+    // Every change is older than the last deployed bake: nothing to deploy.
+    const quietEnv = {
+      DB: poolDb,
+      ANALYTICS_DB: {},
+      GITHUB_CACHE: memoryKv({
+        "github:versions:releases:fresh/repo": list(),
+        ...demand("releases:fresh/repo"),
+        "github:versions-state:baked": { at: now - MIN },
+      }),
+    };
+    assert.equal((await refreshVersionLists(quietEnv, { dispatch })).dispatched, false);
+
+    // A change after the bake, but a deploy was dispatched 5 minutes ago and
+    // has not acknowledged yet: wait for it.
+    quietEnv.GITHUB_CACHE.store.set("github:versions-state:baked", JSON.stringify({ at: now - 3 * HOUR }));
+    quietEnv.GITHUB_CACHE.store.set("github:versions-state:dispatched", JSON.stringify({ at: now - 5 * MIN }));
+    assert.equal((await refreshVersionLists(quietEnv, { dispatch })).dispatched, false);
+    // A failed dispatch is not recorded, so the next run tries again.
+    quietEnv.GITHUB_CACHE.store.set("github:versions-state:dispatched", JSON.stringify({ at: now - 31 * MIN }));
+    const failedRun = await refreshVersionLists(quietEnv, {
+      dispatch: async () => { throw new Error("GitHub said no"); },
+    });
+    assert.equal(failedRun.dispatched, false);
+    assert.equal(storedEntry(quietEnv.GITHUB_CACHE, "github:versions-state:dispatched").at, now - 31 * MIN);
+    // Dispatched 31 minutes ago and never acknowledged: dispatch again.
+    quietEnv.GITHUB_CACHE.store.set("github:versions-state:dispatched", JSON.stringify({ at: now - 31 * MIN }));
+    assert.equal((await refreshVersionLists(quietEnv, { dispatch })).dispatched, true);
+    assert.equal(dispatches.length, 1);
+
+    // A deploy acknowledges its bake; the watermark only moves forward.
+    assert.equal(await recordVersionsBaked(quietEnv, now), now);
+    assert.equal(await recordVersionsBaked(quietEnv, now - HOUR), now);
+  `);
+});
+
+test("a probe GitHub answers 304 to leaves the list as it was", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    github.etags.releases = '"probe-v1"';
+    const key = "github:versions:releases:due/repo";
+    kv.meta.set(key, { ...kv.meta.get(key), e: '"probe-v1"' });
+    for (const other of ["quiet", "secret", "legacy"]) {
+      kv.store.delete("github:versions:releases:" + other + "/repo");
+    }
+    const run = await refreshVersionLists(env, { dispatch });
+    assert.equal(run.refreshed, 1);
+    assert.equal(run.changed, 0);
+    assert.equal(run.dispatched, false);
     assert.deepEqual(apiCalls(), ["/repos/due/repo/releases?per_page=20&page=1"]);
-    assert.deepEqual(files["github/due/repo/releases.json"].releases.map((r) => r.tag), ["v2", "v1"]);
-    // The asset list keeps only releases carrying the asset, without the flag.
-    assert.deepEqual(files["github/fresh/repo/assets/packslip.sigstore.json/releases.json"].releases, [item("v2")]);
-    assert.equal(files["github/fresh/repo/tags.json"].source, "tags");
-    assert.ok(page.files.every((f) => f.requested_at === now - HOUR));
-    // The refresh left the demand stamp alone.
-    assert.equal(storedEntry(kv, "github:versions-demand:releases:due/repo").requested_at, now - HOUR);
+    const after = kv.meta.get(key);
+    // Page 1 counts as read now; the content and its change time stay.
+    assert.ok(after.h >= now);
+    assert.equal(after.c, now - 2 * HOUR);
+    assert.equal(after.e, '"probe-v1"');
+    assert.deepEqual(storedEntry(kv, key).items.map((r) => r.tag), ["v1"]);
   `);
 });
 
-test("a bake bakes due lists as stored when out of time or tokens", () => {
+test("a refresher run is capped, and leaves the rest for the next run", () => {
   runVersionsTest(`
-    ${BAKE_SETUP}
-    const late = await bakeVersionsPage(
-      { DB: poolDb, GITHUB_CACHE: kv, ANALYTICS_DB: {} },
-      { refreshUntil: 0 },
-    );
-    assert.equal(late.stats.deferred, 1);
-    assert.equal(late.files.length, 4);
-    assert.deepEqual(apiCalls(), []);
-
-    // No D1, so no pool token: never fall back to anonymous requests.
-    const empty = await bakeVersionsPage(
-      { DB: {}, GITHUB_CACHE: kv, ANALYTICS_DB: {} },
-      { refreshUntil: Date.now() + 60_000 },
-    );
-    assert.equal(empty.outOfTokens, true);
-    assert.equal(empty.stats.deferred, 1);
-    assert.equal(empty.files.length, 4);
-    assert.deepEqual(apiCalls(), []);
+    ${REFRESH_SETUP}
+    __testing.setRefreshTiming({ maxTasks: 2 });
+    const run = await refreshVersionLists(env, { dispatch });
+    // An unrequested list goes first (cheap, and it changes a bake), then
+    // lists the refresher has never seen; the secret and due lists wait.
+    assert.equal(run.dropped, 1);
+    assert.equal(run.added, 1);
+    assert.equal(run.refreshed, 1);
+    assert.equal(run.deferred, 2);
+    assert.equal(kv.meta.get("github:versions:releases:secret/repo").b, true);
   `);
 });
 
-test("a bake pages the KV listing and honours a disabled mirror", () => {
+test("the changes listing names lists changed or removed since a watermark", () => {
   runVersionsTest(`
-    ${BAKE_SETUP}
-    const env = { DB: poolDb, GITHUB_CACHE: kv, ANALYTICS_DB: {} };
-    const first = await bakeVersionsPage(env, { limit: 4 });
-    assert.equal(first.stats.listed, 4);
-    assert.equal(first.cursor, "4");
-    const second = await bakeVersionsPage(env, { limit: 4, cursor: first.cursor });
-    assert.equal(second.stats.listed, 2);
-    assert.equal(second.cursor, null);
+    ${REFRESH_SETUP}
+    kv.meta.set("github:versions:releases:due/repo", { ...kv.meta.get("github:versions:releases:due/repo"), c: now - 5 * MIN });
+    kv.meta.set("github:versions:releases:quiet/repo", { ...kv.meta.get("github:versions:releases:quiet/repo"), b: false, c: now - 5 * MIN });
+    const since = await listVersionsChanges(env, { since: now - HOUR });
+    assert.deepEqual(since.files.map((f) => f.path), ["github/due/repo/releases.json"]);
+    assert.deepEqual(since.deleted, ["github/quiet/repo/releases.json"]);
+    assert.equal(since.cursor, null);
+    assert.ok(since.now >= now);
+    const body = JSON.parse(since.files[0].body);
+    assert.equal(body.source, "releases");
+    assert.deepEqual(body.releases, [item("v1")]);
+    assert.equal(since.files[0].requested_at, now - HOUR);
 
-    const off = await bakeVersionsPage({ ...env, GITHUB_MIRROR_ACCESS: "off" }, {});
-    assert.equal(off.files.length, 0);
-    assert.equal(off.stats.denied, 5);
+    // Without a watermark: every baked list, nothing to delete. The legacy
+    // list has no metadata yet, so it waits for the refresher.
+    const full = await listVersionsChanges(env, {});
+    assert.deepEqual(full.files.map((f) => f.path).sort(), [
+      "github/due/repo/releases.json",
+      "github/fresh/repo/releases.json",
+      "github/secret/repo/releases.json",
+    ]);
+    assert.deepEqual(full.deleted, []);
+
+    // Pages follow the KV listing; GitHub is never asked.
+    const first = await listVersionsChanges(env, { limit: 2 });
+    assert.ok(first.cursor);
+    const second = await listVersionsChanges(env, { limit: 2, cursor: first.cursor });
+    assert.equal(first.files.length + second.files.length > 0, true);
+    assert.deepEqual(apiCalls(), []);
   `);
 });
 
 test("demand from Logpush stamps the lists it names", () => {
   runVersionsTest(`
-    ${BAKE_SETUP}
+    ${REFRESH_SETUP}
     const seenAt = now;
-    const result = await recordVersionsDemand({ DB: poolDb, GITHUB_CACHE: kv }, [
+    kv.writes.length = 0;
+    const result = await recordVersionsDemand(env, [
       "/data/github/quiet/repo/releases.json",
       "/data/github/quiet/repo/releases.json",
       "/data/github/fresh/repo/releases.json",
@@ -805,7 +947,7 @@ test("demand from Logpush stamps the lists it names", () => {
     // hour ago, already counted today; the duplicate is just a repeat; only
     // the bad path names no list.
     assert.deepEqual(result, { stamped: 2, unknown: 1 });
-    assert.equal(storedEntry(kv, "github:versions-demand:releases:quiet/repo").requested_at, seenAt);
+    assert.deepEqual(kv.meta.get("github:versions-demand:releases:quiet/repo"), { r: seenAt });
     assert.equal(storedEntry(kv, "github:versions-demand:releases:fresh/repo").requested_at, now - HOUR);
     // The lists themselves are never rewritten for demand.
     assert.ok(kv.writes.every((w) => w.key.startsWith("github:versions-demand:")));
