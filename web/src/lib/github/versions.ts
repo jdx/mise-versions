@@ -1516,11 +1516,18 @@ export async function refreshVersionLists(
   // Dispatch a deploy when a change is waiting for one, unless a dispatch
   // is still in flight. A deploy acknowledges what it baked (BAKED_KEY), so
   // changes a catalog deploy already baked dispatch nothing.
-  const baked = (await kv.get<{ at?: number }>(BAKED_KEY, "json"))?.at ?? 0;
+  // `at`: changes up to here are baked (less KV's list lag). `acked_at`:
+  // when a deploy last acknowledged, which ends any dispatch before it.
+  const bakedState = await kv.get<{ at?: number; acked_at?: number }>(
+    BAKED_KEY,
+    "json",
+  );
+  const baked = bakedState?.at ?? 0;
+  const ackedAt = bakedState?.acked_at ?? baked;
   const dispatchedAt =
     (await kv.get<{ at?: number }>(DISPATCHED_KEY, "json"))?.at ?? 0;
   const inFlight =
-    dispatchedAt > baked && Date.now() - dispatchedAt < DISPATCH_PENDING_MS;
+    dispatchedAt > ackedAt && Date.now() - dispatchedAt < DISPATCH_PENDING_MS;
   if (dispatch && latestChange > baked && !inFlight) {
     try {
       await dispatch();
@@ -1552,9 +1559,13 @@ export async function recordVersionsBaked(
   const current =
     (await env.GITHUB_CACHE.get<{ at?: number }>(BAKED_KEY, "json"))?.at ?? 0;
   const at = Math.max(current, watermark - KV_LIST_LAG_MS);
-  if (at !== current) {
-    await env.GITHUB_CACHE.put(BAKED_KEY, JSON.stringify({ at }));
-  }
+  // The acknowledgement time is kept apart from the change watermark: a
+  // finished deploy ends the dispatch it answered, even when its watermark
+  // (less the lag) falls before that dispatch.
+  await env.GITHUB_CACHE.put(
+    BAKED_KEY,
+    JSON.stringify({ at, acked_at: Date.now() }),
+  );
   return at;
 }
 

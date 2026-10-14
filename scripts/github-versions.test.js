@@ -874,6 +874,21 @@ test("deploys are dispatched only for changes not yet baked or in flight", () =>
     assert.equal((await refreshVersionLists(quietEnv, { dispatch })).dispatched, true);
     assert.equal(dispatches.length, 1);
 
+    // A deploy that baked a minute after the dispatch acknowledges: its
+    // watermark, less the lag, is before the dispatch, but the deploy is
+    // done, so a later change dispatches again at once.
+    const env2 = {
+      DB: poolDb,
+      ANALYTICS_DB: {},
+      GITHUB_CACHE: memoryKv({
+        "github:versions:releases:fresh/repo": list({ c: now - MIN }),
+        ...demand("releases:fresh/repo"),
+        "github:versions-state:dispatched": { at: now - 3 * MIN },
+      }),
+    };
+    await recordVersionsBaked(env2, now - 2 * MIN);
+    assert.equal((await refreshVersionLists(env2, { dispatch })).dispatched, true);
+
     // A deploy acknowledges its bake, less KV list()'s lag (a change made
     // just before the bake read may not have shown); it only moves forward.
     assert.equal(await recordVersionsBaked(quietEnv, now), now - 2 * MIN);
