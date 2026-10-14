@@ -199,6 +199,21 @@ describe("dayCoverage", () => {
     );
   });
 
+  it("does not let a neighbouring day's batch stand in for a late start", () => {
+    // A batch from the previous day's folder runs to 00:20, but the day's own
+    // logs only start at 03:00.
+    const lateStart = [
+      ...objects("jdx.dev", "2026-10-14T23:50:00Z", "2026-10-15T00:20:00Z", 30),
+      ...objects("jdx.dev", "2026-10-15T03:00:00Z", "2026-10-16T00:02:00Z"),
+    ];
+    const coverage = dayCoverage(lateStart, ["jdx.dev"], "2026-10-15");
+    assert.equal(coverage.complete, false);
+    assert.equal(
+      coverage.zones["jdx.dev"].largestGapSeconds,
+      2 * 3600 + 40 * 60,
+    );
+  });
+
   it("does not count neighbouring days' objects that only cross midnight", () => {
     // The day's own folder is empty; only batches crossing into and out of
     // it were listed from the neighbouring folders.
