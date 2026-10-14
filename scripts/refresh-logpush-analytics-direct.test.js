@@ -479,4 +479,39 @@ describe("refresh-logpush-analytics-direct", () => {
       ),
     );
   });
+
+  it("counts release downloads but stores no usage numbers for a day with only release-zone logs", async () => {
+    const r2 = fakeR2({
+      "http_requests/en.dev/20261015/20261015T000000Z_20261015T235959Z_c.log.gz":
+        gzipSync(
+          line({
+            EdgeStartTimestamp: "2026-10-15T12:00:00Z",
+            ClientRequestHost: "mise.en.dev",
+            ClientRequestURI: "/v2026.10.8/mise-v2026.10.8-linux-x64",
+          }),
+        ),
+    });
+    const writes = fakeD1();
+    const userSets = new Map();
+    const result = await refreshDate(
+      { ...config(r2), releaseZones: ["jdx.dev", "en.dev"] },
+      "2026-10-15",
+      userSets,
+    );
+    assert.equal(result.usageSkipped, true);
+    assert.equal(result.dau, undefined);
+    assert.equal(result.miseReleases.binaryRequests, 1);
+    // jdx.dev has no logs that day, so the release counts are not covered.
+    assert.equal(result.miseReleases.complete, false);
+    // No user set, MAU, DAU, or install rows for the missing usage logs.
+    assert.equal(userSets.size, 0);
+    assert.ok(![...r2.store.keys()].some((key) => key.startsWith("rollups/")));
+    assert.ok(!writes.some(({ sql }) => /logpush_/.test(sql)));
+    assert.deepEqual(
+      writes.find(({ sql }) =>
+        sql.startsWith("INSERT OR REPLACE INTO mise_release_daily_downloads"),
+      ).params,
+      ["2026-10-15", "2026.10.8", 1, 0],
+    );
+  });
 });

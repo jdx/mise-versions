@@ -433,18 +433,9 @@ function miseReleaseResult(config, date, objects, releases) {
   };
 }
 
-export async function refreshDate(config, date, userSets) {
-  const objects = await listDayObjects(config, date);
-  if (!objects.some((object) => config.zones.includes(object.zone))) {
-    console.warn(
-      `${date}: no Logpush objects under ${config.prefix}/{${config.zones.join(",")}}; skipping`,
-    );
-    return { date, skipped: true };
-  }
-  console.log(`${date}: reading ${objects.length} Logpush object(s)`);
-  const started = Date.now();
-  const releases = new MiseReleaseDayAggregator({ date });
-  const aggregator = await readDay(config, date, objects, releases);
+// The mise usage numbers for a day: the user set, DAU, MAU and beacon
+// installs. Writes nothing in a dry run.
+async function refreshUsage(config, date, aggregator, userSets, started) {
   const hashes = aggregator.userHashes();
   userSets.set(date, hashes);
   const { stats } = aggregator;
@@ -478,7 +469,6 @@ export async function refreshDate(config, date, userSets) {
   }
 
   const result = {
-    date,
     dau: hashes.length,
     mau: mau.mau,
     mauDaysCovered: mau.daysCovered,
@@ -486,7 +476,6 @@ export async function refreshDate(config, date, userSets) {
     ciRequests: stats.ciRequests,
     beaconRequests: stats.beaconRequests,
     downloads: aggregator.downloads.size,
-    miseReleases: miseReleaseResult(config, date, objects, releases),
   };
   if (config.dryRun) {
     const rollups = aggregator.downloadRollups();
@@ -495,14 +484,48 @@ export async function refreshDate(config, date, userSets) {
       .slice(0, 10)
       .map(({ tool, downloads }) => ({ tool, downloads }));
   } else {
-    const updatedAt = new Date().toISOString();
-    await writeD1(config, date, aggregator, mau, updatedAt);
+    await writeD1(config, date, aggregator, mau, new Date().toISOString());
+  }
+  return result;
+}
+
+// A day with objects only in release zones (such as en.dev) still gets its
+// release download counts, but no usage numbers: writing them would store an
+// empty user set and zero DAU for a day whose usage logs are missing.
+export async function refreshDate(config, date, userSets) {
+  const objects = await listDayObjects(config, date);
+  if (objects.length === 0) {
+    console.warn(
+      `${date}: no Logpush objects under ${config.prefix}/{${[...new Set([...config.zones, ...releaseZones(config)])].join(",")}}; skipping`,
+    );
+    return { date, skipped: true };
+  }
+  const hasUsage = objects.some((object) => config.zones.includes(object.zone));
+  console.log(`${date}: reading ${objects.length} Logpush object(s)`);
+  const started = Date.now();
+  const releases = new MiseReleaseDayAggregator({ date });
+  const aggregator = await readDay(config, date, objects, releases);
+
+  let result = { date };
+  if (hasUsage) {
+    result = {
+      ...result,
+      ...(await refreshUsage(config, date, aggregator, userSets, started)),
+    };
+  } else {
+    console.warn(
+      `${date}: no Logpush objects under ${config.prefix}/{${config.zones.join(",")}}; counting mise release downloads only`,
+    );
+    result.usageSkipped = true;
+  }
+  result.miseReleases = miseReleaseResult(config, date, objects, releases);
+  if (!config.dryRun) {
     await writeMiseReleaseDownloads(
       config,
       date,
       releases,
       result.miseReleases.complete,
-      updatedAt,
+      new Date().toISOString(),
     );
   }
   console.log(JSON.stringify(result));
@@ -547,15 +570,15 @@ async function main() {
     results.push(await refreshDate(config, date, userSets));
   }
   const refreshed = results
-    .filter((result) => !result.skipped)
+    .filter((result) => !result.skipped && !result.usageSkipped)
     .map((result) => result.date);
   const recomputedMau = await recomputeLaterMau(config, refreshed, userSets);
   console.log(
     JSON.stringify({ success: true, results, recomputedMau }, null, 2),
   );
-  if (results.every((result) => result.skipped)) {
+  if (results.every((result) => result.skipped || result.usageSkipped)) {
     throw new Error(
-      "No Logpush objects found for any requested date; check the bucket, prefix, zones, and credentials",
+      "No Logpush objects found in the usage zones (LOGPUSH_ZONES) for any requested date; check the bucket, prefix, zones, and credentials",
     );
   }
 }

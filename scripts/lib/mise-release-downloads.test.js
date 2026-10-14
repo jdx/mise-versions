@@ -136,51 +136,94 @@ describe("MiseReleaseDayAggregator", () => {
 });
 
 describe("dayCoverage", () => {
-  const object = (zone, start, end) => ({
-    zone,
-    key: `http_requests/${zone}/x/${start}_${end}_abc.log.gz`,
-  });
+  const stamp = (ms) =>
+    new Date(ms)
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .replace(/\.\d+Z$/, "Z");
+  // Logpush-style objects with `minutes`-long windows from `from` to `to`.
+  const objects = (zone, from, to, minutes = 1) => {
+    const list = [];
+    for (
+      let start = Date.parse(from);
+      start < Date.parse(to);
+      start += minutes * 60_000
+    ) {
+      list.push({
+        zone,
+        key: `http_requests/${zone}/x/${stamp(start)}_${stamp(start + minutes * 60_000)}_abc.log.gz`,
+      });
+    }
+    return list;
+  };
+  const fullDay = (zone) =>
+    objects(zone, "2026-10-14T23:58:00Z", "2026-10-16T00:02:00Z");
 
-  it("needs every zone's objects to span the whole day", () => {
-    const full = [
-      object("jdx.dev", "20261014T235800Z", "20261015T000100Z"),
-      object("jdx.dev", "20261015T120000Z", "20261015T120100Z"),
-      object("jdx.dev", "20261015T235900Z", "20261016T000100Z"),
-      object("en.dev", "20261015T003000Z", "20261015T003100Z"),
-      object("en.dev", "20261015T233000Z", "20261015T233100Z"),
-    ];
-    const coverage = dayCoverage(full, ["jdx.dev", "en.dev"], "2026-10-15");
+  it("accepts zones whose objects cover the whole day", () => {
+    const coverage = dayCoverage(
+      [
+        ...fullDay("jdx.dev"),
+        // en.dev batches every 10 minutes: below the 15-minute limit
+        ...objects(
+          "en.dev",
+          "2026-10-15T00:05:00Z",
+          "2026-10-15T23:50:00Z",
+          5,
+        ).filter((_, i) => i % 2 === 0),
+      ],
+      ["jdx.dev", "en.dev"],
+      "2026-10-15",
+    );
     assert.equal(coverage.complete, true);
     assert.deepEqual(coverage.zones["jdx.dev"], {
-      objects: 3,
+      objects: 1444,
       firstStart: "2026-10-14T23:58:00.000Z",
-      lastEnd: "2026-10-16T00:01:00.000Z",
+      lastEnd: "2026-10-16T00:02:00.000Z",
+      largestGapSeconds: 0,
     });
+    assert.equal(coverage.zones["en.dev"].largestGapSeconds, 600);
+  });
+
+  it("rejects a day with a hole in the middle", () => {
+    // Logpush paused from 11:00 to 11:30, or those objects were lost.
+    const outage = [
+      ...objects("jdx.dev", "2026-10-14T23:58:00Z", "2026-10-15T11:00:00Z"),
+      ...objects("jdx.dev", "2026-10-15T11:30:00Z", "2026-10-16T00:02:00Z"),
+    ];
+    const coverage = dayCoverage(outage, ["jdx.dev"], "2026-10-15");
+    assert.equal(coverage.complete, false);
+    assert.equal(coverage.zones["jdx.dev"].largestGapSeconds, 30 * 60);
+    assert.equal(
+      coverage.zones["jdx.dev"].firstStart,
+      "2026-10-14T23:58:00.000Z",
+    );
   });
 
   it("rejects a day that starts late, ends early, or misses a zone", () => {
     // The Logpush jobs were created at about 14:54 UTC on 2026-10-14.
-    const late = [
-      object("jdx.dev", "20261014T145411Z", "20261014T145517Z"),
-      object("jdx.dev", "20261014T235900Z", "20261015T000100Z"),
-    ];
+    const late = objects(
+      "jdx.dev",
+      "2026-10-14T14:54:00Z",
+      "2026-10-15T00:02:00Z",
+    );
     assert.equal(dayCoverage(late, ["jdx.dev"], "2026-10-14").complete, false);
-    const early = [
-      object("jdx.dev", "20261015T000000Z", "20261015T000100Z"),
-      object("jdx.dev", "20261015T200000Z", "20261015T200100Z"),
-    ];
+    const early = objects(
+      "jdx.dev",
+      "2026-10-14T23:58:00Z",
+      "2026-10-15T20:00:00Z",
+    );
     assert.equal(dayCoverage(early, ["jdx.dev"], "2026-10-15").complete, false);
-    const full = [
-      object("jdx.dev", "20261015T000000Z", "20261015T000100Z"),
-      object("jdx.dev", "20261015T235900Z", "20261016T000000Z"),
-    ];
-    assert.equal(dayCoverage(full, ["jdx.dev"], "2026-10-15").complete, true);
-    const missing = dayCoverage(full, ["jdx.dev", "en.dev"], "2026-10-15");
+    const missing = dayCoverage(
+      fullDay("jdx.dev"),
+      ["jdx.dev", "en.dev"],
+      "2026-10-15",
+    );
     assert.equal(missing.complete, false);
     assert.deepEqual(missing.zones["en.dev"], {
       objects: 0,
       firstStart: null,
       lastEnd: null,
+      largestGapSeconds: 86400,
     });
   });
 });

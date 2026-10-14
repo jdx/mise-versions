@@ -28,11 +28,13 @@ const BINARY_FILE =
   /^mise-v(\d{4}\.\d+\.\d+)-[a-z0-9_]+(?:-[a-z0-9_]+)+(?:\.tar\.gz|\.tar\.xz|\.tar\.zst|\.zip|\.exe)?$/;
 const COUNTED_METHODS = new Set(["GET", "HEAD"]);
 
-// A zone's objects must reach this close to both ends of the day for the day
-// to count as covered. Logpush writes a batch every minute or so on these
-// hosts, so a larger hole at either end means the job started late (as on
-// 2026-10-14, when the jobs were created mid-day), stopped, or lost objects.
-const EDGE_GAP_MS = 60 * 60 * 1000;
+// The longest stretch of a day, at either end or in between, that a zone's
+// Logpush object windows may leave uncovered for the day to count as covered.
+// Both zones write a batch every minute or so (the largest gap on
+// 2026-10-14 was 2 seconds), so a longer hole means the job started late (as
+// on 2026-10-14, when the jobs were created at about 14:54 UTC), paused, or
+// objects are missing. A lost object shorter than this is not detected.
+const MAX_GAP_MS = 15 * 60 * 1000;
 
 // Classify a ClientRequestURI (path plus query). Returns
 // { version, kind: "binary" | "other" } for a file under a release folder,
@@ -107,34 +109,42 @@ export class MiseReleaseDayAggregator {
   }
 }
 
-// Whether every zone's Logpush objects cover `date` end to end. `objects`
-// are the day's listed objects with a `zone` field. Returns
-// { complete, zones: { [zone]: { objects, firstStart, lastEnd } } }.
+// Whether every zone's Logpush objects cover `date` with no hole longer than
+// MAX_GAP_MS: not before the first object, between objects, or after the
+// last one. `objects` are the day's listed objects with a `zone` field.
+// Returns { complete, zones: { [zone]: { objects, firstStart, lastEnd,
+// largestGapSeconds } } }.
 export function dayCoverage(objects, zones, date) {
   const dayStart = Date.parse(`${date}T00:00:00Z`);
   const dayEnd = dayStart + 86_400_000;
   const result = { complete: true, zones: {} };
   for (const zone of zones) {
-    let first = null;
-    let last = null;
-    let count = 0;
-    for (const object of objects) {
-      if (object.zone !== zone) continue;
-      count++;
-      const window = parseLogpushObjectWindow(object.key);
-      if (!window) continue;
-      if (first === null || window.startMs < first) first = window.startMs;
-      if (last === null || window.endMs > last) last = window.endMs;
+    const zoneObjects = objects.filter((object) => object.zone === zone);
+    const windows = zoneObjects
+      .map((object) => parseLogpushObjectWindow(object.key))
+      .filter(Boolean)
+      .sort((a, b) => a.startMs - b.startMs);
+    // `reached`: how far into the day the windows so far cover, end to end.
+    let reached = dayStart;
+    let largestGap = 0;
+    for (const window of windows) {
+      if (window.startMs >= dayEnd) break;
+      largestGap = Math.max(largestGap, window.startMs - reached);
+      reached = Math.max(reached, window.endMs);
     }
-    const complete =
-      first !== null &&
-      first <= dayStart + EDGE_GAP_MS &&
-      last >= dayEnd - EDGE_GAP_MS;
-    if (!complete) result.complete = false;
+    largestGap = Math.max(largestGap, dayEnd - reached);
+    if (largestGap > MAX_GAP_MS) result.complete = false;
     result.zones[zone] = {
-      objects: count,
-      firstStart: first === null ? null : new Date(first).toISOString(),
-      lastEnd: last === null ? null : new Date(last).toISOString(),
+      objects: zoneObjects.length,
+      firstStart:
+        windows.length === 0
+          ? null
+          : new Date(windows[0].startMs).toISOString(),
+      lastEnd:
+        windows.length === 0
+          ? null
+          : new Date(Math.max(...windows.map((w) => w.endMs))).toISOString(),
+      largestGapSeconds: largestGap / 1000,
     };
   }
   return result;
