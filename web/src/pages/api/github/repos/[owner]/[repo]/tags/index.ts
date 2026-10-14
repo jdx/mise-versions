@@ -5,10 +5,11 @@ import {
   cacheHeaders,
   getCachedGitHubTagList,
   githubStatus,
+  isGitHubRateLimited,
   matchGitHubMirrorEdgeCache,
+  NoGraphQLTokenError,
   putGitHubMirrorEdgeCache,
   TAG_LIST_MAX_PAGE,
-  tagListFreshSeconds,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
 import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
@@ -54,7 +55,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   if (cached) return cached;
 
   try {
-    const { list, staleFallback } = await getCachedGitHubTagList(
+    const { list, staleFallback, freshSeconds } = await getCachedGitHubTagList(
       env,
       owner,
       repo,
@@ -63,7 +64,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     );
     // A stale fallback is served once but not edge-cached, so the next
     // request retries GitHub.
-    const maxAge = staleFallback ? 0 : tagListFreshSeconds(page);
+    const maxAge = freshSeconds;
     const response = jsonResponse(
       list,
       200,
@@ -88,9 +89,15 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       `GitHub tag list mirror failed for ${owner}/${repo} page ${page}:`,
       error,
     );
-    return errorResponse(
-      githubStatus(error) === 404 ? "Not found" : "Failed to fetch GitHub tags",
-      githubStatus(error) === 404 ? 404 : 502,
-    );
+    if (githubStatus(error) === 404) return errorResponse("Not found", 404);
+    // Temporary: the client should fall back to GitHub and not cache this.
+    // Not 403, which mise reads as the mirror being restricted.
+    if (error instanceof NoGraphQLTokenError) {
+      return errorResponse("GitHub tag dates are unavailable right now", 503);
+    }
+    if (isGitHubRateLimited(error)) {
+      return errorResponse("GitHub rate limit reached; try again later", 503);
+    }
+    return errorResponse("Failed to fetch GitHub tags", 502);
   }
 };

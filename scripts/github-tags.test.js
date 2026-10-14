@@ -143,10 +143,16 @@ test("tag list pages refresh like the release list", () => {
     assert.equal(refreshed.list.tags.length, 3);
     assert.equal(fetches, 1);
     // A later page stays fresh for an hour.
-    await getCachedGitHubTagList(
+    const later = await getCachedGitHubTagList(
       envCachedAgo("github:tags:o/r:2", 30 * 60 * 1000), "o", "r", 2,
     );
     assert.equal(fetches, 1);
+
+    // The edge gets only what is left of the KV entry's freshness: 5 of 10
+    // minutes, 30 of 60, and the whole window for a page just fetched.
+    assert.ok(Math.abs(fresh.freshSeconds - 300) <= 1, String(fresh.freshSeconds));
+    assert.ok(Math.abs(later.freshSeconds - 1800) <= 1, String(later.freshSeconds));
+    assert.ok(Math.abs(refreshed.freshSeconds - 600) <= 1, String(refreshed.freshSeconds));
   `);
 });
 
