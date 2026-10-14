@@ -1137,9 +1137,15 @@ export async function listVersionsChanges(
     const target = parseVersionsCacheKey(key.name);
     const meta = parseMeta(key.metadata);
     if (!target || !meta) continue;
-    if (since !== undefined && meta.c <= since) continue;
+    // Changed lists, and lists refreshed without changing: the latter only
+    // to republish their `fetched_at`, and only with a deploy that happens
+    // anyway (the refresher dispatches deploys for changes only).
+    const changed = since === undefined || meta.c > since;
+    if (!changed && !(meta.h > (since ?? 0))) continue;
     if (meta.b) wanted.push({ key: key.name, target, meta });
-    else if (since !== undefined) changes.deleted.push(versionsPath(target));
+    else if (changed && since !== undefined) {
+      changes.deleted.push(versionsPath(target));
+    }
   }
   const values = await getAll<StoredVersions>(
     env.GITHUB_CACHE,
@@ -1164,6 +1170,13 @@ export const VERSIONS_REFRESH_CRON = "*/10 * * * *";
 // `maxTasks` lists: each costs about four KV operations (read, write,
 // visibility, generation) of the 1,000 a Worker invocation may make.
 const refreshTiming = { budgetMs: 3 * 60 * 1000, maxTasks: 150 };
+// A Worker invocation may make 1,000 KV operations. A run plans its reads
+// (listings, demand, generations) and its tasks to stay under this.
+const KV_OPS_BUDGET = 900;
+// A task's KV operations: read, write, a visibility lookup, and a margin.
+const KV_OPS_PER_TASK = 5;
+// The lease, the deploy bookkeeping, and the lease's release.
+const KV_OPS_FIXED = 6;
 const REFRESH_CONCURRENCY = 4;
 // A repo's access is checked again this often (the visibility cache's own
 // lifetime), so a repo that turns private stops being baked within about an
@@ -1263,7 +1276,9 @@ export async function refreshVersionLists(
   }
 
   const tasks: RefreshTask[] = [];
-  const releaseRepos: string[] = [];
+  // Bakeable release lists' repos, with their latest demand, whose
+  // generation may make a fresh list due.
+  const releaseRepos = new Map<string, number>();
   let latestChange = 0;
   for (const key of lists.keys) {
     const target = parseVersionsCacheKey(key.name);
@@ -1276,8 +1291,12 @@ export async function refreshVersionLists(
       requestedAt !== undefined && startedAt - requestedAt < DEMAND_WINDOW_MS;
     const accessDue = !meta || startedAt - meta.a >= ACCESS_CHECK_MS;
     if (!requested && !meta?.b) continue;
-    if (target.source === "releases") {
-      releaseRepos.push(`${target.owner}/${target.repo}`);
+    if (target.source === "releases" && meta?.b && requested) {
+      const repo = `${target.owner}/${target.repo}`.toLowerCase();
+      releaseRepos.set(
+        repo,
+        Math.max(releaseRepos.get(repo) ?? 0, requestedAt ?? 0),
+      );
     }
     tasks.push({
       key: key.name,
@@ -1290,16 +1309,36 @@ export async function refreshVersionLists(
       overdue: 0,
     });
   }
+  // Plan the KV operations: what the scans used, then generations (most
+  // recently requested repos first), then tasks. Repos whose generation is
+  // not read this run keep the one they were last refreshed under.
+  const scanned =
+    lists.ops + demands.ops + Math.ceil(legacy.length / KV_BULK_GET_LIMIT);
+  const available = Math.max(0, KV_OPS_BUDGET - KV_OPS_FIXED - scanned);
+  const generationOps = Math.min(
+    Math.ceil(releaseRepos.size / KV_BULK_GET_LIMIT),
+    Math.max(0, available - refreshTiming.maxTasks * KV_OPS_PER_TASK),
+  );
+  const taskCap = Math.min(
+    refreshTiming.maxTasks,
+    Math.floor((available - generationOps) / KV_OPS_PER_TASK),
+  );
   const generations = await readGitHubLatestReleaseGenerations(
     kv,
-    releaseRepos,
+    [...releaseRepos]
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, generationOps * KV_BULK_GET_LIMIT)
+      .map(([repo]) => repo),
   );
   for (const task of tasks) {
     const { target, meta } = task;
+    const repo = `${target.owner}/${target.repo}`.toLowerCase();
     task.generation =
-      target.source === "releases"
-        ? generations.get(`${target.owner}/${target.repo}`.toLowerCase())
-        : undefined;
+      target.source !== "releases"
+        ? undefined
+        : generations.has(repo)
+          ? generations.get(repo)
+          : meta?.g;
     task.step = meta
       ? refreshStep(
           freshnessOf(meta),
@@ -1312,9 +1351,15 @@ export async function refreshVersionLists(
       ? Number.MAX_SAFE_INTEGER // dropping a list is cheap and changes a bake
       : !meta
         ? Number.MAX_SAFE_INTEGER - 1
-        : task.step !== "fresh" || task.accessDue
-          ? startedAt - Math.min(meta.h, meta.a)
-          : -1;
+        : !meta.b
+          ? // An unbaked list cannot be refreshed: it waits for its next
+            // access check, rather than taking a slot every run.
+            task.accessDue
+            ? startedAt - meta.a
+            : -1
+          : task.step !== "fresh" || task.accessDue
+            ? startedAt - Math.min(meta.h, meta.a)
+            : -1;
   }
   const due = tasks
     .filter((task) => task.overdue >= 0)
@@ -1403,7 +1448,7 @@ export async function refreshVersionLists(
     }
   };
 
-  const selected = due.slice(0, refreshTiming.maxTasks);
+  const selected = due.slice(0, taskCap);
   run.deferred += due.length - selected.length;
   for (let i = 0; i < selected.length; i += REFRESH_CONCURRENCY) {
     if (Date.now() - startedAt >= refreshTiming.budgetMs) {
@@ -1442,10 +1487,15 @@ export async function refreshVersionLists(
   return run;
 }
 
+// KV list() metadata can trail a write by up to a minute, so a bake's first
+// page may not show a change made just before it. A bake acknowledges only
+// what is older than this, and later changes keep a deploy pending.
+const KV_LIST_LAG_MS = 2 * 60 * 1000;
+
 /**
  * A deploy published the lists changed up to `watermark` (the `now` of its
  * first changes page). The refresher dispatches deploys only for changes
- * after the latest such watermark.
+ * after the latest such watermark, less KV_LIST_LAG_MS.
  */
 export async function recordVersionsBaked(
   env: Env,
@@ -1453,7 +1503,7 @@ export async function recordVersionsBaked(
 ): Promise<number> {
   const current =
     (await env.GITHUB_CACHE.get<{ at?: number }>(BAKED_KEY, "json"))?.at ?? 0;
-  const at = Math.max(current, watermark);
+  const at = Math.max(current, watermark - KV_LIST_LAG_MS);
   if (at !== current) {
     await env.GITHUB_CACHE.put(BAKED_KEY, JSON.stringify({ at }));
   }

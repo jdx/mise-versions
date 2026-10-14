@@ -871,9 +871,10 @@ test("deploys are dispatched only for changes not yet baked or in flight", () =>
     assert.equal((await refreshVersionLists(quietEnv, { dispatch })).dispatched, true);
     assert.equal(dispatches.length, 1);
 
-    // A deploy acknowledges its bake; the watermark only moves forward.
-    assert.equal(await recordVersionsBaked(quietEnv, now), now);
-    assert.equal(await recordVersionsBaked(quietEnv, now - HOUR), now);
+    // A deploy acknowledges its bake, less KV list()'s lag (a change made
+    // just before the bake read may not have shown); it only moves forward.
+    assert.equal(await recordVersionsBaked(quietEnv, now), now - 2 * MIN);
+    assert.equal(await recordVersionsBaked(quietEnv, now - HOUR), now - 2 * MIN);
   `);
 });
 
@@ -918,17 +919,28 @@ test("a refresher run is capped, and leaves the rest for the next run", () => {
 test("the changes listing names lists changed or removed since a watermark", () => {
   runVersionsTest(`
     ${REFRESH_SETUP}
-    kv.meta.set("github:versions:releases:due/repo", { ...kv.meta.get("github:versions:releases:due/repo"), c: now - 5 * MIN });
-    kv.meta.set("github:versions:releases:quiet/repo", { ...kv.meta.get("github:versions:releases:quiet/repo"), b: false, c: now - 5 * MIN });
+    const set = (repo, extra) => {
+      const key = "github:versions:releases:" + repo;
+      kv.meta.set(key, { ...kv.meta.get(key), ...extra });
+    };
+    set("due/repo", { c: now - 5 * MIN, h: now - 5 * MIN });
+    set("quiet/repo", { b: false, c: now - 5 * MIN });
+    // Refreshed lately without changing: listed again to republish its
+    // fetched_at, though it never dispatches a deploy itself.
+    set("fresh/repo", { c: now - 2 * HOUR, h: now - 5 * MIN });
+    // Neither changed nor refreshed since the watermark.
+    set("secret/repo", { c: now - 2 * HOUR, h: now - 2 * HOUR });
     const since = await listVersionsChanges(env, { since: now - HOUR });
-    assert.deepEqual(since.files.map((f) => f.path), ["github/due/repo/releases.json"]);
+    assert.deepEqual(since.files.map((f) => f.path).sort(), [
+      "github/due/repo/releases.json",
+      "github/fresh/repo/releases.json",
+    ]);
     assert.deepEqual(since.deleted, ["github/quiet/repo/releases.json"]);
     assert.equal(since.cursor, null);
     assert.ok(since.now >= now);
-    const body = JSON.parse(since.files[0].body);
+    const body = JSON.parse(since.files.find((f) => f.path.includes("due")).body);
     assert.equal(body.source, "releases");
     assert.deepEqual(body.releases, [item("v1")]);
-    assert.equal(since.files[0].requested_at, now - HOUR);
 
     // Without a watermark: every baked list, nothing to delete. The legacy
     // list has no metadata yet, so it waits for the refresher.
@@ -943,9 +955,54 @@ test("the changes listing names lists changed or removed since a watermark", () 
     // Pages follow the KV listing; GitHub is never asked.
     const first = await listVersionsChanges(env, { limit: 2 });
     assert.ok(first.cursor);
-    const second = await listVersionsChanges(env, { limit: 2, cursor: first.cursor });
-    assert.equal(first.files.length + second.files.length > 0, true);
+    await listVersionsChanges(env, { limit: 2, cursor: first.cursor });
     assert.deepEqual(apiCalls(), []);
+  `);
+});
+
+test("unbaked lists wait for their access check instead of taking slots", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // 3 lists of a private repo: requested, stale, unbaked, access checked
+    // a minute ago. Before, they were queued (and did nothing) every run.
+    for (const n of [1, 2, 3]) {
+      const key = "github:versions:releases:denied/repo" + n;
+      kv.store.set(key, JSON.stringify({ ...entry, head_at: now - 5 * HOUR }));
+      kv.meta.set(key, meta({ b: false, h: now - 5 * HOUR, u: now - 5 * HOUR, a: now - MIN }));
+      kv.store.set("github:versions-demand:releases:denied/repo" + n, JSON.stringify({ requested_at: now - MIN }));
+      kv.meta.set("github:versions-demand:releases:denied/repo" + n, { r: now - MIN });
+    }
+    __testing.setRefreshTiming({ maxTasks: 3 });
+    const run = await refreshVersionLists(env, { dispatch });
+    // The 3 slots go to the drop, the legacy list and the private repo's
+    // due access check, not to the unbaked lists.
+    assert.equal(run.dropped, 2);
+    assert.equal(run.added, 1);
+    assert.ok(!kv.writes.some((w) => w.key.includes("denied/")));
+  `);
+});
+
+test("a run plans its KV reads: generations only for what fits", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // The due list's stored generation stands in when its repo's generation
+    // is not read this run: an unread generation is not a change.
+    const key = "github:versions:releases:fresh/repo";
+    const g1 = "1".repeat(64);
+    const g2 = "2".repeat(64);
+    kv.meta.set(key, { ...kv.meta.get(key), g: g1 });
+    kv.store.set("github:release-generation:fresh/repo", JSON.stringify({ current: g2 }));
+    __testing.setRefreshTiming({ maxTasks: 1000 });
+    // 1000 tasks would use the whole budget: no generation is read, so the
+    // fresh list stays fresh.
+    let run = await refreshVersionLists(env, { dispatch });
+    assert.ok(!kv.writes.some((w) => w.key === key));
+    // With room for them, generations are read, and the new one makes the
+    // list due.
+    __testing.setRefreshTiming({ maxTasks: 150 });
+    run = await refreshVersionLists(env, { dispatch });
+    assert.ok(kv.writes.some((w) => w.key === key));
+    assert.equal(kv.meta.get(key).g, g2);
   `);
 });
 

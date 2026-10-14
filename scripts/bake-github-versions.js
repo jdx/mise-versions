@@ -55,6 +55,8 @@ const MANIFEST_VERSION = 1;
 // by up to a minute. Ask again from this long before the last watermark:
 // rewriting a few unchanged lists is harmless.
 export const SINCE_MARGIN_MS = 10 * 60 * 1000;
+// A full rebuild at least this often.
+export const FULL_REBUILD_MS = 7 * 24 * 60 * 60 * 1000;
 const VALID_PATH =
   /^github\/[a-z0-9_.-]+\/[a-z0-9_.-]+\/(releases\.json|tags\.json|assets\/[A-Za-z0-9._+@~-]+\/releases\.json)$/;
 
@@ -302,44 +304,57 @@ export async function bake({
   assetsDir,
   cacheDir,
   maxFiles = MAX_ASSET_FILES,
+  now = () => Date.now(),
   ...options
 }) {
-  const started = Date.now();
+  const started = now();
   const manifest = readManifest(cacheDir);
-  const since =
-    manifest && manifest.watermark > 0
-      ? manifest.watermark - SINCE_MARGIN_MS
-      : undefined;
-  let index = manifest?.files ?? {};
-  let watermark = manifest?.watermark ?? 0;
-  let mode = since === undefined ? "full" : "incremental";
+  // A cached tree is updated in place, from its watermark, or from the start
+  // (0) when it has none (after the one legacy bake, or a full bake that
+  // stopped part-way): that rewrites every list the refresher has seen and
+  // removes the unbaked ones, but keeps files of lists it has not seen yet.
+  // Without a cache, and once a week, the tree is rebuilt from scratch, so a
+  // file whose KV entry expired before its removal was baked cannot linger.
+  const rebuild =
+    !manifest ||
+    !(manifest.full_at > 0) ||
+    started - manifest.full_at >= FULL_REBUILD_MS;
+  const since = rebuild
+    ? undefined
+    : Math.max(0, manifest.watermark - SINCE_MARGIN_MS);
+  let index = rebuild ? {} : manifest.files;
+  let watermark = rebuild ? 0 : manifest.watermark;
+  let fullAt = rebuild ? 0 : manifest.full_at;
+  let mode = rebuild ? "full" : "incremental";
   let stats;
-  const changes = await collectChanges({ ...options, since });
+  const changes = await collectChanges({ ...options, now, since });
   if (changes.notFound) {
     // The deployed Worker predates /changes. Bake everything it has, and
-    // leave the watermark at 0 so the next deploy bakes in full from the new
-    // endpoint.
+    // leave the watermark at 0 so the next deploy updates this tree from the
+    // start through /changes.
     mode = "legacy";
-    const legacy = await collectLegacy(options);
+    const legacy = await collectLegacy({ ...options, now });
     if (legacy.files.length > 0 || legacy.complete) {
       stats = applyChanges(cacheDir, { files: legacy.files, full: true });
       index = stats.index;
+      fullAt = started;
     }
     watermark = 0;
   } else {
+    const wipe = rebuild && changes.pages > 0;
     stats = applyChanges(cacheDir, {
       files: changes.files,
       deleted: changes.deleted,
-      full: since === undefined && changes.pages > 0,
+      full: wipe,
       index,
     });
     index = stats.index;
-    // A bake that stopped part-way keeps its old watermark (a full one, 0),
+    if (wipe) fullAt = started;
+    // A bake that stopped part-way keeps its old watermark (a rebuild, 0),
     // so the next deploy asks again for everything after it.
     if (changes.complete) watermark = changes.watermark;
-    else if (since === undefined) watermark = 0;
   }
-  writeManifest(cacheDir, { watermark, files: index });
+  writeManifest(cacheDir, { watermark, full_at: fullAt, files: index });
   const published = publishTree(cacheDir, { assetsDir, index, maxFiles });
   return {
     mode,
@@ -350,7 +365,7 @@ export async function bake({
     removed: stats?.removed ?? 0,
     lists: Object.keys(index).length,
     ...published,
-    ms: Date.now() - started,
+    ms: now() - started,
   };
 }
 

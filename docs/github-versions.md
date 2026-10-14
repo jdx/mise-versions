@@ -228,13 +228,20 @@ Three parts, each with its own job:
 3. **Every deploy** (`deploy.yml`, whether dispatched by the refresher or by a
    catalog update) runs `scripts/bake-github-versions.js`:
    - The baked tree is kept between deploys in the Actions cache. The script
-     asks `/api/admin/github/versions/changes` only for the lists changed or
-     removed since that tree's bake. A deploy without a cached tree bakes every
-     list.
+     asks `/api/admin/github/versions/changes` only for the lists changed,
+     removed or refreshed since that tree's bake. Refreshed lists are rewritten
+     so their `fetched_at` stays current, but only a change makes the
+     refresher dispatch a deploy.
+   - A deploy without a cached tree, and the first deploy each week, rebuilds
+     the tree from scratch. That way a file whose KV entry expired before its
+     removal was baked cannot linger.
    - It writes the tree into `web/dist/client/data/github/`, where the files
      deploy as static assets.
    - After `wrangler deploy`, it acknowledges the bake, so the refresher
-     dispatches deploys only for later changes.
+     dispatches deploys only for later changes. The acknowledgement leaves out
+     the last 2 minutes, because KV's list metadata can trail a write by up to a
+     minute. A change made just before the bake read therefore still gets a
+     deploy.
 
    The bake reads KV only and makes no GitHub requests. A failure or timeout
    bakes what it has and never fails the deploy; anything not baked is still

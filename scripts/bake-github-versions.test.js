@@ -1,5 +1,11 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
@@ -104,7 +110,8 @@ test("a bake with a cache applies only what changed since its watermark", async 
       "github/a/a/releases.json": { c: 10, b: true, body: '{"a":1}' },
       "github/b/b/tags.json": { c: 20, b: true, body: '{"b":1}' },
     };
-    let worker = fakeWorker(lists, { now: 100 });
+    const first = SINCE_MARGIN_MS + 100;
+    let worker = fakeWorker(lists, { now: first });
     await bake({
       assetsDir,
       cacheDir,
@@ -114,7 +121,7 @@ test("a bake with a cache applies only what changed since its watermark", async 
     });
 
     // Later: a updated, b removed, d added; the margin re-asks a little.
-    const later = 100 + SINCE_MARGIN_MS + 1000;
+    const later = first + SINCE_MARGIN_MS + 1000;
     lists["github/a/a/releases.json"] = {
       c: later - 10,
       b: true,
@@ -136,10 +143,8 @@ test("a bake with a cache applies only what changed since its watermark", async 
       log: silent,
     });
     assert.equal(result.mode, "incremental");
-    assert.equal(result.since, 100 - SINCE_MARGIN_MS);
-    assert.ok(
-      worker.calls.every((call) => call.body.since === 100 - SINCE_MARGIN_MS),
-    );
+    assert.equal(result.since, 100);
+    assert.ok(worker.calls.every((call) => call.body.since === 100));
     assert.equal(result.written, 2);
     assert.equal(result.removed, 1);
     assert.equal(result.published, 2);
@@ -226,12 +231,31 @@ test("against a Worker without /changes, the old endpoint bakes everything once"
       calls.map((url) => url.split("/").pop()),
       ["changes", "bake"],
     );
-    // The next deploy bakes in full from /changes.
     assert.equal(readManifest(cacheDir).watermark, 0);
     assert.equal(
       readFileSync(join(assetsDir, "data/github/a/a/releases.json"), "utf8"),
       '{"legacy":1}',
     );
+
+    // The next deploy updates that tree from the start through /changes,
+    // without discarding the lists the refresher has not seen yet.
+    const worker = fakeWorker({
+      "github/b/b/releases.json": { c: 5, b: true, body: '{"new":1}' },
+      "github/c/c/releases.json": { c: 5, b: false },
+    });
+    const nextDir = join(assetsDir, "..", "next");
+    const next = await bake({
+      assetsDir: nextDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+    });
+    assert.equal(next.mode, "incremental");
+    assert.equal(next.since, 0);
+    assert.equal(next.published, 2);
+    assert.ok(existsSync(join(nextDir, "data/github/a/a/releases.json")));
+    assert.ok(existsSync(join(nextDir, "data/github/b/b/releases.json")));
   } finally {
     cleanup();
   }
@@ -332,6 +356,46 @@ test("ack reports the deployed watermark, and nothing without one", async () => 
     const call = worker.calls.at(-1);
     assert.ok(call.url.endsWith("/api/admin/github/versions/baked"));
     assert.deepEqual(call.body, { watermark: 77 });
+  } finally {
+    cleanup();
+  }
+});
+
+test("a cached tree is rebuilt from scratch once a week", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const lists = { "github/a/a/releases.json": { c: 10, b: true } };
+    const worker = fakeWorker(lists, { now: SINCE_MARGIN_MS + 100 });
+    let clock = 1_000_000_000_000;
+    const run = (dir) =>
+      bake({
+        assetsDir: join(assetsDir, "..", dir),
+        cacheDir,
+        secret: "s",
+        fetchImpl: worker.fetchImpl,
+        log: silent,
+        now: () => clock,
+      });
+    await run("first");
+    // A file left in the tree whose KV entry expired: no removal will come.
+    const { index } = applyChanges(cacheDir, {
+      files: [file("github/gone/repo/releases.json", 1)],
+      index: readManifest(cacheDir).files,
+    });
+    const manifest = readManifest(cacheDir);
+    writeFileSync(
+      join(cacheDir, "manifest.json"),
+      JSON.stringify({ ...manifest, files: index }),
+    );
+    clock += 6 * 24 * 60 * 60 * 1000;
+    const within = await run("within");
+    assert.equal(within.mode, "incremental");
+    assert.ok(existsSync(join(assetsDir, "..", "within", "data/github/gone")));
+    clock += 2 * 24 * 60 * 60 * 1000;
+    const weekly = await run("weekly");
+    assert.equal(weekly.mode, "full");
+    assert.equal(weekly.published, 1);
+    assert.ok(!existsSync(join(assetsDir, "..", "weekly", "data/github/gone")));
   } finally {
     cleanup();
   }
