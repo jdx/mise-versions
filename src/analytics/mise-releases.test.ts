@@ -4,13 +4,15 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { DatabaseSync } from "node:sqlite";
 import {
+  getMiseReleaseDailyBinaryDownloads,
   getMiseReleaseDownloads,
   parseMiseReleaseDays,
 } from "./mise-releases.js";
 
 // D1 stand-in backed by real SQLite, with the tables from migrations.ts.
+// A covered day is its date, or [date, binary_requests, other_requests].
 function fakeD1(
-  coveredDays: string[],
+  coveredDays: (string | [string, number, number])[],
   rows: [string, string, number, number][],
 ) {
   const db = new DatabaseSync(":memory:");
@@ -29,10 +31,11 @@ function fakeD1(
       PRIMARY KEY (date, version)
     );
   `);
-  for (const date of coveredDays) {
+  for (const day of coveredDays) {
+    const [date, binary, other] = typeof day === "string" ? [day, 0, 0] : day;
     db.prepare(
-      "INSERT INTO mise_release_download_days VALUES (?, 0, 0, 'now')",
-    ).run(date);
+      "INSERT INTO mise_release_download_days VALUES (?, ?, ?, 'now')",
+    ).run(date, binary, other);
   }
   for (const row of rows) {
     db.prepare(
@@ -42,15 +45,13 @@ function fakeD1(
   let queries = 0;
   const d1 = {
     prepare(query: string) {
+      const all = (params: unknown[]) => async () => {
+        queries++;
+        return { results: db.prepare(query).all(...(params as never[])) };
+      };
       return {
-        bind: (...params: unknown[]) => ({
-          all: async () => {
-            queries++;
-            return {
-              results: db.prepare(query).all(...(params as never[])),
-            };
-          },
-        }),
+        all: all([]),
+        bind: (...params: unknown[]) => ({ all: all(params) }),
       };
     },
   } as unknown as D1Database;
@@ -124,4 +125,26 @@ test("reports covered days with no downloads, and no coverage at all", async () 
     last_covered_date: null,
     versions: {},
   });
+});
+
+test("lists binary downloads per covered day, oldest first", async () => {
+  const { d1, queries } = fakeD1(
+    [
+      ["2026-10-17", 40, 9],
+      ["2026-10-15", 25, 3],
+      ["2026-10-16", 0, 1],
+    ],
+    // per-version rows of an uncovered day are not read
+    [["2026-10-14", "2026.10.8", 1000, 1000]],
+  );
+  assert.deepEqual(await getMiseReleaseDailyBinaryDownloads(d1), [
+    { date: "2026-10-15", downloads: 25 },
+    { date: "2026-10-16", downloads: 0 },
+    { date: "2026-10-17", downloads: 40 },
+  ]);
+  assert.equal(queries(), 1);
+  assert.deepEqual(
+    await getMiseReleaseDailyBinaryDownloads(fakeD1([], []).d1),
+    [],
+  );
 });

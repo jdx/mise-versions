@@ -1538,6 +1538,30 @@ code,
   font-size: 0.65rem;
   margin-top: 0.4rem;
 }
+.activity-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+}
+.activity-parts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.activity-swatch {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.activity-break-key {
+  width: 0;
+  height: 0.75rem;
+  border-left: 1px dashed var(--muted);
+}
 
 .release-stop-milestone .release-dot {
   width: 12px;

@@ -93,3 +93,29 @@ export async function getMiseReleaseDownloads(
     versions,
   };
 }
+
+export interface MiseReleaseDailyBinaryDownloads {
+  date: string;
+  downloads: number;
+}
+
+// Binary downloads per fully covered UTC day, oldest first, for the mise
+// adoption section of /stats. mise_release_download_days already holds each
+// covered day's total across release folders, so this reads one small row per
+// day; days without a row (partial logs, failed runs, or before the rollup
+// existed) are simply absent.
+export async function getMiseReleaseDailyBinaryDownloads(
+  db: D1Database,
+): Promise<MiseReleaseDailyBinaryDownloads[]> {
+  const { results } = await db
+    .prepare(
+      `SELECT date, binary_requests
+      FROM mise_release_download_days
+      ORDER BY date`,
+    )
+    .all<{ date: string; binary_requests: number }>();
+  return results.map((row) => ({
+    date: row.date,
+    downloads: Number(row.binary_requests),
+  }));
+}
