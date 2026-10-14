@@ -316,6 +316,32 @@ async function createLogpushShadowTables(db: AnalyticsDb): Promise<void> {
   `);
 }
 
+// Requests for mise's own release files on mise.jdx.dev / mise.en.dev, per
+// UTC day and release folder, from the same Logpush rollup
+// (scripts/lib/mise-release-downloads.js). jdx/mise reads them through
+// GET /api/mise-releases/downloads to prune release folders nobody downloads.
+// A row in mise_release_download_days marks a day as fully covered; daily rows
+// for a day without one (partial logs, or a rewrite in progress) are ignored.
+async function createMiseReleaseDownloadTables(db: AnalyticsDb): Promise<void> {
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS mise_release_download_days (
+      date TEXT PRIMARY KEY,
+      binary_requests INTEGER NOT NULL,
+      other_requests INTEGER NOT NULL,
+      updated_at TEXT NOT NULL
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS mise_release_daily_downloads (
+      date TEXT NOT NULL,
+      version TEXT NOT NULL,
+      binary_requests INTEGER NOT NULL,
+      other_requests INTEGER NOT NULL,
+      PRIMARY KEY (date, version)
+    )
+  `);
+}
+
 export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   console.log("Running analytics database migrations...");
 
@@ -672,6 +698,7 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   `);
 
   await createLogpushShadowTables(db);
+  await createMiseReleaseDownloadTables(db);
 
   await runAnalyticsDataMigrations(db);
 
