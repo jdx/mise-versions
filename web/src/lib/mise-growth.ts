@@ -229,19 +229,29 @@ export function combinedDownloadChange(
 
 const latestAverage = (points: Array<{ date: string; value: number | null }>) =>
   sevenDayAverage(points).at(-1)?.value ?? null;
-// Headline numbers for the mise downloads card. Once CDN counts have a full
-// week, the average is GitHub + CDN, split into both parts. Before that (no
-// CDN data, or its first six days) it is GitHub alone and says so.
+// Headline numbers for the mise downloads card. Once CDN counts have a
+// complete week, the average is GitHub + CDN, split into both parts; a later
+// gap in either source keeps the last complete week (its date says which)
+// rather than falling back to GitHub alone. Before that first complete week
+// (no CDN data, or its first days) the average is GitHub alone and says so.
 export function miseDownloadSummary(
   snapshots: DownloadPoint[],
   cdn: CdnDownloadPoint[],
 ) {
   const githubDaily = dailyDownloads(snapshots);
   const { points, cdnStart } = combineDownloads(githubDaily, cdn);
-  const total = sevenDayAverage(points, cdnStart ?? undefined).at(-1);
-  if (cdnStart !== null && total && total.value !== null) {
+  const total =
+    cdnStart === null
+      ? undefined
+      : sevenDayAverage(points, cdnStart).findLast(
+          (p): p is { date: string; value: number } =>
+            p.date >= cdnStart && p.value !== null,
+        );
+  if (cdnStart !== null && total) {
     const window = points.filter(
-      (p) => p.date > formatUtcDate(parseUtcDate(total.date) - 7 * 86400000),
+      (p) =>
+        p.date > formatUtcDate(parseUtcDate(total.date) - 7 * 86400000) &&
+        p.date <= total.date,
     );
     const totalChange = combinedDownloadChange(snapshots, cdn, 30, total.date);
     return {
@@ -257,6 +267,13 @@ export function miseDownloadSummary(
     };
   }
   const github = sevenDayAverage(githubDaily).at(-1);
+  // First day a combined 7-day average can exist, while that is still ahead;
+  // null once gaps have pushed it past without a complete week.
+  const combinedFrom =
+    cdnStart === null
+      ? null
+      : formatUtcDate(parseUtcDate(cdnStart) + 6 * 86400000);
+  const lastDate = points.at(-1)?.date;
   return {
     points,
     cdnStart,
@@ -267,10 +284,9 @@ export function miseDownloadSummary(
     cdn: null,
     change30d: downloadChange(snapshots, 30),
     change30dSource: "github",
-    // First day a combined 7-day average can exist.
     combinedFrom:
-      cdnStart === null
-        ? null
-        : formatUtcDate(parseUtcDate(cdnStart) + 6 * 86400000),
+      combinedFrom !== null && lastDate !== undefined && combinedFrom > lastDate
+        ? combinedFrom
+        : null,
   };
 }

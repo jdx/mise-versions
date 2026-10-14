@@ -230,3 +230,35 @@ test("download summary adds CDN once it has a full week, and says GitHub alone b
   assert.equal(fullWeek.change30dSource, "github");
   assert.equal(fullWeek.points.at(-1)?.date, day(36));
 });
+
+test("after a complete combined week, a gap in either source keeps the last complete week instead of GitHub alone", async () => {
+  const { miseDownloadSummary } = await import("./mise-growth");
+  const cdn = (count: number, skip?: number) =>
+    Array.from({ length: count }, (_, i) => ({
+      date: day(20 + i),
+      downloads: 20,
+    })).filter((_, i) => i !== skip);
+
+  // CDN missed its latest-but-one day (2026-10-29): the latest week has a
+  // gap, so the headline stays on the week ending 2026-10-28.
+  const cdnGap = miseDownloadSummary(snapshots(31), cdn(10, 8));
+  assert.equal(cdnGap.combined, true);
+  assert.equal(cdnGap.date, day(27));
+  assert.equal(cdnGap.average, 120);
+  assert.equal(cdnGap.github, 100);
+  assert.equal(cdnGap.cdn, 20);
+
+  // GitHub has no snapshot for 2026-10-28, so neither it nor 2026-10-29 has
+  // a daily increase.
+  const github = snapshots(31).filter((p) => p.date !== day(27));
+  const githubGap = miseDownloadSummary(github, cdn(10));
+  assert.equal(githubGap.combined, true);
+  assert.equal(githubGap.date, day(26));
+  assert.equal(githubGap.average, 120);
+
+  // Gaps that never allowed a complete week: GitHub alone, without
+  // promising a date that has already passed.
+  const never = miseDownloadSummary(snapshots(31), cdn(10, 3));
+  assert.equal(never.combined, false);
+  assert.equal(never.combinedFrom, null);
+});

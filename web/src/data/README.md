@@ -50,5 +50,6 @@ CDN counts start on the first covered day; earlier days stay GitHub alone, a
 later day needs both counts for a total, and days after the last covered CDN day
 wait for the next rollup. 7-day averages, milestones and the forecast never mix
 days from before and after CDN counts start, so the headline is GitHub alone
-(and says so) until CDN counts have a full week. If D1 is unavailable, the page
-falls back to GitHub alone.
+(and says so) until CDN counts have a full week. After that, a gap in either
+source keeps the last complete combined week, dated, rather than GitHub alone.
+If D1 is unavailable, the page falls back to GitHub alone.
