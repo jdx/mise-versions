@@ -1,4 +1,5 @@
 import { errorResponse } from "../api";
+import { readThroughMemo } from "./edge-memo";
 import { githubPoolJson, githubStatus } from "./mirror";
 import {
   isKnownGitHubAttestationRepo,
@@ -7,7 +8,8 @@ import {
 
 // Both answers are cached for an hour. Caching "not public" as well keeps
 // requests for random or private repos from spending pool quota, and bounds
-// how long a repo that turns private can still be served.
+// how long a repo that turns private can still be served. The KV entry and
+// its edge memo (edge-memo.ts) both expire an hour after the GitHub check.
 const VISIBILITY_TTL_SECONDS = 60 * 60;
 
 interface RateLimiter {
@@ -59,13 +61,47 @@ export async function isPublicGitHubRepo(
   { clientKey }: { clientKey?: string } = {},
 ): Promise<boolean> {
   const cacheKey = `github:visibility:${owner.toLowerCase()}/${repo.toLowerCase()}`;
+  // Every mirror request asks this before anything else, so serve it from
+  // the free memo tier when possible. A memoized answer expires when the KV
+  // answer it copies would, so a repo that turns private is still cut off
+  // within VISIBILITY_TTL_SECONDS of the last check, as without the memo.
+  return readThroughMemo(
+    env.GITHUB_CACHE,
+    cacheKey,
+    async () => {
+      const entry = await lookUpVisibility(
+        env,
+        cacheKey,
+        owner,
+        repo,
+        clientKey,
+      );
+      return {
+        value: entry.public,
+        expiresAt:
+          Math.min(entry.cached_at, Date.now()) + VISIBILITY_TTL_SECONDS * 1000,
+      };
+    },
+    // A lookup refused by one client's rate limit says nothing about others.
+    { callerSpecific: (error) => error instanceof VisibilityLookupLimited },
+  );
+}
+
+async function lookUpVisibility(
+  env: Env,
+  cacheKey: string,
+  owner: string,
+  repo: string,
+  clientKey: string | undefined,
+): Promise<CachedVisibility> {
   const cached = await env.GITHUB_CACHE.get<CachedVisibility>(cacheKey, "json");
   if (
     cached &&
     typeof cached.public === "boolean" &&
+    typeof cached.cached_at === "number" &&
     Date.now() - cached.cached_at < VISIBILITY_TTL_SECONDS * 1000
   ) {
-    return cached.public;
+    return cached;
   }
 
   if (
@@ -102,13 +138,14 @@ export async function isPublicGitHubRepo(
       expirationTtl: VISIBILITY_TTL_SECONDS,
     });
   } catch (error) {
-    // The answer stands; the next request just asks GitHub again.
+    // The answer stands; once the memo expires the next request asks GitHub
+    // again.
     console.warn(
       `failed to cache GitHub visibility for ${owner}/${repo}:`,
       error,
     );
   }
-  return isPublic;
+  return entry;
 }
 
 /**

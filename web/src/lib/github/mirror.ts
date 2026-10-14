@@ -2,6 +2,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { uncompress } from "snappyjs";
 import { setupDatabase } from "../../../../src/database";
 import { hasBudget } from "../../../../src/token-budget";
+import { readThroughMemo, writeMemo } from "./edge-memo";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
@@ -23,6 +24,16 @@ const NEGATIVE_RELEASE_AUTH_FRESH_MS = 5 * 60 * 1000;
 const NEGATIVE_RELEASE_TRANSIENT_FRESH_MS = 60 * 1000;
 export const ATTESTATION_FRESH_SECONDS = 30 * 60;
 const ATTESTATION_FRESH_MS = ATTESTATION_FRESH_SECONDS * 1000;
+// Attestations for a digest can still be added in the hours after a release
+// is published, but almost never later. Once a cached answer has stopped
+// changing, check it less often: a quarter of how long it has been stable,
+// up to a day. Each check rewrites the KV entry, so this is most of the
+// mirror's KV writes for long-lived digests. A late attestation (see #289)
+// can be missing from the mirror for up to that long; mise >= 2026.8.15
+// retries GitHub directly when the mirror's set fails verification
+// (mise#12495).
+const ATTESTATION_STABLE_FRESH_FRACTION = 4;
+const ATTESTATION_MAX_FRESH_MS = 24 * 60 * 60 * 1000;
 const EDGE_SHORT_TTL_SECONDS = 60 * 60;
 const EDGE_IMMUTABLE_TTL_SECONDS = 365 * 24 * 60 * 60;
 const EDGE_MIRROR_CACHE_TTL_SECONDS = 60 * 60;
@@ -30,6 +41,11 @@ const EDGE_MIRROR_CACHE_TTL_SECONDS = 60 * 60;
 interface CacheEntry<T> {
   cached_at: number;
   data: T;
+  /**
+   * When the cached data last changed, for entries whose refresh window
+   * grows while they stay the same (see getOrRefresh's `fingerprint`).
+   */
+  unchanged_since?: number;
 }
 
 export interface GitHubAsset {
@@ -355,10 +371,6 @@ export async function getCachedGitHubReleaseResult(
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const cacheKey = `github:release:${cacheRepository}:${tag}${generationSuffix}`;
   const negativeCacheKey = `github:release-error:${cacheRepository}:${tag}${generationSuffix}`;
-  const cachedError = await cachedReleaseError(env, negativeCacheKey);
-  if (cachedError) {
-    throw cachedError;
-  }
 
   let release: GitHubRelease;
   let staleFallback = false;
@@ -372,6 +384,13 @@ export async function getCachedGitHubReleaseResult(
           (isUntrackedLatest(tag, cacheGeneration)
             ? Math.min(UNTRACKED_LATEST_FRESH_MS, releaseFreshMs(entry.data))
             : releaseFreshMs(entry.data)),
+      // Only consulted when there is no fresh positive entry: a fresh entry
+      // and a fresh error cannot both have come from the same refresh, and
+      // skipping this read saves a KV read on every positive edge-cache miss.
+      beforeFetch: async () => {
+        const cachedError = await cachedReleaseError(env, negativeCacheKey);
+        if (cachedError) throw cachedError;
+      },
       fetcher: (token) => fetchGitHubRelease(owner, repo, tag, token),
       expirationTtl: (data) =>
         data.assets.length === 0
@@ -394,6 +413,8 @@ export async function getCachedGitHubReleaseResult(
       },
     });
   } catch (error) {
+    // A cached error is already stored; rewriting it would extend it.
+    if (error instanceof CachedReleaseError) throw error;
     try {
       await cacheReleaseError(env, negativeCacheKey, error);
     } catch (cacheError) {
@@ -418,22 +439,32 @@ async function cachedReleaseError(
   env: Env,
   cacheKey: string,
 ): Promise<GitHubError | null> {
-  const cached = await env.GITHUB_CACHE.get<CacheEntry<CachedGitHubError>>(
+  // A stored error is never rewritten while it is fresh (requests are
+  // refused until it expires), so it can be memoized at the edge until then.
+  // Its absence cannot: a failed refresh may store one at any time.
+  const cached = await readThroughMemo<CachedGitHubError | null>(
+    env.GITHUB_CACHE,
     cacheKey,
-    "json",
+    async () => {
+      const entry = await env.GITHUB_CACHE.get<CacheEntry<CachedGitHubError>>(
+        cacheKey,
+        "json",
+      );
+      const freshMs = entry ? releaseErrorFreshMs(entry.data.status) : null;
+      const now = Date.now();
+      if (!entry || !freshMs || now - entry.cached_at >= freshMs) {
+        return { value: null, expiresAt: 0 };
+      }
+      return {
+        value: entry.data,
+        expiresAt: Math.min(entry.cached_at, now) + freshMs,
+      };
+    },
   );
   if (!cached) {
     return null;
   }
-  const freshMs = releaseErrorFreshMs(cached.data.status);
-  if (!freshMs || Date.now() - cached.cached_at >= freshMs) {
-    return null;
-  }
-  return new GitHubError(
-    cached.data.status,
-    cached.data.message,
-    new Headers(),
-  );
+  return new CachedReleaseError(cached.status, cached.message, new Headers());
 }
 
 async function cacheReleaseError(
@@ -449,17 +480,17 @@ async function cacheReleaseError(
   if (!freshMs) {
     return;
   }
+  const cachedAt = Date.now();
+  const data: CachedGitHubError = {
+    status: error.status,
+    message: error.message,
+  };
   await env.GITHUB_CACHE.put(
     cacheKey,
-    JSON.stringify({
-      cached_at: Date.now(),
-      data: {
-        status: error.status,
-        message: error.message,
-      },
-    }),
+    JSON.stringify({ cached_at: cachedAt, data }),
     { expirationTtl: Math.ceil(freshMs / 1000) },
   );
+  await writeMemo(env.GITHUB_CACHE, cacheKey, data, cachedAt + freshMs);
 }
 
 async function deleteCachedRelease(env: Env, cacheKey: string): Promise<void> {
@@ -500,10 +531,39 @@ export async function getCachedGitHubAttestations(
   return getOrRefresh({
     env,
     cacheKey: `github:attestations:${owner}/${repo}:${digest}`,
-    isFresh: (entry) => Date.now() - entry.cached_at < ATTESTATION_FRESH_MS,
+    isFresh: (entry) =>
+      Date.now() - entry.cached_at < attestationFreshMs(entry),
     fetcher: (token) => fetchGitHubAttestations(owner, repo, digest, token),
     expirationTtl: () => CACHE_TTL_SECONDS,
+    fingerprint: attestationsFingerprint,
   });
+}
+
+function attestationFreshMs(
+  entry: CacheEntry<GitHubAttestationsResponse>,
+): number {
+  if (typeof entry.unchanged_since !== "number") return ATTESTATION_FRESH_MS;
+  const stableMs = entry.cached_at - entry.unchanged_since;
+  return Math.min(
+    ATTESTATION_MAX_FRESH_MS,
+    Math.max(
+      ATTESTATION_FRESH_MS,
+      stableMs / ATTESTATION_STABLE_FRESH_FRACTION,
+    ),
+  );
+}
+
+// What makes two attestation answers the same. `bundle_url` is left out: it
+// can be a signed blob URL that differs on every fetch, and the bundle it
+// points at is already inlined.
+function attestationsFingerprint(data: GitHubAttestationsResponse): string {
+  return JSON.stringify(
+    (data.attestations ?? []).map((attestation) => {
+      const rest: Record<string, unknown> = { ...attestation };
+      delete rest.bundle_url;
+      return rest;
+    }),
+  );
 }
 
 export const RELEASE_LIST_MAX_PAGE = 10;
@@ -537,7 +597,7 @@ export async function getCachedGitHubReleaseList(
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const freshMs = releaseListFreshSeconds(page) * 1000;
   let staleFallback = false;
-  const list = await getOrRefresh({
+  const list = await getOrRefresh<GitHubReleaseListPage>({
     env,
     cacheKey: `github:releases:${cacheRepository}:${page}${generationSuffix}`,
     isFresh: (entry) => Date.now() - entry.cached_at < freshMs,
@@ -582,11 +642,20 @@ async function getOrRefresh<T>({
   staleCacheKey,
   onStaleFallback,
   onFetchError,
+  beforeFetch,
+  fingerprint,
 }: {
   env: Env;
   cacheKey: string;
   isFresh: (entry: CacheEntry<T>) => boolean;
   fetcher: (token: TokenRecord | null) => Promise<T>;
+  /** Runs when there is no fresh entry, before fetching; may throw. */
+  beforeFetch?: () => Promise<void>;
+  /**
+   * Identifies equivalent data. When given, entries record since when their
+   * data has been unchanged (`unchanged_since`) for `isFresh` to use.
+   */
+  fingerprint?: (data: T) => string;
   expirationTtl?: (data: T) => number | undefined;
   useStaleOnError?: (error: unknown) => boolean;
   staleCacheKey?: string;
@@ -600,6 +669,7 @@ async function getOrRefresh<T>({
   if (cached && isFresh(cached)) {
     return cached.data;
   }
+  await beforeFetch?.();
 
   const token = await nextToken(env);
   try {
@@ -607,11 +677,17 @@ async function getOrRefresh<T>({
     await benchIfLow(env, token);
     const ttl = expirationTtl ? expirationTtl(data) : CACHE_TTL_SECONDS;
     const options = ttl === undefined ? undefined : { expirationTtl: ttl };
-    await env.GITHUB_CACHE.put(
-      cacheKey,
-      JSON.stringify({ cached_at: Date.now(), data }),
-      options,
-    );
+    const now = Date.now();
+    const entry: CacheEntry<T> = { cached_at: now, data };
+    if (fingerprint) {
+      entry.unchanged_since =
+        cached && sameData(fingerprint, cached.data, data)
+          ? // Entries from before `unchanged_since` existed held this data
+            // since at least when they were cached.
+            Math.min(cached.unchanged_since ?? cached.cached_at, now)
+          : now;
+    }
+    await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), options);
     return data;
   } catch (error) {
     if (isRateLimited(error) && token) {
@@ -639,6 +715,14 @@ async function getOrRefresh<T>({
       }
     }
     throw error;
+  }
+}
+
+function sameData<T>(fingerprint: (data: T) => string, a: T, b: T): boolean {
+  try {
+    return fingerprint(a) === fingerprint(b);
+  } catch {
+    return false;
   }
 }
 
@@ -1060,8 +1144,13 @@ export class GitHubError extends Error {
 /** A release GitHub showed the pool as a draft; served as a 404. */
 class DraftReleaseError extends GitHubError {}
 
+/** An error served from the negative release cache. */
+class CachedReleaseError extends GitHubError {}
+
 export const __testing = {
   GitHubError,
+  attestationFreshMs,
+  attestationsFingerprint,
   edgeCacheRequest,
   edgeCacheResponse,
   githubJsonHeaders,
