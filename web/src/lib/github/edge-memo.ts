@@ -103,7 +103,7 @@ export async function readMemo<T>(
     if (
       !stored ||
       typeof stored.expires_at !== "number" ||
-      stored.expires_at <= now
+      stored.expires_at <= Date.now()
     ) {
       return undefined;
     }
