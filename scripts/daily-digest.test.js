@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { dateStrAgo } from "./lib/rollup-dates.js";
 import {
+  audienceSeries,
   changesSection,
   trendSeries,
   moversSection,
@@ -571,4 +572,52 @@ test("control characters never reach the subject line", () => {
     milestones: ["evil\r\nBcc: x@example.com reached 100 stars"],
   });
   assert.doesNotMatch(digest.subject, /[\r\n]/);
+});
+
+test("digest DAU/MAU follow Logpush with the site's merge rules", () => {
+  const { dau, mau } = audienceSeries(
+    {
+      dau: [
+        { date: "2026-10-01", dau: 7000 },
+        { date: "2026-10-02", dau: 6000 }, // version_request events stopped
+      ],
+      mau: [
+        { date: "2026-10-30", mau: 50000 },
+        { date: "2026-10-31", mau: 30000 }, // collapsing after the cutover
+        { date: "2026-11-01", mau: 29000 },
+      ],
+    },
+    {
+      dau: [{ date: "2026-10-02", dau: 30000 }],
+      mau: [
+        // partial windows only replace a smaller older number on the same day
+        { date: "2026-10-30", mau: 40000, days_covered: 29 },
+        { date: "2026-10-31", mau: 190000, days_covered: 30 },
+        { date: "2026-11-01", mau: 189000, days_covered: 29 },
+      ],
+    },
+    { dau: "2026-10-02", mau: "2026-10-31" },
+  );
+  assert.deepEqual(dau, [
+    { date: "2026-10-01", value: 7000 },
+    { date: "2026-10-02", value: 30000 },
+  ]);
+  assert.deepEqual(mau, [
+    { date: "2026-10-30", value: 50000 },
+    { date: "2026-10-31", value: 190000 },
+    { date: "2026-11-01", value: 189000 },
+  ]);
+});
+
+test("digest DAU/MAU keep the older rollups before Logpush data exists", () => {
+  const { dau, mau } = audienceSeries(
+    {
+      dau: [{ date: "2026-10-01", dau: 7000 }],
+      mau: [{ date: "2026-10-01", mau: 50000 }],
+    },
+    { dau: [], mau: [] },
+    { dau: null, mau: null },
+  );
+  assert.deepEqual(dau, [{ date: "2026-10-01", value: 7000 }]);
+  assert.deepEqual(mau, [{ date: "2026-10-01", value: 50000 }]);
 });

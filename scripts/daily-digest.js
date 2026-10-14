@@ -14,6 +14,7 @@
 import { readFile } from "node:fs/promises";
 import { dateStrAgo, lastCompleteUtcDate } from "./lib/rollup-dates.js";
 import { fetchWithRetry } from "./lib/fetch-with-retry.js";
+import { mergeAudienceRows } from "../src/analytics/audience.js";
 
 const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
 const DEFAULT_FROM = "mise-tools@en.dev";
@@ -654,16 +655,42 @@ async function collect() {
   const priorStart = dateStrAgo(day, 2 * WEEK - 1);
   const priorEnd = dateStrAgo(day, WEEK);
 
-  const [mau, dau, downloads, toolDaily, movers] = await Promise.all([
+  const [
+    legacyMau,
+    legacyDau,
+    logpushMau,
+    logpushDau,
+    [starts],
+    downloads,
+    toolDaily,
+    movers,
+  ] = await Promise.all([
     queryD1(
       config,
-      "SELECT date, mau AS value FROM daily_mau_stats WHERE date >= ? AND date <= ?",
+      "SELECT date, mau FROM daily_mau_stats WHERE date >= ? AND date <= ?",
       [since, day],
     ),
     queryD1(
       config,
-      "SELECT date, unique_users AS value FROM daily_combined_stats WHERE date >= ? AND date <= ?",
+      "SELECT date, unique_users AS dau FROM daily_combined_stats WHERE date >= ? AND date <= ?",
       [since, day],
+    ),
+    queryD1(
+      config,
+      "SELECT date, mau, days_covered FROM logpush_daily_mau WHERE date >= ? AND date <= ?",
+      [since, day],
+    ),
+    queryD1(
+      config,
+      "SELECT date, unique_users AS dau FROM logpush_daily_dau WHERE date >= ? AND date <= ?",
+      [since, day],
+    ),
+    queryD1(
+      config,
+      `SELECT
+         (SELECT MIN(date) FROM logpush_daily_dau) AS dau,
+         (SELECT MIN(date) FROM logpush_daily_mau WHERE days_covered >= 30) AS mau`,
+      [],
     ),
     queryD1(
       config,
@@ -691,6 +718,11 @@ async function collect() {
     readJson("../web/src/data/projects.json"),
     latestMiseRelease(),
   ]);
+  const { mau, dau } = audienceSeries(
+    { dau: legacyDau, mau: legacyMau },
+    { dau: logpushDau, mau: logpushMau },
+    starts,
+  );
   return {
     day,
     mau,
@@ -701,6 +733,17 @@ async function collect() {
     projects: projects.projects,
     release,
   };
+}
+
+// DAU/MAU as {date, value} series, merged from Logpush and the older Analytics
+// Engine rollups with the same rules the site uses (src/analytics/audience.js).
+export function audienceSeries(legacy, logpush, starts = {}) {
+  const merged = mergeAudienceRows(legacy, logpush, starts ?? {});
+  const series = (map) =>
+    [...map]
+      .map(([date, value]) => ({ date, value }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+  return { dau: series(merged.dau), mau: series(merged.mau) };
 }
 
 export function digestFromData(data, now = Date.now()) {
