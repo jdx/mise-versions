@@ -960,15 +960,16 @@ test("the changes listing names lists changed or removed since a watermark", () 
     assert.equal(body.source, "releases");
     assert.deepEqual(body.releases, [item("v1")]);
 
-    // Without a watermark: every baked list, nothing to delete. The legacy
-    // list has no metadata yet, so it waits for the refresher.
+    // Without a watermark: every baked list, and every unbaked one as a
+    // removal (a rebuild that stops part-way applies those it read). The
+    // legacy list has no metadata yet, so it waits for the refresher.
     const full = await listVersionsChanges(env, {});
     assert.deepEqual(full.files.map((f) => f.path).sort(), [
       "github/due/repo/releases.json",
       "github/fresh/repo/releases.json",
       "github/secret/repo/releases.json",
     ]);
-    assert.deepEqual(full.deleted, []);
+    assert.deepEqual(full.deleted, ["github/quiet/repo/releases.json"]);
 
     // Pages follow the KV listing; GitHub is never asked.
     const first = await listVersionsChanges(env, { limit: 2 });
@@ -1456,10 +1457,12 @@ test("an inconclusive access lookup leaves a list without metadata as it is", ()
         : realFetch(input, init);
     const run = await refreshVersionLists(env, { dispatch });
     const key = "github:versions:releases:legacy/repo";
-    // Not marked unbakeable (that would delete its baked file): it keeps
-    // only the retry time, so it stays unadopted and out of bakes.
-    assert.deepEqual(Object.keys(kv.meta.get(key)), ["x"]);
-    assert.ok(kv.meta.get(key).x >= now);
+    // Not marked unbakeable (that would delete its baked file), and not
+    // written at all (a request may be adopting it): a retry mark of its
+    // own, expiring in 10 minutes, keeps the next runs from asking again.
+    assert.ok(!kv.writes.some((w) => w.key === key));
+    const mark = kv.writes.find((w) => w.key === "github:versions-retry:releases:legacy/repo");
+    assert.deepEqual(mark.options, { expirationTtl: 600 });
     assert.ok(run.deferred >= 1);
     const changes = await listVersionsChanges(env, {});
     assert.ok(!changes.files.some((f) => f.path.includes("legacy")));

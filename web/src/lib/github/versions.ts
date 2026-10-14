@@ -149,12 +149,6 @@ export interface ListMeta {
   e?: string;
   /** When a refresh last failed; the list waits RETRY_BACKOFF_MS after. */
   t?: number;
-  /**
-   * When an access lookup last went unanswered (429, 503); the check is
-   * tried again ACCESS_RETRY_MS after. Also kept, alone, on a list the
-   * refresher has not adopted yet.
-   */
-  x?: number;
 }
 
 function parseMeta(value: unknown): ListMeta | null {
@@ -542,7 +536,13 @@ async function refreshVersions(
           // reach the stored list, which is cheaper than a full crawl.
           const page1 = await fetchPage(1);
           if (!page1.hasNextPage) {
-            return { items: page1.items, truncated: false, full: true };
+            // The next head refresh reads the probe again: keep its ETag.
+            return {
+              items: page1.items,
+              truncated: false,
+              full: true,
+              etag: head.etag,
+            };
           }
           merged = mergeHead(page1, stored);
         }
@@ -1201,9 +1201,10 @@ export async function listVersionsChanges(
     const changed = since === undefined || meta.c > since;
     if (!changed && !(meta.h > (since ?? 0))) continue;
     if (meta.b) wanted.push({ key: key.name, target, meta });
-    else if (changed && since !== undefined) {
-      changes.deleted.push(versionsPath(target));
-    }
+    // A full listing names removals too: a rebuild that stops part-way
+    // applies those it read, so no file of a repo turned private outlives
+    // the pages it reached.
+    else if (changed) changes.deleted.push(versionsPath(target));
   }
   const values = await getAll<StoredVersions>(
     env.GITHUB_CACHE,
@@ -1258,6 +1259,13 @@ const RETRY_BACKOFF_MS = 60 * 60 * 1000;
 // An access check GitHub did not answer is tried again after this long: soon,
 // since a list stays baked on its last answer meanwhile, but not every run.
 const ACCESS_RETRY_MS = 10 * 60 * 1000;
+// Its retry mark is a key of its own that expires after ACCESS_RETRY_MS, so
+// marking never rewrites a list (a request may be adopting it meanwhile).
+const ACCESS_RETRY_PREFIX = "github:versions-retry:";
+
+function accessRetryKey(cacheKey: string): string {
+  return ACCESS_RETRY_PREFIX + cacheKey.slice(VERSIONS_CACHE_PREFIX.length);
+}
 
 interface RefreshEnv extends BakeEnv {}
 
@@ -1324,6 +1332,8 @@ export async function refreshVersionLists(
 
   const lists = await listAll(kv, VERSIONS_CACHE_PREFIX);
   const demands = await listAll(kv, DEMAND_PREFIX);
+  const retries = await listAll(kv, ACCESS_RETRY_PREFIX);
+  const retrying = new Set(retries.keys.map((key) => key.name));
   // Demand stamped before it carried metadata is read from its value.
   const demand = new Map<string, number>();
   const legacy: string[] = [];
@@ -1352,17 +1362,15 @@ export async function refreshVersionLists(
     run.lists++;
     const meta = parseMeta(key.metadata);
     if (meta) latestChange = Math.max(latestChange, meta.c);
-    // Retry times, also on a list that has nothing else yet.
-    const retry = (key.metadata ?? {}) as { t?: unknown; x?: unknown };
-    const recent = (at: unknown, ms: number) =>
-      typeof at === "number" && startedAt - at < ms;
+    const failedAt = (key.metadata as { t?: unknown } | undefined)?.t;
     const requestedAt = demand.get(demandKey(key.name));
     const requested =
       requestedAt !== undefined && startedAt - requestedAt < DEMAND_WINDOW_MS;
     const accessDue =
       (!meta || startedAt - meta.a >= ACCESS_CHECK_MS) &&
-      !recent(retry.x, ACCESS_RETRY_MS);
-    const contentRetrying = recent(retry.t, RETRY_BACKOFF_MS);
+      !retrying.has(accessRetryKey(key.name));
+    const contentRetrying =
+      typeof failedAt === "number" && startedAt - failedAt < RETRY_BACKOFF_MS;
     if (!requested && !meta?.b) continue;
     if (target.source === "releases" && meta?.b && requested) {
       const repo = `${target.owner}/${target.repo}`.toLowerCase();
@@ -1387,7 +1395,10 @@ export async function refreshVersionLists(
   // recently requested repos first), then tasks. Repos whose generation is
   // not read this run keep the one they were last refreshed under.
   const scanned =
-    lists.ops + demands.ops + Math.ceil(legacy.length / KV_BULK_GET_LIMIT);
+    lists.ops +
+    demands.ops +
+    retries.ops +
+    Math.ceil(legacy.length / KV_BULK_GET_LIMIT);
   const available = Math.max(0, KV_OPS_BUDGET - KV_OPS_FIXED - scanned);
   const generationOps = Math.min(
     Math.ceil(releaseRepos.size / KV_BULK_GET_LIMIT),
@@ -1475,17 +1486,18 @@ export async function refreshVersionLists(
       // an answer (its file, if baked before, stays baked).
       if (!denied || denied.status === 403 || denied.status === 404) {
         bakeable = !denied;
-        meta = { ...meta, a: now, x: undefined };
-      } else if (!read) {
-        // Only the retry time, so it stays unadopted (and out of bakes).
-        await kv.put(key, JSON.stringify(stored), {
-          expirationTtl: CACHE_TTL_SECONDS,
-          metadata: { x: now },
-        });
-        run.deferred++;
-        return;
+        meta = { ...meta, a: now };
       } else {
-        meta = { ...meta, x: now };
+        // Try again in ACCESS_RETRY_MS. A list not adopted yet is left as
+        // it is (out of bakes, its file kept); an adopted one keeps its
+        // last answer.
+        await kv.put(accessRetryKey(key), "1", {
+          expirationTtl: Math.ceil(ACCESS_RETRY_MS / 1000),
+        });
+        if (!read) {
+          run.deferred++;
+          return;
+        }
       }
     }
     const statusChanged = bakeable !== (read?.b ?? false);

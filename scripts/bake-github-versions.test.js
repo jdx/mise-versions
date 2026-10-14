@@ -55,7 +55,7 @@ function fakeWorker(lists, { now = 1_000_000, pageSize = 2 } = {}) {
         const list = lists[path];
         if (body.since !== undefined && list.c <= body.since) continue;
         if (list.b) files.push(file(path, list.r ?? list.c, list.body));
-        else if (body.since !== undefined) deleted.push(path);
+        else deleted.push(path);
       }
       return Response.json({ files, deleted, cursor: next, now });
     }
@@ -486,6 +486,50 @@ test("a rebuild that stops part-way applies what it read and keeps the tree", as
     const after = readManifest(cacheDir);
     assert.equal(after.full_at, before.full_at);
     assert.equal(after.watermark, before.watermark);
+  } finally {
+    cleanup();
+  }
+});
+
+test("a rebuild that stops part-way still removes the unbaked lists it read", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const lists = {
+      "github/a/a/releases.json": { c: 10, b: true },
+      "github/b/b/releases.json": { c: 10, b: true },
+      "github/c/c/releases.json": { c: 10, b: true },
+    };
+    const worker = fakeWorker(lists, { now: SINCE_MARGIN_MS + 100 });
+    let clock = 1_000_000_000_000;
+    await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+      now: () => clock,
+    });
+    // Repo b turned private; a week later the rebuild reads page 1 (a, b)
+    // and then fails.
+    lists["github/b/b/releases.json"] = { c: 20, b: false };
+    clock += 8 * 24 * 60 * 60 * 1000;
+    let pages = 0;
+    const out = join(assetsDir, "..", "partial-private");
+    const result = await bake({
+      assetsDir: out,
+      cacheDir,
+      secret: "s",
+      log: silent,
+      now: () => clock,
+      fetchImpl: async (url, init) =>
+        ++pages > 1
+          ? new Response("down", { status: 502 })
+          : worker.fetchImpl(url, init),
+    });
+    assert.equal(result.complete, false);
+    assert.ok(!existsSync(join(out, "data/github/b/b/releases.json")));
+    assert.ok(existsSync(join(out, "data/github/a/a/releases.json")));
+    assert.ok(existsSync(join(out, "data/github/c/c/releases.json")));
   } finally {
     cleanup();
   }
