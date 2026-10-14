@@ -1103,3 +1103,206 @@ test("GitHub rate limiting only applies to GitHub API responses", () => {
     );
   `);
 });
+
+test("GitHub release mirror skips the negative cache for fresh positive entries", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import { getCachedGitHubRelease } from "./web/src/lib/github/mirror.ts";
+
+    globalThis.fetch = async () => {
+      throw new Error("fresh release should not fetch");
+    };
+    const reads = [];
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          reads.push(key);
+          return key === "github:release:owner/repo:v1.0.0"
+            ? {
+                cached_at: Date.now(),
+                data: {
+                  tag_name: "v1.0.0",
+                  draft: false,
+                  prerelease: false,
+                  created_at: "2026-01-01T00:00:00Z",
+                  published_at: "2026-01-01T00:00:00Z",
+                  immutable: false,
+                  assets: [{ name: "a.tar.gz" }],
+                },
+              }
+            : null;
+        },
+        put: async () => {
+          throw new Error("fresh release should not write");
+        },
+      },
+    };
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "v1.0.0");
+    assert.equal(release.tag_name, "v1.0.0");
+    assert.deepEqual(reads, ["github:release:owner/repo:v1.0.0"]);
+  `);
+});
+
+test("GitHub release mirror memoizes fresh negative entries without rewriting them", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response("not found", { status: 404 });
+    };
+    const reads = [];
+    const writes = [];
+    const values = new Map();
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          reads.push(key);
+          const value = values.get(key);
+          return value === undefined ? null : JSON.parse(value);
+        },
+        put: async (key, value, options) => {
+          writes.push({ key, value, options });
+          values.set(key, value);
+        },
+        delete: async () => {},
+      },
+    };
+
+    for (let i = 0; i < 3; i++) {
+      await assert.rejects(
+        () => getCachedGitHubRelease(env, "owner", "repo", "v404.0.0"),
+        (error) => githubStatus(error) === 404,
+      );
+    }
+    assert.equal(fetches, 1);
+    // One negative write; later requests read the (missing) positive entry
+    // and take the error from the memo, not from KV.
+    assert.deepEqual(writes.map(({ key }) => key), [
+      "github:release-error:owner/repo:v404.0.0",
+    ]);
+    assert.equal(
+      reads.filter((key) => key.startsWith("github:release-error:")).length,
+      1,
+    );
+
+    // A negative entry already in KV is served and memoized, not rewritten.
+    const other = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          reads.push(key);
+          return key === "github:release-error:owner/repo:v500.0.0"
+            ? { cached_at: Date.now(), data: { status: 503, message: "down" } }
+            : null;
+        },
+        put: async () => {
+          throw new Error("cached error should not be rewritten");
+        },
+      },
+    };
+    reads.length = 0;
+    for (let i = 0; i < 2; i++) {
+      await assert.rejects(
+        () => getCachedGitHubRelease(other, "owner", "repo", "v500.0.0"),
+        (error) => githubStatus(error) === 503,
+      );
+    }
+    assert.equal(
+      reads.filter((key) => key.startsWith("github:release-error:")).length,
+      1,
+    );
+    assert.equal(fetches, 1);
+  `);
+});
+
+test("GitHub attestation checks back off while the answer stays the same", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      __testing,
+      getCachedGitHubAttestations,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const fresh = (stableFor) =>
+      __testing.attestationFreshMs({
+        cached_at: 1_000_000_000_000,
+        unchanged_since: 1_000_000_000_000 - stableFor,
+        data: { attestations: [] },
+      });
+    assert.equal(
+      __testing.attestationFreshMs({ cached_at: 0, data: { attestations: [] } }),
+      30 * minute,
+    );
+    assert.equal(fresh(0), 30 * minute);
+    assert.equal(fresh(1 * hour), 30 * minute);
+    assert.equal(fresh(8 * hour), 2 * hour);
+    assert.equal(fresh(30 * 24 * hour), 24 * hour);
+
+    // Signed bundle URLs differ per fetch and do not count as a change.
+    assert.equal(
+      __testing.attestationsFingerprint({
+        attestations: [{ bundle: { id: 1 }, bundle_url: "https://x/?sig=a" }],
+      }),
+      __testing.attestationsFingerprint({
+        attestations: [{ bundle: { id: 1 }, bundle_url: "https://x/?sig=b" }],
+      }),
+    );
+
+    const digest = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0";
+    let body = { attestations: [{ bundle: { id: "workflow" } }] };
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify(body), { status: 200 });
+    function envWith(entry) {
+      const writes = [];
+      return {
+        writes,
+        DB: {},
+        GITHUB_CACHE: {
+          get: async () => entry,
+          put: async (key, value, options) =>
+            writes.push({ key, value: JSON.parse(value), options }),
+        },
+      };
+    }
+
+    // Unchanged since before unchanged_since existed: stable since cached_at.
+    const legacyCachedAt = Date.now() - 31 * minute;
+    const legacy = envWith({
+      cached_at: legacyCachedAt,
+      data: { attestations: [{ bundle: { id: "workflow" } }] },
+    });
+    await getCachedGitHubAttestations(legacy, "owner", "repo", digest);
+    assert.equal(legacy.writes[0].value.unchanged_since, legacyCachedAt);
+
+    // An entry stable for two days is fresh for 12 hours after its last check.
+    const stable = envWith({
+      cached_at: Date.now() - 11 * hour,
+      unchanged_since: Date.now() - 11 * hour - 48 * hour,
+      data: { attestations: [{ bundle: { id: "workflow" } }] },
+    });
+    await getCachedGitHubAttestations(stable, "owner", "repo", digest);
+    assert.equal(stable.writes.length, 0);
+
+    // A change resets the clock.
+    body = { attestations: [{ bundle: { id: "workflow" } }, { bundle: { id: "release" } }] };
+    const changed = envWith({
+      cached_at: Date.now() - 13 * hour,
+      unchanged_since: Date.now() - 13 * hour - 48 * hour,
+      data: { attestations: [{ bundle: { id: "workflow" } }] },
+    });
+    const before = Date.now();
+    const result = await getCachedGitHubAttestations(changed, "owner", "repo", digest);
+    assert.equal(result.attestations.length, 2);
+    assert.ok(changed.writes[0].value.unchanged_since >= before);
+  `);
+});

@@ -6,6 +6,7 @@ import { getAuthCookie } from "../../../lib/auth";
 import { jsonResponse, errorResponse } from "../../../lib/api";
 import { validRepoPart } from "../../../lib/github/mirror";
 import { isRegisteredGitHubRepo } from "../../../lib/github/registry";
+import { readMemo, writeMemo } from "../../../lib/github/edge-memo";
 
 import { env } from "cloudflare:workers";
 // Cache freshness threshold (6 hours in milliseconds)
@@ -56,12 +57,25 @@ export const GET: APIRoute = async ({ request, locals }) => {
   }
 
   const cacheKey = `github:${owner}/${repo}`;
+  // A fresh entry is only replaced once it goes stale, so it can be served
+  // from the free edge memo until then without asking KV.
+  const memo = await readMemo<CachedRepoInfo>(env.GITHUB_CACHE, cacheKey);
+  if (memo) {
+    return jsonResponse({ ...memo.value.data, stale: false });
+  }
+
   const cached = await env.GITHUB_CACHE.get<CachedRepoInfo>(cacheKey, "json");
   const now = Date.now();
   const isFresh = cached && now - cached.cached_at < GITHUB_CACHE_FRESH_MS;
 
   // If cache is fresh, serve it immediately
   if (cached && isFresh) {
+    await writeMemo(
+      env.GITHUB_CACHE,
+      cacheKey,
+      cached,
+      Math.min(cached.cached_at, now) + GITHUB_CACHE_FRESH_MS,
+    );
     return jsonResponse({ ...cached.data, stale: false });
   }
 
@@ -118,6 +132,12 @@ export const GET: APIRoute = async ({ request, locals }) => {
     await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(repoInfo), {
       expirationTtl: GITHUB_CACHE_TTL_SECONDS,
     });
+    await writeMemo(
+      env.GITHUB_CACHE,
+      cacheKey,
+      repoInfo,
+      now + GITHUB_CACHE_FRESH_MS,
+    );
 
     return jsonResponse({ ...repoInfo.data, stale: false });
   } catch (error) {

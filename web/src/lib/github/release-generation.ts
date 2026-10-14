@@ -1,4 +1,12 @@
+import { readThroughMemo, writeMemo } from "./edge-memo";
+
 const LATEST_RELEASE_GENERATION_PREFIX = "github:release-generation:";
+// How long a generation read from KV is reused from the edge memo before KV
+// is asked again. Catalog sync can replace a generation at any time, so this
+// bounds how long a colo keeps serving `latest` from the previous one: at
+// most this plus KV's own propagation delay (up to 60 seconds), against a
+// catalog that is synced every 15 minutes.
+const GENERATION_MEMO_TTL_MS = 60 * 1000;
 
 interface VersionReleaseData {
   release_url?: string | null;
@@ -106,10 +114,20 @@ export async function getGitHubLatestReleaseGenerations(
   owner: string,
   repo: string,
 ): Promise<GitHubLatestReleaseGenerations | undefined> {
+  const key = latestReleaseGenerationKey(owner, repo);
   try {
-    return parseGenerations(
-      await cache.get(latestReleaseGenerationKey(owner, repo)),
-    );
+    // Repos the catalog does not track have no generation; memoize that too
+    // (as null) so their `latest` requests skip KV as well.
+    const generations =
+      await readThroughMemo<GitHubLatestReleaseGenerations | null>(
+        cache,
+        key,
+        async () => ({
+          value: parseGenerations(await cache.get(key)) ?? null,
+          expiresAt: Date.now() + GENERATION_MEMO_TTL_MS,
+        }),
+      );
+    return generations ?? undefined;
   } catch (error) {
     console.warn(
       `failed to read GitHub latest release generation for ${owner}/${repo}:`,
@@ -153,11 +171,19 @@ export async function rotateGitHubLatestReleaseGenerations(
       previous,
     };
     await cache.put(key, JSON.stringify(generations));
+    // Let this colo switch over right away instead of after the memo expires.
+    await writeMemo(
+      cache,
+      key,
+      generations,
+      Date.now() + GENERATION_MEMO_TTL_MS,
+    );
   }
   return repositories.size;
 }
 
 export const __testing = {
+  GENERATION_MEMO_TTL_MS,
   generationForReleaseUrls,
   hasUsableRelease,
   latestReleaseGenerationKey,
