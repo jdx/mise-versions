@@ -357,6 +357,11 @@ export function validDigest(value: string | undefined): value is string {
   return !!value && /^[A-Za-z0-9_.-]+:[A-Fa-f0-9]+$/.test(value);
 }
 
+/** GitHub (REST or GraphQL) rate-limited the pool token. */
+export function isGitHubRateLimited(error: unknown): boolean {
+  return isRateLimited(error);
+}
+
 export function githubStatus(error: unknown): number | null {
   return error instanceof GitHubError ? error.status : null;
 }
@@ -662,13 +667,19 @@ export async function getCachedGitHubTagList(
   repo: string,
   page: number,
   { dates = false }: { dates?: boolean } = {},
-): Promise<{ list: GitHubTagListPage; staleFallback: boolean }> {
+): Promise<{
+  list: GitHubTagListPage;
+  staleFallback: boolean;
+  /** How long the page stays fresh: what is left of its KV freshness. */
+  freshSeconds: number;
+}> {
   if (!Number.isInteger(page) || page < 1 || page > TAG_LIST_MAX_PAGE) {
     throw new GitHubError(400, "Invalid page", new Headers());
   }
   const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const freshMs = tagListFreshSeconds(page) * 1000;
   let staleFallback = false;
+  let cachedAt = Date.now();
   const list = await getOrRefresh<GitHubTagListPage>({
     env,
     cacheKey: `github:${dates ? "tags-dated" : "tags"}:${cacheRepository}:${page}`,
@@ -679,8 +690,16 @@ export async function getCachedGitHubTagList(
     onStaleFallback: () => {
       staleFallback = true;
     },
+    onFreshEntry: (at) => {
+      cachedAt = at;
+    },
   });
-  return { list, staleFallback };
+  // The edge keeps a page only for what is left of its freshness, so a page
+  // read from KV late in its window is not kept a whole window more.
+  const freshSeconds = staleFallback
+    ? 0
+    : Math.max(1, Math.ceil((cachedAt + freshMs - Date.now()) / 1000));
+  return { list, staleFallback, freshSeconds };
 }
 
 /**
@@ -714,6 +733,7 @@ async function getOrRefresh<T>({
   staleCacheKey,
   onStaleFallback,
   onFetchError,
+  onFreshEntry,
   beforeFetch,
   fingerprint,
 }: {
@@ -732,6 +752,8 @@ async function getOrRefresh<T>({
   useStaleOnError?: (error: unknown) => boolean;
   staleCacheKey?: string;
   onStaleFallback?: () => void;
+  /** Called with the `cached_at` of the entry served, unless it is stale. */
+  onFreshEntry?: (cachedAt: number) => void;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -739,6 +761,7 @@ async function getOrRefresh<T>({
 }): Promise<T> {
   const cached = await env.GITHUB_CACHE.get<CacheEntry<T>>(cacheKey, "json");
   if (cached && isFresh(cached)) {
+    onFreshEntry?.(cached.cached_at);
     return cached.data;
   }
   await beforeFetch?.();
@@ -751,6 +774,7 @@ async function getOrRefresh<T>({
     const options = ttl === undefined ? undefined : { expirationTtl: ttl };
     const now = Date.now();
     const entry: CacheEntry<T> = { cached_at: now, data };
+    onFreshEntry?.(now);
     if (fingerprint) {
       entry.unchanged_since =
         cached && sameData(fingerprint, cached.data, data)
@@ -995,7 +1019,7 @@ async function fetchGitHubTagList(
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
 function noGraphQLTokenError(): GitHubError {
-  return new GitHubError(
+  return new NoGraphQLTokenError(
     503,
     "No GitHub token for GraphQL commit dates",
     new Headers(),
@@ -1378,6 +1402,9 @@ export class GitHubError extends Error {
 
 /** A release GitHub showed the pool as a draft; served as a 404. */
 class DraftReleaseError extends GitHubError {}
+
+/** Tag dates were asked for, but the pool has no token for GraphQL. */
+export class NoGraphQLTokenError extends GitHubError {}
 
 /** An error served from the negative release cache. */
 class CachedReleaseError extends GitHubError {}
