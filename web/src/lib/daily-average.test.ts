@@ -122,3 +122,27 @@ test("seven-day smoothing removes weekly MAU swings while preserving growth", ()
   assert.equal(forecast?.dailySlope, 1000);
   assert.equal(forecast?.daysAway, 462);
 });
+test("a break date keeps averages, milestones and forecasts on one side of it", () => {
+  // 30 days of 100/day, then 130/day once a second source is counted
+  const points = Array.from({ length: 60 }, (_, i) => ({
+    date: new Date(Date.UTC(2026, 0, 1 + i)).toISOString().slice(0, 10),
+    value: i < 30 ? 100 + i : 130 + i,
+  }));
+  const breakDate = points[30].date;
+  const averages = sevenDayAverage(points, breakDate);
+  assert.equal(averages[29].value, 126);
+  for (let i = 30; i < 36; i++) assert.equal(averages[i].value, null);
+  assert.equal(averages[36].value, 163);
+  assert.notEqual(sevenDayAverage(points)[33].value, null);
+  // 130 -> 163 is the second source arriving, not 250 being passed
+  assert.deepEqual(
+    pastActivityMilestones(averages, breakDate).map((m) => m.level),
+    [],
+  );
+  // The pace ignores the jump: one more per day, from the latest side only
+  const forecast = forecastDailyAverage(averages, breakDate);
+  assert.equal(forecast?.target, 250);
+  assert.equal(forecast?.daysAway, 64);
+  const mixed = forecastDailyAverage(averages);
+  assert.ok(mixed && mixed.daysAway < 64);
+});

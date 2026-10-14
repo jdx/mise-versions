@@ -95,7 +95,8 @@ test("daily downloads use adjacent snapshots, preserving zeroes and leaving gaps
 });
 
 test("daily downloads scale each increase by the real time between snapshots", async () => {
-  const { dailyDownloads, parseMiseDownloadsCsv } = await import("./mise-growth");
+  const { dailyDownloads, parseMiseDownloadsCsv } =
+    await import("./mise-growth");
   // 36h gap then 12h gap: both are really 100/day, not 150 then 50.
   assert.deepEqual(
     dailyDownloads([
@@ -121,8 +122,14 @@ test("daily downloads scale each increase by the real time between snapshots", a
   const points = parseMiseDownloadsCsv(
     "date,repo_name,release_downloads,fetched_at\n2026-10-07,mise,0,\n2026-10-08,mise,80,not-a-time\n2026-10-09,mise,160,2026-10-09T08:15:00Z",
   );
-  assert.deepEqual(points.map((p) => p.fetchedAt), [undefined, undefined, "2026-10-09T08:15:00Z"]);
-  assert.deepEqual(dailyDownloads(points).map((v) => v.value), [null, 80, 80]);
+  assert.deepEqual(
+    points.map((p) => p.fetchedAt),
+    [undefined, undefined, "2026-10-09T08:15:00Z"],
+  );
+  assert.deepEqual(
+    dailyDownloads(points).map((v) => v.value),
+    [null, 80, 80],
+  );
 });
 
 test("star history keeps mise’s earliest observations rather than imposing a recent cutoff", () => {
@@ -131,4 +138,95 @@ test("star history keeps mise’s earliest observations rather than imposing a r
   );
   assert.equal(points[0].date, "2023-01-27");
   assert.equal(points.length, 2);
+});
+
+const day = (i: number) =>
+  new Date(Date.UTC(2026, 9, 1 + i)).toISOString().slice(0, 10);
+// Cumulative GitHub snapshots taken at the same time every day, rising by
+// `rate` per day from 2026-10-01.
+const snapshots = (count: number, rate = 100) =>
+  Array.from({ length: count }, (_, i) => ({
+    date: day(i),
+    downloads: 1000 + rate * i,
+  }));
+
+test("combined downloads keep GitHub alone before CDN counts start and need both after", async () => {
+  const { combineDownloads } = await import("./mise-growth");
+  const github = [
+    { date: "2026-10-13", value: 100 },
+    { date: "2026-10-14", value: 110 },
+    { date: "2026-10-15", value: 120 },
+    { date: "2026-10-16", value: null },
+    { date: "2026-10-17", value: 130 },
+    { date: "2026-10-18", value: 140 },
+    { date: "2026-10-19", value: 150 },
+  ];
+  const cdn = [
+    { date: "2026-10-15", downloads: 5 },
+    { date: "2026-10-16", downloads: 6 },
+    // 2026-10-17 was not fully covered
+    { date: "2026-10-18", downloads: 0 },
+  ];
+  const { points, cdnStart } = combineDownloads(github, cdn);
+  assert.equal(cdnStart, "2026-10-15");
+  assert.deepEqual(points, [
+    { date: "2026-10-13", value: 100, github: 100, cdn: null },
+    { date: "2026-10-14", value: 110, github: 110, cdn: null },
+    { date: "2026-10-15", value: 125, github: 120, cdn: 5 },
+    { date: "2026-10-16", value: null, github: null, cdn: 6 },
+    { date: "2026-10-17", value: null, github: 130, cdn: null },
+    // a covered day with no downloads is a real zero
+    { date: "2026-10-18", value: 140, github: 140, cdn: 0 },
+    // 2026-10-19 is past the last CDN rollup, so it waits for it
+  ]);
+  assert.deepEqual(combineDownloads(github, []), {
+    points: github.map((p) => ({ ...p, github: p.value, cdn: null })),
+    cdnStart: null,
+  });
+});
+
+test("combined 30-day change needs CDN counts for every day of the window", async () => {
+  const { combinedDownloadChange, downloadChange } =
+    await import("./mise-growth");
+  const github = snapshots(40);
+  assert.equal(downloadChange(github, 30, day(35)), 3000);
+  assert.equal(downloadChange(github, 30, "2027-01-01"), null);
+  const cdn = Array.from({ length: 30 }, (_, i) => ({
+    date: day(6 + i),
+    downloads: 10,
+  }));
+  assert.equal(combinedDownloadChange(github, cdn, 30, day(35)), 3300);
+  assert.equal(combinedDownloadChange(github, cdn, 30, day(36)), null);
+});
+
+test("download summary adds CDN once it has a full week, and says GitHub alone before", async () => {
+  const { miseDownloadSummary } = await import("./mise-growth");
+  const github = snapshots(40);
+  const noCdn = miseDownloadSummary(github, []);
+  assert.equal(noCdn.combined, false);
+  assert.equal(noCdn.average, 100);
+  assert.equal(noCdn.date, day(39));
+  assert.equal(noCdn.change30d, 3000);
+  assert.equal(noCdn.combinedFrom, null);
+
+  const cdn = (count: number) =>
+    Array.from({ length: count }, (_, i) => ({
+      date: day(30 + i),
+      downloads: 20,
+    }));
+  const firstWeek = miseDownloadSummary(github, cdn(6));
+  assert.equal(firstWeek.combined, false);
+  assert.equal(firstWeek.average, 100);
+  assert.equal(firstWeek.combinedFrom, day(36));
+
+  const fullWeek = miseDownloadSummary(github, cdn(7));
+  assert.equal(fullWeek.combined, true);
+  assert.equal(fullWeek.date, day(36));
+  assert.equal(fullWeek.average, 120);
+  assert.equal(fullWeek.github, 100);
+  assert.equal(fullWeek.cdn, 20);
+  // CDN does not cover 30 days yet, so the 30-day change is GitHub's
+  assert.equal(fullWeek.change30d, 3000);
+  assert.equal(fullWeek.change30dSource, "github");
+  assert.equal(fullWeek.points.at(-1)?.date, day(36));
 });

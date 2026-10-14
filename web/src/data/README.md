@@ -40,5 +40,15 @@ Homebrew target keeps growing. Forecasts are estimates, not scheduled events.
 
 The downloads chart shows daily increases between consecutive dated snapshots,
 not cumulative totals. The first observation, missing days, and negative counter
-corrections have no daily value; genuine zero increases remain zero. The headline
-uses the latest day's increase, and the chart shows the latest 90 observations.
+corrections have no daily value; genuine zero increases remain zero.
+
+The /stats page adds CDN downloads at request time: release binary requests on
+mise.jdx.dev and mise.en.dev per fully covered UTC day, read from
+`mise_release_download_days` in D1 (written nightly by the Logpush rollup).
+Supporting files there (checksums, signatures, install scripts) are not added.
+CDN counts start on the first covered day; earlier days stay GitHub alone, a
+later day needs both counts for a total, and days after the last covered CDN day
+wait for the next rollup. 7-day averages, milestones and the forecast never mix
+days from before and after CDN counts start, so the headline is GitHub alone
+(and says so) until CDN counts have a full week. If D1 is unavailable, the page
+falls back to GitHub alone.
