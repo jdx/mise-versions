@@ -50,6 +50,10 @@ const crawlTiming = {
 // in the background: mise's prefer-offline commands (shims, `mise x`) give a
 // lookup one 3s attempt.
 const PROBE_PER_PAGE = 20;
+// The first batch of pages starts before any page's real size is known, so
+// it reads at most this many at once; later batches are sized from the
+// largest page seen.
+const FIRST_BATCH_MAX = 3;
 
 // Page 1 (where new releases and tags land) is re-read after a quarter of
 // how long the list has been unchanged, within these bounds: every build for a
@@ -466,7 +470,7 @@ async function refreshVersions(
       const fetchPage = (
         page: number,
         perPage = PER_PAGE,
-        ifNoneMatch?: string,
+        { dates = true, ifNoneMatch }: PageOptions = {},
       ) =>
         fetchPageWithRetry(
           owner,
@@ -478,13 +482,22 @@ async function refreshVersions(
           deadline.signal,
           canRetry,
           perPage,
-          ifNoneMatch,
+          { dates, ifNoneMatch },
         );
       const reprobe = () => fetchPage(1, PROBE_PER_PAGE);
+      // One entry per page: its last-page link is the exact entry count.
+      const tally = () => {
+        const read = fetchPage(1, 1, { dates: false });
+        read.catch(() => {});
+        return read;
+      };
+      const crawl = { fetchPage, reprobe, tally, startedAt };
       if (stored && step === "head") {
         // Conditional on the last probe's ETag: an unchanged probe is a 304,
         // which costs no rate limit and no parsing.
-        const probe = await fetchPage(1, PROBE_PER_PAGE, meta?.e);
+        const probe = await fetchPage(1, PROBE_PER_PAGE, {
+          ifNoneMatch: meta?.e,
+        });
         if (probe.notModified) {
           return {
             items: stored.items,
@@ -505,27 +518,27 @@ async function refreshVersions(
         }
         const merged = mergeHead(probe, stored);
         if (merged) return { ...merged, full: false, etag: probe.etag };
-        return await verifiedCrawl(probe, fetchPage, reprobe, startedAt);
+        return await verifiedCrawl(probe, crawl, { before: tally() });
       }
       // A full crawl needs page 1 unless the list has 20 entries or fewer,
       // so read it alongside the probe: most lists fit on it, and a list that
-      // fits on one page is read in one request and needs no check.
+      // fits on one page is read in one request and needs no check. The
+      // entry count to check the crawl against is read alongside too.
       const page1 = fetchPage(1);
       page1.then(
         (page) => onPrefix?.(page),
         () => {},
       );
-      let probe: GitHubListPage<StoredItem>;
-      try {
-        probe = await reprobe();
-      } catch (error) {
-        page1.catch(() => {});
-        throw error;
-      }
+      const before = tally();
+      const probe = await reprobe();
       onPrefix?.(probe);
-      return await verifiedCrawl(probe, fetchPage, reprobe, startedAt, page1);
+      return await verifiedCrawl(probe, crawl, { page1, before });
     } finally {
       clearTimeout(timer);
+      // Reads the crawl no longer needs (page 1 when the probe was the whole
+      // list, the count when the crawl ended early) are cancelled rather
+      // than left running past the deadline.
+      deadline.abort(new Error("GitHub crawl finished"));
     }
   });
 
@@ -733,33 +746,47 @@ function mergeHead(
 
 /**
  * A crawl whose pages are known to join up. Pages are read at slightly
- * different moments, so a release published (or deleted) above a page
+ * different moments, so a release published or deleted above a page
  * boundary mid-crawl shifts the list between two reads and can drop an
- * entry. The probe is read again afterwards: if the newest entries or the
- * number of entries changed, the crawl runs once more, and if the list is
- * still moving only the new probe is kept, truncated, with the full crawl
- * left due. If the probe cannot be read again (the deadline passed, or GitHub
- * failed), the pages read are kept as a truncated prefix, also with the full
- * crawl left due.
+ * entry. The exact number of entries (one entry per page: the last-page
+ * link) and the newest entry are read before and after: if either changed,
+ * the crawl runs once more, and if the list is still moving only a new probe
+ * is kept, truncated, with the full crawl left due. If the count cannot be
+ * read (the deadline passed, or GitHub failed), the pages read are kept as a
+ * truncated prefix, also with the full crawl left due.
  */
 async function verifiedCrawl(
   probe: GitHubListPage<StoredItem>,
-  fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>,
-  reprobe: () => Promise<GitHubListPage<StoredItem>>,
-  startedAt: number,
-  page1?: Promise<GitHubListPage<StoredItem>>,
+  {
+    fetchPage,
+    reprobe,
+    tally,
+    startedAt,
+  }: {
+    fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>;
+    reprobe: () => Promise<GitHubListPage<StoredItem>>;
+    tally: () => Promise<GitHubListPage<StoredItem>>;
+    startedAt: number;
+  },
+  {
+    page1,
+    before,
+  }: {
+    page1?: Promise<GitHubListPage<StoredItem>>;
+    before: Promise<GitHubListPage<StoredItem>>;
+  },
 ): Promise<{
   items: StoredItem[];
   truncated: boolean;
   full: boolean;
-  /** The ETag of the last probe that matched the stored list. */
+  /** The ETag of the probe the stored list was checked against. */
   etag?: string | null;
 }> {
   let current = probe;
   let probedAt = startedAt;
+  let start = before;
   for (let attempt = 0; ; attempt++) {
     if (!current.hasNextPage) {
-      page1?.catch(() => {});
       return {
         items: current.items,
         truncated: false,
@@ -782,34 +809,39 @@ async function verifiedCrawl(
         etag: current.etag,
       };
     }
-    const verify = await reprobe().catch(() => null);
-    if (verify && sameProbe(verify, current)) {
-      return { ...crawled, full: true, etag: verify.etag };
+    const [first, last] = await Promise.all([
+      start.catch(() => null),
+      tally().catch(() => null),
+    ]);
+    if (!first || !last) {
+      // The check could not run (out of time, or GitHub failed): keep what
+      // was read as a truncated prefix rather than discard it.
+      return { ...crawled, truncated: true, full: false };
     }
-    if (
-      verify &&
-      attempt === 0 &&
-      Date.now() - startedAt < crawlTiming.budgetMs
-    ) {
-      current = verify;
+    if (sameTally(first, last)) {
+      return { ...crawled, full: true, etag: current.etag };
+    }
+    if (attempt === 0 && Date.now() - startedAt < crawlTiming.budgetMs) {
+      start = Promise.resolve(last);
       probedAt = Date.now();
+      current = await reprobe();
       continue;
     }
-    // The check could not run (out of time, or GitHub failed): keep what was
-    // read as a truncated prefix rather than discard it.
-    if (!verify) return { ...crawled, truncated: true, full: false };
-    return { items: verify.items, truncated: verify.hasNextPage, full: false };
+    const latest = await reprobe().catch(() => current);
+    return { items: latest.items, truncated: latest.hasNextPage, full: false };
   }
 }
 
-/** The same newest entries, and the same number of pages of them. */
-function sameProbe(
+/** The same number of entries, with the same newest one. */
+function sameTally(
   a: GitHubListPage<StoredItem>,
   b: GitHubListPage<StoredItem>,
 ): boolean {
+  const count = (page: GitHubListPage<StoredItem>) =>
+    page.hasNextPage ? page.lastPage : page.items.length;
   return (
-    a.hasNextPage === b.hasNextPage &&
-    a.lastPage === b.lastPage &&
+    count(a) !== null &&
+    count(a) === count(b) &&
     a.items.length === b.items.length &&
     a.items.every((item, i) => itemKey(item) === itemKey(b.items[i]))
   );
@@ -836,14 +868,17 @@ async function crawl(
       Math.ceil(((probe.lastPage ?? 1) * PROBE_PER_PAGE) / PER_PAGE),
     ),
   );
-  const pageBytes = (probe.bytes || 0) * (PER_PAGE / PROBE_PER_PAGE);
-  const concurrency = Math.max(
-    1,
-    Math.min(
-      MAX_PAGE_CONCURRENCY,
-      Math.floor(PARSE_BUDGET_BYTES / Math.max(1, pageBytes)),
-    ),
-  );
+  // Concurrency is sized so about PARSE_BUDGET_BYTES of JSON is read at
+  // once: from the probe's size at first, then from the largest page seen.
+  let largestPage = (probe.bytes || 0) * (PER_PAGE / PROBE_PER_PAGE);
+  const concurrency = () =>
+    Math.max(
+      1,
+      Math.min(
+        MAX_PAGE_CONCURRENCY,
+        Math.floor(PARSE_BUDGET_BYTES / Math.max(1, largestPage)),
+      ),
+    );
   // Start another batch only if it should finish in time, judging by how
   // long the last one took.
   let lastBatchMs = 0;
@@ -873,16 +908,20 @@ async function crawl(
         failed = true;
         return;
       }
+      largestPage = Math.max(largestPage, result.bytes || 0);
       pages.push(result);
     }
   };
-  const all = Array.from({ length: known }, (_, i) => i + 1);
-  for (
-    let i = 0;
-    i < all.length && !failed && (i === 0 || inBudget());
-    i += concurrency
-  ) {
-    add(await timed(Promise.all(all.slice(i, i + concurrency).map(tryPage))));
+  let next = 1;
+  while (next <= known && !failed && (next === 1 || inBudget())) {
+    const size =
+      next === 1 ? Math.min(FIRST_BATCH_MAX, concurrency()) : concurrency();
+    const batch = Array.from(
+      { length: Math.min(size, known - next + 1) },
+      (_, i) => next + i,
+    );
+    next += batch.length;
+    add(await timed(Promise.all(batch.map(tryPage))));
   }
   // The list may have grown while it was read, or GitHub sent no last link.
   while (
@@ -910,6 +949,13 @@ async function crawl(
   };
 }
 
+interface PageOptions {
+  /** Tags only: read commit dates too (a GraphQL query). */
+  dates?: boolean;
+  /** An ETag from an earlier read; GitHub may then answer 304. */
+  ifNoneMatch?: string;
+}
+
 async function fetchPageWithRetry(
   owner: string,
   repo: string,
@@ -920,20 +966,13 @@ async function fetchPageWithRetry(
   signal: AbortSignal | undefined,
   canRetry: () => boolean = () => true,
   perPage = PER_PAGE,
-  ifNoneMatch?: string,
+  { dates = true, ifNoneMatch }: PageOptions = {},
 ): Promise<GitHubListPage<StoredItem>> {
   const read = () =>
-    fetchPage(
-      owner,
-      repo,
-      source,
-      asset,
-      page,
-      token,
-      signal,
-      perPage,
+    fetchPage(owner, repo, source, asset, page, token, signal, perPage, {
+      dates,
       ifNoneMatch,
-    );
+    });
   try {
     return await read();
   } catch (error) {
@@ -959,14 +998,14 @@ async function fetchPage(
   token: TokenRecord | null,
   signal?: AbortSignal,
   perPage = PER_PAGE,
-  ifNoneMatch?: string,
+  { dates = true, ifNoneMatch }: PageOptions = {},
 ): Promise<GitHubListPage<StoredItem>> {
   if (source === "tags") {
     const result = await fetchGitHubTagPage(
       owner,
       repo,
       page,
-      true,
+      dates,
       token,
       signal,
       perPage,
