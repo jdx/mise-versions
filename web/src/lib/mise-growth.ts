@@ -240,6 +240,13 @@ export function miseDownloadSummary(
 ) {
   const githubDaily = dailyDownloads(snapshots);
   const { points, cdnStart } = combineDownloads(githubDaily, cdn);
+  // How current the data is: the newest GitHub snapshot or CDN day, which can
+  // be later than the week the average ends on.
+  const latestObserved =
+    [snapshots.at(-1)?.date, ...cdn.map((p) => p.date)]
+      .filter((date): date is string => date !== undefined)
+      .sort()
+      .at(-1) ?? null;
   const total =
     cdnStart === null
       ? undefined
@@ -257,6 +264,7 @@ export function miseDownloadSummary(
     return {
       points,
       cdnStart,
+      latestObserved,
       combined: true as const,
       date: total.date,
       average: total.value,
@@ -277,6 +285,7 @@ export function miseDownloadSummary(
   return {
     points,
     cdnStart,
+    latestObserved,
     combined: false as const,
     date: github?.date ?? null,
     average: github?.value ?? null,

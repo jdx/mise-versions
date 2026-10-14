@@ -208,6 +208,13 @@ test("download summary adds CDN once it has a full week, and says GitHub alone b
   assert.equal(noCdn.date, day(39));
   assert.equal(noCdn.change30d, 3000);
   assert.equal(noCdn.combinedFrom, null);
+  assert.equal(noCdn.latestObserved, day(39));
+  // A CDN day newer than the latest GitHub snapshot counts too
+  assert.equal(
+    miseDownloadSummary(snapshots(5), [{ date: day(6), downloads: 1 }])
+      .latestObserved,
+    day(6),
+  );
 
   const cdn = (count: number) =>
     Array.from({ length: count }, (_, i) => ({
@@ -244,6 +251,8 @@ test("after a complete combined week, a gap in either source keeps the last comp
   const cdnGap = miseDownloadSummary(snapshots(31), cdn(10, 8));
   assert.equal(cdnGap.combined, true);
   assert.equal(cdnGap.date, day(27));
+  // Freshness follows the newest data, not the week the average ends on
+  assert.equal(cdnGap.latestObserved, day(30));
   assert.equal(cdnGap.average, 120);
   assert.equal(cdnGap.github, 100);
   assert.equal(cdnGap.cdn, 20);
@@ -254,6 +263,7 @@ test("after a complete combined week, a gap in either source keeps the last comp
   const githubGap = miseDownloadSummary(github, cdn(10));
   assert.equal(githubGap.combined, true);
   assert.equal(githubGap.date, day(26));
+  assert.equal(githubGap.latestObserved, day(30));
   assert.equal(githubGap.average, 120);
 
   // Gaps that never allowed a complete week: GitHub alone, without
