@@ -232,10 +232,46 @@ export function buildToolIndex(entries, { now }) {
   };
 }
 
+/**
+ * The keys of the `[versions]` table in file order. Parsed TOML tables are
+ * plain objects, which enumerate integer-like keys (`10`, `696`) before all
+ * others, so the order has to come from the text. Keys are quoted, as
+ * generate-toml.js writes them, or bare.
+ */
+function versionKeysInFileOrder(content) {
+  const keys = [];
+  let inVersions = false;
+  for (const line of content.split(/\r?\n/)) {
+    const table = line.match(/^\s*\[([^\]]*)\]\s*(#.*)?$/);
+    if (table) {
+      inVersions = table[1].trim() === "versions";
+      continue;
+    }
+    if (!inVersions) continue;
+    const key =
+      line.match(/^\s*("(?:[^"\\]|\\.)*")\s*=/)?.[1] ??
+      line.match(/^\s*'([^']*)'\s*=/)?.[1] ??
+      line.match(/^\s*([A-Za-z0-9_-]+)\s*=/)?.[1];
+    if (key === undefined) continue;
+    keys.push(key.startsWith('"') ? JSON.parse(key) : key);
+  }
+  return keys;
+}
+
 /** Parse a /data/<tool>.toml file into entries in file order. */
 export function parseToolToml(content) {
-  const parsed = parse(content);
-  return Object.entries(parsed.versions ?? {}).map(([version, data]) => {
+  const table = parse(content).versions ?? {};
+  const keys = versionKeysInFileOrder(content);
+  const tableKeys = Object.keys(table);
+  if (
+    keys.length !== tableKeys.length ||
+    new Set(keys).size !== keys.length ||
+    !keys.every((key) => Object.hasOwn(table, key))
+  ) {
+    throw new Error("Could not read [versions] keys in file order");
+  }
+  return keys.map((version) => {
+    const data = table[version];
     const createdAt =
       data.created_at instanceof Date
         ? data.created_at.getTime()

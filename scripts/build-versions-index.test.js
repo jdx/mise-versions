@@ -327,6 +327,68 @@ describe("prefixKeys", () => {
   });
 });
 
+describe("parseToolToml", () => {
+  it("keeps file order for integer-like versions", () => {
+    const entries = parseToolToml(`[versions]
+"0.9" = { created_at = 2024-01-01T00:00:00.000Z }
+"0.10" = { created_at = 2024-02-01T00:00:00.000Z }
+"10" = { created_at = 2024-03-01T00:00:00.000Z, prerelease = true }
+"0.11" = { created_at = 2024-04-01T00:00:00.000Z, rolling = true }
+`);
+    assert.deepStrictEqual(
+      entries.map((e) => e.version),
+      ["0.9", "0.10", "10", "0.11"],
+    );
+    assert.strictEqual(entries[2].created_at, Date.parse("2024-03-01"));
+    assert.strictEqual(entries[2].prerelease, true);
+    assert.strictEqual(entries[3].rolling, true);
+  });
+
+  it("keeps file order through the index", () => {
+    const entries = parseToolToml(`[versions]
+"0.9" = { created_at = 2024-01-01T00:00:00.000Z }
+"0.10" = { created_at = 2024-02-01T00:00:00.000Z }
+"10" = { created_at = 2024-03-01T00:00:00.000Z }
+`);
+    const tool = buildToolIndex(entries, { now: NOW });
+    assert.strictEqual(tool.latest, "10");
+    assert.deepStrictEqual(tool.versions.at(-1)[0], "10");
+  });
+
+  it("reads escaped, literal and bare keys", () => {
+    const entries = parseToolToml(`[versions]
+"a\\"b" = { created_at = 2024-01-01T00:00:00.000Z }
+'c' = { created_at = 2024-01-01T00:00:00.000Z }
+d = { created_at = 2024-01-01T00:00:00.000Z }
+`);
+    assert.deepStrictEqual(
+      entries.map((e) => e.version),
+      ['a"b', "c", "d"],
+    );
+  });
+
+  it(
+    "matches the line order of every file in docs/",
+    {
+      skip: !existsSync(DOCS_DIR),
+    },
+    () => {
+      for (const file of readdirSync(DOCS_DIR).filter(isIndexedToolFile)) {
+        const content = readFileSync(join(DOCS_DIR, file), "utf8");
+        const lines = content
+          .split("\n")
+          .filter((l) => l.startsWith('"'))
+          .map((l) => JSON.parse(l.slice(0, l.indexOf('" =') + 1)));
+        assert.deepStrictEqual(
+          parseToolToml(content).map((e) => e.version),
+          lines,
+          file,
+        );
+      }
+    },
+  );
+});
+
 describe("buildToolIndex", () => {
   it("keeps list order and flags, and records the tail", () => {
     const list = [
