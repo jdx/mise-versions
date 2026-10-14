@@ -121,7 +121,9 @@ test("memo works without the Cache API", () => {
 
 test("read-through memo shares one load and does not memoize failures", () => {
   runMemoTest(`${PRELUDE}
-    const { readThroughMemo } = await import("./web/src/lib/github/edge-memo.ts");
+    const { readMemo, readThroughMemo, writeMemo } = await import(
+      "./web/src/lib/github/edge-memo.ts"
+    );
     const scope = {};
     let loads = 0;
     let release;
@@ -184,6 +186,21 @@ test("read-through memo shares one load and does not memoize failures", () => {
       { value: "retried" },
       { value: "retried" },
     ]);
+
+    // A direct write during a load (a generation rotation) is not overwritten
+    // by the load's older answer.
+    let releaseSlow;
+    const slowGate = new Promise((resolve) => (releaseSlow = resolve));
+    const slowRead = readThroughMemo(scope, "gen", async () => {
+      await slowGate;
+      return { value: "old", expiresAt: Date.now() + 60_000 };
+    });
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    await writeMemo(scope, "gen", "new", Date.now() + 60_000);
+    releaseSlow();
+    assert.equal(await slowRead, "old");
+    assert.equal((await readMemo(scope, "gen")).value, "new");
+    assert.equal((await readMemo({}, "gen")).value, "new");
 
     // An already-expired load is returned but not memoized.
     let expiredLoads = 0;

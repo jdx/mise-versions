@@ -43,6 +43,22 @@ export interface MemoLoad<T> {
 // so it assumes every caller memoizes the same GITHUB_CACHE namespace.
 const localMemos = new WeakMap<object, Map<string, LocalEntry>>();
 const inflight = new WeakMap<object, Map<string, Promise<MemoLoad<unknown>>>>();
+// Counts writes per key so a read-through load that started before a direct
+// write (such as a generation rotation) does not overwrite the newer value.
+const writeCounts = new WeakMap<object, Map<string, number>>();
+
+function writeCount(scope: object, key: string): number {
+  return writeCounts.get(scope)?.get(key) ?? 0;
+}
+
+function countWrite(scope: object, key: string): void {
+  let counts = writeCounts.get(scope);
+  if (!counts) {
+    counts = new Map();
+    writeCounts.set(scope, counts);
+  }
+  counts.set(key, writeCount(scope, key) + 1);
+}
 
 function localMemo(scope: object): Map<string, LocalEntry> {
   let memo = localMemos.get(scope);
@@ -128,6 +144,7 @@ export async function writeMemo<T>(
 ): Promise<void> {
   const ttlSeconds = Math.floor((expiresAt - Date.now()) / 1000);
   if (!Number.isFinite(ttlSeconds) || ttlSeconds < 1) return;
+  countWrite(scope, key);
   setLocal(scope, key, { value, expiresAt });
 
   const cache = edgeCache();
@@ -152,7 +169,8 @@ export async function writeMemo<T>(
  * Serve `key` from the memo, or run `load` and memoize what it returns.
  * Concurrent misses in one isolate share a single `load`. Errors from `load`
  * propagate and are not memoized; a result whose `expiresAt` has passed is
- * returned but not memoized.
+ * returned but not memoized, and neither is one whose key was written directly
+ * (with `writeMemo`) while the load ran.
  */
 export async function readThroughMemo<T>(
   scope: object,
@@ -181,9 +199,13 @@ export async function readThroughMemo<T>(
     }
   }
 
+  const writesBefore = writeCount(scope, key);
   const loading = (async () => {
     const loaded = await load();
-    await writeMemo(scope, key, loaded.value, loaded.expiresAt);
+    // A direct write while this load ran holds a newer value; keep it.
+    if (writeCount(scope, key) === writesBefore) {
+      await writeMemo(scope, key, loaded.value, loaded.expiresAt);
+    }
     return loaded;
   })();
   pending.set(key, loading);
