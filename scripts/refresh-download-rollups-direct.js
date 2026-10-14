@@ -372,6 +372,43 @@ const DIMENSION_TABLES = [
   ],
 ];
 
+// Remove a date's rows whose keys are not in `rows`, after the new rows are
+// upserted. INSERT OR REPLACE alone would leave keys that dropped out of the
+// day (e.g. a beacon-only tool or version a later Logpush run no longer
+// reports) inflating per-dimension totals. Upserting first and pruning after
+// means readers never see the day without its current rows; a failure in
+// between leaves only the stale extras, which the next run removes.
+async function pruneStaleRows(config, table, keys, date, rows) {
+  const keyColumns = keys.slice(1); // after `date`
+  const current = new Set(
+    rows.map((row) => JSON.stringify(row.slice(1, keys.length))),
+  );
+  const existing = await queryD1(
+    config,
+    `SELECT ${keyColumns.join(", ")} FROM ${table} WHERE date = ?`,
+    [date],
+    `${table} keys`,
+  );
+  const stale = existing
+    .map((row) => keyColumns.map((column) => row[column]))
+    .filter((key) => !current.has(JSON.stringify(key)));
+  const batchSize = Math.floor((D1_MAX_PARAMS - 1) / keyColumns.length);
+  for (let i = 0; i < stale.length; i += batchSize) {
+    const batch = stale.slice(i, i + batchSize);
+    const match = `(${keyColumns.map((column) => `${column} = ?`).join(" AND ")})`;
+    await queryD1(
+      config,
+      `DELETE FROM ${table} WHERE date = ? AND (${batch.map(() => match).join(" OR ")})`,
+      [date, ...batch.flat()],
+      `${table} prune`,
+    );
+  }
+  if (stale.length > 0) {
+    console.log(`Removed ${stale.length} stale ${table} row(s) for ${date}`);
+  }
+  return stale.length;
+}
+
 // From LOGPUSH_CUTOVER_DATE on, installs reported by the static /t beacon
 // (counted from Logpush) are added to the Analytics Engine counts, which then
 // only cover clients that still POST /api/tools/<tool>. A client sends one or
@@ -547,6 +584,7 @@ async function refreshDate(config, date) {
       ? sumRows(keys.length, aeRows[table], logpush.tables[table])
       : aeRows[table];
     await batchUpsert(config, table, [...keys, ...values], rows);
+    await pruneStaleRows(config, table, keys, date, rows);
     written[table] = rows.length;
   }
 

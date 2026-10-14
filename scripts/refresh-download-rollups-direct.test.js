@@ -201,4 +201,64 @@ describe("refresh-download-rollups-direct", () => {
       /no logpush_daily_stats row/,
     );
   });
+
+  it("removes a date's dimension rows that are no longer reported", async () => {
+    const d1 = [];
+    globalThis.fetch = async (url, options) => {
+      const body = options.body;
+      if (String(url).includes("analytics_engine")) {
+        if (body.includes(" AS total")) {
+          return jsonResponse({ data: [{ total: "4", unique_users: "2" }] });
+        }
+        if (body.includes("blob1 IN")) {
+          return jsonResponse({ data: [{ unique_users: "2" }] });
+        }
+        if (body.includes("GROUP BY tool, version")) {
+          return jsonResponse({
+            data: [{ tool: "node", version: "22", downloads: "4" }],
+          });
+        }
+        return jsonResponse({ data: [] });
+      }
+      const { sql, params } = JSON.parse(body);
+      d1.push({ sql, params });
+      let results = [];
+      if (sql.startsWith("SELECT id, name FROM tools")) {
+        results = [{ id: 1, name: "node" }];
+      } else if (
+        sql.startsWith("SELECT tool_id, version FROM daily_tool_version_stats")
+      ) {
+        // 22 is current; 21 and the other tool's version dropped out
+        results = [
+          { tool_id: 1, version: "22" },
+          { tool_id: 1, version: "21" },
+          { tool_id: 9, version: "beacon-only" },
+        ];
+      }
+      return jsonResponse({
+        success: true,
+        result: [{ success: true, results }],
+      });
+    };
+
+    await refreshDate(config(), "2026-07-14");
+    const deletes = d1.filter(({ sql }) => sql.startsWith("DELETE"));
+    assert.equal(deletes.length, 1);
+    assert.match(
+      deletes[0].sql,
+      /^DELETE FROM daily_tool_version_stats WHERE date = \? AND \(\(tool_id = \? AND version = \?\) OR \(tool_id = \? AND version = \?\)\)$/,
+    );
+    assert.deepEqual(deletes[0].params, [
+      "2026-07-14",
+      1,
+      "21",
+      9,
+      "beacon-only",
+    ]);
+    // The current rows are upserted before anything is removed.
+    const upsert = d1.findIndex(({ sql }) =>
+      sql.startsWith("INSERT OR REPLACE INTO daily_tool_version_stats"),
+    );
+    assert.ok(upsert >= 0 && upsert < d1.indexOf(deletes[0]));
+  });
 });
