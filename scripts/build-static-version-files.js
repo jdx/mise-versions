@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 /**
- * Generate static version files served from /data/* and, for mise clients
- * older than v2026.6.6, from the legacy /tools/*.toml URLs.
+ * Generate static version files served from /data/*: one <tool>.toml per tool
+ * and the versions index (see build-versions-index.js), both from the same
+ * docs/ checkout so the index is never staler than the per-tool files.
  *
- * Both copies are byte-identical to docs/<tool>.toml. wrangler.jsonc excludes
+ * Each <tool>.toml is also copied byte-for-byte to the legacy /tools/*.toml
+ * URLs used by mise clients older than v2026.6.6. wrangler.jsonc excludes
  * /tools/*.toml from run_worker_first, so those requests are answered by the
- * asset worker alone and never invoke the Worker.
+ * asset worker alone and never invoke the Worker. The index is only published
+ * under /data.
  */
 import {
   existsSync,
@@ -18,6 +21,7 @@ import {
 } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildVersionsIndex, INDEX_FILE } from "./build-versions-index.js";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const SCRIPT_DIR = dirname(SCRIPT_PATH);
@@ -59,6 +63,7 @@ export function buildStaticVersionFiles({
   docsDir = join(REPO_ROOT, "docs"),
   outputDir = join(REPO_ROOT, "web", "public", "data"),
   legacyOutputDir = join(REPO_ROOT, "web", "public", "tools"),
+  now = Date.now(),
 } = {}) {
   const paths = assertSafeOutputDirs(docsDir, [outputDir, legacyOutputDir]);
 
@@ -78,7 +83,11 @@ export function buildStaticVersionFiles({
     }
   }
 
-  return { tools: files.length };
+  const index = buildVersionsIndex({ docsDir: paths.docsDir, now });
+  // outputDirs[0] is /data; the legacy /tools copy has no index.
+  writeFileSync(join(paths.outputDirs[0], INDEX_FILE), JSON.stringify(index));
+
+  return { tools: files.length, indexed: Object.keys(index.tools).length };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
@@ -88,5 +97,7 @@ if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
     outputDir,
     legacyOutputDir,
   });
-  console.log(`Generated static version files for ${result.tools} tools`);
+  console.log(
+    `Generated static version files for ${result.tools} tools and ${INDEX_FILE} for ${result.indexed}`,
+  );
 }

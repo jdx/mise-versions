@@ -82,4 +82,14 @@ describe("web build static version files", () => {
       readFileSync(join(DIST_CLIENT_DIR, "data", "node.toml")),
     );
   });
+
+  it("includes the versions index under /data", () => {
+    const indexFile = join(DIST_CLIENT_DIR, "data", "index.v1.json");
+
+    assert.ok(existsSync(indexFile), "missing static /data/index.v1.json");
+
+    const index = JSON.parse(readFileSync(indexFile, "utf8"));
+    assert.strictEqual(index.format, 1);
+    assert.ok(index.tools.node.versions.length > 0);
+  });
 });

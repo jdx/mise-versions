@@ -4,6 +4,7 @@ import {
   formatUtcDate,
   parseUtcDate,
 } from "./mau-forecast";
+import { sevenDayAverage } from "./daily-average";
 export interface StarPoint {
   date: string;
   mise: number;
@@ -71,11 +72,17 @@ export function parseMiseDownloadsCsv(csv: string): DownloadPoint[] {
   return [...result.values()].sort((a, b) => a.date.localeCompare(b.date));
 }
 
+// Increase over the `days` days ending at the snapshot dated `endDate`
+// (default: the latest snapshot).
 export function downloadChange(
   points: DownloadPoint[],
   days: number,
+  endDate?: string,
 ): number | null {
-  const latest = points.at(-1);
+  const latest =
+    endDate === undefined
+      ? points.at(-1)
+      : points.find((p) => p.date === endDate);
   if (!latest) return null;
   const baseline = points.find(
     (p) =>
@@ -147,4 +154,148 @@ export function dailyDownloads(
           : null,
     };
   });
+}
+
+// Requests for release binaries on mise.jdx.dev / mise.en.dev per fully
+// covered UTC day (mise_release_download_days in D1).
+export interface CdnDownloadPoint {
+  date: string;
+  downloads: number;
+}
+export interface CombinedDownloadPoint {
+  date: string;
+  // GitHub + CDN; GitHub alone before CDN counts start; null when a needed
+  // part is missing.
+  value: number | null;
+  github: number | null;
+  // null before CDN counts start, and on days they did not cover.
+  cdn: number | null;
+}
+// Adds CDN binary downloads to the daily GitHub increases. CDN requests were
+// not recorded before the first covered day (`cdnStart`), so earlier days are
+// GitHub alone rather than a guessed total. From then on a day's total needs
+// both counts. Days after the last covered CDN day are dropped: the nightly
+// rollup has not reached them yet, and GitHub alone would read as a drop.
+export function combineDownloads(
+  github: Array<{ date: string; value: number | null }>,
+  cdn: CdnDownloadPoint[],
+): { points: CombinedDownloadPoint[]; cdnStart: string | null } {
+  const cdnByDate = new Map(cdn.map((p) => [p.date, p.downloads]));
+  const cdnDates = [...cdnByDate.keys()].sort();
+  const cdnStart = cdnDates[0] ?? null;
+  const cdnEnd = cdnDates.at(-1);
+  const githubByDate = new Map(github.map((p) => [p.date, p.value]));
+  const dates = [...new Set([...githubByDate.keys(), ...cdnDates])]
+    .filter((date) => cdnEnd === undefined || date <= cdnEnd)
+    .sort();
+  const points = dates.map((date) => {
+    const githubValue = githubByDate.get(date) ?? null;
+    if (cdnStart === null || date < cdnStart)
+      return { date, value: githubValue, github: githubValue, cdn: null };
+    const cdnValue = cdnByDate.get(date) ?? null;
+    return {
+      date,
+      value:
+        githubValue === null || cdnValue === null
+          ? null
+          : githubValue + cdnValue,
+      github: githubValue,
+      cdn: cdnValue,
+    };
+  });
+  return { points, cdnStart };
+}
+// GitHub's 30-day counter increase plus the CDN binary downloads on the same
+// days, ending at `endDate`. Null unless CDN covered every one of those days.
+export function combinedDownloadChange(
+  github: DownloadPoint[],
+  cdn: CdnDownloadPoint[],
+  days: number,
+  endDate: string,
+): number | null {
+  const githubChange = downloadChange(github, days, endDate);
+  if (githubChange === null) return null;
+  const cdnByDate = new Map(cdn.map((p) => [p.date, p.downloads]));
+  let cdnTotal = 0;
+  for (let i = 0; i < days; i++) {
+    const value = cdnByDate.get(
+      formatUtcDate(parseUtcDate(endDate) - i * 86400000),
+    );
+    if (value === undefined) return null;
+    cdnTotal += value;
+  }
+  return githubChange + cdnTotal;
+}
+
+const latestAverage = (points: Array<{ date: string; value: number | null }>) =>
+  sevenDayAverage(points).at(-1)?.value ?? null;
+// Headline numbers for the mise downloads card. Once CDN counts have a
+// complete week, the average is GitHub + CDN, split into both parts; a later
+// gap in either source keeps the last complete week (its date says which)
+// rather than falling back to GitHub alone. Before that first complete week
+// (no CDN data, or its first days) the average is GitHub alone and says so.
+export function miseDownloadSummary(
+  snapshots: DownloadPoint[],
+  cdn: CdnDownloadPoint[],
+) {
+  const githubDaily = dailyDownloads(snapshots);
+  const { points, cdnStart } = combineDownloads(githubDaily, cdn);
+  // How current the data is: the newest GitHub snapshot or CDN day, which can
+  // be later than the week the average ends on.
+  const latestObserved =
+    [snapshots.at(-1)?.date, ...cdn.map((p) => p.date)]
+      .filter((date): date is string => date !== undefined)
+      .sort()
+      .at(-1) ?? null;
+  const total =
+    cdnStart === null
+      ? undefined
+      : sevenDayAverage(points, cdnStart).findLast(
+          (p): p is { date: string; value: number } =>
+            p.date >= cdnStart && p.value !== null,
+        );
+  if (cdnStart !== null && total) {
+    const window = points.filter(
+      (p) =>
+        p.date > formatUtcDate(parseUtcDate(total.date) - 7 * 86400000) &&
+        p.date <= total.date,
+    );
+    const totalChange = combinedDownloadChange(snapshots, cdn, 30, total.date);
+    return {
+      points,
+      cdnStart,
+      latestObserved,
+      combined: true as const,
+      date: total.date,
+      average: total.value,
+      github: latestAverage(window.map((p) => ({ ...p, value: p.github }))),
+      cdn: latestAverage(window.map((p) => ({ ...p, value: p.cdn }))),
+      change30d: totalChange ?? downloadChange(snapshots, 30, total.date),
+      change30dSource: totalChange === null ? "github" : "total",
+    };
+  }
+  const github = sevenDayAverage(githubDaily).at(-1);
+  // First day a combined 7-day average can exist, while that is still ahead;
+  // null once gaps have pushed it past without a complete week.
+  const combinedFrom =
+    cdnStart === null
+      ? null
+      : formatUtcDate(parseUtcDate(cdnStart) + 6 * 86400000);
+  const lastDate = points.at(-1)?.date;
+  return {
+    points,
+    cdnStart,
+    latestObserved,
+    combined: false as const,
+    date: github?.date ?? null,
+    average: github?.value ?? null,
+    github: github?.value ?? null,
+    cdn: null,
+    change30d: downloadChange(snapshots, 30),
+    change30dSource: "github",
+    combinedFrom:
+      combinedFrom !== null && lastDate !== undefined && combinedFrom > lastDate
+        ? combinedFrom
+        : null,
+  };
 }

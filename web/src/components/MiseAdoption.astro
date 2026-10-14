@@ -7,15 +7,14 @@ import releaseDownloads from '../data/mise-downloads.json';
 import DailyActivityChart from './DailyActivityChart.astro';
 import StarCrossover from './StarCrossover.astro';
 import { starChange } from '../lib/mise-adoption';
-import { downloadChange, dailyDownloads } from '../lib/mise-growth';
-import { sevenDayAverage } from '../lib/daily-average';
+import { miseDownloadSummary, type CdnDownloadPoint } from '../lib/mise-growth';
 import { formatCompact } from '../lib/format';
+interface Props { cdnDownloads?: CdnDownloadPoint[] }
+const { cdnDownloads = [] } = Astro.props;
 const latest = observations.at(-1)!;
-const latestDownloads = releaseDownloads.at(-1)!;
-const daily = dailyDownloads(releaseDownloads);
-const latestAverage = sevenDayAverage(daily).at(-1);
+const downloads = miseDownloadSummary(releaseDownloads, cdnDownloads);
+const { cdnStart } = downloads;
 const stars30d = starChange(observations, 30);
-const downloads30d = downloadChange(releaseDownloads, 30);
 const since = new Date(latest.date);
 since.setUTCFullYear(since.getUTCFullYear() - 1);
 const brewPoints = observations.filter(p => p.date >= since.toISOString().slice(0, 10));
@@ -26,12 +25,14 @@ const charts = [
 <section class="mise-adoption" aria-labelledby="mise-adoption-heading">
   <div class="section-heading"><h2 id="mise-adoption-heading">mise adoption</h2><a href="https://github.com/jdx/mise-analytics">Source: mise-analytics ↗</a></div>
   <div class="adoption-metrics">
-    <div><h3>mise downloads · 7-day average</h3><strong>{latestAverage?.value == null ? '—' : Math.round(latestAverage.value).toLocaleString()}</strong><p>{downloads30d === null ? '30-day increase unavailable' : `${formatCompact(downloads30d)} over 30 days`}</p><p>Downloads/day · week ending {latestDownloads.date}</p><DataFreshness date={latestDownloads.date} /></div>
+    <div><h3>mise downloads · 7-day average</h3><strong>{downloads.average == null ? '—' : Math.round(downloads.average).toLocaleString()}</strong>
+      {downloads.combined ? <p>GitHub {formatCompact(downloads.github ?? 0)} + CDN {formatCompact(downloads.cdn ?? 0)}</p> : cdnStart && <p>GitHub only · CDN counts join {downloads.combinedFrom ? `from ${downloads.combinedFrom}` : 'after their first complete week'}</p>}
+      <p>{downloads.change30d === null ? '30-day increase unavailable' : `${formatCompact(downloads.change30d)}${cdnStart && downloads.change30dSource === 'github' ? ' on GitHub' : ''} over 30 days`}</p><p>Downloads/day · week ending {downloads.date ?? '—'}</p><DataFreshness date={downloads.latestObserved ?? undefined} /></div>
     <div><h3>Homebrew installs <span class="brew-rank">#{latest.brewRank ?? '—'}</span></h3><strong>{latest.brewInstalls?.toLocaleString() ?? '—'}</strong><p>Rolling 30 days · {latest.brewPercent ?? '—'}% of install-on-request installs</p><DataFreshness date={latest.date} /></div>
     <div><h3>GitHub stars</h3><strong>{latest.stars.toLocaleString()}</strong><p>{stars30d === null ? 'jdx/mise' : `${stars30d >= 0 ? '+' : ''}${stars30d.toLocaleString()} over 30 days`}</p><DataFreshness date={latest.date} /></div>
   </div>
   <StarCrossover />
-  <div class="adoption-charts"><DailyActivityChart points={daily} title="mise downloads · daily" unit="downloads/day" days={180} />{charts.map(chart => {
+  <div class="adoption-charts"><DailyActivityChart points={downloads.points.map(p => ({ date: p.date, value: p.value, parts: cdnStart && p.date >= cdnStart ? [p.github, p.cdn] : undefined }))} parts={cdnStart ? [{ label: 'GitHub release assets', short: 'GitHub', opacity: .4 }, { label: 'mise.jdx.dev CDN binaries', short: 'CDN', opacity: .85 }] : undefined} breakDate={cdnStart ?? undefined} breakLabel="CDN counts start" title="mise downloads · daily" unit="downloads/day" days={180} />{charts.map(chart => {
     const valid = chart.data.filter((p):p is {date:string,value:number} => p.value !== null);
     if (!valid.length) return null;
     const max = Math.max(...valid.map(p=>p.value),1);
@@ -50,5 +51,5 @@ const charts = [
       </svg>
     </div>;
   })}<HomebrewRank /></div>
-  <p class="adoption-context">Daily mise downloads are the increase between consecutive GitHub release-asset snapshots, including supporting files. Missing days and counter decreases are left blank. Homebrew counts installs of mise itself. These are separate measures and are not unique users. <a href="https://github.com/jdx/mise-analytics/blob/main/top-repos-downloads.csv">Download data ↗</a> · <a href="https://github.com/jdx/mise-analytics/blob/main/mise.csv">Homebrew data ↗</a> · Refreshed daily.</p>
+  <p class="adoption-context">Daily mise downloads add two sources. GitHub: the increase between consecutive GitHub release-asset snapshots (taken each morning UTC), including supporting files such as checksums. CDN: requests for mise release binaries on mise.jdx.dev and mise.en.dev per UTC day, counted from Cloudflare request logs; checksums, signatures and install scripts there are not counted, and a day only counts once its logs are complete. CDN requests were not recorded before {cdnStart ?? 'the first complete day of logs'}, so earlier days are GitHub alone. A day needs both sources to have a total, and 7-day averages do not mix days before and after CDN counts start. Missing days and counter decreases are left blank. Homebrew counts installs of mise itself. These are separate measures, count requests rather than unique users, and one install can download more than once. <a href="https://github.com/jdx/mise-analytics/blob/main/top-repos-downloads.csv">GitHub download data ↗</a> · <a href="https://github.com/jdx/mise-analytics/blob/main/mise.csv">Homebrew data ↗</a> · Refreshed daily.</p>
 </section>
