@@ -11,7 +11,7 @@ import {
   toolPlatformDownloadSummaries,
   toolVersionDownloadSummaries,
 } from "./schema.js";
-import { mergeAudienceRows } from "./daily-series.js";
+import { LOGPUSH_MAU_WINDOW_DAYS, currentMau } from "./daily-series.js";
 
 export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
   async function getToolId(tool: string): Promise<number | null> {
@@ -190,36 +190,41 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
       // back to the latest populated date, since the scheduled MAU step can lag
       // behind other rollups and returning 0 hides the header badge even when
       // recent MAU data exists.
-      const [legacy, logpush] = await Promise.all([
+      const logpushMau = {
+        mau: logpushDailyMau.mau,
+        date: logpushDailyMau.date,
+        days_covered: logpushDailyMau.days_covered,
+      };
+      const [legacy, logpush, logpushComplete] = await Promise.all([
         db
           .select({ mau: dailyMauStats.mau, date: dailyMauStats.date })
           .from(dailyMauStats)
           .where(sql`${dailyMauStats.date} < ${today}`)
           .orderBy(sql`${dailyMauStats.date} DESC`)
           .limit(1)
-          .all(),
+          .get(),
         db
-          .select({
-            mau: logpushDailyMau.mau,
-            date: logpushDailyMau.date,
-            days_covered: logpushDailyMau.days_covered,
-          })
+          .select(logpushMau)
           .from(logpushDailyMau)
           .where(sql`${logpushDailyMau.date} < ${today}`)
           .orderBy(sql`${logpushDailyMau.date} DESC`)
           .limit(1)
-          .all(),
+          .get(),
+        db
+          .select(logpushMau)
+          .from(logpushDailyMau)
+          .where(
+            and(
+              sql`${logpushDailyMau.date} < ${today}`,
+              sql`${logpushDailyMau.days_covered} >= ${LOGPUSH_MAU_WINDOW_DAYS}`,
+            ),
+          )
+          .orderBy(sql`${logpushDailyMau.date} DESC`)
+          .limit(1)
+          .get(),
       ]);
-      // Prefer Logpush (every mise client) per mergeAudienceRows, on the
-      // newest date either source has. A partial Logpush window only counts
-      // against an older row for the same date, so if it is ahead of a lagging
-      // refresh-mau this falls back to the newest Analytics Engine row.
-      const { mau } = mergeAudienceRows(
-        { dau: [], mau: legacy },
-        { dau: [], mau: logpush },
-      );
-      const latest = [...mau.keys()].sort().pop();
-      return latest ? (mau.get(latest) ?? 0) : 0;
+      // Prefer Logpush (every mise client); see currentMau.
+      return currentMau({ legacy, logpush, logpushComplete });
     },
   };
 

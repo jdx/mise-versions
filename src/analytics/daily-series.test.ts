@@ -91,14 +91,70 @@ test("prefers Logpush audience rows and keeps older days", async () => {
   });
 });
 
-test("header MAU keeps the older number while Logpush is partial and ahead", async () => {
+test("once Logpush has taken over, older rows never fill its gaps", async () => {
   const { mergeAudienceRows } = await import("./daily-series.js");
-  // getMAU's inputs: the newest row of each source; refresh-mau lagged a day.
-  const { mau } = mergeAudienceRows(
-    { dau: [], mau: [{ date: "2026-10-02", mau: 51000 }] },
-    { dau: [], mau: [{ date: "2026-10-03", mau: 30000, days_covered: 3 }] },
+  const merged = mergeAudienceRows(
+    {
+      dau: [
+        { date: "2026-10-01", dau: 7000 },
+        { date: "2026-10-02", dau: 7100 },
+        { date: "2026-10-03", dau: 7200 }, // Logpush job failed that day
+      ],
+      mau: [
+        { date: "2026-11-01", mau: 50000 },
+        { date: "2026-11-02", mau: 50500 },
+        { date: "2026-11-03", mau: 51000 }, // Logpush lagging
+      ],
+    },
+    {
+      dau: [{ date: "2026-10-02", dau: 30000 }],
+      mau: [
+        { date: "2026-11-02", mau: 200000, days_covered: 30 },
+        // a later window with missing days is not trusted either
+        { date: "2026-11-04", mau: 120000, days_covered: 29 },
+      ],
+    },
+    { dau: "2026-10-02", mau: "2026-11-02" },
   );
-  const latest = [...mau.keys()].sort().pop();
-  assert.equal(latest, "2026-10-02");
-  assert.equal(mau.get(latest!), 51000);
+  assert.deepEqual(Object.fromEntries(merged.dau), {
+    "2026-10-01": 7000,
+    "2026-10-02": 30000,
+  });
+  assert.deepEqual(Object.fromEntries(merged.mau), {
+    "2026-11-01": 50000,
+    "2026-11-02": 200000,
+  });
+});
+
+test("header MAU keeps the older number while Logpush is partial and ahead", async () => {
+  const { currentMau } = await import("./daily-series.js");
+  // refresh-mau lagged a day behind a partial Logpush window.
+  assert.equal(
+    currentMau({
+      legacy: { date: "2026-10-02", mau: 51000 },
+      logpush: { date: "2026-10-03", mau: 30000, days_covered: 3 },
+    }),
+    51000,
+  );
+  // a partial window that already beats the same day's older number
+  assert.equal(
+    currentMau({
+      legacy: { date: "2026-10-03", mau: 51000 },
+      logpush: { date: "2026-10-03", mau: 60000, days_covered: 3 },
+    }),
+    60000,
+  );
+  assert.equal(currentMau({}), 0);
+});
+
+test("header MAU stays on the newest complete Logpush row when Logpush lags", async () => {
+  const { currentMau } = await import("./daily-series.js");
+  assert.equal(
+    currentMau({
+      legacy: { date: "2026-11-05", mau: 51000 },
+      logpush: { date: "2026-11-03", mau: 200000, days_covered: 30 },
+      logpushComplete: { date: "2026-11-03", mau: 200000, days_covered: 30 },
+    }),
+    200000,
+  );
 });

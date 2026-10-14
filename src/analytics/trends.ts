@@ -11,7 +11,11 @@ import {
   logpushDailyDau,
   logpushDailyMau,
 } from "./schema.js";
-import { mergeAudienceRows, trimPendingRollups } from "./daily-series.js";
+import {
+  LOGPUSH_MAU_WINDOW_DAYS,
+  mergeAudienceRows,
+  trimPendingRollups,
+} from "./daily-series.js";
 import {
   analyticsEngineDataset,
   hasAnalyticsEngineSql,
@@ -128,9 +132,26 @@ export function createTrendsFunctions(
         )
         .all();
 
+      // Where Logpush took over, so older Analytics Engine rows only fill in
+      // the dates before it (see mergeAudienceRows).
+      const [dauStart, mauStart] = await Promise.all([
+        db
+          .select({ date: sql<string | null>`min(${logpushDailyDau.date})` })
+          .from(logpushDailyDau)
+          .get(),
+        db
+          .select({ date: sql<string | null>`min(${logpushDailyMau.date})` })
+          .from(logpushDailyMau)
+          .where(
+            sql`${logpushDailyMau.days_covered} >= ${LOGPUSH_MAU_WINDOW_DAYS}`,
+          )
+          .get(),
+      ]);
+
       const { dau: dauMap, mau: mauMap } = mergeAudienceRows(
         { dau: dauResults, mau: mauResults },
         { dau: logpushDauResults, mau: logpushMauResults },
+        { dau: dauStart?.date ?? null, mau: mauStart?.date ?? null },
       );
 
       const dailyData: Array<{

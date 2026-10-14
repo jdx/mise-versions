@@ -377,6 +377,11 @@ const DIMENSION_TABLES = [
 // only cover clients that still POST /api/tools/<tool>. A client sends one or
 // the other, so the counts add up; unique users are summed too, which
 // overcounts only a user seen through both paths on the same day.
+//
+// The Logpush rollup writes logpush_daily_stats only after every logpush_daily_*
+// download table for the day is refilled (and deletes it before rewriting), so
+// the row is the completeness marker: without it the day is missing or half
+// rewritten, and this fails rather than publish partial installs.
 async function loadLogpushRows(config, date) {
   const [stats] = await queryD1(
     config,
@@ -386,7 +391,7 @@ async function loadLogpushRows(config, date) {
   );
   if (!stats) {
     throw new Error(
-      `${date}: no logpush_daily_stats row; run the Logpush rollup first (LOGPUSH_CUTOVER_DATE=${config.logpushCutoverDate})`,
+      `${date}: no logpush_daily_stats row, so the Logpush download tables are missing or incomplete; rerun the Logpush rollup first (LOGPUSH_CUTOVER_DATE=${config.logpushCutoverDate})`,
     );
   }
   const tables = {};
