@@ -787,9 +787,9 @@ test("demand from Logpush stamps the lists it names", () => {
       "/data/github/Bad/Case/releases.json",
     ], seenAt);
     // quiet: stamped; nobody: stamped (no stamp yet); fresh: requested an
-    // hour ago, already counted today; the duplicate and the bad path are
-    // skipped.
-    assert.deepEqual(result, { stamped: 2, unknown: 2 });
+    // hour ago, already counted today; the duplicate is just a repeat; only
+    // the bad path names no list.
+    assert.deepEqual(result, { stamped: 2, unknown: 1 });
     assert.equal(storedEntry(kv, "github:versions-demand:releases:quiet/repo").requested_at, seenAt);
     assert.equal(storedEntry(kv, "github:versions-demand:releases:fresh/repo").requested_at, now - HOUR);
     // The lists themselves are never rewritten for demand.

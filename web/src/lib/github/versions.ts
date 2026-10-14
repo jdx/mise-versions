@@ -876,19 +876,18 @@ export async function recordVersionsDemand(
   seenAt: number,
 ): Promise<{ stamped: number; unknown: number }> {
   let stamped = 0;
+  // Paths that name no list; repeats of a valid path are just repeats.
   let unknown = 0;
-  const keys = [
-    ...new Set(
-      paths.flatMap((path) => {
-        const target = parseVersionsPath(path);
-        return target ? [versionsCacheKey(target)] : [];
-      }),
-    ),
-  ];
-  unknown = paths.length - keys.length;
-  for (let i = 0; i < keys.length; i += BAKE_CONCURRENCY) {
+  const keys = new Set<string>();
+  for (const path of paths) {
+    const target = parseVersionsPath(path);
+    if (target) keys.add(versionsCacheKey(target));
+    else unknown++;
+  }
+  const unique = [...keys];
+  for (let i = 0; i < unique.length; i += BAKE_CONCURRENCY) {
     await Promise.all(
-      keys.slice(i, i + BAKE_CONCURRENCY).map(async (key) => {
+      unique.slice(i, i + BAKE_CONCURRENCY).map(async (key) => {
         if (await stampDemand(env, key, seenAt)) stamped++;
       }),
     );
