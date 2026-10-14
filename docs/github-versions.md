@@ -123,10 +123,11 @@ This happens when:
   mise's prefer-offline commands give a lookup a single 3 s attempt, which a
   full crawl of a big repository can exceed, or
 - the list kept changing while it was read. Pages are read at slightly
-  different moments, so a release published mid-crawl could otherwise drop an
-  entry at a page boundary. The server reads page 1 again after a crawl and
-  crawls once more if it moved. If it is still moving, the server keeps only
-  page 1, truncated, and crawls in full at the next refresh.
+  different moments, so a release published or deleted mid-crawl could
+  otherwise drop an entry at a page boundary. The server reads the exact number
+  of entries and the newest one before and after a crawl, and crawls once more
+  if either changed. If the list is still moving, the server keeps only the
+  newest 20 entries, truncated, and crawls in full at the next refresh.
 
 What a client should do with a truncated list:
 

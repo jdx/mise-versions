@@ -155,14 +155,16 @@ test("a cold crawl reads every page and stores compact releases", () => {
       env, "Owner", "Repo", { source: "releases" },
     );
     // A probe of the newest 20 gives the page count, every page is read at
-    // once, and the probe is read again to check the pages join up.
+    // once, and the exact entry count (one per page) is read before and
+    // after to check the pages join up.
     assert.deepEqual(apiCalls().sort(), [
       "/repos/Owner/Repo/releases?per_page=100&page=1",
       "/repos/Owner/Repo/releases?per_page=100&page=2",
       "/repos/Owner/Repo/releases?per_page=100&page=3",
+      "/repos/Owner/Repo/releases?per_page=1&page=1",
+      "/repos/Owner/Repo/releases?per_page=1&page=1",
       "/repos/Owner/Repo/releases?per_page=20&page=1",
-      "/repos/Owner/Repo/releases?per_page=20&page=1",
-    ]);
+    ].sort());
     assert.equal(staleFallback, false);
     assert.equal(versions.source, "releases");
     assert.equal(versions.truncated, false);
@@ -193,8 +195,8 @@ test("a crawl stops at the page cap and reports truncation", () => {
     const env = { DB: poolDb, GITHUB_CACHE: memoryKv() };
     const { versions } = await getCachedGitHubVersions(env, "o", "r", { source: "releases" });
     const calls = apiCalls();
-    // 20 pages, plus the probe before and after.
-    assert.equal(calls.length, 22);
+    // 20 pages, the probe, and the entry count before and after.
+    assert.equal(calls.length, 23);
     assert.ok(!calls.some((call) => call.endsWith("per_page=100&page=21")));
     assert.equal(versions.releases.length, 2000);
     assert.equal(versions.truncated, true);
@@ -252,15 +254,15 @@ test("crawls read big pages fewer at a time and stop when out of time", () => {
     assert.equal(await maxInFlight(8 * MB), 3);
     assert.equal(await maxInFlight(32 * MB), 1);
 
-    // Out of time already: the first batch still runs (page 1 is needed),
-    // then the newest-first prefix is kept, truncated.
+    // Out of time already: the first batch (at most 3, before any page's
+    // size is known) still runs, then the newest-first prefix is kept.
     const fetched = [];
     const late = await crawl(probe(MB), async (n) => {
       fetched.push(n);
       return page(n);
     }, Date.now() - 21 * 1000);
-    assert.deepEqual(fetched, [1, 2, 3, 4, 5, 6]);
-    assert.equal(late.items.length, 6);
+    assert.deepEqual(fetched, [1, 2, 3]);
+    assert.equal(late.items.length, 3);
     assert.equal(late.truncated, true);
 
     // A batch took 60ms of a 100ms budget: another would overrun, so stop.
@@ -269,10 +271,23 @@ test("crawls read big pages fewer at a time and stop when out of time", () => {
       await new Promise((resolve) => setTimeout(resolve, 60));
       return page(n);
     });
-    assert.equal(slow.items.length, 6);
+    assert.equal(slow.items.length, 3);
     assert.equal(slow.truncated, true);
-    // Fast batches all fit.
+    // A small probe (newest releases with few assets) followed by 32 MB
+    // pages: after the first batch, pages are read one at a time.
     __testing.setCrawlTiming({ budgetMs: 20_000 });
+    let inFlight = 0;
+    const inFlightAt = [];
+    await crawl(probe(MB), async (n) => {
+      inFlight++;
+      inFlightAt.push(inFlight);
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      inFlight--;
+      return { ...page(n), bytes: 32 * MB };
+    });
+    assert.ok(Math.max(...inFlightAt.slice(0, 3)) <= 3);
+    assert.ok(inFlightAt.slice(3).every((n) => n === 1), JSON.stringify(inFlightAt));
+    // Fast batches all fit.
     const quick = await crawl(probe(MB), async (n) => page(n));
     assert.equal(quick.items.length, 13);
     assert.equal(quick.truncated, false);
@@ -349,12 +364,13 @@ test("a head that shares nothing with the stored list triggers a full crawl", ()
     const { versions } = await getCachedGitHubVersions(
       { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
     );
-    // The probe, both pages at once, then the probe again.
+    // The probe, the entry count, both pages at once, the count again.
     assert.deepEqual(apiCalls(), [
       "/repos/o/r/releases?per_page=20&page=1",
+      "/repos/o/r/releases?per_page=1&page=1",
       "/repos/o/r/releases?per_page=100&page=1",
       "/repos/o/r/releases?per_page=100&page=2",
-      "/repos/o/r/releases?per_page=20&page=1",
+      "/repos/o/r/releases?per_page=1&page=1",
     ]);
     assert.equal(versions.releases.length, 150);
     assert.ok(!versions.releases.some((r) => r.tag === "old"));
@@ -461,8 +477,8 @@ test("tags carry their commit dates", () => {
       { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "tags" },
     );
     const calls = apiCalls();
-    // One query per page, and one for each probe.
-    assert.equal(calls.filter((call) => call === "/graphql").length, 4);
+    // One query per page and for the probe; the entry counts need no dates.
+    assert.equal(calls.filter((call) => call === "/graphql").length, 3);
     assert.equal(versions.source, "tags");
     assert.equal(versions.tags.length, 120);
     assert.deepEqual(versions.tags[0], { tag: "t120", sha: sha(120), date: "date-of-0000" });
@@ -677,11 +693,12 @@ test("responses carry fetched_at, and Worker requests count as demand", () => {
     await Promise.all(background);
     assert.deepEqual(kv.writes.map((w) => w.key), [demandKey]);
     assert.ok(storedEntry(kv, demandKey).requested_at >= firstStamp);
-    // A cold crawl reads page 1 alongside the probe.
+    // A cold crawl reads page 1 and the entry count alongside the probe.
     assert.deepEqual(apiCalls().sort(), [
       "/repos/o/r/releases?per_page=100&page=1",
+      "/repos/o/r/releases?per_page=1&page=1",
       "/repos/o/r/releases?per_page=20&page=1",
-    ]);
+    ].sort());
   `);
 });
 
@@ -837,8 +854,9 @@ test("a release published mid-crawl is not lost at a page boundary", () => {
     assert.ok(tags.includes("v101"));
     assert.equal(tags[0], "v301");
     assert.equal(versions.truncated, false);
-    // Crawled twice (the probe moved), each checked by probing again.
-    assert.equal(apiCalls().filter((c) => c.includes("per_page=20&")).length, 3);
+    // Crawled twice (the count moved): the count was read before, after the
+    // first crawl and after the second.
+    assert.equal(apiCalls().filter((c) => c.includes("per_page=1&")).length, 3);
     assert.ok(storedEntry(kv, "github:versions:releases:o/r").full_at > 0);
   `);
 });
@@ -960,5 +978,63 @@ test("a cold request is answered with the probe when the whole list takes too lo
     );
     assert.equal(quick.versions.releases.length, 250);
     assert.equal(quick.versions.truncated, false);
+  `);
+});
+
+test("a release deleted mid-crawl is not lost at a page boundary", () => {
+  runVersionsTest(`
+    github.releases = releases(250);
+    // Page 1 answers from the full list; its 50th entry (v201) is deleted
+    // before page 2 is read, so page 2 starts one later and, on its own, the
+    // crawl would miss v150 (the 101st). The newest 20 and the probe's page
+    // count stay the same.
+    const realFetch = globalThis.fetch;
+    let deleted = false;
+    globalThis.fetch = async (input, init) => {
+      const params = new URL(String(input)).searchParams;
+      if (params.get("per_page") === "100" && params.get("page") === "2" && !deleted) {
+        github.releases = github.releases.filter((r) => r.tag_name !== "v201");
+        deleted = true;
+      }
+      return realFetch(input, init);
+    };
+    const kv = memoryKv();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    const tags = versions.releases.map((r) => r.tag);
+    assert.equal(tags.length, 249);
+    assert.ok(tags.includes("v150"));
+    assert.ok(!tags.includes("v201"));
+    assert.equal(versions.truncated, false);
+  `);
+});
+
+test("reads the crawl no longer needs are cancelled", () => {
+  runVersionsTest(`
+    github.releases = releases(5);
+    // Page 1 of 100 never answers on its own: only the end of the refresh
+    // can stop it. The probe (5 entries) is the whole list.
+    const realFetch = globalThis.fetch;
+    let cancelled = false;
+    globalThis.fetch = async (input, init) => {
+      if (new URL(String(input)).searchParams.get("per_page") === "100") {
+        return new Promise((_, reject) => {
+          init.signal.addEventListener("abort", () => {
+            cancelled = true;
+            reject(init.signal.reason);
+          });
+        });
+      }
+      return realFetch(input, init);
+    };
+    const started = Date.now();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: memoryKv() }, "o", "r", { source: "releases" },
+    );
+    assert.equal(versions.releases.length, 5);
+    assert.ok(Date.now() - started < 1000);
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    assert.equal(cancelled, true);
   `);
 });
