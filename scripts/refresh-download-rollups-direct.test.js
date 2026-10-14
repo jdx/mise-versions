@@ -146,6 +146,8 @@ describe("refresh-download-rollups-direct", () => {
         results = [{ id: 1, name: "node" }];
       } else if (sql.includes("FROM logpush_daily_stats")) {
         results = [{ total_downloads: 6, unique_users: 4 }];
+      } else if (sql.includes("FROM logpush_daily_dau")) {
+        results = [{ unique_users: 40 }];
       } else if (sql.includes("FROM logpush_daily_tool_stats")) {
         results = [
           { date: "2026-07-14", tool_id: 1, downloads: 5, unique_users: 3 },
@@ -172,6 +174,9 @@ describe("refresh-download-rollups-direct", () => {
     const write = (table) =>
       d1Writes.find(({ sql }) => sql.includes(`INTO ${table} `)).params;
     assert.deepEqual(write("daily_stats"), ["2026-07-14", 16, 7]);
+    // Logpush DAU already includes the Analytics Engine clients (5), so it
+    // replaces that count instead of being added to it.
+    assert.deepEqual(write("daily_combined_stats"), ["2026-07-14", 40]);
     assert.deepEqual(write("daily_tool_stats"), [
       "2026-07-14",
       1,
@@ -199,6 +204,26 @@ describe("refresh-download-rollups-direct", () => {
         "2026-07-14",
       ),
       /no logpush_daily_stats row/,
+    );
+  });
+
+  it("refuses to publish a cutover day without its Logpush DAU", async () => {
+    globalThis.fetch = async (_url, options) => {
+      const { sql } = JSON.parse(options.body);
+      const results = sql.includes("FROM logpush_daily_stats")
+        ? [{ total_downloads: 1, unique_users: 1 }]
+        : [];
+      return jsonResponse({
+        success: true,
+        result: [{ success: true, results }],
+      });
+    };
+    await assert.rejects(
+      refreshDate(
+        { ...config(), logpushCutoverDate: "2026-07-01" },
+        "2026-07-14",
+      ),
+      /no logpush_daily_dau row/,
     );
   });
 

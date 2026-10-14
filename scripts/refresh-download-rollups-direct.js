@@ -431,6 +431,18 @@ async function loadLogpushRows(config, date) {
       `${date}: no logpush_daily_stats row, so the Logpush download tables are missing or incomplete; rerun the Logpush rollup first (LOGPUSH_CUTOVER_DATE=${config.logpushCutoverDate})`,
     );
   }
+  // Written by the same Logpush run before the stats marker above.
+  const [dau] = await queryD1(
+    config,
+    "SELECT unique_users FROM logpush_daily_dau WHERE date = ?",
+    [date],
+    "logpush_daily_dau",
+  );
+  if (!dau) {
+    throw new Error(
+      `${date}: no logpush_daily_dau row; rerun the Logpush rollup first (LOGPUSH_CUTOVER_DATE=${config.logpushCutoverDate})`,
+    );
+  }
   const tables = {};
   for (const [table, keys, values] of DIMENSION_TABLES) {
     const columns = [...keys, ...values];
@@ -445,6 +457,7 @@ async function loadLogpushRows(config, date) {
   return {
     totalDownloads: finiteNumber(stats.total_downloads, "logpush downloads"),
     uniqueUsers: finiteNumber(stats.unique_users, "logpush users"),
+    activeUsers: finiteNumber(dau.unique_users, "logpush DAU"),
     tables,
   };
 }
@@ -539,10 +552,14 @@ async function refreshDate(config, date) {
   const downloadUsers =
     finiteNumber(globalRows[0]?.unique_users, "download users") +
     (logpush?.uniqueUsers ?? 0);
-  const combinedUsers = finiteNumber(
-    combinedRows[0]?.unique_users,
-    "combined users",
-  );
+  // daily_combined_stats is the day's active users. Unlike the two download
+  // paths, which are disjoint and summed above, Logpush DAU already counts
+  // every non-CI mise client on every route, including those that POST
+  // /api/tools and reach Analytics Engine, so it replaces the Analytics
+  // Engine count rather than adding to it (a sum would count those twice).
+  const combinedUsers = logpush
+    ? logpush.activeUsers
+    : finiteNumber(combinedRows[0]?.unique_users, "combined users");
 
   await Promise.all([
     batchUpsert(
