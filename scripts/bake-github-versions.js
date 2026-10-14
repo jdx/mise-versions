@@ -322,9 +322,12 @@ export async function bake({
   const since = rebuild
     ? undefined
     : Math.max(0, manifest.watermark - SINCE_MARGIN_MS);
-  let index = rebuild ? {} : manifest.files;
-  let watermark = rebuild ? 0 : manifest.watermark;
-  let fullAt = rebuild ? 0 : manifest.full_at;
+  // Until a rebuild has actually started (its first page read), the cached
+  // tree and its state stand: a rebuild that cannot reach the Worker
+  // publishes the tree it has, and the next deploy tries again.
+  let index = manifest?.files ?? {};
+  let watermark = manifest?.watermark ?? 0;
+  let fullAt = manifest?.full_at ?? 0;
   let mode = rebuild ? "full" : "incremental";
   let stats;
   const changes = await collectChanges({ ...options, now, since });
@@ -349,7 +352,10 @@ export async function bake({
       index,
     });
     index = stats.index;
-    if (wipe) fullAt = started;
+    if (wipe) {
+      fullAt = started;
+      watermark = 0;
+    }
     // A bake that stopped part-way keeps its old watermark (a rebuild, 0),
     // so the next deploy asks again for everything after it.
     if (changes.complete) watermark = changes.watermark;

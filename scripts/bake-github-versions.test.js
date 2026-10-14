@@ -400,3 +400,41 @@ test("a cached tree is rebuilt from scratch once a week", async () => {
     cleanup();
   }
 });
+
+test("a rebuild that cannot reach the Worker publishes the tree it has", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const worker = fakeWorker(
+      { "github/a/a/releases.json": { c: 10, b: true } },
+      { now: SINCE_MARGIN_MS + 100 },
+    );
+    let clock = 1_000_000_000_000;
+    await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+      now: () => clock,
+    });
+    // A week later the rebuild is due, but every request fails.
+    clock += 8 * 24 * 60 * 60 * 1000;
+    const out = join(assetsDir, "..", "down");
+    const result = await bake({
+      assetsDir: out,
+      cacheDir,
+      secret: "s",
+      log: silent,
+      now: () => clock,
+      fetchImpl: async () => new Response("down", { status: 502 }),
+    });
+    assert.equal(result.published, 1);
+    assert.ok(existsSync(join(out, "data/github/a/a/releases.json")));
+    // Still due: the next deploy tries the rebuild again.
+    const manifest = readManifest(cacheDir);
+    assert.equal(manifest.watermark, SINCE_MARGIN_MS + 100);
+    assert.equal(Object.keys(manifest.files).length, 1);
+  } finally {
+    cleanup();
+  }
+});

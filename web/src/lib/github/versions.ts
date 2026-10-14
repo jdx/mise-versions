@@ -147,6 +147,8 @@ export interface ListMeta {
   r?: number;
   /** GitHub's ETag for the probe, for a conditional refresh. */
   e?: string;
+  /** When a refresh last failed; the list waits RETRY_BACKOFF_MS after. */
+  t?: number;
 }
 
 function parseMeta(value: unknown): ListMeta | null {
@@ -592,6 +594,8 @@ async function refreshVersions(
     u: entry.unchanged_since,
     g: generation,
     e: result.etag ?? undefined,
+    // It worked: no backoff.
+    t: undefined,
   };
   await putEntry(env, cacheKey, entry, next);
   return { entry, meta: next, changed };
@@ -1242,6 +1246,9 @@ const DISPATCHED_KEY = `${STATE_PREFIX}dispatched`;
 // A dispatched deploy not acknowledged after this long is taken to have
 // failed, and changes dispatch another.
 const DISPATCH_PENDING_MS = 30 * 60 * 1000;
+// A list whose refresh failed waits this long before another try, so lists
+// that keep failing cannot take every run's slots from healthy ones.
+const RETRY_BACKOFF_MS = 60 * 60 * 1000;
 
 interface RefreshEnv extends BakeEnv {}
 
@@ -1405,9 +1412,12 @@ export async function refreshVersionLists(
             task.accessDue
             ? startedAt - meta.a
             : -1
-          : task.step !== "fresh" || task.accessDue
-            ? startedAt - Math.min(meta.h, meta.a)
-            : -1;
+          : meta.t !== undefined && startedAt - meta.t < RETRY_BACKOFF_MS
+            ? // Failed lately: wait, and let other lists have the slots.
+              -1
+            : task.step !== "fresh" || task.accessDue
+              ? startedAt - Math.max(Math.min(meta.h, meta.a), meta.t ?? 0)
+              : -1;
   }
   const due = tasks
     .filter((task) => task.overdue >= 0)
@@ -1438,10 +1448,15 @@ export async function refreshVersionLists(
       bakeable = false;
     } else if (task.accessDue || !read) {
       const denied = await checkGitHubMirrorAccess(accessEnv, owner, repo);
-      // A failed lookup (429, 503) is no answer: keep the last one.
+      // A failed lookup (429, 503) is no answer: keep the last one. A list
+      // without metadata has none, so it is left as it is until a run gets
+      // an answer (its file, if baked before, stays baked).
       if (!denied || denied.status === 403 || denied.status === 404) {
         bakeable = !denied;
         meta = { ...meta, a: now };
+      } else if (!read) {
+        run.deferred++;
+        return;
       }
     }
     const statusChanged = bakeable !== (read?.b ?? false);
@@ -1480,6 +1495,7 @@ export async function refreshVersionLists(
             run.deferred++;
           } else {
             run.failed++;
+            meta = { ...meta, t: now };
             console.warn(`refresh failed for ${key}:`, error);
           }
         }

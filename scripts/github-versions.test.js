@@ -1422,3 +1422,43 @@ test("a count without a last-page link falls back to the newest entry", () => {
     assert.equal(apiCalls().filter((c) => c.includes("per_page=20&")).length, 1);
   `);
 });
+
+test("a list whose refresh fails waits before the next try", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // The due list's repo answers 500 to everything, even a retry.
+    const realFetch = globalThis.fetch;
+    globalThis.fetch = async (input, init) =>
+      String(input).includes("/repos/due/repo/")
+        ? new Response("boom", { status: 500 })
+        : realFetch(input, init);
+    const first = await refreshVersionLists(env, { dispatch });
+    assert.equal(first.failed, 1);
+    const key = "github:versions:releases:due/repo";
+    assert.ok(kv.meta.get(key).t >= now);
+    // The next run leaves it alone for now.
+    apiCalls();
+    const second = await refreshVersionLists(env, { dispatch });
+    assert.equal(second.failed, 0);
+    assert.ok(!apiCalls().some((c) => c.includes("/repos/due/repo/")));
+  `);
+});
+
+test("an inconclusive access lookup leaves a list without metadata as it is", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // No cached visibility for the legacy repo, and GitHub fails the lookup.
+    kv.store.delete("github:visibility:legacy/repo");
+    const realFetch = globalThis.fetch;
+    globalThis.fetch = async (input, init) =>
+      String(input).endsWith("/repos/legacy/repo")
+        ? new Response("unavailable", { status: 503 })
+        : realFetch(input, init);
+    const run = await refreshVersionLists(env, { dispatch });
+    const key = "github:versions:releases:legacy/repo";
+    // Not marked unbakeable (that would delete its baked file): untouched.
+    assert.equal(kv.meta.has(key), false);
+    assert.ok(!kv.writes.some((w) => w.key === key));
+    assert.ok(run.deferred >= 1);
+  `);
+});
