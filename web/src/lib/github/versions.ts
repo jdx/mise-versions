@@ -438,25 +438,23 @@ async function refreshVersions(
         if (!head.hasNextPage) {
           return { items: head.items, truncated: false, full: true };
         }
-        let page1 = source === "tags" ? head : undefined;
         let merged = mergeHead(head, stored);
-        if (!merged && !page1) {
+        if (!merged && source !== "tags") {
           // More than 20 releases since the last read: page 1 may still
           // reach the stored list, which is cheaper than a full crawl.
-          page1 = await fetchPage(1);
+          const page1 = await fetchPage(1);
           if (!page1.hasNextPage) {
             return { items: page1.items, truncated: false, full: true };
           }
           merged = mergeHead(page1, stored);
         }
         if (merged) return { ...merged, full: false };
-        // The crawl sizes itself from a probe of 20, and reuses page 1.
+        // The crawl sizes itself from a probe of 20. It reads page 1 again
+        // rather than reuse it: the entry count it is checked against must
+        // be read before every page it covers.
         const before = tally();
         const probe = source === "tags" ? await reprobe() : head;
-        return await verifiedCrawl(probe, crawl, {
-          before,
-          page1: page1 && Promise.resolve(page1),
-        });
+        return await verifiedCrawl(probe, crawl, { before });
       }
       // A full crawl needs page 1 unless the list has 20 entries or fewer,
       // so read it alongside the probe: most lists fit on it, and a list that

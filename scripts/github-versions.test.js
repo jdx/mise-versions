@@ -365,11 +365,13 @@ test("a head that shares nothing with the stored list triggers a full crawl", ()
       { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
     );
     // The probe, page 1 (which reaches nothing stored either), then a full
-    // crawl that reuses page 1: the entry count, page 2, the count again.
+    // crawl: the entry count, then pages 1 and 2 (page 1 read again, after
+    // the count it is checked against), then the count again.
     assert.deepEqual(apiCalls(), [
       "/repos/o/r/releases?per_page=20&page=1",
       "/repos/o/r/releases?per_page=100&page=1",
       "/repos/o/r/releases?per_page=1&page=1",
+      "/repos/o/r/releases?per_page=100&page=1",
       "/repos/o/r/releases?per_page=100&page=2",
       "/repos/o/r/releases?per_page=1&page=1",
     ]);
@@ -1122,5 +1124,38 @@ test("a failed probe after a moved count keeps the pages read", () => {
     assert.equal(versions.truncated, true);
     assert.ok(versions.releases.length >= 200);
     assert.equal(storedEntry(kv, "github:versions:releases:o/r").full_at, 0);
+  `);
+});
+
+test("a full crawl after a failed merge checks page 1 against the count too", () => {
+  runVersionsTest(`
+    const now = Date.now();
+    const kv = memoryKv({
+      "github:versions:releases:o/r": {
+        head_at: now - 11 * MIN, full_at: now - HOUR, unchanged_since: now - 11 * MIN,
+        items: [{ tag: "old", date: "d", prerelease: false, asset_count: 1 }],
+        truncated: false,
+      },
+    });
+    github.releases = releases(250);
+    // The first read of page 1 (to try a merge) sees the list before its
+    // 50th entry is deleted; the crawl after it must not reuse that read.
+    const realFetch = globalThis.fetch;
+    let page1Reads = 0;
+    globalThis.fetch = async (input, init) => {
+      const params = new URL(String(input)).searchParams;
+      const response = await realFetch(input, init);
+      if (params.get("per_page") === "100" && params.get("page") === "1" && ++page1Reads === 1) {
+        github.releases = github.releases.filter((r) => r.tag_name !== "v201");
+      }
+      return response;
+    };
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    const tags = versions.releases.map((r) => r.tag);
+    assert.equal(tags.length, 249);
+    assert.ok(tags.includes("v150"));
+    assert.ok(!tags.includes("v201"));
   `);
 });
