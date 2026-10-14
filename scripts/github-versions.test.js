@@ -404,11 +404,12 @@ test("a head that shares nothing with the stored list triggers a full crawl", ()
     const { versions } = await getCachedGitHubVersions(
       { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
     );
-    // The probe, the entry count, both pages at once, the count again.
+    // The probe, page 1 (which reaches nothing stored either), then a full
+    // crawl that reuses page 1: the entry count, page 2, the count again.
     assert.deepEqual(apiCalls(), [
       "/repos/o/r/releases?per_page=20&page=1",
-      "/repos/o/r/releases?per_page=1&page=1",
       "/repos/o/r/releases?per_page=100&page=1",
+      "/repos/o/r/releases?per_page=1&page=1",
       "/repos/o/r/releases?per_page=100&page=2",
       "/repos/o/r/releases?per_page=1&page=1",
     ]);
@@ -1236,5 +1237,114 @@ test("reads the crawl no longer needs are cancelled", () => {
     assert.ok(Date.now() - started < 1000);
     await new Promise((resolve) => setTimeout(resolve, 10));
     assert.equal(cancelled, true);
+  `);
+});
+
+test("more than 20 new releases still merge through page 1, without a full crawl", () => {
+  runVersionsTest(`
+    const now = Date.now();
+    const stored = releases(300).map((r) => ({
+      tag: r.tag_name, date: r.published_at, prerelease: false, asset_count: 1,
+    }));
+    const kv = memoryKv({
+      "github:versions:releases:o/r": {
+        head_at: now - 11 * MIN, full_at: now - HOUR, unchanged_since: now - 11 * MIN,
+        items: stored, truncated: false,
+      },
+    });
+    // 30 releases since the last read: the newest 20 are all new.
+    github.releases = releases(330);
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    assert.deepEqual(apiCalls(), [
+      "/repos/o/r/releases?per_page=20&page=1",
+      "/repos/o/r/releases?per_page=100&page=1",
+    ]);
+    assert.equal(versions.releases.length, 330);
+    assert.equal(versions.releases[0].tag, "v330");
+    // A merge, not a full crawl.
+    assert.equal(storedEntry(kv, "github:versions:releases:o/r").full_at, now - HOUR);
+  `);
+});
+
+test("a tag head refresh reads all of page 1: new tags can sort below the newest 20", () => {
+  runVersionsTest(`
+    const now = Date.now();
+    const sha = (n) => String(n).padStart(40, "0");
+    const tag = (name, n) => ({ name, commit: { sha: sha(n), url: "u" } });
+    // 30 tags on the 11.x line, then the 10.x line (names sort descending).
+    const tags = [
+      ...Array.from({ length: 30 }, (_, i) => tag("11.0." + (30 - i), 1000 + i)),
+      ...Array.from({ length: 120 }, (_, i) => tag("10.1." + (120 - i), 2000 + i)),
+    ];
+    const stored = tags.map((t) => ({ tag: t.name, sha: t.commit.sha, date: "d" }));
+    const kv = memoryKv({
+      "github:versions:tags:o/r": {
+        head_at: now - 11 * MIN, full_at: now - HOUR, unchanged_since: now - 11 * MIN,
+        items: stored, truncated: false,
+      },
+    });
+    // A maintenance release on the older line lands at position 31.
+    github.tags = [...tags.slice(0, 30), tag("10.1.121", 3000), ...tags.slice(30)];
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "tags" },
+    );
+    assert.deepEqual(apiCalls().filter((c) => c !== "/graphql"), ["/repos/o/r/tags?per_page=100&page=1"]);
+    const names = versions.tags.map((t) => t.tag);
+    assert.equal(names.length, 151);
+    assert.equal(names[30], "10.1.121");
+  `);
+});
+
+test("a failed probe after a moved count keeps the pages read", () => {
+  runVersionsTest(`
+    github.releases = releases(250);
+    // The count moves during the crawl, and the probe fails afterwards.
+    const realFetch = globalThis.fetch;
+    let probes = 0;
+    let moved = false;
+    globalThis.fetch = async (input, init) => {
+      const params = new URL(String(input)).searchParams;
+      if (params.get("per_page") === "100" && params.get("page") === "2" && !moved) {
+        github.releases.unshift(release(251));
+        moved = true;
+      }
+      if (params.get("per_page") === "20" && ++probes > 1) {
+        return new Response("rate limited", { status: 429 });
+      }
+      return realFetch(input, init);
+    };
+    const kv = memoryKv();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    assert.equal(versions.truncated, true);
+    assert.ok(versions.releases.length >= 200);
+    assert.equal(storedEntry(kv, "github:versions:releases:o/r").full_at, 0);
+  `);
+});
+
+test("a tag head refresh is conditional on page 1's ETag", () => {
+  runVersionsTest(`
+    const now = Date.now();
+    const items = [{ tag: "t1", sha: "1".repeat(40), date: "d" }];
+    const key = "github:versions:tags:o/r";
+    const kv = memoryKv({
+      [key]: {
+        $value: { head_at: now - 11 * MIN, full_at: now - HOUR, unchanged_since: now - 11 * MIN, items, truncated: false },
+        $meta: { c: now - HOUR, b: true, a: now, h: now - 11 * MIN, f: now - HOUR, u: now - 11 * MIN, e: '"page1-v1"' },
+      },
+    });
+    github.tags = [{ name: "t1", commit: { sha: "1".repeat(40), url: "u" } }];
+    github.etags.tags = '"page1-v1"';
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "tags" },
+    );
+    // One read of page 1, answered 304: no parse, no GraphQL.
+    assert.deepEqual(apiCalls(), ["/repos/o/r/tags?per_page=100&page=1"]);
+    assert.deepEqual(versions.tags, items);
+    assert.equal(kv.meta.get(key).e, '"page1-v1"');
+    assert.equal(kv.meta.get(key).c, now - HOUR);
   `);
 });

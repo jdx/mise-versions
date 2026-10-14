@@ -491,34 +491,62 @@ async function refreshVersions(
         read.catch(() => {});
         return read;
       };
-      const crawl = { fetchPage, reprobe, tally, startedAt };
+      // A tag head refresh reads page 1, a release one the probe: a crawl
+      // keeps the ETag of the page the next head refresh will read.
+      const crawl = {
+        fetchPage,
+        reprobe,
+        tally,
+        startedAt,
+        headIsPage1: source === "tags",
+      };
       if (stored && step === "head") {
-        // Conditional on the last probe's ETag: an unchanged probe is a 304,
-        // which costs no rate limit and no parsing.
-        const probe = await fetchPage(1, PROBE_PER_PAGE, {
-          ifNoneMatch: meta?.e,
-        });
-        if (probe.notModified) {
+        // New releases land at the top, so the newest 20 show them. Tags
+        // sort by name, so a new tag on an older line (a 10.1.x behind
+        // twenty 11.x) can land anywhere on page 1: read all of it. The read
+        // is conditional on its last ETag: unchanged, it is a 304, which
+        // costs no rate limit and no parsing.
+        const head =
+          source === "tags"
+            ? await fetchPage(1, PER_PAGE, { ifNoneMatch: meta?.e })
+            : await fetchPage(1, PROBE_PER_PAGE, { ifNoneMatch: meta?.e });
+        if (head.notModified) {
           return {
             items: stored.items,
             truncated: stored.truncated,
             full: false,
-            etag: probe.etag,
+            etag: head.etag,
           };
         }
-        onPrefix?.(probe);
-        // A probe with nothing after it is the whole list: a full crawl.
-        if (!probe.hasNextPage) {
+        onPrefix?.(head);
+        // A head with nothing after it is the whole list: a full crawl.
+        if (!head.hasNextPage) {
           return {
-            items: probe.items,
+            items: head.items,
             truncated: false,
             full: true,
-            etag: probe.etag,
+            etag: head.etag,
           };
         }
-        const merged = mergeHead(probe, stored);
-        if (merged) return { ...merged, full: false, etag: probe.etag };
-        return await verifiedCrawl(probe, crawl, { before: tally() });
+        let page1 = source === "tags" ? head : undefined;
+        let merged = mergeHead(head, stored);
+        if (!merged && !page1) {
+          // More than 20 releases since the last read: page 1 may still
+          // reach the stored list, which is cheaper than a full crawl.
+          page1 = await fetchPage(1);
+          if (!page1.hasNextPage) {
+            return { items: page1.items, truncated: false, full: true };
+          }
+          merged = mergeHead(page1, stored);
+        }
+        if (merged) return { ...merged, full: false, etag: head.etag };
+        // The crawl sizes itself from a probe of 20, and reuses page 1.
+        const before = tally();
+        const probe = source === "tags" ? await reprobe() : head;
+        return await verifiedCrawl(probe, crawl, {
+          before,
+          page1: page1 && Promise.resolve(page1),
+        });
       }
       // A full crawl needs page 1 unless the list has 20 entries or fewer,
       // so read it alongside the probe: most lists fit on it, and a list that
@@ -762,11 +790,14 @@ async function verifiedCrawl(
     reprobe,
     tally,
     startedAt,
+    headIsPage1 = false,
   }: {
     fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>;
     reprobe: () => Promise<GitHubListPage<StoredItem>>;
     tally: () => Promise<GitHubListPage<StoredItem>>;
     startedAt: number;
+    /** The next head refresh reads page 1 (tags), not the probe. */
+    headIsPage1?: boolean;
   },
   {
     page1,
@@ -791,7 +822,7 @@ async function verifiedCrawl(
         items: current.items,
         truncated: false,
         full: true,
-        etag: current.etag,
+        etag: headIsPage1 ? undefined : current.etag,
       };
     }
     const crawled = await crawl(
@@ -806,7 +837,7 @@ async function verifiedCrawl(
         items: crawled.items,
         truncated: false,
         full: true,
-        etag: current.etag,
+        etag: headIsPage1 ? crawled.firstEtag : current.etag,
       };
     }
     const [first, last] = await Promise.all([
@@ -819,12 +850,19 @@ async function verifiedCrawl(
       return { ...crawled, truncated: true, full: false };
     }
     if (sameTally(first, last)) {
-      return { ...crawled, full: true, etag: current.etag };
+      return {
+        ...crawled,
+        full: true,
+        etag: headIsPage1 ? crawled.firstEtag : current.etag,
+      };
     }
     if (attempt === 0 && Date.now() - startedAt < crawlTiming.budgetMs) {
+      const next = await reprobe().catch(() => null);
+      // Without a new probe there is no second crawl: keep what was read.
+      if (!next) return { ...crawled, truncated: true, full: false };
       start = Promise.resolve(last);
       probedAt = Date.now();
-      current = await reprobe();
+      current = next;
       continue;
     }
     const latest = await reprobe().catch(() => current);
@@ -859,7 +897,13 @@ async function crawl(
   probedAt = Date.now(),
   /** Page 1, if it is already being read. */
   page1?: Promise<GitHubListPage<StoredItem>>,
-): Promise<{ items: StoredItem[]; truncated: boolean; pages: number }> {
+): Promise<{
+  items: StoredItem[];
+  truncated: boolean;
+  pages: number;
+  /** Page 1's ETag, for a conditional read of it later. */
+  firstEtag?: string | null;
+}> {
   const pages: GitHubListPage<StoredItem>[] = [];
   const known = Math.max(
     1,
@@ -946,6 +990,7 @@ async function crawl(
     items,
     truncated: pages[pages.length - 1].hasNextPage,
     pages: pages.length,
+    firstEtag: pages[0]?.etag,
   };
 }
 
