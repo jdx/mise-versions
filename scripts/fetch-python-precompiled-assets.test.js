@@ -61,6 +61,7 @@ describe("fetch-python-precompiled-assets", () => {
       "python-precompiled",
       "python-precompiled-x86_64-unknown-linux-gnu",
     ]);
+    assert.deepEqual(result.missing, []);
     assert.deepEqual(readdirSync(outputDir).sort(), [
       "python-precompiled-x86_64-unknown-linux-gnu.gz",
       "python-precompiled.gz",
@@ -71,18 +72,38 @@ describe("fetch-python-precompiled-assets", () => {
     );
   });
 
-  it("fails without writing anything when an expected list is missing", async () => {
+  it("skips a platform list R2 does not have yet", async () => {
+    const outputDir = mkdtempSync(join(tmpdir(), "pp-out-"));
+    const result = await fetchPythonPrecompiledAssets({
+      r2: fakeR2({ "tools/python-precompiled.gz": gzipSync("all") }),
+      docsDir: docsDir([
+        "python-precompiled.toml",
+        "python-precompiled-riscv64-unknown-linux-gnu.toml",
+      ]),
+      outputDir,
+    });
+    assert.deepEqual(result, {
+      written: ["python-precompiled"],
+      missing: ["python-precompiled-riscv64-unknown-linux-gnu"],
+    });
+    assert.deepEqual(readdirSync(outputDir), ["python-precompiled.gz"]);
+  });
+
+  it("fails without writing anything when the main list is missing", async () => {
     const outputDir = mkdtempSync(join(tmpdir(), "pp-out-"));
     await assert.rejects(
       fetchPythonPrecompiledAssets({
-        r2: fakeR2({ "tools/python-precompiled.gz": gzipSync("all") }),
+        r2: fakeR2({
+          "tools/python-precompiled-riscv64-unknown-linux-gnu.gz":
+            gzipSync("riscv"),
+        }),
         docsDir: docsDir([
           "python-precompiled.toml",
           "python-precompiled-riscv64-unknown-linux-gnu.toml",
         ]),
         outputDir,
       }),
-      /tools\/python-precompiled-riscv64-unknown-linux-gnu.gz not found/,
+      /tools\/python-precompiled.gz not found/,
     );
     assert.deepEqual(readdirSync(outputDir), []);
   });
