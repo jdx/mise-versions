@@ -643,27 +643,29 @@ test("responses carry fetched_at, and Worker requests count as demand", () => {
     const env = { DB: poolDb, GITHUB_CACHE: kv };
     const background = [];
     const waitUntil = (promise) => background.push(promise);
+    const demandKey = "github:versions-demand:releases:o/r";
     const cold = await getCachedGitHubVersions(env, "o", "r", { source: "releases", demand: true }, { waitUntil });
+    await Promise.all(background);
     assert.match(cold.versions.fetched_at, /^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);
-    const key = "github:versions:releases:o/r";
-    const firstStamp = storedEntry(kv, key).requested_at;
+    // Demand is its own key, so stamping it never rewrites the list.
+    const firstStamp = storedEntry(kv, demandKey).requested_at;
     assert.ok(Date.now() - firstStamp < 5000);
+    assert.equal(storedEntry(kv, "github:versions:releases:o/r").requested_at, undefined);
+    const demandWrite = kv.writes.find((w) => w.key === demandKey);
+    assert.deepEqual(demandWrite.options, { expirationTtl: 35 * 24 * 60 * 60 });
 
-    // Within a day: no rewrite just to stamp demand.
+    // Within a day: no rewrite.
     kv.writes.length = 0;
     await getCachedGitHubVersions(env, "o", "r", { source: "releases", demand: true }, { waitUntil });
     await Promise.all(background);
     assert.deepEqual(kv.writes, []);
 
-    // A day later: stamped again, the list itself untouched.
-    const entry = storedEntry(kv, key);
-    kv.store.set(key, JSON.stringify({ ...entry, requested_at: entry.requested_at - 25 * HOUR }));
+    // A day later: only the demand key is written.
+    kv.store.set(demandKey, JSON.stringify({ requested_at: firstStamp - 25 * HOUR }));
     await getCachedGitHubVersions(env, "o", "r", { source: "releases", demand: true }, { waitUntil });
     await Promise.all(background);
-    assert.equal(kv.writes.length, 1);
-    const stamped = storedEntry(kv, key);
-    assert.ok(stamped.requested_at >= firstStamp);
-    assert.deepEqual(stamped.items, entry.items);
+    assert.deepEqual(kv.writes.map((w) => w.key), [demandKey]);
+    assert.ok(storedEntry(kv, demandKey).requested_at >= firstStamp);
     assert.deepEqual(apiCalls(), ["/repos/o/r/releases?per_page=100&page=1"]);
   `);
 });
@@ -674,7 +676,10 @@ const BAKE_SETUP = `
   const item = (tag) => ({ tag, date: "d", prerelease: false, asset_count: 1 });
   const entry = (extra) => ({
     head_at: now - MIN, full_at: now - MIN, unchanged_since: now - MIN,
-    requested_at: now - HOUR, items: [item("v1")], truncated: false, ...extra,
+    items: [item("v1")], truncated: false, ...extra,
+  });
+  const demand = (key, ago = HOUR) => ({
+    ["github:versions-demand:" + key]: { requested_at: now - ago },
   });
   const visibility = (isPublic) => ({ cached_at: now, public: isPublic });
   const kv = memoryKv({
@@ -684,8 +689,14 @@ const BAKE_SETUP = `
     "github:versions:releases:fresh/repo:asset:packslip.sigstore.json": entry({
       items: [{ ...item("v2"), has_asset: true }, { ...item("v1"), has_asset: false }],
     }),
-    "github:versions:releases:quiet/repo": entry({ requested_at: now - 31 * 24 * HOUR }),
+    "github:versions:releases:quiet/repo": entry(),
     "github:versions:releases:secret/repo": entry(),
+    ...demand("releases:fresh/repo"),
+    ...demand("releases:due/repo"),
+    ...demand("tags:fresh/repo"),
+    ...demand("releases:fresh/repo:asset:packslip.sigstore.json"),
+    ...demand("releases:quiet/repo", 31 * 24 * HOUR),
+    ...demand("releases:secret/repo"),
     "github:visibility:fresh/repo": visibility(true),
     "github:visibility:due/repo": visibility(true),
     "github:visibility:quiet/repo": visibility(true),
@@ -719,8 +730,8 @@ test("a bake page exports demanded, servable lists and refreshes the due ones", 
     assert.deepEqual(files["github/fresh/repo/assets/packslip.sigstore.json/releases.json"].releases, [item("v2")]);
     assert.equal(files["github/fresh/repo/tags.json"].source, "tags");
     assert.ok(page.files.every((f) => f.requested_at === now - HOUR));
-    // The refresh kept the demand stamp.
-    assert.equal(storedEntry(kv, "github:versions:releases:due/repo").requested_at, now - HOUR);
+    // The refresh left the demand stamp alone.
+    assert.equal(storedEntry(kv, "github:versions-demand:releases:due/repo").requested_at, now - HOUR);
   `);
 });
 
@@ -775,11 +786,14 @@ test("demand from Logpush stamps the lists it names", () => {
       "/data/github/nobody/repo/releases.json",
       "/data/github/Bad/Case/releases.json",
     ], seenAt);
-    // quiet: stamped; fresh: requested an hour ago, already counted today;
-    // nobody: no list stored; the duplicate and the bad path are skipped.
-    assert.deepEqual(result, { stamped: 1, unknown: 2 });
-    assert.equal(storedEntry(kv, "github:versions:releases:quiet/repo").requested_at, seenAt);
-    assert.equal(storedEntry(kv, "github:versions:releases:fresh/repo").requested_at, now - HOUR);
+    // quiet: stamped; nobody: stamped (no stamp yet); fresh: requested an
+    // hour ago, already counted today; the duplicate and the bad path are
+    // skipped.
+    assert.deepEqual(result, { stamped: 2, unknown: 2 });
+    assert.equal(storedEntry(kv, "github:versions-demand:releases:quiet/repo").requested_at, seenAt);
+    assert.equal(storedEntry(kv, "github:versions-demand:releases:fresh/repo").requested_at, now - HOUR);
+    // The lists themselves are never rewritten for demand.
+    assert.ok(kv.writes.every((w) => w.key.startsWith("github:versions-demand:")));
   `);
 });
 
@@ -844,6 +858,8 @@ test("pages still open at the deadline are cancelled and the prefix kept", () =>
     const realFetch = globalThis.fetch;
     let aborted = 0;
     globalThis.fetch = async (input, init) => {
+      // Like fetch: a request on an aborted signal fails at once.
+      if (init?.signal?.aborted) throw init.signal.reason;
       const page = new URL(String(input)).searchParams.get("page");
       if (page === "3") {
         // Stalls until the crawl gives up on it.
@@ -857,10 +873,14 @@ test("pages still open at the deadline are cancelled and the prefix kept", () =>
       return realFetch(input, init);
     };
     const started = Date.now();
+    const kv = memoryKv();
     const { versions } = await getCachedGitHubVersions(
-      { DB: poolDb, GITHUB_CACHE: memoryKv() }, "o", "r", { source: "releases" },
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
     );
     assert.ok(Date.now() - started < 2000, "returned near the deadline");
+    // Page 1 could not be read again after the deadline: the pages read are
+    // kept, and the full crawl is left due.
+    assert.equal(storedEntry(kv, "github:versions:releases:o/r").full_at, 0);
     assert.equal(aborted, 1);
     // Pages 1-2 are kept; page 4 came back but follows the gap.
     assert.equal(versions.releases.length, 200);

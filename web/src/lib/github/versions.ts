@@ -56,6 +56,11 @@ const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 export const DEMAND_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 // `requested_at` is rewritten at most this often.
 const DEMAND_RESOLUTION_MS = 24 * 60 * 60 * 1000;
+// Demand is kept under its own key, so stamping it never rewrites a list
+// that a refresh may be saving at the same moment. It outlives the window
+// by a few days and then expires by itself.
+const DEMAND_PREFIX = "github:versions-demand:";
+const DEMAND_TTL_SECONDS = (DEMAND_WINDOW_MS + 5 * 24 * 60 * 60 * 1000) / 1000;
 const MIN_EDGE_SECONDS = 60;
 // The Worker only answers until the next build bakes the file, so it keeps
 // its own answers at the edge briefly.
@@ -98,8 +103,6 @@ interface StoredVersions {
   unchanged_since: number;
   /** The release generation page 1 was read under. */
   generation?: string;
-  /** When a client last asked for this list (to the day). */
-  requested_at?: number;
   items: StoredItem[];
   truncated: boolean;
 }
@@ -236,18 +239,17 @@ export async function getCachedGitHubVersions(
   const cacheKey = versionsCacheKey({ owner, repo, source, asset });
   const stored = await env.GITHUB_CACHE.get<StoredVersions>(cacheKey, "json");
   const now = Date.now();
-  const requestedAt = options.demand ? now : undefined;
+  if (options.demand) {
+    const stamping = stampDemand(env, cacheKey, now);
+    if (waitUntil) waitUntil(stamping);
+    else await stamping;
+  }
   const step = refreshStep(stored, now, source, options.generation);
   if (stored && step === "fresh") {
-    if (requestedAt && waitUntil && needsDemandStamp(stored, requestedAt)) {
-      waitUntil(stampDemand(env, cacheKey, stored, requestedAt));
-    }
     return respond(stored, options, "fresh");
   }
   const refresh = () =>
-    refreshVersions(env, owner, repo, cacheKey, options, stored, step, {
-      requestedAt,
-    });
+    refreshVersions(env, owner, repo, cacheKey, options, stored, step);
   if (stored && waitUntil) {
     waitUntil(
       refresh().catch((error) => {
@@ -285,10 +287,7 @@ async function refreshVersions(
   { source, asset, generation }: VersionsOptions,
   stored: StoredVersions | null,
   step: "head" | "full" | "fresh",
-  {
-    requestedAt,
-    requireToken = false,
-  }: { requestedAt?: number; requireToken?: boolean } = {},
+  { requireToken = false }: { requireToken?: boolean } = {},
 ): Promise<StoredVersions> {
   const result = await withPoolToken(env, async (token) => {
     if (requireToken && !token) throw new NoPoolToken();
@@ -330,7 +329,6 @@ async function refreshVersions(
     !!stored &&
     stored.truncated === result.truncated &&
     JSON.stringify(stored.items) === JSON.stringify(result.items);
-  const lastRequested = Math.max(stored?.requested_at ?? 0, requestedAt ?? 0);
   const entry: StoredVersions = {
     head_at: now,
     // An incomplete crawl leaves the full crawl due.
@@ -338,7 +336,6 @@ async function refreshVersions(
     unchanged_since:
       unchanged && stored ? Math.min(stored.unchanged_since, now) : now,
     generation,
-    requested_at: lastRequested || undefined,
     items: result.items,
     truncated: result.truncated,
   };
@@ -361,17 +358,43 @@ async function putEntry(
   }
 }
 
-function needsDemandStamp(stored: StoredVersions, at: number): boolean {
-  return at - (stored.requested_at ?? 0) >= DEMAND_RESOLUTION_MS;
+function demandKey(cacheKey: string): string {
+  return DEMAND_PREFIX + cacheKey.slice(VERSIONS_CACHE_PREFIX.length);
 }
 
+/** When a client last asked for the list at `cacheKey` (epoch ms). */
+async function readDemand(
+  env: Env,
+  cacheKey: string,
+): Promise<number | undefined> {
+  const demand = await env.GITHUB_CACHE.get<{ requested_at?: unknown }>(
+    demandKey(cacheKey),
+    "json",
+  );
+  return typeof demand?.requested_at === "number"
+    ? demand.requested_at
+    : undefined;
+}
+
+/** Record a request for the list at `cacheKey`; true if it was written. */
 async function stampDemand(
   env: Env,
   cacheKey: string,
-  stored: StoredVersions,
   at: number,
-): Promise<void> {
-  await putEntry(env, cacheKey, { ...stored, requested_at: at });
+): Promise<boolean> {
+  try {
+    const last = await readDemand(env, cacheKey);
+    if (last !== undefined && at - last < DEMAND_RESOLUTION_MS) return false;
+    await env.GITHUB_CACHE.put(
+      demandKey(cacheKey),
+      JSON.stringify({ requested_at: at }),
+      { expirationTtl: DEMAND_TTL_SECONDS },
+    );
+    return true;
+  } catch (error) {
+    console.warn(`failed to record demand for ${cacheKey}:`, error);
+    return false;
+  }
 }
 
 function headFreshMs(stored: StoredVersions): number {
@@ -497,6 +520,9 @@ function mergeHead(
  * entry. The common case is a new release at the top, so page 1 is read
  * again afterwards: if it moved, the crawl runs once more, and if it is
  * still moving only page 1 is kept, truncated, with the full crawl left due.
+ * If page 1 cannot be read again (the deadline passed, or GitHub failed),
+ * the pages read are kept as a truncated prefix, also with the full crawl
+ * left due.
  */
 async function verifiedCrawl(
   head: GitHubListPage<StoredItem>,
@@ -522,8 +548,10 @@ async function verifiedCrawl(
       firstStartedAt = verifyStartedAt;
       continue;
     }
-    const page = verify ?? first;
-    return { items: page.items, truncated: page.hasNextPage, full: false };
+    // The check could not run (out of time, or GitHub failed): keep what was
+    // read as a truncated prefix rather than discard it.
+    if (!verify) return { ...crawled, truncated: true, full: false };
+    return { items: verify.items, truncated: verify.hasNextPage, full: false };
   }
 }
 
@@ -769,10 +797,13 @@ export async function bakeVersionsPage(
   const bakeOne = async (key: string) => {
     const target = parseVersionsCacheKey(key);
     if (!target) return;
-    const stored = await env.GITHUB_CACHE.get<StoredVersions>(key, "json");
+    const [stored, requestedAt] = await Promise.all([
+      env.GITHUB_CACHE.get<StoredVersions>(key, "json"),
+      readDemand(env, key),
+    ]);
     if (!stored || !Array.isArray(stored.items)) return;
     const now = Date.now();
-    if (!stored.requested_at || now - stored.requested_at >= DEMAND_WINDOW_MS) {
+    if (!requestedAt || now - requestedAt >= DEMAND_WINDOW_MS) {
       page.stats.unrequested++;
       return;
     }
@@ -822,7 +853,7 @@ export async function bakeVersionsPage(
     }
     page.files.push({
       path: versionsPath(target),
-      requested_at: stored.requested_at,
+      requested_at: requestedAt,
       body: JSON.stringify(versionsBody(entry, { source, asset })),
     });
   };
@@ -858,10 +889,7 @@ export async function recordVersionsDemand(
   for (let i = 0; i < keys.length; i += BAKE_CONCURRENCY) {
     await Promise.all(
       keys.slice(i, i + BAKE_CONCURRENCY).map(async (key) => {
-        const stored = await env.GITHUB_CACHE.get<StoredVersions>(key, "json");
-        if (!stored || !needsDemandStamp(stored, seenAt)) return;
-        await stampDemand(env, key, stored, seenAt);
-        stamped++;
+        if (await stampDemand(env, key, seenAt)) stamped++;
       }),
     );
   }

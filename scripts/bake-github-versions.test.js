@@ -118,3 +118,30 @@ test("writeBakedFiles keeps the most recently requested files under the cap", ()
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("collectBakedFiles cancels a stalled request at the deadline", async () => {
+  const started = Date.now();
+  const result = await collectBakedFiles({
+    secret: "s",
+    log: silent,
+    deadlineMs: 150,
+    fetchImpl: async (_url, init) => {
+      if (init.signal.aborted) throw init.signal.reason;
+      // The first page answers; the second never does.
+      if (!init.body.includes("c1")) {
+        return Response.json({
+          files: [file("github/o/r/releases.json", 1)],
+          cursor: "c1",
+          stats: {},
+          outOfTokens: false,
+        });
+      }
+      return new Promise((_, reject) =>
+        init.signal.addEventListener("abort", () => reject(init.signal.reason)),
+      );
+    },
+  });
+  assert.ok(Date.now() - started < 1000, "returned at the deadline");
+  assert.equal(result.files.length, 1);
+  assert.equal(result.complete, false);
+});

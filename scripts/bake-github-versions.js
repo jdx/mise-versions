@@ -79,6 +79,10 @@ export async function collectBakedFiles({
     const refresh = !outOfTokens && now() - started < refreshMs;
     let page;
     for (let attempt = 1; attempt <= 2 && !page; attempt++) {
+      // A stalled request or a slow body must not hold up the deploy: both
+      // are cancelled when the deadline passes.
+      const remaining = deadlineMs - (now() - started);
+      if (remaining <= 0) break;
       try {
         const response = await fetchImpl(
           `${apiUrl}/api/admin/github/versions/bake`,
@@ -89,6 +93,7 @@ export async function collectBakedFiles({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ cursor, limit: PAGE_LIMIT, refresh }),
+            signal: AbortSignal.timeout(remaining),
           },
         );
         if (!response.ok) {
