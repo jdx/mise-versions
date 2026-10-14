@@ -1306,3 +1306,56 @@ test("GitHub attestation checks back off while the answer stays the same", () =>
     assert.ok(changed.writes[0].value.unchanged_since >= before);
   `);
 });
+
+test("edge cache hits keep the Cache-Control the Worker sent", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      __testing,
+      matchGitHubMirrorEdgeCache,
+      putGitHubMirrorEdgeCache,
+    } from "./web/src/lib/github/mirror.ts";
+
+    // A Cache API that, like the zone's Browser Cache TTL, replaces a lower
+    // max-age on what it serves.
+    const store = new Map();
+    globalThis.caches = {
+      default: {
+        put: async (request, response) => {
+          store.set(request.url, {
+            body: await response.text(),
+            headers: new Headers(response.headers),
+          });
+        },
+        match: async (request) => {
+          const hit = store.get(request.url);
+          if (!hit) return undefined;
+          const headers = new Headers(hit.headers);
+          headers.set(
+            "Cache-Control",
+            headers.get("Cache-Control").replace(/max-age=\\d+/, "max-age=7200"),
+          );
+          headers.set("cf-cache-status", "HIT");
+          return new Response(hit.body, { headers });
+        },
+      },
+    };
+
+    const request = new Request("https://mise-versions.jdx.dev/data/github/o/r/releases.json");
+    const options = { browserMaxAge: 0, edgeMaxAge: 600, staleWhileRevalidate: 0 };
+    const sent = __testing.edgeCacheResponse(new Response("{}"), options);
+    assert.equal(sent.headers.get("Cache-Control"), "public, max-age=0, s-maxage=600");
+    await putGitHubMirrorEdgeCache(request, new Response("{}"), options);
+
+    // The raw cache hit carries the zone's 2 hours...
+    const raw = await caches.default.match(__testing.edgeCacheRequest(request));
+    assert.equal(raw.headers.get("Cache-Control"), "public, max-age=7200, s-maxage=600");
+    // ...and the mirror puts back what the Worker sent.
+    const hit = await matchGitHubMirrorEdgeCache(request);
+    assert.equal(hit.headers.get("Cache-Control"), "public, max-age=0, s-maxage=600");
+    assert.equal(hit.headers.get("X-Mise-Cache-Control"), null);
+    assert.equal(hit.headers.get("cf-cache-status"), "HIT");
+    assert.equal(await hit.text(), "{}");
+    assert.equal(await matchGitHubMirrorEdgeCache(new Request("https://mise-versions.jdx.dev/other")), null);
+  `);
+});
