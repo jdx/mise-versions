@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * Generate static version files served from /data/*.
+ * Generate static version files served from /data/*: one <tool>.toml per tool
+ * and the versions index (see build-versions-index.js), both from the same
+ * docs/ checkout so the index is never staler than the per-tool files.
  */
 import {
   existsSync,
@@ -13,6 +15,7 @@ import {
 } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { buildVersionsIndex, INDEX_FILE } from "./build-versions-index.js";
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const SCRIPT_DIR = dirname(SCRIPT_PATH);
@@ -44,6 +47,7 @@ function assertSafeOutputDir(docsDir, outputDir) {
 export function buildStaticVersionFiles({
   docsDir = join(REPO_ROOT, "docs"),
   outputDir = join(REPO_ROOT, "web", "public", "data"),
+  now = Date.now(),
 } = {}) {
   const paths = assertSafeOutputDir(docsDir, outputDir);
 
@@ -59,11 +63,16 @@ export function buildStaticVersionFiles({
     writeFileSync(join(paths.outputDir, file), tomlContent);
   }
 
-  return { tools: files.length };
+  const index = buildVersionsIndex({ docsDir: paths.docsDir, now });
+  writeFileSync(join(paths.outputDir, INDEX_FILE), JSON.stringify(index));
+
+  return { tools: files.length, indexed: Object.keys(index.tools).length };
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
   const [docsDir, outputDir] = process.argv.slice(2);
   const result = buildStaticVersionFiles({ docsDir, outputDir });
-  console.log(`Generated static version files for ${result.tools} tools`);
+  console.log(
+    `Generated static version files for ${result.tools} tools and ${INDEX_FILE} for ${result.indexed}`,
+  );
 }

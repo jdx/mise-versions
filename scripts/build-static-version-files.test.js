@@ -49,7 +49,7 @@ describe("build-static-version-files.js", () => {
 
     const result = buildStaticVersionFiles({ docsDir, outputDir });
 
-    assert.deepStrictEqual(result, { tools: 2 });
+    assert.deepStrictEqual(result, { tools: 2, indexed: 2 });
     assert.match(
       readFileSync(join(outputDir, "node.toml"), "utf8"),
       /\[versions\]/,
@@ -59,6 +59,11 @@ describe("build-static-version-files.js", () => {
       /\[versions\]/,
     );
     assert.strictEqual(existsSync(join(outputDir, "node")), false);
+
+    const index = JSON.parse(readFileSync(join(outputDir, "index.v1.json")));
+    assert.strictEqual(index.format, 1);
+    assert.deepStrictEqual(Object.keys(index.tools), ["node", "python"]);
+    assert.strictEqual(index.tools.node.latest, "22.0.0");
   });
 
   it("rejects destructive source and output path collisions", () => {
