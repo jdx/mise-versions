@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { setupAnalytics } from "../../../../src/analytics";
 import { hashIP, getClientIP } from "../../lib/hash";
 import { env } from "cloudflare:workers";
+import { isMiseCiRequest } from "../../lib/mise-client";
 import { logCostProbe } from "../../lib/cost-observability";
 import { analyticsEventsBinding } from "../../lib/analytics-events";
 
@@ -40,7 +41,7 @@ export async function trackDownloadRequest({
     }
 
     // Check if request is from CI environment
-    const isCI = request.headers.get("x-mise-ci") === "true";
+    const isCI = isMiseCiRequest(request);
 
     // Skip database storage for CI requests (excludes from MAU calculations)
     if (isCI) {

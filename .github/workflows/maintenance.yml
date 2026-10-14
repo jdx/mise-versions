@@ -16,6 +16,7 @@ on:
           - refresh-mau
           - refresh-version-stats
           - refresh-summaries
+          - refresh-logpush
           - refresh-all
           - legacy-fold
           - legacy-verify
@@ -145,3 +146,37 @@ jobs:
       - name: Fail if required refreshes failed
         if: env.TASK == 'refresh-all' && (steps.refresh_mau.outcome == 'failure' || steps.refresh_rollups.outcome == 'failure' || steps.refresh_summaries.outcome == 'failure')
         run: exit 1
+
+  # Shadow rollups from Cloudflare Logpush http_requests logs in R2. They count
+  # mise clients that only hit static assets, and are written to logpush_*
+  # tables for comparison with the Analytics Engine numbers above; the site
+  # does not read them yet. A separate job so a Logpush failure or a long read
+  # never delays the rollups the site does show.
+  logpush:
+    if: (github.event_name == 'schedule' || github.event.inputs.task == 'refresh-logpush' || github.event.inputs.task == 'refresh-all' || github.event.inputs.task == '')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
+
+      - name: Refresh Logpush shadow analytics
+        run: |
+          args=(--days="${INPUT_DAYS:-2}")
+          if [ -n "$INPUT_DATE" ]; then
+            args+=(--date="$INPUT_DATE")
+          fi
+          node --max-old-space-size=6144 scripts/refresh-logpush-analytics-direct.js "${args[@]}"
+        env:
+          INPUT_DAYS: ${{ github.event.inputs.days }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          LOGPUSH_R2_ACCESS_KEY_ID: ${{ secrets.LOGPUSH_R2_ACCESS_KEY_ID }}
+          LOGPUSH_R2_SECRET_ACCESS_KEY: ${{ secrets.LOGPUSH_R2_SECRET_ACCESS_KEY }}
+          # The Worker's API_SECRET, which keys the IP hashes in Analytics Engine.
+          IP_HASH_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+          LOGPUSH_ZONES: jdx.dev

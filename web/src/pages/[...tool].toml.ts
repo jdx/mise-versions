@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { hashIP, getClientIP } from "../lib/hash";
 import { setupAnalytics } from "../../../src/analytics";
 import { env } from "cloudflare:workers";
+import { isMiseCiRequest } from "../lib/mise-client";
 import {
   getCachedVersionRows,
   getCachedText,
@@ -73,7 +74,7 @@ export const GET: APIRoute = async ({ request, params, locals }) => {
 
     // Track version request for DAU/MAU using waitUntil to ensure it completes.
     // Skip database storage for CI requests (excludes from MAU calculations).
-    const isCI = request.headers.get("x-mise-ci") === "true";
+    const isCI = isMiseCiRequest(request);
     if (!isCI) {
       const clientIP = getClientIP(request);
       locals.cfContext.waitUntil(

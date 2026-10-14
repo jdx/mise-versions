@@ -236,6 +236,85 @@ async function runAnalyticsDataMigrations(db: AnalyticsDb): Promise<void> {
   }
 }
 
+// Shadow rollups computed from Cloudflare Logpush http_requests logs by
+// scripts/refresh-logpush-analytics-direct.js. They mirror daily_combined_stats,
+// daily_mau_stats, and the daily_* download rollups so the two sources can be
+// compared row for row before the site switches over; nothing reads them yet.
+async function createLogpushShadowTables(db: AnalyticsDb): Promise<void> {
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_dau (
+      date TEXT PRIMARY KEY,
+      unique_users INTEGER NOT NULL,
+      mise_requests INTEGER NOT NULL,
+      ci_requests INTEGER NOT NULL,
+      log_lines INTEGER NOT NULL,
+      first_event_at TEXT,
+      last_event_at TEXT,
+      updated_at TEXT NOT NULL
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_mau (
+      date TEXT PRIMARY KEY,
+      mau INTEGER NOT NULL,
+      days_covered INTEGER NOT NULL,
+      updated_at TEXT NOT NULL
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_stats (
+      date TEXT PRIMARY KEY,
+      total_downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_tool_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id)
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_backend_stats (
+      date TEXT NOT NULL,
+      backend_type TEXT NOT NULL,
+      downloads INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL,
+      PRIMARY KEY (date, backend_type)
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_tool_backend_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      backend_type TEXT NOT NULL,
+      downloads INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id, backend_type)
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_tool_version_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      version TEXT NOT NULL,
+      downloads INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id, version)
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_tool_platform_stats (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      platform_id INTEGER NOT NULL,
+      downloads INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id, platform_id)
+    )
+  `);
+}
+
 export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
   console.log("Running analytics database migrations...");
 
@@ -590,6 +669,8 @@ export async function runAnalyticsMigrations(db: AnalyticsDb): Promise<void> {
     CREATE INDEX IF NOT EXISTS idx_trending_tool_summaries_score
     ON trending_tool_summaries(trending_score DESC, tool_id)
   `);
+
+  await createLogpushShadowTables(db);
 
   await runAnalyticsDataMigrations(db);
 

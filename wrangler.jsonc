@@ -15,6 +15,9 @@
     // assets to bypass Worker billing. Legacy root routes such as /node.toml,
     // /python-precompiled.gz, and /tools.json intentionally fall through from
     // asset lookup to the Worker because they share the root namespace.
+    // The /t install beacon and /data/python-precompiled*.gz lists are static
+    // assets too and must stay out of this list so they never invoke the
+    // Worker; installs are counted from Logpush instead.
     "run_worker_first": [
       "/api/*",
       "/admin*",

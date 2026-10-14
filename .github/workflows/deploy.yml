@@ -13,6 +13,21 @@ on:
       - "aube-lock.yaml"
       - ".config/aube/config.toml"
       - ".github/workflows/deploy.yml"
+  # Called by the python-precompiled workflow once it has uploaded new .gz
+  # lists to R2 (its docs commit triggers a push deploy before the upload), so
+  # the static /data/*.gz copies pick up the uploaded bytes.
+  workflow_call:
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: true
+      CLOUDFLARE_ACCOUNT_ID:
+        required: true
+      RESEND_API_KEY:
+        required: false
+      MISE_GITHUB_TOKEN:
+        required: true
+      TOKEN_MANAGER_SECRET:
+        required: true
 
 permissions:
   contents: read
@@ -29,6 +44,10 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
+          # When python-precompiled calls this workflow, its own sha predates
+          # the docs commits pushed since (including its own), so deploy the
+          # current main rather than rolling the version files back.
+          ref: ${{ github.workflow != 'deploy' && 'main' || '' }}
 
       - uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
 
@@ -37,6 +56,11 @@ jobs:
 
       - name: Build web frontend
         run: aube --dir web run build
+
+      # Serve /data/python-precompiled*.gz as static assets (no Worker
+      # invocation), byte-identical to the R2 copies behind /tools/*.gz.
+      - name: Copy python-precompiled lists into static assets
+        run: node scripts/fetch-python-precompiled-assets.js web/dist/client/data
 
       - name: Deploy to Cloudflare Workers
         run: |

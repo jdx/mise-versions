@@ -60,7 +60,7 @@ mise run deploy            # builds then deploys
 
 3. **Storage**:
    - **Git repository** (`docs/`): Plain text and TOML version files used as the source for sync jobs and raw GitHub-backed data endpoints
-   - **Cloudflare R2** (`DATA_BUCKET`): Binary .gz files only (python-precompiled)
+   - **Cloudflare R2** (`DATA_BUCKET`): Binary .gz files only (python-precompiled); deploys also copy them to static `/data/python-precompiled*.gz`
    - **Cloudflare D1** (`ANALYTICS_DB`): Tool metadata, version data, and download analytics
 
 4. **Web Frontend** (`web/`):
@@ -73,6 +73,7 @@ mise run deploy            # builds then deploys
 - `src/analytics/`: Drizzle ORM schema and analytics functions for D1 (schema, tracking, stats, trends, rollups)
 - `src/worker.ts`: Custom worker wrapper for scheduled tasks (token-pool observability, update workflow dispatch)
 - `.github/workflows/maintenance.yml`: Nightly analytics maintenance; the `scripts/refresh-*-direct.js` scripts roll Analytics Engine events up into the D1 daily and summary tables
+- `scripts/refresh-logpush-analytics-direct.js`: Nightly shadow rollup of Cloudflare Logpush `http_requests` logs (R2 bucket `mise-logs`) into `logpush_*` D1 tables: DAU/MAU of every mise client (static asset requests included) and installs from the static `/t` beacon
 - `web/src/lib/data-loader.ts`: Centralized data loading from D1
 - `scripts/update.sh`: Main version fetching logic with token management
 - `scripts/sync-to-d1.js`: Syncs tool metadata from TOML files to D1
@@ -90,6 +91,8 @@ The `ANALYTICS_DB` contains:
 - `backends`, `platforms`: Dimension tables that rollups resolve Analytics Engine names against
 - Daily rollup tables: `daily_stats`, `daily_combined_stats`, `daily_tool_stats`, `daily_backend_stats`, `daily_tool_backend_stats`, `daily_tool_version_stats`, `daily_tool_platform_stats`, `daily_mau_stats`, `daily_version_stats`
 - Summary tables: `tool_download_summaries`, `tool_platform_download_summaries`, `tool_version_download_summaries`, `backend_tool_summaries`, `trending_tool_summaries`
+
+- Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, compared against the Analytics Engine numbers before cutover; the site does not read them yet
 
 Raw download and mise version-request events are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
 

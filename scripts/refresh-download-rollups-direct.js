@@ -262,6 +262,67 @@ function resolveToolRows(rows, tools, build) {
   return result;
 }
 
+// Resolve per-dimension aggregate rows (tool names, os/arch pairs) to the D1
+// rollup row shapes. Shared with the Logpush shadow rollup so both sources
+// produce identical tables.
+function buildDimensionRows(
+  date,
+  ids,
+  { toolRows, backendRows, toolBackendRows, versionRows, platformRows },
+) {
+  const dailyTools = resolveToolRows(toolRows, ids.tools, (row, toolId) => [
+    date,
+    toolId,
+    finiteNumber(row.downloads, `${row.tool} downloads`),
+    finiteNumber(row.unique_users, `${row.tool} users`),
+  ]);
+  const dailyBackends = backendRows.map((row) => [
+    date,
+    row.backend_type || "unknown",
+    finiteNumber(row.downloads, `${row.backend_type} downloads`),
+    finiteNumber(row.unique_users, `${row.backend_type} users`),
+  ]);
+  const dailyToolBackends = resolveToolRows(
+    toolBackendRows,
+    ids.tools,
+    (row, toolId) => [
+      date,
+      toolId,
+      row.backend_type || "unknown",
+      finiteNumber(row.downloads, `${row.tool} backend downloads`),
+    ],
+  );
+  const dailyVersions = resolveToolRows(
+    versionRows.filter((row) => row.version),
+    ids.tools,
+    (row, toolId) => [
+      date,
+      toolId,
+      row.version,
+      finiteNumber(row.downloads, `${row.tool} version downloads`),
+    ],
+  );
+  const dailyPlatforms = resolveToolRows(
+    platformRows,
+    ids.tools,
+    (row, toolId) => [
+      date,
+      toolId,
+      row.os || row.arch
+        ? ids.platforms.get(platformKey(row.os || null, row.arch || null))
+        : 0,
+      finiteNumber(row.downloads, `${row.tool} platform downloads`),
+    ],
+  ).filter((row) => row[2] !== undefined);
+  return {
+    dailyTools,
+    dailyBackends,
+    dailyToolBackends,
+    dailyVersions,
+    dailyPlatforms,
+  };
+}
+
 async function refreshDate(config, date) {
   if (date <= config.cutoverDate) {
     throw new Error(
@@ -353,51 +414,19 @@ async function refreshDate(config, date) {
   const [toolRows, backendRows, toolBackendRows, versionRows, platformRows] =
     dimensions.rows;
   const ids = await loadDimensionIds(config, platformRows);
-
-  const dailyTools = resolveToolRows(toolRows, ids.tools, (row, toolId) => [
-    date,
-    toolId,
-    finiteNumber(row.downloads, `${row.tool} downloads`),
-    finiteNumber(row.unique_users, `${row.tool} users`),
-  ]);
-  const dailyBackends = backendRows.map((row) => [
-    date,
-    row.backend_type || "unknown",
-    finiteNumber(row.downloads, `${row.backend_type} downloads`),
-    finiteNumber(row.unique_users, `${row.backend_type} users`),
-  ]);
-  const dailyToolBackends = resolveToolRows(
+  const {
+    dailyTools,
+    dailyBackends,
+    dailyToolBackends,
+    dailyVersions,
+    dailyPlatforms,
+  } = buildDimensionRows(date, ids, {
+    toolRows,
+    backendRows,
     toolBackendRows,
-    ids.tools,
-    (row, toolId) => [
-      date,
-      toolId,
-      row.backend_type || "unknown",
-      finiteNumber(row.downloads, `${row.tool} backend downloads`),
-    ],
-  );
-  const dailyVersions = resolveToolRows(
-    versionRows.filter((row) => row.version),
-    ids.tools,
-    (row, toolId) => [
-      date,
-      toolId,
-      row.version,
-      finiteNumber(row.downloads, `${row.tool} version downloads`),
-    ],
-  );
-  const dailyPlatforms = resolveToolRows(
+    versionRows,
     platformRows,
-    ids.tools,
-    (row, toolId) => [
-      date,
-      toolId,
-      row.os || row.arch
-        ? ids.platforms.get(platformKey(row.os || null, row.arch || null))
-        : 0,
-      finiteNumber(row.downloads, `${row.tool} platform downloads`),
-    ],
-  ).filter((row) => row[2] !== undefined);
+  });
 
   await batchUpsert(
     config,
@@ -469,7 +498,15 @@ async function main() {
   console.log(JSON.stringify({ success: true, results }, null, 2));
 }
 
-export { batchUpsert, parseArgs, queryD1, refreshDate, requiredEnv };
+export {
+  batchUpsert,
+  buildDimensionRows,
+  loadDimensionIds,
+  parseArgs,
+  queryD1,
+  refreshDate,
+  requiredEnv,
+};
 
 if (fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((error) => {

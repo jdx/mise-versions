@@ -131,9 +131,40 @@ async function main() {
     `,
   });
 
+  // Logpush shadow rollups next to the Analytics Engine numbers the site
+  // shows, for validating them before cutover.
+  let logpushComparison;
+  try {
+    logpushComparison = await queryD1({
+      ...config,
+      sql: `
+        SELECT
+          d.date,
+          c.unique_users AS ae_dau,
+          d.unique_users AS logpush_dau,
+          m.mau AS ae_mau,
+          lm.mau AS logpush_mau,
+          lm.days_covered AS logpush_mau_days,
+          s.total_downloads AS ae_downloads,
+          ls.total_downloads AS logpush_downloads
+        FROM logpush_daily_dau d
+        LEFT JOIN daily_combined_stats c ON c.date = d.date
+        LEFT JOIN daily_mau_stats m ON m.date = d.date
+        LEFT JOIN logpush_daily_mau lm ON lm.date = d.date
+        LEFT JOIN daily_stats s ON s.date = d.date
+        LEFT JOIN logpush_daily_stats ls ON ls.date = d.date
+        ORDER BY d.date DESC
+        LIMIT 15
+      `,
+    });
+  } catch (error) {
+    logpushComparison = { error: error.message };
+  }
+
   const result = {
     rollups,
     latest_mau_rows: latestMauRows,
+    logpush_comparison: logpushComparison,
   };
 
   console.log(JSON.stringify(result, null, 2));
