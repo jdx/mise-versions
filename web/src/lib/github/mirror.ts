@@ -95,6 +95,28 @@ export interface GitHubReleaseListPage {
   truncated: boolean;
 }
 
+/** A tag as GitHub's REST tag list returns it, trimmed to what mise reads. */
+export interface GitHubTag {
+  name: string;
+  commit: { sha: string; url: string };
+  /**
+   * The tagged commit's committer date. Present only when dates were
+   * requested; null when GitHub has no commit for the tag.
+   */
+  date?: string | null;
+}
+
+export interface GitHubTagListPage {
+  tags: GitHubTag[];
+  /** The page to request next, or null when there is none to request here. */
+  next_page: number | null;
+  /**
+   * The repository has more tags than the mirror serves (TAG_LIST_MAX_PAGE
+   * pages); the rest must come from GitHub.
+   */
+  truncated: boolean;
+}
+
 interface GitHubAttestation {
   bundle?: unknown;
   bundle_url?: string;
@@ -333,6 +355,11 @@ export function validReleaseTag(value: string | undefined): value is string {
 
 export function validDigest(value: string | undefined): value is string {
   return !!value && /^[A-Za-z0-9_.-]+:[A-Fa-f0-9]+$/.test(value);
+}
+
+/** GitHub (REST or GraphQL) rate-limited the pool token. */
+export function isGitHubRateLimited(error: unknown): boolean {
+  return isRateLimited(error);
 }
 
 export function githubStatus(error: unknown): number | null {
@@ -611,6 +638,70 @@ export async function getCachedGitHubReleaseList(
   return { list, staleFallback };
 }
 
+export const TAG_LIST_MAX_PAGE = RELEASE_LIST_MAX_PAGE;
+const TAG_LIST_PER_PAGE = 100;
+const TAG_LIST_FIRST_PAGE_FRESH_MS = 10 * 60 * 1000;
+const TAG_LIST_PAGE_FRESH_MS = 60 * 60 * 1000;
+
+// GitHub lists tags by name, highest version first, not by date. The newest
+// version of the newest line is on page 1, which is all most mise lookups
+// read, so page 1 refreshes like the release list's. A tag pushed on an older
+// line can land on a later page and shift the rest by one; full listings
+// accept that for up to an hour, as they do for releases. No catalog
+// generation invalidates tag pages, so these windows are the only bound.
+export function tagListFreshSeconds(page: number): number {
+  return (
+    (page === 1 ? TAG_LIST_FIRST_PAGE_FRESH_MS : TAG_LIST_PAGE_FRESH_MS) / 1000
+  );
+}
+
+/**
+ * One page (100 tags) of a repository's tag list, in GitHub's order. With
+ * `dates`, each tag also carries its commit's committer date, fetched with
+ * one GraphQL query per page. Only call this for a repo that passed the
+ * visibility check.
+ */
+export async function getCachedGitHubTagList(
+  env: Env,
+  owner: string,
+  repo: string,
+  page: number,
+  { dates = false }: { dates?: boolean } = {},
+): Promise<{
+  list: GitHubTagListPage;
+  staleFallback: boolean;
+  /** How long the page stays fresh: what is left of its KV freshness. */
+  freshSeconds: number;
+}> {
+  if (!Number.isInteger(page) || page < 1 || page > TAG_LIST_MAX_PAGE) {
+    throw new GitHubError(400, "Invalid page", new Headers());
+  }
+  const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
+  const freshMs = tagListFreshSeconds(page) * 1000;
+  let staleFallback = false;
+  let cachedAt = Date.now();
+  const list = await getOrRefresh<GitHubTagListPage>({
+    env,
+    cacheKey: `github:${dates ? "tags-dated" : "tags"}:${cacheRepository}:${page}`,
+    isFresh: (entry) => Date.now() - entry.cached_at < freshMs,
+    fetcher: (token) => fetchGitHubTagList(owner, repo, page, dates, token),
+    expirationTtl: () => CACHE_TTL_SECONDS,
+    useStaleOnError: releaseStaleFallbackAllowed,
+    onStaleFallback: () => {
+      staleFallback = true;
+    },
+    onFreshEntry: (at) => {
+      cachedAt = at;
+    },
+  });
+  // The edge keeps a page only for what is left of its freshness, so a page
+  // read from KV late in its window is not kept a whole window more.
+  const freshSeconds = staleFallback
+    ? 0
+    : Math.max(1, Math.ceil((cachedAt + freshMs - Date.now()) / 1000));
+  return { list, staleFallback, freshSeconds };
+}
+
 /**
  * Fetch a GitHub API URL with a pool token, marking the token when GitHub
  * rate-limits it. Errors are thrown as-is; read their status with
@@ -642,6 +733,7 @@ async function getOrRefresh<T>({
   staleCacheKey,
   onStaleFallback,
   onFetchError,
+  onFreshEntry,
   beforeFetch,
   fingerprint,
 }: {
@@ -660,6 +752,8 @@ async function getOrRefresh<T>({
   useStaleOnError?: (error: unknown) => boolean;
   staleCacheKey?: string;
   onStaleFallback?: () => void;
+  /** Called with the `cached_at` of the entry served, unless it is stale. */
+  onFreshEntry?: (cachedAt: number) => void;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -667,6 +761,7 @@ async function getOrRefresh<T>({
 }): Promise<T> {
   const cached = await env.GITHUB_CACHE.get<CacheEntry<T>>(cacheKey, "json");
   if (cached && isFresh(cached)) {
+    onFreshEntry?.(cached.cached_at);
     return cached.data;
   }
   await beforeFetch?.();
@@ -679,6 +774,7 @@ async function getOrRefresh<T>({
     const options = ttl === undefined ? undefined : { expirationTtl: ttl };
     const now = Date.now();
     const entry: CacheEntry<T> = { cached_at: now, data };
+    onFreshEntry?.(now);
     if (fingerprint) {
       entry.unchanged_since =
         cached && sameData(fingerprint, cached.data, data)
@@ -853,6 +949,169 @@ async function fetchGitHubReleaseList(
     next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
     truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
   };
+}
+
+interface GitHubRestTag {
+  name?: unknown;
+  commit?: { sha?: unknown; url?: unknown } | null;
+}
+
+async function fetchGitHubTagList(
+  owner: string,
+  repo: string,
+  page: number,
+  dates: boolean,
+  token: TokenRecord | null,
+): Promise<GitHubTagListPage> {
+  assertValidRepo(owner, repo);
+  // Dates need GraphQL, which refuses anonymous requests. Fail before the
+  // REST call too, so an empty pool doesn't spend the shared anonymous limit
+  // on a page that can't be completed.
+  if (dates && !token) throw noGraphQLTokenError();
+  const response = await fetchGitHubJsonResponse(
+    `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${TAG_LIST_PER_PAGE}&page=${page}`,
+    token,
+  );
+  const hasNextPage = hasNextLink(response.headers.get("link"));
+  const data = await readJsonResponse<GitHubRestTag[]>(response);
+  if (!Array.isArray(data)) {
+    throw new GitHubError(
+      502,
+      "GitHub tag list response was not an array",
+      new Headers(),
+    );
+  }
+  const tags: GitHubTag[] = data.map((tag) => {
+    if (
+      typeof tag?.name !== "string" ||
+      typeof tag.commit?.sha !== "string" ||
+      typeof tag.commit.url !== "string"
+    ) {
+      throw new GitHubError(
+        502,
+        "GitHub tag list entry was malformed",
+        new Headers(),
+      );
+    }
+    return {
+      name: tag.name,
+      commit: { sha: tag.commit.sha, url: tag.commit.url },
+    };
+  });
+  if (dates && tags.length > 0) {
+    const commitDates = await fetchGitHubCommitDates(
+      owner,
+      repo,
+      tags.map((tag) => tag.commit.sha),
+      token,
+    );
+    for (const tag of tags) {
+      tag.date = commitDates.get(tag.commit.sha) ?? null;
+    }
+  }
+  return {
+    tags,
+    next_page: hasNextPage && page < TAG_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= TAG_LIST_MAX_PAGE,
+  };
+}
+
+const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
+
+function noGraphQLTokenError(): GitHubError {
+  return new NoGraphQLTokenError(
+    503,
+    "No GitHub token for GraphQL commit dates",
+    new Headers(),
+  );
+}
+
+interface GitHubCommitDatesResponse {
+  data?: {
+    repository?: Record<string, { committedDate?: unknown } | null> | null;
+  } | null;
+  errors?: { type?: string; message?: string }[];
+}
+
+/**
+ * Committer dates for up to 100 commits of one repository, keyed by SHA, in
+ * one GraphQL query. GitHub charges it 1 point of the token's separate
+ * GraphQL budget, where the REST equivalent is one request per commit.
+ * Commits GitHub doesn't know are left out.
+ */
+async function fetchGitHubCommitDates(
+  owner: string,
+  repo: string,
+  shas: string[],
+  token: TokenRecord | null,
+): Promise<Map<string, string>> {
+  // GitHub's GraphQL API refuses anonymous requests.
+  if (!token) throw noGraphQLTokenError();
+  const unique = [...new Set(shas)];
+  if (unique.some((sha) => !/^[0-9a-f]{40}([0-9a-f]{24})?$/.test(sha))) {
+    throw new GitHubError(
+      502,
+      "GitHub tag commit SHA was invalid",
+      new Headers(),
+    );
+  }
+  const declarations = ["$owner: String!", "$name: String!"];
+  const fields: string[] = [];
+  const variables: Record<string, string> = { owner, name: repo };
+  unique.forEach((sha, i) => {
+    declarations.push(`$c${i}: GitObjectID!`);
+    fields.push(
+      `c${i}: object(oid: $c${i}) { ... on Commit { committedDate } }`,
+    );
+    variables[`c${i}`] = sha;
+  });
+  const query = `query(${declarations.join(", ")}) { repository(owner: $owner, name: $name) { ${fields.join(" ")} } }`;
+
+  const raw = await fetch(GITHUB_GRAPHQL_URL, {
+    method: "POST",
+    headers: {
+      ...githubJsonHeaders(GITHUB_GRAPHQL_URL, token),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query, variables }),
+    redirect: "manual",
+  });
+  // These headers report the GraphQL budget, which benchIfLow then holds to
+  // the same floor as REST: volunteers' tokens are left alone once either
+  // runs low.
+  recordRateLimit(token, raw.headers);
+  const response = await validateGitHubJsonResponse(raw, GITHUB_GRAPHQL_URL);
+  const body = await readJsonResponse<GitHubCommitDatesResponse>(response);
+  // GraphQL reports an exhausted budget as a 200 with a RATE_LIMITED error.
+  // Treat it as the 403 REST would send, so the token is marked.
+  const rateLimited = body.errors?.find(
+    (error) => error.type === "RATE_LIMITED",
+  );
+  if (rateLimited) {
+    throw new GitHubError(
+      403,
+      rateLimited.message ?? "GitHub GraphQL rate limit exceeded",
+      response.headers,
+      GITHUB_GRAPHQL_URL,
+    );
+  }
+  // A commit GitHub doesn't know comes back as null with no error, so any
+  // error means a failed lookup. Refuse the page rather than cache a missing
+  // date in place of a real one; a stale entry is served instead.
+  const repository = body.data?.repository;
+  if (body.errors?.length || !repository) {
+    throw new GitHubError(
+      502,
+      body.errors?.[0]?.message ?? "GitHub GraphQL returned no repository",
+      new Headers(),
+    );
+  }
+  const commitDates = new Map<string, string>();
+  unique.forEach((sha, i) => {
+    const date = repository[`c${i}`]?.committedDate;
+    if (typeof date === "string") commitDates.set(sha, date);
+  });
+  return commitDates;
 }
 
 function hasNextLink(link: string | null): boolean {
@@ -1144,6 +1403,9 @@ export class GitHubError extends Error {
 /** A release GitHub showed the pool as a draft; served as a 404. */
 class DraftReleaseError extends GitHubError {}
 
+/** Tag dates were asked for, but the pool has no token for GraphQL. */
+export class NoGraphQLTokenError extends GitHubError {}
+
 /** An error served from the negative release cache. */
 class CachedReleaseError extends GitHubError {}
 
@@ -1153,6 +1415,7 @@ export const __testing = {
   attestationsFingerprint,
   edgeCacheRequest,
   edgeCacheResponse,
+  fetchGitHubTagList,
   githubJsonHeaders,
   hasNextLink,
   isGitHubApiUrl,
