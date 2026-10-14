@@ -136,7 +136,7 @@ interface Env {
   GITHUB_CACHE: KVNamespace;
 }
 
-interface TokenRecord {
+export interface TokenRecord {
   id: number;
   token: string;
   // Filled in from GitHub's rate-limit headers as the token is used.
@@ -539,7 +539,11 @@ function releaseErrorFreshMs(status: number, error?: unknown): number | null {
   return null;
 }
 
-function releaseStaleFallbackAllowed(error: unknown): boolean {
+/**
+ * Whether a failed refresh may serve the entry it was refreshing: for rate
+ * limits, network errors and 5xx, not for answers such as a 404.
+ */
+export function releaseStaleFallbackAllowed(error: unknown): boolean {
   const status = githubStatus(error);
   return isRateLimited(error) || status === null || status >= 500;
 }
@@ -689,9 +693,20 @@ export async function getCachedGitHubTagList(
  * `githubStatus`.
  */
 export async function githubPoolJson<T>(env: Env, url: string): Promise<T> {
+  return withPoolToken(env, (token) => githubJson<T>(url, token));
+}
+
+/**
+ * Run GitHub requests with one pool token, then bench the token if it ran
+ * low, or mark it if GitHub rate-limited it. Errors are rethrown.
+ */
+export async function withPoolToken<T>(
+  env: Env,
+  run: (token: TokenRecord | null) => Promise<T>,
+): Promise<T> {
   const token = await nextToken(env);
   try {
-    const data = await githubJson<T>(url, token);
+    const data = await run(token);
     await benchIfLow(env, token);
     return data;
   } catch (error) {
@@ -879,21 +894,51 @@ function releaseAgeImmutable(publishedAt: string | undefined): boolean {
   );
 }
 
+/** One page of a GitHub list, and what GitHub's Link header says follows. */
+export interface GitHubListPage<T> {
+  items: T[];
+  /** GitHub links a next page; a full page may be the last. */
+  hasNextPage: boolean;
+  /** The page GitHub links as `rel="last"`, when it does. */
+  lastPage: number | null;
+  /** The size of GitHub's JSON for this page. */
+  bytes: number;
+}
+
 async function fetchGitHubReleaseList(
   owner: string,
   repo: string,
   page: number,
   token: TokenRecord | null,
 ): Promise<GitHubReleaseListPage> {
+  const { items, hasNextPage } = await fetchGitHubReleasePage(
+    owner,
+    repo,
+    page,
+    token,
+  );
+  return {
+    releases: items,
+    next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
+  };
+}
+
+/** One page (100) of a repository's releases, drafts removed. */
+export async function fetchGitHubReleasePage(
+  owner: string,
+  repo: string,
+  page: number,
+  token: TokenRecord | null,
+): Promise<GitHubListPage<GitHubListedRelease>> {
   assertValidRepo(owner, repo);
   const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${RELEASE_LIST_PER_PAGE}&page=${page}`,
     token,
   );
-  // GitHub says whether another page exists; a full page may be the last.
-  const hasNextPage = hasNextLink(response.headers.get("link"));
-  const data =
-    await readJsonResponse<
+  const link = response.headers.get("link");
+  const { data, bytes } =
+    await readSizedJsonResponse<
       (GitHubListedRelease & { assets?: GitHubListedAsset[] })[]
     >(response);
   if (!Array.isArray(data)) {
@@ -921,9 +966,10 @@ async function fetchGitHubReleaseList(
       })),
     }));
   return {
-    releases,
-    next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
-    truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
+    items: releases,
+    hasNextPage: hasNextLink(link),
+    lastPage: lastLinkPage(link),
+    bytes,
   };
 }
 
@@ -939,13 +985,39 @@ async function fetchGitHubTagList(
   dates: boolean,
   token: TokenRecord | null,
 ): Promise<GitHubTagListPage> {
+  const { items, hasNextPage } = await fetchGitHubTagPage(
+    owner,
+    repo,
+    page,
+    dates,
+    token,
+  );
+  return {
+    tags: items,
+    next_page: hasNextPage && page < TAG_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= TAG_LIST_MAX_PAGE,
+  };
+}
+
+/**
+ * One page (100) of a repository's tags, in GitHub's order. With `dates`,
+ * each tag also carries its commit's committer date (one GraphQL query).
+ */
+export async function fetchGitHubTagPage(
+  owner: string,
+  repo: string,
+  page: number,
+  dates: boolean,
+  token: TokenRecord | null,
+): Promise<GitHubListPage<GitHubTag>> {
   assertValidRepo(owner, repo);
   const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${TAG_LIST_PER_PAGE}&page=${page}`,
     token,
   );
-  const hasNextPage = hasNextLink(response.headers.get("link"));
-  const data = await readJsonResponse<GitHubRestTag[]>(response);
+  const link = response.headers.get("link");
+  const { data, bytes } =
+    await readSizedJsonResponse<GitHubRestTag[]>(response);
   if (!Array.isArray(data)) {
     throw new GitHubError(
       502,
@@ -982,9 +1054,10 @@ async function fetchGitHubTagList(
     }
   }
   return {
-    tags,
-    next_page: hasNextPage && page < TAG_LIST_MAX_PAGE ? page + 1 : null,
-    truncated: hasNextPage && page >= TAG_LIST_MAX_PAGE,
+    items: tags,
+    hasNextPage: hasNextLink(link),
+    lastPage: lastLinkPage(link),
+    bytes,
   };
 }
 
@@ -1089,6 +1162,20 @@ function hasNextLink(link: string | null): boolean {
     !!link &&
     link.split(",").some((part) => /;\s*rel="?next"?(\s*;|\s*$)/.test(part))
   );
+}
+
+function lastLinkPage(link: string | null): number | null {
+  const part = link
+    ?.split(",")
+    .find((part) => /;\s*rel="?last"?(\s*;|\s*$)/.test(part));
+  const url = part?.match(/<([^>]+)>/)?.[1];
+  if (!url) return null;
+  try {
+    const page = Number(new URL(url).searchParams.get("page"));
+    return Number.isInteger(page) && page >= 1 ? page : null;
+  } catch {
+    return null;
+  }
 }
 
 async function fetchGitHubAttestations(
@@ -1262,13 +1349,21 @@ function redirectedGitHubApiUrl(
 }
 
 async function readJsonResponse<T>(response: Response): Promise<T> {
+  return (await readSizedJsonResponse<T>(response)).data;
+}
+
+/** The parsed body, and how long its JSON text was. */
+async function readSizedJsonResponse<T>(
+  response: Response,
+): Promise<{ data: T; bytes: number }> {
   const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
-  if (contentType.split(";")[0].trim() === "application/x-snappy") {
-    const bytes = await response.arrayBuffer();
-    const json = new TextDecoder().decode(uncompress(new Uint8Array(bytes)));
-    return JSON.parse(json);
-  }
-  return response.json();
+  const json =
+    contentType.split(";")[0].trim() === "application/x-snappy"
+      ? new TextDecoder().decode(
+          uncompress(new Uint8Array(await response.arrayBuffer())),
+        )
+      : await response.text();
+  return { data: JSON.parse(json), bytes: json.length };
 }
 
 function assertValidRepo(owner: string, repo: string) {
@@ -1385,6 +1480,7 @@ export const __testing = {
   fetchGitHubTagList,
   githubJsonHeaders,
   hasNextLink,
+  lastLinkPage,
   isGitHubApiUrl,
   isRateLimited,
   resetAt,
