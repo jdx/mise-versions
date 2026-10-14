@@ -17,6 +17,11 @@
  * Each day's distinct users are also written to R2 as an exact sorted hash
  * set (see lib/user-hash-set.js), so MAU unions 30 small files instead of
  * re-reading 30 days of raw logs.
+ *
+ * Retention (mise-logs bucket lifecycle, by prefix): raw logs under
+ * `http_requests/` expire after 35 days, so a day can be re-read from logs for
+ * about a month; the per-day user sets under `rollups/` are kept 400 days, so
+ * MAU for any day in the last year can be recomputed from them.
  */
 
 import { resolve } from "node:path";
@@ -250,6 +255,21 @@ export async function recomputeLaterMau(
     const mau = await trailingMau(date, (day) =>
       loadUserSet(config, day, userSets),
     );
+    // A day's window can only gain user sets over time (a backfill adds one).
+    // Fewer than the stored row saw means files went missing, so a rewrite
+    // would replace a complete count with a partial one; keep the row.
+    const [existing] = await queryD1(
+      config,
+      "SELECT days_covered FROM logpush_daily_mau WHERE date = ?",
+      [date],
+      "logpush_daily_mau read",
+    );
+    if (existing && mau.daysCovered < Number(existing.days_covered)) {
+      console.warn(
+        `${date}: keeping stored MAU (${existing.days_covered} days covered); only ${mau.daysCovered} user sets are available now`,
+      );
+      continue;
+    }
     if (!config.dryRun) {
       await batchUpsert(
         config,

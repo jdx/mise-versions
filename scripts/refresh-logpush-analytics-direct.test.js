@@ -54,7 +54,7 @@ function fakeR2(objects) {
   };
 }
 
-function fakeD1() {
+function fakeD1({ mauRows = {} } = {}) {
   const writes = [];
   const tools = [
     { id: 1, name: "node" },
@@ -75,6 +75,8 @@ function fakeD1() {
       }
     } else if (sql.startsWith("SELECT id, os, arch FROM platforms")) {
       results = [{ id: 7, os: "linux", arch: "x64" }];
+    } else if (sql.startsWith("SELECT days_covered FROM logpush_daily_mau")) {
+      results = mauRows[params[0]] ? [mauRows[params[0]]] : [];
     }
     return new Response(
       JSON.stringify({ success: true, result: [{ success: true, results }] }),
@@ -296,11 +298,44 @@ describe("refresh-logpush-analytics-direct", () => {
       { date: "2026-10-13", mau: 4, mauDaysCovered: 3 },
     ]);
     assert.deepEqual(
-      writes.map(({ params }) => params.slice(0, 3)),
+      writes
+        .filter(({ sql }) => sql.startsWith("INSERT"))
+        .map(({ params }) => params.slice(0, 3)),
       [
         ["2026-10-12", 3, 2],
         ["2026-10-13", 4, 3],
       ],
+    );
+  });
+
+  it("keeps a stored MAU row when user sets in its window have gone missing", async () => {
+    const set = (values) => encodeUserHashes(Float64Array.from(values));
+    const r2 = fakeR2({
+      "rollups/mise-users/v1/2026-10-10.bin.gz": set([1, 2]),
+      "rollups/mise-users/v1/2026-10-12.bin.gz": set([2, 3]),
+      "rollups/mise-users/v1/2026-10-13.bin.gz": set([4]),
+    });
+    // 2026-10-13 was computed when 5 days of sets existed.
+    const writes = fakeD1({
+      mauRows: {
+        "2026-10-12": { days_covered: 2 },
+        "2026-10-13": { days_covered: 5 },
+      },
+    });
+    const results = await recomputeLaterMau(
+      config(r2),
+      ["2026-10-10"],
+      new Map(),
+      "2026-10-13",
+    );
+    assert.deepEqual(results, [
+      { date: "2026-10-12", mau: 3, mauDaysCovered: 2 },
+    ]);
+    assert.deepEqual(
+      writes
+        .filter(({ sql }) => sql.startsWith("INSERT"))
+        .map(({ params }) => params[0]),
+      ["2026-10-12"],
     );
   });
 });
