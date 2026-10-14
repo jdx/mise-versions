@@ -113,7 +113,13 @@ This happens when:
 - GitHub could not serve all pages within the server's 20-second crawl budget.
   So far this only happens for openai/codex, where each REST page is about 32 MB
   and takes GitHub around 8 s, so the server keeps 100–200 releases. It can also
-  happen if GitHub fails part-way through a crawl.
+  happen if GitHub fails part-way through a crawl, or a page is still open at
+  the crawl's 25-second deadline, or
+- the list kept changing while it was read. Pages are read at slightly
+  different moments, so a release published mid-crawl could otherwise drop an
+  entry at a page boundary. The server reads page 1 again after a crawl and
+  crawls once more if it moved. If it is still moving, the server keeps only
+  page 1, truncated, and crawls in full at the next refresh.
 
 What a client should do with a truncated list:
 

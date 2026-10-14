@@ -954,11 +954,13 @@ export async function fetchGitHubReleasePage(
   repo: string,
   page: number,
   token: TokenRecord | null,
+  signal?: AbortSignal,
 ): Promise<GitHubListPage<GitHubListedRelease>> {
   assertValidRepo(owner, repo);
   const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${RELEASE_LIST_PER_PAGE}&page=${page}`,
     token,
+    signal,
   );
   const link = response.headers.get("link");
   const { data, bytes } =
@@ -1033,6 +1035,7 @@ export async function fetchGitHubTagPage(
   page: number,
   dates: boolean,
   token: TokenRecord | null,
+  signal?: AbortSignal,
 ): Promise<GitHubListPage<GitHubTag>> {
   assertValidRepo(owner, repo);
   // Dates need GraphQL, which refuses anonymous requests. Fail before the
@@ -1042,6 +1045,7 @@ export async function fetchGitHubTagPage(
   const response = await fetchGitHubJsonResponse(
     `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${TAG_LIST_PER_PAGE}&page=${page}`,
     token,
+    signal,
   );
   const link = response.headers.get("link");
   const { data, bytes } =
@@ -1076,6 +1080,7 @@ export async function fetchGitHubTagPage(
       repo,
       tags.map((tag) => tag.commit.sha),
       token,
+      signal,
     );
     for (const tag of tags) {
       tag.date = commitDates.get(tag.commit.sha) ?? null;
@@ -1117,6 +1122,7 @@ async function fetchGitHubCommitDates(
   repo: string,
   shas: string[],
   token: TokenRecord | null,
+  signal?: AbortSignal,
 ): Promise<Map<string, string>> {
   // GitHub's GraphQL API refuses anonymous requests.
   if (!token) throw noGraphQLTokenError();
@@ -1148,6 +1154,7 @@ async function fetchGitHubCommitDates(
     },
     body: JSON.stringify({ query, variables }),
     redirect: "manual",
+    signal,
   });
   // These headers report the GraphQL budget, which benchIfLow then holds to
   // the same floor as REST: volunteers' tokens are left alone once either
@@ -1302,12 +1309,17 @@ async function githubJson<T>(
 async function fetchGitHubJsonResponse(
   url: string,
   token: TokenRecord | null,
+  signal?: AbortSignal,
 ): Promise<Response> {
   const maxRedirects = 3;
   let currentUrl = url;
   for (let redirectCount = 0; ; redirectCount++) {
     const headers = githubJsonHeaders(currentUrl, token);
-    const response = await fetch(currentUrl, { headers, redirect: "manual" });
+    const response = await fetch(currentUrl, {
+      headers,
+      redirect: "manual",
+      signal,
+    });
     recordRateLimit(token, response.headers);
     if (isGitHubApiRedirect(response)) {
       await response.body?.cancel();

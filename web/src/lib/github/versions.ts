@@ -31,10 +31,12 @@ const MAX_PAGE_CONCURRENCY = 6;
 // astral-sh/uv 7.8 MB) but 32 MB for openai/codex, whose releases carry 100+
 // assets; one such page is about what a Worker's 128 MB can parse.
 const PARSE_BUDGET_BYTES = 24 * 1024 * 1024;
-// A crawl starts no page it does not expect to finish within this long, and
-// keeps the newest-first prefix it has as a truncated list. It must fit a background refresh's 30s
-// and a client's patience; openai/codex pages take about 8s each.
-const CRAWL_BUDGET_MS = 20 * 1000;
+// A crawl starts no page it does not expect to finish within `budgetMs`, and
+// keeps the newest-first prefix it has as a truncated list. Requests still
+// open at `deadlineMs` are cancelled, keeping the pages before the first
+// unfinished one. Both must fit a background refresh's 30s and a client's
+// patience; openai/codex pages take about 8s each.
+const crawlTiming = { budgetMs: 20 * 1000, deadlineMs: 25 * 1000 };
 
 // Page 1 (where new releases and tags land) is re-read after a quarter of
 // how long the list has been unchanged, within these bounds: every build for a
@@ -291,24 +293,36 @@ async function refreshVersions(
   const result = await withPoolToken(env, async (token) => {
     if (requireToken && !token) throw new NoPoolToken();
     const startedAt = Date.now();
-    // A retry is only worth it while there is time to wait for it.
-    const fetchPage = (page: number) =>
-      fetchPageWithRetry(
-        owner,
-        repo,
-        source,
-        asset,
-        page,
-        token,
-        () => Date.now() - startedAt < CRAWL_BUDGET_MS / 2,
-      );
-    const head = await fetchPage(1);
-    // A page 1 with nothing after it is the whole list: a full crawl.
-    if (stored && step === "head" && head.hasNextPage) {
-      const merged = mergeHead(head, stored);
-      if (merged) return { ...merged, full: false };
+    const deadline = new AbortController();
+    const timer = setTimeout(
+      () => deadline.abort(new Error("GitHub crawl deadline")),
+      crawlTiming.deadlineMs,
+    );
+    try {
+      // A retry is only worth it while there is time to wait for it.
+      const fetchPage = (page: number) =>
+        fetchPageWithRetry(
+          owner,
+          repo,
+          source,
+          asset,
+          page,
+          token,
+          deadline.signal,
+          () =>
+            !deadline.signal.aborted &&
+            Date.now() - startedAt < crawlTiming.budgetMs / 2,
+        );
+      const head = await fetchPage(1);
+      // A page 1 with nothing after it is the whole list: a full crawl.
+      if (stored && step === "head" && head.hasNextPage) {
+        const merged = mergeHead(head, stored);
+        if (merged) return { ...merged, full: false };
+      }
+      return await verifiedCrawl(head, fetchPage, startedAt);
+    } finally {
+      clearTimeout(timer);
     }
-    return { ...(await crawl(head, fetchPage, startedAt)), full: true };
   });
 
   const now = Date.now();
@@ -319,7 +333,8 @@ async function refreshVersions(
   const lastRequested = Math.max(stored?.requested_at ?? 0, requestedAt ?? 0);
   const entry: StoredVersions = {
     head_at: now,
-    full_at: result.full || !stored ? now : stored.full_at,
+    // An incomplete crawl leaves the full crawl due.
+    full_at: result.full ? now : (stored?.full_at ?? 0),
     unchanged_since:
       unchanged && stored ? Math.min(stored.unchanged_since, now) : now,
     generation,
@@ -476,20 +491,64 @@ function mergeHead(
 }
 
 /**
+ * A crawl whose pages are known to join up. Pages are read at slightly
+ * different moments, so a release published (or deleted) above a page
+ * boundary mid-crawl shifts the list between two reads and can drop an
+ * entry. The common case is a new release at the top, so page 1 is read
+ * again afterwards: if it moved, the crawl runs once more, and if it is
+ * still moving only page 1 is kept, truncated, with the full crawl left due.
+ */
+async function verifiedCrawl(
+  head: GitHubListPage<StoredItem>,
+  fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>,
+  startedAt: number,
+): Promise<{ items: StoredItem[]; truncated: boolean; full: boolean }> {
+  let first = head;
+  let firstStartedAt = startedAt;
+  for (let attempt = 0; ; attempt++) {
+    const crawled = await crawl(first, fetchPage, firstStartedAt);
+    if (crawled.pages <= 1) return { ...crawled, full: true };
+    const verifyStartedAt = Date.now();
+    const verify = await fetchPage(1).catch(() => null);
+    if (verify && sameItems(verify.items, first.items)) {
+      return { ...crawled, full: true };
+    }
+    if (
+      verify &&
+      attempt === 0 &&
+      Date.now() - startedAt < crawlTiming.budgetMs
+    ) {
+      first = verify;
+      firstStartedAt = verifyStartedAt;
+      continue;
+    }
+    const page = verify ?? first;
+    return { items: page.items, truncated: page.hasNextPage, full: false };
+  }
+}
+
+function sameItems(a: StoredItem[], b: StoredItem[]): boolean {
+  return (
+    a.length === b.length &&
+    a.every((item, i) => itemKey(item) === itemKey(b[i]))
+  );
+}
+
+/**
  * Every page up to VERSIONS_MAX_PAGES, in GitHub's order, or as many as fit
- * in CRAWL_BUDGET_MS.
+ * in crawlTiming.budgetMs.
  */
 async function crawl(
   first: GitHubListPage<StoredItem>,
   fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>,
   startedAt = Date.now(),
-): Promise<{ items: StoredItem[]; truncated: boolean }> {
+): Promise<{ items: StoredItem[]; truncated: boolean; pages: number }> {
   const pages = [first];
   // Start another batch only if it should finish in time, judging by how
   // long the last one (at first, page 1) took.
   let lastBatchMs = Date.now() - startedAt;
   const inBudget = () =>
-    Date.now() - startedAt + lastBatchMs <= CRAWL_BUDGET_MS;
+    Date.now() - startedAt + lastBatchMs <= crawlTiming.budgetMs;
   const timed = async <T>(batch: Promise<T>): Promise<T> => {
     const batchStart = Date.now();
     const result = await batch;
@@ -557,7 +616,11 @@ async function crawl(
       seen.add(key);
       return true;
     });
-  return { items, truncated: pages[pages.length - 1].hasNextPage };
+  return {
+    items,
+    truncated: pages[pages.length - 1].hasNextPage,
+    pages: pages.length,
+  };
 }
 
 async function fetchPageWithRetry(
@@ -567,15 +630,16 @@ async function fetchPageWithRetry(
   asset: string | undefined,
   page: number,
   token: TokenRecord | null,
+  signal: AbortSignal | undefined,
   canRetry: () => boolean = () => true,
 ): Promise<GitHubListPage<StoredItem>> {
   try {
-    return await fetchPage(owner, repo, source, asset, page, token);
+    return await fetchPage(owner, repo, source, asset, page, token, signal);
   } catch (error) {
     // GitHub times out on some pages of releases with many assets
     // (openai/codex) and answers the same request on a retry.
     if (!transientError(error) || !canRetry()) throw error;
-    return fetchPage(owner, repo, source, asset, page, token);
+    return fetchPage(owner, repo, source, asset, page, token, signal);
   }
 }
 
@@ -592,12 +656,20 @@ async function fetchPage(
   asset: string | undefined,
   page: number,
   token: TokenRecord | null,
+  signal?: AbortSignal,
 ): Promise<GitHubListPage<StoredItem>> {
   if (source === "tags") {
-    const result = await fetchGitHubTagPage(owner, repo, page, true, token);
+    const result = await fetchGitHubTagPage(
+      owner,
+      repo,
+      page,
+      true,
+      token,
+      signal,
+    );
     return { ...result, items: result.items.map(compactTag) };
   }
-  const result = await fetchGitHubReleasePage(owner, repo, page, token);
+  const result = await fetchGitHubReleasePage(owner, repo, page, token, signal);
   return {
     ...result,
     items: result.items.map((release) => compactRelease(release, asset)),
@@ -798,6 +870,10 @@ export async function recordVersionsDemand(
 
 export const __testing = {
   crawl,
+  /** Shorten the crawl's time limits for a test. */
+  setCrawlTiming(timing: { budgetMs?: number; deadlineMs?: number }) {
+    Object.assign(crawlTiming, timing);
+  },
   mergeHead,
   parseVersionsCacheKey,
   refreshStep,

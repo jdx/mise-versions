@@ -153,7 +153,9 @@ test("a cold crawl reads every page and stores compact releases", () => {
     const { versions, edgeSeconds, staleFallback } = await getCachedGitHubVersions(
       env, "Owner", "Repo", { source: "releases" },
     );
+    // Page 1 is read again at the end to check the pages join up.
     assert.deepEqual(apiCalls().sort(), [
+      "/repos/Owner/Repo/releases?per_page=100&page=1",
       "/repos/Owner/Repo/releases?per_page=100&page=1",
       "/repos/Owner/Repo/releases?per_page=100&page=2",
       "/repos/Owner/Repo/releases?per_page=100&page=3",
@@ -188,7 +190,8 @@ test("a crawl stops at the page cap and reports truncation", () => {
     const env = { DB: poolDb, GITHUB_CACHE: memoryKv() };
     const { versions } = await getCachedGitHubVersions(env, "o", "r", { source: "releases" });
     const calls = apiCalls();
-    assert.equal(calls.length, 20);
+    // 20 pages, plus page 1 again to check the pages join up.
+    assert.equal(calls.length, 21);
     assert.ok(!calls.some((call) => call.endsWith("page=21")));
     assert.equal(versions.releases.length, 2000);
     assert.equal(versions.truncated, true);
@@ -339,10 +342,12 @@ test("a head that shares nothing with the stored list triggers a full crawl", ()
     const { versions } = await getCachedGitHubVersions(
       { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
     );
-    // Page 1 is read once and reused as the crawl's first page.
+    // Page 1 is reused as the crawl's first page, then read again to check
+    // the pages join up.
     assert.deepEqual(apiCalls(), [
       "/repos/o/r/releases?per_page=100&page=1",
       "/repos/o/r/releases?per_page=100&page=2",
+      "/repos/o/r/releases?per_page=100&page=1",
     ]);
     assert.equal(versions.releases.length, 150);
     assert.ok(!versions.releases.some((r) => r.tag === "old"));
@@ -449,7 +454,8 @@ test("tags carry their commit dates", () => {
       { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "tags" },
     );
     const calls = apiCalls();
-    assert.equal(calls.filter((call) => call === "/graphql").length, 2);
+    // One query per page, and one for page 1 read again at the end.
+    assert.equal(calls.filter((call) => call === "/graphql").length, 3);
     assert.equal(versions.source, "tags");
     assert.equal(versions.tags.length, 120);
     assert.deepEqual(versions.tags[0], { tag: "t120", sha: sha(120), date: "date-of-0000" });
@@ -774,5 +780,91 @@ test("demand from Logpush stamps the lists it names", () => {
     assert.deepEqual(result, { stamped: 1, unknown: 2 });
     assert.equal(storedEntry(kv, "github:versions:releases:quiet/repo").requested_at, seenAt);
     assert.equal(storedEntry(kv, "github:versions:releases:fresh/repo").requested_at, now - HOUR);
+  `);
+});
+
+test("a release published mid-crawl is not lost at a page boundary", () => {
+  runVersionsTest(`
+    github.releases = releases(300);
+    // Page 3 answers at once from the old list; page 2 answers after v301 is
+    // published, so on its own the crawl would miss v101.
+    const realFetch = globalThis.fetch;
+    let published = false;
+    globalThis.fetch = async (input, init) => {
+      const page = new URL(String(input)).searchParams.get("page");
+      if (page === "2" && !published) {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+        github.releases.unshift(release(301));
+        published = true;
+      }
+      return realFetch(input, init);
+    };
+    const kv = memoryKv();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    const tags = versions.releases.map((r) => r.tag);
+    assert.equal(tags.length, 301);
+    assert.ok(tags.includes("v101"));
+    assert.equal(tags[0], "v301");
+    assert.equal(versions.truncated, false);
+    // Crawled twice (page 1 moved), each checked by reading page 1 again.
+    assert.equal(apiCalls().filter((c) => c.endsWith("page=1")).length, 3);
+    assert.ok(storedEntry(kv, "github:versions:releases:o/r").full_at > 0);
+  `);
+});
+
+test("a list that keeps moving keeps only page 1, with the full crawl left due", () => {
+  runVersionsTest(`
+    github.releases = releases(250);
+    // Every read of page 1 sees one more release.
+    const realFetch = globalThis.fetch;
+    let next = 251;
+    globalThis.fetch = async (input, init) => {
+      if (new URL(String(input)).searchParams.get("page") === "1") {
+        github.releases.unshift(release(next++));
+      }
+      return realFetch(input, init);
+    };
+    const kv = memoryKv();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    assert.equal(versions.releases.length, 100);
+    assert.equal(versions.truncated, true);
+    assert.equal(storedEntry(kv, "github:versions:releases:o/r").full_at, 0);
+    assert.equal(__testing.refreshStep(storedEntry(kv, "github:versions:releases:o/r"), Date.now(), "releases"), "full");
+  `);
+});
+
+test("pages still open at the deadline are cancelled and the prefix kept", () => {
+  runVersionsTest(`
+    __testing.setCrawlTiming({ budgetMs: 60_000, deadlineMs: 200 });
+    github.releases = releases(350);
+    const realFetch = globalThis.fetch;
+    let aborted = 0;
+    globalThis.fetch = async (input, init) => {
+      const page = new URL(String(input)).searchParams.get("page");
+      if (page === "3") {
+        // Stalls until the crawl gives up on it.
+        return new Promise((_, reject) => {
+          init.signal.addEventListener("abort", () => {
+            aborted++;
+            reject(init.signal.reason);
+          });
+        });
+      }
+      return realFetch(input, init);
+    };
+    const started = Date.now();
+    const { versions } = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: memoryKv() }, "o", "r", { source: "releases" },
+    );
+    assert.ok(Date.now() - started < 2000, "returned near the deadline");
+    assert.equal(aborted, 1);
+    // Pages 1-2 are kept; page 4 came back but follows the gap.
+    assert.equal(versions.releases.length, 200);
+    assert.equal(versions.releases.at(-1).tag, "v151");
+    assert.equal(versions.truncated, true);
   `);
 });
