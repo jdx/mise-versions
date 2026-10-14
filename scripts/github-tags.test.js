@@ -266,12 +266,21 @@ test("dated tag lists are cached apart and need a pool token", () => {
       (error) => githubStatus(error) === 503,
     );
     assert.deepEqual(reads, ["github:tags-dated:o/r:1"]);
-    assert.ok(!urls.includes("https://api.github.com/graphql"));
+    // Not even the REST page: it would spend the anonymous limit for nothing.
+    assert.deepEqual(urls, []);
 
-    // An empty page needs no dates and no token.
-    globalThis.fetch = async () => new Response("[]", { status: 200 });
-    const empty = await __testing.fetchGitHubTagList("o", "r", 1, true, null);
+    // An empty page needs no GraphQL query.
+    const calls = [];
+    globalThis.fetch = async (url) => {
+      calls.push(String(url));
+      return new Response("[]", { status: 200 });
+    };
+    const empty = await __testing.fetchGitHubTagList("o", "r", 1, true, {
+      id: 1,
+      token: "t",
+    });
     assert.deepEqual(empty.tags, []);
+    assert.ok(!calls.includes("https://api.github.com/graphql"));
   `);
 });
 
