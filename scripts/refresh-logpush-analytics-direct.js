@@ -39,6 +39,7 @@ import {
   logpushDayPrefixes,
   objectOverlapsDate,
 } from "./lib/logpush.js";
+import { reportGithubVersionsDemand } from "./lib/github-versions-demand.js";
 import {
   DEFAULT_MISE_RELEASE_ZONES,
   MiseReleaseDayAggregator,
@@ -486,6 +487,21 @@ async function refreshUsage(config, date, aggregator, userSets, started) {
   } else {
     await writeD1(config, date, aggregator, mau, new Date().toISOString());
   }
+  result.githubVersionsPaths = aggregator.githubVersionsPaths.size;
+  if (!config.dryRun && config.apiSecret) {
+    try {
+      result.githubVersionsDemand = await reportGithubVersionsDemand({
+        apiUrl: config.demandApiUrl,
+        secret: config.apiSecret,
+        date,
+        paths: [...aggregator.githubVersionsPaths],
+      });
+    } catch (error) {
+      // Demand only decides what the next deploys bake; never fail the
+      // rollup over it.
+      console.warn(`${date}: reporting GitHub versions demand failed:`, error);
+    }
+  }
   return result;
 }
 
@@ -551,6 +567,9 @@ async function main() {
       process.env.LOGPUSH_STATE_PREFIX || DEFAULT_STATE_PREFIX
     ).replace(/\/+$/, ""),
     dryRun: args.dryRun,
+    // The Worker's API_SECRET, for reporting GitHub versions demand.
+    apiSecret: process.env.API_SECRET,
+    demandApiUrl: process.env.DEMAND_API_URL || "https://mise-versions.jdx.dev",
     r2: new R2Client({
       accountId: process.env.LOGPUSH_R2_ACCOUNT_ID || cloudflareAccountId,
       accessKeyId: requiredEnv("LOGPUSH_R2_ACCESS_KEY_ID"),

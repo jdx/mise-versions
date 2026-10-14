@@ -185,4 +185,6 @@ jobs:
           LOGPUSH_R2_SECRET_ACCESS_KEY: ${{ secrets.LOGPUSH_R2_SECRET_ACCESS_KEY }}
           # The Worker's API_SECRET, which keys the IP hashes in Analytics Engine.
           IP_HASH_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
+          # Reports requests for baked /data/github/ lists back to the Worker.
+          API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
           LOGPUSH_ZONES: jdx.dev
