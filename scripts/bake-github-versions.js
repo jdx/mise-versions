@@ -83,6 +83,13 @@ export async function collectBakedFiles({
       // are cancelled when the deadline passes.
       const remaining = deadlineMs - (now() - started);
       if (remaining <= 0) break;
+      // A plain timer rather than AbortSignal.timeout(), whose timer does not
+      // keep Node's event loop alive.
+      const deadline = new AbortController();
+      const timer = setTimeout(
+        () => deadline.abort(new Error("bake deadline")),
+        remaining,
+      );
       try {
         const response = await fetchImpl(
           `${apiUrl}/api/admin/github/versions/bake`,
@@ -93,7 +100,7 @@ export async function collectBakedFiles({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({ cursor, limit: PAGE_LIMIT, refresh }),
-            signal: AbortSignal.timeout(remaining),
+            signal: deadline.signal,
           },
         );
         if (!response.ok) {
@@ -102,6 +109,8 @@ export async function collectBakedFiles({
         page = await response.json();
       } catch (error) {
         log.warn(`bake page ${totals.pages + 1} attempt ${attempt}: ${error}`);
+      } finally {
+        clearTimeout(timer);
       }
     }
     if (!page) break;
