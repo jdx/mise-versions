@@ -121,7 +121,7 @@ test("memo works without the Cache API", () => {
 
 test("read-through memo shares one load and does not memoize failures", () => {
   runMemoTest(`${PRELUDE}
-    const { readMemo, readThroughMemo, writeMemo } = await import(
+    const { readMemo, readThroughMemo, writeMemo, __testing } = await import(
       "./web/src/lib/github/edge-memo.ts"
     );
     const scope = {};
@@ -201,6 +201,37 @@ test("read-through memo shares one load and does not memoize failures", () => {
     assert.equal(await slowRead, "old");
     assert.equal((await readMemo(scope, "gen")).value, "new");
     assert.equal((await readMemo({}, "gen")).value, "new");
+
+    // A caller-specific failure (another client's rate limit) is not handed
+    // to the other waiters: each retries with its own load.
+    class Limited extends Error {}
+    let limitedLoads = 0;
+    let releaseLimited;
+    const limitedGate = new Promise((resolve) => (releaseLimited = resolve));
+    const limitedFirst = async () => {
+      limitedLoads++;
+      await limitedGate;
+      throw new Limited("limited");
+    };
+    const eligible = async () => {
+      limitedLoads++;
+      return { value: "mine", expiresAt: Date.now() + 60_000 };
+    };
+    const options = { callerSpecific: (error) => error instanceof Limited };
+    const limitedCallers = [
+      readThroughMemo(scope, "limited", limitedFirst, options),
+      readThroughMemo(scope, "limited", eligible, options),
+      readThroughMemo(scope, "limited", eligible, options),
+    ].map((p) => p.then((value) => ({ value }), (error) => ({ error: error.message })));
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    releaseLimited();
+    const limitedOutcomes = await Promise.all(limitedCallers);
+    assert.deepEqual(limitedOutcomes[0], { error: "limited" });
+    assert.deepEqual(limitedOutcomes.slice(1), [{ value: "mine" }, { value: "mine" }]);
+    assert.ok(limitedLoads >= 2 && limitedLoads <= 3, String(limitedLoads));
+
+    // Bookkeeping for in-flight loads does not outlive them.
+    assert.equal(__testing.pendingLoadKeys(scope), 0);
 
     // An already-expired load is returned but not memoized.
     let expiredLoads = 0;

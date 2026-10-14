@@ -65,14 +65,26 @@ export async function isPublicGitHubRepo(
   // the free memo tier when possible. A memoized answer expires when the KV
   // answer it copies would, so a repo that turns private is still cut off
   // within VISIBILITY_TTL_SECONDS of the last check, as without the memo.
-  return readThroughMemo(env.GITHUB_CACHE, cacheKey, async () => {
-    const entry = await lookUpVisibility(env, cacheKey, owner, repo, clientKey);
-    return {
-      value: entry.public,
-      expiresAt:
-        Math.min(entry.cached_at, Date.now()) + VISIBILITY_TTL_SECONDS * 1000,
-    };
-  });
+  return readThroughMemo(
+    env.GITHUB_CACHE,
+    cacheKey,
+    async () => {
+      const entry = await lookUpVisibility(
+        env,
+        cacheKey,
+        owner,
+        repo,
+        clientKey,
+      );
+      return {
+        value: entry.public,
+        expiresAt:
+          Math.min(entry.cached_at, Date.now()) + VISIBILITY_TTL_SECONDS * 1000,
+      };
+    },
+    // A lookup refused by one client's rate limit says nothing about others.
+    { callerSpecific: (error) => error instanceof VisibilityLookupLimited },
+  );
 }
 
 async function lookUpVisibility(

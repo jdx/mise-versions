@@ -43,21 +43,42 @@ export interface MemoLoad<T> {
 // so it assumes every caller memoizes the same GITHUB_CACHE namespace.
 const localMemos = new WeakMap<object, Map<string, LocalEntry>>();
 const inflight = new WeakMap<object, Map<string, Promise<MemoLoad<unknown>>>>();
-// Counts writes per key so a read-through load that started before a direct
-// write (such as a generation rotation) does not overwrite the newer value.
-const writeCounts = new WeakMap<object, Map<string, number>>();
+// Read-through loads in flight, per key, so a direct write (such as a
+// generation rotation) can tell them their answer is older than its own. Only
+// pending loads are tracked, so nothing outlives the load that added it.
+interface LoadMark {
+  superseded: boolean;
+}
+const loadMarks = new WeakMap<object, Map<string, Set<LoadMark>>>();
 
-function writeCount(scope: object, key: string): number {
-  return writeCounts.get(scope)?.get(key) ?? 0;
+function markLoad(scope: object, key: string): LoadMark {
+  let byKey = loadMarks.get(scope);
+  if (!byKey) {
+    byKey = new Map();
+    loadMarks.set(scope, byKey);
+  }
+  let marks = byKey.get(key);
+  if (!marks) {
+    marks = new Set();
+    byKey.set(key, marks);
+  }
+  const mark = { superseded: false };
+  marks.add(mark);
+  return mark;
 }
 
-function countWrite(scope: object, key: string): void {
-  let counts = writeCounts.get(scope);
-  if (!counts) {
-    counts = new Map();
-    writeCounts.set(scope, counts);
+function unmarkLoad(scope: object, key: string, mark: LoadMark): void {
+  const byKey = loadMarks.get(scope);
+  const marks = byKey?.get(key);
+  if (!marks) return;
+  marks.delete(mark);
+  if (marks.size === 0) byKey!.delete(key);
+}
+
+function supersedeLoads(scope: object, key: string): void {
+  for (const mark of loadMarks.get(scope)?.get(key) ?? []) {
+    mark.superseded = true;
   }
-  counts.set(key, writeCount(scope, key) + 1);
 }
 
 function localMemo(scope: object): Map<string, LocalEntry> {
@@ -144,7 +165,7 @@ export async function writeMemo<T>(
 ): Promise<void> {
   const ttlSeconds = Math.floor((expiresAt - Date.now()) / 1000);
   if (!Number.isFinite(ttlSeconds) || ttlSeconds < 1) return;
-  countWrite(scope, key);
+  supersedeLoads(scope, key);
   setLocal(scope, key, { value, expiresAt });
 
   const cache = edgeCache();
@@ -171,11 +192,17 @@ export async function writeMemo<T>(
  * propagate and are not memoized; a result whose `expiresAt` has passed is
  * returned but not memoized, and neither is one whose key was written directly
  * (with `writeMemo`) while the load ran.
+ *
+ * When a shared load fails, its waiters retry it once between them. A failure
+ * for which `callerSpecific` returns true (such as the caller's own rate
+ * limit) is instead retried by each waiter with its own `load`, so one
+ * client's failure is never handed to another.
  */
 export async function readThroughMemo<T>(
   scope: object,
   key: string,
   load: () => Promise<MemoLoad<T>>,
+  { callerSpecific }: { callerSpecific?: (error: unknown) => boolean } = {},
 ): Promise<T> {
   const memo = await readMemo<T>(scope, key);
   if (memo) return memo.value;
@@ -189,24 +216,32 @@ export async function readThroughMemo<T>(
   if (existing) {
     try {
       return (await existing).value;
-    } catch {
-      // The shared load failed, possibly for a reason specific to the caller
-      // that started it (such as its rate limit), so it is retried once. The
-      // first waiter to see the failure starts the retry below; the others
-      // join it rather than each calling `load` again.
+    } catch (error) {
+      // The first waiter to see a shared failure starts the retry below; the
+      // others join it rather than each calling `load` again.
       const retry = pending.get(key) as Promise<MemoLoad<T>> | undefined;
-      if (retry && retry !== existing) return (await retry).value;
+      if (!callerSpecific?.(error) && retry && retry !== existing) {
+        try {
+          return (await retry).value;
+        } catch (retryError) {
+          if (!callerSpecific?.(retryError)) throw retryError;
+        }
+      }
     }
   }
 
-  const writesBefore = writeCount(scope, key);
+  const mark = markLoad(scope, key);
   const loading = (async () => {
-    const loaded = await load();
-    // A direct write while this load ran holds a newer value; keep it.
-    if (writeCount(scope, key) === writesBefore) {
-      await writeMemo(scope, key, loaded.value, loaded.expiresAt);
+    try {
+      const loaded = await load();
+      // A direct write while this load ran holds a newer value; keep it.
+      if (!mark.superseded) {
+        await writeMemo(scope, key, loaded.value, loaded.expiresAt);
+      }
+      return loaded;
+    } finally {
+      unmarkLoad(scope, key, mark);
     }
-    return loaded;
   })();
   pending.set(key, loading);
   try {
@@ -220,4 +255,5 @@ export const __testing = {
   MEMO_URL_PREFIX,
   MAX_LOCAL_ENTRIES,
   memoRequest,
+  pendingLoadKeys: (scope: object) => loadMarks.get(scope)?.size ?? 0,
 };
