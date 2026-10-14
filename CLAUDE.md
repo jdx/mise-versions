@@ -94,7 +94,7 @@ The `ANALYTICS_DB` contains:
 
 - Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, the site's DAU/MAU come from these (older dates fall back to the Analytics Engine rollups), and from the `LOGPUSH_CUTOVER_DATE` Actions variable on, the download rollups add the beacon installs
 
-Raw download and mise version-request events are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
+Raw download events from `/api/tools/<tool>` are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. The legacy TOML routes no longer write `version_request` events; every mise client is counted from Logpush instead, so `daily_version_stats` and the version-request part of the Analytics Engine MAU/combined-DAU rollups only describe dates before that change. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
 
 ## GitHub Token Management
 

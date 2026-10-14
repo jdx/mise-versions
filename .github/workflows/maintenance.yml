@@ -123,8 +123,11 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
+      # version_request events are no longer written (the legacy TOML routes
+      # stopped tracking; Logpush counts those clients), so this only rebuilds
+      # history on demand and is not part of refresh-all.
       - name: Refresh version stats directly
-        if: env.TASK == 'refresh-version-stats' || env.TASK == 'refresh-all'
+        if: env.TASK == 'refresh-version-stats'
         run: |
           args=(--days="${INPUT_DAYS:-31}")
           if [ -n "$INPUT_DATE" ]; then

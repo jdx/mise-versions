@@ -7,7 +7,6 @@ import {
   dailyToolVersionStats,
   dailyCombinedStats,
   dailyMauStats,
-  dailyVersionStats,
   logpushDailyDau,
   logpushDailyMau,
 } from "./schema.js";
@@ -16,12 +15,7 @@ import {
   mergeAudienceRows,
   trimPendingRollups,
 } from "./daily-series.js";
-import {
-  analyticsEngineDataset,
-  hasAnalyticsEngineSql,
-  queryAnalyticsEngine,
-  type AnalyticsEngineSqlConfig,
-} from "./analytics-engine.js";
+import type { AnalyticsEngineSqlConfig } from "./analytics-engine.js";
 
 interface TrendsOptions {
   analyticsEngine?: AnalyticsEngineSqlConfig;
@@ -29,41 +23,8 @@ interface TrendsOptions {
 
 export function createTrendsFunctions(
   db: ReturnType<typeof drizzle>,
-  options: TrendsOptions = {},
+  _options: TrendsOptions = {},
 ) {
-  const analyticsEngine = options.analyticsEngine;
-
-  async function getCurrentMiseMAU(now: number): Promise<number> {
-    if (!hasAnalyticsEngineSql(analyticsEngine)) return 0;
-
-    try {
-      const end = new Date(now * 1000)
-        .toISOString()
-        .replace("T", " ")
-        .slice(0, 19);
-      const start = new Date((now - 30 * 86400) * 1000)
-        .toISOString()
-        .replace("T", " ")
-        .slice(0, 19);
-      const table = analyticsEngineDataset(analyticsEngine);
-      const result = await queryAnalyticsEngine<{ mau: number }>(
-        analyticsEngine!,
-        `
-          SELECT count(DISTINCT index1) AS mau
-          FROM ${table}
-          WHERE
-            blob1 = 'version_request'
-            AND timestamp >= toDateTime('${start}')
-            AND timestamp <= toDateTime('${end}')
-        `,
-      );
-      return result.rows[0]?.mau ?? 0;
-    } catch (error) {
-      console.warn("failed to query Analytics Engine mise MAU:", error);
-      return 0;
-    }
-  }
-
   return {
     // Get DAU and rolling MAU history for the last N days
     async getDAUMAUHistory(days: number = 30) {
@@ -184,43 +145,6 @@ export function createTrendsFunctions(
 
       return {
         daily: rolledUp,
-        current_mau: currentMAU,
-      };
-    },
-
-    // Get mise DAU/MAU (unique users making version requests)
-    async getMiseDAUMAU(days: number = 30) {
-      const now = Math.floor(Date.now() / 1000);
-      const startDate = new Date((now - days * 86400) * 1000)
-        .toISOString()
-        .split("T")[0];
-
-      const dauResults = await db
-        .select({
-          date: dailyVersionStats.date,
-          dau: dailyVersionStats.unique_users,
-        })
-        .from(dailyVersionStats)
-        .where(sql`${dailyVersionStats.date} >= ${startDate}`)
-        .orderBy(dailyVersionStats.date)
-        .all();
-
-      const currentMAU = await getCurrentMiseMAU(now);
-
-      const dailyData: Array<{ date: string; dau: number }> = [];
-      const dauMap = new Map(dauResults.map((r) => [r.date, r.dau]));
-
-      for (let i = days - 1; i >= 1; i--) {
-        const dayTimestamp = now - i * 86400;
-        const date = new Date(dayTimestamp * 1000).toISOString().split("T")[0];
-        dailyData.push({
-          date,
-          dau: dauMap.get(date) ?? 0,
-        });
-      }
-
-      return {
-        daily: dailyData,
         current_mau: currentMAU,
       };
     },

@@ -105,7 +105,6 @@ export function setupAnalytics(
     getGrowthMetrics: growth.getGrowthMetrics,
 
     // Version functions
-    getMiseDAUMAU: versions.getMiseDAUMAU,
     recordVersionUpdates: versions.recordVersionUpdates,
     getVersionUpdates: versions.getVersionUpdates,
   };
