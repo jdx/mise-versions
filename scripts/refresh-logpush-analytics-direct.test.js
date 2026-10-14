@@ -219,6 +219,19 @@ describe("refresh-logpush-analytics-direct", () => {
       2,
       1,
     ]);
+    // The stats row marks the download tables complete: cleared first,
+    // written after every dimension table.
+    const statsClear = writes.findIndex(({ sql }) =>
+      sql.startsWith("DELETE FROM logpush_daily_stats"),
+    );
+    const statsWrite = writes.findIndex(({ sql }) =>
+      sql.startsWith("INSERT OR REPLACE INTO logpush_daily_stats "),
+    );
+    const dimensionWrites = writes
+      .map(({ sql }, index) => (/logpush_daily_tool_/.test(sql) ? index : -1))
+      .filter((index) => index >= 0);
+    assert.ok(statsClear >= 0 && statsClear < Math.min(...dimensionWrites));
+    assert.ok(statsWrite > Math.max(...dimensionWrites));
     // unknown-tool is created like the Worker's getOrCreateToolId would.
     assert.deepEqual(
       writes.find(({ sql }) => sql.startsWith("INSERT OR IGNORE INTO tools"))

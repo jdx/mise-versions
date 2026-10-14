@@ -335,12 +335,15 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
     [[date, mau.mau, mau.daysCovered, updatedAt]],
   );
 
+  // logpush_daily_stats marks a day's download tables as complete: drop it
+  // before rewriting them and write it back only once all are refilled, so a
+  // run that fails part way leaves no marker and readers fail closed.
   const rollups = aggregator.downloadRollups();
-  await batchUpsert(
+  await queryD1(
     config,
-    "logpush_daily_stats",
-    ["date", "total_downloads", "unique_users"],
-    [[date, rollups.total, rollups.uniqueUsers]],
+    "DELETE FROM logpush_daily_stats WHERE date = ?",
+    [date],
+    "logpush_daily_stats clear",
   );
   const ids = await loadDimensionIds(config, rollups.platforms, {
     createTools: rollups.tools.map((row) => row.tool),
@@ -386,6 +389,12 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
     ["date", "tool_id", "platform_id", "downloads"],
     date,
     rows.dailyPlatforms,
+  );
+  await batchUpsert(
+    config,
+    "logpush_daily_stats",
+    ["date", "total_downloads", "unique_users"],
+    [[date, rollups.total, rollups.uniqueUsers]],
   );
   return rollups;
 }
