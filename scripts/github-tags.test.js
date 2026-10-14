@@ -317,6 +317,33 @@ test("GraphQL rate limits mark the token like REST ones", () => {
   `);
 });
 
+test("dated tag lists refuse partial GraphQL answers", () => {
+  runMirrorTest(`
+    ${TAGS_PRELUDE}
+    import {
+      __testing,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    // One commit resolved, the other failed: caching this page would replace
+    // a real date with null, so the whole page is refused.
+    globalThis.fetch = async (url) =>
+      String(url) === "https://api.github.com/graphql"
+        ? new Response(JSON.stringify({
+            data: { repository: { c0: { committedDate: "2026-02-01T00:00:00Z" }, c1: null } },
+            errors: [{ type: "SERVICE_UNAVAILABLE", path: ["repository", "c1"], message: "timeout" }],
+          }), { status: 200 })
+        : new Response(JSON.stringify(REST_TAGS), { status: 200 });
+    await assert.rejects(
+      () => __testing.fetchGitHubTagList("o", "r", 1, true, { id: 7, token: "t" }),
+      (error) =>
+        githubStatus(error) === 502 &&
+        error.message === "timeout" &&
+        !__testing.isRateLimited(error),
+    );
+  `);
+});
+
 test("edge cache keys keep the tag list's page and dates params", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";

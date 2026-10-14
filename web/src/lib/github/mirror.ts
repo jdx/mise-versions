@@ -1065,8 +1065,11 @@ async function fetchGitHubCommitDates(
       GITHUB_GRAPHQL_URL,
     );
   }
+  // A commit GitHub doesn't know comes back as null with no error, so any
+  // error means a failed lookup. Refuse the page rather than cache a missing
+  // date in place of a real one; a stale entry is served instead.
   const repository = body.data?.repository;
-  if (!repository) {
+  if (body.errors?.length || !repository) {
     throw new GitHubError(
       502,
       body.errors?.[0]?.message ?? "GitHub GraphQL returned no repository",
