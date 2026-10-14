@@ -438,3 +438,55 @@ test("a rebuild that cannot reach the Worker publishes the tree it has", async (
     cleanup();
   }
 });
+
+test("a rebuild that stops part-way applies what it read and keeps the tree", async () => {
+  const { cacheDir, assetsDir, cleanup } = dirs();
+  try {
+    const lists = {
+      "github/a/a/releases.json": { c: 10, b: true, body: '{"a":1}' },
+      "github/b/b/releases.json": { c: 10, b: true, body: '{"b":1}' },
+      "github/c/c/releases.json": { c: 10, b: true, body: '{"c":1}' },
+      "github/d/d/releases.json": { c: 10, b: true, body: '{"d":1}' },
+    };
+    const worker = fakeWorker(lists, { now: SINCE_MARGIN_MS + 100 });
+    let clock = 1_000_000_000_000;
+    await bake({
+      assetsDir,
+      cacheDir,
+      secret: "s",
+      fetchImpl: worker.fetchImpl,
+      log: silent,
+      now: () => clock,
+    });
+    const before = readManifest(cacheDir);
+    // A week later the rebuild reads one page (2 lists, a updated), then fails.
+    clock += 8 * 24 * 60 * 60 * 1000;
+    lists["github/a/a/releases.json"].body = '{"a":2}';
+    let pages = 0;
+    const out = join(assetsDir, "..", "partial");
+    const result = await bake({
+      assetsDir: out,
+      cacheDir,
+      secret: "s",
+      log: silent,
+      now: () => clock,
+      fetchImpl: async (url, init) =>
+        ++pages > 1
+          ? new Response("down", { status: 502 })
+          : worker.fetchImpl(url, init),
+    });
+    assert.equal(result.complete, false);
+    // Every list is still published, with what was read applied.
+    assert.equal(result.published, 4);
+    assert.equal(
+      readFileSync(join(out, "data/github/a/a/releases.json"), "utf8"),
+      '{"a":2}',
+    );
+    // Not counted as a rebuild: the next deploy tries it again.
+    const after = readManifest(cacheDir);
+    assert.equal(after.full_at, before.full_at);
+    assert.equal(after.watermark, before.watermark);
+  } finally {
+    cleanup();
+  }
+});

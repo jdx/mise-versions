@@ -149,6 +149,12 @@ export interface ListMeta {
   e?: string;
   /** When a refresh last failed; the list waits RETRY_BACKOFF_MS after. */
   t?: number;
+  /**
+   * When an access lookup last went unanswered (429, 503); the check is
+   * tried again ACCESS_RETRY_MS after. Also kept, alone, on a list the
+   * refresher has not adopted yet.
+   */
+  x?: number;
 }
 
 function parseMeta(value: unknown): ListMeta | null {
@@ -1249,6 +1255,9 @@ const DISPATCH_PENDING_MS = 30 * 60 * 1000;
 // A list whose refresh failed waits this long before another try, so lists
 // that keep failing cannot take every run's slots from healthy ones.
 const RETRY_BACKOFF_MS = 60 * 60 * 1000;
+// An access check GitHub did not answer is tried again after this long: soon,
+// since a list stays baked on its last answer meanwhile, but not every run.
+const ACCESS_RETRY_MS = 10 * 60 * 1000;
 
 interface RefreshEnv extends BakeEnv {}
 
@@ -1276,6 +1285,8 @@ interface RefreshTask {
   requested: boolean;
   accessDue: boolean;
   step: "fresh" | "head" | "full";
+  /** A refresh failed lately: only the access check may run. */
+  contentRetrying: boolean;
   generation?: string;
   /** How overdue the task is, for ordering. */
   overdue: number;
@@ -1341,10 +1352,17 @@ export async function refreshVersionLists(
     run.lists++;
     const meta = parseMeta(key.metadata);
     if (meta) latestChange = Math.max(latestChange, meta.c);
+    // Retry times, also on a list that has nothing else yet.
+    const retry = (key.metadata ?? {}) as { t?: unknown; x?: unknown };
+    const recent = (at: unknown, ms: number) =>
+      typeof at === "number" && startedAt - at < ms;
     const requestedAt = demand.get(demandKey(key.name));
     const requested =
       requestedAt !== undefined && startedAt - requestedAt < DEMAND_WINDOW_MS;
-    const accessDue = !meta || startedAt - meta.a >= ACCESS_CHECK_MS;
+    const accessDue =
+      (!meta || startedAt - meta.a >= ACCESS_CHECK_MS) &&
+      !recent(retry.x, ACCESS_RETRY_MS);
+    const contentRetrying = recent(retry.t, RETRY_BACKOFF_MS);
     if (!requested && !meta?.b) continue;
     if (target.source === "releases" && meta?.b && requested) {
       const repo = `${target.owner}/${target.repo}`.toLowerCase();
@@ -1360,6 +1378,7 @@ export async function refreshVersionLists(
       requestedAt,
       requested,
       accessDue,
+      contentRetrying,
       step: "fresh",
       overdue: 0,
     });
@@ -1402,22 +1421,25 @@ export async function refreshVersionLists(
           task.generation,
         )
       : "full";
+    // A refresh that failed lately waits (other lists get the slots), but
+    // never holds up an access check: a list stays public only on a current
+    // answer.
+    const refreshDue = task.step !== "fresh" && !task.contentRetrying;
     task.overdue = !task.requested
       ? Number.MAX_SAFE_INTEGER // dropping a list is cheap and changes a bake
       : !meta
-        ? Number.MAX_SAFE_INTEGER - 1
+        ? task.accessDue
+          ? Number.MAX_SAFE_INTEGER - 1
+          : -1
         : !meta.b
           ? // An unbaked list cannot be refreshed: it waits for its next
             // access check, rather than taking a slot every run.
             task.accessDue
             ? startedAt - meta.a
             : -1
-          : meta.t !== undefined && startedAt - meta.t < RETRY_BACKOFF_MS
-            ? // Failed lately: wait, and let other lists have the slots.
-              -1
-            : task.step !== "fresh" || task.accessDue
-              ? startedAt - Math.max(Math.min(meta.h, meta.a), meta.t ?? 0)
-              : -1;
+          : refreshDue || task.accessDue
+            ? startedAt - Math.min(meta.h, meta.a)
+            : -1;
   }
   const due = tasks
     .filter((task) => task.overdue >= 0)
@@ -1453,10 +1475,17 @@ export async function refreshVersionLists(
       // an answer (its file, if baked before, stays baked).
       if (!denied || denied.status === 403 || denied.status === 404) {
         bakeable = !denied;
-        meta = { ...meta, a: now };
+        meta = { ...meta, a: now, x: undefined };
       } else if (!read) {
+        // Only the retry time, so it stays unadopted (and out of bakes).
+        await kv.put(key, JSON.stringify(stored), {
+          expirationTtl: CACHE_TTL_SECONDS,
+          metadata: { x: now },
+        });
         run.deferred++;
         return;
+      } else {
+        meta = { ...meta, x: now };
       }
     }
     const statusChanged = bakeable !== (read?.b ?? false);
@@ -1468,7 +1497,7 @@ export async function refreshVersionLists(
     };
     let changed = statusChanged;
     let written = false;
-    if (bakeable && task.step !== "fresh") {
+    if (bakeable && task.step !== "fresh" && !task.contentRetrying) {
       if (outOfTokens) {
         run.deferred++;
       } else {

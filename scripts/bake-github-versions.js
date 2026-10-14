@@ -344,7 +344,10 @@ export async function bake({
     }
     watermark = 0;
   } else {
-    const wipe = rebuild && changes.pages > 0;
+    // A rebuild replaces the tree only once it has read every list. One
+    // that stopped part-way applies what it read as updates and keeps the
+    // tree's watermark and rebuild time, so the next deploy tries again.
+    const wipe = rebuild && changes.complete;
     stats = applyChanges(cacheDir, {
       files: changes.files,
       deleted: changes.deleted,
@@ -352,13 +355,10 @@ export async function bake({
       index,
     });
     index = stats.index;
-    if (wipe) {
-      fullAt = started;
-      watermark = 0;
-    }
-    // A bake that stopped part-way keeps its old watermark (a rebuild, 0),
-    // so the next deploy asks again for everything after it.
-    if (changes.complete) watermark = changes.watermark;
+    if (wipe) fullAt = started;
+    // A bake that stopped part-way keeps its old watermark, so the next
+    // deploy asks again for everything after it.
+    if (changes.complete && (wipe || !rebuild)) watermark = changes.watermark;
   }
   writeManifest(cacheDir, { watermark, full_at: fullAt, files: index });
   const published = publishTree(cacheDir, { assetsDir, index, maxFiles });

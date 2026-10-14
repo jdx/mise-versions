@@ -1456,9 +1456,36 @@ test("an inconclusive access lookup leaves a list without metadata as it is", ()
         : realFetch(input, init);
     const run = await refreshVersionLists(env, { dispatch });
     const key = "github:versions:releases:legacy/repo";
-    // Not marked unbakeable (that would delete its baked file): untouched.
-    assert.equal(kv.meta.has(key), false);
-    assert.ok(!kv.writes.some((w) => w.key === key));
+    // Not marked unbakeable (that would delete its baked file): it keeps
+    // only the retry time, so it stays unadopted and out of bakes.
+    assert.deepEqual(Object.keys(kv.meta.get(key)), ["x"]);
+    assert.ok(kv.meta.get(key).x >= now);
     assert.ok(run.deferred >= 1);
+    const changes = await listVersionsChanges(env, {});
+    assert.ok(!changes.files.some((f) => f.path.includes("legacy")));
+    // The next run does not ask again yet, so it takes no slot.
+    let lookups = 0;
+    globalThis.fetch = async (input, init) => {
+      if (String(input).endsWith("/repos/legacy/repo")) lookups++;
+      return realFetch(input, init);
+    };
+    await refreshVersionLists(env, { dispatch });
+    assert.equal(lookups, 0);
+  `);
+});
+
+test("a failing refresh does not hold up the repo's access check", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // The secret list's last refresh failed 10 minutes ago, and its access
+    // check is due (2 hours old): the repo is private now.
+    const key = "github:versions:releases:secret/repo";
+    kv.meta.set(key, { ...kv.meta.get(key), t: now - 10 * MIN, h: now - 3 * HOUR, u: now - 3 * HOUR });
+    const run = await refreshVersionLists(env, { dispatch });
+    assert.equal(kv.meta.get(key).b, false);
+    assert.ok(kv.meta.get(key).a >= now);
+    // Its content was not retried.
+    assert.ok(!apiCalls().some((c) => c.includes("/repos/secret/repo/")));
+    assert.ok(run.dropped >= 1);
   `);
 });
