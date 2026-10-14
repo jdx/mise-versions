@@ -73,7 +73,9 @@ test("prefers Logpush audience rows and keeps older days", async () => {
         { date: "2026-10-02", mau: 60000, days_covered: 2 },
         // complete window is always used
         { date: "2026-10-03", mau: 40000, days_covered: 30 },
+        // partial window with no older row for that date: not used
         { date: "2026-10-04", mau: 90000, days_covered: 4 },
+        { date: "2026-10-05", mau: 95000, days_covered: 30 },
       ],
     },
   );
@@ -85,6 +87,18 @@ test("prefers Logpush audience rows and keeps older days", async () => {
     "2026-10-01": 50000,
     "2026-10-02": 60000,
     "2026-10-03": 40000,
-    "2026-10-04": 90000,
+    "2026-10-05": 95000,
   });
+});
+
+test("header MAU keeps the older number while Logpush is partial and ahead", async () => {
+  const { mergeAudienceRows } = await import("./daily-series.js");
+  // getMAU's inputs: the newest row of each source; refresh-mau lagged a day.
+  const { mau } = mergeAudienceRows(
+    { dau: [], mau: [{ date: "2026-10-02", mau: 51000 }] },
+    { dau: [], mau: [{ date: "2026-10-03", mau: 30000, days_covered: 3 }] },
+  );
+  const latest = [...mau.keys()].sort().pop();
+  assert.equal(latest, "2026-10-02");
+  assert.equal(mau.get(latest!), 51000);
 });

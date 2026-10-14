@@ -21,7 +21,9 @@ export const LOGPUSH_MAU_WINDOW_DAYS = 30;
 // every mise client including those that only fetch static assets. Dates
 // before Logpush started keep the older Analytics Engine rollups so history
 // stays charted. A Logpush MAU whose 30-day window is not fully covered yet is
-// only a lower bound, so it is used once it at least matches the older number.
+// only a lower bound: it is used once it at least matches the older number for
+// the same date, and never on its own, so a lagging or failed older refresh
+// cannot put the lower bound in its place.
 export function mergeAudienceRows(
   legacy: {
     dau: Array<{ date: string; dau: number }>;
@@ -40,8 +42,7 @@ export function mergeAudienceRows(
     const older = mau.get(row.date);
     if (
       row.days_covered >= LOGPUSH_MAU_WINDOW_DAYS ||
-      older === undefined ||
-      row.mau >= older
+      (older !== undefined && row.mau >= older)
     ) {
       mau.set(row.date, row.mau);
     }

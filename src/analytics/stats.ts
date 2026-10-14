@@ -211,7 +211,9 @@ export function createStatsFunctions(db: ReturnType<typeof drizzle>) {
           .all(),
       ]);
       // Prefer Logpush (every mise client) per mergeAudienceRows, on the
-      // newest date either source has.
+      // newest date either source has. A partial Logpush window only counts
+      // against an older row for the same date, so if it is ahead of a lagging
+      // refresh-mau this falls back to the newest Analytics Engine row.
       const { mau } = mergeAudienceRows(
         { dau: [], mau: legacy },
         { dau: [], mau: logpush },
