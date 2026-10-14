@@ -35,9 +35,11 @@ type LogpushAudience = {
 //   count, so a missed Logpush day shows as a gap rather than the much smaller
 //   older number.
 // - MAU: from the first Logpush MAU day whose 30-day window is fully covered
-//   (`starts.mau`) on, only complete Logpush rows count. Before that, a partial
-//   window is a lower bound: it replaces the older number for the same date
-//   only when it is at least as large, and is never used on its own.
+//   (`starts.mau`) on, only Logpush rows count, whatever their coverage: a
+//   window missing a skipped day is still far closer than the older number.
+//   Before that, a partial window is a lower bound during the first month: it
+//   replaces the older number for the same date only when it is at least as
+//   large, and is never used on its own.
 export function mergeAudienceRows(
   legacy: LegacyAudience,
   logpush: LogpushAudience,
@@ -59,24 +61,22 @@ export function mergeAudienceRows(
       .map((r) => [r.date, r.mau]),
   );
   for (const row of logpush.mau) {
-    if (row.days_covered >= LOGPUSH_MAU_WINDOW_DAYS) {
+    if (
+      row.days_covered >= LOGPUSH_MAU_WINDOW_DAYS ||
+      !before(row.date, starts.mau)
+    ) {
       mau.set(row.date, row.mau);
       continue;
     }
     const older = mau.get(row.date);
-    if (
-      before(row.date, starts.mau) &&
-      older !== undefined &&
-      row.mau >= older
-    ) {
-      mau.set(row.date, row.mau);
-    }
+    if (older !== undefined && row.mau >= older) mau.set(row.date, row.mau);
   }
   return { dau, mau };
 }
 
-// The header MAU: the newest complete Logpush MAU once one exists, even if a
-// lagging Logpush job leaves it older than the newest Analytics Engine row;
+// The header MAU. Once Logpush has a fully covered window, the newest Logpush
+// row (even one with a skipped day in its window, and even when a lagging
+// Logpush job leaves it older than the newest Analytics Engine row);
 // otherwise the newest of the older number and a same-date partial Logpush
 // window that already exceeds it.
 export function currentMau(latest: {
@@ -84,7 +84,9 @@ export function currentMau(latest: {
   logpush?: LogpushMauRow;
   logpushComplete?: LogpushMauRow;
 }): number {
-  if (latest.logpushComplete) return latest.logpushComplete.mau;
+  if (latest.logpushComplete) {
+    return (latest.logpush ?? latest.logpushComplete).mau;
+  }
   const { mau } = mergeAudienceRows(
     { dau: [], mau: latest.legacy ? [latest.legacy] : [] },
     { dau: [], mau: latest.logpush ? [latest.logpush] : [] },

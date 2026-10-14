@@ -110,8 +110,8 @@ test("once Logpush has taken over, older rows never fill its gaps", async () => 
       dau: [{ date: "2026-10-02", dau: 30000 }],
       mau: [
         { date: "2026-11-02", mau: 200000, days_covered: 30 },
-        // a later window with missing days is not trusted either
-        { date: "2026-11-04", mau: 120000, days_covered: 29 },
+        // after a skipped day, later windows are short a day but still used
+        { date: "2026-11-04", mau: 198000, days_covered: 29 },
       ],
     },
     { dau: "2026-10-02", mau: "2026-11-02" },
@@ -123,6 +123,7 @@ test("once Logpush has taken over, older rows never fill its gaps", async () => 
   assert.deepEqual(Object.fromEntries(merged.mau), {
     "2026-11-01": 50000,
     "2026-11-02": 200000,
+    "2026-11-04": 198000,
   });
 });
 
@@ -145,6 +146,18 @@ test("header MAU keeps the older number while Logpush is partial and ahead", asy
     60000,
   );
   assert.equal(currentMau({}), 0);
+});
+
+test("header MAU follows Logpush after takeover, even short a day", async () => {
+  const { currentMau } = await import("./daily-series.js");
+  assert.equal(
+    currentMau({
+      legacy: { date: "2026-11-05", mau: 51000 },
+      logpush: { date: "2026-11-05", mau: 198000, days_covered: 29 },
+      logpushComplete: { date: "2026-11-02", mau: 200000, days_covered: 30 },
+    }),
+    198000,
+  );
 });
 
 test("header MAU stays on the newest complete Logpush row when Logpush lags", async () => {

@@ -44,6 +44,12 @@ jobs:
     # or skipped Logpush job still lets every other step run.
     needs: logpush
     if: ${{ !cancelled() }}
+    # Shares the Logpush job's group so a manual refresh-rollups (which has no
+    # logpush job to wait for) cannot read logpush_daily_* while a scheduled
+    # Logpush run is rewriting them.
+    concurrency:
+      group: maintenance-logpush
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     # The one-time legacy table retirement scans and deletes millions of rows.
     timeout-minutes: ${{ startsWith(github.event.inputs.task || '', 'legacy-') && 120 || 30 }}
