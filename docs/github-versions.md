@@ -149,7 +149,7 @@ How often each list is refreshed:
 
 | | when |
 | --- | --- |
-| **Page 1** (new releases and tags) | After a quarter of the time the list has been unchanged, between **10 minutes and 6 hours**. A repo that just released is refreshed on every deploy; a repo quiet for a day or more, about every 6 hours. |
+| **Page 1** (new releases and tags) | After a quarter of the time the list has been unchanged, between **10 minutes and 6 hours**. A repo that just released is refreshed on every deploy; a repo quiet for a day or more, about every 6 hours. Releases read the newest 20 entries (new releases land there); tags read all of page 1, because a new tag on an older line can sort anywhere on it. |
 | **A new release in a tracked repo** | For a repo the mise-versions catalog tracks, a newly published release rotates the repo's release generation (the same signal that refreshes `/releases/latest`). The next deploy then refreshes page 1, whatever the backoff. The catalog syncs every 15 minutes, and a catalog change itself triggers the deploy. |
 | **Everything else** (edits and deletions past page 1, a tag on an older release line) | A full re-crawl every **6 hours**. |
 

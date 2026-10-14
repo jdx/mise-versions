@@ -429,15 +429,34 @@ async function refreshVersions(
       };
       const crawl = { fetchPage, reprobe, tally, startedAt };
       if (stored && step === "head") {
-        const probe = await reprobe();
-        onPrefix?.(probe);
-        // A probe with nothing after it is the whole list: a full crawl.
-        if (!probe.hasNextPage) {
-          return { items: probe.items, truncated: false, full: true };
+        // New releases land at the top, so the newest 20 show them. Tags
+        // sort by name, so a new tag on an older line (a 10.1.x behind
+        // twenty 11.x) can land anywhere on page 1: read all of it.
+        const head = source === "tags" ? await fetchPage(1) : await reprobe();
+        onPrefix?.(head);
+        // A head with nothing after it is the whole list: a full crawl.
+        if (!head.hasNextPage) {
+          return { items: head.items, truncated: false, full: true };
         }
-        const merged = mergeHead(probe, stored);
+        let page1 = source === "tags" ? head : undefined;
+        let merged = mergeHead(head, stored);
+        if (!merged && !page1) {
+          // More than 20 releases since the last read: page 1 may still
+          // reach the stored list, which is cheaper than a full crawl.
+          page1 = await fetchPage(1);
+          if (!page1.hasNextPage) {
+            return { items: page1.items, truncated: false, full: true };
+          }
+          merged = mergeHead(page1, stored);
+        }
         if (merged) return { ...merged, full: false };
-        return await verifiedCrawl(probe, crawl, { before: tally() });
+        // The crawl sizes itself from a probe of 20, and reuses page 1.
+        const before = tally();
+        const probe = source === "tags" ? await reprobe() : head;
+        return await verifiedCrawl(probe, crawl, {
+          before,
+          page1: page1 && Promise.resolve(page1),
+        });
       }
       // A full crawl needs page 1 unless the list has 20 entries or fewer,
       // so read it alongside the probe: most lists fit on it, and a list that
@@ -710,9 +729,12 @@ async function verifiedCrawl(
     }
     if (sameTally(first, last)) return { ...crawled, full: true };
     if (attempt === 0 && Date.now() - startedAt < crawlTiming.budgetMs) {
+      const next = await reprobe().catch(() => null);
+      // Without a new probe there is no second crawl: keep what was read.
+      if (!next) return { ...crawled, truncated: true, full: false };
       start = Promise.resolve(last);
       probedAt = Date.now();
-      current = await reprobe();
+      current = next;
       continue;
     }
     const latest = await reprobe().catch(() => current);
