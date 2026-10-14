@@ -11,6 +11,11 @@ mise reads these static files from `https://mise-versions.jdx.dev/data/`:
   and common prefixes such as `22` or `3.12`. See
   [docs/versions-index.md](docs/versions-index.md) for the client contract.
 
+For GitHub-hosted tools, the Worker's GitHub mirror also serves a repo's whole
+release or tag list in one request at
+`/api/github/repos/{owner}/{repo}/versions`. See
+[docs/github-versions.md](docs/github-versions.md) for the client contract.
+
 ## Tool Update Analysis
 
 This repository tracks tool updates through git history analysis. The chart below shows the daily number of tool updates over the last 30 days.
