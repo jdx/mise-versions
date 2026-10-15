@@ -9,7 +9,7 @@ import {
   type GitHubTag,
   type TokenRecord,
 } from "./mirror";
-import { getGitHubLatestReleaseGenerations } from "./release-generation";
+import { readGitHubLatestReleaseGenerations } from "./release-generation";
 import { checkGitHubMirrorAccess } from "./visibility";
 
 // A repository's whole release or tag list, compacted, for mise's version
@@ -122,6 +122,58 @@ interface StoredVersions {
   generation?: string;
   items: StoredItem[];
   truncated: boolean;
+}
+
+/**
+ * Each list's state, kept as the KV metadata of its entry, so the refresher
+ * and the bake read every list's state with one `list()` call per 1,000
+ * lists instead of reading each list. (A Worker may make 1,000 KV
+ * operations per invocation.)
+ */
+export interface ListMeta {
+  /** When the list's content or bake status last changed (epoch ms). */
+  c: number;
+  /** Whether the list is baked: requested lately, and its repo servable. */
+  b: boolean;
+  /** When the repo's access was last checked. */
+  a: number;
+  /** head_at, full_at and unchanged_since of the entry. */
+  h: number;
+  f: number;
+  u: number;
+  /** The release generation page 1 was read under. */
+  g?: string;
+  /** When a client last asked for the list, as last copied here. */
+  r?: number;
+  /** GitHub's ETag for the probe, for a conditional refresh. */
+  e?: string;
+  /** When a refresh last failed; the list waits RETRY_BACKOFF_MS after. */
+  t?: number;
+}
+
+function parseMeta(value: unknown): ListMeta | null {
+  if (!value || typeof value !== "object") return null;
+  const meta = value as Partial<ListMeta>;
+  return typeof meta.c === "number" &&
+    typeof meta.b === "boolean" &&
+    typeof meta.a === "number" &&
+    typeof meta.h === "number" &&
+    typeof meta.f === "number" &&
+    typeof meta.u === "number"
+    ? (meta as ListMeta)
+    : null;
+}
+
+/** The freshness fields refreshStep needs, from a list's metadata. */
+function freshnessOf(meta: ListMeta): StoredVersions {
+  return {
+    head_at: meta.h,
+    full_at: meta.f,
+    unchanged_since: meta.u,
+    generation: meta.g,
+    items: [],
+    truncated: false,
+  };
 }
 
 interface RateLimiter {
@@ -254,7 +306,9 @@ export async function getCachedGitHubVersions(
 ): Promise<VersionsResult> {
   const { source, asset } = options;
   const cacheKey = versionsCacheKey({ owner, repo, source, asset });
-  const stored = await env.GITHUB_CACHE.get<StoredVersions>(cacheKey, "json");
+  const { value: stored, metadata } =
+    await env.GITHUB_CACHE.getWithMetadata<StoredVersions>(cacheKey, "json");
+  const meta = parseMeta(metadata);
   const now = Date.now();
   if (options.demand) {
     const stamping = stampDemand(env, cacheKey, now);
@@ -266,7 +320,9 @@ export async function getCachedGitHubVersions(
     return respond(stored, options, "fresh");
   }
   const refresh = () =>
-    refreshVersions(env, owner, repo, cacheKey, options, stored, step);
+    refreshVersions(env, owner, repo, cacheKey, options, stored, step, {
+      meta,
+    }).then(({ entry }) => entry);
   if (stored && waitUntil) {
     waitUntil(
       refresh().catch((error) => {
@@ -335,7 +391,7 @@ async function coldVersions(
     },
   );
   const settled = refreshing.then(
-    (entry) => ({ entry }) as const,
+    ({ entry }) => ({ entry }) as const,
     (error: unknown) => ({ error }) as const,
   );
   let timer: ReturnType<typeof setTimeout> | undefined;
@@ -385,15 +441,21 @@ async function refreshVersions(
   {
     requireToken = false,
     onPrefix,
+    meta = null,
   }: {
     requireToken?: boolean;
+    /**
+     * The list's metadata as read. Absent for a new list, which the caller
+     * has just checked for access (a request) and so is bakeable.
+     */
+    meta?: ListMeta | null;
     /**
      * Called with each newest-first page as soon as it is read (the probe,
      * then page 1), for an answer that cannot wait for the whole list.
      */
     onPrefix?: (page: GitHubListPage<StoredItem>) => void;
   } = {},
-): Promise<StoredVersions> {
+): Promise<{ entry: StoredVersions; meta: ListMeta; changed: boolean }> {
   const result = await withPoolToken(env, async (token) => {
     if (requireToken && !token) throw new NoPoolToken();
     const startedAt = Date.now();
@@ -407,7 +469,11 @@ async function refreshVersions(
       const canRetry = () =>
         !deadline.signal.aborted &&
         Date.now() - startedAt < crawlTiming.budgetMs / 2;
-      const fetchPage = (page: number, perPage = PER_PAGE, dates = true) =>
+      const fetchPage = (
+        page: number,
+        perPage = PER_PAGE,
+        { dates = true, ifNoneMatch }: PageOptions = {},
+      ) =>
         fetchPageWithRetry(
           owner,
           repo,
@@ -418,25 +484,51 @@ async function refreshVersions(
           deadline.signal,
           canRetry,
           perPage,
-          dates,
+          { dates, ifNoneMatch },
         );
       const reprobe = () => fetchPage(1, PROBE_PER_PAGE);
       // One entry per page: its last-page link is the exact entry count.
       const tally = () => {
-        const read = fetchPage(1, 1, false);
+        const read = fetchPage(1, 1, { dates: false });
         read.catch(() => {});
         return read;
       };
-      const crawl = { fetchPage, reprobe, tally, startedAt };
+      // A tag head refresh reads page 1, a release one the probe: a crawl
+      // keeps the ETag of the page the next head refresh will read.
+      const crawl = {
+        fetchPage,
+        reprobe,
+        tally,
+        startedAt,
+        headIsPage1: source === "tags",
+      };
       if (stored && step === "head") {
         // New releases land at the top, so the newest 20 show them. Tags
         // sort by name, so a new tag on an older line (a 10.1.x behind
-        // twenty 11.x) can land anywhere on page 1: read all of it.
-        const head = source === "tags" ? await fetchPage(1) : await reprobe();
+        // twenty 11.x) can land anywhere on page 1: read all of it. The read
+        // is conditional on its last ETag: unchanged, it is a 304, which
+        // costs no rate limit and no parsing.
+        const head =
+          source === "tags"
+            ? await fetchPage(1, PER_PAGE, { ifNoneMatch: meta?.e })
+            : await fetchPage(1, PROBE_PER_PAGE, { ifNoneMatch: meta?.e });
+        if (head.notModified) {
+          return {
+            items: stored.items,
+            truncated: stored.truncated,
+            full: false,
+            etag: head.etag,
+          };
+        }
         onPrefix?.(head);
         // A head with nothing after it is the whole list: a full crawl.
         if (!head.hasNextPage) {
-          return { items: head.items, truncated: false, full: true };
+          return {
+            items: head.items,
+            truncated: false,
+            full: true,
+            etag: head.etag,
+          };
         }
         let merged = mergeHead(head, stored);
         if (!merged && source !== "tags") {
@@ -444,11 +536,17 @@ async function refreshVersions(
           // reach the stored list, which is cheaper than a full crawl.
           const page1 = await fetchPage(1);
           if (!page1.hasNextPage) {
-            return { items: page1.items, truncated: false, full: true };
+            // The next head refresh reads the probe again: keep its ETag.
+            return {
+              items: page1.items,
+              truncated: false,
+              full: true,
+              etag: head.etag,
+            };
           }
           merged = mergeHead(page1, stored);
         }
-        if (merged) return { ...merged, full: false };
+        if (merged) return { ...merged, full: false, etag: head.etag };
         // The crawl sizes itself from a probe of 20. It reads page 1 again
         // rather than reuse it: the entry count it is checked against must
         // be read before every page it covers.
@@ -493,18 +591,32 @@ async function refreshVersions(
     items: result.items,
     truncated: result.truncated,
   };
-  await putEntry(env, cacheKey, entry);
-  return entry;
+  const changed = !unchanged;
+  const next: ListMeta = {
+    ...(meta ?? { b: true, a: now, r: now }),
+    c: changed || !meta ? now : meta.c,
+    h: entry.head_at,
+    f: entry.full_at,
+    u: entry.unchanged_since,
+    g: generation,
+    e: result.etag ?? undefined,
+    // It worked: no backoff.
+    t: undefined,
+  };
+  await putEntry(env, cacheKey, entry, next);
+  return { entry, meta: next, changed };
 }
 
 async function putEntry(
   env: Env,
   cacheKey: string,
   entry: StoredVersions,
+  meta: ListMeta,
 ): Promise<void> {
   try {
     await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), {
       expirationTtl: CACHE_TTL_SECONDS,
+      metadata: meta,
     });
   } catch (error) {
     // The answer stands; the next request reads GitHub again.
@@ -542,7 +654,8 @@ async function stampDemand(
     await env.GITHUB_CACHE.put(
       demandKey(cacheKey),
       JSON.stringify({ requested_at: at }),
-      { expirationTtl: DEMAND_TTL_SECONDS },
+      // In metadata too, so the refresher reads all demand with list().
+      { expirationTtl: DEMAND_TTL_SECONDS, metadata: { r: at } },
     );
     return true;
   } catch (error) {
@@ -685,11 +798,14 @@ async function verifiedCrawl(
     reprobe,
     tally,
     startedAt,
+    headIsPage1 = false,
   }: {
     fetchPage: (page: number) => Promise<GitHubListPage<StoredItem>>;
     reprobe: () => Promise<GitHubListPage<StoredItem>>;
     tally: () => Promise<GitHubListPage<StoredItem>>;
     startedAt: number;
+    /** The next head refresh reads page 1 (tags), not the probe. */
+    headIsPage1?: boolean;
   },
   {
     page1,
@@ -698,13 +814,24 @@ async function verifiedCrawl(
     page1?: Promise<GitHubListPage<StoredItem>>;
     before: Promise<GitHubListPage<StoredItem>>;
   },
-): Promise<{ items: StoredItem[]; truncated: boolean; full: boolean }> {
+): Promise<{
+  items: StoredItem[];
+  truncated: boolean;
+  full: boolean;
+  /** The ETag of the probe the stored list was checked against. */
+  etag?: string | null;
+}> {
   let current = probe;
   let probedAt = startedAt;
   let start = before;
   for (let attempt = 0; ; attempt++) {
     if (!current.hasNextPage) {
-      return { items: current.items, truncated: false, full: true };
+      return {
+        items: current.items,
+        truncated: false,
+        full: true,
+        etag: headIsPage1 ? undefined : current.etag,
+      };
     }
     const crawled = await crawl(
       current,
@@ -714,7 +841,12 @@ async function verifiedCrawl(
     );
     // One page is one read: nothing can have shifted between pages.
     if (crawled.pages === 1 && !crawled.truncated) {
-      return { items: crawled.items, truncated: false, full: true };
+      return {
+        items: crawled.items,
+        truncated: false,
+        full: true,
+        etag: headIsPage1 ? crawled.firstEtag : current.etag,
+      };
     }
     const [first, last] = await Promise.all([
       start.catch(() => null),
@@ -725,7 +857,13 @@ async function verifiedCrawl(
       // was read as a truncated prefix rather than discard it.
       return { ...crawled, truncated: true, full: false };
     }
-    if (sameTally(first, last)) return { ...crawled, full: true };
+    if (sameTally(first, last)) {
+      return {
+        ...crawled,
+        full: true,
+        etag: headIsPage1 ? crawled.firstEtag : current.etag,
+      };
+    }
     if (attempt === 0 && Date.now() - startedAt < crawlTiming.budgetMs) {
       const next = await reprobe().catch(() => null);
       // Without a new probe there is no second crawl: keep what was read.
@@ -772,7 +910,13 @@ async function crawl(
   probedAt = Date.now(),
   /** Page 1, if it is already being read. */
   page1?: Promise<GitHubListPage<StoredItem>>,
-): Promise<{ items: StoredItem[]; truncated: boolean; pages: number }> {
+): Promise<{
+  items: StoredItem[];
+  truncated: boolean;
+  pages: number;
+  /** Page 1's ETag, for a conditional read of it later. */
+  firstEtag?: string | null;
+}> {
   const pages: GitHubListPage<StoredItem>[] = [];
   const known = Math.max(
     1,
@@ -859,7 +1003,15 @@ async function crawl(
     items,
     truncated: pages[pages.length - 1].hasNextPage,
     pages: pages.length,
+    firstEtag: pages[0]?.etag,
   };
+}
+
+interface PageOptions {
+  /** Tags only: read commit dates too (a GraphQL query). */
+  dates?: boolean;
+  /** An ETag from an earlier read; GitHub may then answer 304. */
+  ifNoneMatch?: string;
 }
 
 async function fetchPageWithRetry(
@@ -872,10 +1024,13 @@ async function fetchPageWithRetry(
   signal: AbortSignal | undefined,
   canRetry: () => boolean = () => true,
   perPage = PER_PAGE,
-  dates = true,
+  { dates = true, ifNoneMatch }: PageOptions = {},
 ): Promise<GitHubListPage<StoredItem>> {
   const read = () =>
-    fetchPage(owner, repo, source, asset, page, token, signal, perPage, dates);
+    fetchPage(owner, repo, source, asset, page, token, signal, perPage, {
+      dates,
+      ifNoneMatch,
+    });
   try {
     return await read();
   } catch (error) {
@@ -901,8 +1056,7 @@ async function fetchPage(
   token: TokenRecord | null,
   signal?: AbortSignal,
   perPage = PER_PAGE,
-  /** Tags only: read commit dates too (a GraphQL query). */
-  dates = true,
+  { dates = true, ifNoneMatch }: PageOptions = {},
 ): Promise<GitHubListPage<StoredItem>> {
   if (source === "tags") {
     const result = await fetchGitHubTagPage(
@@ -913,6 +1067,7 @@ async function fetchPage(
       token,
       signal,
       perPage,
+      ifNoneMatch,
     );
     return { ...result, items: result.items.map(compactTag) };
   }
@@ -923,6 +1078,7 @@ async function fetchPage(
     token,
     signal,
     perPage,
+    ifNoneMatch,
   );
   return {
     ...result,
@@ -955,141 +1111,548 @@ interface BakeEnv extends Env {
   GITHUB_MIRROR_ACCESS?: string;
 }
 
+const KV_LIST_LIMIT = 1000;
+const KV_BULK_GET_LIMIT = 100;
+
+/** Every key under `prefix`, with its metadata: one operation per 1,000. */
+async function listAll(
+  kv: KVNamespace,
+  prefix: string,
+): Promise<{ keys: { name: string; metadata?: unknown }[]; ops: number }> {
+  const keys: { name: string; metadata?: unknown }[] = [];
+  let cursor: string | undefined;
+  let ops = 0;
+  do {
+    const page = await kv.list({ prefix, cursor, limit: KV_LIST_LIMIT });
+    ops++;
+    keys.push(...page.keys);
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor);
+  return { keys, ops };
+}
+
+/** JSON values of `keys`: one operation per 100. */
+async function getAll<T>(
+  kv: KVNamespace,
+  keys: string[],
+): Promise<Map<string, T | null>> {
+  const values = new Map<string, T | null>();
+  for (let i = 0; i < keys.length; i += KV_BULK_GET_LIMIT) {
+    const chunk = await kv.get<T>(keys.slice(i, i + KV_BULK_GET_LIMIT), "json");
+    for (const [key, value] of chunk) values.set(key, value);
+  }
+  return values;
+}
+
 export interface BakedFile {
   /** Relative to /data/. */
   path: string;
-  /** When a client last asked for this list, epoch ms. */
+  /** When a client last asked for this list, epoch ms, for the file cap. */
   requested_at: number;
   body: string;
 }
 
-export interface BakePage {
+export interface VersionsChanges {
+  /** Lists to write: bakeable, and changed since `since`. */
   files: BakedFile[];
+  /** Paths (relative to /data/) to remove: no longer bakeable. */
+  deleted: string[];
   /** Pass back for the next page; null when the listing is done. */
   cursor: string | null;
-  stats: {
-    listed: number;
-    /** Not requested within DEMAND_WINDOW_MS: no longer baked. */
-    unrequested: number;
-    /** Private, missing, or outside GITHUB_MIRROR_ACCESS: not baked. */
-    denied: number;
-    refreshed: number;
-    /** Due for a refresh, but out of time or tokens: baked as stored. */
-    deferred: number;
-    failed: number;
-  };
-  /** The pool ran out of tokens; later pages should not refresh. */
-  outOfTokens: boolean;
+  /** The Worker's clock when this page was read, epoch ms. */
+  now: number;
 }
 
-const BAKE_CONCURRENCY = 6;
-
 /**
- * One page of the stored lists, as static files to bake into the next
- * deploy. Lists that are due are refreshed first while `refreshUntil` (epoch
- * ms) has not passed. Static files skip the Worker's access check, so every
- * list's repo is checked again here, as a request would be.
+ * One page of the lists whose content or bake status changed after `since`
+ * (every bakeable list when `since` is absent), for the deploy-time bake.
+ * Reads only KV: the refresher has already refreshed the lists and checked
+ * their repos, so a deploy makes no GitHub requests. A list the refresher
+ * has not seen yet has no metadata and is left to it.
  */
-export async function bakeVersionsPage(
-  env: BakeEnv,
+export async function listVersionsChanges(
+  env: Env,
   {
+    since,
     cursor,
-    limit = 100,
-    refreshUntil = 0,
-  }: { cursor?: string; limit?: number; refreshUntil?: number },
-): Promise<BakePage> {
-  const listing = await env.GITHUB_CACHE.list({
+    limit = 200,
+  }: { since?: number; cursor?: string; limit?: number },
+): Promise<VersionsChanges> {
+  const now = Date.now();
+  const page = await env.GITHUB_CACHE.list({
     prefix: VERSIONS_CACHE_PREFIX,
     cursor,
-    limit: Math.max(1, Math.min(1000, limit)),
+    limit: Math.max(1, Math.min(KV_LIST_LIMIT, limit)),
   });
-  // The bake runs from one client; the per-client lookup limit is for the
-  // public routes.
-  const accessEnv = { ...env, GITHUB_VISIBILITY_LIMITER: undefined };
-  const page: BakePage = {
+  const changes: VersionsChanges = {
     files: [],
-    cursor: listing.list_complete ? null : listing.cursor,
-    stats: {
-      listed: listing.keys.length,
-      unrequested: 0,
-      denied: 0,
-      refreshed: 0,
-      deferred: 0,
-      failed: 0,
-    },
-    outOfTokens: false,
+    deleted: [],
+    cursor: page.list_complete ? null : page.cursor,
+    now,
   };
+  const wanted: { key: string; target: VersionsTarget; meta: ListMeta }[] = [];
+  for (const key of page.keys) {
+    const target = parseVersionsCacheKey(key.name);
+    const meta = parseMeta(key.metadata);
+    if (!target || !meta) continue;
+    // Changed lists, and lists refreshed without changing: the latter only
+    // to republish their `fetched_at`, and only with a deploy that happens
+    // anyway (the refresher dispatches deploys for changes only).
+    const changed = since === undefined || meta.c > since;
+    if (!changed && !(meta.h > (since ?? 0))) continue;
+    if (meta.b) wanted.push({ key: key.name, target, meta });
+    // A full listing names removals too: a rebuild that stops part-way
+    // applies those it read, so no file of a repo turned private outlives
+    // the pages it reached.
+    else if (changed) changes.deleted.push(versionsPath(target));
+  }
+  const values = await getAll<StoredVersions>(
+    env.GITHUB_CACHE,
+    wanted.map(({ key }) => key),
+  );
+  for (const { key, target, meta } of wanted) {
+    const stored = values.get(key);
+    if (!stored || !Array.isArray(stored.items)) continue;
+    changes.files.push({
+      path: versionsPath(target),
+      requested_at: meta.r ?? meta.c,
+      body: JSON.stringify(versionsBody(stored, target)),
+    });
+  }
+  return changes;
+}
 
-  const bakeOne = async (key: string) => {
-    const target = parseVersionsCacheKey(key);
-    if (!target) return;
-    const [stored, requestedAt] = await Promise.all([
-      env.GITHUB_CACHE.get<StoredVersions>(key, "json"),
-      readDemand(env, key),
-    ]);
+// The refresher: a Worker cron (every 10 minutes) that keeps the stored lists
+// fresh and decides which are baked, so deploys only copy what changed.
+export const VERSIONS_REFRESH_CRON = "*/10 * * * *";
+// Per run. A run stops starting work after `budgetMs`, and handles at most
+// `maxTasks` lists: each costs about four KV operations (read, write,
+// visibility, generation) of the 1,000 a Worker invocation may make.
+const refreshTiming = { budgetMs: 3 * 60 * 1000, maxTasks: 150 };
+// A Worker invocation may make 1,000 KV operations. A run plans its reads
+// (listings, demand, generations) and its tasks to stay under this.
+const KV_OPS_BUDGET = 900;
+// A task's KV operations, at most: the read, a visibility lookup (read, and
+// a write or an access retry mark), then either a refresh's write, or a
+// re-read and a metadata write.
+const KV_OPS_PER_TASK = 5;
+// The lease, the deploy bookkeeping, and the lease's release.
+const KV_OPS_FIXED = 6;
+const REFRESH_CONCURRENCY = 4;
+// A repo's access is checked again this often (the visibility cache's own
+// lifetime), so a repo that turns private stops being baked within about an
+// hour and one deploy.
+const ACCESS_CHECK_MS = 60 * 60 * 1000;
+const STATE_PREFIX = "github:versions-state:";
+// A run that finds another run's lease still current does nothing, so
+// overlapping cron runs (or a run that outlives its interval) don't double
+// the work. Runs are idempotent, so a lost lease costs only duplicate work.
+const LEASE_KEY = `${STATE_PREFIX}refresher-lease`;
+// The watermark of the last bake that was deployed (see recordVersionsBaked).
+const BAKED_KEY = `${STATE_PREFIX}baked`;
+// When the refresher last dispatched a deploy.
+const DISPATCHED_KEY = `${STATE_PREFIX}dispatched`;
+// A dispatched deploy not acknowledged after this long is taken to have
+// failed, and changes dispatch another.
+const DISPATCH_PENDING_MS = 30 * 60 * 1000;
+// A list whose refresh failed waits this long before another try, so lists
+// that keep failing cannot take every run's slots from healthy ones.
+const RETRY_BACKOFF_MS = 60 * 60 * 1000;
+// An access check GitHub did not answer is tried again after this long: soon,
+// since a list stays baked on its last answer meanwhile, but not every run.
+const ACCESS_RETRY_MS = 10 * 60 * 1000;
+// Its retry mark is a key of its own that expires after ACCESS_RETRY_MS, so
+// marking never rewrites a list (a request may be adopting it meanwhile).
+const ACCESS_RETRY_PREFIX = "github:versions-retry:";
+
+function accessRetryKey(cacheKey: string): string {
+  return ACCESS_RETRY_PREFIX + cacheKey.slice(VERSIONS_CACHE_PREFIX.length);
+}
+
+interface RefreshEnv extends BakeEnv {}
+
+export interface RefreshRun {
+  skipped?: "leased";
+  lists: number;
+  refreshed: number;
+  /** Lists that stopped being bakeable (unrequested, or their repo). */
+  dropped: number;
+  /** Lists that became bakeable. */
+  added: number;
+  failed: number;
+  /** Due, but out of time, tasks or tokens this run. */
+  deferred: number;
+  /** Lists whose content or bake status changed this run. */
+  changed: number;
+  dispatched: boolean;
+}
+
+interface RefreshTask {
+  key: string;
+  target: VersionsTarget;
+  meta: ListMeta | null;
+  requestedAt?: number;
+  requested: boolean;
+  accessDue: boolean;
+  step: "fresh" | "head" | "full";
+  /** A refresh failed lately: only the access check may run. */
+  contentRetrying: boolean;
+  generation?: string;
+  /** How overdue the task is, for ordering. */
+  overdue: number;
+}
+
+/**
+ * One refresher run: refresh due lists, re-check access at its own cadence,
+ * stop baking lists nobody asked for in 30 days, mark every change, and
+ * dispatch a deploy when changes are waiting for one.
+ */
+export async function refreshVersionLists(
+  env: RefreshEnv,
+  { dispatch }: { dispatch?: () => Promise<unknown> } = {},
+): Promise<RefreshRun> {
+  const kv = env.GITHUB_CACHE;
+  const startedAt = Date.now();
+  const run: RefreshRun = {
+    lists: 0,
+    refreshed: 0,
+    dropped: 0,
+    added: 0,
+    failed: 0,
+    deferred: 0,
+    changed: 0,
+    dispatched: false,
+  };
+  const lease = await kv.get<{ until?: number }>(LEASE_KEY, "json");
+  if (typeof lease?.until === "number" && lease.until > startedAt) {
+    return { ...run, skipped: "leased" };
+  }
+  const leaseMs = refreshTiming.budgetMs + 60 * 1000;
+  await kv.put(LEASE_KEY, JSON.stringify({ until: startedAt + leaseMs }), {
+    expirationTtl: Math.max(60, Math.ceil(leaseMs / 1000)),
+  });
+
+  const lists = await listAll(kv, VERSIONS_CACHE_PREFIX);
+  const demands = await listAll(kv, DEMAND_PREFIX);
+  const retries = await listAll(kv, ACCESS_RETRY_PREFIX);
+  const retrying = new Set(retries.keys.map((key) => key.name));
+  // Demand stamped before it carried metadata is read from its value.
+  const demand = new Map<string, number>();
+  const legacy: string[] = [];
+  for (const key of demands.keys) {
+    const r = (key.metadata as { r?: unknown } | undefined)?.r;
+    if (typeof r === "number") demand.set(key.name, r);
+    else legacy.push(key.name);
+  }
+  for (const [key, value] of await getAll<{ requested_at?: unknown }>(
+    kv,
+    legacy,
+  )) {
+    if (typeof value?.requested_at === "number") {
+      demand.set(key, value.requested_at);
+    }
+  }
+
+  const tasks: RefreshTask[] = [];
+  // Bakeable release lists' repos, with their latest demand, whose
+  // generation may make a fresh list due.
+  const releaseRepos = new Map<string, number>();
+  let latestChange = 0;
+  for (const key of lists.keys) {
+    const target = parseVersionsCacheKey(key.name);
+    if (!target) continue;
+    run.lists++;
+    const meta = parseMeta(key.metadata);
+    if (meta) latestChange = Math.max(latestChange, meta.c);
+    const failedAt = (key.metadata as { t?: unknown } | undefined)?.t;
+    const requestedAt = demand.get(demandKey(key.name));
+    const requested =
+      requestedAt !== undefined && startedAt - requestedAt < DEMAND_WINDOW_MS;
+    const accessDue =
+      (!meta || startedAt - meta.a >= ACCESS_CHECK_MS) &&
+      !retrying.has(accessRetryKey(key.name));
+    const contentRetrying =
+      typeof failedAt === "number" && startedAt - failedAt < RETRY_BACKOFF_MS;
+    if (!requested && !meta?.b) continue;
+    if (target.source === "releases" && meta?.b && requested) {
+      const repo = `${target.owner}/${target.repo}`.toLowerCase();
+      releaseRepos.set(
+        repo,
+        Math.max(releaseRepos.get(repo) ?? 0, requestedAt ?? 0),
+      );
+    }
+    tasks.push({
+      key: key.name,
+      target,
+      meta,
+      requestedAt,
+      requested,
+      accessDue,
+      contentRetrying,
+      step: "fresh",
+      overdue: 0,
+    });
+  }
+  // Plan the KV operations: what the scans used, then generations (most
+  // recently requested repos first), then tasks. Repos whose generation is
+  // not read this run keep the one they were last refreshed under.
+  const scanned =
+    lists.ops +
+    demands.ops +
+    retries.ops +
+    Math.ceil(legacy.length / KV_BULK_GET_LIMIT);
+  const available = Math.max(0, KV_OPS_BUDGET - KV_OPS_FIXED - scanned);
+  const generationOps = Math.min(
+    Math.ceil(releaseRepos.size / KV_BULK_GET_LIMIT),
+    Math.max(0, available - refreshTiming.maxTasks * KV_OPS_PER_TASK),
+  );
+  const taskCap = Math.min(
+    refreshTiming.maxTasks,
+    Math.floor((available - generationOps) / KV_OPS_PER_TASK),
+  );
+  const generations = await readGitHubLatestReleaseGenerations(
+    kv,
+    [...releaseRepos]
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, generationOps * KV_BULK_GET_LIMIT)
+      .map(([repo]) => repo),
+  );
+  for (const task of tasks) {
+    const { target, meta } = task;
+    const repo = `${target.owner}/${target.repo}`.toLowerCase();
+    task.generation =
+      target.source !== "releases"
+        ? undefined
+        : generations.has(repo)
+          ? generations.get(repo)
+          : meta?.g;
+    task.step = meta
+      ? refreshStep(
+          freshnessOf(meta),
+          startedAt,
+          target.source,
+          task.generation,
+        )
+      : "full";
+    // A refresh that failed lately waits (other lists get the slots), but
+    // never holds up an access check: a list stays public only on a current
+    // answer.
+    const refreshDue = task.step !== "fresh" && !task.contentRetrying;
+    task.overdue = !task.requested
+      ? Number.MAX_SAFE_INTEGER // dropping a list is cheap and changes a bake
+      : !meta
+        ? task.accessDue
+          ? Number.MAX_SAFE_INTEGER - 1
+          : -1
+        : !meta.b
+          ? // An unbaked list cannot be refreshed: it waits for its next
+            // access check, rather than taking a slot every run.
+            task.accessDue
+            ? startedAt - meta.a
+            : -1
+          : refreshDue || task.accessDue
+            ? startedAt - Math.min(meta.h, meta.a)
+            : -1;
+  }
+  const due = tasks
+    .filter((task) => task.overdue >= 0)
+    .sort((a, b) => b.overdue - a.overdue);
+  const accessEnv = { ...env, GITHUB_VISIBILITY_LIMITER: undefined };
+  let outOfTokens = false;
+
+  const work = async (task: RefreshTask) => {
+    const { key, target } = task;
+    const { owner, repo, source, asset } = target;
+    const { value: stored, metadata } =
+      await kv.getWithMetadata<StoredVersions>(key, "json");
     if (!stored || !Array.isArray(stored.items)) return;
     const now = Date.now();
-    if (!requestedAt || now - requestedAt >= DEMAND_WINDOW_MS) {
-      page.stats.unrequested++;
-      return;
+    // An entry written before lists carried metadata starts unbaked.
+    const read = parseMeta(metadata);
+    let meta: ListMeta = read ?? {
+      c: now,
+      b: false,
+      a: 0,
+      h: stored.head_at,
+      f: stored.full_at,
+      u: stored.unchanged_since,
+      g: stored.generation,
+    };
+    let bakeable = meta.b;
+    if (!task.requested) {
+      bakeable = false;
+    } else if (task.accessDue || !read) {
+      const denied = await checkGitHubMirrorAccess(accessEnv, owner, repo);
+      // A failed lookup (429, 503) is no answer: keep the last one. A list
+      // without metadata has none, so it is left as it is until a run gets
+      // an answer (its file, if baked before, stays baked).
+      if (!denied || denied.status === 403 || denied.status === 404) {
+        bakeable = !denied;
+        meta = { ...meta, a: now };
+      } else {
+        // Try again in ACCESS_RETRY_MS. A list not adopted yet is left as
+        // it is (out of bakes, its file kept); an adopted one keeps its
+        // last answer.
+        await kv.put(accessRetryKey(key), "1", {
+          expirationTtl: Math.ceil(ACCESS_RETRY_MS / 1000),
+        });
+        if (!read) {
+          run.deferred++;
+          return;
+        }
+      }
     }
-    const { owner, repo, source, asset } = target;
-    if (await checkGitHubMirrorAccess(accessEnv, owner, repo)) {
-      page.stats.denied++;
-      return;
-    }
-    const generation =
-      source === "releases"
-        ? (
-            await getGitHubLatestReleaseGenerations(
-              env.GITHUB_CACHE,
-              owner,
-              repo,
-            )
-          )?.current
-        : undefined;
-    let entry = stored;
-    const step = refreshStep(stored, now, source, generation);
-    if (step !== "fresh") {
-      if (page.outOfTokens || Date.now() >= refreshUntil) {
-        page.stats.deferred++;
+    const statusChanged = bakeable !== (read?.b ?? false);
+    meta = {
+      ...meta,
+      b: bakeable,
+      r: task.requestedAt ?? meta.r,
+      c: statusChanged ? now : meta.c,
+    };
+    let changed = statusChanged;
+    let written = false;
+    if (bakeable && task.step !== "fresh" && !task.contentRetrying) {
+      if (outOfTokens) {
+        run.deferred++;
       } else {
         try {
-          entry = await refreshVersions(
+          // Writes the entry with `meta`, moving `c` on if the content
+          // changed.
+          const refreshed = await refreshVersions(
             env,
             owner,
             repo,
             key,
-            { source, asset, generation },
+            { source, asset, generation: task.generation },
             stored,
-            step,
-            { requireToken: true },
+            task.step,
+            { requireToken: true, meta },
           );
-          page.stats.refreshed++;
+          meta = refreshed.meta;
+          changed ||= refreshed.changed;
+          written = true;
+          run.refreshed++;
         } catch (error) {
           if (error instanceof NoPoolToken) {
-            page.outOfTokens = true;
-            page.stats.deferred++;
+            outOfTokens = true;
+            run.deferred++;
           } else {
-            page.stats.failed++;
-            console.warn(`bake refresh failed for ${key}:`, error);
+            run.failed++;
+            meta = { ...meta, t: now };
+            console.warn(`refresh failed for ${key}:`, error);
           }
         }
       }
     }
-    page.files.push({
-      path: versionsPath(target),
-      requested_at: requestedAt,
-      body: JSON.stringify(versionsBody(entry, { source, asset })),
-    });
+    if (statusChanged) {
+      if (bakeable) run.added++;
+      else run.dropped++;
+    }
+    if (!written && JSON.stringify(read) !== JSON.stringify(meta)) {
+      // A client request may have refreshed the list while this task
+      // worked. Its content (and its freshness, ETag and backoff) wins over
+      // the older list read above; this task adds only its bake status,
+      // access check and demand.
+      const latest = await kv.getWithMetadata<StoredVersions>(key, "json");
+      const latestMeta = parseMeta(latest.metadata);
+      if (
+        latest.value &&
+        Array.isArray(latest.value.items) &&
+        latestMeta &&
+        (latestMeta.h !== (read?.h ?? stored.head_at) ||
+          latestMeta.f !== (read?.f ?? stored.full_at))
+      ) {
+        meta = {
+          ...latestMeta,
+          b: meta.b,
+          a: meta.a,
+          r: Math.max(meta.r ?? 0, latestMeta.r ?? 0) || undefined,
+          c: statusChanged ? now : latestMeta.c,
+        };
+        changed ||= latestMeta.c !== (read?.c ?? latestMeta.c);
+        await putEntry(env, key, latest.value, meta);
+      } else {
+        await putEntry(env, key, stored, meta);
+      }
+    }
+    if (changed) run.changed++;
+    latestChange = Math.max(latestChange, meta.c);
   };
 
-  const keys = listing.keys.map((key) => key.name);
-  for (let i = 0; i < keys.length; i += BAKE_CONCURRENCY) {
-    await Promise.all(keys.slice(i, i + BAKE_CONCURRENCY).map(bakeOne));
+  const selected = due.slice(0, taskCap);
+  run.deferred += due.length - selected.length;
+  for (let i = 0; i < selected.length; i += REFRESH_CONCURRENCY) {
+    if (Date.now() - startedAt >= refreshTiming.budgetMs) {
+      run.deferred += selected.length - i;
+      break;
+    }
+    await Promise.all(
+      selected.slice(i, i + REFRESH_CONCURRENCY).map((task) =>
+        work(task).catch((error) => {
+          run.failed++;
+          console.warn(`refresher task failed for ${task.key}:`, error);
+        }),
+      ),
+    );
   }
-  return page;
+
+  // Dispatch a deploy when a change is waiting for one, unless a dispatch
+  // is still in flight. A deploy acknowledges what it baked (BAKED_KEY), so
+  // changes a catalog deploy already baked dispatch nothing.
+  // `at`: changes up to here are baked (less KV's list lag). `acked_at`:
+  // when a deploy last acknowledged, which ends any dispatch before it.
+  const bakedState = await kv.get<{ at?: number; acked_at?: number }>(
+    BAKED_KEY,
+    "json",
+  );
+  const baked = bakedState?.at ?? 0;
+  const ackedAt = bakedState?.acked_at ?? baked;
+  const dispatchedAt =
+    (await kv.get<{ at?: number }>(DISPATCHED_KEY, "json"))?.at ?? 0;
+  const inFlight =
+    dispatchedAt > ackedAt && Date.now() - dispatchedAt < DISPATCH_PENDING_MS;
+  if (dispatch && latestChange > baked && !inFlight) {
+    try {
+      await dispatch();
+      await kv.put(DISPATCHED_KEY, JSON.stringify({ at: Date.now() }));
+      run.dispatched = true;
+    } catch (error) {
+      // Not recorded, so the next run tries again.
+      console.warn("deploy dispatch for GitHub version lists failed:", error);
+    }
+  }
+  await kv.delete(LEASE_KEY);
+  return run;
 }
+
+// KV list() metadata can trail a write by up to a minute, so a bake's first
+// page may not show a change made just before it. A bake acknowledges only
+// what is older than this, and later changes keep a deploy pending.
+const KV_LIST_LAG_MS = 2 * 60 * 1000;
+
+/**
+ * A deploy published the lists changed up to `watermark` (the `now` of its
+ * first changes page). The refresher dispatches deploys only for changes
+ * after the latest such watermark, less KV_LIST_LAG_MS.
+ */
+export async function recordVersionsBaked(
+  env: Env,
+  watermark: number,
+): Promise<number> {
+  const current =
+    (await env.GITHUB_CACHE.get<{ at?: number }>(BAKED_KEY, "json"))?.at ?? 0;
+  const at = Math.max(current, watermark - KV_LIST_LAG_MS);
+  // The acknowledgement time is kept apart from the change watermark: a
+  // finished deploy ends the dispatch it answered, even when its watermark
+  // (less the lag) falls before that dispatch.
+  await env.GITHUB_CACHE.put(
+    BAKED_KEY,
+    JSON.stringify({ at, acked_at: Date.now() }),
+  );
+  return at;
+}
+
+const BAKE_CONCURRENCY = 6;
 
 /**
  * Count requests for baked files (from Logpush, since they never reach the
@@ -1123,6 +1686,10 @@ export async function recordVersionsDemand(
 
 export const __testing = {
   crawl,
+  /** Lower the refresher's per-run limits for a test. */
+  setRefreshTiming(timing: { budgetMs?: number; maxTasks?: number }) {
+    Object.assign(refreshTiming, timing);
+  },
   /** Shorten the crawl's time limits for a test. */
   setCrawlTiming(timing: {
     budgetMs?: number;

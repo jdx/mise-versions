@@ -1,7 +1,7 @@
 export const UPDATE_WORKFLOW_CRON = "7,37 * * * *";
 
-const UPDATE_WORKFLOW_URL =
-  "https://api.github.com/repos/jdx/mise-versions/actions/workflows/update.yml/dispatches";
+const WORKFLOWS_URL =
+  "https://api.github.com/repos/jdx/mise-versions/actions/workflows";
 
 type DispatchFetch = (input: string, init: RequestInit) => Promise<Response>;
 
@@ -13,7 +13,23 @@ export async function dispatchUpdateWorkflow(
   token: string,
   fetcher: DispatchFetch = fetch,
 ): Promise<WorkflowDispatchResult> {
-  const response = await fetcher(UPDATE_WORKFLOW_URL, {
+  return dispatchWorkflow("update.yml", token, fetcher);
+}
+
+/** Deploys the site; the GitHub version-list refresher calls it on changes. */
+export async function dispatchDeployWorkflow(
+  token: string,
+  fetcher: DispatchFetch = fetch,
+): Promise<WorkflowDispatchResult> {
+  return dispatchWorkflow("deploy.yml", token, fetcher);
+}
+
+async function dispatchWorkflow(
+  workflow: string,
+  token: string,
+  fetcher: DispatchFetch,
+): Promise<WorkflowDispatchResult> {
+  const response = await fetcher(`${WORKFLOWS_URL}/${workflow}/dispatches`, {
     method: "POST",
     headers: {
       Accept: "application/vnd.github+json",

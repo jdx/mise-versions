@@ -146,26 +146,28 @@ What a client should do with a truncated list:
 
 ## Freshness
 
-**A list can lag GitHub.** The lag is bounded by how often it is refreshed
-(below) plus up to one deploy interval: a baked file changes only when the next
-deploy publishes it. Deploys run every time the version catalog changes,
-typically every 15–30 minutes. `fetched_at` says how old a response is, so a
-client can decide when that matters.
+**A list can lag GitHub.** A refresher runs every 10 minutes and refreshes the
+lists that are due (below). When it changes a list, it dispatches a deploy,
+which publishes the change in a minute or two. So the lag is about how often
+the list is refreshed, plus up to 10 minutes for the refresher's next run, plus
+one deploy. `fetched_at` says how old a response is, so a client can decide
+when that matters.
 
 How often each list is refreshed:
 
 | | when |
 | --- | --- |
-| **Page 1** (new releases and tags) | After a quarter of the time the list has been unchanged, between **10 minutes and 6 hours**. A repo that just released is refreshed on every deploy; a repo quiet for a day or more, about every 6 hours. Releases read the newest 20 entries (new releases land there); tags read all of page 1, because a new tag on an older line can sort anywhere on it. |
-| **A new release in a tracked repo** | For a repo the mise-versions catalog tracks, a newly published release rotates the repo's release generation (the same signal that refreshes `/releases/latest`). The next deploy then refreshes page 1, whatever the backoff. The catalog syncs every 15 minutes, and a catalog change itself triggers the deploy. |
+| **Page 1** (new releases and tags) | After a quarter of the time the list has been unchanged, between **10 minutes and 6 hours**. A repo that just released is refreshed on every refresher run; a repo quiet for a day or more, about every 6 hours. Releases read the newest 20 entries (new releases land there); tags read all of page 1, because a new tag on an older line can sort anywhere on it. The read is conditional on GitHub's ETag, so an unchanged page costs nothing. |
+| **A new release in a tracked repo** | For a repo the mise-versions catalog tracks, a newly published release rotates the repo's release generation (the same signal that refreshes `/releases/latest`). The refresher's next run then refreshes page 1, whatever the backoff. The catalog syncs every 15 minutes. |
 | **Everything else** (edits and deletions past page 1, a tag on an older release line) | A full re-crawl every **6 hours**. |
 
 In practice:
 
-- A new release of a tracked repo appears within about one deploy of the
-  catalog seeing it.
+- A new release of a tracked repo appears within about 10 minutes plus one
+  deploy of the catalog seeing it.
 - A new release of an untracked repo that was quiet appears within about 6 hours
-  plus one deploy. An active repo's appears within one deploy.
+  plus 10 minutes and one deploy. An active repo's appears within about 10
+  minutes plus one deploy.
 - An exact version (`mise install github:o/r@1.2.3`) does not need the list.
   If a client finds a version missing from a list whose `fetched_at` is older
   than it can accept, it asks the mirror for that one version ([one missing version](#one-missing-version)), never
@@ -225,32 +227,66 @@ mirror routes. `GITHUB_MIRROR_ACCESS=registry` limits the mirror to repos in the
 mise registry, and `off` disables it.
 
 The Worker checks access before answering from any cache. Baked files are
-served without the Worker, so every deploy checks each repo again before baking
-it. A repo that turns private stops being baked at the next deploy, and is gone
-within one deploy plus the 1-hour visibility cache.
+served without the Worker, so the refresher checks each repo again every hour.
+A repo that turns private stops being baked, and is gone within about an hour
+plus the refresher's run and one deploy.
 
 ## How lists get baked
 
-1. **The first request** for a list misses the static assets and falls
-   through to the Worker. The Worker crawls up to 20 pages from GitHub with a
-   mirror pool token (repos get the usual visibility and access checks, and a
-   per-client limit on cold crawls). It stores the compact list in KV, marks it
-   as requested, and answers.
-2. **Every deploy** (`deploy.yml`) runs `scripts/bake-github-versions.js`,
-   which pages through the stored lists via `/api/admin/github/versions/bake`:
-   - lists that are due (see [Freshness](#freshness)) are refreshed first, for
-     up to 3 minutes per deploy and only with pool tokens, never anonymously;
-   - each repo is checked again for access;
-   - the lists are written to `web/dist/client/data/github/` and deploy as
-     static assets.
+Three parts, each with its own job:
 
-   A failure or timeout bakes what it has and never fails the deploy. Anything
-   not baked is still answered by the Worker.
-3. **Requests for baked files** never reach the Worker. The nightly Logpush
-   rollup (`maintenance.yml`) reports which files mise clients fetched to
-   `/api/admin/github/versions/demand`, which keeps them marked as requested.
-4. **A list nobody has requested for 30 days** is no longer baked or
-   refreshed, and its KV entry expires 30 days after its last write.
+1. **The first request** for a list misses the static assets and falls
+   through to the Worker. The Worker crawls the list from GitHub with a mirror
+   pool token (repos get the usual visibility and access checks, and a
+   per-client limit on cold crawls). It stores the compact list in KV, marks it
+   as requested and as changed, and answers.
+2. **The refresher** is a Worker cron trigger that runs every 10 minutes
+   (`*/10`, `POST /api/admin/github/versions/refresh` in-process). Each run:
+   - reads every list's state from KV list metadata;
+   - refreshes the lists that are due, with conditional requests;
+   - checks each repo's access every hour;
+   - stops baking lists nobody has requested for 30 days, and lists whose repo
+     is no longer servable;
+   - records a change time for each list whose content or bake status changed.
+
+   A run handles at most 150 lists, spends at most 3 minutes, and uses pool
+   tokens only, never anonymous requests. A lease keeps overlapping runs from
+   doing the same work, and runs are idempotent, so a skipped or overlapping
+   run is harmless.
+
+   When a list has changed since the last deployed bake, the run dispatches
+   `deploy.yml`. It doesn't dispatch again while a dispatched deploy is still
+   unacknowledged, unless that dispatch is more than 30 minutes old.
+3. **Every deploy** (`deploy.yml`, whether dispatched by the refresher or by a
+   catalog update) runs `scripts/bake-github-versions.js`:
+   - The baked tree is kept between deploys in the Actions cache. The script
+     asks `/api/admin/github/versions/changes` only for the lists changed,
+     removed or refreshed since that tree's bake. Refreshed lists are rewritten
+     so their `fetched_at` stays current, but only a change makes the
+     refresher dispatch a deploy.
+   - A deploy without a cached tree, and the first deploy each week, rebuilds
+     the tree from scratch. That way a file whose KV entry expired before its
+     removal was baked cannot linger.
+   - It writes the tree into `web/dist/client/data/github/`, where the files
+     deploy as static assets.
+   - After `wrangler deploy`, it acknowledges the bake, so the refresher
+     dispatches deploys only for later changes. The acknowledgement leaves out
+     the last 2 minutes, because KV's list metadata can trail a write by up to a
+     minute. A change made just before the bake read therefore still gets a
+     deploy.
+
+   The bake reads KV only and makes no GitHub requests. A failure or timeout
+   bakes what it has and never fails the deploy; anything not baked is still
+   answered by the Worker.
+
+   Deploys queue (`cancel-in-progress: false`): one runs, and of those
+   dispatched meanwhile only the newest waits.
+
+Requests for baked files never reach the Worker. The nightly Logpush rollup
+(`maintenance.yml`) reports which files mise clients fetched to
+`/api/admin/github/versions/demand`, which keeps those lists marked as
+requested. A list nobody has requested for 30 days is no longer baked or
+refreshed, and its KV entry expires 30 days after its last write.
 
 ### File count
 
@@ -294,10 +330,19 @@ pool token. A cold crawl happens once per list; after that, refreshes read page
 | apache/tomcat | tags | 540 | no | 1.9 s | 6 + 6 | 51.0 KB | 18.8 KB | 15.4 KB |
 | golang/go | tags | 498 | no | 1.7 s | 5 + 5 | 48.7 KB | 17.1 KB | 14.2 KB |
 
-- A page-1 refresh is 1 request (plus 1 GraphQL point for tags) and takes
-  0.4–2 s.
-- A quiet list costs about 4 full crawls a day (each also reads page 1). An
-  active list also costs one page-1 refresh per deploy.
+- A page-1 refresh is a conditional probe of the newest 20 entries: a 304 (no
+  rate-limit cost) when nothing changed, otherwise 1 request (plus 1 GraphQL
+  point for tags), 0.4–0.8 s.
+- A quiet list costs about 4 full crawls a day. An active list also costs one
+  page-1 refresh per refresher run, at most 6 an hour.
+- The refresher is about 144 Worker invocations a day. Each run makes about 1
+  KV operation per 1,000 lists to read their state, 1 per 100 tracked repos for
+  their generations, and about 4 per list it works on.
+- A deploy's bake makes 1 KV list operation per 200 lists, plus bulk reads of
+  the lists that changed. Measured locally under `wrangler dev` with 3,000 lists
+  of about 10 KB each: a full bake took 1.7 s, a bake with no changes 0.66 s,
+  and a bake with 5 updated and 2 removed lists 0.65 s (each includes copying
+  the tree into the build).
 - The pool had 1,330 available tokens on 2026-10-14. Tokens are benched once
   they fall to 4,000 remaining (`src/token-budget.ts`), which leaves about
   1.3 million requests an hour, far more than baking needs.
