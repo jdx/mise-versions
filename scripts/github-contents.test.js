@@ -15,6 +15,36 @@ function runMirrorTest(source) {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`.trim());
 }
 
+// Runs a route handler: `cloudflare:workers` resolves to a module whose `env`
+// is globalThis.__env, and the Cache API is an in-memory map.
+const WORKERS_STUB = `data:text/javascript,${encodeURIComponent(
+  `export async function resolve(specifier, context, next) {
+    if (specifier === "cloudflare:workers") {
+      return {
+        url: "data:text/javascript,export const env = globalThis.__env;",
+        shortCircuit: true,
+      };
+    }
+    return next(specifier, context);
+  }`,
+)}`;
+const REGISTER = `data:text/javascript,${encodeURIComponent(
+  `import { register } from "node:module"; register(${JSON.stringify(WORKERS_STUB)});`,
+)}`;
+
+function runRouteTest(source) {
+  const result = spawnSync(
+    process.execPath,
+    ["--import", "tsx", "--import", REGISTER, "--input-type=module"],
+    {
+      cwd: new URL("..", import.meta.url),
+      input: source,
+      encoding: "utf8",
+    },
+  );
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`.trim());
+}
+
 const PRELUDE = `
   import assert from "node:assert/strict";
   import {
@@ -160,5 +190,84 @@ test("contents paths and refs are validated", () => {
     for (const bad of [null, "", "main", SHA.slice(1), SHA + "0", "g".repeat(40)]) {
       assert.equal(validCommitSha(bad), false, String(bad));
     }
+  `);
+});
+
+test("the contents route decodes the path, and checks access before the edge cache", () => {
+  runRouteTest(`
+    import assert from "node:assert/strict";
+    const SHA = "6de20f6092dcf9bdb1c8efe03db4b70c82b423dd";
+    const edge = new Map();
+    globalThis.caches = {
+      default: {
+        match: async (request) => edge.get(request.url)?.clone(),
+        put: async (request, response) => edge.set(request.url, response),
+        delete: async (request) => edge.delete(request.url),
+      },
+    };
+    const requests = [];
+    globalThis.fetch = async (url) => {
+      url = String(url);
+      requests.push(url);
+      if (url === "https://api.github.com/repos/owner/repo") {
+        return Response.json({ private: false, visibility: "public" });
+      }
+      if (url === "https://api.github.com/repos/owner/secret") {
+        return Response.json({ private: true, visibility: "private" });
+      }
+      if (url.endsWith(":a%20b")) {
+        return Response.json({
+          truncated: false,
+          tree: [{ path: "c", mode: "100644", type: "blob", sha: "s", size: 1 }],
+        });
+      }
+      return new Response('{"message":"Not Found"}', { status: 404 });
+    };
+    const kv = new Map();
+    globalThis.__env = {
+      DB: {},
+      ANALYTICS_DB: {},
+      GITHUB_CACHE: {
+        get: async (key, type) =>
+          kv.has(key) ? (type === "json" ? JSON.parse(kv.get(key)) : kv.get(key)) : null,
+        put: async (key, value) => kv.set(key, value),
+        delete: async (key) => kv.delete(key),
+      },
+    };
+    const { GET } = await import(
+      "./web/src/pages/api/github/repos/[owner]/[repo]/contents/[...path].ts"
+    );
+    const pending = [];
+    const url = (repo, path, ref) =>
+      "https://mise-versions.jdx.dev/api/github/repos/owner/" + repo +
+      "/contents/" + path + "?ref=" + ref;
+    const call = (path, ref = SHA, repo = "repo") =>
+      GET({
+        params: { owner: "owner", repo, path },
+        request: new Request(url(repo, path, ref)),
+        locals: { cfContext: { waitUntil: (promise) => pending.push(promise) } },
+      });
+
+    // Astro leaves the escape in place: a%20b is the directory "a b".
+    const response = await call("a%20b");
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), [
+      { name: "c", path: "a b/c", type: "file", size: 1, sha: "s" },
+    ]);
+    assert.ok(requests.includes(
+      "https://api.github.com/repos/owner/repo/git/trees/" + SHA + ":a%20b",
+    ));
+    assert.match(response.headers.get("cache-control"), /immutable/);
+    await Promise.all(pending);
+    assert.equal(edge.size >= 1, true);
+
+    assert.equal((await call("a%2")).status, 400);
+    assert.equal((await call("a%20b", "main")).status, 400);
+    assert.equal((await call("missing")).status, 404);
+
+    // A private repo is a 404 even with a listing at the edge.
+    edge.set(url("secret", "a%20b", SHA), Response.json([]));
+    assert.equal((await call("a%20b", SHA, "secret")).status, 404);
+    assert.equal(edge.has(url("secret", "a%20b", SHA)), true);
   `);
 });

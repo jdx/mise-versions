@@ -26,7 +26,18 @@ import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibil
 // repo that turns private stops being served within the hour.
 export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo } = params;
-  const path = normalizeContentsPath(params.path);
+  // Cloudflare/Astro leave percent-encoding in catch-all params (as for
+  // release tags), so `a%20b` must become `a b` before it is a git path.
+  let path: string | null;
+  try {
+    path = normalizeContentsPath(
+      typeof params.path === "string"
+        ? decodeURIComponent(params.path)
+        : undefined,
+    );
+  } catch {
+    return errorResponse("Invalid GitHub contents path", 400);
+  }
   if (!validRepoPart(owner) || !validRepoPart(repo) || path === null) {
     return errorResponse("Invalid GitHub contents path", 400);
   }
