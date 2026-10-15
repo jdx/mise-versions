@@ -34,7 +34,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN || github.token }}
       - name: Format snapshots
-        run: aube exec prettier --write web/src/data/*.json
+        run: oxfmt web/src/data/*.json
       - name: Commit snapshots and deploy
         env:
           GH_TOKEN: ${{ github.token }}

@@ -45,9 +45,6 @@ importers:
       eslint:
         specifier: ^10.0.0
         version: 10.12.0
-      prettier:
-        specifier: ^3.6.2
-        version: 3.9.10
       tsx:
         specifier: ^4.20.3
         version: 4.23.15
@@ -2266,11 +2263,6 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
-
-  prettier@3.9.10:
-    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
-    engines: {node: '>=14'}
-    hasBin: true
 
   prismjs@1.30.0:
     resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
@@ -4731,8 +4723,6 @@ snapshots:
       preact-render-to-string: 6.8.0(preact@11.0.1)
 
   prelude-ls@1.2.1: {}
-
-  prettier@3.9.10: {}
 
   prismjs@1.30.0: {}
 

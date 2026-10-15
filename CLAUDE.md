@@ -35,7 +35,7 @@ aube --dir web exec tsc    # Check types (web)
 
 # Linting (or use `mise run lint` / `mise run lint:fix`)
 aube exec eslint . --ext .ts
-aube exec prettier --check .
+oxfmt --check .
 
 # Local development
 mise run dev               # or: aube exec wrangler dev
