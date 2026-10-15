@@ -176,12 +176,17 @@ Caching headers:
 
 - **From `releases.json`** (or `assets/{asset}/releases.json`): ask the
   mirror's `/api/github/repos/{owner}/{repo}/releases/{tag}`. A 404 there means
-  GitHub has no such release.
+  the mirror has no release it can serve under that tag (none, or a draft),
+  which is not proof that the version does not exist: report it as not
+  available from the mirror.
 - **From `tags.json`**: a git tag need not have a release, so
   `/releases/{tag}` is the wrong question and its 404 does not mean the tag is
   missing. Page through the mirror's
   `/api/github/repos/{owner}/{repo}/tags?page=N` (100 tags a page, GitHub's
-  order, up to 10 pages) until the tag appears or `next_page` is null.
+  order, up to 10 pages) until the tag appears or `next_page` is null. A
+  `next_page` of null with `truncated: true` means the mirror stopped at its
+  page limit with older tags left: the lookup is incomplete, so report the
+  tag as not found in what the mirror holds, not as absent.
 
 ## Errors
 
