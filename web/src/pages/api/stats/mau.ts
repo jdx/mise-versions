@@ -2,10 +2,7 @@ import type { APIRoute } from "astro";
 import { drizzle } from "drizzle-orm/d1";
 import { setupAnalytics } from "../../../../../src/analytics";
 import { env } from "cloudflare:workers";
-import {
-  cachedJsonResponse,
-  errorResponse,
-} from "../../../lib/api";
+import { cachedJsonResponse, errorResponse } from "../../../lib/api";
 
 // GET /api/stats/mau - Get monthly active users (public)
 export const GET: APIRoute = async ({ locals }) => {
