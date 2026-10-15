@@ -29,7 +29,8 @@ export interface GitHubContentsEntry {
 
 /** A directory's entries, or why there is none. */
 export type GitHubDirectoryListing =
-  { entries: GitHubContentsEntry[] } | { status: 400 | 404 };
+  | { entries: GitHubContentsEntry[] }
+  | { status: 400 | 404 };
 
 interface CachedListing {
   cached_at: number;
