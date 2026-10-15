@@ -80,8 +80,13 @@ jobs:
       # changed since the cached tree's bake, and every list without a cache.
       # No GitHub requests. Never fails the deploy: a list that is not baked
       # is answered by the Worker.
+      # The cache steps use the runner's own cache token, not GITHUB_TOKEN,
+      # so `permissions: contents: read` does not limit them. A cache failure
+      # must not stop the deploy either: without the tree the bake copies
+      # every list.
       - name: Restore baked GitHub version lists
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        continue-on-error: true
         with:
           path: .cache/github-versions
           key: github-versions-${{ github.run_id }}-${{ github.run_attempt }}
@@ -94,6 +99,7 @@ jobs:
 
       - name: Save baked GitHub version lists
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        continue-on-error: true
         with:
           path: .cache/github-versions
           key: github-versions-${{ github.run_id }}-${{ github.run_attempt }}
