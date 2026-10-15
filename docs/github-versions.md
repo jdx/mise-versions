@@ -115,11 +115,19 @@ This happens when:
   and takes GitHub around 8 s, so the server keeps 100–200 releases. It can also
   happen if GitHub fails part-way through a crawl, or a page is still open at
   the crawl's 25-second deadline, or
+- nobody had asked for the list before, and reading it takes more than about
+  1.5 s (lists of a few hundred entries or more). The first request is then
+  answered with the newest entries already read (100, or 20 if page 1 is still
+  loading), while the whole list is read and stored in the background. Requests
+  after that, from a minute later at the same location, get the whole list.
+  mise's prefer-offline commands give a lookup a single 3 s attempt, which a
+  full crawl of a big repository can exceed, or
 - the list kept changing while it was read. Pages are read at slightly
-  different moments, so a release published mid-crawl could otherwise drop an
-  entry at a page boundary. The server reads page 1 again after a crawl and
-  crawls once more if it moved. If it is still moving, the server keeps only
-  page 1, truncated, and crawls in full at the next refresh.
+  different moments, so a release published or deleted mid-crawl could
+  otherwise drop an entry at a page boundary. The server reads the exact number
+  of entries and the newest one before and after a crawl, and crawls once more
+  if either changed. If the list is still moving, the server keeps only the
+  newest 20 entries, truncated, and crawls in full at the next refresh.
 
 What a client should do with a truncated list:
 
@@ -141,7 +149,7 @@ How often each list is refreshed:
 
 | | when |
 | --- | --- |
-| **Page 1** (new releases and tags) | After a quarter of the time the list has been unchanged, between **10 minutes and 6 hours**. A repo that just released is refreshed on every deploy; a repo quiet for a day or more, about every 6 hours. |
+| **Page 1** (new releases and tags) | After a quarter of the time the list has been unchanged, between **10 minutes and 6 hours**. A repo that just released is refreshed on every deploy; a repo quiet for a day or more, about every 6 hours. Releases read the newest 20 entries (new releases land there); tags read all of page 1, because a new tag on an older line can sort anywhere on it. |
 | **A new release in a tracked repo** | For a repo the mise-versions catalog tracks, a newly published release rotates the repo's release generation (the same signal that refreshes `/releases/latest`). The next deploy then refreshes page 1, whatever the backoff. The catalog syncs every 15 minutes, and a catalog change itself triggers the deploy. |
 | **Everything else** (edits and deletions past page 1, a tag on an older release line) | A full re-crawl every **6 hours**. |
 
