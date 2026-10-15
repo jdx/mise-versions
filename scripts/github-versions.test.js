@@ -919,6 +919,48 @@ test("a probe GitHub answers 304 to leaves the list as it was", () => {
   `);
 });
 
+test("a failed refresh never writes back a list a request refreshed meanwhile", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    for (const other of ["fresh", "quiet", "secret", "legacy"]) {
+      kv.store.delete("github:versions:releases:" + other + "/repo");
+    }
+    const key = "github:versions:releases:due/repo";
+    // The refresher's probe fails (twice: no retry saves it)...
+    github.failures = { 1: 2 };
+    github.failStatus = 502;
+    // ...while a client request, which read the list just after the
+    // refresher did, stores v2.
+    const newer = now + 1000;
+    const read = kv.getWithMetadata;
+    let reads = 0;
+    kv.getWithMetadata = async (k, type) => {
+      const result = await read(k, type);
+      if (k === key && ++reads === 1) {
+        kv.store.set(key, JSON.stringify({
+          ...entry, head_at: newer, unchanged_since: newer,
+          items: [item("v2"), item("v1")],
+        }));
+        kv.meta.set(key, meta({ c: newer, h: newer, u: newer, e: '"req"' }));
+      }
+      return result;
+    };
+    const run = await refreshVersionLists(env, { dispatch });
+    assert.equal(run.failed, 1);
+    // The request's list stays, with its freshness, ETag and no backoff.
+    assert.deepEqual(storedEntry(kv, key).items.map((r) => r.tag), ["v2", "v1"]);
+    const after = kv.meta.get(key);
+    assert.equal(after.h, newer);
+    assert.equal(after.c, newer);
+    assert.equal(after.e, '"req"');
+    assert.equal(after.t, undefined);
+    assert.equal(after.b, true);
+    // Its change still gets a deploy.
+    assert.equal(run.changed, 1);
+    assert.equal(run.dispatched, true);
+  `);
+});
+
 test("a refresher run is capped, and leaves the rest for the next run", () => {
   runVersionsTest(`
     ${REFRESH_SETUP}

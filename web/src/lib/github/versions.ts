@@ -1232,7 +1232,9 @@ const refreshTiming = { budgetMs: 3 * 60 * 1000, maxTasks: 150 };
 // A Worker invocation may make 1,000 KV operations. A run plans its reads
 // (listings, demand, generations) and its tasks to stay under this.
 const KV_OPS_BUDGET = 900;
-// A task's KV operations: read, write, a visibility lookup, and a margin.
+// A task's KV operations, at most: the read, a visibility lookup (read, and
+// a write or an access retry mark), then either a refresh's write, or a
+// re-read and a metadata write.
 const KV_OPS_PER_TASK = 5;
 // The lease, the deploy bookkeeping, and the lease's release.
 const KV_OPS_FIXED = 6;
@@ -1546,11 +1548,35 @@ export async function refreshVersionLists(
       if (bakeable) run.added++;
       else run.dropped++;
     }
+    if (!written && JSON.stringify(read) !== JSON.stringify(meta)) {
+      // A client request may have refreshed the list while this task
+      // worked. Its content (and its freshness, ETag and backoff) wins over
+      // the older list read above; this task adds only its bake status,
+      // access check and demand.
+      const latest = await kv.getWithMetadata<StoredVersions>(key, "json");
+      const latestMeta = parseMeta(latest.metadata);
+      if (
+        latest.value &&
+        Array.isArray(latest.value.items) &&
+        latestMeta &&
+        (latestMeta.h !== (read?.h ?? stored.head_at) ||
+          latestMeta.f !== (read?.f ?? stored.full_at))
+      ) {
+        meta = {
+          ...latestMeta,
+          b: meta.b,
+          a: meta.a,
+          r: Math.max(meta.r ?? 0, latestMeta.r ?? 0) || undefined,
+          c: statusChanged ? now : latestMeta.c,
+        };
+        changed ||= latestMeta.c !== (read?.c ?? latestMeta.c);
+        await putEntry(env, key, latest.value, meta);
+      } else {
+        await putEntry(env, key, stored, meta);
+      }
+    }
     if (changed) run.changed++;
     latestChange = Math.max(latestChange, meta.c);
-    if (!written && JSON.stringify(read) !== JSON.stringify(meta)) {
-      await putEntry(env, key, stored, meta);
-    }
   };
 
   const selected = due.slice(0, taskCap);
