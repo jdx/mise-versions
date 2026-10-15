@@ -15,12 +15,13 @@ function runMirrorTest(source) {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`.trim());
 }
 
-test("GitHub release mirror caches empty assets as a short cache miss", () => {
+test("GitHub release mirror serves releases without assets, briefly", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
     import {
       getCachedGitHubRelease,
-      githubStatus,
+      releaseCacheHeaders,
+      releaseEdgeCacheOptions,
     } from "./web/src/lib/github/mirror.ts";
 
     const writes = [];
@@ -42,14 +43,27 @@ test("GitHub release mirror caches empty assets as a short cache miss", () => {
       },
     };
 
-    await assert.rejects(
-      () => getCachedGitHubRelease(env, "owner", "repo", "latest"),
-      (error) => githubStatus(error) === 404,
-    );
+    // Served with assets: [] (aqua and ruby-build latest only need the tag).
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "latest", "g1");
+    assert.equal(release.tag_name, "v1.0.0");
+    assert.deepEqual(release.assets, []);
+    assert.equal(release.immutable, false);
+    // Kept 30 minutes in KV and at the edge, never in browsers: assets may
+    // still be uploading.
     assert.equal(writes.length, 1);
-    assert.equal(writes[0].key, "github:release:owner/repo:latest");
+    assert.equal(writes[0].key, "github:release:owner/repo:latest:g1");
     assert.deepEqual(writes[0].options, { expirationTtl: 1800 });
-    assert.equal(JSON.parse(writes[0].value).data.immutable, false);
+    assert.deepEqual(releaseCacheHeaders("v1.0.0", release), {
+      "Cache-Control": "public, max-age=0, s-maxage=1800",
+    });
+    const edge = releaseEdgeCacheOptions("v1.0.0", release);
+    assert.equal(edge.edgeMaxAge, 1800);
+    assert.equal(edge.browserMaxAge, 0);
+    assert.equal(edge.staleWhileRevalidate, 0);
+    // An untracked latest keeps its shorter 10 minutes.
+    assert.deepEqual(releaseCacheHeaders("latest", release), {
+      "Cache-Control": "public, max-age=0, s-maxage=600",
+    });
   `);
 });
 
