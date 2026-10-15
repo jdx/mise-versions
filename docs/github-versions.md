@@ -6,6 +6,9 @@ whole tag list, in compact form. It replaces paging through
 `/api/github/.../releases?page=N` and `/tags?page=N`) when mise lists the
 versions of a `github:`, `aqua:` or `packslip:` tool.
 
+Clients use the mirror only: in normal use, mise never asks
+`api.github.com` for these lists (see [Errors](#errors)).
+
 This document is the client contract. The server is in
 [`web/src/lib/github/versions.ts`](../web/src/lib/github/versions.ts), the
 Worker route in
@@ -135,7 +138,11 @@ What a client should do with a truncated list:
   contains a matching stable entry. This is the same rule
   `has_stopping_stable_release` uses to stop paging today.
 - **Listing every version** (`MISE_LIST_ALL_VERSIONS`, `mise ls-remote --all`)
-  needs the rest from GitHub.
+  gets what the mirror has: a truncated list is the most the mirror holds for
+  that repository. The client lists it and says it may be incomplete. For one
+  specific older version, it asks the mirror for that version (see
+  [one missing version](#one-missing-version)). It does not fall back to
+  `api.github.com`.
 
 ## Freshness
 
@@ -161,8 +168,8 @@ In practice:
   plus one deploy. An active repo's appears within one deploy.
 - An exact version (`mise install github:o/r@1.2.3`) does not need the list.
   If a client finds a version missing from a list whose `fetched_at` is older
-  than it can accept, it can ask GitHub (or the mirror's `/releases/{tag}`)
-  for that one release.
+  than it can accept, it asks the mirror for that one version ([one missing version](#one-missing-version)), never
+  `api.github.com`.
 
 Caching headers:
 
@@ -173,15 +180,40 @@ Caching headers:
 - Clients keep their own copy for as long as any remote version list
   (`fetch_remote_versions_cache`, default 1 h).
 
+### One missing version
+
+- **From `releases.json`** (or `assets/{asset}/releases.json`): ask the
+  mirror's `/api/github/repos/{owner}/{repo}/releases/{tag}`. A 404 there means
+  the mirror has no release it can serve under that tag (none, or a draft),
+  which is not proof that the version does not exist: report it as not
+  available from the mirror.
+- **From `tags.json`**: a git tag need not have a release, so
+  `/releases/{tag}` is the wrong question and its 404 does not mean the tag is
+  missing. Page through the mirror's
+  `/api/github/repos/{owner}/{repo}/tags?page=N` (100 tags a page, GitHub's
+  order, up to 10 pages) until the tag appears or `next_page` is null. A
+  `next_page` of null with `truncated: true` means the mirror stopped at its
+  page limit with older tags left: the lookup is incomplete, so report the
+  tag as not found in what the mirror holds, not as absent.
+
 ## Errors
+
+These are the answers of the `/data/github/` URLs above. The
+`/api/github/repos/...` routes are separate and answer a malformed path with
+`400`.
 
 | status | meaning | client action |
 | --- | --- | --- |
-| `404` | Not a valid path (including uppercase), or the repo is private, missing or blocked. | Use GitHub quietly, as for releases. |
-| `403` | The mirror is disabled or restricted (`GITHUB_MIRROR_ACCESS`). | Warn and use GitHub, as for releases. |
-| `429` | This client started too many uncached crawls. | Use GitHub for this tool. |
-| `502` | GitHub failed and there was nothing stored to serve. | Use GitHub. |
-| `503` | The repo's visibility could not be checked. | Use GitHub. |
+| `404` | Not a valid path (including uppercase), or the repo is private, missing or blocked. | Report the tool's versions as not found. The mirror serves public repositories only. |
+| `403` | The mirror is disabled or restricted (`GITHUB_MIRROR_ACCESS`). | Warn, and report the versions as unavailable. |
+| `429` | This client started too many uncached crawls. | Retry later, or use the list cached locally. |
+| `502` | GitHub failed and there was nothing stored to serve. | Retry later, or use the list cached locally. |
+| `503` | The repo's visibility could not be checked. | Retry later, or use the list cached locally. |
+
+In every case, **mise does not fall back to `api.github.com`**. Its
+unauthenticated limit (60 requests an hour) is what makes those lookups fail
+for users, and avoiding that is the reason the mirror exists. Normal use goes
+through the mirror only.
 
 A `200` is always a complete or truncated list as described above, never a
 partial error.
