@@ -10,9 +10,8 @@ import {
   validRepoPart,
 } from "../../../../../../lib/github/mirror";
 import {
-  getCachedGitHubRepoIdentity,
+  getCachedGitHubRepoIdentityResult,
   REPO_IDENTITY_BROWSER_TTL_SECONDS,
-  REPO_IDENTITY_TTL_SECONDS,
 } from "../../../../../../lib/github/repo-identity";
 import { checkGitHubMirrorAccess } from "../../../../../../lib/github/visibility";
 
@@ -37,20 +36,27 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   if (cached) return cached;
 
   try {
-    const identity = await getCachedGitHubRepoIdentity(env, owner, repo);
+    const { identity, freshSeconds } = await getCachedGitHubRepoIdentityResult(
+      env,
+      owner,
+      repo,
+    );
+    // An entry read from KV near the end of its 6 hours is kept only for
+    // what is left, so a rename shows up within 6 hours in all.
+    const edgeMaxAge = freshSeconds;
+    const browserMaxAge = Math.min(
+      REPO_IDENTITY_BROWSER_TTL_SECONDS,
+      freshSeconds,
+    );
     const response = jsonResponse(
       identity,
       200,
-      cacheHeaders({
-        browserMaxAge: REPO_IDENTITY_BROWSER_TTL_SECONDS,
-        edgeMaxAge: REPO_IDENTITY_TTL_SECONDS,
-        staleWhileRevalidate: 0,
-      }),
+      cacheHeaders({ browserMaxAge, edgeMaxAge, staleWhileRevalidate: 0 }),
     );
     locals.cfContext.waitUntil(
       putGitHubMirrorEdgeCache(request, response, {
-        browserMaxAge: REPO_IDENTITY_BROWSER_TTL_SECONDS,
-        edgeMaxAge: REPO_IDENTITY_TTL_SECONDS,
+        browserMaxAge,
+        edgeMaxAge,
         staleWhileRevalidate: 0,
       }),
     );
@@ -61,8 +67,9 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       error,
     );
     const status = githubStatus(error);
-    if (status === 404 || status === 451)
+    if (status === 404 || status === 451) {
       return errorResponse("Not found", 404);
+    }
     if (isGitHubRateLimited(error)) {
       return errorResponse("GitHub rate limit reached; try again later", 503);
     }

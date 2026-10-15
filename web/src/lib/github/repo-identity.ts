@@ -41,13 +41,29 @@ export async function getCachedGitHubRepoIdentity(
   owner: string,
   repo: string,
 ): Promise<GitHubRepoIdentity> {
+  return (await getCachedGitHubRepoIdentityResult(env, owner, repo)).identity;
+}
+
+/**
+ * The identity, and for how many more seconds it is fresh, so that caches
+ * downstream of KV do not keep it past REPO_IDENTITY_TTL_SECONDS in all.
+ */
+export async function getCachedGitHubRepoIdentityResult(
+  env: Env,
+  owner: string,
+  repo: string,
+): Promise<{ identity: GitHubRepoIdentity; freshSeconds: number }> {
   const cacheKey = `github:repo-identity:${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const cached = await env.GITHUB_CACHE.get<CachedIdentity>(cacheKey, "json");
-  if (
-    cached &&
-    Date.now() - cached.cached_at < REPO_IDENTITY_TTL_SECONDS * 1000
-  ) {
-    return cached.data;
+  const ageSeconds = cached ? (Date.now() - cached.cached_at) / 1000 : NaN;
+  if (cached && ageSeconds >= 0 && ageSeconds < REPO_IDENTITY_TTL_SECONDS) {
+    return {
+      identity: cached.data,
+      freshSeconds: Math.max(
+        1,
+        Math.floor(REPO_IDENTITY_TTL_SECONDS - ageSeconds),
+      ),
+    };
   }
 
   // The pool follows GitHub's redirect for a renamed repo
@@ -83,5 +99,5 @@ export async function getCachedGitHubRepoIdentity(
   } catch (error) {
     console.warn(`failed to cache ${cacheKey}:`, error);
   }
-  return identity;
+  return { identity, freshSeconds: REPO_IDENTITY_TTL_SECONDS };
 }
