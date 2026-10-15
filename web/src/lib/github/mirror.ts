@@ -244,17 +244,22 @@ export function attestationsCacheHeaders() {
   });
 }
 
+// The zone's Browser Cache TTL (2 hours) replaces a lower `max-age` on
+// responses served from the Cache API, so an edge hit would tell browsers
+// and proxies to keep for 2 hours what the Worker answered with max-age=0.
+// The Cache-Control the Worker meant is kept in this header and put back.
+const EDGE_CACHE_CONTROL_HEADER = "X-Mise-Cache-Control";
+
 export async function matchGitHubMirrorEdgeCache(
   request: Request,
   cacheGeneration?: string,
   cacheKeyParams?: Record<string, string>,
 ): Promise<Response | null> {
   try {
-    return (
-      (await defaultEdgeCache().match(
-        edgeCacheRequest(request, cacheGeneration, cacheKeyParams),
-      )) ?? null
+    const cached = await defaultEdgeCache().match(
+      edgeCacheRequest(request, cacheGeneration, cacheKeyParams),
     );
+    return cached ? withIntendedCacheControl(cached) : null;
   } catch (error) {
     console.warn("failed to read GitHub mirror edge cache:", error);
     return null;
@@ -290,6 +295,19 @@ export interface EdgeCacheOptions {
   cacheKeyParams?: Record<string, string>;
 }
 
+function withIntendedCacheControl(response: Response): Response {
+  const intended = response.headers.get(EDGE_CACHE_CONTROL_HEADER);
+  if (!intended) return response;
+  const headers = new Headers(response.headers);
+  headers.set("Cache-Control", intended);
+  headers.delete(EDGE_CACHE_CONTROL_HEADER);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 function edgeCacheResponse(
   response: Response,
   {
@@ -308,6 +326,7 @@ function edgeCacheResponse(
     directives.push(`stale-while-revalidate=${staleWhileRevalidate}`);
   }
   headers.set("Cache-Control", directives.join(", "));
+  headers.set(EDGE_CACHE_CONTROL_HEADER, directives.join(", "));
   return new Response(response.clone().body, {
     status: response.status,
     statusText: response.statusText,
