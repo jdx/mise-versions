@@ -6,8 +6,9 @@ whole tag list, in compact form. It replaces paging through
 `/api/github/.../releases?page=N` and `/tags?page=N`) when mise lists the
 versions of a `github:`, `aqua:` or `packslip:` tool.
 
-Clients use the mirror only: in normal use, mise never asks
-`api.github.com` for these lists (see [Errors](#errors)).
+Clients use the mirror first. mise asks `api.github.com` for these lists
+only when the mirror errors (a timeout, a lost connection, `429` or `5xx`),
+never on a `404` or an empty answer (see [Errors](#errors)).
 
 This document is the client contract. The server is in
 [`web/src/lib/github/versions.ts`](../web/src/lib/github/versions.ts), the
@@ -208,14 +209,19 @@ These are the answers of the `/data/github/` URLs above. The
 | --- | --- | --- |
 | `404` | Not a valid path (including uppercase), or the repo is private, missing or blocked. | Report the tool's versions as not found. The mirror serves public repositories only. |
 | `403` | The mirror is disabled or restricted (`GITHUB_MIRROR_ACCESS`). | Warn, and report the versions as unavailable. |
-| `429` | This client started too many uncached crawls. | Retry later, or use the list cached locally. |
-| `502` | GitHub failed and there was nothing stored to serve. | Retry later, or use the list cached locally. |
-| `503` | The repo's visibility could not be checked. | Retry later, or use the list cached locally. |
+| `429` | This client started too many uncached crawls. | Ask `api.github.com`; if that fails too, use the list cached locally. |
+| `502` | GitHub failed and there was nothing stored to serve. | Ask `api.github.com`; if that fails too, use the list cached locally. |
+| `503` | The repo's visibility could not be checked. | Ask `api.github.com`; if that fails too, use the list cached locally. |
 
-In every case, **mise does not fall back to `api.github.com`**. Its
-unauthenticated limit (60 requests an hour) is what makes those lookups fail
-for users, and avoiding that is the reason the mirror exists. Normal use goes
-through the mirror only.
+mise treats a timeout or a lost connection like a `5xx`.
+
+**mise asks `api.github.com` only when the mirror errors**: a timeout, a lost
+connection, `429` or `5xx`. It first tries the paged `/api/github/` routes
+for the list, then makes the same lookup on GitHub, with the user's token if
+one is set. When GitHub fails too, the error names both failures. Anything the
+mirror answers is trusted: a `404`, a `403`, or an empty list never reaches
+GitHub. Its unauthenticated limit (60 requests an hour) is what makes those
+lookups fail for users, and avoiding that is the reason the mirror exists.
 
 A `200` is always a complete or truncated list as described above, never a
 partial error.
