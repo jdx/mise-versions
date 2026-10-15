@@ -15,12 +15,13 @@ function runMirrorTest(source) {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`.trim());
 }
 
-test("GitHub release mirror caches empty assets as a short cache miss", () => {
+test("GitHub release mirror serves releases without assets, briefly", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
     import {
       getCachedGitHubRelease,
-      githubStatus,
+      releaseCacheHeaders,
+      releaseEdgeCacheOptions,
     } from "./web/src/lib/github/mirror.ts";
 
     const writes = [];
@@ -42,14 +43,79 @@ test("GitHub release mirror caches empty assets as a short cache miss", () => {
       },
     };
 
-    await assert.rejects(
-      () => getCachedGitHubRelease(env, "owner", "repo", "latest"),
-      (error) => githubStatus(error) === 404,
-    );
+    // Served with assets: [] (aqua and ruby-build latest only need the tag).
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "latest", "g1");
+    assert.equal(release.tag_name, "v1.0.0");
+    assert.deepEqual(release.assets, []);
+    assert.equal(release.immutable, false);
+    // Kept 30 minutes in KV and at the edge, never in browsers: assets may
+    // still be uploading.
     assert.equal(writes.length, 1);
-    assert.equal(writes[0].key, "github:release:owner/repo:latest");
+    assert.equal(writes[0].key, "github:release:owner/repo:latest:g1");
     assert.deepEqual(writes[0].options, { expirationTtl: 1800 });
-    assert.equal(JSON.parse(writes[0].value).data.immutable, false);
+    assert.deepEqual(releaseCacheHeaders("v1.0.0", release), {
+      "Cache-Control": "public, max-age=0, s-maxage=1800",
+    });
+    const edge = releaseEdgeCacheOptions("v1.0.0", release);
+    assert.equal(edge.edgeMaxAge, 1800);
+    assert.equal(edge.browserMaxAge, 0);
+    assert.equal(edge.staleWhileRevalidate, 0);
+    // An untracked latest keeps its shorter 10 minutes.
+    assert.deepEqual(releaseCacheHeaders("latest", release), {
+      "Cache-Control": "public, max-age=0, s-maxage=600",
+    });
+  `);
+});
+
+test("GitHub release mirror never serves a stored empty release when GitHub fails", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const generation = "123e4567-e89b-42d3-a456-426614174000";
+    const empty = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      published_at: "2026-01-01T00:00:00Z",
+      immutable: false,
+      assets: [],
+    };
+    globalThis.fetch = async () =>
+      new Response("unavailable", { status: 503 });
+    const stored = new Map();
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => stored.get(key) ?? null,
+        put: async () => {},
+      },
+    };
+
+    // Its assets may have been uploaded since: GitHub's error, not the
+    // stored empty release, both from the untracked entry a repo's first
+    // catalog generation falls back to...
+    stored.set("github:release:owner/repo:latest", {
+      cached_at: Date.now() - 60 * 60 * 1000,
+      data: empty,
+    });
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "latest", generation),
+      (error) => githubStatus(error) === 503,
+    );
+    // ...and from its own stale entry.
+    stored.set("github:release:owner/repo:v1.0.0", {
+      cached_at: Date.now() - 60 * 60 * 1000,
+      data: empty,
+    });
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v1.0.0"),
+      (error) => githubStatus(error) === 503,
+    );
   `);
 });
 

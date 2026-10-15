@@ -182,6 +182,13 @@ export function releaseCacheHeaders(
       staleWhileRevalidate: 0,
     });
   }
+  if (release.assets.length === 0) {
+    return cacheHeaders({
+      browserMaxAge: 0,
+      edgeMaxAge: EMPTY_RELEASE_CACHE_TTL_SECONDS,
+      staleWhileRevalidate: 0,
+    });
+  }
   const immutable = tag !== "latest" && release.immutable === true;
   if (!immutable && isYoungRelease(release)) {
     return cacheHeaders({
@@ -206,14 +213,17 @@ export function releaseEdgeCacheOptions(
   cacheGeneration?: string,
 ): EdgeCacheOptions {
   const young = release.immutable !== true && isYoungRelease(release);
+  const empty = release.assets.length === 0;
   return {
-    browserMaxAge: tag === "latest" ? 0 : undefined,
+    browserMaxAge: tag === "latest" || empty ? 0 : undefined,
     edgeMaxAge: isUntrackedLatest(tag, cacheGeneration)
       ? EDGE_UNTRACKED_LATEST_TTL_SECONDS
-      : young
-        ? EDGE_YOUNG_RELEASE_TTL_SECONDS
-        : undefined,
-    staleWhileRevalidate: tag === "latest" || young ? 0 : undefined,
+      : empty
+        ? EMPTY_RELEASE_CACHE_TTL_SECONDS
+        : young
+          ? EDGE_YOUNG_RELEASE_TTL_SECONDS
+          : undefined,
+    staleWhileRevalidate: tag === "latest" || young || empty ? 0 : undefined,
     cacheGeneration,
   };
 }
@@ -420,6 +430,7 @@ export async function getCachedGitHubReleaseResult(
 
   let release: GitHubRelease;
   let staleFallback = false;
+  let fetchError: unknown;
   try {
     release = await getOrRefresh({
       env,
@@ -453,6 +464,7 @@ export async function getCachedGitHubReleaseResult(
           ? `github:release:${cacheRepository}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
           : undefined,
       onFetchError: async (error, cached) => {
+        fetchError = error;
         if (cached && githubStatus(error) === 404) {
           await deleteCachedRelease(env, cacheKey);
         }
@@ -471,13 +483,13 @@ export async function getCachedGitHubReleaseResult(
     }
     throw error;
   }
-  if (release.assets.length === 0) {
-    throw new GitHubError(
-      404,
-      "GitHub release response did not include assets",
-      new Headers(),
-    );
-  }
+  // A release without assets is still a release: callers that only need
+  // the tag (aqua and ruby-build `latest`) use it, and a client that needs
+  // assets sees `assets: []`. It is kept only briefly (EMPTY_RELEASE_*), as
+  // assets may still be uploading. For the same reason a stored one is not
+  // served when GitHub fails: its assets may be there by now, so the client
+  // gets GitHub's error and retries, rather than an empty release.
+  if (staleFallback && release.assets.length === 0) throw fetchError;
   return { release, staleFallback };
 }
 
