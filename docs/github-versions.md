@@ -218,7 +218,8 @@ mise treats a timeout or a lost connection like a `5xx`.
 **mise asks `api.github.com` only when the mirror errors**: a timeout, a lost
 connection, `429` or `5xx`. It first tries the paged `/api/github/` routes
 for the list, then makes the same lookup on GitHub, with the user's token if
-one is set. When GitHub fails too, the error names both failures. Anything the
+one is set. When GitHub fails too and no list is cached locally, the error
+names both failures. Anything the
 mirror answers is trusted: a `404`, a `403`, or an empty list never reaches
 GitHub. Its unauthenticated limit (60 requests an hour) is what makes those
 lookups fail for users, and avoiding that is the reason the mirror exists.
