@@ -430,6 +430,7 @@ export async function getCachedGitHubReleaseResult(
 
   let release: GitHubRelease;
   let staleFallback = false;
+  let fetchError: unknown;
   try {
     release = await getOrRefresh({
       env,
@@ -463,6 +464,7 @@ export async function getCachedGitHubReleaseResult(
           ? `github:release:${cacheRepository}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
           : undefined,
       onFetchError: async (error, cached) => {
+        fetchError = error;
         if (cached && githubStatus(error) === 404) {
           await deleteCachedRelease(env, cacheKey);
         }
@@ -484,7 +486,10 @@ export async function getCachedGitHubReleaseResult(
   // A release without assets is still a release: callers that only need
   // the tag (aqua and ruby-build `latest`) use it, and a client that needs
   // assets sees `assets: []`. It is kept only briefly (EMPTY_RELEASE_*), as
-  // assets may still be uploading.
+  // assets may still be uploading. For the same reason a stored one is not
+  // served when GitHub fails: its assets may be there by now, so the client
+  // gets GitHub's error and retries, rather than an empty release.
+  if (staleFallback && release.assets.length === 0) throw fetchError;
   return { release, staleFallback };
 }
 

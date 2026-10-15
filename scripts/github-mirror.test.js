@@ -67,6 +67,58 @@ test("GitHub release mirror serves releases without assets, briefly", () => {
   `);
 });
 
+test("GitHub release mirror never serves a stored empty release when GitHub fails", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const generation = "123e4567-e89b-42d3-a456-426614174000";
+    const empty = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      published_at: "2026-01-01T00:00:00Z",
+      immutable: false,
+      assets: [],
+    };
+    globalThis.fetch = async () =>
+      new Response("unavailable", { status: 503 });
+    const stored = new Map();
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => stored.get(key) ?? null,
+        put: async () => {},
+      },
+    };
+
+    // Its assets may have been uploaded since: GitHub's error, not the
+    // stored empty release, both from the untracked entry a repo's first
+    // catalog generation falls back to...
+    stored.set("github:release:owner/repo:latest", {
+      cached_at: Date.now() - 60 * 60 * 1000,
+      data: empty,
+    });
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "latest", generation),
+      (error) => githubStatus(error) === 503,
+    );
+    // ...and from its own stale entry.
+    stored.set("github:release:owner/repo:v1.0.0", {
+      cached_at: Date.now() - 60 * 60 * 1000,
+      data: empty,
+    });
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v1.0.0"),
+      (error) => githubStatus(error) === 503,
+    );
+  `);
+});
+
 test("catalog generations isolate mutable latest caches", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
