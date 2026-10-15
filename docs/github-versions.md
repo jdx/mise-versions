@@ -132,8 +132,8 @@ What a client should do with a truncated list:
 - **Listing every version** (`MISE_LIST_ALL_VERSIONS`, `mise ls-remote --all`)
   gets what the mirror has: a truncated list is the most the mirror holds for
   that repository. The client lists it and says it may be incomplete. For one
-  specific older version it asks the mirror's
-  `/api/github/repos/{owner}/{repo}/releases/{tag}`. It does not fall back to
+  specific older version, it asks the mirror for that version (see
+  [one missing version](#one-missing-version)). It does not fall back to
   `api.github.com`.
 
 ## Freshness
@@ -160,9 +160,8 @@ In practice:
   plus one deploy. An active repo's appears within one deploy.
 - An exact version (`mise install github:o/r@1.2.3`) does not need the list.
   If a client finds a version missing from a list whose `fetched_at` is older
-  than it can accept, it asks the mirror's
-  `/api/github/repos/{owner}/{repo}/releases/{tag}` for that one release,
-  never `api.github.com`.
+  than it can accept, it asks the mirror for that one version ([one missing version](#one-missing-version)), never
+  `api.github.com`.
 
 Caching headers:
 
@@ -173,7 +172,22 @@ Caching headers:
 - Clients keep their own copy for as long as any remote version list
   (`fetch_remote_versions_cache`, default 1 h).
 
+### One missing version
+
+- **From `releases.json`** (or `assets/{asset}/releases.json`): ask the
+  mirror's `/api/github/repos/{owner}/{repo}/releases/{tag}`. A 404 there means
+  GitHub has no such release.
+- **From `tags.json`**: a git tag need not have a release, so
+  `/releases/{tag}` is the wrong question and its 404 does not mean the tag is
+  missing. Page through the mirror's
+  `/api/github/repos/{owner}/{repo}/tags?page=N` (100 tags a page, GitHub's
+  order, up to 10 pages) until the tag appears or `next_page` is null.
+
 ## Errors
+
+These are the answers of the `/data/github/` URLs above. The
+`/api/github/repos/...` routes are separate and answer a malformed path with
+`400`.
 
 | status | meaning | client action |
 | --- | --- | --- |
