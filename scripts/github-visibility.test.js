@@ -20,6 +20,7 @@ const PRELUDE = `
   import assert from "node:assert/strict";
   import {
     checkGitHubMirrorAccess,
+    checkGitHubMirrorAccessVerified,
     isPublicGitHubRepo,
   } from "./web/src/lib/github/visibility.ts";
 
@@ -62,11 +63,160 @@ test("public repos are allowed and cached for an hour", () => {
     assert.deepEqual(calls, ["https://api.github.com/repos/Owner/Repo"]);
     assert.equal(env.GITHUB_CACHE.writes.length, 1);
     assert.equal(env.GITHUB_CACHE.writes[0].key, "github:visibility:owner/repo");
-    assert.deepEqual(env.GITHUB_CACHE.writes[0].options, { expirationTtl: 3600 });
+    // The entry outlives its answer (8 days) so the next check can carry
+    // first_public_at over; the answer itself is trusted for an hour.
+    assert.deepEqual(env.GITHUB_CACHE.writes[0].options, { expirationTtl: 8 * 86400 });
+    const stored = JSON.parse(env.GITHUB_CACHE.writes[0].value);
+    assert.equal(stored.public, true);
+    assert.equal(stored.ttl, 3600);
+    assert.ok(Math.abs(stored.first_public_at - Date.now()) < 5000);
 
     // Served from cache without asking GitHub again.
     assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), true);
     assert.equal(calls.length, 1);
+  `);
+});
+
+test("repos with more than 100 stars are re-checked daily", () => {
+  runMirrorTest(`${PRELUDE}
+    for (const [stars, ttl] of [[101, 86400], [100, 3600], [0, 3600], ["9999", 3600], [undefined, 3600]]) {
+      const env = makeEnv();
+      repoFetch(200, { private: false, visibility: "public", stargazers_count: stars });
+      assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), true);
+      assert.equal(JSON.parse(env.GITHUB_CACHE.writes[0].value).ttl, ttl, String(stars));
+    }
+    // The star count is kept with the answer and reported by access checks,
+    // so the mirror can use it without asking GitHub again.
+    {
+      const env = makeEnv();
+      const calls = repoFetch(200, { private: false, visibility: "public", stargazers_count: 1234 });
+      const first = await checkGitHubMirrorAccessVerified(env, "owner", "repo");
+      assert.equal(first.stars, 1234);
+      assert.equal(JSON.parse(env.GITHUB_CACHE.writes[0].value).stars, 1234);
+      assert.equal((await checkGitHubMirrorAccessVerified(env, "owner", "repo")).stars, 1234);
+      assert.equal(calls.length, 1);
+      repoFetch(200, { private: false, visibility: "public", stargazers_count: "many" });
+      const unknown = await checkGitHubMirrorAccessVerified(makeEnv(), "owner", "repo");
+      assert.equal(unknown.stars, undefined);
+    }
+    // Stars never lengthen a "not public" answer.
+    const env = makeEnv();
+    repoFetch(200, { private: true, visibility: "private", stargazers_count: 5000 });
+    assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), false);
+    const stored = JSON.parse(env.GITHUB_CACHE.writes[0].value);
+    assert.equal(stored.ttl, 3600);
+    assert.equal(stored.first_public_at, undefined);
+  `);
+});
+
+test("a stored answer is trusted for its own TTL, at most a day", () => {
+  runMirrorTest(`${PRELUDE}
+    const hour = 3600 * 1000;
+    const entry = (age, extra) =>
+      JSON.stringify({ cached_at: Date.now() - age, public: true, ...extra });
+    for (const [name, value, refetched] of [
+      ["day TTL, 23h old", entry(23 * hour, { ttl: 86400 }), false],
+      ["day TTL, 25h old", entry(25 * hour, { ttl: 86400 }), true],
+      ["no TTL, 30m old", entry(hour / 2), false],
+      ["no TTL, 2h old", entry(2 * hour), true],
+      ["TTL over a day is capped", entry(25 * hour, { ttl: 7 * 86400 }), true],
+      ["TTL under an hour is an hour", entry(hour / 2, { ttl: 1 }), false],
+      ["unparsable TTL is an hour", entry(2 * hour, { ttl: "86400" }), true],
+    ]) {
+      const env = makeEnv({
+        GITHUB_CACHE: memoryKv({ "github:visibility:owner/repo": value }),
+      });
+      const calls = repoFetch(200, { private: false, visibility: "public" });
+      assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), true, name);
+      assert.equal(calls.length, refetched ? 1 : 0, name);
+    }
+  `);
+});
+
+test("repos public for over 30 days are re-checked daily", () => {
+  runMirrorTest(`${PRELUDE}
+    const day = 86400 * 1000;
+    const now = Date.now();
+    const recheck = async (previous) => {
+      const env = makeEnv({
+        GITHUB_CACHE: memoryKv(
+          previous ? { "github:visibility:owner/repo": JSON.stringify(previous) } : {},
+        ),
+      });
+      repoFetch(200, { private: false, visibility: "public", stargazers_count: 3 });
+      assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), true);
+      return JSON.parse(env.GITHUB_CACHE.writes[0].value);
+    };
+
+    // Seen public for 31 days, last checked 2 hours ago: the run carries on.
+    let next = await recheck({
+      cached_at: now - 2 * 3600 * 1000, public: true, ttl: 3600, first_public_at: now - 31 * day,
+    });
+    assert.equal(next.first_public_at, now - 31 * day);
+    assert.equal(next.ttl, 86400);
+
+    // Seen public for 29 days: carried over, still an hour.
+    next = await recheck({
+      cached_at: now - 2 * 3600 * 1000, public: true, ttl: 3600, first_public_at: now - 29 * day,
+    });
+    assert.equal(next.first_public_at, now - 29 * day);
+    assert.equal(next.ttl, 3600);
+
+    // Entries from before first_public_at start the clock now.
+    for (const previous of [
+      undefined,
+      { cached_at: now - 2 * 3600 * 1000, public: true },
+      // Last seen not public: the run restarts.
+      { cached_at: now - 2 * 3600 * 1000, public: false, first_public_at: now - 60 * day },
+      // Not checked for over a week: it may have been private meanwhile.
+      { cached_at: now - 8 * day, public: true, first_public_at: now - 60 * day },
+      // From the future: not trusted.
+      { cached_at: now - 2 * 3600 * 1000, public: true, first_public_at: now + day },
+    ]) {
+      next = await recheck(previous);
+      assert.ok(Math.abs(next.first_public_at - Date.now()) < 5000, JSON.stringify(previous));
+      assert.equal(next.ttl, 3600, JSON.stringify(previous));
+    }
+
+    // A repo that turns private or disappears loses its run.
+    for (const [status, body] of [
+      [200, { private: true, visibility: "private" }],
+      [404, { message: "Not Found" }],
+    ]) {
+      const env = makeEnv({
+        GITHUB_CACHE: memoryKv({
+          "github:visibility:owner/repo": JSON.stringify({
+            cached_at: now - 2 * day, public: true, ttl: 86400, first_public_at: now - 60 * day,
+          }),
+        }),
+      });
+      repoFetch(status, body);
+      assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), false);
+      const stored = JSON.parse(env.GITHUB_CACHE.writes[0].value);
+      assert.equal(stored.first_public_at, undefined);
+      assert.equal(stored.ttl, 3600);
+    }
+  `);
+});
+
+test("memos from before TTLs are never read as an answer", () => {
+  runMirrorTest(`${PRELUDE}
+    import { readMemo, writeMemo } from "./web/src/lib/github/edge-memo.ts";
+    import { gitHubRepoVisibility } from "./web/src/lib/github/visibility.ts";
+    globalThis.caches = undefined;
+    const env = makeEnv();
+    // An older Worker memoized a bare boolean under the KV key; the new
+    // answer shape lives under its own memo key, so neither version reads
+    // the other's.
+    const key = "github:visibility:owner/repo";
+    await writeMemo(env.GITHUB_CACHE, key, true, Date.now() + 20 * 60 * 1000);
+    const calls = repoFetch(200, { private: true, visibility: "private" });
+    const answer = await gitHubRepoVisibility(env, "owner", "repo");
+    assert.equal(calls.length, 1);
+    assert.equal(answer.public, false);
+    assert.equal(answer.ttlSeconds, 3600);
+    assert.equal((await readMemo(env.GITHUB_CACHE, key)).value, true);
+    assert.deepEqual((await readMemo(env.GITHUB_CACHE, key + "#ttl")).value, { p: false, t: 3600 });
   `);
 });
 
@@ -477,6 +627,205 @@ test("untracked latest releases refresh after ten minutes", () => {
       "v2.0.0",
     );
     assert.equal(fetches, 1);
+  `);
+});
+
+test("untracked latest and release-list page 1 back off while unchanged", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      getCachedGitHubReleaseList,
+      getCachedGitHubReleaseResult,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const old = new Date(Date.now() - 30 * 24 * hour).toISOString();
+    const release = (tag, publishedAt = old) => ({
+      tag_name: tag,
+      draft: false,
+      prerelease: false,
+      created_at: publishedAt,
+      published_at: publishedAt,
+      assets: [{
+        name: "a.tar.gz",
+        browser_download_url: "https://github.com/o/r/releases/download/" + tag + "/a.tar.gz",
+        url: "https://api.github.com/repos/o/r/releases/assets/1",
+      }],
+    });
+    let upstream = release("v1.0.0");
+    let fetches = 0;
+    globalThis.fetch = async (url) => {
+      fetches++;
+      const body = String(url).includes("/releases?") ? [upstream] : upstream;
+      return new Response(JSON.stringify(body), { status: 200 });
+    };
+    function kv(initial = {}) {
+      const store = new Map(Object.entries(initial));
+      return {
+        store,
+        get: async (key) => store.get(key) ?? null,
+        put: async (key, value) => store.set(key, JSON.parse(value)),
+      };
+    }
+    const env = (initial) => ({ DB: {}, GITHUB_CACHE: kv(initial) });
+
+    // A first read records since when the answer has been the same.
+    const first = env();
+    await getCachedGitHubRelease(first, "o", "r", "latest");
+    assert.equal(fetches, 1);
+    const stored = first.GITHUB_CACHE.store.get("github:release:o/r:latest");
+    assert.equal(stored.unchanged_since, stored.cached_at);
+
+    // [age of the entry, how long it had been unchanged when cached, refetched?]
+    for (const [age, stable, refetched] of [
+      [5 * minute, 0, false],
+      [15 * minute, 0, true], // just changed: ten minutes
+      [20 * minute, 2 * hour, false], // stable 2h: 30 minutes
+      [35 * minute, 2 * hour, true],
+      [50 * minute, 10 * hour, false], // capped at an hour
+      [65 * minute, 10 * hour, true],
+    ]) {
+      const cachedAt = Date.now() - age;
+      const data = { ...stored.data };
+      for (const [key, page] of [
+        ["github:release:o/r:latest", null],
+        ["github:releases:o/r:1", 1],
+      ]) {
+        fetches = 0;
+        const entry = {
+          cached_at: cachedAt,
+          unchanged_since: cachedAt - stable,
+          data: page ? { releases: [], next_page: null, truncated: false } : data,
+        };
+        const e = env({ [key]: entry });
+        if (page) await getCachedGitHubReleaseList(e, "o", "r", 1);
+        else await getCachedGitHubRelease(e, "o", "r", "latest");
+        assert.equal(fetches, refetched ? 1 : 0, key + " " + age + " " + stable);
+      }
+    }
+
+    // A refresh that finds the same answer keeps its unchanged_since; a new
+    // release resets it.
+    const since = Date.now() - 10 * hour;
+    const same = env({
+      "github:release:o/r:latest": {
+        cached_at: Date.now() - 2 * hour, unchanged_since: since, data: stored.data,
+      },
+    });
+    await getCachedGitHubRelease(same, "o", "r", "latest");
+    assert.equal(same.GITHUB_CACHE.store.get("github:release:o/r:latest").unchanged_since, since);
+    upstream = release("v2.0.0");
+    const changed = env({
+      "github:release:o/r:latest": {
+        cached_at: Date.now() - 2 * hour, unchanged_since: since, data: stored.data,
+      },
+    });
+    assert.equal((await getCachedGitHubRelease(changed, "o", "r", "latest")).tag_name, "v2.0.0");
+    const next = changed.GITHUB_CACHE.store.get("github:release:o/r:latest");
+    assert.equal(next.unchanged_since, next.cached_at);
+
+    // A young release still refreshes every 30 minutes however stable.
+    const young = new Date(Date.now() - 24 * hour).toISOString();
+    fetches = 0;
+    await getCachedGitHubRelease(
+      env({
+        "github:release:o/r:latest": {
+          cached_at: Date.now() - 40 * minute,
+          unchanged_since: Date.now() - 20 * hour,
+          data: { ...stored.data, published_at: young },
+        },
+      }),
+      "o", "r", "latest",
+    );
+    assert.equal(fetches, 1);
+
+    // A page 1 holding a young release (or one without a parsable date) is
+    // re-read after 30 minutes however stable, so a replaced asset's digest
+    // is picked up as fast as through that release's own entry.
+    const youngRelease = (publishedAt) => ({
+      tag_name: "v3.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: publishedAt,
+      published_at: publishedAt,
+      assets: [{
+        name: "a.tar.gz",
+        browser_download_url: "https://github.com/o/r/releases/download/v3.0.0/a.tar.gz",
+        url: "https://api.github.com/repos/o/r/releases/assets/3",
+        digest: "sha256:" + "0".repeat(64),
+        updated_at: publishedAt,
+      }],
+    });
+    for (const [name, releases, age, refetched] of [
+      ["young, 40m old", [youngRelease(young)], 40 * minute, true],
+      ["young, 20m old", [youngRelease(young)], 20 * minute, false],
+      ["undated, 40m old", [{ ...youngRelease(null), created_at: "soon" }], 40 * minute, true],
+      ["old, 40m old", [youngRelease(old)], 40 * minute, false],
+    ]) {
+      fetches = 0;
+      await getCachedGitHubReleaseList(
+        env({
+          "github:releases:o/r:1": {
+            cached_at: Date.now() - age,
+            unchanged_since: Date.now() - age - 20 * hour,
+            data: { releases, next_page: null, truncated: false },
+          },
+        }),
+        "o", "r", 1,
+      );
+      assert.equal(fetches, refetched ? 1 : 0, name);
+    }
+
+    // Untracked repos with 1000+ stars keep the 10-minute window; fewer
+    // stars, or an unknown count, back off. The young-release cap on page 1
+    // still applies below the threshold.
+    const pageOf = (releases) => ({ releases, next_page: null, truncated: false });
+    for (const [stars, age, data, refetched] of [
+      [1000, 15 * minute, null, true],
+      [50000, 15 * minute, null, true],
+      [1000, 5 * minute, null, false],
+      [999, 15 * minute, null, false],
+      [undefined, 15 * minute, null, false],
+      [999, 40 * minute, [youngRelease(young)], true],
+      [999, 20 * minute, [youngRelease(young)], false],
+    ]) {
+      for (const [key, page] of [
+        ["github:release:o/r:latest", null],
+        ["github:releases:o/r:1", 1],
+      ]) {
+        if (data && !page) continue;
+        fetches = 0;
+        const e = env({
+          [key]: {
+            cached_at: Date.now() - age,
+            unchanged_since: Date.now() - age - 20 * hour,
+            data: page ? pageOf(data ?? []) : stored.data,
+          },
+        });
+        if (page) await getCachedGitHubReleaseList(e, "o", "r", 1, undefined, { stars });
+        else await getCachedGitHubReleaseResult(e, "o", "r", "latest", undefined, undefined, { stars });
+        assert.equal(fetches, refetched ? 1 : 0, key + " stars=" + stars + " age=" + age);
+      }
+    }
+
+    // Tracked repos (with a generation) and later pages keep their windows.
+    for (const [page, generation, age] of [[1, "a".repeat(64), 15 * minute], [2, undefined, 65 * minute]]) {
+      fetches = 0;
+      const key = "github:releases:o/r:" + page + (generation ? ":" + generation : "");
+      await getCachedGitHubReleaseList(
+        env({
+          [key]: {
+            cached_at: Date.now() - age,
+            unchanged_since: Date.now() - 30 * hour,
+            data: { releases: [], next_page: null, truncated: false },
+          },
+        }),
+        "o", "r", page, generation,
+      );
+      assert.equal(fetches, 1, key);
+    }
   `);
 });
 

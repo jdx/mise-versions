@@ -8,10 +8,12 @@ import {
   INTENDED_CACHE_CONTROL_HEADER,
   SOURCE_HEADER,
   VERIFIED_AT_HEADER,
+  VERIFIED_UNTIL_HEADER,
   VISIBILITY_TTL_SECONDS,
   clientResponse,
   servableEntry,
   snippetCacheKey,
+  verifiedUntil as entryVerifiedUntil,
 } from "../../../../snippets/github-mirror-cache.js";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
@@ -22,9 +24,27 @@ const YOUNG_RELEASE_MS = 2 * 24 * 60 * 60 * 1000;
 const YOUNG_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EDGE_YOUNG_RELEASE_TTL_SECONDS = 30 * 60;
 const BROWSER_YOUNG_RELEASE_MAX_AGE_SECONDS = 10 * 60;
-// `latest` for a repo the catalog does not track has no generation to
-// invalidate it when a release is published, so it expires on its own.
+// `latest` (and release-list page 1) for a repo the catalog does not track
+// has no generation to invalidate it when a release is published, so it
+// expires on its own: after a quarter of how long the answer has been
+// unchanged, between these bounds. A repo that just released is re-read every
+// 10 minutes; a quiet one hourly. Each re-read rewrites the KV entry, and
+// these 10-minute re-reads were about a third of GITHUB_CACHE writes. A new
+// release of a quiet untracked repo can take up to an hour to appear.
 const UNTRACKED_LATEST_FRESH_MS = 10 * 60 * 1000;
+const UNTRACKED_LATEST_MAX_FRESH_MS = 60 * 60 * 1000;
+const UNTRACKED_STABLE_FRESH_FRACTION = 4;
+// An untracked repo with at least this many stars keeps the 10-minute
+// window whatever its history: popular tools are expected to show new
+// releases quickly. The count comes from the visibility check the request
+// already passed (visibility.ts), so it costs no GitHub call; unknown counts
+// back off.
+export const UNTRACKED_BACKOFF_MAX_STARS = 1000;
+
+/** Whether an untracked repo with `stars` stars backs off while unchanged. */
+function untrackedBacksOff(stars: number | undefined): boolean {
+  return !(typeof stars === "number" && stars >= UNTRACKED_BACKOFF_MAX_STARS);
+}
 const EDGE_UNTRACKED_LATEST_TTL_SECONDS = 10 * 60;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
@@ -249,6 +269,46 @@ function isYoungRelease(release: GitHubRelease): boolean {
   );
 }
 
+/**
+ * Whether a release-list page holds a release published less than
+ * YOUNG_RELEASE_MS ago, whose assets may still be replaced. A release with
+ * no parsable date counts as young.
+ */
+function hasYoungRelease(page: GitHubReleaseListPage): boolean {
+  return page.releases.some((release) => {
+    const timestamp = new Date(
+      release.published_at ?? release.created_at ?? "",
+    ).getTime();
+    return (
+      !Number.isFinite(timestamp) || Date.now() - timestamp < YOUNG_RELEASE_MS
+    );
+  });
+}
+
+/**
+ * How long an untracked `latest` or release-list page 1 stays fresh: a
+ * quarter of how long it has been unchanged, within the untracked bounds.
+ * Entries without `unchanged_since` get the minimum.
+ */
+function untrackedFreshMs<T>(entry: CacheEntry<T>): number {
+  const stableMs =
+    typeof entry.unchanged_since === "number"
+      ? entry.cached_at - entry.unchanged_since
+      : 0;
+  return Math.min(
+    UNTRACKED_LATEST_MAX_FRESH_MS,
+    Math.max(
+      UNTRACKED_LATEST_FRESH_MS,
+      stableMs / UNTRACKED_STABLE_FRESH_FRACTION,
+    ),
+  );
+}
+
+/** Identifies equivalent data for untracked mutable entries. */
+function jsonFingerprint<T>(data: T): string {
+  return JSON.stringify(data);
+}
+
 function releaseFreshMs(release: GitHubRelease): number {
   if (release.assets.length === 0) {
     return EMPTY_RELEASE_FRESH_MS;
@@ -434,11 +494,30 @@ function edgeCacheRequest(
 // by exact tag) the Worker keeps its edge copy under the snippet's key
 // namespace instead of edgeCacheRequest's, so a free Cloudflare Snippet in
 // front of the Worker can answer hits without invoking it. Each entry
-// records when its content expires (the Worker's edge TTL) and when GitHub
-// last confirmed the repository public. The snippet serves an entry only
-// while both hold, with the same VISIBILITY_TTL_SECONDS bound the Worker's
-// own visibility cache gives; otherwise it passes the request here, where
-// access is checked again and the entry's verification is refreshed.
+// records when its content expires (the Worker's edge TTL), when GitHub
+// last confirmed the repository public, and until when that confirmation
+// holds (the repo's visibility TTL, and at most VISIBILITY_TTL_SECONDS after
+// the Worker's access check). The snippet serves an entry only while both
+// hold; otherwise it passes the request here, where access is checked again
+// and the entry's verification is refreshed.
+
+// An entry's verification is rewritten only when the new one runs this much
+// longer, so a repo whose window is anchored to the access check (a popular
+// one, see visibility.ts) is not restamped on every Worker hit.
+const RESTAMP_MIN_GAIN_SECONDS = 30 * 60;
+
+/** Epoch ms the default verification window ends, for `verifiedAt`. */
+function defaultVerifiedUntil(verifiedAt: number): number {
+  return verifiedAt + VISIBILITY_TTL_SECONDS * 1000;
+}
+
+/** Whether an entry verified until `existing` should take `next` instead. */
+function extendsVerification(
+  existing: number | null,
+  nextSeconds: number,
+): boolean {
+  return existing === null || existing < nextSeconds - RESTAMP_MIN_GAIN_SECONDS;
+}
 
 /** The snippet-readable cache key for this request, or null if ineligible. */
 export function gitHubMirrorSnippetCacheKey(request: Request): string | null {
@@ -459,14 +538,16 @@ export function gitHubMirrorReleaseSnippetCacheKey(
 
 /**
  * Serve `key` from the snippet-readable cache. `verifiedAt` (epoch ms) is
- * when the access check this request just passed was confirmed by GitHub;
- * an entry verified earlier is rewritten with it (keeping its content
+ * when the access check this request just passed was confirmed by GitHub,
+ * and `verifiedUntil` (epoch ms) when that grant ends; an entry whose
+ * verification ends sooner is rewritten with them (keeping its content
  * expiry) so the snippet can serve it again.
  */
 export async function matchGitHubMirrorSnippetCache(
   key: string,
   verifiedAt: number,
   waitUntil: (promise: Promise<unknown>) => void,
+  verifiedUntil = defaultVerifiedUntil(verifiedAt),
 ): Promise<Response | null> {
   let cached: Response | undefined;
   try {
@@ -481,12 +562,18 @@ export async function matchGitHubMirrorSnippetCache(
   if (!Number.isFinite(expiresAt) || expiresAt * 1000 <= now) return null;
 
   const verifiedAtSeconds = Math.floor(verifiedAt / 1000);
-  const entryVerifiedAt = Number(cached.headers.get(VERIFIED_AT_HEADER));
-  if (!(entryVerifiedAt >= verifiedAtSeconds)) {
+  const verifiedUntilSeconds = Math.floor(verifiedUntil / 1000);
+  if (
+    extendsVerification(
+      entryVerifiedUntil(cached.headers),
+      verifiedUntilSeconds,
+    )
+  ) {
     const ttl = Math.floor(expiresAt - now / 1000);
     if (ttl >= 1) {
       const headers = new Headers(cached.headers);
       headers.set(VERIFIED_AT_HEADER, String(verifiedAtSeconds));
+      headers.set(VERIFIED_UNTIL_HEADER, String(verifiedUntilSeconds));
       headers.set("Cache-Control", snippetEntryCacheControl(ttl));
       waitUntil(
         putSnippetEntry(
@@ -502,13 +589,15 @@ export async function matchGitHubMirrorSnippetCache(
 /**
  * Store a 200 response the Worker would itself cache at the edge with
  * `options`, under the snippet-readable key, marked as verified at
- * `verifiedAt` (epoch ms, see matchGitHubMirrorSnippetCache).
+ * `verifiedAt` until `verifiedUntil` (epoch ms, see
+ * matchGitHubMirrorSnippetCache).
  */
 export async function putGitHubMirrorSnippetCache(
   key: string,
   response: Response,
   options: EdgeCacheOptions,
   verifiedAt: number,
+  verifiedUntil = defaultVerifiedUntil(verifiedAt),
 ): Promise<void> {
   if (response.status !== 200) return;
   const { cacheControl, edgeMaxAge } = edgeCacheControl(options);
@@ -521,6 +610,7 @@ export async function putGitHubMirrorSnippetCache(
     String(Math.floor(Date.now() / 1000) + edgeMaxAge),
   );
   headers.set(VERIFIED_AT_HEADER, String(Math.floor(verifiedAt / 1000)));
+  headers.set(VERIFIED_UNTIL_HEADER, String(Math.floor(verifiedUntil / 1000)));
   headers.set("Cache-Control", snippetEntryCacheControl(edgeMaxAge));
   await putSnippetEntry(
     key,
@@ -553,6 +643,8 @@ export interface MirrorSnippetCopy {
   key: string;
   /** Epoch ms when GitHub confirmed the repo public (the access check). */
   verifiedAt: number;
+  /** Epoch ms when that access grant ends (see VERIFIED_UNTIL_HEADER). */
+  verifiedUntil: number;
   /** Longest the snippet may serve the copy; 0 disables it. */
   maxTtlSeconds: number;
   waitUntil: (promise: Promise<unknown>) => void;
@@ -576,17 +668,19 @@ export function gitHubMirrorMutableSnippetCopy(
   {
     ttl,
     verifiedAt,
+    verifiedUntil = defaultVerifiedUntil(verifiedAt),
     waitUntil,
   }: {
     ttl: string | undefined;
     verifiedAt: number;
+    verifiedUntil?: number;
     waitUntil: (promise: Promise<unknown>) => void;
   },
 ): MirrorSnippetCopy | undefined {
   const key = snippetCacheKey(request.url);
   const maxTtlSeconds = mutableSnippetTtlSeconds(ttl);
   if (!key || maxTtlSeconds < 1) return undefined;
-  return { key, verifiedAt, maxTtlSeconds, waitUntil };
+  return { key, verifiedAt, verifiedUntil, maxTtlSeconds, waitUntil };
 }
 
 /**
@@ -597,13 +691,14 @@ export function gitHubMirrorMutableSnippetCopy(
  * not rewrite it each time.
  */
 async function copyToSnippetCache(
-  { key, verifiedAt }: MirrorSnippetCopy,
+  { key, verifiedAt, verifiedUntil }: MirrorSnippetCopy,
   entry: Response,
   expiresAt: number,
 ): Promise<void> {
   const nowSeconds = Date.now() / 1000;
   const ttl = Math.floor(expiresAt - nowSeconds);
   const verifiedAtSeconds = Math.floor(verifiedAt / 1000);
+  const verifiedUntilSeconds = Math.floor(verifiedUntil / 1000);
   if (ttl < 1 || entry.status !== 200) return;
   if (!entry.headers.get(EDGE_CACHE_CONTROL_HEADER)) return;
   try {
@@ -611,7 +706,10 @@ async function copyToSnippetCache(
     if (
       existing &&
       servableEntry(existing, nowSeconds) &&
-      Number(existing.headers.get(VERIFIED_AT_HEADER)) >= verifiedAtSeconds
+      !extendsVerification(
+        entryVerifiedUntil(existing.headers),
+        verifiedUntilSeconds,
+      )
     ) {
       return;
     }
@@ -622,6 +720,7 @@ async function copyToSnippetCache(
   headers.delete(SOURCE_HEADER);
   headers.set(EXPIRES_AT_HEADER, String(Math.floor(expiresAt)));
   headers.set(VERIFIED_AT_HEADER, String(verifiedAtSeconds));
+  headers.set(VERIFIED_UNTIL_HEADER, String(verifiedUntilSeconds));
   headers.set("Cache-Control", snippetEntryCacheControl(ttl));
   await putSnippetEntry(
     key,
@@ -682,6 +781,7 @@ export async function getCachedGitHubReleaseResult(
   tag: string,
   cacheGeneration?: string,
   previousCacheGeneration?: string,
+  { stars }: { stars?: number } = {},
 ): Promise<{ release: GitHubRelease; staleFallback: boolean }> {
   const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
@@ -691,6 +791,7 @@ export async function getCachedGitHubReleaseResult(
   let release: GitHubRelease;
   let staleFallback = false;
   let fetchError: unknown;
+  const untracked = isUntrackedLatest(tag, cacheGeneration);
   try {
     release = await getOrRefresh({
       env,
@@ -698,9 +799,15 @@ export async function getCachedGitHubReleaseResult(
       isFresh: (entry) =>
         (tag !== "latest" && entry.data.immutable === true) ||
         Date.now() - entry.cached_at <
-          (isUntrackedLatest(tag, cacheGeneration)
-            ? Math.min(UNTRACKED_LATEST_FRESH_MS, releaseFreshMs(entry.data))
+          (untracked
+            ? Math.min(
+                untrackedBacksOff(stars)
+                  ? untrackedFreshMs(entry)
+                  : UNTRACKED_LATEST_FRESH_MS,
+                releaseFreshMs(entry.data),
+              )
             : releaseFreshMs(entry.data)),
+      fingerprint: untracked ? jsonFingerprint : undefined,
       // Only consulted when there is no fresh positive entry: a fresh entry
       // and a fresh error cannot both have come from the same refresh, and
       // skipping this read saves a KV read on every positive edge-cache miss.
@@ -911,6 +1018,7 @@ export async function getCachedGitHubReleaseList(
   repo: string,
   page: number,
   cacheGeneration?: string,
+  { stars }: { stars?: number } = {},
 ): Promise<{ list: GitHubReleaseListPage; staleFallback: boolean }> {
   if (!Number.isInteger(page) || page < 1 || page > RELEASE_LIST_MAX_PAGE) {
     throw new GitHubError(400, "Invalid page", new Headers());
@@ -918,11 +1026,27 @@ export async function getCachedGitHubReleaseList(
   const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const freshMs = releaseListFreshSeconds(page) * 1000;
+  // Page 1 of an untracked repo backs off while unchanged, like its
+  // `latest`, unless the repo is popular; a tracked repo's page 1 is
+  // invalidated by its generation.
+  const untracked = page === 1 && !cacheGeneration;
+  const backsOff = untracked && untrackedBacksOff(stars);
   let staleFallback = false;
   const list = await getOrRefresh<GitHubReleaseListPage>({
     env,
     cacheKey: `github:releases:${cacheRepository}:${page}${generationSuffix}`,
-    isFresh: (entry) => Date.now() - entry.cached_at < freshMs,
+    // A young release's assets (and digests) may still be replaced, so a
+    // page holding one is re-read at least as often as that release would
+    // be on its own (YOUNG_RELEASE_FRESH_MS), however long it has been
+    // unchanged.
+    isFresh: (entry) =>
+      Date.now() - entry.cached_at <
+      (backsOff
+        ? hasYoungRelease(entry.data)
+          ? Math.min(untrackedFreshMs(entry), YOUNG_RELEASE_FRESH_MS)
+          : untrackedFreshMs(entry)
+        : freshMs),
+    fingerprint: untracked ? jsonFingerprint : undefined,
     fetcher: (token) => fetchGitHubReleaseList(owner, repo, page, token),
     expirationTtl: () => CACHE_TTL_SECONDS,
     useStaleOnError: releaseStaleFallbackAllowed,

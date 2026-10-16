@@ -39,6 +39,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
         snippetKey,
         access.verifiedAt,
         waitUntil,
+        access.verifiedUntil,
       )
     : await matchGitHubMirrorEdgeCache(request);
   if (cached) return cached;
@@ -66,6 +67,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
             response,
             edgeOptions,
             access.verifiedAt,
+            access.verifiedUntil,
           )
         : putGitHubMirrorEdgeCache(request, response, edgeOptions),
     );

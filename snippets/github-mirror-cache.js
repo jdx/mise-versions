@@ -15,12 +15,19 @@
 export const SNIPPET_CACHE_PREFIX =
   "https://mise-versions.jdx.dev/__snippet-cache/v1/";
 
-// Epoch seconds when the Worker last confirmed the repository is public (and
-// allowed by GITHUB_MIRROR_ACCESS). The snippet serves an entry only within
-// VISIBILITY_TTL_SECONDS of it, the same bound the Worker's own visibility
-// cache gives, so a repo that turns private stops being served as quickly
-// as it did without the snippet.
+// Epoch seconds when GitHub last confirmed the repository is public, as of
+// the Worker's last access check for this entry (which also applied
+// GITHUB_MIRROR_ACCESS).
 export const VERIFIED_AT_HEADER = "x-mise-mirror-verified-at";
+// Epoch seconds until which that verification may be relied on: the Worker's
+// visibility TTL for the repo after the GitHub check, and no more than
+// VISIBILITY_TTL_SECONDS after the Worker's access check, so
+// GITHUB_MIRROR_ACCESS changes reach snippet hits on the usual schedule.
+// The snippet caps it at MAX_VISIBILITY_TTL_SECONDS after VERIFIED_AT_HEADER;
+// an entry without it (or with an unparsable one) gets VISIBILITY_TTL_SECONDS,
+// as before the header existed. So a repo that turns private stops being
+// served as quickly through the snippet as through the Worker.
+export const VERIFIED_UNTIL_HEADER = "x-mise-mirror-verified-until";
 // Epoch seconds when the cached content stops being fresh (the Worker's edge
 // TTL for it). Refreshing the verification never extends this.
 export const EXPIRES_AT_HEADER = "x-mise-mirror-expires-at";
@@ -31,9 +38,11 @@ export const INTENDED_CACHE_CONTROL_HEADER = "x-mise-cache-control";
 // Debug header: who answered, `snippet` or `worker`.
 export const SOURCE_HEADER = "x-mise-mirror";
 
-// Must equal VISIBILITY_TTL_SECONDS in web/src/lib/github/visibility.ts
-// (checked by a test).
+// Must equal VISIBILITY_TTL_SECONDS and POPULAR_VISIBILITY_TTL_SECONDS in
+// web/src/lib/github/visibility.ts (checked by a test): the default window,
+// and the longest one the Worker gives any repo.
 export const VISIBILITY_TTL_SECONDS = 60 * 60;
+export const MAX_VISIBILITY_TTL_SECONDS = 24 * 60 * 60;
 // Tolerated clock skew between the Worker that wrote an entry and the snippet.
 const MAX_CLOCK_SKEW_SECONDS = 60;
 
@@ -83,8 +92,21 @@ export function snippetCacheKey(url) {
 }
 
 /**
+ * Epoch seconds until which an entry's visibility verification holds, or
+ * null without a parsable VERIFIED_AT_HEADER. See VERIFIED_UNTIL_HEADER.
+ */
+export function verifiedUntil(headers) {
+  const verifiedAt = epochSeconds(headers.get(VERIFIED_AT_HEADER));
+  if (verifiedAt === null) return null;
+  const until = epochSeconds(headers.get(VERIFIED_UNTIL_HEADER));
+  return until === null
+    ? verifiedAt + VISIBILITY_TTL_SECONDS
+    : Math.min(until, verifiedAt + MAX_VISIBILITY_TTL_SECONDS);
+}
+
+/**
  * Whether a cached entry may be served at `nowSeconds` without asking the
- * Worker: its content is still fresh and its visibility check is recent.
+ * Worker: its content is still fresh and its visibility check still holds.
  * Missing or unparsable metadata means no.
  */
 export function servableEntry(response, nowSeconds) {
@@ -96,7 +118,7 @@ export function servableEntry(response, nowSeconds) {
   return (
     nowSeconds < expiresAt &&
     verifiedAt <= nowSeconds + MAX_CLOCK_SKEW_SECONDS &&
-    nowSeconds - verifiedAt < VISIBILITY_TTL_SECONDS
+    nowSeconds < verifiedUntil(response.headers)
   );
 }
 
@@ -107,6 +129,7 @@ export function clientResponse(cached, source) {
   if (intended) headers.set("Cache-Control", intended);
   headers.delete(INTENDED_CACHE_CONTROL_HEADER);
   headers.delete(VERIFIED_AT_HEADER);
+  headers.delete(VERIFIED_UNTIL_HEADER);
   headers.delete(EXPIRES_AT_HEADER);
   headers.set(SOURCE_HEADER, source);
   return new Response(cached.body, {

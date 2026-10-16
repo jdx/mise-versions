@@ -52,6 +52,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   const snippetCopy = gitHubMirrorMutableSnippetCopy(request, {
     ttl: env.GITHUB_MIRROR_SNIPPET_TTL_SECONDS,
     verifiedAt: access.verifiedAt,
+    verifiedUntil: access.verifiedUntil,
     waitUntil: (promise) => locals.cfContext.waitUntil(promise),
   });
   const cached = await matchGitHubMirrorEdgeCache(
@@ -69,6 +70,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       repo,
       page,
       cacheGeneration,
+      { stars: access.stars },
     );
     // A stale fallback is served once but not edge-cached, so the next
     // request retries GitHub.
