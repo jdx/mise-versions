@@ -204,10 +204,10 @@
   },
   "jdx/hk": {
     "project": "github.com/jdx/hk",
-    "version": "2.6.0",
-    "publishedAt": "2026-10-12T10:37:58.76191978Z",
-    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.6.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.6.0",
+    "version": "2.7.0",
+    "publishedAt": "2026-10-16T10:29:57.6851362Z",
+    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.7.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.7.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -297,10 +297,10 @@
   },
   "jdx/pitchfork": {
     "project": "github.com/jdx/pitchfork",
-    "version": "2.30.1",
-    "publishedAt": "2026-10-07T23:51:47.433685265Z",
-    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.30.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.30.1",
+    "version": "2.31.0",
+    "publishedAt": "2026-10-15T10:42:20.006324524Z",
+    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.31.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.31.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -393,6 +393,24 @@
     "binaries": ["usage", "usage.exe"],
     "artifactCount": 7,
     "provenanceCount": 7
+  },
+  "ldomaradzki/xcsift": {
+    "project": "github.com/ldomaradzki/xcsift",
+    "version": "1.7.0",
+    "publishedAt": "2026-10-16T06:51:24.168698618Z",
+    "manifestUrl": "https://github.com/ldomaradzki/xcsift/releases/download/v1.7.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/ldomaradzki/xcsift/releases/tag/v1.7.0",
+    "publisher": "ldomaradzki",
+    "capabilities": [
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": ["Linux / x86_64 / gnu", "macOS / aarch64"],
+    "binaries": ["xcsift"],
+    "artifactCount": 2,
+    "provenanceCount": 2
   },
   "max-sixty/worktrunk": {
     "project": "github.com/max-sixty/worktrunk",
