@@ -567,9 +567,10 @@ test("a Worker cache hit refreshes the snippet copy without outliving its entry"
     assert.equal(upstream, 1);
     // The snippet copy expired; the Worker's own entry has 90 seconds left.
     store.delete(key);
+    const entryExpiresAt = String(nowSeconds() + 90);
     for (const [entryUrl, entry] of store) {
       if (entryUrl.includes("/releases?page=2")) {
-        entry.headers["x-mise-mirror-expires-at"] = String(nowSeconds() + 90);
+        entry.headers["x-mise-mirror-expires-at"] = entryExpiresAt;
       }
     }
     const hit = await call(listRoute, url, { owner: "o", repo: "r" });
@@ -580,7 +581,7 @@ test("a Worker cache hit refreshes the snippet copy without outliving its entry"
     assert.equal(hit.headers.get("x-mise-cache-control"), null);
     const copy = store.get(key);
     assert.ok(copy, "copied from the Worker's hit");
-    assert.equal(copy.headers["x-mise-mirror-expires-at"], String(nowSeconds() + 90));
+    assert.equal(copy.headers["x-mise-mirror-expires-at"], entryExpiresAt);
 
     // A still-servable copy is not rewritten on every Worker request.
     const count = puts.length;
