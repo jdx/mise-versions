@@ -73,7 +73,7 @@ mise run deploy            # builds then deploys
 - `src/analytics/`: Drizzle ORM schema and analytics functions for D1 (schema, tracking, stats, trends, rollups)
 - `src/worker.ts`: Custom worker wrapper for scheduled tasks (token-pool observability, update workflow dispatch)
 - `.github/workflows/maintenance.yml`: Nightly analytics maintenance; the `scripts/refresh-*-direct.js` scripts roll Analytics Engine events up into the D1 daily and summary tables
-- `scripts/refresh-logpush-analytics-direct.js`: Nightly shadow rollup of Cloudflare Logpush `http_requests` logs (R2 bucket `mise-logs`) into `logpush_*` D1 tables: DAU/MAU of every mise client (static asset requests included) and installs from the static `/t` beacon
+- `scripts/refresh-logpush-analytics-direct.js`: Nightly shadow rollup of Cloudflare Logpush `http_requests` logs (R2 bucket `mise-logs`) into `logpush_*` D1 tables: DAU/MAU of every mise client (static asset requests included) and installs from the static `/t` beacon. Each run also checks its runtime, peak RSS and daily log lines against the job's limits (`scripts/lib/logpush-capacity.js`) and emails a warning through Resend when it nears them
 - `web/src/lib/data-loader.ts`: Centralized data loading from D1
 - `scripts/update.sh`: Main version fetching logic with token management
 - `scripts/sync-to-d1.js`: Syncs tool metadata from TOML files to D1

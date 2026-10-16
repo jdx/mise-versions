@@ -117,9 +117,23 @@ describe("refresh-logpush-analytics-direct", () => {
 
   it("splits gzip'd and plain NDJSON into lines", async () => {
     const seen = [];
-    await forEachLine(gzipSync("a\nb\n\nc"), (l) => seen.push(l));
-    await forEachLine(Buffer.from("d\ne\n"), (l) => seen.push(l));
+    assert.equal(
+      await forEachLine(gzipSync("a\nb\n\nc"), (l) => seen.push(l)),
+      6,
+    );
+    assert.equal(
+      await forEachLine(Buffer.from("d\ne\n"), (l) => seen.push(l)),
+      4,
+    );
     assert.deepEqual(seen, ["a", "b", "", "c", "d", "e"]);
+  });
+
+  it("keeps multi-byte characters split across chunks intact", async () => {
+    const seen = [];
+    const text = `${"x".repeat(70000)}\u00e9\nz`;
+    const bytes = await forEachLine(gzipSync(text), (l) => seen.push(l));
+    assert.equal(bytes, Buffer.byteLength(text));
+    assert.deepEqual(seen, [`${"x".repeat(70000)}\u00e9`, "z"]);
   });
 
   it("unions the trailing 30 days and reports coverage", async () => {
@@ -193,6 +207,13 @@ describe("refresh-logpush-analytics-direct", () => {
     assert.equal(result.mauDaysCovered, 2);
     assert.equal(result.ciRequests, 1);
     assert.equal(result.downloads, 2);
+    assert.equal(result.capacity.date, "2026-10-13");
+    assert.equal(result.capacity.objects, 2);
+    assert.ok(result.capacity.lines > 0);
+    assert.ok(
+      result.capacity.uncompressedBytes >= result.capacity.compressedBytes,
+    );
+    assert.ok(result.capacity.readMs >= 0);
 
     const stored = decodeUserHashes(
       r2.store.get("rollups/mise-users/v1/2026-10-13.bin.gz"),

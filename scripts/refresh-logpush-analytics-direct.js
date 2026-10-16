@@ -27,6 +27,7 @@
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
+import { StringDecoder } from "node:string_decoder";
 import { createGunzip } from "node:zlib";
 import {
   completedDates,
@@ -40,6 +41,12 @@ import {
   objectOverlapsDate,
 } from "./lib/logpush.js";
 import { reportGithubVersionsDemand } from "./lib/github-versions-demand.js";
+import {
+  capacityLimitsFromEnv,
+  jobStartedAtMs,
+  peakRssBytes,
+  reportCapacity,
+} from "./lib/logpush-capacity.js";
 import {
   DEFAULT_MISE_RELEASE_ZONES,
   MiseReleaseDayAggregator,
@@ -95,6 +102,17 @@ Environment:
   LOGPUSH_RELEASE_ZONES         Optional comma list of zones to count mise release
                                 downloads in; defaults to ${DEFAULT_MISE_RELEASE_ZONES.join(",")}
   ANALYTICS_DB_ID               Optional; defaults to production ANALYTICS_DB id
+
+Capacity warnings (see lib/logpush-capacity.js; warnings never fail the run):
+  LOGPUSH_TIMEOUT_MINUTES          The job's timeout-minutes; enables the runtime check
+  LOGPUSH_HEAP_LIMIT_MB            The --max-old-space-size value; enables the memory check
+  LOGPUSH_JOB_STARTED_AT           Job start in unix seconds; defaults to process start
+  LOGPUSH_CAPACITY_RUNTIME_RATIO   Warn above this share of the timeout; default 0.5
+  LOGPUSH_CAPACITY_RSS_RATIO       Warn when peak RSS passes this share of the heap limit; default 0.5
+  LOGPUSH_CAPACITY_MAX_DAY_LINES   Warn when a day has more log lines; default 100000000
+  RESEND_API_KEY                   Emails a warning through Resend; without it, only annotations
+  CAPACITY_ALERT_TO                Alert recipient; defaults to DIGEST_TO, then the digest's default
+  DIGEST_TO, DIGEST_FROM           The daily digest's recipient and sender, reused for the alert
 `);
 }
 
@@ -136,16 +154,19 @@ function listEnv(name, fallback) {
 
 // Feed each line of an object to `onLine`. Logpush writes gzip'd NDJSON; the
 // magic-byte check also accepts objects a client already decompressed
-// because R2 stored them with Content-Encoding: gzip.
+// because R2 stored them with Content-Encoding: gzip. Returns the number of
+// uncompressed bytes read.
 export async function forEachLine(buffer, onLine) {
   const gzipped =
     buffer.length >= 2 && buffer[0] === 0x1f && buffer[1] === 0x8b;
   const source = Readable.from([buffer]);
   const stream = gzipped ? source.pipe(createGunzip()) : source;
-  stream.setEncoding("utf8");
+  const decoder = new StringDecoder("utf8");
+  let bytes = 0;
   let rest = "";
   for await (const chunk of stream) {
-    const text = rest + chunk;
+    bytes += chunk.length;
+    const text = rest + decoder.write(chunk);
     let start = 0;
     let newline;
     while ((newline = text.indexOf("\n", start)) !== -1) {
@@ -154,7 +175,9 @@ export async function forEachLine(buffer, onLine) {
     }
     rest = text.slice(start);
   }
+  rest += decoder.end();
   if (rest) onLine(rest);
+  return bytes;
 }
 
 // Each object is tagged with its zone, since the mise usage numbers and the
@@ -192,6 +215,8 @@ async function readDay(config, date, objects, releases) {
   let next = 0;
   let done = 0;
   let bytes = 0;
+  let uncompressedBytes = 0;
+  let lines = 0;
   const worker = async () => {
     while (next < objects.length) {
       const object = objects[next++];
@@ -200,7 +225,8 @@ async function readDay(config, date, objects, releases) {
       bytes += buffer.length;
       const usage = config.zones.includes(object.zone);
       const release = releaseZones(config).includes(object.zone);
-      await forEachLine(buffer, (line) => {
+      uncompressedBytes += await forEachLine(buffer, (line) => {
+        lines++;
         if (usage) aggregator.addLine(line);
         if (release) releases.addLine(line);
       });
@@ -217,7 +243,15 @@ async function readDay(config, date, objects, releases) {
       worker(),
     ),
   );
-  return aggregator;
+  return {
+    aggregator,
+    read: {
+      objects: objects.length,
+      compressedBytes: bytes,
+      uncompressedBytes,
+      lines,
+    },
+  };
 }
 
 function userSetKey(config, date) {
@@ -520,7 +554,8 @@ export async function refreshDate(config, date, userSets) {
   console.log(`${date}: reading ${objects.length} Logpush object(s)`);
   const started = Date.now();
   const releases = new MiseReleaseDayAggregator({ date });
-  const aggregator = await readDay(config, date, objects, releases);
+  const { aggregator, read } = await readDay(config, date, objects, releases);
+  const capacity = { date, readMs: Date.now() - started, ...read };
 
   let result = { date };
   if (hasUsage) {
@@ -544,6 +579,7 @@ export async function refreshDate(config, date, userSets) {
       new Date().toISOString(),
     );
   }
+  result.capacity = capacity;
   console.log(JSON.stringify(result));
   return result;
 }
@@ -585,8 +621,22 @@ async function main() {
 
   const userSets = new Map();
   const results = [];
-  for (const date of dates) {
-    results.push(await refreshDate(config, date, userSets));
+  try {
+    for (const date of dates) {
+      results.push(await refreshDate(config, date, userSets));
+    }
+  } finally {
+    // Also on failure, so a run that dies part way still records what the
+    // days it finished cost.
+    await reportCapacity(
+      {
+        jobElapsedMs: Date.now() - jobStartedAtMs(),
+        peakRssBytes: peakRssBytes(),
+        days: results.filter((r) => r.capacity).map((r) => r.capacity),
+      },
+      capacityLimitsFromEnv(),
+      { email: !config.dryRun },
+    );
   }
   const refreshed = results
     .filter((result) => !result.skipped && !result.usageSkipped)
