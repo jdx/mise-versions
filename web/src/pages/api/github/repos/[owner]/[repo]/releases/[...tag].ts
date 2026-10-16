@@ -4,6 +4,7 @@ import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   cacheHeaders,
   getCachedGitHubReleaseResult,
+  gitHubMirrorMutableSnippetCopy,
   gitHubMirrorReleaseSnippetCacheKey,
   githubStatus,
   matchGitHubMirrorEdgeCache,
@@ -54,13 +55,28 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   // An exact tag is kept where the GitHub-mirror snippet can answer it
   // without the Worker; `latest` changes in place and stays here.
   const snippetKey = gitHubMirrorReleaseSnippetCacheKey(request, tag);
+  // `latest` keeps its generation-keyed cache here; the snippet gets a
+  // short-lived copy of the current generation's answer.
+  const snippetCopy =
+    tag === "latest"
+      ? gitHubMirrorMutableSnippetCopy(request, {
+          ttl: env.GITHUB_MIRROR_SNIPPET_TTL_SECONDS,
+          verifiedAt: access.verifiedAt,
+          waitUntil,
+        })
+      : undefined;
   const cached = snippetKey
     ? await matchGitHubMirrorSnippetCache(
         snippetKey,
         access.verifiedAt,
         waitUntil,
       )
-    : await matchGitHubMirrorEdgeCache(request, cacheGeneration);
+    : await matchGitHubMirrorEdgeCache(
+        request,
+        cacheGeneration,
+        undefined,
+        snippetCopy,
+      );
   if (cached) return cached;
 
   try {
@@ -84,11 +100,10 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     });
     // A stale fallback is never cached, here or for the snippet.
     if (!staleFallback) {
-      const edgeOptions = releaseEdgeCacheOptions(
-        tag,
-        release,
-        cacheGeneration,
-      );
+      const edgeOptions = {
+        ...releaseEdgeCacheOptions(tag, release, cacheGeneration),
+        snippet: snippetCopy,
+      };
       waitUntil(
         snippetKey
           ? putGitHubMirrorSnippetCache(

@@ -25,19 +25,20 @@ const SNIPPET_FILE = fileURLToPath(
 );
 const MAX_SNIPPET_BYTES = 32 * 1024;
 
-// Only GETs for mirror attestations and exact-tag releases on the Worker's
-// custom domains. The snippet re-checks the path itself and passes anything
-// else through, so this only keeps it from running needlessly.
+// Only GETs for mirror attestations, releases (by tag and `latest`) and
+// release lists on the Worker's custom domains. The snippet re-checks the
+// path and query itself and passes anything else through, so this only keeps
+// it from running needlessly.
 export const SNIPPET_RULE = {
   snippet_name: SNIPPET_NAME,
   description:
-    "Serve cached GitHub-mirror attestations and exact-tag releases without the mise-versions Worker",
+    "Serve cached GitHub-mirror attestations, releases and release lists without the mise-versions Worker",
   enabled: true,
   expression: [
     'http.host in {"mise-versions.jdx.dev" "mise-tools.jdx.dev"}',
     'http.request.method eq "GET"',
     'starts_with(http.request.uri.path, "/api/github/repos/")',
-    '(http.request.uri.path contains "/attestations/" or (http.request.uri.path contains "/releases/" and not ends_with(http.request.uri.path, "/releases/latest")))',
+    '(http.request.uri.path contains "/attestations/" or http.request.uri.path contains "/releases/" or ends_with(http.request.uri.path, "/releases"))',
   ].join(" and "),
 };
 

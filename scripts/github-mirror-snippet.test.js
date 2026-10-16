@@ -91,23 +91,24 @@ test("the Worker and the snippet agree on the visibility window", () => {
   `);
 });
 
-test("only exact-tag releases get a snippet-readable key", () => {
+test("only exact-tag releases use the long-lived snippet path", () => {
   runSnippetTest(`${PRELUDE}
     const request = new Request(RELEASE_URL);
     assert.equal(
       gitHubMirrorReleaseSnippetCacheKey(request, "v2026.1.0"),
       SNIPPET_CACHE_PREFIX + "jdx/mise/releases/v2026.1.0",
     );
-    // A tag that decodes to latest, however it is spelled, stays with the Worker.
+    // A tag that decodes to latest, however it is spelled, gets the
+    // short-lived copy instead.
     const encodedLatest = new Request(
       "https://mise-versions.jdx.dev/api/github/repos/jdx/mise/releases/%6Catest",
     );
     assert.equal(gitHubMirrorReleaseSnippetCacheKey(encodedLatest, "latest"), null);
     assert.equal(
       gitHubMirrorSnippetCacheKey(
-        new Request("https://mise-versions.jdx.dev/api/github/repos/jdx/mise/releases"),
+        new Request("https://mise-versions.jdx.dev/api/github/repos/jdx/mise/releases?page=2"),
       ),
-      null,
+      SNIPPET_CACHE_PREFIX + "jdx/mise/releases?page=2",
     );
   `);
 });
@@ -307,5 +308,268 @@ test("deploying replaces only this snippet's rule", () => {
   assert.deepEqual(upsertSnippetRule(null, SNIPPET_RULE), [SNIPPET_RULE]);
   assert.match(SNIPPET_RULE.expression, /mise-versions\.jdx\.dev/);
   assert.match(SNIPPET_RULE.expression, /mise-tools\.jdx\.dev/);
-  assert.match(SNIPPET_RULE.expression, /\/releases\/latest/);
+  assert.match(SNIPPET_RULE.expression, /contains "\/releases\/"/);
+  assert.match(
+    SNIPPET_RULE.expression,
+    /ends_with\(http\.request\.uri\.path, "\/releases"\)/,
+  );
+});
+
+// Mutable endpoints: `releases/latest` and release-list pages get a short-lived
+// snippet copy next to the Worker's generation-keyed entry.
+
+test("the mutable snippet TTL defaults to five minutes and is capped at an hour", () => {
+  runSnippetTest(`
+    import assert from "node:assert/strict";
+    import { mutableSnippetTtlSeconds } from "./web/src/lib/github/mirror.ts";
+    assert.equal(mutableSnippetTtlSeconds(undefined), 300);
+    assert.equal(mutableSnippetTtlSeconds(""), 300);
+    assert.equal(mutableSnippetTtlSeconds("nope"), 300);
+    assert.equal(mutableSnippetTtlSeconds("-1"), 300);
+    assert.equal(mutableSnippetTtlSeconds("120"), 120);
+    assert.equal(mutableSnippetTtlSeconds("0"), 0);
+    assert.equal(mutableSnippetTtlSeconds("86400"), 3600);
+  `);
+});
+
+// Runs a release route handler with cloudflare:workers stubbed, against an
+// in-memory KV (repo already verified public), a fake caches.default, and a
+// fake GitHub.
+const ROUTE_PRELUDE = `
+  import assert from "node:assert/strict";
+  import { register } from "node:module";
+  register(
+    "data:text/javascript," +
+      encodeURIComponent(\`
+        export async function resolve(specifier, context, next) {
+          if (specifier === "cloudflare:workers") {
+            return {
+              url: "data:text/javascript,export const env = globalThis.__routeEnv;",
+              shortCircuit: true,
+            };
+          }
+          return next(specifier, context);
+        }
+      \`),
+  );
+  import snippet from "./snippets/github-mirror-cache.js";
+
+  const store = new Map();
+  const puts = [];
+  globalThis.caches = {
+    default: {
+      match: async (key) => {
+        const url = typeof key === "string" ? key : key.url;
+        const entry = store.get(url);
+        return entry
+          ? new Response(entry.body, { status: 200, headers: entry.headers })
+          : undefined;
+      },
+      put: async (key, response) => {
+        const url = typeof key === "string" ? key : key.url;
+        const body = await response.text();
+        const headers = Object.fromEntries(response.headers);
+        puts.push({ url, body, headers });
+        store.set(url, { body, headers });
+      },
+    },
+  };
+  const verifiedAt = Date.now() - 10 * 60 * 1000;
+  const kvData = new Map([
+    ["github:visibility:o/r", JSON.stringify({ cached_at: verifiedAt, public: true })],
+  ]);
+  globalThis.__routeEnv = {
+    DB: {},
+    ANALYTICS_DB: {},
+    GITHUB_MIRROR_ACCESS: "public",
+    GITHUB_CACHE: {
+      get: async (key, type) => {
+        const value = kvData.get(key);
+        if (value === undefined) return null;
+        return type === "json" ? JSON.parse(value) : value;
+      },
+      put: async (key, value) => kvData.set(key, value),
+      delete: async (key) => kvData.delete(key),
+    },
+  };
+  const pending = [];
+  async function call(route, url, params) {
+    const response = await route.GET({
+      params,
+      request: new Request(url),
+      locals: { cfContext: { waitUntil: (p) => pending.push(p) } },
+    });
+    await Promise.all(pending.splice(0));
+    return response;
+  }
+  const snippetPuts = () =>
+    puts.filter(({ url }) => url.includes("/__snippet-cache/"));
+  const nowSeconds = () => Math.floor(Date.now() / 1000);
+  const listRoute = await import(
+    "./web/src/pages/api/github/repos/[owner]/[repo]/releases/index.ts"
+  );
+  const releaseRoute = await import(
+    "./web/src/pages/api/github/repos/[owner]/[repo]/releases/[...tag].ts"
+  );
+`;
+
+test("fresh latest and list answers get a short-lived snippet copy", () => {
+  runSnippetTest(`${ROUTE_PRELUDE}
+    globalThis.fetch = async (url) => {
+      url = String(url);
+      if (url.includes("/releases/latest")) {
+        return new Response(JSON.stringify({
+          tag_name: "v2.0.0", draft: false, prerelease: false,
+          created_at: "2026-01-01T00:00:00Z", published_at: "2026-01-01T00:00:00Z",
+          assets: [{ name: "a.tar.gz" }],
+        }));
+      }
+      return new Response(JSON.stringify([{ tag_name: "v2.0.0", draft: false, assets: [] }]));
+    };
+
+    const latestUrl = "https://mise-tools.jdx.dev/api/github/repos/o/r/releases/latest";
+    const latest = await call(releaseRoute, latestUrl, { owner: "o", repo: "r", tag: "latest" });
+    assert.equal(latest.status, 200);
+    assert.equal(latest.headers.get("x-mise-mirror"), "worker");
+    let [copy] = snippetPuts();
+    assert.equal(copy.url, "https://mise-versions.jdx.dev/__snippet-cache/v1/o/r/releases/latest");
+    // Untracked latest: the Worker keeps it 10 minutes, the snippet 5.
+    assert.ok(Math.abs(Number(copy.headers["x-mise-mirror-expires-at"]) - (nowSeconds() + 300)) <= 1);
+    assert.equal(copy.headers["x-mise-mirror-verified-at"], String(Math.floor(verifiedAt / 1000)));
+    assert.equal(copy.headers["x-mise-cache-control"], "public, max-age=0, s-maxage=600");
+
+    // The snippet now answers latest, with the Worker's hit headers.
+    const workerCalls = [];
+    globalThis.fetch = async (request) => {
+      workerCalls.push(request.url);
+      return new Response("worker");
+    };
+    const served = await snippet.fetch(new Request(latestUrl));
+    assert.deepEqual(workerCalls, []);
+    assert.equal(served.headers.get("x-mise-mirror"), "snippet");
+    assert.equal(served.headers.get("cache-control"), "public, max-age=0, s-maxage=600");
+    assert.equal(JSON.parse(await served.text()).tag_name, "v2.0.0");
+
+    // Release lists: the key carries the normalized page.
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify([{ tag_name: "v2.0.0", draft: false, assets: [] }]));
+    const list = await call(
+      listRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/r/releases?page=2",
+      { owner: "o", repo: "r" },
+    );
+    assert.equal(list.status, 200);
+    copy = snippetPuts().at(-1);
+    assert.equal(copy.url, "https://mise-versions.jdx.dev/__snippet-cache/v1/o/r/releases?page=2");
+    assert.ok(Math.abs(Number(copy.headers["x-mise-mirror-expires-at"]) - (nowSeconds() + 300)) <= 1);
+
+    // A query the snippet would not cache gets no copy, though the Worker
+    // still answers (and caches) it.
+    const before = snippetPuts().length;
+    const extra = await call(
+      listRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/r/releases?page=3&per_page=100",
+      { owner: "o", repo: "r" },
+    );
+    assert.equal(extra.status, 200);
+    assert.equal(snippetPuts().length, before);
+
+    // GITHUB_MIRROR_SNIPPET_TTL_SECONDS=0 turns the copies off.
+    globalThis.__routeEnv.GITHUB_MIRROR_SNIPPET_TTL_SECONDS = "0";
+    await call(
+      listRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/r/releases?page=4",
+      { owner: "o", repo: "r" },
+    );
+    assert.equal(snippetPuts().length, before);
+  `);
+});
+
+test("a Worker cache hit refreshes the snippet copy without outliving its entry", () => {
+  runSnippetTest(`${ROUTE_PRELUDE}
+    let upstream = 0;
+    globalThis.fetch = async () => {
+      upstream++;
+      return new Response(JSON.stringify([{ tag_name: "v2.0.0", draft: false, assets: [] }]));
+    };
+    const url = "https://mise-versions.jdx.dev/api/github/repos/o/r/releases?page=2";
+    const key = "https://mise-versions.jdx.dev/__snippet-cache/v1/o/r/releases?page=2";
+    await call(listRoute, url, { owner: "o", repo: "r" });
+    assert.equal(upstream, 1);
+    // The snippet copy expired; the Worker's own entry has 90 seconds left.
+    store.delete(key);
+    for (const [entryUrl, entry] of store) {
+      if (entryUrl.includes("/releases?page=2")) {
+        entry.headers["x-mise-mirror-expires-at"] = String(nowSeconds() + 90);
+      }
+    }
+    const hit = await call(listRoute, url, { owner: "o", repo: "r" });
+    assert.equal(upstream, 1);
+    assert.equal(hit.headers.get("x-mise-mirror"), "worker");
+    // Internal headers never reach clients.
+    assert.equal(hit.headers.get("x-mise-mirror-expires-at"), null);
+    assert.equal(hit.headers.get("x-mise-cache-control"), null);
+    const copy = store.get(key);
+    assert.ok(copy, "copied from the Worker's hit");
+    assert.equal(copy.headers["x-mise-mirror-expires-at"], String(nowSeconds() + 90));
+
+    // A still-servable copy is not rewritten on every Worker request.
+    const count = puts.length;
+    await call(listRoute, url, { owner: "o", repo: "r" });
+    assert.equal(puts.length, count);
+
+    // Worker entries written before expiry was recorded are not copied.
+    store.delete(key);
+    for (const [entryUrl, entry] of store) {
+      if (entryUrl.includes("/releases?page=2")) {
+        delete entry.headers["x-mise-mirror-expires-at"];
+      }
+    }
+    await call(listRoute, url, { owner: "o", repo: "r" });
+    assert.equal(store.get(key), undefined);
+  `);
+});
+
+test("stale fallbacks are never copied for the snippet", () => {
+  runSnippetTest(`${ROUTE_PRELUDE}
+    const old = Date.now() - 2 * 24 * 60 * 60 * 1000;
+    kvData.set("github:releases:o/r:2", JSON.stringify({
+      cached_at: old,
+      data: { releases: [{ tag_name: "v1.0.0" }], next_page: null },
+    }));
+    kvData.set("github:release:o/r:latest", JSON.stringify({
+      cached_at: old,
+      data: {
+        tag_name: "v1.0.0", draft: false, prerelease: false,
+        created_at: "2026-01-01T00:00:00Z", published_at: "2026-01-01T00:00:00Z",
+        assets: [{ name: "a.tar.gz" }],
+      },
+    }));
+    globalThis.fetch = async () => {
+      throw new Error("GitHub unavailable");
+    };
+
+    const list = await call(
+      listRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/r/releases?page=2",
+      { owner: "o", repo: "r" },
+    );
+    assert.equal(list.status, 200);
+    assert.equal(list.headers.get("cache-control"), "public, max-age=0, s-maxage=0");
+
+    const latest = await call(
+      releaseRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/r/releases/latest",
+      { owner: "o", repo: "r", tag: "latest" },
+    );
+    assert.equal(latest.status, 200);
+    assert.equal(JSON.parse(await latest.text()).tag_name, "v1.0.0");
+    assert.equal(latest.headers.get("cache-control"), "public, max-age=0, s-maxage=0");
+
+    // Neither the snippet copy nor the Worker's own edge entry.
+    assert.deepEqual(
+      puts.map(({ url }) => url).filter((url) => !url.includes("/__mise/kv-memo/")),
+      [],
+    );
+  `);
 });

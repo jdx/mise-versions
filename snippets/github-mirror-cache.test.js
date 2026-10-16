@@ -66,7 +66,7 @@ function get(path, { host = "mise-versions.jdx.dev", method = "GET" } = {}) {
   return snippet.fetch(new Request(`https://${host}${path}`, { method }));
 }
 
-test("cache keys cover attestations and exact-tag releases only", () => {
+test("cache keys cover attestations, releases and release lists", () => {
   assert.equal(
     snippetCacheKey(`${ORIGIN}${ATTESTATION}`),
     `${SNIPPET_CACHE_PREFIX}jdx/mise/attestations/sha256:abc123`,
@@ -83,10 +83,44 @@ test("cache keys cover attestations and exact-tag releases only", () => {
     ),
     `${SNIPPET_CACHE_PREFIX}biomejs/biome/releases/%40biomejs%2Fbiome%402.5.0`,
   );
+  // latest is a release path like any tag; its query is ignored too.
+  assert.equal(
+    snippetCacheKey(`${ORIGIN}/api/github/repos/jdx/mise/releases/latest?x=1`),
+    `${SNIPPET_CACHE_PREFIX}jdx/mise/releases/latest`,
+  );
+  // Release lists keep their normalized page; no query means page 1.
+  for (const [query, page] of [
+    ["", 1],
+    ["?", 1],
+    ["?page=1", 1],
+    ["?page=7", 7],
+    ["?page=10", 10],
+  ]) {
+    assert.equal(
+      snippetCacheKey(`${ORIGIN}/api/github/repos/jdx/mise/releases${query}`),
+      `${SNIPPET_CACHE_PREFIX}jdx/mise/releases?page=${page}`,
+      query,
+    );
+  }
+  // Anything the Worker does not honor exactly is left to it.
+  for (const query of [
+    "?page=0",
+    "?page=11",
+    "?page=01",
+    "?page=",
+    "?page=1&page=2",
+    "?page=1&per_page=100",
+    "?per_page=100",
+    "?PAGE=1",
+    "?page=1&",
+  ]) {
+    assert.equal(
+      snippetCacheKey(`${ORIGIN}/api/github/repos/jdx/mise/releases${query}`),
+      null,
+      query,
+    );
+  }
   for (const path of [
-    "/api/github/repos/jdx/mise/releases/latest",
-    "/api/github/repos/jdx/mise/releases/LATEST",
-    "/api/github/repos/jdx/mise/releases",
     "/api/github/repos/jdx/mise/releases/",
     "/api/github/repos/jdx/mise/tags",
     "/api/github/repos/jdx/mise",
@@ -176,10 +210,41 @@ test("missing, expired, unparsable and foreign entries go to the Worker", async 
   }
 });
 
-test("latest, lists and non-GET requests skip the cache entirely", async () => {
+test("latest and release lists are served while fresh, then passed through", async () => {
+  const now = Math.floor(Date.now() / 1000);
+  for (const path of [
+    "/api/github/repos/jdx/mise/releases/latest",
+    "/api/github/repos/jdx/mise/releases?page=1",
+    "/api/github/repos/jdx/mise/releases",
+  ]) {
+    const key = snippetCacheKey(`${ORIGIN}${path}`);
+    // The Worker gives these a short expiry (5 minutes by default).
+    let { passed } = setup({ [key]: entry({ expiresAt: now + 300 }) });
+    let response = await get(path);
+    assert.deepEqual(passed, [], path);
+    assert.equal(response.headers.get("x-mise-mirror"), "snippet", path);
+
+    ({ passed } = setup({ [key]: entry({ expiresAt: now }) }));
+    response = await get(path);
+    assert.equal(passed.length, 1, path);
+    assert.equal(response.headers.get("x-mise-mirror"), "worker", path);
+
+    // Fresh content but a visibility check over an hour old.
+    ({ passed } = setup({
+      [key]: entry({
+        expiresAt: now + 300,
+        verifiedAt: now - VISIBILITY_TTL_SECONDS - 1,
+      }),
+    }));
+    await get(path);
+    assert.equal(passed.length, 1, path);
+  }
+});
+
+test("unexpected list queries, other endpoints and non-GET requests skip the cache", async () => {
   for (const [path, method] of [
-    ["/api/github/repos/jdx/mise/releases/latest", "GET"],
-    ["/api/github/repos/jdx/mise/releases", "GET"],
+    ["/api/github/repos/jdx/mise/releases?per_page=100", "GET"],
+    ["/api/github/repos/jdx/mise/releases?page=1&x=y", "GET"],
     ["/api/github/repos/jdx/mise/tags", "GET"],
     [RELEASE, "HEAD"],
     [RELEASE, "POST"],
