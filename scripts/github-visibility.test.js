@@ -725,6 +725,43 @@ test("untracked latest and release-list page 1 back off while unchanged", () => 
     );
     assert.equal(fetches, 1);
 
+    // A page 1 holding a young release (or one without a parsable date) is
+    // re-read after 30 minutes however stable, so a replaced asset's digest
+    // is picked up as fast as through that release's own entry.
+    const youngRelease = (publishedAt) => ({
+      tag_name: "v3.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: publishedAt,
+      published_at: publishedAt,
+      assets: [{
+        name: "a.tar.gz",
+        browser_download_url: "https://github.com/o/r/releases/download/v3.0.0/a.tar.gz",
+        url: "https://api.github.com/repos/o/r/releases/assets/3",
+        digest: "sha256:" + "0".repeat(64),
+        updated_at: publishedAt,
+      }],
+    });
+    for (const [name, releases, age, refetched] of [
+      ["young, 40m old", [youngRelease(young)], 40 * minute, true],
+      ["young, 20m old", [youngRelease(young)], 20 * minute, false],
+      ["undated, 40m old", [{ ...youngRelease(null), created_at: "soon" }], 40 * minute, true],
+      ["old, 40m old", [youngRelease(old)], 40 * minute, false],
+    ]) {
+      fetches = 0;
+      await getCachedGitHubReleaseList(
+        env({
+          "github:releases:o/r:1": {
+            cached_at: Date.now() - age,
+            unchanged_since: Date.now() - age - 20 * hour,
+            data: { releases, next_page: null, truncated: false },
+          },
+        }),
+        "o", "r", 1,
+      );
+      assert.equal(fetches, refetched ? 1 : 0, name);
+    }
+
     // Tracked repos (with a generation) and later pages keep their windows.
     for (const [page, generation, age] of [[1, "a".repeat(64), 15 * minute], [2, undefined, 65 * minute]]) {
       fetches = 0;

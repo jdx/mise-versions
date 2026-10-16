@@ -259,6 +259,22 @@ function isYoungRelease(release: GitHubRelease): boolean {
 }
 
 /**
+ * Whether a release-list page holds a release published less than
+ * YOUNG_RELEASE_MS ago, whose assets may still be replaced. A release with
+ * no parsable date counts as young.
+ */
+function hasYoungRelease(page: GitHubReleaseListPage): boolean {
+  return page.releases.some((release) => {
+    const timestamp = new Date(
+      release.published_at ?? release.created_at ?? "",
+    ).getTime();
+    return (
+      !Number.isFinite(timestamp) || Date.now() - timestamp < YOUNG_RELEASE_MS
+    );
+  });
+}
+
+/**
  * How long an untracked `latest` or release-list page 1 stays fresh: a
  * quarter of how long it has been unchanged, within the untracked bounds.
  * Entries without `unchanged_since` get the minimum.
@@ -999,9 +1015,17 @@ export async function getCachedGitHubReleaseList(
   const list = await getOrRefresh<GitHubReleaseListPage>({
     env,
     cacheKey: `github:releases:${cacheRepository}:${page}${generationSuffix}`,
+    // A young release's assets (and digests) may still be replaced, so a
+    // page holding one is re-read at least as often as that release would
+    // be on its own (YOUNG_RELEASE_FRESH_MS), however long it has been
+    // unchanged.
     isFresh: (entry) =>
       Date.now() - entry.cached_at <
-      (untracked ? untrackedFreshMs(entry) : freshMs),
+      (untracked
+        ? hasYoungRelease(entry.data)
+          ? Math.min(untrackedFreshMs(entry), YOUNG_RELEASE_FRESH_MS)
+          : untrackedFreshMs(entry)
+        : freshMs),
     fingerprint: untracked ? jsonFingerprint : undefined,
     fetcher: (token) => fetchGitHubReleaseList(owner, repo, page, token),
     expirationTtl: () => CACHE_TTL_SECONDS,
