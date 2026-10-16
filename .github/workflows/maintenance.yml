@@ -161,8 +161,25 @@ jobs:
       group: maintenance-logpush
       cancel-in-progress: false
     runs-on: ubuntu-latest
+    # Keep LOGPUSH_TIMEOUT_MINUTES below in sync: timeout-minutes cannot read env.
     timeout-minutes: 90
+    # Capacity warnings (scripts/lib/logpush-capacity.js). The rollup prints a
+    # `capacity: {...}` line and a step summary table every run; when a
+    # threshold is crossed it adds a ::warning:: annotation and emails
+    # CAPACITY_ALERT_TO (default: the daily digest's DIGEST_TO), at most once
+    # per day. Warnings never fail the job. Tune with these env values:
+    #   LOGPUSH_CAPACITY_RUNTIME_RATIO  share of the job timeout (default 0.5)
+    #   LOGPUSH_CAPACITY_RSS_RATIO      share of the heap limit for peak RSS (default 0.5)
+    #   LOGPUSH_CAPACITY_MAX_DAY_LINES  log lines in one day (default 100000000, ~3x Oct 2026)
+    env:
+      LOGPUSH_TIMEOUT_MINUTES: "90"
+      # Node's --max-old-space-size, in MB; also the memory check's limit.
+      LOGPUSH_HEAP_LIMIT_MB: "6144"
     steps:
+      # Measure runtime from the start of the job, setup included.
+      - name: Record job start
+        run: echo "LOGPUSH_JOB_STARTED_AT=$(date +%s)" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
@@ -175,7 +192,7 @@ jobs:
           if [ -n "$INPUT_DATE" ]; then
             args+=(--date="$INPUT_DATE")
           fi
-          node --max-old-space-size=6144 scripts/refresh-logpush-analytics-direct.js "${args[@]}"
+          node --max-old-space-size="$LOGPUSH_HEAP_LIMIT_MB" scripts/refresh-logpush-analytics-direct.js "${args[@]}"
         env:
           INPUT_DAYS: ${{ github.event.inputs.days }}
           INPUT_DATE: ${{ github.event.inputs.date }}
@@ -188,3 +205,8 @@ jobs:
           # Reports requests for baked /data/github/ lists back to the Worker.
           API_SECRET: ${{ secrets.TOKEN_MANAGER_SECRET }}
           LOGPUSH_ZONES: jdx.dev
+          # Capacity alert email, sent like the daily digest.
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          CAPACITY_ALERT_TO: ${{ vars.CAPACITY_ALERT_TO }}
+          DIGEST_TO: ${{ vars.DIGEST_TO }}
+          DIGEST_FROM: ${{ vars.DIGEST_FROM }}
