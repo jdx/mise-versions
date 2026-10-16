@@ -59,6 +59,22 @@ export function upsertSnippetRule(existing, rule) {
   return rule ? [...others, rule] : others;
 }
 
+/**
+ * The multipart body for PUT /zones/{zone}/snippets/{name}: a `metadata`
+ * part naming the main module, and the module itself as a part whose field
+ * name is its filename (the form verified against the production zone).
+ */
+export function snippetUploadForm(source, mainModule) {
+  const form = new FormData();
+  form.append("metadata", JSON.stringify({ main_module: mainModule }));
+  form.append(
+    mainModule,
+    new Blob([source], { type: "application/javascript+module" }),
+    mainModule,
+  );
+  return form;
+}
+
 async function api(token, method, path, body) {
   const headers = { Authorization: `Bearer ${token}` };
   if (body && !(body instanceof FormData)) {
@@ -101,13 +117,7 @@ async function main(args) {
       `${dryRun ? "would upload" : "uploading"} snippet ${SNIPPET_NAME} (${source.length} bytes)`,
     );
     if (!dryRun) {
-      const form = new FormData();
-      form.append(
-        "files",
-        new Blob([source], { type: "application/javascript+module" }),
-        mainModule,
-      );
-      form.append("metadata", JSON.stringify({ main_module: mainModule }));
+      const form = snippetUploadForm(source, mainModule);
       await api(token, "PUT", `/zones/${zone}/snippets/${SNIPPET_NAME}`, form);
     }
   }

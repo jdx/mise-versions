@@ -7,6 +7,7 @@ import test from "node:test";
 import {
   SNIPPET_NAME,
   SNIPPET_RULE,
+  snippetUploadForm,
   upsertSnippetRule,
 } from "./deploy-snippet.js";
 
@@ -572,4 +573,27 @@ test("stale fallbacks are never copied for the snippet", () => {
       [],
     );
   `);
+});
+
+test("the snippet upload names the module part after its file", async () => {
+  const form = snippetUploadForm(
+    "export default {};",
+    "github-mirror-cache.js",
+  );
+  assert.deepEqual([...form.keys()], ["metadata", "github-mirror-cache.js"]);
+  assert.deepEqual(JSON.parse(form.get("metadata")), {
+    main_module: "github-mirror-cache.js",
+  });
+  const file = form.get("github-mirror-cache.js");
+  assert.equal(file.name, "github-mirror-cache.js");
+  assert.equal(file.type, "application/javascript+module");
+  assert.equal(await file.text(), "export default {};");
+  assert.equal(form.get("files"), null);
+
+  // Serialized, the part carries name= and filename= set to the file name.
+  const body = await new Response(form).text();
+  assert.match(
+    body,
+    /Content-Disposition: form-data; name="github-mirror-cache\.js"; filename="github-mirror-cache\.js"\r\nContent-Type: application\/javascript\+module/,
+  );
 });
