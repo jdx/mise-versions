@@ -1,5 +1,5 @@
 import { errorResponse } from "../api";
-import { readThroughMemo } from "./edge-memo";
+import { readThroughMemoEntry } from "./edge-memo";
 import { githubPoolJson, githubStatus } from "./mirror";
 import {
   isKnownGitHubAttestationRepo,
@@ -10,7 +10,9 @@ import {
 // requests for random or private repos from spending pool quota, and bounds
 // how long a repo that turns private can still be served. The KV entry and
 // its edge memo (edge-memo.ts) both expire an hour after the GitHub check.
-const VISIBILITY_TTL_SECONDS = 60 * 60;
+// The GitHub-mirror snippet (snippets/github-mirror-cache.js) keeps the same
+// bound for the entries it serves without the Worker.
+export const VISIBILITY_TTL_SECONDS = 60 * 60;
 
 interface RateLimiter {
   limit(options: { key: string }): Promise<{ success: boolean }>;
@@ -58,14 +60,30 @@ export async function isPublicGitHubRepo(
   env: Env,
   owner: string,
   repo: string,
-  { clientKey }: { clientKey?: string } = {},
+  options: { clientKey?: string } = {},
 ): Promise<boolean> {
+  return (await gitHubRepoVisibility(env, owner, repo, options)).public;
+}
+
+export interface GitHubRepoVisibilityAnswer {
+  public: boolean;
+  /** Epoch ms when GitHub gave this answer. */
+  checkedAt: number;
+}
+
+/** isPublicGitHubRepo, plus when GitHub gave the answer. */
+export async function gitHubRepoVisibility(
+  env: Env,
+  owner: string,
+  repo: string,
+  { clientKey }: { clientKey?: string } = {},
+): Promise<GitHubRepoVisibilityAnswer> {
   const cacheKey = `github:visibility:${owner.toLowerCase()}/${repo.toLowerCase()}`;
   // Every mirror request asks this before anything else, so serve it from
   // the free memo tier when possible. A memoized answer expires when the KV
   // answer it copies would, so a repo that turns private is still cut off
   // within VISIBILITY_TTL_SECONDS of the last check, as without the memo.
-  return readThroughMemo(
+  const answer = await readThroughMemoEntry(
     env.GITHUB_CACHE,
     cacheKey,
     async () => {
@@ -85,6 +103,11 @@ export async function isPublicGitHubRepo(
     // A lookup refused by one client's rate limit says nothing about others.
     { callerSpecific: (error) => error instanceof VisibilityLookupLimited },
   );
+  // Every answer expires VISIBILITY_TTL_SECONDS after GitHub gave it.
+  return {
+    public: answer.value,
+    checkedAt: answer.expiresAt - VISIBILITY_TTL_SECONDS * 1000,
+  };
 }
 
 async function lookUpVisibility(
@@ -161,14 +184,43 @@ export async function checkGitHubMirrorAccess(
   env: Env,
   owner: string,
   repo: string,
+  options: { attestations?: boolean; clientKey?: string } = {},
+): Promise<Response | null> {
+  const result = await checkGitHubMirrorAccessVerified(
+    env,
+    owner,
+    repo,
+    options,
+  );
+  return result.denied;
+}
+
+export type GitHubMirrorAccessResult =
+  | { denied: Response; verifiedAt?: undefined }
+  | {
+      denied: null;
+      /**
+       * Epoch ms when GitHub last confirmed the repo is public. A response
+       * served on this grant must not be served past
+       * `verifiedAt + VISIBILITY_TTL_SECONDS` without asking again.
+       */
+      verifiedAt: number;
+    };
+
+/** checkGitHubMirrorAccess, plus when the visibility it relied on was checked. */
+export async function checkGitHubMirrorAccessVerified(
+  env: Env,
+  owner: string,
+  repo: string,
   {
     attestations = false,
     clientKey,
   }: { attestations?: boolean; clientKey?: string } = {},
-): Promise<Response | null> {
+): Promise<GitHubMirrorAccessResult> {
+  const denied = (response: Response) => ({ denied: response });
   const access = gitHubMirrorAccess(env.GITHUB_MIRROR_ACCESS);
   if (access === "off") {
-    return errorResponse("GitHub mirror is disabled", 403);
+    return denied(errorResponse("GitHub mirror is disabled", 403));
   }
 
   if (access === "registry") {
@@ -182,25 +234,29 @@ export async function checkGitHubMirrorAccess(
         `GitHub registry check failed for ${owner}/${repo}:`,
         error,
       );
-      return errorResponse("Failed to check GitHub repo registry", 503);
+      return denied(errorResponse("Failed to check GitHub repo registry", 503));
     }
     if (!registered) {
-      return errorResponse("GitHub repo is not in the mise registry", 403);
+      return denied(
+        errorResponse("GitHub repo is not in the mise registry", 403),
+      );
     }
   }
 
-  let isPublic: boolean;
+  let visibility: GitHubRepoVisibilityAnswer;
   try {
-    isPublic = await isPublicGitHubRepo(env, owner, repo, { clientKey });
+    visibility = await gitHubRepoVisibility(env, owner, repo, { clientKey });
   } catch (error) {
     if (error instanceof VisibilityLookupLimited) {
-      return errorResponse("Too many uncached repository lookups", 429);
+      return denied(errorResponse("Too many uncached repository lookups", 429));
     }
     console.error(
       `GitHub visibility check failed for ${owner}/${repo}:`,
       error,
     );
-    return errorResponse("Failed to check GitHub repo visibility", 503);
+    return denied(errorResponse("Failed to check GitHub repo visibility", 503));
   }
-  return isPublic ? null : errorResponse("Not found", 404);
+  return visibility.public
+    ? { denied: null, verifiedAt: visibility.checkedAt }
+    : denied(errorResponse("Not found", 404));
 }

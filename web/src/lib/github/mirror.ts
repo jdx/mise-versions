@@ -3,6 +3,14 @@ import { uncompress } from "snappyjs";
 import { setupDatabase } from "../../../../src/database";
 import { hasBudget } from "../../../../src/token-budget";
 import { readThroughMemo, writeMemo } from "./edge-memo";
+import {
+  EXPIRES_AT_HEADER,
+  INTENDED_CACHE_CONTROL_HEADER,
+  SOURCE_HEADER,
+  VERIFIED_AT_HEADER,
+  clientResponse,
+  snippetCacheKey,
+} from "../../../../snippets/github-mirror-cache.js";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
@@ -318,15 +326,11 @@ function withIntendedCacheControl(response: Response): Response {
   });
 }
 
-function edgeCacheResponse(
-  response: Response,
-  {
-    browserMaxAge = 600,
-    edgeMaxAge = EDGE_MIRROR_CACHE_TTL_SECONDS,
-    staleWhileRevalidate = 24 * 60 * 60,
-  }: EdgeCacheOptions = {},
-): Response {
-  const headers = new Headers(response.headers);
+function edgeCacheControl({
+  browserMaxAge = 600,
+  edgeMaxAge = EDGE_MIRROR_CACHE_TTL_SECONDS,
+  staleWhileRevalidate = 24 * 60 * 60,
+}: EdgeCacheOptions = {}): { cacheControl: string; edgeMaxAge: number } {
   const directives = [
     "public",
     `max-age=${browserMaxAge}`,
@@ -335,8 +339,17 @@ function edgeCacheResponse(
   if (staleWhileRevalidate > 0) {
     directives.push(`stale-while-revalidate=${staleWhileRevalidate}`);
   }
-  headers.set("Cache-Control", directives.join(", "));
-  headers.set(EDGE_CACHE_CONTROL_HEADER, directives.join(", "));
+  return { cacheControl: directives.join(", "), edgeMaxAge };
+}
+
+function edgeCacheResponse(
+  response: Response,
+  options: EdgeCacheOptions = {},
+): Response {
+  const headers = new Headers(response.headers);
+  const { cacheControl } = edgeCacheControl(options);
+  headers.set("Cache-Control", cacheControl);
+  headers.set(EDGE_CACHE_CONTROL_HEADER, cacheControl);
   return new Response(response.clone().body, {
     status: response.status,
     statusText: response.statusText,
@@ -367,6 +380,118 @@ function edgeCacheRequest(
     url.searchParams.set("__mise_cache_generation", cacheGeneration);
   }
   return new Request(url.toString(), { method: "GET" });
+}
+
+// Snippet-readable cache (snippets/github-mirror-cache.js).
+//
+// For the effectively immutable endpoints (attestations by digest, releases
+// by exact tag) the Worker keeps its edge copy under the snippet's key
+// namespace instead of edgeCacheRequest's, so a free Cloudflare Snippet in
+// front of the Worker can answer hits without invoking it. Each entry
+// records when its content expires (the Worker's edge TTL) and when GitHub
+// last confirmed the repository public. The snippet serves an entry only
+// while both hold, with the same VISIBILITY_TTL_SECONDS bound the Worker's
+// own visibility cache gives; otherwise it passes the request here, where
+// access is checked again and the entry's verification is refreshed.
+
+/** The snippet-readable cache key for this request, or null if ineligible. */
+export function gitHubMirrorSnippetCacheKey(request: Request): string | null {
+  return snippetCacheKey(request.url);
+}
+
+/**
+ * gitHubMirrorSnippetCacheKey for a release request whose decoded tag is
+ * `tag`. `latest` changes in place (generation-invalidated) and is never
+ * snippet-readable, however the URL spells it.
+ */
+export function gitHubMirrorReleaseSnippetCacheKey(
+  request: Request,
+  tag: string,
+): string | null {
+  return tag === "latest" ? null : snippetCacheKey(request.url);
+}
+
+/**
+ * Serve `key` from the snippet-readable cache. `verifiedAt` (epoch ms) is
+ * when the access check this request just passed was confirmed by GitHub;
+ * an entry verified earlier is rewritten with it (keeping its content
+ * expiry) so the snippet can serve it again.
+ */
+export async function matchGitHubMirrorSnippetCache(
+  key: string,
+  verifiedAt: number,
+  waitUntil: (promise: Promise<unknown>) => void,
+): Promise<Response | null> {
+  let cached: Response | undefined;
+  try {
+    cached = await defaultEdgeCache().match(key);
+  } catch (error) {
+    console.warn("failed to read GitHub mirror snippet cache:", error);
+    return null;
+  }
+  if (!cached || cached.status !== 200) return null;
+  const now = Date.now();
+  const expiresAt = Number(cached.headers.get(EXPIRES_AT_HEADER));
+  if (!Number.isFinite(expiresAt) || expiresAt * 1000 <= now) return null;
+
+  const verifiedAtSeconds = Math.floor(verifiedAt / 1000);
+  const entryVerifiedAt = Number(cached.headers.get(VERIFIED_AT_HEADER));
+  if (!(entryVerifiedAt >= verifiedAtSeconds)) {
+    const ttl = Math.floor(expiresAt - now / 1000);
+    if (ttl >= 1) {
+      const headers = new Headers(cached.headers);
+      headers.set(VERIFIED_AT_HEADER, String(verifiedAtSeconds));
+      headers.set("Cache-Control", snippetEntryCacheControl(ttl));
+      waitUntil(
+        putSnippetEntry(
+          key,
+          new Response(cached.clone().body, { status: 200, headers }),
+        ),
+      );
+    }
+  }
+  return clientResponse(cached, "worker");
+}
+
+/**
+ * Store a 200 response the Worker would itself cache at the edge with
+ * `options`, under the snippet-readable key, marked as verified at
+ * `verifiedAt` (epoch ms, see matchGitHubMirrorSnippetCache).
+ */
+export async function putGitHubMirrorSnippetCache(
+  key: string,
+  response: Response,
+  options: EdgeCacheOptions,
+  verifiedAt: number,
+): Promise<void> {
+  if (response.status !== 200) return;
+  const { cacheControl, edgeMaxAge } = edgeCacheControl(options);
+  if (edgeMaxAge < 1) return;
+  const headers = new Headers(response.headers);
+  headers.delete(SOURCE_HEADER);
+  headers.set(INTENDED_CACHE_CONTROL_HEADER, cacheControl);
+  headers.set(
+    EXPIRES_AT_HEADER,
+    String(Math.floor(Date.now() / 1000) + edgeMaxAge),
+  );
+  headers.set(VERIFIED_AT_HEADER, String(Math.floor(verifiedAt / 1000)));
+  headers.set("Cache-Control", snippetEntryCacheControl(edgeMaxAge));
+  await putSnippetEntry(
+    key,
+    new Response(response.clone().body, { status: 200, headers }),
+  );
+}
+
+function snippetEntryCacheControl(ttlSeconds: number): string {
+  return `public, max-age=${ttlSeconds}, s-maxage=${ttlSeconds}`;
+}
+
+async function putSnippetEntry(key: string, entry: Response): Promise<void> {
+  try {
+    await defaultEdgeCache().put(key, entry);
+  } catch (error) {
+    console.warn("failed to write GitHub mirror snippet cache:", error);
+  }
 }
 
 export function validRepoPart(value: string | undefined): value is string {
