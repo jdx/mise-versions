@@ -4,15 +4,18 @@ import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   cacheHeaders,
   getCachedGitHubReleaseResult,
+  gitHubMirrorReleaseSnippetCacheKey,
   githubStatus,
   matchGitHubMirrorEdgeCache,
+  matchGitHubMirrorSnippetCache,
   putGitHubMirrorEdgeCache,
+  putGitHubMirrorSnippetCache,
   releaseCacheHeaders,
   releaseEdgeCacheOptions,
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
-import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
+import { checkGitHubMirrorAccessVerified } from "../../../../../../../lib/github/visibility";
 import { getGitHubLatestReleaseGenerations } from "../../../../../../../lib/github/release-generation";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
@@ -36,17 +39,28 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
 
   // Before any cache read: cached responses must not outlive a repo turning
   // private or the mirror being restricted.
-  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+  const access = await checkGitHubMirrorAccessVerified(env, owner, repo, {
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (denied) return denied;
+  if (access.denied) return access.denied;
+  const waitUntil = (promise: Promise<unknown>) =>
+    locals.cfContext.waitUntil(promise);
 
   const cacheGenerations =
     tag === "latest"
       ? await getGitHubLatestReleaseGenerations(env.GITHUB_CACHE, owner, repo)
       : undefined;
   const cacheGeneration = cacheGenerations?.current;
-  const cached = await matchGitHubMirrorEdgeCache(request, cacheGeneration);
+  // An exact tag is kept where the GitHub-mirror snippet can answer it
+  // without the Worker; `latest` changes in place and stays here.
+  const snippetKey = gitHubMirrorReleaseSnippetCacheKey(request, tag);
+  const cached = snippetKey
+    ? await matchGitHubMirrorSnippetCache(
+        snippetKey,
+        access.verifiedAt,
+        waitUntil,
+      )
+    : await matchGitHubMirrorEdgeCache(request, cacheGeneration);
   if (cached) return cached;
 
   try {
@@ -58,24 +72,32 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       cacheGeneration,
       cacheGenerations?.previous,
     );
-    const response = jsonResponse(
-      release,
-      200,
-      staleFallback
+    const response = jsonResponse(release, 200, {
+      ...(staleFallback
         ? cacheHeaders({
             browserMaxAge: 0,
             edgeMaxAge: 0,
             staleWhileRevalidate: 0,
           })
-        : releaseCacheHeaders(tag, release, cacheGeneration),
-    );
+        : releaseCacheHeaders(tag, release, cacheGeneration)),
+      "x-mise-mirror": "worker",
+    });
+    // A stale fallback is never cached, here or for the snippet.
     if (!staleFallback) {
-      locals.cfContext.waitUntil(
-        putGitHubMirrorEdgeCache(
-          request,
-          response,
-          releaseEdgeCacheOptions(tag, release, cacheGeneration),
-        ),
+      const edgeOptions = releaseEdgeCacheOptions(
+        tag,
+        release,
+        cacheGeneration,
+      );
+      waitUntil(
+        snippetKey
+          ? putGitHubMirrorSnippetCache(
+              snippetKey,
+              response,
+              edgeOptions,
+              access.verifiedAt,
+            )
+          : putGitHubMirrorEdgeCache(request, response, edgeOptions),
       );
     }
     return response;
