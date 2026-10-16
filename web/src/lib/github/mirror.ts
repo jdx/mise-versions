@@ -329,12 +329,16 @@ export async function putGitHubMirrorEdgeCache(
     console.warn("failed to write GitHub mirror edge cache:", error);
   }
   if (snippet && snippetEntry) {
-    const { edgeMaxAge } = edgeCacheControl(options);
+    // Cap with the expiry recorded on the Worker's entry: the put above may
+    // have crossed a second boundary.
+    const expiresAt = Number(snippetEntry.headers.get(EXPIRES_AT_HEADER));
     await copyToSnippetCache(
       snippet,
       snippetEntry,
-      Math.floor(Date.now() / 1000) +
-        Math.min(edgeMaxAge, snippet.maxTtlSeconds),
+      Math.min(
+        expiresAt,
+        Math.floor(Date.now() / 1000) + snippet.maxTtlSeconds,
+      ),
     );
   }
 }
