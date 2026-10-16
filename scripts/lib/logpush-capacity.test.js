@@ -309,6 +309,89 @@ describe("logpush-capacity", () => {
     );
   });
 
+  it("states a failed run accurately in the email", () => {
+    const ok = capacityAlertEmail(metrics(), LIMITS, [], {});
+    assert.match(ok.body.text, /The run\nsucceeded and wrote its data/);
+    const failed = capacityAlertEmail(metrics(), LIMITS, [], {}, Date.now(), {
+      ok: false,
+      error: "D1 query failed: 503",
+    });
+    assert.match(failed.body.text, /FAILED: D1 query failed: 503/);
+    assert.doesNotMatch(failed.body.text, /succeeded/);
+  });
+
+  it("passes the run outcome into the email", async () => {
+    const requests = [];
+    globalThis.fetch = async (url, init) => {
+      requests.push(JSON.parse(init.body));
+      return new Response("{}", { status: 200 });
+    };
+    await captureLog(() =>
+      reportCapacity(metrics({ peakRssBytes: 4_000 * MB }), LIMITS, {
+        env: { RESEND_API_KEY: "re_test" },
+        outcome: { ok: false, error: "boom" },
+      }),
+    );
+    assert.match(requests[0].text, /FAILED: boom/);
+  });
+
+  it("gives up on a send that outlasts its deadline", async () => {
+    let aborted = false;
+    globalThis.fetch = (url, init) =>
+      new Promise((_, reject) => {
+        init.signal.addEventListener("abort", () => {
+          aborted = true;
+          reject(init.signal.reason);
+        });
+      });
+    const started = Date.now();
+    let warnings;
+    const logged = await captureLog(async () => {
+      warnings = await reportCapacity(
+        metrics({ peakRssBytes: 4_000 * MB }),
+        LIMITS,
+        {
+          env: { RESEND_API_KEY: "re_test" },
+          timeoutMs: 50,
+          fetchOptions: { baseDelayMs: 2_000 },
+        },
+      );
+    });
+    assert.ok(Date.now() - started < 1_000);
+    assert.ok(aborted);
+    assert.deepEqual(thresholds(warnings), ["memory"]);
+    assert.match(
+      logged.at(-1),
+      /^::warning title=Capacity alert email failed::timed out after 50 ms/,
+    );
+  });
+
+  it("still annotates and emails when the step summary write fails", async () => {
+    dir = mkdtempSync(join(tmpdir(), "logpush-capacity-warning-"));
+    let sent = 0;
+    globalThis.fetch = async () => {
+      sent++;
+      return new Response("{}", { status: 200 });
+    };
+    const logged = await captureLog(() =>
+      reportCapacity(metrics({ peakRssBytes: 4_000 * MB }), LIMITS, {
+        // A directory, so appending to it throws.
+        env: { GITHUB_STEP_SUMMARY: dir, RESEND_API_KEY: "re_test" },
+      }),
+    );
+    assert.ok(
+      logged.some((l) =>
+        l.startsWith("::warning title=Capacity step summary failed::"),
+      ),
+    );
+    assert.ok(
+      logged.some((l) =>
+        l.startsWith("::warning title=Logpush rollup approaching capacity::"),
+      ),
+    );
+    assert.equal(sent, 1);
+  });
+
   it("annotates instead of emailing without a Resend key", async () => {
     globalThis.fetch = async () => assert.fail("must not send");
     const logged = await captureLog(() =>

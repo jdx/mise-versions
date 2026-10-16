@@ -225,11 +225,14 @@ async function readDay(config, date, objects, releases) {
       bytes += buffer.length;
       const usage = config.zones.includes(object.zone);
       const release = releaseZones(config).includes(object.zone);
-      uncompressedBytes += await forEachLine(buffer, (line) => {
+      // Await into a local first: `total += await ...` would read the total
+      // before the await and drop what other workers added meanwhile.
+      const objectBytes = await forEachLine(buffer, (line) => {
         lines++;
         if (usage) aggregator.addLine(line);
         if (release) releases.addLine(line);
       });
+      uncompressedBytes += objectBytes;
       done++;
       if (done % 50 === 0 || done === objects.length) {
         console.log(
@@ -621,13 +624,16 @@ async function main() {
 
   const userSets = new Map();
   const results = [];
+  let outcome = { ok: true };
   try {
-    for (const date of dates) {
-      results.push(await refreshDate(config, date, userSets));
-    }
+    await runRollup(config, dates, userSets, results);
+  } catch (error) {
+    outcome = { ok: false, error: String(error?.message ?? error) };
+    throw error;
   } finally {
-    // Also on failure, so a run that dies part way still records what the
-    // days it finished cost.
+    // After all rollup work, so runtime and memory cover it, and also on
+    // failure, so a run that dies part way still records the days it
+    // finished. Never throws.
     await reportCapacity(
       {
         jobElapsedMs: Date.now() - jobStartedAtMs(),
@@ -635,8 +641,14 @@ async function main() {
         days: results.filter((r) => r.capacity).map((r) => r.capacity),
       },
       capacityLimitsFromEnv(),
-      { email: !config.dryRun },
+      { email: !config.dryRun, outcome },
     );
+  }
+}
+
+async function runRollup(config, dates, userSets, results) {
+  for (const date of dates) {
+    results.push(await refreshDate(config, date, userSets));
   }
   const refreshed = results
     .filter((result) => !result.skipped && !result.usageSkipped)

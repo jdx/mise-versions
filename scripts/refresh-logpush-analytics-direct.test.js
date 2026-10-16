@@ -136,6 +136,39 @@ describe("refresh-logpush-analytics-direct", () => {
     assert.deepEqual(seen, [`${"x".repeat(70000)}\u00e9`, "z"]);
   });
 
+  it("totals bytes and lines exactly across concurrent objects", async () => {
+    const day = "http_requests/jdx.dev/20261013";
+    const objects = {};
+    let expectedBytes = 0;
+    let expectedCompressed = 0;
+    let expectedLines = 0;
+    // More objects than download workers, of very different sizes, so the
+    // workers' reads interleave.
+    for (let i = 0; i < 20; i++) {
+      const count = 1 + ((i * 37) % 23) * 400;
+      const text = Array.from({ length: count }, (_, n) =>
+        line({ ClientIP: `198.51.100.${(i + n) % 250}` }),
+      ).join("\n");
+      const gz = gzipSync(text);
+      objects[
+        `${day}/20261013T${String(i).padStart(2, "0")}0000Z_20261013T${String(i).padStart(2, "0")}3000Z_${i}.log.gz`
+      ] = gz;
+      expectedBytes += Buffer.byteLength(text);
+      expectedCompressed += gz.length;
+      expectedLines += count;
+    }
+    fakeD1();
+    const result = await refreshDate(
+      { ...config(fakeR2(objects)), dryRun: true },
+      "2026-10-13",
+      new Map(),
+    );
+    assert.equal(result.capacity.objects, 20);
+    assert.equal(result.capacity.lines, expectedLines);
+    assert.equal(result.capacity.compressedBytes, expectedCompressed);
+    assert.equal(result.capacity.uncompressedBytes, expectedBytes);
+  });
+
   it("unions the trailing 30 days and reports coverage", async () => {
     const sets = {
       "2026-10-13": Float64Array.from([1, 2]),

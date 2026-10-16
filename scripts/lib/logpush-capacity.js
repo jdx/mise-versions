@@ -168,20 +168,36 @@ function alertDate(metrics, now) {
  * recipient. The idempotency key is per day, so a rerun of the same night
  * does not send a second email.
  */
+// How the run ended, in words for the alert email.
+function outcomeText(outcome) {
+  if (outcome?.ok === false) {
+    return [
+      "The nightly Logpush rollup crossed a capacity threshold, and the run",
+      `FAILED: ${outcome.error ?? "unknown error"}`,
+      "Days without a row in the table below were not written; rerun them",
+      "with the maintenance workflow's refresh-logpush task.",
+    ];
+  }
+  return [
+    "The nightly Logpush rollup crossed a capacity threshold. The run",
+    "succeeded and wrote its data; this is an early warning before traffic",
+    "growth makes the job run out of time or memory.",
+  ];
+}
+
 export function capacityAlertEmail(
   metrics,
   limits,
   warnings,
   env = process.env,
   now = Date.now(),
+  outcome = { ok: true },
 ) {
   const date = alertDate(metrics, now);
   const url = runUrl(env);
   const markdown = capacityMarkdown(metrics, limits, warnings);
   const text = [
-    "The nightly Logpush rollup crossed a capacity threshold. It still finished",
-    "and wrote its data; this is an early warning before traffic growth makes",
-    "the job run out of time or memory.",
+    ...outcomeText(outcome),
     "",
     markdown,
     url ? `Run: ${url}` : null,
@@ -202,72 +218,101 @@ export function capacityAlertEmail(
   };
 }
 
-async function sendCapacityAlert(email, env, fetchOptions) {
-  const response = await fetchWithRetry(
-    "https://api.resend.com/emails",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-        "Idempotency-Key": email.idempotencyKey,
+// The whole send (request, retries, response body) gets this long.
+export const ALERT_SEND_TIMEOUT_MS = 15_000;
+
+async function sendCapacityAlert(email, env, fetchOptions, timeoutMs) {
+  const signal = AbortSignal.timeout(timeoutMs);
+  const send = async () => {
+    const response = await fetchWithRetry(
+      "https://api.resend.com/emails",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+          "Idempotency-Key": email.idempotencyKey,
+        },
+        body: JSON.stringify(email.body),
+        signal,
       },
-      body: JSON.stringify(email.body),
-    },
-    fetchOptions,
-  );
-  const body = await response.json();
+      { attempts: 2, baseDelayMs: 1000, ...fetchOptions },
+    );
+    return response.json();
+  };
+  // The signal aborts the request in flight; the race also ends a retry
+  // backoff that would otherwise run past the deadline.
+  const deadline = new Promise((_, reject) => {
+    signal.addEventListener(
+      "abort",
+      () => reject(new Error(`timed out after ${timeoutMs} ms`)),
+      { once: true },
+    );
+  });
+  const body = await Promise.race([send(), deadline]);
   console.log(`Sent capacity alert email ${body.id ?? "(no id)"}`);
 }
+
+const annotation = (title, message) =>
+  console.log(
+    `::warning title=${title}::${String(message).replace(/[\r\n]+/g, " ")}`,
+  );
 
 /**
  * Print the metrics, write the step summary, and on a warning emit
  * `::warning::` annotations and email jdx through Resend (unless `email` is
- * false, as in a dry run). Never throws: capacity reporting must not fail the
- * rollup.
+ * false, as in a dry run). `outcome` is how the rollup ended,
+ * `{ ok: true }` or `{ ok: false, error }`. Each part fails on its own, and
+ * none of them throws: capacity reporting must not fail the rollup.
  */
 export async function reportCapacity(
   metrics,
   limits,
-  { env = process.env, email = true, fetchOptions } = {},
+  {
+    env = process.env,
+    email = true,
+    outcome = { ok: true },
+    fetchOptions,
+    timeoutMs = ALERT_SEND_TIMEOUT_MS,
+  } = {},
 ) {
-  let warnings = [];
+  let warnings;
   try {
     warnings = capacityWarnings(metrics, limits);
     console.log(
-      `capacity: ${JSON.stringify({ ...metrics, limits, warnings })}`,
+      `capacity: ${JSON.stringify({ ...metrics, limits, outcome, warnings })}`,
     );
-    if (env.GITHUB_STEP_SUMMARY) {
+  } catch (error) {
+    console.warn("Capacity check failed:", error);
+    return [];
+  }
+  if (env.GITHUB_STEP_SUMMARY) {
+    try {
       appendFileSync(
         env.GITHUB_STEP_SUMMARY,
         `${capacityMarkdown(metrics, limits, warnings)}\n`,
       );
+    } catch (error) {
+      annotation("Capacity step summary failed", error?.message ?? error);
     }
-    for (const warning of warnings) {
-      console.log(
-        `::warning title=${CAPACITY_WARNING_TITLE}::${warning.message}`,
-      );
-    }
-  } catch (error) {
-    console.warn("Capacity reporting failed:", error);
-    return warnings;
+  }
+  for (const warning of warnings) {
+    annotation(CAPACITY_WARNING_TITLE, warning.message);
   }
   if (warnings.length === 0 || !email) return warnings;
   if (!env.RESEND_API_KEY) {
-    console.log(
-      "::warning title=Capacity alert not emailed::RESEND_API_KEY is not set",
-    );
+    annotation("Capacity alert not emailed", "RESEND_API_KEY is not set");
     return warnings;
   }
   try {
     await sendCapacityAlert(
-      capacityAlertEmail(metrics, limits, warnings, env),
+      capacityAlertEmail(metrics, limits, warnings, env, Date.now(), outcome),
       env,
       fetchOptions,
+      timeoutMs,
     );
   } catch (error) {
-    const message = String(error?.message ?? error).replace(/[\r\n]+/g, " ");
-    console.log(`::warning title=Capacity alert email failed::${message}`);
+    annotation("Capacity alert email failed", error?.message ?? error);
   }
   return warnings;
 }
