@@ -70,6 +70,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       repo,
       page,
       cacheGeneration,
+      { stars: access.stars },
     );
     // A stale fallback is served once but not edge-cached, so the next
     // request retries GitHub.

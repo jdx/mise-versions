@@ -20,6 +20,7 @@ const PRELUDE = `
   import assert from "node:assert/strict";
   import {
     checkGitHubMirrorAccess,
+    checkGitHubMirrorAccessVerified,
     isPublicGitHubRepo,
   } from "./web/src/lib/github/visibility.ts";
 
@@ -83,6 +84,20 @@ test("repos with more than 100 stars are re-checked daily", () => {
       repoFetch(200, { private: false, visibility: "public", stargazers_count: stars });
       assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), true);
       assert.equal(JSON.parse(env.GITHUB_CACHE.writes[0].value).ttl, ttl, String(stars));
+    }
+    // The star count is kept with the answer and reported by access checks,
+    // so the mirror can use it without asking GitHub again.
+    {
+      const env = makeEnv();
+      const calls = repoFetch(200, { private: false, visibility: "public", stargazers_count: 1234 });
+      const first = await checkGitHubMirrorAccessVerified(env, "owner", "repo");
+      assert.equal(first.stars, 1234);
+      assert.equal(JSON.parse(env.GITHUB_CACHE.writes[0].value).stars, 1234);
+      assert.equal((await checkGitHubMirrorAccessVerified(env, "owner", "repo")).stars, 1234);
+      assert.equal(calls.length, 1);
+      repoFetch(200, { private: false, visibility: "public", stargazers_count: "many" });
+      const unknown = await checkGitHubMirrorAccessVerified(makeEnv(), "owner", "repo");
+      assert.equal(unknown.stars, undefined);
     }
     // Stars never lengthen a "not public" answer.
     const env = makeEnv();
@@ -621,6 +636,7 @@ test("untracked latest and release-list page 1 back off while unchanged", () => 
     import {
       getCachedGitHubRelease,
       getCachedGitHubReleaseList,
+      getCachedGitHubReleaseResult,
     } from "./web/src/lib/github/mirror.ts";
 
     const minute = 60 * 1000;
@@ -760,6 +776,38 @@ test("untracked latest and release-list page 1 back off while unchanged", () => 
         "o", "r", 1,
       );
       assert.equal(fetches, refetched ? 1 : 0, name);
+    }
+
+    // Untracked repos with 1000+ stars keep the 10-minute window; fewer
+    // stars, or an unknown count, back off. The young-release cap on page 1
+    // still applies below the threshold.
+    const pageOf = (releases) => ({ releases, next_page: null, truncated: false });
+    for (const [stars, age, data, refetched] of [
+      [1000, 15 * minute, null, true],
+      [50000, 15 * minute, null, true],
+      [1000, 5 * minute, null, false],
+      [999, 15 * minute, null, false],
+      [undefined, 15 * minute, null, false],
+      [999, 40 * minute, [youngRelease(young)], true],
+      [999, 20 * minute, [youngRelease(young)], false],
+    ]) {
+      for (const [key, page] of [
+        ["github:release:o/r:latest", null],
+        ["github:releases:o/r:1", 1],
+      ]) {
+        if (data && !page) continue;
+        fetches = 0;
+        const e = env({
+          [key]: {
+            cached_at: Date.now() - age,
+            unchanged_since: Date.now() - age - 20 * hour,
+            data: page ? pageOf(data ?? []) : stored.data,
+          },
+        });
+        if (page) await getCachedGitHubReleaseList(e, "o", "r", 1, undefined, { stars });
+        else await getCachedGitHubReleaseResult(e, "o", "r", "latest", undefined, undefined, { stars });
+        assert.equal(fetches, refetched ? 1 : 0, key + " stars=" + stars + " age=" + age);
+      }
     }
 
     // Tracked repos (with a generation) and later pages keep their windows.

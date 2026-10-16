@@ -34,6 +34,17 @@ const BROWSER_YOUNG_RELEASE_MAX_AGE_SECONDS = 10 * 60;
 const UNTRACKED_LATEST_FRESH_MS = 10 * 60 * 1000;
 const UNTRACKED_LATEST_MAX_FRESH_MS = 60 * 60 * 1000;
 const UNTRACKED_STABLE_FRESH_FRACTION = 4;
+// An untracked repo with at least this many stars keeps the 10-minute
+// window whatever its history: popular tools are expected to show new
+// releases quickly. The count comes from the visibility check the request
+// already passed (visibility.ts), so it costs no GitHub call; unknown counts
+// back off.
+export const UNTRACKED_BACKOFF_MAX_STARS = 1000;
+
+/** Whether an untracked repo with `stars` stars backs off while unchanged. */
+function untrackedBacksOff(stars: number | undefined): boolean {
+  return !(typeof stars === "number" && stars >= UNTRACKED_BACKOFF_MAX_STARS);
+}
 const EDGE_UNTRACKED_LATEST_TTL_SECONDS = 10 * 60;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
@@ -770,6 +781,7 @@ export async function getCachedGitHubReleaseResult(
   tag: string,
   cacheGeneration?: string,
   previousCacheGeneration?: string,
+  { stars }: { stars?: number } = {},
 ): Promise<{ release: GitHubRelease; staleFallback: boolean }> {
   const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
@@ -788,7 +800,12 @@ export async function getCachedGitHubReleaseResult(
         (tag !== "latest" && entry.data.immutable === true) ||
         Date.now() - entry.cached_at <
           (untracked
-            ? Math.min(untrackedFreshMs(entry), releaseFreshMs(entry.data))
+            ? Math.min(
+                untrackedBacksOff(stars)
+                  ? untrackedFreshMs(entry)
+                  : UNTRACKED_LATEST_FRESH_MS,
+                releaseFreshMs(entry.data),
+              )
             : releaseFreshMs(entry.data)),
       fingerprint: untracked ? jsonFingerprint : undefined,
       // Only consulted when there is no fresh positive entry: a fresh entry
@@ -1001,6 +1018,7 @@ export async function getCachedGitHubReleaseList(
   repo: string,
   page: number,
   cacheGeneration?: string,
+  { stars }: { stars?: number } = {},
 ): Promise<{ list: GitHubReleaseListPage; staleFallback: boolean }> {
   if (!Number.isInteger(page) || page < 1 || page > RELEASE_LIST_MAX_PAGE) {
     throw new GitHubError(400, "Invalid page", new Headers());
@@ -1009,8 +1027,10 @@ export async function getCachedGitHubReleaseList(
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const freshMs = releaseListFreshSeconds(page) * 1000;
   // Page 1 of an untracked repo backs off while unchanged, like its
-  // `latest`; a tracked repo's page 1 is invalidated by its generation.
+  // `latest`, unless the repo is popular; a tracked repo's page 1 is
+  // invalidated by its generation.
   const untracked = page === 1 && !cacheGeneration;
+  const backsOff = untracked && untrackedBacksOff(stars);
   let staleFallback = false;
   const list = await getOrRefresh<GitHubReleaseListPage>({
     env,
@@ -1021,7 +1041,7 @@ export async function getCachedGitHubReleaseList(
     // unchanged.
     isFresh: (entry) =>
       Date.now() - entry.cached_at <
-      (untracked
+      (backsOff
         ? hasYoungRelease(entry.data)
           ? Math.min(untrackedFreshMs(entry), YOUNG_RELEASE_FRESH_MS)
           : untrackedFreshMs(entry)

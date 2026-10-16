@@ -70,12 +70,25 @@ interface CachedVisibility {
    * public answers (epoch ms). Absent when not public.
    */
   first_public_at?: number;
+  /**
+   * The repo's `stargazers_count` when this answer was given, if GitHub
+   * reported one. Read by the mirror to keep popular untracked repos on
+   * short release windows (see mirror.ts), with no extra GitHub call.
+   */
+  stars?: number;
 }
 
-/** The memoized answer: public, and its TTL in seconds. */
+/** The memoized answer: public, its TTL in seconds, and its star count. */
 interface MemoizedVisibility {
   p: boolean;
   t: number;
+  s?: number;
+}
+
+function validStars(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isFinite(value) && value >= 0
+    ? value
+    : undefined;
 }
 
 /** The TTL a stored answer was given, clamped to what this code allows. */
@@ -140,6 +153,8 @@ export interface GitHubRepoVisibilityAnswer {
   checkedAt: number;
   /** How long after `checkedAt` the answer is trusted, in seconds. */
   ttlSeconds: number;
+  /** The repo's star count as of the check, when known. */
+  stars?: number;
 }
 
 /** isPublicGitHubRepo, plus when GitHub gave the answer. */
@@ -170,7 +185,13 @@ export async function gitHubRepoVisibility(
       );
       const ttl = storedTtlSeconds(entry.ttl);
       return {
-        value: { p: entry.public, t: ttl },
+        value: {
+          p: entry.public,
+          t: ttl,
+          ...(validStars(entry.stars) === undefined
+            ? {}
+            : { s: validStars(entry.stars) }),
+        },
         expiresAt: Math.min(entry.cached_at, Date.now()) + ttl * 1000,
       };
     },
@@ -181,6 +202,7 @@ export async function gitHubRepoVisibility(
   // Every answer expires its TTL after GitHub gave it.
   return {
     public: answer.value?.p === true,
+    stars: validStars(answer.value?.s),
     checkedAt: answer.expiresAt - ttlSeconds * 1000,
     ttlSeconds,
   };
@@ -253,6 +275,7 @@ async function lookUpVisibility(
     public: isPublic,
     ttl: visibilityTtlSeconds({ isPublic, stars, firstPublicAt, now }),
     ...(firstPublicAt === undefined ? {} : { first_public_at: firstPublicAt }),
+    ...(validStars(stars) === undefined ? {} : { stars: validStars(stars) }),
   };
   try {
     await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), {
@@ -294,7 +317,12 @@ export async function checkGitHubMirrorAccess(
 }
 
 export type GitHubMirrorAccessResult =
-  | { denied: Response; verifiedAt?: undefined; verifiedUntil?: undefined }
+  | {
+      denied: Response;
+      verifiedAt?: undefined;
+      verifiedUntil?: undefined;
+      stars?: undefined;
+    }
   | {
       denied: null;
       /** Epoch ms when GitHub last confirmed the repo is public. */
@@ -306,6 +334,8 @@ export type GitHubMirrorAccessResult =
        * changes still reach cached copies within the hour.
        */
       verifiedUntil: number;
+      /** The repo's star count as of the visibility check, when known. */
+      stars?: number;
     };
 
 /** checkGitHubMirrorAccess, plus when the visibility it relied on was checked. */
@@ -365,6 +395,7 @@ export async function checkGitHubMirrorAccessVerified(
           visibility.checkedAt + visibility.ttlSeconds * 1000,
           Date.now() + VISIBILITY_TTL_SECONDS * 1000,
         ),
+        stars: visibility.stars,
       }
     : denied(errorResponse("Not found", 404));
 }

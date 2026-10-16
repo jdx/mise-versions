@@ -89,6 +89,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       tag,
       cacheGeneration,
       cacheGenerations?.previous,
+      { stars: access.stars },
     );
     const response = jsonResponse(release, 200, {
       ...(staleFallback
