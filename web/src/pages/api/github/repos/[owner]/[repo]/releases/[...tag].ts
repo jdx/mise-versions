@@ -62,6 +62,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       ? gitHubMirrorMutableSnippetCopy(request, {
           ttl: env.GITHUB_MIRROR_SNIPPET_TTL_SECONDS,
           verifiedAt: access.verifiedAt,
+          verifiedUntil: access.verifiedUntil,
           waitUntil,
         })
       : undefined;
@@ -70,6 +71,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
         snippetKey,
         access.verifiedAt,
         waitUntil,
+        access.verifiedUntil,
       )
     : await matchGitHubMirrorEdgeCache(
         request,
@@ -111,6 +113,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
               response,
               edgeOptions,
               access.verifiedAt,
+              access.verifiedUntil,
             )
           : putGitHubMirrorEdgeCache(request, response, edgeOptions),
       );

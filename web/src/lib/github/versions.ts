@@ -1239,9 +1239,11 @@ const KV_OPS_PER_TASK = 5;
 // The lease, the deploy bookkeeping, and the lease's release.
 const KV_OPS_FIXED = 6;
 const REFRESH_CONCURRENCY = 4;
-// A repo's access is checked again this often (the visibility cache's own
-// lifetime), so a repo that turns private stops being baked within about an
-// hour and one deploy.
+// A repo's access is checked again this often (the visibility cache's
+// default lifetime), so a repo that turns private stops being baked within
+// about an hour and one deploy, or within about a day for a repo the
+// visibility cache trusts for a day (over 100 stars, or public for over 30
+// days; see visibility.ts).
 const ACCESS_CHECK_MS = 60 * 60 * 1000;
 const STATE_PREFIX = "github:versions-state:";
 // A run that finds another run's lease still current does nothing, so

@@ -235,8 +235,11 @@ mise registry, and `off` disables it.
 
 The Worker checks access before answering from any cache. Baked files are
 served without the Worker, so the refresher checks each repo again every hour.
-A repo that turns private stops being baked, and is gone within about an hour
-plus the refresher's run and one deploy.
+Each check relies on the mirror's cached visibility answer, which is trusted
+for an hour, or for a day for a repo with more than 100 stars or seen public
+for over 30 days. A repo that turns private stops being baked, and is gone
+within about that long (an hour, or up to a day) plus the refresher's run and
+one deploy.
 
 ## How lists get baked
 

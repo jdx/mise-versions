@@ -3,8 +3,10 @@ import { readFileSync, statSync } from "node:fs";
 import test from "node:test";
 import snippet, {
   EXPIRES_AT_HEADER,
+  MAX_VISIBILITY_TTL_SECONDS,
   SNIPPET_CACHE_PREFIX,
   VERIFIED_AT_HEADER,
+  VERIFIED_UNTIL_HEADER,
   VISIBILITY_TTL_SECONDS,
   snippetCacheKey,
 } from "./github-mirror-cache.js";
@@ -174,6 +176,56 @@ test("entries whose visibility check is too old go to the Worker", async () => {
   // Exactly at the limit is already too old.
   setup({ [key]: entry({ verifiedAt: now - VISIBILITY_TTL_SECONDS }) });
   assert.equal((await get(RELEASE)).headers.get("x-mise-mirror"), "worker");
+});
+
+test("an entry's own verification window is honored, capped at a day", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${RELEASE}`);
+  const now = Math.floor(Date.now() / 1000);
+  const verifiedAt = now - 2 * VISIBILITY_TTL_SECONDS;
+  const longEntry = (until, extra = {}) =>
+    entry({
+      verifiedAt,
+      expiresAt: now + 600,
+      extraHeaders: { [VERIFIED_UNTIL_HEADER]: until, ...extra },
+    });
+
+  // Verified two hours ago, trusted for longer: served, without the
+  // internal header.
+  let { passed } = setup({ [key]: longEntry(String(now + 60)) });
+  let response = await get(RELEASE);
+  assert.deepEqual(passed, []);
+  assert.equal(response.headers.get("x-mise-mirror"), "snippet");
+  assert.equal(response.headers.get(VERIFIED_UNTIL_HEADER), null);
+  assert.equal(response.headers.get(VERIFIED_AT_HEADER), null);
+
+  // Its end has passed (exactly at it is too late).
+  ({ passed } = setup({ [key]: longEntry(String(now)) }));
+  await get(RELEASE);
+  assert.equal(passed.length, 1);
+
+  // Never more than MAX_VISIBILITY_TTL_SECONDS after the GitHub check.
+  ({ passed } = setup({
+    [key]: entry({
+      verifiedAt: now - MAX_VISIBILITY_TTL_SECONDS,
+      expiresAt: now + 600,
+      extraHeaders: { [VERIFIED_UNTIL_HEADER]: String(now + 3600) },
+    }),
+  }));
+  await get(RELEASE);
+  assert.equal(passed.length, 1);
+
+  // Unparsable: the default hour, which ended an hour ago.
+  for (const until of ["tomorrow", "-1", ""]) {
+    ({ passed } = setup({ [key]: longEntry(until) }));
+    await get(RELEASE);
+    assert.equal(passed.length, 1, until);
+  }
+  // ...and within the default hour, an unparsable end does not shorten it.
+  ({ passed } = setup({
+    [key]: entry({ extraHeaders: { [VERIFIED_UNTIL_HEADER]: "soon" } }),
+  }));
+  await get(RELEASE);
+  assert.deepEqual(passed, []);
 });
 
 test("missing, expired, unparsable and foreign entries go to the Worker", async () => {

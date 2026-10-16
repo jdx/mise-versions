@@ -83,12 +83,21 @@ const PRELUDE = `
   }
 `;
 
-test("the Worker and the snippet agree on the visibility window", () => {
+test("the Worker and the snippet agree on the visibility windows", () => {
   runSnippetTest(`
     import assert from "node:assert/strict";
-    import { VISIBILITY_TTL_SECONDS as snippetTtl } from "./snippets/github-mirror-cache.js";
-    import { VISIBILITY_TTL_SECONDS as workerTtl } from "./web/src/lib/github/visibility.ts";
+    import {
+      MAX_VISIBILITY_TTL_SECONDS as snippetMax,
+      VISIBILITY_TTL_SECONDS as snippetTtl,
+    } from "./snippets/github-mirror-cache.js";
+    import {
+      POPULAR_VISIBILITY_TTL_SECONDS as workerMax,
+      VISIBILITY_TTL_SECONDS as workerTtl,
+    } from "./web/src/lib/github/visibility.ts";
+    // The default window for entries without a verified-until, and the cap
+    // on it: the longest TTL the Worker gives any visibility answer.
     assert.equal(snippetTtl, workerTtl);
+    assert.equal(snippetMax, workerMax);
   `);
 });
 
@@ -204,6 +213,48 @@ test("a Worker hit refreshes the verification but never the content expiry", () 
   `);
 });
 
+test("entries carry the access grant's end, and the snippet honors it", () => {
+  runSnippetTest(`${PRELUDE}
+    const key = gitHubMirrorReleaseSnippetCacheKey(new Request(RELEASE_URL), "v2026.1.0");
+    // A popular repo: GitHub confirmed it public 5 hours ago, trusted for a
+    // day, but the access check only grants the next hour.
+    const checkedAt = Date.now() - 5 * 60 * 60 * 1000;
+    const until = Date.now() + 60 * 60 * 1000;
+    await putGitHubMirrorSnippetCache(key, workerResponse(), {}, checkedAt, until);
+    assert.equal(puts[0].headers["x-mise-mirror-verified-until"], String(Math.floor(until / 1000)));
+    const hit = await snippet.fetch(new Request(RELEASE_URL));
+    assert.equal(hit.headers.get("x-mise-mirror"), "snippet");
+    assert.equal(hit.headers.get("x-mise-mirror-verified-until"), null);
+    assert.deepEqual(workerCalls, []);
+
+    // A Worker hit whose grant runs only a little longer does not rewrite it.
+    const pending = [];
+    const served = await matchGitHubMirrorSnippetCache(
+      key, checkedAt, (p) => pending.push(p), until + 10 * 60 * 1000,
+    );
+    assert.equal(served.headers.get("x-mise-mirror-verified-until"), null);
+    await Promise.all(pending);
+    assert.equal(puts.length, 1);
+    // One that runs well past it does, with the same GitHub check time.
+    const later = until + 45 * 60 * 1000;
+    await matchGitHubMirrorSnippetCache(key, checkedAt, (p) => pending.push(p), later);
+    await Promise.all(pending);
+    assert.equal(puts.length, 2);
+    assert.equal(puts[1].headers["x-mise-mirror-verified-until"], String(Math.floor(later / 1000)));
+    assert.equal(puts[1].headers["x-mise-mirror-verified-at"], String(Math.floor(checkedAt / 1000)));
+
+    // Without an explicit end, an entry gets the default hour after the check.
+    puts.length = 0;
+    await putGitHubMirrorSnippetCache(key, workerResponse(), {}, checkedAt);
+    assert.equal(
+      puts[0].headers["x-mise-mirror-verified-until"],
+      String(Math.floor((checkedAt + 3600 * 1000) / 1000)),
+    );
+    await snippet.fetch(new Request(RELEASE_URL));
+    assert.equal(workerCalls.length, 1);
+  `);
+});
+
 test("the Worker ignores expired and foreign entries", () => {
   runSnippetTest(`${PRELUDE}
     const key = SNIPPET_CACHE_PREFIX + "jdx/mise/releases/v1";
@@ -258,6 +309,23 @@ test("access checks report when GitHub confirmed the repo public", () => {
       (await checkGitHubMirrorAccessVerified(env, "o", "public")).verifiedAt,
       checkedAt,
     );
+
+    // Not popular: the grant ends an hour after the GitHub check.
+    assert.equal(allowed.verifiedUntil, checkedAt + 3600 * 1000);
+
+    // Popular (a day's TTL), checked 5 hours ago: the grant ends at most an
+    // hour from now, so GITHUB_MIRROR_ACCESS still applies hourly.
+    const popularAt = Date.now() - 5 * 60 * 60 * 1000;
+    await env.GITHUB_CACHE.put(
+      "github:visibility:o/popular",
+      JSON.stringify({ cached_at: popularAt, public: true, ttl: 86400 }),
+    );
+    const before = Date.now();
+    const popular = await checkGitHubMirrorAccessVerified(env, "o", "popular");
+    assert.equal(popular.denied, null);
+    assert.equal(popular.verifiedAt, popularAt);
+    assert.ok(popular.verifiedUntil >= before + 3600 * 1000);
+    assert.ok(popular.verifiedUntil <= Date.now() + 3600 * 1000);
 
     const hidden = await checkGitHubMirrorAccessVerified(env, "o", "private");
     assert.equal(hidden.denied.status, 404);
