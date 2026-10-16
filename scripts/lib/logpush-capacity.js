@@ -157,16 +157,20 @@ function runUrl(env) {
 
 // The day an alert is about: the newest day the run read, or today when it
 // read none (a run that died before finishing a day).
+const utcDay = (ms) => new Date(ms).toISOString().slice(0, 10);
+
 function alertDate(metrics, now) {
   const dates = metrics.days.map((day) => day.date).sort();
-  return dates.at(-1) ?? new Date(now).toISOString().slice(0, 10);
+  return dates.at(-1) ?? utcDay(now);
 }
 
 /**
  * The Resend payload for a capacity alert. Sender and recipient follow the
  * daily digest (DIGEST_FROM / DIGEST_TO); CAPACITY_ALERT_TO overrides the
- * recipient. The idempotency key is per day, so a rerun of the same night
- * does not send a second email.
+ * recipient. The idempotency key is the UTC calendar day the alert is sent
+ * (`now`), not the day it is about, so any number of runs on one day (the
+ * nightly run, a rerun, a manual backfill of other dates) send at most one
+ * email. Resend keeps idempotency keys for about 24 hours, which covers a day.
  */
 // How the run ended, in words for the alert email.
 function outcomeText(outcome) {
@@ -208,7 +212,7 @@ export function capacityAlertEmail(
     .filter((line) => line !== null)
     .join("\n");
   return {
-    idempotencyKey: `mise-versions-logpush-capacity-${date}`,
+    idempotencyKey: `mise-versions-logpush-capacity-${utcDay(now)}`,
     body: {
       from: env.DIGEST_FROM || DEFAULT_FROM,
       to: env.CAPACITY_ALERT_TO || env.DIGEST_TO || DEFAULT_TO,
@@ -274,6 +278,7 @@ export async function reportCapacity(
     outcome = { ok: true },
     fetchOptions,
     timeoutMs = ALERT_SEND_TIMEOUT_MS,
+    now = Date.now(),
   } = {},
 ) {
   let warnings;
@@ -306,7 +311,7 @@ export async function reportCapacity(
   }
   try {
     await sendCapacityAlert(
-      capacityAlertEmail(metrics, limits, warnings, env, Date.now(), outcome),
+      capacityAlertEmail(metrics, limits, warnings, env, now, outcome),
       env,
       fetchOptions,
       timeoutMs,

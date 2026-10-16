@@ -208,10 +208,12 @@ describe("logpush-capacity", () => {
         GITHUB_REPOSITORY: "jdx/mise-versions",
         GITHUB_RUN_ID: "42",
       },
+      Date.UTC(2026, 9, 15, 2, 30),
     );
+    // Keyed by the day it is sent; the subject names the newest day read.
     assert.equal(
       email.idempotencyKey,
-      "mise-versions-logpush-capacity-2026-10-14",
+      "mise-versions-logpush-capacity-2026-10-15",
     );
     assert.equal(email.body.from, "mise-tools@en.dev");
     assert.equal(email.body.to, "digest@example.com");
@@ -263,7 +265,10 @@ describe("logpush-capacity", () => {
       return new Response(JSON.stringify({ id: "email-1" }), { status: 200 });
     };
     const logged = await captureLog(() =>
-      reportCapacity(metrics({ jobElapsedMs: 50 * 60_000 }), LIMITS, { env }),
+      reportCapacity(metrics({ jobElapsedMs: 50 * 60_000 }), LIMITS, {
+        env,
+        now: Date.UTC(2026, 9, 15, 2, 30),
+      }),
     );
     assert.match(logged[0], /^capacity: \{/);
     assert.equal(
@@ -284,7 +289,7 @@ describe("logpush-capacity", () => {
     assert.equal(requests[0].init.headers.Authorization, "Bearer re_test");
     assert.equal(
       requests[0].init.headers["Idempotency-Key"],
-      "mise-versions-logpush-capacity-2026-10-14",
+      "mise-versions-logpush-capacity-2026-10-15",
     );
     const body = JSON.parse(requests[0].init.body);
     assert.equal(body.to, "digest@example.com");
@@ -306,6 +311,27 @@ describe("logpush-capacity", () => {
     assert.match(
       logged.at(-1),
       /^::warning title=Capacity alert email failed::401 Unauthorized/,
+    );
+  });
+
+  it("sends one email per UTC day whatever dates the runs read", () => {
+    const warn = [{ threshold: "lines", message: "too many lines" }];
+    const key = (dates, now) =>
+      capacityAlertEmail(
+        metrics({ days: dates.map((date) => day({ date })) }),
+        LIMITS,
+        warn,
+        {},
+        now,
+      ).idempotencyKey;
+    // The nightly run and a manual backfill of older dates, same UTC day.
+    const nightly = key(["2026-10-13", "2026-10-14"], Date.UTC(2026, 9, 15, 2));
+    const backfill = key(["2026-10-01"], Date.UTC(2026, 9, 15, 18));
+    assert.equal(nightly, backfill);
+    // The next UTC day alerts again.
+    assert.notEqual(
+      key(["2026-10-14", "2026-10-15"], Date.UTC(2026, 9, 16, 2)),
+      nightly,
     );
   });
 
