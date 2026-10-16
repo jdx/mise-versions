@@ -42,32 +42,42 @@ const REPO = "[A-Za-z0-9_.-]+";
 const ATTESTATION_PATH = new RegExp(
   `^${REPO}/${REPO}/attestations/[A-Za-z0-9_.-]+:[A-Fa-f0-9]+$`,
 );
-// Exact release tags, raw (possibly percent-encoded) as in the URL.
+// Release tags (including `latest`), raw (possibly percent-encoded) as in
+// the URL.
 const RELEASE_PATH = new RegExp(
-  `^${REPO}/${REPO}/releases/([A-Za-z0-9_.:@+%/-]+)$`,
+  `^${REPO}/${REPO}/releases/[A-Za-z0-9_.:@+%/-]+$`,
 );
+const RELEASE_LIST_PATH = new RegExp(`^${REPO}/${REPO}/releases$`);
+// The only query the Worker's release-list handler honors: `page`, 1-10.
+// Anything else (other params, repeats, non-canonical numbers) is not
+// cached and goes to the Worker.
+const RELEASE_LIST_QUERY = /^(?:\?page=([1-9]|10))?$/;
 
 /**
  * The Cache API key for a mirror URL the snippet may answer, or null.
- * Only effectively immutable endpoints qualify: attestations by digest and
- * releases by exact tag. `latest` and the release/tag lists change in place
- * and stay with the Worker. The host is dropped so mise-versions.jdx.dev and
- * mise-tools.jdx.dev share entries, and the query is dropped because these
- * handlers ignore it.
+ * Attestations by digest and releases by tag (effectively immutable), plus
+ * `releases/latest` and release-list pages (mutable; the Worker gives those
+ * entries a short expiry). The host is dropped so mise-versions.jdx.dev and
+ * mise-tools.jdx.dev share entries. Attestation and release handlers ignore
+ * the query, so it is dropped; a release list keeps its normalized `page`.
  */
 export function snippetCacheKey(url) {
-  let pathname;
+  let parsed;
   try {
-    pathname = new URL(url).pathname;
+    parsed = new URL(url);
   } catch {
     return null;
   }
+  const { pathname } = parsed;
   if (!pathname.startsWith(MIRROR_PREFIX)) return null;
   const rest = pathname.slice(MIRROR_PREFIX.length);
-  if (ATTESTATION_PATH.test(rest)) return SNIPPET_CACHE_PREFIX + rest;
-  const release = RELEASE_PATH.exec(rest);
-  if (release && release[1].toLowerCase() !== "latest") {
+  if (ATTESTATION_PATH.test(rest) || RELEASE_PATH.test(rest)) {
     return SNIPPET_CACHE_PREFIX + rest;
+  }
+  if (RELEASE_LIST_PATH.test(rest)) {
+    const page = RELEASE_LIST_QUERY.exec(parsed.search);
+    if (!page) return null;
+    return `${SNIPPET_CACHE_PREFIX}${rest}?page=${page[1] ?? "1"}`;
   }
   return null;
 }

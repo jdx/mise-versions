@@ -8,7 +8,9 @@ import {
   INTENDED_CACHE_CONTROL_HEADER,
   SOURCE_HEADER,
   VERIFIED_AT_HEADER,
+  VISIBILITY_TTL_SECONDS,
   clientResponse,
+  servableEntry,
   snippetCacheKey,
 } from "../../../../snippets/github-mirror-cache.js";
 
@@ -272,12 +274,30 @@ export async function matchGitHubMirrorEdgeCache(
   request: Request,
   cacheGeneration?: string,
   cacheKeyParams?: Record<string, string>,
+  snippet?: MirrorSnippetCopy,
 ): Promise<Response | null> {
   try {
     const cached = await defaultEdgeCache().match(
       edgeCacheRequest(request, cacheGeneration, cacheKeyParams),
     );
-    return cached ? withIntendedCacheControl(cached) : null;
+    if (!cached) return null;
+    if (snippet) {
+      // Entries written before expiry was recorded are not copied.
+      const expiresAt = Number(cached.headers.get(EXPIRES_AT_HEADER));
+      if (Number.isFinite(expiresAt) && expiresAt > 0) {
+        snippet.waitUntil(
+          copyToSnippetCache(
+            snippet,
+            cached.clone(),
+            Math.min(
+              expiresAt,
+              Math.floor(Date.now() / 1000) + snippet.maxTtlSeconds,
+            ),
+          ),
+        );
+      }
+    }
+    return withIntendedCacheControl(cached);
   } catch (error) {
     console.warn("failed to read GitHub mirror edge cache:", error);
     return null;
@@ -291,6 +311,11 @@ export async function putGitHubMirrorEdgeCache(
 ): Promise<void> {
   if (response.status !== 200) return;
 
+  // Clone both copies now: the client may consume `response` once this
+  // function first awaits.
+  const entry = edgeCacheResponse(response, options);
+  const snippet = options?.snippet;
+  const snippetEntry = snippet ? edgeCacheResponse(response, options) : null;
   try {
     await defaultEdgeCache().put(
       edgeCacheRequest(
@@ -298,10 +323,23 @@ export async function putGitHubMirrorEdgeCache(
         options?.cacheGeneration,
         options?.cacheKeyParams,
       ),
-      edgeCacheResponse(response, options),
+      entry,
     );
   } catch (error) {
     console.warn("failed to write GitHub mirror edge cache:", error);
+  }
+  if (snippet && snippetEntry) {
+    // Cap with the expiry recorded on the Worker's entry: the put above may
+    // have crossed a second boundary.
+    const expiresAt = Number(snippetEntry.headers.get(EXPIRES_AT_HEADER));
+    await copyToSnippetCache(
+      snippet,
+      snippetEntry,
+      Math.min(
+        expiresAt,
+        Math.floor(Date.now() / 1000) + snippet.maxTtlSeconds,
+      ),
+    );
   }
 }
 
@@ -311,14 +349,17 @@ export interface EdgeCacheOptions {
   staleWhileRevalidate?: number;
   cacheGeneration?: string;
   cacheKeyParams?: Record<string, string>;
+  /** Also keep a short-lived snippet-readable copy (mutable endpoints). */
+  snippet?: MirrorSnippetCopy;
 }
 
 function withIntendedCacheControl(response: Response): Response {
   const intended = response.headers.get(EDGE_CACHE_CONTROL_HEADER);
-  if (!intended) return response;
+  if (!intended && !response.headers.has(EXPIRES_AT_HEADER)) return response;
   const headers = new Headers(response.headers);
-  headers.set("Cache-Control", intended);
+  if (intended) headers.set("Cache-Control", intended);
   headers.delete(EDGE_CACHE_CONTROL_HEADER);
+  headers.delete(EXPIRES_AT_HEADER);
   return new Response(response.body, {
     status: response.status,
     statusText: response.statusText,
@@ -347,9 +388,14 @@ function edgeCacheResponse(
   options: EdgeCacheOptions = {},
 ): Response {
   const headers = new Headers(response.headers);
-  const { cacheControl } = edgeCacheControl(options);
+  const { cacheControl, edgeMaxAge } = edgeCacheControl(options);
   headers.set("Cache-Control", cacheControl);
   headers.set(EDGE_CACHE_CONTROL_HEADER, cacheControl);
+  // Lets a later hit copy this entry for the snippet without outliving it.
+  headers.set(
+    EXPIRES_AT_HEADER,
+    String(Math.floor(Date.now() / 1000) + edgeMaxAge),
+  );
   return new Response(response.clone().body, {
     status: response.status,
     statusText: response.statusText,
@@ -492,6 +538,95 @@ async function putSnippetEntry(key: string, entry: Response): Promise<void> {
   } catch (error) {
     console.warn("failed to write GitHub mirror snippet cache:", error);
   }
+}
+
+// Mutable endpoints (`releases/latest`, release-list pages) keep their
+// generation-keyed Worker cache; the snippet gets a short-lived copy of
+// whatever the Worker served from it for the current generation. The copy
+// expires `maxTtlSeconds` after it is written, never later than the Worker's
+// own entry, so a release published since can take that much longer to show
+// through the snippet. The same verification window applies.
+
+const DEFAULT_MUTABLE_SNIPPET_TTL_SECONDS = 5 * 60;
+
+export interface MirrorSnippetCopy {
+  key: string;
+  /** Epoch ms when GitHub confirmed the repo public (the access check). */
+  verifiedAt: number;
+  /** Longest the snippet may serve the copy; 0 disables it. */
+  maxTtlSeconds: number;
+  waitUntil: (promise: Promise<unknown>) => void;
+}
+
+/** GITHUB_MIRROR_SNIPPET_TTL_SECONDS: default 5 minutes, at most an hour. */
+export function mutableSnippetTtlSeconds(value: string | undefined): number {
+  if (value === undefined || value.trim() === "") {
+    return DEFAULT_MUTABLE_SNIPPET_TTL_SECONDS;
+  }
+  const seconds = Number(value);
+  if (!Number.isInteger(seconds) || seconds < 0) {
+    return DEFAULT_MUTABLE_SNIPPET_TTL_SECONDS;
+  }
+  return Math.min(seconds, VISIBILITY_TTL_SECONDS);
+}
+
+/** The snippet copy to keep for a mutable mirror request, or undefined. */
+export function gitHubMirrorMutableSnippetCopy(
+  request: Request,
+  {
+    ttl,
+    verifiedAt,
+    waitUntil,
+  }: {
+    ttl: string | undefined;
+    verifiedAt: number;
+    waitUntil: (promise: Promise<unknown>) => void;
+  },
+): MirrorSnippetCopy | undefined {
+  const key = snippetCacheKey(request.url);
+  const maxTtlSeconds = mutableSnippetTtlSeconds(ttl);
+  if (!key || maxTtlSeconds < 1) return undefined;
+  return { key, verifiedAt, maxTtlSeconds, waitUntil };
+}
+
+/**
+ * Write `entry` (an edge-cache entry, with its intended Cache-Control) as the
+ * snippet-readable copy, servable until `expiresAt` (epoch seconds). Skipped
+ * when the snippet can already serve an entry verified at least as recently,
+ * so a Worker that sees every request (before the snippet is deployed) does
+ * not rewrite it each time.
+ */
+async function copyToSnippetCache(
+  { key, verifiedAt }: MirrorSnippetCopy,
+  entry: Response,
+  expiresAt: number,
+): Promise<void> {
+  const nowSeconds = Date.now() / 1000;
+  const ttl = Math.floor(expiresAt - nowSeconds);
+  const verifiedAtSeconds = Math.floor(verifiedAt / 1000);
+  if (ttl < 1 || entry.status !== 200) return;
+  if (!entry.headers.get(EDGE_CACHE_CONTROL_HEADER)) return;
+  try {
+    const existing = await defaultEdgeCache().match(key);
+    if (
+      existing &&
+      servableEntry(existing, nowSeconds) &&
+      Number(existing.headers.get(VERIFIED_AT_HEADER)) >= verifiedAtSeconds
+    ) {
+      return;
+    }
+  } catch {
+    // Write it anyway.
+  }
+  const headers = new Headers(entry.headers);
+  headers.delete(SOURCE_HEADER);
+  headers.set(EXPIRES_AT_HEADER, String(Math.floor(expiresAt)));
+  headers.set(VERIFIED_AT_HEADER, String(verifiedAtSeconds));
+  headers.set("Cache-Control", snippetEntryCacheControl(ttl));
+  await putSnippetEntry(
+    key,
+    new Response(entry.body, { status: 200, headers }),
+  );
 }
 
 export function validRepoPart(value: string | undefined): value is string {

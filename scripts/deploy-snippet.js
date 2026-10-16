@@ -25,19 +25,20 @@ const SNIPPET_FILE = fileURLToPath(
 );
 const MAX_SNIPPET_BYTES = 32 * 1024;
 
-// Only GETs for mirror attestations and exact-tag releases on the Worker's
-// custom domains. The snippet re-checks the path itself and passes anything
-// else through, so this only keeps it from running needlessly.
+// Only GETs for mirror attestations, releases (by tag and `latest`) and
+// release lists on the Worker's custom domains. The snippet re-checks the
+// path and query itself and passes anything else through, so this only keeps
+// it from running needlessly.
 export const SNIPPET_RULE = {
   snippet_name: SNIPPET_NAME,
   description:
-    "Serve cached GitHub-mirror attestations and exact-tag releases without the mise-versions Worker",
+    "Serve cached GitHub-mirror attestations, releases and release lists without the mise-versions Worker",
   enabled: true,
   expression: [
     'http.host in {"mise-versions.jdx.dev" "mise-tools.jdx.dev"}',
     'http.request.method eq "GET"',
     'starts_with(http.request.uri.path, "/api/github/repos/")',
-    '(http.request.uri.path contains "/attestations/" or (http.request.uri.path contains "/releases/" and not ends_with(http.request.uri.path, "/releases/latest")))',
+    '(http.request.uri.path contains "/attestations/" or http.request.uri.path contains "/releases/" or ends_with(http.request.uri.path, "/releases"))',
   ].join(" and "),
 };
 
@@ -56,6 +57,22 @@ export function upsertSnippetRule(existing, rule) {
       enabled,
     }));
   return rule ? [...others, rule] : others;
+}
+
+/**
+ * The multipart body for PUT /zones/{zone}/snippets/{name}: a `metadata`
+ * part naming the main module, and the module itself as a part whose field
+ * name is its filename (the form verified against the production zone).
+ */
+export function snippetUploadForm(source, mainModule) {
+  const form = new FormData();
+  form.append("metadata", JSON.stringify({ main_module: mainModule }));
+  form.append(
+    mainModule,
+    new Blob([source], { type: "application/javascript+module" }),
+    mainModule,
+  );
+  return form;
 }
 
 async function api(token, method, path, body) {
@@ -100,13 +117,7 @@ async function main(args) {
       `${dryRun ? "would upload" : "uploading"} snippet ${SNIPPET_NAME} (${source.length} bytes)`,
     );
     if (!dryRun) {
-      const form = new FormData();
-      form.append(
-        "files",
-        new Blob([source], { type: "application/javascript+module" }),
-        mainModule,
-      );
-      form.append("metadata", JSON.stringify({ main_module: mainModule }));
+      const form = snippetUploadForm(source, mainModule);
       await api(token, "PUT", `/zones/${zone}/snippets/${SNIPPET_NAME}`, form);
     }
   }
