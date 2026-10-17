@@ -39,6 +39,17 @@ concurrency:
 
 jobs:
   maintenance:
+    # Download rollups add the Logpush beacon installs from
+    # vars.LOGPUSH_CUTOVER_DATE on, so they run after the Logpush job; a failed
+    # or skipped Logpush job still lets every other step run.
+    needs: logpush
+    if: ${{ !cancelled() }}
+    # Shares the Logpush job's group so a manual refresh-rollups (which has no
+    # logpush job to wait for) cannot read logpush_daily_* while a scheduled
+    # Logpush run is rewriting them.
+    concurrency:
+      group: maintenance-logpush
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     # The one-time legacy table retirement scans and deletes millions of rows.
     timeout-minutes: ${{ startsWith(github.event.inputs.task || '', 'legacy-') && 120 || 30 }}
@@ -91,6 +102,9 @@ jobs:
         env:
           INPUT_DAYS: ${{ github.event.inputs.days }}
           INPUT_DATE: ${{ github.event.inputs.date }}
+          # First UTC day whose installs include the static /t beacon counted
+          # from Logpush; unset keeps Analytics Engine-only rollups.
+          LOGPUSH_CUTOVER_DATE: ${{ vars.LOGPUSH_CUTOVER_DATE }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           ANALYTICS_ENGINE_ACCOUNT_ID: ${{ secrets.ANALYTICS_ENGINE_ACCOUNT_ID }}
@@ -109,8 +123,11 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
+      # version_request events are no longer written (the legacy TOML routes
+      # stopped tracking; Logpush counts those clients), so this only rebuilds
+      # history on demand and is not part of refresh-all.
       - name: Refresh version stats directly
-        if: env.TASK == 'refresh-version-stats' || env.TASK == 'refresh-all'
+        if: env.TASK == 'refresh-version-stats'
         run: |
           args=(--days="${INPUT_DAYS:-31}")
           if [ -n "$INPUT_DATE" ]; then
@@ -147,11 +164,10 @@ jobs:
         if: env.TASK == 'refresh-all' && (steps.refresh_mau.outcome == 'failure' || steps.refresh_rollups.outcome == 'failure' || steps.refresh_summaries.outcome == 'failure')
         run: exit 1
 
-  # Shadow rollups from Cloudflare Logpush http_requests logs in R2. They count
-  # mise clients that only hit static assets, and are written to logpush_*
-  # tables for comparison with the Analytics Engine numbers above; the site
-  # does not read them yet. A separate job so a Logpush failure or a long read
-  # never delays the rollups the site does show.
+  # Rollups from Cloudflare Logpush http_requests logs in R2. They count mise
+  # clients that only hit static assets: the site reads logpush_daily_dau/_mau
+  # for DAU/MAU, and the download rollups above add the logpush_daily_* beacon
+  # installs from vars.LOGPUSH_CUTOVER_DATE on.
   logpush:
     if: (github.event_name == 'schedule' || github.event.inputs.task == 'refresh-logpush' || github.event.inputs.task == 'refresh-all' || github.event.inputs.task == '')
     # One Logpush rollup at a time across every entry point (schedule,

@@ -11,8 +11,9 @@
  * - logpush_daily_*stats: install counts from the static `/t` beacon, shaped
  *   like the Analytics Engine daily_* download rollups
  *
- * These tables are written alongside the current numbers for comparison; the
- * site does not read them yet.
+ * The site reads logpush_daily_dau/_mau for DAU/MAU (falling back to the
+ * Analytics Engine rollups for older dates), and refresh-download-rollups-
+ * direct.js adds the download tables into daily_* from LOGPUSH_CUTOVER_DATE.
  *
  * Each day's distinct users are also written to R2 as an exact sorted hash
  * set (see lib/user-hash-set.js), so MAU unions 30 small files instead of
