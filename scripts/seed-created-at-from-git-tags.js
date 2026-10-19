@@ -62,7 +62,9 @@ try {
     const tag = line.slice(0, i);
     if (tagPrefix && !tag.startsWith(tagPrefix)) continue;
     const name = tag.slice(tagPrefix.length);
-    const date = new Date(line.slice(i + 1)).toISOString();
+    const parsed = new Date(line.slice(i + 1));
+    if (Number.isNaN(parsed.getTime())) continue;
+    const date = parsed.toISOString();
     dates.set(name, date);
     // Some packagers drop leading zeros from numeric segments (vim's tag
     // v9.1.0990 is conda's 9.1.990); keep the exact spelling when both exist.
