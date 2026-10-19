@@ -253,6 +253,68 @@ describe("generate-toml.js", () => {
     });
   });
 
+  describe("first import of undated versions", () => {
+    const SEED = "1970-01-01T00:00:00.000Z";
+
+    it("seeds undated versions with a fixed old date on a tool's first import", async () => {
+      const { stdout, code } = await runGenerateToml(
+        '{"version":"1.0.0"}\n{"version":"2.0.0"}\n',
+        ["test-tool"],
+      );
+      assert.strictEqual(code, 0);
+      const parsed = parse(stdout);
+      for (const v of ["1.0.0", "2.0.0"]) {
+        assert.strictEqual(parsed.versions[v].created_at.toISOString(), SEED);
+      }
+    });
+
+    it("seeds when the existing TOML path does not exist yet", async () => {
+      const { stdout } = await runGenerateToml('{"version":"1.0.0"}\n', [
+        "test-tool",
+        "/nonexistent/path.toml",
+      ]);
+      assert.strictEqual(
+        parse(stdout).versions["1.0.0"].created_at.toISOString(),
+        SEED,
+      );
+    });
+
+    it("keeps real dates on a first import and seeds only the undated ones", async () => {
+      const { stdout } = await runGenerateToml(
+        '{"version":"1.0.0","created_at":"2024-01-15T10:30:00Z"}\n{"version":"2.0.0"}\n',
+        ["test-tool"],
+      );
+      const parsed = parse(stdout);
+      assert.strictEqual(
+        parsed.versions["1.0.0"].created_at.toISOString(),
+        "2024-01-15T10:30:00.000Z",
+      );
+      assert.strictEqual(
+        parsed.versions["2.0.0"].created_at.toISOString(),
+        SEED,
+      );
+    });
+
+    it("stamps first-seen only for versions added after the first import", async () => {
+      const existingToml = join(tempDir, "seeded.toml");
+      writeFileSync(
+        existingToml,
+        `[versions]\n"1.0.0" = { created_at = ${SEED} }\n`,
+      );
+      const before = Date.now();
+      const { stdout } = await runGenerateToml(
+        '{"version":"1.0.0"}\n{"version":"2.0.0"}\n',
+        ["test-tool", existingToml],
+      );
+      const parsed = parse(stdout);
+      assert.strictEqual(
+        parsed.versions["1.0.0"].created_at.toISOString(),
+        SEED,
+      );
+      assert.ok(parsed.versions["2.0.0"].created_at.getTime() >= before - 1000);
+    });
+  });
+
   describe("prerelease", () => {
     it("should emit prerelease = true when input flags it", async () => {
       const input =
