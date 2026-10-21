@@ -347,6 +347,7 @@
 "oracle-graalvm-25.0.4" = { created_at = 2026-08-04T18:04:49.016Z }
 "oracle-graalvm-25.0.4.1" = { created_at = 2026-08-24T22:09:03.827Z }
 "oracle-graalvm-25.0.4.1.1" = { created_at = 2026-09-15T22:13:31.556Z }
+"oracle-graalvm-25.0.5" = { created_at = 2026-10-20T22:12:25.072Z }
 "corretto-musl-8.262.10.2" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-8.265.01.2" = { created_at = 2025-03-28T22:02:59.599Z }
 "corretto-musl-8.272.10.2" = { created_at = 2025-03-28T22:02:59.599Z }
@@ -3681,6 +3682,7 @@
 "openjdk-26.0.2" = { created_at = 2026-07-21T22:23:53.824Z }
 "openjdk-26.0.2.1" = { created_at = 2026-08-18T22:05:57.799Z }
 "openjdk-27.0.0" = { created_at = 2026-08-20T22:10:37.164Z }
+"openjdk-27.0.1" = { created_at = 2026-10-20T22:12:25.072Z }
 "oracle-17.0.0" = { created_at = 2025-03-28T22:04:32.214Z }
 "oracle-17.0.1" = { created_at = 2025-03-28T22:04:32.214Z }
 "oracle-17.0.2" = { created_at = 2025-03-28T22:04:32.214Z }
@@ -3720,6 +3722,7 @@
 "oracle-21.0.10" = { created_at = 2026-01-20T22:06:16.997Z }
 "oracle-21.0.11" = { created_at = 2026-04-21T22:17:02.762Z }
 "oracle-21.0.12" = { created_at = 2026-07-21T22:23:53.837Z }
+"oracle-21.0.12.1" = { created_at = 2026-10-20T22:12:27.967Z }
 "oracle-22.0.0" = { created_at = 2025-03-28T22:04:32.214Z }
 "oracle-22.0.1" = { created_at = 2025-03-28T22:04:32.214Z }
 "oracle-22.0.2" = { created_at = 2025-03-28T22:04:32.214Z }
@@ -3734,10 +3737,13 @@
 "oracle-25.0.2" = { created_at = 2026-01-20T22:06:16.997Z }
 "oracle-25.0.3" = { created_at = 2026-04-21T22:17:02.762Z }
 "oracle-25.0.4" = { created_at = 2026-07-21T22:23:53.837Z }
+"oracle-25.0.4.1" = { created_at = 2026-10-20T22:12:27.967Z }
+"oracle-25.0.5" = { created_at = 2026-10-20T22:12:27.967Z }
 "oracle-26.0.0" = { created_at = 2026-03-17T22:10:11.887Z }
 "oracle-26.0.1" = { created_at = 2026-04-21T22:17:02.762Z }
 "oracle-26.0.2" = { created_at = 2026-07-21T22:23:53.837Z }
 "oracle-27.0.0" = { created_at = 2026-09-15T22:13:40.221Z }
+"oracle-27.0.1" = { created_at = 2026-10-20T22:12:27.967Z }
 "redhat-jre-17.0.15+6_1" = { created_at = 2025-06-14T22:03:13.543Z }
 "redhat-jre-17.0.16+8_1" = { created_at = 2025-07-23T22:04:56.837Z }
 "redhat-jre-21.0.7+6_1" = { created_at = 2025-06-14T22:03:13.543Z }
@@ -3796,6 +3802,7 @@
 "sapmachine-jre-musl-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-musl-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-musl-21.0.12.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-jre-musl-21.0.13" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-jre-musl-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-musl-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-musl-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3811,11 +3818,13 @@
 "sapmachine-jre-musl-25.0.3" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-musl-25.0.4" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-jre-musl-25.0.4.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-jre-musl-25.0.5" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-jre-musl-26.0.0" = { created_at = 2026-03-18T22:09:12.500Z }
 "sapmachine-jre-musl-26.0.1" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-musl-26.0.2" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-jre-musl-26.0.2.1" = { created_at = 2026-08-19T22:09:08.604Z }
 "sapmachine-jre-musl-27.0.0" = { created_at = 2026-09-15T22:13:31.548Z }
+"sapmachine-jre-musl-27.0.1" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-jre-10.0.1.10" = { created_at = 2026-03-11T22:08:57.889Z }
 "sapmachine-jre-10.0.2.13" = { created_at = 2026-03-11T22:08:57.889Z }
 "sapmachine-jre-10.46" = { created_at = 2026-03-11T22:08:57.889Z }
@@ -3896,6 +3905,7 @@
 "sapmachine-jre-17.0.19" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-17.0.20" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-17.0.20.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-jre-17.0.21" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-jre-18.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-18.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-18.0.1.1" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3922,6 +3932,7 @@
 "sapmachine-jre-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-jre-21.0.12.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-jre-21.0.13" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-jre-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-jre-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -3937,11 +3948,13 @@
 "sapmachine-jre-25.0.3" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-25.0.4" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-jre-25.0.4.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-jre-25.0.5" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-jre-26.0.0" = { created_at = 2026-03-18T22:09:12.500Z }
 "sapmachine-jre-26.0.1" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-jre-26.0.2" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-jre-26.0.2.1" = { created_at = 2026-08-19T22:09:08.604Z }
 "sapmachine-jre-27.0.0" = { created_at = 2026-09-15T22:13:31.548Z }
+"sapmachine-jre-27.0.1" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-musl-10.0.0-ea.46" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-musl-10.0.1.10" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-musl-17.0.4-beta" = { created_at = 2025-03-28T22:04:28.081Z, prerelease = true }
@@ -3988,6 +4001,7 @@
 "sapmachine-musl-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-musl-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-musl-21.0.12.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-musl-21.0.13" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-musl-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-musl-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-musl-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -4003,11 +4017,13 @@
 "sapmachine-musl-25.0.3" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-musl-25.0.4" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-musl-25.0.4.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-musl-25.0.5" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-musl-26.0.0" = { created_at = 2026-03-18T22:09:12.500Z }
 "sapmachine-musl-26.0.1" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-musl-26.0.2" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-musl-26.0.2.1" = { created_at = 2026-08-19T22:09:08.604Z }
 "sapmachine-musl-27.0.0" = { created_at = 2026-09-15T22:13:31.548Z }
+"sapmachine-musl-27.0.1" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-10.0.1.10" = { created_at = 2026-03-11T22:08:57.889Z }
 "sapmachine-10.0.2.13" = { created_at = 2026-03-11T22:08:57.889Z }
 "sapmachine-10.46" = { created_at = 2026-03-11T22:08:57.889Z }
@@ -4088,6 +4104,7 @@
 "sapmachine-17.0.19" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-17.0.20" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-17.0.20.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-17.0.21" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-18.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-18.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-18.0.1.1" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -4114,6 +4131,7 @@
 "sapmachine-21.0.11" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-21.0.12" = { created_at = 2026-07-22T22:25:13.075Z }
 "sapmachine-21.0.12.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-21.0.13" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-22.0.0" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-22.0.1" = { created_at = 2025-03-28T22:04:28.081Z }
 "sapmachine-22.0.2" = { created_at = 2025-03-28T22:04:28.081Z }
@@ -4129,11 +4147,13 @@
 "sapmachine-25.0.3" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-25.0.4" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-25.0.4.1" = { created_at = 2026-08-19T22:09:08.604Z }
+"sapmachine-25.0.5" = { created_at = 2026-10-20T22:12:12.374Z }
 "sapmachine-26.0.0" = { created_at = 2026-03-18T22:09:12.500Z }
 "sapmachine-26.0.1" = { created_at = 2026-04-21T22:15:54.754Z }
 "sapmachine-26.0.2" = { created_at = 2026-07-21T22:24:07.200Z }
 "sapmachine-26.0.2.1" = { created_at = 2026-08-19T22:09:08.604Z }
 "sapmachine-27.0.0" = { created_at = 2026-09-15T22:13:31.548Z }
+"sapmachine-27.0.1" = { created_at = 2026-10-20T22:12:12.374Z }
 "semeru-jre-openj9-8.0.492.0" = { created_at = 2026-06-16T22:42:22.570Z }
 "semeru-jre-openj9-8.0.502.0" = { created_at = 2026-08-07T00:06:13.996Z }
 "semeru-jre-openj9-8.0.504.0" = { created_at = 2026-08-28T01:03:53.789Z }
