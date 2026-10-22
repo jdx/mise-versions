@@ -1,4 +1,776 @@
 [versions]
+"0.0.0-5483e5c" = { created_at = 2026-06-17T20:43:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-5483e5c" }
+"0.0.0-b15847f" = { created_at = 2026-06-23T20:11:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-b15847f" }
+"0.0.0-b1cbd8a" = { created_at = 2026-06-23T18:46:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-b1cbd8a" }
+"0.0.0-c126659" = { created_at = 2026-06-23T02:16:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-c126659" }
+"0.0.0-330c03f" = { created_at = 2026-06-24T02:48:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-330c03f" }
+"0.0.0-36e21ae" = { created_at = 2026-06-24T04:58:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-36e21ae" }
+"0.0.0-37464b4" = { created_at = 2026-06-25T14:39:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-37464b4" }
+"0.0.0-d09cf00" = { created_at = 2026-06-25T06:44:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-d09cf00" }
+"0.0.0-e6aeb66" = { created_at = 2026-06-25T04:36:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-e6aeb66" }
+"0.0.0-0d1b20b" = { created_at = 2026-06-26T13:28:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-0d1b20b" }
+"0.0.0-92eefe5" = { created_at = 2026-06-26T23:12:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-92eefe5" }
+"0.0.0-a21a220" = { created_at = 2026-06-26T20:38:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-a21a220" }
+"0.0.0-6bc25f2" = { created_at = 2026-06-27T06:49:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-6bc25f2" }
+"0.0.0-72b2a20" = { created_at = 2026-06-27T05:39:59.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.0.0-72b2a20" }
+"0.1.0-7d141cf" = { created_at = 2026-06-27T15:05:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.0-7d141cf" }
+"0.1.1-0ff436e" = { created_at = 2026-06-30T22:42:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-0ff436e" }
+"0.1.1-21200a7" = { created_at = 2026-06-30T03:27:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-21200a7" }
+"0.1.1-57c9ec1" = { created_at = 2026-06-30T22:57:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-57c9ec1" }
+"0.1.1-abb6a8f" = { created_at = 2026-06-30T14:23:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-abb6a8f" }
+"0.1.1-fb0e111" = { created_at = 2026-06-30T20:14:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-fb0e111" }
+"0.1.1-ca56923" = { created_at = 2026-07-01T16:24:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-ca56923" }
+"0.1.1-143ca47" = { created_at = 2026-07-02T22:21:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-143ca47" }
+"0.1.1-63003f6" = { created_at = 2026-07-02T22:46:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-63003f6" }
+"0.1.1-83163a0" = { created_at = 2026-07-02T16:51:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-83163a0" }
+"0.1.1-accc935" = { created_at = 2026-07-02T23:36:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-accc935" }
+"0.1.1-3711b45" = { created_at = 2026-07-03T17:54:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-3711b45" }
+"0.1.1-37f5efb" = { created_at = 2026-07-03T00:39:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-37f5efb" }
+"0.1.1-396e093" = { created_at = 2026-07-03T19:29:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-396e093" }
+"0.1.1-41b0a33" = { created_at = 2026-07-03T03:40:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-41b0a33" }
+"0.1.1-8292d3d" = { created_at = 2026-07-03T02:44:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-8292d3d" }
+"0.1.1-9bae129" = { created_at = 2026-07-03T16:00:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-9bae129" }
+"0.1.1-f9ae45d" = { created_at = 2026-07-03T03:12:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-f9ae45d" }
+"0.1.1-45fc909" = { created_at = 2026-07-04T02:04:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-45fc909" }
+"0.1.1-50666ee" = { created_at = 2026-07-04T20:36:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-50666ee" }
+"0.1.1-772306a" = { created_at = 2026-07-04T02:59:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-772306a" }
+"0.1.1-e0912b9" = { created_at = 2026-07-04T01:51:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-e0912b9" }
+"0.1.1-36739d9" = { created_at = 2026-07-05T16:48:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-36739d9" }
+"0.1.1-bc147f6" = { created_at = 2026-07-06T05:22:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.1.1-bc147f6" }
+"0.2.0-4bb4909" = { created_at = 2026-07-06T15:20:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-4bb4909" }
+"0.2.0-05a8210" = { created_at = 2026-07-07T03:35:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-05a8210" }
+"0.2.0-28b4a22" = { created_at = 2026-07-07T05:56:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-28b4a22" }
+"0.2.0-3b60b2f" = { created_at = 2026-07-07T07:51:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-3b60b2f" }
+"0.2.0-4bd192a" = { created_at = 2026-07-07T06:51:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-4bd192a" }
+"0.2.0-acfa6b0" = { created_at = 2026-07-07T16:39:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-acfa6b0" }
+"0.2.0-deb4a1e" = { created_at = 2026-07-08T17:06:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-deb4a1e" }
+"0.2.0-eed67cc" = { created_at = 2026-07-08T23:29:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-eed67cc" }
+"0.2.0-f4a54d8" = { created_at = 2026-07-08T03:09:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-f4a54d8" }
+"0.2.0-0260df8" = { created_at = 2026-07-09T00:16:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-0260df8" }
+"0.2.0-0f35d9f" = { created_at = 2026-07-09T22:25:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-0f35d9f" }
+"0.2.0-20d2480" = { created_at = 2026-07-09T17:58:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-20d2480" }
+"0.2.0-32b8c9a" = { created_at = 2026-07-09T03:49:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-32b8c9a" }
+"0.2.0-663e1cd" = { created_at = 2026-07-09T15:11:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-663e1cd" }
+"0.2.0-a7b6ea5" = { created_at = 2026-07-09T03:56:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-a7b6ea5" }
+"0.2.0-c71b2ef" = { created_at = 2026-07-09T05:38:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-c71b2ef" }
+"0.2.0-d68437f" = { created_at = 2026-07-09T07:18:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-d68437f" }
+"0.2.0-f8e1936" = { created_at = 2026-07-09T13:41:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-f8e1936" }
+"0.2.0-171af04" = { created_at = 2026-07-10T03:28:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-171af04" }
+"0.2.0-248fa05" = { created_at = 2026-07-10T18:57:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-248fa05" }
+"0.2.0-58d5feb" = { created_at = 2026-07-10T19:39:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-58d5feb" }
+"0.2.0-5f1bb2e" = { created_at = 2026-07-10T16:18:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-5f1bb2e" }
+"0.2.0-bbbbbfd" = { created_at = 2026-07-10T05:15:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-bbbbbfd" }
+"0.2.0-ce0999f" = { created_at = 2026-07-10T04:11:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-ce0999f" }
+"0.2.0-d8e9458" = { created_at = 2026-07-10T03:53:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-d8e9458" }
+"0.2.0-e99ba6f" = { created_at = 2026-07-10T18:23:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-e99ba6f" }
+"0.2.0-0211b00" = { created_at = 2026-07-11T00:48:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-0211b00" }
+"0.2.0-6e4eb2c" = { created_at = 2026-07-11T05:26:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-6e4eb2c" }
+"0.2.0-e29f5ce" = { created_at = 2026-07-11T03:10:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.0-e29f5ce" }
+"0.2.1-658c9a9" = { created_at = 2026-07-11T06:06:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-658c9a9" }
+"0.2.1-1427d2a" = { created_at = 2026-07-12T18:46:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-1427d2a" }
+"0.2.1-40e42c8" = { created_at = 2026-07-12T18:28:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-40e42c8" }
+"0.2.1-69924f3" = { created_at = 2026-07-12T08:16:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-69924f3" }
+"0.2.1-a51eca9" = { created_at = 2026-07-12T06:14:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-a51eca9" }
+"0.2.1-16beb38" = { created_at = 2026-07-13T05:16:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-16beb38" }
+"0.2.1-a6bd0e9" = { created_at = 2026-07-13T16:32:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-a6bd0e9" }
+"0.2.1-e407d81" = { created_at = 2026-07-13T23:35:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-e407d81" }
+"0.2.1-bf62e26" = { created_at = 2026-07-14T21:30:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.1-bf62e26" }
+"0.2.2-b973b8e" = { created_at = 2026-07-14T22:53:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-b973b8e" }
+"0.2.2-2428998" = { created_at = 2026-07-15T00:13:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-2428998" }
+"0.2.2-37e9298" = { created_at = 2026-07-15T15:49:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-37e9298" }
+"0.2.2-9965796" = { created_at = 2026-07-15T14:36:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-9965796" }
+"0.2.2-0958915" = { created_at = 2026-07-16T04:51:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-0958915" }
+"0.2.2-529150f" = { created_at = 2026-07-16T05:06:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-529150f" }
+"0.2.2-2831ff7" = { created_at = 2026-07-17T07:32:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-2831ff7" }
+"0.2.2-69ca4fd" = { created_at = 2026-07-17T05:58:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-69ca4fd" }
+"0.2.2-fb4e553" = { created_at = 2026-07-17T06:38:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-fb4e553" }
+"0.2.2-3b3a3ba" = { created_at = 2026-07-18T23:55:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-3b3a3ba" }
+"0.2.2-c7cba0a" = { created_at = 2026-07-18T04:38:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.2-c7cba0a" }
+"0.2.3-a037158" = { created_at = 2026-07-19T04:19:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-a037158" }
+"0.2.3-a7464e7" = { created_at = 2026-07-19T04:42:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-a7464e7" }
+"0.2.3-1d69e40" = { created_at = 2026-07-22T17:37:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-1d69e40" }
+"0.2.3-5e24bec" = { created_at = 2026-07-23T05:25:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-5e24bec" }
+"0.2.3-72c41fc" = { created_at = 2026-07-23T22:35:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-72c41fc" }
+"0.2.3-d3b1be2" = { created_at = 2026-07-23T15:57:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-d3b1be2" }
+"0.2.3-698a7f2" = { created_at = 2026-07-24T05:48:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-698a7f2" }
+"0.2.3-72467d8" = { created_at = 2026-07-24T22:23:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-72467d8" }
+"0.2.3-883cde2" = { created_at = 2026-07-24T22:38:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-883cde2" }
+"0.2.3-9a110c4" = { created_at = 2026-07-24T15:46:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-9a110c4" }
+"0.2.3-b79823f" = { created_at = 2026-07-24T05:04:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-b79823f" }
+"0.2.3-b84cc36" = { created_at = 2026-07-24T02:24:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-b84cc36" }
+"0.2.3-bbff717" = { created_at = 2026-07-24T23:53:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-bbff717" }
+"0.2.3-cf8c1cb" = { created_at = 2026-07-24T22:57:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-cf8c1cb" }
+"0.2.3-d3d6a6a" = { created_at = 2026-07-24T00:16:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-d3d6a6a" }
+"0.2.3-ed9da87" = { created_at = 2026-07-24T19:27:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-ed9da87" }
+"0.2.3-fea43f0" = { created_at = 2026-07-24T23:27:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-fea43f0" }
+"0.2.3-0c99c0f" = { created_at = 2026-07-25T01:12:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-0c99c0f" }
+"0.2.3-909d8e3" = { created_at = 2026-07-25T00:34:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.3-909d8e3" }
+"0.2.4-662198a" = { created_at = 2026-07-29T00:35:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.2.4-662198a" }
+"0.3.0-d720dfd" = { created_at = 2026-08-01T18:26:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.3.0-d720dfd" }
+"0.4.0-063b32e" = { created_at = 2026-08-03T15:32:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.4.0-063b32e" }
+"0.4.0-a8bce0b" = { created_at = 2026-08-03T14:57:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.4.0-a8bce0b" }
+"0.5.0-f2a1c31" = { created_at = 2026-08-06T15:34:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.5.0-f2a1c31" }
+"0.5.1-c75fbf8" = { created_at = 2026-08-07T16:35:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.5.1-c75fbf8" }
+"0.5.1-efbb19e" = { created_at = 2026-08-08T18:05:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.5.1-efbb19e" }
+"0.6.0-4a77da2" = { created_at = 2026-08-09T13:21:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.6.0-4a77da2" }
+"0.7.0-0361ace" = { created_at = 2026-08-13T16:47:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.7.0-0361ace" }
+"0.7.0-c5e4f96" = { created_at = 2026-08-13T13:47:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.7.0-c5e4f96" }
+"0.7.0-40f659d" = { created_at = 2026-08-14T00:34:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.7.0-40f659d" }
+"0.7.0-f411e1a" = { created_at = 2026-08-14T02:07:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.7.0-f411e1a" }
+"0.7.1-6e1701e" = { created_at = 2026-08-15T17:31:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.7.1-6e1701e" }
+"0.7.1-6fb9ea6" = { created_at = 2026-08-19T17:56:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.7.1-6fb9ea6" }
+"0.8.0-3511459" = { created_at = 2026-08-21T22:51:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.8.0-3511459" }
+"0.9.0-2bc96f1" = { created_at = 2026-08-22T16:16:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.9.0-2bc96f1" }
+"0.9.0-4eff9d5" = { created_at = 2026-08-22T19:17:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.9.0-4eff9d5" }
+"0.9.0-703e15d" = { created_at = 2026-08-22T14:03:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.9.0-703e15d" }
+"0.9.0-924369b" = { created_at = 2026-08-22T15:35:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.9.0-924369b" }
+"0.10.0-3c670be" = { created_at = 2026-08-23T17:14:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.10.0-3c670be" }
+"0.10.1-b41708f" = { created_at = 2026-08-24T16:35:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.10.1-b41708f" }
+"0.10.2-d7b2684" = { created_at = 2026-08-24T21:37:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.10.2-d7b2684" }
+"0.11.0-fe98906" = { created_at = 2026-08-26T21:17:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.11.0-fe98906" }
+"0.12.0-68f9a36" = { created_at = 2026-08-27T20:17:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.12.0-68f9a36" }
+"0.12.1-e1631f8" = { created_at = 2026-08-31T16:37:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.12.1-e1631f8" }
+"0.13.0-c7b5cda" = { created_at = 2026-09-02T15:05:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.13.0-c7b5cda" }
+"0.14.0-2adcd03" = { created_at = 2026-09-04T14:05:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.0-2adcd03" }
+"0.14.1-5bb4241" = { created_at = 2026-09-06T03:03:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-5bb4241" }
+"0.14.1-alpha-229f8a7" = { created_at = 2026-09-08T16:48:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-229f8a7", prerelease = true }
+"0.14.1-alpha-75143c3" = { created_at = 2026-09-08T20:17:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-75143c3", prerelease = true }
+"0.14.1-alpha-7d2e2e4" = { created_at = 2026-09-08T21:41:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-7d2e2e4", prerelease = true }
+"0.14.1-alpha-18f4f11" = { created_at = 2026-09-09T15:29:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-18f4f11", prerelease = true }
+"0.14.1-alpha-b775930" = { created_at = 2026-09-09T21:04:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-b775930", prerelease = true }
+"0.14.1-alpha-cfda6f0" = { created_at = 2026-09-09T06:31:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-cfda6f0", prerelease = true }
+"0.14.1-alpha-dd6760d" = { created_at = 2026-09-09T20:11:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-dd6760d", prerelease = true }
+"0.14.1-alpha-ac352fe" = { created_at = 2026-09-10T04:08:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-ac352fe", prerelease = true }
+"0.14.1-alpha-fe18151" = { created_at = 2026-09-12T00:25:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.1-alpha-fe18151", prerelease = true }
+"0.14.3-alpha-008cc85" = { created_at = 2026-09-12T13:12:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-008cc85", prerelease = true }
+"0.14.2-d953edf" = { created_at = 2026-09-12T01:06:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.2-d953edf" }
+"0.14.3-6e62568" = { created_at = 2026-09-12T05:09:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-6e62568" }
+"0.14.3-alpha-589b970" = { created_at = 2026-09-14T06:22:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-589b970", prerelease = true }
+"0.14.3-alpha-5a44629" = { created_at = 2026-09-14T00:54:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-5a44629", prerelease = true }
+"0.14.3-alpha-bea5528" = { created_at = 2026-09-14T23:40:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-bea5528", prerelease = true }
+"0.14.3-alpha-043c0af" = { created_at = 2026-09-15T15:45:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-043c0af", prerelease = true }
+"0.14.3-alpha-05d0007" = { created_at = 2026-09-15T19:48:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-05d0007", prerelease = true }
+"0.14.3-alpha-144e88e" = { created_at = 2026-09-15T21:10:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-144e88e", prerelease = true }
+"0.14.3-alpha-32c63c9" = { created_at = 2026-09-15T18:02:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-32c63c9", prerelease = true }
+"0.14.3-alpha-3a9b82e" = { created_at = 2026-09-15T02:00:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-3a9b82e", prerelease = true }
+"0.14.3-alpha-6eaf315" = { created_at = 2026-09-15T13:30:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-6eaf315", prerelease = true }
+"0.14.3-alpha-7d61379" = { created_at = 2026-09-15T19:10:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-7d61379", prerelease = true }
+"0.14.3-alpha-8153c00" = { created_at = 2026-09-15T20:43:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-8153c00", prerelease = true }
+"0.14.3-alpha-82a942f" = { created_at = 2026-09-15T19:21:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-82a942f", prerelease = true }
+"0.14.3-alpha-991b8c8" = { created_at = 2026-09-15T02:13:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-991b8c8", prerelease = true }
+"0.14.3-alpha-9d79f4c" = { created_at = 2026-09-15T21:40:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-9d79f4c", prerelease = true }
+"0.14.3-alpha-a53ce33" = { created_at = 2026-09-15T01:49:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-a53ce33", prerelease = true }
+"0.14.3-alpha-b2bab12" = { created_at = 2026-09-15T18:33:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-b2bab12", prerelease = true }
+"0.14.3-alpha-be555ba" = { created_at = 2026-09-15T22:09:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-be555ba", prerelease = true }
+"0.14.3-alpha-be8dc62" = { created_at = 2026-09-15T18:19:59.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-be8dc62", prerelease = true }
+"0.14.3-alpha-cbf04c0" = { created_at = 2026-09-15T14:39:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-cbf04c0", prerelease = true }
+"0.14.3-alpha-cf9fc15" = { created_at = 2026-09-15T20:15:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-cf9fc15", prerelease = true }
+"0.14.3-alpha-e6263a1" = { created_at = 2026-09-15T23:44:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-e6263a1", prerelease = true }
+"0.14.3-alpha-f000c4f" = { created_at = 2026-09-15T18:58:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-f000c4f", prerelease = true }
+"0.14.3-alpha-00e2924" = { created_at = 2026-09-16T21:39:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-00e2924", prerelease = true }
+"0.14.3-alpha-0a22d1a" = { created_at = 2026-09-16T00:15:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-0a22d1a", prerelease = true }
+"0.14.3-alpha-12c9363" = { created_at = 2026-09-16T18:25:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-12c9363", prerelease = true }
+"0.14.3-alpha-27ddab3" = { created_at = 2026-09-16T22:31:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-27ddab3", prerelease = true }
+"0.14.3-alpha-2eee3bf" = { created_at = 2026-09-16T15:15:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-2eee3bf", prerelease = true }
+"0.14.3-alpha-30b5516" = { created_at = 2026-09-16T22:57:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-30b5516", prerelease = true }
+"0.14.3-alpha-3253fb1" = { created_at = 2026-09-16T17:57:59.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-3253fb1", prerelease = true }
+"0.14.3-alpha-3b908e7" = { created_at = 2026-09-16T17:26:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-3b908e7", prerelease = true }
+"0.14.3-alpha-5262731" = { created_at = 2026-09-16T23:17:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-5262731", prerelease = true }
+"0.14.3-alpha-65d6fa3" = { created_at = 2026-09-16T23:34:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-65d6fa3", prerelease = true }
+"0.14.3-alpha-6b14468" = { created_at = 2026-09-16T06:55:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-6b14468", prerelease = true }
+"0.14.3-alpha-7cb1e6b" = { created_at = 2026-09-16T19:24:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-7cb1e6b", prerelease = true }
+"0.14.3-alpha-7e1fffb" = { created_at = 2026-09-16T18:58:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-7e1fffb", prerelease = true }
+"0.14.3-alpha-82b9fcd" = { created_at = 2026-09-16T14:49:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-82b9fcd", prerelease = true }
+"0.14.3-alpha-89ce6da" = { created_at = 2026-09-16T15:49:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-89ce6da", prerelease = true }
+"0.14.3-alpha-938f74a" = { created_at = 2026-09-16T00:43:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-938f74a", prerelease = true }
+"0.14.3-alpha-ac4f3a3" = { created_at = 2026-09-16T17:00:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-ac4f3a3", prerelease = true }
+"0.14.3-alpha-ad5e42a" = { created_at = 2026-09-16T19:53:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-ad5e42a", prerelease = true }
+"0.14.3-alpha-d1c9fc7" = { created_at = 2026-09-16T20:22:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-d1c9fc7", prerelease = true }
+"0.14.3-alpha-39a2523" = { created_at = 2026-09-17T02:00:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-39a2523", prerelease = true }
+"0.14.3-alpha-56a76a4" = { created_at = 2026-09-17T04:32:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-56a76a4", prerelease = true }
+"0.14.3-alpha-d2894f1" = { created_at = 2026-09-17T14:44:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-d2894f1", prerelease = true }
+"0.14.3-alpha-ecb9549" = { created_at = 2026-09-17T14:00:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.14.3-alpha-ecb9549", prerelease = true }
+"0.15.0-alpha-033085d" = { created_at = 2026-09-17T23:06:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-033085d", prerelease = true }
+"0.15.0-alpha-07fa20b" = { created_at = 2026-09-18T07:33:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-07fa20b", prerelease = true }
+"0.15.0-alpha-14cf896" = { created_at = 2026-09-17T16:22:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-14cf896", prerelease = true }
+"0.15.0-alpha-1cf539a" = { created_at = 2026-09-18T06:18:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-1cf539a", prerelease = true }
+"0.15.0-alpha-25742dd" = { created_at = 2026-09-18T07:10:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-25742dd", prerelease = true }
+"0.15.0-alpha-28fb1c2" = { created_at = 2026-09-18T06:37:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-28fb1c2", prerelease = true }
+"0.15.0-alpha-562d6c4" = { created_at = 2026-09-18T14:14:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-562d6c4", prerelease = true }
+"0.15.0-alpha-5ad461c" = { created_at = 2026-09-18T06:56:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-5ad461c", prerelease = true }
+"0.15.0-alpha-6c6f1b4" = { created_at = 2026-09-18T06:03:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-6c6f1b4", prerelease = true }
+"0.15.0-alpha-700af98" = { created_at = 2026-09-17T21:02:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-700af98", prerelease = true }
+"0.15.0-alpha-72ebbf3" = { created_at = 2026-09-17T20:52:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-72ebbf3", prerelease = true }
+"0.15.0-alpha-7d7ae80" = { created_at = 2026-09-18T05:37:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-7d7ae80", prerelease = true }
+"0.15.0-alpha-b77ca0d" = { created_at = 2026-09-18T03:09:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-b77ca0d", prerelease = true }
+"0.15.0-alpha-cfd03bf" = { created_at = 2026-09-17T19:36:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-cfd03bf", prerelease = true }
+"0.15.0-alpha-f045a80" = { created_at = 2026-09-17T22:36:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-f045a80", prerelease = true }
+"0.15.0-alpha-fe6b425" = { created_at = 2026-09-18T02:03:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-fe6b425", prerelease = true }
+"0.15.0-531912d" = { created_at = 2026-09-17T14:51:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-531912d" }
+"0.15.0-alpha-1759747" = { created_at = 2026-09-18T17:47:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-1759747", prerelease = true }
+"0.15.0-alpha-3335ee2" = { created_at = 2026-09-18T15:14:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-3335ee2", prerelease = true }
+"0.15.0-alpha-360a0b3" = { created_at = 2026-09-18T23:10:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-360a0b3", prerelease = true }
+"0.15.0-alpha-3a6aaa9" = { created_at = 2026-09-18T18:28:59.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-3a6aaa9", prerelease = true }
+"0.15.0-alpha-9d19be9" = { created_at = 2026-09-18T19:02:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-9d19be9", prerelease = true }
+"0.15.0-alpha-aeda540" = { created_at = 2026-09-18T21:00:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-aeda540", prerelease = true }
+"0.15.0-alpha-b37a4b3" = { created_at = 2026-09-18T18:09:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-b37a4b3", prerelease = true }
+"0.15.0-alpha-c54c8b5" = { created_at = 2026-09-18T14:42:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-c54c8b5", prerelease = true }
+"0.15.0-alpha-ca9266d" = { created_at = 2026-09-19T00:26:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-ca9266d", prerelease = true }
+"0.15.0-alpha-f91621f" = { created_at = 2026-09-18T20:36:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-f91621f", prerelease = true }
+"0.15.0-alpha-09ee062" = { created_at = 2026-09-19T03:48:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-09ee062", prerelease = true }
+"0.15.0-alpha-1effd4f" = { created_at = 2026-09-19T00:37:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-1effd4f", prerelease = true }
+"0.15.0-alpha-b51f0c8" = { created_at = 2026-09-19T11:55:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.0-alpha-b51f0c8", prerelease = true }
+"0.15.1-alpha-20e845c" = { created_at = 2026-09-19T15:19:59.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-20e845c", prerelease = true }
+"0.15.1-alpha-2bf2351" = { created_at = 2026-09-19T21:50:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-2bf2351", prerelease = true }
+"0.15.1-alpha-2d347cb" = { created_at = 2026-09-19T18:10:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-2d347cb", prerelease = true }
+"0.15.1-alpha-6d15339" = { created_at = 2026-09-19T17:02:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-6d15339", prerelease = true }
+"0.15.1-alpha-7aa516b" = { created_at = 2026-09-20T00:11:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-7aa516b", prerelease = true }
+"0.15.1-alpha-c6b0eee" = { created_at = 2026-09-19T13:09:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-c6b0eee", prerelease = true }
+"0.15.1-alpha-dd4656e" = { created_at = 2026-09-19T17:31:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-dd4656e", prerelease = true }
+"0.15.1-alpha-e47b4fb" = { created_at = 2026-09-19T23:31:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-e47b4fb", prerelease = true }
+"0.15.1-ccbea54" = { created_at = 2026-09-19T13:08:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-ccbea54" }
+"0.15.1-alpha-01e418f" = { created_at = 2026-09-20T06:25:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-01e418f", prerelease = true }
+"0.15.1-alpha-5bd0c14" = { created_at = 2026-09-20T01:11:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-5bd0c14", prerelease = true }
+"0.15.1-alpha-8f846ad" = { created_at = 2026-09-20T04:04:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-8f846ad", prerelease = true }
+"0.15.1-alpha-d64e923" = { created_at = 2026-09-20T15:04:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-d64e923", prerelease = true }
+"0.15.1-alpha-ef12692" = { created_at = 2026-09-20T02:33:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.1-alpha-ef12692", prerelease = true }
+"0.15.2-alpha-b0bc75c" = { created_at = 2026-09-20T18:45:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.2-alpha-b0bc75c", prerelease = true }
+"0.15.2-alpha-bde6db3" = { created_at = 2026-09-20T16:55:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.2-alpha-bde6db3", prerelease = true }
+"0.15.2-alpha-ee0d72c" = { created_at = 2026-09-20T18:28:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.2-alpha-ee0d72c", prerelease = true }
+"0.15.3-alpha-77339e6" = { created_at = 2026-09-20T20:23:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.3-alpha-77339e6", prerelease = true }
+"0.15.4-alpha-56f2480" = { created_at = 2026-09-21T03:27:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-56f2480", prerelease = true }
+"0.15.4-alpha-648bc05" = { created_at = 2026-09-20T22:55:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-648bc05", prerelease = true }
+"0.15.4-alpha-da71e09" = { created_at = 2026-09-20T23:05:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-da71e09", prerelease = true }
+"0.15.2-370f1df" = { created_at = 2026-09-20T15:25:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.2-370f1df" }
+"0.15.3-11e9218" = { created_at = 2026-09-20T18:54:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.3-11e9218" }
+"0.15.4-d52ba8e" = { created_at = 2026-09-20T20:45:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-d52ba8e" }
+"0.15.4-alpha-0677422" = { created_at = 2026-09-21T04:32:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-0677422", prerelease = true }
+"0.15.4-alpha-0b65d12" = { created_at = 2026-09-21T18:30:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-0b65d12", prerelease = true }
+"0.15.4-alpha-1765dc3" = { created_at = 2026-09-21T17:53:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-1765dc3", prerelease = true }
+"0.15.4-alpha-3e1e899" = { created_at = 2026-09-21T03:57:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-3e1e899", prerelease = true }
+"0.15.4-alpha-6caba20" = { created_at = 2026-09-22T00:38:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-6caba20", prerelease = true }
+"0.15.4-alpha-a6211d0" = { created_at = 2026-09-21T23:58:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-a6211d0", prerelease = true }
+"0.15.4-alpha-aaaf42b" = { created_at = 2026-09-21T22:12:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-aaaf42b", prerelease = true }
+"0.15.4-alpha-c4dcb0b" = { created_at = 2026-09-21T20:23:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-c4dcb0b", prerelease = true }
+"0.15.4-alpha-ca74a8b" = { created_at = 2026-09-21T22:52:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-ca74a8b", prerelease = true }
+"0.15.4-alpha-d89cc7a" = { created_at = 2026-09-21T18:05:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-d89cc7a", prerelease = true }
+"0.15.4-alpha-0a8c8f8" = { created_at = 2026-09-22T21:10:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-0a8c8f8", prerelease = true }
+"0.15.4-alpha-2389351" = { created_at = 2026-09-22T23:56:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-2389351", prerelease = true }
+"0.15.4-alpha-2bc1f4e" = { created_at = 2026-09-23T00:31:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-2bc1f4e", prerelease = true }
+"0.15.4-alpha-2c1df89" = { created_at = 2026-09-22T22:35:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-2c1df89", prerelease = true }
+"0.15.4-alpha-629841f" = { created_at = 2026-09-22T23:35:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-629841f", prerelease = true }
+"0.15.4-alpha-66ab28d" = { created_at = 2026-09-22T18:28:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-66ab28d", prerelease = true }
+"0.15.4-alpha-70fe211" = { created_at = 2026-09-22T19:04:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-70fe211", prerelease = true }
+"0.15.4-alpha-730daf5" = { created_at = 2026-09-22T14:45:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-730daf5", prerelease = true }
+"0.15.4-alpha-77cae06" = { created_at = 2026-09-22T22:02:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-77cae06", prerelease = true }
+"0.15.4-alpha-9338cd3" = { created_at = 2026-09-22T19:43:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-9338cd3", prerelease = true }
+"0.15.4-alpha-a1bb210" = { created_at = 2026-09-22T15:46:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-a1bb210", prerelease = true }
+"0.15.4-alpha-a4d542d" = { created_at = 2026-09-22T07:22:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-a4d542d", prerelease = true }
+"0.15.4-alpha-ba746e8" = { created_at = 2026-09-22T16:35:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-ba746e8", prerelease = true }
+"0.15.4-alpha-ea6f453" = { created_at = 2026-09-22T11:51:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-ea6f453", prerelease = true }
+"0.15.4-alpha-040830d" = { created_at = 2026-09-23T19:13:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-040830d", prerelease = true }
+"0.15.4-alpha-112a3ca" = { created_at = 2026-09-23T17:46:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-112a3ca", prerelease = true }
+"0.15.4-alpha-122b076" = { created_at = 2026-09-23T17:35:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-122b076", prerelease = true }
+"0.15.4-alpha-1cd9f48" = { created_at = 2026-09-23T01:42:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-1cd9f48", prerelease = true }
+"0.15.4-alpha-28c36c9" = { created_at = 2026-09-23T03:02:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-28c36c9", prerelease = true }
+"0.15.4-alpha-313c662" = { created_at = 2026-09-23T20:30:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-313c662", prerelease = true }
+"0.15.4-alpha-32a325f" = { created_at = 2026-09-24T00:14:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-32a325f", prerelease = true }
+"0.15.4-alpha-3b2d903" = { created_at = 2026-09-23T16:09:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-3b2d903", prerelease = true }
+"0.15.4-alpha-41a8256" = { created_at = 2026-09-23T05:03:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-41a8256", prerelease = true }
+"0.15.4-alpha-5a4bea0" = { created_at = 2026-09-23T23:13:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-5a4bea0", prerelease = true }
+"0.15.4-alpha-5d71121" = { created_at = 2026-09-23T18:14:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-5d71121", prerelease = true }
+"0.15.4-alpha-5f6acdc" = { created_at = 2026-09-23T14:28:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-5f6acdc", prerelease = true }
+"0.15.4-alpha-6f9daf1" = { created_at = 2026-09-23T21:20:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-6f9daf1", prerelease = true }
+"0.15.4-alpha-758c764" = { created_at = 2026-09-23T23:25:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-758c764", prerelease = true }
+"0.15.4-alpha-7728f00" = { created_at = 2026-09-23T15:00:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-7728f00", prerelease = true }
+"0.15.4-alpha-7bfff3c" = { created_at = 2026-09-23T23:04:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-7bfff3c", prerelease = true }
+"0.15.4-alpha-88836bc" = { created_at = 2026-09-23T22:43:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-88836bc", prerelease = true }
+"0.15.4-alpha-8989946" = { created_at = 2026-09-23T13:30:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-8989946", prerelease = true }
+"0.15.4-alpha-8cb61b3" = { created_at = 2026-09-23T19:58:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-8cb61b3", prerelease = true }
+"0.15.4-alpha-8eeac41" = { created_at = 2026-09-23T16:35:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-8eeac41", prerelease = true }
+"0.15.4-alpha-afae29e" = { created_at = 2026-09-23T23:58:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-afae29e", prerelease = true }
+"0.15.4-alpha-b5d5451" = { created_at = 2026-09-23T19:36:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-b5d5451", prerelease = true }
+"0.15.4-alpha-bfe7bc9" = { created_at = 2026-09-23T16:53:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-bfe7bc9", prerelease = true }
+"0.15.4-alpha-c09db80" = { created_at = 2026-09-23T20:15:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-c09db80", prerelease = true }
+"0.15.4-alpha-d53af66" = { created_at = 2026-09-23T07:54:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-d53af66", prerelease = true }
+"0.15.4-alpha-f14b287" = { created_at = 2026-09-23T01:17:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-f14b287", prerelease = true }
+"0.15.4-alpha-fbf1056" = { created_at = 2026-09-23T02:00:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.4-alpha-fbf1056", prerelease = true }
+"0.15.5-alpha-2b9fe96" = { created_at = 2026-09-24T15:58:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2b9fe96", prerelease = true }
+"0.15.5-alpha-3ecc6c0" = { created_at = 2026-09-24T20:23:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-3ecc6c0", prerelease = true }
+"0.15.5-alpha-40d373d" = { created_at = 2026-09-24T23:04:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-40d373d", prerelease = true }
+"0.15.5-alpha-544ee10" = { created_at = 2026-09-24T23:56:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-544ee10", prerelease = true }
+"0.15.5-alpha-634b952" = { created_at = 2026-09-25T00:30:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-634b952", prerelease = true }
+"0.15.5-alpha-65ead3e" = { created_at = 2026-09-24T17:34:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-65ead3e", prerelease = true }
+"0.15.5-alpha-6df9bee" = { created_at = 2026-09-24T21:42:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6df9bee", prerelease = true }
+"0.15.5-alpha-727f4ea" = { created_at = 2026-09-24T18:37:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-727f4ea", prerelease = true }
+"0.15.5-alpha-a0501c9" = { created_at = 2026-09-24T16:31:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-a0501c9", prerelease = true }
+"0.15.5-alpha-a1fca26" = { created_at = 2026-09-24T00:50:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-a1fca26", prerelease = true }
+"0.15.5-alpha-ad3b57d" = { created_at = 2026-09-24T18:51:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ad3b57d", prerelease = true }
+"0.15.5-alpha-e11ebf8" = { created_at = 2026-09-24T20:51:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e11ebf8", prerelease = true }
+"0.15.5-alpha-febfaa8" = { created_at = 2026-09-24T21:16:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-febfaa8", prerelease = true }
+"0.15.5-74c4cf2" = { created_at = 2026-09-24T00:27:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-74c4cf2" }
+"0.15.5-alpha-0122082" = { created_at = 2026-09-26T01:16:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-0122082", prerelease = true }
+"0.15.5-alpha-0a35dba" = { created_at = 2026-09-25T19:50:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-0a35dba", prerelease = true }
+"0.15.5-alpha-1bad5a1" = { created_at = 2026-09-25T15:04:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-1bad5a1", prerelease = true }
+"0.15.5-alpha-2588974" = { created_at = 2026-09-25T01:55:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2588974", prerelease = true }
+"0.15.5-alpha-310bd44" = { created_at = 2026-09-25T08:44:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-310bd44", prerelease = true }
+"0.15.5-alpha-32ae318" = { created_at = 2026-09-25T17:58:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-32ae318", prerelease = true }
+"0.15.5-alpha-68042a8" = { created_at = 2026-09-25T13:48:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-68042a8", prerelease = true }
+"0.15.5-alpha-783db92" = { created_at = 2026-09-25T02:37:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-783db92", prerelease = true }
+"0.15.5-alpha-9af3229" = { created_at = 2026-09-25T21:27:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-9af3229", prerelease = true }
+"0.15.5-alpha-9c8786e" = { created_at = 2026-09-25T23:18:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-9c8786e", prerelease = true }
+"0.15.5-alpha-b2f836f" = { created_at = 2026-09-25T02:15:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-b2f836f", prerelease = true }
+"0.15.5-alpha-be236eb" = { created_at = 2026-09-25T20:44:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-be236eb", prerelease = true }
+"0.15.5-alpha-d68268d" = { created_at = 2026-09-25T22:14:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d68268d", prerelease = true }
+"0.15.5-alpha-f501094" = { created_at = 2026-09-25T15:56:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f501094", prerelease = true }
+"0.15.5-alpha-fb512f0" = { created_at = 2026-09-25T14:07:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-fb512f0", prerelease = true }
+"0.15.5-alpha-ff28ec9" = { created_at = 2026-09-25T18:55:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ff28ec9", prerelease = true }
+"0.15.5-alpha-3fff8d8" = { created_at = 2026-09-26T23:43:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-3fff8d8", prerelease = true }
+"0.15.5-alpha-46f519e" = { created_at = 2026-09-26T04:07:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-46f519e", prerelease = true }
+"0.15.5-alpha-4cd4f58" = { created_at = 2026-09-26T01:46:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-4cd4f58", prerelease = true }
+"0.15.5-alpha-530d934" = { created_at = 2026-09-26T23:14:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-530d934", prerelease = true }
+"0.15.5-alpha-5fcef80" = { created_at = 2026-09-26T22:50:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-5fcef80", prerelease = true }
+"0.15.5-alpha-69a3a2e" = { created_at = 2026-09-26T21:43:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-69a3a2e", prerelease = true }
+"0.15.5-alpha-6bbee72" = { created_at = 2026-09-26T20:24:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6bbee72", prerelease = true }
+"0.15.5-alpha-73831e8" = { created_at = 2026-09-26T02:03:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-73831e8", prerelease = true }
+"0.15.5-alpha-8537720" = { created_at = 2026-09-26T14:15:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8537720", prerelease = true }
+"0.15.5-alpha-88a3423" = { created_at = 2026-09-26T14:44:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-88a3423", prerelease = true }
+"0.15.5-alpha-96a8021" = { created_at = 2026-09-26T14:29:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-96a8021", prerelease = true }
+"0.15.5-alpha-99a2816" = { created_at = 2026-09-26T22:33:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-99a2816", prerelease = true }
+"0.15.5-alpha-9eb4ad6" = { created_at = 2026-09-26T21:25:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-9eb4ad6", prerelease = true }
+"0.15.5-alpha-a00faef" = { created_at = 2026-09-27T00:15:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-a00faef", prerelease = true }
+"0.15.5-alpha-b04b567" = { created_at = 2026-09-26T23:36:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-b04b567", prerelease = true }
+"0.15.5-alpha-c8bc3bb" = { created_at = 2026-09-26T02:30:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c8bc3bb", prerelease = true }
+"0.15.5-alpha-ea3e043" = { created_at = 2026-09-26T21:51:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ea3e043", prerelease = true }
+"0.15.5-alpha-f3f732c" = { created_at = 2026-09-26T22:25:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f3f732c", prerelease = true }
+"0.15.5-alpha-f4cad66" = { created_at = 2026-09-26T23:53:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f4cad66", prerelease = true }
+"0.15.5-alpha-01d66d1" = { created_at = 2026-09-27T12:24:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-01d66d1", prerelease = true }
+"0.15.5-alpha-19e19e0" = { created_at = 2026-09-27T10:46:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-19e19e0", prerelease = true }
+"0.15.5-alpha-2e320a7" = { created_at = 2026-09-27T01:42:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2e320a7", prerelease = true }
+"0.15.5-alpha-365ad95" = { created_at = 2026-09-27T12:16:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-365ad95", prerelease = true }
+"0.15.5-alpha-3ff58e3" = { created_at = 2026-09-27T01:16:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-3ff58e3", prerelease = true }
+"0.15.5-alpha-4b502a1" = { created_at = 2026-09-27T21:00:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-4b502a1", prerelease = true }
+"0.15.5-alpha-55847e1" = { created_at = 2026-09-27T00:54:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-55847e1", prerelease = true }
+"0.15.5-alpha-86e638f" = { created_at = 2026-09-27T20:43:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-86e638f", prerelease = true }
+"0.15.5-alpha-aceca69" = { created_at = 2026-09-27T06:13:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-aceca69", prerelease = true }
+"0.15.5-alpha-b800726" = { created_at = 2026-09-27T11:05:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-b800726", prerelease = true }
+"0.15.5-alpha-d132db4" = { created_at = 2026-09-27T12:32:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d132db4", prerelease = true }
+"0.15.5-alpha-dd0860d" = { created_at = 2026-09-28T02:27:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-dd0860d", prerelease = true }
+"0.15.5-alpha-e848139" = { created_at = 2026-09-27T00:32:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e848139", prerelease = true }
+"0.15.5-alpha-fa53d91" = { created_at = 2026-09-27T11:43:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-fa53d91", prerelease = true }
+"0.15.5-alpha-0847732" = { created_at = 2026-09-28T19:33:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-0847732", prerelease = true }
+"0.15.5-alpha-1c1c41d" = { created_at = 2026-09-28T16:24:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-1c1c41d", prerelease = true }
+"0.15.5-alpha-1e405f6" = { created_at = 2026-09-28T14:43:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-1e405f6", prerelease = true }
+"0.15.5-alpha-22dba22" = { created_at = 2026-09-29T00:09:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-22dba22", prerelease = true }
+"0.15.5-alpha-242573a" = { created_at = 2026-09-28T15:51:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-242573a", prerelease = true }
+"0.15.5-alpha-2c9f921" = { created_at = 2026-09-28T20:31:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2c9f921", prerelease = true }
+"0.15.5-alpha-320ab92" = { created_at = 2026-09-28T22:09:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-320ab92", prerelease = true }
+"0.15.5-alpha-361d60d" = { created_at = 2026-09-28T17:21:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-361d60d", prerelease = true }
+"0.15.5-alpha-385a675" = { created_at = 2026-09-28T17:33:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-385a675", prerelease = true }
+"0.15.5-alpha-5f94fd6" = { created_at = 2026-09-28T23:54:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-5f94fd6", prerelease = true }
+"0.15.5-alpha-6b2b784" = { created_at = 2026-09-28T16:51:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6b2b784", prerelease = true }
+"0.15.5-alpha-6dc1881" = { created_at = 2026-09-28T20:03:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6dc1881", prerelease = true }
+"0.15.5-alpha-74e18d3" = { created_at = 2026-09-28T05:16:53.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-74e18d3", prerelease = true }
+"0.15.5-alpha-892fbd1" = { created_at = 2026-09-28T16:48:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-892fbd1", prerelease = true }
+"0.15.5-alpha-89af245" = { created_at = 2026-09-28T15:05:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-89af245", prerelease = true }
+"0.15.5-alpha-8b2758a" = { created_at = 2026-09-28T15:00:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8b2758a", prerelease = true }
+"0.15.5-alpha-8ba7a81" = { created_at = 2026-09-28T18:03:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8ba7a81", prerelease = true }
+"0.15.5-alpha-968c16f" = { created_at = 2026-09-28T15:26:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-968c16f", prerelease = true }
+"0.15.5-alpha-a4c2f1f" = { created_at = 2026-09-28T05:27:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-a4c2f1f", prerelease = true }
+"0.15.5-alpha-a8701a5" = { created_at = 2026-09-28T23:48:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-a8701a5", prerelease = true }
+"0.15.5-alpha-a8a62fc" = { created_at = 2026-09-28T21:24:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-a8a62fc", prerelease = true }
+"0.15.5-alpha-c65546c" = { created_at = 2026-09-28T11:08:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c65546c", prerelease = true }
+"0.15.5-alpha-ee7fabc" = { created_at = 2026-09-28T16:33:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ee7fabc", prerelease = true }
+"0.15.5-alpha-f89291f" = { created_at = 2026-09-28T22:16:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f89291f", prerelease = true }
+"0.15.5-alpha-f985acb" = { created_at = 2026-09-28T19:51:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f985acb", prerelease = true }
+"0.15.5-alpha-ffc8f50" = { created_at = 2026-09-28T18:54:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ffc8f50", prerelease = true }
+"0.15.5-alpha-1311a71" = { created_at = 2026-09-29T21:01:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-1311a71", prerelease = true }
+"0.15.5-alpha-14d4a2a" = { created_at = 2026-09-29T11:03:53.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-14d4a2a", prerelease = true }
+"0.15.5-alpha-18404b4" = { created_at = 2026-09-29T17:27:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-18404b4", prerelease = true }
+"0.15.5-alpha-2916758" = { created_at = 2026-09-29T15:00:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2916758", prerelease = true }
+"0.15.5-alpha-2f1cff8" = { created_at = 2026-09-29T00:55:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2f1cff8", prerelease = true }
+"0.15.5-alpha-357eba9" = { created_at = 2026-09-29T00:47:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-357eba9", prerelease = true }
+"0.15.5-alpha-363a8b0" = { created_at = 2026-09-29T14:51:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-363a8b0", prerelease = true }
+"0.15.5-alpha-397f4c0" = { created_at = 2026-09-29T13:27:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-397f4c0", prerelease = true }
+"0.15.5-alpha-40af535" = { created_at = 2026-09-29T23:44:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-40af535", prerelease = true }
+"0.15.5-alpha-5070a66" = { created_at = 2026-09-29T17:17:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-5070a66", prerelease = true }
+"0.15.5-alpha-5f7897a" = { created_at = 2026-09-29T23:17:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-5f7897a", prerelease = true }
+"0.15.5-alpha-65590f3" = { created_at = 2026-09-29T16:56:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-65590f3", prerelease = true }
+"0.15.5-alpha-8301248" = { created_at = 2026-09-30T01:15:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8301248", prerelease = true }
+"0.15.5-alpha-89bf9cc" = { created_at = 2026-09-29T19:11:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-89bf9cc", prerelease = true }
+"0.15.5-alpha-8d0883a" = { created_at = 2026-09-29T16:09:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8d0883a", prerelease = true }
+"0.15.5-alpha-9010597" = { created_at = 2026-09-29T22:24:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-9010597", prerelease = true }
+"0.15.5-alpha-90f013a" = { created_at = 2026-09-29T22:42:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-90f013a", prerelease = true }
+"0.15.5-alpha-af43655" = { created_at = 2026-09-29T15:31:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-af43655", prerelease = true }
+"0.15.5-alpha-b137764" = { created_at = 2026-09-29T16:44:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-b137764", prerelease = true }
+"0.15.5-alpha-bccee72" = { created_at = 2026-09-29T15:21:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-bccee72", prerelease = true }
+"0.15.5-alpha-bebc3a3" = { created_at = 2026-09-29T16:39:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-bebc3a3", prerelease = true }
+"0.15.5-alpha-c3e1935" = { created_at = 2026-09-29T15:57:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c3e1935", prerelease = true }
+"0.15.5-alpha-c40fd10" = { created_at = 2026-09-29T02:45:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c40fd10", prerelease = true }
+"0.15.5-alpha-c558b47" = { created_at = 2026-09-29T02:14:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c558b47", prerelease = true }
+"0.15.5-alpha-c69cc7a" = { created_at = 2026-09-29T18:48:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c69cc7a", prerelease = true }
+"0.15.5-alpha-d55cb35" = { created_at = 2026-09-29T00:32:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d55cb35", prerelease = true }
+"0.15.5-alpha-dc7222d" = { created_at = 2026-09-29T00:15:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-dc7222d", prerelease = true }
+"0.15.5-alpha-e07cef7" = { created_at = 2026-09-29T01:38:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e07cef7", prerelease = true }
+"0.15.5-alpha-fbe102a" = { created_at = 2026-09-29T19:32:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-fbe102a", prerelease = true }
+"0.15.5-alpha-ff56ce9" = { created_at = 2026-09-29T13:06:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ff56ce9", prerelease = true }
+"0.15.5-alpha-03736ec" = { created_at = 2026-09-30T08:48:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-03736ec", prerelease = true }
+"0.15.5-alpha-084c4a9" = { created_at = 2026-09-30T23:29:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-084c4a9", prerelease = true }
+"0.15.5-alpha-0993b84" = { created_at = 2026-09-30T01:25:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-0993b84", prerelease = true }
+"0.15.5-alpha-1fd0973" = { created_at = 2026-09-30T05:11:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-1fd0973", prerelease = true }
+"0.15.5-alpha-23d1cec" = { created_at = 2026-09-30T07:11:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-23d1cec", prerelease = true }
+"0.15.5-alpha-276a184" = { created_at = 2026-09-30T03:15:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-276a184", prerelease = true }
+"0.15.5-alpha-2a994d6" = { created_at = 2026-09-30T20:21:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2a994d6", prerelease = true }
+"0.15.5-alpha-3827420" = { created_at = 2026-09-30T07:34:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-3827420", prerelease = true }
+"0.15.5-alpha-44387ca" = { created_at = 2026-09-30T05:58:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-44387ca", prerelease = true }
+"0.15.5-alpha-45b3cfe" = { created_at = 2026-09-30T22:46:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-45b3cfe", prerelease = true }
+"0.15.5-alpha-4c384a9" = { created_at = 2026-09-30T21:43:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-4c384a9", prerelease = true }
+"0.15.5-alpha-520759b" = { created_at = 2026-09-30T18:30:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-520759b", prerelease = true }
+"0.15.5-alpha-671ce99" = { created_at = 2026-09-30T21:16:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-671ce99", prerelease = true }
+"0.15.5-alpha-69173b5" = { created_at = 2026-09-30T06:22:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-69173b5", prerelease = true }
+"0.15.5-alpha-6a8c29d" = { created_at = 2026-09-30T23:11:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6a8c29d", prerelease = true }
+"0.15.5-alpha-6b89f2b" = { created_at = 2026-09-30T18:42:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6b89f2b", prerelease = true }
+"0.15.5-alpha-73eb716" = { created_at = 2026-09-30T15:38:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-73eb716", prerelease = true }
+"0.15.5-alpha-8a9f571" = { created_at = 2026-09-30T17:22:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8a9f571", prerelease = true }
+"0.15.5-alpha-8e1b97f" = { created_at = 2026-10-01T00:11:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8e1b97f", prerelease = true }
+"0.15.5-alpha-d2068cb" = { created_at = 2026-09-30T02:02:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d2068cb", prerelease = true }
+"0.15.5-alpha-d39de88" = { created_at = 2026-09-30T14:41:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d39de88", prerelease = true }
+"0.15.5-alpha-d4dd980" = { created_at = 2026-09-30T17:45:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d4dd980", prerelease = true }
+"0.15.5-alpha-d8b931a" = { created_at = 2026-09-30T15:08:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d8b931a", prerelease = true }
+"0.15.5-alpha-db8d199" = { created_at = 2026-09-30T15:25:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-db8d199", prerelease = true }
+"0.15.5-alpha-e68746e" = { created_at = 2026-09-30T01:49:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e68746e", prerelease = true }
+"0.15.5-alpha-f10bf65" = { created_at = 2026-09-30T23:21:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f10bf65", prerelease = true }
+"0.15.5-alpha-02a1e77" = { created_at = 2026-10-01T01:58:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-02a1e77", prerelease = true }
+"0.15.5-alpha-0fc6e3c" = { created_at = 2026-10-01T21:44:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-0fc6e3c", prerelease = true }
+"0.15.5-alpha-28b827d" = { created_at = 2026-10-01T02:38:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-28b827d", prerelease = true }
+"0.15.5-alpha-30b951e" = { created_at = 2026-10-01T17:27:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-30b951e", prerelease = true }
+"0.15.5-alpha-4a6bd1b" = { created_at = 2026-10-01T17:49:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-4a6bd1b", prerelease = true }
+"0.15.5-alpha-4e4fc23" = { created_at = 2026-10-01T02:09:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-4e4fc23", prerelease = true }
+"0.15.5-alpha-4f98829" = { created_at = 2026-10-01T16:30:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-4f98829", prerelease = true }
+"0.15.5-alpha-53f9d51" = { created_at = 2026-10-01T13:44:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-53f9d51", prerelease = true }
+"0.15.5-alpha-5762c4a" = { created_at = 2026-10-01T19:01:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-5762c4a", prerelease = true }
+"0.15.5-alpha-602d4c4" = { created_at = 2026-10-01T14:39:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-602d4c4", prerelease = true }
+"0.15.5-alpha-62fe19d" = { created_at = 2026-10-01T03:35:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-62fe19d", prerelease = true }
+"0.15.5-alpha-67e1333" = { created_at = 2026-10-01T15:53:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-67e1333", prerelease = true }
+"0.15.5-alpha-6f24b32" = { created_at = 2026-10-01T04:08:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6f24b32", prerelease = true }
+"0.15.5-alpha-70d1210" = { created_at = 2026-10-01T01:04:28.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-70d1210", prerelease = true }
+"0.15.5-alpha-8632908" = { created_at = 2026-10-01T19:39:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8632908", prerelease = true }
+"0.15.5-alpha-9ebe38e" = { created_at = 2026-10-01T17:09:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-9ebe38e", prerelease = true }
+"0.15.5-alpha-b25e10f" = { created_at = 2026-10-02T00:54:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-b25e10f", prerelease = true }
+"0.15.5-alpha-b370476" = { created_at = 2026-10-01T01:38:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-b370476", prerelease = true }
+"0.15.5-alpha-c978b47" = { created_at = 2026-10-01T05:18:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c978b47", prerelease = true }
+"0.15.5-alpha-cadd946" = { created_at = 2026-10-01T04:52:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-cadd946", prerelease = true }
+"0.15.5-alpha-d2df06b" = { created_at = 2026-10-01T14:57:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d2df06b", prerelease = true }
+"0.15.5-alpha-d302096" = { created_at = 2026-10-01T21:24:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d302096", prerelease = true }
+"0.15.5-alpha-d5b4f64" = { created_at = 2026-10-01T17:59:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d5b4f64", prerelease = true }
+"0.15.5-alpha-d64b746" = { created_at = 2026-10-01T17:36:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-d64b746", prerelease = true }
+"0.15.5-alpha-e227e40" = { created_at = 2026-10-01T20:39:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e227e40", prerelease = true }
+"0.15.5-alpha-e514cc5" = { created_at = 2026-10-01T00:19:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e514cc5", prerelease = true }
+"0.15.5-alpha-e574268" = { created_at = 2026-10-01T13:55:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e574268", prerelease = true }
+"0.15.5-alpha-e740438" = { created_at = 2026-10-01T21:57:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-e740438", prerelease = true }
+"0.15.5-alpha-f39e0c5" = { created_at = 2026-10-01T18:15:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f39e0c5", prerelease = true }
+"0.15.5-alpha-ffa63d1" = { created_at = 2026-10-01T01:17:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-ffa63d1", prerelease = true }
+"0.15.5-alpha-29cdfd8" = { created_at = 2026-10-02T01:49:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-29cdfd8", prerelease = true }
+"0.15.5-alpha-2aa0d51" = { created_at = 2026-10-02T01:03:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-2aa0d51", prerelease = true }
+"0.15.5-alpha-36715a0" = { created_at = 2026-10-02T14:33:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-36715a0", prerelease = true }
+"0.15.5-alpha-49b2b2b" = { created_at = 2026-10-02T19:59:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-49b2b2b", prerelease = true }
+"0.15.5-alpha-6cb6b2c" = { created_at = 2026-10-02T18:57:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-6cb6b2c", prerelease = true }
+"0.15.5-alpha-74da1ec" = { created_at = 2026-10-02T15:17:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-74da1ec", prerelease = true }
+"0.15.5-alpha-7c3156e" = { created_at = 2026-10-02T07:17:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-7c3156e", prerelease = true }
+"0.15.5-alpha-8e04c1e" = { created_at = 2026-10-02T15:48:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-8e04c1e", prerelease = true }
+"0.15.5-alpha-936c08b" = { created_at = 2026-10-02T16:36:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-936c08b", prerelease = true }
+"0.15.5-alpha-addf209" = { created_at = 2026-10-02T16:48:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-addf209", prerelease = true }
+"0.15.5-alpha-c3bc87a" = { created_at = 2026-10-02T13:53:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-c3bc87a", prerelease = true }
+"0.15.5-alpha-f8fb0ff" = { created_at = 2026-10-02T19:49:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.5-alpha-f8fb0ff", prerelease = true }
+"0.15.6-alpha-133bc56" = { created_at = 2026-10-02T23:16:53.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-133bc56", prerelease = true }
+"0.15.6-alpha-52f4c52" = { created_at = 2026-10-02T22:02:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-52f4c52", prerelease = true }
+"0.15.6-alpha-69e28b1" = { created_at = 2026-10-02T23:31:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-69e28b1", prerelease = true }
+"0.15.6-alpha-7e4cd77" = { created_at = 2026-10-02T22:23:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-7e4cd77", prerelease = true }
+"0.15.6-alpha-aba8e15" = { created_at = 2026-10-02T20:53:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-aba8e15", prerelease = true }
+"0.15.6-alpha-b480bb2" = { created_at = 2026-10-02T23:03:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b480bb2", prerelease = true }
+"0.15.6-alpha-b4a8d77" = { created_at = 2026-10-03T20:00:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b4a8d77", prerelease = true }
+"0.15.6-alpha-ddec2ab" = { created_at = 2026-10-02T21:06:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-ddec2ab", prerelease = true }
+"0.15.6-4855f79" = { created_at = 2026-10-02T20:49:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-4855f79" }
+"0.15.6-alpha-308c134" = { created_at = 2026-10-03T21:11:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-308c134", prerelease = true }
+"0.15.6-alpha-9007659" = { created_at = 2026-10-03T23:47:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-9007659", prerelease = true }
+"0.15.6-alpha-adaf8ef" = { created_at = 2026-10-04T00:49:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-adaf8ef", prerelease = true }
+"0.15.6-alpha-aed6610" = { created_at = 2026-10-03T22:21:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-aed6610", prerelease = true }
+"0.15.6-alpha-f289970" = { created_at = 2026-10-03T21:23:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f289970", prerelease = true }
+"0.15.6-alpha-f538919" = { created_at = 2026-10-03T21:44:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f538919", prerelease = true }
+"0.15.6-alpha-fb90596" = { created_at = 2026-10-03T21:55:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-fb90596", prerelease = true }
+"0.15.6-alpha-fe34c95" = { created_at = 2026-10-03T22:48:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-fe34c95", prerelease = true }
+"0.15.6-alpha-06bb79f" = { created_at = 2026-10-04T16:22:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-06bb79f", prerelease = true }
+"0.15.6-alpha-1f4c2d7" = { created_at = 2026-10-04T21:52:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-1f4c2d7", prerelease = true }
+"0.15.6-alpha-272a5a0" = { created_at = 2026-10-04T10:41:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-272a5a0", prerelease = true }
+"0.15.6-alpha-40af91c" = { created_at = 2026-10-04T01:42:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-40af91c", prerelease = true }
+"0.15.6-alpha-52c8e82" = { created_at = 2026-10-04T21:16:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-52c8e82", prerelease = true }
+"0.15.6-alpha-571cdb5" = { created_at = 2026-10-04T10:33:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-571cdb5", prerelease = true }
+"0.15.6-alpha-616af63" = { created_at = 2026-10-05T12:52:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-616af63", prerelease = true }
+"0.15.6-alpha-7dad11d" = { created_at = 2026-10-04T05:38:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-7dad11d", prerelease = true }
+"0.15.6-alpha-80142b2" = { created_at = 2026-10-04T19:03:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-80142b2", prerelease = true }
+"0.15.6-alpha-81d64a6" = { created_at = 2026-10-04T14:07:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-81d64a6", prerelease = true }
+"0.15.6-alpha-822d96d" = { created_at = 2026-10-04T19:14:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-822d96d", prerelease = true }
+"0.15.6-alpha-b269584" = { created_at = 2026-10-04T04:53:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b269584", prerelease = true }
+"0.15.6-alpha-b5d888d" = { created_at = 2026-10-04T05:28:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b5d888d", prerelease = true }
+"0.15.6-alpha-ba270ba" = { created_at = 2026-10-04T07:10:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-ba270ba", prerelease = true }
+"0.15.6-alpha-bd53cc5" = { created_at = 2026-10-04T21:30:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-bd53cc5", prerelease = true }
+"0.15.6-alpha-c55eb71" = { created_at = 2026-10-04T10:51:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-c55eb71", prerelease = true }
+"0.15.6-alpha-d3361de" = { created_at = 2026-10-04T11:35:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d3361de", prerelease = true }
+"0.15.6-alpha-d850131" = { created_at = 2026-10-04T17:51:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d850131", prerelease = true }
+"0.15.6-alpha-de40b87" = { created_at = 2026-10-04T02:46:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-de40b87", prerelease = true }
+"0.15.6-alpha-37d3803" = { created_at = 2026-10-05T16:21:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-37d3803", prerelease = true }
+"0.15.6-alpha-4390f4f" = { created_at = 2026-10-06T00:14:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-4390f4f", prerelease = true }
+"0.15.6-alpha-581cc40" = { created_at = 2026-10-05T19:09:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-581cc40", prerelease = true }
+"0.15.6-alpha-6765c26" = { created_at = 2026-10-05T22:43:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-6765c26", prerelease = true }
+"0.15.6-alpha-8c8c626" = { created_at = 2026-10-05T16:01:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-8c8c626", prerelease = true }
+"0.15.6-alpha-a0dafef" = { created_at = 2026-10-05T18:41:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a0dafef", prerelease = true }
+"0.15.6-alpha-b43604d" = { created_at = 2026-10-05T21:48:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b43604d", prerelease = true }
+"0.15.6-alpha-e8064c5" = { created_at = 2026-10-05T14:14:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-e8064c5", prerelease = true }
+"0.15.6-alpha-e8d5f8d" = { created_at = 2026-10-05T18:03:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-e8d5f8d", prerelease = true }
+"0.15.6-alpha-f506c34" = { created_at = 2026-10-05T15:11:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f506c34", prerelease = true }
+"0.15.6-alpha-042c2a7" = { created_at = 2026-10-06T23:12:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-042c2a7", prerelease = true }
+"0.15.6-alpha-123efea" = { created_at = 2026-10-06T01:29:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-123efea", prerelease = true }
+"0.15.6-alpha-127e7a8" = { created_at = 2026-10-06T23:59:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-127e7a8", prerelease = true }
+"0.15.6-alpha-3243600" = { created_at = 2026-10-06T20:10:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-3243600", prerelease = true }
+"0.15.6-alpha-3ac79b9" = { created_at = 2026-10-06T04:00:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-3ac79b9", prerelease = true }
+"0.15.6-alpha-52031d9" = { created_at = 2026-10-06T01:08:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-52031d9", prerelease = true }
+"0.15.6-alpha-587f512" = { created_at = 2026-10-06T10:45:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-587f512", prerelease = true }
+"0.15.6-alpha-6b02b19" = { created_at = 2026-10-06T04:32:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-6b02b19", prerelease = true }
+"0.15.6-alpha-704f937" = { created_at = 2026-10-06T20:29:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-704f937", prerelease = true }
+"0.15.6-alpha-7749ab1" = { created_at = 2026-10-06T00:55:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-7749ab1", prerelease = true }
+"0.15.6-alpha-7943031" = { created_at = 2026-10-06T10:17:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-7943031", prerelease = true }
+"0.15.6-alpha-7b3d565" = { created_at = 2026-10-06T09:36:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-7b3d565", prerelease = true }
+"0.15.6-alpha-a7c2a4f" = { created_at = 2026-10-06T14:36:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a7c2a4f", prerelease = true }
+"0.15.6-alpha-a8a9557" = { created_at = 2026-10-06T10:03:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a8a9557", prerelease = true }
+"0.15.6-alpha-a912caa" = { created_at = 2026-10-06T13:49:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a912caa", prerelease = true }
+"0.15.6-alpha-b4e46b7" = { created_at = 2026-10-06T17:04:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b4e46b7", prerelease = true }
+"0.15.6-alpha-c884114" = { created_at = 2026-10-06T15:39:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-c884114", prerelease = true }
+"0.15.6-alpha-d95e9ab" = { created_at = 2026-10-06T17:46:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d95e9ab", prerelease = true }
+"0.15.6-alpha-e5a66d8" = { created_at = 2026-10-06T18:46:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-e5a66d8", prerelease = true }
+"0.15.6-alpha-eb46bbe" = { created_at = 2026-10-07T02:11:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-eb46bbe", prerelease = true }
+"0.15.6-alpha-f6e3026" = { created_at = 2026-10-06T23:48:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f6e3026", prerelease = true }
+"0.15.6-alpha-f9f053e" = { created_at = 2026-10-06T16:51:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f9f053e", prerelease = true }
+"0.15.6-alpha-045d276" = { created_at = 2026-10-07T21:57:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-045d276", prerelease = true }
+"0.15.6-alpha-05dbdce" = { created_at = 2026-10-07T02:20:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-05dbdce", prerelease = true }
+"0.15.6-alpha-211f504" = { created_at = 2026-10-07T17:32:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-211f504", prerelease = true }
+"0.15.6-alpha-21da882" = { created_at = 2026-10-07T15:46:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-21da882", prerelease = true }
+"0.15.6-alpha-266688a" = { created_at = 2026-10-07T21:12:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-266688a", prerelease = true }
+"0.15.6-alpha-2af03ce" = { created_at = 2026-10-08T01:00:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-2af03ce", prerelease = true }
+"0.15.6-alpha-39a5bba" = { created_at = 2026-10-07T05:24:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-39a5bba", prerelease = true }
+"0.15.6-alpha-3e7651e" = { created_at = 2026-10-07T04:54:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-3e7651e", prerelease = true }
+"0.15.6-alpha-3f6ff28" = { created_at = 2026-10-07T18:41:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-3f6ff28", prerelease = true }
+"0.15.6-alpha-45c4cc6" = { created_at = 2026-10-07T14:57:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-45c4cc6", prerelease = true }
+"0.15.6-alpha-542643e" = { created_at = 2026-10-07T14:16:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-542643e", prerelease = true }
+"0.15.6-alpha-723c8d0" = { created_at = 2026-10-07T14:00:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-723c8d0", prerelease = true }
+"0.15.6-alpha-77cb373" = { created_at = 2026-10-07T03:47:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-77cb373", prerelease = true }
+"0.15.6-alpha-8343a84" = { created_at = 2026-10-07T04:05:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-8343a84", prerelease = true }
+"0.15.6-alpha-880b1de" = { created_at = 2026-10-07T19:03:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-880b1de", prerelease = true }
+"0.15.6-alpha-9776554" = { created_at = 2026-10-07T17:59:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-9776554", prerelease = true }
+"0.15.6-alpha-a0e0cf8" = { created_at = 2026-10-07T20:14:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a0e0cf8", prerelease = true }
+"0.15.6-alpha-a11a4ab" = { created_at = 2026-10-07T08:21:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a11a4ab", prerelease = true }
+"0.15.6-alpha-adff9cb" = { created_at = 2026-10-07T16:16:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-adff9cb", prerelease = true }
+"0.15.6-alpha-ae814ce" = { created_at = 2026-10-07T17:46:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-ae814ce", prerelease = true }
+"0.15.6-alpha-b43d7a5" = { created_at = 2026-10-07T21:49:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-b43d7a5", prerelease = true }
+"0.15.6-alpha-cbb80ad" = { created_at = 2026-10-07T05:06:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-cbb80ad", prerelease = true }
+"0.15.6-alpha-cbe8368" = { created_at = 2026-10-07T15:58:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-cbe8368", prerelease = true }
+"0.15.6-alpha-d0460c2" = { created_at = 2026-10-07T02:46:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d0460c2", prerelease = true }
+"0.15.6-alpha-f0a93cb" = { created_at = 2026-10-07T16:46:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f0a93cb", prerelease = true }
+"0.15.6-alpha-f4b9106" = { created_at = 2026-10-07T16:24:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f4b9106", prerelease = true }
+"0.15.6-alpha-f9951e9" = { created_at = 2026-10-07T18:15:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f9951e9", prerelease = true }
+"0.15.6-alpha-18e1acb" = { created_at = 2026-10-08T01:47:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-18e1acb", prerelease = true }
+"0.15.6-alpha-1ba01cb" = { created_at = 2026-10-08T18:14:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-1ba01cb", prerelease = true }
+"0.15.6-alpha-20c968d" = { created_at = 2026-10-08T17:11:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-20c968d", prerelease = true }
+"0.15.6-alpha-20e6ff4" = { created_at = 2026-10-08T19:07:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-20e6ff4", prerelease = true }
+"0.15.6-alpha-2f61480" = { created_at = 2026-10-08T18:44:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-2f61480", prerelease = true }
+"0.15.6-alpha-319d8d7" = { created_at = 2026-10-08T17:21:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-319d8d7", prerelease = true }
+"0.15.6-alpha-34c6b8c" = { created_at = 2026-10-08T16:43:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-34c6b8c", prerelease = true }
+"0.15.6-alpha-35d533a" = { created_at = 2026-10-08T17:34:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-35d533a", prerelease = true }
+"0.15.6-alpha-41e471c" = { created_at = 2026-10-09T00:37:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-41e471c", prerelease = true }
+"0.15.6-alpha-649df73" = { created_at = 2026-10-08T21:57:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-649df73", prerelease = true }
+"0.15.6-alpha-d2bf1ae" = { created_at = 2026-10-08T14:54:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d2bf1ae", prerelease = true }
+"0.15.6-alpha-da07e9b" = { created_at = 2026-10-08T12:24:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-da07e9b", prerelease = true }
+"0.15.6-alpha-e42e751" = { created_at = 2026-10-08T22:08:34.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-e42e751", prerelease = true }
+"0.15.6-alpha-022d9d4" = { created_at = 2026-10-09T02:54:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-022d9d4", prerelease = true }
+"0.15.6-alpha-06601d5" = { created_at = 2026-10-09T18:31:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-06601d5", prerelease = true }
+"0.15.6-alpha-14c8593" = { created_at = 2026-10-09T17:21:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-14c8593", prerelease = true }
+"0.15.6-alpha-2560a7f" = { created_at = 2026-10-09T18:47:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-2560a7f", prerelease = true }
+"0.15.6-alpha-26da387" = { created_at = 2026-10-09T13:25:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-26da387", prerelease = true }
+"0.15.6-alpha-29166ed" = { created_at = 2026-10-09T13:02:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-29166ed", prerelease = true }
+"0.15.6-alpha-2ebc6d4" = { created_at = 2026-10-09T11:46:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-2ebc6d4", prerelease = true }
+"0.15.6-alpha-3dfaf54" = { created_at = 2026-10-09T15:03:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-3dfaf54", prerelease = true }
+"0.15.6-alpha-469f610" = { created_at = 2026-10-09T11:32:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-469f610", prerelease = true }
+"0.15.6-alpha-47ab192" = { created_at = 2026-10-09T13:42:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-47ab192", prerelease = true }
+"0.15.6-alpha-4e22e5a" = { created_at = 2026-10-09T01:41:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-4e22e5a", prerelease = true }
+"0.15.6-alpha-6ea536f" = { created_at = 2026-10-09T00:50:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-6ea536f", prerelease = true }
+"0.15.6-alpha-7ec9c80" = { created_at = 2026-10-09T11:20:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-7ec9c80", prerelease = true }
+"0.15.6-alpha-84056bf" = { created_at = 2026-10-09T02:12:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-84056bf", prerelease = true }
+"0.15.6-alpha-87d2e85" = { created_at = 2026-10-09T16:13:30.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-87d2e85", prerelease = true }
+"0.15.6-alpha-95406ea" = { created_at = 2026-10-09T22:35:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-95406ea", prerelease = true }
+"0.15.6-alpha-a833e09" = { created_at = 2026-10-09T14:02:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-a833e09", prerelease = true }
+"0.15.6-alpha-acac565" = { created_at = 2026-10-09T01:20:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-acac565", prerelease = true }
+"0.15.6-alpha-c21795c" = { created_at = 2026-10-09T12:44:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-c21795c", prerelease = true }
+"0.15.6-alpha-d17b9c0" = { created_at = 2026-10-09T18:10:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d17b9c0", prerelease = true }
+"0.15.6-alpha-d93ba83" = { created_at = 2026-10-09T23:44:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-d93ba83", prerelease = true }
+"0.15.6-alpha-f3f8e5a" = { created_at = 2026-10-09T04:53:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-f3f8e5a", prerelease = true }
+"0.15.6-alpha-fb3a378" = { created_at = 2026-10-09T12:21:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-fb3a378", prerelease = true }
+"0.15.6-alpha-fd372df" = { created_at = 2026-10-09T01:08:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.6-alpha-fd372df", prerelease = true }
+"0.15.7-d702b99" = { created_at = 2026-10-10T00:01:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-d702b99" }
+"0.15.7-alpha-270307f" = { created_at = 2026-10-11T00:15:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-270307f", prerelease = true }
+"0.15.7-alpha-3580677" = { created_at = 2026-10-10T21:16:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3580677", prerelease = true }
+"0.15.7-alpha-3a6cccb" = { created_at = 2026-10-10T05:33:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3a6cccb", prerelease = true }
+"0.15.7-alpha-3cbff1d" = { created_at = 2026-10-10T12:50:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3cbff1d", prerelease = true }
+"0.15.7-alpha-3ff6b18" = { created_at = 2026-10-10T23:31:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3ff6b18", prerelease = true }
+"0.15.7-alpha-400ed63" = { created_at = 2026-10-10T01:17:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-400ed63", prerelease = true }
+"0.15.7-alpha-40e3fda" = { created_at = 2026-10-10T16:01:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-40e3fda", prerelease = true }
+"0.15.7-alpha-4adfdc4" = { created_at = 2026-10-10T14:20:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4adfdc4", prerelease = true }
+"0.15.7-alpha-4f28e35" = { created_at = 2026-10-10T14:45:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4f28e35", prerelease = true }
+"0.15.7-alpha-534a6f2" = { created_at = 2026-10-10T19:01:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-534a6f2", prerelease = true }
+"0.15.7-alpha-65a9e87" = { created_at = 2026-10-10T19:29:54.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-65a9e87", prerelease = true }
+"0.15.7-alpha-80c5917" = { created_at = 2026-10-10T23:42:02.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-80c5917", prerelease = true }
+"0.15.7-alpha-89b926f" = { created_at = 2026-10-10T13:36:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-89b926f", prerelease = true }
+"0.15.7-alpha-8d0048c" = { created_at = 2026-10-10T13:16:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8d0048c", prerelease = true }
+"0.15.7-alpha-9156276" = { created_at = 2026-10-10T19:37:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-9156276", prerelease = true }
+"0.15.7-alpha-a71719b" = { created_at = 2026-10-10T01:03:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a71719b", prerelease = true }
+"0.15.7-alpha-e0c2a1d" = { created_at = 2026-10-10T04:07:52.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e0c2a1d", prerelease = true }
+"0.15.7-alpha-e953e2a" = { created_at = 2026-10-10T14:53:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e953e2a", prerelease = true }
+"0.15.7-alpha-eb3a3d6" = { created_at = 2026-10-10T06:16:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-eb3a3d6", prerelease = true }
+"0.15.7-alpha-0918317" = { created_at = 2026-10-11T08:28:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-0918317", prerelease = true }
+"0.15.7-alpha-28261b2" = { created_at = 2026-10-12T01:00:59.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-28261b2", prerelease = true }
+"0.15.7-alpha-2a0bb44" = { created_at = 2026-10-11T15:49:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2a0bb44", prerelease = true }
+"0.15.7-alpha-2c4ef50" = { created_at = 2026-10-11T15:41:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2c4ef50", prerelease = true }
+"0.15.7-alpha-2f3a5dd" = { created_at = 2026-10-11T12:36:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2f3a5dd", prerelease = true }
+"0.15.7-alpha-31958e1" = { created_at = 2026-10-11T08:53:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-31958e1", prerelease = true }
+"0.15.7-alpha-3c9c94b" = { created_at = 2026-10-11T09:22:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3c9c94b", prerelease = true }
+"0.15.7-alpha-4501696" = { created_at = 2026-10-11T06:23:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4501696", prerelease = true }
+"0.15.7-alpha-5f96c5f" = { created_at = 2026-10-11T13:21:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-5f96c5f", prerelease = true }
+"0.15.7-alpha-7572bdb" = { created_at = 2026-10-11T18:03:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7572bdb", prerelease = true }
+"0.15.7-alpha-76087e1" = { created_at = 2026-10-11T16:51:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-76087e1", prerelease = true }
+"0.15.7-alpha-8c09818" = { created_at = 2026-10-11T12:55:32.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8c09818", prerelease = true }
+"0.15.7-alpha-9d2f2af" = { created_at = 2026-10-11T06:30:53.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-9d2f2af", prerelease = true }
+"0.15.7-alpha-a2e7c48" = { created_at = 2026-10-11T08:08:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a2e7c48", prerelease = true }
+"0.15.7-alpha-a693690" = { created_at = 2026-10-11T13:02:53.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a693690", prerelease = true }
+"0.15.7-alpha-a793b37" = { created_at = 2026-10-11T12:07:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a793b37", prerelease = true }
+"0.15.7-alpha-bf69e0a" = { created_at = 2026-10-11T17:47:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-bf69e0a", prerelease = true }
+"0.15.7-alpha-c26f1c7" = { created_at = 2026-10-11T19:30:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c26f1c7", prerelease = true }
+"0.15.7-alpha-c279062" = { created_at = 2026-10-11T12:16:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c279062", prerelease = true }
+"0.15.7-alpha-c3c4ad1" = { created_at = 2026-10-11T02:27:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c3c4ad1", prerelease = true }
+"0.15.7-alpha-d8e9de9" = { created_at = 2026-10-11T12:50:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-d8e9de9", prerelease = true }
+"0.15.7-alpha-db635ad" = { created_at = 2026-10-11T14:32:16.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-db635ad", prerelease = true }
+"0.15.7-alpha-e3e4d22" = { created_at = 2026-10-11T00:43:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e3e4d22", prerelease = true }
+"0.15.7-alpha-e90ca09" = { created_at = 2026-10-11T01:07:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e90ca09", prerelease = true }
+"0.15.7-alpha-e98817f" = { created_at = 2026-10-11T07:07:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e98817f", prerelease = true }
+"0.15.7-alpha-f1b41f7" = { created_at = 2026-10-11T16:44:10.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-f1b41f7", prerelease = true }
+"0.15.7-alpha-12ee039" = { created_at = 2026-10-12T05:00:06.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-12ee039", prerelease = true }
+"0.15.7-alpha-2aefbdd" = { created_at = 2026-10-12T09:25:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2aefbdd", prerelease = true }
+"0.15.7-alpha-3a9aa34" = { created_at = 2026-10-12T14:03:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3a9aa34", prerelease = true }
+"0.15.7-alpha-42b3602" = { created_at = 2026-10-12T15:36:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-42b3602", prerelease = true }
+"0.15.7-alpha-4873cdf" = { created_at = 2026-10-12T17:26:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4873cdf", prerelease = true }
+"0.15.7-alpha-4ac102e" = { created_at = 2026-10-13T01:17:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4ac102e", prerelease = true }
+"0.15.7-alpha-517e6a8" = { created_at = 2026-10-12T08:42:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-517e6a8", prerelease = true }
+"0.15.7-alpha-613ef0a" = { created_at = 2026-10-12T17:57:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-613ef0a", prerelease = true }
+"0.15.7-alpha-65ba8f5" = { created_at = 2026-10-12T23:30:18.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-65ba8f5", prerelease = true }
+"0.15.7-alpha-6d687f9" = { created_at = 2026-10-12T17:38:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-6d687f9", prerelease = true }
+"0.15.7-alpha-70c37de" = { created_at = 2026-10-12T21:09:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-70c37de", prerelease = true }
+"0.15.7-alpha-7818459" = { created_at = 2026-10-12T04:06:38.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7818459", prerelease = true }
+"0.15.7-alpha-7d72809" = { created_at = 2026-10-12T07:00:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7d72809", prerelease = true }
+"0.15.7-alpha-8163450" = { created_at = 2026-10-12T01:16:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8163450", prerelease = true }
+"0.15.7-alpha-9f8e6ca" = { created_at = 2026-10-12T01:30:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-9f8e6ca", prerelease = true }
+"0.15.7-alpha-a5b6a12" = { created_at = 2026-10-12T04:52:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a5b6a12", prerelease = true }
+"0.15.7-alpha-b947fb7" = { created_at = 2026-10-12T02:18:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-b947fb7", prerelease = true }
+"0.15.7-alpha-c230f10" = { created_at = 2026-10-12T08:04:05.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c230f10", prerelease = true }
+"0.15.7-alpha-e4fabf6" = { created_at = 2026-10-12T11:27:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e4fabf6", prerelease = true }
+"0.15.7-alpha-ea218e5" = { created_at = 2026-10-12T15:00:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-ea218e5", prerelease = true }
+"0.15.7-alpha-edee1d0" = { created_at = 2026-10-12T16:36:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-edee1d0", prerelease = true }
+"0.15.7-alpha-fe44591" = { created_at = 2026-10-12T05:12:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-fe44591", prerelease = true }
+"0.15.7-alpha-ff64358" = { created_at = 2026-10-12T02:47:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-ff64358", prerelease = true }
+"0.15.7-alpha-068fa1e" = { created_at = 2026-10-13T21:33:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-068fa1e", prerelease = true }
+"0.15.7-alpha-1343499" = { created_at = 2026-10-13T06:00:53.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1343499", prerelease = true }
+"0.15.7-alpha-13e27d9" = { created_at = 2026-10-13T19:47:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-13e27d9", prerelease = true }
+"0.15.7-alpha-1cd8d4f" = { created_at = 2026-10-13T22:13:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1cd8d4f", prerelease = true }
+"0.15.7-alpha-24bb970" = { created_at = 2026-10-14T00:32:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-24bb970", prerelease = true }
+"0.15.7-alpha-68e6929" = { created_at = 2026-10-13T18:42:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-68e6929", prerelease = true }
+"0.15.7-alpha-720e9eb" = { created_at = 2026-10-13T17:07:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-720e9eb", prerelease = true }
+"0.15.7-alpha-7691050" = { created_at = 2026-10-13T20:50:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7691050", prerelease = true }
+"0.15.7-alpha-7d7d419" = { created_at = 2026-10-13T19:31:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7d7d419", prerelease = true }
+"0.15.7-alpha-820262d" = { created_at = 2026-10-13T13:34:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-820262d", prerelease = true }
+"0.15.7-alpha-8684604" = { created_at = 2026-10-13T21:10:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8684604", prerelease = true }
+"0.15.7-alpha-8962b0a" = { created_at = 2026-10-13T02:29:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8962b0a", prerelease = true }
+"0.15.7-alpha-bf9f366" = { created_at = 2026-10-13T16:38:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-bf9f366", prerelease = true }
+"0.15.7-alpha-c3856c8" = { created_at = 2026-10-13T16:20:46.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c3856c8", prerelease = true }
+"0.15.7-alpha-c611679" = { created_at = 2026-10-13T17:42:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c611679", prerelease = true }
+"0.15.7-alpha-d2c7e31" = { created_at = 2026-10-13T20:19:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-d2c7e31", prerelease = true }
+"0.15.7-alpha-daef15d" = { created_at = 2026-10-13T14:35:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-daef15d", prerelease = true }
+"0.15.7-alpha-e2cffc3" = { created_at = 2026-10-13T02:38:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e2cffc3", prerelease = true }
+"0.15.7-alpha-e49b6ca" = { created_at = 2026-10-13T05:26:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e49b6ca", prerelease = true }
+"0.15.7-alpha-fc375c5" = { created_at = 2026-10-13T15:21:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-fc375c5", prerelease = true }
+"0.15.7-alpha-005c2c9" = { created_at = 2026-10-14T16:50:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-005c2c9", prerelease = true }
+"0.15.7-alpha-0cbe9c5" = { created_at = 2026-10-14T16:59:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-0cbe9c5", prerelease = true }
+"0.15.7-alpha-1335642" = { created_at = 2026-10-14T14:22:36.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1335642", prerelease = true }
+"0.15.7-alpha-154a62f" = { created_at = 2026-10-14T10:28:33.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-154a62f", prerelease = true }
+"0.15.7-alpha-1c6014d" = { created_at = 2026-10-14T15:45:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1c6014d", prerelease = true }
+"0.15.7-alpha-207bb4e" = { created_at = 2026-10-14T15:55:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-207bb4e", prerelease = true }
+"0.15.7-alpha-2b98c46" = { created_at = 2026-10-14T11:34:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2b98c46", prerelease = true }
+"0.15.7-alpha-2cfa950" = { created_at = 2026-10-14T10:19:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2cfa950", prerelease = true }
+"0.15.7-alpha-34d21b8" = { created_at = 2026-10-14T18:17:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-34d21b8", prerelease = true }
+"0.15.7-alpha-38729a8" = { created_at = 2026-10-14T09:55:47.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-38729a8", prerelease = true }
+"0.15.7-alpha-657e9be" = { created_at = 2026-10-14T00:54:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-657e9be", prerelease = true }
+"0.15.7-alpha-6de3593" = { created_at = 2026-10-14T19:15:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-6de3593", prerelease = true }
+"0.15.7-alpha-7c73c4c" = { created_at = 2026-10-14T05:03:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7c73c4c", prerelease = true }
+"0.15.7-alpha-7c7fda8" = { created_at = 2026-10-14T03:25:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-7c7fda8", prerelease = true }
+"0.15.7-alpha-818b411" = { created_at = 2026-10-14T15:29:56.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-818b411", prerelease = true }
+"0.15.7-alpha-823e4a3" = { created_at = 2026-10-14T09:22:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-823e4a3", prerelease = true }
+"0.15.7-alpha-8885651" = { created_at = 2026-10-14T11:09:44.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8885651", prerelease = true }
+"0.15.7-alpha-92ea353" = { created_at = 2026-10-14T12:17:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-92ea353", prerelease = true }
+"0.15.7-alpha-98c20f8" = { created_at = 2026-10-14T19:25:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-98c20f8", prerelease = true }
+"0.15.7-alpha-a30533f" = { created_at = 2026-10-14T15:04:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a30533f", prerelease = true }
+"0.15.7-alpha-a7312ca" = { created_at = 2026-10-14T08:27:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a7312ca", prerelease = true }
+"0.15.7-alpha-a73ec7d" = { created_at = 2026-10-14T17:43:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a73ec7d", prerelease = true }
+"0.15.7-alpha-abb7d86" = { created_at = 2026-10-14T07:23:03.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-abb7d86", prerelease = true }
+"0.15.7-alpha-ae505a4" = { created_at = 2026-10-14T17:59:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-ae505a4", prerelease = true }
+"0.15.7-alpha-c1a52b3" = { created_at = 2026-10-14T08:46:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c1a52b3", prerelease = true }
+"0.15.7-alpha-c390bf1" = { created_at = 2026-10-14T05:26:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c390bf1", prerelease = true }
+"0.15.7-alpha-c4a3562" = { created_at = 2026-10-15T00:19:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c4a3562", prerelease = true }
+"0.15.7-alpha-e134d67" = { created_at = 2026-10-14T13:44:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e134d67", prerelease = true }
+"0.15.7-alpha-f2737ff" = { created_at = 2026-10-14T19:48:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-f2737ff", prerelease = true }
+"0.15.7-alpha-f906187" = { created_at = 2026-10-14T06:41:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-f906187", prerelease = true }
+"0.15.7-alpha-19c81ab" = { created_at = 2026-10-15T03:21:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-19c81ab", prerelease = true }
+"0.15.7-alpha-26c92f1" = { created_at = 2026-10-15T18:48:21.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-26c92f1", prerelease = true }
+"0.15.7-alpha-2c87d93" = { created_at = 2026-10-15T19:58:43.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-2c87d93", prerelease = true }
+"0.15.7-alpha-358ae53" = { created_at = 2026-10-15T11:54:13.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-358ae53", prerelease = true }
+"0.15.7-alpha-4478bbe" = { created_at = 2026-10-15T17:47:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4478bbe", prerelease = true }
+"0.15.7-alpha-46ce76a" = { created_at = 2026-10-15T12:31:15.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-46ce76a", prerelease = true }
+"0.15.7-alpha-49614d9" = { created_at = 2026-10-15T21:36:07.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-49614d9", prerelease = true }
+"0.15.7-alpha-50a10f9" = { created_at = 2026-10-15T04:48:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-50a10f9", prerelease = true }
+"0.15.7-alpha-5239974" = { created_at = 2026-10-15T03:37:04.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-5239974", prerelease = true }
+"0.15.7-alpha-52a51ca" = { created_at = 2026-10-15T02:07:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-52a51ca", prerelease = true }
+"0.15.7-alpha-5a67af4" = { created_at = 2026-10-15T13:51:11.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-5a67af4", prerelease = true }
+"0.15.7-alpha-6f87622" = { created_at = 2026-10-15T21:16:51.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-6f87622", prerelease = true }
+"0.15.7-alpha-88ea2b9" = { created_at = 2026-10-15T04:09:22.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-88ea2b9", prerelease = true }
+"0.15.7-alpha-927ea46" = { created_at = 2026-10-15T18:28:08.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-927ea46", prerelease = true }
+"0.15.7-alpha-a8802d7" = { created_at = 2026-10-15T05:13:39.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-a8802d7", prerelease = true }
+"0.15.7-alpha-ac9011a" = { created_at = 2026-10-15T15:48:01.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-ac9011a", prerelease = true }
+"0.15.7-alpha-b0c597d" = { created_at = 2026-10-15T16:46:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-b0c597d", prerelease = true }
+"0.15.7-alpha-c22232e" = { created_at = 2026-10-15T03:03:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c22232e", prerelease = true }
+"0.15.7-alpha-c448349" = { created_at = 2026-10-16T14:20:45.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c448349", prerelease = true }
+"0.15.7-alpha-c582ca4" = { created_at = 2026-10-15T14:24:00.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-c582ca4", prerelease = true }
+"0.15.7-alpha-d58e7e1" = { created_at = 2026-10-15T05:00:26.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-d58e7e1", prerelease = true }
+"0.15.7-alpha-f3d0162" = { created_at = 2026-10-15T02:53:23.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-f3d0162", prerelease = true }
+"0.15.7-alpha-3bcea1e" = { created_at = 2026-10-16T15:03:25.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3bcea1e", prerelease = true }
+"0.15.7-alpha-4671aaa" = { created_at = 2026-10-16T17:45:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-4671aaa", prerelease = true }
+"0.15.7-alpha-47aebb7" = { created_at = 2026-10-16T16:13:17.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-47aebb7", prerelease = true }
+"0.15.7-alpha-6dc6940" = { created_at = 2026-10-16T19:00:55.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-6dc6940", prerelease = true }
+"0.15.7-alpha-70c89d4" = { created_at = 2026-10-17T21:14:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-70c89d4", prerelease = true }
+"0.15.7-alpha-721ca99" = { created_at = 2026-10-16T17:25:42.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-721ca99", prerelease = true }
+"0.15.7-alpha-8f8d0db" = { created_at = 2026-10-16T17:55:27.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-8f8d0db", prerelease = true }
+"0.15.7-alpha-acb51ec" = { created_at = 2026-10-16T18:41:14.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-acb51ec", prerelease = true }
+"0.15.7-alpha-ca5012c" = { created_at = 2026-10-16T20:35:20.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-ca5012c", prerelease = true }
+"0.15.7-alpha-006d5c3" = { created_at = 2026-10-17T22:00:29.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-006d5c3", prerelease = true }
+"0.15.7-alpha-014143d" = { created_at = 2026-10-18T01:20:50.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-014143d", prerelease = true }
+"0.15.7-alpha-1063a67" = { created_at = 2026-10-17T22:17:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1063a67", prerelease = true }
+"0.15.7-alpha-03a0ca3" = { created_at = 2026-10-18T16:18:24.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-03a0ca3", prerelease = true }
+"0.15.7-alpha-08f9e08" = { created_at = 2026-10-18T21:47:35.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-08f9e08", prerelease = true }
+"0.15.7-alpha-178d493" = { created_at = 2026-10-18T19:22:49.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-178d493", prerelease = true }
+"0.15.7-alpha-1ee2862" = { created_at = 2026-10-18T02:07:57.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1ee2862", prerelease = true }
 "0.15.7-alpha-1f9f545" = { created_at = 2026-10-18T15:40:09.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-1f9f545", prerelease = true }
 "0.15.7-alpha-3bcc05d" = { created_at = 2026-10-19T00:13:12.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-3bcc05d", prerelease = true }
 "0.15.7-alpha-6b2115d" = { created_at = 2026-10-18T05:05:37.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-6b2115d", prerelease = true }
@@ -97,5 +869,6 @@
 "0.15.7-alpha-aee17cc" = { created_at = 2026-10-22T01:01:58.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-aee17cc", prerelease = true }
 "0.15.7-alpha-b3d123d" = { created_at = 2026-10-22T00:22:41.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-b3d123d", prerelease = true }
 "0.15.7-alpha-d85a10a" = { created_at = 2026-10-22T16:17:40.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-d85a10a", prerelease = true }
+"0.15.7-alpha-de822fd" = { created_at = 2026-10-22T17:30:19.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-de822fd", prerelease = true }
 "0.15.7-alpha-dfebfa6" = { created_at = 2026-10-22T02:12:31.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-dfebfa6", prerelease = true }
 "0.15.7-alpha-e7b5b97" = { created_at = 2026-10-22T07:35:48.000Z, release_url = "https://github.com/OpenRouterLabs/ori-releases/releases/tag/cli-0.15.7-alpha-e7b5b97", prerelease = true }

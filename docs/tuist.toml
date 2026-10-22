@@ -1,4 +1,1129 @@
 [versions]
+"0.1.0" = { created_at = 2018-07-31T20:20:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.1.0" }
+"0.2.0" = { created_at = 2018-08-05T20:12:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.2.0" }
+"0.3.0" = { created_at = 2018-08-20T08:37:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.3.0" }
+"0.4.0" = { created_at = 2018-08-24T07:59:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.4.0" }
+"0.5.0" = { created_at = 2018-09-11T16:22:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.5.0" }
+"0.6.0" = { created_at = 2018-09-19T16:50:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.6.0" }
+"0.7.0" = { created_at = 2018-10-05T17:17:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.7.0" }
+"0.8.0" = { created_at = 2018-11-05T14:30:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.8.0" }
+"0.9.0" = { created_at = 2018-12-03T08:44:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.9.0" }
+"0.10.0" = { created_at = 2018-12-20T11:03:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.10.0" }
+"0.10.1" = { created_at = 2018-12-20T12:43:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.10.1" }
+"0.10.2" = { created_at = 2018-12-20T14:45:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.10.2" }
+"0.11.0" = { created_at = 2019-02-14T19:18:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.11.0" }
+"0.12.0" = { created_at = 2019-03-11T13:38:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.12.0" }
+"0.13.0" = { created_at = 2019-03-30T12:38:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.13.0" }
+"0.14.0" = { created_at = 2019-04-28T20:47:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.14.0" }
+"0.15.0" = { created_at = 2019-06-02T15:38:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.15.0" }
+"0.16.0" = { created_at = 2019-06-21T07:56:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.16.0" }
+"0.17.0" = { created_at = 2019-08-14T15:28:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.17.0" }
+"0.18.0" = { created_at = 2019-09-28T19:13:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.18.0" }
+"0.18.1" = { created_at = 2019-09-30T08:36:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.18.1" }
+"0.19.0" = { created_at = 2019-11-14T17:18:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/0.19.0" }
+"1.0.0" = { created_at = 2019-12-17T09:34:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.0.0" }
+"1.0.1" = { created_at = 2019-12-17T11:17:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.0.1" }
+"1.1.0" = { created_at = 2019-12-27T15:58:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.1.0" }
+"1.2.0" = { created_at = 2020-01-31T19:05:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.2.0" }
+"1.3.0" = { created_at = 2020-02-25T15:05:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.3.0" }
+"1.4.0" = { created_at = 2020-03-16T09:29:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.4.0" }
+"1.5.0" = { created_at = 2020-03-25T18:15:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.5.0" }
+"1.5.1" = { created_at = 2020-03-26T06:56:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.5.1" }
+"1.5.2" = { created_at = 2020-03-27T08:15:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.5.2" }
+"1.5.3" = { created_at = 2020-03-31T11:08:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.5.3" }
+"1.5.4" = { created_at = 2020-03-31T14:50:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.5.4" }
+"1.6.0" = { created_at = 2020-04-06T15:43:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.6.0" }
+"1.7.0" = { created_at = 2020-04-21T13:34:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.7.0" }
+"1.7.1" = { created_at = 2020-04-21T14:54:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.7.1" }
+"1.8.0" = { created_at = 2020-05-11T07:24:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.8.0" }
+"1.9.0" = { created_at = 2020-05-29T09:13:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.9.0" }
+"1.10.0" = { created_at = 2020-06-05T11:41:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.10.0" }
+"1.11.0" = { created_at = 2020-06-12T17:53:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.11.0" }
+"1.11.1" = { created_at = 2020-06-22T09:36:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.11.1" }
+"1.12.0" = { created_at = 2020-07-11T09:05:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.12.0" }
+"1.12.1" = { created_at = 2020-07-15T09:52:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.12.1" }
+"1.12.2" = { created_at = 2020-07-15T11:39:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.12.2" }
+"1.13.0" = { created_at = 2020-07-18T09:10:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.13.0" }
+"1.13.1" = { created_at = 2020-07-20T08:38:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.13.1" }
+"1.14.0" = { created_at = 2020-08-07T09:51:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.14.0" }
+"1.15.0" = { created_at = 2020-09-16T08:19:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.15.0" }
+"1.16.0" = { created_at = 2020-09-01T10:25:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.16.0" }
+"1.17.0" = { created_at = 2020-09-04T06:47:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.17.0" }
+"1.18.0" = { created_at = 2020-09-17T09:29:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.18.0" }
+"1.18.1" = { created_at = 2020-09-19T08:34:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.18.1" }
+"1.19.0" = { created_at = 2020-09-26T10:08:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.19.0" }
+"1.20.0" = { created_at = 2020-10-18T06:53:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.20.0" }
+"1.21.0" = { created_at = 2020-10-12T10:51:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.21.0" }
+"1.22.0" = { created_at = 2020-10-20T13:20:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.22.0" }
+"1.23.0" = { created_at = 2020-11-01T09:40:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.23.0" }
+"1.24.0" = { created_at = 2020-11-11T10:56:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.24.0" }
+"1.25.0" = { created_at = 2020-11-14T08:42:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.25.0" }
+"1.26.0" = { created_at = 2020-11-28T18:07:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.26.0" }
+"1.27.0" = { created_at = 2020-12-16T07:33:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.27.0" }
+"1.28.0" = { created_at = 2020-12-23T12:42:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.28.0" }
+"1.29.0" = { created_at = 2020-12-23T12:01:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.29.0" }
+"1.30.0" = { created_at = 2021-01-04T16:42:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.30.0" }
+"1.31.0" = { created_at = 2021-01-17T08:24:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.31.0" }
+"1.32.0" = { created_at = 2021-02-02T16:08:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.32.0" }
+"1.33.0" = { created_at = 2021-02-05T21:03:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.33.0" }
+"1.34.0" = { created_at = 2021-02-10T20:43:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.34.0" }
+"1.35.0" = { created_at = 2021-02-18T08:03:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.35.0" }
+"1.36.0" = { created_at = 2021-02-23T20:21:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.36.0" }
+"1.37.0" = { created_at = 2021-03-10T08:18:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.37.0" }
+"1.38.0" = { created_at = 2021-03-16T22:52:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.38.0" }
+"1.39.0" = { created_at = 2021-03-29T12:13:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.39.0" }
+"1.39.1" = { created_at = 2021-03-29T22:21:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.39.1" }
+"1.40.0" = { created_at = 2021-04-14T07:50:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.40.0" }
+"1.41.0" = { created_at = 2021-04-29T10:00:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.41.0" }
+"1.42.0" = { created_at = 2021-05-08T12:15:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.42.0" }
+"1.43.0" = { created_at = 2021-05-21T14:32:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.43.0" }
+"1.44.0" = { created_at = 2021-06-23T17:52:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.44.0" }
+"1.45.0" = { created_at = 2021-06-23T21:55:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.45.0" }
+"1.45.1" = { created_at = 2021-06-26T12:35:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.45.1" }
+"1.46.0" = { created_at = 2021-07-09T11:56:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.46.0" }
+"1.46.1" = { created_at = 2021-07-14T16:01:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.46.1" }
+"1.47.0" = { created_at = 2021-07-27T16:45:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.47.0" }
+"1.48.0" = { created_at = 2021-08-10T19:19:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.48.0" }
+"1.48.1" = { created_at = 2021-08-12T13:06:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.48.1" }
+"1.49.0" = { created_at = 2021-08-29T07:31:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.49.0" }
+"1.49.1" = { created_at = 2021-08-29T07:49:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.49.1" }
+"1.49.2" = { created_at = 2021-08-29T09:16:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.49.2" }
+"1.50.0" = { created_at = 2021-09-14T19:15:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.50.0" }
+"1.51.0" = { created_at = 2021-09-23T08:11:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.51.0" }
+"1.51.1" = { created_at = 2021-09-27T16:19:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.51.1" }
+"1.52.0" = { created_at = 2021-10-02T08:34:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/1.52.0" }
+"2.0.0" = { created_at = 2021-10-02T10:33:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.0.0" }
+"2.0.1" = { created_at = 2021-10-03T10:46:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.0.1" }
+"2.0.2" = { created_at = 2021-10-05T17:33:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.0.2" }
+"2.1.0" = { created_at = 2021-10-22T17:14:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.1.0" }
+"2.1.1" = { created_at = 2021-10-26T20:54:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.1.1" }
+"2.2.0" = { created_at = 2021-11-18T15:32:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.2.0" }
+"2.2.1" = { created_at = 2021-11-18T19:34:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.2.1" }
+"2.3.0" = { created_at = 2021-11-23T08:40:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.3.0" }
+"2.3.1" = { created_at = 2021-11-25T15:52:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.3.1" }
+"2.3.2" = { created_at = 2021-11-29T11:12:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.3.2" }
+"2.4.0" = { created_at = 2021-12-13T17:23:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.4.0" }
+"2.5.0" = { created_at = 2021-12-27T20:02:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.5.0" }
+"2.6.0" = { created_at = 2022-01-06T18:36:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.6.0" }
+"2.7.0" = { created_at = 2022-01-26T14:21:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.7.0" }
+"2.7.1" = { created_at = 2022-01-26T20:13:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.7.1" }
+"2.7.2" = { created_at = 2022-01-27T17:39:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/2.7.2" }
+"3.0.0" = { created_at = 2022-02-22T13:32:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.0.0" }
+"3.0.1" = { created_at = 2022-03-04T09:19:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.0.1" }
+"3.1.0" = { created_at = 2022-03-28T20:22:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.1.0" }
+"3.2.0" = { created_at = 2022-04-11T09:25:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.2.0" }
+"3.3.0" = { created_at = 2022-04-26T07:30:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.3.0" }
+"3.4.0" = { created_at = 2022-05-14T11:07:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.4.0" }
+"3.5.0" = { created_at = 2022-05-29T20:46:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.5.0" }
+"3.6.0" = { created_at = 2022-06-11T15:19:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.6.0" }
+"3.7.0" = { created_at = 2022-06-19T19:17:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.7.0" }
+"3.8.0" = { created_at = 2022-07-03T20:11:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.8.0" }
+"3.9.0" = { created_at = 2022-07-30T09:32:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.9.0" }
+"3.10.0" = { created_at = 2022-08-20T15:15:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.10.0" }
+"3.11.0" = { created_at = 2022-09-15T14:23:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.11.0" }
+"3.12.0" = { created_at = 2022-09-25T12:30:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.12.0" }
+"3.12.1" = { created_at = 2022-10-19T14:05:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.12.1" }
+"3.13.0" = { created_at = 2022-11-05T18:01:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.13.0" }
+"3.14.0" = { created_at = 2022-11-18T19:32:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.14.0" }
+"3.15.0" = { created_at = 2022-12-19T17:44:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.15.0" }
+"3.16.0" = { created_at = 2023-02-09T08:41:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.16.0" }
+"3.17.0" = { created_at = 2023-03-12T13:21:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.17.0" }
+"3.18.0" = { created_at = 2023-04-14T08:55:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.18.0" }
+"3.19.0" = { created_at = 2023-04-29T10:48:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.19.0" }
+"3.20.0" = { created_at = 2023-05-31T17:06:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.20.0" }
+"3.21.0" = { created_at = 2023-07-11T07:46:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.21.0" }
+"3.21.1" = { created_at = 2023-07-13T07:46:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.21.1" }
+"3.22.0" = { created_at = 2023-07-31T14:41:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.22.0" }
+"3.23.0" = { created_at = 2023-08-16T10:11:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.23.0" }
+"3.23.1" = { created_at = 2023-08-17T10:03:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.23.1" }
+"3.24.0" = { created_at = 2023-08-29T11:39:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.24.0" }
+"3.25.0" = { created_at = 2023-09-04T14:38:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.25.0" }
+"3.26.0" = { created_at = 2023-09-12T07:36:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.26.0" }
+"3.27.0" = { created_at = 2023-09-19T13:29:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.27.0" }
+"3.27.1" = { created_at = 2023-09-21T16:02:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.27.1" }
+"3.28.0" = { created_at = 2023-10-03T10:21:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.28.0" }
+"3.29.0" = { created_at = 2023-10-17T19:56:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.29.0" }
+"3.30.0" = { created_at = 2023-10-20T18:36:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.30.0" }
+"3.31.0" = { created_at = 2023-10-31T09:51:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.31.0" }
+"3.31.2" = { created_at = 2023-11-01T10:35:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.31.2" }
+"3.32.0" = { created_at = 2023-11-14T14:40:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.32.0" }
+"3.32.1" = { created_at = 2023-11-15T09:45:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.32.1" }
+"3.33.0" = { created_at = 2023-11-15T15:02:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.33.0" }
+"3.33.1" = { created_at = 2023-11-17T13:57:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.33.1" }
+"3.33.3" = { created_at = 2023-11-18T11:09:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.33.3" }
+"3.33.4" = { created_at = 2023-11-24T14:01:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.33.4" }
+"3.34.0" = { created_at = 2023-11-30T12:28:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.34.0" }
+"3.35.0" = { created_at = 2023-12-04T15:54:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.35.0" }
+"3.35.1" = { created_at = 2023-12-04T16:40:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.35.1" }
+"3.35.2" = { created_at = 2023-12-05T17:24:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.35.2" }
+"3.35.4" = { created_at = 2023-12-07T19:05:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.35.4" }
+"3.35.5" = { created_at = 2023-12-10T10:25:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.35.5" }
+"3.36.0" = { created_at = 2023-12-15T15:32:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.36.0" }
+"3.36.1" = { created_at = 2023-12-20T17:29:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.36.1" }
+"3.36.2" = { created_at = 2023-12-21T15:31:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.36.2" }
+"3.36.3" = { created_at = 2023-12-22T18:06:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.36.3" }
+"3.36.4" = { created_at = 2023-12-23T19:09:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.36.4" }
+"3.36.5" = { created_at = 2023-12-24T16:49:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.36.5" }
+"3.37.0" = { created_at = 2023-12-28T11:06:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.37.0" }
+"3.38.0" = { created_at = 2024-01-03T16:44:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.38.0" }
+"3.39.0" = { created_at = 2024-01-07T08:58:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.39.0" }
+"3.39.1" = { created_at = 2024-01-08T12:30:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.39.1" }
+"3.39.2" = { created_at = 2024-01-08T16:35:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.39.2" }
+"3.39.3" = { created_at = 2024-01-08T17:57:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.39.3" }
+"3.40.0" = { created_at = 2024-01-15T15:09:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.40.0" }
+"3.41.0" = { created_at = 2024-01-19T18:22:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.41.0" }
+"3.42.0" = { created_at = 2024-01-24T12:45:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.42.0" }
+"3.42.1" = { created_at = 2024-01-26T14:01:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.42.1" }
+"3.42.2" = { created_at = 2024-01-30T07:33:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.42.2" }
+"3.42.3" = { created_at = 2024-02-12T18:35:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/3.42.3" }
+"4.0.0-beta.2" = { created_at = 2024-02-01T18:45:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.0.0-beta.2", prerelease = true }
+"4.0.0-beta.3" = { created_at = 2024-02-05T09:51:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.0.0-beta.3", prerelease = true }
+"4.0.0-beta.4" = { created_at = 2024-02-06T15:25:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.0.0-beta.4", prerelease = true }
+"4.0.0-beta-1" = { created_at = 2024-01-31T16:30:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.0.0-beta-1", prerelease = true }
+"4.0.0" = { created_at = 2024-02-07T17:53:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.0.0" }
+"4.1.0" = { created_at = 2024-02-12T17:30:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.1.0" }
+"4.1.1" = { created_at = 2024-02-12T19:10:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.1.1" }
+"4.1.2" = { created_at = 2024-02-13T11:11:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.1.2" }
+"4.2.0" = { created_at = 2024-02-14T17:59:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.2.0" }
+"4.2.1" = { created_at = 2024-02-15T11:43:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.2.1" }
+"4.2.2" = { created_at = 2024-02-15T15:37:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.2.2" }
+"4.2.3" = { created_at = 2024-02-15T17:30:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.2.3" }
+"4.2.4" = { created_at = 2024-02-16T09:39:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.2.4" }
+"4.2.5" = { created_at = 2024-02-16T13:58:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.2.5" }
+"4.3.0" = { created_at = 2024-02-19T12:04:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.3.0" }
+"4.3.1" = { created_at = 2024-02-20T17:14:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.3.1" }
+"4.3.2" = { created_at = 2024-02-21T10:41:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.3.2" }
+"4.3.3" = { created_at = 2024-02-21T15:52:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.3.3" }
+"4.3.4" = { created_at = 2024-02-21T18:25:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.3.4" }
+"4.4.0" = { created_at = 2024-02-28T13:33:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.4.0" }
+"4.5.0" = { created_at = 2024-03-04T14:28:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.5.0" }
+"4.5.1" = { created_at = 2024-03-05T15:33:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.5.1" }
+"4.6.0" = { created_at = 2024-03-11T14:10:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.6.0" }
+"4.7.0" = { created_at = 2024-03-19T09:03:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.7.0" }
+"4.8.0" = { created_at = 2024-03-26T02:55:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.8.0" }
+"4.8.1" = { created_at = 2024-03-27T14:21:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.8.1" }
+"4.9.0" = { created_at = 2024-04-02T18:58:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.9.0" }
+"4.10.0" = { created_at = 2024-04-22T16:13:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.10.0" }
+"4.10.1" = { created_at = 2024-04-22T18:21:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.10.1" }
+"4.10.2" = { created_at = 2024-04-23T11:33:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.10.2" }
+"4.11.0" = { created_at = 2024-04-29T15:40:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.11.0" }
+"4.12.0" = { created_at = 2024-05-06T17:10:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.12.0" }
+"4.12.1" = { created_at = 2024-05-07T17:20:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.12.1" }
+"4.13.0" = { created_at = 2024-05-14T15:53:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.13.0" }
+"4.14.0" = { created_at = 2024-05-20T16:46:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.14.0" }
+"4.15.0" = { created_at = 2024-05-23T13:54:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.15.0" }
+"4.16.0" = { created_at = 2024-06-04T14:17:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.16.0" }
+"4.16.1" = { created_at = 2024-06-05T08:14:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.16.1" }
+"4.17.0" = { created_at = 2024-06-11T13:26:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.17.0" }
+"4.18.0" = { created_at = 2024-06-18T09:09:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.18.0" }
+"4.19.0" = { created_at = 2024-06-25T11:47:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.19.0" }
+"4.20.0" = { created_at = 2024-07-02T11:03:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.20.0" }
+"4.21.0" = { created_at = 2024-07-16T16:03:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.21.0" }
+"4.21.1" = { created_at = 2024-07-17T09:10:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.21.1" }
+"4.21.2" = { created_at = 2024-07-19T09:21:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.21.2" }
+"4.22.0" = { created_at = 2024-07-30T13:10:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.22.0" }
+"4.23.0" = { created_at = 2024-08-05T13:22:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.23.0" }
+"4.24.0" = { created_at = 2024-08-19T16:54:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.24.0" }
+"4.25.0" = { created_at = 2024-08-27T12:19:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.25.0" }
+"4.26.0" = { created_at = 2024-09-03T15:15:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.26.0" }
+"4.27.0" = { created_at = 2024-09-19T11:04:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.27.0" }
+"4.28.0" = { created_at = 2024-09-25T17:35:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.28.0" }
+"4.28.1" = { created_at = 2024-09-26T14:06:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.28.1" }
+"4.28.2" = { created_at = 2024-10-03T16:38:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.28.2" }
+"4.29.0" = { created_at = 2024-10-08T11:13:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.29.0" }
+"4.29.1" = { created_at = 2024-10-10T10:09:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.29.1" }
+"4.30.0" = { created_at = 2024-10-16T10:58:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.30.0" }
+"4.31.0" = { created_at = 2024-10-23T10:54:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.31.0" }
+"4.32.0" = { created_at = 2024-10-31T15:05:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.32.0" }
+"4.32.1" = { created_at = 2024-11-01T15:34:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.32.1" }
+"4.33.0" = { created_at = 2024-11-07T14:43:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.33.0" }
+"4.34.0" = { created_at = 2024-11-13T16:05:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.34.0" }
+"4.34.1" = { created_at = 2024-11-15T11:29:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.34.1" }
+"4.34.2" = { created_at = 2024-11-15T13:20:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.34.2" }
+"4.34.3" = { created_at = 2024-11-15T16:35:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.34.3" }
+"4.35.0" = { created_at = 2024-11-21T16:11:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.35.0" }
+"4.36.0" = { created_at = 2024-11-27T16:00:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.36.0" }
+"4.37.0" = { created_at = 2024-12-11T18:37:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.37.0" }
+"4.38.0" = { created_at = 2024-12-17T16:20:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.38.0" }
+"4.38.1" = { created_at = 2024-12-18T09:01:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.38.1" }
+"4.38.2" = { created_at = 2024-12-24T17:39:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.38.2" }
+"4.39.0" = { created_at = 2025-01-08T16:47:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.39.0" }
+"4.39.1" = { created_at = 2025-01-10T11:14:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.39.1" }
+"4.40.0" = { created_at = 2025-01-22T17:38:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.40.0" }
+"4.41.0" = { created_at = 2025-02-05T08:46:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.41.0" }
+"4.42.0" = { created_at = 2025-02-13T16:13:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.42.0" }
+"4.43.0" = { created_at = 2025-02-19T12:07:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.43.0" }
+"4.43.1" = { created_at = 2025-02-21T09:43:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.43.1" }
+"4.43.2" = { created_at = 2025-02-25T11:37:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.43.2" }
+"4.44.0" = { created_at = 2025-03-10T15:25:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.44.0" }
+"4.44.1" = { created_at = 2025-03-10T16:56:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.44.1" }
+"4.44.2" = { created_at = 2025-03-11T11:03:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.44.2" }
+"4.44.3" = { created_at = 2025-03-17T17:49:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.44.3" }
+"4.45.0" = { created_at = 2025-03-25T20:30:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.45.0" }
+"4.45.1" = { created_at = 2025-03-27T11:33:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.45.1" }
+"4.46.0" = { created_at = 2025-04-03T11:18:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.46.0" }
+"4.46.1" = { created_at = 2025-04-03T15:26:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.46.1" }
+"4.47.0" = { created_at = 2025-04-07T16:19:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.47.0" }
+"4.48.0" = { created_at = 2025-04-10T14:27:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.48.0" }
+"4.48.1" = { created_at = 2025-04-14T16:24:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.48.1" }
+"4.48.2" = { created_at = 2025-04-23T18:18:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.48.2" }
+"4.49.0" = { created_at = 2025-05-05T14:50:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.49.0" }
+"4.49.1" = { created_at = 2025-05-06T16:19:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.49.1" }
+"4.50.0" = { created_at = 2025-05-15T08:56:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.50.0" }
+"4.50.1" = { created_at = 2025-05-15T16:51:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.50.1" }
+"4.50.2" = { created_at = 2025-05-19T15:27:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.50.2" }
+"4.51.0" = { created_at = 2025-06-03T16:04:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.51.0" }
+"4.51.1" = { created_at = 2025-06-04T07:26:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.51.1" }
+"4.51.2" = { created_at = 2025-06-04T17:23:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.51.2" }
+"4.52.0" = { created_at = 2025-06-05T14:59:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.52.0" }
+"4.52.1" = { created_at = 2025-06-10T16:22:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.52.1" }
+"4.52.2" = { created_at = 2025-06-11T13:00:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.52.2" }
+"4.53.0" = { created_at = 2025-06-12T15:12:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.53.0" }
+"4.53.1" = { created_at = 2025-06-13T07:41:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.53.1" }
+"4.53.2" = { created_at = 2025-06-13T10:21:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.53.2" }
+"4.53.3" = { created_at = 2025-06-13T13:19:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.53.3" }
+"4.53.4" = { created_at = 2025-06-16T14:59:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.53.4" }
+"4.54.0" = { created_at = 2025-06-19T11:51:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.54.0" }
+"4.54.1" = { created_at = 2025-06-20T11:13:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.54.1" }
+"4.54.2" = { created_at = 2025-06-20T12:25:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.54.2" }
+"4.54.3" = { created_at = 2025-06-20T15:17:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.54.3" }
+"4.55.0" = { created_at = 2025-06-29T09:25:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.0" }
+"4.55.1" = { created_at = 2025-06-30T09:27:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.1" }
+"4.55.2" = { created_at = 2025-06-30T12:12:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.2" }
+"4.55.3" = { created_at = 2025-07-02T13:38:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.3" }
+"4.55.4" = { created_at = 2025-07-02T14:45:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.4" }
+"4.55.5" = { created_at = 2025-07-02T15:53:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.5" }
+"4.55.6" = { created_at = 2025-07-25T12:53:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.6" }
+"4.55.7" = { created_at = 2025-07-25T13:58:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.7" }
+"4.55.8" = { created_at = 2025-07-25T14:30:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.8" }
+"4.55.9" = { created_at = 2025-07-25T14:45:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.55.9" }
+"4.56.0" = { created_at = 2025-07-26T12:24:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.56.0" }
+"4.56.1" = { created_at = 2025-07-29T08:12:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.56.1" }
+"4.57.0" = { created_at = 2025-08-01T12:29:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.57.0" }
+"4.57.1" = { created_at = 2025-08-03T12:45:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.57.1" }
+"4.58.0" = { created_at = 2025-08-05T14:03:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.58.0" }
+"4.58.1" = { created_at = 2025-08-06T13:38:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.58.1" }
+"4.59.0" = { created_at = 2025-08-08T09:44:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.59.0" }
+"4.59.1" = { created_at = 2025-08-08T11:28:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.59.1" }
+"4.59.2" = { created_at = 2025-08-09T15:40:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.59.2" }
+"4.60.0" = { created_at = 2025-08-14T13:58:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.60.0" }
+"4.61.0" = { created_at = 2025-08-14T15:32:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.61.0" }
+"4.61.1" = { created_at = 2025-08-15T12:53:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.61.1" }
+"4.61.2" = { created_at = 2025-08-15T13:57:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.61.2" }
+"4.62.0" = { created_at = 2025-08-18T07:29:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.62.0" }
+"4.63.0" = { created_at = 2025-08-18T13:55:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.63.0" }
+"4.63.1" = { created_at = 2025-08-18T15:22:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.63.1" }
+"4.63.2" = { created_at = 2025-08-18T15:46:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.63.2" }
+"4.63.3" = { created_at = 2025-08-19T08:11:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.63.3" }
+"4.64.0" = { created_at = 2025-08-19T14:19:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.64.0" }
+"4.64.1" = { created_at = 2025-08-21T14:05:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.64.1" }
+"4.64.2" = { created_at = 2025-08-22T07:36:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.64.2" }
+"4.65.0" = { created_at = 2025-08-22T10:37:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.0" }
+"4.65.1" = { created_at = 2025-08-26T08:02:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.1" }
+"4.65.2" = { created_at = 2025-08-27T06:29:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.2" }
+"4.65.3" = { created_at = 2025-08-27T11:54:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.3" }
+"4.65.4" = { created_at = 2025-08-27T18:53:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.4" }
+"4.65.5" = { created_at = 2025-08-30T08:54:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.5" }
+"4.65.6" = { created_at = 2025-09-01T09:50:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.6" }
+"4.65.7" = { created_at = 2025-09-02T10:47:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.65.7" }
+"4.66.0" = { created_at = 2025-09-03T08:45:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.66.0" }
+"4.66.1" = { created_at = 2025-09-03T10:49:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.66.1" }
+"4.67.0" = { created_at = 2025-09-05T06:42:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.67.0" }
+"4.67.1" = { created_at = 2025-09-05T08:02:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.67.1" }
+"4.67.2" = { created_at = 2025-09-05T10:53:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.67.2" }
+"4.68.0" = { created_at = 2025-09-08T10:17:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.68.0" }
+"4.69.0" = { created_at = 2025-09-11T13:36:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.69.0" }
+"4.70.0" = { created_at = 2025-09-11T16:32:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.70.0" }
+"4.71.0" = { created_at = 2025-09-12T09:53:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.71.0" }
+"4.72.0" = { created_at = 2025-09-15T16:48:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.72.0" }
+"4.73.0" = { created_at = 2025-09-16T10:17:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.73.0" }
+"4.74.0" = { created_at = 2025-09-16T13:32:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.74.0" }
+"4.74.1" = { created_at = 2025-09-16T20:05:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.74.1" }
+"4.75.0" = { created_at = 2025-09-18T12:32:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.75.0" }
+"4.76.0" = { created_at = 2025-09-18T14:08:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.76.0" }
+"4.76.1" = { created_at = 2025-09-18T17:35:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.76.1" }
+"4.77.0" = { created_at = 2025-09-19T16:05:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.77.0" }
+"4.78.0" = { created_at = 2025-09-19T17:11:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.78.0" }
+"4.78.1" = { created_at = 2025-09-22T17:41:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.78.1" }
+"4.78.2" = { created_at = 2025-09-23T10:19:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.78.2" }
+"4.78.3" = { created_at = 2025-09-23T13:20:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.78.3" }
+"4.78.4" = { created_at = 2025-09-23T16:15:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.78.4" }
+"4.79.0" = { created_at = 2025-09-24T14:46:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.0" }
+"4.79.1" = { created_at = 2025-09-24T15:49:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.1" }
+"4.79.2" = { created_at = 2025-09-24T16:04:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.2" }
+"4.79.3" = { created_at = 2025-09-24T17:29:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.3" }
+"4.79.4" = { created_at = 2025-09-25T14:10:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.4" }
+"4.79.5" = { created_at = 2025-09-26T10:06:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.5" }
+"4.79.6" = { created_at = 2025-09-26T11:09:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.6" }
+"4.79.7" = { created_at = 2025-09-26T13:36:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.79.7" }
+"4.80.0" = { created_at = 2025-09-30T09:43:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.80.0" }
+"4.81.0" = { created_at = 2025-10-02T14:36:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.81.0" }
+"4.81.1" = { created_at = 2025-10-02T15:43:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.81.1" }
+"4.82.0" = { created_at = 2025-10-06T08:35:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.82.0" }
+"4.82.1" = { created_at = 2025-10-06T10:45:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.82.1" }
+"4.82.2" = { created_at = 2025-10-06T17:23:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.82.2" }
+"4.82.3" = { created_at = 2025-10-06T18:39:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.82.3" }
+"4.83.0" = { created_at = 2025-10-07T16:18:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.83.0" }
+"4.84.0" = { created_at = 2025-10-13T16:50:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.84.0" }
+"4.84.1" = { created_at = 2025-10-13T17:11:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.84.1" }
+"4.84.2" = { created_at = 2025-10-13T18:30:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.84.2" }
+"4.84.3" = { created_at = 2025-10-14T11:12:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.84.3" }
+"4.85.0" = { created_at = 2025-10-14T13:17:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.85.0" }
+"4.85.1" = { created_at = 2025-10-14T16:59:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.85.1" }
+"4.85.2" = { created_at = 2025-10-15T08:12:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.85.2" }
+"4.86.0" = { created_at = 2025-10-15T10:31:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.86.0" }
+"4.86.1" = { created_at = 2025-10-15T10:50:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.86.1" }
+"4.86.2" = { created_at = 2025-10-15T15:31:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.86.2" }
+"4.86.3" = { created_at = 2025-10-15T17:30:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.86.3" }
+"4.86.4" = { created_at = 2025-10-16T14:09:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.86.4" }
+"4.87.0" = { created_at = 2025-10-16T14:40:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.87.0" }
+"4.88.0" = { created_at = 2025-10-17T10:50:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.88.0" }
+"4.88.1" = { created_at = 2025-10-20T08:52:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.88.1" }
+"4.89.0" = { created_at = 2025-10-21T13:45:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.89.0" }
+"4.89.1" = { created_at = 2025-10-23T16:03:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.89.1" }
+"4.90.0" = { created_at = 2025-10-23T16:58:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.90.0" }
+"4.91.0" = { created_at = 2025-10-28T17:13:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.91.0" }
+"4.91.1" = { created_at = 2025-10-28T17:47:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.91.1" }
+"4.92.0" = { created_at = 2025-10-29T08:41:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.92.0" }
+"4.92.1" = { created_at = 2025-10-29T10:10:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.92.1" }
+"4.93.0" = { created_at = 2025-10-29T14:02:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.93.0" }
+"4.94.0" = { created_at = 2025-10-29T19:55:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.94.0" }
+"4.95.0" = { created_at = 2025-10-30T18:29:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.95.0" }
+"4.95.1" = { created_at = 2025-10-31T13:40:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.95.1" }
+"4.96.0" = { created_at = 2025-10-31T14:39:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.96.0" }
+"4.97.0" = { created_at = 2025-10-31T15:21:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.97.0" }
+"4.97.1" = { created_at = 2025-10-31T17:35:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.97.1" }
+"4.97.2" = { created_at = 2025-11-01T14:02:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.97.2" }
+"4.98.0" = { created_at = 2025-11-03T11:42:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.98.0" }
+"4.99.0" = { created_at = 2025-11-04T09:49:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.99.0" }
+"4.99.1" = { created_at = 2025-11-05T17:09:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.99.1" }
+"4.99.2" = { created_at = 2025-11-05T17:38:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.99.2" }
+"4.100.0" = { created_at = 2025-11-06T14:42:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.100.0" }
+"4.101.0" = { created_at = 2025-11-07T16:24:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.101.0" }
+"4.102.0" = { created_at = 2025-11-10T13:13:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.102.0" }
+"4.103.0" = { created_at = 2025-11-11T15:17:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.103.0" }
+"4.104.0" = { created_at = 2025-11-12T13:37:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.0" }
+"4.104.1" = { created_at = 2025-11-12T17:39:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.1" }
+"4.104.2" = { created_at = 2025-11-13T14:36:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.2" }
+"4.104.3" = { created_at = 2025-11-13T15:37:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.3" }
+"4.104.4" = { created_at = 2025-11-13T16:02:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.4" }
+"4.104.5" = { created_at = 2025-11-14T09:40:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.5" }
+"4.104.6" = { created_at = 2025-11-14T13:43:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.6" }
+"4.104.7" = { created_at = 2025-11-19T15:00:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.104.7" }
+"4.105.0" = { created_at = 2025-11-20T15:55:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.105.0" }
+"4.105.1" = { created_at = 2025-11-21T09:43:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.105.1" }
+"4.106.0" = { created_at = 2025-11-21T13:45:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.106.0" }
+"4.106.1" = { created_at = 2025-11-21T16:38:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.106.1" }
+"4.106.2" = { created_at = 2025-11-21T18:27:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.106.2" }
+"4.106.3" = { created_at = 2025-11-24T20:40:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.106.3" }
+"4.107.0" = { created_at = 2025-11-25T11:15:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.107.0" }
+"4.107.1" = { created_at = 2025-11-25T11:43:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.107.1" }
+"4.107.2" = { created_at = 2025-11-25T16:20:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.107.2" }
+"4.108.0" = { created_at = 2025-11-26T17:16:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.108.0" }
+"4.108.1" = { created_at = 2025-11-26T17:50:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.108.1" }
+"4.109.0" = { created_at = 2025-11-27T08:32:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.109.0" }
+"4.109.1" = { created_at = 2025-11-27T17:09:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.109.1" }
+"4.109.2" = { created_at = 2025-11-30T10:54:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.109.2" }
+"4.110.0" = { created_at = 2025-12-01T08:48:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.110.0" }
+"4.110.1" = { created_at = 2025-12-01T13:53:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.110.1" }
+"4.110.2" = { created_at = 2025-12-02T08:29:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.110.2" }
+"4.110.3" = { created_at = 2025-12-02T09:12:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.110.3" }
+"4.111.0" = { created_at = 2025-12-04T16:43:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.111.0" }
+"4.111.1" = { created_at = 2025-12-04T17:53:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.111.1" }
+"4.112.0" = { created_at = 2025-12-09T08:59:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.112.0" }
+"4.113.0" = { created_at = 2025-12-10T15:00:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.113.0" }
+"4.113.1" = { created_at = 2025-12-11T09:19:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.113.1" }
+"4.114.0" = { created_at = 2025-12-11T16:15:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.114.0" }
+"4.115.0" = { created_at = 2025-12-11T19:45:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.115.0" }
+"4.115.1" = { created_at = 2025-12-12T08:50:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.115.1" }
+"4.116.0" = { created_at = 2025-12-16T11:16:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.116.0" }
+"4.116.1" = { created_at = 2025-12-16T16:18:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.116.1" }
+"4.116.2" = { created_at = 2025-12-17T13:12:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.116.2" }
+"4.117.0" = { created_at = 2025-12-18T15:04:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.117.0" }
+"4.118.0" = { created_at = 2025-12-19T16:25:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.118.0" }
+"4.118.1" = { created_at = 2025-12-22T13:36:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.118.1" }
+"4.118.2" = { created_at = 2025-12-30T10:46:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.118.2" }
+"4.119.0" = { created_at = 2025-12-30T14:24:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.119.0" }
+"4.119.1" = { created_at = 2025-12-30T16:50:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.119.1" }
+"4.119.2" = { created_at = 2026-01-06T14:52:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.119.2" }
+"4.119.3" = { created_at = 2026-01-07T14:59:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.119.3" }
+"4.119.4" = { created_at = 2026-01-09T12:19:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.119.4" }
+"4.120.0" = { created_at = 2026-01-09T12:47:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.120.0" }
+"4.121.0" = { created_at = 2026-01-09T17:12:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.121.0" }
+"4.122.0" = { created_at = 2026-01-12T12:39:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.122.0" }
+"4.122.1" = { created_at = 2026-01-12T18:21:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.122.1" }
+"4.122.2" = { created_at = 2026-01-13T18:20:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.122.2" }
+"4.123.0" = { created_at = 2026-01-13T18:56:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.123.0" }
+"4.124.0" = { created_at = 2026-01-14T12:34:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.124.0" }
+"4.124.1" = { created_at = 2026-01-14T18:49:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.124.1" }
+"4.125.0" = { created_at = 2026-01-15T14:40:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.125.0" }
+"4.126.0" = { created_at = 2026-01-16T09:15:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.126.0" }
+"4.127.0" = { created_at = 2026-01-16T11:05:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.127.0" }
+"4.127.1" = { created_at = 2026-01-16T15:47:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.127.1" }
+"4.128.0" = { created_at = 2026-01-16T17:27:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.128.0" }
+"4.128.1" = { created_at = 2026-01-16T18:10:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.128.1" }
+"4.128.2" = { created_at = 2026-01-18T17:25:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.128.2" }
+"4.128.3" = { created_at = 2026-01-19T11:40:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.128.3" }
+"4.129.0" = { created_at = 2026-01-19T12:31:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.129.0" }
+"4.129.1" = { created_at = 2026-01-21T12:16:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.129.1" }
+"4.129.2" = { created_at = 2026-01-21T17:24:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.129.2" }
+"4.130.0" = { created_at = 2026-01-21T18:06:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.130.0" }
+"4.130.1" = { created_at = 2026-01-22T12:11:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.130.1" }
+"4.130.2" = { created_at = 2026-01-22T19:13:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.130.2" }
+"4.130.3" = { created_at = 2026-01-23T10:54:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.130.3" }
+"4.131.0" = { created_at = 2026-01-23T12:30:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.131.0" }
+"4.131.1" = { created_at = 2026-01-24T11:07:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.131.1" }
+"4.131.2" = { created_at = 2026-01-28T12:33:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.131.2" }
+"4.132.0" = { created_at = 2026-01-28T14:39:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.132.0" }
+"4.132.1" = { created_at = 2026-01-29T08:29:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.132.1" }
+"4.133.0" = { created_at = 2026-01-29T14:46:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.133.0" }
+"4.133.1" = { created_at = 2026-01-29T19:10:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.133.1" }
+"4.133.2" = { created_at = 2026-01-30T13:55:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.133.2" }
+"4.133.3" = { created_at = 2026-01-30T15:02:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.133.3" }
+"4.133.4" = { created_at = 2026-01-30T16:16:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.133.4" }
+"4.134.0" = { created_at = 2026-01-31T08:21:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.134.0" }
+"4.134.1" = { created_at = 2026-02-02T14:40:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.134.1" }
+"4.135.0" = { created_at = 2026-02-02T16:01:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.135.0" }
+"4.135.1" = { created_at = 2026-02-02T16:21:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.135.1" }
+"4.135.2" = { created_at = 2026-02-02T17:56:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.135.2" }
+"4.136.0" = { created_at = 2026-02-03T09:33:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.136.0" }
+"4.137.0" = { created_at = 2026-02-03T17:30:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.137.0" }
+"4.137.1" = { created_at = 2026-02-04T11:53:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.137.1" }
+"4.138.0" = { created_at = 2026-02-04T13:20:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.138.0" }
+"4.138.1" = { created_at = 2026-02-05T14:39:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.138.1" }
+"4.139.0" = { created_at = 2026-02-05T17:46:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.139.0" }
+"4.139.1" = { created_at = 2026-02-05T18:20:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.139.1" }
+"4.140.0" = { created_at = 2026-02-05T22:37:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.140.0" }
+"4.140.1" = { created_at = 2026-02-06T10:47:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.140.1" }
+"4.140.2" = { created_at = 2026-02-06T17:46:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.140.2" }
+"4.141.0" = { created_at = 2026-02-07T10:25:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.141.0" }
+"4.141.1" = { created_at = 2026-02-09T15:37:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.141.1" }
+"4.142.0" = { created_at = 2026-02-09T22:05:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.142.0" }
+"4.142.1" = { created_at = 2026-02-10T14:07:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.142.1" }
+"4.143.0" = { created_at = 2026-02-11T08:47:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.143.0" }
+"4.144.0" = { created_at = 2026-02-12T09:01:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.144.0" }
+"4.144.1" = { created_at = 2026-02-12T09:55:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.144.1" }
+"4.144.2" = { created_at = 2026-02-12T11:09:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.144.2" }
+"4.144.3" = { created_at = 2026-02-12T11:45:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.144.3" }
+"4.144.4" = { created_at = 2026-02-12T12:33:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.144.4" }
+"4.145.0" = { created_at = 2026-02-12T16:35:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.145.0" }
+"4.146.0" = { created_at = 2026-02-13T21:46:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.146.0" }
+"4.146.1" = { created_at = 2026-02-16T10:28:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.146.1" }
+"4.146.2" = { created_at = 2026-02-16T15:44:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.146.2" }
+"4.147.0" = { created_at = 2026-02-18T11:36:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.147.0" }
+"4.148.0" = { created_at = 2026-02-18T14:59:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.148.0" }
+"4.148.1" = { created_at = 2026-02-18T16:37:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.148.1" }
+"4.148.2" = { created_at = 2026-02-19T08:45:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.148.2" }
+"4.148.3" = { created_at = 2026-02-19T15:30:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.148.3" }
+"4.148.4" = { created_at = 2026-02-19T17:12:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.148.4" }
+"4.149.0" = { created_at = 2026-02-20T07:46:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.149.0" }
+"4.149.1" = { created_at = 2026-02-20T10:05:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.149.1" }
+"4.150.0" = { created_at = 2026-02-20T13:21:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.150.0" }
+"4.150.1" = { created_at = 2026-02-23T09:57:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.150.1" }
+"4.151.0" = { created_at = 2026-02-23T10:23:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.151.0" }
+"4.151.1" = { created_at = 2026-02-23T17:13:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.151.1" }
+"4.152.0" = { created_at = 2026-02-24T15:12:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.152.0" }
+"4.153.0" = { created_at = 2026-02-28T18:50:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.153.0" }
+"4.153.1" = { created_at = 2026-03-02T22:56:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.153.1" }
+"4.153.2" = { created_at = 2026-03-03T11:13:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.153.2" }
+"4.154.0" = { created_at = 2026-03-03T13:20:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.154.0" }
+"4.154.1" = { created_at = 2026-03-03T16:05:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.154.1" }
+"4.154.2" = { created_at = 2026-03-03T17:08:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.154.2" }
+"4.154.3" = { created_at = 2026-03-04T10:16:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.154.3" }
+"4.154.4" = { created_at = 2026-03-04T11:51:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.154.4" }
+"4.154.5" = { created_at = 2026-03-04T12:53:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.154.5" }
+"4.155.0" = { created_at = 2026-03-04T18:03:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.0" }
+"4.155.1" = { created_at = 2026-03-05T18:31:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.1" }
+"4.155.2" = { created_at = 2026-03-06T14:27:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.2" }
+"4.155.3" = { created_at = 2026-03-06T18:43:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.3" }
+"4.155.4" = { created_at = 2026-03-09T15:32:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.4" }
+"4.155.5" = { created_at = 2026-03-10T11:50:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.5" }
+"4.155.6" = { created_at = 2026-03-10T14:22:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.155.6" }
+"4.156.0" = { created_at = 2026-03-10T20:47:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.156.0" }
+"4.157.0" = { created_at = 2026-03-12T14:12:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.157.0" }
+"4.157.1" = { created_at = 2026-03-12T16:23:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.157.1" }
+"4.157.2" = { created_at = 2026-03-12T17:10:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.157.2" }
+"4.157.3" = { created_at = 2026-03-12T18:23:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.157.3" }
+"4.157.4" = { created_at = 2026-03-13T10:47:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.157.4" }
+"4.158.0" = { created_at = 2026-03-13T14:23:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.158.0" }
+"4.158.1" = { created_at = 2026-03-13T16:10:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.158.1" }
+"4.158.2" = { created_at = 2026-03-13T17:14:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.158.2" }
+"4.159.0" = { created_at = 2026-03-17T11:52:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.159.0" }
+"4.159.1" = { created_at = 2026-03-17T14:52:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.159.1" }
+"4.160.0" = { created_at = 2026-03-17T17:30:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.160.0" }
+"4.160.1" = { created_at = 2026-03-18T12:12:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.160.1" }
+"4.160.2" = { created_at = 2026-03-18T12:48:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.160.2" }
+"4.160.3" = { created_at = 2026-03-18T13:48:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.160.3" }
+"4.161.0" = { created_at = 2026-03-18T18:12:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.161.0" }
+"4.161.1" = { created_at = 2026-03-19T12:22:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.161.1" }
+"4.161.2" = { created_at = 2026-03-19T15:01:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.161.2" }
+"4.161.3" = { created_at = 2026-03-19T16:17:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.161.3" }
+"4.161.4" = { created_at = 2026-03-19T20:21:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.161.4" }
+"4.162.0" = { created_at = 2026-03-19T21:03:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.162.0" }
+"4.162.1" = { created_at = 2026-03-20T17:46:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.162.1" }
+"4.163.0" = { created_at = 2026-03-23T16:40:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.163.0" }
+"4.163.1" = { created_at = 2026-03-23T18:36:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.163.1" }
+"4.164.0" = { created_at = 2026-03-24T07:59:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.164.0" }
+"4.164.1" = { created_at = 2026-03-24T10:29:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.164.1" }
+"4.164.2" = { created_at = 2026-03-24T16:01:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.164.2" }
+"4.165.0" = { created_at = 2026-03-24T16:42:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.165.0" }
+"4.166.0" = { created_at = 2026-03-24T17:08:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.166.0" }
+"4.166.1" = { created_at = 2026-03-25T09:32:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.166.1" }
+"4.166.2" = { created_at = 2026-03-25T10:11:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.166.2" }
+"4.167.0" = { created_at = 2026-03-25T12:02:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.167.0" }
+"4.168.0" = { created_at = 2026-03-25T21:03:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.168.0" }
+"4.169.0" = { created_at = 2026-03-26T09:11:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.169.0" }
+"4.169.1" = { created_at = 2026-03-26T17:03:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.169.1" }
+"4.169.2" = { created_at = 2026-03-27T17:42:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.169.2" }
+"4.170.0" = { created_at = 2026-03-29T19:35:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.170.0" }
+"4.170.1" = { created_at = 2026-03-30T10:59:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.170.1" }
+"4.171.0" = { created_at = 2026-03-30T12:20:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.171.0" }
+"4.171.1" = { created_at = 2026-03-30T16:20:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.171.1" }
+"4.171.2" = { created_at = 2026-03-30T16:49:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.171.2" }
+"4.171.3" = { created_at = 2026-03-31T08:18:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.171.3" }
+"4.171.4" = { created_at = 2026-03-31T12:30:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.171.4" }
+"4.171.5" = { created_at = 2026-03-31T13:20:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.171.5" }
+"4.172.0" = { created_at = 2026-03-31T17:46:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.172.0" }
+"4.172.1" = { created_at = 2026-04-01T08:26:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.172.1" }
+"4.173.0" = { created_at = 2026-04-01T16:09:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.173.0" }
+"4.173.1" = { created_at = 2026-04-01T18:25:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.173.1" }
+"4.174.0" = { created_at = 2026-04-01T19:09:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.0" }
+"4.174.1" = { created_at = 2026-04-01T22:46:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.1" }
+"4.174.2" = { created_at = 2026-04-02T09:17:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.2" }
+"4.174.3" = { created_at = 2026-04-07T10:42:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.3" }
+"4.174.4" = { created_at = 2026-04-07T11:40:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.4" }
+"4.174.5" = { created_at = 2026-04-07T15:08:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.5" }
+"4.174.6" = { created_at = 2026-04-07T15:36:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.6" }
+"4.174.7" = { created_at = 2026-04-07T17:04:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.174.7" }
+"4.175.0" = { created_at = 2026-04-07T18:02:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.175.0" }
+"4.176.0" = { created_at = 2026-04-08T10:28:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.176.0" }
+"4.176.1" = { created_at = 2026-04-08T15:23:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.176.1" }
+"4.176.2" = { created_at = 2026-04-08T17:37:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.176.2" }
+"4.176.3" = { created_at = 2026-04-09T08:43:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.176.3" }
+"4.176.4" = { created_at = 2026-04-09T09:40:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.176.4" }
+"4.177.0" = { created_at = 2026-04-09T13:31:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.177.0" }
+"4.178.0" = { created_at = 2026-04-09T16:06:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.178.0" }
+"4.178.1" = { created_at = 2026-04-10T07:53:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.178.1" }
+"4.179.0" = { created_at = 2026-04-10T13:53:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.179.0" }
+"4.179.1" = { created_at = 2026-04-11T01:13:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.179.1" }
+"4.179.2" = { created_at = 2026-04-11T11:56:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.179.2" }
+"4.179.3" = { created_at = 2026-04-11T12:19:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.179.3" }
+"4.180.0" = { created_at = 2026-04-12T14:46:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.180.0" }
+"4.181.0" = { created_at = 2026-04-16T17:39:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.181.0" }
+"4.181.1" = { created_at = 2026-04-17T11:49:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.181.1" }
+"4.182.0" = { created_at = 2026-04-17T16:54:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.182.0" }
+"4.182.1" = { created_at = 2026-04-21T10:59:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.182.1" }
+"4.183.0" = { created_at = 2026-04-21T13:23:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.183.0" }
+"4.183.1" = { created_at = 2026-04-22T09:55:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.183.1" }
+"4.184.0" = { created_at = 2026-04-22T17:38:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.184.0" }
+"4.184.1" = { created_at = 2026-04-22T21:37:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.184.1" }
+"4.184.2" = { created_at = 2026-04-23T10:54:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.184.2" }
+"4.185.0" = { created_at = 2026-04-23T15:52:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.185.0" }
+"4.185.1" = { created_at = 2026-04-23T17:10:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.185.1" }
+"4.186.0" = { created_at = 2026-04-24T11:03:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.186.0" }
+"4.186.1" = { created_at = 2026-04-24T11:56:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.186.1" }
+"4.186.2" = { created_at = 2026-04-24T13:27:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.186.2" }
+"4.187.0" = { created_at = 2026-04-27T08:14:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.187.0" }
+"4.188.0" = { created_at = 2026-04-27T10:19:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.188.0" }
+"4.188.1" = { created_at = 2026-04-27T13:31:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.188.1" }
+"4.188.2" = { created_at = 2026-04-27T13:56:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.188.2" }
+"4.188.3" = { created_at = 2026-04-27T17:00:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.188.3" }
+"4.188.4" = { created_at = 2026-04-28T09:51:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.188.4" }
+"4.188.5" = { created_at = 2026-04-28T13:15:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.188.5" }
+"4.189.0" = { created_at = 2026-04-28T14:16:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.189.0" }
+"4.190.0" = { created_at = 2026-04-28T16:01:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.190.0" }
+"4.190.1" = { created_at = 2026-04-29T11:49:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.190.1" }
+"4.191.0" = { created_at = 2026-04-29T13:30:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.0" }
+"4.191.1" = { created_at = 2026-04-29T21:26:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.1" }
+"4.191.2" = { created_at = 2026-04-30T13:54:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.2" }
+"4.191.3" = { created_at = 2026-04-30T15:56:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.3" }
+"4.191.4" = { created_at = 2026-04-30T16:34:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.4" }
+"4.191.5" = { created_at = 2026-05-01T09:00:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.5" }
+"4.191.6" = { created_at = 2026-05-04T11:36:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.6" }
+"4.191.7" = { created_at = 2026-05-05T10:26:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.7" }
+"4.191.8" = { created_at = 2026-05-05T14:52:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.191.8" }
+"4.192.0" = { created_at = 2026-05-07T12:27:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.192.0" }
+"4.192.1" = { created_at = 2026-05-08T10:18:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.192.1" }
+"4.192.2" = { created_at = 2026-05-08T14:03:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.192.2" }
+"4.192.3" = { created_at = 2026-05-08T15:02:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.192.3" }
+"4.192.4" = { created_at = 2026-05-11T08:59:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.192.4" }
+"4.193.0" = { created_at = 2026-05-11T15:24:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.193.0" }
+"4.193.1" = { created_at = 2026-05-11T17:24:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.193.1" }
+"4.193.2" = { created_at = 2026-05-12T08:39:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.193.2" }
+"4.193.3" = { created_at = 2026-05-12T15:40:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.193.3" }
+"4.193.4" = { created_at = 2026-05-13T10:45:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.193.4" }
+"4.193.5" = { created_at = 2026-07-13T08:24:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.193.5" }
+"4.194.0" = { created_at = 2026-05-13T13:22:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.194.0" }
+"4.194.1" = { created_at = 2026-05-14T11:18:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.194.1" }
+"4.194.2" = { created_at = 2026-05-15T08:31:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.194.2" }
+"4.194.3" = { created_at = 2026-05-15T10:35:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.194.3" }
+"4.194.4" = { created_at = 2026-05-15T15:02:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.194.4" }
+"4.195.0" = { created_at = 2026-05-18T07:19:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.0" }
+"4.195.1" = { created_at = 2026-05-18T14:53:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.1" }
+"4.195.2" = { created_at = 2026-05-19T17:22:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.2" }
+"4.195.3" = { created_at = 2026-05-21T12:24:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.3" }
+"4.195.4" = { created_at = 2026-05-21T14:58:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.4" }
+"4.195.5" = { created_at = 2026-05-21T18:53:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.5" }
+"4.195.6" = { created_at = 2026-05-22T15:24:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.6" }
+"4.195.7" = { created_at = 2026-05-26T14:39:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.7" }
+"4.195.8" = { created_at = 2026-05-27T14:39:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.8" }
+"4.195.9" = { created_at = 2026-05-27T19:00:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.9" }
+"4.195.10" = { created_at = 2026-05-29T13:12:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.10" }
+"4.195.11" = { created_at = 2026-05-29T16:54:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.11" }
+"4.195.12" = { created_at = 2026-06-01T14:42:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.12" }
+"4.195.13" = { created_at = 2026-06-02T12:09:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.13" }
+"4.195.14" = { created_at = 2026-06-02T16:30:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.14" }
+"4.195.15" = { created_at = 2026-06-03T13:44:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.15" }
+"4.195.16" = { created_at = 2026-06-03T17:39:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.16" }
+"4.195.17" = { created_at = 2026-06-04T17:14:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.195.17" }
+"4.196.0" = { created_at = 2026-06-05T15:28:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.196.0" }
+"4.196.1" = { created_at = 2026-06-06T18:32:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.196.1" }
+"4.197.0" = { created_at = 2026-06-08T18:15:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.197.0" }
+"4.197.1" = { created_at = 2026-06-09T12:08:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.197.1" }
+"4.197.2" = { created_at = 2026-07-21T20:22:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.197.2" }
+"4.197.3" = { created_at = 2026-07-23T12:00:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.197.3" }
+"4.198.0" = { created_at = 2026-06-09T15:51:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.198.0" }
+"4.198.1" = { created_at = 2026-06-09T16:49:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.198.1" }
+"4.198.2" = { created_at = 2026-06-10T11:51:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.198.2" }
+"4.198.3" = { created_at = 2026-06-10T13:04:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.198.3" }
+"4.199.0" = { created_at = 2026-06-11T13:24:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.199.0" }
+"4.199.1" = { created_at = 2026-06-11T14:24:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.199.1" }
+"4.199.2" = { created_at = 2026-06-11T17:08:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.199.2" }
+"4.200.0" = { created_at = 2026-06-11T19:25:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.200.0" }
+"4.200.1" = { created_at = 2026-06-12T16:18:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.200.1" }
+"4.200.2" = { created_at = 2026-06-15T12:22:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.200.2" }
+"4.200.3" = { created_at = 2026-06-15T13:03:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.200.3" }
+"4.200.4" = { created_at = 2026-06-15T14:07:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.200.4" }
+"4.200.5" = { created_at = 2026-06-15T14:58:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.200.5" }
+"4.201.0-canary.1" = { created_at = 2026-06-15T16:02:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.1", prerelease = true }
+"4.201.0-canary.2" = { created_at = 2026-06-16T08:59:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.2", prerelease = true }
+"4.201.0-canary.3" = { created_at = 2026-06-16T12:39:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.3", prerelease = true }
+"4.201.0-canary.4" = { created_at = 2026-06-16T13:26:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.4", prerelease = true }
+"4.201.0-canary.5" = { created_at = 2026-06-16T14:28:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.5", prerelease = true }
+"4.201.0-canary.6" = { created_at = 2026-06-17T08:44:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.6", prerelease = true }
+"4.201.0-canary.7" = { created_at = 2026-06-17T09:39:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.7", prerelease = true }
+"4.201.0-canary.8" = { created_at = 2026-06-17T14:27:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.8", prerelease = true }
+"4.201.0-canary.9" = { created_at = 2026-06-18T10:10:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.9", prerelease = true }
+"4.201.0-canary.10" = { created_at = 2026-06-18T12:30:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.10", prerelease = true }
+"4.201.0-canary.11" = { created_at = 2026-06-18T14:01:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.11", prerelease = true }
+"4.201.0-canary.12" = { created_at = 2026-06-18T15:56:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.12", prerelease = true }
+"4.201.0-canary.13" = { created_at = 2026-06-18T19:00:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.13", prerelease = true }
+"4.201.0-canary.14" = { created_at = 2026-06-19T08:06:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.14", prerelease = true }
+"4.201.0-canary.15" = { created_at = 2026-06-19T09:32:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.15", prerelease = true }
+"4.201.0-canary.16" = { created_at = 2026-06-19T10:29:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.16", prerelease = true }
+"4.201.0-canary.17" = { created_at = 2026-06-19T14:39:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.17", prerelease = true }
+"4.201.0-canary.18" = { created_at = 2026-06-19T15:22:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.18", prerelease = true }
+"4.201.0-canary.19" = { created_at = 2026-06-20T14:43:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-canary.19", prerelease = true }
+"4.201.0-rc.1" = { created_at = 2026-06-22T21:48:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-rc.1", prerelease = true }
+"4.201.0-rc.2" = { created_at = 2026-06-24T18:23:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-rc.2", prerelease = true }
+"4.201.0-rc.3" = { created_at = 2026-06-26T11:25:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-rc.3", prerelease = true }
+"4.201.0-rc.4" = { created_at = 2026-06-29T15:25:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-rc.4", prerelease = true }
+"4.201.0-rc.5" = { created_at = 2026-06-30T18:14:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-rc.5", prerelease = true }
+"4.201.0-rc.6" = { created_at = 2026-07-02T15:53:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0-rc.6", prerelease = true }
+"4.201.0" = { created_at = 2026-07-03T07:53:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.201.0" }
+"4.202.0-canary.1" = { created_at = 2026-06-24T17:16:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.1", prerelease = true }
+"4.202.0-canary.2" = { created_at = 2026-06-25T16:28:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.2", prerelease = true }
+"4.202.0-canary.3" = { created_at = 2026-06-25T18:31:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.3", prerelease = true }
+"4.202.0-canary.4" = { created_at = 2026-06-25T19:13:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.4", prerelease = true }
+"4.202.0-canary.5" = { created_at = 2026-06-26T07:53:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.5", prerelease = true }
+"4.202.0-canary.6" = { created_at = 2026-06-26T09:34:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.6", prerelease = true }
+"4.202.0-canary.7" = { created_at = 2026-06-26T11:07:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.7", prerelease = true }
+"4.202.0-canary.8" = { created_at = 2026-06-26T12:12:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.8", prerelease = true }
+"4.202.0-canary.9" = { created_at = 2026-06-29T12:25:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.9", prerelease = true }
+"4.202.0-canary.10" = { created_at = 2026-06-29T12:50:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.10", prerelease = true }
+"4.202.0-canary.11" = { created_at = 2026-06-29T14:51:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.11", prerelease = true }
+"4.202.0-canary.12" = { created_at = 2026-06-29T15:59:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.12", prerelease = true }
+"4.202.0-canary.13" = { created_at = 2026-06-29T16:56:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.13", prerelease = true }
+"4.202.0-canary.14" = { created_at = 2026-06-29T17:21:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.14", prerelease = true }
+"4.202.0-canary.15" = { created_at = 2026-06-29T17:45:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.15", prerelease = true }
+"4.202.0-canary.16" = { created_at = 2026-06-29T18:11:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.16", prerelease = true }
+"4.202.0-canary.17" = { created_at = 2026-06-30T10:15:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.17", prerelease = true }
+"4.202.0-canary.18" = { created_at = 2026-06-30T11:53:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.18", prerelease = true }
+"4.202.0-canary.19" = { created_at = 2026-06-30T13:51:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.19", prerelease = true }
+"4.202.0-canary.20" = { created_at = 2026-06-30T14:54:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.20", prerelease = true }
+"4.202.0-canary.21" = { created_at = 2026-06-30T17:49:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.21", prerelease = true }
+"4.202.0-canary.22" = { created_at = 2026-07-01T07:49:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.22", prerelease = true }
+"4.202.0-canary.23" = { created_at = 2026-07-01T14:42:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.23", prerelease = true }
+"4.202.0-canary.24" = { created_at = 2026-07-02T09:42:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.24", prerelease = true }
+"4.202.0-canary.25" = { created_at = 2026-07-02T10:08:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.25", prerelease = true }
+"4.202.0-canary.26" = { created_at = 2026-07-02T10:32:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.26", prerelease = true }
+"4.202.0-canary.27" = { created_at = 2026-07-02T11:54:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.27", prerelease = true }
+"4.202.0-canary.28" = { created_at = 2026-07-02T12:27:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.28", prerelease = true }
+"4.202.0-canary.29" = { created_at = 2026-07-02T13:27:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.29", prerelease = true }
+"4.202.0-canary.30" = { created_at = 2026-07-02T15:03:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.30", prerelease = true }
+"4.202.0-canary.31" = { created_at = 2026-07-02T15:28:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.31", prerelease = true }
+"4.202.0-canary.32" = { created_at = 2026-07-02T17:13:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.32", prerelease = true }
+"4.202.0-canary.33" = { created_at = 2026-07-03T08:54:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-canary.33", prerelease = true }
+"4.202.0-rc.1" = { created_at = 2026-07-03T09:12:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-rc.1", prerelease = true }
+"4.202.0-rc.2" = { created_at = 2026-07-03T13:18:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-rc.2", prerelease = true }
+"4.202.0-rc.3" = { created_at = 2026-07-03T16:57:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0-rc.3", prerelease = true }
+"4.202.0" = { created_at = 2026-07-08T08:31:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.0" }
+"4.202.1" = { created_at = 2026-07-10T17:19:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.1" }
+"4.202.2" = { created_at = 2026-07-13T16:02:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.2" }
+"4.202.3" = { created_at = 2026-07-16T09:57:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.3" }
+"4.202.4" = { created_at = 2026-07-16T19:05:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.4" }
+"4.202.5" = { created_at = 2026-07-17T15:18:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.5" }
+"4.202.6" = { created_at = 2026-07-21T19:38:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.6" }
+"4.202.7" = { created_at = 2026-08-07T06:23:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.7" }
+"4.202.8" = { created_at = 2026-08-09T18:13:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.202.8" }
+"4.203.0-canary.1" = { created_at = 2026-07-03T09:50:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.1", prerelease = true }
+"4.203.0-canary.2" = { created_at = 2026-07-03T12:55:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.2", prerelease = true }
+"4.203.0-canary.3" = { created_at = 2026-07-03T13:48:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.3", prerelease = true }
+"4.203.0-canary.4" = { created_at = 2026-07-03T14:23:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.4", prerelease = true }
+"4.203.0-canary.5" = { created_at = 2026-07-03T17:20:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.5", prerelease = true }
+"4.203.0-canary.6" = { created_at = 2026-07-03T17:43:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.6", prerelease = true }
+"4.203.0-canary.7" = { created_at = 2026-07-06T10:06:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.7", prerelease = true }
+"4.203.0-canary.8" = { created_at = 2026-07-06T11:39:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.8", prerelease = true }
+"4.203.0-canary.9" = { created_at = 2026-07-07T10:50:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.9", prerelease = true }
+"4.203.0-canary.10" = { created_at = 2026-07-07T16:00:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.10", prerelease = true }
+"4.203.0-canary.11" = { created_at = 2026-07-07T18:03:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.11", prerelease = true }
+"4.203.0-canary.12" = { created_at = 2026-07-07T19:21:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.12", prerelease = true }
+"4.203.0-canary.13" = { created_at = 2026-07-07T21:43:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.13", prerelease = true }
+"4.203.0-canary.14" = { created_at = 2026-07-08T08:03:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.14", prerelease = true }
+"4.203.0-canary.15" = { created_at = 2026-07-08T10:54:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.15", prerelease = true }
+"4.203.0-canary.16" = { created_at = 2026-07-08T15:20:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.16", prerelease = true }
+"4.203.0-canary.17" = { created_at = 2026-07-09T17:10:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.17", prerelease = true }
+"4.203.0-canary.18" = { created_at = 2026-07-09T17:40:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.18", prerelease = true }
+"4.203.0-canary.19" = { created_at = 2026-07-09T18:06:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.19", prerelease = true }
+"4.203.0-canary.20" = { created_at = 2026-07-12T08:59:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.20", prerelease = true }
+"4.203.0-canary.21" = { created_at = 2026-07-12T20:03:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.21", prerelease = true }
+"4.203.0-canary.22" = { created_at = 2026-07-13T09:45:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.22", prerelease = true }
+"4.203.0-canary.23" = { created_at = 2026-07-13T13:23:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.23", prerelease = true }
+"4.203.0-canary.24" = { created_at = 2026-07-13T13:54:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.24", prerelease = true }
+"4.203.0-canary.25" = { created_at = 2026-07-13T20:45:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.25", prerelease = true }
+"4.203.0-canary.26" = { created_at = 2026-07-13T21:10:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.26", prerelease = true }
+"4.203.0-canary.27" = { created_at = 2026-07-14T07:23:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.27", prerelease = true }
+"4.203.0-canary.28" = { created_at = 2026-07-14T10:26:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.28", prerelease = true }
+"4.203.0-canary.29" = { created_at = 2026-07-14T12:50:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.29", prerelease = true }
+"4.203.0-canary.30" = { created_at = 2026-07-14T13:50:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.30", prerelease = true }
+"4.203.0-canary.31" = { created_at = 2026-07-14T14:16:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.31", prerelease = true }
+"4.203.0-canary.32" = { created_at = 2026-07-14T15:30:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.32", prerelease = true }
+"4.203.0-canary.33" = { created_at = 2026-07-15T09:54:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.33", prerelease = true }
+"4.203.0-canary.34" = { created_at = 2026-07-17T18:31:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.34", prerelease = true }
+"4.203.0-canary.35" = { created_at = 2026-07-18T04:33:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.35", prerelease = true }
+"4.203.0-canary.36" = { created_at = 2026-07-20T16:13:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.36", prerelease = true }
+"4.203.0-canary.37" = { created_at = 2026-07-20T18:31:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.37", prerelease = true }
+"4.203.0-canary.38" = { created_at = 2026-07-20T22:15:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.38", prerelease = true }
+"4.203.0-canary.39" = { created_at = 2026-07-21T11:34:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.39", prerelease = true }
+"4.203.0-canary.40" = { created_at = 2026-07-21T12:33:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.40", prerelease = true }
+"4.203.0-canary.41" = { created_at = 2026-07-21T14:39:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.41", prerelease = true }
+"4.203.0-canary.42" = { created_at = 2026-07-21T17:50:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.42", prerelease = true }
+"4.203.0-canary.43" = { created_at = 2026-07-22T11:10:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.43", prerelease = true }
+"4.203.0-canary.44" = { created_at = 2026-07-22T17:39:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.44", prerelease = true }
+"4.203.0-canary.45" = { created_at = 2026-07-23T08:59:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.45", prerelease = true }
+"4.203.0-canary.46" = { created_at = 2026-07-23T10:18:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.46", prerelease = true }
+"4.203.0-canary.47" = { created_at = 2026-07-23T11:34:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-canary.47", prerelease = true }
+"4.203.0-rc.1" = { created_at = 2026-07-23T14:37:56.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-rc.1", prerelease = true }
+"4.203.0-rc.2" = { created_at = 2026-07-30T18:40:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0-rc.2", prerelease = true }
+"4.203.0" = { created_at = 2026-07-30T19:41:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.0" }
+"4.203.1" = { created_at = 2026-07-31T05:13:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.1" }
+"4.203.2" = { created_at = 2026-08-06T02:02:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.2" }
+"4.203.3" = { created_at = 2026-08-06T06:01:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.3" }
+"4.203.4" = { created_at = 2026-08-07T02:59:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.203.4" }
+"4.204.0-canary.1" = { created_at = 2026-07-23T15:46:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.1", prerelease = true }
+"4.204.0-canary.2" = { created_at = 2026-07-23T16:17:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.2", prerelease = true }
+"4.204.0-canary.3" = { created_at = 2026-07-23T16:52:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.3", prerelease = true }
+"4.204.0-canary.4" = { created_at = 2026-07-24T12:59:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.4", prerelease = true }
+"4.204.0-canary.5" = { created_at = 2026-07-27T13:23:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.5", prerelease = true }
+"4.204.0-canary.6" = { created_at = 2026-07-31T10:03:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.6", prerelease = true }
+"4.204.0-canary.7" = { created_at = 2026-08-04T17:34:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.7", prerelease = true }
+"4.204.0-canary.8" = { created_at = 2026-08-05T16:45:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.8", prerelease = true }
+"4.204.0-canary.9" = { created_at = 2026-08-05T22:35:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.9", prerelease = true }
+"4.204.0-canary.10" = { created_at = 2026-08-09T14:11:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.10", prerelease = true }
+"4.204.0-canary.11" = { created_at = 2026-08-10T14:34:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-canary.11", prerelease = true }
+"4.204.0-rc.1" = { created_at = 2026-08-11T08:18:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0-rc.1", prerelease = true }
+"4.204.0" = { created_at = 2026-08-14T11:09:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.204.0" }
+"4.205.0-canary.1" = { created_at = 2026-08-12T08:01:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.1", prerelease = true }
+"4.205.0-canary.2" = { created_at = 2026-08-12T08:45:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.2", prerelease = true }
+"4.205.0-canary.3" = { created_at = 2026-08-12T10:13:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.3", prerelease = true }
+"4.205.0-canary.4" = { created_at = 2026-08-12T11:23:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.4", prerelease = true }
+"4.205.0-canary.5" = { created_at = 2026-08-13T14:36:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.5", prerelease = true }
+"4.205.0-canary.6" = { created_at = 2026-08-13T17:14:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.6", prerelease = true }
+"4.205.0-canary.7" = { created_at = 2026-08-14T10:31:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.7", prerelease = true }
+"4.205.0-canary.8" = { created_at = 2026-08-14T16:03:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.8", prerelease = true }
+"4.205.0-canary.9" = { created_at = 2026-08-14T16:54:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.9", prerelease = true }
+"4.205.0-canary.10" = { created_at = 2026-08-17T09:20:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.10", prerelease = true }
+"4.205.0-canary.11" = { created_at = 2026-08-17T11:16:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.11", prerelease = true }
+"4.205.0-canary.12" = { created_at = 2026-08-17T18:17:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.12", prerelease = true }
+"4.205.0-canary.13" = { created_at = 2026-08-18T07:35:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.13", prerelease = true }
+"4.205.0-canary.14" = { created_at = 2026-08-18T09:59:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-canary.14", prerelease = true }
+"4.205.0-rc.1" = { created_at = 2026-08-18T16:36:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0-rc.1", prerelease = true }
+"4.205.0" = { created_at = 2026-08-19T10:08:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.205.0" }
+"4.206.0-canary.1" = { created_at = 2026-08-18T17:08:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.1", prerelease = true }
+"4.206.0-canary.2" = { created_at = 2026-08-18T19:32:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.2", prerelease = true }
+"4.206.0-canary.3" = { created_at = 2026-08-19T12:44:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.3", prerelease = true }
+"4.206.0-canary.4" = { created_at = 2026-08-19T13:13:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.4", prerelease = true }
+"4.206.0-canary.5" = { created_at = 2026-08-19T15:39:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.5", prerelease = true }
+"4.206.0-canary.6" = { created_at = 2026-08-20T08:05:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.6", prerelease = true }
+"4.206.0-canary.7" = { created_at = 2026-08-20T09:14:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.7", prerelease = true }
+"4.206.0-canary.8" = { created_at = 2026-08-20T12:18:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.8", prerelease = true }
+"4.206.0-canary.9" = { created_at = 2026-08-20T13:56:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.9", prerelease = true }
+"4.206.0-canary.10" = { created_at = 2026-08-20T14:31:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.10", prerelease = true }
+"4.206.0-canary.11" = { created_at = 2026-08-20T18:06:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.11", prerelease = true }
+"4.206.0-canary.12" = { created_at = 2026-08-21T07:29:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.12", prerelease = true }
+"4.206.0-canary.13" = { created_at = 2026-08-21T08:35:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.13", prerelease = true }
+"4.206.0-canary.14" = { created_at = 2026-08-21T11:58:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.14", prerelease = true }
+"4.206.0-canary.15" = { created_at = 2026-08-21T12:58:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.15", prerelease = true }
+"4.206.0-canary.16" = { created_at = 2026-08-21T16:34:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.16", prerelease = true }
+"4.206.0-canary.17" = { created_at = 2026-08-24T08:09:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.17", prerelease = true }
+"4.206.0-canary.18" = { created_at = 2026-08-24T16:18:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.18", prerelease = true }
+"4.206.0-canary.19" = { created_at = 2026-08-24T16:54:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.19", prerelease = true }
+"4.206.0-canary.20" = { created_at = 2026-08-24T17:41:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.20", prerelease = true }
+"4.206.0-canary.21" = { created_at = 2026-08-25T08:31:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.21", prerelease = true }
+"4.206.0-canary.22" = { created_at = 2026-08-25T08:59:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.22", prerelease = true }
+"4.206.0-canary.23" = { created_at = 2026-08-25T14:55:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.23", prerelease = true }
+"4.206.0-canary.24" = { created_at = 2026-08-25T15:22:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.24", prerelease = true }
+"4.206.0-canary.25" = { created_at = 2026-08-26T08:13:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.25", prerelease = true }
+"4.206.0-canary.26" = { created_at = 2026-08-26T10:27:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.26", prerelease = true }
+"4.206.0-canary.27" = { created_at = 2026-08-26T12:40:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.27", prerelease = true }
+"4.206.0-canary.28" = { created_at = 2026-08-26T15:25:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.28", prerelease = true }
+"4.206.0-canary.29" = { created_at = 2026-08-26T17:25:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.29", prerelease = true }
+"4.206.0-canary.30" = { created_at = 2026-08-27T07:39:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-canary.30", prerelease = true }
+"4.206.0-rc.1" = { created_at = 2026-08-27T08:17:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0-rc.1", prerelease = true }
+"4.206.0" = { created_at = 2026-08-31T08:19:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.206.0" }
+"4.207.0-canary.1" = { created_at = 2026-08-27T09:05:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.1", prerelease = true }
+"4.207.0-canary.2" = { created_at = 2026-08-27T14:50:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.2", prerelease = true }
+"4.207.0-canary.3" = { created_at = 2026-08-27T17:13:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.3", prerelease = true }
+"4.207.0-canary.4" = { created_at = 2026-08-28T09:55:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.4", prerelease = true }
+"4.207.0-canary.5" = { created_at = 2026-08-28T15:59:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.5", prerelease = true }
+"4.207.0-canary.6" = { created_at = 2026-08-31T10:52:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.6", prerelease = true }
+"4.207.0-canary.7" = { created_at = 2026-08-31T12:43:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.7", prerelease = true }
+"4.207.0-canary.8" = { created_at = 2026-08-31T18:20:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.8", prerelease = true }
+"4.207.0-canary.9" = { created_at = 2026-08-31T18:41:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.9", prerelease = true }
+"4.207.0-canary.10" = { created_at = 2026-09-01T20:36:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.10", prerelease = true }
+"4.207.0-canary.11" = { created_at = 2026-09-02T07:40:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.11", prerelease = true }
+"4.207.0-canary.12" = { created_at = 2026-09-02T08:23:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.12", prerelease = true }
+"4.207.0-canary.13" = { created_at = 2026-09-02T09:20:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.13", prerelease = true }
+"4.207.0-canary.14" = { created_at = 2026-09-02T17:50:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.14", prerelease = true }
+"4.207.0-canary.15" = { created_at = 2026-09-02T20:37:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.15", prerelease = true }
+"4.207.0-canary.16" = { created_at = 2026-09-02T21:58:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.16", prerelease = true }
+"4.207.0-canary.17" = { created_at = 2026-09-03T06:59:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.17", prerelease = true }
+"4.207.0-canary.18" = { created_at = 2026-09-03T10:55:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.18", prerelease = true }
+"4.207.0-canary.19" = { created_at = 2026-09-03T11:27:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.19", prerelease = true }
+"4.207.0-canary.20" = { created_at = 2026-09-03T14:02:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.20", prerelease = true }
+"4.207.0-canary.21" = { created_at = 2026-09-03T15:34:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-canary.21", prerelease = true }
+"4.207.0-rc.1" = { created_at = 2026-09-03T18:45:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-rc.1", prerelease = true }
+"4.207.0-rc.2" = { created_at = 2026-09-04T17:44:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0-rc.2", prerelease = true }
+"4.207.0" = { created_at = 2026-09-04T22:41:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.0" }
+"4.207.1" = { created_at = 2026-10-09T07:47:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.207.1" }
+"4.208.0-canary.1" = { created_at = 2026-09-03T22:01:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.1", prerelease = true }
+"4.208.0-canary.2" = { created_at = 2026-09-04T15:03:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.2", prerelease = true }
+"4.208.0-canary.3" = { created_at = 2026-09-04T19:26:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.3", prerelease = true }
+"4.208.0-canary.4" = { created_at = 2026-09-04T22:16:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.4", prerelease = true }
+"4.208.0-canary.5" = { created_at = 2026-09-05T00:07:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.5", prerelease = true }
+"4.208.0-canary.6" = { created_at = 2026-09-05T07:53:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.6", prerelease = true }
+"4.208.0-canary.7" = { created_at = 2026-09-05T08:15:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.7", prerelease = true }
+"4.208.0-canary.8" = { created_at = 2026-09-05T15:34:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.8", prerelease = true }
+"4.208.0-canary.9" = { created_at = 2026-09-05T21:49:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.9", prerelease = true }
+"4.208.0-canary.10" = { created_at = 2026-09-05T22:49:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.10", prerelease = true }
+"4.208.0-canary.11" = { created_at = 2026-09-07T17:32:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.11", prerelease = true }
+"4.208.0-canary.12" = { created_at = 2026-09-08T10:25:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.12", prerelease = true }
+"4.208.0-canary.13" = { created_at = 2026-09-08T13:27:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.13", prerelease = true }
+"4.208.0-canary.14" = { created_at = 2026-09-08T14:49:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.14", prerelease = true }
+"4.208.0-canary.15" = { created_at = 2026-09-08T15:17:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.15", prerelease = true }
+"4.208.0-canary.16" = { created_at = 2026-09-08T15:51:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.16", prerelease = true }
+"4.208.0-canary.17" = { created_at = 2026-09-08T17:31:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.17", prerelease = true }
+"4.208.0-canary.18" = { created_at = 2026-09-08T17:53:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.18", prerelease = true }
+"4.208.0-canary.19" = { created_at = 2026-09-09T07:20:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.19", prerelease = true }
+"4.208.0-canary.20" = { created_at = 2026-09-09T09:45:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.20", prerelease = true }
+"4.208.0-canary.21" = { created_at = 2026-09-09T14:56:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-canary.21", prerelease = true }
+"4.208.0-rc.1" = { created_at = 2026-09-10T17:27:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0-rc.1", prerelease = true }
+"4.208.0" = { created_at = 2026-09-11T09:54:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.208.0" }
+"4.209.0-canary.1" = { created_at = 2026-09-10T20:11:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.1", prerelease = true }
+"4.209.0-canary.2" = { created_at = 2026-09-11T10:32:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.2", prerelease = true }
+"4.209.0-canary.3" = { created_at = 2026-09-11T21:28:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.3", prerelease = true }
+"4.209.0-canary.4" = { created_at = 2026-09-14T10:20:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.4", prerelease = true }
+"4.209.0-canary.5" = { created_at = 2026-09-14T17:53:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.5", prerelease = true }
+"4.209.0-canary.6" = { created_at = 2026-09-15T12:40:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.6", prerelease = true }
+"4.209.0-canary.7" = { created_at = 2026-09-15T13:04:04.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.7", prerelease = true }
+"4.209.0-canary.8" = { created_at = 2026-09-15T13:36:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.8", prerelease = true }
+"4.209.0-canary.9" = { created_at = 2026-09-15T15:08:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.9", prerelease = true }
+"4.209.0-canary.10" = { created_at = 2026-09-15T15:35:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.10", prerelease = true }
+"4.209.0-canary.11" = { created_at = 2026-09-15T16:34:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.11", prerelease = true }
+"4.209.0-canary.12" = { created_at = 2026-09-15T16:53:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.12", prerelease = true }
+"4.209.0-canary.13" = { created_at = 2026-09-15T17:46:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.13", prerelease = true }
+"4.209.0-canary.14" = { created_at = 2026-09-15T18:59:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.14", prerelease = true }
+"4.209.0-canary.15" = { created_at = 2026-09-16T08:07:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.15", prerelease = true }
+"4.209.0-canary.16" = { created_at = 2026-09-16T08:30:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.16", prerelease = true }
+"4.209.0-canary.17" = { created_at = 2026-09-16T10:49:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.17", prerelease = true }
+"4.209.0-canary.18" = { created_at = 2026-09-16T12:49:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.18", prerelease = true }
+"4.209.0-canary.19" = { created_at = 2026-09-16T13:12:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.19", prerelease = true }
+"4.209.0-canary.20" = { created_at = 2026-09-16T14:53:57.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.20", prerelease = true }
+"4.209.0-canary.21" = { created_at = 2026-09-16T16:28:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.21", prerelease = true }
+"4.209.0-canary.22" = { created_at = 2026-09-16T16:52:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.22", prerelease = true }
+"4.209.0-canary.23" = { created_at = 2026-09-17T09:16:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-canary.23", prerelease = true }
+"4.209.0-rc.1" = { created_at = 2026-09-17T11:01:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0-rc.1", prerelease = true }
+"4.209.0" = { created_at = 2026-09-21T09:34:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.209.0" }
+"4.210.0-canary.1" = { created_at = 2026-09-17T12:04:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.1", prerelease = true }
+"4.210.0-canary.2" = { created_at = 2026-09-17T12:28:47.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.2", prerelease = true }
+"4.210.0-canary.3" = { created_at = 2026-09-17T12:59:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.3", prerelease = true }
+"4.210.0-canary.4" = { created_at = 2026-09-17T13:23:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.4", prerelease = true }
+"4.210.0-canary.5" = { created_at = 2026-09-17T14:00:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.5", prerelease = true }
+"4.210.0-canary.6" = { created_at = 2026-09-17T14:54:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.6", prerelease = true }
+"4.210.0-canary.7" = { created_at = 2026-09-17T15:42:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.7", prerelease = true }
+"4.210.0-canary.8" = { created_at = 2026-09-17T16:07:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.8", prerelease = true }
+"4.210.0-canary.9" = { created_at = 2026-09-17T16:37:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.9", prerelease = true }
+"4.210.0-canary.10" = { created_at = 2026-09-17T17:22:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.10", prerelease = true }
+"4.210.0-canary.11" = { created_at = 2026-09-17T17:47:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.11", prerelease = true }
+"4.210.0-canary.12" = { created_at = 2026-09-17T18:58:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.12", prerelease = true }
+"4.210.0-canary.13" = { created_at = 2026-09-17T19:24:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.13", prerelease = true }
+"4.210.0-canary.14" = { created_at = 2026-09-18T07:23:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.14", prerelease = true }
+"4.210.0-canary.15" = { created_at = 2026-09-18T08:34:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.15", prerelease = true }
+"4.210.0-canary.16" = { created_at = 2026-09-18T09:18:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.16", prerelease = true }
+"4.210.0-canary.17" = { created_at = 2026-09-18T10:03:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.17", prerelease = true }
+"4.210.0-canary.18" = { created_at = 2026-09-18T10:36:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.18", prerelease = true }
+"4.210.0-canary.19" = { created_at = 2026-09-18T11:41:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.19", prerelease = true }
+"4.210.0-canary.20" = { created_at = 2026-09-18T12:37:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-canary.20", prerelease = true }
+"4.210.0-rc.1" = { created_at = 2026-09-21T07:12:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-rc.1", prerelease = true }
+"4.210.0-rc.2" = { created_at = 2026-09-23T11:24:24.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-rc.2", prerelease = true }
+"4.210.0-rc.3" = { created_at = 2026-09-28T11:02:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0-rc.3", prerelease = true }
+"4.210.0" = { created_at = 2026-09-28T11:35:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.210.0" }
+"4.211.0-canary.1" = { created_at = 2026-09-21T07:35:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.1", prerelease = true }
+"4.211.0-canary.2" = { created_at = 2026-09-21T08:29:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.2", prerelease = true }
+"4.211.0-canary.3" = { created_at = 2026-09-21T09:22:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.3", prerelease = true }
+"4.211.0-canary.4" = { created_at = 2026-09-22T08:10:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.4", prerelease = true }
+"4.211.0-canary.5" = { created_at = 2026-09-22T12:16:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.5", prerelease = true }
+"4.211.0-canary.6" = { created_at = 2026-09-22T13:02:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.6", prerelease = true }
+"4.211.0-canary.7" = { created_at = 2026-09-22T13:28:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.7", prerelease = true }
+"4.211.0-canary.8" = { created_at = 2026-09-22T15:16:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.8", prerelease = true }
+"4.211.0-canary.9" = { created_at = 2026-09-22T16:31:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.9", prerelease = true }
+"4.211.0-canary.10" = { created_at = 2026-09-23T10:40:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.10", prerelease = true }
+"4.211.0-canary.11" = { created_at = 2026-09-23T11:03:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.11", prerelease = true }
+"4.211.0-canary.12" = { created_at = 2026-09-23T12:26:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.12", prerelease = true }
+"4.211.0-canary.13" = { created_at = 2026-09-23T12:48:27.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.13", prerelease = true }
+"4.211.0-canary.14" = { created_at = 2026-09-23T14:56:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.14", prerelease = true }
+"4.211.0-canary.15" = { created_at = 2026-09-23T15:53:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.15", prerelease = true }
+"4.211.0-canary.16" = { created_at = 2026-09-23T16:24:31.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.16", prerelease = true }
+"4.211.0-canary.17" = { created_at = 2026-09-23T17:46:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.17", prerelease = true }
+"4.211.0-canary.18" = { created_at = 2026-09-23T18:10:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.18", prerelease = true }
+"4.211.0-canary.19" = { created_at = 2026-09-24T12:28:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.19", prerelease = true }
+"4.211.0-canary.20" = { created_at = 2026-09-24T12:53:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.20", prerelease = true }
+"4.211.0-canary.21" = { created_at = 2026-09-24T15:56:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.21", prerelease = true }
+"4.211.0-canary.22" = { created_at = 2026-09-24T20:03:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.22", prerelease = true }
+"4.211.0-canary.23" = { created_at = 2026-09-24T20:28:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.23", prerelease = true }
+"4.211.0-canary.24" = { created_at = 2026-09-25T08:20:35.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.24", prerelease = true }
+"4.211.0-canary.25" = { created_at = 2026-09-25T08:52:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.25", prerelease = true }
+"4.211.0-canary.26" = { created_at = 2026-09-25T09:37:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.26", prerelease = true }
+"4.211.0-canary.27" = { created_at = 2026-09-25T10:46:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.27", prerelease = true }
+"4.211.0-canary.28" = { created_at = 2026-09-25T11:10:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.28", prerelease = true }
+"4.211.0-canary.29" = { created_at = 2026-09-25T11:33:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.29", prerelease = true }
+"4.211.0-canary.30" = { created_at = 2026-09-25T21:11:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.30", prerelease = true }
+"4.211.0-canary.31" = { created_at = 2026-09-26T12:57:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.31", prerelease = true }
+"4.211.0-canary.32" = { created_at = 2026-09-28T08:05:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.32", prerelease = true }
+"4.211.0-canary.33" = { created_at = 2026-09-28T09:16:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-canary.33", prerelease = true }
+"4.211.0-rc.1" = { created_at = 2026-09-28T12:00:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0-rc.1", prerelease = true }
+"4.211.0" = { created_at = 2026-10-05T07:15:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.0" }
+"4.211.1" = { created_at = 2026-10-11T03:03:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.211.1" }
+"4.212.0-canary.1" = { created_at = 2026-09-28T15:52:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.1", prerelease = true }
+"4.212.0-canary.2" = { created_at = 2026-09-28T16:33:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.2", prerelease = true }
+"4.212.0-canary.3" = { created_at = 2026-09-28T17:10:40.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.3", prerelease = true }
+"4.212.0-canary.4" = { created_at = 2026-09-28T17:33:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.4", prerelease = true }
+"4.212.0-canary.5" = { created_at = 2026-09-28T19:09:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.5", prerelease = true }
+"4.212.0-canary.6" = { created_at = 2026-09-28T19:48:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.6", prerelease = true }
+"4.212.0-canary.7" = { created_at = 2026-09-29T04:34:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.7", prerelease = true }
+"4.212.0-canary.8" = { created_at = 2026-09-29T21:09:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.8", prerelease = true }
+"4.212.0-canary.9" = { created_at = 2026-09-30T18:26:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.9", prerelease = true }
+"4.212.0-canary.10" = { created_at = 2026-09-30T19:19:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.10", prerelease = true }
+"4.212.0-canary.11" = { created_at = 2026-09-30T19:51:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.11", prerelease = true }
+"4.212.0-canary.12" = { created_at = 2026-10-01T11:50:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.12", prerelease = true }
+"4.212.0-canary.13" = { created_at = 2026-10-01T14:24:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.13", prerelease = true }
+"4.212.0-canary.14" = { created_at = 2026-10-01T17:39:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.14", prerelease = true }
+"4.212.0-canary.15" = { created_at = 2026-10-01T18:10:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.15", prerelease = true }
+"4.212.0-canary.16" = { created_at = 2026-10-01T19:54:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.16", prerelease = true }
+"4.212.0-canary.17" = { created_at = 2026-10-01T22:04:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.17", prerelease = true }
+"4.212.0-canary.18" = { created_at = 2026-10-02T19:22:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.18", prerelease = true }
+"4.212.0-canary.19" = { created_at = 2026-10-02T20:57:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.19", prerelease = true }
+"4.212.0-canary.20" = { created_at = 2026-10-02T21:22:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.20", prerelease = true }
+"4.212.0-canary.21" = { created_at = 2026-10-03T09:16:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.21", prerelease = true }
+"4.212.0-canary.22" = { created_at = 2026-10-04T17:26:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.22", prerelease = true }
+"4.212.0-canary.23" = { created_at = 2026-10-04T20:41:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.23", prerelease = true }
+"4.212.0-canary.24" = { created_at = 2026-10-05T01:18:53.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.24", prerelease = true }
+"4.212.0-canary.25" = { created_at = 2026-10-05T02:30:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-canary.25", prerelease = true }
+"4.212.0-rc.1" = { created_at = 2026-10-05T07:39:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-rc.1", prerelease = true }
+"4.212.0-rc.2" = { created_at = 2026-10-11T03:34:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0-rc.2", prerelease = true }
+"4.212.0" = { created_at = 2026-10-12T06:51:55.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.212.0" }
+"4.213.0-canary.1" = { created_at = 2026-10-05T08:23:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.1", prerelease = true }
+"4.213.0-canary.2" = { created_at = 2026-10-05T08:47:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.2", prerelease = true }
+"4.213.0-canary.3" = { created_at = 2026-10-05T15:56:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.3", prerelease = true }
+"4.213.0-canary.4" = { created_at = 2026-10-06T09:52:25.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.4", prerelease = true }
+"4.213.0-canary.5" = { created_at = 2026-10-07T01:49:50.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.5", prerelease = true }
+"4.213.0-canary.6" = { created_at = 2026-10-07T05:43:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.6", prerelease = true }
+"4.213.0-canary.7" = { created_at = 2026-10-07T11:43:36.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.7", prerelease = true }
+"4.213.0-canary.8" = { created_at = 2026-10-07T13:21:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.8", prerelease = true }
+"4.213.0-canary.9" = { created_at = 2026-10-07T15:19:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.9", prerelease = true }
+"4.213.0-canary.10" = { created_at = 2026-10-07T16:50:48.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.10", prerelease = true }
+"4.213.0-canary.11" = { created_at = 2026-10-07T17:34:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.11", prerelease = true }
+"4.213.0-canary.12" = { created_at = 2026-10-08T05:19:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.12", prerelease = true }
+"4.213.0-canary.13" = { created_at = 2026-10-08T08:07:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.13", prerelease = true }
+"4.213.0-canary.14" = { created_at = 2026-10-08T09:29:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.14", prerelease = true }
+"4.213.0-canary.15" = { created_at = 2026-10-08T10:28:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.15", prerelease = true }
+"4.213.0-canary.16" = { created_at = 2026-10-08T12:18:32.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.16", prerelease = true }
+"4.213.0-canary.17" = { created_at = 2026-10-08T16:54:43.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.17", prerelease = true }
+"4.213.0-canary.18" = { created_at = 2026-10-08T17:35:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.18", prerelease = true }
+"4.213.0-canary.19" = { created_at = 2026-10-09T08:11:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.19", prerelease = true }
+"4.213.0-canary.20" = { created_at = 2026-10-09T10:09:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.20", prerelease = true }
+"4.213.0-canary.21" = { created_at = 2026-10-09T10:54:23.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.21", prerelease = true }
+"4.213.0-canary.22" = { created_at = 2026-10-09T11:20:42.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.22", prerelease = true }
+"4.213.0-canary.23" = { created_at = 2026-10-09T12:05:14.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.23", prerelease = true }
+"4.213.0-canary.24" = { created_at = 2026-10-09T14:06:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.24", prerelease = true }
+"4.213.0-canary.25" = { created_at = 2026-10-09T14:31:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.25", prerelease = true }
+"4.213.0-canary.26" = { created_at = 2026-10-09T15:08:12.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.26", prerelease = true }
+"4.213.0-canary.27" = { created_at = 2026-10-09T15:45:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.27", prerelease = true }
+"4.213.0-canary.28" = { created_at = 2026-10-09T20:45:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.28", prerelease = true }
+"4.213.0-canary.29" = { created_at = 2026-10-10T21:04:51.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.29", prerelease = true }
+"4.213.0-canary.30" = { created_at = 2026-10-11T08:48:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.30", prerelease = true }
+"4.213.0-canary.31" = { created_at = 2026-10-12T05:38:06.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-canary.31", prerelease = true }
+"4.213.0-rc.1" = { created_at = 2026-10-12T07:11:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-rc.1", prerelease = true }
+"4.213.0-rc.2" = { created_at = 2026-10-16T09:02:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0-rc.2", prerelease = true }
+"4.213.0" = { created_at = 2026-10-21T10:40:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.213.0" }
+"4.214.0-canary.1" = { created_at = 2026-10-13T08:51:05.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.1", prerelease = true }
+"4.214.0-canary.2" = { created_at = 2026-10-13T12:47:19.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.2", prerelease = true }
+"4.214.0-canary.3" = { created_at = 2026-10-13T13:11:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.3", prerelease = true }
+"4.214.0-canary.4" = { created_at = 2026-10-13T14:01:41.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.4", prerelease = true }
+"4.214.0-canary.5" = { created_at = 2026-10-13T14:29:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.5", prerelease = true }
+"4.214.0-canary.6" = { created_at = 2026-10-13T14:53:58.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.6", prerelease = true }
+"4.214.0-canary.7" = { created_at = 2026-10-13T15:25:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.7", prerelease = true }
+"4.214.0-canary.8" = { created_at = 2026-10-13T19:08:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.8", prerelease = true }
+"4.214.0-canary.9" = { created_at = 2026-10-13T19:50:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.9", prerelease = true }
+"4.214.0-canary.10" = { created_at = 2026-10-13T20:50:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.10", prerelease = true }
+"4.214.0-canary.11" = { created_at = 2026-10-13T21:14:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.11", prerelease = true }
+"4.214.0-canary.12" = { created_at = 2026-10-14T12:17:30.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.12", prerelease = true }
+"4.214.0-canary.13" = { created_at = 2026-10-14T13:24:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.13", prerelease = true }
+"4.214.0-canary.14" = { created_at = 2026-10-14T17:05:15.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.14", prerelease = true }
+"4.214.0-canary.15" = { created_at = 2026-10-14T17:38:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.15", prerelease = true }
+"4.214.0-canary.16" = { created_at = 2026-10-14T20:27:28.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.16", prerelease = true }
+"4.214.0-canary.17" = { created_at = 2026-10-15T04:17:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.17", prerelease = true }
+"4.214.0-canary.18" = { created_at = 2026-10-15T07:24:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.18", prerelease = true }
+"4.214.0-canary.19" = { created_at = 2026-10-15T12:09:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.19", prerelease = true }
+"4.214.0-canary.20" = { created_at = 2026-10-15T12:34:54.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.20", prerelease = true }
+"4.214.0-canary.21" = { created_at = 2026-10-15T13:44:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.21", prerelease = true }
+"4.214.0-canary.22" = { created_at = 2026-10-15T14:10:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.22", prerelease = true }
+"4.214.0-canary.23" = { created_at = 2026-10-15T14:36:08.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.23", prerelease = true }
+"4.214.0-canary.24" = { created_at = 2026-10-15T16:17:07.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.24", prerelease = true }
+"4.214.0-canary.25" = { created_at = 2026-10-15T16:47:34.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.25", prerelease = true }
+"4.214.0-canary.26" = { created_at = 2026-10-15T17:14:00.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.26", prerelease = true }
+"4.214.0-canary.27" = { created_at = 2026-10-16T04:45:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.27", prerelease = true }
+"4.214.0-canary.28" = { created_at = 2026-10-16T07:43:33.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.28", prerelease = true }
+"4.214.0-canary.29" = { created_at = 2026-10-16T08:36:45.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.29", prerelease = true }
+"4.214.0-canary.30" = { created_at = 2026-10-16T10:29:39.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.30", prerelease = true }
+"4.214.0-canary.31" = { created_at = 2026-10-16T10:56:37.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.31", prerelease = true }
+"4.214.0-canary.32" = { created_at = 2026-10-16T12:14:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.32", prerelease = true }
+"4.214.0-canary.33" = { created_at = 2026-10-16T16:43:26.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.33", prerelease = true }
+"4.214.0-canary.34" = { created_at = 2026-10-16T17:15:11.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.34", prerelease = true }
+"4.214.0-canary.35" = { created_at = 2026-10-16T17:36:44.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.35", prerelease = true }
+"4.214.0-canary.36" = { created_at = 2026-10-17T22:09:01.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.36", prerelease = true }
+"4.214.0-canary.37" = { created_at = 2026-10-18T23:58:17.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.37", prerelease = true }
+"4.214.0-canary.38" = { created_at = 2026-10-19T02:20:09.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.38", prerelease = true }
+"4.214.0-canary.39" = { created_at = 2026-10-19T05:46:22.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.39", prerelease = true }
+"4.214.0-canary.40" = { created_at = 2026-10-19T07:14:52.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.40", prerelease = true }
+"4.214.0-canary.41" = { created_at = 2026-10-19T08:22:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.41", prerelease = true }
+"4.214.0-canary.42" = { created_at = 2026-10-19T08:38:16.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.42", prerelease = true }
+"4.214.0-canary.43" = { created_at = 2026-10-19T13:33:29.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.43", prerelease = true }
+"4.214.0-canary.44" = { created_at = 2026-10-19T13:58:10.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.44", prerelease = true }
+"4.214.0-canary.45" = { created_at = 2026-10-19T17:15:20.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.45", prerelease = true }
+"4.214.0-canary.46" = { created_at = 2026-10-19T17:45:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.46", prerelease = true }
+"4.214.0-canary.47" = { created_at = 2026-10-19T21:00:59.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.47", prerelease = true }
+"4.214.0-canary.48" = { created_at = 2026-10-19T21:16:18.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.48", prerelease = true }
 "4.214.0-canary.49" = { created_at = 2026-10-20T10:49:38.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.49", prerelease = true }
 "4.214.0-canary.50" = { created_at = 2026-10-20T11:13:03.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.50", prerelease = true }
 "4.214.0-canary.51" = { created_at = 2026-10-20T12:05:49.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.214.0-canary.51", prerelease = true }
@@ -19,3 +1144,4 @@
 "4.215.0-canary.6" = { created_at = 2026-10-22T05:32:46.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.215.0-canary.6", prerelease = true }
 "4.215.0-canary.7" = { created_at = 2026-10-22T10:38:13.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.215.0-canary.7", prerelease = true }
 "4.215.0-canary.8" = { created_at = 2026-10-22T14:32:21.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.215.0-canary.8", prerelease = true }
+"4.215.0-canary.9" = { created_at = 2026-10-22T17:33:02.000Z, release_url = "https://github.com/tuist/tuist/releases/tag/4.215.0-canary.9", prerelease = true }
