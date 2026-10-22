@@ -1,4 +1,404 @@
 [versions]
+"1.181.0-test.2" = { created_at = 2025-06-25T11:22:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.2", prerelease = true }
+"1.181.0-test.3" = { created_at = 2025-06-25T12:07:44.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.3", prerelease = true }
+"1.181.0-test.4" = { created_at = 2025-06-25T12:08:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.4", prerelease = true }
+"1.181.0-test.5" = { created_at = 2025-06-25T22:09:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.5", prerelease = true }
+"1.181.0-test.6" = { created_at = 2025-06-25T22:25:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.6", prerelease = true }
+"1.181.0-test.7" = { created_at = 2025-06-25T22:29:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.7", prerelease = true }
+"1.181.0-test.8" = { created_at = 2025-06-25T22:30:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.8", prerelease = true }
+"1.181.0-test.9" = { created_at = 2025-06-25T22:35:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.9", prerelease = true }
+"1.181.0-test.11" = { created_at = 2025-06-25T22:44:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0-test.11", prerelease = true }
+"1.181.0" = { created_at = 2025-06-25T23:26:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.181.0" }
+"1.182.0" = { created_at = 2025-07-01T03:25:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.182.0" }
+"1.183.0-rc.0" = { created_at = 2025-07-04T17:40:27.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.183.0-rc.0", prerelease = true }
+"1.183.0-test.0" = { created_at = 2025-07-10T18:59:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.183.0-test.0", prerelease = true }
+"1.183.0-test.1" = { created_at = 2025-07-10T19:31:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.183.0-test.1", prerelease = true }
+"1.183.0-test.2" = { created_at = 2025-07-10T23:13:27.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.183.0-test.2", prerelease = true }
+"1.183.0" = { created_at = 2025-07-18T01:52:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.183.0" }
+"1.183.1" = { created_at = 2025-07-18T20:30:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.183.1" }
+"1.184.0-test.0" = { created_at = 2025-07-28T12:05:36.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.184.0-test.0", prerelease = true }
+"1.184.0-test.1" = { created_at = 2025-07-28T14:20:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.184.0-test.1", prerelease = true }
+"1.184.0" = { created_at = 2025-07-30T17:27:50.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.184.0" }
+"1.185.0-test.0" = { created_at = 2025-08-04T14:29:40.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.0-test.0", prerelease = true }
+"1.185.0-test.1" = { created_at = 2025-08-04T14:32:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.0-test.1", prerelease = true }
+"1.185.0" = { created_at = 2025-08-04T20:27:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.0" }
+"1.185.1-rc.0" = { created_at = 2025-08-05T01:15:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.1-rc.0", prerelease = true }
+"1.185.1-rc.1" = { created_at = 2025-08-06T01:13:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.1-rc.1", prerelease = true }
+"1.185.1-test.0" = { created_at = 2025-08-06T20:43:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.1-test.0", prerelease = true }
+"1.185.1-test.1" = { created_at = 2025-08-06T20:44:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.1-test.1", prerelease = true }
+"1.185.1-test.2" = { created_at = 2025-08-07T18:23:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.1-test.2", prerelease = true }
+"1.185.1-test.3" = { created_at = 2025-08-07T19:05:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.185.1-test.3", prerelease = true }
+"1.186.0" = { created_at = 2025-08-07T23:00:50.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.186.0" }
+"1.187.0-rc.0" = { created_at = 2025-08-08T01:14:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.187.0-rc.0", prerelease = true }
+"1.187.0" = { created_at = 2025-08-18T00:19:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.187.0" }
+"1.188.0-rc.0" = { created_at = 2025-08-18T01:14:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.188.0-rc.0", prerelease = true }
+"1.188.0-test.0" = { created_at = 2025-08-19T18:38:11.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.188.0-test.0", prerelease = true }
+"1.188.0-test.1" = { created_at = 2025-08-20T18:17:05.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.188.0-test.1", prerelease = true }
+"1.188.0-test.2" = { created_at = 2025-08-20T18:38:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.188.0-test.2", prerelease = true }
+"1.188.0" = { created_at = 2025-08-25T03:51:18.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.188.0" }
+"1.189.0-rc.0" = { created_at = 2025-08-26T01:08:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.189.0-rc.0", prerelease = true }
+"1.189.0-test.0" = { created_at = 2025-09-02T15:48:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.189.0-test.0", prerelease = true }
+"1.189.0" = { created_at = 2025-09-03T12:50:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.189.0" }
+"1.190.0-rc.0" = { created_at = 2025-09-04T01:07:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-rc.0", prerelease = true }
+"1.190.0-test.0" = { created_at = 2025-09-05T19:00:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-test.0", prerelease = true }
+"1.190.0-test.1" = { created_at = 2025-09-10T15:20:27.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-test.1", prerelease = true }
+"1.190.0-test.2" = { created_at = 2025-09-10T16:03:32.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-test.2", prerelease = true }
+"1.190.0-test.3" = { created_at = 2025-09-10T16:59:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-test.3", prerelease = true }
+"1.190.0-test.4" = { created_at = 2025-09-10T18:10:56.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-test.4", prerelease = true }
+"1.190.0-test.5" = { created_at = 2025-09-10T18:46:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0-test.5", prerelease = true }
+"1.190.0" = { created_at = 2025-09-17T18:10:12.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.190.0" }
+"1.191.0" = { created_at = 2025-09-23T15:07:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.191.0" }
+"1.191.1-test.0" = { created_at = 2025-09-25T17:57:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.191.1-test.0", prerelease = true }
+"1.191.1-test.1" = { created_at = 2025-09-25T18:06:04.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.191.1-test.1", prerelease = true }
+"1.191.1-test.2" = { created_at = 2025-09-25T18:23:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.191.1-test.2", prerelease = true }
+"1.191.1-test.3" = { created_at = 2025-09-25T18:38:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.191.1-test.3", prerelease = true }
+"1.192.0" = { created_at = 2025-09-26T20:05:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.192.0" }
+"1.193.0-rc.0" = { created_at = 2025-10-03T01:09:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-rc.0", prerelease = true }
+"1.193.0-test.0" = { created_at = 2025-09-26T22:55:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-test.0", prerelease = true }
+"1.193.0-test.1" = { created_at = 2025-09-26T23:52:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-test.1", prerelease = true }
+"1.193.0-test.2" = { created_at = 2025-09-26T23:53:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-test.2", prerelease = true }
+"1.193.0-test.3" = { created_at = 2025-09-29T06:26:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-test.3", prerelease = true }
+"1.193.0-test.4" = { created_at = 2025-09-29T15:55:20.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-test.4", prerelease = true }
+"1.193.0-test.5" = { created_at = 2025-09-30T02:09:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0-test.5", prerelease = true }
+"1.193.0" = { created_at = 2025-10-03T01:32:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.193.0" }
+"1.194.0" = { created_at = 2025-10-08T17:49:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.194.0" }
+"1.194.1-rc.0" = { created_at = 2025-10-13T01:12:19.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.194.1-rc.0", prerelease = true }
+"1.194.1" = { created_at = 2025-10-13T20:35:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.194.1" }
+"1.195.0-rc.0" = { created_at = 2025-10-14T01:09:07.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.195.0-rc.0", prerelease = true }
+"1.195.0-rc.1" = { created_at = 2025-10-20T01:26:35.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.195.0-rc.1", prerelease = true }
+"1.195.0-test.0" = { created_at = 2025-10-17T04:40:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.195.0-test.0", prerelease = true }
+"1.195.0-test.1" = { created_at = 2025-10-17T06:12:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.195.0-test.1", prerelease = true }
+"1.195.0-test.2" = { created_at = 2025-10-17T14:16:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.195.0-test.2", prerelease = true }
+"1.195.0" = { created_at = 2025-10-20T03:48:15.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.195.0" }
+"1.196.0-rc.0" = { created_at = 2025-10-23T01:19:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-rc.0", prerelease = true }
+"1.196.0-rc.1" = { created_at = 2025-10-23T15:27:07.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-rc.1", prerelease = true }
+"1.196.0-rc.2" = { created_at = 2025-10-24T01:18:12.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-rc.2", prerelease = true }
+"1.196.0-rc.3" = { created_at = 2025-10-28T01:14:30.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-rc.3", prerelease = true }
+"1.196.0-rc.4" = { created_at = 2025-10-29T01:02:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-rc.4", prerelease = true }
+"1.196.0-test.0" = { created_at = 2025-10-27T18:24:36.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-test.0", prerelease = true }
+"1.196.0-test.1" = { created_at = 2025-10-28T02:38:46.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-test.1", prerelease = true }
+"1.196.0-test.2" = { created_at = 2025-10-28T02:53:35.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-test.2", prerelease = true }
+"1.196.0-test.3" = { created_at = 2025-10-28T16:25:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-test.3", prerelease = true }
+"1.196.0-test.4" = { created_at = 2025-10-28T16:28:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-test.4", prerelease = true }
+"1.196.0-test.5" = { created_at = 2025-10-28T17:41:02.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0-test.5", prerelease = true }
+"1.196.0" = { created_at = 2025-10-29T22:32:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.196.0" }
+"1.197.0-rc.0" = { created_at = 2025-10-30T01:05:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-rc.0", prerelease = true }
+"1.197.0-rc.1" = { created_at = 2025-10-31T01:12:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-rc.1", prerelease = true }
+"1.197.0-rc.2" = { created_at = 2025-11-02T01:15:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-rc.2", prerelease = true }
+"1.197.0-test.0" = { created_at = 2025-10-31T16:31:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.0", prerelease = true }
+"1.197.0-test.1" = { created_at = 2025-10-31T16:32:21.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.1", prerelease = true }
+"1.197.0-test.2" = { created_at = 2025-10-31T16:33:44.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.2", prerelease = true }
+"1.197.0-test.3" = { created_at = 2025-10-31T16:48:18.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.3", prerelease = true }
+"1.197.0-test.4" = { created_at = 2025-10-31T16:55:54.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.4", prerelease = true }
+"1.197.0-test.5" = { created_at = 2025-10-31T16:58:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.5", prerelease = true }
+"1.197.0-test.6" = { created_at = 2025-10-31T17:10:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.6", prerelease = true }
+"1.197.0-test.7" = { created_at = 2025-10-31T17:16:19.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.7", prerelease = true }
+"1.197.0-test.8" = { created_at = 2025-10-31T18:39:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.8", prerelease = true }
+"1.197.0-test.9" = { created_at = 2025-10-31T19:09:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.9", prerelease = true }
+"1.197.0-test.10" = { created_at = 2025-10-31T19:17:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.10", prerelease = true }
+"1.197.0-test.11" = { created_at = 2025-10-31T20:09:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.11", prerelease = true }
+"1.197.0-test.12" = { created_at = 2025-10-31T20:37:16.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.12", prerelease = true }
+"1.197.0-test.13" = { created_at = 2025-10-31T20:40:32.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.13", prerelease = true }
+"1.197.0-test.14" = { created_at = 2025-10-31T20:42:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.14", prerelease = true }
+"1.197.0-test.15" = { created_at = 2025-10-31T20:50:46.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.15", prerelease = true }
+"1.197.0-test.16" = { created_at = 2025-10-31T20:55:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.16", prerelease = true }
+"1.197.0-test.17" = { created_at = 2025-10-31T21:39:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.17", prerelease = true }
+"1.197.0-test.18" = { created_at = 2025-10-31T22:09:05.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.18", prerelease = true }
+"1.197.0-test.19" = { created_at = 2025-10-31T22:38:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.19", prerelease = true }
+"1.197.0-test.20" = { created_at = 2025-10-31T22:56:04.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.20", prerelease = true }
+"1.197.0-test.21" = { created_at = 2025-10-31T22:58:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.21", prerelease = true }
+"1.197.0-test.22" = { created_at = 2025-10-31T22:59:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.22", prerelease = true }
+"1.197.0-test.23" = { created_at = 2025-10-31T23:16:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.23", prerelease = true }
+"1.197.0-test.24" = { created_at = 2025-10-31T23:18:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.24", prerelease = true }
+"1.197.0-test.25" = { created_at = 2025-10-31T23:27:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.25", prerelease = true }
+"1.197.0-test.26" = { created_at = 2025-11-01T02:52:37.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.26", prerelease = true }
+"1.197.0-test.27" = { created_at = 2025-11-01T03:28:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.27", prerelease = true }
+"1.197.0-test.28" = { created_at = 2025-11-01T03:42:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.28", prerelease = true }
+"1.197.0-test.29" = { created_at = 2025-11-01T03:46:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.29", prerelease = true }
+"1.197.0-test.30" = { created_at = 2025-11-01T03:58:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.30", prerelease = true }
+"1.197.0-test.31" = { created_at = 2025-11-01T15:35:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.31", prerelease = true }
+"1.197.0-test.32" = { created_at = 2025-11-01T15:59:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.32", prerelease = true }
+"1.197.0-test.33" = { created_at = 2025-11-02T09:09:46.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.33", prerelease = true }
+"1.197.0-test.34" = { created_at = 2025-11-02T19:22:12.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0-test.34", prerelease = true }
+"1.197.0" = { created_at = 2025-11-03T18:11:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.197.0" }
+"1.198.0-rc.0" = { created_at = 2025-11-04T01:08:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-rc.0", prerelease = true }
+"1.198.0-rc.1" = { created_at = 2025-11-05T01:14:20.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-rc.1", prerelease = true }
+"1.198.0-rc.2" = { created_at = 2025-11-06T01:13:36.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-rc.2", prerelease = true }
+"1.198.0-rc.3" = { created_at = 2025-11-07T01:13:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-rc.3", prerelease = true }
+"1.198.0-rc.4" = { created_at = 2025-11-08T01:11:53.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-rc.4", prerelease = true }
+"1.198.0-rc.5" = { created_at = 2025-11-09T01:17:30.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-rc.5", prerelease = true }
+"1.198.0-test.0" = { created_at = 2025-11-04T02:41:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.0", prerelease = true }
+"1.198.0-test.1" = { created_at = 2025-11-05T04:41:20.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.1", prerelease = true }
+"1.198.0-test.2" = { created_at = 2025-11-05T04:43:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.2", prerelease = true }
+"1.198.0-test.3" = { created_at = 2025-11-05T05:26:15.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.3", prerelease = true }
+"1.198.0-test.4" = { created_at = 2025-11-05T06:07:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.4", prerelease = true }
+"1.198.0-test.5" = { created_at = 2025-11-05T15:39:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.5", prerelease = true }
+"1.198.0-test.6" = { created_at = 2025-11-05T15:46:18.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.6", prerelease = true }
+"1.198.0-test.7" = { created_at = 2025-11-05T16:30:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.7", prerelease = true }
+"1.198.0-test.8" = { created_at = 2025-11-05T18:09:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.8", prerelease = true }
+"1.198.0-test.9" = { created_at = 2025-11-07T12:19:37.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.9", prerelease = true }
+"1.198.0-test.10" = { created_at = 2025-11-07T19:35:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.10", prerelease = true }
+"1.198.0-test.11" = { created_at = 2025-11-10T16:25:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.11", prerelease = true }
+"1.198.0-test.12" = { created_at = 2025-11-11T07:52:44.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.12", prerelease = true }
+"1.198.0-test.13" = { created_at = 2025-11-11T15:20:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0-test.13", prerelease = true }
+"1.198.0" = { created_at = 2025-11-11T16:33:50.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.198.0" }
+"1.199.0-rc.0" = { created_at = 2025-11-12T01:16:13.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.199.0-rc.0", prerelease = true }
+"1.199.0-rc.1" = { created_at = 2025-11-16T01:18:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.199.0-rc.1", prerelease = true }
+"1.199.0" = { created_at = 2025-11-18T14:30:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.199.0" }
+"1.200.0-rc.0" = { created_at = 2025-11-19T01:13:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.200.0-rc.0", prerelease = true }
+"1.200.0-rc.1" = { created_at = 2025-11-21T01:16:21.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.200.0-rc.1", prerelease = true }
+"1.200.0-rc.2" = { created_at = 2025-11-22T01:13:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.200.0-rc.2", prerelease = true }
+"1.200.0-rc.3" = { created_at = 2025-11-23T01:20:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.200.0-rc.3", prerelease = true }
+"1.200.0" = { created_at = 2025-11-25T00:45:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.200.0" }
+"1.201.0-rc.0" = { created_at = 2025-12-02T01:12:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-rc.0", prerelease = true }
+"1.201.0-rc.1" = { created_at = 2025-12-07T01:19:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-rc.1", prerelease = true }
+"1.201.0-rc.2" = { created_at = 2025-12-08T01:04:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-rc.2", prerelease = true }
+"1.201.0-rc.3" = { created_at = 2025-12-09T01:13:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-rc.3", prerelease = true }
+"1.201.0-test.0" = { created_at = 2025-12-05T20:50:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-test.0", prerelease = true }
+"1.201.0-test.1" = { created_at = 2025-12-09T15:44:22.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-test.1", prerelease = true }
+"1.201.0-test.2" = { created_at = 2025-12-09T18:04:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-test.2", prerelease = true }
+"1.201.0-test.3" = { created_at = 2025-12-09T18:57:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-test.3", prerelease = true }
+"1.201.0-test.4" = { created_at = 2025-12-09T20:59:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0-test.4", prerelease = true }
+"1.201.0" = { created_at = 2025-12-10T02:30:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.201.0" }
+"1.202.0-rc.0" = { created_at = 2025-12-11T01:06:16.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0-rc.0", prerelease = true }
+"1.202.0-rc.1" = { created_at = 2025-12-14T01:21:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0-rc.1", prerelease = true }
+"1.202.0-rc.2" = { created_at = 2025-12-15T01:07:15.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0-rc.2", prerelease = true }
+"1.202.0-rc.3" = { created_at = 2025-12-16T01:05:30.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0-rc.3", prerelease = true }
+"1.202.0-rc.4" = { created_at = 2025-12-17T01:02:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0-rc.4", prerelease = true }
+"1.202.0-rc.5" = { created_at = 2025-12-18T01:01:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0-rc.5", prerelease = true }
+"1.202.0" = { created_at = 2025-12-18T19:00:56.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.0" }
+"1.202.1" = { created_at = 2025-12-21T02:49:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.202.1" }
+"1.203.0-rc.0" = { created_at = 2025-12-19T01:05:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-rc.0", prerelease = true }
+"1.203.0-rc.1" = { created_at = 2025-12-23T01:16:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-rc.1", prerelease = true }
+"1.203.0-rc.2" = { created_at = 2025-12-27T01:11:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-rc.2", prerelease = true }
+"1.203.0-rc.3" = { created_at = 2025-12-29T01:19:02.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-rc.3", prerelease = true }
+"1.203.0-rc.4" = { created_at = 2026-01-01T01:23:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-rc.4", prerelease = true }
+"1.203.0-test.0" = { created_at = 2025-12-19T16:40:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.0", prerelease = true }
+"1.203.0-test.1" = { created_at = 2025-12-19T17:57:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.1", prerelease = true }
+"1.203.0-test.2" = { created_at = 2025-12-21T22:18:22.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.2", prerelease = true }
+"1.203.0-test.3" = { created_at = 2025-12-22T01:41:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.3", prerelease = true }
+"1.203.0-test.4" = { created_at = 2025-12-22T18:01:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.4", prerelease = true }
+"1.203.0-test.5" = { created_at = 2025-12-23T02:14:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.5", prerelease = true }
+"1.203.0-test.6" = { created_at = 2025-12-23T02:35:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.6", prerelease = true }
+"1.203.0-test.7" = { created_at = 2025-12-23T02:36:02.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.7", prerelease = true }
+"1.203.0-test.8" = { created_at = 2025-12-23T02:42:53.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.8", prerelease = true }
+"1.203.0-test.9" = { created_at = 2025-12-23T03:45:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.9", prerelease = true }
+"1.203.0-test.10" = { created_at = 2025-12-23T04:06:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.10", prerelease = true }
+"1.203.0-test.11" = { created_at = 2025-12-23T06:14:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.11", prerelease = true }
+"1.203.0-test.12" = { created_at = 2025-12-23T07:05:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.12", prerelease = true }
+"1.203.0-test.13" = { created_at = 2025-12-23T07:10:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.13", prerelease = true }
+"1.203.0-test.14" = { created_at = 2025-12-23T08:45:30.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.14", prerelease = true }
+"1.203.0-test.15" = { created_at = 2025-12-23T19:01:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.15", prerelease = true }
+"1.203.0-test.16" = { created_at = 2025-12-23T19:15:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.16", prerelease = true }
+"1.203.0-test.17" = { created_at = 2025-12-23T20:14:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.17", prerelease = true }
+"1.203.0-test.18" = { created_at = 2025-12-23T21:13:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0-test.18", prerelease = true }
+"1.203.0" = { created_at = 2026-01-02T23:21:37.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.203.0" }
+"1.204.0-rc.0" = { created_at = 2026-01-04T01:11:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0-rc.0", prerelease = true }
+"1.204.0-rc.1" = { created_at = 2026-01-06T01:16:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0-rc.1", prerelease = true }
+"1.204.0-rc.2" = { created_at = 2026-01-07T01:06:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0-rc.2", prerelease = true }
+"1.204.0-rc.3" = { created_at = 2026-01-11T01:24:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0-rc.3", prerelease = true }
+"1.204.0-rc.4" = { created_at = 2026-01-14T00:50:37.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0-rc.4", prerelease = true }
+"1.204.0-rc.5" = { created_at = 2026-01-15T01:18:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0-rc.5", prerelease = true }
+"1.204.0" = { created_at = 2026-01-15T21:38:05.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.0" }
+"1.204.1-rc.0" = { created_at = 2026-01-16T01:20:18.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.0", prerelease = true }
+"1.204.1-rc.1" = { created_at = 2026-01-17T01:17:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.1", prerelease = true }
+"1.204.1-rc.2" = { created_at = 2026-01-19T01:23:19.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.2", prerelease = true }
+"1.204.1-rc.3" = { created_at = 2026-01-21T01:21:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.3", prerelease = true }
+"1.204.1-rc.4" = { created_at = 2026-01-23T01:21:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.4", prerelease = true }
+"1.204.1-rc.5" = { created_at = 2026-01-23T21:56:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.5", prerelease = true }
+"1.204.1-rc.6" = { created_at = 2026-01-26T01:22:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.204.1-rc.6", prerelease = true }
+"1.205.0" = { created_at = 2026-01-26T20:12:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.205.0" }
+"1.205.1-rc.0" = { created_at = 2026-01-30T01:26:35.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.205.1-rc.0", prerelease = true }
+"1.205.1-rc.1" = { created_at = 2026-02-01T01:35:12.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.205.1-rc.1", prerelease = true }
+"1.205.1-rc.2" = { created_at = 2026-02-04T01:24:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.205.1-rc.2", prerelease = true }
+"1.205.1" = { created_at = 2026-02-05T01:12:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.205.1" }
+"1.206.0-rc.0" = { created_at = 2026-02-05T01:27:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-rc.0", prerelease = true }
+"1.206.0-rc.1" = { created_at = 2026-02-06T01:26:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-rc.1", prerelease = true }
+"1.206.0-rc.2" = { created_at = 2026-02-07T01:25:26.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-rc.2", prerelease = true }
+"1.206.0-rc.3" = { created_at = 2026-02-09T01:30:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-rc.3", prerelease = true }
+"1.206.0-rc.4" = { created_at = 2026-02-10T01:35:32.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-rc.4", prerelease = true }
+"1.206.0-rc.5" = { created_at = 2026-02-11T01:35:13.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-rc.5", prerelease = true }
+"1.206.0-test.0" = { created_at = 2026-02-12T15:33:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0-test.0", prerelease = true }
+"1.206.0" = { created_at = 2026-02-12T15:45:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.0" }
+"1.206.1-rc.0" = { created_at = 2026-02-13T01:31:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.1-rc.0", prerelease = true }
+"1.206.1" = { created_at = 2026-02-13T04:18:14.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.1" }
+"1.206.2" = { created_at = 2026-02-14T06:23:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.2" }
+"1.206.3-rc.0" = { created_at = 2026-02-17T01:29:51.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-rc.0", prerelease = true }
+"1.206.3-rc.1" = { created_at = 2026-02-18T01:29:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-rc.1", prerelease = true }
+"1.206.3-rc.2" = { created_at = 2026-02-19T01:29:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-rc.2", prerelease = true }
+"1.206.3-test.0" = { created_at = 2026-02-19T13:51:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-test.0", prerelease = true }
+"1.206.3-test.1" = { created_at = 2026-02-19T20:12:21.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-test.1", prerelease = true }
+"1.206.3-test.2" = { created_at = 2026-02-19T20:55:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-test.2", prerelease = true }
+"1.206.3-test.3" = { created_at = 2026-02-19T22:12:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.206.3-test.3", prerelease = true }
+"1.207.0" = { created_at = 2026-02-19T23:44:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.207.0" }
+"1.208.0-rc.0" = { created_at = 2026-02-23T01:29:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-rc.0", prerelease = true }
+"1.208.0-rc.1" = { created_at = 2026-02-26T01:26:22.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-rc.1", prerelease = true }
+"1.208.0-test.0" = { created_at = 2026-02-20T13:21:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.0", prerelease = true }
+"1.208.0-test.1" = { created_at = 2026-02-20T13:57:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.1", prerelease = true }
+"1.208.0-test.2" = { created_at = 2026-02-20T15:01:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.2", prerelease = true }
+"1.208.0-test.3" = { created_at = 2026-02-20T17:54:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.3", prerelease = true }
+"1.208.0-test.4" = { created_at = 2026-02-20T20:02:54.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.4", prerelease = true }
+"1.208.0-test.5" = { created_at = 2026-02-21T00:20:36.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.5", prerelease = true }
+"1.208.0-test.6" = { created_at = 2026-02-21T20:03:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.6", prerelease = true }
+"1.208.0-test.7" = { created_at = 2026-02-22T10:29:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.7", prerelease = true }
+"1.208.0-test.8" = { created_at = 2026-02-22T11:08:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.8", prerelease = true }
+"1.208.0-test.9" = { created_at = 2026-02-22T12:03:53.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.9", prerelease = true }
+"1.208.0-test.10" = { created_at = 2026-02-22T12:35:12.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.10", prerelease = true }
+"1.208.0-test.11" = { created_at = 2026-02-22T22:07:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.11", prerelease = true }
+"1.208.0-test.12" = { created_at = 2026-02-23T09:43:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.12", prerelease = true }
+"1.208.0-test.13" = { created_at = 2026-02-23T11:07:40.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.13", prerelease = true }
+"1.208.0-test.14" = { created_at = 2026-02-23T15:49:47.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.14", prerelease = true }
+"1.208.0-test.15" = { created_at = 2026-02-23T18:27:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.15", prerelease = true }
+"1.208.0-test.16" = { created_at = 2026-02-23T19:25:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.16", prerelease = true }
+"1.208.0-test.17" = { created_at = 2026-02-23T23:05:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.17", prerelease = true }
+"1.208.0-test.18" = { created_at = 2026-02-24T12:29:50.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.18", prerelease = true }
+"1.208.0-test.19" = { created_at = 2026-02-24T13:03:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.19", prerelease = true }
+"1.208.0-test.20" = { created_at = 2026-02-24T13:12:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.20", prerelease = true }
+"1.208.0-test.21" = { created_at = 2026-02-24T13:52:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.21", prerelease = true }
+"1.208.0-test.22" = { created_at = 2026-02-24T16:32:16.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.22", prerelease = true }
+"1.208.0-test.23" = { created_at = 2026-02-24T21:03:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.23", prerelease = true }
+"1.208.0-test.24" = { created_at = 2026-02-25T16:10:47.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.24", prerelease = true }
+"1.208.0-test.25" = { created_at = 2026-02-26T10:58:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.25", prerelease = true }
+"1.208.0-test.26" = { created_at = 2026-02-26T11:31:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.26", prerelease = true }
+"1.208.0-test.27" = { created_at = 2026-02-26T11:51:05.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.27", prerelease = true }
+"1.208.0-test.28" = { created_at = 2026-02-27T13:25:53.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.28", prerelease = true }
+"1.208.0-test.29" = { created_at = 2026-02-27T14:14:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.29", prerelease = true }
+"1.208.0-test.30" = { created_at = 2026-02-27T18:23:34.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.30", prerelease = true }
+"1.208.0-test.31" = { created_at = 2026-02-27T19:21:32.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.31", prerelease = true }
+"1.208.0-test.32" = { created_at = 2026-03-02T21:50:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0-test.32", prerelease = true }
+"1.208.0" = { created_at = 2026-03-03T22:34:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.0" }
+"1.208.1-rc.0" = { created_at = 2026-03-04T01:26:54.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-rc.0", prerelease = true }
+"1.208.1-rc.1" = { created_at = 2026-03-06T01:31:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-rc.1", prerelease = true }
+"1.208.1-test.0" = { created_at = 2026-03-05T00:47:19.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.0", prerelease = true }
+"1.208.1-test.1" = { created_at = 2026-03-05T01:43:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.1", prerelease = true }
+"1.208.1-test.2" = { created_at = 2026-03-06T18:40:12.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.2", prerelease = true }
+"1.208.1-test.3" = { created_at = 2026-03-06T18:44:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.3", prerelease = true }
+"1.208.1-test.4" = { created_at = 2026-03-06T23:29:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.4", prerelease = true }
+"1.208.1-test.5" = { created_at = 2026-03-08T21:10:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.5", prerelease = true }
+"1.208.1-test.6" = { created_at = 2026-03-09T10:14:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.6", prerelease = true }
+"1.208.1-test.7" = { created_at = 2026-03-09T10:36:54.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.7", prerelease = true }
+"1.208.1-test.8" = { created_at = 2026-03-09T11:18:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.8", prerelease = true }
+"1.208.1-test.9" = { created_at = 2026-03-09T13:26:53.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.9", prerelease = true }
+"1.208.1-test.10" = { created_at = 2026-03-09T17:34:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.10", prerelease = true }
+"1.208.1-test.11" = { created_at = 2026-03-09T19:03:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.11", prerelease = true }
+"1.208.1-test.12" = { created_at = 2026-03-09T20:32:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.12", prerelease = true }
+"1.208.1-test.13" = { created_at = 2026-03-09T20:48:20.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.13", prerelease = true }
+"1.208.1-test.14" = { created_at = 2026-03-10T10:01:27.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.14", prerelease = true }
+"1.208.1-test.15" = { created_at = 2026-03-10T11:43:18.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.15", prerelease = true }
+"1.208.1-test.16" = { created_at = 2026-03-10T12:22:15.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.16", prerelease = true }
+"1.208.1-test.17" = { created_at = 2026-03-10T17:07:59.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.17", prerelease = true }
+"1.208.1-test.18" = { created_at = 2026-03-10T18:33:22.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.18", prerelease = true }
+"1.208.1-test.19" = { created_at = 2026-03-10T18:45:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.19", prerelease = true }
+"1.208.1-test.20" = { created_at = 2026-03-10T19:23:32.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.20", prerelease = true }
+"1.208.1-test.21" = { created_at = 2026-03-10T21:01:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.21", prerelease = true }
+"1.208.1-test.22" = { created_at = 2026-03-10T22:42:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.22", prerelease = true }
+"1.208.1-test.23" = { created_at = 2026-03-10T23:23:55.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.23", prerelease = true }
+"1.208.1-test.24" = { created_at = 2026-03-10T23:27:40.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.208.1-test.24", prerelease = true }
+"1.209.0" = { created_at = 2026-03-11T13:54:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.209.0" }
+"1.210.0-rc.0" = { created_at = 2026-03-16T01:34:13.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-rc.0", prerelease = true }
+"1.210.0-rc.1" = { created_at = 2026-03-17T01:27:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-rc.1", prerelease = true }
+"1.210.0-test.0" = { created_at = 2026-03-10T23:29:05.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.0", prerelease = true }
+"1.210.0-test.1" = { created_at = 2026-03-11T11:34:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.1", prerelease = true }
+"1.210.0-test.2" = { created_at = 2026-03-11T12:24:35.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.2", prerelease = true }
+"1.210.0-test.3" = { created_at = 2026-03-11T12:50:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.3", prerelease = true }
+"1.210.0-test.4" = { created_at = 2026-03-11T12:55:56.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.4", prerelease = true }
+"1.210.0-test.5" = { created_at = 2026-03-11T13:01:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.5", prerelease = true }
+"1.210.0-test.6" = { created_at = 2026-03-11T13:29:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.6", prerelease = true }
+"1.210.0-test.7" = { created_at = 2026-03-11T20:19:47.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.7", prerelease = true }
+"1.210.0-test.8" = { created_at = 2026-03-11T22:30:37.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.8", prerelease = true }
+"1.210.0-test.9" = { created_at = 2026-03-11T22:39:40.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.9", prerelease = true }
+"1.210.0-test.10" = { created_at = 2026-03-12T00:01:25.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.10", prerelease = true }
+"1.210.0-test.11" = { created_at = 2026-03-12T00:15:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.11", prerelease = true }
+"1.210.0-test.12" = { created_at = 2026-03-12T10:49:30.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.12", prerelease = true }
+"1.210.0-test.13" = { created_at = 2026-03-12T12:12:30.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.13", prerelease = true }
+"1.210.0-test.14" = { created_at = 2026-03-12T12:13:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.14", prerelease = true }
+"1.210.0-test.15" = { created_at = 2026-03-12T12:19:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.15", prerelease = true }
+"1.210.0-test.16" = { created_at = 2026-03-12T12:21:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.16", prerelease = true }
+"1.210.0-test.17" = { created_at = 2026-03-13T05:54:19.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.17", prerelease = true }
+"1.210.0-test.18" = { created_at = 2026-03-13T12:44:34.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.18", prerelease = true }
+"1.210.0-test.19" = { created_at = 2026-03-13T13:54:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.19", prerelease = true }
+"1.210.0-test.20" = { created_at = 2026-03-13T14:23:35.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.20", prerelease = true }
+"1.210.0-test.21" = { created_at = 2026-03-15T14:37:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.21", prerelease = true }
+"1.210.0-test.22" = { created_at = 2026-03-15T14:38:07.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.22", prerelease = true }
+"1.210.0-test.23" = { created_at = 2026-03-15T19:16:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.23", prerelease = true }
+"1.210.0-test.24" = { created_at = 2026-03-16T10:39:17.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.24", prerelease = true }
+"1.210.0-test.25" = { created_at = 2026-03-16T12:08:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.25", prerelease = true }
+"1.210.0-test.26" = { created_at = 2026-03-16T12:13:54.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.26", prerelease = true }
+"1.210.0-test.27" = { created_at = 2026-03-16T13:01:07.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.27", prerelease = true }
+"1.210.0-test.28" = { created_at = 2026-03-16T22:55:16.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.28", prerelease = true }
+"1.210.0-test.29" = { created_at = 2026-03-16T23:00:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.29", prerelease = true }
+"1.210.0-test.30" = { created_at = 2026-03-16T23:05:40.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.30", prerelease = true }
+"1.210.0-test.31" = { created_at = 2026-03-16T23:29:24.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0-test.31", prerelease = true }
+"1.210.0" = { created_at = 2026-03-17T03:36:26.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.0" }
+"1.210.1-rc.0" = { created_at = 2026-03-18T01:44:20.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.1-rc.0", prerelease = true }
+"1.210.1-test.0" = { created_at = 2026-03-18T13:26:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.1-test.0", prerelease = true }
+"1.210.1-test.1" = { created_at = 2026-03-18T21:27:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.1-test.1", prerelease = true }
+"1.210.1-test.2" = { created_at = 2026-03-18T22:16:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.1-test.2", prerelease = true }
+"1.210.1" = { created_at = 2026-03-18T23:24:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.210.1" }
+"1.211.0-rc.0" = { created_at = 2026-03-19T01:32:27.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-rc.0", prerelease = true }
+"1.211.0-rc.1" = { created_at = 2026-03-21T01:25:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-rc.1", prerelease = true }
+"1.211.0-rc.2" = { created_at = 2026-03-22T01:32:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-rc.2", prerelease = true }
+"1.211.0-test.0" = { created_at = 2026-03-19T14:04:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.0", prerelease = true }
+"1.211.0-test.1" = { created_at = 2026-03-19T15:42:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.1", prerelease = true }
+"1.211.0-test.2" = { created_at = 2026-03-19T15:49:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.2", prerelease = true }
+"1.211.0-test.3" = { created_at = 2026-03-19T15:59:09.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.3", prerelease = true }
+"1.211.0-test.4" = { created_at = 2026-03-19T16:07:35.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.4", prerelease = true }
+"1.211.0-test.5" = { created_at = 2026-03-19T16:08:34.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.5", prerelease = true }
+"1.211.0-test.6" = { created_at = 2026-03-19T17:13:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.6", prerelease = true }
+"1.211.0-test.7" = { created_at = 2026-03-19T17:40:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.7", prerelease = true }
+"1.211.0-test.8" = { created_at = 2026-03-19T17:58:36.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.8", prerelease = true }
+"1.211.0-test.9" = { created_at = 2026-03-19T18:50:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.9", prerelease = true }
+"1.211.0-test.10" = { created_at = 2026-03-19T19:28:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.10", prerelease = true }
+"1.211.0-test.11" = { created_at = 2026-03-20T16:02:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.11", prerelease = true }
+"1.211.0-test.12" = { created_at = 2026-03-20T16:35:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.12", prerelease = true }
+"1.211.0-test.13" = { created_at = 2026-03-20T18:05:38.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.13", prerelease = true }
+"1.211.0-test.14" = { created_at = 2026-03-20T18:09:32.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.14", prerelease = true }
+"1.211.0-test.15" = { created_at = 2026-03-20T19:08:48.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.15", prerelease = true }
+"1.211.0-test.16" = { created_at = 2026-03-22T20:25:04.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0-test.16", prerelease = true }
+"1.211.0" = { created_at = 2026-03-23T23:45:28.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.0" }
+"1.211.1-rc.0" = { created_at = 2026-03-24T01:13:03.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-rc.0", prerelease = true }
+"1.211.1-test.0" = { created_at = 2026-03-24T03:16:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-test.0", prerelease = true }
+"1.211.1-test.1" = { created_at = 2026-03-24T03:17:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-test.1", prerelease = true }
+"1.211.1-test.2" = { created_at = 2026-03-24T03:39:46.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-test.2", prerelease = true }
+"1.211.1-test.3" = { created_at = 2026-03-24T21:45:19.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-test.3", prerelease = true }
+"1.211.1-test.4" = { created_at = 2026-03-24T21:48:50.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-test.4", prerelease = true }
+"1.211.1-test.5" = { created_at = 2026-03-24T21:49:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.211.1-test.5", prerelease = true }
+"1.212.0" = { created_at = 2026-03-25T15:39:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.212.0" }
+"1.212.1-rc.0" = { created_at = 2026-03-26T01:34:21.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.212.1-rc.0", prerelease = true }
+"1.212.1-rc.1" = { created_at = 2026-03-27T01:34:47.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.212.1-rc.1", prerelease = true }
+"1.213.0-test.0" = { created_at = 2026-03-25T16:16:10.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.0", prerelease = true }
+"1.213.0-test.1" = { created_at = 2026-03-25T17:18:33.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.1", prerelease = true }
+"1.213.0-test.2" = { created_at = 2026-03-25T17:19:20.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.2", prerelease = true }
+"1.213.0-test.3" = { created_at = 2026-03-25T17:48:07.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.3", prerelease = true }
+"1.213.0-test.4" = { created_at = 2026-03-26T01:44:53.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.4", prerelease = true }
+"1.213.0-test.5" = { created_at = 2026-03-26T14:05:39.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.5", prerelease = true }
+"1.213.0-test.6" = { created_at = 2026-03-26T14:38:42.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.6", prerelease = true }
+"1.213.0-test.7" = { created_at = 2026-03-26T16:09:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.7", prerelease = true }
+"1.213.0-test.8" = { created_at = 2026-03-26T19:02:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0-test.8", prerelease = true }
+"1.213.0" = { created_at = 2026-03-27T14:56:06.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.213.0" }
+"1.214.0-rc.0" = { created_at = 2026-03-28T01:30:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-rc.0", prerelease = true }
+"1.214.0-rc.1" = { created_at = 2026-03-29T01:38:05.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-rc.1", prerelease = true }
+"1.214.0-rc.2" = { created_at = 2026-04-02T01:18:58.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-rc.2", prerelease = true }
+"1.214.0-test.0" = { created_at = 2026-03-31T11:16:47.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-test.0", prerelease = true }
+"1.214.0-test.2" = { created_at = 2026-03-31T22:59:01.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-test.2", prerelease = true }
+"1.214.0-test.3" = { created_at = 2026-03-31T22:59:21.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-test.3", prerelease = true }
+"1.214.0-test.4" = { created_at = 2026-03-31T23:01:43.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-test.4", prerelease = true }
+"1.214.0-test.5" = { created_at = 2026-04-01T00:06:00.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-test.5", prerelease = true }
+"1.214.0-test.6" = { created_at = 2026-04-01T14:37:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0-test.6", prerelease = true }
+"1.214.0" = { created_at = 2026-04-02T19:46:45.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.214.0" }
+"1.215.0-rc.0" = { created_at = 2026-04-03T01:01:08.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.0", prerelease = true }
+"1.215.0-rc.1" = { created_at = 2026-04-04T00:58:02.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.1", prerelease = true }
+"1.215.0-rc.2" = { created_at = 2026-04-06T01:05:47.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.2", prerelease = true }
+"1.215.0-rc.3" = { created_at = 2026-04-07T01:24:41.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.3", prerelease = true }
+"1.215.0-rc.4" = { created_at = 2026-04-08T01:24:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.4", prerelease = true }
+"1.215.0-rc.5" = { created_at = 2026-04-10T01:37:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.5", prerelease = true }
+"1.215.0-rc.6" = { created_at = 2026-04-11T01:34:29.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.6", prerelease = true }
+"1.215.0-rc.7" = { created_at = 2026-04-12T01:45:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.7", prerelease = true }
+"1.215.0-rc.8" = { created_at = 2026-04-13T01:29:31.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0-rc.8", prerelease = true }
+"1.215.0" = { created_at = 2026-04-13T17:49:52.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.215.0" }
+"1.216.0-rc.0" = { created_at = 2026-04-14T01:28:49.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.216.0-rc.0", prerelease = true }
+"1.216.0-rc.1" = { created_at = 2026-04-15T01:42:16.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.216.0-rc.1", prerelease = true }
+"1.216.0-rc.2" = { created_at = 2026-04-21T01:29:13.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.216.0-rc.2", prerelease = true }
 "1.216.0" = { created_at = 2026-04-21T04:00:23.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.216.0" }
 "1.217.0-rc.0" = { created_at = 2026-04-22T01:42:57.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.217.0-rc.0", prerelease = true }
 "1.217.0-rc.1" = { created_at = 2026-04-24T01:45:15.000Z, release_url = "https://github.com/cloudposse/atmos/releases/tag/v1.217.0-rc.1", prerelease = true }

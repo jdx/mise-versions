@@ -1,4 +1,30 @@
 [versions]
+"1.15.6" = { created_at = 2025-09-26T11:49:35.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.15.6" }
+"1.15.7" = { created_at = 2025-10-11T10:46:18.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.15.7" }
+"1.15.8" = { created_at = 2025-10-24T13:07:14.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.15.8" }
+"1.15.9" = { created_at = 2025-10-26T13:40:53.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.15.9" }
+"1.15.10" = { created_at = 2025-11-02T02:30:41.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.15.10" }
+"1.15.11" = { created_at = 2025-11-09T08:46:36.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.15.11" }
+"1.16.0" = { created_at = 2025-11-15T11:25:22.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.0" }
+"1.16.1" = { created_at = 2025-11-21T13:14:36.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.1" }
+"1.16.2" = { created_at = 2025-11-23T06:43:27.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.2" }
+"1.16.3" = { created_at = 2025-12-05T13:23:25.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.3" }
+"1.16.4" = { created_at = 2025-12-14T02:32:46.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.4" }
+"1.16.5" = { created_at = 2025-12-22T15:20:58.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.5" }
+"1.16.6" = { created_at = 2025-12-27T07:50:08.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.6" }
+"1.16.7" = { created_at = 2026-01-19T10:09:25.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.16.7" }
+"1.17.0" = { created_at = 2026-01-23T09:36:36.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.0", prerelease = true }
+"1.17.1" = { created_at = 2026-01-24T05:36:47.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.1", prerelease = true }
+"1.17.2" = { created_at = 2026-01-24T07:52:46.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.2" }
+"1.17.3" = { created_at = 2026-01-24T10:34:27.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.3" }
+"1.17.4" = { created_at = 2026-01-28T03:27:04.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.4" }
+"1.17.5" = { created_at = 2026-02-13T13:40:56.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.5" }
+"1.17.6" = { created_at = 2026-02-28T06:19:39.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.6" }
+"1.17.7" = { created_at = 2026-03-07T15:04:29.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.7" }
+"1.17.8" = { created_at = 2026-03-21T06:48:59.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.8" }
+"1.17.9" = { created_at = 2026-03-29T05:34:42.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.17.9" }
+"1.18.0" = { created_at = 2026-04-12T16:14:11.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.18.0" }
+"1.18.1" = { created_at = 2026-04-13T12:41:07.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.18.1" }
 "1.19.0" = { created_at = 2026-05-03T04:43:34.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.19.0" }
 "1.19.1" = { created_at = 2026-05-06T14:52:25.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.19.1" }
 "1.20.0" = { created_at = 2026-06-08T12:48:14.000Z, release_url = "https://github.com/cargo-bins/cargo-binstall/releases/tag/v1.20.0" }
