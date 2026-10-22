@@ -1,4 +1,33 @@
 [versions]
+"2019.03.27-alpha" = { created_at = 2019-03-26T12:33:22.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/2019.03.27-alpha", prerelease = true }
+"2019.03.29-alpha2" = { created_at = 2019-03-29T10:59:10.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.03.29-alpha2", prerelease = true }
+"2019.04.04-alpha" = { created_at = 2019-04-04T12:34:01.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.04.04-alpha", prerelease = true }
+"2019.04.07-alpha" = { created_at = 2019-04-07T15:04:29.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.04.07-alpha", prerelease = true }
+"2019.04.10-alpha" = { created_at = 2019-04-10T17:12:45.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.04.10-alpha", prerelease = true }
+"2019.04.15-alpha" = { created_at = 2019-04-15T09:20:28.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.04.15-alpha", prerelease = true }
+"2019.04.21-alpha" = { created_at = 2019-04-21T21:03:09.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.04.21-alpha", prerelease = true }
+"2019.04.25-alpha" = { created_at = 2019-04-25T12:45:32.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.04.25-alpha", prerelease = true }
+"2019.05.01-alpha" = { created_at = 2019-05-01T19:16:36.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.05.01-alpha", prerelease = true }
+"2019.05.06-alpha" = { created_at = 2019-05-06T08:51:06.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.05.06-alpha", prerelease = true }
+"2019.05.12-alpha" = { created_at = 2019-05-12T19:31:27.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.05.12-alpha", prerelease = true }
+"2019.05.19-alpha" = { created_at = 2019-05-19T15:15:51.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.05.19-alpha", prerelease = true }
+"2019.05.26-alpha" = { created_at = 2019-05-26T16:34:16.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.05.26-alpha", prerelease = true }
+"2019.06.01-alpha" = { created_at = 2019-06-01T09:44:15.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.06.01-alpha", prerelease = true }
+"2019.06.07-alpha" = { created_at = 2019-06-07T08:39:26.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.06.07-alpha", prerelease = true }
+"2019.06.16-alpha" = { created_at = 2019-06-16T15:58:10.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.06.16-alpha", prerelease = true }
+"2019.06.23-alpha" = { created_at = 2019-06-23T20:48:01.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.06.23-alpha", prerelease = true }
+"2019.06.29-alpha" = { created_at = 2019-06-29T16:11:47.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.06.29-alpha", prerelease = true }
+"2019.07.05-alpha" = { created_at = 2019-07-05T08:30:02.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.07.05-alpha", prerelease = true }
+"2019.07.17-alpha" = { created_at = 2019-07-17T19:21:17.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.07.17-alpha", prerelease = true }
+"2019.07.24-alpha" = { created_at = 2019-07-24T19:06:51.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.07.24-alpha", prerelease = true }
+"2019.07.31-alpha" = { created_at = 2019-07-31T19:05:12.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.07.31-alpha", prerelease = true }
+"2019.08.21-alpha" = { created_at = 2019-08-21T15:51:13.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.08.21-alpha", prerelease = true }
+"2019.09.22-alpha" = { created_at = 2019-09-22T21:36:10.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.09.22-alpha", prerelease = true }
+"2019.10.04-alpha" = { created_at = 2019-10-04T08:15:04.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.10.04-alpha", prerelease = true }
+"2019.10.11-alpha" = { created_at = 2019-10-11T13:55:41.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.10.11-alpha", prerelease = true }
+"2019.10.26" = { created_at = 2019-10-26T09:48:45.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.10.26" }
+"2019.11.03" = { created_at = 2019-11-03T19:45:40.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.11.03" }
+"2019.11.07" = { created_at = 2019-11-07T09:09:27.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.11.07" }
 "2019.11.23" = { created_at = 2019-11-23T16:23:14.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.11.23" }
 "2019.12.14" = { created_at = 2019-12-14T21:58:25.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2019.12.14" }
 "2020.01.10" = { created_at = 2020-01-10T10:09:59.000Z, release_url = "https://github.com/clj-kondo/clj-kondo/releases/tag/v2020.01.10" }

@@ -1,4 +1,31 @@
 [versions]
+"0_5_0" = { created_at = 2019-11-06T05:58:26.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0_5_0", prerelease = true }
+"0.2.0" = { created_at = 2019-08-24T00:30:32.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.2.0", prerelease = true }
+"0.3.0" = { created_at = 2019-09-24T18:48:34.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.3.0", prerelease = true }
+"0.4.0" = { created_at = 2019-10-16T02:14:29.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.4.0", prerelease = true }
+"0.6.0" = { created_at = 2019-11-27T04:24:05.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.6.0", prerelease = true }
+"0.6.1" = { created_at = 2019-11-30T18:41:23.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.6.1", prerelease = true }
+"0.7.0" = { created_at = 2019-12-18T23:43:02.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.7.0", prerelease = true }
+"0.8.0" = { created_at = 2020-01-07T17:18:48.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.8.0", prerelease = true }
+"0.9.0" = { created_at = 2020-01-29T04:38:28.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.9.0", prerelease = true }
+"0.10.0" = { created_at = 2020-02-18T18:31:14.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.10.0", prerelease = true }
+"0.11.0" = { created_at = 2020-03-11T03:18:11.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.11.0", prerelease = true }
+"0.12.0" = { created_at = 2020-03-31T19:56:02.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.12.0", prerelease = true }
+"0.13.0" = { created_at = 2020-04-21T19:15:34.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.13.0" }
+"0.14.0" = { created_at = 2020-05-12T18:10:23.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.14.0" }
+"0.15.0" = { created_at = 2020-06-09T21:19:59.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.15.0" }
+"0.16.0" = { created_at = 2020-06-30T21:08:39.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.16.0" }
+"0.17.0" = { created_at = 2020-07-21T22:37:51.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.17.0" }
+"0.18.1" = { created_at = 2020-08-12T05:22:47.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.18.1" }
+"0.19.0" = { created_at = 2020-09-02T04:54:52.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.19.0" }
+"0.20.0" = { created_at = 2020-09-22T18:52:01.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.20.0" }
+"0.21.0" = { created_at = 2020-10-14T03:07:30.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.21.0" }
+"0.22.0" = { created_at = 2020-11-03T21:57:37.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.22.0" }
+"0.23.0" = { created_at = 2020-11-25T06:17:17.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.23.0" }
+"0.24.0" = { created_at = 2020-12-15T18:27:56.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.24.0" }
+"0.24.1" = { created_at = 2020-12-15T20:58:28.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.24.1" }
+"0.25.0" = { created_at = 2021-01-05T19:43:09.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.25.0" }
+"0.25.1" = { created_at = 2021-01-06T03:41:05.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.25.1" }
 "0.26.0" = { created_at = 2021-01-27T05:44:05.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.26.0" }
 "0.27.0" = { created_at = 2021-02-16T17:13:56.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.27.0" }
 "0.27.1" = { created_at = 2021-02-19T05:00:31.000Z, release_url = "https://github.com/nushell/nushell/releases/tag/0.27.1" }
