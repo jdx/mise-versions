@@ -1,4 +1,180 @@
 [versions]
+"0.0.1-prerelease1" = { created_at = 2023-01-19T13:24:58.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.1-prerelease1", prerelease = true }
+"0.0.1-prerelease2" = { created_at = 2023-01-23T20:58:28.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.1-prerelease2", prerelease = true }
+"0.0.1" = { created_at = 2023-01-23T21:20:15.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.1" }
+"0.0.2-prerelease01" = { created_at = 2023-01-31T17:41:44.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.2-prerelease01", prerelease = true }
+"0.0.2-prerelease02" = { created_at = 2023-01-31T17:53:43.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.2-prerelease02", prerelease = true }
+"0.0.2" = { created_at = 2023-01-31T18:34:14.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.2" }
+"0.0.3-prerelease01" = { created_at = 2023-02-16T17:15:46.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease01", prerelease = true }
+"0.0.3-prerelease02" = { created_at = 2023-02-16T17:39:43.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease02", prerelease = true }
+"0.0.3-prerelease03" = { created_at = 2023-02-16T22:05:55.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease03", prerelease = true }
+"0.0.3-prerelease04" = { created_at = 2023-02-16T23:29:31.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease04", prerelease = true }
+"0.0.3-prerelease05" = { created_at = 2023-02-23T17:51:37.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease05", prerelease = true }
+"0.0.3-prerelease06" = { created_at = 2023-02-24T02:41:44.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease06", prerelease = true }
+"0.0.3-prerelease08" = { created_at = 2023-02-24T16:30:32.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease08", prerelease = true }
+"0.0.3-prerelease09" = { created_at = 2023-02-24T16:43:20.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease09", prerelease = true }
+"0.0.3-prerelease10" = { created_at = 2023-02-25T01:28:04.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease10", prerelease = true }
+"0.0.3-prerelease11" = { created_at = 2023-02-25T02:01:33.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease11", prerelease = true }
+"0.0.3-prerelease12" = { created_at = 2023-02-25T02:15:03.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3-prerelease12", prerelease = true }
+"0.0.3" = { created_at = 2023-02-27T18:40:38.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.3" }
+"0.0.4-prerelease.1" = { created_at = 2023-03-01T14:57:30.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.4-prerelease.1", prerelease = true }
+"0.0.4-prerelease.2" = { created_at = 2023-03-01T15:14:50.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.4-prerelease.2", prerelease = true }
+"0.0.4-prerelease.3" = { created_at = 2023-03-03T14:38:35.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.4-prerelease.3", prerelease = true }
+"0.0.4" = { created_at = 2023-03-03T15:14:39.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.4" }
+"0.0.5-prerelease.1" = { created_at = 2023-03-07T19:55:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.5-prerelease.1", prerelease = true }
+"0.0.5-prerelease.2" = { created_at = 2023-03-07T21:34:17.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.5-prerelease.2", prerelease = true }
+"0.0.5" = { created_at = 2023-03-15T19:17:02.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.5" }
+"0.0.6-prerelease.2" = { created_at = 2023-04-17T17:24:33.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.2", prerelease = true }
+"0.0.6-prerelease.3" = { created_at = 2023-04-18T19:16:28.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.3", prerelease = true }
+"0.0.6-prerelease.4" = { created_at = 2023-04-25T02:13:15.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.4", prerelease = true }
+"0.0.6-prerelease.5" = { created_at = 2023-05-03T01:24:40.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.5", prerelease = true }
+"0.0.6-prerelease.6" = { created_at = 2023-05-03T15:31:20.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.6", prerelease = true }
+"0.0.6-prerelease.7" = { created_at = 2023-05-03T18:00:50.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.7", prerelease = true }
+"0.0.6-prerelease.8" = { created_at = 2023-05-03T18:15:31.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6-prerelease.8", prerelease = true }
+"0.0.6" = { created_at = 2023-05-05T00:29:36.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.6" }
+"0.0.7" = { created_at = 2023-05-09T16:50:29.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.0.7" }
+"0.1.0-prerelease.1" = { created_at = 2023-05-10T15:44:45.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.1", prerelease = true }
+"0.1.0-prerelease.2" = { created_at = 2023-05-11T04:47:38.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.2", prerelease = true }
+"0.1.0-prerelease.3" = { created_at = 2023-05-11T14:45:31.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.3", prerelease = true }
+"0.1.0-prerelease.4" = { created_at = 2023-06-05T18:13:21.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.4", prerelease = true }
+"0.1.0-prerelease.5" = { created_at = 2023-07-20T14:41:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.5", prerelease = true }
+"0.1.0-prerelease.6" = { created_at = 2023-07-20T15:09:50.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.6", prerelease = true }
+"0.1.0-prerelease.7" = { created_at = 2023-07-27T19:17:13.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.7", prerelease = true }
+"0.1.0-prerelease.8" = { created_at = 2023-08-04T15:04:40.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.8", prerelease = true }
+"0.1.0-prerelease.9" = { created_at = 2023-08-04T17:27:48.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.9", prerelease = true }
+"0.1.0-prerelease.10" = { created_at = 2023-08-04T18:02:54.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.10", prerelease = true }
+"0.1.0-prerelease.11" = { created_at = 2023-08-10T21:09:24.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.11", prerelease = true }
+"0.1.0-prerelease.12" = { created_at = 2023-08-10T21:35:00.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0-prerelease.12", prerelease = true }
+"0.1.0" = { created_at = 2023-08-11T12:34:24.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.1.0" }
+"0.2.0-prerelease.1" = { created_at = 2023-08-17T12:55:30.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.2.0-prerelease.1", prerelease = true }
+"0.2.0-prerelease.2" = { created_at = 2023-08-17T18:46:16.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.2.0-prerelease.2", prerelease = true }
+"0.2.0-prerelease.4" = { created_at = 2023-08-22T20:42:51.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.2.0-prerelease.4", prerelease = true }
+"0.2.0-prerelease.5" = { created_at = 2023-08-24T22:07:29.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.2.0-prerelease.5", prerelease = true }
+"0.2.0-prerelease.6" = { created_at = 2023-08-29T00:42:47.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.2.0-prerelease.6", prerelease = true }
+"0.2.0" = { created_at = 2023-08-30T17:32:28.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.2.0" }
+"0.3.0-prerelease.1" = { created_at = 2023-09-05T21:17:43.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.1", prerelease = true }
+"0.3.0-prerelease.2" = { created_at = 2023-09-07T20:43:23.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.2", prerelease = true }
+"0.3.0-prerelease.3" = { created_at = 2023-09-08T01:43:45.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.3", prerelease = true }
+"0.3.0-prerelease.4" = { created_at = 2023-09-08T03:05:31.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.4", prerelease = true }
+"0.3.0-prerelease.5" = { created_at = 2023-09-12T23:17:55.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.5", prerelease = true }
+"0.3.0-prerelease.6" = { created_at = 2023-09-18T14:22:13.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.6", prerelease = true }
+"0.3.0-prerelease.7" = { created_at = 2023-09-18T15:54:28.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.7", prerelease = true }
+"0.3.0-prerelease.8" = { created_at = 2023-09-25T19:04:16.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.8", prerelease = true }
+"0.3.0-prerelease.9" = { created_at = 2023-09-27T12:45:39.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0-prerelease.9", prerelease = true }
+"0.3.0" = { created_at = 2023-09-27T14:50:12.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2023-09-28T21:35:57.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.3.1" }
+"0.4.0-prerelease.1" = { created_at = 2023-10-12T16:50:11.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.0-prerelease.1", prerelease = true }
+"0.4.0-prerelease.2" = { created_at = 2023-10-17T23:52:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.0-prerelease.2", prerelease = true }
+"0.4.0-prerelease.3" = { created_at = 2023-10-23T23:48:56.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.0-prerelease.3", prerelease = true }
+"0.4.0" = { created_at = 2023-10-25T15:29:34.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.0" }
+"0.4.1" = { created_at = 2023-10-30T22:20:21.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.1" }
+"0.4.2" = { created_at = 2023-10-31T13:50:44.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.2" }
+"0.4.3" = { created_at = 2023-11-08T22:43:04.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.4.3" }
+"0.5.0-prerelease.1" = { created_at = 2023-11-17T19:02:45.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.1", prerelease = true }
+"0.5.0-prerelease.2" = { created_at = 2023-11-17T20:07:46.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.2", prerelease = true }
+"0.5.0-prerelease.3" = { created_at = 2023-11-17T21:28:35.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.3", prerelease = true }
+"0.5.0-prerelease.4" = { created_at = 2023-11-20T14:47:59.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.4", prerelease = true }
+"0.5.0-prerelease.5" = { created_at = 2023-11-21T19:07:27.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.5", prerelease = true }
+"0.5.0-prerelease.6" = { created_at = 2023-11-22T14:08:33.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.6", prerelease = true }
+"0.5.0-prerelease.7" = { created_at = 2023-11-22T14:36:39.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.7", prerelease = true }
+"0.5.0-prerelease.8" = { created_at = 2023-11-22T16:12:08.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.8", prerelease = true }
+"0.5.0-prerelease.9" = { created_at = 2023-11-22T16:39:29.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.9", prerelease = true }
+"0.5.0-prerelease.10" = { created_at = 2023-11-23T12:35:01.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.10", prerelease = true }
+"0.5.0-prerelease.11" = { created_at = 2023-11-24T17:09:16.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.11", prerelease = true }
+"0.5.0-prerelease.12" = { created_at = 2023-11-24T18:15:38.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0-prerelease.12", prerelease = true }
+"0.5.0" = { created_at = 2023-11-27T18:37:36.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.5.0" }
+"0.6.0-prerelease.1" = { created_at = 2023-12-05T19:56:57.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.0-prerelease.1", prerelease = true }
+"0.6.0-prerelease.2" = { created_at = 2023-12-06T21:10:03.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.0-prerelease.2", prerelease = true }
+"0.6.0-prerelease.3" = { created_at = 2023-12-11T19:37:02.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.0-prerelease.3", prerelease = true }
+"0.6.0-prerelease.4" = { created_at = 2023-12-11T20:07:33.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.0-prerelease.4", prerelease = true }
+"0.6.0" = { created_at = 2023-12-19T00:45:50.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.0" }
+"0.6.1" = { created_at = 2023-12-21T00:44:00.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.1" }
+"0.6.2" = { created_at = 2023-12-21T22:21:03.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.2" }
+"0.6.3" = { created_at = 2024-01-02T22:18:04.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.3" }
+"0.6.4" = { created_at = 2024-01-04T22:32:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.6.4" }
+"0.7.0" = { created_at = 2024-01-05T00:31:11.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.0" }
+"0.7.1" = { created_at = 2024-01-05T22:08:31.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.1" }
+"0.7.2" = { created_at = 2024-01-15T22:29:30.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.2" }
+"0.7.3-prerelease.1" = { created_at = 2024-01-16T21:16:09.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.3-prerelease.1", prerelease = true }
+"0.7.3-prerelease.2" = { created_at = 2024-01-17T17:54:29.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.3-prerelease.2", prerelease = true }
+"0.7.3-prerelease.3" = { created_at = 2024-01-17T20:30:59.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.3-prerelease.3", prerelease = true }
+"0.7.3-prerelease.4" = { created_at = 2024-01-19T16:18:49.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.7.3-prerelease.4", prerelease = true }
+"0.8.0" = { created_at = 2024-01-19T18:58:50.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.8.0" }
+"0.8.1" = { created_at = 2024-01-26T19:45:20.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.8.1" }
+"0.8.2" = { created_at = 2024-01-29T21:27:14.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.8.2" }
+"0.9.0-prerelease.1" = { created_at = 2024-02-01T19:48:23.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.9.0-prerelease.1", prerelease = true }
+"0.9.0-prerelease.2" = { created_at = 2024-02-01T20:42:46.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.9.0-prerelease.2", prerelease = true }
+"0.9.0-prerelease.3" = { created_at = 2024-02-02T22:32:24.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.9.0-prerelease.3", prerelease = true }
+"0.9.0" = { created_at = 2024-02-03T00:25:06.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.9.0" }
+"0.10.0-prerelease.1" = { created_at = 2024-02-08T22:19:28.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.10.0-prerelease.1", prerelease = true }
+"0.10.0-prerelease.2" = { created_at = 2024-02-08T22:34:18.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.10.0-prerelease.2", prerelease = true }
+"0.10.0" = { created_at = 2024-02-09T15:53:52.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.10.0" }
+"0.11.0-prerelease.1" = { created_at = 2024-02-22T21:13:12.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.11.0-prerelease.1", prerelease = true }
+"0.11.0-prerelease.2" = { created_at = 2024-02-23T16:06:17.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.11.0-prerelease.2", prerelease = true }
+"0.11.0" = { created_at = 2024-02-23T16:58:26.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.11.0" }
+"0.11.1-prerelease.1" = { created_at = 2024-02-23T18:26:20.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.11.1-prerelease.1", prerelease = true }
+"0.11.1" = { created_at = 2024-02-23T20:12:12.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.11.1" }
+"0.12.0-prerelease.1" = { created_at = 2024-03-06T00:18:45.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.0-prerelease.1", prerelease = true }
+"0.12.0-prerelease.2" = { created_at = 2024-03-12T19:33:15.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.0-prerelease.2", prerelease = true }
+"0.12.0-prerelease.3" = { created_at = 2024-03-13T14:14:05.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.0-prerelease.3", prerelease = true }
+"0.12.0-prerelease.4" = { created_at = 2024-03-13T21:52:41.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.0-prerelease.4", prerelease = true }
+"0.12.0" = { created_at = 2024-03-21T22:22:55.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.0" }
+"0.12.1" = { created_at = 2024-04-04T19:31:51.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.1" }
+"0.12.2" = { created_at = 2024-04-04T20:46:09.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.12.2" }
+"0.13.0-prerelease.1" = { created_at = 2024-04-01T16:28:33.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.1", prerelease = true }
+"0.13.0-prerelease.2" = { created_at = 2024-04-01T16:45:25.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.2", prerelease = true }
+"0.13.0-prerelease.3" = { created_at = 2024-04-02T16:39:21.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.3", prerelease = true }
+"0.13.0-prerelease.4" = { created_at = 2024-04-05T18:32:25.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.4", prerelease = true }
+"0.13.0-prerelease.5" = { created_at = 2024-04-05T20:21:27.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.5", prerelease = true }
+"0.13.0-prerelease.6" = { created_at = 2024-04-05T20:52:39.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.6", prerelease = true }
+"0.13.0-prerelease.7" = { created_at = 2024-04-05T21:19:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.7", prerelease = true }
+"0.13.0-prerelease.8" = { created_at = 2024-04-05T21:47:20.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.8", prerelease = true }
+"0.13.0-prerelease.9" = { created_at = 2024-04-09T00:45:38.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.9", prerelease = true }
+"0.13.0-prerelease.10" = { created_at = 2024-04-09T01:03:24.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.10", prerelease = true }
+"0.13.0-prerelease.11" = { created_at = 2024-04-09T12:45:15.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0-prerelease.11", prerelease = true }
+"0.13.0" = { created_at = 2024-04-09T13:11:11.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.0" }
+"0.13.1-prerelease.1" = { created_at = 2024-04-12T16:24:54.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.1-prerelease.1", prerelease = true }
+"0.13.1-prerelease.2" = { created_at = 2024-04-12T16:42:58.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.1-prerelease.2", prerelease = true }
+"0.13.1" = { created_at = 2024-04-12T17:06:26.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.1" }
+"0.13.2" = { created_at = 2024-04-18T18:46:02.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.2" }
+"0.13.3-prerelease.1" = { created_at = 2024-04-22T20:47:26.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.3-prerelease.1", prerelease = true }
+"0.13.3" = { created_at = 2024-04-22T21:12:56.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.13.3" }
+"0.14.0-prerelease.1" = { created_at = 2024-04-25T15:20:49.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0-prerelease.1", prerelease = true }
+"0.14.0-prerelease.2" = { created_at = 2024-04-26T18:36:31.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0-prerelease.2", prerelease = true }
+"0.14.0-prerelease.3" = { created_at = 2024-05-02T21:09:23.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0-prerelease.3", prerelease = true }
+"0.14.0-prerelease.4" = { created_at = 2024-05-02T22:59:07.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0-prerelease.4", prerelease = true }
+"0.14.0-prerelease.5" = { created_at = 2024-05-03T03:26:42.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0-prerelease.5", prerelease = true }
+"0.14.0-prerelease.6" = { created_at = 2024-05-03T03:48:46.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0-prerelease.6", prerelease = true }
+"0.14.0" = { created_at = 2024-05-06T16:24:29.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.0" }
+"0.14.1" = { created_at = 2024-05-08T20:16:50.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.14.1" }
+"0.15.0-prerelease.1" = { created_at = 2024-05-08T23:32:05.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.1", prerelease = true }
+"0.15.0-prerelease.2" = { created_at = 2024-05-09T14:20:02.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.2", prerelease = true }
+"0.15.0-prerelease.3" = { created_at = 2024-05-09T20:42:29.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.3", prerelease = true }
+"0.15.0-prerelease.4" = { created_at = 2024-05-10T13:39:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.4", prerelease = true }
+"0.15.0-prerelease.7" = { created_at = 2024-05-13T18:24:16.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.7", prerelease = true }
+"0.15.0-prerelease.8" = { created_at = 2024-05-14T15:12:56.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.8", prerelease = true }
+"0.15.0-prerelease.9" = { created_at = 2024-05-14T15:29:00.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.9", prerelease = true }
+"0.15.0-prerelease.10" = { created_at = 2024-05-14T19:18:46.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.10", prerelease = true }
+"0.15.0-prerelease.11" = { created_at = 2024-05-14T19:48:58.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.11", prerelease = true }
+"0.15.0-prerelease.12" = { created_at = 2024-05-15T14:53:32.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.12", prerelease = true }
+"0.15.0-prerelease.13" = { created_at = 2024-05-15T16:27:12.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.13", prerelease = true }
+"0.15.0-prerelease.14" = { created_at = 2024-05-15T16:47:32.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.14", prerelease = true }
+"0.15.0-prerelease.15" = { created_at = 2024-05-15T18:53:02.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.15", prerelease = true }
+"0.15.0-prerelease.18" = { created_at = 2024-05-16T20:06:57.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.18", prerelease = true }
+"0.15.0-prerelease.19" = { created_at = 2024-05-16T21:29:13.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.19", prerelease = true }
+"0.15.0-prerelease.20" = { created_at = 2024-05-22T00:43:59.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.20", prerelease = true }
+"0.15.0-prerelease.21" = { created_at = 2024-05-30T19:29:18.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.21", prerelease = true }
+"0.15.0-prerelease.22" = { created_at = 2024-05-30T20:37:58.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0-prerelease.22", prerelease = true }
+"0.15.0" = { created_at = 2024-05-31T16:42:41.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.0" }
+"0.15.1" = { created_at = 2024-06-04T14:26:52.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.15.1" }
+"0.16.0-prerelease.1" = { created_at = 2024-06-04T19:39:36.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0-prerelease.1", prerelease = true }
+"0.16.0-prerelease.2" = { created_at = 2024-06-06T13:26:42.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0-prerelease.2", prerelease = true }
+"0.16.0-prerelease.3" = { created_at = 2024-06-06T13:52:53.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0-prerelease.3", prerelease = true }
+"0.16.0-prerelease.4" = { created_at = 2024-06-12T18:42:43.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0-prerelease.4", prerelease = true }
+"0.16.0-prerelease.5" = { created_at = 2024-06-12T20:27:02.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0-prerelease.5", prerelease = true }
+"0.16.0-prerelease.6" = { created_at = 2024-06-12T20:46:54.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0-prerelease.6", prerelease = true }
+"0.16.0" = { created_at = 2024-06-14T15:24:25.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.16.0" }
+"0.17.0-prerelease.1" = { created_at = 2024-06-21T03:47:05.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.17.0-prerelease.1", prerelease = true }
 "0.17.0-prerelease.2" = { created_at = 2024-06-26T23:21:21.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.17.0-prerelease.2", prerelease = true }
 "0.17.0" = { created_at = 2024-06-27T14:00:48.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.17.0" }
 "0.18.0-prerelease.1" = { created_at = 2024-07-03T18:57:01.000Z, release_url = "https://github.com/axodotdev/cargo-dist/releases/tag/v0.18.0-prerelease.1", prerelease = true }

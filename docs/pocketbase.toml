@@ -1,4 +1,65 @@
 [versions]
+"0.18.3" = { created_at = 2023-09-10T08:22:50.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.3" }
+"0.18.4" = { created_at = 2023-09-12T07:50:59.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.4" }
+"0.18.5" = { created_at = 2023-09-12T17:13:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.5" }
+"0.18.6" = { created_at = 2023-09-16T04:21:28.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.6" }
+"0.18.7" = { created_at = 2023-09-22T16:07:06.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.7" }
+"0.18.8" = { created_at = 2023-09-24T08:47:20.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.8" }
+"0.18.9" = { created_at = 2023-09-30T06:52:16.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.9" }
+"0.18.10" = { created_at = 2023-10-08T21:01:00.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.18.10" }
+"0.19.0" = { created_at = 2023-10-15T12:02:43.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.19.0" }
+"0.19.1" = { created_at = 2023-10-27T15:10:04.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.19.1" }
+"0.19.2" = { created_at = 2023-11-03T04:10:24.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.19.2" }
+"0.19.3" = { created_at = 2023-11-06T10:11:43.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.19.3" }
+"0.19.4" = { created_at = 2023-11-11T11:20:25.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.19.4" }
+"0.20.0-rc" = { created_at = 2023-10-24T12:38:16.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.0-rc", prerelease = true }
+"0.20.0-rc2" = { created_at = 2023-11-06T10:10:05.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.0-rc2", prerelease = true }
+"0.20.0-rc3" = { created_at = 2023-11-11T11:18:36.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.0-rc3", prerelease = true }
+"0.20.0" = { created_at = 2023-12-10T13:24:06.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.0" }
+"0.20.1" = { created_at = 2023-12-17T09:07:28.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.1" }
+"0.20.2" = { created_at = 2023-12-30T08:15:20.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.2" }
+"0.20.3" = { created_at = 2024-01-03T09:31:30.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.3" }
+"0.20.4" = { created_at = 2024-01-03T12:39:17.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.4" }
+"0.20.5" = { created_at = 2024-01-04T14:36:42.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.5" }
+"0.20.6" = { created_at = 2024-01-13T09:54:17.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.6" }
+"0.20.7" = { created_at = 2024-01-16T11:07:24.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.20.7" }
+"0.21.0" = { created_at = 2024-01-24T10:02:01.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.21.0" }
+"0.21.1" = { created_at = 2024-01-24T15:50:13.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.21.1" }
+"0.21.2" = { created_at = 2024-02-07T18:34:38.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.21.2" }
+"0.21.3" = { created_at = 2024-02-11T07:46:08.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.21.3" }
+"0.22.0" = { created_at = 2024-02-26T17:37:33.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.0" }
+"0.22.1" = { created_at = 2024-03-02T16:31:32.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.1" }
+"0.22.2" = { created_at = 2024-03-02T22:25:12.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.2" }
+"0.22.3" = { created_at = 2024-03-06T14:56:08.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.3" }
+"0.22.4" = { created_at = 2024-03-12T22:14:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.4" }
+"0.22.5" = { created_at = 2024-03-21T08:41:37.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.5" }
+"0.22.6" = { created_at = 2024-03-23T11:38:47.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.6" }
+"0.22.7" = { created_at = 2024-03-29T19:37:46.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.7" }
+"0.22.8" = { created_at = 2024-04-06T06:36:57.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.8" }
+"0.22.9" = { created_at = 2024-04-15T06:26:43.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.9" }
+"0.22.10" = { created_at = 2024-04-25T07:28:35.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.10" }
+"0.22.11" = { created_at = 2024-05-04T04:59:13.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.11" }
+"0.22.12" = { created_at = 2024-05-11T06:31:33.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.12" }
+"0.22.13" = { created_at = 2024-06-03T05:59:25.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.13" }
+"0.22.14-rc" = { created_at = 2024-06-14T08:55:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.14-rc", prerelease = true }
+"0.22.14" = { created_at = 2024-06-18T16:23:35.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.14" }
+"0.22.15" = { created_at = 2024-07-03T06:44:43.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.15" }
+"0.22.16" = { created_at = 2024-07-06T11:27:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.16" }
+"0.22.17" = { created_at = 2024-07-10T04:41:08.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.17" }
+"0.22.18" = { created_at = 2024-07-24T04:28:09.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.18" }
+"0.22.19" = { created_at = 2024-08-12T19:44:27.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.19" }
+"0.22.20" = { created_at = 2024-08-27T19:02:39.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.20" }
+"0.22.21" = { created_at = 2024-09-18T03:56:49.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.21" }
+"0.22.22" = { created_at = 2024-10-18T14:24:55.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.22" }
+"0.22.23" = { created_at = 2024-11-03T10:35:31.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.23" }
+"0.22.24" = { created_at = 2024-11-13T08:43:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.24" }
+"0.22.25" = { created_at = 2024-11-14T14:02:15.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.25" }
+"0.22.26" = { created_at = 2024-11-17T10:59:15.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.26" }
+"0.22.27" = { created_at = 2024-11-19T20:18:38.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.27" }
+"0.22.28" = { created_at = 2024-12-18T16:54:35.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.28" }
+"0.22.29" = { created_at = 2024-12-19T08:29:18.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.29" }
+"0.22.30" = { created_at = 2025-01-18T10:58:06.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.30" }
+"0.22.31" = { created_at = 2025-02-18T16:45:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.31" }
 "0.22.32" = { created_at = 2025-03-22T04:21:08.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.32" }
 "0.22.33" = { created_at = 2025-03-24T04:42:13.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.33" }
 "0.22.34" = { created_at = 2025-03-30T08:01:41.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.34" }
@@ -24,6 +85,45 @@
 "0.22.54" = { created_at = 2026-09-02T13:17:38.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.54" }
 "0.22.55" = { created_at = 2026-09-06T17:32:24.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.55" }
 "0.22.56" = { created_at = 2026-10-08T16:44:22.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.22.56" }
+"0.23.0-rc" = { created_at = 2024-10-06T08:27:55.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc", prerelease = true }
+"0.23.0-rc10" = { created_at = 2024-11-04T17:38:47.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc10", prerelease = true }
+"0.23.0-rc11" = { created_at = 2024-11-07T12:29:34.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc11", prerelease = true }
+"0.23.0-rc12" = { created_at = 2024-11-08T07:57:47.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc12", prerelease = true }
+"0.23.0-rc13" = { created_at = 2024-11-14T15:50:19.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc13", prerelease = true }
+"0.23.0-rc14" = { created_at = 2024-11-17T14:08:05.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc14", prerelease = true }
+"0.23.0-rc2" = { created_at = 2024-10-06T14:14:13.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc2", prerelease = true }
+"0.23.0-rc3" = { created_at = 2024-10-08T17:37:50.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc3", prerelease = true }
+"0.23.0-rc4" = { created_at = 2024-10-09T18:16:00.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc4", prerelease = true }
+"0.23.0-rc5" = { created_at = 2024-10-12T08:50:04.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc5", prerelease = true }
+"0.23.0-rc6" = { created_at = 2024-10-14T17:28:04.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc6", prerelease = true }
+"0.23.0-rc7" = { created_at = 2024-10-18T11:16:11.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc7", prerelease = true }
+"0.23.0-rc8" = { created_at = 2024-10-25T07:35:12.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc8", prerelease = true }
+"0.23.0-rc9" = { created_at = 2024-11-03T12:36:44.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0-rc9", prerelease = true }
+"0.23.0" = { created_at = 2024-11-24T14:50:27.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.0" }
+"0.23.1" = { created_at = 2024-11-25T09:42:00.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.1" }
+"0.23.2" = { created_at = 2024-11-27T08:15:39.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.2" }
+"0.23.3" = { created_at = 2024-11-29T10:14:52.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.3" }
+"0.23.4" = { created_at = 2024-12-02T12:22:07.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.4" }
+"0.23.5" = { created_at = 2024-12-08T12:25:38.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.5" }
+"0.23.6" = { created_at = 2024-12-11T17:11:34.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.6" }
+"0.23.7" = { created_at = 2024-12-13T16:06:20.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.7" }
+"0.23.8" = { created_at = 2024-12-16T13:17:24.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.8" }
+"0.23.9" = { created_at = 2024-12-17T19:50:07.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.9" }
+"0.23.10" = { created_at = 2024-12-18T16:55:17.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.10" }
+"0.23.11" = { created_at = 2024-12-19T08:30:21.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.11" }
+"0.23.12" = { created_at = 2024-12-22T14:24:06.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.23.12" }
+"0.24.0" = { created_at = 2025-01-02T06:49:43.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.24.0" }
+"0.24.1" = { created_at = 2025-01-04T07:31:40.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.24.1" }
+"0.24.2" = { created_at = 2025-01-10T07:04:26.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.24.2" }
+"0.24.3" = { created_at = 2025-01-12T10:03:48.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.24.3" }
+"0.24.4" = { created_at = 2025-01-18T10:58:47.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.24.4" }
+"0.25.0" = { created_at = 2025-01-31T13:26:46.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.0" }
+"0.25.1" = { created_at = 2025-02-08T07:00:15.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.1" }
+"0.25.2" = { created_at = 2025-02-10T07:32:20.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.2" }
+"0.25.3" = { created_at = 2025-02-10T21:55:03.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.3" }
+"0.25.4" = { created_at = 2025-02-11T18:29:14.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.4" }
+"0.25.5" = { created_at = 2025-02-18T16:45:42.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.5" }
+"0.25.6" = { created_at = 2025-02-21T08:38:51.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.6" }
 "0.25.7" = { created_at = 2025-02-21T16:16:17.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.7" }
 "0.25.8" = { created_at = 2025-02-24T11:01:06.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.8" }
 "0.25.9" = { created_at = 2025-03-05T22:12:14.000Z, release_url = "https://github.com/pocketbase/pocketbase/releases/tag/v0.25.9" }

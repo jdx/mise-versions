@@ -1,4 +1,204 @@
 [versions]
+"0.1.47860" = { created_at = 2026-08-11T16:07:40.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v0.1.47860" }
+"1.0.41118-pre" = { created_at = 2026-06-23T11:55:36.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41118-pre", prerelease = true }
+"1.0.41126-pre" = { created_at = 2026-06-23T11:58:14.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41126-pre", prerelease = true }
+"1.0.41140-pre" = { created_at = 2026-06-23T12:59:19.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41140-pre", prerelease = true }
+"1.0.41161-pre" = { created_at = 2026-06-23T13:54:44.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41161-pre", prerelease = true }
+"1.0.41176-pre" = { created_at = 2026-06-23T14:23:18.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41176-pre", prerelease = true }
+"1.0.41352-pre" = { created_at = 2026-06-23T19:50:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41352-pre", prerelease = true }
+"1.0.41374-pre" = { created_at = 2026-06-23T20:15:59.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41374-pre", prerelease = true }
+"1.0.41384-pre" = { created_at = 2026-06-23T21:10:23.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41384-pre", prerelease = true }
+"1.0.41388-pre" = { created_at = 2026-06-24T08:04:08.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41388-pre", prerelease = true }
+"1.0.41437-pre" = { created_at = 2026-06-24T08:42:45.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41437-pre", prerelease = true }
+"1.0.41449-pre" = { created_at = 2026-06-24T09:00:11.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41449-pre", prerelease = true }
+"1.0.41460-pre" = { created_at = 2026-06-24T10:52:15.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41460-pre", prerelease = true }
+"1.0.41491-pre" = { created_at = 2026-06-24T12:34:19.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41491-pre", prerelease = true }
+"1.0.41513-pre" = { created_at = 2026-06-24T13:33:00.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41513-pre", prerelease = true }
+"1.0.41532-pre" = { created_at = 2026-06-24T14:38:50.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41532-pre", prerelease = true }
+"1.0.41550-pre" = { created_at = 2026-06-24T15:33:29.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41550-pre", prerelease = true }
+"1.0.41587-pre" = { created_at = 2026-06-25T11:32:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41587-pre", prerelease = true }
+"1.0.41605-pre" = { created_at = 2026-06-25T13:55:34.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41605-pre", prerelease = true }
+"1.0.41642-pre" = { created_at = 2026-06-25T17:38:07.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41642-pre", prerelease = true }
+"1.0.41720-pre" = { created_at = 2026-06-25T22:25:06.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41720-pre", prerelease = true }
+"1.0.41803-pre" = { created_at = 2026-06-26T19:26:00.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41803-pre", prerelease = true }
+"1.0.41817-pre" = { created_at = 2026-06-26T19:33:24.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41817-pre", prerelease = true }
+"1.0.41924-pre" = { created_at = 2026-06-29T09:56:39.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41924-pre", prerelease = true }
+"1.0.41981-pre" = { created_at = 2026-06-29T10:55:50.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41981-pre", prerelease = true }
+"1.0.41998-pre" = { created_at = 2026-06-29T11:16:29.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.41998-pre", prerelease = true }
+"1.0.42029-pre" = { created_at = 2026-06-29T11:37:25.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42029-pre", prerelease = true }
+"1.0.42071-pre" = { created_at = 2026-06-29T11:48:34.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42071-pre", prerelease = true }
+"1.0.42094-pre" = { created_at = 2026-06-29T11:53:15.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42094-pre", prerelease = true }
+"1.0.42106-pre" = { created_at = 2026-06-29T12:08:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42106-pre", prerelease = true }
+"1.0.42131-pre" = { created_at = 2026-06-29T12:27:12.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42131-pre", prerelease = true }
+"1.0.42149-pre" = { created_at = 2026-06-29T12:47:21.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42149-pre", prerelease = true }
+"1.0.42191-pre" = { created_at = 2026-06-29T13:53:27.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42191-pre", prerelease = true }
+"1.0.42210-pre" = { created_at = 2026-06-29T14:25:15.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42210-pre", prerelease = true }
+"1.0.42256-pre" = { created_at = 2026-06-29T17:37:54.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42256-pre", prerelease = true }
+"1.0.42288-pre" = { created_at = 2026-06-29T19:29:57.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42288-pre", prerelease = true }
+"1.0.42306-pre" = { created_at = 2026-06-29T20:51:56.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42306-pre", prerelease = true }
+"1.0.42322-pre" = { created_at = 2026-06-30T09:15:23.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42322-pre", prerelease = true }
+"1.0.42359-pre" = { created_at = 2026-06-30T10:50:01.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42359-pre", prerelease = true }
+"1.0.42377-pre" = { created_at = 2026-06-30T11:27:31.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42377-pre", prerelease = true }
+"1.0.42408-pre" = { created_at = 2026-06-30T12:48:19.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42408-pre", prerelease = true }
+"1.0.42432-pre" = { created_at = 2026-06-30T13:43:06.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42432-pre", prerelease = true }
+"1.0.42442-pre" = { created_at = 2026-06-30T14:11:32.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42442-pre", prerelease = true }
+"1.0.42552-pre" = { created_at = 2026-06-30T18:10:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42552-pre", prerelease = true }
+"1.0.42568-pre" = { created_at = 2026-06-30T18:44:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42568-pre", prerelease = true }
+"1.0.42598-pre" = { created_at = 2026-07-01T07:46:38.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42598-pre", prerelease = true }
+"1.0.42628-pre" = { created_at = 2026-07-01T11:02:16.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42628-pre", prerelease = true }
+"1.0.42640-pre" = { created_at = 2026-07-01T11:03:35.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42640-pre", prerelease = true }
+"1.0.42663-pre" = { created_at = 2026-07-01T11:10:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42663-pre", prerelease = true }
+"1.0.42683-pre" = { created_at = 2026-07-01T13:29:57.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42683-pre", prerelease = true }
+"1.0.42707-pre" = { created_at = 2026-07-01T15:53:44.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42707-pre", prerelease = true }
+"1.0.42743-pre" = { created_at = 2026-07-02T09:10:19.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42743-pre", prerelease = true }
+"1.0.42766-pre" = { created_at = 2026-07-02T09:52:37.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42766-pre", prerelease = true }
+"1.0.42793-pre" = { created_at = 2026-07-02T10:32:12.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42793-pre", prerelease = true }
+"1.0.42819-pre" = { created_at = 2026-07-02T10:36:37.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42819-pre", prerelease = true }
+"1.0.42850-pre" = { created_at = 2026-07-02T11:08:09.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42850-pre", prerelease = true }
+"1.0.42868-pre" = { created_at = 2026-07-02T11:12:56.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42868-pre", prerelease = true }
+"1.0.42890-pre" = { created_at = 2026-07-02T12:08:14.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42890-pre", prerelease = true }
+"1.0.42921-pre" = { created_at = 2026-07-02T19:30:23.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42921-pre", prerelease = true }
+"1.0.42971-pre" = { created_at = 2026-07-03T08:41:47.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42971-pre", prerelease = true }
+"1.0.42992-pre" = { created_at = 2026-07-03T09:19:28.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.42992-pre", prerelease = true }
+"1.0.43020-pre" = { created_at = 2026-07-03T12:14:42.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43020-pre", prerelease = true }
+"1.0.43125-pre" = { created_at = 2026-07-03T18:21:54.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43125-pre", prerelease = true }
+"1.0.43169-pre" = { created_at = 2026-07-05T11:05:22.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43169-pre", prerelease = true }
+"1.0.43185-pre" = { created_at = 2026-07-05T11:17:24.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43185-pre", prerelease = true }
+"1.0.43215-pre" = { created_at = 2026-07-05T20:58:33.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43215-pre", prerelease = true }
+"1.0.43243-pre" = { created_at = 2026-07-06T10:00:44.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43243-pre", prerelease = true }
+"1.0.43272-pre" = { created_at = 2026-07-06T10:14:34.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43272-pre", prerelease = true }
+"1.0.43332-pre" = { created_at = 2026-07-06T12:10:17.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43332-pre", prerelease = true }
+"1.0.43354-pre" = { created_at = 2026-07-06T12:15:40.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43354-pre", prerelease = true }
+"1.0.43366-pre" = { created_at = 2026-07-06T14:05:58.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43366-pre", prerelease = true }
+"1.0.43394-pre" = { created_at = 2026-07-06T14:22:28.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43394-pre", prerelease = true }
+"1.0.43411-pre" = { created_at = 2026-07-06T14:49:33.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43411-pre", prerelease = true }
+"1.0.43428-pre" = { created_at = 2026-07-06T15:21:00.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43428-pre", prerelease = true }
+"1.0.43458-pre" = { created_at = 2026-07-06T16:22:31.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43458-pre", prerelease = true }
+"1.0.43468-pre" = { created_at = 2026-07-06T16:52:13.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43468-pre", prerelease = true }
+"1.0.43544-pre" = { created_at = 2026-07-07T09:38:24.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43544-pre", prerelease = true }
+"1.0.43575-pre" = { created_at = 2026-07-07T10:03:06.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43575-pre", prerelease = true }
+"1.0.43615-pre" = { created_at = 2026-07-07T10:49:31.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43615-pre", prerelease = true }
+"1.0.43647-pre" = { created_at = 2026-07-07T13:07:46.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43647-pre", prerelease = true }
+"1.0.43713-pre" = { created_at = 2026-07-07T15:17:29.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43713-pre", prerelease = true }
+"1.0.43806-pre" = { created_at = 2026-07-08T06:14:24.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43806-pre", prerelease = true }
+"1.0.43824-pre" = { created_at = 2026-07-08T06:23:05.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43824-pre", prerelease = true }
+"1.0.43858-pre" = { created_at = 2026-07-08T09:45:37.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43858-pre", prerelease = true }
+"1.0.43880-pre" = { created_at = 2026-07-08T10:10:39.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43880-pre", prerelease = true }
+"1.0.43996-pre" = { created_at = 2026-07-08T19:53:46.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.43996-pre", prerelease = true }
+"1.0.44058-pre" = { created_at = 2026-07-09T09:13:51.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44058-pre", prerelease = true }
+"1.0.44072-pre" = { created_at = 2026-07-09T09:19:43.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44072-pre", prerelease = true }
+"1.0.44088-pre" = { created_at = 2026-07-09T09:25:40.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44088-pre", prerelease = true }
+"1.0.44129-pre" = { created_at = 2026-07-09T09:32:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44129-pre", prerelease = true }
+"1.0.44233-pre" = { created_at = 2026-07-10T08:12:47.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44233-pre", prerelease = true }
+"1.0.44247-pre" = { created_at = 2026-07-10T08:22:18.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44247-pre", prerelease = true }
+"1.0.44295-pre" = { created_at = 2026-07-10T09:00:25.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44295-pre", prerelease = true }
+"1.0.44353-pre" = { created_at = 2026-07-10T10:20:25.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44353-pre", prerelease = true }
+"1.0.44368-pre" = { created_at = 2026-07-10T10:26:13.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44368-pre", prerelease = true }
+"1.0.44417-pre" = { created_at = 2026-07-10T10:57:34.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44417-pre", prerelease = true }
+"1.0.44488-pre" = { created_at = 2026-07-10T15:10:45.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44488-pre", prerelease = true }
+"1.0.44545-pre" = { created_at = 2026-07-10T16:21:37.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44545-pre", prerelease = true }
+"1.0.44561-pre" = { created_at = 2026-07-10T16:27:10.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44561-pre", prerelease = true }
+"1.0.44595-pre" = { created_at = 2026-07-11T19:55:06.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44595-pre", prerelease = true }
+"1.0.44630-pre" = { created_at = 2026-07-13T16:10:14.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44630-pre", prerelease = true }
+"1.0.44686-pre" = { created_at = 2026-07-14T09:21:27.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44686-pre", prerelease = true }
+"1.0.44734-pre" = { created_at = 2026-07-14T11:21:09.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44734-pre", prerelease = true }
+"1.0.44759-pre" = { created_at = 2026-07-14T15:24:15.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44759-pre", prerelease = true }
+"1.0.44802-pre" = { created_at = 2026-07-14T16:49:05.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44802-pre", prerelease = true }
+"1.0.44842-pre" = { created_at = 2026-07-15T10:06:21.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44842-pre", prerelease = true }
+"1.0.44861-pre" = { created_at = 2026-07-15T11:03:53.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44861-pre", prerelease = true }
+"1.0.44892-pre" = { created_at = 2026-07-15T13:14:59.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44892-pre", prerelease = true }
+"1.0.44929-pre" = { created_at = 2026-07-15T16:34:48.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44929-pre", prerelease = true }
+"1.0.44968-pre" = { created_at = 2026-07-15T16:49:10.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44968-pre", prerelease = true }
+"1.0.44993-pre" = { created_at = 2026-07-15T20:10:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.44993-pre", prerelease = true }
+"1.0.45027-pre" = { created_at = 2026-07-15T23:10:02.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45027-pre", prerelease = true }
+"1.0.45045-pre" = { created_at = 2026-07-16T09:13:03.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45045-pre", prerelease = true }
+"1.0.45068-pre" = { created_at = 2026-07-16T14:03:39.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45068-pre", prerelease = true }
+"1.0.45218-pre" = { created_at = 2026-07-17T22:19:15.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45218-pre", prerelease = true }
+"1.0.45241-pre" = { created_at = 2026-07-19T17:22:49.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45241-pre", prerelease = true }
+"1.0.45265-pre" = { created_at = 2026-07-19T21:33:33.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45265-pre", prerelease = true }
+"1.0.45292-pre" = { created_at = 2026-07-20T18:21:27.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45292-pre", prerelease = true }
+"1.0.45318-pre" = { created_at = 2026-07-21T08:33:42.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45318-pre", prerelease = true }
+"1.0.45351-pre" = { created_at = 2026-07-21T11:42:25.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45351-pre", prerelease = true }
+"1.0.45389-pre" = { created_at = 2026-07-22T09:40:41.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45389-pre", prerelease = true }
+"1.0.45419-pre" = { created_at = 2026-07-22T14:04:04.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45419-pre", prerelease = true }
+"1.0.45445-pre" = { created_at = 2026-07-22T14:30:38.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45445-pre", prerelease = true }
+"1.0.45528-pre" = { created_at = 2026-07-23T17:06:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45528-pre", prerelease = true }
+"1.0.45558-pre" = { created_at = 2026-07-23T17:47:05.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45558-pre", prerelease = true }
+"1.0.45572-pre" = { created_at = 2026-07-23T17:53:36.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45572-pre", prerelease = true }
+"1.0.45620-pre" = { created_at = 2026-07-24T10:19:13.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45620-pre", prerelease = true }
+"1.0.45645-pre" = { created_at = 2026-07-24T16:49:49.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45645-pre", prerelease = true }
+"1.0.45749-pre" = { created_at = 2026-07-27T18:03:33.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45749-pre", prerelease = true }
+"1.0.45783-pre" = { created_at = 2026-07-27T18:56:35.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45783-pre", prerelease = true }
+"1.0.45850-pre" = { created_at = 2026-07-28T15:57:53.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45850-pre", prerelease = true }
+"1.0.45939-pre" = { created_at = 2026-07-29T14:44:39.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45939-pre", prerelease = true }
+"1.0.45957-pre" = { created_at = 2026-07-29T15:07:50.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45957-pre", prerelease = true }
+"1.0.45973-pre" = { created_at = 2026-07-29T16:57:21.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.45973-pre", prerelease = true }
+"1.0.46010-pre" = { created_at = 2026-07-29T20:36:49.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46010-pre", prerelease = true }
+"1.0.46087-pre" = { created_at = 2026-07-30T22:44:09.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46087-pre", prerelease = true }
+"1.0.46146-pre" = { created_at = 2026-08-03T10:50:23.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46146-pre", prerelease = true }
+"1.0.46175-pre" = { created_at = 2026-08-03T12:59:50.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46175-pre", prerelease = true }
+"1.0.46202-pre" = { created_at = 2026-08-03T14:48:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46202-pre", prerelease = true }
+"1.0.46219-pre" = { created_at = 2026-08-03T14:55:31.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46219-pre", prerelease = true }
+"1.0.46247-pre" = { created_at = 2026-08-03T15:02:14.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46247-pre", prerelease = true }
+"1.0.46322-pre" = { created_at = 2026-08-03T15:08:43.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46322-pre", prerelease = true }
+"1.0.46342-pre" = { created_at = 2026-08-03T15:33:26.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46342-pre", prerelease = true }
+"1.0.46363-pre" = { created_at = 2026-08-03T15:44:43.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46363-pre", prerelease = true }
+"1.0.46383-pre" = { created_at = 2026-08-03T15:49:35.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46383-pre", prerelease = true }
+"1.0.46402-pre" = { created_at = 2026-08-04T11:35:58.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46402-pre", prerelease = true }
+"1.0.46424-pre" = { created_at = 2026-08-04T20:56:20.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46424-pre", prerelease = true }
+"1.0.46461-pre" = { created_at = 2026-08-04T22:40:04.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46461-pre", prerelease = true }
+"1.0.46479-pre" = { created_at = 2026-08-04T22:45:18.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46479-pre", prerelease = true }
+"1.0.46495-pre" = { created_at = 2026-08-04T22:50:09.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46495-pre", prerelease = true }
+"1.0.46580-pre" = { created_at = 2026-08-05T08:56:02.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46580-pre", prerelease = true }
+"1.0.46601-pre" = { created_at = 2026-08-05T09:04:45.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46601-pre", prerelease = true }
+"1.0.46625-pre" = { created_at = 2026-08-05T09:10:30.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46625-pre", prerelease = true }
+"1.0.46646-pre" = { created_at = 2026-08-05T09:25:40.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46646-pre", prerelease = true }
+"1.0.46667-pre" = { created_at = 2026-08-05T09:31:43.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46667-pre", prerelease = true }
+"1.0.46714-pre" = { created_at = 2026-08-05T10:55:10.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46714-pre", prerelease = true }
+"1.0.46733-pre" = { created_at = 2026-08-05T10:59:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46733-pre", prerelease = true }
+"1.0.46745-pre" = { created_at = 2026-08-05T11:04:32.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46745-pre", prerelease = true }
+"1.0.46773-pre" = { created_at = 2026-08-05T11:09:21.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46773-pre", prerelease = true }
+"1.0.46799-pre" = { created_at = 2026-08-05T11:13:38.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46799-pre", prerelease = true }
+"1.0.46832-pre" = { created_at = 2026-08-05T11:37:59.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46832-pre", prerelease = true }
+"1.0.46851-pre" = { created_at = 2026-08-05T11:43:24.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46851-pre", prerelease = true }
+"1.0.46875-pre" = { created_at = 2026-08-05T11:52:28.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46875-pre", prerelease = true }
+"1.0.46892-pre" = { created_at = 2026-08-05T11:57:54.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46892-pre", prerelease = true }
+"1.0.46913-pre" = { created_at = 2026-08-05T12:11:54.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46913-pre", prerelease = true }
+"1.0.46955" = { created_at = 2026-08-05T16:08:56.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46955" }
+"1.0.46984" = { created_at = 2026-08-05T18:12:36.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.46984" }
+"1.0.47027" = { created_at = 2026-08-05T21:21:26.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47027" }
+"1.0.47091" = { created_at = 2026-08-06T07:49:12.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47091" }
+"1.0.47122" = { created_at = 2026-08-06T12:30:31.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47122" }
+"1.0.47186" = { created_at = 2026-08-06T14:15:36.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47186" }
+"1.0.47226" = { created_at = 2026-08-06T14:59:46.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47226" }
+"1.0.47244" = { created_at = 2026-08-06T15:18:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47244" }
+"1.0.47264" = { created_at = 2026-08-07T07:14:55.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47264" }
+"1.0.47301" = { created_at = 2026-08-07T10:48:24.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47301" }
+"1.0.47331" = { created_at = 2026-08-07T11:10:58.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47331" }
+"1.0.47363" = { created_at = 2026-08-07T11:49:23.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47363" }
+"1.0.47401" = { created_at = 2026-08-07T12:32:14.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47401" }
+"1.0.47471" = { created_at = 2026-08-07T15:55:02.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47471" }
+"1.0.47519" = { created_at = 2026-08-10T12:04:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47519" }
+"1.0.47536" = { created_at = 2026-08-10T12:10:59.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47536" }
+"1.0.47555" = { created_at = 2026-08-10T12:33:25.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47555" }
+"1.0.47571" = { created_at = 2026-08-10T12:41:06.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47571" }
+"1.0.47611" = { created_at = 2026-08-11T06:51:44.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47611" }
+"1.0.47653" = { created_at = 2026-08-11T10:19:01.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47653" }
+"1.0.47692" = { created_at = 2026-08-11T10:49:44.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47692" }
+"1.0.47715" = { created_at = 2026-08-11T11:43:08.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47715" }
+"1.0.47735" = { created_at = 2026-08-11T11:49:12.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47735" }
+"1.0.47761" = { created_at = 2026-08-11T12:09:22.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47761" }
+"1.0.47783" = { created_at = 2026-08-11T13:03:43.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47783" }
+"1.0.47816" = { created_at = 2026-08-11T14:29:18.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47816" }
+"1.0.47844" = { created_at = 2026-08-11T15:31:15.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47844" }
+"1.0.47876" = { created_at = 2026-08-11T16:54:17.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47876" }
+"1.0.47928" = { created_at = 2026-08-12T11:31:34.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47928" }
+"1.0.47993" = { created_at = 2026-08-12T14:44:25.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.47993" }
+"1.0.48038" = { created_at = 2026-08-13T08:55:33.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48038" }
+"1.0.48073" = { created_at = 2026-08-13T10:04:32.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48073" }
+"1.0.48122" = { created_at = 2026-08-13T17:12:58.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48122" }
+"1.0.48165" = { created_at = 2026-08-14T06:59:30.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48165" }
+"1.0.48185" = { created_at = 2026-08-14T08:01:52.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48185" }
 "1.0.48210" = { created_at = 2026-08-14T08:17:21.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48210" }
 "1.0.48223" = { created_at = 2026-08-14T08:23:22.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48223" }
 "1.0.48254" = { created_at = 2026-08-14T16:16:22.000Z, release_url = "https://github.com/CircleCI-Public/circleci-cli/releases/tag/v1.0.48254" }
