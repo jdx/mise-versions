@@ -1,100 +1,13 @@
 [versions]
-"1.5.6" = { created_at = 2020-12-16T15:31:35.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.5.6" }
-"1.5.7" = { created_at = 2021-01-29T18:18:36.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.5.7" }
-"1.5.8" = { created_at = 2021-04-21T17:19:17.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.5.8" }
-"1.5.9" = { created_at = 2021-05-21T20:29:55.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.5.9" }
-"1.6.0" = { created_at = 2020-11-11T15:10:32.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.0" }
-"1.6.0-rc" = { created_at = 2020-11-04T22:39:25.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.0-rc", prerelease = true }
-"1.6.1" = { created_at = 2020-12-16T15:44:29.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.1" }
-"1.6.2" = { created_at = 2021-01-29T18:22:46.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.2" }
-"1.6.3" = { created_at = 2021-02-25T18:21:48.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.3" }
-"1.6.4" = { created_at = 2021-04-21T17:18:34.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.4" }
-"1.6.5" = { created_at = 2021-05-21T20:30:32.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.5" }
-"1.6.6" = { created_at = 2021-08-26T22:38:51.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.6" }
-"1.6.7" = { created_at = 2021-09-29T17:26:51.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.6.7" }
-"1.7.0" = { created_at = 2021-03-24T21:04:15.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.0" }
-"1.7.0-rc1" = { created_at = 2021-03-11T00:42:46.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.0-rc1", prerelease = true }
-"1.7.0-rc2" = { created_at = 2021-03-17T16:34:18.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.0-rc2", prerelease = true }
-"1.7.1" = { created_at = 2021-04-23T16:09:32.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.1" }
-"1.7.2" = { created_at = 2021-05-21T20:30:57.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.2" }
-"1.7.3" = { created_at = 2021-06-16T16:20:08.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.3" }
-"1.7.4" = { created_at = 2021-08-26T22:47:57.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.4" }
-"1.7.5" = { created_at = 2021-09-29T17:31:53.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.5" }
-"1.7.6" = { created_at = 2021-11-04T14:03:38.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.6" }
-"1.7.7" = { created_at = 2021-12-09T16:36:10.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.7" }
-"1.7.8" = { created_at = 2021-12-21T20:47:19.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.8" }
-"1.7.9" = { created_at = 2022-01-27T15:19:04.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.9" }
-"1.7.10" = { created_at = 2022-03-03T19:39:37.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.7.10" }
-"1.8.0" = { created_at = 2021-07-28T14:08:55.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.0" }
-"1.8.0-rc1" = { created_at = 2021-06-16T16:08:22.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.0-rc1", prerelease = true }
-"1.8.0-rc2" = { created_at = 2021-07-14T21:50:42.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.0-rc2", prerelease = true }
-"1.8.1" = { created_at = 2021-08-05T15:20:53.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.1" }
-"1.8.2" = { created_at = 2021-08-26T22:54:13.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.2" }
-"1.8.3" = { created_at = 2021-09-29T17:42:45.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.3" }
-"1.8.4" = { created_at = 2021-10-06T20:06:44.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.4" }
-"1.8.5" = { created_at = 2021-11-04T14:12:13.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.5" }
-"1.8.6" = { created_at = 2021-12-09T16:59:13.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.6" }
-"1.8.7" = { created_at = 2021-12-21T20:49:04.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.7" }
-"1.8.8" = { created_at = 2022-01-27T15:24:32.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.8" }
-"1.8.9" = { created_at = 2022-03-03T21:13:37.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.9" }
-"1.8.10" = { created_at = 2022-04-22T15:46:34.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.10" }
-"1.8.11" = { created_at = 2022-04-29T14:57:56.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.11" }
-"1.8.12" = { created_at = 2022-06-09T14:38:38.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.8.12" }
-"1.9.0" = { created_at = 2021-11-17T17:19:59.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.0" }
-"1.9.0-rc1" = { created_at = 2021-11-05T20:15:56.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.0-rc1" }
-"1.9.1" = { created_at = 2021-12-10T00:11:31.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.1" }
-"1.9.2" = { created_at = 2021-12-21T21:00:38.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.2" }
-"1.9.3" = { created_at = 2022-01-27T15:30:02.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.3" }
-"1.9.4" = { created_at = 2022-03-03T23:19:31.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.4" }
-"1.9.5" = { created_at = 2022-04-22T17:09:18.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.5" }
-"1.9.6" = { created_at = 2022-04-29T15:35:56.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.6" }
-"1.9.7" = { created_at = 2022-06-09T18:39:25.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.7" }
-"1.9.8" = { created_at = 2022-07-21T14:31:57.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.8" }
-"1.9.9" = { created_at = 2022-08-31T13:20:05.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.9" }
-"1.9.10" = { created_at = 2022-09-29T21:10:22.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.9.10" }
-"1.10.0" = { created_at = 2022-03-23T13:10:52.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.0" }
-"1.10.0-rc1" = { created_at = 2022-03-04T00:26:58.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.0-rc1", prerelease = true }
-"1.10.1" = { created_at = 2022-04-22T18:28:39.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.1" }
-"1.10.2" = { created_at = 2022-04-29T15:38:59.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.2" }
-"1.10.3" = { created_at = 2022-05-11T21:32:09.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.3" }
-"1.10.4" = { created_at = 2022-06-10T22:21:40.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.4" }
-"1.10.5" = { created_at = 2022-07-21T14:51:36.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.5" }
-"1.10.6" = { created_at = 2022-08-31T14:57:29.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.6" }
-"1.10.7" = { created_at = 2022-09-29T22:04:58.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.7" }
-"1.10.8" = { created_at = 2022-11-01T14:40:09.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.8" }
-"1.10.9" = { created_at = 2022-11-30T17:00:28.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.9" }
-"1.10.10" = { created_at = 2023-02-06T15:35:34.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.10" }
-"1.10.11" = { created_at = 2023-03-01T21:09:19.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.10.11" }
-"1.11.0" = { created_at = 2022-06-20T21:40:40.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.0" }
-"1.11.0-rc1" = { created_at = 2022-06-10T23:21:52.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.0-rc1", prerelease = true }
-"1.11.1" = { created_at = 2022-07-21T15:25:18.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.1" }
-"1.11.2" = { created_at = 2022-08-02T18:32:42.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.2" }
-"1.11.3" = { created_at = 2022-08-31T17:29:01.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.3" }
-"1.11.4" = { created_at = 2022-09-29T22:14:24.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.4" }
-"1.11.5" = { created_at = 2022-11-01T16:41:31.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.5" }
-"1.11.6" = { created_at = 2022-11-30T18:41:50.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.6" }
-"1.11.7" = { created_at = 2023-02-06T16:44:53.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.7" }
-"1.11.8" = { created_at = 2023-03-01T21:43:40.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.8" }
-"1.11.9" = { created_at = 2023-03-29T19:22:07.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.9" }
 "1.11.10" = { created_at = 2023-04-26T14:54:21.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.10" }
 "1.11.11" = { created_at = 2023-06-07T21:11:37.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.11" }
 "1.11.12" = { created_at = 2023-06-20T16:35:33.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.11.12" }
-"1.12.0" = { created_at = 2022-10-12T15:58:54.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.0" }
-"1.12.0-rc1" = { created_at = 2022-09-30T18:58:13.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.0-rc1", prerelease = true }
-"1.12.1" = { created_at = 2022-11-01T21:25:22.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.1" }
-"1.12.2" = { created_at = 2022-11-30T20:02:10.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.2" }
-"1.12.3" = { created_at = 2023-02-06T18:24:57.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.3" }
-"1.12.4" = { created_at = 2023-03-02T00:01:35.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.4" }
-"1.12.5" = { created_at = 2023-03-29T20:02:35.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.5" }
 "1.12.6" = { created_at = 2023-04-26T17:16:17.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.6" }
 "1.12.7" = { created_at = 2023-06-07T23:07:12.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.7" }
 "1.12.8" = { created_at = 2023-06-20T18:28:39.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.8" }
 "1.12.9" = { created_at = 2023-07-25T17:48:27.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.9" }
 "1.12.10" = { created_at = 2023-08-29T14:54:25.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.10" }
 "1.12.11" = { created_at = 2023-09-12T22:56:53.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.12.11" }
-"1.13.0" = { created_at = 2023-03-01T20:05:27.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.13.0" }
-"1.13.0-rc1" = { created_at = 2023-02-15T21:50:18.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.13.0-rc1", prerelease = true }
-"1.13.1" = { created_at = 2023-03-29T22:06:08.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.13.1" }
 "1.13.2" = { created_at = 2023-04-26T19:33:13.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.13.2" }
 "1.13.3" = { created_at = 2023-06-08T00:58:27.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.13.3" }
 "1.13.4" = { created_at = 2023-06-20T20:59:33.000Z, release_url = "https://github.com/hashicorp/vault/releases/tag/v1.13.4" }

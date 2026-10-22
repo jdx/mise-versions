@@ -1,16 +1,4 @@
 [versions]
-"nightly-0.3.2-50-g810896f" = { created_at = 2020-11-18T02:24:36.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-50-g810896f", prerelease = true }
-"nightly-0.3.2-xx-test" = { created_at = 2020-12-11T15:53:59.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-xx-test", prerelease = true }
-"nightly-0.3.2-60-gc9d1ebf" = { created_at = 2020-12-15T02:38:08.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-60-gc9d1ebf", prerelease = true }
-"nightly-0.3.2-62-g86a8eb8" = { created_at = 2020-12-18T02:44:07.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-62-g86a8eb8", prerelease = true }
-"nightly-0.3.2-68-ge6d96a5" = { created_at = 2021-01-01T02:55:47.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-68-ge6d96a5", prerelease = true }
-"nightly-0.3.2-72-ga137e79" = { created_at = 2021-01-08T10:02:22.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-72-ga137e79", prerelease = true }
-"nightly-0.3.2-78-gd1ad4a4" = { created_at = 2021-01-23T03:25:16.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-78-gd1ad4a4", prerelease = true }
-"nightly-0.3.2-80-g9f6f733" = { created_at = 2021-01-30T02:44:31.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-80-g9f6f733", prerelease = true }
-"nightly-0.3.2-85-g12652c7" = { created_at = 2021-03-02T02:28:45.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-85-g12652c7", prerelease = true }
-"nightly-0.3.2-89-gd8e9f20" = { created_at = 2021-03-13T02:43:19.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-89-gd8e9f20", prerelease = true }
-"nightly-0.3.2-91-g0055fcd" = { created_at = 2021-03-16T02:42:02.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-91-g0055fcd", prerelease = true }
-"nightly-0.3.2-95-g693ba75" = { created_at = 2021-04-01T02:36:19.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-95-g693ba75", prerelease = true }
 "nightly-0.3.2-98-ga011986" = { created_at = 2021-04-02T02:38:24.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-98-ga011986", prerelease = true }
 "nightly-0.3.2-100-g1b3913b" = { created_at = 2021-04-07T02:36:24.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.3.2-100-g1b3913b", prerelease = true }
 "nightly-0.4.0-2-g5775d00" = { created_at = 2021-04-21T02:34:13.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.4.0-2-g5775d00", prerelease = true }
@@ -102,12 +90,6 @@
 "nightly-0.7.3-38-gfdc6df6" = { created_at = 2024-11-20T02:34:36.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.7.3-38-gfdc6df6", prerelease = true }
 "nightly-0.7.3-40-g5f5c2c1" = { created_at = 2024-12-22T02:34:04.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.7.3-40-g5f5c2c1", prerelease = true }
 "nightly-0.7.3-43-g2366d92" = { created_at = 2025-01-12T02:35:19.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/nightly-0.7.3-43-g2366d92", prerelease = true }
-"0.1.0" = { created_at = 2020-04-09T17:12:24.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.1.0" }
-"0.2.0" = { created_at = 2020-04-15T00:47:40.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.2.0" }
-"0.2.1" = { created_at = 2020-08-11T17:07:54.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.2.1" }
-"0.3.0" = { created_at = 2020-08-11T17:18:39.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.3.0" }
-"0.3.1" = { created_at = 2020-09-04T08:17:04.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.3.1" }
-"0.3.2" = { created_at = 2020-09-22T19:34:32.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.3.2" }
 "0.4.0" = { created_at = 2021-04-09T11:05:12.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.4.0" }
 "0.5.0" = { created_at = 2021-08-02T10:13:05.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.5.0" }
 "0.5.1" = { created_at = 2021-10-26T13:04:28.000Z, release_url = "https://github.com/doitintl/kube-no-trouble/releases/tag/0.5.1" }
