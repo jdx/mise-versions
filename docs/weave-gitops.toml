@@ -1,5 +1,40 @@
 [versions]
 "2-preview-1" = { created_at = 2022-02-25T22:45:05.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v2-preview-1", prerelease = true }
+"0.0.2" = { created_at = 2021-05-07T20:40:45.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.0.2", prerelease = true }
+"0.0.4-rc0" = { created_at = 2021-06-08T10:53:49.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.0.4-rc0", prerelease = true }
+"0.0.4" = { created_at = 2021-06-09T14:40:38.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.0.4", prerelease = true }
+"0.0.5" = { created_at = 2021-06-09T14:52:39.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.0.5" }
+"0.1.0-rc.1" = { created_at = 2021-06-29T14:08:46.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.1.0-rc.1", prerelease = true }
+"0.1.0-rc.2" = { created_at = 2021-06-29T23:25:55.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.1.0-rc.2", prerelease = true }
+"0.1.0-rc0" = { created_at = 2021-06-28T21:41:15.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.1.0-rc0", prerelease = true }
+"0.1.0" = { created_at = 2021-06-30T14:54:10.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2021-07-07T16:31:22.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.0" }
+"0.2.1" = { created_at = 2021-07-19T16:56:07.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.1" }
+"0.2.2-rc" = { created_at = 2021-07-27T23:09:41.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.2-rc", prerelease = true }
+"0.2.2" = { created_at = 2021-07-28T21:30:47.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.2" }
+"0.2.3" = { created_at = 2021-08-23T20:47:25.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.3" }
+"0.2.4" = { created_at = 2021-08-24T17:32:29.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.4" }
+"0.2.5" = { created_at = 2021-09-08T23:54:01.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.2.5" }
+"0.3.0" = { created_at = 2021-09-23T22:12:56.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.3.0" }
+"0.3.1" = { created_at = 2021-10-08T22:00:40.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.3.1" }
+"0.3.2-rc" = { created_at = 2021-10-19T19:34:11.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.3.2-rc", prerelease = true }
+"0.3.2-rc1" = { created_at = 2021-10-21T17:18:07.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.3.2-rc1", prerelease = true }
+"0.3.3-rc0" = { created_at = 2021-10-22T19:56:36.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.3.3-rc0", prerelease = true }
+"0.3.3" = { created_at = 2021-10-25T15:37:17.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.3.3" }
+"0.4.0-rc0" = { created_at = 2021-10-27T14:56:36.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.4.0-rc0", prerelease = true }
+"0.4.0" = { created_at = 2021-10-27T16:17:45.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.4.0" }
+"0.4.1-rc0" = { created_at = 2021-11-03T16:16:41.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.4.1-rc0", prerelease = true }
+"0.4.1" = { created_at = 2021-11-03T20:10:15.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.4.1" }
+"0.5.0-rc2" = { created_at = 2021-11-22T22:10:12.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.5.0-rc2", prerelease = true }
+"0.5.0" = { created_at = 2021-12-02T23:02:35.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.5.0" }
+"0.5.1-rc0" = { created_at = 2021-12-08T16:12:59.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.5.1-rc0", prerelease = true }
+"0.5.1-rc1" = { created_at = 2021-12-08T17:49:05.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.5.1-rc1", prerelease = true }
+"0.5.1-rc2" = { created_at = 2021-12-08T18:59:44.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.5.1-rc2", prerelease = true }
+"0.5.1-rc3" = { created_at = 2021-12-08T20:59:15.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.5.1-rc3", prerelease = true }
+"0.6.0-rc0" = { created_at = 2021-12-15T20:09:35.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.0-rc0", prerelease = true }
+"0.6.0-rc1" = { created_at = 2021-12-15T22:39:24.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.0-rc1", prerelease = true }
+"0.6.0" = { created_at = 2021-12-16T19:22:13.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.0" }
+"0.6.1-rc1" = { created_at = 2022-01-20T18:39:07.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.1-rc1", prerelease = true }
 "0.6.1" = { created_at = 2022-01-20T20:11:24.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.1" }
 "0.6.2-patch2" = { created_at = 2022-03-02T20:00:49.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.2-patch2", prerelease = true }
 "0.6.2" = { created_at = 2022-01-25T22:09:59.000Z, release_url = "https://github.com/weaveworks/weave-gitops/releases/tag/v0.6.2" }

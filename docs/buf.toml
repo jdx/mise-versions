@@ -1,4 +1,102 @@
 [versions]
+"0.1.0" = { created_at = 2019-10-18T02:49:33.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.1.0", prerelease = true }
+"0.2.0" = { created_at = 2019-10-28T21:48:33.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.2.0", prerelease = true }
+"0.3.0" = { created_at = 2019-11-05T21:24:20.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.3.0", prerelease = true }
+"0.4.0" = { created_at = 2019-12-05T03:17:28.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.4.0", prerelease = true }
+"0.4.1" = { created_at = 2019-12-30T18:18:07.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.4.1", prerelease = true }
+"0.5.0" = { created_at = 2020-01-01T21:47:46.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.5.0", prerelease = true }
+"0.6.0" = { created_at = 2020-01-17T17:56:18.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.6.0", prerelease = true }
+"0.7.0" = { created_at = 2020-01-31T03:03:03.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.7.0", prerelease = true }
+"0.7.1" = { created_at = 2020-03-05T15:41:40.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.7.1", prerelease = true }
+"0.8.0" = { created_at = 2020-03-11T17:03:05.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.8.0", prerelease = true }
+"0.9.0" = { created_at = 2020-03-25T19:34:58.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.9.0", prerelease = true }
+"0.10.0" = { created_at = 2020-04-06T21:47:59.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.10.0", prerelease = true }
+"0.11.0" = { created_at = 2020-04-09T15:28:44.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.11.0", prerelease = true }
+"0.12.0" = { created_at = 2020-05-11T14:28:52.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.12.0", prerelease = true }
+"0.12.1" = { created_at = 2020-05-11T17:14:02.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.12.1", prerelease = true }
+"0.13.0" = { created_at = 2020-05-17T22:13:43.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.13.0", prerelease = true }
+"0.14.0" = { created_at = 2020-05-30T16:30:17.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.14.0", prerelease = true }
+"0.15.0" = { created_at = 2020-05-31T15:23:50.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.15.0", prerelease = true }
+"0.16.0" = { created_at = 2020-06-02T16:19:29.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.16.0", prerelease = true }
+"0.17.0" = { created_at = 2020-06-17T16:32:07.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.17.0", prerelease = true }
+"0.18.0" = { created_at = 2020-06-22T16:58:25.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.18.0", prerelease = true }
+"0.18.1" = { created_at = 2020-06-25T16:49:05.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.18.1", prerelease = true }
+"0.19.0" = { created_at = 2020-07-10T17:58:16.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.19.0", prerelease = true }
+"0.19.1" = { created_at = 2020-07-10T20:06:37.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.19.1", prerelease = true }
+"0.20.0" = { created_at = 2020-07-13T20:31:43.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.20.0", prerelease = true }
+"0.20.1" = { created_at = 2020-07-14T16:42:38.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.20.1", prerelease = true }
+"0.20.2" = { created_at = 2020-07-17T20:07:26.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.20.2", prerelease = true }
+"0.20.3" = { created_at = 2020-07-18T15:43:13.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.20.3", prerelease = true }
+"0.20.4" = { created_at = 2020-07-21T16:39:59.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.20.4", prerelease = true }
+"0.20.5" = { created_at = 2020-07-24T16:18:39.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.20.5", prerelease = true }
+"0.21.0" = { created_at = 2020-09-02T19:15:04.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.21.0", prerelease = true }
+"0.22.0" = { created_at = 2020-09-09T18:57:47.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.22.0", prerelease = true }
+"0.23.0" = { created_at = 2020-09-11T19:15:41.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.23.0", prerelease = true }
+"0.24.0" = { created_at = 2020-09-21T20:21:21.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.24.0", prerelease = true }
+"0.25.0" = { created_at = 2020-10-09T20:35:19.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.25.0", prerelease = true }
+"0.26.0" = { created_at = 2020-10-13T18:00:56.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.26.0", prerelease = true }
+"0.27.0" = { created_at = 2020-10-16T14:29:22.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.27.0", prerelease = true }
+"0.27.1" = { created_at = 2020-10-16T14:41:21.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.27.1", prerelease = true }
+"0.28.0" = { created_at = 2020-10-21T16:38:29.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.28.0", prerelease = true }
+"0.29.0" = { created_at = 2020-10-30T19:30:45.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.29.0", prerelease = true }
+"0.30.0" = { created_at = 2020-11-03T18:25:44.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.30.0", prerelease = true }
+"0.30.1" = { created_at = 2020-11-12T20:59:20.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.30.1", prerelease = true }
+"0.31.0" = { created_at = 2020-11-16T19:55:57.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.31.0", prerelease = true }
+"0.31.1" = { created_at = 2020-11-17T22:33:30.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.31.1", prerelease = true }
+"0.32.0" = { created_at = 2020-11-24T18:16:26.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.32.0", prerelease = true }
+"0.32.1" = { created_at = 2020-12-10T21:20:09.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.32.1", prerelease = true }
+"0.33.0" = { created_at = 2020-12-12T16:20:38.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.33.0", prerelease = true }
+"0.34.0" = { created_at = 2021-01-04T23:31:12.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.34.0", prerelease = true }
+"0.35.0" = { created_at = 2021-01-07T19:42:59.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.35.0", prerelease = true }
+"0.35.1" = { created_at = 2021-01-08T13:08:04.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.35.1", prerelease = true }
+"0.36.0" = { created_at = 2021-01-18T20:40:20.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.36.0", prerelease = true }
+"0.37.0" = { created_at = 2021-02-09T19:23:46.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.37.0", prerelease = true }
+"0.37.1" = { created_at = 2021-02-23T21:13:29.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.37.1", prerelease = true }
+"0.38.0" = { created_at = 2021-02-25T20:47:54.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.38.0", prerelease = true }
+"0.39.0" = { created_at = 2021-03-04T15:31:55.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.39.0", prerelease = true }
+"0.39.1" = { created_at = 2021-03-04T16:03:52.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.39.1", prerelease = true }
+"0.40.0" = { created_at = 2021-03-15T19:38:01.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.40.0", prerelease = true }
+"0.41.0" = { created_at = 2021-04-01T20:53:23.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.41.0", prerelease = true }
+"0.42.0" = { created_at = 2021-05-20T21:25:28.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.42.0", prerelease = true }
+"0.42.1" = { created_at = 2021-05-20T23:19:54.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.42.1", prerelease = true }
+"0.43.0" = { created_at = 2021-05-28T15:37:51.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.43.0", prerelease = true }
+"0.43.1" = { created_at = 2021-05-28T22:03:50.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.43.1", prerelease = true }
+"0.43.2" = { created_at = 2021-05-31T20:04:37.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.43.2", prerelease = true }
+"0.44.0" = { created_at = 2021-07-08T20:03:50.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.44.0", prerelease = true }
+"0.45.0" = { created_at = 2021-07-26T18:48:47.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.45.0", prerelease = true }
+"0.46.0" = { created_at = 2021-07-27T19:58:10.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.46.0", prerelease = true }
+"0.47.0" = { created_at = 2021-07-29T15:30:39.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.47.0", prerelease = true }
+"0.48.0" = { created_at = 2021-07-29T22:20:35.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.48.0", prerelease = true }
+"0.48.1" = { created_at = 2021-07-30T14:04:59.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.48.1", prerelease = true }
+"0.48.2" = { created_at = 2021-07-30T19:24:13.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.48.2", prerelease = true }
+"0.49.0" = { created_at = 2021-08-10T21:04:42.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.49.0", prerelease = true }
+"0.50.0" = { created_at = 2021-08-12T22:17:44.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.50.0", prerelease = true }
+"0.51.0" = { created_at = 2021-08-13T21:33:33.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.51.0", prerelease = true }
+"0.51.1" = { created_at = 2021-08-16T19:15:32.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.51.1", prerelease = true }
+"0.52.0" = { created_at = 2021-08-19T17:59:06.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.52.0", prerelease = true }
+"0.53.0" = { created_at = 2021-08-25T18:41:57.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.53.0", prerelease = true }
+"0.54.0" = { created_at = 2021-08-30T16:44:20.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.54.0", prerelease = true }
+"0.54.1" = { created_at = 2021-08-30T17:18:45.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.54.1", prerelease = true }
+"0.55.0" = { created_at = 2021-09-07T20:07:48.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.55.0", prerelease = true }
+"0.56.0" = { created_at = 2021-09-08T18:34:05.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v0.56.0", prerelease = true }
+"1.0.0-rc1" = { created_at = 2021-09-15T16:31:14.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc1", prerelease = true }
+"1.0.0-rc10" = { created_at = 2021-12-16T22:18:50.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc10", prerelease = true }
+"1.0.0-rc11" = { created_at = 2022-01-18T19:54:56.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc11", prerelease = true }
+"1.0.0-rc12" = { created_at = 2022-02-01T19:02:05.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc12", prerelease = true }
+"1.0.0-rc2" = { created_at = 2021-09-23T16:58:20.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc2", prerelease = true }
+"1.0.0-rc3" = { created_at = 2021-10-04T15:22:36.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc3", prerelease = true }
+"1.0.0-rc4" = { created_at = 2021-10-07T13:55:51.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc4", prerelease = true }
+"1.0.0-rc5" = { created_at = 2021-10-12T16:28:28.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc5", prerelease = true }
+"1.0.0-rc6" = { created_at = 2021-10-20T19:18:46.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc6", prerelease = true }
+"1.0.0-rc7" = { created_at = 2021-11-08T18:17:23.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc7", prerelease = true }
+"1.0.0-rc8" = { created_at = 2021-11-10T17:54:51.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc8", prerelease = true }
+"1.0.0-rc9" = { created_at = 2021-12-15T17:14:38.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0-rc9", prerelease = true }
+"1.0.0" = { created_at = 2022-02-17T22:14:25.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2022-03-01T16:57:10.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2022-03-21T15:32:17.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.1.1" }
+"1.2.0" = { created_at = 2022-03-24T22:07:42.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.2.0" }
+"1.2.1" = { created_at = 2022-03-25T01:53:03.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.2.1" }
+"1.3.0" = { created_at = 2022-03-25T18:00:40.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.3.0" }
 "1.3.1" = { created_at = 2022-03-31T00:11:47.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.3.1" }
 "1.4.0" = { created_at = 2022-04-21T17:42:59.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.4.0" }
 "1.5.0" = { created_at = 2022-05-30T19:52:26.000Z, release_url = "https://github.com/bufbuild/buf/releases/tag/v1.5.0" }
