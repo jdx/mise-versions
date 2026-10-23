@@ -3,6 +3,18 @@ import { uncompress } from "snappyjs";
 import { setupDatabase } from "../../../../src/database";
 import { hasBudget } from "../../../../src/token-budget";
 import { readThroughMemo, writeMemo } from "./edge-memo";
+import {
+  EXPIRES_AT_HEADER,
+  INTENDED_CACHE_CONTROL_HEADER,
+  SOURCE_HEADER,
+  VERIFIED_AT_HEADER,
+  VERIFIED_UNTIL_HEADER,
+  VISIBILITY_TTL_SECONDS,
+  clientResponse,
+  servableEntry,
+  snippetCacheKey,
+  verifiedUntil as entryVerifiedUntil,
+} from "../../../../snippets/github-mirror-cache.js";
 
 const CACHE_TTL_SECONDS = 30 * 24 * 60 * 60;
 const RELEASE_FRESH_MS = 6 * 60 * 60 * 1000;
@@ -12,9 +24,27 @@ const YOUNG_RELEASE_MS = 2 * 24 * 60 * 60 * 1000;
 const YOUNG_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EDGE_YOUNG_RELEASE_TTL_SECONDS = 30 * 60;
 const BROWSER_YOUNG_RELEASE_MAX_AGE_SECONDS = 10 * 60;
-// `latest` for a repo the catalog does not track has no generation to
-// invalidate it when a release is published, so it expires on its own.
+// `latest` (and release-list page 1) for a repo the catalog does not track
+// has no generation to invalidate it when a release is published, so it
+// expires on its own: after a quarter of how long the answer has been
+// unchanged, between these bounds. A repo that just released is re-read every
+// 10 minutes; a quiet one hourly. Each re-read rewrites the KV entry, and
+// these 10-minute re-reads were about a third of GITHUB_CACHE writes. A new
+// release of a quiet untracked repo can take up to an hour to appear.
 const UNTRACKED_LATEST_FRESH_MS = 10 * 60 * 1000;
+const UNTRACKED_LATEST_MAX_FRESH_MS = 60 * 60 * 1000;
+const UNTRACKED_STABLE_FRESH_FRACTION = 4;
+// An untracked repo with at least this many stars keeps the 10-minute
+// window whatever its history: popular tools are expected to show new
+// releases quickly. The count comes from the visibility check the request
+// already passed (visibility.ts), so it costs no GitHub call; unknown counts
+// back off.
+export const UNTRACKED_BACKOFF_MAX_STARS = 1000;
+
+/** Whether an untracked repo with `stars` stars backs off while unchanged. */
+function untrackedBacksOff(stars: number | undefined): boolean {
+  return !(typeof stars === "number" && stars >= UNTRACKED_BACKOFF_MAX_STARS);
+}
 const EDGE_UNTRACKED_LATEST_TTL_SECONDS = 10 * 60;
 const EMPTY_RELEASE_FRESH_MS = 30 * 60 * 1000;
 const EMPTY_RELEASE_CACHE_TTL_SECONDS = 30 * 60;
@@ -95,6 +125,28 @@ export interface GitHubReleaseListPage {
   truncated: boolean;
 }
 
+/** A tag as GitHub's REST tag list returns it, trimmed to what mise reads. */
+export interface GitHubTag {
+  name: string;
+  commit: { sha: string; url: string };
+  /**
+   * The tagged commit's committer date. Present only when dates were
+   * requested; null when GitHub has no commit for the tag.
+   */
+  date?: string | null;
+}
+
+export interface GitHubTagListPage {
+  tags: GitHubTag[];
+  /** The page to request next, or null when there is none to request here. */
+  next_page: number | null;
+  /**
+   * The repository has more tags than the mirror serves (TAG_LIST_MAX_PAGE
+   * pages); the rest must come from GitHub.
+   */
+  truncated: boolean;
+}
+
 interface GitHubAttestation {
   bundle?: unknown;
   bundle_url?: string;
@@ -114,7 +166,7 @@ interface Env {
   GITHUB_CACHE: KVNamespace;
 }
 
-interface TokenRecord {
+export interface TokenRecord {
   id: number;
   token: string;
   // Filled in from GitHub's rate-limit headers as the token is used.
@@ -160,6 +212,13 @@ export function releaseCacheHeaders(
       staleWhileRevalidate: 0,
     });
   }
+  if (release.assets.length === 0) {
+    return cacheHeaders({
+      browserMaxAge: 0,
+      edgeMaxAge: EMPTY_RELEASE_CACHE_TTL_SECONDS,
+      staleWhileRevalidate: 0,
+    });
+  }
   const immutable = tag !== "latest" && release.immutable === true;
   if (!immutable && isYoungRelease(release)) {
     return cacheHeaders({
@@ -184,14 +243,17 @@ export function releaseEdgeCacheOptions(
   cacheGeneration?: string,
 ): EdgeCacheOptions {
   const young = release.immutable !== true && isYoungRelease(release);
+  const empty = release.assets.length === 0;
   return {
-    browserMaxAge: tag === "latest" ? 0 : undefined,
+    browserMaxAge: tag === "latest" || empty ? 0 : undefined,
     edgeMaxAge: isUntrackedLatest(tag, cacheGeneration)
       ? EDGE_UNTRACKED_LATEST_TTL_SECONDS
-      : young
-        ? EDGE_YOUNG_RELEASE_TTL_SECONDS
-        : undefined,
-    staleWhileRevalidate: tag === "latest" || young ? 0 : undefined,
+      : empty
+        ? EMPTY_RELEASE_CACHE_TTL_SECONDS
+        : young
+          ? EDGE_YOUNG_RELEASE_TTL_SECONDS
+          : undefined,
+    staleWhileRevalidate: tag === "latest" || young || empty ? 0 : undefined,
     cacheGeneration,
   };
 }
@@ -205,6 +267,46 @@ function isYoungRelease(release: GitHubRelease): boolean {
   return (
     Number.isFinite(timestamp) && Date.now() - timestamp < YOUNG_RELEASE_MS
   );
+}
+
+/**
+ * Whether a release-list page holds a release published less than
+ * YOUNG_RELEASE_MS ago, whose assets may still be replaced. A release with
+ * no parsable date counts as young.
+ */
+function hasYoungRelease(page: GitHubReleaseListPage): boolean {
+  return page.releases.some((release) => {
+    const timestamp = new Date(
+      release.published_at ?? release.created_at ?? "",
+    ).getTime();
+    return (
+      !Number.isFinite(timestamp) || Date.now() - timestamp < YOUNG_RELEASE_MS
+    );
+  });
+}
+
+/**
+ * How long an untracked `latest` or release-list page 1 stays fresh: a
+ * quarter of how long it has been unchanged, within the untracked bounds.
+ * Entries without `unchanged_since` get the minimum.
+ */
+function untrackedFreshMs<T>(entry: CacheEntry<T>): number {
+  const stableMs =
+    typeof entry.unchanged_since === "number"
+      ? entry.cached_at - entry.unchanged_since
+      : 0;
+  return Math.min(
+    UNTRACKED_LATEST_MAX_FRESH_MS,
+    Math.max(
+      UNTRACKED_LATEST_FRESH_MS,
+      stableMs / UNTRACKED_STABLE_FRESH_FRACTION,
+    ),
+  );
+}
+
+/** Identifies equivalent data for untracked mutable entries. */
+function jsonFingerprint<T>(data: T): string {
+  return JSON.stringify(data);
 }
 
 function releaseFreshMs(release: GitHubRelease): number {
@@ -222,17 +324,40 @@ export function attestationsCacheHeaders() {
   });
 }
 
+// The zone's Browser Cache TTL (2 hours) replaces a lower `max-age` on
+// responses served from the Cache API, so an edge hit would tell browsers
+// and proxies to keep for 2 hours what the Worker answered with max-age=0.
+// The Cache-Control the Worker meant is kept in this header and put back.
+const EDGE_CACHE_CONTROL_HEADER = "X-Mise-Cache-Control";
+
 export async function matchGitHubMirrorEdgeCache(
   request: Request,
   cacheGeneration?: string,
   cacheKeyParams?: Record<string, string>,
+  snippet?: MirrorSnippetCopy,
 ): Promise<Response | null> {
   try {
-    return (
-      (await defaultEdgeCache().match(
-        edgeCacheRequest(request, cacheGeneration, cacheKeyParams),
-      )) ?? null
+    const cached = await defaultEdgeCache().match(
+      edgeCacheRequest(request, cacheGeneration, cacheKeyParams),
     );
+    if (!cached) return null;
+    if (snippet) {
+      // Entries written before expiry was recorded are not copied.
+      const expiresAt = Number(cached.headers.get(EXPIRES_AT_HEADER));
+      if (Number.isFinite(expiresAt) && expiresAt > 0) {
+        snippet.waitUntil(
+          copyToSnippetCache(
+            snippet,
+            cached.clone(),
+            Math.min(
+              expiresAt,
+              Math.floor(Date.now() / 1000) + snippet.maxTtlSeconds,
+            ),
+          ),
+        );
+      }
+    }
+    return withIntendedCacheControl(cached);
   } catch (error) {
     console.warn("failed to read GitHub mirror edge cache:", error);
     return null;
@@ -246,6 +371,11 @@ export async function putGitHubMirrorEdgeCache(
 ): Promise<void> {
   if (response.status !== 200) return;
 
+  // Clone both copies now: the client may consume `response` once this
+  // function first awaits.
+  const entry = edgeCacheResponse(response, options);
+  const snippet = options?.snippet;
+  const snippetEntry = snippet ? edgeCacheResponse(response, options) : null;
   try {
     await defaultEdgeCache().put(
       edgeCacheRequest(
@@ -253,10 +383,23 @@ export async function putGitHubMirrorEdgeCache(
         options?.cacheGeneration,
         options?.cacheKeyParams,
       ),
-      edgeCacheResponse(response, options),
+      entry,
     );
   } catch (error) {
     console.warn("failed to write GitHub mirror edge cache:", error);
+  }
+  if (snippet && snippetEntry) {
+    // Cap with the expiry recorded on the Worker's entry: the put above may
+    // have crossed a second boundary.
+    const expiresAt = Number(snippetEntry.headers.get(EXPIRES_AT_HEADER));
+    await copyToSnippetCache(
+      snippet,
+      snippetEntry,
+      Math.min(
+        expiresAt,
+        Math.floor(Date.now() / 1000) + snippet.maxTtlSeconds,
+      ),
+    );
   }
 }
 
@@ -266,17 +409,29 @@ export interface EdgeCacheOptions {
   staleWhileRevalidate?: number;
   cacheGeneration?: string;
   cacheKeyParams?: Record<string, string>;
+  /** Also keep a short-lived snippet-readable copy (mutable endpoints). */
+  snippet?: MirrorSnippetCopy;
 }
 
-function edgeCacheResponse(
-  response: Response,
-  {
-    browserMaxAge = 600,
-    edgeMaxAge = EDGE_MIRROR_CACHE_TTL_SECONDS,
-    staleWhileRevalidate = 24 * 60 * 60,
-  }: EdgeCacheOptions = {},
-): Response {
+function withIntendedCacheControl(response: Response): Response {
+  const intended = response.headers.get(EDGE_CACHE_CONTROL_HEADER);
+  if (!intended && !response.headers.has(EXPIRES_AT_HEADER)) return response;
   const headers = new Headers(response.headers);
+  if (intended) headers.set("Cache-Control", intended);
+  headers.delete(EDGE_CACHE_CONTROL_HEADER);
+  headers.delete(EXPIRES_AT_HEADER);
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+function edgeCacheControl({
+  browserMaxAge = 600,
+  edgeMaxAge = EDGE_MIRROR_CACHE_TTL_SECONDS,
+  staleWhileRevalidate = 24 * 60 * 60,
+}: EdgeCacheOptions = {}): { cacheControl: string; edgeMaxAge: number } {
   const directives = [
     "public",
     `max-age=${browserMaxAge}`,
@@ -285,7 +440,22 @@ function edgeCacheResponse(
   if (staleWhileRevalidate > 0) {
     directives.push(`stale-while-revalidate=${staleWhileRevalidate}`);
   }
-  headers.set("Cache-Control", directives.join(", "));
+  return { cacheControl: directives.join(", "), edgeMaxAge };
+}
+
+function edgeCacheResponse(
+  response: Response,
+  options: EdgeCacheOptions = {},
+): Response {
+  const headers = new Headers(response.headers);
+  const { cacheControl, edgeMaxAge } = edgeCacheControl(options);
+  headers.set("Cache-Control", cacheControl);
+  headers.set(EDGE_CACHE_CONTROL_HEADER, cacheControl);
+  // Lets a later hit copy this entry for the snippet without outliving it.
+  headers.set(
+    EXPIRES_AT_HEADER,
+    String(Math.floor(Date.now() / 1000) + edgeMaxAge),
+  );
   return new Response(response.clone().body, {
     status: response.status,
     statusText: response.statusText,
@@ -318,6 +488,246 @@ function edgeCacheRequest(
   return new Request(url.toString(), { method: "GET" });
 }
 
+// Snippet-readable cache (snippets/github-mirror-cache.js).
+//
+// For the effectively immutable endpoints (attestations by digest, releases
+// by exact tag) the Worker keeps its edge copy under the snippet's key
+// namespace instead of edgeCacheRequest's, so a free Cloudflare Snippet in
+// front of the Worker can answer hits without invoking it. Each entry
+// records when its content expires (the Worker's edge TTL), when GitHub
+// last confirmed the repository public, and until when that confirmation
+// holds (the repo's visibility TTL, and at most VISIBILITY_TTL_SECONDS after
+// the Worker's access check). The snippet serves an entry only while both
+// hold; otherwise it passes the request here, where access is checked again
+// and the entry's verification is refreshed.
+
+// An entry's verification is rewritten only when the new one runs this much
+// longer, so a repo whose window is anchored to the access check (a popular
+// one, see visibility.ts) is not restamped on every Worker hit.
+const RESTAMP_MIN_GAIN_SECONDS = 30 * 60;
+
+/** Epoch ms the default verification window ends, for `verifiedAt`. */
+function defaultVerifiedUntil(verifiedAt: number): number {
+  return verifiedAt + VISIBILITY_TTL_SECONDS * 1000;
+}
+
+/** Whether an entry verified until `existing` should take `next` instead. */
+function extendsVerification(
+  existing: number | null,
+  nextSeconds: number,
+): boolean {
+  return existing === null || existing < nextSeconds - RESTAMP_MIN_GAIN_SECONDS;
+}
+
+/** The snippet-readable cache key for this request, or null if ineligible. */
+export function gitHubMirrorSnippetCacheKey(request: Request): string | null {
+  return snippetCacheKey(request.url);
+}
+
+/**
+ * gitHubMirrorSnippetCacheKey for a release request whose decoded tag is
+ * `tag`. `latest` changes in place (generation-invalidated) and is never
+ * snippet-readable, however the URL spells it.
+ */
+export function gitHubMirrorReleaseSnippetCacheKey(
+  request: Request,
+  tag: string,
+): string | null {
+  return tag === "latest" ? null : snippetCacheKey(request.url);
+}
+
+/**
+ * Serve `key` from the snippet-readable cache. `verifiedAt` (epoch ms) is
+ * when the access check this request just passed was confirmed by GitHub,
+ * and `verifiedUntil` (epoch ms) when that grant ends; an entry whose
+ * verification ends sooner is rewritten with them (keeping its content
+ * expiry) so the snippet can serve it again.
+ */
+export async function matchGitHubMirrorSnippetCache(
+  key: string,
+  verifiedAt: number,
+  waitUntil: (promise: Promise<unknown>) => void,
+  verifiedUntil = defaultVerifiedUntil(verifiedAt),
+): Promise<Response | null> {
+  let cached: Response | undefined;
+  try {
+    cached = await defaultEdgeCache().match(key);
+  } catch (error) {
+    console.warn("failed to read GitHub mirror snippet cache:", error);
+    return null;
+  }
+  if (!cached || cached.status !== 200) return null;
+  const now = Date.now();
+  const expiresAt = Number(cached.headers.get(EXPIRES_AT_HEADER));
+  if (!Number.isFinite(expiresAt) || expiresAt * 1000 <= now) return null;
+
+  const verifiedAtSeconds = Math.floor(verifiedAt / 1000);
+  const verifiedUntilSeconds = Math.floor(verifiedUntil / 1000);
+  if (
+    extendsVerification(
+      entryVerifiedUntil(cached.headers),
+      verifiedUntilSeconds,
+    )
+  ) {
+    const ttl = Math.floor(expiresAt - now / 1000);
+    if (ttl >= 1) {
+      const headers = new Headers(cached.headers);
+      headers.set(VERIFIED_AT_HEADER, String(verifiedAtSeconds));
+      headers.set(VERIFIED_UNTIL_HEADER, String(verifiedUntilSeconds));
+      headers.set("Cache-Control", snippetEntryCacheControl(ttl));
+      waitUntil(
+        putSnippetEntry(
+          key,
+          new Response(cached.clone().body, { status: 200, headers }),
+        ),
+      );
+    }
+  }
+  return clientResponse(cached, "worker");
+}
+
+/**
+ * Store a 200 response the Worker would itself cache at the edge with
+ * `options`, under the snippet-readable key, marked as verified at
+ * `verifiedAt` until `verifiedUntil` (epoch ms, see
+ * matchGitHubMirrorSnippetCache).
+ */
+export async function putGitHubMirrorSnippetCache(
+  key: string,
+  response: Response,
+  options: EdgeCacheOptions,
+  verifiedAt: number,
+  verifiedUntil = defaultVerifiedUntil(verifiedAt),
+): Promise<void> {
+  if (response.status !== 200) return;
+  const { cacheControl, edgeMaxAge } = edgeCacheControl(options);
+  if (edgeMaxAge < 1) return;
+  const headers = new Headers(response.headers);
+  headers.delete(SOURCE_HEADER);
+  headers.set(INTENDED_CACHE_CONTROL_HEADER, cacheControl);
+  headers.set(
+    EXPIRES_AT_HEADER,
+    String(Math.floor(Date.now() / 1000) + edgeMaxAge),
+  );
+  headers.set(VERIFIED_AT_HEADER, String(Math.floor(verifiedAt / 1000)));
+  headers.set(VERIFIED_UNTIL_HEADER, String(Math.floor(verifiedUntil / 1000)));
+  headers.set("Cache-Control", snippetEntryCacheControl(edgeMaxAge));
+  await putSnippetEntry(
+    key,
+    new Response(response.clone().body, { status: 200, headers }),
+  );
+}
+
+function snippetEntryCacheControl(ttlSeconds: number): string {
+  return `public, max-age=${ttlSeconds}, s-maxage=${ttlSeconds}`;
+}
+
+async function putSnippetEntry(key: string, entry: Response): Promise<void> {
+  try {
+    await defaultEdgeCache().put(key, entry);
+  } catch (error) {
+    console.warn("failed to write GitHub mirror snippet cache:", error);
+  }
+}
+
+// Mutable endpoints (`releases/latest`, release-list pages) keep their
+// generation-keyed Worker cache; the snippet gets a short-lived copy of
+// whatever the Worker served from it for the current generation. The copy
+// expires `maxTtlSeconds` after it is written, never later than the Worker's
+// own entry, so a release published since can take that much longer to show
+// through the snippet. The same verification window applies.
+
+const DEFAULT_MUTABLE_SNIPPET_TTL_SECONDS = 5 * 60;
+
+export interface MirrorSnippetCopy {
+  key: string;
+  /** Epoch ms when GitHub confirmed the repo public (the access check). */
+  verifiedAt: number;
+  /** Epoch ms when that access grant ends (see VERIFIED_UNTIL_HEADER). */
+  verifiedUntil: number;
+  /** Longest the snippet may serve the copy; 0 disables it. */
+  maxTtlSeconds: number;
+  waitUntil: (promise: Promise<unknown>) => void;
+}
+
+/** GITHUB_MIRROR_SNIPPET_TTL_SECONDS: default 5 minutes, at most an hour. */
+export function mutableSnippetTtlSeconds(value: string | undefined): number {
+  if (value === undefined || value.trim() === "") {
+    return DEFAULT_MUTABLE_SNIPPET_TTL_SECONDS;
+  }
+  const seconds = Number(value);
+  if (!Number.isInteger(seconds) || seconds < 0) {
+    return DEFAULT_MUTABLE_SNIPPET_TTL_SECONDS;
+  }
+  return Math.min(seconds, VISIBILITY_TTL_SECONDS);
+}
+
+/** The snippet copy to keep for a mutable mirror request, or undefined. */
+export function gitHubMirrorMutableSnippetCopy(
+  request: Request,
+  {
+    ttl,
+    verifiedAt,
+    verifiedUntil = defaultVerifiedUntil(verifiedAt),
+    waitUntil,
+  }: {
+    ttl: string | undefined;
+    verifiedAt: number;
+    verifiedUntil?: number;
+    waitUntil: (promise: Promise<unknown>) => void;
+  },
+): MirrorSnippetCopy | undefined {
+  const key = snippetCacheKey(request.url);
+  const maxTtlSeconds = mutableSnippetTtlSeconds(ttl);
+  if (!key || maxTtlSeconds < 1) return undefined;
+  return { key, verifiedAt, verifiedUntil, maxTtlSeconds, waitUntil };
+}
+
+/**
+ * Write `entry` (an edge-cache entry, with its intended Cache-Control) as the
+ * snippet-readable copy, servable until `expiresAt` (epoch seconds). Skipped
+ * when the snippet can already serve an entry verified at least as recently,
+ * so a Worker that sees every request (before the snippet is deployed) does
+ * not rewrite it each time.
+ */
+async function copyToSnippetCache(
+  { key, verifiedAt, verifiedUntil }: MirrorSnippetCopy,
+  entry: Response,
+  expiresAt: number,
+): Promise<void> {
+  const nowSeconds = Date.now() / 1000;
+  const ttl = Math.floor(expiresAt - nowSeconds);
+  const verifiedAtSeconds = Math.floor(verifiedAt / 1000);
+  const verifiedUntilSeconds = Math.floor(verifiedUntil / 1000);
+  if (ttl < 1 || entry.status !== 200) return;
+  if (!entry.headers.get(EDGE_CACHE_CONTROL_HEADER)) return;
+  try {
+    const existing = await defaultEdgeCache().match(key);
+    if (
+      existing &&
+      servableEntry(existing, nowSeconds) &&
+      !extendsVerification(
+        entryVerifiedUntil(existing.headers),
+        verifiedUntilSeconds,
+      )
+    ) {
+      return;
+    }
+  } catch {
+    // Write it anyway.
+  }
+  const headers = new Headers(entry.headers);
+  headers.delete(SOURCE_HEADER);
+  headers.set(EXPIRES_AT_HEADER, String(Math.floor(expiresAt)));
+  headers.set(VERIFIED_AT_HEADER, String(verifiedAtSeconds));
+  headers.set(VERIFIED_UNTIL_HEADER, String(verifiedUntilSeconds));
+  headers.set("Cache-Control", snippetEntryCacheControl(ttl));
+  await putSnippetEntry(
+    key,
+    new Response(entry.body, { status: 200, headers }),
+  );
+}
+
 export function validRepoPart(value: string | undefined): value is string {
   return (
     !!value &&
@@ -333,6 +743,11 @@ export function validReleaseTag(value: string | undefined): value is string {
 
 export function validDigest(value: string | undefined): value is string {
   return !!value && /^[A-Za-z0-9_.-]+:[A-Fa-f0-9]+$/.test(value);
+}
+
+/** GitHub (REST or GraphQL) rate-limited the pool token. */
+export function isGitHubRateLimited(error: unknown): boolean {
+  return isRateLimited(error);
 }
 
 export function githubStatus(error: unknown): number | null {
@@ -366,6 +781,7 @@ export async function getCachedGitHubReleaseResult(
   tag: string,
   cacheGeneration?: string,
   previousCacheGeneration?: string,
+  { stars }: { stars?: number } = {},
 ): Promise<{ release: GitHubRelease; staleFallback: boolean }> {
   const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
@@ -374,6 +790,8 @@ export async function getCachedGitHubReleaseResult(
 
   let release: GitHubRelease;
   let staleFallback = false;
+  let fetchError: unknown;
+  const untracked = isUntrackedLatest(tag, cacheGeneration);
   try {
     release = await getOrRefresh({
       env,
@@ -381,9 +799,15 @@ export async function getCachedGitHubReleaseResult(
       isFresh: (entry) =>
         (tag !== "latest" && entry.data.immutable === true) ||
         Date.now() - entry.cached_at <
-          (isUntrackedLatest(tag, cacheGeneration)
-            ? Math.min(UNTRACKED_LATEST_FRESH_MS, releaseFreshMs(entry.data))
+          (untracked
+            ? Math.min(
+                untrackedBacksOff(stars)
+                  ? untrackedFreshMs(entry)
+                  : UNTRACKED_LATEST_FRESH_MS,
+                releaseFreshMs(entry.data),
+              )
             : releaseFreshMs(entry.data)),
+      fingerprint: untracked ? jsonFingerprint : undefined,
       // Only consulted when there is no fresh positive entry: a fresh entry
       // and a fresh error cannot both have come from the same refresh, and
       // skipping this read saves a KV read on every positive edge-cache miss.
@@ -407,6 +831,7 @@ export async function getCachedGitHubReleaseResult(
           ? `github:release:${cacheRepository}:${tag}${previousCacheGeneration ? `:${previousCacheGeneration}` : ""}`
           : undefined,
       onFetchError: async (error, cached) => {
+        fetchError = error;
         if (cached && githubStatus(error) === 404) {
           await deleteCachedRelease(env, cacheKey);
         }
@@ -425,13 +850,13 @@ export async function getCachedGitHubReleaseResult(
     }
     throw error;
   }
-  if (release.assets.length === 0) {
-    throw new GitHubError(
-      404,
-      "GitHub release response did not include assets",
-      new Headers(),
-    );
-  }
+  // A release without assets is still a release: callers that only need
+  // the tag (aqua and ruby-build `latest`) use it, and a client that needs
+  // assets sees `assets: []`. It is kept only briefly (EMPTY_RELEASE_*), as
+  // assets may still be uploading. For the same reason a stored one is not
+  // served when GitHub fails: its assets may be there by now, so the client
+  // gets GitHub's error and retries, rather than an empty release.
+  if (staleFallback && release.assets.length === 0) throw fetchError;
   return { release, staleFallback };
 }
 
@@ -517,7 +942,11 @@ function releaseErrorFreshMs(status: number, error?: unknown): number | null {
   return null;
 }
 
-function releaseStaleFallbackAllowed(error: unknown): boolean {
+/**
+ * Whether a failed refresh may serve the entry it was refreshing: for rate
+ * limits, network errors and 5xx, not for answers such as a 404.
+ */
+export function releaseStaleFallbackAllowed(error: unknown): boolean {
   const status = githubStatus(error);
   return isRateLimited(error) || status === null || status >= 500;
 }
@@ -589,6 +1018,7 @@ export async function getCachedGitHubReleaseList(
   repo: string,
   page: number,
   cacheGeneration?: string,
+  { stars }: { stars?: number } = {},
 ): Promise<{ list: GitHubReleaseListPage; staleFallback: boolean }> {
   if (!Number.isInteger(page) || page < 1 || page > RELEASE_LIST_MAX_PAGE) {
     throw new GitHubError(400, "Invalid page", new Headers());
@@ -596,11 +1026,27 @@ export async function getCachedGitHubReleaseList(
   const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
   const generationSuffix = cacheGeneration ? `:${cacheGeneration}` : "";
   const freshMs = releaseListFreshSeconds(page) * 1000;
+  // Page 1 of an untracked repo backs off while unchanged, like its
+  // `latest`, unless the repo is popular; a tracked repo's page 1 is
+  // invalidated by its generation.
+  const untracked = page === 1 && !cacheGeneration;
+  const backsOff = untracked && untrackedBacksOff(stars);
   let staleFallback = false;
   const list = await getOrRefresh<GitHubReleaseListPage>({
     env,
     cacheKey: `github:releases:${cacheRepository}:${page}${generationSuffix}`,
-    isFresh: (entry) => Date.now() - entry.cached_at < freshMs,
+    // A young release's assets (and digests) may still be replaced, so a
+    // page holding one is re-read at least as often as that release would
+    // be on its own (YOUNG_RELEASE_FRESH_MS), however long it has been
+    // unchanged.
+    isFresh: (entry) =>
+      Date.now() - entry.cached_at <
+      (backsOff
+        ? hasYoungRelease(entry.data)
+          ? Math.min(untrackedFreshMs(entry), YOUNG_RELEASE_FRESH_MS)
+          : untrackedFreshMs(entry)
+        : freshMs),
+    fingerprint: untracked ? jsonFingerprint : undefined,
     fetcher: (token) => fetchGitHubReleaseList(owner, repo, page, token),
     expirationTtl: () => CACHE_TTL_SECONDS,
     useStaleOnError: releaseStaleFallbackAllowed,
@@ -611,15 +1057,90 @@ export async function getCachedGitHubReleaseList(
   return { list, staleFallback };
 }
 
+export const TAG_LIST_MAX_PAGE = RELEASE_LIST_MAX_PAGE;
+const TAG_LIST_PER_PAGE = 100;
+const TAG_LIST_FIRST_PAGE_FRESH_MS = 10 * 60 * 1000;
+const TAG_LIST_PAGE_FRESH_MS = 60 * 60 * 1000;
+
+// GitHub lists tags by name, highest version first, not by date. The newest
+// version of the newest line is on page 1, which is all most mise lookups
+// read, so page 1 refreshes like the release list's. A tag pushed on an older
+// line can land on a later page and shift the rest by one; full listings
+// accept that for up to an hour, as they do for releases. No catalog
+// generation invalidates tag pages, so these windows are the only bound.
+export function tagListFreshSeconds(page: number): number {
+  return (
+    (page === 1 ? TAG_LIST_FIRST_PAGE_FRESH_MS : TAG_LIST_PAGE_FRESH_MS) / 1000
+  );
+}
+
+/**
+ * One page (100 tags) of a repository's tag list, in GitHub's order. With
+ * `dates`, each tag also carries its commit's committer date, fetched with
+ * one GraphQL query per page. Only call this for a repo that passed the
+ * visibility check.
+ */
+export async function getCachedGitHubTagList(
+  env: Env,
+  owner: string,
+  repo: string,
+  page: number,
+  { dates = false }: { dates?: boolean } = {},
+): Promise<{
+  list: GitHubTagListPage;
+  staleFallback: boolean;
+  /** How long the page stays fresh: what is left of its KV freshness. */
+  freshSeconds: number;
+}> {
+  if (!Number.isInteger(page) || page < 1 || page > TAG_LIST_MAX_PAGE) {
+    throw new GitHubError(400, "Invalid page", new Headers());
+  }
+  const cacheRepository = `${owner.toLowerCase()}/${repo.toLowerCase()}`;
+  const freshMs = tagListFreshSeconds(page) * 1000;
+  let staleFallback = false;
+  let cachedAt = Date.now();
+  const list = await getOrRefresh<GitHubTagListPage>({
+    env,
+    cacheKey: `github:${dates ? "tags-dated" : "tags"}:${cacheRepository}:${page}`,
+    isFresh: (entry) => Date.now() - entry.cached_at < freshMs,
+    fetcher: (token) => fetchGitHubTagList(owner, repo, page, dates, token),
+    expirationTtl: () => CACHE_TTL_SECONDS,
+    useStaleOnError: releaseStaleFallbackAllowed,
+    onStaleFallback: () => {
+      staleFallback = true;
+    },
+    onFreshEntry: (at) => {
+      cachedAt = at;
+    },
+  });
+  // The edge keeps a page only for what is left of its freshness, so a page
+  // read from KV late in its window is not kept a whole window more.
+  const freshSeconds = staleFallback
+    ? 0
+    : Math.max(1, Math.ceil((cachedAt + freshMs - Date.now()) / 1000));
+  return { list, staleFallback, freshSeconds };
+}
+
 /**
  * Fetch a GitHub API URL with a pool token, marking the token when GitHub
  * rate-limits it. Errors are thrown as-is; read their status with
  * `githubStatus`.
  */
 export async function githubPoolJson<T>(env: Env, url: string): Promise<T> {
+  return withPoolToken(env, (token) => githubJson<T>(url, token));
+}
+
+/**
+ * Run GitHub requests with one pool token, then bench the token if it ran
+ * low, or mark it if GitHub rate-limited it. Errors are rethrown.
+ */
+export async function withPoolToken<T>(
+  env: Env,
+  run: (token: TokenRecord | null) => Promise<T>,
+): Promise<T> {
   const token = await nextToken(env);
   try {
-    const data = await githubJson<T>(url, token);
+    const data = await run(token);
     await benchIfLow(env, token);
     return data;
   } catch (error) {
@@ -642,6 +1163,7 @@ async function getOrRefresh<T>({
   staleCacheKey,
   onStaleFallback,
   onFetchError,
+  onFreshEntry,
   beforeFetch,
   fingerprint,
 }: {
@@ -660,6 +1182,8 @@ async function getOrRefresh<T>({
   useStaleOnError?: (error: unknown) => boolean;
   staleCacheKey?: string;
   onStaleFallback?: () => void;
+  /** Called with the `cached_at` of the entry served, unless it is stale. */
+  onFreshEntry?: (cachedAt: number) => void;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -667,6 +1191,7 @@ async function getOrRefresh<T>({
 }): Promise<T> {
   const cached = await env.GITHUB_CACHE.get<CacheEntry<T>>(cacheKey, "json");
   if (cached && isFresh(cached)) {
+    onFreshEntry?.(cached.cached_at);
     return cached.data;
   }
   await beforeFetch?.();
@@ -679,6 +1204,7 @@ async function getOrRefresh<T>({
     const options = ttl === undefined ? undefined : { expirationTtl: ttl };
     const now = Date.now();
     const entry: CacheEntry<T> = { cached_at: now, data };
+    onFreshEntry?.(now);
     if (fingerprint) {
       entry.unchanged_since =
         cached && sameData(fingerprint, cached.data, data)
@@ -807,21 +1333,82 @@ function releaseAgeImmutable(publishedAt: string | undefined): boolean {
   );
 }
 
+/** One page of a GitHub list, and what GitHub's Link header says follows. */
+export interface GitHubListPage<T> {
+  items: T[];
+  /** GitHub links a next page; a full page may be the last. */
+  hasNextPage: boolean;
+  /** The page GitHub links as `rel="last"`, when it does. */
+  lastPage: number | null;
+  /** The size of GitHub's JSON for this page. */
+  bytes: number;
+  /** GitHub's ETag for this page, for a conditional request next time. */
+  etag?: string | null;
+  /**
+   * GitHub answered 304 to `ifNoneMatch`: the page is as it was, and
+   * nothing else is filled in. A 304 to an authenticated request does not
+   * count against the rate limit.
+   */
+  notModified?: boolean;
+}
+
+function notModifiedPage<T>(
+  response: Response,
+  etag: string,
+): GitHubListPage<T> {
+  void response.body?.cancel();
+  return {
+    items: [],
+    hasNextPage: false,
+    lastPage: null,
+    bytes: 0,
+    etag,
+    notModified: true,
+  };
+}
+
 async function fetchGitHubReleaseList(
   owner: string,
   repo: string,
   page: number,
   token: TokenRecord | null,
 ): Promise<GitHubReleaseListPage> {
-  assertValidRepo(owner, repo);
-  const response = await fetchGitHubJsonResponse(
-    `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${RELEASE_LIST_PER_PAGE}&page=${page}`,
+  const { items, hasNextPage } = await fetchGitHubReleasePage(
+    owner,
+    repo,
+    page,
     token,
   );
-  // GitHub says whether another page exists; a full page may be the last.
-  const hasNextPage = hasNextLink(response.headers.get("link"));
-  const data =
-    await readJsonResponse<
+  return {
+    releases: items,
+    next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
+  };
+}
+
+/** One page (100 by default) of a repository's releases, drafts removed. */
+export async function fetchGitHubReleasePage(
+  owner: string,
+  repo: string,
+  page: number,
+  token: TokenRecord | null,
+  signal?: AbortSignal,
+  perPage = RELEASE_LIST_PER_PAGE,
+  ifNoneMatch?: string,
+): Promise<GitHubListPage<GitHubListedRelease>> {
+  assertValidRepo(owner, repo);
+  const response = await fetchGitHubJsonResponse(
+    `https://api.github.com/repos/${owner}/${repo}/releases?per_page=${perPage}&page=${page}`,
+    token,
+    signal,
+    ifNoneMatch,
+  );
+  if (ifNoneMatch && response.status === 304) {
+    return notModifiedPage(response, ifNoneMatch);
+  }
+  const link = response.headers.get("link");
+  const { data, bytes } =
+    await readSizedJsonResponse<
       (GitHubListedRelease & { assets?: GitHubListedAsset[] })[]
     >(response);
   if (!Array.isArray(data)) {
@@ -849,10 +1436,214 @@ async function fetchGitHubReleaseList(
       })),
     }));
   return {
-    releases,
-    next_page: hasNextPage && page < RELEASE_LIST_MAX_PAGE ? page + 1 : null,
-    truncated: hasNextPage && page >= RELEASE_LIST_MAX_PAGE,
+    items: releases,
+    hasNextPage: hasNextLink(link),
+    lastPage: lastLinkPage(link),
+    bytes,
+    etag: response.headers.get("etag"),
   };
+}
+
+interface GitHubRestTag {
+  name?: unknown;
+  commit?: { sha?: unknown; url?: unknown } | null;
+}
+
+async function fetchGitHubTagList(
+  owner: string,
+  repo: string,
+  page: number,
+  dates: boolean,
+  token: TokenRecord | null,
+): Promise<GitHubTagListPage> {
+  const { items, hasNextPage } = await fetchGitHubTagPage(
+    owner,
+    repo,
+    page,
+    dates,
+    token,
+  );
+  return {
+    tags: items,
+    next_page: hasNextPage && page < TAG_LIST_MAX_PAGE ? page + 1 : null,
+    truncated: hasNextPage && page >= TAG_LIST_MAX_PAGE,
+  };
+}
+
+/**
+ * One page (100 by default) of a repository's tags, in GitHub's order. With `dates`,
+ * each tag also carries its commit's committer date (one GraphQL query).
+ */
+export async function fetchGitHubTagPage(
+  owner: string,
+  repo: string,
+  page: number,
+  dates: boolean,
+  token: TokenRecord | null,
+  signal?: AbortSignal,
+  perPage = TAG_LIST_PER_PAGE,
+  ifNoneMatch?: string,
+): Promise<GitHubListPage<GitHubTag>> {
+  assertValidRepo(owner, repo);
+  // Dates need GraphQL, which refuses anonymous requests. Fail before the
+  // REST call too, so an empty pool doesn't spend the shared anonymous limit
+  // on a page that can't be completed.
+  if (dates && !token) throw noGraphQLTokenError();
+  const response = await fetchGitHubJsonResponse(
+    `https://api.github.com/repos/${owner}/${repo}/tags?per_page=${perPage}&page=${page}`,
+    token,
+    signal,
+    ifNoneMatch,
+  );
+  if (ifNoneMatch && response.status === 304) {
+    return notModifiedPage(response, ifNoneMatch);
+  }
+  const link = response.headers.get("link");
+  const { data, bytes } =
+    await readSizedJsonResponse<GitHubRestTag[]>(response);
+  if (!Array.isArray(data)) {
+    throw new GitHubError(
+      502,
+      "GitHub tag list response was not an array",
+      new Headers(),
+    );
+  }
+  const tags: GitHubTag[] = data.map((tag) => {
+    if (
+      typeof tag?.name !== "string" ||
+      typeof tag.commit?.sha !== "string" ||
+      typeof tag.commit.url !== "string"
+    ) {
+      throw new GitHubError(
+        502,
+        "GitHub tag list entry was malformed",
+        new Headers(),
+      );
+    }
+    return {
+      name: tag.name,
+      commit: { sha: tag.commit.sha, url: tag.commit.url },
+    };
+  });
+  if (dates && tags.length > 0) {
+    const commitDates = await fetchGitHubCommitDates(
+      owner,
+      repo,
+      tags.map((tag) => tag.commit.sha),
+      token,
+      signal,
+    );
+    for (const tag of tags) {
+      tag.date = commitDates.get(tag.commit.sha) ?? null;
+    }
+  }
+  return {
+    items: tags,
+    hasNextPage: hasNextLink(link),
+    lastPage: lastLinkPage(link),
+    bytes,
+    etag: response.headers.get("etag"),
+  };
+}
+
+const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
+
+function noGraphQLTokenError(): GitHubError {
+  return new NoGraphQLTokenError(
+    503,
+    "No GitHub token for GraphQL commit dates",
+    new Headers(),
+  );
+}
+
+interface GitHubCommitDatesResponse {
+  data?: {
+    repository?: Record<string, { committedDate?: unknown } | null> | null;
+  } | null;
+  errors?: { type?: string; message?: string }[];
+}
+
+/**
+ * Committer dates for up to 100 commits of one repository, keyed by SHA, in
+ * one GraphQL query. GitHub charges it 1 point of the token's separate
+ * GraphQL budget, where the REST equivalent is one request per commit.
+ * Commits GitHub doesn't know are left out.
+ */
+async function fetchGitHubCommitDates(
+  owner: string,
+  repo: string,
+  shas: string[],
+  token: TokenRecord | null,
+  signal?: AbortSignal,
+): Promise<Map<string, string>> {
+  // GitHub's GraphQL API refuses anonymous requests.
+  if (!token) throw noGraphQLTokenError();
+  const unique = [...new Set(shas)];
+  if (unique.some((sha) => !/^[0-9a-f]{40}([0-9a-f]{24})?$/.test(sha))) {
+    throw new GitHubError(
+      502,
+      "GitHub tag commit SHA was invalid",
+      new Headers(),
+    );
+  }
+  const declarations = ["$owner: String!", "$name: String!"];
+  const fields: string[] = [];
+  const variables: Record<string, string> = { owner, name: repo };
+  unique.forEach((sha, i) => {
+    declarations.push(`$c${i}: GitObjectID!`);
+    fields.push(
+      `c${i}: object(oid: $c${i}) { ... on Commit { committedDate } }`,
+    );
+    variables[`c${i}`] = sha;
+  });
+  const query = `query(${declarations.join(", ")}) { repository(owner: $owner, name: $name) { ${fields.join(" ")} } }`;
+
+  const raw = await fetch(GITHUB_GRAPHQL_URL, {
+    method: "POST",
+    headers: {
+      ...githubJsonHeaders(GITHUB_GRAPHQL_URL, token),
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query, variables }),
+    redirect: "manual",
+    signal,
+  });
+  // These headers report the GraphQL budget, which benchIfLow then holds to
+  // the same floor as REST: volunteers' tokens are left alone once either
+  // runs low.
+  recordRateLimit(token, raw.headers);
+  const response = await validateGitHubJsonResponse(raw, GITHUB_GRAPHQL_URL);
+  const body = await readJsonResponse<GitHubCommitDatesResponse>(response);
+  // GraphQL reports an exhausted budget as a 200 with a RATE_LIMITED error.
+  // Treat it as the 403 REST would send, so the token is marked.
+  const rateLimited = body.errors?.find(
+    (error) => error.type === "RATE_LIMITED",
+  );
+  if (rateLimited) {
+    throw new GitHubError(
+      403,
+      rateLimited.message ?? "GitHub GraphQL rate limit exceeded",
+      response.headers,
+      GITHUB_GRAPHQL_URL,
+    );
+  }
+  // A commit GitHub doesn't know comes back as null with no error, so any
+  // error means a failed lookup. Refuse the page rather than cache a missing
+  // date in place of a real one; a stale entry is served instead.
+  const repository = body.data?.repository;
+  if (body.errors?.length || !repository) {
+    throw new GitHubError(
+      502,
+      body.errors?.[0]?.message ?? "GitHub GraphQL returned no repository",
+      new Headers(),
+    );
+  }
+  const commitDates = new Map<string, string>();
+  unique.forEach((sha, i) => {
+    const date = repository[`c${i}`]?.committedDate;
+    if (typeof date === "string") commitDates.set(sha, date);
+  });
+  return commitDates;
 }
 
 function hasNextLink(link: string | null): boolean {
@@ -860,6 +1651,20 @@ function hasNextLink(link: string | null): boolean {
     !!link &&
     link.split(",").some((part) => /;\s*rel="?next"?(\s*;|\s*$)/.test(part))
   );
+}
+
+function lastLinkPage(link: string | null): number | null {
+  const part = link
+    ?.split(",")
+    .find((part) => /;\s*rel="?last"?(\s*;|\s*$)/.test(part));
+  const url = part?.match(/<([^>]+)>/)?.[1];
+  if (!url) return null;
+  try {
+    const page = Number(new URL(url).searchParams.get("page"));
+    return Number.isInteger(page) && page >= 1 ? page : null;
+  } catch {
+    return null;
+  }
 }
 
 async function fetchGitHubAttestations(
@@ -956,12 +1761,20 @@ async function githubJson<T>(
 async function fetchGitHubJsonResponse(
   url: string,
   token: TokenRecord | null,
+  signal?: AbortSignal,
+  /** An ETag from an earlier answer; GitHub may then answer 304. */
+  ifNoneMatch?: string,
 ): Promise<Response> {
   const maxRedirects = 3;
   let currentUrl = url;
   for (let redirectCount = 0; ; redirectCount++) {
     const headers = githubJsonHeaders(currentUrl, token);
-    const response = await fetch(currentUrl, { headers, redirect: "manual" });
+    if (ifNoneMatch) headers["If-None-Match"] = ifNoneMatch;
+    const response = await fetch(currentUrl, {
+      headers,
+      redirect: "manual",
+      signal,
+    });
     recordRateLimit(token, response.headers);
     if (isGitHubApiRedirect(response)) {
       await response.body?.cancel();
@@ -986,6 +1799,7 @@ async function fetchGitHubJsonResponse(
       continue;
     }
 
+    if (ifNoneMatch && response.status === 304) return response;
     return validateGitHubJsonResponse(response, currentUrl);
   }
 }
@@ -1033,13 +1847,21 @@ function redirectedGitHubApiUrl(
 }
 
 async function readJsonResponse<T>(response: Response): Promise<T> {
+  return (await readSizedJsonResponse<T>(response)).data;
+}
+
+/** The parsed body, and how long its JSON text was. */
+async function readSizedJsonResponse<T>(
+  response: Response,
+): Promise<{ data: T; bytes: number }> {
   const contentType = response.headers.get("content-type")?.toLowerCase() ?? "";
-  if (contentType.split(";")[0].trim() === "application/x-snappy") {
-    const bytes = await response.arrayBuffer();
-    const json = new TextDecoder().decode(uncompress(new Uint8Array(bytes)));
-    return JSON.parse(json);
-  }
-  return response.json();
+  const json =
+    contentType.split(";")[0].trim() === "application/x-snappy"
+      ? new TextDecoder().decode(
+          uncompress(new Uint8Array(await response.arrayBuffer())),
+        )
+      : await response.text();
+  return { data: JSON.parse(json), bytes: json.length };
 }
 
 function assertValidRepo(owner: string, repo: string) {
@@ -1144,6 +1966,9 @@ export class GitHubError extends Error {
 /** A release GitHub showed the pool as a draft; served as a 404. */
 class DraftReleaseError extends GitHubError {}
 
+/** Tag dates were asked for, but the pool has no token for GraphQL. */
+export class NoGraphQLTokenError extends GitHubError {}
+
 /** An error served from the negative release cache. */
 class CachedReleaseError extends GitHubError {}
 
@@ -1153,8 +1978,10 @@ export const __testing = {
   attestationsFingerprint,
   edgeCacheRequest,
   edgeCacheResponse,
+  fetchGitHubTagList,
   githubJsonHeaders,
   hasNextLink,
+  lastLinkPage,
   isGitHubApiUrl,
   isRateLimited,
   resetAt,

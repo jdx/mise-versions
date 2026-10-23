@@ -117,9 +117,56 @@ describe("refresh-logpush-analytics-direct", () => {
 
   it("splits gzip'd and plain NDJSON into lines", async () => {
     const seen = [];
-    await forEachLine(gzipSync("a\nb\n\nc"), (l) => seen.push(l));
-    await forEachLine(Buffer.from("d\ne\n"), (l) => seen.push(l));
+    assert.equal(
+      await forEachLine(gzipSync("a\nb\n\nc"), (l) => seen.push(l)),
+      6,
+    );
+    assert.equal(
+      await forEachLine(Buffer.from("d\ne\n"), (l) => seen.push(l)),
+      4,
+    );
     assert.deepEqual(seen, ["a", "b", "", "c", "d", "e"]);
+  });
+
+  it("keeps multi-byte characters split across chunks intact", async () => {
+    const seen = [];
+    const text = `${"x".repeat(70000)}\u00e9\nz`;
+    const bytes = await forEachLine(gzipSync(text), (l) => seen.push(l));
+    assert.equal(bytes, Buffer.byteLength(text));
+    assert.deepEqual(seen, [`${"x".repeat(70000)}\u00e9`, "z"]);
+  });
+
+  it("totals bytes and lines exactly across concurrent objects", async () => {
+    const day = "http_requests/jdx.dev/20261013";
+    const objects = {};
+    let expectedBytes = 0;
+    let expectedCompressed = 0;
+    let expectedLines = 0;
+    // More objects than download workers, of very different sizes, so the
+    // workers' reads interleave.
+    for (let i = 0; i < 20; i++) {
+      const count = 1 + ((i * 37) % 23) * 400;
+      const text = Array.from({ length: count }, (_, n) =>
+        line({ ClientIP: `198.51.100.${(i + n) % 250}` }),
+      ).join("\n");
+      const gz = gzipSync(text);
+      objects[
+        `${day}/20261013T${String(i).padStart(2, "0")}0000Z_20261013T${String(i).padStart(2, "0")}3000Z_${i}.log.gz`
+      ] = gz;
+      expectedBytes += Buffer.byteLength(text);
+      expectedCompressed += gz.length;
+      expectedLines += count;
+    }
+    fakeD1();
+    const result = await refreshDate(
+      { ...config(fakeR2(objects)), dryRun: true },
+      "2026-10-13",
+      new Map(),
+    );
+    assert.equal(result.capacity.objects, 20);
+    assert.equal(result.capacity.lines, expectedLines);
+    assert.equal(result.capacity.compressedBytes, expectedCompressed);
+    assert.equal(result.capacity.uncompressedBytes, expectedBytes);
   });
 
   it("unions the trailing 30 days and reports coverage", async () => {
@@ -193,6 +240,13 @@ describe("refresh-logpush-analytics-direct", () => {
     assert.equal(result.mauDaysCovered, 2);
     assert.equal(result.ciRequests, 1);
     assert.equal(result.downloads, 2);
+    assert.equal(result.capacity.date, "2026-10-13");
+    assert.equal(result.capacity.objects, 2);
+    assert.ok(result.capacity.lines > 0);
+    assert.ok(
+      result.capacity.uncompressedBytes >= result.capacity.compressedBytes,
+    );
+    assert.ok(result.capacity.readMs >= 0);
 
     const stored = decodeUserHashes(
       r2.store.get("rollups/mise-users/v1/2026-10-13.bin.gz"),

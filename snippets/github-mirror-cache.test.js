@@ -1,0 +1,326 @@
+import assert from "node:assert/strict";
+import { readFileSync, statSync } from "node:fs";
+import test from "node:test";
+import snippet, {
+  EXPIRES_AT_HEADER,
+  MAX_VISIBILITY_TTL_SECONDS,
+  SNIPPET_CACHE_PREFIX,
+  VERIFIED_AT_HEADER,
+  VERIFIED_UNTIL_HEADER,
+  VISIBILITY_TTL_SECONDS,
+  snippetCacheKey,
+} from "./github-mirror-cache.js";
+
+const ORIGIN = "https://mise-versions.jdx.dev";
+const ATTESTATION = "/api/github/repos/jdx/mise/attestations/sha256:abc123";
+const RELEASE = "/api/github/repos/jdx/mise/releases/v2026.10.0";
+
+// caches.default stand-in; `fetch` stands in for the Worker behind the
+// snippet and records what it was handed.
+function setup(entries = {}) {
+  const store = new Map(Object.entries(entries));
+  const matched = [];
+  const passed = [];
+  globalThis.caches = {
+    default: {
+      match: async (key) => {
+        matched.push(String(key));
+        const entry = store.get(String(key));
+        return entry ? entry() : undefined;
+      },
+    },
+  };
+  globalThis.fetch = async (request) => {
+    passed.push(request.url);
+    return new Response("from worker", {
+      headers: { "x-mise-mirror": "worker" },
+    });
+  };
+  return { matched, passed };
+}
+
+function entry({
+  verifiedAt = Math.floor(Date.now() / 1000) - 60,
+  expiresAt = Math.floor(Date.now() / 1000) + 600,
+  status = 200,
+  extraHeaders = {},
+} = {}) {
+  return () =>
+    new Response('{"tag_name":"v2026.10.0"}', {
+      status,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "public, max-age=7200, s-maxage=600",
+        "X-Mise-Cache-Control": "public, max-age=600, s-maxage=3600",
+        ...(verifiedAt === null
+          ? {}
+          : { [VERIFIED_AT_HEADER]: String(verifiedAt) }),
+        ...(expiresAt === null
+          ? {}
+          : { [EXPIRES_AT_HEADER]: String(expiresAt) }),
+        ...extraHeaders,
+      },
+    });
+}
+
+function get(path, { host = "mise-versions.jdx.dev", method = "GET" } = {}) {
+  return snippet.fetch(new Request(`https://${host}${path}`, { method }));
+}
+
+test("cache keys cover attestations, releases and release lists", () => {
+  assert.equal(
+    snippetCacheKey(`${ORIGIN}${ATTESTATION}`),
+    `${SNIPPET_CACHE_PREFIX}jdx/mise/attestations/sha256:abc123`,
+  );
+  // Host and query do not matter.
+  assert.equal(
+    snippetCacheKey(`https://mise-tools.jdx.dev${RELEASE}?per_page=1`),
+    `${SNIPPET_CACHE_PREFIX}jdx/mise/releases/v2026.10.0`,
+  );
+  // Scoped and percent-encoded tags stay as they are in the URL.
+  assert.equal(
+    snippetCacheKey(
+      `${ORIGIN}/api/github/repos/biomejs/biome/releases/%40biomejs%2Fbiome%402.5.0`,
+    ),
+    `${SNIPPET_CACHE_PREFIX}biomejs/biome/releases/%40biomejs%2Fbiome%402.5.0`,
+  );
+  // latest is a release path like any tag; its query is ignored too.
+  assert.equal(
+    snippetCacheKey(`${ORIGIN}/api/github/repos/jdx/mise/releases/latest?x=1`),
+    `${SNIPPET_CACHE_PREFIX}jdx/mise/releases/latest`,
+  );
+  // Release lists keep their normalized page; no query means page 1.
+  for (const [query, page] of [
+    ["", 1],
+    ["?", 1],
+    ["?page=1", 1],
+    ["?page=7", 7],
+    ["?page=10", 10],
+  ]) {
+    assert.equal(
+      snippetCacheKey(`${ORIGIN}/api/github/repos/jdx/mise/releases${query}`),
+      `${SNIPPET_CACHE_PREFIX}jdx/mise/releases?page=${page}`,
+      query,
+    );
+  }
+  // Anything the Worker does not honor exactly is left to it.
+  for (const query of [
+    "?page=0",
+    "?page=11",
+    "?page=01",
+    "?page=",
+    "?page=1&page=2",
+    "?page=1&per_page=100",
+    "?per_page=100",
+    "?PAGE=1",
+    "?page=1&",
+  ]) {
+    assert.equal(
+      snippetCacheKey(`${ORIGIN}/api/github/repos/jdx/mise/releases${query}`),
+      null,
+      query,
+    );
+  }
+  for (const path of [
+    "/api/github/repos/jdx/mise/releases/",
+    "/api/github/repos/jdx/mise/tags",
+    "/api/github/repos/jdx/mise",
+    "/api/github/repos/jdx/mise/contents/README.md",
+    "/api/github/repos/jdx/mise/attestations/not-a-digest",
+    "/api/github/repos/jd$x/mise/releases/v1",
+    "/data/github/jdx/mise/releases.json",
+  ]) {
+    assert.equal(snippetCacheKey(`${ORIGIN}${path}`), null, path);
+  }
+});
+
+test("a fresh, recently verified entry is served without the Worker", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${RELEASE}`);
+  const { passed } = setup({ [key]: entry() });
+  const response = await get(RELEASE, { host: "mise-tools.jdx.dev" });
+  assert.deepEqual(passed, []);
+  assert.equal(response.status, 200);
+  assert.equal(await response.text(), '{"tag_name":"v2026.10.0"}');
+  // The Worker's own client headers, minus the internal ones.
+  assert.equal(
+    response.headers.get("cache-control"),
+    "public, max-age=600, s-maxage=3600",
+  );
+  assert.equal(response.headers.get("content-type"), "application/json");
+  assert.equal(response.headers.get("access-control-allow-origin"), "*");
+  assert.equal(response.headers.get("x-mise-mirror"), "snippet");
+  assert.equal(response.headers.get("x-mise-cache-control"), null);
+  assert.equal(response.headers.get(VERIFIED_AT_HEADER), null);
+  assert.equal(response.headers.get(EXPIRES_AT_HEADER), null);
+});
+
+test("attestations are served from the snippet too", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${ATTESTATION}`);
+  const { passed } = setup({ [key]: entry() });
+  const response = await get(ATTESTATION);
+  assert.deepEqual(passed, []);
+  assert.equal(response.headers.get("x-mise-mirror"), "snippet");
+});
+
+test("entries whose visibility check is too old go to the Worker", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${RELEASE}`);
+  const now = Math.floor(Date.now() / 1000);
+  const { passed } = setup({
+    [key]: entry({ verifiedAt: now - VISIBILITY_TTL_SECONDS - 1 }),
+  });
+  const response = await get(RELEASE);
+  assert.deepEqual(passed, [`${ORIGIN}${RELEASE}`]);
+  assert.equal(response.headers.get("x-mise-mirror"), "worker");
+
+  // Exactly at the limit is already too old.
+  setup({ [key]: entry({ verifiedAt: now - VISIBILITY_TTL_SECONDS }) });
+  assert.equal((await get(RELEASE)).headers.get("x-mise-mirror"), "worker");
+});
+
+test("an entry's own verification window is honored, capped at a day", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${RELEASE}`);
+  const now = Math.floor(Date.now() / 1000);
+  const verifiedAt = now - 2 * VISIBILITY_TTL_SECONDS;
+  const longEntry = (until, extra = {}) =>
+    entry({
+      verifiedAt,
+      expiresAt: now + 600,
+      extraHeaders: { [VERIFIED_UNTIL_HEADER]: until, ...extra },
+    });
+
+  // Verified two hours ago, trusted for longer: served, without the
+  // internal header.
+  let { passed } = setup({ [key]: longEntry(String(now + 60)) });
+  let response = await get(RELEASE);
+  assert.deepEqual(passed, []);
+  assert.equal(response.headers.get("x-mise-mirror"), "snippet");
+  assert.equal(response.headers.get(VERIFIED_UNTIL_HEADER), null);
+  assert.equal(response.headers.get(VERIFIED_AT_HEADER), null);
+
+  // Its end has passed (exactly at it is too late).
+  ({ passed } = setup({ [key]: longEntry(String(now)) }));
+  await get(RELEASE);
+  assert.equal(passed.length, 1);
+
+  // Never more than MAX_VISIBILITY_TTL_SECONDS after the GitHub check.
+  ({ passed } = setup({
+    [key]: entry({
+      verifiedAt: now - MAX_VISIBILITY_TTL_SECONDS,
+      expiresAt: now + 600,
+      extraHeaders: { [VERIFIED_UNTIL_HEADER]: String(now + 3600) },
+    }),
+  }));
+  await get(RELEASE);
+  assert.equal(passed.length, 1);
+
+  // Unparsable: the default hour, which ended an hour ago.
+  for (const until of ["tomorrow", "-1", ""]) {
+    ({ passed } = setup({ [key]: longEntry(until) }));
+    await get(RELEASE);
+    assert.equal(passed.length, 1, until);
+  }
+  // ...and within the default hour, an unparsable end does not shorten it.
+  ({ passed } = setup({
+    [key]: entry({ extraHeaders: { [VERIFIED_UNTIL_HEADER]: "soon" } }),
+  }));
+  await get(RELEASE);
+  assert.deepEqual(passed, []);
+});
+
+test("missing, expired, unparsable and foreign entries go to the Worker", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${RELEASE}`);
+  const now = Math.floor(Date.now() / 1000);
+  const cases = {
+    missing: undefined,
+    expired: entry({ expiresAt: now - 1 }),
+    "no verification": entry({ verifiedAt: null }),
+    "no expiry": entry({ expiresAt: null }),
+    "unparsable verification": entry({
+      extraHeaders: { [VERIFIED_AT_HEADER]: "soon" },
+    }),
+    "negative verification": entry({
+      extraHeaders: { [VERIFIED_AT_HEADER]: "-5" },
+    }),
+    "verified in the future": entry({ verifiedAt: now + 3600 }),
+    "not a 200": entry({ status: 404 }),
+    // Written by something other than the Worker's snippet-cache writer.
+    foreign: () =>
+      new Response("{}", {
+        headers: {
+          "Cache-Control": "public, max-age=600",
+          [VERIFIED_AT_HEADER]: String(now),
+          [EXPIRES_AT_HEADER]: String(now + 600),
+        },
+      }),
+  };
+  for (const [name, cached] of Object.entries(cases)) {
+    const { passed } = setup(cached ? { [key]: cached } : {});
+    const response = await get(RELEASE);
+    assert.deepEqual(passed, [`${ORIGIN}${RELEASE}`], name);
+    assert.equal(response.headers.get("x-mise-mirror"), "worker", name);
+  }
+});
+
+test("latest and release lists are served while fresh, then passed through", async () => {
+  const now = Math.floor(Date.now() / 1000);
+  for (const path of [
+    "/api/github/repos/jdx/mise/releases/latest",
+    "/api/github/repos/jdx/mise/releases?page=1",
+    "/api/github/repos/jdx/mise/releases",
+  ]) {
+    const key = snippetCacheKey(`${ORIGIN}${path}`);
+    // The Worker gives these a short expiry (5 minutes by default).
+    let { passed } = setup({ [key]: entry({ expiresAt: now + 300 }) });
+    let response = await get(path);
+    assert.deepEqual(passed, [], path);
+    assert.equal(response.headers.get("x-mise-mirror"), "snippet", path);
+
+    ({ passed } = setup({ [key]: entry({ expiresAt: now }) }));
+    response = await get(path);
+    assert.equal(passed.length, 1, path);
+    assert.equal(response.headers.get("x-mise-mirror"), "worker", path);
+
+    // Fresh content but a visibility check over an hour old.
+    ({ passed } = setup({
+      [key]: entry({
+        expiresAt: now + 300,
+        verifiedAt: now - VISIBILITY_TTL_SECONDS - 1,
+      }),
+    }));
+    await get(path);
+    assert.equal(passed.length, 1, path);
+  }
+});
+
+test("unexpected list queries, other endpoints and non-GET requests skip the cache", async () => {
+  for (const [path, method] of [
+    ["/api/github/repos/jdx/mise/releases?per_page=100", "GET"],
+    ["/api/github/repos/jdx/mise/releases?page=1&x=y", "GET"],
+    ["/api/github/repos/jdx/mise/tags", "GET"],
+    [RELEASE, "HEAD"],
+    [RELEASE, "POST"],
+  ]) {
+    const { matched, passed } = setup({
+      [snippetCacheKey(`${ORIGIN}${RELEASE}`)]: entry(),
+    });
+    await get(path, { method });
+    assert.deepEqual(matched, [], `${method} ${path}`);
+    assert.equal(passed.length, 1, `${method} ${path}`);
+  }
+});
+
+test("a failing cache lookup goes to the Worker", async () => {
+  const { passed } = setup();
+  globalThis.caches.default.match = async () => {
+    throw new Error("cache unavailable");
+  };
+  await get(RELEASE);
+  assert.equal(passed.length, 1);
+});
+
+test("the snippet fits the Snippets package limit and has no imports", () => {
+  const file = new URL("./github-mirror-cache.js", import.meta.url);
+  assert.ok(statSync(file).size < 32 * 1024);
+  assert.doesNotMatch(readFileSync(file, "utf8"), /^\s*import\s/m);
+});

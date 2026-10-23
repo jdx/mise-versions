@@ -15,12 +15,13 @@ function runMirrorTest(source) {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`.trim());
 }
 
-test("GitHub release mirror caches empty assets as a short cache miss", () => {
+test("GitHub release mirror serves releases without assets, briefly", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
     import {
       getCachedGitHubRelease,
-      githubStatus,
+      releaseCacheHeaders,
+      releaseEdgeCacheOptions,
     } from "./web/src/lib/github/mirror.ts";
 
     const writes = [];
@@ -42,14 +43,79 @@ test("GitHub release mirror caches empty assets as a short cache miss", () => {
       },
     };
 
-    await assert.rejects(
-      () => getCachedGitHubRelease(env, "owner", "repo", "latest"),
-      (error) => githubStatus(error) === 404,
-    );
+    // Served with assets: [] (aqua and ruby-build latest only need the tag).
+    const release = await getCachedGitHubRelease(env, "owner", "repo", "latest", "g1");
+    assert.equal(release.tag_name, "v1.0.0");
+    assert.deepEqual(release.assets, []);
+    assert.equal(release.immutable, false);
+    // Kept 30 minutes in KV and at the edge, never in browsers: assets may
+    // still be uploading.
     assert.equal(writes.length, 1);
-    assert.equal(writes[0].key, "github:release:owner/repo:latest");
+    assert.equal(writes[0].key, "github:release:owner/repo:latest:g1");
     assert.deepEqual(writes[0].options, { expirationTtl: 1800 });
-    assert.equal(JSON.parse(writes[0].value).data.immutable, false);
+    assert.deepEqual(releaseCacheHeaders("v1.0.0", release), {
+      "Cache-Control": "public, max-age=0, s-maxage=1800",
+    });
+    const edge = releaseEdgeCacheOptions("v1.0.0", release);
+    assert.equal(edge.edgeMaxAge, 1800);
+    assert.equal(edge.browserMaxAge, 0);
+    assert.equal(edge.staleWhileRevalidate, 0);
+    // An untracked latest keeps its shorter 10 minutes.
+    assert.deepEqual(releaseCacheHeaders("latest", release), {
+      "Cache-Control": "public, max-age=0, s-maxage=600",
+    });
+  `);
+});
+
+test("GitHub release mirror never serves a stored empty release when GitHub fails", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubRelease,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const generation = "123e4567-e89b-42d3-a456-426614174000";
+    const empty = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      published_at: "2026-01-01T00:00:00Z",
+      immutable: false,
+      assets: [],
+    };
+    globalThis.fetch = async () =>
+      new Response("unavailable", { status: 503 });
+    const stored = new Map();
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => stored.get(key) ?? null,
+        put: async () => {},
+      },
+    };
+
+    // Its assets may have been uploaded since: GitHub's error, not the
+    // stored empty release, both from the untracked entry a repo's first
+    // catalog generation falls back to...
+    stored.set("github:release:owner/repo:latest", {
+      cached_at: Date.now() - 60 * 60 * 1000,
+      data: empty,
+    });
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "latest", generation),
+      (error) => githubStatus(error) === 503,
+    );
+    // ...and from its own stale entry.
+    stored.set("github:release:owner/repo:v1.0.0", {
+      cached_at: Date.now() - 60 * 60 * 1000,
+      data: empty,
+    });
+    await assert.rejects(
+      () => getCachedGitHubRelease(env, "owner", "repo", "v1.0.0"),
+      (error) => githubStatus(error) === 503,
+    );
   `);
 });
 
@@ -1304,5 +1370,58 @@ test("GitHub attestation checks back off while the answer stays the same", () =>
     const result = await getCachedGitHubAttestations(changed, "owner", "repo", digest);
     assert.equal(result.attestations.length, 2);
     assert.ok(changed.writes[0].value.unchanged_since >= before);
+  `);
+});
+
+test("edge cache hits keep the Cache-Control the Worker sent", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      __testing,
+      matchGitHubMirrorEdgeCache,
+      putGitHubMirrorEdgeCache,
+    } from "./web/src/lib/github/mirror.ts";
+
+    // A Cache API that, like the zone's Browser Cache TTL, replaces a lower
+    // max-age on what it serves.
+    const store = new Map();
+    globalThis.caches = {
+      default: {
+        put: async (request, response) => {
+          store.set(request.url, {
+            body: await response.text(),
+            headers: new Headers(response.headers),
+          });
+        },
+        match: async (request) => {
+          const hit = store.get(request.url);
+          if (!hit) return undefined;
+          const headers = new Headers(hit.headers);
+          headers.set(
+            "Cache-Control",
+            headers.get("Cache-Control").replace(/max-age=\\d+/, "max-age=7200"),
+          );
+          headers.set("cf-cache-status", "HIT");
+          return new Response(hit.body, { headers });
+        },
+      },
+    };
+
+    const request = new Request("https://mise-versions.jdx.dev/data/github/o/r/releases.json");
+    const options = { browserMaxAge: 0, edgeMaxAge: 600, staleWhileRevalidate: 0 };
+    const sent = __testing.edgeCacheResponse(new Response("{}"), options);
+    assert.equal(sent.headers.get("Cache-Control"), "public, max-age=0, s-maxage=600");
+    await putGitHubMirrorEdgeCache(request, new Response("{}"), options);
+
+    // The raw cache hit carries the zone's 2 hours...
+    const raw = await caches.default.match(__testing.edgeCacheRequest(request));
+    assert.equal(raw.headers.get("Cache-Control"), "public, max-age=7200, s-maxage=600");
+    // ...and the mirror puts back what the Worker sent.
+    const hit = await matchGitHubMirrorEdgeCache(request);
+    assert.equal(hit.headers.get("Cache-Control"), "public, max-age=0, s-maxage=600");
+    assert.equal(hit.headers.get("X-Mise-Cache-Control"), null);
+    assert.equal(hit.headers.get("cf-cache-status"), "HIT");
+    assert.equal(await hit.text(), "{}");
+    assert.equal(await matchGitHubMirrorEdgeCache(new Request("https://mise-versions.jdx.dev/other")), null);
   `);
 });

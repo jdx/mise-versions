@@ -4,6 +4,7 @@ import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   cacheHeaders,
   getCachedGitHubReleaseList,
+  gitHubMirrorMutableSnippetCopy,
   githubStatus,
   matchGitHubMirrorEdgeCache,
   putGitHubMirrorEdgeCache,
@@ -12,7 +13,7 @@ import {
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
 import { getGitHubLatestReleaseGenerations } from "../../../../../../../lib/github/release-generation";
-import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
+import { checkGitHubMirrorAccessVerified } from "../../../../../../../lib/github/visibility";
 
 // GET /api/github/repos/{owner}/{repo}/releases?page=N
 // One page of GitHub's release list (per_page=100), drafts removed, as
@@ -33,10 +34,10 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
 
   // Before any cache read: cached responses must not outlive a repo turning
   // private or the mirror being restricted.
-  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+  const access = await checkGitHubMirrorAccessVerified(env, owner, repo, {
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (denied) return denied;
+  if (access.denied) return access.denied;
 
   // The first page changes when a release is published; tie it to the same
   // generation that invalidates the mirrored `latest` release.
@@ -46,10 +47,19 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
           ?.current
       : undefined;
   const cacheKeyParams = { page: String(page) };
+  // The snippet gets a short-lived copy of the current generation's page;
+  // a request with any other query is not copied (its key is null).
+  const snippetCopy = gitHubMirrorMutableSnippetCopy(request, {
+    ttl: env.GITHUB_MIRROR_SNIPPET_TTL_SECONDS,
+    verifiedAt: access.verifiedAt,
+    verifiedUntil: access.verifiedUntil,
+    waitUntil: (promise) => locals.cfContext.waitUntil(promise),
+  });
   const cached = await matchGitHubMirrorEdgeCache(
     request,
     cacheGeneration,
     cacheKeyParams,
+    snippetCopy,
   );
   if (cached) return cached;
 
@@ -60,19 +70,20 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       repo,
       page,
       cacheGeneration,
+      { stars: access.stars },
     );
     // A stale fallback is served once but not edge-cached, so the next
     // request retries GitHub.
     const maxAge = staleFallback ? 0 : releaseListFreshSeconds(page);
-    const response = jsonResponse(
-      list,
-      200,
-      cacheHeaders({
+    const response = jsonResponse(list, 200, {
+      ...cacheHeaders({
         browserMaxAge: 0,
         edgeMaxAge: maxAge,
         staleWhileRevalidate: 0,
       }),
-    );
+      "x-mise-mirror": "worker",
+    });
+    // Nor copied for the snippet.
     if (staleFallback) return response;
     locals.cfContext.waitUntil(
       putGitHubMirrorEdgeCache(request, response, {
@@ -81,6 +92,7 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
         staleWhileRevalidate: 0,
         cacheGeneration,
         cacheKeyParams,
+        snippet: snippetCopy,
       }),
     );
     return response;

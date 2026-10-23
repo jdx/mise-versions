@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2016,SC2030,SC2031
 # Tests for update.sh shell script logic
 #
 # Run with: bash scripts/update.test.sh
@@ -173,7 +174,7 @@ assert_skip_list_membership() {
 
 test_phase_2_unskips_stable_tools() {
 	local tool
-	for tool in awscli-local jfrog-cli minio teleport-ent flyctl flyway checkov snyk rebar dasel cockroach; do
+	for tool in awscli-local jfrog-cli minio teleport-ent flyctl flyway checkov snyk rebar dasel cockroach vim aws aws-cli awscli chromedriver sui; do
 		assert_skip_list_membership "$tool" "false" "$tool is no longer hard-skipped"
 	done
 }
@@ -181,9 +182,7 @@ test_phase_2_unskips_stable_tools
 
 test_phase_2_keeps_unresolved_tools_skipped() {
 	local tool
-	for tool in tiny vim aws aws-cli awscli chromedriver sui; do
-		assert_skip_list_membership "$tool" "true" "$tool remains hard-skipped"
-	done
+	assert_skip_list_membership "tiny" "true" "tiny remains hard-skipped (fake test plugin)"
 }
 test_phase_2_keeps_unresolved_tools_skipped
 

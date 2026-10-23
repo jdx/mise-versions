@@ -637,10 +637,10 @@ fetch() {
 	local attempt="${2:-1}"
 	local status_file="$RESULTS_DIR/$tool.status"
 
-	# Keep only tools with unresolved sync blockers: fake/internal tools,
-	# unstable ordering, duplicate alias output, or mixed release channels.
+	# Keep only `tiny` out of the catalog: it is a fake vfox plugin that jdx/mise
+	# uses in its own tests, not a real tool.
 	case "$tool" in
-	tiny | vim | awscli | aws | aws-cli | chromedriver | sui)
+	tiny)
 		echo "skipped" >"$status_file"
 		return
 		;;

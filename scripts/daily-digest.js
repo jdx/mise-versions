@@ -17,8 +17,9 @@ import { fetchWithRetry } from "./lib/fetch-with-retry.js";
 import { mergeAudienceRows } from "../src/analytics/audience.js";
 
 const DEFAULT_ANALYTICS_DB_ID = "21a8b89a-c2cc-4a8a-9805-b4bcfcd4f6c8";
-const DEFAULT_FROM = "mise-tools@en.dev";
-const DEFAULT_TO = "mise-tools@mise.jdx.dev";
+// Also the capacity alert's sender and recipient (lib/logpush-capacity.js).
+export const DEFAULT_FROM = "mise-tools@en.dev";
+export const DEFAULT_TO = "mise-tools@mise.jdx.dev";
 const STAR_MILESTONES = [
   100, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000,
 ];

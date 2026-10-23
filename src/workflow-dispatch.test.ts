@@ -6,6 +6,7 @@ import { dirname, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import {
+  dispatchDeployWorkflow,
   dispatchUpdateWorkflow,
   UPDATE_WORKFLOW_CRON,
 } from "./workflow-dispatch.js";
@@ -62,4 +63,19 @@ test("configures the update dispatch cron in Wrangler", () => {
     config,
     new RegExp(`"${UPDATE_WORKFLOW_CRON.replaceAll("*", "\\*")}"`),
   );
+});
+
+test("dispatches the deploy workflow on main for the GitHub version-list refresher", async () => {
+  let requestUrl = "";
+  let requestInit: RequestInit | undefined;
+  await dispatchDeployWorkflow("test-token", async (url, init) => {
+    requestUrl = url;
+    requestInit = init;
+    return new Response(null, { status: 204 });
+  });
+  assert.equal(
+    requestUrl,
+    "https://api.github.com/repos/jdx/mise-versions/actions/workflows/deploy.yml/dispatches",
+  );
+  assert.equal(requestInit?.body, JSON.stringify({ ref: "main" }));
 });

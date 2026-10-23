@@ -4,15 +4,19 @@ import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   cacheHeaders,
   getCachedGitHubReleaseResult,
+  gitHubMirrorMutableSnippetCopy,
+  gitHubMirrorReleaseSnippetCacheKey,
   githubStatus,
   matchGitHubMirrorEdgeCache,
+  matchGitHubMirrorSnippetCache,
   putGitHubMirrorEdgeCache,
+  putGitHubMirrorSnippetCache,
   releaseCacheHeaders,
   releaseEdgeCacheOptions,
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
-import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
+import { checkGitHubMirrorAccessVerified } from "../../../../../../../lib/github/visibility";
 import { getGitHubLatestReleaseGenerations } from "../../../../../../../lib/github/release-generation";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
@@ -36,17 +40,45 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
 
   // Before any cache read: cached responses must not outlive a repo turning
   // private or the mirror being restricted.
-  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+  const access = await checkGitHubMirrorAccessVerified(env, owner, repo, {
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (denied) return denied;
+  if (access.denied) return access.denied;
+  const waitUntil = (promise: Promise<unknown>) =>
+    locals.cfContext.waitUntil(promise);
 
   const cacheGenerations =
     tag === "latest"
       ? await getGitHubLatestReleaseGenerations(env.GITHUB_CACHE, owner, repo)
       : undefined;
   const cacheGeneration = cacheGenerations?.current;
-  const cached = await matchGitHubMirrorEdgeCache(request, cacheGeneration);
+  // An exact tag is kept where the GitHub-mirror snippet can answer it
+  // without the Worker; `latest` changes in place and stays here.
+  const snippetKey = gitHubMirrorReleaseSnippetCacheKey(request, tag);
+  // `latest` keeps its generation-keyed cache here; the snippet gets a
+  // short-lived copy of the current generation's answer.
+  const snippetCopy =
+    tag === "latest"
+      ? gitHubMirrorMutableSnippetCopy(request, {
+          ttl: env.GITHUB_MIRROR_SNIPPET_TTL_SECONDS,
+          verifiedAt: access.verifiedAt,
+          verifiedUntil: access.verifiedUntil,
+          waitUntil,
+        })
+      : undefined;
+  const cached = snippetKey
+    ? await matchGitHubMirrorSnippetCache(
+        snippetKey,
+        access.verifiedAt,
+        waitUntil,
+        access.verifiedUntil,
+      )
+    : await matchGitHubMirrorEdgeCache(
+        request,
+        cacheGeneration,
+        undefined,
+        snippetCopy,
+      );
   if (cached) return cached;
 
   try {
@@ -57,25 +89,34 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       tag,
       cacheGeneration,
       cacheGenerations?.previous,
+      { stars: access.stars },
     );
-    const response = jsonResponse(
-      release,
-      200,
-      staleFallback
+    const response = jsonResponse(release, 200, {
+      ...(staleFallback
         ? cacheHeaders({
             browserMaxAge: 0,
             edgeMaxAge: 0,
             staleWhileRevalidate: 0,
           })
-        : releaseCacheHeaders(tag, release, cacheGeneration),
-    );
+        : releaseCacheHeaders(tag, release, cacheGeneration)),
+      "x-mise-mirror": "worker",
+    });
+    // A stale fallback is never cached, here or for the snippet.
     if (!staleFallback) {
-      locals.cfContext.waitUntil(
-        putGitHubMirrorEdgeCache(
-          request,
-          response,
-          releaseEdgeCacheOptions(tag, release, cacheGeneration),
-        ),
+      const edgeOptions = {
+        ...releaseEdgeCacheOptions(tag, release, cacheGeneration),
+        snippet: snippetCopy,
+      };
+      waitUntil(
+        snippetKey
+          ? putGitHubMirrorSnippetCache(
+              snippetKey,
+              response,
+              edgeOptions,
+              access.verifiedAt,
+              access.verifiedUntil,
+            )
+          : putGitHubMirrorEdgeCache(request, response, edgeOptions),
       );
     }
     return response;

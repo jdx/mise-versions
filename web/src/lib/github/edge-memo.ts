@@ -202,10 +202,20 @@ export async function readThroughMemo<T>(
   scope: object,
   key: string,
   load: () => Promise<MemoLoad<T>>,
-  { callerSpecific }: { callerSpecific?: (error: unknown) => boolean } = {},
+  options: { callerSpecific?: (error: unknown) => boolean } = {},
 ): Promise<T> {
+  return (await readThroughMemoEntry(scope, key, load, options)).value;
+}
+
+/** Like readThroughMemo, but also returns when the value expires. */
+export async function readThroughMemoEntry<T>(
+  scope: object,
+  key: string,
+  load: () => Promise<MemoLoad<T>>,
+  { callerSpecific }: { callerSpecific?: (error: unknown) => boolean } = {},
+): Promise<MemoLoad<T>> {
   const memo = await readMemo<T>(scope, key);
-  if (memo) return memo.value;
+  if (memo) return memo;
 
   let pending = inflight.get(scope);
   if (!pending) {
@@ -215,14 +225,14 @@ export async function readThroughMemo<T>(
   const existing = pending.get(key) as Promise<MemoLoad<T>> | undefined;
   if (existing) {
     try {
-      return (await existing).value;
+      return await existing;
     } catch (error) {
       // The first waiter to see a shared failure starts the retry below; the
       // others join it rather than each calling `load` again.
       const retry = pending.get(key) as Promise<MemoLoad<T>> | undefined;
       if (!callerSpecific?.(error) && retry && retry !== existing) {
         try {
-          return (await retry).value;
+          return await retry;
         } catch (retryError) {
           if (!callerSpecific?.(retryError)) throw retryError;
         }
@@ -245,7 +255,7 @@ export async function readThroughMemo<T>(
   })();
   pending.set(key, loading);
   try {
-    return (await loading).value;
+    return await loading;
   } finally {
     if (pending.get(key) === loading) pending.delete(key);
   }

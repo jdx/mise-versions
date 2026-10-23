@@ -85,6 +85,11 @@
     // github.com repo), "registry" (mise registry repos only) or "off".
     // Restricted or disabled answers are 403s, which mise clients warn about.
     "GITHUB_MIRROR_ACCESS": "public",
+    // How long the GitHub-mirror snippet (snippets/github-mirror-cache.js)
+    // may serve `releases/latest` and release-list pages after the Worker
+    // wrote them, capped by the Worker's own freshness for each. "0" stops
+    // writing snippet entries for these mutable endpoints.
+    "GITHUB_MIRROR_SNIPPET_TTL_SECONDS": "300",
   },
   // Uncached GitHub visibility lookups per client IP (see
   // web/src/lib/github/visibility.ts). Cached answers are not counted.
@@ -96,6 +101,7 @@
     },
   ],
   "triggers": {
-    "crons": ["*/15 * * * *", "7,37 * * * *", "23 4 * * *"],
+    // */10: the GitHub version-list refresher (web/src/lib/github/versions.ts).
+    "crons": ["*/15 * * * *", "7,37 * * * *", "23 4 * * *", "*/10 * * * *"],
   },
 }
