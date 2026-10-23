@@ -1,14 +1,14 @@
 # cache-break: 2025-12-15
 tasks.build = "aube exec tsc"
 tasks.dev = "aube exec wrangler dev"
-tasks.lint = "aube exec eslint . --ext .ts && aube exec prettier --check ."
-tasks."lint:fix" = "aube exec eslint . --ext .ts --fix && aube exec prettier --write ."
+tasks.lint = "aube exec eslint . --ext .ts && oxfmt --check ."
+tasks."lint:fix" = "aube exec eslint . --ext .ts --fix && oxfmt ."
 tasks.types = "aube exec wrangler types --env-file .env.example"
 tasks."types:check" = "aube exec wrangler types --env-file .env.example --check"
 
 tasks.gen.run = [
   "aube dlx supabase gen types typescript --project-id fjrwmlxwmhtzflckukna > ./src/database.types.ts",
-  "aube exec prettier --write ./src/database.types.ts"
+  "oxfmt ./src/database.types.ts",
 ]
 
 [tasks.deploy]
@@ -25,6 +25,7 @@ jactionlint = "latest"
 node = "24"
 shellcheck = "latest"
 shfmt = "latest"
+oxfmt = "latest"
 uv = "latest"
 wait-for-gh-rate-limit = { version = "latest", minimum_release_age = "0s" }
 yq = "latest"

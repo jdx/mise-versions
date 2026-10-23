@@ -35,7 +35,7 @@ aube --dir web exec tsc    # Check types (web)
 
 # Linting (or use `mise run lint` / `mise run lint:fix`)
 aube exec eslint . --ext .ts
-aube exec prettier --check .
+oxfmt --check .
 
 # Local development
 mise run dev               # or: aube exec wrangler dev
@@ -73,7 +73,7 @@ mise run deploy            # builds then deploys
 - `src/analytics/`: Drizzle ORM schema and analytics functions for D1 (schema, tracking, stats, trends, rollups)
 - `src/worker.ts`: Custom worker wrapper for scheduled tasks (token-pool observability, update workflow dispatch)
 - `.github/workflows/maintenance.yml`: Nightly analytics maintenance; the `scripts/refresh-*-direct.js` scripts roll Analytics Engine events up into the D1 daily and summary tables
-- `scripts/refresh-logpush-analytics-direct.js`: Nightly shadow rollup of Cloudflare Logpush `http_requests` logs (R2 bucket `mise-logs`) into `logpush_*` D1 tables: DAU/MAU of every mise client (static asset requests included) and installs from the static `/t` beacon
+- `scripts/refresh-logpush-analytics-direct.js`: Nightly shadow rollup of Cloudflare Logpush `http_requests` logs (R2 bucket `mise-logs`) into `logpush_*` D1 tables: DAU/MAU of every mise client (static asset requests included) and installs from the static `/t` beacon. Each run also checks its runtime, peak RSS and daily log lines against the job's limits (`scripts/lib/logpush-capacity.js`) and emails a warning through Resend when it nears them
 - `web/src/lib/data-loader.ts`: Centralized data loading from D1
 - `scripts/update.sh`: Main version fetching logic with token management
 - `scripts/sync-to-d1.js`: Syncs tool metadata from TOML files to D1
@@ -92,11 +92,11 @@ The `ANALYTICS_DB` contains:
 - Daily rollup tables: `daily_stats`, `daily_combined_stats`, `daily_tool_stats`, `daily_backend_stats`, `daily_tool_backend_stats`, `daily_tool_version_stats`, `daily_tool_platform_stats`, `daily_mau_stats`, `daily_version_stats`
 - Summary tables: `tool_download_summaries`, `tool_platform_download_summaries`, `tool_version_download_summaries`, `backend_tool_summaries`, `trending_tool_summaries`
 
-- Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, compared against the Analytics Engine numbers before cutover; the site does not read them yet
+- Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, the site's DAU/MAU come from these (older dates fall back to the Analytics Engine rollups), and from the `LOGPUSH_CUTOVER_DATE` Actions variable on, the download rollups add the beacon installs
 
 - mise release downloads: `mise_release_daily_downloads` (per UTC day and `mise.jdx.dev`/`mise.en.dev` release folder `/v<version>/`, binary vs other files) and `mise_release_download_days` (one row per fully covered day), written by the Logpush rollup through `scripts/lib/mise-release-downloads.js` and served by `GET /api/mise-releases/downloads?days=N`, which jdx/mise uses to prune release folders nobody downloads; `/stats` also reads the daily `binary_requests` totals from `mise_release_download_days` to add CDN downloads to the GitHub release-asset downloads in the mise adoption section
 
-Raw download and mise version-request events are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
+Raw download events from `/api/tools/<tool>` are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. The legacy TOML routes no longer write `version_request` events; every mise client is counted from Logpush instead, so `daily_version_stats` and the version-request part of the Analytics Engine MAU/combined-DAU rollups only describe dates before that change. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
 
 ## GitHub Token Management
 
@@ -105,3 +105,16 @@ The update workflow uses a token rotation system:
 - `TOKEN_MANAGER_URL` / `TOKEN_MANAGER_SECRET`: Cloudflare Worker API for token pool
 - `scripts/github-token.js`: Gets tokens, marks rate-limited tokens
 - Tokens rotate automatically when rate limited
+
+## GitHub Mirror Snippet
+
+`/api/github/repos/<owner>/<repo>/...` is a GitHub API mirror and most of the Worker's traffic. A free Cloudflare Snippet (`snippets/github-mirror-cache.js`) runs before the Worker on `mise-versions.jdx.dev` and `mise-tools.jdx.dev` and answers cache hits for attestations by digest, releases by tag (including `latest`) and release-list pages, so those hits never invoke the billed Worker. Everything else, and every miss, goes on to the Worker via `fetch(request)`.
+
+- **Keys**: `https://mise-versions.jdx.dev/__snippet-cache/v1/<owner>/<repo>/attestations/<digest>`, `.../releases/<tag as in the URL>` and `.../releases?page=<1-10>` (host dropped; query dropped except a release list's `page`, which defaults to 1). A list request with any other query (`per_page`, repeats, `page=01`) is not cached and goes to the Worker. The key and response helpers live in the snippet file and the Worker imports them.
+- **Entries**: each carries `x-mise-mirror-expires-at` (content expiry), `x-mise-mirror-verified-at` (when GitHub last confirmed the repo public) and `x-mise-mirror-verified-until` (until when that confirmation holds), all epoch seconds, plus `x-mise-cache-control` (the client Cache-Control). Only 200s the Worker itself caches are written; stale fallbacks and errors never are.
+  - Immutable (attestations, exact tags): the Worker keeps its edge copy under the snippet key (`putGitHubMirrorSnippetCache` / `matchGitHubMirrorSnippetCache` in `web/src/lib/github/mirror.ts`), with its own edge TTL as the expiry.
+  - Mutable (`latest`, list pages): the Worker keeps its generation-keyed entry and also writes a short-lived snippet copy of whatever it served for the current generation (`MirrorSnippetCopy`), on a miss or a hit. The copy expires `GITHUB_MIRROR_SNIPPET_TTL_SECONDS` (wrangler var, default 300, `0` disables, at most 3600) after it is written, never later than the Worker's own entry (`x-mise-mirror-expires-at` on the Worker's edge entries). A newly published release can therefore take up to that TTL longer to show through the mirror than through the Worker alone (for a tracked repo, `latest` and page 1 follow the catalog's generation rotation; for an untracked one they refresh after a quarter of how long they have been unchanged, between 10 minutes and an hour).
+- **Private-repo cutoff**: the snippet serves an entry only while `now < verified-until`, capped at `verified-at + MAX_VISIBILITY_TTL_SECONDS` (24 hours); an entry without a parsable `verified-until` gets `verified-at + VISIBILITY_TTL_SECONDS` (1 hour). Both constants are kept equal to `web/src/lib/github/visibility.ts` by a test. The Worker sets `verified-until` to the visibility answer's TTL after the GitHub check (24 hours for a repo with more than 100 stars or seen public for over 30 days, 1 hour otherwise), but never more than an hour after its own access check. So a repo that turns private stops being served within the same window as through the Worker (an hour, or up to a day for established repos), and switching `GITHUB_MIRROR_ACCESS` to `registry` or `off` still takes up to an hour to reach the snippet; for an immediate cutoff remove its rule (below). Past that the request reaches the Worker, which checks access again and rewrites the entry's verification (never extending its content expiry).
+- **Debug**: responses carry `x-mise-mirror: snippet` or `x-mise-mirror: worker`.
+- **Limits**: 5 ms CPU, 2 MB memory, 32 KB package, no imports; keep it to one cache lookup and header checks.
+- **Deploy** (not part of `mise run deploy`; deploy the Worker first so entries exist): `CLOUDFLARE_API_TOKEN=... node scripts/deploy-snippet.js [--dry-run]` uploads the snippet as `github_mirror_cache` and upserts its snippet rule on the `jdx.dev` zone (set `CLOUDFLARE_ZONE_ID` to skip the zone lookup). The rules API replaces all snippet rules, so the script reads them and replaces only its own. **Rollback**: `node scripts/deploy-snippet.js --remove` deletes only its rule.

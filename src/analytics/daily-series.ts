@@ -14,3 +14,11 @@ export function trimPendingRollups<T extends { date: string }>(
   while (end > 0 && !isRolledUp(series[end - 1].date)) end--;
   return series.slice(0, end);
 }
+
+// The audience merge rules live in plain JavaScript so the daily digest script
+// (scripts/daily-digest.js) applies exactly the same ones as the site.
+export {
+  LOGPUSH_MAU_WINDOW_DAYS,
+  currentMau,
+  mergeAudienceRows,
+} from "./audience.js";

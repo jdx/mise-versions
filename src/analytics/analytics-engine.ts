@@ -54,20 +54,6 @@ export function writeDownloadEvent(
   return true;
 }
 
-export function writeVersionRequestEvent(
-  dataset: AnalyticsEngineDataset | undefined,
-  ipHash: string,
-): boolean {
-  if (!dataset) return false;
-
-  dataset.writeDataPoint({
-    blobs: ["version_request", "", "", "", "", "", ""],
-    doubles: [1],
-    indexes: [ipHash],
-  });
-  return true;
-}
-
 export function hasAnalyticsEngineSql(config?: AnalyticsEngineSqlConfig) {
   return Boolean(
     config?.accountId && config?.apiToken && analyticsEngineDataset(config),

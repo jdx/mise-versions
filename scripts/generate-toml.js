@@ -135,6 +135,10 @@ const now = new Date().toISOString();
 // Placeholder timestamp used when no real timestamp is available
 const PLACEHOLDER_TIMESTAMP = "2025-01-01T00:00:00.000Z";
 
+// Fixed, deliberately old timestamp for undated versions that already exist
+// when a tool is first imported. See the first-import rule below.
+const UNDATED_SEED_TIMESTAMP = "1970-01-01T00:00:00.000Z";
+
 // Convert Date object or string to ISO string, treating placeholders as null
 function toISOString(value) {
   if (!value) return null;
@@ -194,12 +198,26 @@ if (UNSTABLE_TOOLS.has(tool)) {
   });
 }
 
+// First-import rule for backends that publish no created_at (e.g. aqua
+// tag-only packages, conda, vfox): mise-versions' first-seen stamp stands in
+// for the missing date, so `minimum_release_age` can still hold back a version
+// that appeared recently. That only works if a tool's pre-existing history is
+// not stamped "now" too, or every version would be blocked for the whole
+// cooldown. So when there is no existing catalog entry for the tool at all,
+// the first import is the seed moment: undated versions get
+// UNDATED_SEED_TIMESTAMP (a fixed, obviously synthetic old date) and only
+// versions that show up on later runs get the first-seen stamp. Versions that
+// do carry a date always keep it, so a one-off seed can fill real dates first.
+const isFirstImport = Object.keys(existingVersions).length === 0;
+const undatedTimestamp = isFirstImport ? UNDATED_SEED_TIMESTAMP : now;
+
 // Build output with inline tables for compactness
 const lines = ["[versions]"];
 for (const v of newVersions) {
   const existing = existingVersions[v.version] || {};
-  // Use API timestamp, fall back to existing timestamp, then use current time
-  const timestamp = v.created_at || existing.created_at || now;
+  // Use API timestamp, fall back to existing timestamp, then the first-seen
+  // stamp (or the seed timestamp on a tool's first import)
+  const timestamp = v.created_at || existing.created_at || undatedTimestamp;
   const isoDate = new Date(timestamp).toISOString();
   // Use API release_url, fall back to existing release_url
   const releaseUrl = v.release_url || existing.release_url;

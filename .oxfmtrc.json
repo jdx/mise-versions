@@ -1,0 +1,17 @@
+{
+  "printWidth": 80,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    ".entire/",
+    "node_modules/",
+    "dist/",
+    ".astro/",
+    "charts/",
+    "docs/",
+    "worker-configuration.d.ts",
+    "package-lock.json",
+    "bun.lock",
+    "*.astro",
+    "aube-lock.yaml"
+  ]
+}

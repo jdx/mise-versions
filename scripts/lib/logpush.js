@@ -17,6 +17,9 @@
 import { createHmac } from "node:crypto";
 
 export const BEACON_PATH = "/t";
+// Baked GitHub version lists (scripts/bake-github-versions.js). Requests for
+// them never reach the Worker, so they are counted here as demand.
+export const GITHUB_VERSIONS_PREFIX = "/data/github/";
 export const DEFAULT_BEACON_HOSTS = [
   "mise-versions.jdx.dev",
   "mise-tools.jdx.dev",
@@ -201,6 +204,8 @@ export class LogpushDayAggregator {
     this.beaconHosts = new Set(beaconHosts.map((h) => h.toLowerCase()));
     this.users = new Set();
     this.downloads = new Map();
+    // Request paths of GitHub version lists mise fetched this day.
+    this.githubVersionsPaths = new Set();
     this.hashCache = new Map();
     this.stats = {
       lines: 0,
@@ -268,6 +273,18 @@ export class LogpushDayAggregator {
       Number(record.EdgeResponseStatus ?? 200) < 400
         ? parseBeaconUri(record.ClientRequestURI)
         : null;
+
+    // CI counts as demand too: it is served from the same files.
+    if (
+      this.beaconHosts.has(host) &&
+      (record.ClientRequestMethod || "GET") === "GET" &&
+      Number(record.EdgeResponseStatus ?? 200) < 400
+    ) {
+      const path = String(record.ClientRequestURI || "").split(/[?#]/)[0];
+      if (path.startsWith(GITHUB_VERSIONS_PREFIX)) {
+        this.githubVersionsPaths.add(path);
+      }
+    }
 
     if (client.ci) {
       this.stats.ciRequests++;

@@ -5,13 +5,16 @@ import {
   ATTESTATION_FRESH_SECONDS,
   attestationsCacheHeaders,
   getCachedGitHubAttestations,
+  gitHubMirrorSnippetCacheKey,
   githubStatus,
   matchGitHubMirrorEdgeCache,
+  matchGitHubMirrorSnippetCache,
   putGitHubMirrorEdgeCache,
+  putGitHubMirrorSnippetCache,
   validDigest,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
-import { checkGitHubMirrorAccess } from "../../../../../../../lib/github/visibility";
+import { checkGitHubMirrorAccessVerified } from "../../../../../../../lib/github/visibility";
 
 export const GET: APIRoute = async ({ params, request, locals }) => {
   const { owner, repo, digest } = params;
@@ -21,13 +24,24 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
 
   // Before any cache read: cached responses must not outlive a repo turning
   // private or the mirror being restricted.
-  const denied = await checkGitHubMirrorAccess(env, owner, repo, {
+  const access = await checkGitHubMirrorAccessVerified(env, owner, repo, {
     attestations: true,
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (denied) return denied;
+  if (access.denied) return access.denied;
 
-  const cached = await matchGitHubMirrorEdgeCache(request);
+  // Kept where the GitHub-mirror snippet can answer it without the Worker.
+  const snippetKey = gitHubMirrorSnippetCacheKey(request);
+  const waitUntil = (promise: Promise<unknown>) =>
+    locals.cfContext.waitUntil(promise);
+  const cached = snippetKey
+    ? await matchGitHubMirrorSnippetCache(
+        snippetKey,
+        access.verifiedAt,
+        waitUntil,
+        access.verifiedUntil,
+      )
+    : await matchGitHubMirrorEdgeCache(request);
   if (cached) return cached;
 
   try {
@@ -37,17 +51,25 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       repo,
       digest,
     );
-    const response = jsonResponse(
-      attestations,
-      200,
-      attestationsCacheHeaders(),
-    );
-    locals.cfContext.waitUntil(
-      putGitHubMirrorEdgeCache(request, response, {
-        browserMaxAge: ATTESTATION_FRESH_SECONDS,
-        edgeMaxAge: ATTESTATION_FRESH_SECONDS,
-        staleWhileRevalidate: 0,
-      }),
+    const response = jsonResponse(attestations, 200, {
+      ...attestationsCacheHeaders(),
+      "x-mise-mirror": "worker",
+    });
+    const edgeOptions = {
+      browserMaxAge: ATTESTATION_FRESH_SECONDS,
+      edgeMaxAge: ATTESTATION_FRESH_SECONDS,
+      staleWhileRevalidate: 0,
+    };
+    waitUntil(
+      snippetKey
+        ? putGitHubMirrorSnippetCache(
+            snippetKey,
+            response,
+            edgeOptions,
+            access.verifiedAt,
+            access.verifiedUntil,
+          )
+        : putGitHubMirrorEdgeCache(request, response, edgeOptions),
     );
     return response;
   } catch (error) {

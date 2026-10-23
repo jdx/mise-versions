@@ -4,7 +4,7 @@ export type CostProbe = {
   route: string;
   status: number;
   duration_ms: number;
-  cache?: "edge" | "kv" | "d1" | "none";
+  cache?: "edge" | "asset" | "kv" | "d1" | "none";
   tracking?: "queued" | "ci_skipped" | "none";
   d1_write?: "attempted" | "skipped";
 };

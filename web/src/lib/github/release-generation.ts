@@ -109,6 +109,38 @@ async function generationForReleaseUrls(
     .join("");
 }
 
+/**
+ * The current generation of each repository (`owner/repo`, any case), read
+ * in bulk: one KV operation per 100 repositories. For jobs that walk many
+ * repositories at once; requests use getGitHubLatestReleaseGenerations.
+ */
+export async function readGitHubLatestReleaseGenerations(
+  cache: KVNamespace,
+  repositories: string[],
+): Promise<Map<string, string | undefined>> {
+  const result = new Map<string, string | undefined>();
+  const unique = [...new Set(repositories.map((r) => r.toLowerCase()))];
+  for (let i = 0; i < unique.length; i += 100) {
+    const chunk = unique.slice(i, i + 100);
+    const values = await cache.get(
+      chunk.map(
+        (repository) => `${LATEST_RELEASE_GENERATION_PREFIX}${repository}`,
+      ),
+      "text",
+    );
+    for (const repository of chunk) {
+      result.set(
+        repository,
+        parseGenerations(
+          values.get(`${LATEST_RELEASE_GENERATION_PREFIX}${repository}`) ??
+            null,
+        )?.current,
+      );
+    }
+  }
+  return result;
+}
+
 export async function getGitHubLatestReleaseGenerations(
   cache: KVNamespace,
   owner: string,
