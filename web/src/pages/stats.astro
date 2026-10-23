@@ -5,22 +5,17 @@ import MauHistory from '../components/MauHistory.astro';
 import MiseAdoption from '../components/MiseAdoption.astro';
 import WeeklyMauGrowth from '../components/WeeklyMauGrowth.astro';
 import DailyActivityChart from '../components/DailyActivityChart.astro';
-import LogpushAudience from '../components/LogpushAudience.astro';
 import { drizzle } from 'drizzle-orm/d1';
 import { setupAnalytics } from '../../../src/analytics';
-import { getLogpushAudience, type LogpushAudience as LogpushAudienceData } from '../../../src/analytics/logpush-audience';
 import { getMiseReleaseDailyBinaryDownloads, type MiseReleaseDailyBinaryDownloads } from '../../../src/analytics/mise-releases';
 import { env } from 'cloudflare:workers';
 const analytics=setupAnalytics(drizzle(env.ANALYTICS_DB),{analyticsEngine:{accountId:env.ANALYTICS_ENGINE_ACCOUNT_ID,apiToken:env.ANALYTICS_ENGINE_API_TOKEN,dataset:env.ANALYTICS_ENGINE_DATASET,cutoverDate:env.ANALYTICS_ENGINE_CUTOVER_DATE}});
 let audience:Awaited<ReturnType<typeof analytics.getDAUMAUHistory>>|null=null;
 let cdnDownloads:MiseReleaseDailyBinaryDownloads[]=[];
-let logpush:LogpushAudienceData|null=null;
-const [audienceResult,cdnResult,logpushResult]=await Promise.allSettled([analytics.getDAUMAUHistory(370),getMiseReleaseDailyBinaryDownloads(env.ANALYTICS_DB),getLogpushAudience(env.ANALYTICS_DB)]);
+const [audienceResult,cdnResult]=await Promise.allSettled([analytics.getDAUMAUHistory(370),getMiseReleaseDailyBinaryDownloads(env.ANALYTICS_DB)]);
 if (audienceResult.status==='fulfilled') audience=audienceResult.value; else console.error('Audience history unavailable',audienceResult.reason);
 // Without CDN counts the downloads card falls back to GitHub alone.
 if (cdnResult.status==='fulfilled') cdnDownloads=cdnResult.value; else console.error('mise CDN downloads unavailable',cdnResult.reason);
-// Preview of the Logpush audience; the section is left out when it is unavailable.
-if (logpushResult.status==='fulfilled') logpush=logpushResult.value; else console.error('Logpush audience unavailable',logpushResult.reason);
 Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-revalidate=3600');
 ---
 <Layout title="mise stats" description="mise audience, adoption, downloads and Homebrew rankings">
@@ -32,7 +27,6 @@ Astro.response.headers.set('Cache-Control','public, max-age=300, stale-while-rev
       <WeeklyMauGrowth daily={audience.daily}/>
       <DailyActivityChart title="Daily active users" unit="DAU" days={365} points={audience.daily.map(p=>({date:p.date,value:p.dau_available===false?null:p.dau}))}/>
     </>:<p class="inline-notice">Audience history is currently unavailable.</p>}
-    {logpush && <LogpushAudience audience={logpush}/>}
     <MiseAdoption cdnDownloads={cdnDownloads} />
   </div>
 </Layout>
