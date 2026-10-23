@@ -7,27 +7,36 @@ import {
 export type DailyCount = { date: string; value: number | null };
 // `breakDate` marks where the series starts measuring something more (for
 // mise downloads, the day CDN counts begin). A week that spans it would mix
-// both measures, so it has no average.
+// both measures, so it has no average, unless `clipAtBreak` is set: then the
+// window starts at the break and the first days average what has been counted
+// since, so a trend line has no gap.
 export function sevenDayAverage(
   points: DailyCount[],
   breakDate?: string,
+  clipAtBreak = false,
 ): DailyCount[] {
   const byDate = new Map(points.map((p) => [p.date, p.value]));
   return points.map((point) => {
     const time = parseUtcDate(point.date);
-    const spansBreak =
-      breakDate !== undefined &&
-      point.date >= breakDate &&
-      formatUtcDate(time - 6 * 86400000) < breakDate;
-    const week = Array.from({ length: 7 }, (_, i) =>
-      byDate.get(formatUtcDate(time - i * 86400000)),
-    );
+    const week: Array<number | null | undefined> = [];
+    for (let i = 0; i < 7; i++) {
+      const date = formatUtcDate(time - i * 86400000);
+      if (
+        breakDate !== undefined &&
+        point.date >= breakDate &&
+        date < breakDate
+      ) {
+        if (clipAtBreak) break;
+        week.push(null);
+        continue;
+      }
+      week.push(byDate.get(date));
+    }
     return {
       date: point.date,
-      value:
-        !spansBreak && week.every((v) => v !== null && v !== undefined)
-          ? (week as number[]).reduce((a, b) => a + b, 0) / 7
-          : null,
+      value: week.every((v) => v !== null && v !== undefined)
+        ? (week as number[]).reduce((a, b) => a + b, 0) / week.length
+        : null,
     };
   });
 }

@@ -129,20 +129,25 @@ test("a break date keeps averages, milestones and forecasts on one side of it", 
     value: i < 30 ? 100 + i : 130 + i,
   }));
   const breakDate = points[30].date;
-  const averages = sevenDayAverage(points, breakDate);
+  const averages = sevenDayAverage(points, breakDate, true);
+  const strict = sevenDayAverage(points, breakDate);
   assert.equal(averages[29].value, 126);
-  for (let i = 30; i < 36; i++) assert.equal(averages[i].value, null);
+  // the first days after the break average only what has been counted since
+  assert.equal(averages[30].value, 160);
+  assert.equal(averages[31].value, 160.5);
+  assert.equal(averages[35].value, 162.5);
+  for (let i = 30; i < 36; i++) assert.equal(strict[i].value, null);
   assert.equal(averages[36].value, 163);
   assert.notEqual(sevenDayAverage(points)[33].value, null);
   // 130 -> 163 is the second source arriving, not 250 being passed
   assert.deepEqual(
-    pastActivityMilestones(averages, breakDate).map((m) => m.level),
+    pastActivityMilestones(strict, breakDate).map((m) => m.level),
     [],
   );
   // The pace ignores the jump: one more per day, from the latest side only
-  const forecast = forecastDailyAverage(averages, breakDate);
+  const forecast = forecastDailyAverage(strict, breakDate);
   assert.equal(forecast?.target, 250);
   assert.equal(forecast?.daysAway, 64);
-  const mixed = forecastDailyAverage(averages);
+  const mixed = forecastDailyAverage(strict);
   assert.ok(mixed && mixed.daysAway < 64);
 });
