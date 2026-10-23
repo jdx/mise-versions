@@ -44,7 +44,7 @@ jobs:
         with:
           # Queued workflow_dispatch runs otherwise retain their stale event SHA.
           ref: main
-      - uses: jdx/mise-action@08ae2a091c038e1e05ec6f5115dc5c69d5a2a6b8 # v5.1.2
+      - uses: jdx/mise-action@9b200bcecbfd6303e69a4a261b2e09e3757440a7 # v5.2.0
       - run: curl https://mise.run | MISE_INSTALL_PATH="$HOME/.local/share/mise/bin/mise" sh && mise --version
       - run: aube ci
       - run: ./scripts/update.sh
