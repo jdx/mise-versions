@@ -550,6 +550,27 @@ test("failed refreshes serve the stored list once, uncached at the edge", () => 
   `);
 });
 
+test("an empty read never replaces a stored list", () => {
+  runVersionsTest(`
+    const now = Date.now();
+    const kv = memoryKv({
+      "github:versions:releases:o/r": {
+        head_at: now - HOUR, full_at: now - HOUR, unchanged_since: now - HOUR,
+        items: [{ tag: "v1", date: "d", prerelease: false, asset_count: 1 }],
+        truncated: false,
+      },
+    });
+    // GitHub answers 200 with no releases.
+    github.releases = [];
+    const result = await getCachedGitHubVersions(
+      { DB: poolDb, GITHUB_CACHE: kv }, "o", "r", { source: "releases" },
+    );
+    assert.equal(result.staleFallback, true);
+    assert.equal(result.versions.releases[0].tag, "v1");
+    assert.deepEqual(kv.writes, []);
+  `);
+});
+
 test("a page GitHub times out on is retried once", () => {
   runVersionsTest(`
     github.releases = releases(250);
