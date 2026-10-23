@@ -576,6 +576,15 @@ async function refreshVersions(
     }
   });
 
+  // A read that finds nothing where a list was stored is more likely a bad
+  // answer from GitHub (a 200 with an empty array) than every release being
+  // deleted. Fail the refresh so the stored list stays and is retried.
+  if (stored && stored.items.length > 0 && result.items.length === 0) {
+    throw new Error(
+      `GitHub returned an empty ${source} list for ${owner}/${repo}; keeping the stored list`,
+    );
+  }
+
   const now = Date.now();
   const unchanged =
     !!stored &&
