@@ -70,6 +70,19 @@ describe("web build static version files", () => {
     assert.match(readFileSync(nodeToml, "utf8"), /^\[versions\]/);
   });
 
+  it("includes byte-identical TOML assets under legacy /tools", () => {
+    const legacyNodeToml = join(DIST_CLIENT_DIR, "tools", "node.toml");
+
+    assert.ok(
+      existsSync(legacyNodeToml),
+      "missing static /tools/node.toml asset",
+    );
+    assert.deepStrictEqual(
+      readFileSync(legacyNodeToml),
+      readFileSync(join(DIST_CLIENT_DIR, "data", "node.toml")),
+    );
+  });
+
   it("includes the versions index under /data", () => {
     const indexFile = join(DIST_CLIENT_DIR, "data", "index.v1.json");
 

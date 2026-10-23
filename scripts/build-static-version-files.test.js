@@ -17,11 +17,13 @@ describe("build-static-version-files.js", () => {
   let tempDir;
   let docsDir;
   let outputDir;
+  let legacyOutputDir;
 
   beforeEach(() => {
     tempDir = mkdtempSync(join(tmpdir(), "static-version-files-test-"));
     docsDir = join(tempDir, "docs");
     outputDir = join(tempDir, "public", "data");
+    legacyOutputDir = join(tempDir, "public", "tools");
     mkdirSync(docsDir, { recursive: true });
   });
 
@@ -47,7 +49,11 @@ describe("build-static-version-files.js", () => {
 `,
     );
 
-    const result = buildStaticVersionFiles({ docsDir, outputDir });
+    const result = buildStaticVersionFiles({
+      docsDir,
+      outputDir,
+      legacyOutputDir,
+    });
 
     assert.deepStrictEqual(result, { tools: 2, indexed: 2 });
     assert.match(
@@ -66,6 +72,29 @@ describe("build-static-version-files.js", () => {
     assert.strictEqual(index.tools.node.latest, "22.0.0");
   });
 
+  it("publishes byte-identical copies at the legacy /tools/*.toml path", () => {
+    const nodeToml = `[versions]
+"20.0.0" = { created_at = 2024-01-01T00:00:00.000Z }
+`;
+    writeFileSync(join(docsDir, "node.toml"), nodeToml);
+    writeFileSync(join(docsDir, "README.md"), "not a version file\n");
+    mkdirSync(legacyOutputDir, { recursive: true });
+    writeFileSync(join(legacyOutputDir, "stale.toml"), "stale\n");
+
+    buildStaticVersionFiles({ docsDir, outputDir, legacyOutputDir });
+
+    assert.deepStrictEqual(
+      readFileSync(join(legacyOutputDir, "node.toml")),
+      readFileSync(join(docsDir, "node.toml")),
+    );
+    assert.deepStrictEqual(
+      readFileSync(join(legacyOutputDir, "node.toml")),
+      readFileSync(join(outputDir, "node.toml")),
+    );
+    assert.strictEqual(existsSync(join(legacyOutputDir, "stale.toml")), false);
+    assert.strictEqual(existsSync(join(legacyOutputDir, "README.md")), false);
+  });
+
   it("rejects destructive source and output path collisions", () => {
     assert.throws(
       () => buildStaticVersionFiles({ docsDir, outputDir: docsDir }),
@@ -75,6 +104,26 @@ describe("build-static-version-files.js", () => {
     assert.throws(
       () => buildStaticVersionFiles({ docsDir, outputDir: tempDir }),
       /outputDir must not be the docsDir/,
+    );
+
+    assert.throws(
+      () =>
+        buildStaticVersionFiles({
+          docsDir,
+          outputDir,
+          legacyOutputDir: docsDir,
+        }),
+      /outputDir must not be the docsDir/,
+    );
+
+    assert.throws(
+      () =>
+        buildStaticVersionFiles({
+          docsDir,
+          outputDir,
+          legacyOutputDir: outputDir,
+        }),
+      /output directories must not overlap/,
     );
   });
 });

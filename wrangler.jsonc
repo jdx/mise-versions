@@ -18,6 +18,16 @@
     // The /t install beacon and /data/python-precompiled*.gz lists are static
     // assets too and must stay out of this list so they never invoke the
     // Worker; installs are counted from Logpush instead.
+    //
+    // "!/tools/*.toml" sends the legacy version-list URL used by mise clients
+    // older than v2026.6.6 to the static copies the build publishes next to
+    // /data/*.toml (scripts/build-static-version-files.js). Negative patterns
+    // take precedence over positive ones, and `*` also matches `/`, so a
+    // namespaced path is excluded too. A negative match goes straight to the
+    // asset worker without falling back to the Worker, so a tool with no
+    // docs/<tool>.toml gets a 404, as /data/<tool>.toml does for current
+    // clients (mise then lists versions upstream). /tools/<tool> pages and
+    // /tools/*.gz stay Worker-first.
     "run_worker_first": [
       "/api/*",
       "/admin*",
@@ -27,6 +37,7 @@
       "/health",
       "/stats*",
       "/tools/*",
+      "!/tools/*.toml",
       "/webhooks/*",
     ],
   },
