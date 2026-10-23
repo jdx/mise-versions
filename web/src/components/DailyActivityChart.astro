@@ -20,7 +20,7 @@ const averages = sevenDayAverage(daily, breakDate);
 const drawnAverages = sevenDayAverage(daily, breakDate, true);
 const latest = averages.at(-1)!;
 const forecast = forecastDailyAverage(averages, breakDate);
-const reached = pastActivityMilestones(averages, breakDate);
+const reached = pastActivityMilestones(averages);
 const lastReached = reached.at(-1);
 const cutoff = parseUtcDate(latest.date) - (days - 1) * 86400000;
 const data = daily.filter(p=>parseUtcDate(p.date)>=cutoff), average = drawnAverages.filter(p=>parseUtcDate(p.date)>=cutoff);

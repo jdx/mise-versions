@@ -60,25 +60,12 @@ export function activityMilestoneLevels(max: number): number[] {
   return levels;
 }
 // First day the average reached each milestone. Levels the series already
-// started above are skipped, since we never saw them being hit. With a
-// `breakDate`, each side is judged on its own, so a jump caused by starting to
-// measure more is not reported as a milestone; a level is reported once.
+// started above are skipped, since we never saw them being hit. A jump from
+// counting more sources still counts: the level was passed on the first
+// average that includes them.
 export function pastActivityMilestones(
   averages: DailyCount[],
-  breakDate?: string,
 ): Array<{ level: number; date: string; value: number }> {
-  if (breakDate) {
-    const before = pastActivityMilestones(
-      averages.filter((p) => p.date < breakDate),
-    );
-    const levels = new Set(before.map((m) => m.level));
-    return [
-      ...before,
-      ...pastActivityMilestones(
-        averages.filter((p) => p.date >= breakDate),
-      ).filter((m) => !levels.has(m.level)),
-    ];
-  }
   const valid = averages.filter(
     (p): p is { date: string; value: number } => p.value !== null,
   );

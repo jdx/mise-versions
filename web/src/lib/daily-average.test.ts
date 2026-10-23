@@ -139,9 +139,9 @@ test("a break date keeps averages, milestones and forecasts on one side of it", 
   for (let i = 30; i < 36; i++) assert.equal(strict[i].value, null);
   assert.equal(averages[36].value, 163);
   assert.notEqual(sevenDayAverage(points)[33].value, null);
-  // 130 -> 163 is the second source arriving, not 250 being passed
+  // 130 -> 163 passes no level
   assert.deepEqual(
-    pastActivityMilestones(strict, breakDate).map((m) => m.level),
+    pastActivityMilestones(strict).map((m) => m.level),
     [],
   );
   // The pace ignores the jump: one more per day, from the latest side only
@@ -150,4 +150,15 @@ test("a break date keeps averages, milestones and forecasts on one side of it", 
   assert.equal(forecast?.daysAway, 64);
   const mixed = forecastDailyAverage(strict);
   assert.ok(mixed && mixed.daysAway < 64);
+});
+test("a level passed when a second source starts counting is a milestone", () => {
+  // 200/day, then 300/day once a second source is counted: 250 is passed
+  const points = Array.from({ length: 30 }, (_, i) => ({
+    date: new Date(Date.UTC(2026, 0, 1 + i)).toISOString().slice(0, 10),
+    value: i < 15 ? 200 : 300,
+  }));
+  const strict = sevenDayAverage(points, points[15].date);
+  assert.deepEqual(pastActivityMilestones(strict), [
+    { level: 250, date: points[21].date, value: 300 },
+  ]);
 });
