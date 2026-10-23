@@ -92,11 +92,11 @@ The `ANALYTICS_DB` contains:
 - Daily rollup tables: `daily_stats`, `daily_combined_stats`, `daily_tool_stats`, `daily_backend_stats`, `daily_tool_backend_stats`, `daily_tool_version_stats`, `daily_tool_platform_stats`, `daily_mau_stats`, `daily_version_stats`
 - Summary tables: `tool_download_summaries`, `tool_platform_download_summaries`, `tool_version_download_summaries`, `backend_tool_summaries`, `trending_tool_summaries`
 
-- Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, compared against the Analytics Engine numbers before cutover; the site does not read them yet
+- Logpush shadow tables: `logpush_daily_dau`, `logpush_daily_mau`, and `logpush_daily_*` mirrors of the download rollups, the site's DAU/MAU come from these (older dates fall back to the Analytics Engine rollups), and from the `LOGPUSH_CUTOVER_DATE` Actions variable on, the download rollups add the beacon installs
 
 - mise release downloads: `mise_release_daily_downloads` (per UTC day and `mise.jdx.dev`/`mise.en.dev` release folder `/v<version>/`, binary vs other files) and `mise_release_download_days` (one row per fully covered day), written by the Logpush rollup through `scripts/lib/mise-release-downloads.js` and served by `GET /api/mise-releases/downloads?days=N`, which jdx/mise uses to prune release folders nobody downloads; `/stats` also reads the daily `binary_requests` totals from `mise_release_download_days` to add CDN downloads to the GitHub release-asset downloads in the mise adoption section
 
-Raw download and mise version-request events are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
+Raw download events from `/api/tools/<tool>` are written to Cloudflare Analytics Engine (`ANALYTICS_EVENTS`), not D1. The legacy TOML routes no longer write `version_request` events; every mise client is counted from Logpush instead, so `daily_version_stats` and the version-request part of the Analytics Engine MAU/combined-DAU rollups only describe dates before that change. Analytics Engine data starts at `ANALYTICS_ENGINE_CUTOVER_DATE`; rollups for earlier dates cannot be recomputed.
 
 ## GitHub Token Management
 

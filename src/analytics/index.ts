@@ -68,7 +68,6 @@ export function setupAnalytics(
   return {
     // Tracking functions
     trackDownload: tracking.trackDownload,
-    trackVersionRequest: tracking.trackVersionRequest,
     getOrCreateToolId: tracking.getOrCreateToolId,
     getOrCreateBackendId: tracking.getOrCreateBackendId,
     getOrCreatePlatformId: tracking.getOrCreatePlatformId,
@@ -106,7 +105,6 @@ export function setupAnalytics(
     getGrowthMetrics: growth.getGrowthMetrics,
 
     // Version functions
-    getMiseDAUMAU: versions.getMiseDAUMAU,
     recordVersionUpdates: versions.recordVersionUpdates,
     getVersionUpdates: versions.getVersionUpdates,
   };

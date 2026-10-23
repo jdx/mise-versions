@@ -3,10 +3,7 @@ import type { drizzle } from "drizzle-orm/d1";
 import { sql, eq, and } from "drizzle-orm";
 import { tools, backends, platforms } from "./schema.js";
 import { keyPart } from "../../web/src/lib/kv-cache.js";
-import {
-  writeDownloadEvent,
-  writeVersionRequestEvent,
-} from "./analytics-engine.js";
+import { writeDownloadEvent } from "./analytics-engine.js";
 
 // Caches for ID lookups (shared within the tracking module)
 const toolCache = new Map<string, number>();
@@ -195,17 +192,6 @@ export function createTrackingFunctions(
     getOrCreateToolId,
     getOrCreateBackendId,
     getOrCreatePlatformId,
-
-    // Track a version request (for mise DAU/MAU). Events go to Analytics
-    // Engine and unique users are counted by the scheduled rollups, so nothing
-    // is deduplicated at write time. Without the Analytics Engine binding the
-    // event is dropped.
-    async trackVersionRequest(
-      ipHash: string,
-    ): Promise<{ deduplicated: boolean }> {
-      writeVersionRequestEvent(cache.events, ipHash);
-      return { deduplicated: false };
-    },
 
     // Track a download. Events go to Analytics Engine; per-IP/tool/version
     // deduplication happens in the scheduled rollups, so nothing is
