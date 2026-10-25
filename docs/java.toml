@@ -3694,6 +3694,7 @@
 "microsoft-musl-17.0.19" = { created_at = 2026-05-01T22:17:48.846Z }
 "microsoft-musl-17.0.20" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-musl-17.0.20.1" = { created_at = 2026-08-19T22:09:08.571Z }
+"microsoft-musl-17.0.21.0.2" = { created_at = 2026-10-24T22:09:48.082Z }
 "microsoft-11.0.11.9.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-11.0.12.7.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-11.0.13.8.1" = { created_at = 2025-03-28T22:04:32.217Z }
@@ -3741,6 +3742,7 @@
 "microsoft-17.0.19" = { created_at = 2026-05-01T22:17:48.846Z }
 "microsoft-17.0.20" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-17.0.20.1" = { created_at = 2026-08-19T22:09:08.571Z }
+"microsoft-17.0.21.0.2" = { created_at = 2026-10-24T22:09:48.082Z }
 "microsoft-17.35.1" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-21.0.0" = { created_at = 2025-03-28T22:04:32.217Z }
 "microsoft-21.0.1" = { created_at = 2025-03-28T22:04:32.217Z }
@@ -3756,12 +3758,14 @@
 "microsoft-21.0.11" = { created_at = 2026-05-01T22:17:48.846Z }
 "microsoft-21.0.12" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-21.0.12.1" = { created_at = 2026-08-19T22:09:08.571Z }
+"microsoft-21.0.13.0.2" = { created_at = 2026-10-24T22:09:48.082Z }
 "microsoft-25.0.0" = { created_at = 2025-09-26T22:07:24.115Z }
 "microsoft-25.0.1" = { created_at = 2025-10-28T22:06:20.405Z }
 "microsoft-25.0.2" = { created_at = 2026-01-28T22:08:21.106Z }
 "microsoft-25.0.3" = { created_at = 2026-05-01T22:17:48.846Z }
 "microsoft-25.0.4" = { created_at = 2026-07-22T22:25:13.044Z }
 "microsoft-25.0.4.1" = { created_at = 2026-08-19T22:09:08.571Z }
+"microsoft-25.0.5.0.2" = { created_at = 2026-10-24T22:09:48.082Z }
 "openjdk-9.0.0" = { created_at = 2025-03-28T22:04:33.828Z }
 "openjdk-9.0.1" = { created_at = 2025-03-28T22:04:33.828Z }
 "openjdk-9.0.4" = { created_at = 2025-03-28T22:04:33.828Z }
@@ -3819,6 +3823,7 @@
 "openjdk-27.0.0" = { created_at = 2026-08-20T22:10:37.164Z }
 "openjdk-27.0.1" = { created_at = 2026-10-20T22:12:25.072Z }
 "openjdk-27.0.1.0.2" = { created_at = 2026-10-22T22:10:11.449Z }
+"openjdk-27.0.1.0.3" = { created_at = 2026-10-24T22:09:55.755Z }
 "oracle-17.0.0" = { created_at = 2025-03-28T22:04:32.214Z }
 "oracle-17.0.1" = { created_at = 2025-03-28T22:04:32.214Z }
 "oracle-17.0.2" = { created_at = 2025-03-28T22:04:32.214Z }
@@ -3875,6 +3880,7 @@
 "oracle-25.0.4" = { created_at = 2026-07-21T22:23:53.837Z }
 "oracle-25.0.4.1" = { created_at = 2026-10-20T22:12:27.967Z }
 "oracle-25.0.5" = { created_at = 2026-10-20T22:12:27.967Z }
+"oracle-25.0.5.0.2" = { created_at = 2026-10-24T22:09:55.631Z }
 "oracle-26.0.0" = { created_at = 2026-03-17T22:10:11.887Z }
 "oracle-26.0.1" = { created_at = 2026-04-21T22:17:02.762Z }
 "oracle-26.0.2" = { created_at = 2026-07-21T22:23:53.837Z }
@@ -4665,6 +4671,7 @@
 "temurin-jre-musl-26.0.2+10" = { created_at = 2026-07-31T22:22:12.610Z }
 "temurin-jre-musl-26.0.2+101" = { created_at = 2026-08-31T22:10:40.483Z }
 "temurin-jre-musl-27.0.0+35" = { created_at = 2026-09-21T22:11:08.562Z }
+"temurin-jre-musl-27.0.1+0" = { created_at = 2026-10-24T22:09:48.111Z }
 "temurin-jre-8.0.302+8" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-jre-8.0.312+7" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-jre-8.0.322+6" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -4782,6 +4789,7 @@
 "temurin-jre-26.0.2+10" = { created_at = 2026-07-29T22:20:13.210Z }
 "temurin-jre-26.0.2+101" = { created_at = 2026-08-25T22:08:21.021Z }
 "temurin-jre-27.0.0+35" = { created_at = 2026-09-22T22:09:42.587Z }
+"temurin-jre-27.0.1+0" = { created_at = 2026-10-24T22:09:48.111Z }
 "temurin-musl-8.0.322+6" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-musl-8.0.332+9" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-musl-8.0.342+7" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -4898,6 +4906,7 @@
 "temurin-musl-26.0.2+10" = { created_at = 2026-07-31T22:22:12.610Z }
 "temurin-musl-26.0.2+101" = { created_at = 2026-08-31T22:10:40.483Z }
 "temurin-musl-27.0.0+35" = { created_at = 2026-09-21T22:11:08.562Z }
+"temurin-musl-27.0.1+0" = { created_at = 2026-10-24T22:09:48.111Z }
 "temurin-8.0.302+8" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-8.0.312+7" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-8.0.322+6" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -5018,6 +5027,7 @@
 "temurin-26.0.2+10" = { created_at = 2026-07-29T22:20:13.210Z }
 "temurin-26.0.2+101" = { created_at = 2026-08-25T22:08:21.021Z }
 "temurin-27.0.0+35" = { created_at = 2026-09-22T22:09:42.587Z }
+"temurin-27.0.1+0" = { created_at = 2026-10-24T22:09:48.111Z }
 "trava-8.0.192+0" = { created_at = 2025-03-28T22:02:37.280Z }
 "trava-8.0.202+8" = { created_at = 2025-03-28T22:02:37.280Z }
 "trava-8.0.232+9" = { created_at = 2025-03-28T22:02:37.280Z }
@@ -6530,3 +6540,4 @@
 "26.0.2+10" = { created_at = 2026-07-29T22:20:13.210Z }
 "26.0.2+101" = { created_at = 2026-08-25T22:08:21.021Z }
 "27.0.0+35" = { created_at = 2026-09-22T22:09:42.587Z }
+"27.0.1+0" = { created_at = 2026-10-24T22:09:48.111Z }
