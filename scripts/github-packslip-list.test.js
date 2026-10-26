@@ -125,6 +125,20 @@ test("a list is served with its exact text, from the subdirectory path for a mon
   `);
 });
 
+test("a leading byte-order mark stays in the text", () => {
+  runRouteTest(`${ROUTE}
+    const bytes = new Uint8Array([0xef, 0xbb, 0xbf, ...new TextEncoder().encode("{}")]);
+    contents = () =>
+      Response.json({
+        type: "file",
+        encoding: "base64",
+        content: btoa(String.fromCharCode(...bytes)),
+      });
+    const body = await (await call(undefined)).json();
+    assert.equal(body.text, "\\ufeff{}");
+  `);
+});
+
 test("a directory or symlink at the path is no list, and a file GitHub will not return whole is an error", () => {
   runRouteTest(`${ROUTE}
     contents = () => Response.json([{ type: "file", name: "x" }]);

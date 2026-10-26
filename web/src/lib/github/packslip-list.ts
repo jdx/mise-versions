@@ -91,7 +91,11 @@ export async function fetchPackslipList(
   }
   let text: string;
   try {
-    text = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    // `ignoreBOM` keeps a leading byte-order mark in the text, which is what
+    // the file holds; the default drops it.
+    text = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(
+      bytes,
+    );
   } catch {
     throw new GitHubError(502, "The packslip list is not UTF-8", new Headers());
   }
