@@ -227,6 +227,45 @@ lookups fail for users, and avoiding that is the reason the mirror exists.
 A `200` is always a complete or truncated list as described above, never a
 partial error.
 
+## Packslip release lists
+
+```
+GET https://mise-versions.jdx.dev/api/github/repos/{owner}/{repo}/packslip-list
+GET https://mise-versions.jdx.dev/api/github/repos/{owner}/{repo}/packslip-list/{sub}
+```
+
+A packslip project may publish a signed release list on its repository's
+default branch, at `.well-known/packslip.json`, or
+`.well-known/packslip/{sub}.json` for a project in a subdirectory. Nearly every
+repository has none, and mise has to ask on every resolution, so this route
+answers for both cases instead of leaving clients to ask
+`raw.githubusercontent.com`, which rate-limits by IP address and so fails on
+shared CI runners.
+
+`200`, always, for a repository the mirror serves:
+
+```json
+{ "present": true, "text": "{\"payload\": ...}", "fetched_at": "2026-10-26T12:00:00Z" }
+{ "present": false, "fetched_at": "2026-10-26T12:00:00Z" }
+```
+
+`text` is the file's exact contents, which the client verifies as it would the
+file from GitHub. `present: false` means the default branch has no regular file
+at that path (a directory, a symlink or a submodule counts as none, as it does
+on raw.githubusercontent.com).
+
+The answer is kept at the edge for 10 minutes, so a vendor's new list, or a
+withdrawal in it, reaches clients within that. Nothing is written to KV, and
+errors are never cached.
+
+- A private or missing repo is a `404`, and a restricted or disabled mirror a
+  `403`. Neither says anything about the list: a client reads the file from
+  GitHub with the user's credentials instead.
+- `429`, `502` and `503` mean the mirror could not tell. A client reads the file
+  from GitHub, and does not take the mirror's silence as "no list".
+- `sub` is `[A-Za-z0-9._+@~-]` segments, none `.` or `..`; anything else is a
+  `400`.
+
 ## Access
 
 Only repositories GitHub reports as public are served, the same as the other
