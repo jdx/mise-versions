@@ -140,11 +140,6 @@ try {
 } finally {
   await rm(dir, { recursive: true, force: true });
 }
-// Fail closed: a failed refresh leaves the last reviewed snapshot intact.
-if (failures)
-  throw new Error(
-    `${failures} repository refreshes failed; snapshot not written`,
-  );
 const response = await get(
   "https://raw.githubusercontent.com/jdx/mise-analytics/main/mise.csv",
 );
@@ -177,16 +172,24 @@ await writeFile(
   new URL("mise-adoption.json", data),
   JSON.stringify(points, null, 2) + "\n",
 );
-await writeFile(
-  new URL("packslip.json", data),
-  JSON.stringify(
-    Object.fromEntries(
-      Object.entries(catalog).sort(([a], [b]) => a.localeCompare(b)),
-    ),
-    null,
-    2,
-  ) + "\n",
-);
-console.log(
-  `Saved ${points.length} adoption observations and ${Object.keys(catalog).length} verified manifests`,
-);
+console.log(`Saved ${points.length} adoption observations`);
+// Fail closed: a failed manifest refresh leaves the last reviewed packslip
+// snapshot intact. It must not hold back the adoption data above, which
+// the stats pages mark as delayed once it is more than two days old.
+if (failures) {
+  console.log(
+    `::warning::${failures} manifest refreshes failed; packslip.json not written`,
+  );
+} else {
+  await writeFile(
+    new URL("packslip.json", data),
+    JSON.stringify(
+      Object.fromEntries(
+        Object.entries(catalog).sort(([a], [b]) => a.localeCompare(b)),
+      ),
+      null,
+      2,
+    ) + "\n",
+  );
+  console.log(`Saved ${Object.keys(catalog).length} verified manifests`);
+}
