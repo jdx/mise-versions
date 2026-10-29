@@ -101,10 +101,12 @@ try {
           [
             "verify",
             "--json",
-            "--identity-prefix",
-            `https://github.com/${canonicalRepo}/`,
             "--issuer",
             "https://token.actions.githubusercontent.com",
+            // The certificate's source repository, so a release signed through
+            // a shared reusable workflow still has to come from this repository.
+            "--source-repository",
+            `https://github.com/${canonicalRepo}`,
             path,
           ],
           { encoding: "utf8", timeout: 60_000, maxBuffer: 5_000_000 },

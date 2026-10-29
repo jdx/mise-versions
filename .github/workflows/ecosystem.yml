@@ -24,9 +24,9 @@ jobs:
       - uses: jdx/mise-action@8418fedb1110381a0d3ba51a7a415d7c1b884550 # v5.2.2
       - run: aube ci
       - name: Install manifest verifier
-        run: mise install github:jdx/packslip@1.4.0
+        run: mise install github:jdx/packslip@1.10.1
       - name: Refresh adoption data and discover publisher manifests
-        run: mise exec github:jdx/packslip@1.4.0 -- aube exec tsx scripts/update-ecosystem.ts
+        run: mise exec github:jdx/packslip@1.10.1 -- aube exec tsx scripts/update-ecosystem.ts
         env:
           GH_TOKEN: ${{ secrets.MISE_GITHUB_TOKEN || github.token }}
       - name: Refresh project stats and mise release markers

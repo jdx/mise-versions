@@ -74,6 +74,27 @@ test("rejects wrong project, version, signer, unlogged and repackaged manifests"
   assert.throws(() => summarize(s));
 });
 
+test("accepts a shared reusable workflow only when the certificate's source is the repository", () => {
+  const shared = {
+    ...verified,
+    key_id:
+      "https://github.com/vendor/shared/.github/workflows/release.yaml@refs/tags/v1",
+  };
+  assert.throws(() => summarize(statement, shared));
+  assert.throws(() =>
+    summarize(statement, {
+      ...shared,
+      source_repository: { uri: "https://github.com/vendor/tool-evil" },
+    }),
+  );
+  assert.ok(
+    summarize(statement, {
+      ...shared,
+      source_repository: { uri: `https://github.com/${repo}` },
+    }),
+  );
+});
+
 test("directory badges resolve supported backends without mistaking plugins for vendors", async () => {
   const { getPackslipForBackends } = await import("./packslip");
   assert.equal(

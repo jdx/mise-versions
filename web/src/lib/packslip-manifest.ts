@@ -30,7 +30,12 @@ export function summarizePackslip(
     verified?.attested_by !== "vendor" ||
     verified?.scheme !== "sigstore-oidc" ||
     verified?.issuer !== "https://token.actions.githubusercontent.com" ||
-    !verified?.key_id?.startsWith(`https://github.com/${repo}/`) ||
+    // Signed by a workflow of the repository, or through a shared reusable
+    // workflow whose certificate records the repository as its source.
+    !(
+      verified?.key_id?.startsWith(`https://github.com/${repo}/`) ||
+      verified?.source_repository?.uri === `https://github.com/${repo}`
+    ) ||
     !verified?.logged_at ||
     !Array.isArray(p.artifacts) ||
     !Array.isArray(p.resources ?? [])
