@@ -132,6 +132,37 @@
     "artifactCount": 12,
     "provenanceCount": 12
   },
+  "gabrie30/ghorg": {
+    "project": "github.com/gabrie30/ghorg",
+    "version": "1.11.17",
+    "publishedAt": "2026-10-31T12:49:37.604781428Z",
+    "manifestUrl": "https://github.com/gabrie30/ghorg/releases/download/v1.11.17/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/gabrie30/ghorg/releases/tag/v1.11.17",
+    "publisher": "gabrie30",
+    "capabilities": [
+      {
+        "label": "Shell completions",
+        "detail": "bash · zsh · fish · powershell"
+      },
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / i686",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / i686",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["ghorg", "ghorg.exe"],
+    "artifactCount": 8,
+    "provenanceCount": 0
+  },
   "helmfile/helmfile": {
     "project": "github.com/helmfile/helmfile",
     "version": "1.8.2",
@@ -423,10 +454,10 @@
   },
   "jdx/usage": {
     "project": "github.com/jdx/usage",
-    "version": "7.1.4",
-    "publishedAt": "2026-10-30T10:10:34.485070599Z",
-    "manifestUrl": "https://github.com/jdx/usage/releases/download/v7.1.4/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v7.1.4",
+    "version": "7.1.5",
+    "publishedAt": "2026-11-01T10:10:20.524319237Z",
+    "manifestUrl": "https://github.com/jdx/usage/releases/download/v7.1.5/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v7.1.5",
     "publisher": "jdx",
     "capabilities": [
       {
