@@ -1,10 +1,30 @@
 {
+  "aquaproj/aqua": {
+    "project": "github.com/aquaproj/aqua",
+    "version": "2.66.0",
+    "publishedAt": "2026-11-02T11:12:27.545779125Z",
+    "manifestUrl": "https://github.com/aquaproj/aqua/releases/download/v2.66.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aquaproj/aqua/releases/tag/v2.66.0",
+    "publisher": "aquaproj",
+    "capabilities": [],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["aqua", "aqua.exe"],
+    "artifactCount": 6,
+    "provenanceCount": 6
+  },
   "aubepkg/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.8.5",
-    "publishedAt": "2026-10-30T17:28:42.290860364Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.8.5/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.8.5",
+    "version": "2.9.0",
+    "publishedAt": "2026-11-02T15:32:55.175886331Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.9.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.9.0",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -99,10 +119,10 @@
   },
   "dagucloud/dagu": {
     "project": "github.com/dagucloud/dagu",
-    "version": "2.24.0",
-    "publishedAt": "2026-10-27T08:04:55.352377052Z",
-    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.24.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.24.0",
+    "version": "2.25.1",
+    "publishedAt": "2026-11-02T08:23:35.397671497Z",
+    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.25.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.25.1",
     "publisher": "dagucloud",
     "capabilities": [
       {
@@ -196,10 +216,10 @@
   },
   "jdx/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.8.5",
-    "publishedAt": "2026-10-30T17:28:42.290860364Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.8.5/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.8.5",
+    "version": "2.9.0",
+    "publishedAt": "2026-11-02T15:32:55.175886331Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.9.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.9.0",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -264,10 +284,10 @@
   },
   "jdx/fnox": {
     "project": "github.com/jdx/fnox",
-    "version": "1.45.0",
-    "publishedAt": "2026-10-29T19:46:00.951228719Z",
-    "manifestUrl": "https://github.com/jdx/fnox/releases/download/v1.45.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/fnox/releases/tag/v1.45.0",
+    "version": "1.46.0",
+    "publishedAt": "2026-11-01T10:28:11.299245655Z",
+    "manifestUrl": "https://github.com/jdx/fnox/releases/download/v1.46.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/fnox/releases/tag/v1.46.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -299,10 +319,10 @@
   },
   "jdx/hk": {
     "project": "github.com/jdx/hk",
-    "version": "2.10.0",
-    "publishedAt": "2026-10-29T10:25:34.101030039Z",
-    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.10.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.10.0",
+    "version": "2.11.0",
+    "publishedAt": "2026-11-01T10:28:40.120635493Z",
+    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.11.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.11.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -356,12 +376,38 @@
     "artifactCount": 11,
     "provenanceCount": 11
   },
+  "jdx/jouet": {
+    "project": "github.com/jdx/jouet",
+    "version": "0.0.1",
+    "publishedAt": "2026-10-30T15:13:03.971388631Z",
+    "manifestUrl": "https://github.com/jdx/jouet/releases/download/v0.0.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/jouet/releases/tag/v0.0.1",
+    "publisher": "jdx",
+    "capabilities": [
+      {
+        "label": "Usage CLI spec",
+        "detail": "Enables generated completions and documentation"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64"
+    ],
+    "binaries": ["jouet", "jouet.exe"],
+    "artifactCount": 7,
+    "provenanceCount": 7
+  },
   "jdx/mr-boxington": {
     "project": "github.com/jdx/mr-boxington",
-    "version": "1.29.0",
-    "publishedAt": "2026-10-29T10:34:49.935346213Z",
-    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.29.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.29.0",
+    "version": "1.29.1",
+    "publishedAt": "2026-11-01T10:28:53.176234183Z",
+    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.29.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.29.1",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -392,10 +438,10 @@
   },
   "jdx/pitchfork": {
     "project": "github.com/jdx/pitchfork",
-    "version": "2.32.4",
-    "publishedAt": "2026-10-29T10:35:34.602880888Z",
-    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.32.4/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.32.4",
+    "version": "2.33.0",
+    "publishedAt": "2026-11-01T10:33:20.726384959Z",
+    "manifestUrl": "https://github.com/jdx/pitchfork/releases/download/v2.33.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/pitchfork/releases/tag/v2.33.0",
     "publisher": "jdx",
     "capabilities": [
       {
