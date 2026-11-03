@@ -1010,11 +1010,11 @@
 "8.0.29" = { created_at = 2023-06-08T00:00:00.000Z }
 "8.0.30" = { created_at = 2023-08-03T00:00:00.000Z }
 "8.1.0alpha3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.1.0beta3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.1.0beta1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.1.0alpha1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.1.0alpha2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.1.0beta1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.1.0beta2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.1.0alpha2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.1.0beta3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.1.0RC6" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.1.0RC2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.1.0RC5" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
@@ -1239,34 +1239,34 @@
 "8.3.34" = { created_at = 2026-09-22T11:11:48.763Z }
 "8.3.35" = { created_at = 2026-09-24T00:00:00.000Z }
 "8.3.36" = { created_at = 2026-10-21T00:00:00.000Z }
+"8.4.0beta5" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0beta2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0alpha4" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0beta4" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0beta3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0beta1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.4.0RC3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.4.0RC4" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0alpha3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0RC2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.4.0RC4" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.4.0RC3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0alpha2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0alpha1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.4.0beta5" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.0" = { created_at = 2025-12-17T23:53:31.981Z }
 "8.4.1" = { created_at = 2024-11-21T00:00:00.000Z }
 "8.4.2RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.2" = { created_at = 2024-12-19T00:00:00.000Z }
 "8.4.3RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.3" = { created_at = 2025-01-16T00:00:00.000Z }
-"8.4.4RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.4RC2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.4.4RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.4" = { created_at = 2025-02-13T00:00:00.000Z }
 "8.4.5RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.5" = { created_at = 2025-03-13T00:00:00.000Z }
 "8.4.6RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.6" = { created_at = 2025-04-10T00:00:00.000Z }
-"8.4.7RC2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.7RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.4.7RC2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.7" = { created_at = 2025-05-08T00:00:00.000Z }
 "8.4.8RC1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.4.8" = { created_at = 2025-06-05T00:00:00.000Z }
@@ -1308,11 +1308,11 @@
 "8.4.27RC1" = { created_at = 2026-10-06T18:14:12.482Z, prerelease = true }
 "8.4.27" = { created_at = 2026-10-21T00:00:00.000Z }
 "8.5.0alpha4" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.5.0beta2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.5.0alpha2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.5.0beta1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.5.0beta3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.5.0alpha3" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
-"8.5.0beta1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
+"8.5.0beta2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.5.0alpha1" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.5.0RC2" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
 "8.5.0RC5" = { created_at = 2025-12-17T23:53:31.981Z, prerelease = true }
@@ -1348,6 +1348,7 @@
 "8.5.11" = { created_at = 2026-09-24T00:00:00.000Z }
 "8.5.12RC1" = { created_at = 2026-10-06T23:42:21.916Z, prerelease = true }
 "8.5.12" = { created_at = 2026-10-21T00:00:00.000Z }
+"8.5.13RC1" = { created_at = 2026-11-03T23:13:11.827Z, prerelease = true }
 "8.6.0RC1" = { created_at = 2026-09-22T15:43:04.288Z, prerelease = true }
 "8.6.0beta1" = { created_at = 2026-08-11T17:53:13.490Z, prerelease = true }
 "8.6.0beta2" = { created_at = 2026-08-25T11:46:02.563Z, prerelease = true }
