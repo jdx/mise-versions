@@ -1,148 +1,78 @@
 [versions]
-".0.29.0" = { created_at = 2020-08-25T01:54:29.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v.0.29.0" }
-"0.20.0" = { created_at = 2020-03-30T04:06:52.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.20.0" }
-"0.21.0" = { created_at = 2020-04-06T01:39:05.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.21.0" }
-"0.21.1" = { created_at = 2020-04-06T19:40:10.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.21.1" }
-"0.23.0" = { created_at = 2020-05-16T04:09:23.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.23.0" }
-"0.23.1" = { created_at = 2020-05-22T20:50:18.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.23.1" }
-"0.25.0" = { created_at = 2020-06-25T23:21:32.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.25.0" }
-"0.26.0" = { created_at = 2020-06-28T05:47:54.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.26.0" }
-"0.27.0" = { created_at = 2020-07-15T19:12:41.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.27.0" }
-"0.28.0" = { created_at = 2020-07-31T22:14:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.28.0" }
-"0.30.0" = { created_at = 2020-09-17T02:44:12.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.30.0" }
-"0.31.0" = { created_at = 2020-09-22T20:53:17.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v0.31.0" }
-"1.0.0-rc1" = { created_at = 2020-09-28T23:17:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.0.0-rc1" }
-"1.0.0" = { created_at = 2020-09-30T01:09:40.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.0.0" }
-"1.1.0" = { created_at = 2020-10-14T01:31:25.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.1.0" }
-"1.1.1" = { created_at = 2020-10-20T22:59:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.1.1" }
-"1.2.1" = { created_at = 2020-10-27T21:38:22.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.2.1" }
-"1.2.2" = { created_at = 2020-11-20T23:03:48.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.2.2" }
-"1.3.0" = { created_at = 2020-11-11T21:11:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.3.0" }
-"1.3.1" = { created_at = 2020-11-16T21:45:06.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.3.1" }
-"1.3.2" = { created_at = 2020-11-20T23:35:19.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.3.2" }
-"1.4.0" = { created_at = 2020-12-09T03:41:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.4.0" }
-"1.4.1" = { created_at = 2020-12-11T00:52:39.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.4.1" }
-"1.4.2" = { created_at = 2020-12-30T01:33:31.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.4.2" }
-"1.5.0" = { created_at = 2020-12-23T00:27:26.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.5.0" }
-"1.5.1" = { created_at = 2020-12-30T01:43:36.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.5.1" }
-"1.8.0" = { created_at = 2021-03-24T01:44:02.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.8.0" }
-"1.8.1" = { created_at = 2021-04-07T22:41:32.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.8.1" }
-"1.8.2" = { created_at = 2021-04-15T18:54:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.8.2" }
-"1.9.0" = { created_at = 2021-04-30T00:05:50.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.9.0" }
-"1.9.1" = { created_at = 2021-05-05T01:36:23.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.9.1" }
-"1.9.2" = { created_at = 2021-05-07T21:45:20.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.9.2" }
-"1.9.3" = { created_at = 2021-06-23T23:54:22.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.9.3" }
-"1.10.0" = { created_at = 2021-06-07T23:24:19.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.10.0" }
-"1.10.1" = { created_at = 2021-06-07T23:24:36.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.10.1" }
-"1.10.2" = { created_at = 2021-06-11T22:15:56.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.10.2" }
-"1.10.3" = { created_at = 2021-06-22T17:33:17.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.10.3" }
-"1.10.4" = { created_at = 2021-06-23T23:52:37.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.10.4" }
-"1.10.5" = { created_at = 2021-06-25T17:15:27.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.10.5" }
-"1.11.0" = { created_at = 2021-07-20T00:35:00.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.11.0", prerelease = true }
-"1.11.1" = { created_at = 2021-07-20T01:49:47.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.11.1", prerelease = true }
-"1.11.2" = { created_at = 2021-07-22T22:05:49.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.11.2" }
-"1.11.3" = { created_at = 2021-08-06T19:00:25.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.11.3" }
-"1.11.4" = { created_at = 2021-08-19T01:08:39.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.11.4" }
-"1.12.0" = { created_at = 2021-08-31T17:41:06.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.12.0" }
-"1.12.1" = { created_at = 2021-09-16T23:19:10.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.12.1" }
-"1.12.2" = { created_at = 2021-10-04T19:57:07.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.12.2" }
-"1.12.3" = { created_at = 2021-10-07T20:49:42.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.12.3" }
-"1.12.4" = { created_at = 2021-10-29T19:42:58.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.12.4" }
-"1.13.0" = { created_at = 2021-10-29T20:12:47.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.13.0" }
-"1.13.1" = { created_at = 2021-11-04T01:27:53.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.13.1" }
-"1.13.2" = { created_at = 2021-12-21T04:50:10.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.13.2" }
-"1.13.3" = { created_at = 2022-01-12T23:10:56.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.13.3" }
-"1.13.4" = { created_at = 2022-02-11T05:22:49.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.13.4" }
-"1.14.0" = { created_at = 2021-12-14T04:54:11.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.0" }
-"1.14.1" = { created_at = 2021-12-21T05:10:37.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.1" }
-"1.14.2" = { created_at = 2022-01-11T00:31:28.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.2" }
-"1.14.3" = { created_at = 2022-01-19T00:43:41.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.3" }
-"1.14.4" = { created_at = 2022-01-22T02:22:32.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.4" }
-"1.14.5" = { created_at = 2022-02-11T05:22:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.5" }
-"1.14.6" = { created_at = 2022-03-04T22:56:14.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.14.6" }
-"1.15.0" = { created_at = 2022-02-12T04:46:16.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.15.0" }
-"1.15.1" = { created_at = 2022-03-01T05:10:17.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.15.1" }
-"1.15.2" = { created_at = 2022-03-05T00:31:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.15.2" }
-"1.16.0" = { created_at = 2022-04-12T18:34:33.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.16.0" }
-"1.16.1" = { created_at = 2022-04-19T19:46:44.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.16.1" }
-"1.16.2" = { created_at = 2022-05-09T22:32:40.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.16.2" }
-"1.16.3" = { created_at = 2022-07-13T17:34:49.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.16.3" }
-"1.17.0" = { created_at = 2022-06-21T20:51:20.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.17.0", prerelease = true }
-"1.17.1" = { created_at = 2022-07-13T02:23:47.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.17.1" }
-"1.17.2" = { created_at = 2022-08-03T01:09:43.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.17.2" }
-"1.17.4" = { created_at = 2022-08-17T00:51:28.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.17.4" }
-"1.17.5" = { created_at = 2022-08-31T00:58:33.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.17.5" }
-"1.17.6" = { created_at = 2022-09-15T17:40:54.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.17.6" }
-"1.18.0" = { created_at = 2022-09-19T17:43:37.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.18.0" }
-"1.18.1" = { created_at = 2022-10-11T00:14:21.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.18.1" }
-"1.18.2" = { created_at = 2022-10-19T01:56:34.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.18.2", prerelease = true }
-"1.18.3" = { created_at = 2022-10-20T19:48:06.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.18.3" }
-"1.18.4" = { created_at = 2022-11-01T02:04:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.18.4" }
-"1.18.5" = { created_at = 2022-11-17T21:20:09.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.18.5" }
-"1.19.0" = { created_at = 2022-12-01T21:47:42.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.19.0" }
-"1.19.1" = { created_at = 2023-01-14T06:11:10.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.19.1" }
-"1.20.0" = { created_at = 2023-02-17T21:47:12.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.20.0" }
-"1.20.1" = { created_at = 2023-03-30T01:04:53.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.20.1" }
-"1.20.2" = { created_at = 2023-04-20T18:12:05.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.20.2" }
-"1.20.3" = { created_at = 2023-05-16T04:25:03.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.20.3" }
-"1.20.4" = { created_at = 2023-07-13T23:55:09.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.20.4" }
-"1.21.0" = { created_at = 2023-06-23T18:55:22.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.21.0" }
-"1.21.1" = { created_at = 2023-07-03T16:20:11.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.21.1" }
-"1.21.2" = { created_at = 2023-07-15T02:18:44.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.21.2" }
-"1.21.3" = { created_at = 2023-07-24T23:27:36.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.21.3" }
-"1.21.4" = { created_at = 2023-07-31T17:11:15.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.21.4" }
-"1.21.5" = { created_at = 2023-08-25T23:21:54.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.21.5" }
-"1.22.0" = { created_at = 2023-09-05T22:31:35.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.0" }
-"1.22.1" = { created_at = 2023-10-20T16:10:49.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.1" }
-"1.22.2" = { created_at = 2023-11-13T18:40:55.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.2" }
-"1.22.4" = { created_at = 2024-01-12T21:01:44.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.4" }
-"1.22.5" = { created_at = 2024-02-22T01:47:40.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.5" }
-"1.22.6" = { created_at = 2024-03-06T17:16:57.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.6" }
-"1.22.7" = { created_at = 2024-03-29T23:03:34.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.22.7" }
-"1.23.0" = { created_at = 2024-03-22T17:29:16.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.23.0" }
-"1.23.1" = { created_at = 2024-04-30T18:01:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.23.1" }
-"1.24.0" = { created_at = 2024-05-31T21:40:20.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.24.0" }
-"1.24.1" = { created_at = 2024-06-05T23:40:40.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.24.1" }
-"1.24.2" = { created_at = 2024-06-17T16:47:11.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.24.2" }
-"1.24.3" = { created_at = 2024-10-18T01:02:39.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.24.3" }
-"1.25.0" = { created_at = 2024-09-09T23:25:50.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.25.0" }
-"1.25.1" = { created_at = 2024-10-10T20:49:34.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.25.1" }
-"1.25.2" = { created_at = 2024-11-06T01:52:13.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.25.2" }
-"1.26.2" = { created_at = 2024-12-23T18:23:06.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.26.2" }
-"1.26.3" = { created_at = 2025-08-20T22:30:29.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.26.3" }
-"1.27.0" = { created_at = 2025-02-22T00:18:03.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.27.0", prerelease = true }
-"1.27.1" = { created_at = 2025-02-26T23:01:15.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.27.1" }
-"1.27.2" = { created_at = 2025-03-28T16:36:34.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.27.2" }
-"1.27.3" = { created_at = 2025-08-20T22:29:48.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.27.3" }
-"1.27.4" = { created_at = 2025-12-30T20:03:41.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.27.4" }
-"1.28.0" = { created_at = 2025-06-27T21:12:27.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.28.0" }
-"1.28.1" = { created_at = 2025-08-06T19:12:26.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.28.1" }
-"1.28.2" = { created_at = 2025-12-30T20:05:59.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.28.2" }
-"1.28.3" = { created_at = 2026-03-18T17:30:05.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.28.3" }
-"1.28.4" = { created_at = 2026-04-10T21:07:31.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.28.4" }
-"1.29.0" = { created_at = 2025-10-03T17:33:49.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.0" }
-"1.29.1" = { created_at = 2025-10-29T23:47:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.1" }
-"1.29.2" = { created_at = 2025-12-30T20:07:43.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.2" }
-"1.29.3" = { created_at = 2026-02-04T18:17:36.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.3" }
-"1.29.4" = { created_at = 2026-03-07T03:40:00.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.4" }
-"1.29.5" = { created_at = 2026-04-01T17:55:00.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.5" }
-"1.29.6" = { created_at = 2026-04-10T21:07:12.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.6" }
-"1.29.7" = { created_at = 2026-06-12T16:51:23.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.29.7" }
-"1.30.1" = { created_at = 2026-03-02T22:45:48.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.1" }
-"1.30.2" = { created_at = 2026-03-24T22:40:36.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.2" }
-"1.30.3" = { created_at = 2026-04-01T17:55:04.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.3" }
-"1.30.4" = { created_at = 2026-04-10T21:06:39.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.4" }
-"1.30.5" = { created_at = 2026-06-15T20:06:55.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.5" }
-"1.30.6" = { created_at = 2026-07-08T17:10:18.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.6" }
-"1.30.7" = { created_at = 2026-09-18T00:08:08.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.7" }
-"1.30.8" = { created_at = 2026-10-12T16:38:16.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.8" }
-"1.30.9" = { created_at = 2026-11-02T18:28:55.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.30.9" }
-"1.31.0" = { created_at = 2026-04-29T21:09:18.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.31.0" }
-"1.31.1" = { created_at = 2026-06-10T16:46:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.31.1" }
-"1.31.2" = { created_at = 2026-07-08T17:10:11.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.31.2" }
-"1.31.3" = { created_at = 2026-09-18T20:31:24.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.31.3" }
-"1.31.4" = { created_at = 2026-10-12T16:38:13.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.31.4" }
-"1.31.5" = { created_at = 2026-11-02T18:34:49.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.31.5" }
-"1.32.0" = { created_at = 2026-09-11T16:10:29.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.32.0" }
-"1.32.1" = { created_at = 2026-10-08T21:56:07.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.32.1" }
-"1.32.2" = { created_at = 2026-11-02T18:38:48.000Z, release_url = "https://github.com/temporalio/temporal/releases/tag/v1.32.2" }
+"0.1.0" = { created_at = 2022-11-21T18:00:32.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.1.0" }
+"0.2.0" = { created_at = 2022-12-01T18:49:07.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.2.0" }
+"0.3.0" = { created_at = 2023-01-27T04:04:21.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.3.0" }
+"0.4.0" = { created_at = 2023-02-08T16:11:11.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.4.0" }
+"0.5.0" = { created_at = 2023-02-16T19:56:00.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/0.5.0" }
+"0.6.0" = { created_at = 2023-03-13T04:29:37.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.6.0" }
+"0.7.0" = { created_at = 2023-03-30T00:08:01.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.7.0" }
+"0.8.0" = { created_at = 2023-04-04T17:00:38.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.8.0" }
+"0.9.0" = { created_at = 2023-05-12T18:04:06.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.9.0" }
+"0.10.0" = { created_at = 2023-06-27T04:40:54.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.0" }
+"0.10.1" = { created_at = 2023-07-12T04:09:07.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.1" }
+"0.10.2" = { created_at = 2023-07-18T03:02:00.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.2" }
+"0.10.3" = { created_at = 2023-07-21T22:13:31.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.3" }
+"0.10.4" = { created_at = 2023-07-26T18:23:32.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.4" }
+"0.10.5" = { created_at = 2023-08-01T19:06:55.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.5" }
+"0.10.6" = { created_at = 2023-10-02T22:02:12.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.6" }
+"0.10.7" = { created_at = 2023-11-21T00:22:52.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.10.7" }
+"0.11.0" = { created_at = 2024-01-31T22:13:10.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.11.0" }
+"0.12.0-rc.2" = { created_at = 2024-03-27T21:41:32.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.12.0-rc.2", prerelease = true }
+"0.12.0-rc.3" = { created_at = 2024-04-23T13:02:51.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.12.0-rc.3", prerelease = true }
+"0.12.0" = { created_at = 2024-04-29T15:51:43.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.12.0" }
+"0.13.0-rc.2" = { created_at = 2024-06-11T00:04:47.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.13.0-rc.2", prerelease = true }
+"0.13.0" = { created_at = 2024-06-12T19:54:50.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.13.0" }
+"0.13.1" = { created_at = 2024-06-19T22:31:17.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.13.1" }
+"0.13.2" = { created_at = 2024-07-08T17:48:33.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.13.2" }
+"0.14.0-nexus.0" = { created_at = 2024-07-19T18:28:31.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v0.14.0-nexus.0", prerelease = true }
+"1.0.0" = { created_at = 2024-08-06T14:44:30.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.0.0" }
+"1.1.0" = { created_at = 2024-09-16T20:42:14.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.1.0" }
+"1.1.1" = { created_at = 2024-10-21T16:40:27.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.1.1" }
+"1.1.2" = { created_at = 2024-11-25T18:11:21.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.1.2" }
+"1.2.0-versioning.0" = { created_at = 2024-12-12T19:48:52.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.2.0-versioning.0", prerelease = true }
+"1.2.0" = { created_at = 2025-01-15T20:16:51.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.2.0" }
+"1.3.0-rc.0" = { created_at = 2025-02-21T17:21:09.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.0-rc.0", prerelease = true }
+"1.3.0-versioning.0" = { created_at = 2025-02-18T21:42:30.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.0-versioning.0", prerelease = true }
+"1.3.0" = { created_at = 2025-02-27T21:34:26.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.0" }
+"1.3.1-nexus-cancellation.0" = { created_at = 2025-05-01T21:07:31.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.1-nexus-cancellation.0", prerelease = true }
+"1.3.1-nexus-links.0" = { created_at = 2025-05-06T22:08:58.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.1-nexus-links.0", prerelease = true }
+"1.3.1-persistence-fix.0" = { created_at = 2025-04-17T20:48:29.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.1-persistence-fix.0", prerelease = true }
+"1.3.1-priority.0" = { created_at = 2025-03-25T20:39:41.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.3.1-priority.0", prerelease = true }
+"1.4.0" = { created_at = 2025-07-08T20:16:00.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.4.0" }
+"1.4.1-cloud-v1-29-0-139-2.0" = { created_at = 2025-08-14T20:29:17.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.4.1-cloud-v1-29-0-139-2.0", prerelease = true }
+"1.4.1" = { created_at = 2025-07-14T16:37:05.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.4.1" }
+"1.4.2-fairness.0" = { created_at = 2025-08-27T20:45:05.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.4.2-fairness.0", prerelease = true }
+"1.5.0-rc" = { created_at = 2025-10-07T18:55:29.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.5.0-rc", prerelease = true }
+"1.5.0" = { created_at = 2025-10-10T18:17:16.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.5.0" }
+"1.5.1" = { created_at = 2025-11-03T22:19:38.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.5.1" }
+"1.5.2-standalone-activity-server" = { created_at = 2026-02-04T22:20:49.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.5.2-standalone-activity-server", prerelease = true }
+"1.6.0" = { created_at = 2026-02-05T15:35:29.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.0" }
+"1.6.1-server-1.31.0-150.0" = { created_at = 2026-02-06T00:38:15.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.1-server-1.31.0-150.0", prerelease = true }
+"1.6.1-server-1.31.0-151.0" = { created_at = 2026-02-18T18:09:54.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.1-server-1.31.0-151.0", prerelease = true }
+"1.6.1" = { created_at = 2026-03-03T01:04:02.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.1" }
+"1.6.2-server-1.31.0-151.6" = { created_at = 2026-03-12T20:57:31.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.2-server-1.31.0-151.6", prerelease = true }
+"1.6.2-standalone-activity" = { created_at = 2026-03-10T15:47:10.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.2-standalone-activity", prerelease = true }
+"1.6.2" = { created_at = 2026-03-25T18:41:14.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.2" }
+"1.6.3-serverless" = { created_at = 2026-04-15T15:28:10.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.6.3-serverless", prerelease = true }
+"1.7.0" = { created_at = 2026-04-29T22:36:03.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.0" }
+"1.7.1-standalone-nexus-operations" = { created_at = 2026-04-30T00:08:15.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.1-standalone-nexus-operations", prerelease = true }
+"1.7.1-system-nexus-operations" = { created_at = 2026-06-03T15:57:05.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.1-system-nexus-operations", prerelease = true }
+"1.7.1" = { created_at = 2026-06-01T23:30:16.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.1" }
+"1.7.2-one-time-versioning-override" = { created_at = 2026-07-06T18:08:51.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.2-one-time-versioning-override", prerelease = true }
+"1.7.2-standalone-nexus-operations" = { created_at = 2026-06-05T17:08:15.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.2-standalone-nexus-operations", prerelease = true }
+"1.7.2" = { created_at = 2026-06-10T15:35:49.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.2" }
+"1.7.3-standalone-nexus-operations" = { created_at = 2026-07-09T15:49:45.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.3-standalone-nexus-operations", prerelease = true }
+"1.7.3" = { created_at = 2026-07-08T19:30:15.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.3" }
+"1.7.4-standalone-nexus-operations" = { created_at = 2026-07-13T16:54:00.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.7.4-standalone-nexus-operations", prerelease = true }
+"1.8.0" = { created_at = 2026-07-10T20:08:11.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.8.0" }
+"1.8.1" = { created_at = 2026-07-21T17:36:10.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.8.1" }
+"1.8.2" = { created_at = 2026-07-31T15:05:06.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.8.2" }
+"1.8.3-server-1.32.0-162.0" = { created_at = 2026-08-24T16:42:04.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.8.3-server-1.32.0-162.0", prerelease = true }
+"1.8.3" = { created_at = 2026-09-02T20:07:43.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.8.3" }
+"1.9.0-rc.1" = { created_at = 2026-09-11T21:49:11.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.9.0-rc.1", prerelease = true }
+"1.9.0" = { created_at = 2026-09-11T22:39:54.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.9.0", prerelease = true }
+"1.9.1" = { created_at = 2026-09-14T21:33:35.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.9.1" }
+"1.9.2-nexus-handler-callbacks" = { created_at = 2026-10-02T22:46:31.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.9.2-nexus-handler-callbacks", prerelease = true }
+"1.9.3-nexus-serialization-context" = { created_at = 2026-10-16T18:22:58.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.9.3-nexus-serialization-context", prerelease = true }
+"1.9.4-time-skipping" = { created_at = 2026-11-02T01:47:34.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.9.4-time-skipping", prerelease = true }
+"1.10.0" = { created_at = 2026-11-03T01:49:50.000Z, release_url = "https://github.com/temporalio/cli/releases/tag/v1.10.0" }
