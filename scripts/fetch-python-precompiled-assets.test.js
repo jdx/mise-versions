@@ -55,7 +55,7 @@ describe("fetch-python-precompiled-assets", () => {
         "python-precompiled.toml",
         "python-precompiled-x86_64-unknown-linux-gnu.toml",
       ]),
-      outputDir,
+      outputDirs: [outputDir],
     });
     assert.deepEqual(result.written, [
       "python-precompiled",
@@ -72,6 +72,25 @@ describe("fetch-python-precompiled-assets", () => {
     );
   });
 
+  it("writes the same lists to every output directory", async () => {
+    const objects = { "tools/python-precompiled.gz": gzipSync("all") };
+    const dirs = [
+      mkdtempSync(join(tmpdir(), "pp-data-")),
+      mkdtempSync(join(tmpdir(), "pp-tools-")),
+    ];
+    await fetchPythonPrecompiledAssets({
+      r2: fakeR2(objects),
+      docsDir: docsDir(["python-precompiled.toml"]),
+      outputDirs: dirs,
+    });
+    for (const dir of dirs) {
+      assert.deepEqual(
+        readFileSync(join(dir, "python-precompiled.gz")),
+        objects["tools/python-precompiled.gz"],
+      );
+    }
+  });
+
   it("skips a platform list R2 does not have yet", async () => {
     const outputDir = mkdtempSync(join(tmpdir(), "pp-out-"));
     const result = await fetchPythonPrecompiledAssets({
@@ -80,7 +99,7 @@ describe("fetch-python-precompiled-assets", () => {
         "python-precompiled.toml",
         "python-precompiled-riscv64-unknown-linux-gnu.toml",
       ]),
-      outputDir,
+      outputDirs: [outputDir],
     });
     assert.deepEqual(result, {
       written: ["python-precompiled"],
@@ -101,7 +120,7 @@ describe("fetch-python-precompiled-assets", () => {
           "python-precompiled.toml",
           "python-precompiled-riscv64-unknown-linux-gnu.toml",
         ]),
-        outputDir,
+        outputDirs: [outputDir],
       }),
       /tools\/python-precompiled.gz not found/,
     );

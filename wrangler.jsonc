@@ -26,8 +26,10 @@
     // namespaced path is excluded too. A negative match goes straight to the
     // asset worker without falling back to the Worker, so a tool with no
     // docs/<tool>.toml gets a 404, as /data/<tool>.toml does for current
-    // clients (mise then lists versions upstream). /tools/<tool> pages and
-    // /tools/*.gz stay Worker-first.
+    // clients (mise then lists versions upstream). "!/tools/python-precompiled*.gz"
+    // does the same for the python-precompiled lists the deploy copies there
+    // (scripts/fetch-python-precompiled-assets.js). /tools/<tool> pages stay
+    // Worker-first.
     "run_worker_first": [
       "/api/*",
       "/admin*",
@@ -38,6 +40,7 @@
       "/stats*",
       "/tools/*",
       "!/tools/*.toml",
+      "!/tools/python-precompiled*.gz",
       "/webhooks/*",
     ],
   },

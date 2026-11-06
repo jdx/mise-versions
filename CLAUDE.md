@@ -60,7 +60,7 @@ mise run deploy            # builds then deploys
 
 3. **Storage**:
    - **Git repository** (`docs/`): Plain text and TOML version files used as the source for sync jobs and raw GitHub-backed data endpoints
-   - **Cloudflare R2** (`DATA_BUCKET`): Binary .gz files only (python-precompiled); deploys also copy them to static `/data/python-precompiled*.gz`
+   - **Cloudflare R2** (`DATA_BUCKET`): Binary .gz files only (python-precompiled); deploys also copy them to static `/data/python-precompiled*.gz` and the legacy `/tools/python-precompiled*.gz` (`run_worker_first` excludes that path, so the Worker never serves it)
    - **Cloudflare D1** (`ANALYTICS_DB`): Tool metadata, version data, and download analytics
 
 4. **Web Frontend** (`web/`):
