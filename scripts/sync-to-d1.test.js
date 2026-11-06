@@ -28,6 +28,21 @@ describe("sync-to-d1.js", () => {
     assert.match(result.stderr, /SYNC_API_URL/);
   });
 
+  it("does not build a GitHub repo from a non-GitHub aqua package", () => {
+    const registry = registryInfoFromEntries([
+      { short: "acli", backends: ["aqua:atlassian.com/acli"] },
+    ]);
+    const tool = buildToolMetadata(
+      "acli",
+      {},
+      registry.lookup.get("acli"),
+      null,
+    );
+
+    assert.equal(tool.github, undefined);
+    assert.equal(tool.repo_url, undefined);
+  });
+
   it("indexes registry shorts and aliases while preserving primary tools", () => {
     const registry = registryInfoFromEntries([
       {
