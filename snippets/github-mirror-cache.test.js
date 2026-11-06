@@ -3,7 +3,9 @@ import { readFileSync, statSync } from "node:fs";
 import test from "node:test";
 import snippet, {
   EXPIRES_AT_HEADER,
+  MAX_NOT_FOUND_TTL_SECONDS,
   MAX_VISIBILITY_TTL_SECONDS,
+  NOT_FOUND_HEADER,
   SNIPPET_CACHE_PREFIX,
   VERIFIED_AT_HEADER,
   VERIFIED_UNTIL_HEADER,
@@ -259,6 +261,44 @@ test("missing, expired, unparsable and foreign entries go to the Worker", async 
     const response = await get(RELEASE);
     assert.deepEqual(passed, [`${ORIGIN}${RELEASE}`], name);
     assert.equal(response.headers.get("x-mise-mirror"), "worker", name);
+  }
+});
+
+test("a stored 404 is served while fresh, without a visibility check", async () => {
+  const key = snippetCacheKey(`${ORIGIN}${RELEASE}`);
+  const now = Math.floor(Date.now() / 1000);
+  const notFound = ({ answeredAt = now - 60, expiresAt = now + 600 } = {}) =>
+    entry({
+      status: 404,
+      verifiedAt: answeredAt,
+      expiresAt,
+      extraHeaders: {
+        [NOT_FOUND_HEADER]: "1",
+        "X-Mise-Cache-Control": "private, no-store",
+      },
+    });
+
+  const { passed } = setup({ [key]: notFound() });
+  const response = await get(RELEASE);
+  assert.deepEqual(passed, []);
+  assert.equal(response.status, 404);
+  assert.equal(response.headers.get("cache-control"), "private, no-store");
+  assert.equal(response.headers.get("x-mise-mirror"), "snippet");
+  assert.equal(response.headers.get(NOT_FOUND_HEADER), null);
+
+  const cases = {
+    expired: notFound({ expiresAt: now - 1 }),
+    // Kept longer than a 404 may be: written by something else.
+    "too long": notFound({
+      answeredAt: now - 60,
+      expiresAt: now - 60 + MAX_NOT_FOUND_TTL_SECONDS + 1,
+    }),
+    "answered in the future": notFound({ answeredAt: now + 3600 }),
+  };
+  for (const [name, cached] of Object.entries(cases)) {
+    const { passed } = setup({ [key]: cached });
+    await get(RELEASE);
+    assert.deepEqual(passed, [`${ORIGIN}${RELEASE}`], name);
   }
 });
 

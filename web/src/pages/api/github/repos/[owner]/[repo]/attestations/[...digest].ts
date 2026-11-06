@@ -4,6 +4,7 @@ import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   ATTESTATION_FRESH_SECONDS,
   attestationsCacheHeaders,
+  deniedGitHubMirrorResponse,
   getCachedGitHubAttestations,
   gitHubMirrorSnippetCacheKey,
   githubStatus,
@@ -28,7 +29,11 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     attestations: true,
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (access.denied) return access.denied;
+  if (access.denied) {
+    return deniedGitHubMirrorResponse(request, access, (promise) =>
+      locals.cfContext.waitUntil(promise),
+    );
+  }
 
   // Kept where the GitHub-mirror snippet can answer it without the Worker.
   const snippetKey = gitHubMirrorSnippetCacheKey(request);

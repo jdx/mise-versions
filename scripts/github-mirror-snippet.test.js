@@ -30,10 +30,14 @@ const PRELUDE = `
     SNIPPET_CACHE_PREFIX,
   } from "./snippets/github-mirror-cache.js";
   import {
+    deniedGitHubMirrorResponse,
+    gitHubMirrorMutableSnippetCopy,
     gitHubMirrorReleaseSnippetCacheKey,
     gitHubMirrorSnippetCacheKey,
     matchGitHubMirrorSnippetCache,
+    putGitHubMirrorEdgeCache,
     putGitHubMirrorSnippetCache,
+    putGitHubMirrorSnippetNotFound,
     releaseEdgeCacheOptions,
   } from "./web/src/lib/github/mirror.ts";
 
@@ -171,6 +175,100 @@ test("errors and uncacheable responses are never written", () => {
     // An edge TTL of zero (never cached by the Worker) is not cached here either.
     await putGitHubMirrorSnippetCache(key, workerResponse(), { edgeMaxAge: 0 }, Date.now());
     assert.equal(puts.length, 0);
+  `);
+});
+
+test("404s are stored for the snippet while the Worker's answer stands", () => {
+  runSnippetTest(`${PRELUDE}
+    const notFound = () =>
+      new Response("Not found", {
+        status: 404,
+        headers: { "Cache-Control": "private, no-store", "x-mise-mirror": "worker" },
+      });
+    const request = new Request(RELEASE_URL);
+    const key = gitHubMirrorReleaseSnippetCacheKey(request, "v2026.1.0");
+
+    // A private repo: the access check's answer stands for 20 more minutes.
+    const promises = [];
+    const denied = notFound();
+    const returned = deniedGitHubMirrorResponse(
+      request,
+      { denied, notFoundUntil: Date.now() + 20 * 60 * 1000 },
+      (promise) => promises.push(promise),
+    );
+    assert.equal(returned, denied);
+    await Promise.all(promises);
+    assert.equal(await returned.text(), "Not found");
+    assert.equal(puts.length, 1);
+    const { headers } = puts[0];
+    assert.equal(puts[0].key, key);
+    assert.equal(headers["x-mise-mirror-not-found"], "1");
+    assert.equal(headers["x-mise-cache-control"], "private, no-store");
+    const expiresAt = Number(headers["x-mise-mirror-expires-at"]);
+    assert.ok(Math.abs(expiresAt - (nowSeconds() + 20 * 60)) <= 1, String(expiresAt));
+
+    const fromSnippet = await snippet.fetch(new Request(RELEASE_URL));
+    assert.deepEqual(workerCalls, []);
+    assert.equal(fromSnippet.status, 404);
+    assert.equal(fromSnippet.headers.get("cache-control"), "private, no-store");
+    assert.equal(await fromSnippet.text(), "Not found");
+    // The Worker's own cache lookup does not serve it.
+    assert.equal(await matchGitHubMirrorSnippetCache(key, Date.now(), () => {}), null);
+
+    // Capped at an hour, and nothing for an answer that has run out, a
+    // refusal with no expiry (403, 429, 503), or another status.
+    puts.length = 0;
+    await putGitHubMirrorSnippetNotFound(request, notFound(), Date.now() + 86400 * 1000);
+    assert.ok(Number(puts[0].headers["x-mise-mirror-expires-at"]) <= nowSeconds() + 3600);
+    puts.length = 0;
+    await putGitHubMirrorSnippetNotFound(request, notFound(), Date.now() - 1000);
+    deniedGitHubMirrorResponse(request, { denied: notFound() }, () => {
+      throw new Error("nothing to store");
+    });
+    await putGitHubMirrorSnippetNotFound(request, workerResponse(503), Date.now() + 600000);
+    assert.equal(puts.length, 0);
+
+    // A 404 answered before the release appeared does not replace the
+    // release a later request stored.
+    await putGitHubMirrorSnippetCache(
+      key,
+      workerResponse(),
+      releaseEdgeCacheOptions("v2026.1.0", release),
+      Date.now(),
+    );
+    await putGitHubMirrorSnippetNotFound(request, notFound(), Date.now() + 600000);
+    assert.equal(puts.length, 1);
+    assert.equal((await snippet.fetch(new Request(RELEASE_URL))).status, 200);
+  `);
+});
+
+test("a stored 404 does not keep a fresh latest copy out", () => {
+  runSnippetTest(`${PRELUDE}
+    const LATEST_URL = "https://mise-versions.jdx.dev/api/github/repos/jdx/mise/releases/latest";
+    const request = new Request(LATEST_URL);
+    await putGitHubMirrorSnippetNotFound(
+      request,
+      new Response("Not found", { status: 404, headers: { "Cache-Control": "private, no-store" } }),
+      Date.now() + 30 * 60 * 1000,
+    );
+    assert.equal((await snippet.fetch(new Request(LATEST_URL))).status, 404);
+
+    // The repo turned public and the Worker served latest: its copy replaces
+    // the 404.
+    const promises = [];
+    const copy = gitHubMirrorMutableSnippetCopy(request, {
+      ttl: undefined,
+      verifiedAt: Date.now(),
+      waitUntil: (promise) => promises.push(promise),
+    });
+    await putGitHubMirrorEdgeCache(request, workerResponse(), {
+      ...releaseEdgeCacheOptions("latest", release, "gen1"),
+      snippet: copy,
+    });
+    await Promise.all(promises);
+    const served = await snippet.fetch(new Request(LATEST_URL));
+    assert.equal(served.status, 200);
+    assert.deepEqual(workerCalls, []);
   `);
 });
 
@@ -431,21 +529,22 @@ const ROUTE_PRELUDE = `
         const url = typeof key === "string" ? key : key.url;
         const entry = store.get(url);
         return entry
-          ? new Response(entry.body, { status: 200, headers: entry.headers })
+          ? new Response(entry.body, { status: entry.status, headers: entry.headers })
           : undefined;
       },
       put: async (key, response) => {
         const url = typeof key === "string" ? key : key.url;
         const body = await response.text();
         const headers = Object.fromEntries(response.headers);
-        puts.push({ url, body, headers });
-        store.set(url, { body, headers });
+        puts.push({ url, body, headers, status: response.status });
+        store.set(url, { body, headers, status: response.status });
       },
     },
   };
   const verifiedAt = Date.now() - 10 * 60 * 1000;
   const kvData = new Map([
     ["github:visibility:o/r", JSON.stringify({ cached_at: verifiedAt, public: true })],
+    ["github:visibility:o/hidden", JSON.stringify({ cached_at: verifiedAt, public: false })],
   ]);
   globalThis.__routeEnv = {
     DB: {},
@@ -481,6 +580,89 @@ const ROUTE_PRELUDE = `
     "./web/src/pages/api/github/repos/[owner]/[repo]/releases/[...tag].ts"
   );
 `;
+
+test("the snippet answers repeated 404s for private repos and missing tags", () => {
+  runSnippetTest(`${ROUTE_PRELUDE}
+    const githubCalls = [];
+    globalThis.fetch = async (url) => {
+      githubCalls.push(String(url));
+      return new Response(JSON.stringify({ message: "Not Found" }), { status: 404 });
+    };
+    const passedOn = [];
+    const viaSnippet = (url) => {
+      const fetchGitHub = globalThis.fetch;
+      globalThis.fetch = async (request) => {
+        passedOn.push(request.url);
+        return new Response("worker");
+      };
+      return snippet.fetch(new Request(url)).finally(() => {
+        globalThis.fetch = fetchGitHub;
+      });
+    };
+
+    // A private repo, checked 10 minutes ago: its 404 stands for 50 more.
+    const hiddenUrl = "https://mise-tools.jdx.dev/api/github/repos/o/hidden/releases";
+    const hidden = await call(listRoute, hiddenUrl, { owner: "o", repo: "hidden" });
+    assert.equal(hidden.status, 404);
+    let [entry] = snippetPuts();
+    assert.equal(entry.url, "https://mise-versions.jdx.dev/__snippet-cache/v1/o/hidden/releases?page=1");
+    assert.equal(entry.status, 404);
+    assert.equal(
+      Number(entry.headers["x-mise-mirror-expires-at"]),
+      Math.floor((verifiedAt + 3600 * 1000) / 1000),
+    );
+    assert.equal((await viaSnippet(hiddenUrl)).status, 404);
+    const hiddenTag = await call(
+      releaseRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/hidden/releases/v1.0.0",
+      { owner: "o", repo: "hidden", tag: "v1.0.0" },
+    );
+    assert.equal(hiddenTag.status, 404);
+    assert.equal(snippetPuts().length, 2);
+    assert.deepEqual(githubCalls, []);
+
+    // A tag GitHub does not have, on a public repo: as long as the negative
+    // cache keeps it (30 minutes).
+    const missingUrl = "https://mise-versions.jdx.dev/api/github/repos/o/r/releases/v9.9.9";
+    const missing = await call(releaseRoute, missingUrl, { owner: "o", repo: "r", tag: "v9.9.9" });
+    assert.equal(missing.status, 404);
+    entry = snippetPuts().at(-1);
+    assert.equal(entry.url, "https://mise-versions.jdx.dev/__snippet-cache/v1/o/r/releases/v9.9.9");
+    assert.ok(
+      Math.abs(Number(entry.headers["x-mise-mirror-expires-at"]) - (nowSeconds() + 1800)) <= 1,
+    );
+    const served = await viaSnippet(missingUrl);
+    assert.equal(served.status, 404);
+    assert.equal(served.headers.get("x-mise-mirror"), "snippet");
+    assert.deepEqual(passedOn, []);
+
+    // Answered again from the negative cache (the snippet entry gone): the
+    // entry runs out with it, not 30 minutes from now.
+    const firstExpiry = Number(entry.headers["x-mise-mirror-expires-at"]);
+    store.clear();
+    const realNow = Date.now;
+    Date.now = () => realNow() + 10 * 60 * 1000;
+    try {
+      await call(releaseRoute, missingUrl, { owner: "o", repo: "r", tag: "v9.9.9" });
+    } finally {
+      Date.now = realNow;
+    }
+    assert.ok(
+      Math.abs(Number(snippetPuts().at(-1).headers["x-mise-mirror-expires-at"]) - firstExpiry) <= 1,
+    );
+
+    // Other failures are not stored.
+    const count = snippetPuts().length;
+    globalThis.fetch = async () => new Response("boom", { status: 502 });
+    const failed = await call(
+      releaseRoute,
+      "https://mise-versions.jdx.dev/api/github/repos/o/r/releases/v8.0.0",
+      { owner: "o", repo: "r", tag: "v8.0.0" },
+    );
+    assert.equal(failed.status, 502);
+    assert.equal(snippetPuts().length, count);
+  `);
+});
 
 test("fresh latest and list answers get a short-lived snippet copy", () => {
   runSnippetTest(`${ROUTE_PRELUDE}

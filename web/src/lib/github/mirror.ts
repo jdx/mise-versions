@@ -2,10 +2,12 @@ import { drizzle } from "drizzle-orm/d1";
 import { uncompress } from "snappyjs";
 import { setupDatabase } from "../../../../src/database";
 import { hasBudget } from "../../../../src/token-budget";
-import { readThroughMemo, writeMemo } from "./edge-memo";
+import { readThroughMemoEntry, writeMemo } from "./edge-memo";
 import {
   EXPIRES_AT_HEADER,
   INTENDED_CACHE_CONTROL_HEADER,
+  MAX_NOT_FOUND_TTL_SECONDS,
+  NOT_FOUND_HEADER,
   SOURCE_HEADER,
   VERIFIED_AT_HEADER,
   VERIFIED_UNTIL_HEADER,
@@ -618,6 +620,68 @@ export async function putGitHubMirrorSnippetCache(
   );
 }
 
+/**
+ * Store a 404 for the snippet to answer `request` with until `until` (epoch
+ * ms, capped at MAX_NOT_FOUND_TTL_SECONDS from now): the repo is private or
+ * missing, or GitHub has no such release, and the Worker would give the same
+ * answer until then. Without it, clients that retry such a request reach the
+ * Worker every time.
+ */
+export async function putGitHubMirrorSnippetNotFound(
+  request: Request,
+  response: Response,
+  until: number,
+): Promise<void> {
+  // Before anything is awaited: callers go on to return `response`.
+  const copy = response.clone();
+  const key = snippetCacheKey(request.url);
+  if (!key || response.status !== 404) return;
+  const nowSeconds = Math.floor(Date.now() / 1000);
+  const expiresAt = Math.min(
+    Math.floor(until / 1000),
+    nowSeconds + MAX_NOT_FOUND_TTL_SECONDS,
+  );
+  const ttl = expiresAt - nowSeconds;
+  if (ttl < 1) return;
+  const body = await copy.text();
+  // A request that found the release since (it was just published) may have
+  // stored it already; this older answer must not replace it.
+  try {
+    const existing = await defaultEdgeCache().match(key);
+    if (existing?.status === 200 && servableEntry(existing, nowSeconds)) {
+      return;
+    }
+  } catch {
+    // Write it anyway.
+  }
+  const headers = new Headers(response.headers);
+  headers.delete(SOURCE_HEADER);
+  headers.set(
+    INTENDED_CACHE_CONTROL_HEADER,
+    response.headers.get("Cache-Control") ?? "private, no-store",
+  );
+  headers.set(NOT_FOUND_HEADER, "1");
+  headers.set(EXPIRES_AT_HEADER, String(expiresAt));
+  headers.set(VERIFIED_AT_HEADER, String(nowSeconds));
+  headers.set("Cache-Control", snippetEntryCacheControl(ttl));
+  await putSnippetEntry(key, new Response(body, { status: 404, headers }));
+}
+
+/**
+ * The response for a request the access check refused; a 404 for a private
+ * or missing repo is also kept for the snippet while that answer stands.
+ */
+export function deniedGitHubMirrorResponse(
+  request: Request,
+  { denied, notFoundUntil }: { denied: Response; notFoundUntil?: number },
+  waitUntil: (promise: Promise<unknown>) => void,
+): Response {
+  if (notFoundUntil !== undefined) {
+    waitUntil(putGitHubMirrorSnippetNotFound(request, denied, notFoundUntil));
+  }
+  return denied;
+}
+
 function snippetEntryCacheControl(ttlSeconds: number): string {
   return `public, max-age=${ttlSeconds}, s-maxage=${ttlSeconds}`;
 }
@@ -704,7 +768,7 @@ async function copyToSnippetCache(
   try {
     const existing = await defaultEdgeCache().match(key);
     if (
-      existing &&
+      existing?.status === 200 &&
       servableEntry(existing, nowSeconds) &&
       !extendsVerification(
         entryVerifiedUntil(existing.headers),
@@ -867,29 +931,50 @@ async function cachedReleaseError(
   // A stored error is never rewritten while it is fresh (requests are
   // refused until it expires), so it can be memoized at the edge until then.
   // Its absence cannot: a failed refresh may store one at any time.
-  const cached = await readThroughMemo<CachedGitHubError | null>(
-    env.GITHUB_CACHE,
-    cacheKey,
-    async () => {
-      const entry = await env.GITHUB_CACHE.get<CacheEntry<CachedGitHubError>>(
-        cacheKey,
-        "json",
-      );
-      const freshMs = entry ? releaseErrorFreshMs(entry.data.status) : null;
-      const now = Date.now();
-      if (!entry || !freshMs || now - entry.cached_at >= freshMs) {
-        return { value: null, expiresAt: 0 };
-      }
-      return {
-        value: entry.data,
-        expiresAt: Math.min(entry.cached_at, now) + freshMs,
-      };
-    },
-  );
+  const { value: cached, expiresAt } =
+    await readThroughMemoEntry<CachedGitHubError | null>(
+      env.GITHUB_CACHE,
+      cacheKey,
+      async () => {
+        const entry = await env.GITHUB_CACHE.get<CacheEntry<CachedGitHubError>>(
+          cacheKey,
+          "json",
+        );
+        const freshMs = entry ? releaseErrorFreshMs(entry.data.status) : null;
+        const now = Date.now();
+        if (!entry || !freshMs || now - entry.cached_at >= freshMs) {
+          return { value: null, expiresAt: 0 };
+        }
+        return {
+          value: entry.data,
+          expiresAt: Math.min(entry.cached_at, now) + freshMs,
+        };
+      },
+    );
   if (!cached) {
     return null;
   }
-  return new CachedReleaseError(cached.status, cached.message, new Headers());
+  const error = new CachedReleaseError(
+    cached.status,
+    cached.message,
+    new Headers(),
+  );
+  errorFreshUntil.set(error, expiresAt);
+  return error;
+}
+
+// When a release error stops being served from the negative cache (epoch
+// ms), for errors that came from it or were just stored in it.
+const errorFreshUntil = new WeakMap<GitHubError, number>();
+
+/**
+ * Epoch ms until which a release 404 from getCachedGitHubReleaseResult is
+ * served from the negative cache, so it may be cached for the snippet until
+ * then; null for any other error.
+ */
+export function releaseNotFoundUntil(error: unknown): number | null {
+  if (!(error instanceof GitHubError) || error.status !== 404) return null;
+  return errorFreshUntil.get(error) ?? null;
 }
 
 async function cacheReleaseError(
@@ -916,6 +1001,7 @@ async function cacheReleaseError(
     { expirationTtl: Math.ceil(freshMs / 1000) },
   );
   await writeMemo(env.GITHUB_CACHE, cacheKey, data, cachedAt + freshMs);
+  errorFreshUntil.set(error, cachedAt + freshMs);
 }
 
 async function deleteCachedRelease(env: Env, cacheKey: string): Promise<void> {
