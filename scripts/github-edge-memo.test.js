@@ -300,7 +300,7 @@ test("a KV visibility answer is memoized only for what is left of its hour", () 
   `);
 });
 
-test("latest release generations are memoized briefly, absent ones included", () => {
+test("latest release generations are memoized briefly, absent ones for longer", () => {
   runMemoTest(`${PRELUDE}
     const {
       __testing,
@@ -308,6 +308,7 @@ test("latest release generations are memoized briefly, absent ones included", ()
       rotateGitHubLatestReleaseGenerations,
     } = await import("./web/src/lib/github/release-generation.ts");
     assert.equal(__testing.GENERATION_MEMO_TTL_MS, 60 * 1000);
+    assert.equal(__testing.GENERATION_MISS_MEMO_TTL_MS, 10 * 60 * 1000);
 
     const kv = countingKv();
     assert.equal(await getGitHubLatestReleaseGenerations(kv, "o", "r"), undefined);
@@ -323,19 +324,37 @@ test("latest release generations are memoized briefly, absent ones included", ()
     assert.match(rotated.current, /^[0-9a-f]{64}$/);
     assert.equal(kv.reads.length, readsAfterRotate);
 
-    // Elsewhere, a generation rotated behind the memo's back is picked up
-    // once the memo expires.
+    // Elsewhere, a repo that starts being tracked behind the memo's back is
+    // picked up once its absence expires from the memo, after 10 minutes.
+    const realNow = Date.now;
+    const at = (seconds) => {
+      Date.now = () => realNow() + seconds * 1000;
+    };
     const other = countingKv();
     await getGitHubLatestReleaseGenerations(other, "x", "y");
     await rotateGitHubLatestReleaseGenerations(
       { ...other, put: other.put },
       [{ versions: [{ release_url: "https://github.com/x/y/releases/tag/v1" }] }],
     );
+    at(61);
     assert.equal(await getGitHubLatestReleaseGenerations(other, "x", "y"), undefined);
-    const realNow = Date.now;
-    Date.now = () => realNow() + 61 * 1000;
-    const fresh = await getGitHubLatestReleaseGenerations(other, "x", "y");
+    at(601);
+    const tracked = await getGitHubLatestReleaseGenerations(other, "x", "y");
+    assert.match(tracked.current, /^[0-9a-f]{64}$/);
+
+    // A generation rotated behind the memo's back is picked up after a minute.
+    await rotateGitHubLatestReleaseGenerations(
+      { ...other, put: other.put },
+      [{ versions: [{ release_url: "https://github.com/x/y/releases/tag/v2" }] }],
+    );
+    assert.equal(
+      (await getGitHubLatestReleaseGenerations(other, "x", "y")).current,
+      tracked.current,
+    );
+    at(662);
+    const rotatedElsewhere = await getGitHubLatestReleaseGenerations(other, "x", "y");
     Date.now = realNow;
-    assert.match(fresh.current, /^[0-9a-f]{64}$/);
+    assert.match(rotatedElsewhere.current, /^[0-9a-f]{64}$/);
+    assert.notEqual(rotatedElsewhere.current, tracked.current);
   `);
 });

@@ -7,6 +7,11 @@ const LATEST_RELEASE_GENERATION_PREFIX = "github:release-generation:";
 // most this plus KV's own propagation delay (up to 60 seconds), against a
 // catalog that is synced every 15 minutes.
 const GENERATION_MEMO_TTL_MS = 60 * 1000;
+// The same for a repo with no generation (one the catalog does not track),
+// which is about a quarter of these reads. One that starts being tracked
+// serves `latest` this much longer from its untracked cache entry, which is
+// itself fresh for 10 minutes to an hour; this colo switches at once.
+const GENERATION_MISS_MEMO_TTL_MS = 10 * 60 * 1000;
 
 interface VersionReleaseData {
   release_url?: string | null;
@@ -154,10 +159,15 @@ export async function getGitHubLatestReleaseGenerations(
       await readThroughMemo<GitHubLatestReleaseGenerations | null>(
         cache,
         key,
-        async () => ({
-          value: parseGenerations(await cache.get(key)) ?? null,
-          expiresAt: Date.now() + GENERATION_MEMO_TTL_MS,
-        }),
+        async () => {
+          const value = parseGenerations(await cache.get(key)) ?? null;
+          return {
+            value,
+            expiresAt:
+              Date.now() +
+              (value ? GENERATION_MEMO_TTL_MS : GENERATION_MISS_MEMO_TTL_MS),
+          };
+        },
       );
     return generations ?? undefined;
   } catch (error) {
@@ -216,6 +226,7 @@ export async function rotateGitHubLatestReleaseGenerations(
 
 export const __testing = {
   GENERATION_MEMO_TTL_MS,
+  GENERATION_MISS_MEMO_TTL_MS,
   generationForReleaseUrls,
   hasUsableRelease,
   latestReleaseGenerationKey,
