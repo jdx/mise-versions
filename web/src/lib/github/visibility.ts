@@ -26,6 +26,12 @@ export const POPULAR_VISIBILITY_TTL_SECONDS = 24 * 60 * 60;
 // longer than PUBLIC_FOR_MS.
 export const POPULAR_MIN_STARS = 100;
 export const PUBLIC_FOR_MS = 30 * 24 * 60 * 60 * 1000;
+// A "not public" answer (private, missing or taken down) is re-checked once a
+// day. Trusting it longer never serves anything it should not: a repo that
+// turns public is only mirrored that much later, and mise clients fall back
+// to GitHub on the mirror's 404 meanwhile. Requests for such repos re-checked
+// them hourly, a steady share of visibility writes and GitHub lookups.
+export const NOT_PUBLIC_VISIBILITY_TTL_SECONDS = 24 * 60 * 60;
 // `first_public_at` (when the mirror first saw the repo public) carries over
 // from one check to the next only across a gap shorter than this: a repo
 // nobody asked about for longer may have been private in between.
@@ -117,7 +123,7 @@ export function visibilityTtlSeconds({
   firstPublicAt: number | undefined;
   now: number;
 }): number {
-  if (!isPublic) return VISIBILITY_TTL_SECONDS;
+  if (!isPublic) return NOT_PUBLIC_VISIBILITY_TTL_SECONDS;
   const popular =
     (typeof stars === "number" && stars > POPULAR_MIN_STARS) ||
     (firstPublicAt !== undefined && now - firstPublicAt > PUBLIC_FOR_MS);

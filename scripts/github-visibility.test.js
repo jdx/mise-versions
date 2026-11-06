@@ -99,12 +99,12 @@ test("repos with more than 100 stars are re-checked daily", () => {
       const unknown = await checkGitHubMirrorAccessVerified(makeEnv(), "owner", "repo");
       assert.equal(unknown.stars, undefined);
     }
-    // Stars never lengthen a "not public" answer.
+    // A "not public" answer is kept a day whatever its stars.
     const env = makeEnv();
-    repoFetch(200, { private: true, visibility: "private", stargazers_count: 5000 });
+    repoFetch(200, { private: true, visibility: "private", stargazers_count: 0 });
     assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), false);
     const stored = JSON.parse(env.GITHUB_CACHE.writes[0].value);
-    assert.equal(stored.ttl, 3600);
+    assert.equal(stored.ttl, 86400);
     assert.equal(stored.first_public_at, undefined);
   `);
 });
@@ -194,7 +194,8 @@ test("repos public for over 30 days are re-checked daily", () => {
       assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), false);
       const stored = JSON.parse(env.GITHUB_CACHE.writes[0].value);
       assert.equal(stored.first_public_at, undefined);
-      assert.equal(stored.ttl, 3600);
+      // Not public: re-checked daily.
+      assert.equal(stored.ttl, 86400);
     }
   `);
 });
@@ -214,9 +215,9 @@ test("memos from before TTLs are never read as an answer", () => {
     const answer = await gitHubRepoVisibility(env, "owner", "repo");
     assert.equal(calls.length, 1);
     assert.equal(answer.public, false);
-    assert.equal(answer.ttlSeconds, 3600);
+    assert.equal(answer.ttlSeconds, 86400);
     assert.equal((await readMemo(env.GITHUB_CACHE, key)).value, true);
-    assert.deepEqual((await readMemo(env.GITHUB_CACHE, key + "#ttl")).value, { p: false, t: 3600 });
+    assert.deepEqual((await readMemo(env.GITHUB_CACHE, key + "#ttl")).value, { p: false, t: 86400 });
   `);
 });
 
@@ -250,6 +251,7 @@ test("missing repos are private and negatively cached", () => {
       assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), false);
       assert.equal(await isPublicGitHubRepo(env, "owner", "repo"), false);
       assert.equal(calls.length, 1);
+      assert.equal(JSON.parse(env.GITHUB_CACHE.writes[0].value).ttl, 86400);
     }
   `);
 });
