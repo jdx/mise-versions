@@ -13,7 +13,14 @@ tasks.gen.run = [
 
 [tasks.deploy]
 depends = ["build"]
-run = "aube exec wrangler deploy"
+# Mirrors .github/workflows/deploy.yml: wrangler.jsonc serves
+# /tools/python-precompiled*.gz from static copies only, so the copy step
+# (which fails without the PYTHON_PRECOMPILED_R2_* credentials) must run first.
+run = [
+  "aube --dir web run build",
+  "node scripts/fetch-python-precompiled-assets.js web/dist/client/data web/dist/client/tools",
+  "aube exec wrangler deploy",
+]
 
 [tools]
 sd = "latest"
