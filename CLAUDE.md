@@ -41,7 +41,7 @@ oxfmt --check .
 mise run dev               # or: aube exec wrangler dev
 
 # Deploy
-mise run deploy            # builds then deploys
+mise run deploy            # builds, copies python-precompiled lists (needs CLOUDFLARE_ACCOUNT_ID + PYTHON_PRECOMPILED_R2_* creds), then deploys
 ```
 
 ## Architecture
