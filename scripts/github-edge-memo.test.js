@@ -307,7 +307,7 @@ test("latest release generations are memoized briefly, absent ones for longer", 
       getGitHubLatestReleaseGenerations,
       rotateGitHubLatestReleaseGenerations,
     } = await import("./web/src/lib/github/release-generation.ts");
-    assert.equal(__testing.GENERATION_MEMO_TTL_MS, 60 * 1000);
+    assert.equal(__testing.GENERATION_MEMO_TTL_MS, 5 * 60 * 1000);
     assert.equal(__testing.GENERATION_MISS_MEMO_TTL_MS, 10 * 60 * 1000);
 
     const kv = countingKv();
@@ -342,7 +342,8 @@ test("latest release generations are memoized briefly, absent ones for longer", 
     const tracked = await getGitHubLatestReleaseGenerations(other, "x", "y");
     assert.match(tracked.current, /^[0-9a-f]{64}$/);
 
-    // A generation rotated behind the memo's back is picked up after a minute.
+    // A generation rotated behind the memo's back is picked up after five
+    // minutes.
     await rotateGitHubLatestReleaseGenerations(
       { ...other, put: other.put },
       [{ versions: [{ release_url: "https://github.com/x/y/releases/tag/v2" }] }],
@@ -352,6 +353,11 @@ test("latest release generations are memoized briefly, absent ones for longer", 
       tracked.current,
     );
     at(662);
+    assert.equal(
+      (await getGitHubLatestReleaseGenerations(other, "x", "y")).current,
+      tracked.current,
+    );
+    at(902);
     const rotatedElsewhere = await getGitHubLatestReleaseGenerations(other, "x", "y");
     Date.now = realNow;
     assert.match(rotatedElsewhere.current, /^[0-9a-f]{64}$/);

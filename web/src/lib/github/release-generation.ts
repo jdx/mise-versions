@@ -5,10 +5,12 @@ const LATEST_RELEASE_GENERATION_PREFIX = "github:release-generation:";
 // is asked again. Catalog sync can replace a generation at any time, so this
 // bounds how long a colo keeps serving `latest` from the previous one: at
 // most this plus KV's own propagation delay (up to 60 seconds), against a
-// catalog that is synced every 15 minutes.
-const GENERATION_MEMO_TTL_MS = 60 * 1000;
-// The same for a repo with no generation (one the catalog does not track),
-// which is about a quarter of these reads. One that starts being tracked
+// catalog that is synced every 15 minutes. Each busy repo costs a KV read per
+// colo per TTL, so a minute made these lookups about a quarter of all
+// GITHUB_CACHE reads; five minutes is still well inside one sync interval.
+const GENERATION_MEMO_TTL_MS = 5 * 60 * 1000;
+// The same for a repo with no generation (one the catalog does not track).
+// One that starts being tracked
 // serves `latest` this much longer from its untracked cache entry, which is
 // itself fresh for 10 minutes to an hour; this colo switches at once.
 const GENERATION_MISS_MEMO_TTL_MS = 10 * 60 * 1000;
