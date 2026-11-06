@@ -3,6 +3,7 @@ import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   cacheHeaders,
+  deniedGitHubMirrorResponse,
   getCachedGitHubReleaseList,
   gitHubMirrorMutableSnippetCopy,
   githubStatus,
@@ -37,7 +38,11 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   const access = await checkGitHubMirrorAccessVerified(env, owner, repo, {
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (access.denied) return access.denied;
+  if (access.denied) {
+    return deniedGitHubMirrorResponse(request, access, (promise) =>
+      locals.cfContext.waitUntil(promise),
+    );
+  }
 
   // The first page changes when a release is published; tie it to the same
   // generation that invalidates the mirrored `latest` release.

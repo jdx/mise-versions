@@ -3,6 +3,7 @@ import { env } from "cloudflare:workers";
 import { errorResponse, jsonResponse } from "../../../../../../../lib/api";
 import {
   cacheHeaders,
+  deniedGitHubMirrorResponse,
   getCachedGitHubReleaseResult,
   gitHubMirrorMutableSnippetCopy,
   gitHubMirrorReleaseSnippetCacheKey,
@@ -11,8 +12,10 @@ import {
   matchGitHubMirrorSnippetCache,
   putGitHubMirrorEdgeCache,
   putGitHubMirrorSnippetCache,
+  putGitHubMirrorSnippetNotFound,
   releaseCacheHeaders,
   releaseEdgeCacheOptions,
+  releaseNotFoundUntil,
   validReleaseTag,
   validRepoPart,
 } from "../../../../../../../lib/github/mirror";
@@ -43,7 +46,11 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   const access = await checkGitHubMirrorAccessVerified(env, owner, repo, {
     clientKey: request.headers.get("cf-connecting-ip") ?? undefined,
   });
-  if (access.denied) return access.denied;
+  if (access.denied) {
+    return deniedGitHubMirrorResponse(request, access, (promise) =>
+      locals.cfContext.waitUntil(promise),
+    );
+  }
   const waitUntil = (promise: Promise<unknown>) =>
     locals.cfContext.waitUntil(promise);
 
@@ -125,11 +132,21 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
       `GitHub release mirror failed for ${owner}/${repo}@${tag}:`,
       error,
     );
-    return errorResponse(
+    const response = errorResponse(
       githubStatus(error) === 404
         ? "Not found"
         : "Failed to fetch GitHub release",
       githubStatus(error) === 404 ? 404 : 502,
     );
+    // An exact tag GitHub does not have: clients that try several spellings
+    // of a tag ask again on every run, so let the snippet answer while the
+    // negative cache would.
+    const notFoundUntil = releaseNotFoundUntil(error);
+    if (snippetKey && notFoundUntil !== null) {
+      waitUntil(
+        putGitHubMirrorSnippetNotFound(request, response, notFoundUntil),
+      );
+    }
+    return response;
   }
 };

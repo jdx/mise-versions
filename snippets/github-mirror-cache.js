@@ -7,6 +7,10 @@
 // The Worker (web/src/lib/github/mirror.ts) imports the key and response
 // helpers below, so both sides agree on them by construction.
 //
+// It also answers 404s the Worker stored for repos it does not serve and
+// tags GitHub does not have, which would otherwise reach the Worker on every
+// retry.
+//
 // Snippet limits: 5 ms CPU, 2 MB memory, 32 KB package. Keep this to one
 // cache lookup, a few header reads, and a streamed body.
 
@@ -37,6 +41,13 @@ export const EXPIRES_AT_HEADER = "x-mise-mirror-expires-at";
 export const INTENDED_CACHE_CONTROL_HEADER = "x-mise-cache-control";
 // Debug header: who answered, `snippet` or `worker`.
 export const SOURCE_HEADER = "x-mise-mirror";
+// Marks a 404 the Worker stored for the snippet: a repo the mirror does not
+// serve (private or missing) or a release tag GitHub does not have. Serving a
+// 404 reveals nothing, so these need no visibility check; VERIFIED_AT_HEADER
+// holds when the Worker gave the answer, and the entry is served until
+// EXPIRES_AT_HEADER, at most MAX_NOT_FOUND_TTL_SECONDS after that.
+export const NOT_FOUND_HEADER = "x-mise-mirror-not-found";
+export const MAX_NOT_FOUND_TTL_SECONDS = 60 * 60;
 
 // Must equal VISIBILITY_TTL_SECONDS and POPULAR_VISIBILITY_TTL_SECONDS in
 // web/src/lib/github/visibility.ts (checked by a test): the default window,
@@ -106,20 +117,24 @@ export function verifiedUntil(headers) {
 
 /**
  * Whether a cached entry may be served at `nowSeconds` without asking the
- * Worker: its content is still fresh and its visibility check still holds.
- * Missing or unparsable metadata means no.
+ * Worker: its content is still fresh and its visibility check still holds
+ * (a stored 404 needs none, see NOT_FOUND_HEADER). Missing or unparsable
+ * metadata means no.
  */
 export function servableEntry(response, nowSeconds) {
-  if (!response || response.status !== 200) return false;
+  if (!response) return false;
+  const notFound =
+    response.status === 404 && response.headers.get(NOT_FOUND_HEADER) === "1";
+  if (response.status !== 200 && !notFound) return false;
   const expiresAt = epochSeconds(response.headers.get(EXPIRES_AT_HEADER));
   const verifiedAt = epochSeconds(response.headers.get(VERIFIED_AT_HEADER));
   if (expiresAt === null || verifiedAt === null) return false;
   if (!response.headers.get(INTENDED_CACHE_CONTROL_HEADER)) return false;
-  return (
-    nowSeconds < expiresAt &&
-    verifiedAt <= nowSeconds + MAX_CLOCK_SKEW_SECONDS &&
-    nowSeconds < verifiedUntil(response.headers)
-  );
+  if (nowSeconds >= expiresAt) return false;
+  if (verifiedAt > nowSeconds + MAX_CLOCK_SKEW_SECONDS) return false;
+  return notFound
+    ? expiresAt <= verifiedAt + MAX_NOT_FOUND_TTL_SECONDS
+    : nowSeconds < verifiedUntil(response.headers);
 }
 
 /** The client response for a cached entry, with the internal headers removed. */
@@ -131,6 +146,7 @@ export function clientResponse(cached, source) {
   headers.delete(VERIFIED_AT_HEADER);
   headers.delete(VERIFIED_UNTIL_HEADER);
   headers.delete(EXPIRES_AT_HEADER);
+  headers.delete(NOT_FOUND_HEADER);
   headers.set(SOURCE_HEADER, source);
   return new Response(cached.body, {
     status: cached.status,

@@ -322,6 +322,11 @@ export type GitHubMirrorAccessResult =
       verifiedAt?: undefined;
       verifiedUntil?: undefined;
       stars?: undefined;
+      /**
+       * For a repo GitHub reports private or missing: epoch ms until which
+       * that answer stands, so the 404 may be cached until then.
+       */
+      notFoundUntil?: number;
     }
   | {
       denied: null;
@@ -397,5 +402,8 @@ export async function checkGitHubMirrorAccessVerified(
         ),
         stars: visibility.stars,
       }
-    : denied(errorResponse("Not found", 404));
+    : {
+        ...denied(errorResponse("Not found", 404)),
+        notFoundUntil: visibility.checkedAt + visibility.ttlSeconds * 1000,
+      };
 }
