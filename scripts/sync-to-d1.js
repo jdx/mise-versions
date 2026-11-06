@@ -42,7 +42,9 @@ function toISOString(value) {
 
 function extractGithubSlug(backend) {
   if (!backend) return null;
-  const match = backend.match(/^(aqua|github|ubi):([^/]+\/[^/\[\s]+)/);
+  // GitHub owners cannot contain a dot, so an owner like "atlassian.com" is an
+  // aqua package from another host, not a GitHub repository.
+  const match = backend.match(/^(aqua|github|ubi):([^/.]+\/[^/\[\s]+)/);
   if (match) {
     return match[2].replace(/\[.*$/, "");
   }

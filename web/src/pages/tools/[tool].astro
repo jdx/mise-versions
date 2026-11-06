@@ -83,6 +83,9 @@ function backendToUrl(backend: string): string | null {
     case 'gem': return `https://rubygems.org/gems/${slug}`;
     case 'go': return `https://pkg.go.dev/${slug}`;
     case 'aqua':
+      // Owners with a dot (atlassian.com/acli) are not GitHub repositories.
+      if (slug.split('/')[0].includes('.')) return null;
+      return `https://github.com/${slug.split('/').slice(0, 2).join('/')}`;
     case 'github':
     case 'ubi':
     case 'asdf':
