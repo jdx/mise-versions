@@ -119,10 +119,10 @@
   },
   "dagucloud/dagu": {
     "project": "github.com/dagucloud/dagu",
-    "version": "2.25.7",
-    "publishedAt": "2026-11-05T15:44:53.965537997Z",
-    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.25.7/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.25.7",
+    "version": "2.25.8",
+    "publishedAt": "2026-11-05T18:19:10.313906028Z",
+    "manifestUrl": "https://github.com/dagucloud/dagu/releases/download/v2.25.8/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/dagucloud/dagu/releases/tag/v2.25.8",
     "publisher": "dagucloud",
     "capabilities": [
       {
@@ -185,10 +185,10 @@
   },
   "helmfile/helmfile": {
     "project": "github.com/helmfile/helmfile",
-    "version": "1.8.2",
-    "publishedAt": "2026-10-16T15:45:15.554430259Z",
-    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.2/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.2",
+    "version": "1.8.3",
+    "publishedAt": "2026-11-06T13:04:02.433280824Z",
+    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.3/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.3",
     "publisher": "helmfile",
     "capabilities": [
       {
@@ -508,10 +508,10 @@
   },
   "jdx/usage": {
     "project": "github.com/jdx/usage",
-    "version": "7.2.0",
-    "publishedAt": "2026-11-03T18:13:08.142673576Z",
-    "manifestUrl": "https://github.com/jdx/usage/releases/download/v7.2.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v7.2.0",
+    "version": "7.3.0",
+    "publishedAt": "2026-11-06T03:12:47.280830691Z",
+    "manifestUrl": "https://github.com/jdx/usage/releases/download/v7.3.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v7.3.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -599,6 +599,40 @@
     ],
     "artifactCount": 5,
     "provenanceCount": 5
+  },
+  "nubjs/nub": {
+    "project": "github.com/nubjs/nub",
+    "version": "0.10.0",
+    "publishedAt": "2026-11-06T16:48:09.264604247Z",
+    "manifestUrl": "https://github.com/nubjs/nub/releases/download/v0.10.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/nubjs/nub/releases/tag/v0.10.0",
+    "publisher": "nubjs",
+    "capabilities": [
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": [
+      "bin/nub",
+      "bin/nub.exe",
+      "bin/nubr",
+      "bin/nubr.exe",
+      "bin/nubx",
+      "bin/nubx.exe"
+    ],
+    "artifactCount": 8,
+    "provenanceCount": 8
   },
   "stefanprodan/timoni": {
     "project": "github.com/stefanprodan/timoni",
