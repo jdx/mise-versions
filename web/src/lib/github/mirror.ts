@@ -643,6 +643,7 @@ export async function putGitHubMirrorSnippetNotFound(
   );
   const ttl = expiresAt - nowSeconds;
   if (ttl < 1) return;
+  const body = await copy.text();
   // A request that found the release since (it was just published) may have
   // stored it already; this older answer must not replace it.
   try {
@@ -663,10 +664,7 @@ export async function putGitHubMirrorSnippetNotFound(
   headers.set(EXPIRES_AT_HEADER, String(expiresAt));
   headers.set(VERIFIED_AT_HEADER, String(nowSeconds));
   headers.set("Cache-Control", snippetEntryCacheControl(ttl));
-  await putSnippetEntry(
-    key,
-    new Response(await copy.text(), { status: 404, headers }),
-  );
+  await putSnippetEntry(key, new Response(body, { status: 404, headers }));
 }
 
 /**
