@@ -227,6 +227,18 @@ test("404s are stored for the snippet while the Worker's answer stands", () => {
     });
     await putGitHubMirrorSnippetNotFound(request, workerResponse(503), Date.now() + 600000);
     assert.equal(puts.length, 0);
+
+    // A 404 answered before the release appeared does not replace the
+    // release a later request stored.
+    await putGitHubMirrorSnippetCache(
+      key,
+      workerResponse(),
+      releaseEdgeCacheOptions("v2026.1.0", release),
+      Date.now(),
+    );
+    await putGitHubMirrorSnippetNotFound(request, notFound(), Date.now() + 600000);
+    assert.equal(puts.length, 1);
+    assert.equal((await snippet.fetch(new Request(RELEASE_URL))).status, 200);
   `);
 });
 
@@ -626,12 +638,17 @@ test("the snippet answers repeated 404s for private repos and missing tags", () 
 
     // Answered again from the negative cache (the snippet entry gone): the
     // entry runs out with it, not 30 minutes from now.
+    const firstExpiry = Number(entry.headers["x-mise-mirror-expires-at"]);
     store.clear();
-    const before = Date.now();
-    await call(releaseRoute, missingUrl, { owner: "o", repo: "r", tag: "v9.9.9" });
+    const realNow = Date.now;
+    Date.now = () => realNow() + 10 * 60 * 1000;
+    try {
+      await call(releaseRoute, missingUrl, { owner: "o", repo: "r", tag: "v9.9.9" });
+    } finally {
+      Date.now = realNow;
+    }
     assert.ok(
-      Number(snippetPuts().at(-1).headers["x-mise-mirror-expires-at"]) <=
-        Math.floor((before + 1800 * 1000) / 1000) + 1,
+      Math.abs(Number(snippetPuts().at(-1).headers["x-mise-mirror-expires-at"]) - firstExpiry) <= 1,
     );
 
     // Other failures are not stored.

@@ -643,6 +643,16 @@ export async function putGitHubMirrorSnippetNotFound(
   );
   const ttl = expiresAt - nowSeconds;
   if (ttl < 1) return;
+  // A request that found the release since (it was just published) may have
+  // stored it already; this older answer must not replace it.
+  try {
+    const existing = await defaultEdgeCache().match(key);
+    if (existing?.status === 200 && servableEntry(existing, nowSeconds)) {
+      return;
+    }
+  } catch {
+    // Write it anyway.
+  }
   const headers = new Headers(response.headers);
   headers.delete(SOURCE_HEADER);
   headers.set(
