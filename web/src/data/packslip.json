@@ -185,10 +185,10 @@
   },
   "helmfile/helmfile": {
     "project": "github.com/helmfile/helmfile",
-    "version": "1.8.3",
-    "publishedAt": "2026-11-06T13:04:02.433280824Z",
-    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.3/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.3",
+    "version": "1.8.4",
+    "publishedAt": "2026-11-13T01:39:37.498023919Z",
+    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.4/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.4",
     "publisher": "helmfile",
     "capabilities": [
       {
@@ -602,10 +602,10 @@
   },
   "nubjs/nub": {
     "project": "github.com/nubjs/nub",
-    "version": "0.10.0",
-    "publishedAt": "2026-11-06T16:48:09.264604247Z",
-    "manifestUrl": "https://github.com/nubjs/nub/releases/download/v0.10.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/nubjs/nub/releases/tag/v0.10.0",
+    "version": "0.11.0",
+    "publishedAt": "2026-11-13T00:36:32.994830163Z",
+    "manifestUrl": "https://github.com/nubjs/nub/releases/download/v0.11.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/nubjs/nub/releases/tag/v0.11.0",
     "publisher": "nubjs",
     "capabilities": [
       {
