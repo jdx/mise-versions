@@ -776,6 +776,17 @@ fetch() {
 	echo "fetched" >"$status_file"
 }
 
+# Seconds one tool may spend in `fetch`. Tools with a huge /releases listing
+# (openai/codex is ~12 MB, and GitHub 504s per_page=100) need far longer than the
+# 60s default; with it they timed out on every run and stopped being updated.
+# jdx/mise#15676
+fetch_timeout() {
+	case "$1" in
+	codex | llama.cpp) echo "${SLOW_FETCH_TIMEOUT:-300}" ;;
+	*) echo "${FETCH_TIMEOUT:-60}" ;;
+	esac
+}
+
 # Wrapper used by xargs -P. Ensures a non-empty status file exists even if
 # `fetch` times out or crashes, so the parent's aggregation sees every tool.
 # The tool name is passed as a positional argument (not interpolated into the
@@ -786,7 +797,7 @@ run_fetch() {
 	# The `$1` inside the single-quoted bash -c refers to the positional arg
 	# after `--` (the tool name), not a variable in this shell.
 	# shellcheck disable=SC2016
-	if ! timeout 60s bash -c 'fetch "$1"' -- "$tool"; then
+	if ! timeout "$(fetch_timeout "$tool")s" bash -c 'fetch "$1"' -- "$tool"; then
 		log_error "Fetch timed out or failed" "tool=$tool"
 	fi
 	# If fetch exited without writing a status (timeout/SIGKILL), record it.
@@ -887,7 +898,7 @@ if setup_token_management; then
 	PARALLEL_FETCHES="${PARALLEL_FETCHES:-8}"
 	log_info "Fetching tools in parallel" "workers=$PARALLEL_FETCHES" "tools=$total_tools"
 
-	export -f fetch run_fetch get_github_token mark_token_rate_limited docker_ls_remote handle_rate_limit_failure generate_toml_from_json generate_toml_from_plain_text collect_fallback_new_versions record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
+	export -f fetch run_fetch fetch_timeout get_github_token mark_token_rate_limited docker_ls_remote handle_rate_limit_failure generate_toml_from_json generate_toml_from_plain_text collect_fallback_new_versions record_fallback_new_versions toml_has_versions increment_stat get_stat add_to_list set_stat
 	export -f log log_debug log_info log_warn log_error should_log log_timestamp get_log_priority
 	export STATS_DIR LOG_LEVEL
 

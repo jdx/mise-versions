@@ -565,6 +565,14 @@ test_worker_reachable_functions_are_exported() {
 }
 test_worker_reachable_functions_are_exported
 
+test_slow_tools_get_longer_fetch_timeout() {
+	eval "$(update_sh_function_body fetch_timeout)"
+	assert_equals "60" "$(fetch_timeout ripgrep)" "ordinary tools keep the 60s timeout"
+	assert_equals "300" "$(fetch_timeout codex)" "codex gets the long timeout"
+	assert_equals "300" "$(fetch_timeout llama.cpp)" "llama.cpp gets the long timeout"
+}
+test_slow_tools_get_longer_fetch_timeout
+
 test_fallback_constant_is_exported() {
 	assert_contains "$(grep -E '^\s*export NEEDS_PLAIN_TEXT_FALLBACK' scripts/update.sh)" \
 		"export NEEDS_PLAIN_TEXT_FALLBACK" \
