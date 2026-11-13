@@ -567,9 +567,19 @@ test_worker_reachable_functions_are_exported
 
 test_slow_tools_get_longer_fetch_timeout() {
 	eval "$(update_sh_function_body fetch_timeout)"
+	# The caller's environment may set the overrides; the defaults are checked without them.
+	# Read by the `fetch_timeout` body eval'd in above, not by this function.
+	# shellcheck disable=SC2034
+	local FETCH_TIMEOUT="" SLOW_FETCH_TIMEOUT=""
 	assert_equals "60" "$(fetch_timeout ripgrep)" "ordinary tools keep the 60s timeout"
 	assert_equals "300" "$(fetch_timeout codex)" "codex gets the long timeout"
 	assert_equals "300" "$(fetch_timeout llama.cpp)" "llama.cpp gets the long timeout"
+	# shellcheck disable=SC2034
+	FETCH_TIMEOUT=90
+	# shellcheck disable=SC2034
+	SLOW_FETCH_TIMEOUT=600
+	assert_equals "90" "$(fetch_timeout ripgrep)" "FETCH_TIMEOUT overrides the default"
+	assert_equals "600" "$(fetch_timeout codex)" "SLOW_FETCH_TIMEOUT overrides the slow default"
 }
 test_slow_tools_get_longer_fetch_timeout
 
