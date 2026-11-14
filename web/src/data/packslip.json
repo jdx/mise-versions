@@ -543,6 +543,31 @@
     "artifactCount": 7,
     "provenanceCount": 7
   },
+  "kayac/ecspresso": {
+    "project": "github.com/kayac/ecspresso",
+    "version": "3.0.0",
+    "publishedAt": "2026-11-14T06:22:47.105746754Z",
+    "manifestUrl": "https://github.com/kayac/ecspresso/releases/download/v3.0.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/kayac/ecspresso/releases/tag/v3.0.0",
+    "publisher": "kayac",
+    "capabilities": [
+      {
+        "label": "Agent skills",
+        "detail": "Instructions for coding agents"
+      }
+    ],
+    "platforms": [
+      "Linux / aarch64",
+      "Linux / x86_64",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["ecspresso", "ecspresso.exe"],
+    "artifactCount": 6,
+    "provenanceCount": 6
+  },
   "ldomaradzki/xcsift": {
     "project": "github.com/ldomaradzki/xcsift",
     "version": "1.7.5",
