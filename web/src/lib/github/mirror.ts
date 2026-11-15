@@ -1280,7 +1280,42 @@ async function getOrRefresh<T>({
     onFreshEntry?.(cached.cached_at);
     return cached.data;
   }
-  await beforeFetch?.();
+  // The entry served when the refresh cannot happen or fails: the one just
+  // read, or for `staleCacheKey` the previous generation's.
+  const serveStale = async (error: unknown): Promise<T | undefined> => {
+    if (!useStaleOnError(error)) return undefined;
+    if (cached) {
+      onStaleFallback?.();
+      return cached.data;
+    }
+    if (staleCacheKey) {
+      try {
+        const stale = await env.GITHUB_CACHE.get<CacheEntry<T>>(
+          staleCacheKey,
+          "json",
+        );
+        if (stale) {
+          onStaleFallback?.();
+          return stale.data;
+        }
+      } catch (cacheError) {
+        console.warn("failed to read fallback GitHub cache entry:", cacheError);
+      }
+    }
+    return undefined;
+  };
+
+  try {
+    await beforeFetch?.();
+  } catch (error) {
+    // A stored 5xx or rate limit says GitHub is failing, as a fresh failure
+    // would: serve what is held instead of repeating the error. A stored
+    // 404 is an answer and still wins.
+    const stale = await serveStale(error);
+    if (stale === undefined) throw error;
+    await onFetchError?.(error, cached);
+    return stale;
+  }
 
   const token = await nextToken(env);
   try {
@@ -1308,24 +1343,8 @@ async function getOrRefresh<T>({
       await benchIfLow(env, token);
     }
     await onFetchError?.(error, cached);
-    if (cached && useStaleOnError(error)) {
-      onStaleFallback?.();
-      return cached.data;
-    }
-    if (staleCacheKey && useStaleOnError(error)) {
-      try {
-        const stale = await env.GITHUB_CACHE.get<CacheEntry<T>>(
-          staleCacheKey,
-          "json",
-        );
-        if (stale) {
-          onStaleFallback?.();
-          return stale.data;
-        }
-      } catch (cacheError) {
-        console.warn("failed to read fallback GitHub cache entry:", cacheError);
-      }
-    }
+    const stale = await serveStale(error);
+    if (stale !== undefined) return stale;
     throw error;
   }
 }
