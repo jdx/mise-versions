@@ -827,6 +827,118 @@ test("GitHub release mirror ignores stale negative cache without deleting it", (
   `);
 });
 
+test("GitHub release mirror serves a stale release while a stored 5xx is fresh", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubReleaseResult,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response("unexpected fetch", { status: 500 });
+    };
+
+    const staleRelease = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      immutable: false,
+      assets: [{
+        name: "tool.tar.gz",
+        browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+        url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+      }],
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          if (key === "github:release:owner/repo:v1.0.0") {
+            return { cached_at: Date.now() - 7 * 60 * 60 * 1000, data: staleRelease };
+          }
+          if (key === "github:release-error:owner/repo:v1.0.0") {
+            return {
+              cached_at: Date.now(),
+              data: { status: 502, message: "stored failure" },
+            };
+          }
+          return null;
+        },
+        put: async () => {
+          throw new Error("a stored failure should not write");
+        },
+        delete: async () => {},
+      },
+    };
+
+    assert.deepEqual(
+      await getCachedGitHubReleaseResult(env, "owner", "repo", "v1.0.0"),
+      { release: staleRelease, staleFallback: true },
+    );
+    assert.equal(fetches, 0);
+  `);
+});
+
+test("GitHub release mirror does not serve a stale release over a stored 404", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      getCachedGitHubReleaseResult,
+      githubStatus,
+    } from "./web/src/lib/github/mirror.ts";
+
+    let fetches = 0;
+    globalThis.fetch = async () => {
+      fetches++;
+      return new Response("unexpected fetch", { status: 500 });
+    };
+
+    const staleRelease = {
+      tag_name: "v1.0.0",
+      draft: false,
+      prerelease: false,
+      created_at: "2026-01-01T00:00:00Z",
+      immutable: false,
+      assets: [{
+        name: "tool.tar.gz",
+        browser_download_url: "https://github.com/owner/repo/releases/download/v1.0.0/tool.tar.gz",
+        url: "https://api.github.com/repos/owner/repo/releases/assets/1",
+      }],
+    };
+    const env = {
+      DB: {},
+      GITHUB_CACHE: {
+        get: async (key) => {
+          if (key === "github:release:owner/repo:v1.0.0") {
+            return { cached_at: Date.now() - 7 * 60 * 60 * 1000, data: staleRelease };
+          }
+          if (key === "github:release-error:owner/repo:v1.0.0") {
+            return {
+              cached_at: Date.now(),
+              data: { status: 404, message: "stored failure" },
+            };
+          }
+          return null;
+        },
+        put: async () => {
+          throw new Error("a stored failure should not write");
+        },
+        delete: async () => {},
+      },
+    };
+
+    await assert.rejects(
+      () => getCachedGitHubReleaseResult(env, "owner", "repo", "v1.0.0"),
+      (error) => githubStatus(error) === 404,
+    );
+    assert.equal(fetches, 0);
+  `);
+});
+
 test("GitHub release mirror uses status-specific negative cache TTLs", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
