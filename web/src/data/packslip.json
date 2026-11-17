@@ -21,10 +21,10 @@
   },
   "aubepkg/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.10.0",
-    "publishedAt": "2026-11-09T23:36:10.084032013Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.10.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.10.0",
+    "version": "2.10.1",
+    "publishedAt": "2026-11-16T20:47:23.185583076Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.10.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.10.1",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -152,6 +152,39 @@
     "artifactCount": 12,
     "provenanceCount": 12
   },
+  "dprint/dprint": {
+    "project": "github.com/dprint/dprint",
+    "version": "0.65.0",
+    "publishedAt": "2026-11-16T22:59:00.396418306Z",
+    "manifestUrl": "https://github.com/dprint/dprint/releases/download/0.65.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/dprint/dprint/releases/tag/0.65.0",
+    "publisher": "dprint",
+    "capabilities": [],
+    "platforms": [
+      "Linux / aarch64 / gnu",
+      "Linux / aarch64 / musl",
+      "Linux / loongarch64 / gnu",
+      "Linux / loongarch64 / musl",
+      "Linux / powerpc64le / gnu",
+      "Linux / powerpc64le / musl",
+      "Linux / riscv64 / gnu",
+      "Linux / riscv64 / musl",
+      "Linux / s390x / gnu",
+      "Linux / x86_64 / gnu",
+      "Linux / x86_64 / musl",
+      "Windows / aarch64",
+      "Windows / x86_64",
+      "android / aarch64",
+      "android / x86_64",
+      "freebsd / aarch64",
+      "freebsd / x86_64",
+      "macOS / aarch64",
+      "macOS / x86_64"
+    ],
+    "binaries": ["dprint", "dprint.exe"],
+    "artifactCount": 19,
+    "provenanceCount": 19
+  },
   "gabrie30/ghorg": {
     "project": "github.com/gabrie30/ghorg",
     "version": "1.11.17",
@@ -216,10 +249,10 @@
   },
   "jdx/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.10.0",
-    "publishedAt": "2026-11-09T23:36:10.084032013Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.10.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.10.0",
+    "version": "2.10.1",
+    "publishedAt": "2026-11-16T20:47:23.185583076Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.10.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.10.1",
     "publisher": "aubepkg",
     "capabilities": [
       {
