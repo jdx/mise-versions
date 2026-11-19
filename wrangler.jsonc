@@ -53,6 +53,14 @@
       "head_sampling_rate": 0.01,
       "invocation_logs": false,
     },
+    // Temporary: a 1% trace sample shows which GITHUB_CACHE keys the Worker
+    // reads (KV spans carry the key names), to attribute the ~1.2M not_found
+    // reads a day. Turned off again before traces start counting toward
+    // Observability billing on 2026-12-01.
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01,
+    },
   },
   "kv_namespaces": [
     {
