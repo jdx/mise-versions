@@ -5,7 +5,7 @@ import {
   ATTESTATION_FRESH_SECONDS,
   attestationsCacheHeaders,
   deniedGitHubMirrorResponse,
-  getCachedGitHubAttestations,
+  getCachedGitHubAttestationsResult,
   gitHubMirrorSnippetCacheKey,
   githubStatus,
   matchGitHubMirrorEdgeCache,
@@ -50,19 +50,18 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   if (cached) return cached;
 
   try {
-    const attestations = await getCachedGitHubAttestations(
-      env,
-      owner,
-      repo,
-      digest,
-    );
+    const { attestations, freshForSeconds } =
+      await getCachedGitHubAttestationsResult(env, owner, repo, digest);
     const response = jsonResponse(attestations, 200, {
-      ...attestationsCacheHeaders(),
+      ...attestationsCacheHeaders(freshForSeconds),
       "x-mise-mirror": "worker",
     });
+    // Edge copies (the Worker's and the snippet's, which is still bounded by
+    // the access check's verification window) live as long as the KV entry
+    // stays fresh: the Worker would serve the same answer until then.
     const edgeOptions = {
       browserMaxAge: ATTESTATION_FRESH_SECONDS,
-      edgeMaxAge: ATTESTATION_FRESH_SECONDS,
+      edgeMaxAge: freshForSeconds,
       staleWhileRevalidate: 0,
     };
     waitUntil(

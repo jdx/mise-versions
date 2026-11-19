@@ -1485,6 +1485,94 @@ test("GitHub attestation checks back off while the answer stays the same", () =>
   `);
 });
 
+test("GitHub attestation edge copies last as long as the KV entry is fresh", () => {
+  runMirrorTest(`
+    import assert from "node:assert/strict";
+    import {
+      __testing,
+      getCachedGitHubAttestationsResult,
+    } from "./web/src/lib/github/mirror.ts";
+
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const now = 1_000_000_000_000;
+    // Bounded below by the Worker's minimum and above by a day.
+    assert.equal(__testing.attestationEdgeTtlSeconds(0, now), 30 * 60);
+    assert.equal(__testing.attestationEdgeTtlSeconds(now + 5 * minute, now), 30 * 60);
+    assert.equal(__testing.attestationEdgeTtlSeconds(now + 6 * hour, now), 6 * 60 * 60);
+    assert.equal(__testing.attestationEdgeTtlSeconds(now + 48 * hour, now), 24 * 60 * 60);
+
+    const digest = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0";
+    const body = { attestations: [{ bundle: { id: "workflow" } }] };
+    globalThis.fetch = async () =>
+      new Response(JSON.stringify(body), { status: 200 });
+    const envWith = (entry) => ({
+      DB: {},
+      GITHUB_CACHE: { get: async () => entry, put: async () => {} },
+    });
+
+    // Stable for two days, checked an hour ago: fresh for 11 more hours.
+    const stable = await getCachedGitHubAttestationsResult(
+      envWith({
+        cached_at: Date.now() - hour,
+        unchanged_since: Date.now() - hour - 48 * hour,
+        data: body,
+      }),
+      "owner",
+      "repo",
+      digest,
+    );
+    assert.ok(Math.abs(stable.freshForSeconds - 11 * 60 * 60) <= 1);
+
+    // Checked 31 minutes ago after a day unchanged: fresh for a quarter of
+    // that day from the check.
+    const refreshed = await getCachedGitHubAttestationsResult(
+      envWith({
+        cached_at: Date.now() - 31 * minute,
+        unchanged_since: Date.now() - 31 * minute - 24 * hour,
+        data: body,
+      }),
+      "owner",
+      "repo",
+      digest,
+    );
+    assert.ok(
+      Math.abs(refreshed.freshForSeconds - (6 * 60 * 60 - 31 * 60)) <= 1,
+    );
+
+    // A new answer starts at the minimum.
+    const fresh = await getCachedGitHubAttestationsResult(
+      envWith(null),
+      "owner",
+      "repo",
+      digest,
+    );
+    assert.equal(fresh.freshForSeconds, 30 * 60);
+
+    // A refresh whose KV write fails serves the stale entry at the minimum,
+    // not with the freshness of the entry it could not store.
+    const failedWrite = await getCachedGitHubAttestationsResult(
+      {
+        DB: {},
+        GITHUB_CACHE: {
+          get: async () => ({
+            cached_at: Date.now() - 25 * hour,
+            unchanged_since: Date.now() - 25 * hour - 96 * hour,
+            data: body,
+          }),
+          put: async () => {
+            throw new Error("KV write failed");
+          },
+        },
+      },
+      "owner",
+      "repo",
+      digest,
+    );
+    assert.equal(failedWrite.freshForSeconds, 30 * 60);
+  `);
+});
+
 test("edge cache hits keep the Cache-Control the Worker sent", () => {
   runMirrorTest(`
     import assert from "node:assert/strict";
