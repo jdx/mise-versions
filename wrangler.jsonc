@@ -53,6 +53,14 @@
       "head_sampling_rate": 0.01,
       "invocation_logs": false,
     },
+    // Temporary: a 1% trace sample shows which GITHUB_CACHE keys the Worker
+    // reads (KV spans carry the key names), to attribute the ~1.2M not_found
+    // reads a day. Turned off again before traces start counting toward
+    // Observability billing on 2026-12-01.
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01,
+    },
   },
   "kv_namespaces": [
     {
@@ -102,8 +110,10 @@
     // How long the GitHub-mirror snippet (snippets/github-mirror-cache.js)
     // may serve `releases/latest` and release-list pages after the Worker
     // wrote them, capped by the Worker's own freshness for each. "0" stops
-    // writing snippet entries for these mutable endpoints.
-    "GITHUB_MIRROR_SNIPPET_TTL_SECONDS": "300",
+    // writing snippet entries for these mutable endpoints. 15 minutes: the
+    // snippet's cache is per data center, so each popular repo reached the
+    // Worker from every data center on every expiry.
+    "GITHUB_MIRROR_SNIPPET_TTL_SECONDS": "900",
   },
   // Uncached GitHub visibility lookups per client IP (see
   // web/src/lib/github/visibility.ts). Cached answers are not counted.
