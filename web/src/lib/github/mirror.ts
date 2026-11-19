@@ -1374,8 +1374,9 @@ async function getOrRefresh<T>({
             Math.min(cached.unchanged_since ?? cached.cached_at, now)
           : now;
     }
-    onFreshEntry?.(now, entry);
     await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), options);
+    // Only once stored: a failed write falls back to the entry read above.
+    onFreshEntry?.(now, entry);
     return data;
   } catch (error) {
     if (isRateLimited(error) && token) {

@@ -1548,6 +1548,28 @@ test("GitHub attestation edge copies last as long as the KV entry is fresh", () 
       digest,
     );
     assert.equal(fresh.freshForSeconds, 30 * 60);
+
+    // A refresh whose KV write fails serves the stale entry at the minimum,
+    // not with the freshness of the entry it could not store.
+    const failedWrite = await getCachedGitHubAttestationsResult(
+      {
+        DB: {},
+        GITHUB_CACHE: {
+          get: async () => ({
+            cached_at: Date.now() - 25 * hour,
+            unchanged_since: Date.now() - 25 * hour - 96 * hour,
+            data: body,
+          }),
+          put: async () => {
+            throw new Error("KV write failed");
+          },
+        },
+      },
+      "owner",
+      "repo",
+      digest,
+    );
+    assert.equal(failedWrite.freshForSeconds, 30 * 60);
   `);
 });
 
