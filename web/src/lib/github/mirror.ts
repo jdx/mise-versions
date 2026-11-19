@@ -318,10 +318,12 @@ function releaseFreshMs(release: GitHubRelease): number {
   return isYoungRelease(release) ? YOUNG_RELEASE_FRESH_MS : RELEASE_FRESH_MS;
 }
 
-export function attestationsCacheHeaders() {
+export function attestationsCacheHeaders(
+  edgeMaxAge = ATTESTATION_FRESH_SECONDS,
+) {
   return cacheHeaders({
     browserMaxAge: ATTESTATION_FRESH_SECONDS,
-    edgeMaxAge: ATTESTATION_FRESH_SECONDS,
+    edgeMaxAge,
     staleWhileRevalidate: 0,
   });
 }
@@ -1043,7 +1045,26 @@ export async function getCachedGitHubAttestations(
   repo: string,
   digest: string,
 ): Promise<GitHubAttestationsResponse> {
-  return getOrRefresh({
+  return (await getCachedGitHubAttestationsResult(env, owner, repo, digest))
+    .attestations;
+}
+
+/**
+ * The attestations for `digest`, and for how many more seconds the entry
+ * served stays fresh (see attestationFreshMs): edge copies may be kept that
+ * long, as the Worker would answer from the same entry until then.
+ */
+export async function getCachedGitHubAttestationsResult(
+  env: Env,
+  owner: string,
+  repo: string,
+  digest: string,
+): Promise<{
+  attestations: GitHubAttestationsResponse;
+  freshForSeconds: number;
+}> {
+  let freshUntil = 0;
+  const attestations = await getOrRefresh({
     env,
     cacheKey: `github:attestations:${owner}/${repo}:${digest}`,
     isFresh: (entry) =>
@@ -1051,7 +1072,27 @@ export async function getCachedGitHubAttestations(
     fetcher: (token) => fetchGitHubAttestations(owner, repo, digest, token),
     expirationTtl: () => CACHE_TTL_SECONDS,
     fingerprint: attestationsFingerprint,
+    onFreshEntry: (cachedAt, entry) => {
+      freshUntil = cachedAt + attestationFreshMs(entry);
+    },
   });
+  return {
+    attestations,
+    freshForSeconds: attestationEdgeTtlSeconds(freshUntil, Date.now()),
+  };
+}
+
+/**
+ * Edge lifetime for an attestation answer fresh until `freshUntil` (epoch
+ * ms): what is left of its freshness, at least ATTESTATION_FRESH_SECONDS
+ * (the Worker's own minimum; also the answer for a stale fallback) and at
+ * most a day.
+ */
+function attestationEdgeTtlSeconds(freshUntil: number, now: number): number {
+  return Math.min(
+    ATTESTATION_MAX_FRESH_MS / 1000,
+    Math.max(ATTESTATION_FRESH_SECONDS, Math.floor((freshUntil - now) / 1000)),
+  );
 }
 
 function attestationFreshMs(
@@ -1269,7 +1310,7 @@ async function getOrRefresh<T>({
   staleCacheKey?: string;
   onStaleFallback?: () => void;
   /** Called with the `cached_at` of the entry served, unless it is stale. */
-  onFreshEntry?: (cachedAt: number) => void;
+  onFreshEntry?: (cachedAt: number, entry: CacheEntry<T>) => void;
   onFetchError?: (
     error: unknown,
     cached: CacheEntry<T> | null,
@@ -1277,7 +1318,7 @@ async function getOrRefresh<T>({
 }): Promise<T> {
   const cached = await env.GITHUB_CACHE.get<CacheEntry<T>>(cacheKey, "json");
   if (cached && isFresh(cached)) {
-    onFreshEntry?.(cached.cached_at);
+    onFreshEntry?.(cached.cached_at, cached);
     return cached.data;
   }
   // The entry served when the refresh cannot happen or fails: the one just
@@ -1325,7 +1366,6 @@ async function getOrRefresh<T>({
     const options = ttl === undefined ? undefined : { expirationTtl: ttl };
     const now = Date.now();
     const entry: CacheEntry<T> = { cached_at: now, data };
-    onFreshEntry?.(now);
     if (fingerprint) {
       entry.unchanged_since =
         cached && sameData(fingerprint, cached.data, data)
@@ -1334,6 +1374,7 @@ async function getOrRefresh<T>({
             Math.min(cached.unchanged_since ?? cached.cached_at, now)
           : now;
     }
+    onFreshEntry?.(now, entry);
     await env.GITHUB_CACHE.put(cacheKey, JSON.stringify(entry), options);
     return data;
   } catch (error) {
@@ -2080,6 +2121,7 @@ class CachedReleaseError extends GitHubError {}
 export const __testing = {
   GitHubError,
   attestationFreshMs,
+  attestationEdgeTtlSeconds,
   attestationsFingerprint,
   edgeCacheRequest,
   edgeCacheResponse,
