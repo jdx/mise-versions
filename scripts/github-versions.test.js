@@ -1088,6 +1088,32 @@ test("a run plans its KV reads: generations only for what fits", () => {
   `);
 });
 
+test("a run reads generations only for repos that have one", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // Bulk reads are billed per key: only the tracked repo is read.
+    const g1 = "1".repeat(64);
+    kv.store.set("github:release-generation:fresh/repo", JSON.stringify({ current: g1 }));
+    // An untracked repo whose list still holds an old generation: having no
+    // key now means it has none, as reading it would have said.
+    const dueKey = "github:versions:releases:due/repo";
+    kv.meta.set(dueKey, { ...kv.meta.get(dueKey), g: "2".repeat(64) });
+    const bulkKeys = [];
+    const get = kv.get;
+    kv.get = async (key, type) => {
+      if (Array.isArray(key)) bulkKeys.push(...key);
+      return get(key, type);
+    };
+    await refreshVersionLists(env, { dispatch });
+    assert.deepEqual(
+      bulkKeys.filter((k) => k.startsWith("github:release-generation:")),
+      ["github:release-generation:fresh/repo"],
+    );
+    assert.equal(kv.meta.get("github:versions:releases:fresh/repo").g, g1);
+    assert.equal(kv.meta.get(dueKey).g, undefined);
+  `);
+});
+
 test("demand from Logpush stamps the lists it names", () => {
   runVersionsTest(`
     ${REFRESH_SETUP}

@@ -1,6 +1,6 @@
 import { readThroughMemo, writeMemo } from "./edge-memo";
 
-const LATEST_RELEASE_GENERATION_PREFIX = "github:release-generation:";
+export const LATEST_RELEASE_GENERATION_PREFIX = "github:release-generation:";
 // How long a generation read from KV is reused from the edge memo before KV
 // is asked again. Catalog sync can replace a generation at any time, so this
 // bounds how long a colo keeps serving `latest` from the previous one: at
