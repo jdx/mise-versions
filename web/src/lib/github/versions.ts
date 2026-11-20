@@ -9,7 +9,10 @@ import {
   type GitHubTag,
   type TokenRecord,
 } from "./mirror";
-import { readGitHubLatestReleaseGenerations } from "./release-generation";
+import {
+  LATEST_RELEASE_GENERATION_PREFIX,
+  readGitHubLatestReleaseGenerations,
+} from "./release-generation";
 import { checkGitHubMirrorAccess } from "./visibility";
 
 // A repository's whole release or tag list, compacted, for mise's version
@@ -1404,6 +1407,17 @@ export async function refreshVersionLists(
       overdue: 0,
     });
   }
+  // Only repos the catalog tracks have a generation, a few hundred of the
+  // thousands of release lists. Listing them costs one operation per 1,000;
+  // a bulk read is billed per key, so reading every list's repo made these
+  // misses about a third of all GITHUB_CACHE reads.
+  const generationKeys = await listAll(kv, LATEST_RELEASE_GENERATION_PREFIX);
+  const tracked = new Set(
+    generationKeys.keys.map((key) =>
+      key.name.slice(LATEST_RELEASE_GENERATION_PREFIX.length),
+    ),
+  );
+  const trackedRepos = [...releaseRepos].filter(([repo]) => tracked.has(repo));
   // Plan the KV operations: what the scans used, then generations (most
   // recently requested repos first), then tasks. Repos whose generation is
   // not read this run keep the one they were last refreshed under.
@@ -1411,10 +1425,11 @@ export async function refreshVersionLists(
     lists.ops +
     demands.ops +
     retries.ops +
+    generationKeys.ops +
     Math.ceil(legacy.length / KV_BULK_GET_LIMIT);
   const available = Math.max(0, KV_OPS_BUDGET - KV_OPS_FIXED - scanned);
   const generationOps = Math.min(
-    Math.ceil(releaseRepos.size / KV_BULK_GET_LIMIT),
+    Math.ceil(trackedRepos.length / KV_BULK_GET_LIMIT),
     Math.max(0, available - refreshTiming.maxTasks * KV_OPS_PER_TASK),
   );
   const taskCap = Math.min(
@@ -1423,11 +1438,15 @@ export async function refreshVersionLists(
   );
   const generations = await readGitHubLatestReleaseGenerations(
     kv,
-    [...releaseRepos]
+    trackedRepos
       .sort(([, a], [, b]) => b - a)
       .slice(0, generationOps * KV_BULK_GET_LIMIT)
       .map(([repo]) => repo),
   );
+  // A repo with no generation key has none, as a read would have found.
+  for (const repo of releaseRepos.keys()) {
+    if (!tracked.has(repo)) generations.set(repo, undefined);
+  }
   for (const task of tasks) {
     const { target, meta } = task;
     const repo = `${target.owner}/${target.repo}`.toLowerCase();
