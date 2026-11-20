@@ -776,6 +776,7 @@
 "dragonwell-musl-17.0.18.0.19.8" = { created_at = 2026-02-04T22:08:17.579Z }
 "dragonwell-musl-17.0.19.0.20.10" = { created_at = 2026-05-06T22:17:48.528Z }
 "dragonwell-musl-17.0.20.0.21.8" = { created_at = 2026-09-01T22:11:18.123Z }
+"dragonwell-musl-17.0.21.1.22.2" = { created_at = 2026-11-20T02:52:06.049Z }
 "dragonwell-musl-21.0.1.0.1.12" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-musl-21.0.2.0.2.13" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-musl-21.0.3.0.3.9" = { created_at = 2025-03-28T22:04:35.425Z }
@@ -789,11 +790,13 @@
 "dragonwell-musl-21.0.11.0.11.10" = { created_at = 2026-05-18T22:21:39.657Z }
 "dragonwell-musl-21.0.12.0.12.8" = { created_at = 2026-09-01T22:11:18.123Z }
 "dragonwell-musl-21.0.13.0.13.9" = { created_at = 2026-11-13T02:23:53.933Z }
+"dragonwell-musl-21.0.13.1.14.2" = { created_at = 2026-11-20T02:52:06.049Z }
 "dragonwell-musl-25.0.0.0.1.36" = { created_at = 2026-02-08T22:08:38.904Z }
 "dragonwell-musl-25.0.2.0.2.10" = { created_at = 2026-02-08T22:08:38.904Z }
 "dragonwell-musl-25.0.3.0.3.9" = { created_at = 2026-04-30T22:21:26.256Z }
 "dragonwell-musl-25.0.4.0.4.7" = { created_at = 2026-08-07T00:05:45.479Z }
 "dragonwell-musl-25.0.5.0.5.8" = { created_at = 2026-11-16T01:36:37.216Z }
+"dragonwell-musl-25.0.5.1.6.2" = { created_at = 2026-11-20T02:52:06.049Z }
 "dragonwell-8.0.0" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-8.1.1" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-8.2.2" = { created_at = 2025-03-28T22:04:35.425Z }
@@ -873,6 +876,7 @@
 "dragonwell-17.0.18.0.19.8" = { created_at = 2026-02-04T22:08:17.579Z }
 "dragonwell-17.0.19.0.20.10" = { created_at = 2026-05-06T22:17:48.528Z }
 "dragonwell-17.0.20.0.21.8" = { created_at = 2026-09-01T22:11:18.123Z }
+"dragonwell-17.0.21.1.22.2" = { created_at = 2026-11-20T02:52:06.049Z }
 "dragonwell-21.0.1.0.1.12" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-21.0.2.0.2.13" = { created_at = 2025-03-28T22:04:35.425Z }
 "dragonwell-21.0.3.0.3.9" = { created_at = 2025-03-28T22:04:35.425Z }
@@ -886,11 +890,13 @@
 "dragonwell-21.0.11.0.11.10" = { created_at = 2026-05-18T22:21:39.657Z }
 "dragonwell-21.0.12.0.12.8" = { created_at = 2026-09-01T22:11:18.123Z }
 "dragonwell-21.0.13.0.13.9" = { created_at = 2026-11-13T02:23:53.933Z }
+"dragonwell-21.0.13.1.14.2" = { created_at = 2026-11-20T02:52:06.049Z }
 "dragonwell-25.0.0.0.1.36" = { created_at = 2026-02-08T22:08:38.904Z }
 "dragonwell-25.0.2.0.2.10" = { created_at = 2026-02-09T22:13:39.668Z }
 "dragonwell-25.0.3.0.3.9" = { created_at = 2026-04-30T22:21:26.256Z }
 "dragonwell-25.0.4.0.4.7" = { created_at = 2026-08-07T00:05:45.479Z }
 "dragonwell-25.0.5.0.5.8" = { created_at = 2026-11-16T01:36:37.216Z }
+"dragonwell-25.0.5.1.6.2" = { created_at = 2026-11-20T02:52:06.049Z }
 "graalvm-19.3.0+java11" = { created_at = 2025-03-28T22:04:28.484Z }
 "graalvm-19.3.0+java8" = { created_at = 2025-03-28T22:04:28.484Z }
 "graalvm-19.3.0.2+java11" = { created_at = 2025-03-28T22:04:28.484Z }
@@ -4865,6 +4871,7 @@
 "temurin-jre-musl-17.0.20+8" = { created_at = 2026-07-24T22:27:53.750Z }
 "temurin-jre-musl-17.0.20+101" = { created_at = 2026-08-19T22:09:08.579Z }
 "temurin-jre-musl-17.0.21+9" = { created_at = 2026-10-26T22:13:50.413Z }
+"temurin-jre-musl-17.0.21+100000002" = { created_at = 2026-11-20T02:52:00.695Z }
 "temurin-jre-musl-18.0.1+10" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-jre-musl-18.0.2+9" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-jre-musl-18.0.2+101" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -4906,6 +4913,7 @@
 "temurin-jre-musl-25.0.4+7.0.LTS" = { created_at = 2026-07-29T22:20:13.210Z }
 "temurin-jre-musl-25.0.4+101.0.LTS" = { created_at = 2026-08-19T22:09:08.579Z }
 "temurin-jre-musl-25.0.5+8.0.LTS" = { created_at = 2026-10-22T15:25:39.970Z }
+"temurin-jre-musl-25.0.5+100000002.0.LTS" = { created_at = 2026-11-20T02:52:00.695Z }
 "temurin-jre-musl-26.0.0+35" = { created_at = 2026-03-31T22:12:40.190Z }
 "temurin-jre-musl-26.0.1+8" = { created_at = 2026-05-07T20:06:19.121Z }
 "temurin-jre-musl-26.0.2+10" = { created_at = 2026-07-31T22:22:12.610Z }
@@ -4937,6 +4945,7 @@
 "temurin-jre-8.0.502+7" = { created_at = 2026-07-31T22:22:12.610Z }
 "temurin-jre-8.0.504+1" = { created_at = 2026-08-25T22:08:21.021Z }
 "temurin-jre-8.0.512+9" = { created_at = 2026-11-06T02:01:35.952Z }
+"temurin-jre-8.0.514+1" = { created_at = 2026-11-20T02:52:00.695Z }
 "temurin-jre-11.0.12+7" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-jre-11.0.13+8" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-jre-11.0.14+9" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -5110,6 +5119,7 @@
 "temurin-musl-17.0.20+8" = { created_at = 2026-07-24T22:27:53.750Z }
 "temurin-musl-17.0.20+101" = { created_at = 2026-08-19T22:09:08.579Z }
 "temurin-musl-17.0.21+9" = { created_at = 2026-10-26T22:13:50.413Z }
+"temurin-musl-17.0.21+100000002" = { created_at = 2026-11-20T02:52:00.695Z }
 "temurin-musl-18.0.0+36" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-musl-18.0.1+10" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-musl-18.0.2+9" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -5152,6 +5162,7 @@
 "temurin-musl-25.0.4+7.0.LTS" = { created_at = 2026-07-29T22:20:13.210Z }
 "temurin-musl-25.0.4+101.0.LTS" = { created_at = 2026-08-19T22:09:08.579Z }
 "temurin-musl-25.0.5+8.0.LTS" = { created_at = 2026-10-22T15:25:39.970Z }
+"temurin-musl-25.0.5+100000002.0.LTS" = { created_at = 2026-11-20T02:52:00.695Z }
 "temurin-musl-26.0.0+35" = { created_at = 2026-03-31T22:12:40.190Z }
 "temurin-musl-26.0.1+8" = { created_at = 2026-05-07T20:06:19.121Z }
 "temurin-musl-26.0.2+10" = { created_at = 2026-07-31T22:22:12.610Z }
@@ -5183,6 +5194,7 @@
 "temurin-8.0.502+7" = { created_at = 2026-07-31T22:22:12.610Z }
 "temurin-8.0.504+1" = { created_at = 2026-08-25T22:08:21.021Z }
 "temurin-8.0.512+9" = { created_at = 2026-11-06T02:01:35.952Z }
+"temurin-8.0.514+1" = { created_at = 2026-11-20T02:52:00.695Z }
 "temurin-11.0.12+7" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-11.0.13+8" = { created_at = 2025-03-28T22:04:33.817Z }
 "temurin-11.0.14+9" = { created_at = 2025-03-28T22:04:33.817Z }
@@ -6794,6 +6806,7 @@
 "8.0.502+7" = { created_at = 2026-07-31T22:22:12.610Z }
 "8.0.504+1" = { created_at = 2026-08-25T22:08:21.021Z }
 "8.0.512+9" = { created_at = 2026-11-06T02:01:35.952Z }
+"8.0.514+1" = { created_at = 2026-11-20T02:52:00.695Z }
 "11.0.12+7" = { created_at = 2025-03-28T22:04:33.817Z }
 "11.0.13+8" = { created_at = 2025-03-28T22:04:33.817Z }
 "11.0.14+9" = { created_at = 2025-03-28T22:04:33.817Z }
