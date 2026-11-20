@@ -5,6 +5,7 @@ import {
   readDirectoryState,
   type SortKey,
 } from "../lib/directory-state";
+import { registerSearchShortcut } from "../lib/search-shortcut";
 
 import { FavoriteButton } from "./FavoriteButton";
 import { PackslipBadge } from "./PackslipBadge";
@@ -262,6 +263,11 @@ export function ToolSearch({
     initialError ? null : initialSearch.trim(),
   );
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const input = searchInputRef.current;
+    if (input) return registerSearchShortcut(input);
+  }, []);
 
   // Fetch tools from API
   const fetchTools = async (params: {
