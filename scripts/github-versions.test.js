@@ -1611,3 +1611,21 @@ test("a list's access is checked again when its visibility answer expires", () =
     assert.ok(kv.writes.some((w) => w.key === key));
   `);
 });
+
+test("a deferred access check does not lend a busy list priority", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // due/repo's content is an hour overdue; its access was checked 20
+    // hours ago against an answer trusted for another 4. secret/repo's
+    // hourly check is an hour overdue too, but older: it goes first. (quiet
+    // and legacy take the first two slots: dropping and adopting.)
+    const dueKey = "github:versions:releases:due/repo";
+    kv.meta.set(dueKey, { ...kv.meta.get(dueKey), a: now - 20 * HOUR, n: now + 4 * HOUR });
+    const secretKey = "github:versions:releases:secret/repo";
+    kv.meta.set(secretKey, { ...kv.meta.get(secretKey), a: now - 2 * HOUR - MIN });
+    __testing.setRefreshTiming({ maxTasks: 3 });
+    await refreshVersionLists(env, { dispatch });
+    assert.equal(kv.meta.get(secretKey).b, false);
+    assert.ok(!kv.writes.some((w) => w.key === dueKey));
+  `);
+});

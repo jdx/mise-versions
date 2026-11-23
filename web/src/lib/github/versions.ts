@@ -1488,6 +1488,16 @@ export async function refreshVersionLists(
     // never holds up an access check: a list stays public only on a current
     // answer.
     const refreshDue = task.step !== "fresh" && !task.contentRetrying;
+    // How late a due access check is, counted from an hour after the last
+    // check as for hourly lists: a check deferred to when its visibility
+    // answer expires ranks by how late it is from then, not by how long ago
+    // it last ran, and a check that is not due adds nothing.
+    const accessOverdue =
+      meta && task.accessDue
+        ? startedAt -
+          accessCheckDueAt(meta, hourlyAccessChecks) +
+          ACCESS_CHECK_MS
+        : -1;
     task.overdue = !task.requested
       ? Number.MAX_SAFE_INTEGER // dropping a list is cheap and changes a bake
       : !meta
@@ -1497,12 +1507,8 @@ export async function refreshVersionLists(
         : !meta.b
           ? // An unbaked list cannot be refreshed: it waits for its next
             // access check, rather than taking a slot every run.
-            task.accessDue
-            ? startedAt - meta.a
-            : -1
-          : refreshDue || task.accessDue
-            ? startedAt - Math.min(meta.h, meta.a)
-            : -1;
+            accessOverdue
+          : Math.max(refreshDue ? startedAt - meta.h : -1, accessOverdue);
   }
   const due = tasks
     .filter((task) => task.overdue >= 0)
