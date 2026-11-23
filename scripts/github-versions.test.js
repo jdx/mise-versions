@@ -1629,3 +1629,16 @@ test("a deferred access check does not lend a busy list priority", () => {
     assert.ok(!kv.writes.some((w) => w.key === dueKey));
   `);
 });
+
+test("an unbaked list with new demand is checked within the hour", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // Dropped for lack of demand with its answer trusted for hours more;
+    // requested again since: it is checked (and baked) now, not at \`n\`.
+    const key = "github:versions:releases:fresh/repo";
+    kv.meta.set(key, { ...kv.meta.get(key), b: false, a: now - 2 * HOUR, n: now + 20 * HOUR });
+    await refreshVersionLists(env, { dispatch });
+    assert.equal(kv.meta.get(key).b, true);
+    assert.ok(kv.meta.get(key).a >= now);
+  `);
+});

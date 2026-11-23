@@ -1273,7 +1273,12 @@ const ACCESS_CHECK_MS = 60 * 60 * 1000;
 /** Epoch ms when a list's access check is due. */
 function accessCheckDueAt(meta: ListMeta, hourly: boolean): number {
   const hour = meta.a + ACCESS_CHECK_MS;
-  return hourly || meta.n === undefined ? hour : Math.max(hour, meta.n);
+  // An unbaked list is checked hourly: it may have been dropped for lack of
+  // demand with `n` still ahead, and new demand should bake it within the
+  // hour, not when that answer expires.
+  return hourly || !meta.b || meta.n === undefined
+    ? hour
+    : Math.max(hour, meta.n);
 }
 const STATE_PREFIX = "github:versions-state:";
 // A run that finds another run's lease still current does nothing, so
