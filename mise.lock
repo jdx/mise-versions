@@ -6,7 +6,6 @@ lockfile_version = 2
 version = "2.10.1"
 backend = "packslip:github.com/aubepkg/aube"
 specifiers = ["latest"]
-unsupported_platforms = ["macos-x64"]
 
 [tools.aube."platforms.linux-arm64"]
 checksum = "sha256:c64f55a43ee7ca4a19fbbf3be0eed161c24c9858bdcdaea024b69eafbc71ad15"
@@ -67,7 +66,6 @@ url_api = "https://api.github.com/repos/sharkdp/fd/releases/assets/719974267"
 version = "2.13.0"
 backend = "packslip:github.com/jdx/hk"
 specifiers = ["latest"]
-unsupported_platforms = ["macos-x64"]
 
 [tools.hk."platforms.linux-arm64"]
 checksum = "sha256:490196a4e638991c671f42941d72ade4d00b14750145f34fc64377b49fc070bb"
@@ -314,7 +312,6 @@ provenance = "github-attestations"
 version = "1.1.2"
 backend = "github:jdx/wait-for-gh-rate-limit"
 specifiers = ["latest"]
-unsupported_platforms = ["macos-x64"]
 
 [tools.wait-for-gh-rate-limit."platforms.linux-arm64"]
 checksum = "sha256:9e51999142645a7c150be722ed683be64ea6edd50628c9280604b4669941cce0"

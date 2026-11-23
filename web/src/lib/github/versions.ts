@@ -13,7 +13,10 @@ import {
   LATEST_RELEASE_GENERATION_PREFIX,
   readGitHubLatestReleaseGenerations,
 } from "./release-generation";
-import { checkGitHubMirrorAccess } from "./visibility";
+import {
+  checkGitHubMirrorAccessVerified,
+  gitHubMirrorAccess,
+} from "./visibility";
 
 // A repository's whole release or tag list, compacted, for mise's version
 // listings. The client contract is docs/github-versions.md.
@@ -140,6 +143,11 @@ export interface ListMeta {
   b: boolean;
   /** When the repo's access was last checked. */
   a: number;
+  /**
+   * When the access must be checked again: when the visibility answer the
+   * last check relied on expires. Missing: ACCESS_CHECK_MS after `a`.
+   */
+  n?: number;
   /** head_at, full_at and unchanged_since of the entry. */
   h: number;
   f: number;
@@ -1251,12 +1259,22 @@ const KV_OPS_PER_TASK = 5;
 // The lease, the deploy bookkeeping, and the lease's release.
 const KV_OPS_FIXED = 6;
 const REFRESH_CONCURRENCY = 4;
-// A repo's access is checked again this often (the visibility cache's
-// default lifetime), so a repo that turns private stops being baked within
-// about an hour and one deploy, or within about a day for a repo the
+// A repo's access is checked again when the visibility answer it relied on
+// expires, and at least this long after the last check (the visibility
+// cache's default lifetime). So a repo that turns private stops being baked
+// within about an hour and one deploy, or within about a day for a repo the
 // visibility cache trusts for a day (over 100 stars, or public for over 30
-// days; see visibility.ts).
+// days; see visibility.ts). Every check rewrites the list's metadata, so
+// checking hourly regardless made the refresher about a fifth of all
+// GITHUB_CACHE writes. While GITHUB_MIRROR_ACCESS is not "public", lists are
+// checked hourly, so a restriction reaches the bake within the hour.
 const ACCESS_CHECK_MS = 60 * 60 * 1000;
+
+/** Epoch ms when a list's access check is due. */
+function accessCheckDueAt(meta: ListMeta, hourly: boolean): number {
+  const hour = meta.a + ACCESS_CHECK_MS;
+  return hourly || meta.n === undefined ? hour : Math.max(hour, meta.n);
+}
 const STATE_PREFIX = "github:versions-state:";
 // A run that finds another run's lease still current does nothing, so
 // overlapping cron runs (or a run that outlives its interval) don't double
@@ -1367,6 +1385,8 @@ export async function refreshVersionLists(
     }
   }
 
+  const hourlyAccessChecks =
+    gitHubMirrorAccess(env.GITHUB_MIRROR_ACCESS) !== "public";
   const tasks: RefreshTask[] = [];
   // Bakeable release lists' repos, with their latest demand, whose
   // generation may make a fresh list due.
@@ -1383,7 +1403,7 @@ export async function refreshVersionLists(
     const requested =
       requestedAt !== undefined && startedAt - requestedAt < DEMAND_WINDOW_MS;
     const accessDue =
-      (!meta || startedAt - meta.a >= ACCESS_CHECK_MS) &&
+      (!meta || startedAt >= accessCheckDueAt(meta, hourlyAccessChecks)) &&
       !retrying.has(accessRetryKey(key.name));
     const contentRetrying =
       typeof failedAt === "number" && startedAt - failedAt < RETRY_BACKOFF_MS;
@@ -1512,13 +1532,23 @@ export async function refreshVersionLists(
     if (!task.requested) {
       bakeable = false;
     } else if (task.accessDue || !read) {
-      const denied = await checkGitHubMirrorAccess(accessEnv, owner, repo);
+      const access = await checkGitHubMirrorAccessVerified(
+        accessEnv,
+        owner,
+        repo,
+      );
+      const denied = access.denied;
       // A failed lookup (429, 503) is no answer: keep the last one. A list
       // without metadata has none, so it is left as it is until a run gets
       // an answer (its file, if baked before, stays baked).
       if (!denied || denied.status === 403 || denied.status === 404) {
         bakeable = !denied;
-        meta = { ...meta, a: now };
+        // `n` is dropped for a denied repo (undefined is not stored).
+        meta = {
+          ...meta,
+          a: now,
+          n: access.denied ? undefined : access.publicUntil,
+        };
       } else {
         // Try again in ACCESS_RETRY_MS. A list not adopted yet is left as
         // it is (out of bakes, its file kept); an adopted one keeps its
@@ -1596,6 +1626,7 @@ export async function refreshVersionLists(
           ...latestMeta,
           b: meta.b,
           a: meta.a,
+          n: meta.n,
           r: Math.max(meta.r ?? 0, latestMeta.r ?? 0) || undefined,
           c: statusChanged ? now : latestMeta.c,
         };

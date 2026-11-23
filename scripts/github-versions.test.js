@@ -1581,3 +1581,33 @@ test("a failing refresh does not hold up the repo's access check", () => {
     assert.ok(run.dropped >= 1);
   `);
 });
+
+test("a list's access is checked again when its visibility answer expires", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // A repo GitHub's answer is trusted for a day: checked 2 hours ago,
+    // the check is not due until that answer expires.
+    const key = "github:versions:releases:fresh/repo";
+    kv.store.set(
+      "github:visibility:fresh/repo",
+      JSON.stringify({ cached_at: now - 2 * HOUR, public: true, ttl: 24 * 60 * 60 }),
+    );
+    kv.meta.set(key, { ...kv.meta.get(key), a: now - 2 * HOUR, n: now + 22 * HOUR });
+    await refreshVersionLists(env, { dispatch });
+    assert.ok(!kv.writes.some((w) => w.key === key));
+    // A list checked before \`n\` existed is due after an hour, and the check
+    // records when the answer it used expires.
+    const { n, ...old } = kv.meta.get(key);
+    kv.meta.set(key, old);
+    kv.writes.length = 0;
+    await refreshVersionLists(env, { dispatch });
+    assert.ok(kv.writes.some((w) => w.key === key));
+    assert.ok(kv.meta.get(key).a >= now);
+    assert.equal(kv.meta.get(key).n, now - 2 * HOUR + 24 * HOUR);
+    // While the mirror is restricted, checks are hourly again.
+    kv.meta.set(key, { ...kv.meta.get(key), a: now - 2 * HOUR });
+    kv.writes.length = 0;
+    await refreshVersionLists({ ...env, GITHUB_MIRROR_ACCESS: "off" }, { dispatch });
+    assert.ok(kv.writes.some((w) => w.key === key));
+  `);
+});

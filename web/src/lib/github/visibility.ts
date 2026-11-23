@@ -347,6 +347,11 @@ export type GitHubMirrorAccessResult =
       verifiedUntil: number;
       /** The repo's star count as of the visibility check, when known. */
       stars?: number;
+      /**
+       * Epoch ms until which the visibility answer itself stands (its TTL,
+       * without verifiedUntil's cap for GITHUB_MIRROR_ACCESS changes).
+       */
+      publicUntil: number;
     };
 
 /** checkGitHubMirrorAccess, plus when the visibility it relied on was checked. */
@@ -407,6 +412,7 @@ export async function checkGitHubMirrorAccessVerified(
           Date.now() + VISIBILITY_TTL_SECONDS * 1000,
         ),
         stars: visibility.stars,
+        publicUntil: visibility.checkedAt + visibility.ttlSeconds * 1000,
       }
     : {
         ...denied(errorResponse("Not found", 404)),
