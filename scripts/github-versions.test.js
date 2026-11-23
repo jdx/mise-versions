@@ -1581,3 +1581,64 @@ test("a failing refresh does not hold up the repo's access check", () => {
     assert.ok(run.dropped >= 1);
   `);
 });
+
+test("a list's access is checked again when its visibility answer expires", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // A repo GitHub's answer is trusted for a day: checked 2 hours ago,
+    // the check is not due until that answer expires.
+    const key = "github:versions:releases:fresh/repo";
+    kv.store.set(
+      "github:visibility:fresh/repo",
+      JSON.stringify({ cached_at: now - 2 * HOUR, public: true, ttl: 24 * 60 * 60 }),
+    );
+    kv.meta.set(key, { ...kv.meta.get(key), a: now - 2 * HOUR, n: now + 22 * HOUR });
+    await refreshVersionLists(env, { dispatch });
+    assert.ok(!kv.writes.some((w) => w.key === key));
+    // A list checked before \`n\` existed is due after an hour, and the check
+    // records when the answer it used expires.
+    const { n, ...old } = kv.meta.get(key);
+    kv.meta.set(key, old);
+    kv.writes.length = 0;
+    await refreshVersionLists(env, { dispatch });
+    assert.ok(kv.writes.some((w) => w.key === key));
+    assert.ok(kv.meta.get(key).a >= now);
+    assert.equal(kv.meta.get(key).n, now - 2 * HOUR + 24 * HOUR);
+    // While the mirror is restricted, checks are hourly again.
+    kv.meta.set(key, { ...kv.meta.get(key), a: now - 2 * HOUR });
+    kv.writes.length = 0;
+    await refreshVersionLists({ ...env, GITHUB_MIRROR_ACCESS: "off" }, { dispatch });
+    assert.ok(kv.writes.some((w) => w.key === key));
+  `);
+});
+
+test("a deferred access check does not lend a busy list priority", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // due/repo's content is an hour overdue; its access was checked 20
+    // hours ago against an answer trusted for another 4. secret/repo's
+    // hourly check is an hour overdue too, but older: it goes first. (quiet
+    // and legacy take the first two slots: dropping and adopting.)
+    const dueKey = "github:versions:releases:due/repo";
+    kv.meta.set(dueKey, { ...kv.meta.get(dueKey), a: now - 20 * HOUR, n: now + 4 * HOUR });
+    const secretKey = "github:versions:releases:secret/repo";
+    kv.meta.set(secretKey, { ...kv.meta.get(secretKey), a: now - 2 * HOUR - MIN });
+    __testing.setRefreshTiming({ maxTasks: 3 });
+    await refreshVersionLists(env, { dispatch });
+    assert.equal(kv.meta.get(secretKey).b, false);
+    assert.ok(!kv.writes.some((w) => w.key === dueKey));
+  `);
+});
+
+test("an unbaked list with new demand is checked within the hour", () => {
+  runVersionsTest(`
+    ${REFRESH_SETUP}
+    // Dropped for lack of demand with its answer trusted for hours more;
+    // requested again since: it is checked (and baked) now, not at \`n\`.
+    const key = "github:versions:releases:fresh/repo";
+    kv.meta.set(key, { ...kv.meta.get(key), b: false, a: now - 2 * HOUR, n: now + 20 * HOUR });
+    await refreshVersionLists(env, { dispatch });
+    assert.equal(kv.meta.get(key).b, true);
+    assert.ok(kv.meta.get(key).a >= now);
+  `);
+});
