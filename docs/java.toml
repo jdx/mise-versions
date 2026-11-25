@@ -4,6 +4,7 @@
 "graalvm-community-innovation-25.0.4.1" = { created_at = 2026-10-02T22:12:16.732Z }
 "graalvm-community-innovation-25.0.4.1.1" = { created_at = 2026-10-02T22:12:16.732Z }
 "graalvm-community-innovation-25.0.5.0.3" = { created_at = 2026-11-04T01:55:52.002Z }
+"graalvm-community-innovation-25.0.5.1" = { created_at = 2026-11-25T04:48:53.389Z }
 "graalvm-community-17.0.7" = { created_at = 2025-03-28T22:04:28.484Z }
 "graalvm-community-17.0.8" = { created_at = 2025-03-28T22:04:28.484Z }
 "graalvm-community-17.0.9" = { created_at = 2025-03-28T22:04:28.484Z }
@@ -141,6 +142,8 @@
 "liberica-nik-musl-openjdk17-23.0.13.1+1" = { created_at = 2026-09-02T22:10:26.236Z }
 "liberica-nik-javafx-openjdk17-23.0.14+1" = { created_at = 2026-11-07T01:34:22.204Z }
 "liberica-nik-musl-openjdk17-23.0.14+1" = { created_at = 2026-11-07T01:34:22.204Z }
+"liberica-nik-javafx-openjdk17-23.0.14.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
+"liberica-nik-musl-openjdk17-23.0.14.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
 "liberica-nik-javafx-openjdk21-23.1.0+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-musl-openjdk21-23.1.0+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-javafx-openjdk21-23.1.1+1" = { created_at = 2026-07-18T22:17:55.311Z }
@@ -177,6 +180,8 @@
 "liberica-nik-musl-openjdk21-23.1.12.1+1" = { created_at = 2026-09-02T22:10:26.236Z }
 "liberica-nik-javafx-openjdk21-23.1.13+1" = { created_at = 2026-11-07T01:34:22.204Z }
 "liberica-nik-musl-openjdk21-23.1.13+1" = { created_at = 2026-11-07T01:34:22.204Z }
+"liberica-nik-javafx-openjdk21-23.1.13.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
+"liberica-nik-musl-openjdk21-23.1.13.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
 "liberica-nik-javafx-openjdk22-24.0.0+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-musl-openjdk22-24.0.0+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-javafx-openjdk22-24.0.1+1" = { created_at = 2026-07-18T22:17:55.311Z }
@@ -217,6 +222,8 @@
 "liberica-nik-musl-openjdk25-25.0.4.1+1" = { created_at = 2026-08-21T22:05:44.903Z }
 "liberica-nik-javafx-openjdk25-25.0.5.0.3+1" = { created_at = 2026-11-07T01:34:22.204Z }
 "liberica-nik-musl-openjdk25-25.0.5.0.3+1" = { created_at = 2026-11-07T01:34:22.204Z }
+"liberica-nik-javafx-openjdk25-25.0.5.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
+"liberica-nik-musl-openjdk25-25.0.5.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
 "liberica-nik-openjdk11-21.0.0.2" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-openjdk11-21.1.0" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-openjdk11-21.2.0" = { created_at = 2026-07-18T22:17:55.311Z }
@@ -277,6 +284,7 @@
 "liberica-nik-openjdk17-23.0.13+1" = { created_at = 2026-07-23T22:23:45.699Z }
 "liberica-nik-openjdk17-23.0.13.1+1" = { created_at = 2026-09-02T22:10:26.236Z }
 "liberica-nik-openjdk17-23.0.14+1" = { created_at = 2026-11-07T01:34:22.204Z }
+"liberica-nik-openjdk17-23.0.14.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
 "liberica-nik-openjdk21-23.1.0+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-openjdk21-23.1.1+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-openjdk21-23.1.2+1" = { created_at = 2026-07-18T22:17:55.311Z }
@@ -295,6 +303,7 @@
 "liberica-nik-openjdk21-23.1.12+1" = { created_at = 2026-07-23T22:23:45.699Z }
 "liberica-nik-openjdk21-23.1.12.1+1" = { created_at = 2026-09-02T22:10:26.236Z }
 "liberica-nik-openjdk21-23.1.13+1" = { created_at = 2026-11-07T01:34:22.204Z }
+"liberica-nik-openjdk21-23.1.13.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
 "liberica-nik-openjdk22-24.0.0+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-openjdk22-24.0.1+1" = { created_at = 2026-07-18T22:17:55.311Z }
 "liberica-nik-openjdk22-24.0.2+1" = { created_at = 2026-07-18T22:17:55.311Z }
@@ -315,11 +324,13 @@
 "liberica-nik-openjdk25-25.0.4+1" = { created_at = 2026-07-23T22:23:45.699Z }
 "liberica-nik-openjdk25-25.0.4.1+1" = { created_at = 2026-08-21T22:05:44.903Z }
 "liberica-nik-openjdk25-25.0.5.0.3+1" = { created_at = 2026-11-07T01:34:22.204Z }
+"liberica-nik-openjdk25-25.0.5.1+1" = { created_at = 2026-11-25T04:45:38.742Z }
 "oracle-graalvm-innovation-25.0.3" = { created_at = 2026-08-19T22:09:05.170Z }
 "oracle-graalvm-innovation-25.0.4" = { created_at = 2026-08-19T22:09:05.170Z }
 "oracle-graalvm-innovation-25.0.4.1" = { created_at = 2026-08-25T22:08:21.003Z }
 "oracle-graalvm-innovation-25.0.4.1.1" = { created_at = 2026-09-22T22:09:42.571Z }
 "oracle-graalvm-innovation-25.0.5.0.3" = { created_at = 2026-11-04T01:56:02.632Z }
+"oracle-graalvm-innovation-25.0.5.1" = { created_at = 2026-11-25T04:48:54.902Z }
 "oracle-graalvm-17.0.7" = { created_at = 2025-03-28T22:04:32.319Z }
 "oracle-graalvm-17.0.8" = { created_at = 2025-03-28T22:04:32.319Z }
 "oracle-graalvm-17.0.9" = { created_at = 2025-03-28T22:04:32.319Z }
