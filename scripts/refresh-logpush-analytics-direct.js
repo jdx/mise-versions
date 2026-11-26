@@ -71,6 +71,7 @@ import {
   batchUpsert,
   buildDimensionRows,
   loadDimensionIds,
+  platformKey,
   queryD1,
   requiredEnv,
 } from "./refresh-download-rollups-direct.js";
@@ -221,7 +222,7 @@ async function readDay(config, date, objects, releases) {
     secret: config.ipHashSecret,
     hosts: config.hosts,
     beaconHosts: config.beaconHosts,
-    repoTools: config.repoTools,
+    repoTools: config.repoTools ?? new Map(),
   });
   let next = 0;
   let done = 0;
@@ -463,6 +464,12 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
     ["date", "total_downloads", "unique_users"],
     [[date, rollups.total, rollups.uniqueUsers]],
   );
+  if (!config.repoTools) {
+    // Without the registry, GitHub lookups went uncounted: leave the day's
+    // lookups as they were rather than store, and mark complete, low counts.
+    console.warn(`${date}: registry unavailable, tool lookups not written`);
+    return rollups;
+  }
   try {
     await writeLookups(config, date, aggregator.lookups.rollups(), updatedAt);
   } catch (error) {
@@ -510,7 +517,10 @@ async function writeLookups(config, date, lookups, updatedAt) {
       .map((row) => [
         date,
         toolId(row.tool),
-        ids.platforms.get(`${row.os}\0${row.arch}`),
+        // No readable platform is the unknown platform, 0, as for downloads.
+        row.os || row.arch
+          ? ids.platforms.get(platformKey(row.os || null, row.arch || null))
+          : 0,
         row.unique_users,
       ])
       .filter(
@@ -672,7 +682,8 @@ export async function refreshDate(config, date, userSets) {
 }
 
 // Registry tools by GitHub repo, so lookups of /data/github/ lists and the
-// mirror count toward a tool. Without the registry those are not counted.
+// mirror count toward a tool. Null when the registry cannot be read: the day's
+// lookups are then not written, since GitHub lookups would be missing.
 function loadRepoTools() {
   let text;
   try {
@@ -684,10 +695,10 @@ function loadRepoTools() {
         });
   } catch (error) {
     console.warn(
-      "mise registry unavailable; GitHub lookups are not counted:",
+      "mise registry unavailable; tool lookups will not be written:",
       error?.message ?? error,
     );
-    return new Map();
+    return null;
   }
   const repoTools = registryRepoTools(text);
   console.log(`Registry: ${repoTools.size} GitHub repos map to tools`);

@@ -658,6 +658,7 @@ export {
   batchUpsert,
   buildDimensionRows,
   loadDimensionIds,
+  platformKey,
   parseArgs,
   queryD1,
   refreshDate,

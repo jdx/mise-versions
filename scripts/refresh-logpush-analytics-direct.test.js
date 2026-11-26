@@ -96,6 +96,7 @@ function config(r2) {
     hosts: null,
     beaconHosts: ["mise-versions.jdx.dev"],
     statePrefix: "rollups/mise-users/v1",
+    repoTools: new Map(),
     dryRun: false,
     r2,
   };
@@ -220,6 +221,8 @@ describe("refresh-logpush-analytics-direct", () => {
             line({
               ClientIP: "198.51.100.4",
               EdgeStartTimestamp: "2026-10-13T00:01:00Z",
+              // No platform in the user agent.
+              ClientRequestUserAgent: "mise/2026.1.0",
             }),
           ].join("\n"),
         ),
@@ -333,7 +336,11 @@ describe("refresh-logpush-analytics-direct", () => {
       "2026-10-13",
       1,
       7,
-      2,
+      1,
+      "2026-10-13",
+      1,
+      0, // no os/arch: unknown platform
+      1,
     ]);
     assert.deepEqual(insert("logpush_daily_lookup_stats").params.slice(0, 3), [
       "2026-10-13",
@@ -355,6 +362,26 @@ describe("refresh-logpush-analytics-direct", () => {
     assert.ok(markerClear >= 0 && markerClear < Math.min(...lookupWrites));
     assert.ok(markerWrite > Math.max(...lookupWrites));
     assert.ok(!writes.some(({ sql }) => /INTO daily_/.test(sql)));
+  });
+
+  it("leaves lookups unwritten when the registry could not be read", async () => {
+    const r2 = fakeR2({
+      "http_requests/jdx.dev/20261013/20261013T000000Z_20261014T000000Z_a.log.gz":
+        gzipSync(line({})),
+    });
+    const writes = fakeD1();
+    const result = await refreshDate(
+      { ...config(r2), repoTools: null },
+      "2026-10-13",
+      new Map(),
+    );
+    assert.equal(result.dau, 1);
+    assert.ok(
+      writes.some(({ sql }) =>
+        sql.startsWith("INSERT OR REPLACE INTO logpush_daily_stats "),
+      ),
+    );
+    assert.ok(!writes.some(({ sql }) => /lookup/.test(sql)));
   });
 
   it("skips a day without Logpush objects", async () => {
