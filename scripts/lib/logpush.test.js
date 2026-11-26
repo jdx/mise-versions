@@ -413,3 +413,48 @@ describe("GitHub versions demand", () => {
     ]);
   });
 });
+
+describe("LogpushDayAggregator tool lookups", () => {
+  it("counts non-CI machines that looked a tool up", () => {
+    const aggregator = new LogpushDayAggregator({
+      date: "2026-10-13",
+      secret: SECRET,
+      repoTools: new Map([["cli/cli", ["gh"]]]),
+    });
+    aggregator.addRecord(record());
+    aggregator.addRecord(record({ ClientIP: "203.0.113.2" }));
+    aggregator.addRecord(
+      record({
+        ClientIP: "203.0.113.2",
+        ClientRequestUserAgent: "mise/2026.11.0 macos-arm64 (2026-11-01) zsh",
+        ClientRequestURI: "/api/github/repos/cli/cli/releases/latest",
+      }),
+    );
+    // Not counted: CI, a failed request, a POST, a non-mise client.
+    aggregator.addRecord(
+      record({ ClientIP: "203.0.113.3", ClientRequestUserAgent: `${UA} ci` }),
+    );
+    aggregator.addRecord(
+      record({ ClientIP: "203.0.113.4", EdgeResponseStatus: 404 }),
+    );
+    aggregator.addRecord(
+      record({ ClientIP: "203.0.113.5", ClientRequestMethod: "POST" }),
+    );
+    aggregator.addRecord(
+      record({ ClientIP: "203.0.113.6", ClientRequestUserAgent: "curl/8" }),
+    );
+    const rollups = aggregator.lookups.rollups();
+    assert.equal(rollups.uniqueUsers, 2);
+    assert.deepEqual(
+      rollups.tools.sort((a, b) => a.tool.localeCompare(b.tool)),
+      [
+        { tool: "gh", unique_users: 1, beacon_client_users: 1, requests: 1 },
+        { tool: "node", unique_users: 2, beacon_client_users: 0, requests: 2 },
+      ],
+    );
+    assert.deepEqual(
+      rollups.platforms.find((row) => row.tool === "gh"),
+      { tool: "gh", os: "macos", arch: "arm64", unique_users: 1 },
+    );
+  });
+});

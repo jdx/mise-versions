@@ -313,6 +313,37 @@ async function createLogpushShadowTables(db: AnalyticsDb): Promise<void> {
       downloads INTEGER NOT NULL,
       PRIMARY KEY (date, tool_id, platform_id)
     )
+  `); // Tool lookups (scripts/lib/tool-lookups.js): distinct non-CI machines per
+  // tool that fetched its version list, GitHub mirror data or (java)
+  // mise-java metadata. beacon_client_users counts only mise releases that
+  // also send the install beacon, for comparing with logpush_daily_tool_stats.
+  // A row in logpush_daily_lookup_stats marks a day as complete.
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_tool_lookups (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL,
+      beacon_client_users INTEGER NOT NULL,
+      requests INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id)
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_tool_lookup_platforms (
+      date TEXT NOT NULL,
+      tool_id INTEGER NOT NULL,
+      platform_id INTEGER NOT NULL,
+      unique_users INTEGER NOT NULL,
+      PRIMARY KEY (date, tool_id, platform_id)
+    )
+  `);
+  await db.run(sql`
+    CREATE TABLE IF NOT EXISTS logpush_daily_lookup_stats (
+      date TEXT PRIMARY KEY,
+      unique_users INTEGER NOT NULL,
+      requests INTEGER NOT NULL,
+      updated_at TEXT NOT NULL
+    )
   `);
 }
 

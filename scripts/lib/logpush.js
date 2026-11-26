@@ -15,6 +15,12 @@
 //   the os/arch/backend of the newest request.
 
 import { createHmac } from "node:crypto";
+import {
+  ToolLookupDay,
+  lookupTools,
+  misePlatform,
+  sendsBeacon,
+} from "./tool-lookups.js";
 
 export const BEACON_PATH = "/t";
 // Baked GitHub version lists (scripts/bake-github-versions.js). Requests for
@@ -195,6 +201,8 @@ export class LogpushDayAggregator {
     secret,
     hosts = null,
     beaconHosts = DEFAULT_BEACON_HOSTS,
+    // `owner/repo` to registry tools, for tool lookups (tool-lookups.js).
+    repoTools = new Map(),
   }) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`Bad date ${date}`);
     if (!secret) throw new Error("An IP hash secret is required");
@@ -204,6 +212,8 @@ export class LogpushDayAggregator {
     this.beaconHosts = new Set(beaconHosts.map((h) => h.toLowerCase()));
     this.users = new Set();
     this.downloads = new Map();
+    this.repoTools = repoTools;
+    this.lookups = new ToolLookupDay();
     // Request paths of GitHub version lists mise fetched this day.
     this.githubVersionsPaths = new Set();
     this.hashCache = new Map();
@@ -294,7 +304,24 @@ export class LogpushDayAggregator {
 
     this.stats.miseRequests++;
     const ipHash = this.hash(record.ClientIP);
-    this.users.add(parseInt(ipHash, 16));
+    const user = parseInt(ipHash, 16);
+    this.users.add(user);
+
+    if (
+      (record.ClientRequestMethod || "GET") === "GET" &&
+      Number(record.EdgeResponseStatus ?? 200) < 400
+    ) {
+      const path = String(record.ClientRequestURI || "").split(/[?#]/)[0];
+      const tools = lookupTools(host, path, this.repoTools);
+      if (tools.length > 0) {
+        this.lookups.add(
+          user,
+          tools,
+          misePlatform(record.ClientRequestUserAgent),
+          sendsBeacon(client.version),
+        );
+      }
+    }
 
     if (!beacon) return;
     this.stats.beaconRequests++;

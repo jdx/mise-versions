@@ -282,7 +282,9 @@ describe("refresh-logpush-analytics-direct", () => {
       sql.startsWith("INSERT OR REPLACE INTO logpush_daily_stats "),
     );
     const dimensionWrites = writes
-      .map(({ sql }, index) => (/logpush_daily_tool_/.test(sql) ? index : -1))
+      .map(({ sql }, index) =>
+        /logpush_daily_tool_(?!lookup)/.test(sql) ? index : -1,
+      )
       .filter((index) => index >= 0);
     assert.ok(statsClear >= 0 && statsClear < Math.min(...dimensionWrites));
     assert.ok(statsWrite > Math.max(...dimensionWrites));
@@ -319,6 +321,39 @@ describe("refresh-logpush-analytics-direct", () => {
         ),
       ),
     );
+    // Tool lookups: the two non-CI machines that fetched node's list.
+    assert.deepEqual(insert("logpush_daily_tool_lookups").params, [
+      "2026-10-13",
+      1,
+      2,
+      0, // mise 2026.10.10 sends no beacon
+      2,
+    ]);
+    assert.deepEqual(insert("logpush_daily_tool_lookup_platforms").params, [
+      "2026-10-13",
+      1,
+      7,
+      2,
+    ]);
+    assert.deepEqual(insert("logpush_daily_lookup_stats").params.slice(0, 3), [
+      "2026-10-13",
+      2,
+      2,
+    ]);
+    // Its marker is cleared first and written last.
+    const lookupWrites = writes
+      .map(({ sql }, index) =>
+        /logpush_daily_tool_lookup/.test(sql) ? index : -1,
+      )
+      .filter((index) => index >= 0);
+    const markerClear = writes.findIndex(({ sql }) =>
+      sql.startsWith("DELETE FROM logpush_daily_lookup_stats"),
+    );
+    const markerWrite = writes.findIndex(({ sql }) =>
+      sql.startsWith("INSERT OR REPLACE INTO logpush_daily_lookup_stats "),
+    );
+    assert.ok(markerClear >= 0 && markerClear < Math.min(...lookupWrites));
+    assert.ok(markerWrite > Math.max(...lookupWrites));
     assert.ok(!writes.some(({ sql }) => /INTO daily_/.test(sql)));
   });
 
