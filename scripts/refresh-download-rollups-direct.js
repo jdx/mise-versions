@@ -18,6 +18,10 @@ const DEFAULT_CUTOVER_DATE = "2026-06-12";
 const CLOUDFLARE_RETRY_ATTEMPTS = 3;
 const CLOUDFLARE_FETCH_TIMEOUT_MS = 30_000;
 const D1_MAX_PARAMS = 100;
+// batchUpsert binds a batch as one JSON value: well under D1's 2 MB value
+// and 100 KB statement limits.
+const UPSERT_BATCH_ROWS = 1000;
+const UPSERT_BATCH_BYTES = 64 * 1024;
 
 function usage() {
   console.error(`Usage: node scripts/refresh-download-rollups-direct.js [--date=YYYY-MM-DD] [--days=N]
@@ -179,19 +183,48 @@ async function queryD1(config, sql, params = [], label = "D1 query") {
   return first.results ?? [];
 }
 
+// Split rows into batches of at most UPSERT_BATCH_ROWS rows whose JSON stays
+// within UPSERT_BATCH_BYTES (a row bigger than that gets a batch of its own).
+function upsertBatches(rows) {
+  const batches = [];
+  let batch = [];
+  let bytes = 2;
+  for (const row of rows) {
+    const rowBytes = Buffer.byteLength(JSON.stringify(row)) + 1;
+    if (
+      batch.length > 0 &&
+      (batch.length >= UPSERT_BATCH_ROWS ||
+        bytes + rowBytes > UPSERT_BATCH_BYTES)
+    ) {
+      batches.push(batch);
+      batch = [];
+      bytes = 2;
+    }
+    batch.push(row);
+    bytes += rowBytes;
+  }
+  if (batch.length > 0) batches.push(batch);
+  return batches;
+}
+
+// D1 binds at most D1_MAX_PARAMS values per query, so binding every value
+// capped a request at 100 / columns rows: a Logpush day's ~18k rows took ~750
+// sequential REST round trips. Each batch is instead bound as one JSON array
+// of rows and expanded with json_each, which keeps JSON types (numbers stay
+// INTEGER/REAL, strings TEXT, null NULL) and the array's order, so a later
+// duplicate key still replaces an earlier one.
 async function batchUpsert(config, table, columns, rows) {
   if (rows.length === 0) return;
-  const batchSize = Math.max(1, Math.floor(D1_MAX_PARAMS / columns.length));
-  for (let i = 0; i < rows.length; i += batchSize) {
-    const batch = rows.slice(i, i + batchSize);
-    const placeholders = batch
-      .map(() => `(${columns.map(() => "?").join(", ")})`)
-      .join(", ");
+  const values = columns
+    .map((_, index) => `json_extract(value, '$[${index}]')`)
+    .join(", ");
+  const sql = `INSERT OR REPLACE INTO ${table} (${columns.join(", ")}) SELECT ${values} FROM json_each(?)`;
+  for (const [index, batch] of upsertBatches(rows).entries()) {
     await queryD1(
       config,
-      `INSERT OR REPLACE INTO ${table} (${columns.join(", ")}) VALUES ${placeholders}`,
-      batch.flat(),
-      `${table} batch ${Math.floor(i / batchSize) + 1}`,
+      sql,
+      [JSON.stringify(batch)],
+      `${table} batch ${index + 1}`,
     );
   }
   console.log(`Upserted ${rows.length} ${table} row(s)`);
@@ -656,6 +689,7 @@ async function main() {
 
 export {
   batchUpsert,
+  upsertBatches,
   buildDimensionRows,
   loadDimensionIds,
   platformKey,

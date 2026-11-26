@@ -551,6 +551,28 @@ function miseReleaseResult(config, date, objects, releases) {
   };
 }
 
+// Never rejects: demand only decides what the next deploys bake, so a
+// failure is a warning and never fails the rollup.
+async function reportDemand(config, date, aggregator) {
+  if (config.dryRun || !config.apiSecret) return undefined;
+  const started = Date.now();
+  try {
+    const totals = await reportGithubVersionsDemand({
+      apiUrl: config.demandApiUrl,
+      secret: config.apiSecret,
+      date,
+      paths: [...aggregator.githubVersionsPaths],
+    });
+    console.log(
+      `${date}: reported ${totals.paths} GitHub versions demand path(s) in ${((Date.now() - started) / 1000).toFixed(1)}s`,
+    );
+    return totals;
+  } catch (error) {
+    console.warn(`${date}: reporting GitHub versions demand failed:`, error);
+    return undefined;
+  }
+}
+
 // The mise usage numbers for a day: the user set, DAU, MAU and beacon
 // installs. Writes nothing in a dry run.
 async function refreshUsage(config, date, aggregator, userSets, started) {
@@ -586,6 +608,10 @@ async function refreshUsage(config, date, aggregator, userSets, started) {
     );
   }
 
+  // The demand report only feeds the Worker's bake list and never reads D1,
+  // so it runs while the day's D1 rollups are written.
+  const demand = reportDemand(config, date, aggregator);
+
   const result = {
     dau: hashes.length,
     mau: mau.mau,
@@ -616,23 +642,15 @@ async function refreshUsage(config, date, aggregator, userSets, started) {
         installUsers: installUsers.get(row.tool) ?? 0,
       }));
   } else {
+    const writeStarted = Date.now();
     await writeD1(config, date, aggregator, mau, new Date().toISOString());
+    console.log(
+      `${date}: wrote D1 rollups in ${((Date.now() - writeStarted) / 1000).toFixed(1)}s`,
+    );
   }
   result.githubVersionsPaths = aggregator.githubVersionsPaths.size;
-  if (!config.dryRun && config.apiSecret) {
-    try {
-      result.githubVersionsDemand = await reportGithubVersionsDemand({
-        apiUrl: config.demandApiUrl,
-        secret: config.apiSecret,
-        date,
-        paths: [...aggregator.githubVersionsPaths],
-      });
-    } catch (error) {
-      // Demand only decides what the next deploys bake; never fail the
-      // rollup over it.
-      console.warn(`${date}: reporting GitHub versions demand failed:`, error);
-    }
-  }
+  const githubVersionsDemand = await demand;
+  if (githubVersionsDemand) result.githubVersionsDemand = githubVersionsDemand;
   return result;
 }
 
