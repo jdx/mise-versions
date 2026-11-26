@@ -10,6 +10,10 @@
  * - logpush_daily_mau: distinct non-CI mise users over the trailing 30 days
  * - logpush_daily_*stats: install counts from the static `/t` beacon, shaped
  *   like the Analytics Engine daily_* download rollups
+ * - logpush_daily_tool_lookups / _tool_lookup_platforms /
+ *   _lookup_stats: distinct non-CI machines per tool that looked it up
+ *   (version lists, the GitHub mirror, mise-java), from requests mise makes
+ *   anyway; see lib/tool-lookups.js. A beacon-free measure of tool usage.
  *
  * The site reads logpush_daily_dau/_mau for DAU/MAU (falling back to the
  * Analytics Engine rollups for older dates), and refresh-download-rollups-
@@ -25,6 +29,8 @@
  * MAU for any day in the last year can be recomputed from them.
  */
 
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
@@ -55,6 +61,7 @@ import {
   writeMiseReleaseDownloads,
 } from "./lib/mise-release-downloads.js";
 import { R2Client } from "./lib/r2-s3.js";
+import { registryRepoTools } from "./lib/tool-lookups.js";
 import {
   decodeUserHashes,
   encodeUserHashes,
@@ -64,6 +71,7 @@ import {
   batchUpsert,
   buildDimensionRows,
   loadDimensionIds,
+  platformKey,
   queryD1,
   requiredEnv,
 } from "./refresh-download-rollups-direct.js";
@@ -103,6 +111,8 @@ Environment:
   LOGPUSH_RELEASE_ZONES         Optional comma list of zones to count mise release
                                 downloads in; defaults to ${DEFAULT_MISE_RELEASE_ZONES.join(",")}
   ANALYTICS_DB_ID               Optional; defaults to production ANALYTICS_DB id
+  LOGPUSH_REGISTRY_FILE         Optional \`mise registry\` output, to credit GitHub
+                                lookups to tools; defaults to running \`mise registry\`
 
 Capacity warnings (see lib/logpush-capacity.js; warnings never fail the run):
   LOGPUSH_TIMEOUT_MINUTES          The job's timeout-minutes; enables the runtime check
@@ -212,6 +222,7 @@ async function readDay(config, date, objects, releases) {
     secret: config.ipHashSecret,
     hosts: config.hosts,
     beaconHosts: config.beaconHosts,
+    repoTools: config.repoTools ?? new Map(),
   });
   let next = 0;
   let done = 0;
@@ -453,7 +464,75 @@ async function writeD1(config, date, aggregator, mau, updatedAt) {
     ["date", "total_downloads", "unique_users"],
     [[date, rollups.total, rollups.uniqueUsers]],
   );
+  if (!config.repoTools) {
+    // Without the registry, GitHub lookups went uncounted: leave the day's
+    // lookups as they were rather than store, and mark complete, low counts.
+    console.warn(`${date}: registry unavailable, tool lookups not written`);
+    return rollups;
+  }
+  try {
+    await writeLookups(config, date, aggregator.lookups.rollups(), updatedAt);
+  } catch (error) {
+    // Shadow data: never fail DAU, MAU and downloads over it.
+    console.warn(`${date}: writing tool lookups failed:`, error);
+  }
   return rollups;
+}
+
+// Tool lookups, with the same marker discipline as the download tables:
+// logpush_daily_lookup_stats is written last, so a day without it is
+// incomplete.
+async function writeLookups(config, date, lookups, updatedAt) {
+  await queryD1(
+    config,
+    "DELETE FROM logpush_daily_lookup_stats WHERE date = ?",
+    [date],
+    "logpush_daily_lookup_stats clear",
+  );
+  const ids = await loadDimensionIds(config, lookups.platforms, {
+    createTools: lookups.tools.map((row) => row.tool),
+  });
+  const toolId = (tool) => ids.tools.get(tool);
+  await replaceDateRows(
+    config,
+    "logpush_daily_tool_lookups",
+    ["date", "tool_id", "unique_users", "beacon_client_users", "requests"],
+    date,
+    lookups.tools
+      .filter((row) => toolId(row.tool) !== undefined)
+      .map((row) => [
+        date,
+        toolId(row.tool),
+        row.unique_users,
+        row.beacon_client_users,
+        row.requests,
+      ]),
+  );
+  await replaceDateRows(
+    config,
+    "logpush_daily_tool_lookup_platforms",
+    ["date", "tool_id", "platform_id", "unique_users"],
+    date,
+    lookups.platforms
+      .map((row) => [
+        date,
+        toolId(row.tool),
+        // No readable platform is the unknown platform, 0, as for downloads.
+        row.os || row.arch
+          ? ids.platforms.get(platformKey(row.os || null, row.arch || null))
+          : 0,
+        row.unique_users,
+      ])
+      .filter(
+        ([, tool, platform]) => tool !== undefined && platform !== undefined,
+      ),
+  );
+  await batchUpsert(
+    config,
+    "logpush_daily_lookup_stats",
+    ["date", "unique_users", "requests", "updated_at"],
+    [[date, lookups.uniqueUsers, lookups.requests, updatedAt]],
+  );
 }
 
 // A day's release download counts are only marked covered when every release
@@ -522,6 +601,20 @@ async function refreshUsage(config, date, aggregator, userSets, started) {
       .sort((a, b) => b.downloads - a.downloads)
       .slice(0, 10)
       .map(({ tool, downloads }) => ({ tool, downloads }));
+    const lookups = aggregator.lookups.rollups();
+    const installUsers = new Map(
+      rollups.tools.map((row) => [row.tool, row.unique_users]),
+    );
+    result.lookupUsers = lookups.uniqueUsers;
+    result.topLookups = lookups.tools
+      .sort((a, b) => b.unique_users - a.unique_users)
+      .slice(0, 20)
+      .map((row) => ({
+        tool: row.tool,
+        users: row.unique_users,
+        beaconClientUsers: row.beacon_client_users,
+        installUsers: installUsers.get(row.tool) ?? 0,
+      }));
   } else {
     await writeD1(config, date, aggregator, mau, new Date().toISOString());
   }
@@ -588,6 +681,30 @@ export async function refreshDate(config, date, userSets) {
   return result;
 }
 
+// Registry tools by GitHub repo, so lookups of /data/github/ lists and the
+// mirror count toward a tool. Null when the registry cannot be read: the day's
+// lookups are then not written, since GitHub lookups would be missing.
+function loadRepoTools() {
+  let text;
+  try {
+    text = process.env.LOGPUSH_REGISTRY_FILE
+      ? readFileSync(process.env.LOGPUSH_REGISTRY_FILE, "utf8")
+      : execFileSync("mise", ["registry"], {
+          encoding: "utf8",
+          maxBuffer: 16 * 1024 * 1024,
+        });
+  } catch (error) {
+    console.warn(
+      "mise registry unavailable; tool lookups will not be written:",
+      error?.message ?? error,
+    );
+    return null;
+  }
+  const repoTools = registryRepoTools(text);
+  console.log(`Registry: ${repoTools.size} GitHub repos map to tools`);
+  return repoTools;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const cloudflareAccountId = requiredEnv("CLOUDFLARE_ACCOUNT_ID");
@@ -603,6 +720,7 @@ async function main() {
     releaseZones: listEnv("LOGPUSH_RELEASE_ZONES", DEFAULT_MISE_RELEASE_ZONES),
     hosts: listEnv("LOGPUSH_HOSTS", null),
     beaconHosts: listEnv("LOGPUSH_BEACON_HOSTS", DEFAULT_BEACON_HOSTS),
+    repoTools: loadRepoTools(),
     statePrefix: (
       process.env.LOGPUSH_STATE_PREFIX || DEFAULT_STATE_PREFIX
     ).replace(/\/+$/, ""),
