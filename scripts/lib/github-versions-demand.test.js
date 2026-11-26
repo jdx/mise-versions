@@ -95,6 +95,34 @@ describe("reportGithubVersionsDemand", () => {
     assert.equal(calls, 2);
   });
 
+  it("waits for batches in flight, then rejects with a network error", async () => {
+    let calls = 0;
+    let settled = 0;
+    await assert.rejects(
+      reportGithubVersionsDemand({
+        apiUrl: "https://example.test",
+        secret: "s",
+        date: "2026-10-13",
+        paths: Array.from(
+          { length: DEMAND_BATCH * 10 },
+          (_, i) => `/data/github/o/r${i}/releases.json`,
+        ),
+        concurrency: 3,
+        fetchImpl: async () => {
+          const call = ++calls;
+          if (call === 1) throw new TypeError("fetch failed");
+          await new Promise((resolve) => setTimeout(resolve, 10));
+          settled++;
+          return Response.json({ stamped: 0, unknown: 0 });
+        },
+      }),
+      /fetch failed/,
+    );
+    // The two batches already in flight finished; no new ones started.
+    assert.equal(calls, 3);
+    assert.equal(settled, 2);
+  });
+
   it("throws on an HTTP error so the caller can warn", async () => {
     await assert.rejects(
       reportGithubVersionsDemand({

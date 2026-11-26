@@ -25,32 +25,37 @@ export async function reportGithubVersionsDemand({
     batches.push(sorted.slice(i, i + DEMAND_BATCH));
   }
   let next = 0;
-  // After one batch fails, the others send nothing more, as when they went
-  // one at a time.
-  let failed = false;
-  async function worker() {
-    while (!failed && next < batches.length) {
-      const batch = batches[next++];
-      const response = await fetchImpl(
-        `${apiUrl}/api/admin/github/versions/demand`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${secret}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ date, paths: batch }),
+  // After any batch fails, the others send nothing more, as when they went
+  // one at a time, and the report rejects only once none is still in flight.
+  let error;
+  async function send(batch) {
+    const response = await fetchImpl(
+      `${apiUrl}/api/admin/github/versions/demand`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${secret}`,
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({ date, paths: batch }),
+      },
+    );
+    if (!response.ok) {
+      throw new Error(
+        `demand report failed: HTTP ${response.status} ${await response.text()}`,
       );
-      if (!response.ok) {
-        failed = true;
-        throw new Error(
-          `demand report failed: HTTP ${response.status} ${await response.text()}`,
-        );
+    }
+    const result = await response.json();
+    totals.stamped += result.stamped ?? 0;
+    totals.unknown += result.unknown ?? 0;
+  }
+  async function worker() {
+    while (error === undefined && next < batches.length) {
+      try {
+        await send(batches[next++]);
+      } catch (caught) {
+        error ??= caught;
       }
-      const result = await response.json();
-      totals.stamped += result.stamped ?? 0;
-      totals.unknown += result.unknown ?? 0;
     }
   }
   await Promise.all(
@@ -59,5 +64,6 @@ export async function reportGithubVersionsDemand({
       worker,
     ),
   );
+  if (error !== undefined) throw error;
   return totals;
 }
