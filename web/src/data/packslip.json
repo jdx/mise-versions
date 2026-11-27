@@ -21,10 +21,10 @@
   },
   "aubepkg/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.10.1",
-    "publishedAt": "2026-11-16T20:47:23.185583076Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.10.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.10.1",
+    "version": "2.11.0",
+    "publishedAt": "2026-11-23T22:55:20.62539438Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.11.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.11.0",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -55,10 +55,10 @@
   },
   "charmbracelet/crush": {
     "project": "github.com/charmbracelet/crush",
-    "version": "0.102.0",
-    "publishedAt": "2026-11-19T17:33:22.340237449Z",
-    "manifestUrl": "https://github.com/charmbracelet/crush/releases/download/v0.102.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/charmbracelet/crush/releases/tag/v0.102.0",
+    "version": "0.104.0",
+    "publishedAt": "2026-11-27T13:41:56.559256383Z",
+    "manifestUrl": "https://github.com/charmbracelet/crush/releases/download/v0.104.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/charmbracelet/crush/releases/tag/v0.104.0",
     "publisher": "charmbracelet",
     "capabilities": [
       {
@@ -91,28 +91,28 @@
       "openbsd / x86_64"
     ],
     "binaries": [
-      "crush_0.102.0_Android_arm64/crush",
-      "crush_0.102.0_Darwin_arm64/crush",
-      "crush_0.102.0_Darwin_x86_64/crush",
-      "crush_0.102.0_Freebsd_arm64/crush",
-      "crush_0.102.0_Freebsd_armv7/crush",
-      "crush_0.102.0_Freebsd_i386/crush",
-      "crush_0.102.0_Freebsd_x86_64/crush",
-      "crush_0.102.0_Linux_arm64/crush",
-      "crush_0.102.0_Linux_armv7/crush",
-      "crush_0.102.0_Linux_i386/crush",
-      "crush_0.102.0_Linux_x86_64/crush",
-      "crush_0.102.0_Netbsd_arm64/crush",
-      "crush_0.102.0_Netbsd_armv7/crush",
-      "crush_0.102.0_Netbsd_i386/crush",
-      "crush_0.102.0_Netbsd_x86_64/crush",
-      "crush_0.102.0_Openbsd_arm64/crush",
-      "crush_0.102.0_Openbsd_armv7/crush",
-      "crush_0.102.0_Openbsd_i386/crush",
-      "crush_0.102.0_Openbsd_x86_64/crush",
-      "crush_0.102.0_Windows_arm64/crush.exe",
-      "crush_0.102.0_Windows_i386/crush.exe",
-      "crush_0.102.0_Windows_x86_64/crush.exe"
+      "crush_0.104.0_Android_arm64/crush",
+      "crush_0.104.0_Darwin_arm64/crush",
+      "crush_0.104.0_Darwin_x86_64/crush",
+      "crush_0.104.0_Freebsd_arm64/crush",
+      "crush_0.104.0_Freebsd_armv7/crush",
+      "crush_0.104.0_Freebsd_i386/crush",
+      "crush_0.104.0_Freebsd_x86_64/crush",
+      "crush_0.104.0_Linux_arm64/crush",
+      "crush_0.104.0_Linux_armv7/crush",
+      "crush_0.104.0_Linux_i386/crush",
+      "crush_0.104.0_Linux_x86_64/crush",
+      "crush_0.104.0_Netbsd_arm64/crush",
+      "crush_0.104.0_Netbsd_armv7/crush",
+      "crush_0.104.0_Netbsd_i386/crush",
+      "crush_0.104.0_Netbsd_x86_64/crush",
+      "crush_0.104.0_Openbsd_arm64/crush",
+      "crush_0.104.0_Openbsd_armv7/crush",
+      "crush_0.104.0_Openbsd_i386/crush",
+      "crush_0.104.0_Openbsd_x86_64/crush",
+      "crush_0.104.0_Windows_arm64/crush.exe",
+      "crush_0.104.0_Windows_i386/crush.exe",
+      "crush_0.104.0_Windows_x86_64/crush.exe"
     ],
     "artifactCount": 22,
     "provenanceCount": 0
@@ -187,10 +187,10 @@
   },
   "gabrie30/ghorg": {
     "project": "github.com/gabrie30/ghorg",
-    "version": "1.11.17",
-    "publishedAt": "2026-10-31T12:49:37.604781428Z",
-    "manifestUrl": "https://github.com/gabrie30/ghorg/releases/download/v1.11.17/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/gabrie30/ghorg/releases/tag/v1.11.17",
+    "version": "1.11.18",
+    "publishedAt": "2026-11-23T02:00:18.594257471Z",
+    "manifestUrl": "https://github.com/gabrie30/ghorg/releases/download/v1.11.18/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/gabrie30/ghorg/releases/tag/v1.11.18",
     "publisher": "gabrie30",
     "capabilities": [
       {
@@ -218,10 +218,10 @@
   },
   "helmfile/helmfile": {
     "project": "github.com/helmfile/helmfile",
-    "version": "1.8.4",
-    "publishedAt": "2026-11-13T01:39:37.498023919Z",
-    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.4/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.4",
+    "version": "1.8.5",
+    "publishedAt": "2026-11-23T00:00:05.032746077Z",
+    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.5/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.5",
     "publisher": "helmfile",
     "capabilities": [
       {
@@ -249,10 +249,10 @@
   },
   "jdx/aube": {
     "project": "github.com/aubepkg/aube",
-    "version": "2.10.1",
-    "publishedAt": "2026-11-16T20:47:23.185583076Z",
-    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.10.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.10.1",
+    "version": "2.11.0",
+    "publishedAt": "2026-11-23T22:55:20.62539438Z",
+    "manifestUrl": "https://github.com/aubepkg/aube/releases/download/v2.11.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/aubepkg/aube/releases/tag/v2.11.0",
     "publisher": "aubepkg",
     "capabilities": [
       {
@@ -283,10 +283,10 @@
   },
   "jdx/communique": {
     "project": "github.com/jdx/communique",
-    "version": "1.8.0",
-    "publishedAt": "2026-10-29T10:13:25.212507555Z",
-    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.8.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.8.0",
+    "version": "1.9.0",
+    "publishedAt": "2026-11-23T21:57:42.495601371Z",
+    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.9.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.9.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -352,10 +352,10 @@
   },
   "jdx/hk": {
     "project": "github.com/jdx/hk",
-    "version": "2.13.0",
-    "publishedAt": "2026-11-16T20:16:35.307364271Z",
-    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.13.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.13.0",
+    "version": "2.14.0",
+    "publishedAt": "2026-11-23T22:47:37.885419044Z",
+    "manifestUrl": "https://github.com/jdx/hk/releases/download/v2.14.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/hk/releases/tag/v2.14.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -411,10 +411,10 @@
   },
   "jdx/jouet": {
     "project": "github.com/jdx/jouet",
-    "version": "0.0.5",
-    "publishedAt": "2026-11-16T20:28:46.668942707Z",
-    "manifestUrl": "https://github.com/jdx/jouet/releases/download/v0.0.5/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/jouet/releases/tag/v0.0.5",
+    "version": "0.0.6",
+    "publishedAt": "2026-11-23T22:15:40.659637533Z",
+    "manifestUrl": "https://github.com/jdx/jouet/releases/download/v0.0.6/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/jouet/releases/tag/v0.0.6",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -445,10 +445,10 @@
   },
   "jdx/mr-boxington": {
     "project": "github.com/jdx/mr-boxington",
-    "version": "1.30.0",
-    "publishedAt": "2026-11-09T20:42:18.793498929Z",
-    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.30.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.30.0",
+    "version": "1.31.0",
+    "publishedAt": "2026-11-24T00:44:23.808038493Z",
+    "manifestUrl": "https://github.com/jdx/mr-boxington/releases/download/v1.31.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/mr-boxington/releases/tag/v1.31.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -511,10 +511,10 @@
   },
   "jdx/tak": {
     "project": "github.com/jdx/tak",
-    "version": "0.0.15",
-    "publishedAt": "2026-10-10T15:10:28.233186432Z",
-    "manifestUrl": "https://github.com/jdx/tak/releases/download/v0.0.15/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/tak/releases/tag/v0.0.15",
+    "version": "0.0.17",
+    "publishedAt": "2026-11-23T11:39:51.535116259Z",
+    "manifestUrl": "https://github.com/jdx/tak/releases/download/v0.0.17/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/tak/releases/tag/v0.0.17",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -541,10 +541,10 @@
   },
   "jdx/usage": {
     "project": "github.com/jdx/usage",
-    "version": "7.4.0",
-    "publishedAt": "2026-11-16T20:12:30.01681394Z",
-    "manifestUrl": "https://github.com/jdx/usage/releases/download/v7.4.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v7.4.0",
+    "version": "7.4.1",
+    "publishedAt": "2026-11-23T22:03:33.429265672Z",
+    "manifestUrl": "https://github.com/jdx/usage/releases/download/v7.4.1/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/usage/releases/tag/v7.4.1",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -660,10 +660,10 @@
   },
   "nubjs/nub": {
     "project": "github.com/nubjs/nub",
-    "version": "0.11.1",
-    "publishedAt": "2026-11-15T23:35:51.686078083Z",
-    "manifestUrl": "https://github.com/nubjs/nub/releases/download/v0.11.1/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/nubjs/nub/releases/tag/v0.11.1",
+    "version": "0.11.3",
+    "publishedAt": "2026-11-27T19:25:27.137863301Z",
+    "manifestUrl": "https://github.com/nubjs/nub/releases/download/v0.11.3/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/nubjs/nub/releases/tag/v0.11.3",
     "publisher": "nubjs",
     "capabilities": [
       {
@@ -694,10 +694,10 @@
   },
   "stefanprodan/timoni": {
     "project": "github.com/stefanprodan/timoni",
-    "version": "0.37.0",
-    "publishedAt": "2026-10-30T12:23:58.580942547Z",
-    "manifestUrl": "https://github.com/stefanprodan/timoni/releases/download/v0.37.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/stefanprodan/timoni/releases/tag/v0.37.0",
+    "version": "0.38.0",
+    "publishedAt": "2026-11-25T10:28:23.168927451Z",
+    "manifestUrl": "https://github.com/stefanprodan/timoni/releases/download/v0.38.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/stefanprodan/timoni/releases/tag/v0.38.0",
     "publisher": "stefanprodan",
     "capabilities": [
       {
