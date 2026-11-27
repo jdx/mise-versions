@@ -7,6 +7,7 @@ import {
   parseMiseReleaseUri,
   writeMiseReleaseDownloads,
 } from "./mise-release-downloads.js";
+import { decodeD1Body } from "./d1-test-helpers.js";
 
 const originalFetch = globalThis.fetch;
 afterEach(() => {
@@ -259,7 +260,7 @@ describe("writeMiseReleaseDownloads", () => {
   function fakeD1() {
     const writes = [];
     globalThis.fetch = async (_url, options) => {
-      writes.push(JSON.parse(options.body));
+      writes.push(decodeD1Body(options.body));
       return new Response(
         JSON.stringify({ success: true, result: [{ success: true }] }),
       );

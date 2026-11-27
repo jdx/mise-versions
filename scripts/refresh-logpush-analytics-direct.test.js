@@ -12,6 +12,7 @@ import {
 } from "./refresh-logpush-analytics-direct.js";
 import { decodeUserHashes, encodeUserHashes } from "./lib/user-hash-set.js";
 import { hashIp } from "./lib/logpush.js";
+import { decodeD1Body } from "./lib/d1-test-helpers.js";
 
 const originalFetch = globalThis.fetch;
 afterEach(() => {
@@ -62,7 +63,7 @@ function fakeD1({ mauRows = {} } = {}) {
   ];
   globalThis.fetch = async (url, options) => {
     assert.match(String(url), /\/d1\/database\/db\/query$/);
-    const { sql, params } = JSON.parse(options.body);
+    const { sql, params } = decodeD1Body(options.body);
     writes.push({ sql, params });
     let results = [];
     if (sql.startsWith("SELECT id, name FROM tools")) {
