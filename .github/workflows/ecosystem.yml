@@ -44,6 +44,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh ecosystem metadata"
+          # Installing the manifest verifier makes mise rewrite mise.lock, and
+          # git refuses to rebase over that unstaged change. Only the snapshots
+          # above are meant to be pushed, so drop anything else the run touched.
+          git status --short
+          git checkout -- .
           git pull --rebase origin main
           git push origin HEAD:main
           gh workflow run deploy.yml --ref main

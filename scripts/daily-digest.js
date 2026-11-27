@@ -31,6 +31,11 @@ const MAX_BAR_PERCENT = 50;
 // A day's tool rows must reach this fraction of the typical tool-to-total
 // ratio; below it the day lost tool rows to a partial refresh.
 const MIN_TOOL_COVERAGE = 0.9;
+// Analytics Engine answers the per-tool and the daily-total queries from
+// separately sampled reads, so the Analytics Engine share of a day's tool rows
+// can land a handful of downloads above the total it belongs to (5 of ~560k
+// at most so far). Only an excess beyond this fraction is a real leftover.
+const MAX_TOOL_EXCESS = 0.001;
 
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
 const signed = (n) => `${n >= 0 ? "+" : "−"}${fmt(Math.abs(n))}`;
@@ -203,7 +208,8 @@ export function toolCoverage(toolDaily, totals, day) {
     // were part of. That is the only stale-row case that is certain: a share
     // that merely rises (a tool added to the catalog) is legitimate, so it is
     // not judged against the typical share.
-    else if (ratio > 1) problems.push(`${date} has stale tool rows`);
+    else if (ratio > 1 + MAX_TOOL_EXCESS)
+      problems.push(`${date} has stale tool rows`);
   }
   return { complete: problems.length === 0, problems };
 }
