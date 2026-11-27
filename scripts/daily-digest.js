@@ -33,7 +33,7 @@ const MAX_BAR_PERCENT = 50;
 const MIN_TOOL_COVERAGE = 0.9;
 // Analytics Engine answers the per-tool and the daily-total queries from
 // separately sampled reads, so the Analytics Engine share of a day's tool rows
-// can land a handful of downloads above the total it belongs to (14 of ~630k
+// can land a handful of downloads above the total it belongs to (5 of ~560k
 // at most so far). Only an excess beyond this fraction is a real leftover.
 const MAX_TOOL_EXCESS = 0.001;
 
