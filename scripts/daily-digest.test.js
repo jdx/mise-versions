@@ -553,6 +553,21 @@ test("tool rows above the daily total are flagged as stale", () => {
   assert.equal(toolCoverage(risen, totals, "2026-09-30").complete, true);
 });
 
+test("sampling noise just above the daily total is not stale", () => {
+  // Real figures from 2026-11-25: Analytics Engine's per-tool query summed one
+  // download more than its daily-total query.
+  const totals = dayRows("2026-11-26", 14, 598377);
+  const tools = dayRows("2026-11-26", 14, 598378);
+  assert.equal(toolCoverage(tools, totals, "2026-11-26").complete, true);
+  // A real leftover row still is.
+  const leftover = tools.map((r) =>
+    r.date === "2026-11-25" ? { ...r, value: 598377 + 5000 } : r,
+  );
+  assert.deepEqual(toolCoverage(leftover, totals, "2026-11-26").problems, [
+    "2026-11-25 has stale tool rows",
+  ]);
+});
+
 test("a day with downloads but no tool rows is flagged", () => {
   const totals = dayRows("2026-09-30", 14, 1000);
   const tools = dayRows("2026-09-30", 14, 980).filter(
