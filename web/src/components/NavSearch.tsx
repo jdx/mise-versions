@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "preact/hooks";
 
+import { registerSearchShortcut } from "../lib/search-shortcut";
+
 const MAX_SUGGESTIONS = 8;
 // Matches the directory search so both inputs feel equally responsive.
 const DEBOUNCE_MS = 200;
@@ -16,6 +18,11 @@ export function NavSearch({ initialQuery = "" }: { initialQuery?: string }) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const debounceRef = useRef<number>();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    if (input) return registerSearchShortcut(input);
+  }, []);
 
   const fetchSuggestions = async (q: string) => {
     if (!q.trim()) {
