@@ -218,10 +218,10 @@
   },
   "helmfile/helmfile": {
     "project": "github.com/helmfile/helmfile",
-    "version": "1.8.5",
-    "publishedAt": "2026-11-23T00:00:05.032746077Z",
-    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.5/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.5",
+    "version": "1.8.6",
+    "publishedAt": "2026-11-28T07:34:39.867890501Z",
+    "manifestUrl": "https://github.com/helmfile/helmfile/releases/download/v1.8.6/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/helmfile/helmfile/releases/tag/v1.8.6",
     "publisher": "helmfile",
     "capabilities": [
       {
@@ -283,10 +283,10 @@
   },
   "jdx/communique": {
     "project": "github.com/jdx/communique",
-    "version": "1.9.0",
-    "publishedAt": "2026-11-23T21:57:42.495601371Z",
-    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.9.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.9.0",
+    "version": "1.10.0",
+    "publishedAt": "2026-11-28T04:11:48.438475041Z",
+    "manifestUrl": "https://github.com/jdx/communique/releases/download/v1.10.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/communique/releases/tag/v1.10.0",
     "publisher": "jdx",
     "capabilities": [
       {
@@ -386,10 +386,10 @@
   },
   "jdx/jactionlint": {
     "project": "github.com/jdx/jactionlint",
-    "version": "2.6.0",
-    "publishedAt": "2026-11-12T18:02:46.567828Z",
-    "manifestUrl": "https://github.com/jdx/jactionlint/releases/download/v2.6.0/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/jactionlint/releases/tag/v2.6.0",
+    "version": "2.7.0",
+    "publishedAt": "2026-11-28T10:58:28.868592Z",
+    "manifestUrl": "https://github.com/jdx/jactionlint/releases/download/v2.7.0/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/jactionlint/releases/tag/v2.7.0",
     "publisher": "jdx",
     "capabilities": [],
     "platforms": [
@@ -511,10 +511,10 @@
   },
   "jdx/tak": {
     "project": "github.com/jdx/tak",
-    "version": "0.0.17",
-    "publishedAt": "2026-11-23T11:39:51.535116259Z",
-    "manifestUrl": "https://github.com/jdx/tak/releases/download/v0.0.17/packslip.sigstore.json",
-    "releaseUrl": "https://github.com/jdx/tak/releases/tag/v0.0.17",
+    "version": "0.0.18",
+    "publishedAt": "2026-11-28T02:36:29.994040602Z",
+    "manifestUrl": "https://github.com/jdx/tak/releases/download/v0.0.18/packslip.sigstore.json",
+    "releaseUrl": "https://github.com/jdx/tak/releases/tag/v0.0.18",
     "publisher": "jdx",
     "capabilities": [
       {
